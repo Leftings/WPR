@@ -11,8 +11,7 @@ jobs:
       matrix:
         os: [windows-latest, macos-latest, ubuntu-latest]    # Matrix for both Windows and macOS
         configuration: [Debug, Release]
-        threadingMode: ['SingleThread','MultiThreaded']
-    timeout-minutes: 120
+    timeout-minutes: 30
 
     runs-on: ${{ matrix.os }}
 
@@ -35,8 +34,8 @@ jobs:
       uses: actions/cache@v4
       with:
         path: ~/.nuget/packages
-        key: ${{ runner.os }}-nuget-${{ hashFiles('**/*.csproj') }}
-
+        key: ${{ runner.os }}-nuget-${{ hashFiles('**/*.csproj', '**/*.sln', '**/Directory.Build.*') }}
+        
     # Set up MSBuild on Windows only
     - name: Setup MSBuild (Windows Only)
       if: runner.os == 'Windows'
@@ -44,9 +43,12 @@ jobs:
 
     # Restore the application (Cross-platform)
     - name: Restore the application
-      run: msbuild ${{ env.Solution_Name }} /t:Restore /p:Configuration=${{ matrix.configuration }}
-      env:
-        Configuration: ${{ matrix.configuration }}
+      run: dotnet restore ${{ env.Solution_Name }} --configuration ${{ matrix.configuration }}
+
+    # Build 
+    - name: Build the Solution
+      run: dotnet build ${{ env.Solution_Name }} --configuration ${{ matrix.configuration }} --no-restore
+
         
     # Execute unit tests (Cross-platform)
     - name: Execute Unit Tests
