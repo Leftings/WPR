@@ -1,0 +1,45 @@
+.env
+
+# Compiled source files
+bin/
+obj/
+*.dll
+*.exe
+*.log
+
+# User-specific files
+*.user
+*.rsuser
+*.suo
+
+# Visual Studio Code files
+.vscode/
+
+# Rider and IntelliJ IDEA files
+.idea/
+
+# Mono auto-generated files
+mono_crash.*
+
+# macOS specific
+.DS_Store
+
+# Windows specific
+Thumbs.db
+Desktop.ini
+
+# Docker specific
+docker-compose.override.yml
+
+# Local environment-specific settings
+appsettings.Development.json
+
+# Logs and databases
+*.log
+*.db
+
+# GitHub-specific
+.github/
+
+# NuGet
+*.nupkg
