@@ -11,6 +11,7 @@ jobs:
       matrix:
         os: [windows-latest, macos-latest, ubuntu-latest]    # Matrix for both Windows and macOS
         configuration: [Debug, Release]
+        threadingMode: ['SingleThread','MultiThreaded']
     timeout-minutes: 30
 
     runs-on: ${{ matrix.os }}
@@ -46,10 +47,6 @@ jobs:
       run: msbuild ${{ env.Solution_Name }} /t:Restore /p:Configuration=${{ matrix.configuration }}
       env:
         Configuration: ${{ matrix.configuration }}
-    # Build 
-    - name: Build the Solution
-      run: dotnet build ${{ env.Solution_Name }} --configuration ${{ matrix.configuration }} --no-restore
-
         
     # Execute unit tests (Cross-platform)
     - name: Execute Unit Tests
