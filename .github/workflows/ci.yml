@@ -61,6 +61,13 @@ jobs:
         with:
           dotnet-version: "8.0.x"
 
+
+      - name: Cache NuGet packages
+        uses: actions/cache@v4
+        with:
+          path: ~/.nuget/packages
+          key: ${{ runner.os }}-nuget-${{ hashFiles('**/*.csproj') }}
+
       - name: Set OS Pretty Name
         run: |
           if ($env:RUNNER_OS -eq 'Windows') {
