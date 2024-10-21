@@ -11,7 +11,6 @@ jobs:
       matrix:
         os: [windows-latest, macos-latest, ubuntu-latest]    # Matrix for both Windows and macOS
         configuration: [Debug, Release]
-        threadingMode: ['SingleThread','MultiThreaded']
     timeout-minutes: 30
 
     runs-on: ${{ matrix.os }}
