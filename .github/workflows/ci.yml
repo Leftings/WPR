@@ -3,87 +3,82 @@ name: Continuous Integration
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
-
-permissions:
-  contents: read # to fetch code (actions/checkout)
-
+  
 jobs:
- # inspect-code:
- #   name: Code Quality
- #   runs-on: ubuntu-latest
- #   steps:
-  #    - name: Checkout
-   #     uses: actions/checkout@v4
-
-#      - name: Install .NET 8.0.x
- #       uses: actions/setup-dotnet@v4
-  #      with:
-   #       dotnet-version: "8.0.x"
-#
- #     - name: Restore Tools
-  #      run: dotnet tool restore
-
-   #   - name: Restore Packages
-    #    run: dotnet restore WPR.sln
-
-     # - name: Restore inspectcode cache
-      #  uses: actions/cache@v4
-       # with:
-        #  path: ${{ github.workspace }}/inspectcode
-         # key: inspectcode-${{ hashFiles('.config/dotnet-tools.json', '.github/workflows/ci.yml', 'WPR.sln*', '.editorconfig', '.globalconfig', 'CodeAnalysis/*', '**/*.csproj', '**/*.props') }}
-
-      # Dotnet code style check (commented out for now)
-      # - name: Dotnet code style
-      #   run: dotnet build -c Debug -warnaserror WPR.sln -p:EnforceCodeStyleInBuild=true
-
-     # - name: InspectCode
-        #run: dotnet jb inspectcode $(pwd)/WPR.sln --no-build --output="inspectcodereport.xml" --caches-home="inspectcode" --verbosity=WARN
-
-      #- name: NVika
-       # run: dotnet nvika parsereport "${{github.workspace}}/inspectcodereport.xml" --treatwarningsaserrors
-
-
-  test:
-    name: Test
-    runs-on: ${{ matrix.os }}
+  build:
     strategy:
       fail-fast: false
       matrix:
-        os: [windows-latest, macos-latest, ubuntu-latest]
-        threadingMode: ['SingleThread', 'MultiThreaded']
+        os: [windows-latest, macos-latest, ubuntu-latest]    # Matrix for both Windows and macOS
+        configuration: [Debug, Release]
+        threadingMode: ['SingleThread','MultiThreaded']
     timeout-minutes: 120
+
+    runs-on: ${{ matrix.os }}
+
+    env:
+      Solution_Name: WPR.sln                  # Replace with your solution name
+
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+    - name: Checkout
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
 
-      - name: Install .NET 8.0.x
-        uses: actions/setup-dotnet@v4
-        with:
-          dotnet-version: "8.0.x"
+    # Install .NET Core SDK on both Windows and macOS
+    - name: Install .NET Core SDK
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: 8.0.x
+
+    - name: Cache NuGet packages
+      uses: actions/cache@v4
+      with:
+        path: ~/.nuget/packages
+        key: ${{ runner.os }}-nuget-${{ hashFiles('**/*.csproj') }}
+
+    # Set up MSBuild on Windows only
+    - name: Setup MSBuild (Windows Only)
+      if: runner.os == 'Windows'
+      uses: microsoft/setup-msbuild@v2
+
+    # Restore the application (Cross-platform)
+    - name: Restore the application
+      run: msbuild ${{ env.Solution_Name }} /t:Restore /p:Configuration=${{ matrix.configuration }}
+      env:
+        Configuration: ${{ matrix.configuration }}
+        
+    # Execute unit tests (Cross-platform)
+    - name: Execute Unit Tests
+      run: dotnet test --no-restore --configuration ${{ matrix.configuration }}
 
 
-      - name: Cache NuGet packages
-        uses: actions/cache@v4
-        with:
-          path: ~/.nuget/packages
-          key: ${{ runner.os }}-nuget-${{ hashFiles('**/*.csproj') }}
+    # Windows-specific steps for signing and packaging
+    # The following steps are no longer needed since you don't have WAP or signing yet:
+    #
+    # - name: Decode the PFX (Windows Only)
+    #   if: runner.os == 'Windows'
+    #   run: |
+    #     $pfx_cert_byte = [System.Convert]::FromBase64String("${{ secrets.Base64_Encoded_Pfx }}")
+    #     $certificatePath = Join-Path -Path $env:Wap_Project_Directory -ChildPath GitHubActionsWorkflow.pfx
+    #     [IO.File]::WriteAllBytes("$certificatePath", $pfx_cert_byte)
 
-      - name: Set OS Pretty Name
-        run: |
-          if ($env:RUNNER_OS -eq 'Windows') {
-            echo "PRETTY_NAME=Windows" | Out-File -FilePath $env:GITHUB_ENV -Append
-          }
-          elseif ($env:RUNNER_OS -eq 'macOS') {
-            echo "PRETTY_NAME=macOS" | Out-File -FilePath $env:GITHUB_ENV -Append
-          }
-          else {
-            echo "PRETTY_NAME=Linux" | Out-File -FilePath $env:GITHUB_ENV -Append
-          }
-        shell: pwsh
-          
-      - name: Compile
-        run: dotnet build -c Debug -warnaserror WPR.sln
+    # - name: Create the app package (Windows Only)
+    #   if: runner.os == 'Windows'
+    #   run: msbuild $env:Wap_Project_Path /p:Configuration=$env:Configuration /p:UapAppxPackageBuildMode=$env:Appx_Package_Build_Mode /p:AppxBundle=$env:Appx_Bundle /p:PackageCertificateKeyFile=GitHubActionsWorkflow.pfx /p:PackageCertificatePassword=${{ secrets.Pfx_Key }}
+    #   env:
+    #     Appx_Bundle: Always
+    #     Appx_Bundle_Platforms: x86|x64
+    #     Appx_Package_Build_Mode: StoreUpload
+    #     Configuration: ${{ matrix.configuration }}
 
-      - name: Test
-        run: dotnet test --no-build --configuration Debug --logger "trx;LogFileName=TestResults-${{ env.PRETTY_NAME }}-${{ matrix.threadingMode }}.trx" -- NUnit.ConsoleOut=0
-        shell: pwsh
+    # - name: Remove the PFX (Windows Only)
+    #   if: runner.os == 'Windows'
+    #   run: Remove-Item -path $env:Wap_Project_Directory\GitHubActionsWorkflow.pfx
+
+    # - name: Upload Build Artifacts (Windows Only)
+    #   if: runner.os == 'Windows'
+    #   uses: actions/upload-artifact@v3
+    #   with:
+    #     name: MSIX Package
+    #     path: ${{ env.Wap_Project_Directory }}\AppPackages
