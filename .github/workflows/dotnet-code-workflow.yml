@@ -45,22 +45,20 @@ on:
     branches: [ "develop" ]
 
 jobs:
-
   build:
 
     strategy:
-     matrix:
-        os: [windows-latest, macos-latest]    # Added macos-latest to the matrix
+      matrix:
+        os: [windows-latest, macos-latest]    # Matrix for both Windows and macOS
         configuration: [Debug, Release]
 
-    runs-on: ${{ matrix.os }}  # For a list of available runner types, refer to
-                             # https://help.github.com/en/actions/reference/workflow-syntax-for-github-actions#jobsjob_idruns-on
+    runs-on: ${{ matrix.os }}
 
     env:
-      Solution_Name: your-solution-name                         # Replace with your solution name, i.e. MyWpfApp.sln.
-      Test_Project_Path: your-test-project-path                 # Replace with the path to your test project, i.e. MyWpfApp.Tests\MyWpfApp.Tests.csproj.
-      Wap_Project_Directory: your-wap-project-directory-name    # Replace with the Wap project directory relative to the solution, i.e. MyWpfApp.Package.
-      Wap_Project_Path: your-wap-project-path                   # Replace with the path to your Wap project, i.e. MyWpf.App.Package\MyWpfApp.Package.wapproj.
+      Solution_Name: WPR                   # Replace with your solution name
+      #Test_Project_Path: your-test-project-path            # Replace with the path to your test project
+     # Wap_Project_Directory: your-wap-project-directory     # Replace with your WAP project directory
+      #Wap_Project_Path: your-wap-project-path              # Replace with your WAP project path
 
     steps:
     - name: Checkout
@@ -68,35 +66,39 @@ jobs:
       with:
         fetch-depth: 0
 
-    # Install the .NET Core workload
-    - name: Install .NET Core
+    # Install .NET Core SDK on both Windows and macOS
+    - name: Install .NET Core SDK
       uses: actions/setup-dotnet@v4
       with:
         dotnet-version: 8.0.x
 
-    # Add  MSBuild to the PATH: https://github.com/microsoft/setup-msbuild
-    - name: Setup MSBuild.exe
+    # Set up MSBuild on Windows only
+    - name: Setup MSBuild (Windows Only)
+      if: runner.os == 'Windows'
       uses: microsoft/setup-msbuild@v2
 
-    # Execute all unit tests in the solution
-    - name: Execute unit tests
+    # Execute unit tests (Cross-platform)
+    - name: Execute Unit Tests
       run: dotnet test
 
-    # Restore the application to populate the obj folder with RuntimeIdentifiers
+    # Restore the application (Cross-platform)
     - name: Restore the application
       run: msbuild $env:Solution_Name /t:Restore /p:Configuration=$env:Configuration
       env:
         Configuration: ${{ matrix.configuration }}
 
-    # Decode the base 64 encoded pfx and save the Signing_Certificate
-    - name: Decode the pfx
+    # Windows-specific steps for signing and packaging
+    # Decode the base64 encoded pfx on Windows only
+    - name: Decode the PFX (Windows Only)
+      if: runner.os == 'Windows'
       run: |
         $pfx_cert_byte = [System.Convert]::FromBase64String("${{ secrets.Base64_Encoded_Pfx }}")
         $certificatePath = Join-Path -Path $env:Wap_Project_Directory -ChildPath GitHubActionsWorkflow.pfx
         [IO.File]::WriteAllBytes("$certificatePath", $pfx_cert_byte)
 
-    # Create the app package by building and packaging the Windows Application Packaging project
-    - name: Create the app package
+    # Create the app package on Windows only
+    - name: Create the app package (Windows Only)
+      if: runner.os == 'Windows'
       run: msbuild $env:Wap_Project_Path /p:Configuration=$env:Configuration /p:UapAppxPackageBuildMode=$env:Appx_Package_Build_Mode /p:AppxBundle=$env:Appx_Bundle /p:PackageCertificateKeyFile=GitHubActionsWorkflow.pfx /p:PackageCertificatePassword=${{ secrets.Pfx_Key }}
       env:
         Appx_Bundle: Always
@@ -104,12 +106,14 @@ jobs:
         Appx_Package_Build_Mode: StoreUpload
         Configuration: ${{ matrix.configuration }}
 
-    # Remove the pfx
-    - name: Remove the pfx
+    # Remove the PFX on Windows only
+    - name: Remove the PFX (Windows Only)
+      if: runner.os == 'Windows'
       run: Remove-Item -path $env:Wap_Project_Directory\GitHubActionsWorkflow.pfx
 
-    # Upload the MSIX package: https://github.com/marketplace/actions/upload-a-build-artifact
-    - name: Upload build artifacts
+    # Upload the MSIX package on Windows only
+    - name: Upload Build Artifacts (Windows Only)
+      if: runner.os == 'Windows'
       uses: actions/upload-artifact@v3
       with:
         name: MSIX Package
