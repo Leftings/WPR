@@ -55,10 +55,10 @@ jobs:
     runs-on: ${{ matrix.os }}
 
     env:
-      Solution_Name: WPR                   # Replace with your solution name
-      #Test_Project_Path: your-test-project-path            # Replace with the path to your test project
-     # Wap_Project_Directory: your-wap-project-directory     # Replace with your WAP project directory
-      #Wap_Project_Path: your-wap-project-path              # Replace with your WAP project path
+      Solution_Name: WPR.sln                   # Replace with your solution name
+      # Test_Project_Path: your-test-project-path            # Replace with the path to your test project
+      # Wap_Project_Directory: your-wap-project-directory     # Replace with your WAP project directory
+      # Wap_Project_Path: your-wap-project-path              # Replace with your WAP project path
 
     steps:
     - name: Checkout
