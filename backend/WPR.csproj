@@ -7,4 +7,13 @@
         <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
     </PropertyGroup>
 
+<!--    <ItemGroup>
+      <EditorConfigFiles Include="obj\Debug\net8.0\WPR.GeneratedMSBuildEditorConfig.editorconfig" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Remove="Properties\launchSettings.json" />
+      <None Include="Properties\launchSettings.json" />
+    </ItemGroup>-->
+
 </Project>
