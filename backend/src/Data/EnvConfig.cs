@@ -3,11 +3,11 @@ using System;
 
 namespace WPR.Data;
 
-public class Environment
+public class EnvConfig
 {
     private readonly IConfiguration _configuration;
     
-    public Environment()
+    public EnvConfig()
     {
         DotEnv.Load();
 
@@ -29,9 +29,7 @@ public class Environment
 
     public bool IsConfigured()
     {
-        return !string.IsNullOrEmpty(Get("DB_SERVER")) &&
-               !string.IsNullOrEmpty(Get("DB_DATABASE")) &&
-               !string.IsNullOrEmpty(Get("DB_USERNAME")) &&
-               !string.IsNullOrEmpty(Get("DB_PASSWORD"));
+        var requiredKeys = new[] { "DB_SERVER", "DB_DATABASE", "DB_USERNAME", "DB_PASSWORD" };
+        return requiredKeys.All(key => !string.IsNullOrEmpty(Get(key)));
     }
 }
