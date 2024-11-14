@@ -1,14 +1,27 @@
+using System.Data;
+
 namespace WPR;
+using WPR.Data;
+using WPR.Database;
 
 public class Program
 {
     public static void Main(string[] args)
     {
-        var builder = WebApplication.CreateBuilder(args);
-        var app = builder.Build();
+        var envConfig = new EnvConfig();
+        var dbConnector = new Connector(envConfig);
 
-        app.MapGet("/", () => "Hello World!");
-
-        app.Run();
+        try
+        {
+            using (IDbConnection connection = dbConnector.DbConnect())
+            {
+                connection.Open();
+                Console.WriteLine("Connection established");
+            }
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine("Failed to establish connection");
+        }
     }
 }
