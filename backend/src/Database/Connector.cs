@@ -13,7 +13,7 @@ public class Connector
         _envConfig = envConfig;
     }
 
-    public IDbConnection DbConnect()
+    public IDbConnection CreateDbConnection()
     {
         if (!_envConfig.IsConfigured())
         {
@@ -27,6 +27,8 @@ public class Connector
         
         string connectString = $"Server={server};Database={database};User ID={username};Password={password};";
         
-        return new MySqlConnection(connectString);
+        var connection = new MySqlConnection(connectString);
+        connection.Open();
+        return connection;
     }
 }

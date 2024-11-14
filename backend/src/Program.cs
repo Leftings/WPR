@@ -13,9 +13,8 @@ public class Program
 
         try
         {
-            using (IDbConnection connection = dbConnector.DbConnect())
+            using (var connection = dbConnector.CreateDbConnection())
             {
-                connection.Open();
                 Console.WriteLine("Connection established");
             }
         }
