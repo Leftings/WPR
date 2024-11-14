@@ -19,7 +19,12 @@ public class Environment
 
     public string Get(string key)
     {
-        return _configuration[key];
+        var value = _configuration[key];
+        if (string.IsNullOrEmpty(value)) 
+        {
+            Console.WriteLine($"Warning {key} not found in environment");
+        }
+        return value;
     }
 
     public bool IsConfigured()
