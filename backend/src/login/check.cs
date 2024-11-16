@@ -3,10 +3,10 @@ using WPR.Database;
 using WPR.Data;
 using MySql.Data.MySqlClient;
 
-public class check
+public class Check
 {
     private Connector _connector { get; set; }
-    public check()
+    public Check()
     {
         _connector = new Connector(new EnvConfig());
     }
