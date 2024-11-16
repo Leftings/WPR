@@ -24,9 +24,6 @@ jobs:
       with:
         fetch-depth: 0
 
-    - name: Execute Unit Tests
-      run: dotnet test --no-restore --configuration ${{ matrix.configuration }}
-
     # Install .NET Core SDK on both Windows and macOS
     - name: Install .NET Core SDK
       uses: actions/setup-dotnet@v4
@@ -38,6 +35,21 @@ jobs:
       with:
         path: ~/.nuget/packages
         key: ${{ runner.os }}-nuget-${{ hashFiles('**/*.csproj', '**/*.sln', '**/Directory.Build.*') }}
+        restore-keys: |
+          ${{ runner.os }}-nuget-
+    
+    # Restore dependencies for the solution
+    - name: Restore the application
+      run: dotnet restore ${{ env.Solution_Name }} --configuration ${{ matrix.configuration }}
+
+    # Execute Unit Tests (now restore is done before running tests)
+    - name: Execute Unit Tests
+      run: dotnet test --configuration ${{ matrix.configuration }} --no-build --verbosity normal
+
+    # Optionally, you can include a build step if necessary (useful for Debug/Release)
+    - name: Build the application
+      run: dotnet build ${{ env.Solution_Name }} --configuration ${{ matrix.configuration }}
+
         
     # Set up MSBuild on Windows only
     - name: Setup MSBuild (Windows Only)
