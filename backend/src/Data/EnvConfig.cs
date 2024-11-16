@@ -17,7 +17,7 @@ public class EnvConfig
         _configuration = builder.Build();
     }
 
-    public string Get(string key)
+    public virtual string Get(string key)
     {
         var value = _configuration[key];
         if (string.IsNullOrEmpty(value)) 
@@ -27,7 +27,7 @@ public class EnvConfig
         return value;
     }
 
-    public bool IsConfigured()
+    public virtual bool IsConfigured()
     {
         var requiredKeys = new[] { "DB_SERVER", "DB_DATABASE", "DB_USERNAME", "DB_PASSWORD" };
         return requiredKeys.All(key => !string.IsNullOrEmpty(Get(key)));

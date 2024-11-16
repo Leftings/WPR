@@ -24,6 +24,9 @@ jobs:
       with:
         fetch-depth: 0
 
+    - name: Execute Unit Tests
+      run: dotnet test --no-restore --configuration ${{ matrix.configuration }}
+
     # Install .NET Core SDK on both Windows and macOS
     - name: Install .NET Core SDK
       uses: actions/setup-dotnet@v4
@@ -81,3 +84,5 @@ jobs:
     #   with:
     #     name: MSIX Package
     #     path: ${{ env.Wap_Project_Directory }}\AppPackages
+
+
