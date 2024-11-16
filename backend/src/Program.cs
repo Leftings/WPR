@@ -1,4 +1,5 @@
 namespace WPR;
+
 using WPR.Data;
 using WPR.Database;
 
@@ -73,31 +74,5 @@ public class Program
         }
 
         configure(args);
-    }
-
-    public void ConfigureServices(IServiceCollection services)
-    {
-        services.AddCors(options =>
-        {
-            options.AddPolicy("AllowAllOrigins", builder =>
-                builder.AllowAnyOrigin()
-                    .AllowAnyMethod()
-                    .AllowAnyHeader());
-        });
-
-        services.AddControllers();
-    }
-
-    public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
-    {
-        // Ensure this line uses the correct policy
-        app.UseCors("AllowLocalhost");
-
-        app.UseRouting();
-
-        app.UseEndpoints(endpoints =>
-        {
-            endpoints.MapControllers();
-        });
     }
 }
