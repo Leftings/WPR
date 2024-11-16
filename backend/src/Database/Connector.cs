@@ -26,9 +26,18 @@ public class Connector
         string password = _envConfig.Get("DB_PASSWORD");
         
         string connectString = $"Server={server};Database={database};User ID={username};Password={password};";
-        
-        var connection = new MySqlConnection(connectString);
-        connection.Open();
-        return connection;
+
+        try
+        {
+            var connection = new MySqlConnection(connectString);
+            connection.Open();
+            Console.WriteLine("Database connection successful");
+            return connection;
+        }
+        catch (MySqlException ex)
+        {
+            Console.WriteLine($"Error connecting to database: {ex.Message}");
+            throw; 
+        }
     }
 }
