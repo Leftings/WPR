@@ -10,21 +10,18 @@ using MySql.Data.MySqlClient;
 public class ConnectorTests
 {
     [Fact]
-    public void CreateDbConnection_ShouldThrowException_WhenNotConfigured()
+    public void DatabaseNotConffigured()
     {
-        // Arrange
         var envConfig = new Mock<EnvConfig>();
         envConfig.Setup(x => x.IsConfigured()).Returns(false);
         var connector = new Connector(envConfig.Object);
 
-        // Act & Assert
         Assert.Throws<InvalidOperationException>(() => connector.CreateDbConnection());
     }
 
     [Fact]
-    public void CreateDbConnection_ShouldConnect_WhenProperlyConfigured()
+    public void DatabaseConnectionConffigured()
     {
-        // Arrange
         var envConfig = new Mock<EnvConfig>();
         envConfig.Setup(x => x.IsConfigured()).Returns(true);
         envConfig.Setup(x => x.Get("DB_SERVER")).Returns("95.99.30.110");
@@ -34,18 +31,16 @@ public class ConnectorTests
 
         var connector = new Connector(envConfig.Object);
 
-        // Act
         using var connection = connector.CreateDbConnection();
 
-        // Assert
+
         Assert.NotNull(connection);
         Assert.Equal(ConnectionState.Open, connection.State);
     }
 
     [Fact]
-    public void CreateDbConnection_ShouldThrowMySqlException_WhenCredentialsAreInvalid()
+    public void DatabaseConnectionWrongConffigured()
     {
-        // Arrange
         var envConfig = new Mock<EnvConfig>();
         envConfig.Setup(x => x.IsConfigured()).Returns(true);
         envConfig.Setup(x => x.Get("DB_SERVER")).Returns("95.99.30.110");
@@ -55,7 +50,6 @@ public class ConnectorTests
 
         var connector = new Connector(envConfig.Object);
 
-        // Act & Assert
         Assert.Throws<MySqlException>(() => connector.CreateDbConnection());
     }
 }
