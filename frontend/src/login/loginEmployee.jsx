@@ -91,6 +91,12 @@ function Login() {
           <input type="password" id="password" value={password} onChange={(e) => setPassword(e.target.value)}></input>
           <br></br>
           <button id="button" type="button"onClick={onSubmit} >Login</button>
+            {!isEmployee && (
+            <>
+            <br></br>
+            <label htmlFor="noAccount">Nog geen account bij ons? <Link to="/signUp">Meld nu aan!</Link></label>
+            </>
+            )}
           {error && <p style={{ color: 'red' }}>{error}</p>}
         </div>
       </div>
