@@ -6,12 +6,16 @@ function SignUp() {
     const [chosenType, setChosenType] = useState(null);
     const [email, setEmail] = useState('');
     const [adres, setAdres] = useState('');
-    const [phonenumber, setPhonenumber] = useState(null);
-    const [dateOfBirth, setDateOfBirth] = useState(null)
+    const [phonenumber, setPhonenumber] = useState('');
+    const [dateOfBirth, setDateOfBirth] = useState('');
+    const [firstName, setFirstName] = useState('');
+    const [lastName, setLastName] = useState('');
     const [password1, setPassword1] = useState('');
     const [password2, setPassword2] = useState('');
     const [error, setError] = useState('');
     const navigate = useNavigate();
+    const [kindSignUp, setKindSignUp] = useState('');
+    const [KvK, setKvK] = useState(null)
 
     const choice = (buttonId) => {
         setChosenType(buttonId);
@@ -27,8 +31,33 @@ function SignUp() {
         } else {
             setError(null)
         }
+        
+        const formattedDate = new Date(dateOfBirth).toISOString().split('T')[0];
+        const signUpType = chosenType === 1 ? 'signUpPersonal' : 'signUpEmployee';
+        console.log(email, password1, firstName, lastName, phonenumber, adres, dateOfBirth, KvK, formattedDate);
 
-        /*Insert Aanmeldproces naar backend hier...*/
+        fetch(`http://localhost:5165/api/SignUp/${signUpType}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json', 
+            },
+            body: JSON.stringify({ email, password: password1, firstName, lastName, telNumber: phonenumber, Adres: adres, BirthDate:formattedDate, KvK }),
+            credentials: 'include', // Cookies of authenticatie wordt meegegeven
+        })
+        .then(response => {
+            if (!response.ok) {
+                setError(`There was an error during making a ${signUpType} account`);
+                throw new Error('Sign up failed');
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log('Sign up successful', data);
+            navigate('/');
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
     }
 
     return (
@@ -67,6 +96,15 @@ function SignUp() {
 
                     {chosenType === 1 && (
                         <>
+                            <label htmlFor="firstName">Voornaam</label>
+                            <br></br>
+                            <input type="text" id="firstName" value={firstName}
+                                onChange={(e) => setFirstName(e.target.value)}></input>
+                            <br></br>
+                            <label htmlFor="lastName">Achternaam</label>
+                            <br></br>
+                            <input type="text" id="lastName" value={lastName}
+                                onChange={(e) => setLastName(e.target.value)}></input>
                             <br></br>
                             <label htmlFor="email">E-mail</label>
                             <br></br>

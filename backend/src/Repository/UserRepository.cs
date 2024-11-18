@@ -26,6 +26,7 @@ public class UserRepository : IUserRepository
 
             using (var reader = await command.ExecuteReaderAsync())
             {
+                Console.WriteLine(username);
                 return reader.HasRows;
             }
         }
@@ -41,6 +42,8 @@ public class UserRepository : IUserRepository
             {
                 command.Parameters.AddWithValue("@E", email);
                 bool inUse = Convert.ToInt32(await command.ExecuteScalarAsync()) > 0;
+
+                Console.WriteLine(inUse);
 
                 return (inUse, inUse ? "No email detected" : "Email detected");
             }
@@ -75,6 +78,7 @@ public class UserRepository : IUserRepository
                 {
                     command.CommandText = "SELECT LAST_INSERT_ID();";
                     int newUserID = Convert.ToInt32(command.ExecuteScalar());
+                    Console.WriteLine(newUserID);
 
                     return (true, "Data Inserted", newUserID);
                 }
