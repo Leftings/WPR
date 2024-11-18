@@ -6,12 +6,10 @@ namespace WPR;
 
 public class AppConfigure
 {
-    public static void InitDatabase()
+    public static void InitDatabase(IServiceProvider services)
     {
-        var envConfig = new EnvConfig();
-        var dbConnector = new Connector(envConfig);
-
-
+        var dbConnector = services.GetRequiredService<Connector>();
+        
         try
         {
             using (var connection = dbConnector.CreateDbConnection())
@@ -43,11 +41,14 @@ public class AppConfigure
             });
         });
 
+
+        builder.Services.AddSingleton<EnvConfig>();
+        builder.Services.AddTransient<Connector>();
         builder.Services.AddControllers()
             .AddJsonOptions(options =>
             {
                 options.JsonSerializerOptions.ReferenceHandler =
-                    System.Text.Json.Serialization.ReferenceHandler.Preserve;
+                    ReferenceHandler.IgnoreCycles;
             });
         
         builder.Services.AddEndpointsApiExplorer();
