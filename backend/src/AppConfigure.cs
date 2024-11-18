@@ -36,7 +36,7 @@ public class AppConfigure
         {
             options.AddPolicy("AllowLocalhost", policy =>
             {
-                policy.WithOrigins("httos://localhost:5173")
+                policy.WithOrigins("http://localhost:5173")
                     .AllowAnyHeader()
                     .AllowCredentials()
                     .AllowAnyMethod();
