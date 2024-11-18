@@ -5,22 +5,36 @@ using MySql.Data.MySqlClient;
 
 public class Check
 {
-    private Connector _connector { get; set; }
+    private readonly Connector _connector;
     public Check()
     {
         _connector = new Connector(new EnvConfig());
     }
 
-    public bool SuccessfulInlog(string email, string password)
+    public bool SuccessfullLogin(string email, string password)
     {
-        using(var connection = _connector.CreateDbConnection())
+        try
         {
-            string query = $"SELECT * FROM Staff WHERE username = {email} AND password = {password}";
-
-            using (var command = new MySqlCommand(query, (MySqlConnection)connection))
+            using (var connection = _connector.CreateDbConnection())
             {
-                return command.ExecuteReader().HasRows;
+                string query = "SELECT 1 FROM Staff WHERE username= @Email AND password = @Password";
+
+                using (var command = new MySqlCommand(query, (MySqlConnection)connection))
+                {
+                    command.Parameters.AddWithValue("@Email", email);
+                    command.Parameters.AddWithValue("@Password", password);
+
+                    using (var reader = command.ExecuteReader())
+                    {
+                        return reader.HasRows;
+                    }
+                }
             }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error with login: {ex.Message}");
+            return false;
         }
     }
 }
