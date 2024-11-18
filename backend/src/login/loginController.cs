@@ -12,16 +12,15 @@ public class LoginController : ControllerBase
 {
     private readonly Connector _connector;
 
-    public LoginController()
+    public LoginController(Connector connector)
     {
-        _connector = new Connector(new EnvConfig());
+        _connector = connector ?? throw new ArgumentNullException(nameof(connector));
     }
 
     [HttpPost("login")]
     public IActionResult Login([FromBody] LoginRequest loginRequest)
     {
-        // Handle empty or invalid requests
-        if (loginRequest == null || string.IsNullOrEmpty(loginRequest.email) || string.IsNullOrEmpty(loginRequest.Password))
+        if (loginRequest == null || string.IsNullOrEmpty(loginRequest.Email) || string.IsNullOrEmpty(loginRequest.Password))
         {
             return BadRequest(new { message = "Invalid input. Please provide email and password." });
         }
@@ -30,15 +29,14 @@ public class LoginController : ControllerBase
         {
             using (var connection = _connector.CreateDbConnection())
             {
+                string table = loginRequest.IsEmployee ? "Staff" : "User_Customer";
 
-                string table = loginRequest.isEmployee ? "Staff" : "User_Customer";
-
-                string query = "SELECT * FROM " + table + " WHERE email = @email AND password = @password";
+                string query = $"SELECT 1 FROM {table} WHERE email = @Email AND password = @Password";
 
                 using (var command = new MySqlCommand(query, (MySqlConnection)connection))
                 {
-                    command.Parameters.AddWithValue("@email", loginRequest.email);
-                    command.Parameters.AddWithValue("@password", loginRequest.Password);
+                    command.Parameters.AddWithValue("@Email", loginRequest.Email);
+                    command.Parameters.AddWithValue("@Password", loginRequest.Password);
 
                     using (var reader = command.ExecuteReader())
                     {
@@ -48,17 +46,21 @@ public class LoginController : ControllerBase
                         }
                         else
                         {
-                            Console.WriteLine(Unauthorized(new { message = "Invalid credentials"}));
+                            Console.WriteLine(Unauthorized(new { message = "Invalid credentials" }));
                             return Unauthorized(new { message = "Invalid credentials" });
                         }
                     }
                 }
             }
         }
+        catch (MySqlException ex)
+        {
+            Console.Error.WriteLine($"Database error: {ex.Message}");
+            return StatusCode(500, new { message = "An error occurred while accesing the database." });
+        }
         catch (Exception ex)
         {
-            // Log the error (can be replaced with actual logging mechanism like Serilog)
-            Console.Error.WriteLine($"An error occurred: {ex.Message}");
+            Console.Error.WriteLine($"Unexpected error: {ex.Message}");
             return StatusCode(500, new { message = "An error occurred while processing your request." });
         }
     }
@@ -66,8 +68,8 @@ public class LoginController : ControllerBase
 
 public class LoginRequest
 {
-    public string email { get; set; }
+    public string Email { get; set; }
     public string Password { get; set; }
-    public bool isEmployee { get; set; }
+    public bool IsEmployee { get; set; }
 }
 
