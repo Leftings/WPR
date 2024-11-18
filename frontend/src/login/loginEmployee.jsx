@@ -18,7 +18,18 @@ function Login() {
     event.preventDefault(); 
 
     if (!email || !password) {
-        alert("Fill in email and password");
+        if (!email && !password)
+        {
+          setError('Vul een emailadres en wachtwoord in');
+        }
+        else if (!email)
+        {
+          setError('Vul een emailadres in');
+        }
+        else
+        {
+          setError('Vul een wachtwoord in');
+        }
         return;
     }
 
