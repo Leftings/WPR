@@ -30,6 +30,8 @@ public class SignUpController : ControllerBase
 
         using (var transaction = connection.BeginTransaction())
         {
+            Console.WriteLine($"Received BirthDate: {signUpRequest.BirthDate}");
+            Console.WriteLine($"{signUpRequest.Email} | {signUpRequest.Password} | {signUpRequest.FirstName} | {signUpRequest.LastName} | {signUpRequest.TelNumber} {signUpRequest.Adres} | {signUpRequest.BirthDate}");
             try
             {
                 if (signUpRequest == null
@@ -57,6 +59,7 @@ public class SignUpController : ControllerBase
                 && signUpRequest.TelNumber != null
                 && signUpRequest.BirthDate != null)
                 {
+                    Console.WriteLine("X");
                     var customer = await _userRepository.addCustomerAsync(connection, new object[] 
                     {
                         signUpRequest.Adres,
