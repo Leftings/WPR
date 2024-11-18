@@ -1,6 +1,7 @@
 using System.Text.Json.Serialization;
 using WPR.Data;
 using WPR.Database;
+using WPR.Repository;
 
 namespace WPR;
 
@@ -44,6 +45,8 @@ public class AppConfigure
 
         builder.Services.AddSingleton<EnvConfig>();
         builder.Services.AddTransient<Connector>();
+        builder.Services.AddScoped<IUserRepository, UserRepository>();
+        
         builder.Services.AddControllers()
             .AddJsonOptions(options =>
             {
@@ -72,30 +75,5 @@ public class AppConfigure
         app.UseAuthorization();
 
         return app;
-    }
-    
-    public void ConfigureServices(IServiceCollection services)
-    {
-        services.AddCors(options =>
-        {
-            options.AddPolicy("AllowAllOrigins", builder =>
-                builder.AllowAnyOrigin()
-                    .AllowAnyMethod()
-                    .AllowAnyHeader());
-        });
-
-        services.AddControllers();
-    }
-    
-    public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
-    {
-        app.UseCors("AllowLocalhost");
-
-        app.UseRouting();
-
-        app.UseEndpoints(endpoints =>
-        {
-            endpoints.MapControllers();
-        });
     }
 }
