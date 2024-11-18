@@ -7,9 +7,12 @@ public class Program
 {
     public static void Main(string[] args)
     {
-        AppConfigure.InitDatabase();
-
         var app = AppConfigure.ConfigureApplication(args);
+
+        using (var scope = app.Services.CreateScope())
+        {
+            AppConfigure.InitDatabase(scope.ServiceProvider);
+        }
         app.Run();
     }
 }
