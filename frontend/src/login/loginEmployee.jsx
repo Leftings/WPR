@@ -3,21 +3,19 @@ import { Link, useNavigate } from 'react-router-dom';
 import './login.css';
 
 function Login() {
-  // State for username, password, error message, and user type
   const [isEmployee, setIsEmployee] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const navigate = useNavigate();
 
-  // Toggle between employee and customer views
   const toggleUserType = () => {
     setIsEmployee(!isEmployee);
   };
 
-  // Handle login form submission
+  // Verbinden met API voor login
   const onSubmit = (event) => {
-    event.preventDefault(); // Prevent default form submission
+    event.preventDefault(); 
 
     if (!email || !password) {
         alert("Fill in email and password");
@@ -27,13 +25,14 @@ function Login() {
     fetch('http://localhost:5165/api/Login/login', {
         method: 'POST',
         headers: {
-            'Content-Type': 'application/json', // Set content type to JSON
+            'Content-Type': 'application/json', 
         },
-        body: JSON.stringify({ email, password, isEmployee }), // Send email and password as the request body
-        credentials: 'include', // Include cookies or authentication credentials if needed
+        body: JSON.stringify({ email, password, isEmployee }),
+        credentials: 'include', // Cookies of authenticatie wordt meegegeven
     })
     .then(response => {
         if (!response.ok) {
+            setError(`${email} is geen geldig account of het wachtwoord klopt niet`);
             throw new Error('Login failed');
         }
         return response.json();
@@ -55,7 +54,7 @@ function Login() {
 
         <div id="right">
           <Link to="#" onClick={toggleUserType}>
-            {isEmployee ? 'Klant' : 'Medewerker'}
+            {isEmployee ? 'Klant' : 'Medewerker'} {/* als isEmployee = true, Klant wordt getoond, als isEmployee = false, Medewerker wordt getoond*/}
           </Link>
         </div>
       </header>
