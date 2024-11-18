@@ -11,10 +11,8 @@ export const handleLogin = async (email, password, onLoginSuccess, onLoginFailur
         });
 
         if (response.status === 200) {
-            // Successful login
             onLoginSuccess(response.data.message);
         } else {
-            // Failed login
             onLoginFailure(response.data.message);
         }
     } catch (error) {
