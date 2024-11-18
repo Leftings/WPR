@@ -1,8 +1,11 @@
+using WPR.Repository;
+
 namespace WPR.Login;
 
 using Microsoft.AspNetCore.Mvc;
 using WPR.Database;
 using WPR.Data;
+using WPR.Repository;
 using MySql.Data.MySqlClient;
 using System;
 
@@ -10,15 +13,15 @@ using System;
 [ApiController]
 public class LoginController : ControllerBase
 {
-    private readonly Connector _connector;
+    private readonly IUserRepository _userRepository;
 
-    public LoginController(Connector connector)
+    public LoginController(IUserRepository userRepository)
     {
-        _connector = connector ?? throw new ArgumentNullException(nameof(connector));
+        _userRepository = userRepository ?? throw new ArgumentNullException(nameof(userRepository));
     }
 
     [HttpPost("login")]
-    public IActionResult Login([FromBody] LoginRequest loginRequest)
+    public async Task <IActionResult> Login([FromBody] LoginRequest loginRequest)
     {
         if (loginRequest == null || string.IsNullOrEmpty(loginRequest.Email) || string.IsNullOrEmpty(loginRequest.Password))
         {
@@ -27,30 +30,21 @@ public class LoginController : ControllerBase
 
         try
         {
-            using (var connection = _connector.CreateDbConnection())
+            string table = loginRequest.IsEmployee ? "Staff" : "User_Customer";
+            if (table != "Staff" && table != "User_Customer")
             {
-                string table = loginRequest.IsEmployee ? "Staff" : "User_Customer";
+                return BadRequest(new { message = "Invalid input. Please provide employee or user name." });
+            }
+            
+            bool isValid = await _userRepository.ValidateUserAsync(loginRequest.Email, loginRequest.Password, loginRequest.IsEmployee);
 
-                string query = $@"SELECT 1 FROM {table} WHERE LOWER(email) = LOWER(@Email) AND BINARY password = @Password";
-
-                using (var command = new MySqlCommand(query, (MySqlConnection)connection))
-                {
-                    command.Parameters.AddWithValue("@Email", loginRequest.Email);
-                    command.Parameters.AddWithValue("@Password", loginRequest.Password);
-
-                    using (var reader = command.ExecuteReader())
-                    {
-                        if (reader.HasRows)
-                        {
-                            return Ok(new { message = "Login successful" });
-                        }
-                        else
-                        {
-                            Console.WriteLine(Unauthorized(new { message = "Invalid credentials" }));
-                            return Unauthorized(new { message = "Invalid credentials" });
-                        }
-                    }
-                }
+            if (isValid)
+            {
+                return Ok(new { message = "Login Successful." });
+            }
+            else
+            {
+                return Unauthorized(new { message = "Login Failed." });
             }
         }
         catch (MySqlException ex)
