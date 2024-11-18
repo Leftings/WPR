@@ -31,7 +31,7 @@ public class LoginController : ControllerBase
             {
                 string table = loginRequest.IsEmployee ? "Staff" : "User_Customer";
 
-                string query = $"SELECT 1 FROM {table} WHERE email = @Email AND password = @Password";
+                string query = $@"SELECT 1 FROM {table} WHERE LOWER(email) = LOWER(@Email) AND BINARY password = @Password";
 
                 using (var command = new MySqlCommand(query, (MySqlConnection)connection))
                 {
