@@ -1,10 +1,6 @@
-using WPR.Repository;
-
 namespace WPR.Login;
 
 using Microsoft.AspNetCore.Mvc;
-using WPR.Database;
-using WPR.Data;
 using WPR.Repository;
 using MySql.Data.MySqlClient;
 using System;
@@ -31,11 +27,6 @@ public class LoginController : ControllerBase
         try
         {
             string table = loginRequest.IsEmployee ? "Staff" : "User_Customer";
-            if (table != "Staff" && table != "User_Customer")
-            {
-                return BadRequest(new { message = "Invalid input. Please provide employee or user name." });
-            }
-            
             bool isValid = await _userRepository.ValidateUserAsync(loginRequest.Email, loginRequest.Password, loginRequest.IsEmployee);
 
             if (isValid)
