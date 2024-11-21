@@ -131,6 +131,7 @@ function SignUp() {
 
                     {chosenType === 1 && (
                         <>
+                            <br></br>
                             <label htmlFor="firstName">Voornaam</label>
                             <br></br>
                             <input type="text" id="firstName" value={firstName}
