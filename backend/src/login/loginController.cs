@@ -26,7 +26,6 @@ public class LoginController : ControllerBase
     private async Task<IActionResult> SetCookie(LoginRequest loginRequest)
     {
         var connection = _connector.CreateDbConnection();
-        connection.Open();
 
         try
         {
@@ -42,7 +41,6 @@ public class LoginController : ControllerBase
         }
         catch (Exception ex)
         {
-            connection.Close();
             Console.WriteLine(ex);
             return BadRequest();
         }
