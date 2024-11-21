@@ -1,4 +1,9 @@
 using System.Text.Json.Serialization;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.Extensions.Options;
+using Microsoft.VisualBasic;
+using Org.BouncyCastle.Crypto.Prng;
+using WPR.Cookie;
 using WPR.Data;
 using WPR.Database;
 using WPR.Repository;
@@ -30,6 +35,10 @@ public class AppConfigure
     public static WebApplication ConfigureApplication(string[] args)
     {
         var builder = WebApplication.CreateBuilder(args);
+        var cookiePolicyOptions = new CookiePolicyOptions
+        {
+            MinimumSameSitePolicy = SameSiteMode.Strict
+        };
 
         builder.Services.AddCors(options =>
         {
@@ -46,6 +55,16 @@ public class AppConfigure
         builder.Services.AddSingleton<EnvConfig>();
         builder.Services.AddTransient<Connector>();
         builder.Services.AddScoped<IUserRepository, UserRepository>();
+        //builder.Services.AddScoped<IResponseCookies>();
+        builder.Services.AddScoped<SessionHandler>();
+        builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+            .AddCookie(options =>
+            {
+                options.ExpireTimeSpan = TimeSpan.FromMinutes(5);
+                options.SlidingExpiration = true;
+                options.AccessDeniedPath = "/Forbidden/";
+            });
+        
         
         builder.Services.AddControllers()
             .AddJsonOptions(options =>
@@ -73,6 +92,11 @@ public class AppConfigure
         app.UseHttpsRedirection();
         app.MapControllers();
         app.UseAuthorization();
+        app.UseAuthentication();
+        app.UseCookiePolicy(cookiePolicyOptions);
+
+        //app.MapRazorPages();
+        app.MapDefaultControllerRoute();
 
         return app;
     }

@@ -4,16 +4,52 @@ using Microsoft.AspNetCore.Mvc;
 using WPR.Repository;
 using MySql.Data.MySqlClient;
 using System;
+using WPR.Cookie;
+using System.Data;
+using WPR.Database;
 
 [Route("api/[controller]")]
 [ApiController]
 public class LoginController : ControllerBase
 {
     private readonly IUserRepository _userRepository;
+    private readonly Connector _connector;
+    private readonly SessionHandler _sessionHandler;
 
-    public LoginController(IUserRepository userRepository)
+    public LoginController(IUserRepository userRepository, Connector connector, SessionHandler sessionHandler)
     {
         _userRepository = userRepository ?? throw new ArgumentNullException(nameof(userRepository));
+        _connector = connector ?? throw new ArgumentNullException(nameof(connector));
+        _sessionHandler = sessionHandler ?? throw new ArgumentNullException(nameof(sessionHandler));
+    }
+
+    private async Task<IActionResult> SetCookie(LoginRequest loginRequest)
+    {
+        var connection = _connector.CreateDbConnection();
+
+        try
+        {
+            int userId = await _userRepository.GetUserIdAsync(connection, loginRequest.Email);
+
+            if (userId <= 0)
+            {
+                return BadRequest(new { message = "User ID not found." });
+            }
+            
+            _sessionHandler.CreateCookie(Response.Cookies, "LoginSession", userId.ToString());
+
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex);
+            return BadRequest();
+        }
+        finally
+        {
+            connection.Close();
+        }
+
+        return Ok();
     }
 
     [HttpPost("login")]
@@ -26,11 +62,17 @@ public class LoginController : ControllerBase
 
         try
         {
-            string table = loginRequest.IsEmployee ? "Staff" : "User_Customer";
             bool isValid = await _userRepository.ValidateUserAsync(loginRequest.Email, loginRequest.Password, loginRequest.IsEmployee);
 
             if (isValid)
             {
+                var cookieResult = await SetCookie(loginRequest);
+
+                if (cookieResult is BadRequestObjectResult)
+                {
+                    return cookieResult;
+                }
+                
                 return Ok(new { message = "Login Successful." });
             }
             else
