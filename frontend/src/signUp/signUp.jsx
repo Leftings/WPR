@@ -35,13 +35,24 @@ function SignUp() {
         const formattedDate = new Date(dateOfBirth).toISOString().split('T')[0];
         const signUpType = chosenType === 1 ? 'signUpPersonal' : 'signUpEmployee';
         console.log(email, password1, firstName, lastName, phonenumber, adres, dateOfBirth, KvK, formattedDate);
+        const data = {};
+
+        if (signUpType = 'signUpPersonal')
+        {
+            data = { Email: email, Password: password1, FirstName: firstName, LastName: lastName, TelNumber: phonenumber, Adres: adres, BirthDate: formattedDate, KvK: null };
+        }
+        else
+        {
+            data = { Email: email, Password: password1, FirstName: firstName, LastName: lastName, TelNumber: phonenumber, Adres: adres, BirthDate: null, KvK: KvK }
+        }
+        }
 
         fetch(`http://localhost:5165/api/SignUp/${signUpType}`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json', 
             },
-            body: JSON.stringify({ email, password: password1, firstName, lastName, telNumber: phonenumber, Adres: adres, BirthDate:formattedDate, KvK }),
+            body: JSON.stringify(data),
             credentials: 'include', // Cookies of authenticatie wordt meegegeven
         })
         .then(response => {
@@ -146,6 +157,5 @@ function SignUp() {
             <footer></footer>
         </>
     );
-}
 
 export default SignUp;
