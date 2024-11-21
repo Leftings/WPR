@@ -1,14 +1,18 @@
 namespace WPR;
 
+using WPR.Data;
+using WPR.Database;
+
 public class Program
 {
     public static void Main(string[] args)
     {
-        var builder = WebApplication.CreateBuilder(args);
-        var app = builder.Build();
+        var app = AppConfigure.ConfigureApplication(args);
 
-        app.MapGet("/", () => "Hello World!");
-
+        using (var scope = app.Services.CreateScope())
+        {
+            AppConfigure.InitDatabase(scope.ServiceProvider);
+        }
         app.Run();
     }
 }
