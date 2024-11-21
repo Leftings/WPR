@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using MySql.Data.MySqlClient;
 using WPR.Cookie;
 using WPR.Database;
-using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Http.HttpResults;
 
 namespace WPR.Repository;
 
@@ -188,4 +188,21 @@ public class UserRepository : IUserRepository
             return -1;
         }
     }
+
+    /*public async Task<IActionResult> SetCookieAsync(IDbConnection connection, SessionHandler sessionHandler, HttpResponse response, string email)
+    {
+         try
+        {
+            int userId = await GetUserIdAsync(connection, email);
+            sessionHandler.CreateCookie("Login Cookie", userId.ToString())
+            
+        }
+        catch (Exception ex)
+        {
+            Console.Error.WriteLine($"Unexpected error: {ex.Message}");
+            return false;
+        }
+        
+    }
+    */
 }

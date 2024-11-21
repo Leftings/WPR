@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.Extensions.Options;
 using Microsoft.VisualBasic;
 using Org.BouncyCastle.Crypto.Prng;
+using WPR.Cookie;
 using WPR.Data;
 using WPR.Database;
 using WPR.Repository;
@@ -54,7 +55,8 @@ public class AppConfigure
         builder.Services.AddSingleton<EnvConfig>();
         builder.Services.AddTransient<Connector>();
         builder.Services.AddScoped<IUserRepository, UserRepository>();
-        builder.Services.AddScoped<IResponseCookies>();
+        //builder.Services.AddScoped<IResponseCookies>();
+        builder.Services.AddScoped<SessionHandler>();
         builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
             .AddCookie(options =>
             {
@@ -62,6 +64,7 @@ public class AppConfigure
                 options.SlidingExpiration = true;
                 options.AccessDeniedPath = "/Forbidden/";
             });
+        
         
         builder.Services.AddControllers()
             .AddJsonOptions(options =>
@@ -92,7 +95,7 @@ public class AppConfigure
         app.UseAuthentication();
         app.UseCookiePolicy(cookiePolicyOptions);
 
-        app.MapRazorPages();
+        //app.MapRazorPages();
         app.MapDefaultControllerRoute();
 
         return app;
