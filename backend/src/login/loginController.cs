@@ -4,16 +4,24 @@ using Microsoft.AspNetCore.Mvc;
 using WPR.Repository;
 using MySql.Data.MySqlClient;
 using System;
+using WPR.Cookie;
+using System.Data;
 
 [Route("api/[controller]")]
 [ApiController]
 public class LoginController : ControllerBase
 {
     private readonly IUserRepository _userRepository;
+    private readonly SessionHandler _sessionHandler;
 
     public LoginController(IUserRepository userRepository)
     {
         _userRepository = userRepository ?? throw new ArgumentNullException(nameof(userRepository));
+    }
+
+    public IActionResult SetCookie(string email)
+    {
+        int userId = _userRepository.GetUserIdAsync(// email)
     }
 
     [HttpPost("login")]

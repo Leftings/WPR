@@ -1,6 +1,9 @@
 ﻿using System.Data;
+using Microsoft.AspNetCore.Mvc;
 using MySql.Data.MySqlClient;
+using WPR.Cookie;
 using WPR.Database;
+using Microsoft.AspNetCore.Mvc;
 
 namespace WPR.Repository;
 
@@ -78,7 +81,6 @@ public class UserRepository : IUserRepository
                 {
                     command.CommandText = "SELECT LAST_INSERT_ID();";
                     int newUserID = Convert.ToInt32(command.ExecuteScalar());
-                    Console.WriteLine(newUserID);
 
                     return (true, "Data Inserted", newUserID);
                 }
@@ -157,6 +159,33 @@ public class UserRepository : IUserRepository
         {
             Console.Error.WriteLine($"Unexpected error: {ex.Message}");
             return (false, ex.Message);
+        }
+    }
+
+    public async Task<int> GetUserIdAsync(IDbConnection connection, string email)
+    {
+        try
+        {
+            string query = "SELECT ID FROM User_Customer WHERE Email = @E";
+
+            using (var command = new MySqlCommand(query, (MySqlConnection)connection))
+            {
+                command.Parameters.AddWithValue("@E", email);
+
+                var result = await command.ExecuteScalarAsync();
+
+                if (result != null)
+                {
+                    return Convert.ToInt32(result);
+                }
+
+                return -1;
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.Error.WriteLine($"Unexpected error: {ex.Message}");
+            return -1;
         }
     }
 }

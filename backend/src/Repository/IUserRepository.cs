@@ -9,5 +9,6 @@ public interface IUserRepository
     Task<(bool status, string message, int newUserID)> addCustomerAsync(IDbConnection connection, Object[] personData);
     Task<(bool status, string message)> addPersonalCustomerAsync(IDbConnection connection, Object[] personalData);
     Task<(bool status, string message)> addEmployeeCustomerAsync(IDbConnection conenction, Object[] employeeData);
+    Task<int> GetUserIdAsync(IDbConnection connection, string email);
 
 }
