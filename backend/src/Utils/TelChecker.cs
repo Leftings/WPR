@@ -2,11 +2,9 @@
 
 public static class TelChecker
 {
-    public static bool IsValidPhoneNumber(int phoneNumber)
+    public static bool IsValidPhoneNumber(string phoneNumber)
     {
-        string phoneString = phoneNumber.ToString();
-
-        if (phoneString.Length == 9 && phoneString.StartsWith("06") && phoneString.All(char.IsDigit))
+        if (phoneNumber.Length == 10 && phoneNumber.StartsWith("06") && phoneNumber.All(char.IsDigit))
         {
             return true;
         }
