@@ -22,15 +22,17 @@ public class UserRepository : IUserRepository
         string query = $@"SELECT 1 FROM {table} WHERE LOWER(email) = LOWER(@Email) AND BINARY password = @Password";
 
         using (var connection = _connector.CreateDbConnection())
-        using (var command = new MySqlCommand(query, (MySqlConnection)connection))
         {
-            command.Parameters.AddWithValue("@Email", username);
-            command.Parameters.AddWithValue("@Password", password);
-
-            using (var reader = await command.ExecuteReaderAsync())
+            using (var command = new MySqlCommand(query, (MySqlConnection)connection))
             {
-                Console.WriteLine(username);
-                return reader.HasRows;
+                command.Parameters.AddWithValue("@Email", username);
+                command.Parameters.AddWithValue("@Password", password);
+
+                using (var reader = await command.ExecuteReaderAsync())
+                {
+                    Console.WriteLine(username);
+                    return reader.HasRows;
+                }
             }
         }
     }
