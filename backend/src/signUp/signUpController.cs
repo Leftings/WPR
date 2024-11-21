@@ -4,9 +4,7 @@ namespace WPR.SignUp;
 
 using Microsoft.AspNetCore.Mvc;
 using WPR.Database;
-using MySql.Data.MySqlClient;
 using System;
-using System.Data;
 using WPR.Repository;
 
 [Route("api/[controller]")]
@@ -20,6 +18,17 @@ public class SignUpController : ControllerBase
     {
         _connector = connector ?? throw new ArgumentNullException(nameof(connector));
         _userRepository = userRepository ?? throw new ArgumentNullException(nameof(userRepository));
+    }
+
+    private bool IsFilledIn(SignUpRequest signUpRequest)
+    {
+        return 
+        !(signUpRequest == null
+        || string.IsNullOrEmpty(signUpRequest.Email)
+        || string.IsNullOrEmpty(signUpRequest.Password)
+        || string.IsNullOrEmpty(signUpRequest.FirstName)
+        || string.IsNullOrEmpty(signUpRequest.LastName)
+        || string.IsNullOrEmpty(signUpRequest.TelNumber));
     }
 
     // Wijzigingen die gemaakt worden in signUpPersonal moeten ook gemaakt worden in signUpEmployee
@@ -36,13 +45,8 @@ public class SignUpController : ControllerBase
             Console.WriteLine($"{signUpRequest.Email} | {signUpRequest.Password} | {signUpRequest.FirstName} | {signUpRequest.LastName} | {signUpRequest.TelNumber} {signUpRequest.Adres} | {signUpRequest.BirthDate}");
             try
             {
-                if (signUpRequest == null
-                || string.IsNullOrEmpty(signUpRequest.Email)
-                || string.IsNullOrEmpty(signUpRequest.Password)
-                || string.IsNullOrEmpty(signUpRequest.FirstName)
-                || string.IsNullOrEmpty(signUpRequest.LastName)
-                || signUpRequest.TelNumber == null
-                || signUpRequest.BirthDate == null)
+                bool filledIn = IsFilledIn(signUpRequest);
+                if (!filledIn || signUpRequest.BirthDate == null)
                 {
                     return BadRequest(new { message = "Not all elements are filled in" });
                 }
@@ -64,15 +68,8 @@ public class SignUpController : ControllerBase
 
                     return BadRequest( new { message = "Email allready existing"} );
                 }
-                else if (signUpRequest != null 
-                && !string.IsNullOrEmpty(signUpRequest.Email) 
-                && !string.IsNullOrEmpty(signUpRequest.Password)
-                && !string.IsNullOrEmpty(signUpRequest.FirstName) 
-                && !string.IsNullOrEmpty(signUpRequest.LastName) 
-                && signUpRequest.TelNumber != null
-                && signUpRequest.BirthDate != null)
+                else if (filledIn && signUpRequest.BirthDate != null)
                 {
-                    Console.WriteLine("X");
                     var customer = await _userRepository.addCustomerAsync(connection, new object[] 
                     {
                         signUpRequest.Adres,
@@ -131,12 +128,8 @@ public class SignUpController : ControllerBase
         {
             try
             {
-                if (signUpRequest == null
-                || string.IsNullOrEmpty(signUpRequest.Email)
-                || string.IsNullOrEmpty(signUpRequest.Password)
-                || string.IsNullOrEmpty(signUpRequest.FirstName)
-                || string.IsNullOrEmpty(signUpRequest.LastName)
-                || signUpRequest.KvK == null)
+                bool filledIn = IsFilledIn(signUpRequest);
+                if (!filledIn || signUpRequest.KvK == null)
                 {
                     return BadRequest(new { message = "Not all elements are filled in" });
                 }
@@ -147,12 +140,7 @@ public class SignUpController : ControllerBase
 
                     return BadRequest( new { message = "Email allready existing"} );
                 }
-                else if (signUpRequest != null
-                && !string.IsNullOrEmpty(signUpRequest.Email)
-                && !string.IsNullOrEmpty(signUpRequest.Password)
-                && !string.IsNullOrEmpty(signUpRequest.FirstName)
-                && !string.IsNullOrEmpty(signUpRequest.LastName)
-                && signUpRequest.KvK != null)
+                else if (filledIn && signUpRequest.KvK != null)
                 {
                     var customer = await _userRepository.addCustomerAsync(connection, new object[] 
                     {
