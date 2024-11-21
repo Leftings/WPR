@@ -14,7 +14,6 @@ function SignUp() {
     const [password2, setPassword2] = useState('');
     const [error, setError] = useState('');
     const navigate = useNavigate();
-    const [kindSignUp, setKindSignUp] = useState('');
     const [KvK, setKvK] = useState(null)
 
     const choice = (buttonId) => {
@@ -23,53 +22,67 @@ function SignUp() {
 
     const onSubmit = (event) => {
         event.preventDefault();
-
-        if (!email || !password || !adres || !phonenumber || !dateOfBirth || !password1 || !password2) {
-            setError('Bepaalde verplichte veld(en) zijn niet ingevuld.')
-        } else if (password1 !== password2) {
-            setError('Wachtwoorden komen niet overeen.')
-        } else {
-            setError(null)
+    
+        if (!email || !adres || !phonenumber || !dateOfBirth || !password1 || !password2) {
+            setError('Bepaalde verplichte veld(en) zijn niet ingevuld.');
+            return;
         }
-        
+    
+        if (password1 !== password2) {
+            setError('Wachtwoorden komen niet overeen.');
+            return;
+        }
+    
+        setError(null);
+    
         const formattedDate = new Date(dateOfBirth).toISOString().split('T')[0];
-        const signUpType = chosenType === 1 ? 'signUpPersonal' : 'signUpEmployee';
-        console.log(email, password1, firstName, lastName, phonenumber, adres, dateOfBirth, KvK, formattedDate);
-        const data = {};
-
-        if (signUpType = 'signUpPersonal')
-        {
-            data = { Email: email, Password: password1, FirstName: firstName, LastName: lastName, TelNumber: phonenumber, Adres: adres, BirthDate: formattedDate, KvK: null };
-        }
-        else
-        {
-            data = { Email: email, Password: password1, FirstName: firstName, LastName: lastName, TelNumber: phonenumber, Adres: adres, BirthDate: null, KvK: KvK }
-        }
-        }
-
+        let signUpType = chosenType === 1 ? 'signUpPersonal' : 'signUpEmployee';
+    
+        const data = signUpType === 'signUpPersonal'
+            ? {
+                Email: email,
+                Password: password1,
+                FirstName: firstName,
+                LastName: lastName,
+                TelNumber: phonenumber,
+                Adres: adres,
+                BirthDate: formattedDate,
+                KvK: null
+            }
+            : {
+                Email: email,
+                Password: password1,
+                FirstName: firstName,
+                LastName: lastName,
+                TelNumber: phonenumber,
+                Adres: adres,
+                BirthDate: null,
+                KvK: KvK
+            };
+    
         fetch(`http://localhost:5165/api/SignUp/${signUpType}`, {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json', 
+                'Content-Type': 'application/json',
             },
             body: JSON.stringify(data),
-            credentials: 'include', // Cookies of authenticatie wordt meegegeven
+            credentials: 'include',
         })
-        .then(response => {
-            if (!response.ok) {
-                setError(`There was an error during making a ${signUpType} account`);
-                throw new Error('Sign up failed');
-            }
-            return response.json();
-        })
-        .then(data => {
-            console.log('Sign up successful', data);
-            navigate('/');
-        })
-        .catch(error => {
-            console.error('Error:', error);
-        });
-    }
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Sign up failed');
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log('Sign up successful', data);
+                navigate('/');
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                setError(`There was an error during making a ${signUpType} account.`);
+            });
+    };    
 
     return (
         <>
@@ -157,5 +170,5 @@ function SignUp() {
             <footer></footer>
         </>
     );
-
+}
 export default SignUp;
