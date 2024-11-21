@@ -1,70 +1,126 @@
-header {
-    width: 100%;
-    height: 7.5%;
-    background-color: #1D7874; 
-    display: flex;
-    justify-content: space-between;  
-    align-items: center;  
-    padding: 10px;
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
 }
 
-header a {
-    color: #F4E8C1;  
-    text-decoration: none;  
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #333;
+    color: white;
+}
+
+.logo {
+    font-size: 1.5rem;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+    padding-right: 10px
+}
+
+    .nav-links li a {
+        text-decoration: none;
+        color: white;
+        font-weight: bold;
+        transition: color 0.3s;
+    }
+
+        .nav-links li a:hover {
+            color: #ff9900;
+        }
+
+.hero {
+    text-align: center;
+    background: url('hero-image.jpg') no-repeat center center/cover;
+    color: black;
+    padding: 80px 20px;
+}
+
+    .hero h1 {
+        font-size: 2.5rem;
+        margin-bottom: 10px;
+    }
+
+    .hero p {
+        font-size: 1.2rem;
+        margin-bottom: 50px;
+    }
+
+.cta-button {
+    background-color: #1D7874;
+    color: white;
+    padding: 10px 20px;
+    margin-top: 30px;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
     font-weight: bold;
-    font-size: 18px; 
+    transition: background-color 0.3s;
+}
+
+    .cta-button:hover {
+        color: white;
+        background-color: #7C6C77;
+    }
+
+.features {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    padding: 40px 20px;
+}
+
+.container {
+    display: flex;
+    justify-content: space-between; 
+    align-items: stretch; 
+    gap: 20px; 
+    margin-left: 30px
+}
+
+.feature-card {
+    background: #f9f9f9;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    flex: 1; 
+    display: flex;
+    flex-direction: column; 
+}
+
+    .feature-card h3 {
+        font-size: 1.5rem;
+        margin-bottom: 0px;
+        color: black;
+    }
+
+    .feature-card p {
+        font-size: 1rem;
+        color: #555;
+    }
+
+
+.footer {
+    text-align: center;
+    background: #333;
+    color: white;
+    padding: 20px;
+}
+
+.footer-links a {
+    color: #BBC2E2;
+    text-decoration: none;
+    margin: 0 10px;
     transition: color 0.3s;
 }
 
-header a:hover {
-    color: #071E22; 
-}
+    .footer-links a:hover {
+        color: white;
+    }
 
-#left {
-    text-align: left;
-}
-
-#right {
-    text-align: right;
-    padding-right: 20px;
-}
-
-#logo
-{
-    height: 7.5%;
-    width: auto;
-}
-
-body {
-    background-color: #F4E8C1;
-    margin: 0;
-}
-
-h1 {
-    text-align: center;
-    color: black;
-    font-size: 2.5rem; 
-}
-
-#input
-{
-   text-align: center;
-   color: black;
-}
-
-input
-{
-    background-color: gray;
-}
-
-#button
-{
-    margin: 20px;
-    background-color: #1D7874;
-    color: black;
-}
-
-#inlog {
-    margin-top: 50px;
-    text-align: center;
-}
