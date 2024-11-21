@@ -70,7 +70,9 @@ function SignUp() {
         })
             .then(response => {
                 if (!response.ok) {
-                    throw new Error('Sign up failed');
+                    return response.json().then(err => {
+                        throw new Error(err.message || 'Sign up failed')
+                    });
                 }
                 return response.json();
             })
@@ -80,7 +82,16 @@ function SignUp() {
             })
             .catch(error => {
                 console.error('Error:', error);
-                setError(`There was an error during making a ${signUpType} account.`);
+                
+                if (error.message === 'Invalid email format') {
+                    setError('The email format is invalid.');
+                } else if (error.message === 'Email already existing') {
+                    setError('The email is already in use. Please use a different email.');
+                } else if (error.message === 'Invalid phone number format') {
+                    setError('The phone number is invalid.')
+                } else {
+                    setError(`There was an error during making a ${signUpType} account: ${error.message}`);
+                }
             });
     };    
 

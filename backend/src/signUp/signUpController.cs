@@ -1,3 +1,5 @@
+using WPR.Utils;
+
 namespace WPR.SignUp;
 
 using Microsoft.AspNetCore.Mvc;
@@ -26,7 +28,7 @@ public class SignUpController : ControllerBase
         || string.IsNullOrEmpty(signUpRequest.Password)
         || string.IsNullOrEmpty(signUpRequest.FirstName)
         || string.IsNullOrEmpty(signUpRequest.LastName)
-        || signUpRequest.TelNumber == null);
+        || string.IsNullOrEmpty(signUpRequest.TelNumber));
     }
 
     // Wijzigingen die gemaakt worden in signUpPersonal moeten ook gemaakt worden in signUpEmployee
@@ -48,6 +50,17 @@ public class SignUpController : ControllerBase
                 {
                     return BadRequest(new { message = "Not all elements are filled in" });
                 }
+                
+                if (!EmailChecker.IsValidEmail(signUpRequest.Email))
+                {
+                    return BadRequest(new { message = "Invalid email format" });
+                }
+
+                if (!TelChecker.IsValidPhoneNumber(signUpRequest.TelNumber))
+                {
+                    return BadRequest(new { message = "Invalid phone number" });
+                }
+                
                 else if (emailCheck.status)
                 {
                     transaction.Rollback();
@@ -82,7 +95,7 @@ public class SignUpController : ControllerBase
                 }
                 else
                 {
-                    return BadRequest(new { message = "Something went wrong (Nothing mathced)" });
+                    return BadRequest(new { message = "Something went wrong (Nothing matched)" });
                 }
             }
             catch (Exception ex)
@@ -185,7 +198,7 @@ public class SignUpRequest
     public string? Password { get; set; }
     public string? FirstName { get; set; }
     public string? LastName { get; set; }
-    public int? TelNumber { get; set; }
+    public string TelNumber { get; set; }
     public string? Adres { get; set; }
     public DateTime? BirthDate { get; set; }
     public int? KvK { get; set; }
