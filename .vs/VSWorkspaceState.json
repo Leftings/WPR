@@ -1,7 +1,10 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\frontend",
+    "\\frontend\\src",
+    "\\frontend\\src\\home",
+    "\\frontend\\src\\login"
   ],
-  "SelectedNode": "\\C:\\Users\\kenbg\\source\\repos\\Leftings",
   "PreviewInSolutionExplorer": false
 }
