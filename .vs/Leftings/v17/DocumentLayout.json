@@ -3,16 +3,16 @@
   "WorkspaceRootPath": "C:\\Users\\kenbg\\source\\repos\\Leftings\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\kenbg\\source\\repos\\Leftings\\frontend\\src\\home\\home.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:frontend\\src\\home\\home.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\kenbg\\source\\repos\\Leftings\\frontend\\src\\GeneralBlocks\\header\\header.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:frontend\\src\\GeneralBlocks\\header\\header.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\kenbg\\source\\repos\\Leftings\\frontend\\src\\GeneralBlocks\\header\\header.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:frontend\\src\\GeneralBlocks\\header\\header.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\kenbg\\source\\repos\\Leftings\\frontend\\src\\home\\home.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:frontend\\src\\home\\home.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\kenbg\\source\\repos\\Leftings\\frontend\\src\\home\\home.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
@@ -26,41 +26,43 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "header.css",
               "DocumentMoniker": "C:\\Users\\kenbg\\source\\repos\\Leftings\\frontend\\src\\GeneralBlocks\\header\\header.css",
               "RelativeDocumentMoniker": "frontend\\src\\GeneralBlocks\\header\\header.css",
               "ToolTip": "C:\\Users\\kenbg\\source\\repos\\Leftings\\frontend\\src\\GeneralBlocks\\header\\header.css",
               "RelativeToolTip": "frontend\\src\\GeneralBlocks\\header\\header.css",
-              "ViewState": "AgIAACUAAAAAAAAAAAAwwH0AAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAAA4AAAAHAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
-              "WhenOpened": "2024-11-21T09:43:57.384Z"
+              "WhenOpened": "2024-11-21T09:43:57.384Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 1,
               "Title": "header.jsx",
               "DocumentMoniker": "C:\\Users\\kenbg\\source\\repos\\Leftings\\frontend\\src\\GeneralBlocks\\header\\header.jsx",
               "RelativeDocumentMoniker": "frontend\\src\\GeneralBlocks\\header\\header.jsx",
               "ToolTip": "C:\\Users\\kenbg\\source\\repos\\Leftings\\frontend\\src\\GeneralBlocks\\header\\header.jsx",
               "RelativeToolTip": "frontend\\src\\GeneralBlocks\\header\\header.jsx",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAXAAAAAAAAAA==",
+              "ViewState": "AgIAABQAAAAAAAAAAAAAwAsAAAAgAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
-              "WhenOpened": "2024-11-21T09:40:55.525Z"
+              "WhenOpened": "2024-11-21T09:40:55.525Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
               "Title": "home.jsx",
               "DocumentMoniker": "C:\\Users\\kenbg\\source\\repos\\Leftings\\frontend\\src\\home\\home.jsx",
               "RelativeDocumentMoniker": "frontend\\src\\home\\home.jsx",
               "ToolTip": "C:\\Users\\kenbg\\source\\repos\\Leftings\\frontend\\src\\home\\home.jsx",
               "RelativeToolTip": "frontend\\src\\home\\home.jsx",
-              "ViewState": "AgIAABsAAAAAAAAAAADwvy8AAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAUAAAAAAAAAAAAxwC8AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
               "WhenOpened": "2024-11-21T09:40:07.167Z",
               "EditorCaption": ""

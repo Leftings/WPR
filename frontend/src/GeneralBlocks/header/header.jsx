@@ -11,6 +11,7 @@ function GeneralHeader() {
                 </div>
                 <nav id="right">
                     <ul className="nav-links">
+                        <li><Link to="/logout">Logout</Link></li>
                         <li><Link to="/cars">Zoek Auto's</Link></li>
                         <li><Link to="/about">Over ons</Link></li>
                         <li><Link to="/contact">Contact</Link></li>
