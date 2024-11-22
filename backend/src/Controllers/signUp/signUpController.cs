@@ -1,6 +1,6 @@
 using WPR.Utils;
 
-namespace WPR.SignUp;
+namespace WPR.Controllers.SignUp;
 
 using Microsoft.AspNetCore.Mvc;
 using WPR.Database;
@@ -75,7 +75,9 @@ public class SignUpController : ControllerBase
                         signUpRequest.Adres,
                         signUpRequest.TelNumber,
                         signUpRequest.Password,
-                        signUpRequest.Email
+                        signUpRequest.Email,
+                        signUpRequest.FirstName,
+                        signUpRequest.LastName
                     });
 
                     var personal = await _userRepository.addPersonalCustomerAsync(connection, new object[] 
@@ -147,7 +149,9 @@ public class SignUpController : ControllerBase
                         signUpRequest.Adres,
                         signUpRequest.TelNumber,
                         signUpRequest.Password,
-                        signUpRequest.Email
+                        signUpRequest.Email,
+                        signUpRequest.FirstName,
+                        signUpRequest.LastName
                     });
                     var employee = await _userRepository.addEmployeeCustomerAsync(connection,new object[] 
                     {
