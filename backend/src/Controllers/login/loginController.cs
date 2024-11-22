@@ -1,11 +1,10 @@
-namespace WPR.Login;
+namespace WPR.Controllers.Login;
 
 using Microsoft.AspNetCore.Mvc;
 using WPR.Repository;
 using MySql.Data.MySqlClient;
 using System;
 using WPR.Cookie;
-using System.Data;
 using WPR.Database;
 
 [Route("api/[controller]")]
@@ -52,6 +51,18 @@ public class LoginController : ControllerBase
         return Ok();
     }
 
+    [HttpGet("CheckSession")]
+    public IActionResult CheckSession()
+    {
+        string sessionValue = Request.Cookies["LoginSession"];
+        
+        if (!string.IsNullOrEmpty(sessionValue))
+        {
+            return Ok( new {message = "session active ", sessionValue});
+        }
+        return Unauthorized(new { message = "Session expired or is not found" });
+    }
+
     [HttpPost("login")]
     public async Task <IActionResult> Login([FromBody] LoginRequest loginRequest)
     {
@@ -92,11 +103,3 @@ public class LoginController : ControllerBase
         }
     }
 }
-
-public class LoginRequest
-{
-    public string Email { get; set; }
-    public string Password { get; set; }
-    public bool IsEmployee { get; set; }
-}
-
