@@ -214,4 +214,63 @@ public class UserRepository : IUserRepository
             return ex.ToString();
         }
     }
+
+    public async Task<bool> EditUserInfoAsync(IDbConnection connection, List<object[]> data)
+    {
+        try
+        {
+            int lengthList = data.Count();
+            string query = "UPDATE User_Customer SET ";
+
+            for (int i = 1; i < lengthList; i++)
+            {
+                object[] item = data[i];
+
+                if (i + 1 == lengthList)
+                {
+                    if (item[2].Equals("System.Int32"))
+                    {
+                        query += $"{item[0]} = {item[1]} ";
+                    }
+                    else
+                    {
+                        query += $"{item[0]} = '{item[1]}' ";
+                    }
+                }
+                else
+                {
+                    if (item[2].Equals("System.Int32"))
+                    {
+                        query += $"{item[0]} = {item[1]}, ";
+                    }
+                    else
+                    {
+                        query += $"{item[0]} = '{item[1]}', ";
+                    }
+                }
+            }
+
+            query += $"WHERE ID = {data[0][1]}";
+
+            using (var command = new MySqlCommand(query, (MySqlConnection)connection))
+            {
+                var result = await command.ExecuteNonQueryAsync();
+
+                Console.WriteLine(result);
+                Console.WriteLine(query);
+
+                if (await command.ExecuteNonQueryAsync() > 0)
+                {
+                    return true;
+                }
+                
+                return false;
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error: {ex}");
+            return false;
+        }
+    }
 }

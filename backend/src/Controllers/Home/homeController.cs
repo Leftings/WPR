@@ -18,30 +18,4 @@ public class HomeController : ControllerBase
         _connector = connector ?? throw new ArgumentNullException(nameof(connector));
         _userRepository = userRepository ?? throw new ArgumentNullException(nameof(userRepository));
     }
-
-    [HttpGet("GetUserName")]
-    public async Task<IActionResult> GetUserName()
-    {
-        string loginCookie = HttpContext.Request.Cookies["LoginSession"];
-
-        if(string.IsNullOrEmpty(loginCookie))
-        {
-            Console.WriteLine("No cookie");
-            return BadRequest(new { message = "No Cookie"});
-        }
-
-        var connection = _connector.CreateDbConnection();
-
-        try
-        {
-            string userName = await _userRepository.GetUserNameAsync(connection, loginCookie);
-            Console.WriteLine(userName);
-            return Ok(new { message = userName });
-        }
-        catch (Exception ex)
-        {
-            Console.WriteLine(ex);
-            return BadRequest(new { message = "User Not Found"});
-        }
-    }
 }

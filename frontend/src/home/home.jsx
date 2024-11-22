@@ -4,7 +4,7 @@ import './home.css';
 
 function WelcomeUser(setWelcome)
 {
-  fetch('http://localhost:5165/api/Home/GetUserName', {
+  fetch('http://localhost:5165/api/Cookie/GetUserName', {
     method: 'GET',
     headers: {
         'Content-Type': 'application/json', 
