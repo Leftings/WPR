@@ -4,7 +4,7 @@ import './userSettings.css';
 
 function GetUser(setUser)
 {
-  fetch('http://localhost:5165/api/Home/GetUserName', {
+  fetch('http://localhost:5165/api/Cookie/GetUserName', {
     method: 'GET',
     headers: {
         'Content-Type': 'application/json', 
@@ -18,44 +18,112 @@ function GetUser(setUser)
         }
         return response.json();
     })
-    .then(async data => {
+    .then(data => {
       setUser(`${data.message}`);
     })
     .catch(error => {
         console.error('Error:', error);
     });
 }
+
+function GetUserId() {
+  return new Promise((resolve, reject) => {
+    fetch('http://localhost:5165/api/Cookie/GetUserId', {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json', 
+    },
+    credentials: 'include',  // Cookies of authenticatie wordt meegegeven
+    })
+    .then(response => {
+      console.log(response);
+      if (!response.ok) {
+        reject('No Cookie');
+      }
+      return response.json();
+    })
+    .then(data => {
+      resolve(data.message);
+    })
+    .catch(error => {
+      console.error('Error:', error);
+      reject(error); 
+    });
+  });
+}
+
+
+function ChangeUserInfo(userData) {
+  return fetch('http://localhost:5165/api/ChangeUserSettings/ChangeUserInfo', {
+    method: 'PUT',
+    headers: {
+        'Content-Type': 'application/json', 
+    },
+    body: JSON.stringify(userData),
+    credentials: 'include', // Cookies of authenticatie wordt meegegeven
+  })
+  .then(response => {
+    console.log(response);
+    if (!response.ok) {
+        throw new Error('Failed to change user info');
+    }
+    return response.json(); 
+  })
+  .then(data => {
+    return data.message;
+  })
+  .catch(error => {
+    console.error('Error:', error);
+    throw error;
+  });
+}
+
+
 function UserSettings() {
-  const [user, setUser] = useState(null);
-  const [email, setEmail] = useState(null);
-  const [adres, setAdres] = useState(null);
-  const [phonenumber, setPhonenumber] = useState(null);
-  const [dateOfBirth, setDateOfBirth] = useState(null);
-  const [firstName, setFirstName] = useState(null);
-  const [lastName, setLastName] = useState(null);
-  const [password1, setPassword1] = useState(null);
-  const [password2, setPassword2] = useState(null);
+  const [user, setUser] = useState('');
+  const [email, setEmail] = useState('');
+  const [adres, setAdres] = useState('');
+  const [phonenumber, setPhonenumber] = useState('');
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [password1, setPassword1] = useState('');
+  const [password2, setPassword2] = useState('');
   const [error, setError] = useState(null);
 
   useEffect(() => {
     GetUser(setUser);
   }, []);
 
-  const onSubmit = (event) => {
+  const onSubmit = async (event) => {
     event.preventDefault();
+    if (password1 === password2)
+    {
+      const userId = await GetUserId();
 
-    if (!email || !adres || !phonenumber || !dateOfBirth || !password1 || !password2) {
-        setError('Bepaalde verplichte veld(en) zijn niet ingevuld.');
-        return;
+      const userData = {
+        ID: userId,
+        Email: email,
+        Password: password1,
+        FirstName: firstName,
+        LastName: lastName,
+        TelNum: phonenumber,
+        Adres: adres,
+      };
+
+      await ChangeUserInfo(userData);
+
+      if (firstName !== '')
+      {
+        GetUser(setUser);
+      }
+
+      setError("Gegevens zijn bijgewerkt");
     }
-
-    if (password1 !== password2) {
-        setError('Wachtwoorden komen niet overeen.');
-        return;
+    else
+    {
+      setError("De wachtwoorden komen niet overeen");
     }
-
-    setError(null);
-}
+  }
 
   return (
     <>
@@ -101,11 +169,6 @@ function UserSettings() {
             <input type="tel" id="phonenumber" value={phonenumber}
                     onChange={(e) => setPhonenumber(e.target.value)}></input>
             <br></br>
-            <label htmlFor="dateOfBirth">Geboortedatum</label>
-            <br></br>
-            <input type="date" id="dateOfBirth" value={dateOfBirth}
-                    onChange={(e) => setDateOfBirth(e.target.value)}></input>
-            <br></br>
             <label htmlFor="password">Wachtwoord</label>
             <br></br>
             <input type="password" id="password" value={password1}
@@ -117,6 +180,8 @@ function UserSettings() {
                     onChange={(e) => setPassword2(e.target.value)}></input>
             <br></br>
             <button id="button" type="button" onClick={onSubmit}>Opslaan</button>
+
+            {error && <p style={{color: 'red'}}>{error}</p>}
         </div>
       </body>
 

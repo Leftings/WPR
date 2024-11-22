@@ -11,5 +11,6 @@ public interface IUserRepository
     Task<(bool status, string message)> addEmployeeCustomerAsync(IDbConnection conenction, Object[] employeeData);
     Task<int> GetUserIdAsync(IDbConnection connection, string email);
     Task<string> GetUserNameAsync(IDbConnection connection, string userId);
+    Task<bool> EditUserInfoAsync(IDbConnection connection, List<object[]> data);
 
 }
