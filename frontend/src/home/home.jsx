@@ -34,12 +34,12 @@ function Home() {
 
   return (
     <>
-      <header onLoad="WelcomeUser()">
+      <header>
         <div id="left">
         </div>
 
         <div id="right">
-        <p id="user">{welcome}</p>
+        <Link to="/userSettings" id="user" >{welcome}</Link>
         </div>
       </header>
 
