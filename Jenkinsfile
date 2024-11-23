@@ -25,9 +25,15 @@ pipeline {
                 script {
                     // Install .NET Core SDK (Note: You can specify OS-specific logic here if needed)
                     if (isUnix()) {
-                        sh 'curl -sSL https://aka.ms/install-dotnet.sh | bash' // For Ubuntu/macOS
+                        // For Ubuntu/macOS: download and install .NET SDK
+                        sh '''
+                            echo "Installing .NET Core SDK..."
+                            curl -sSL https://aka.ms/install-dotnet.sh -o install-dotnet.sh
+                            bash install-dotnet.sh
+                        '''
                     } else {
-                        bat 'choco install dotnetcore-sdk --version 8.0' // For Windows
+                        // For Windows: install using Chocolatey
+                        bat 'choco install dotnetcore-sdk --version 8.0'
                     }
                 }
             }
@@ -59,7 +65,9 @@ pipeline {
                         values 'ubuntu', 'windows', 'macos'  // specify the OS for matrix execution
                     }
                 }
-                agent any  // Run on any available agent
+                agent {
+                    label 'your-agent-label'  // Jenkins agent can be set here if needed
+                }
                 stages {
                     stage('Build & Restore') {
                         steps {
@@ -88,7 +96,7 @@ pipeline {
                         values 'ubuntu', 'windows', 'macos'
                     }
                 }
-                agent any  // Run on any available agent
+                agent any
                 stages {
                     stage('Test') {
                         steps {
@@ -108,6 +116,7 @@ pipeline {
         stage('Packaging & Deployment') {
             when {
                 expression {
+                    // Only execute this for Windows, as per your original pipeline logic
                     return env.OS == 'windows'
                 }
             }
