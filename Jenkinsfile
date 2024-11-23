@@ -25,11 +25,15 @@ pipeline {
                 script {
                     // Install .NET Core SDK (Note: You can specify OS-specific logic here if needed)
                     if (isUnix()) {
-                        // For Ubuntu/macOS: download and install .NET SDK
+                        // For Ubuntu: add Microsoft package repo and install .NET SDK
                         sh '''
-                            echo "Installing .NET Core SDK..."
-                            curl -sSL https://aka.ms/install-dotnet.sh -o install-dotnet.sh
-                            bash install-dotnet.sh
+                            echo "Installing .NET Core SDK for Ubuntu..."
+                            sudo apt-get update
+                            sudo apt-get install -y wget apt-transport-https software-properties-common
+                            wget https://packages.microsoft.com/config/ubuntu/20.04/prod.list
+                            sudo mv prod.list /etc/apt/sources.list.d/microsoft-prod.list
+                            sudo apt-get update
+                            sudo apt-get install -y dotnet-sdk-8.0
                         '''
                     } else {
                         // For Windows: install using Chocolatey
