@@ -59,9 +59,7 @@ pipeline {
                         values 'ubuntu', 'windows', 'macos'  // specify the OS for matrix execution
                     }
                 }
-                agent {
-                    label 'your-agent-label'  // Jenkins agent can be set here if needed
-                }
+                agent any  // Run on any available agent
                 stages {
                     stage('Build & Restore') {
                         steps {
@@ -90,7 +88,7 @@ pipeline {
                         values 'ubuntu', 'windows', 'macos'
                     }
                 }
-                agent any
+                agent any  // Run on any available agent
                 stages {
                     stage('Test') {
                         steps {
@@ -110,7 +108,6 @@ pipeline {
         stage('Packaging & Deployment') {
             when {
                 expression {
-                    // Only execute this for Windows, as per your original pipeline logic
                     return env.OS == 'windows'
                 }
             }
