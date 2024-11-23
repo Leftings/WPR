@@ -28,12 +28,12 @@ pipeline {
                         // For Ubuntu: add Microsoft package repo and install .NET SDK
                         sh '''
                             echo "Installing .NET Core SDK for Ubuntu..."
-                            sudo apt-get update
-                            sudo apt-get install -y wget apt-transport-https software-properties-common
+                            apt-get update
+                            apt-get install -y wget apt-transport-https software-properties-common
                             wget https://packages.microsoft.com/config/ubuntu/20.04/prod.list
-                            sudo mv prod.list /etc/apt/sources.list.d/microsoft-prod.list
-                            sudo apt-get update
-                            sudo apt-get install -y dotnet-sdk-8.0
+                            mv prod.list /etc/apt/sources.list.d/microsoft-prod.list
+                            apt-get update
+                            apt-get install -y dotnet-sdk-8.0
                         '''
                     } else {
                         // For Windows: install using Chocolatey
