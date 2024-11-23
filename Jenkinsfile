@@ -23,21 +23,23 @@ pipeline {
             agent any
             steps {
                 script {
-                    // Install .NET Core SDK (Note: You can specify OS-specific logic here if needed)
+                    echo "Installing .NET Core SDK for Ubuntu..."
+
+                    // Install .NET Core SDK
                     if (isUnix()) {
-                        // For Ubuntu: add Microsoft package repo and install .NET SDK
                         sh '''
-                            echo "Installing .NET Core SDK for Ubuntu..."
-                            apt-get update
-                            apt-get install -y wget apt-transport-https software-properties-common
+                            # Add Microsoft package source and install .NET SDK
+                            sudo apt-get update
+                            sudo apt-get install -y wget apt-transport-https software-properties-common
                             wget https://packages.microsoft.com/config/ubuntu/20.04/prod.list
-                            mv prod.list /etc/apt/sources.list.d/microsoft-prod.list
-                            apt-get update
-                            apt-get install -y dotnet-sdk-8.0
+                            sudo mv prod.list /etc/apt/sources.list.d/microsoft-prod.list
+                            sudo apt-get update
+                            sudo apt-get install -y dotnet-sdk-8.0
                         '''
                     } else {
-                        // For Windows: install using Chocolatey
-                        bat 'choco install dotnetcore-sdk --version 8.0'
+                        bat '''
+                            choco install dotnetcore-sdk --version 8.0
+                        '''
                     }
                 }
             }
@@ -47,7 +49,7 @@ pipeline {
             agent any
             steps {
                 script {
-                    // Cache NuGet packages (this could be more complex if you want a more permanent cache)
+                    echo "Caching NuGet Packages..."
                     if (isUnix()) {
                         sh 'dotnet restore'
                     } else {
@@ -76,6 +78,7 @@ pipeline {
                     stage('Build & Restore') {
                         steps {
                             script {
+                                echo "Restoring .NET application..."
                                 if (env.OS == 'ubuntu' || env.OS == 'macos') {
                                     sh "dotnet restore ${env.SOLUTION_NAME} --configuration ${env.CONFIGURATION}"
                                 } else {
@@ -105,6 +108,7 @@ pipeline {
                     stage('Test') {
                         steps {
                             script {
+                                echo "Running Unit Tests..."
                                 if (env.OS == 'ubuntu' || env.OS == 'macos') {
                                     sh "dotnet test --no-restore --configuration ${env.CONFIGURATION}"
                                 } else {
@@ -126,7 +130,6 @@ pipeline {
             }
             steps {
                 script {
-                    // Windows-specific logic for packaging & deployment
                     echo 'Packaging & Deployment for Windows...'
                     // Add additional Windows-specific deployment steps here
                 }
