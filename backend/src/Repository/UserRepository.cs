@@ -7,6 +7,10 @@ using Microsoft.AspNetCore.Http.HttpResults;
 
 namespace WPR.Repository;
 
+/// <summary>
+/// De UserRepository class geeft de methodes voor de interactie met de database voor gebruiker gerelateerde operaties.
+/// Het implementeert de IUserRepository interface.
+/// </summary>
 public class UserRepository : IUserRepository
 {
     private readonly Connector _connector;
