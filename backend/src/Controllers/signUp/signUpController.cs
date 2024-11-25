@@ -35,10 +35,10 @@ public class SignUpController : ControllerBase
     [HttpPost("signUpPersonal")]
     public async Task<IActionResult> signUpPersonal([FromBody] SignUpRequest signUpRequest)
     {
-        var connection = _connector.CreateDbConnection();
         var emailCheck = await _userRepository.checkUsageEmailAsync(signUpRequest.Email);
         bool commit = true;
 
+        using (var connection = _connector.CreateDbConnection())
         using (var transaction = connection.BeginTransaction())
         {
             Console.WriteLine($"Received BirthDate: {signUpRequest.BirthDate}");

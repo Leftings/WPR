@@ -20,6 +20,7 @@ public interface IUserRepository
     Task<(bool status, string message)> addEmployeeCustomerAsync(Object[] employeeData);
     Task<int> GetUserIdAsync(string email);
     Task<string> GetUserNameAsync(string userId);
-    Task<bool> EditUserInfoAsync(List<object[]> data);
+    Task<(bool status, string message)> EditUserInfoAsync(List<object[]> data);
+    
 
 }

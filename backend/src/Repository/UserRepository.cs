@@ -4,6 +4,7 @@ using MySql.Data.MySqlClient;
 using WPR.Cookie;
 using WPR.Database;
 using Microsoft.AspNetCore.Http.HttpResults;
+using WPR.Utils;
 
 namespace WPR.Repository;
 
@@ -54,7 +55,7 @@ public class UserRepository : IUserRepository
                 bool inUse = Convert.ToInt32(await command.ExecuteScalarAsync()) > 0;
 
                 Console.WriteLine(inUse);
-                return (inUse, inUse ? "No email detected" : "Email detected");
+                return (inUse, inUse ? "Email detected" : "No email detected");
             }
         }
 
@@ -224,63 +225,77 @@ public class UserRepository : IUserRepository
         }
     }
 
-    public async Task<bool> EditUserInfoAsync(List<object[]> data)
+    public async Task<(bool status, string message)> EditUserInfoAsync(List<object[]> data)
     {
         try
         {
-            int lengthList = data.Count();
-            string query = "UPDATE User_Customer SET ";
+            var query = await CreateUserInfoQuery(data);
 
-            for (int i = 1; i < lengthList; i++)
+            if (query.goodQuery)
             {
-                object[] item = data[i];
+                using (var connection = _connector.CreateDbConnection())
+                using (var command = new MySqlCommand(query.message, (MySqlConnection)connection))
+                {
+                    var result = await command.ExecuteNonQueryAsync();
 
-                if (i + 1 == lengthList)
-                {
-                    if (item[2].Equals("System.Int32"))
+                    Console.WriteLine(result);
+                    Console.WriteLine(query);
+
+                    if (await command.ExecuteNonQueryAsync() > 0)
                     {
-                        query += $"{item[0]} = {item[1]} ";
+                        return (true, "Data inserted");
                     }
-                    else
-                    {
-                        query += $"{item[0]} = '{item[1]}' ";
-                    }
-                }
-                else
-                {
-                    if (item[2].Equals("System.Int32"))
-                    {
-                        query += $"{item[0]} = {item[1]}, ";
-                    }
-                    else
-                    {
-                        query += $"{item[0]} = '{item[1]}', ";
-                    }
+                    
+                    return (false, "Data not inserted");
                 }
             }
-
-            query += $"WHERE ID = {data[0][1]}";
-
-            using (var connection = _connector.CreateDbConnection())
-            using (var command = new MySqlCommand(query, (MySqlConnection)connection))
+            else
             {
-                var result = await command.ExecuteNonQueryAsync();
-
-                Console.WriteLine(result);
-                Console.WriteLine(query);
-
-                if (await command.ExecuteNonQueryAsync() > 0)
-                {
-                    return true;
-                }
-                
-                return false;
+                return (false, query.message);
             }
         }
         catch (Exception ex)
+            {
+                Console.WriteLine($"Error: {ex}");
+                return (false, ex.ToString());
+            }
+    }
+
+    private async Task<(bool goodQuery, string message)> CreateUserInfoQuery(List<object[]> data)
+    {
+        int lengthList = data.Count();
+        string query = "UPDATE User_Customer SET ";
+
+        for (int i = 1; i < lengthList; i++)
         {
-            Console.WriteLine($"Error: {ex}");
-            return false;
+            object[] item = data[i];
+
+            if (item[2].Equals("System.Int32"))
+            {
+                query += $"{item[0]} = {item[1]}";
+            }
+            else
+            {
+                if (item[0].ToString().Equals("Email"))
+                {
+                    var emailCheck = await checkUsageEmailAsync(item[1].ToString());
+
+                    if (emailCheck.status)
+                    {
+                        return (false, emailCheck.message);
+                    }
+                }
+                query += $"{item[0]} = '{item[1]}'";
+            }
+
+            if (i + 1 != lengthList)
+            {
+                query += ",";
+            }
+
+            query += " ";
         }
+
+        return (true, query += $"WHERE ID = {data[0][1]}");
     }
 }
