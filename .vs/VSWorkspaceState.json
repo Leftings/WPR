@@ -3,9 +3,13 @@
     "",
     "\\frontend",
     "\\frontend\\src",
+    "\\frontend\\src\\GeneralBlocks",
+    "\\frontend\\src\\GeneralBlocks\\footer",
+    "\\frontend\\src\\GeneralBlocks\\header",
     "\\frontend\\src\\home",
-    "\\frontend\\src\\login"
+    "\\frontend\\src\\login",
+    "\\frontend\\src\\TermsAndConditions"
   ],
-  "SelectedNode": "\\.gitignore",
+  "SelectedNode": "\\frontend\\src\\TermsAndConditions\\TermsAndConditions.css",
   "PreviewInSolutionExplorer": false
 }
