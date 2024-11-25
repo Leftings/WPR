@@ -57,7 +57,19 @@ jobs:
     steps:
       - name: Verify all jobs passed
         run: |
-          if [ "${{ needs.build.result }}" != "success" ]; then
+          # Check if any of the matrix configurations failed
+          if [[ "${{ needs.build.result }}" != "success" ]]; then
             echo "Tests did not pass. Blocking merge."
             exit 1
           fi
+          
+          # Check if all jobs in the matrix passed
+          failed_jobs=$(echo "${{ needs.build.results }}" | grep -i "failure" || true)
+          if [[ -n "$failed_jobs" ]]; then
+            echo "There are failed jobs in the matrix: $failed_jobs"
+            echo "Blocking merge due to failed tests."
+            exit 1
+          else
+            echo "All tests passed. Proceeding with merge."
+          fi
+
