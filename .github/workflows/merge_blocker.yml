@@ -52,24 +52,16 @@ jobs:
     name: Block Merge if Tests Fail
     runs-on: ubuntu-latest
     needs: build
-    if: always() # Ensure this runs even if the previous job fails
-
+    if: always()  # Ensure this runs even if the previous job fails
+  
     steps:
       - name: Verify all jobs passed
         run: |
-          # Check if any of the matrix configurations failed
-          if [[ "${{ needs.build.result }}" != "success" ]]; then
+          echo "Build status: ${{ needs.build.result }}"
+          if [ "${{ needs.build.result }}" != "success" ]; then
             echo "Tests did not pass. Blocking merge."
             exit 1
-          fi
-          
-          # Check if all jobs in the matrix passed
-          failed_jobs=$(echo "${{ needs.build.results }}" | grep -i "failure" || true)
-          if [[ -n "$failed_jobs" ]]; then
-            echo "There are failed jobs in the matrix: $failed_jobs"
-            echo "Blocking merge due to failed tests."
-            exit 1
           else
-            echo "All tests passed. Proceeding with merge."
+            echo "Tests passed successfully. Merge is allowed."
           fi
 
