@@ -71,4 +71,4 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
-
+.vs/
