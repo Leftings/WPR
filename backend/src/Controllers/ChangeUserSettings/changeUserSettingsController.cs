@@ -42,17 +42,11 @@ public class ChangeUserSettingsController : ControllerBase
             }
         }
 
-        var connection = _connector.CreateDbConnection();
-
-        if (await _userRepository.EditUserInfoAsync(data))
+        var updated = await _userRepository.EditUserInfoAsync(data);
+        if (updated.status)
         {
-            connection.Close();
-
             return Ok(new {message = "Data Updated"});
         }
-
-        connection.Close();
-
         return BadRequest(new {message = "A Problem Occured Updating The Data"});
     }
 }
