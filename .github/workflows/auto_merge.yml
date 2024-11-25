@@ -13,15 +13,21 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      - name: Check PR mergeable status
+        run: |
+          echo "PR mergeable: ${{ github.event.pull_request.mergeable }}"
+          echo "PR mergeable_state: ${{ github.event.pull_request.mergeable_state }}"
+          echo "PR status: ${{ github.event.pull_request.state }}"
+          echo "PR merged: ${{ github.event.pull_request.merged }}"
+
       - name: Merge Pull Request if Tests Passed
         run: |
-          # Check if tests passed and PR is mergeable
           if [[ "${{ github.event.pull_request.mergeable }}" == "true" ]]; then
             echo "Tests passed, merging PR!"
             curl -X PUT -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
               -d '{"commit_title":"Auto merge by GitHub Actions","commit_message":"Merging automatically after tests passed"}' \
               "https://api.github.com/repos/${{ github.repository }}/pulls/${{ github.event.pull_request.number }}/merge"
           else
-            echo "Tests did not pass, merge blocked."
+            echo "Tests did not pass or PR not mergeable, merge blocked."
             exit 1
           fi
