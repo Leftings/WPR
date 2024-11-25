@@ -2,7 +2,7 @@ on: [push, pull_request]
 name: Continuous Integration
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 jobs:
   build:
@@ -41,9 +41,7 @@ jobs:
         uses: microsoft/setup-msbuild@v2
 
       - name: Restore the application
-        run: msbuild ${{ env.Solution_Name }} /t:Restore /p:Configuration=${{ matrix.configuration }}
-        env:
-          Configuration: ${{ matrix.configuration }}
+        run: dotnet restore ${{ env.Solution_Name }}
         
       - name: Execute Unit Tests
         run: dotnet test --no-restore --configuration ${{ matrix.configuration }}
@@ -52,12 +50,15 @@ jobs:
     name: Block Merge if Tests Fail
     runs-on: ubuntu-latest
     needs: build
-    if: always() # Ensure this runs even if the previous job fails
-
+    if: always()  # Ensure this runs even if the previous job fails
+  
     steps:
       - name: Verify all jobs passed
         run: |
+          echo "Build status: ${{ needs.build.result }}"
           if [ "${{ needs.build.result }}" != "success" ]; then
             echo "Tests did not pass. Blocking merge."
             exit 1
+          else
+            echo "Tests passed successfully. Merge is allowed."
           fi
