@@ -45,7 +45,7 @@ jobs:
     name: Block Merge if Tests Fail or Auto-Merge if Pass
     runs-on: ubuntu-latest
     needs: build
-    if: always() && github.event_name == 'pull_request'
+    if: github.event_name == 'pull_request'
   
     steps:
       - name: Debug Pull Request Event Context
@@ -67,4 +67,5 @@ jobs:
               -H "Accept: application/vnd.github.v3+json" \
               -d '{"commit_title":"Auto merge by GitHub Actions","commit_message":"Merging automatically after tests passed"}' \
               "https://api.github.com/repos/${{ github.repository }}/pulls/${{ github.event.pull_request.number }}/merge"
+
 
