@@ -14,7 +14,6 @@ concurrency:
 
 permissions:
   pull-requests: write  # Ensure write access to pull requests
-
 jobs:
   build:
     name: Build and Test (${ matrix.os }, ${ matrix.configuration })
@@ -36,10 +35,11 @@ jobs:
           dotnet-version: '8.0.x'
 
       - name: Restore dependencies
-        run: dotnet restore WPR.sln --configuration ${{ matrix.configuration }}
+        run: dotnet restore WPR.sln
 
       - name: Run tests
         run: dotnet test --configuration ${{ matrix.configuration }} --no-restore --logger "trx;LogFileName=test-results.trx"
+
 
   merge_blocker:
     name: Block Merge if Tests Fail or Auto-Merge if Pass
