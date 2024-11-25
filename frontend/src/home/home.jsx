@@ -1,51 +1,59 @@
-
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import GeneralHeader from "../GeneralBlocks/header/header.jsx";
 import GeneralFooter from "../GeneralBlocks/footer/footer.jsx";
+import GeneralSalePage from "../GeneralSalePage/GeneralSalePage.jsx";
 
 import './home.css';
 
-function WelcomeUser(setWelcome)
-{
-  fetch('http://localhost:5165/api/Cookie/GetUserName', {
-    method: 'GET',
-    headers: {
-        'Content-Type': 'application/json', 
-    },
-    credentials: 'include', // Cookies of authenticatie wordt meegegeven
+function WelcomeUser(setWelcome) {
+    fetch('http://localhost:5165/api/Cookie/GetUserName', {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        credentials: 'include', // Cookies or authentication are included
     })
-    .then(response => {
-        console.log(response);
-        if (!response.ok) {
-            throw new Error('No Cookie');
-        }
-        return response.json();
-    })
-    .then(async data => {
-      setWelcome(`Welcome, ${data.message}`);
-    })
-    .catch(error => {
-        console.error('Error:', error);
-    });
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('No Cookie');
+            }
+            return response.json();
+        })
+        .then(data => {
+            setWelcome(`Welcome, ${data.message}`);
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            setWelcome('Welcome, Guest'); // Fallback message
+        });
 }
+
 function Home() {
+    const [welcomeMessage, setWelcomeMessage] = useState('');
+
+    useEffect(() => {
+        WelcomeUser(setWelcomeMessage);
+    }, []); // Runs once on component mount
+
     return (
         <>
-            <GeneralHeader /> 
-
-
+            <GeneralHeader />
             <main>
                 <section className="hero">
-                    <h1>Vindt de perfecte auto voor jouw avontuur</h1>
+                    <h1>Vind de perfecte auto voor jouw avontuur</h1>
                     <p>Betaalbare prijzen, flexibele verhuur en een breed aanbod aan voertuigen om uit te kiezen.</p>
-                    <Link to="/cars" className="cta-button">Verken onze Auto's</Link>
+                    <Link to="/GeneralSalePage" className="cta-button">Verken onze Auto's</Link>
                 </section>
+
+                <div className="welcome-message">
+                    <p>{welcomeMessage}</p>
+                </div>
 
                 <div className="container">
                     <section className="features">
                         <div className="feature-card">
-                            <h3>Grootte selectie</h3>
+                            <h3>Grote selectie</h3>
                             <p>Van sedans tot SUVs, we hebben een auto voor elke gelegenheid.</p>
                         </div>
                         <div className="feature-card">
@@ -59,10 +67,7 @@ function Home() {
                     </section>
                 </div>
             </main>
-
-
-            <GeneralFooter /> 
-
+            <GeneralFooter />
         </>
     );
 }
