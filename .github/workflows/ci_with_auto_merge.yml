@@ -33,7 +33,7 @@ jobs:
           dotnet-version: '8.0.x'
 
       - name: Restore dependencies
-        run: dotnet restore WPR.sln --configuration ${{ matrix.configuration }}
+        run: dotnet restore WPR.sln -c ${{ matrix.configuration }}
 
       - name: Run tests
         run: dotnet test --configuration ${{ matrix.configuration }} --no-restore --logger "trx;LogFileName=test-results.trx"
@@ -42,7 +42,7 @@ jobs:
     name: Block Merge if Tests Fail or Auto-Merge if Pass
     runs-on: ubuntu-latest
     needs: build
-    if: always() 
+    if: always()  # Ensure this runs even if the previous job fails
 
     steps:
       - name: Check if tests passed and block merge if needed
