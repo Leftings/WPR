@@ -2,6 +2,27 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import './login.css';
 
+function CheckCookie()
+{
+  fetch('http://localhost:5165/api/Login/CheckSession', { credentials: 'include' })
+    .then(response => {
+      if (!response.ok)
+      {
+        throw new Error('Session check failed');
+      }
+
+      return response.json();
+    })
+    .then(data => {
+      console.log('Session Active: ', data);
+
+      return data;
+    })
+    .catch(error => {
+      console.error('Error: ', error.message);
+      return null;
+    })
+}
 function Login() {
   const [isEmployee, setIsEmployee] = useState(false);
   const [email, setEmail] = useState('');
@@ -48,9 +69,16 @@ function Login() {
         }
         return response.json();
     })
-    .then(data => {
-        console.log('Login successful', data);
-        navigate('/home');
+    .then(async data => {
+        if (await CheckCookie() !== null)
+        {
+
+          console.log('Login successful', data);
+          navigate('/home');
+        }
+
+        return 'Cookie error';
+
     })
     .catch(error => {
         console.error('Error:', error);
@@ -91,6 +119,12 @@ function Login() {
           <input type="password" id="password" value={password} onChange={(e) => setPassword(e.target.value)}></input>
           <br></br>
           <button id="button" type="button"onClick={onSubmit} >Login</button>
+            {!isEmployee && (
+            <>
+            <br></br>
+            <label htmlFor="noAccount">Nog geen account bij ons? <Link to="/signUp">Meld nu aan!</Link></label>
+            </>
+            )}
           {error && <p style={{ color: 'red' }}>{error}</p>}
         </div>
       </div>

@@ -1,8 +1,16 @@
-﻿using MySql.Data.MySqlClient;
+﻿using System.Data;
+using Microsoft.AspNetCore.Mvc;
+using MySql.Data.MySqlClient;
+using WPR.Cookie;
 using WPR.Database;
+using Microsoft.AspNetCore.Http.HttpResults;
 
 namespace WPR.Repository;
 
+/// <summary>
+/// De UserRepository class geeft de methodes voor de interactie met de database voor gebruiker gerelateerde operaties.
+/// Het implementeert de IUserRepository interface.
+/// </summary>
 public class UserRepository : IUserRepository
 {
     private readonly Connector _connector;
@@ -18,15 +26,255 @@ public class UserRepository : IUserRepository
         string query = $@"SELECT 1 FROM {table} WHERE LOWER(email) = LOWER(@Email) AND BINARY password = @Password";
 
         using (var connection = _connector.CreateDbConnection())
-        using (var command = new MySqlCommand(query, (MySqlConnection)connection))
         {
-            command.Parameters.AddWithValue("@Email", username);
-            command.Parameters.AddWithValue("@Password", password);
-
-            using (var reader = await command.ExecuteReaderAsync())
+            using (var command = new MySqlCommand(query, (MySqlConnection)connection))
             {
-                return reader.HasRows;
+                command.Parameters.AddWithValue("@Email", username);
+                command.Parameters.AddWithValue("@Password", password);
+
+                using (var reader = await command.ExecuteReaderAsync())
+                {
+                    Console.WriteLine(username);
+                    return reader.HasRows;
+                }
             }
+        }
+    }
+
+    public async Task<(bool status, string message)> checkUsageEmailAsync(IDbConnection connection, string email)
+    {
+        try
+        {
+            string query = "SELECT COUNT(*) FROM User_Customer WHERE LOWER(Email) = LOWER(@E)";
+
+            using (var command = new MySqlCommand(query, (MySqlConnection)connection))
+            {
+                command.Parameters.AddWithValue("@E", email);
+                bool inUse = Convert.ToInt32(await command.ExecuteScalarAsync()) > 0;
+
+                Console.WriteLine(inUse);
+
+                return (inUse, inUse ? "No email detected" : "Email detected");
+            }
+        }
+
+        catch (MySqlException ex)
+        {
+            Console.Error.WriteLine($"Database error: {ex.Message}");
+            return (false, ex.Message);
+        }
+        catch (Exception ex)
+        {
+            Console.Error.WriteLine($"Unexpected error: {ex.Message}");
+            return (false, ex.Message);
+        }
+    }
+
+    public async Task<(bool status, string message, int newUserID)> addCustomerAsync(IDbConnection connection, Object[] personData)
+    {
+        try
+        {
+            string query = "INSERT INTO User_Customer (Adres, Telnum, Password, Email, FirstName, LastName) values (@A, @T, @P, @E, @F, @L)";
+
+            using (var command = new MySqlCommand(query, (MySqlConnection)connection))
+            {
+                command.Parameters.AddWithValue("@A", personData[0]);
+                command.Parameters.AddWithValue("@T", personData[1]);
+                command.Parameters.AddWithValue("@P", personData[2]);
+                command.Parameters.AddWithValue("@E", personData[3]);
+                command.Parameters.AddWithValue("@F", personData[4]);
+                command.Parameters.AddWithValue("@L", personData[5]);
+
+                if (await command.ExecuteNonQueryAsync() > 0)
+                {
+                    command.CommandText = "SELECT LAST_INSERT_ID();";
+                    int newUserID = Convert.ToInt32(command.ExecuteScalar());
+
+                    return (true, "Data Inserted", newUserID);
+                }
+                return (false, "No Data Inserted", -1);
+            }
+        }
+
+        catch (MySqlException ex)
+        {
+            Console.Error.WriteLine($"Database error: {ex.Message}");
+            return (false, ex.Message, -1);
+        }
+        catch (Exception ex)
+        {
+            Console.Error.WriteLine($"Unexpected error: {ex.Message}");
+            return (false, ex.Message, -1);
+        }
+    }
+
+    public async Task<(bool status, string message)> addPersonalCustomerAsync(IDbConnection connection, Object[] personalData)
+    {
+        try
+        {
+            string query = "INSERT INTO Personal (ID, BirthDate) values (@I, @B)";
+
+            using (var command = new MySqlCommand(query, (MySqlConnection)connection))
+            {
+                command.Parameters.AddWithValue("@I", personalData[0]);
+                command.Parameters.AddWithValue("@B", personalData[1]);
+
+                if (await command.ExecuteNonQueryAsync() > 0)
+                {
+                    return (true, "Data Inserted");
+                }
+                return (false, "No Data Inserted");
+            }
+        }
+
+        catch (MySqlException ex)
+        {
+            Console.Error.WriteLine($"Database error: {ex.Message}");
+            return (false, ex.Message);
+        }
+        catch (Exception ex)
+        {
+            Console.Error.WriteLine($"Unexpected error: {ex.Message}");
+            return (false, ex.Message);
+        }
+    }
+
+    public async Task<(bool status, string message)> addEmployeeCustomerAsync(IDbConnection connection, Object[] employeeData)
+    {
+        try
+        {
+            string query = "INSERT INTO Employee (ID, Business) values (@I, @B)";
+
+            using (var command = new MySqlCommand(query, (MySqlConnection)connection))
+            {
+                command.Parameters.AddWithValue("@I", employeeData[0]);
+                command.Parameters.AddWithValue("@B", employeeData[1]);
+
+                if (await command.ExecuteNonQueryAsync() > 0)
+                {
+                    return (true, "Data Inserted");
+                }
+                return (false, "No Data Inserted");
+            }
+        }
+
+        catch (MySqlException ex)
+        {
+            Console.Error.WriteLine($"Database error: {ex.Message}");
+            return (false, ex.Message);
+        }
+        catch (Exception ex)
+        {
+            Console.Error.WriteLine($"Unexpected error: {ex.Message}");
+            return (false, ex.Message);
+        }
+    }
+
+    public async Task<int> GetUserIdAsync(IDbConnection connection, string email)
+    {
+        try
+        {
+            string query = "SELECT ID FROM User_Customer WHERE Email = @E";
+
+            using (var command = new MySqlCommand(query, (MySqlConnection)connection))
+            {
+                command.Parameters.AddWithValue("@E", email);
+
+                var result = await command.ExecuteScalarAsync();
+
+                if (result != null)
+                {
+                    return Convert.ToInt32(result);
+                }
+
+                return -1;
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.Error.WriteLine($"Unexpected error: {ex.Message}");
+            return -1;
+        }
+    }
+
+    public async Task<string> GetUserNameAsync(IDbConnection connection, string userId)
+    {
+        try
+        {
+            string query = "SELECT FirstName FROM User_Customer WHERE ID = @I";
+
+            using (var command = new MySqlCommand(query, (MySqlConnection)connection))
+            {
+                command.Parameters.AddWithValue("@I", Convert.ToInt32(userId));
+
+                var result = await command.ExecuteScalarAsync();
+
+                return result.ToString();
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.Error.WriteLine($"Unexpected error: {ex.Message}");
+            return ex.ToString();
+        }
+    }
+
+    public async Task<bool> EditUserInfoAsync(IDbConnection connection, List<object[]> data)
+    {
+        try
+        {
+            int lengthList = data.Count();
+            string query = "UPDATE User_Customer SET ";
+
+            for (int i = 1; i < lengthList; i++)
+            {
+                object[] item = data[i];
+
+                if (i + 1 == lengthList)
+                {
+                    if (item[2].Equals("System.Int32"))
+                    {
+                        query += $"{item[0]} = {item[1]} ";
+                    }
+                    else
+                    {
+                        query += $"{item[0]} = '{item[1]}' ";
+                    }
+                }
+                else
+                {
+                    if (item[2].Equals("System.Int32"))
+                    {
+                        query += $"{item[0]} = {item[1]}, ";
+                    }
+                    else
+                    {
+                        query += $"{item[0]} = '{item[1]}', ";
+                    }
+                }
+            }
+
+            query += $"WHERE ID = {data[0][1]}";
+
+            using (var command = new MySqlCommand(query, (MySqlConnection)connection))
+            {
+                var result = await command.ExecuteNonQueryAsync();
+
+                Console.WriteLine(result);
+                Console.WriteLine(query);
+
+                if (await command.ExecuteNonQueryAsync() > 0)
+                {
+                    return true;
+                }
+                
+                return false;
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error: {ex}");
+            return false;
         }
     }
 }
