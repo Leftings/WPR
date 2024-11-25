@@ -33,7 +33,7 @@ jobs:
           dotnet-version: '8.0.x'
 
       - name: Restore dependencies
-        run: dotnet restore WPR.sln -c ${{ matrix.configuration }}
+        run: dotnet restore WPR.sln 
 
       - name: Run tests
         run: dotnet test --configuration ${{ matrix.configuration }} --no-restore --logger "trx;LogFileName=test-results.trx"
