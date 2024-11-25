@@ -36,7 +36,7 @@ public class SignUpController : ControllerBase
     public async Task<IActionResult> signUpPersonal([FromBody] SignUpRequest signUpRequest)
     {
         var connection = _connector.CreateDbConnection();
-        var emailCheck = await _userRepository.checkUsageEmailAsync(connection, signUpRequest.Email);
+        var emailCheck = await _userRepository.checkUsageEmailAsync(signUpRequest.Email);
         bool commit = true;
 
         using (var transaction = connection.BeginTransaction())
@@ -70,7 +70,7 @@ public class SignUpController : ControllerBase
                 }
                 else if (filledIn && signUpRequest.BirthDate != null)
                 {
-                    var customer = await _userRepository.addCustomerAsync(connection, new object[] 
+                    var customer = await _userRepository.addCustomerAsync(new object[] 
                     {
                         signUpRequest.Adres,
                         signUpRequest.TelNumber,
@@ -80,7 +80,7 @@ public class SignUpController : ControllerBase
                         signUpRequest.LastName
                     });
 
-                    var personal = await _userRepository.addPersonalCustomerAsync(connection, new object[] 
+                    var personal = await _userRepository.addPersonalCustomerAsync(new object[] 
                     {
                         customer.newUserID, 
                         signUpRequest.BirthDate
@@ -123,7 +123,7 @@ public class SignUpController : ControllerBase
     public async Task<IActionResult> signUpEmployee([FromBody] SignUpRequest signUpRequest)
     {
         var connection = _connector.CreateDbConnection();
-        var emailCheck = await _userRepository.checkUsageEmailAsync(connection, signUpRequest.Email);
+        var emailCheck = await _userRepository.checkUsageEmailAsync(signUpRequest.Email);
         bool commit = true;
 
         using (var transaction = connection.BeginTransaction())
@@ -144,7 +144,7 @@ public class SignUpController : ControllerBase
                 }
                 else if (filledIn && signUpRequest.KvK != null)
                 {
-                    var customer = await _userRepository.addCustomerAsync(connection, new object[] 
+                    var customer = await _userRepository.addCustomerAsync(new object[] 
                     {
                         signUpRequest.Adres,
                         signUpRequest.TelNumber,
@@ -153,7 +153,7 @@ public class SignUpController : ControllerBase
                         signUpRequest.FirstName,
                         signUpRequest.LastName
                     });
-                    var employee = await _userRepository.addEmployeeCustomerAsync(connection,new object[] 
+                    var employee = await _userRepository.addEmployeeCustomerAsync(new object[] 
                     {
                         customer.newUserID,
                         signUpRequest.KvK

@@ -28,7 +28,7 @@ public class LoginController : ControllerBase
 
         try
         {
-            int userId = await _userRepository.GetUserIdAsync(connection, loginRequest.Email);
+            int userId = await _userRepository.GetUserIdAsync(loginRequest.Email);
 
             if (userId <= 0)
             {

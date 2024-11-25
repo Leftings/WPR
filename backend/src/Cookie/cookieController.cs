@@ -49,7 +49,7 @@ public class CookieController : ControllerBase
 
         try
         {
-            string userName = await _userRepository.GetUserNameAsync(connection, loginCookie);
+            string userName = await _userRepository.GetUserNameAsync(loginCookie);
             Console.WriteLine(userName);
             return Ok(new { message = userName });
         }
