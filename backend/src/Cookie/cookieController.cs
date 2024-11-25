@@ -59,4 +59,19 @@ public class CookieController : ControllerBase
             return BadRequest(new { message = "User Not Found"});
         }
     }
+
+    [HttpPost("Logout")]
+    public IActionResult Logout()
+    {
+        if (Request.Cookies["LoginSession"] != null)
+        {
+            Response.Cookies.Append("LoginSession", "", new CookieOptions {Expires = DateTimeOffset.UtcNow.AddDays(-1)});
+            Console.WriteLine("Cookie cleared");            
+        }
+        else
+        {
+            Console.WriteLine("No cookie found");
+        }
+        return Ok(new { message = "User Logged Out"});
+    }
 }

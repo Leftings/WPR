@@ -98,8 +98,10 @@ function SignUp() {
     return (
         <>
             <header>
-                <div id="left">
-                    <h2 className="logo">CarAndAll</h2>
+                <div id="aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa">
+                    <ul className="logo-link">
+                        <h2><Link to={"/"}>CarAndAll</Link></h2>
+                    </ul>
                 </div>
 
                 <nav id="right">

@@ -74,7 +74,7 @@ function Login() {
         {
 
           console.log('Login successful', data);
-          navigate('/home');
+          navigate('/');
         }
 
         return 'Cookie error';
