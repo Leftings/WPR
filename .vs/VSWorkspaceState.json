@@ -1,15 +1,15 @@
 {
   "ExpandedNodes": [
     "",
+    "\\backend\\src",
     "\\frontend",
     "\\frontend\\src",
     "\\frontend\\src\\GeneralBlocks",
     "\\frontend\\src\\GeneralBlocks\\footer",
-    "\\frontend\\src\\GeneralBlocks\\header",
+    "\\frontend\\src\\GeneralSalePage",
     "\\frontend\\src\\home",
-    "\\frontend\\src\\login",
-    "\\frontend\\src\\TermsAndConditions"
+    "\\frontend\\src\\login"
   ],
-  "SelectedNode": "\\frontend\\src\\TermsAndConditions\\TermsAndConditions.css",
+  "SelectedNode": "\\frontend\\src\\home\\home.jsx",
   "PreviewInSolutionExplorer": false
 }

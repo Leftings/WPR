@@ -1,7 +1,48 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\kenbg\\source\\repos\\Leftings\\",
-  "Documents": [],
+  "WorkspaceRootPath": "C:\\Users\\kenbg\\Documents\\javaprojects\\WPR\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\kenbg\\Documents\\javaprojects\\WPR\\frontend\\src\\GeneralSalePage\\GeneralSalepage.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:frontend\\src\\GeneralSalePage\\GeneralSalepage.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\kenbg\\Documents\\javaprojects\\WPR\\frontend\\src\\GeneralSalePage\\GeneralSalePage.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:frontend\\src\\GeneralSalePage\\GeneralSalePage.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\kenbg\\Documents\\javaprojects\\WPR\\frontend\\src\\home\\home.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:frontend\\src\\home\\home.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\kenbg\\Documents\\javaprojects\\WPR\\frontend\\src\\login\\loginEmployee.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:frontend\\src\\login\\loginEmployee.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\kenbg\\Documents\\javaprojects\\WPR\\backend\\src\\AppConfigure.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:backend\\src\\AppConfigure.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\kenbg\\Documents\\javaprojects\\WPR\\frontend\\src\\GeneralBlocks\\footer\\footer.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:frontend\\src\\GeneralBlocks\\footer\\footer.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\kenbg\\Documents\\javaprojects\\WPR\\backend\\src\\Data\\EnvConfig.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:backend\\src\\Data\\EnvConfig.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\kenbg\\Documents\\javaprojects\\WPR\\backend\\src\\Database\\Connector.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:backend\\src\\Database\\Connector.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\kenbg\\Documents\\javaprojects\\WPR\\backend\\.env||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:backend\\.env||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\kenbg\\Documents\\javaprojects\\WPR\\.gitignore||{3B902123-F8A7-4915-9F01-361F908088D0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:.gitignore||{3B902123-F8A7-4915-9F01-361F908088D0}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -9,11 +50,137 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": -1,
+          "SelectedChildIndex": 4,
           "Children": [
             {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "loginEmployee.jsx",
+              "DocumentMoniker": "C:\\Users\\kenbg\\Documents\\javaprojects\\WPR\\frontend\\src\\login\\loginEmployee.jsx",
+              "RelativeDocumentMoniker": "frontend\\src\\login\\loginEmployee.jsx",
+              "ToolTip": "C:\\Users\\kenbg\\Documents\\javaprojects\\WPR\\frontend\\src\\login\\loginEmployee.jsx",
+              "RelativeToolTip": "frontend\\src\\login\\loginEmployee.jsx",
+              "ViewState": "AgIAAGMAAAAAAAAAAAAswIUAAAAEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
+              "WhenOpened": "2024-11-25T12:43:01.211Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "footer.jsx",
+              "DocumentMoniker": "C:\\Users\\kenbg\\Documents\\javaprojects\\WPR\\frontend\\src\\GeneralBlocks\\footer\\footer.jsx",
+              "RelativeDocumentMoniker": "frontend\\src\\GeneralBlocks\\footer\\footer.jsx",
+              "ToolTip": "C:\\Users\\kenbg\\Documents\\javaprojects\\WPR\\frontend\\src\\GeneralBlocks\\footer\\footer.jsx",
+              "RelativeToolTip": "frontend\\src\\GeneralBlocks\\footer\\footer.jsx",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAABRAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
+              "WhenOpened": "2024-11-25T12:35:40.785Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "home.jsx",
+              "DocumentMoniker": "C:\\Users\\kenbg\\Documents\\javaprojects\\WPR\\frontend\\src\\home\\home.jsx",
+              "RelativeDocumentMoniker": "frontend\\src\\home\\home.jsx",
+              "ToolTip": "C:\\Users\\kenbg\\Documents\\javaprojects\\WPR\\frontend\\src\\home\\home.jsx",
+              "RelativeToolTip": "frontend\\src\\home\\home.jsx",
+              "ViewState": "AgIAADQAAAAAAAAAAAAswEsAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
+              "WhenOpened": "2024-11-25T12:46:41.139Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "GeneralSalePage.css",
+              "DocumentMoniker": "C:\\Users\\kenbg\\Documents\\javaprojects\\WPR\\frontend\\src\\GeneralSalePage\\GeneralSalePage.css",
+              "RelativeDocumentMoniker": "frontend\\src\\GeneralSalePage\\GeneralSalePage.css",
+              "ToolTip": "C:\\Users\\kenbg\\Documents\\javaprojects\\WPR\\frontend\\src\\GeneralSalePage\\GeneralSalePage.css",
+              "RelativeToolTip": "frontend\\src\\GeneralSalePage\\GeneralSalePage.css",
+              "ViewState": "AgIAADwAAAAAAAAAAAAAACUAAAAbAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2024-11-25T12:34:45.939Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "GeneralSalePage.jsx",
+              "DocumentMoniker": "C:\\Users\\kenbg\\Documents\\javaprojects\\WPR\\frontend\\src\\GeneralSalePage\\GeneralSalePage.jsx",
+              "RelativeDocumentMoniker": "frontend\\src\\GeneralSalePage\\GeneralSalePage.jsx",
+              "ToolTip": "C:\\Users\\kenbg\\Documents\\javaprojects\\WPR\\frontend\\src\\GeneralSalePage\\GeneralSalePage.jsx",
+              "RelativeToolTip": "frontend\\src\\GeneralSalePage\\GeneralSalePage.jsx",
+              "ViewState": "AgIAAEsAAAAAAAAAAAAAAEYAAABPAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
+              "WhenOpened": "2024-11-25T12:25:55.044Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "AppConfigure.cs",
+              "DocumentMoniker": "C:\\Users\\kenbg\\Documents\\javaprojects\\WPR\\backend\\src\\AppConfigure.cs",
+              "RelativeDocumentMoniker": "backend\\src\\AppConfigure.cs",
+              "ToolTip": "C:\\Users\\kenbg\\Documents\\javaprojects\\WPR\\backend\\src\\AppConfigure.cs",
+              "RelativeToolTip": "backend\\src\\AppConfigure.cs",
+              "ViewState": "AgIAAFkAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-25T12:04:10.906Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "EnvConfig.cs",
+              "DocumentMoniker": "C:\\Users\\kenbg\\Documents\\javaprojects\\WPR\\backend\\src\\Data\\EnvConfig.cs",
+              "RelativeDocumentMoniker": "backend\\src\\Data\\EnvConfig.cs",
+              "ToolTip": "C:\\Users\\kenbg\\Documents\\javaprojects\\WPR\\backend\\src\\Data\\EnvConfig.cs",
+              "RelativeToolTip": "backend\\src\\Data\\EnvConfig.cs",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-25T12:04:02.867Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Connector.cs",
+              "DocumentMoniker": "C:\\Users\\kenbg\\Documents\\javaprojects\\WPR\\backend\\src\\Database\\Connector.cs",
+              "RelativeDocumentMoniker": "backend\\src\\Database\\Connector.cs",
+              "ToolTip": "C:\\Users\\kenbg\\Documents\\javaprojects\\WPR\\backend\\src\\Database\\Connector.cs",
+              "RelativeToolTip": "backend\\src\\Database\\Connector.cs",
+              "ViewState": "AgIAAB4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-25T12:03:48.738Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": ".env",
+              "DocumentMoniker": "C:\\Users\\kenbg\\Documents\\javaprojects\\WPR\\backend\\.env",
+              "RelativeDocumentMoniker": "backend\\.env",
+              "ToolTip": "C:\\Users\\kenbg\\Documents\\javaprojects\\WPR\\backend\\.env",
+              "RelativeToolTip": "backend\\.env",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAQAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2024-11-25T11:57:06.353Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": ".gitignore",
+              "DocumentMoniker": "C:\\Users\\kenbg\\Documents\\javaprojects\\WPR\\.gitignore",
+              "RelativeDocumentMoniker": ".gitignore",
+              "ToolTip": "C:\\Users\\kenbg\\Documents\\javaprojects\\WPR\\.gitignore",
+              "RelativeToolTip": ".gitignore",
+              "ViewState": "AgIAADwAAAAAAAAAAAAAAEkAAAAEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2024-11-25T11:35:02.874Z",
+              "EditorCaption": ""
             }
           ]
         }
