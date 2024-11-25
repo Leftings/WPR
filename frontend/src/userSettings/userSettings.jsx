@@ -57,26 +57,29 @@ function ChangeUserInfo(userData) {
   return fetch('http://localhost:5165/api/ChangeUserSettings/ChangeUserInfo', {
     method: 'PUT',
     headers: {
-        'Content-Type': 'application/json', 
+      'Content-Type': 'application/json',
     },
     body: JSON.stringify(userData),
-    credentials: 'include', // Cookies of authenticatie wordt meegegeven
+    credentials: 'include',
   })
-  .then(response => {
-    console.log(response);
-    if (!response.ok) {
-        throw new Error('Failed to change user info');
-    }
-    return response.json(); 
-  })
-  .then(data => {
-    return data.message;
-  })
-  .catch(error => {
-    console.error('Error:', error);
-    throw error;
-  });
+    .then(async (response) => {
+      const data = await response.json(); 
+      if (!response.ok)
+      {
+        if (data.message !== 'Email detected')
+        {
+          throw new Error("Unknown error");
+        }
+      }
+
+      return data.message;
+    })
+    .catch((error) => {
+      console.error(error);
+      throw error;
+    });
 }
+
 
 
 function UserSettings() {
@@ -110,18 +113,18 @@ function UserSettings() {
         Adres: adres,
       };
 
-      await ChangeUserInfo(userData);
+      const message = await ChangeUserInfo(userData);
 
       if (firstName !== '')
       {
         GetUser(setUser);
       }
 
-      setError("Gegevens zijn bijgewerkt");
+      setError(message);
     }
     else
     {
-      setError("De wachtwoorden komen niet overeen");
+      setError(message);
     }
   }
 
