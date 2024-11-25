@@ -1,13 +1,39 @@
+
 import React from 'react';
 import { Link } from 'react-router-dom';
 import GeneralHeader from "../GeneralBlocks/header/header.jsx";
 import GeneralFooter from "../GeneralBlocks/footer/footer.jsx";
+
 import './home.css';
 
+function WelcomeUser(setWelcome)
+{
+  fetch('http://localhost:5165/api/Cookie/GetUserName', {
+    method: 'GET',
+    headers: {
+        'Content-Type': 'application/json', 
+    },
+    credentials: 'include', // Cookies of authenticatie wordt meegegeven
+    })
+    .then(response => {
+        console.log(response);
+        if (!response.ok) {
+            throw new Error('No Cookie');
+        }
+        return response.json();
+    })
+    .then(async data => {
+      setWelcome(`Welcome, ${data.message}`);
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
+}
 function Home() {
     return (
         <>
             <GeneralHeader /> 
+
 
             <main>
                 <section className="hero">
@@ -33,6 +59,7 @@ function Home() {
                     </section>
                 </div>
             </main>
+
 
             <GeneralFooter /> 
 

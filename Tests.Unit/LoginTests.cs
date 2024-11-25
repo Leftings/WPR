@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc.Testing;
 using Newtonsoft.Json;
 using WPR.Data;
 using Xunit;
-using WPR.Login;
+using WPR.login;
 
 /*public class LoginControllerIntegrationTests : IClassFixture<WebApplicationFactory<WPR.Program>>  // or the appropriate Startup class
 {
