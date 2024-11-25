@@ -47,6 +47,10 @@ public class ChangeUserSettingsController : ControllerBase
         {
             return Ok(new {message = "Data Updated"});
         }
-        return BadRequest(new {message = "A Problem Occured Updating The Data"});
+
+        Console.WriteLine(updated.message);
+        Console.WriteLine(updated.message.Length);
+
+        return BadRequest(new {updated.message});
     }
 }

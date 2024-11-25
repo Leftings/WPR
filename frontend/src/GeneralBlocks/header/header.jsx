@@ -23,6 +23,7 @@ function GeneralHeader({ isLoggedIn, handleLogout}) {
                         <li><Link to="/cars">Zoek Auto's</Link></li>
                         <li><Link to="/about">Over ons</Link></li>
                         <li><Link to="/contact">Contact</Link></li>
+                        <lis><Link to="/userSettings">Instellingen</Link></lis>
                     </ul>
                 </nav>
             </header>
