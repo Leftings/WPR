@@ -1,5 +1,6 @@
 namespace Tests.Unit;
 
+using System;
 using System.Data;
 using Xunit;
 using Moq;
@@ -33,7 +34,6 @@ public class ConnectorTests
 
         using var connection = connector.CreateDbConnection();
 
-
         Assert.NotNull(connection);
         Assert.Equal(ConnectionState.Open, connection.State);
     }
@@ -45,11 +45,12 @@ public class ConnectorTests
         envConfig.Setup(x => x.IsConfigured()).Returns(true);
         envConfig.Setup(x => x.Get("DB_SERVER")).Returns("95.99.30.110");
         envConfig.Setup(x => x.Get("DB_DATABASE")).Returns("WPR");
-        envConfig.Setup(x => x.Get("DB_USERNAME")).Returns("incorrect_user");
+        envConfig.Setup(x => x.Get("DB_USERNAME")).Returns("incorrect_user"); 
         envConfig.Setup(x => x.Get("DB_PASSWORD")).Returns("WPR");
 
         var connector = new Connector(envConfig.Object);
 
-        Assert.Throws<MySqlException>(() => connector.CreateDbConnection());
+        var exception = Assert.Throws<MySqlException>(() => connector.CreateDbConnection());
+        Assert.Contains("Access denied for user 'incorrect_user'@", exception.Message);
     }
 }
