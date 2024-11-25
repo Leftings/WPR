@@ -41,19 +41,19 @@ public class UserRepository : IUserRepository
         }
     }
 
-    public async Task<(bool status, string message)> checkUsageEmailAsync(IDbConnection connection, string email)
+    public async Task<(bool status, string message)> checkUsageEmailAsync(string email)
     {
         try
         {
             string query = "SELECT COUNT(*) FROM User_Customer WHERE LOWER(Email) = LOWER(@E)";
 
+            using (var connection = _connector.CreateDbConnection())
             using (var command = new MySqlCommand(query, (MySqlConnection)connection))
             {
                 command.Parameters.AddWithValue("@E", email);
                 bool inUse = Convert.ToInt32(await command.ExecuteScalarAsync()) > 0;
 
                 Console.WriteLine(inUse);
-
                 return (inUse, inUse ? "No email detected" : "Email detected");
             }
         }
@@ -70,12 +70,13 @@ public class UserRepository : IUserRepository
         }
     }
 
-    public async Task<(bool status, string message, int newUserID)> addCustomerAsync(IDbConnection connection, Object[] personData)
+    public async Task<(bool status, string message, int newUserID)> addCustomerAsync(Object[] personData)
     {
         try
         {
             string query = "INSERT INTO User_Customer (Adres, Telnum, Password, Email, FirstName, LastName) values (@A, @T, @P, @E, @F, @L)";
 
+            using (var connection = _connector.CreateDbConnection())
             using (var command = new MySqlCommand(query, (MySqlConnection)connection))
             {
                 command.Parameters.AddWithValue("@A", personData[0]);
@@ -108,12 +109,13 @@ public class UserRepository : IUserRepository
         }
     }
 
-    public async Task<(bool status, string message)> addPersonalCustomerAsync(IDbConnection connection, Object[] personalData)
+    public async Task<(bool status, string message)> addPersonalCustomerAsync(Object[] personalData)
     {
         try
         {
             string query = "INSERT INTO Personal (ID, BirthDate) values (@I, @B)";
 
+            using (var connection = _connector.CreateDbConnection())
             using (var command = new MySqlCommand(query, (MySqlConnection)connection))
             {
                 command.Parameters.AddWithValue("@I", personalData[0]);
@@ -139,12 +141,13 @@ public class UserRepository : IUserRepository
         }
     }
 
-    public async Task<(bool status, string message)> addEmployeeCustomerAsync(IDbConnection connection, Object[] employeeData)
+    public async Task<(bool status, string message)> addEmployeeCustomerAsync(Object[] employeeData)
     {
         try
         {
             string query = "INSERT INTO Employee (ID, Business) values (@I, @B)";
 
+            using (var connection = _connector.CreateDbConnection())
             using (var command = new MySqlCommand(query, (MySqlConnection)connection))
             {
                 command.Parameters.AddWithValue("@I", employeeData[0]);
@@ -170,12 +173,13 @@ public class UserRepository : IUserRepository
         }
     }
 
-    public async Task<int> GetUserIdAsync(IDbConnection connection, string email)
+    public async Task<int> GetUserIdAsync(string email)
     {
         try
         {
             string query = "SELECT ID FROM User_Customer WHERE Email = @E";
 
+            using (var connection = _connector.CreateDbConnection())
             using (var command = new MySqlCommand(query, (MySqlConnection)connection))
             {
                 command.Parameters.AddWithValue("@E", email);
@@ -197,12 +201,13 @@ public class UserRepository : IUserRepository
         }
     }
 
-    public async Task<string> GetUserNameAsync(IDbConnection connection, string userId)
+    public async Task<string> GetUserNameAsync(string userId)
     {
         try
         {
             string query = "SELECT FirstName FROM User_Customer WHERE ID = @I";
 
+            using (var connection = _connector.CreateDbConnection())
             using (var command = new MySqlCommand(query, (MySqlConnection)connection))
             {
                 command.Parameters.AddWithValue("@I", Convert.ToInt32(userId));
@@ -219,7 +224,7 @@ public class UserRepository : IUserRepository
         }
     }
 
-    public async Task<bool> EditUserInfoAsync(IDbConnection connection, List<object[]> data)
+    public async Task<bool> EditUserInfoAsync(List<object[]> data)
     {
         try
         {
@@ -238,20 +243,7 @@ public class UserRepository : IUserRepository
                     }
                     else
                     {
-                        if (item[0].Equals("Email"))
-                        {
-                            var emailCheckResult = await checkUsageEmailAsync(connection, item[1].ToString());
-                            bool check = emailCheckResult.status;
-
-                            if (check)
-                            {
-                                query += $"{item[0]} = '{item[1]}' ";
-                            }
-                        }
-                        else
-                        {
-                            query += $"{item[0]} = '{item[1]}' ";
-                        }
+                        query += $"{item[0]} = '{item[1]}' ";
                     }
                 }
                 else
@@ -269,6 +261,7 @@ public class UserRepository : IUserRepository
 
             query += $"WHERE ID = {data[0][1]}";
 
+            using (var connection = _connector.CreateDbConnection())
             using (var command = new MySqlCommand(query, (MySqlConnection)connection))
             {
                 var result = await command.ExecuteNonQueryAsync();
