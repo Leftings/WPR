@@ -99,19 +99,25 @@ function SignUp() {
         <>
             <header>
                 <div id="left">
+                    <h2 className="logo">CarAndAll</h2>
                 </div>
+
+                <nav id="right">
+                    <ul className="nav-links">
+                        <li><Link to="/cars">Zoek Auto's</Link></li>
+                        <li><Link to="/about">Over Ons</Link></li>
+                        <li><Link to="/contact">Contact</Link></li>
+                    </ul>
+                </nav>
 
             </header>
 
             <div>
-                <div id="inlog">
+                <div id="aanmelden">
                     <h1>Aanmelden</h1>
                 </div>
 
                 <div id="input">
-                    <label htmlFor="heeftAccount">Heeft u al een account? <Link to="/">Log in!</Link></label>
-                    <br></br>
-                    <br></br>
                     <label htmlFor="button">Soort Account:</label>
                     <br></br>
                     <button
@@ -135,12 +141,12 @@ function SignUp() {
                             <label htmlFor="firstName">Voornaam</label>
                             <br></br>
                             <input type="text" id="firstName" value={firstName}
-                                onChange={(e) => setFirstName(e.target.value)}></input>
+                                   onChange={(e) => setFirstName(e.target.value)}></input>
                             <br></br>
                             <label htmlFor="lastName">Achternaam</label>
                             <br></br>
                             <input type="text" id="lastName" value={lastName}
-                                onChange={(e) => setLastName(e.target.value)}></input>
+                                   onChange={(e) => setLastName(e.target.value)}></input>
                             <br></br>
                             <label htmlFor="email">E-mail</label>
                             <br></br>
@@ -175,6 +181,56 @@ function SignUp() {
                             <button id="button" type="button" onClick={onSubmit}>Maak Account</button>
                         </>
                     )}
+
+                    {chosenType === 2 && (
+                        <>
+                            <br></br>
+                            <label htmlFor="firstName">Voornaam</label>
+                            <br></br>
+                            <input type="text" id="firstName" value={firstName}
+                                   onChange={(e) => setFirstName(e.target.value)}></input>
+                            <br></br>
+                            <label htmlFor="lastName">Achternaam</label>
+                            <br></br>
+                            <input type="text" id="lastName" value={lastName}
+                                   onChange={(e) => setLastName(e.target.value)}></input>
+                            <br></br>
+                            <label htmlFor="email">E-mail</label>
+                            <br></br>
+                            <input type="text" id="email" value={email}
+                                   onChange={(e) => setEmail(e.target.value)}></input>
+                            <br></br>
+                            <label htmlFor="adres">Adres</label>
+                            <br></br>
+                            <input type="text" id="adres" value={adres}
+                                   onChange={(e) => setAdres(e.target.value)}></input>
+                            <br></br>
+                            <label htmlFor="phonenumber">Telefoonnummer</label>
+                            <br></br>
+                            <input type="tel" id="phonenumber" value={phonenumber}
+                                   onChange={(e) => setPhonenumber(e.target.value)}></input>
+                            <br></br>
+                            <label htmlFor="kvk">KVK</label>
+                            <br></br>
+                            <input type="text" id="kvk" value={KvK}
+                                   onChange={(e) => setKvK(e.target.value)}></input>
+                            <br></br>
+                            <label htmlFor="password">Wachtwoord</label>
+                            <br></br>
+                            <input type="password" id="password" value={password1}
+                                   onChange={(e) => setPassword1(e.target.value)}></input>
+                            <br></br>
+                            <label htmlFor="passwordConfirm">Herhaal wachtwoord</label>
+                            <br></br>
+                            <input type="password" id="passwordConfirm" value={password2}
+                                   onChange={(e) => setPassword2(e.target.value)}></input>
+                            <br></br>
+                            <button id="button" type="button" onClick={onSubmit}>Maak Account</button>
+                        </>
+                    )}
+                    <br></br>
+                    <label htmlFor="heeftAccount">Heeft u al een account? <Link id="redirect" to="/">Log
+                        in!</Link></label>
                     {error && <p style={{color: 'red'}}>{error}</p>}
                 </div>
             </div>
@@ -183,4 +239,5 @@ function SignUp() {
         </>
     );
 }
+
 export default SignUp;
