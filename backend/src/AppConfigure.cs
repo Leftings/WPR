@@ -10,6 +10,10 @@ using WPR.Repository;
 
 namespace WPR;
 
+/// <summary>
+/// Deze class is responsible voor het configureren van de application services en database connectie
+/// Het heeft methodes om de database te initializeren en het configureren van de web applicatie.
+/// </summary>
 public class AppConfigure
 {
     public static void InitDatabase(IServiceProvider services)
@@ -31,15 +35,22 @@ public class AppConfigure
         }
         
     }
-    
+    /// <summary>
+    /// Configureer de web applicatie, zoals middleware, services, authentication en CORS settings.
+    /// </summary>
+    /// <param name="args">De command line arguments passed to the application at startup.</param>
+    /// <returns>De geconfigureerde WebApplication instantie.</returns>
     public static WebApplication ConfigureApplication(string[] args)
     {
         var builder = WebApplication.CreateBuilder(args);
+        
+        // Configure cookie policy options
         var cookiePolicyOptions = new CookiePolicyOptions
         {
-            MinimumSameSitePolicy = SameSiteMode.Strict
+            MinimumSameSitePolicy = SameSiteMode.Strict //  Set the strict sametime policy voor de cookies
         };
 
+        // Configureer CORS om requests van de specifieke port: "https://localhost:5173" toe te staan met Any method en credentials.
         builder.Services.AddCors(options =>
         {
             options.AddPolicy("AllowLocalhost", policy =>
@@ -50,13 +61,15 @@ public class AppConfigure
                     .AllowAnyMethod();
             });
         });
-
-
-        builder.Services.AddSingleton<EnvConfig>();
-        builder.Services.AddTransient<Connector>();
-        builder.Services.AddScoped<IUserRepository, UserRepository>();
+        
+        // Registreer services voor Dependency Injection.
+        builder.Services.AddSingleton<EnvConfig>(); // Singleton voor environment configuration
+        builder.Services.AddTransient<Connector>(); // Transient voor database connection.
+        builder.Services.AddScoped<IUserRepository, UserRepository>(); // Scoped voor user repository
         //builder.Services.AddScoped<IResponseCookies>();
-        builder.Services.AddScoped<SessionHandler>();
+        builder.Services.AddScoped<SessionHandler>(); // Scoped session handler
+        
+        // Configureer authenticatie met cookie-based authenticatie schema.
         builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
             .AddCookie(options =>
             {
@@ -73,6 +86,7 @@ public class AppConfigure
                     ReferenceHandler.IgnoreCycles;
             });
         
+        // Services voor Swagger API
         builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddSwaggerGen();
         
