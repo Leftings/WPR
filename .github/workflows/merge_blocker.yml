@@ -40,12 +40,11 @@ jobs:
         if: runner.os == 'Windows'
         uses: microsoft/setup-msbuild@v2
 
-      - name: Restore the application (dotnet restore)
-        run: dotnet restore ${{ env.Solution_Name }} --configuration ${{ matrix.configuration }}
+      - name: Restore the application
+        run: dotnet restore ${{ env.Solution_Name }}
         
       - name: Execute Unit Tests
         run: dotnet test --no-restore --configuration ${{ matrix.configuration }}
-
 
   merge_blocker:
     name: Block Merge if Tests Fail
@@ -63,4 +62,3 @@ jobs:
           else
             echo "Tests passed successfully. Merge is allowed."
           fi
-
