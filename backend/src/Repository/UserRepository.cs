@@ -238,7 +238,20 @@ public class UserRepository : IUserRepository
                     }
                     else
                     {
-                        query += $"{item[0]} = '{item[1]}' ";
+                        if (item[0].Equals("Email"))
+                        {
+                            var emailCheckResult = await checkUsageEmailAsync(connection, item[1].ToString());
+                            bool check = emailCheckResult.status;
+
+                            if (check)
+                            {
+                                query += $"{item[0]} = '{item[1]}' ";
+                            }
+                        }
+                        else
+                        {
+                            query += $"{item[0]} = '{item[1]}' ";
+                        }
                     }
                 }
                 else
