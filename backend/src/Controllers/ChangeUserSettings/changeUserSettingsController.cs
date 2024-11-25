@@ -44,7 +44,7 @@ public class ChangeUserSettingsController : ControllerBase
 
         var connection = _connector.CreateDbConnection();
 
-        if (await _userRepository.EditUserInfoAsync(connection, data))
+        if (await _userRepository.EditUserInfoAsync(data))
         {
             connection.Close();
 
