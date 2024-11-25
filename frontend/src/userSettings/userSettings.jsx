@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, redirect, useNavigate } from 'react-router-dom';
 import './userSettings.css';
 
 function GetUser(setUser)
@@ -92,6 +92,7 @@ function UserSettings() {
   const [password1, setPassword1] = useState('');
   const [password2, setPassword2] = useState('');
   const [error, setError] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     GetUser(setUser);
@@ -99,32 +100,42 @@ function UserSettings() {
 
   const onSubmit = async (event) => {
     event.preventDefault();
-    if (password1 === password2)
+    try
     {
-      const userId = await GetUserId();
-
-      const userData = {
-        ID: userId,
-        Email: email,
-        Password: password1,
-        FirstName: firstName,
-        LastName: lastName,
-        TelNum: phonenumber,
-        Adres: adres,
-      };
-
-      const message = await ChangeUserInfo(userData);
-
-      if (firstName !== '')
+      if (password1 === password2)
       {
-        GetUser(setUser);
-      }
+        const userId = await GetUserId();
 
-      setError(message);
+        const userData = {
+          ID: userId,
+          Email: email,
+          Password: password1,
+          FirstName: firstName,
+          LastName: lastName,
+          TelNum: phonenumber,
+          Adres: adres,
+        };
+
+        const message = await ChangeUserInfo(userData);
+
+        if (firstName !== '')
+        {
+          GetUser(setUser);
+        }
+
+        if (message === 'Data Updated')
+        {
+          navigate('/home');
+        }
+        else
+        {
+          setError(message);
+        }
+      }
     }
-    else
+    catch (error)
     {
-      setError(message);
+      setError("Er zijn geen velden ingevoerd");
     }
   }
 
