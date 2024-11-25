@@ -10,8 +10,8 @@ import UserSettings from './userSettings/userSettings.jsx';
 createRoot(document.getElementById('root')).render(
   <Router>
     <Routes>
-      <Route path="/" element={<Login />}></Route>
-      <Route path="/home" element={<Home />}></Route>
+      <Route path="/" element={<Home />}></Route>
+      <Route path="/login" element={<Login />}></Route>
       <Route path="/signUp" element={<SignUp />}></Route>
       <Route path="/userSettings" element={<UserSettings />}></Route>
     </Routes>

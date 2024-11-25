@@ -7,6 +7,18 @@ header {
     align-items: center;
     padding: 10px 20px;
     color: white;
+    
+}
+
+header Link {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+header Link:hover {
+    color: #1D7874;
 }
 
 .nav-links {
@@ -39,9 +51,10 @@ header {
     font-size: 1.5rem;
 }
 
-body {
+html, body {
     background-color: #F4E8C1;
     margin: 0;
+    height: 100%;
     overflow-x: hidden;
     font-family: Arial, sans-serif;
 }

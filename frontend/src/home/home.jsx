@@ -1,11 +1,11 @@
-
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import {Link, useNavigate} from 'react-router-dom';
 import GeneralHeader from "../GeneralBlocks/header/header.jsx";
 import GeneralFooter from "../GeneralBlocks/footer/footer.jsx";
 
 import './home.css';
-
+import error from "eslint-plugin-react/lib/util/error.js";
+    
 function WelcomeUser(setWelcome)
 {
   fetch('http://localhost:5165/api/Cookie/GetUserName', {
@@ -30,9 +30,34 @@ function WelcomeUser(setWelcome)
     });
 }
 function Home() {
+
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        fetch('http://localhost:5165/api/Login/CheckSession', { credentials: 'include' })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Not logged in')
+                }
+                return response.json();
+            })
+            .then(() => setIsLoggedIn(true))
+            .catch(() =>setIsLoggedIn(false));
+    }, []);
+
+    const handleLogout = () => {
+        fetch('http://localhost:5165/api/Cookie/Logout', { method: 'POST', credentials: 'include' })
+            .then(() => {
+                setIsLoggedIn(false);
+                navigate('/');
+            })
+            .catch(error => console.error('Logout error', error));
+    };
+    
     return (
         <>
-            <GeneralHeader /> 
+            <GeneralHeader isLoggedIn={isLoggedIn} handleLogout={handleLogout} /> 
 
 
             <main>
@@ -66,5 +91,4 @@ function Home() {
         </>
     );
 }
-
 export default Home;
