@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import GeneralHeader from "../GeneralBlocks/header/header.jsx";
+import GeneralFooter from "../GeneralBlocks/footer/footer.jsx";
 import './home.css';
 
 function Home() {
@@ -33,13 +34,8 @@ function Home() {
                 </div>
             </main>
 
-            <footer className="footer">
-                <p>&copy; 2024 CarAndAll. All rights reserved.</p>
-                <div className="footer-links">
-                    <Link to="/terms">Terms & Conditions</Link>
-                    <Link to="/privacy">Privacy Policy</Link>
-                </div>
-            </footer>
+            <GeneralFooter /> 
+
         </>
     );
 }
