@@ -13,7 +13,7 @@ concurrency:
   cancel-in-progress: true
 
 permissions:
-  pull-requests: write  # Ensure it has write access to pull requests
+  pull-requests: write  # Ensure write access to pull requests
 
 jobs:
   build:
@@ -49,7 +49,9 @@ jobs:
 
     steps:
       - name: Debugging Pull Request Number
-        run: echo "Pull request number: ${{ github.event.pull_request.number }}"
+        run: |
+          echo "Pull request number: ${{ github.event.pull_request.number }}"
+
 
       - name: Check if tests passed and block merge if needed
         run: |
@@ -60,8 +62,4 @@ jobs:
           else
             echo "Tests passed successfully. Merge is allowed."
             # Automatically merge the pull request if tests pass
-            response=$(curl -X PUT -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
-              -d '{"commit_title":"Auto merge by GitHub Actions","commit_message":"Merging automatically after tests passed"}' \
-              "https://api.github.com/repos/${{ github.repository }}/pulls/${{ github.event.pull_request.number }}/merge")
-            echo "API response: $response"
-          fi
+            response=$(curl -X PUT -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}"
