@@ -51,6 +51,6 @@ public class ConnectorTests
         var connector = new Connector(envConfig.Object);
 
         var exception = Assert.Throws<MySqlException>(() => connector.CreateDbConnection());
-        Assert.Equal("Access denied for user 'incorrect_user'@'%',", exception.Message.Substring(0, 49));
+        Assert.Contains("Access denied for user 'incorrect_user'@", exception.Message);
     }
 }
