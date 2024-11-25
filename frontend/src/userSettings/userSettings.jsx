@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import {Link, Navigate, useNavigate} from 'react-router-dom';
 import './userSettings.css';
 
 function GetUser(setUser)
@@ -80,6 +80,7 @@ function ChangeUserInfo(userData) {
 
 
 function UserSettings() {
+  const navigate = useNavigate();
   const [user, setUser] = useState('');
   const [email, setEmail] = useState('');
   const [adres, setAdres] = useState('');
@@ -91,8 +92,14 @@ function UserSettings() {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    GetUser(setUser);
-  }, []);
+    const loginCookie = document.cookie.split('; ').find(row => row.startsWith('LoginSession='));
+    
+    if (!loginCookie) {
+        navigate('/login');
+    } else {
+        GetUser(setUser())
+    }
+  }, [navigate]);
 
   const onSubmit = async (event) => {
     event.preventDefault();
