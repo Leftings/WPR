@@ -3,11 +3,10 @@ name: Continuous Integration with Merge Blocker and Auto-Merge
 on:
   push:
     branches:
-      - main
-      - feature/*   # Adjust as necessary
+      - '*'  
   pull_request:
     branches:
-      - main
+      - '*'  
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
