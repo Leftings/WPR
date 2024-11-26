@@ -81,8 +81,6 @@ function ChangeUserInfo(userData) {
     });
 }
 
-
-
 function UserSettings() {
   const navigate = useNavigate();
   const [user, setUser] = useState('');
