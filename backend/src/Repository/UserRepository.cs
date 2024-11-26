@@ -61,12 +61,12 @@ public class UserRepository : IUserRepository
 
         catch (MySqlException ex)
         {
-            Console.Error.WriteLine($"Database error: {ex.Message}");
+            await Console.Error.WriteLineAsync($"Database error: {ex.Message}");
             return (false, ex.Message);
         }
         catch (Exception ex)
         {
-            Console.Error.WriteLine($"Unexpected error: {ex.Message}");
+            await Console.Error.WriteLineAsync($"Unexpected error: {ex.Message}");
             return (false, ex.Message);
         }
     }
@@ -90,7 +90,7 @@ public class UserRepository : IUserRepository
                 if (await command.ExecuteNonQueryAsync() > 0)
                 {
                     command.CommandText = "SELECT LAST_INSERT_ID();";
-                    int newUserID = Convert.ToInt32(command.ExecuteScalar());
+                    int newUserID = Convert.ToInt32(await command.ExecuteScalarAsync());
 
                     return (true, "Data Inserted", newUserID);
                 }
@@ -100,12 +100,12 @@ public class UserRepository : IUserRepository
 
         catch (MySqlException ex)
         {
-            Console.Error.WriteLine($"Database error: {ex.Message}");
+            await Console.Error.WriteLineAsync($"Database error: {ex.Message}");
             return (false, ex.Message, -1);
         }
         catch (Exception ex)
         {
-            Console.Error.WriteLine($"Unexpected error: {ex.Message}");
+            await Console.Error.WriteLineAsync($"Unexpected error: {ex.Message}");
             return (false, ex.Message, -1);
         }
     }
@@ -132,12 +132,12 @@ public class UserRepository : IUserRepository
 
         catch (MySqlException ex)
         {
-            Console.Error.WriteLine($"Database error: {ex.Message}");
+            await Console.Error.WriteLineAsync($"Database error: {ex.Message}");
             return (false, ex.Message);
         }
         catch (Exception ex)
         {
-            Console.Error.WriteLine($"Unexpected error: {ex.Message}");
+            await Console.Error.WriteLineAsync($"Unexpected error: {ex.Message}");
             return (false, ex.Message);
         }
     }
@@ -164,12 +164,12 @@ public class UserRepository : IUserRepository
 
         catch (MySqlException ex)
         {
-            Console.Error.WriteLine($"Database error: {ex.Message}");
+            await Console.Error.WriteLineAsync($"Database error: {ex.Message}");
             return (false, ex.Message);
         }
         catch (Exception ex)
         {
-            Console.Error.WriteLine($"Unexpected error: {ex.Message}");
+            await Console.Error.WriteLineAsync($"Unexpected error: {ex.Message}");
             return (false, ex.Message);
         }
     }
@@ -197,7 +197,7 @@ public class UserRepository : IUserRepository
         }
         catch (Exception ex)
         {
-            Console.Error.WriteLine($"Unexpected error: {ex.Message}");
+            await Console.Error.WriteLineAsync($"Unexpected error: {ex.Message}");
             return -1;
         }
     }
@@ -220,7 +220,7 @@ public class UserRepository : IUserRepository
         }
         catch (Exception ex)
         {
-            Console.Error.WriteLine($"Unexpected error: {ex.Message}");
+            await Console.Error.WriteLineAsync($"Unexpected error: {ex.Message}");
             return ex.ToString();
         }
     }
