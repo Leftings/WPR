@@ -11,7 +11,7 @@ function WelcomeUser(setWelcome) {
         headers: {
             'Content-Type': 'application/json',
         },
-        credentials: 'include', // Cookies or authentication is included
+        credentials: 'include',
     })
         .then(response => {
             console.log(response);
@@ -42,6 +42,62 @@ const carsForSale = [
         price: '$35,000',
         description: 'A powerful and iconic sports car with timeless style.',
         image: 'https://via.placeholder.com/150', 
+    },
+    {
+        id: 3,
+        name: 'Ford Mustang',
+        price: '$35,000',
+        description: 'A powerful and iconic sports car with timeless style.',
+        image: 'https://via.placeholder.com/150',
+    },
+    {
+        id: 4,
+        name: 'Ford Mustang',
+        price: '$35,000',
+        description: 'A powerful and iconic sports car with timeless style.',
+        image: 'https://via.placeholder.com/150',
+    },
+    {
+        id: 5,
+        name: 'Ford Mustang',
+        price: '$35,000',
+        description: 'A powerful and iconic sports car with timeless style.',
+        image: 'https://via.placeholder.com/150',
+    },
+    {
+        id: 6,
+        name: 'Ford Mustang',
+        price: '$35,000',
+        description: 'A powerful and iconic sports car with timeless style.',
+        image: 'https://via.placeholder.com/150',
+    },
+    {
+        id: 7,
+        name: 'Ford Mustang',
+        price: '$35,000',
+        description: 'A powerful and iconic sports car with timeless style.',
+        image: 'https://via.placeholder.com/150',
+    },
+    {
+        id: 8,
+        name: 'Ford Mustang',
+        price: '$35,000',
+        description: 'A powerful and iconic sports car with timeless style.',
+        image: 'https://via.placeholder.com/150',
+    },
+    {
+        id: 9,
+        name: 'Ford Mustang',
+        price: '$35,000',
+        description: 'A powerful and iconic sports car with timeless style.',
+        image: 'https://via.placeholder.com/150',
+    },
+    {
+        id: 10,
+        name: 'Ford Mustang',
+        price: '$35,000',
+        description: 'A powerful and iconic sports car with timeless style.',
+        image: 'https://via.placeholder.com/150',
     },
 ];
 

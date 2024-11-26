@@ -12,11 +12,18 @@
 
 .car-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: repeat(4, 1fr);
     gap: 20px;
     justify-content: center;
     padding: 20px;
 }
+
+@media (max-width: 1024px) {
+    .car-grid {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    }
+}
+
 
 .car-card {
     background: #fff;
@@ -36,7 +43,7 @@
     height: 180px;
     background: #1d7874ff;
     display: flex;
-    margin: 20px auto;
+    margin: 15px auto;
     border-radius: 25px;
     align-items: center;
     justify-content: center;

@@ -9,8 +9,8 @@ function GeneralFooter() {
             <footer className="footer">
                 <p>&copy; 2024 CarAndAll. All rights reserved.</p>
                 <div className="footer-links">
-                    <Link to="/terms">Terms & Conditions</Link>
-                    <Link to="/Terms&conditions">Privacy Policy</Link>
+                    <Link to="/TermsAndConditions">Terms & Conditions</Link>
+                    <Link to="/Policy">Privacy Policy</Link>
                 </div>
             </footer>
         </>
