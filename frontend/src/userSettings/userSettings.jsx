@@ -94,14 +94,16 @@ function UserSettings() {
   const [password1, setPassword1] = useState('');
   const [password2, setPassword2] = useState('');
   const [error, setError] = useState(null);
-  
+
   useEffect(() => {
-    const loginCookie = document.cookie.split('; ').find(row => row.startsWith('LoginSession='));
-    
-    if (!loginCookie) {
-        navigate('/login');
-    } else {
-        GetUser(setUser())
+    //const loginCookie = document.cookie.split('; ').find(row => row.startsWith('LoginSession='));
+    try
+    {
+      GetUser(setUser)
+    }
+    catch (error)
+    {
+      navigate('/login');
     }
   }, [navigate]);
 
