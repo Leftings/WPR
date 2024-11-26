@@ -110,7 +110,7 @@ function Login() {
         )}
 
         <div id="input">
-          <label htmlFor="user">Gebruiker</label>
+          <label htmlFor="user">Email</label>
           <br></br>
           <input type="text" id="user" value={email} onChange={(e) => setEmail(e.target.value)}></input>
           <br></br>
