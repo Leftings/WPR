@@ -1,10 +1,6 @@
-using Microsoft.AspNetCore.Http.HttpResults;
-using Microsoft.AspNetCore.Mvc;
-using Org.BouncyCastle.Asn1.Ocsp;
-
 namespace WPR.Cookie;
 
-public class SessionHandler
+public class SessionHandler : IDisposable
 {
     public void CreateCookie(IResponseCookies responseCookies, string cookieName, string cookieValue)
     {
@@ -13,5 +9,19 @@ public class SessionHandler
             HttpOnly = true, // Cookies zijn alleen toegankelijk voor de server
             Expires = DateTimeOffset.Now.AddMinutes(30) 
         });
+    }
+
+    public void CreateInvalidCookie(IResponseCookies responseCookies, string cookieName)
+    {
+        responseCookies.Append(cookieName, null, new CookieOptions
+        {
+            HttpOnly = true,
+            Expires = DateTimeOffset.Now.AddMinutes(-1)
+        });
+    }
+
+    public void Dispose()
+    {
+        throw new NotImplementedException();
     }
 }
