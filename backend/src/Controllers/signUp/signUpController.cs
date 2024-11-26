@@ -56,6 +56,11 @@ public class SignUpController : ControllerBase
                     return BadRequest(new { message = "Invalid email format" });
                 }
 
+                if (!BirthdayChecker.IsValidBirthday(signUpRequest.BirthDate))
+                {
+                    return BadRequest(new { message = "Invalid birthday format" });
+                }
+
                 if (!TelChecker.IsValidPhoneNumber(signUpRequest.TelNumber))
                 {
                     return BadRequest(new { message = "Invalid phone number" });
