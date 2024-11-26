@@ -231,7 +231,7 @@ function SignUp() {
                         </>
                     )}
                     <br></br>
-                    <label htmlFor="heeftAccount">Heeft u al een account? <Link id="redirect" to="/">Log
+                    <label htmlFor="heeftAccount">Heeft u al een account? <Link id="redirect" to="/login">Log
                         in!</Link></label>
                     {error && <p style={{color: 'red'}}>{error}</p>}
                 </div>

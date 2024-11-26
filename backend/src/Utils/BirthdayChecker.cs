@@ -2,6 +2,12 @@
 
 public class BirthdayChecker
 {
+    /// <summary>
+    /// Check om te kijken of het een correcte verjaardag is
+    /// Leeftijd mag niet onder de 18 zijn en niet boven de 120
+    /// </summary>
+    /// <param name="birthdate">Birthday van user</param>
+    /// <returns>True als birthdate correct is; anders False</returns>
     public static bool IsValidBirthday(DateTime? birthdate)
     {
         if (birthdate == null)
