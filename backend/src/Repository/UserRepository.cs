@@ -211,6 +211,7 @@ public class UserRepository : IUserRepository
             using (var connection = _connector.CreateDbConnection())
             using (var command = new MySqlCommand(query, (MySqlConnection)connection))
             {
+                Console.WriteLine(userId);
                 command.Parameters.AddWithValue("@I", Convert.ToInt32(userId));
 
                 var result = await command.ExecuteScalarAsync();
