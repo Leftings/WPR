@@ -94,16 +94,27 @@ function UserSettings() {
   const [password1, setPassword1] = useState('');
   const [password2, setPassword2] = useState('');
   const [error, setError] = useState(null);
-  const navigate = useNavigate();
 
   useEffect(() => {
-    const loginCookie = document.cookie.split('; ').find(row => row.startsWith('LoginSession='));
-    
-    if (!loginCookie) {
-        navigate('/login');
-    } else {
-        GetUser(setUser())
-    }
+      fetch('http://localhost:5165/api/Cookie/GetUserId', {
+          method: 'GET',
+          headers: {
+              'Content-Type': 'application/json',
+          },
+          credentials: 'include',
+      })
+          .then(response => {
+              if (!response.ok) {
+                  throw new Error('No Cookie');
+              }
+              return response.json();
+          })
+          .then(() => {
+              GetUser(setUser)
+          })
+          .catch(() => {
+              navigate('/')
+          })
   }, [navigate]);
 
   const onSubmit = async (event) => {
