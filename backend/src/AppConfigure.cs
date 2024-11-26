@@ -4,6 +4,7 @@ using Microsoft.Extensions.Options;
 using Microsoft.VisualBasic;
 using Org.BouncyCastle.Crypto.Prng;
 using WPR.Cookie;
+using WPR.Cryption;
 using WPR.Data;
 using WPR.Database;
 using WPR.Repository;
@@ -68,6 +69,7 @@ public class AppConfigure
         builder.Services.AddScoped<IUserRepository, UserRepository>(); // Scoped voor user repository
         //builder.Services.AddScoped<IResponseCookies>();
         builder.Services.AddScoped<SessionHandler>(); // Scoped session handler
+        builder.Services.AddScoped<Crypt>();
         
         // Configureer authenticatie met cookie-based authenticatie schema.
         builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
