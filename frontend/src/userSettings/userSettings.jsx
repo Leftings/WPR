@@ -96,15 +96,25 @@ function UserSettings() {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    //const loginCookie = document.cookie.split('; ').find(row => row.startsWith('LoginSession='));
-    try
-    {
-      GetUser(setUser)
-    }
-    catch (error)
-    {
-      navigate('/login');
-    }
+      fetch('http://localhost:5165/api/Cookie/GetUserId', {
+          method: 'GET',
+          headers: {
+              'Content-Type': 'application/json',
+          },
+          credentials: 'include',
+      })
+          .then(response => {
+              if (!response.ok) {
+                  throw new Error('No Cookie');
+              }
+              return response.json();
+          })
+          .then(() => {
+              GetUser(setUser)
+          })
+          .catch(() => {
+              navigate('/')
+          })
   }, [navigate]);
 
   const onSubmit = async (event) => {

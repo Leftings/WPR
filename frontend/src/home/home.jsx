@@ -50,7 +50,7 @@ function Home() {
         fetch('http://localhost:5165/api/Cookie/Logout', { method: 'POST', credentials: 'include' })
             .then(() => {
                 setIsLoggedIn(false);
-                navigate('/');
+                navigate('/login');
             })
             .catch(error => console.error('Logout error', error));
     };
