@@ -94,8 +94,7 @@ function UserSettings() {
   const [password1, setPassword1] = useState('');
   const [password2, setPassword2] = useState('');
   const [error, setError] = useState(null);
-  const navigate = useNavigate();
-
+  
   useEffect(() => {
     const loginCookie = document.cookie.split('; ').find(row => row.startsWith('LoginSession='));
     
