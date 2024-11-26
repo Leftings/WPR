@@ -44,9 +44,7 @@ public class CookieController : ControllerBase
             Console.WriteLine("No cookie");
             return BadRequest(new { message = "No Cookie"});
         }
-
-        var connection = _connector.CreateDbConnection();
-
+        
         try
         {
             string userName = await _userRepository.GetUserNameAsync(loginCookie);
