@@ -6,7 +6,7 @@ using System;
 using WPR.Repository;
 using MySqlX.XDevAPI.Common;
 using WPR.Cryption;
-using WPR.Cookie;
+using WPR.Controllers.Cookie;
 
 [Route("api/[controller]")]
 [ApiController]
@@ -24,7 +24,7 @@ public class CookieController : ControllerBase
     }
 
     [HttpGet("GetUserId")]
-    public async Task<IActionResult> GetUserId()
+    public async Task<IActionResult> GetUserIdAsync()
     {
         string loginCookie = HttpContext.Request.Cookies["LoginSession"];
 
@@ -52,7 +52,7 @@ public class CookieController : ControllerBase
 
 
     [HttpGet("GetUserName")]
-    public async Task<IActionResult> GetUserName()
+    public async Task<IActionResult> GetUserNameAsync()
     {
         string loginCookie = HttpContext.Request.Cookies["LoginSession"];
 

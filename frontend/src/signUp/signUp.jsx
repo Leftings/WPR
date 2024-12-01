@@ -36,9 +36,9 @@ function SignUp() {
         setError(null);
     
         const formattedDate = new Date(dateOfBirth).toISOString().split('T')[0];
-        let signUpType = chosenType === 1 ? 'signUpPersonal' : 'signUpEmployee';
+        let signUpType = chosenType === 1 ? 'signUpPersonalAsync' : 'signUpEmployeeAsync';
     
-        const data = signUpType === 'signUpPersonal'
+        const data = signUpType === 'signUpPersonalAsync'
             ? {
                 Email: email,
                 Password: password1,
