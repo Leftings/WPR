@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using WPR.Repository;
 using MySql.Data.MySqlClient;
 using System;
-using WPR.Cookie;
+using WPR.Controllers.Cookie;
 using WPR.Database;
 using WPR.Cryption;
 
