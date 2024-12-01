@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.Extensions.Options;
 using Microsoft.VisualBasic;
 using Org.BouncyCastle.Crypto.Prng;
-using WPR.Cookie;
+using WPR.Controllers.Cookie;
 using WPR.Cryption;
 using WPR.Data;
 using WPR.Database;
