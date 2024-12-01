@@ -32,6 +32,13 @@ function SignUp() {
             setError('Wachtwoorden komen niet overeen.');
             return;
         }
+        
+        if (chosenType === 2) {
+            if (!KvK || KvK.length !== 8) {
+                setError('KVK number must be 8 digits.');
+                return;
+            }
+        }
     
         setError(null);
         
@@ -90,8 +97,10 @@ function SignUp() {
                     setError('The phone number is invalid.')
                 } else if (error.message === 'Invalid birthday format') {
                     setError('The birthday is invalid.');
-                } else if (error.message === 'KVK number is invalid.'){
-                    setError('The KVK number is invalid.');
+                } else if (error.message === 'KVK number must be 8 digits') {
+                    setError('KVK number must be 8 digits');
+                } else if (error.message === 'KVK number is not a valid KVK number') {
+                    setError('KVK number is not a valid KVK number')
                 } else {
                     setError(`There was an error during making a ${signUpType} account: ${error.message}`);
                 }
