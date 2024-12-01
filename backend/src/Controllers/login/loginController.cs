@@ -6,6 +6,7 @@ using MySql.Data.MySqlClient;
 using System;
 using WPR.Cookie;
 using WPR.Database;
+using WPR.Cryption;
 
 [Route("api/[controller]")]
 [ApiController]
@@ -14,12 +15,14 @@ public class LoginController : ControllerBase
     private readonly IUserRepository _userRepository;
     private readonly Connector _connector;
     private readonly SessionHandler _sessionHandler;
+    private readonly Crypt _crypt;
 
-    public LoginController(IUserRepository userRepository, Connector connector, SessionHandler sessionHandler)
+    public LoginController(IUserRepository userRepository, Connector connector, SessionHandler sessionHandler, Crypt crypt)
     {
         _userRepository = userRepository ?? throw new ArgumentNullException(nameof(userRepository));
         _connector = connector ?? throw new ArgumentNullException(nameof(connector));
         _sessionHandler = sessionHandler ?? throw new ArgumentNullException(nameof(sessionHandler));
+        _crypt = crypt ?? throw new ArgumentNullException(nameof(crypt));
     }
 
     private async Task<IActionResult> SetCookie(LoginRequest loginRequest)
@@ -35,7 +38,7 @@ public class LoginController : ControllerBase
                 return BadRequest(new { message = "User ID not found." });
             }
             
-            _sessionHandler.CreateCookie(Response.Cookies, "LoginSession", userId.ToString());
+            _sessionHandler.CreateCookie(Response.Cookies, "LoginSession", _crypt.Encrypt(userId.ToString()));
 
         }
         catch (Exception ex)
