@@ -6,25 +6,23 @@ using System;
 using WPR.Repository;
 using MySqlX.XDevAPI.Common;
 using WPR.Cryption;
-using WPR.Cookie;
+using WPR.Controllers.Cookie;
 
 [Route("api/[controller]")]
 [ApiController]
 public class CookieController : ControllerBase
 {
-    private readonly Connector _connector;
     private readonly IUserRepository _userRepository;
     private readonly Crypt _crypt;
 
-    public CookieController(Connector connector, IUserRepository userRepository, Crypt crypt)
+    public CookieController(IUserRepository userRepository, Crypt crypt)
     {
-        _connector = connector ?? throw new ArgumentNullException(nameof(connector));
         _userRepository = userRepository ?? throw new ArgumentNullException(nameof(userRepository));
         _crypt = crypt ?? throw new ArgumentNullException(nameof(crypt));
     }
 
     [HttpGet("GetUserId")]
-    public async Task<IActionResult> GetUserId()
+    public async Task<IActionResult> GetUserIdAsync()
     {
         string loginCookie = HttpContext.Request.Cookies["LoginSession"];
 
@@ -52,7 +50,7 @@ public class CookieController : ControllerBase
 
 
     [HttpGet("GetUserName")]
-    public async Task<IActionResult> GetUserName()
+    public async Task<IActionResult> GetUserNameAsync()
     {
         string loginCookie = HttpContext.Request.Cookies["LoginSession"];
 
