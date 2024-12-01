@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Link, redirect, useNavigate } from 'react-router-dom';
+import {Link, Navigate, useNavigate} from 'react-router-dom';
+
 import './userSettings.css';
 
 function GetUser(setUser)
@@ -80,9 +81,20 @@ function ChangeUserInfo(userData) {
     });
 }
 
+function RemoveInvalidCookie()
+{
+  fetch('http://localhost:5165/api/Cookie/Logout', {
+    method: 'GET',
+    headers: {
+        'Content-Type': 'application/json', 
+    },
+    credentials: 'include', // Cookies of authenticatie wordt meegegeven
+    })
+}
 
 
 function UserSettings() {
+  const navigate = useNavigate();
   const [user, setUser] = useState('');
   const [email, setEmail] = useState('');
   const [adres, setAdres] = useState('');
@@ -92,11 +104,29 @@ function UserSettings() {
   const [password1, setPassword1] = useState('');
   const [password2, setPassword2] = useState('');
   const [error, setError] = useState(null);
-  const navigate = useNavigate();
 
   useEffect(() => {
-    GetUser(setUser);
-  }, []);
+      fetch('http://localhost:5165/api/Cookie/GetUserId', {
+          method: 'GET',
+          headers: {
+              'Content-Type': 'application/json',
+          },
+          credentials: 'include',
+      })
+          .then(response => {
+              if (!response.ok) {
+                  throw new Error('No Cookie');
+              }
+              return response.json();
+          })
+          .then(() => {
+              GetUser(setUser);
+          })
+          .catch(() => {
+              //RemoveInvalidCookie();
+              navigate('/');
+          })
+  }, [navigate]);
 
   const onSubmit = async (event) => {
     event.preventDefault();

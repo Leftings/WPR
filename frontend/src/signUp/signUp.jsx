@@ -36,9 +36,9 @@ function SignUp() {
         setError(null);
     
         const formattedDate = new Date(dateOfBirth).toISOString().split('T')[0];
-        let signUpType = chosenType === 1 ? 'signUpPersonal' : 'signUpEmployee';
+        let signUpType = chosenType === 1 ? 'signUpPersonalAsync' : 'signUpEmployeeAsync';
     
-        const data = signUpType === 'signUpPersonal'
+        const data = signUpType === 'signUpPersonalAsync'
             ? {
                 Email: email,
                 Password: password1,
@@ -98,8 +98,10 @@ function SignUp() {
     return (
         <>
             <header>
-                <div id="left">
-                    <h2 className="logo">CarAndAll</h2>
+                <div id="aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa">
+                    <ul className="logo-link">
+                        <h2><Link to={"/"}>CarAndAll</Link></h2>
+                    </ul>
                 </div>
 
                 <nav id="right">
@@ -229,7 +231,7 @@ function SignUp() {
                         </>
                     )}
                     <br></br>
-                    <label htmlFor="heeftAccount">Heeft u al een account? <Link id="redirect" to="/">Log
+                    <label htmlFor="heeftAccount">Heeft u al een account? <Link id="redirect" to="/login">Log
                         in!</Link></label>
                     {error && <p style={{color: 'red'}}>{error}</p>}
                 </div>
