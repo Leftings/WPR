@@ -25,7 +25,7 @@ public class LoginController : ControllerBase
         _crypt = crypt ?? throw new ArgumentNullException(nameof(crypt));
     }
 
-    private async Task<IActionResult> SetCookie(LoginRequest loginRequest)
+    private async Task<IActionResult> SetCookieAsync(LoginRequest loginRequest)
     {
         var connection = _connector.CreateDbConnection();
 
@@ -67,7 +67,7 @@ public class LoginController : ControllerBase
     }
 
     [HttpPost("login")]
-    public async Task <IActionResult> Login([FromBody] LoginRequest loginRequest)
+    public async Task <IActionResult> LoginAsync([FromBody] LoginRequest loginRequest)
     {
         if (loginRequest == null || string.IsNullOrEmpty(loginRequest.Email) || string.IsNullOrEmpty(loginRequest.Password))
         {
@@ -80,7 +80,7 @@ public class LoginController : ControllerBase
 
             if (isValid)
             {
-                var cookieResult = await SetCookie(loginRequest);
+                var cookieResult = await SetCookieAsync(loginRequest);
 
                 if (cookieResult is BadRequestObjectResult)
                 {
