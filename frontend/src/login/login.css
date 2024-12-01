@@ -9,7 +9,7 @@ header {
 }
 
 header a {
-    color: #F4E8C1;  
+    color: #FFFF;  
     text-decoration: none;  
     font-weight: bold;
     font-size: 18px; 
@@ -17,7 +17,7 @@ header a {
 }
 
 header a:hover {
-    color: #071E22; 
+    color: #1D7874; 
 }
 
 #left {
