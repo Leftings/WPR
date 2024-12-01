@@ -145,9 +145,12 @@ public class SignUpController : ControllerBase
                     return BadRequest(new { message = "Invalid email format" });
                 }
 
-                if (!KvkChecker.IsValidKvkNumber(signUpRequest.KvK))
+                var kvkChecker = new KvkChecker(_userRepository);
+                var (isValidKvk, kvkErrorMessage) = await kvkChecker.IsKvkNumberValid(signUpRequest.KvK);
+
+                if (!isValidKvk)
                 {
-                    return BadRequest(new { message = "KVK number is invalid." });
+                    return BadRequest(new { message = kvkErrorMessage });
                 }
 
                 if (!TelChecker.IsValidPhoneNumber(signUpRequest.TelNumber))
