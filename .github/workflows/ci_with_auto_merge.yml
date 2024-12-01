@@ -45,6 +45,10 @@ jobs:
     needs: build
     if: always()  # Ensure this runs even if the previous job fails
 
+    permissions:
+      pull-requests: write
+      contents: write
+      
     steps:
       - name: Check if tests passed and block merge if needed
         run: |
