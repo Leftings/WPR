@@ -41,10 +41,11 @@ function SignUp() {
         }
     
         setError(null);
-        
+
         let signUpType = chosenType === 1 ? 'signUpPersonal' : 'signUpEmployee';
-    
-        const data = signUpType === 'signUpPersonal'
+
+      
+        const data = signUpType === 'signUpPersonalAsync'
             ? {
                 Email: email,
                 Password: password1,

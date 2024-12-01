@@ -33,7 +33,7 @@ public class SignUpController : ControllerBase
 
     // Wijzigingen die gemaakt worden in signUpPersonal moeten ook gemaakt worden in signUpEmployee
     [HttpPost("signUpPersonal")]
-    public async Task<IActionResult> signUpPersonal([FromBody] SignUpRequest signUpRequest)
+    public async Task<IActionResult> signUpPersonalAsync([FromBody] SignUpRequest signUpRequest)
     {
         var emailCheck = await _userRepository.checkUsageEmailAsync(signUpRequest.Email);
         bool commit = true;
@@ -125,7 +125,7 @@ public class SignUpController : ControllerBase
     }
 
     [HttpPost("signUpEmployee")]
-    public async Task<IActionResult> signUpEmployee([FromBody] SignUpRequest signUpRequest)
+    public async Task<IActionResult> signUpEmployeeAsync([FromBody] SignUpRequest signUpRequest)
     {
         var connection = _connector.CreateDbConnection();
         var emailCheck = await _userRepository.checkUsageEmailAsync(signUpRequest.Email);
