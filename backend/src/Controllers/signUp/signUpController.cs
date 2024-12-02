@@ -167,6 +167,12 @@ public class SignUpController : ControllerBase
                 {
                     return BadRequest(new { message = kvkErrorMessage });
                 }
+                
+                var (isPasswordValid, passwordError) = PasswordChecker.IsValidPassword(signUpRequest.Password);
+                if (!isPasswordValid)
+                {
+                    return BadRequest(new { message = passwordError });
+                }
 
                 if (!TelChecker.IsValidPhoneNumber(signUpRequest.TelNumber))
                 {
