@@ -74,10 +74,6 @@ function Home() {
                     <Link to="/GeneralSalePage" className="cta-button">Verken onze Auto's</Link>
                 </section>
 
-                <div className="welcome-message">
-                    <p>{welcomeMessage}</p>
-                </div>
-
                 <div className="container">
                     <section className="features">
                         <div className="feature-card">
