@@ -2,8 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import GeneralHeader from "../GeneralBlocks/header/header.jsx";
 import GeneralFooter from "../GeneralBlocks/footer/footer.jsx";
-
-import './GeneralSalePage.css'
+import './GeneralSalePage.css';
 
 function WelcomeUser(setWelcome) {
     fetch('http://localhost:5165/api/Cookie/GetUserName', {
@@ -34,71 +33,16 @@ const carsForSale = [
         name: 'Tesla Model 3',
         price: '$40,000',
         description: 'A sleek and efficient electric car with a long range and modern features.',
-        image: 'https://via.placeholder.com/150', 
+        image: 'https://via.placeholder.com/150',
     },
     {
         id: 2,
         name: 'Ford Mustang',
         price: '$35,000',
         description: 'A powerful and iconic sports car with timeless style.',
-        image: 'https://via.placeholder.com/150', 
-    },
-    {
-        id: 3,
-        name: 'Ford Mustang',
-        price: '$35,000',
-        description: 'A powerful and iconic sports car with timeless style.',
         image: 'https://via.placeholder.com/150',
     },
-    {
-        id: 4,
-        name: 'Ford Mustang',
-        price: '$35,000',
-        description: 'A powerful and iconic sports car with timeless style.',
-        image: 'https://via.placeholder.com/150',
-    },
-    {
-        id: 5,
-        name: 'Ford Mustang',
-        price: '$35,000',
-        description: 'A powerful and iconic sports car with timeless style.',
-        image: 'https://via.placeholder.com/150',
-    },
-    {
-        id: 6,
-        name: 'Ford Mustang',
-        price: '$35,000',
-        description: 'A powerful and iconic sports car with timeless style.',
-        image: 'https://via.placeholder.com/150',
-    },
-    {
-        id: 7,
-        name: 'Ford Mustang',
-        price: '$35,000',
-        description: 'A powerful and iconic sports car with timeless style.',
-        image: 'https://via.placeholder.com/150',
-    },
-    {
-        id: 8,
-        name: 'Ford Mustang',
-        price: '$35,000',
-        description: 'A powerful and iconic sports car with timeless style.',
-        image: 'https://via.placeholder.com/150',
-    },
-    {
-        id: 9,
-        name: 'Ford Mustang',
-        price: '$35,000',
-        description: 'A powerful and iconic sports car with timeless style.',
-        image: 'https://via.placeholder.com/150',
-    },
-    {
-        id: 10,
-        name: 'Ford Mustang',
-        price: '$35,000',
-        description: 'A powerful and iconic sports car with timeless style.',
-        image: 'https://via.placeholder.com/150',
-    },
+    // Add more cars here...
 ];
 
 function GeneralSalePage() {
@@ -127,6 +71,14 @@ function GeneralSalePage() {
                                     <h2 className="car-name">{car.name}</h2>
                                     <p className="car-price">{car.price}</p>
                                     <p className="car-description">{car.description}</p>
+                                    {/* Pass car data to individual page using Link */}
+                                    <Link
+                                        to={`/car/${car.id}`}
+                                        state={{ car }}
+                                        className="view-details-link"
+                                    >
+                                        View Details
+                                    </Link>
                                 </div>
                             </div>
                         ))}
