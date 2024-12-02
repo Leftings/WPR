@@ -1,5 +1,4 @@
 namespace WPR;
-using WPR.Cryption;
 public class Program
 {
     public static void Main(string[] args)
