@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import {Link, Navigate, useNavigate} from 'react-router-dom';
+
 import './userSettings.css';
 
 function GetUser(setUser)
@@ -57,29 +58,43 @@ function ChangeUserInfo(userData) {
   return fetch('http://localhost:5165/api/ChangeUserSettings/ChangeUserInfo', {
     method: 'PUT',
     headers: {
-        'Content-Type': 'application/json', 
+      'Content-Type': 'application/json',
     },
     body: JSON.stringify(userData),
+    credentials: 'include',
+  })
+    .then(async (response) => {
+      const data = await response.json(); 
+      if (!response.ok)
+      {
+        if (data.message !== 'Email detected')
+        {
+          throw new Error("Unknown error");
+        }
+      }
+
+      return data.message;
+    })
+    .catch((error) => {
+      console.error(error);
+      throw error;
+    });
+}
+
+function RemoveInvalidCookie()
+{
+  fetch('http://localhost:5165/api/Cookie/Logout', {
+    method: 'GET',
+    headers: {
+        'Content-Type': 'application/json', 
+    },
     credentials: 'include', // Cookies of authenticatie wordt meegegeven
-  })
-  .then(response => {
-    console.log(response);
-    if (!response.ok) {
-        throw new Error('Failed to change user info');
-    }
-    return response.json(); 
-  })
-  .then(data => {
-    return data.message;
-  })
-  .catch(error => {
-    console.error('Error:', error);
-    throw error;
-  });
+    })
 }
 
 
 function UserSettings() {
+  const navigate = useNavigate();
   const [user, setUser] = useState('');
   const [email, setEmail] = useState('');
   const [adres, setAdres] = useState('');
@@ -91,37 +106,66 @@ function UserSettings() {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    GetUser(setUser);
-  }, []);
+      fetch('http://localhost:5165/api/Cookie/GetUserId', {
+          method: 'GET',
+          headers: {
+              'Content-Type': 'application/json',
+          },
+          credentials: 'include',
+      })
+          .then(response => {
+              if (!response.ok) {
+                  throw new Error('No Cookie');
+              }
+              return response.json();
+          })
+          .then(() => {
+              GetUser(setUser);
+          })
+          .catch(() => {
+              //RemoveInvalidCookie();
+              navigate('/');
+          })
+  }, [navigate]);
 
   const onSubmit = async (event) => {
     event.preventDefault();
-    if (password1 === password2)
+    try
     {
-      const userId = await GetUserId();
-
-      const userData = {
-        ID: userId,
-        Email: email,
-        Password: password1,
-        FirstName: firstName,
-        LastName: lastName,
-        TelNum: phonenumber,
-        Adres: adres,
-      };
-
-      await ChangeUserInfo(userData);
-
-      if (firstName !== '')
+      if (password1 === password2)
       {
-        GetUser(setUser);
-      }
+        const userId = await GetUserId();
 
-      setError("Gegevens zijn bijgewerkt");
+        const userData = {
+          ID: userId,
+          Email: email,
+          Password: password1,
+          FirstName: firstName,
+          LastName: lastName,
+          TelNum: phonenumber,
+          Adres: adres,
+        };
+
+        const message = await ChangeUserInfo(userData);
+
+        if (firstName !== '')
+        {
+          GetUser(setUser);
+        }
+
+        if (message === 'Data Updated')
+        {
+          navigate('/home');
+        }
+        else
+        {
+          setError(message);
+        }
+      }
     }
-    else
+    catch (error)
     {
-      setError("De wachtwoorden komen niet overeen");
+      setError("Er zijn geen velden ingevoerd");
     }
   }
 
