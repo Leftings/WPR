@@ -6,39 +6,6 @@ import GeneralSalePage from "../GeneralSalePage/GeneralSalePage.jsx";
 
 import './home.css';
 
-import error from "eslint-plugin-react/lib/util/error.js";
-    
-function WelcomeUser(setWelcome)
-{
-  fetch('http://localhost:5165/api/Cookie/GetUserName', {
-    method: 'GET',
-    headers: {
-        'Content-Type': 'application/json', 
-    },
-    credentials: 'include', // Cookies of authenticatie wordt meegegeven
-    })
-    .then(response => {
-        console.log(response);
-        if (!response.ok) {
-            throw new Error('No Cookie');
-        }
-        return response.json();
-    })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('No Cookie');
-            }
-            return response.json();
-        })
-        .then(data => {
-            setWelcome(`Welcome, ${data.message}`);
-        })
-        .catch(error => {
-            console.error('Error:', error);
-            setWelcome('Welcome, Guest'); // Fallback message
-        });
-}
-
 function Home() {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const navigate = useNavigate();
@@ -63,14 +30,6 @@ function Home() {
             })
             .catch(error => console.error('Logout error', error));
     };
-    
-    return (
-        <>
-            <GeneralHeader isLoggedIn={isLoggedIn} handleLogout={handleLogout} /> 
-
-    useEffect(() => {
-        WelcomeUser(setWelcomeMessage);
-    }, []); // Runs once on component mount
 
     return (
         <>
@@ -81,10 +40,6 @@ function Home() {
                     <p>Betaalbare prijzen, flexibele verhuur en een breed aanbod aan voertuigen om uit te kiezen.</p>
                     <Link to="/GeneralSalePage" className="cta-button">Verken onze Auto's</Link>
                 </section>
-
-                <div className="welcome-message">
-                    <p>{welcomeMessage}</p>
-                </div>
 
                 <div className="container">
                     <section className="features">
