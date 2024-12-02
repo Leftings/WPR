@@ -72,6 +72,12 @@ public class SignUpController : ControllerBase
                     return BadRequest(new { message = "Invalid phone number" });
                 }
                 
+                var (isPasswordValid, passwordError) = PasswordChecker.IsValidPassword(signUpRequest.Password);
+                if (!isPasswordValid)
+                {
+                    return BadRequest(new { message = passwordError });
+                }
+                
                 else if (emailCheck.status)
                 {
                     transaction.Rollback();
