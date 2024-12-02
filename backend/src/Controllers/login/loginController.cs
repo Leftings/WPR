@@ -17,9 +17,8 @@ public class LoginController : ControllerBase
     private readonly Connector _connector;
     private readonly SessionHandler _sessionHandler;
     private readonly Crypt _crypt;
-    private readonly Hash _hash;
 
-    public LoginController(IUserRepository userRepository, Connector connector, SessionHandler sessionHandler, Crypt crypt, Hash hash)
+    public LoginController(IUserRepository userRepository, Connector connector, SessionHandler sessionHandler, Crypt crypt)
     {
         _userRepository = userRepository ?? throw new ArgumentNullException(nameof(userRepository));
         _connector = connector ?? throw new ArgumentNullException(nameof(connector));
