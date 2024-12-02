@@ -6,7 +6,7 @@ import './IndividualSalePage.css';
 
 function CarDetailPage() {
     const location = useLocation();
-    const { car } = location.state; 
+    const { car } = location.state;
 
     if (!car) {
         return <div>Car not found!</div>;
@@ -29,6 +29,10 @@ function CarDetailPage() {
                     <div className="car-detail-info">
                         <h3>Description</h3>
                         <p>{car.description}</p>
+                        <div className="car-actions">
+                            <button className="buy-button">Buy Now</button>
+                            <button className="add-to-cart-button">Add to Cart</button>
+                        </div>
                     </div>
                 </div>
             </div>

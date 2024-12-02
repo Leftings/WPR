@@ -71,3 +71,36 @@ html, body {
     line-height: 1.5;
     color: #555;
 }
+
+.car-actions {
+    display: flex;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.buy-button, .add-to-cart-button {
+    padding: 15px 30px;
+    font-size: 1.2em;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.buy-button {
+    background-color: #27ae60;
+    color: white;
+}
+
+.buy-button:hover {
+    background-color: #2ecc71;
+}
+
+.add-to-cart-button {
+    background-color: #f39c12;
+    color: white;
+}
+
+.add-to-cart-button:hover {
+    background-color: #f1c40f;
+}
