@@ -5,6 +5,7 @@ using WPR.Cookie;
 using WPR.Database;
 using Microsoft.AspNetCore.Http.HttpResults;
 using WPR.Utils;
+using WPR.Hashing;
 
 namespace WPR.Repository;
 
@@ -15,10 +16,12 @@ namespace WPR.Repository;
 public class UserRepository : IUserRepository
 {
     private readonly Connector _connector;
+    private readonly Hash _hash;
 
-    public UserRepository(Connector connector)
+    public UserRepository(Connector connector, Hash hash)
     {
         _connector = connector ?? throw new ArgumentNullException(nameof(connector));
+        _hash = hash ?? throw new ArgumentNullException(nameof(hash));
     }
 
     public async Task<bool> ValidateUserAsync(string username, string password, bool isEmployee)
