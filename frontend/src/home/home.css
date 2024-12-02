@@ -1,8 +1,13 @@
 body {
     margin: 0;
     font-family: Arial, sans-serif;
+    height: 100%;
+    overflow: auto;
 }
 
+main {
+    height: 100%;
+}
 
 .logo {
     font-size: 1.5rem;
@@ -51,10 +56,10 @@ body {
 
 .container {
     display: flex;
-    justify-content: space-between; 
+    justify-content: center;
     align-items: stretch; 
-    gap: 20px; 
-    margin-left: 30px
+    gap: 20px;
+
 }
 
 .feature-card {

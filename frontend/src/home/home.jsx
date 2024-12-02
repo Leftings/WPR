@@ -1,18 +1,28 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import {Link, useNavigate} from 'react-router-dom';
 import GeneralHeader from "../GeneralBlocks/header/header.jsx";
 import GeneralFooter from "../GeneralBlocks/footer/footer.jsx";
 import GeneralSalePage from "../GeneralSalePage/GeneralSalePage.jsx";
 
 import './home.css';
 
-function WelcomeUser(setWelcome) {
-    fetch('http://localhost:5165/api/Cookie/GetUserName', {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        credentials: 'include', // Cookies or authentication are included
+import error from "eslint-plugin-react/lib/util/error.js";
+    
+function WelcomeUser(setWelcome)
+{
+  fetch('http://localhost:5165/api/Cookie/GetUserName', {
+    method: 'GET',
+    headers: {
+        'Content-Type': 'application/json', 
+    },
+    credentials: 'include', // Cookies of authenticatie wordt meegegeven
+    })
+    .then(response => {
+        console.log(response);
+        if (!response.ok) {
+            throw new Error('No Cookie');
+        }
+        return response.json();
     })
         .then(response => {
             if (!response.ok) {
@@ -30,7 +40,33 @@ function WelcomeUser(setWelcome) {
 }
 
 function Home() {
-    const [welcomeMessage, setWelcomeMessage] = useState('');
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        fetch('http://localhost:5165/api/Login/CheckSession', { credentials: 'include' })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Not logged in')
+                }
+                return response.json();
+            })
+            .then(() => setIsLoggedIn(true))
+            .catch(() =>setIsLoggedIn(false));
+    }, []);
+
+    const handleLogout = () => {
+        fetch('http://localhost:5165/api/Cookie/Logout', { method: 'POST', credentials: 'include' })
+            .then(() => {
+                setIsLoggedIn(false);
+                navigate('/login');
+            })
+            .catch(error => console.error('Logout error', error));
+    };
+    
+    return (
+        <>
+            <GeneralHeader isLoggedIn={isLoggedIn} handleLogout={handleLogout} /> 
 
     useEffect(() => {
         WelcomeUser(setWelcomeMessage);
@@ -71,5 +107,4 @@ function Home() {
         </>
     );
 }
-
 export default Home;

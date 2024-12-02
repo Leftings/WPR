@@ -20,7 +20,7 @@ public class ChangeUserSettingsController : ControllerBase
     }
 
     [HttpPut("ChangeUserInfo")]
-    public async Task<IActionResult> ChangeUserInfo([FromBody] ChangeUserRequest changeUserRequest)
+    public async Task<IActionResult> ChangeUserInfoAsync([FromBody] ChangeUserRequest changeUserRequest)
     {
         if (changeUserRequest == null)
         {
@@ -42,17 +42,15 @@ public class ChangeUserSettingsController : ControllerBase
             }
         }
 
-        var connection = _connector.CreateDbConnection();
-
-        if (await _userRepository.EditUserInfoAsync(data))
+        var updated = await _userRepository.EditUserInfoAsync(data);
+        if (updated.status)
         {
-            connection.Close();
-
             return Ok(new {message = "Data Updated"});
         }
 
-        connection.Close();
+        Console.WriteLine(updated.message);
+        Console.WriteLine(updated.message.Length);
 
-        return BadRequest(new {message = "A Problem Occured Updating The Data"});
+        return BadRequest(new {updated.message});
     }
 }
