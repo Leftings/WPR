@@ -1,8 +1,4 @@
-using Microsoft.AspNetCore.Http.HttpResults;
-using Microsoft.AspNetCore.Mvc;
-using Org.BouncyCastle.Asn1.Ocsp;
-
-namespace WPR.Cookie;
+namespace WPR.Controllers.Cookie;
 
 public class SessionHandler
 {

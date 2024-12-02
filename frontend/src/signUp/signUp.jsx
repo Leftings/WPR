@@ -14,7 +14,7 @@ function SignUp() {
     const [password2, setPassword2] = useState('');
     const [error, setError] = useState('');
     const navigate = useNavigate();
-    const [KvK, setKvK] = useState(null)
+    const [KvK, setKvK] = useState('')
 
     const choice = (buttonId) => {
         setChosenType(buttonId);
@@ -23,7 +23,7 @@ function SignUp() {
     const onSubmit = (event) => {
         event.preventDefault();
     
-        if (!email || !adres || !phonenumber || !dateOfBirth || !password1 || !password2) {
+        if (!email || !adres || !phonenumber || !password1 || !password2) {
             setError('Bepaalde verplichte veld(en) zijn niet ingevuld.');
             return;
         }
@@ -32,13 +32,20 @@ function SignUp() {
             setError('Wachtwoorden komen niet overeen.');
             return;
         }
+        
+        if (chosenType === 2) {
+            if (!KvK || KvK.length !== 8) {
+                setError('KVK number must be 8 digits.');
+                return;
+            }
+        }
     
         setError(null);
-    
-        const formattedDate = new Date(dateOfBirth).toISOString().split('T')[0];
+
         let signUpType = chosenType === 1 ? 'signUpPersonal' : 'signUpEmployee';
-    
-        const data = signUpType === 'signUpPersonal'
+
+      
+        const data = signUpType === 'signUpPersonalAsync'
             ? {
                 Email: email,
                 Password: password1,
@@ -46,7 +53,7 @@ function SignUp() {
                 LastName: lastName,
                 TelNumber: phonenumber,
                 Adres: adres,
-                BirthDate: formattedDate,
+                BirthDate: new Date(dateOfBirth).toISOString().split('T')[0],
                 KvK: null
             }
             : {
@@ -78,17 +85,23 @@ function SignUp() {
             })
             .then(data => {
                 console.log('Sign up successful', data);
-                navigate('/');
+                navigate('/login');
             })
             .catch(error => {
                 console.error('Error:', error);
                 
                 if (error.message === 'Invalid email format') {
                     setError('The email format is invalid.');
-                } else if (error.message === 'Email already existing') {
+                } else if (error.message === 'Email already exists') {
                     setError('The email is already in use. Please use a different email.');
-                } else if (error.message === 'Invalid phone number format') {
+                } else if (error.message === 'Invalid phone number') {
                     setError('The phone number is invalid.')
+                } else if (error.message === 'Invalid birthday format') {
+                    setError('The birthday is invalid.');
+                } else if (error.message === 'KVK number must be 8 digits') {
+                    setError('KVK number must be 8 digits');
+                } else if (error.message === 'KVK number is not a valid KVK number') {
+                    setError('KVK number is not a valid KVK number')
                 } else {
                     setError(`There was an error during making a ${signUpType} account: ${error.message}`);
                 }
@@ -231,7 +244,7 @@ function SignUp() {
                         </>
                     )}
                     <br></br>
-                    <label htmlFor="heeftAccount">Heeft u al een account? <Link id="redirect" to="/">Log
+                    <label htmlFor="heeftAccount">Heeft u al een account? <Link id="redirect" to="/login">Log
                         in!</Link></label>
                     {error && <p style={{color: 'red'}}>{error}</p>}
                 </div>
