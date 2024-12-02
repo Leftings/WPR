@@ -18,5 +18,18 @@ namespace WPR.Utils
                 // Gebruik Regex om te checken of de gegeven email matched met het pattern
                 return Regex.IsMatch(email, emailPattern);
             }
+
+
+            public static bool IsCompanyEmail(string email)
+            {
+                if (string.IsNullOrEmpty(email))
+                {
+                    return false;
+                }
+
+                string emailPattern = @"^[^@\s]+@CarAndAll.nl+$";
+
+                return Regex.IsMatch(email, emailPattern);
+            }
         }
 }

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
+import { getErrorMessage } from '../utils/errorHandler.jsx';
 import { Link, useNavigate } from 'react-router-dom';
-import "./signUp.css"
+import './signUp.css';
 
 function SignUp() {
     const [chosenType, setChosenType] = useState(null);
@@ -14,7 +15,7 @@ function SignUp() {
     const [password2, setPassword2] = useState('');
     const [error, setError] = useState('');
     const navigate = useNavigate();
-    const [KvK, setKvK] = useState('')
+    const [KvK, setKvK] = useState('');
 
     const choice = (buttonId) => {
         setChosenType(buttonId);
@@ -22,29 +23,28 @@ function SignUp() {
 
     const onSubmit = (event) => {
         event.preventDefault();
-    
+
         if (!email || !adres || !phonenumber || !password1 || !password2) {
             setError('Bepaalde verplichte veld(en) zijn niet ingevuld.');
             return;
         }
-    
+
         if (password1 !== password2) {
             setError('Wachtwoorden komen niet overeen.');
             return;
         }
-        
+
         if (chosenType === 2) {
             if (!KvK || KvK.length !== 8) {
                 setError('KVK number must be 8 digits.');
                 return;
             }
         }
-    
+
         setError(null);
 
         let signUpType = chosenType === 1 ? 'signUpPersonal' : 'signUpEmployee';
 
-      
         const data = signUpType === 'signUpPersonalAsync'
             ? {
                 Email: email,
@@ -66,7 +66,7 @@ function SignUp() {
                 BirthDate: null,
                 KvK: KvK
             };
-    
+
         fetch(`http://localhost:5165/api/SignUp/${signUpType}`, {
             method: 'POST',
             headers: {
@@ -78,7 +78,7 @@ function SignUp() {
             .then(response => {
                 if (!response.ok) {
                     return response.json().then(err => {
-                        throw new Error(err.message || 'Sign up failed')
+                        throw new Error(err.message || 'Sign up failed');
                     });
                 }
                 return response.json();
@@ -89,24 +89,9 @@ function SignUp() {
             })
             .catch(error => {
                 console.error('Error:', error);
-                
-                if (error.message === 'Invalid email format') {
-                    setError('The email format is invalid.');
-                } else if (error.message === 'Email already exists') {
-                    setError('The email is already in use. Please use a different email.');
-                } else if (error.message === 'Invalid phone number') {
-                    setError('The phone number is invalid.')
-                } else if (error.message === 'Invalid birthday format') {
-                    setError('The birthday is invalid.');
-                } else if (error.message === 'KVK number must be 8 digits') {
-                    setError('KVK number must be 8 digits');
-                } else if (error.message === 'KVK number is not a valid KVK number') {
-                    setError('KVK number is not a valid KVK number')
-                } else {
-                    setError(`There was an error during making a ${signUpType} account: ${error.message}`);
-                }
+                setError(getErrorMessage(error, signUpType));
             });
-    };    
+    };
 
     return (
         <>
@@ -124,7 +109,6 @@ function SignUp() {
                         <li><Link to="/contact">Contact</Link></li>
                     </ul>
                 </nav>
-
             </header>
 
             <div>
@@ -132,7 +116,7 @@ function SignUp() {
                     <h1>Aanmelden</h1>
                 </div>
 
-                <div id="input">
+                <form id="input" onSubmit={onSubmit}>
                     <label htmlFor="button">Soort Account:</label>
                     <br></br>
                     <button
@@ -156,44 +140,44 @@ function SignUp() {
                             <label htmlFor="firstName">Voornaam</label>
                             <br></br>
                             <input type="text" id="firstName" value={firstName}
-                                   onChange={(e) => setFirstName(e.target.value)}></input>
+                                   onChange={(e) => setFirstName(e.target.value)} />
                             <br></br>
                             <label htmlFor="lastName">Achternaam</label>
                             <br></br>
                             <input type="text" id="lastName" value={lastName}
-                                   onChange={(e) => setLastName(e.target.value)}></input>
+                                   onChange={(e) => setLastName(e.target.value)} />
                             <br></br>
                             <label htmlFor="email">E-mail</label>
                             <br></br>
                             <input type="text" id="email" value={email}
-                                   onChange={(e) => setEmail(e.target.value)}></input>
+                                   onChange={(e) => setEmail(e.target.value)} />
                             <br></br>
                             <label htmlFor="adres">Adres</label>
                             <br></br>
                             <input type="text" id="adres" value={adres}
-                                   onChange={(e) => setAdres(e.target.value)}></input>
+                                   onChange={(e) => setAdres(e.target.value)} />
                             <br></br>
                             <label htmlFor="phonenumber">Telefoonnummer</label>
                             <br></br>
                             <input type="tel" id="phonenumber" value={phonenumber}
-                                   onChange={(e) => setPhonenumber(e.target.value)}></input>
+                                   onChange={(e) => setPhonenumber(e.target.value)} />
                             <br></br>
                             <label htmlFor="dateOfBirth">Geboortedatum</label>
                             <br></br>
                             <input type="date" id="dateOfBirth" value={dateOfBirth}
-                                   onChange={(e) => setDateOfBirth(e.target.value)}></input>
+                                   onChange={(e) => setDateOfBirth(e.target.value)} />
                             <br></br>
                             <label htmlFor="password">Wachtwoord</label>
                             <br></br>
                             <input type="password" id="password" value={password1}
-                                   onChange={(e) => setPassword1(e.target.value)}></input>
+                                   onChange={(e) => setPassword1(e.target.value)} />
                             <br></br>
                             <label htmlFor="passwordConfirm">Herhaal wachtwoord</label>
                             <br></br>
                             <input type="password" id="passwordConfirm" value={password2}
-                                   onChange={(e) => setPassword2(e.target.value)}></input>
+                                   onChange={(e) => setPassword2(e.target.value)} />
                             <br></br>
-                            <button id="button" type="button" onClick={onSubmit}>Maak Account</button>
+                            <button id="button" type="submit">Maak Account</button>
                         </>
                     )}
 
@@ -203,51 +187,51 @@ function SignUp() {
                             <label htmlFor="firstName">Voornaam</label>
                             <br></br>
                             <input type="text" id="firstName" value={firstName}
-                                   onChange={(e) => setFirstName(e.target.value)}></input>
+                                   onChange={(e) => setFirstName(e.target.value)} />
                             <br></br>
                             <label htmlFor="lastName">Achternaam</label>
                             <br></br>
                             <input type="text" id="lastName" value={lastName}
-                                   onChange={(e) => setLastName(e.target.value)}></input>
+                                   onChange={(e) => setLastName(e.target.value)} />
                             <br></br>
                             <label htmlFor="email">E-mail</label>
                             <br></br>
                             <input type="text" id="email" value={email}
-                                   onChange={(e) => setEmail(e.target.value)}></input>
+                                   onChange={(e) => setEmail(e.target.value)} />
                             <br></br>
                             <label htmlFor="adres">Adres</label>
                             <br></br>
                             <input type="text" id="adres" value={adres}
-                                   onChange={(e) => setAdres(e.target.value)}></input>
+                                   onChange={(e) => setAdres(e.target.value)} />
                             <br></br>
                             <label htmlFor="phonenumber">Telefoonnummer</label>
                             <br></br>
                             <input type="tel" id="phonenumber" value={phonenumber}
-                                   onChange={(e) => setPhonenumber(e.target.value)}></input>
+                                   onChange={(e) => setPhonenumber(e.target.value)} />
                             <br></br>
                             <label htmlFor="kvk">KVK</label>
                             <br></br>
                             <input type="text" id="kvk" value={KvK}
-                                   onChange={(e) => setKvK(e.target.value)}></input>
+                                   onChange={(e) => setKvK(e.target.value)} />
                             <br></br>
                             <label htmlFor="password">Wachtwoord</label>
                             <br></br>
                             <input type="password" id="password" value={password1}
-                                   onChange={(e) => setPassword1(e.target.value)}></input>
+                                   onChange={(e) => setPassword1(e.target.value)} />
                             <br></br>
                             <label htmlFor="passwordConfirm">Herhaal wachtwoord</label>
                             <br></br>
                             <input type="password" id="passwordConfirm" value={password2}
-                                   onChange={(e) => setPassword2(e.target.value)}></input>
+                                   onChange={(e) => setPassword2(e.target.value)} />
                             <br></br>
-                            <button id="button" type="button" onClick={onSubmit}>Maak Account</button>
+                            <button id="button" type="submit">Maak Account</button>
                         </>
                     )}
                     <br></br>
                     <label htmlFor="heeftAccount">Heeft u al een account? <Link id="redirect" to="/login">Log
                         in!</Link></label>
-                    {error && <p style={{color: 'red'}}>{error}</p>}
-                </div>
+                    {error && <p style={{ color: 'red' }}>{error}</p>}
+                </form>
             </div>
 
             <footer></footer>
