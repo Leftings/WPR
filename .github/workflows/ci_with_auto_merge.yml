@@ -45,8 +45,12 @@ jobs:
     name: Block Merge if Tests Fail or Auto-Merge if Pass
     runs-on: ubuntu-latest
     needs: build
-    if: github.event_name == 'pull_request'
-  
+    if: always()  # Ensure this runs even if the previous job fails
+
+    permissions:
+      pull-requests: write
+      contents: write
+      
     steps:
       - name: Debug Pull Request Event Context
         run: |

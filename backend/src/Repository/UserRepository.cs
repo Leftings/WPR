@@ -1,7 +1,7 @@
 ﻿using System.Data;
 using Microsoft.AspNetCore.Mvc;
 using MySql.Data.MySqlClient;
-using WPR.Cookie;
+using WPR.Controllers.Cookie;
 using WPR.Database;
 using Microsoft.AspNetCore.Http.HttpResults;
 using WPR.Utils;
@@ -61,12 +61,12 @@ public class UserRepository : IUserRepository
 
         catch (MySqlException ex)
         {
-            Console.Error.WriteLine($"Database error: {ex.Message}");
+            await Console.Error.WriteLineAsync($"Database error: {ex.Message}");
             return (false, ex.Message);
         }
         catch (Exception ex)
         {
-            Console.Error.WriteLine($"Unexpected error: {ex.Message}");
+            await Console.Error.WriteLineAsync($"Unexpected error: {ex.Message}");
             return (false, ex.Message);
         }
     }
@@ -90,7 +90,7 @@ public class UserRepository : IUserRepository
                 if (await command.ExecuteNonQueryAsync() > 0)
                 {
                     command.CommandText = "SELECT LAST_INSERT_ID();";
-                    int newUserID = Convert.ToInt32(command.ExecuteScalar());
+                    int newUserID = Convert.ToInt32(await command.ExecuteScalarAsync());
 
                     return (true, "Data Inserted", newUserID);
                 }
@@ -100,12 +100,12 @@ public class UserRepository : IUserRepository
 
         catch (MySqlException ex)
         {
-            Console.Error.WriteLine($"Database error: {ex.Message}");
+            await Console.Error.WriteLineAsync($"Database error: {ex.Message}");
             return (false, ex.Message, -1);
         }
         catch (Exception ex)
         {
-            Console.Error.WriteLine($"Unexpected error: {ex.Message}");
+            await Console.Error.WriteLineAsync($"Unexpected error: {ex.Message}");
             return (false, ex.Message, -1);
         }
     }
@@ -132,12 +132,12 @@ public class UserRepository : IUserRepository
 
         catch (MySqlException ex)
         {
-            Console.Error.WriteLine($"Database error: {ex.Message}");
+            await Console.Error.WriteLineAsync($"Database error: {ex.Message}");
             return (false, ex.Message);
         }
         catch (Exception ex)
         {
-            Console.Error.WriteLine($"Unexpected error: {ex.Message}");
+            await Console.Error.WriteLineAsync($"Unexpected error: {ex.Message}");
             return (false, ex.Message);
         }
     }
@@ -164,12 +164,12 @@ public class UserRepository : IUserRepository
 
         catch (MySqlException ex)
         {
-            Console.Error.WriteLine($"Database error: {ex.Message}");
+            await Console.Error.WriteLineAsync($"Database error: {ex.Message}");
             return (false, ex.Message);
         }
         catch (Exception ex)
         {
-            Console.Error.WriteLine($"Unexpected error: {ex.Message}");
+            await Console.Error.WriteLineAsync($"Unexpected error: {ex.Message}");
             return (false, ex.Message);
         }
     }
@@ -197,7 +197,7 @@ public class UserRepository : IUserRepository
         }
         catch (Exception ex)
         {
-            Console.Error.WriteLine($"Unexpected error: {ex.Message}");
+            await Console.Error.WriteLineAsync($"Unexpected error: {ex.Message}");
             return -1;
         }
     }
@@ -211,6 +211,7 @@ public class UserRepository : IUserRepository
             using (var connection = _connector.CreateDbConnection())
             using (var command = new MySqlCommand(query, (MySqlConnection)connection))
             {
+                Console.WriteLine(userId);
                 command.Parameters.AddWithValue("@I", Convert.ToInt32(userId));
 
                 var result = await command.ExecuteScalarAsync();
@@ -220,7 +221,7 @@ public class UserRepository : IUserRepository
         }
         catch (Exception ex)
         {
-            Console.Error.WriteLine($"Unexpected error: {ex.Message}");
+            await Console.Error.WriteLineAsync($"Unexpected error: {ex.Message}");
             return ex.ToString();
         }
     }
@@ -261,6 +262,32 @@ public class UserRepository : IUserRepository
             }
     }
 
+    public async Task<bool> IsKvkNumberAsync(int kvkNumber)
+    {
+        try
+        {
+            string query = "SELECT COUNT(1) FROM Business WHERE KVK = @kvkNumber";
+
+            using (var connection = _connector.CreateDbConnection())
+            using (var command = new MySqlCommand(query, (MySqlConnection) connection))
+            {
+                command.Parameters.AddWithValue("@kvkNumber", kvkNumber);
+                var result = Convert.ToInt32(await command.ExecuteScalarAsync());
+                return result > 0;
+            }
+        }
+        catch (MySqlException ex)
+        {
+            await Console.Error.WriteLineAsync($"Database error: {ex.Message}");
+            return false;
+        }
+        catch (Exception ex)
+        {
+            await Console.Error.WriteLineAsync($"Unexpected error: {ex.Message}");
+            return false;
+        }
+    }
+
     private async Task<(bool goodQuery, string message)> CreateUserInfoQuery(List<object[]> data)
     {
         int lengthList = data.Count();
@@ -298,4 +325,5 @@ public class UserRepository : IUserRepository
 
         return (true, query += $"WHERE ID = {data[0][1]}");
     }
+    
 }

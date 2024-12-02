@@ -50,7 +50,7 @@ function Home() {
         fetch('http://localhost:5165/api/Cookie/Logout', { method: 'POST', credentials: 'include' })
             .then(() => {
                 setIsLoggedIn(false);
-                navigate('/');
+                navigate('/login');
             })
             .catch(error => console.error('Logout error', error));
     };
@@ -70,7 +70,7 @@ function Home() {
                 <div className="container">
                     <section className="features">
                         <div className="feature-card">
-                            <h3>Grootte selectie</h3>
+                            <h3>Grote selectie</h3>
                             <p>Van sedans tot SUVs, we hebben een auto voor elke gelegenheid.</p>
                         </div>
                         <div className="feature-card">
