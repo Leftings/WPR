@@ -33,7 +33,7 @@ function Home() {
 
     return (
         <>
-            <GeneralHeader />
+            <GeneralHeader isLoggedIn={isLoggedIn} handleLogout={handleLogout} />
             <main>
                 <section className="hero">
                     <h1>Vind de perfecte auto voor jouw avontuur</h1>
