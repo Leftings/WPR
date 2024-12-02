@@ -2,8 +2,10 @@ import React, { useState, useEffect } from 'react';
 import {Link, useNavigate} from 'react-router-dom';
 import GeneralHeader from "../GeneralBlocks/header/header.jsx";
 import GeneralFooter from "../GeneralBlocks/footer/footer.jsx";
+import GeneralSalePage from "../GeneralSalePage/GeneralSalePage.jsx";
 
 import './home.css';
+
 import error from "eslint-plugin-react/lib/util/error.js";
     
 function WelcomeUser(setWelcome)
@@ -22,15 +24,22 @@ function WelcomeUser(setWelcome)
         }
         return response.json();
     })
-    .then(async data => {
-      setWelcome(`Welcome, ${data.message}`);
-    })
-    .catch(error => {
-        console.error('Error:', error);
-    });
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('No Cookie');
+            }
+            return response.json();
+        })
+        .then(data => {
+            setWelcome(`Welcome, ${data.message}`);
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            setWelcome('Welcome, Guest'); // Fallback message
+        });
 }
-function Home() {
 
+function Home() {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const navigate = useNavigate();
 
@@ -59,13 +68,23 @@ function Home() {
         <>
             <GeneralHeader isLoggedIn={isLoggedIn} handleLogout={handleLogout} /> 
 
+    useEffect(() => {
+        WelcomeUser(setWelcomeMessage);
+    }, []); // Runs once on component mount
 
+    return (
+        <>
+            <GeneralHeader />
             <main>
                 <section className="hero">
-                    <h1>Vindt de perfecte auto voor jouw avontuur</h1>
+                    <h1>Vind de perfecte auto voor jouw avontuur</h1>
                     <p>Betaalbare prijzen, flexibele verhuur en een breed aanbod aan voertuigen om uit te kiezen.</p>
-                    <Link to="/cars" className="cta-button">Verken onze Auto's</Link>
+                    <Link to="/GeneralSalePage" className="cta-button">Verken onze Auto's</Link>
                 </section>
+
+                <div className="welcome-message">
+                    <p>{welcomeMessage}</p>
+                </div>
 
                 <div className="container">
                     <section className="features">
@@ -84,10 +103,7 @@ function Home() {
                     </section>
                 </div>
             </main>
-
-
-            <GeneralFooter /> 
-
+            <GeneralFooter />
         </>
     );
 }
