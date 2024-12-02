@@ -81,18 +81,6 @@ function ChangeUserInfo(userData) {
     });
 }
 
-function RemoveInvalidCookie()
-{
-  fetch('http://localhost:5165/api/Cookie/Logout', {
-    method: 'GET',
-    headers: {
-        'Content-Type': 'application/json', 
-    },
-    credentials: 'include', // Cookies of authenticatie wordt meegegeven
-    })
-}
-
-
 function UserSettings() {
   const navigate = useNavigate();
   const [user, setUser] = useState('');
@@ -123,7 +111,6 @@ function UserSettings() {
               GetUser(setUser);
           })
           .catch(() => {
-              //RemoveInvalidCookie();
               navigate('/');
           })
   }, [navigate]);
