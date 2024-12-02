@@ -1,7 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import TermsAndConditions from "../../GeneralSalePage/GeneralSalePage.jsx";
 import logo from '../../assets/logo.svg';
 import logoHover from '../../assets/logo-green.svg';
+
 import './header.css'; 
 
 function GeneralHeader({ isLoggedIn, handleLogout}) {
@@ -24,7 +26,7 @@ function GeneralHeader({ isLoggedIn, handleLogout}) {
                                 <Link to="/login">Login</Link>
                             </li>
                         )}
-                        <li><Link to="/cars">Zoek Auto's</Link></li>
+                        <li><Link to="/GeneralSalePage">Zoek Auto's</Link></li>
                         <li><Link to="/about">Over ons</Link></li>
                         <li><Link to="/contact">Contact</Link></li>
                         <lis><Link to="/userSettings">Instellingen</Link></lis>
