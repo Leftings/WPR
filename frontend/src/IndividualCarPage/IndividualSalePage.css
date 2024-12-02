@@ -1,6 +1,17 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+}
+
 .car-detail-page {
-    padding: 20px;
-    background-color: #f9f9f9;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding-top: 30px;
+    padding-bottom: 50px;
 }
 
 .car-detail-header {
@@ -22,22 +33,26 @@
 .car-detail-content {
     display: flex;
     justify-content: center;
-    gap: 40px;
+    gap: 150px;
     margin-top: 30px;
+    padding-left: 200px;
 }
 
 .car-image-container {
-    width: 300px;
-    height: 300px;
+    width: 500px;
+    height: 500px;
     display: flex;
     justify-content: center;
     align-items: center;
+    overflow: hidden;
+    border: 8px solid #1d7874ff;
+    border-radius: 20px;
 }
 
 .car-detail-image {
-    max-width: 100%;
-    max-height: 100%;
-    border-radius: 10px;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 .car-detail-info {

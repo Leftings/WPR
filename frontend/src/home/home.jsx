@@ -66,14 +66,6 @@ function Home() {
     
     return (
         <>
-            <GeneralHeader isLoggedIn={isLoggedIn} handleLogout={handleLogout} /> 
-
-    useEffect(() => {
-        WelcomeUser(setWelcomeMessage);
-    }, []); // Runs once on component mount
-
-    return (
-        <>
             <GeneralHeader />
             <main>
                 <section className="hero">
