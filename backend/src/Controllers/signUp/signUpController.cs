@@ -129,8 +129,6 @@ public class SignUpController : ControllerBase
                 {
                     transaction.Commit();
                 }
-
-                connection.Close();
             }
         }
     }
@@ -226,8 +224,6 @@ public class SignUpController : ControllerBase
                 {
                     transaction.Commit();
                 }
-
-                connection.Close();
             }
         }
         
