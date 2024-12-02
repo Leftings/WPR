@@ -9,7 +9,12 @@ namespace WPR.Database;
 /// maakt gebruik van de connectie strings die zijn uitgelezen in EnvConfig.
 /// </summary>
 
-public class Connector
+public interface IConnector
+{
+    IDbConnection CreateDbConnection();
+}
+
+public class Connector : IConnector
 {
     private readonly EnvConfig _envConfig; // Instantie van EnConfig om environment variabelen op te halen.
 
@@ -22,7 +27,7 @@ public class Connector
     /// Create en open de database connectie door het gebruiken van de configuratie values.
     /// </summary>
     /// <returns>Een geopende IDbConnection instantie</returns>
-    public IDbConnection CreateDbConnection()
+    public virtual IDbConnection CreateDbConnection()
     {
         if (!_envConfig.IsConfigured()) // Check of alle environment variabelen zijn geconfigureerd
         {

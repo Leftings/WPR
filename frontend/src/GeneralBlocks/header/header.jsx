@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import TermsAndConditions from "../../GeneralSalePage/GeneralSalePage.jsx";
 import './header.css'; 
 
-function GeneralHeader() {
+function GeneralHeader({ isLoggedIn, handleLogout}) {
     return (
         <>
             <header className="header">
@@ -12,10 +12,19 @@ function GeneralHeader() {
                 </div>
                 <nav id="right">
                     <ul className="nav-links">
-                        <li><Link to="/#">Logout</Link></li>
+                        {isLoggedIn ? (
+                            <li>
+                            <button onClick={handleLogout} className="logout-button">Logout</button>
+                            </li>
+                        ) : (
+                            <li>
+                                <Link to="/login">Login</Link>
+                            </li>
+                        )}
                         <li><Link to="/GeneralSalePage">Zoek Auto's</Link></li>
                         <li><Link to="/about">Over ons</Link></li>
                         <li><Link to="/contact">Contact</Link></li>
+                        <lis><Link to="/userSettings">Instellingen</Link></lis>
                     </ul>
                 </nav>
             </header>
