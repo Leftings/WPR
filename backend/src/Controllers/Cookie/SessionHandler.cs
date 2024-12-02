@@ -22,17 +22,13 @@ public class SessionHandler : IDisposable
         });
     }
 
-    // Dispose pattern implementation
     protected virtual void Dispose(bool disposing)
     {
         if (!disposedValue)
         {
             if (disposing)
             {
-                // Dispose of managed resources (if any)
             }
-
-            // Dispose of unmanaged resources (if any)
 
             disposedValue = true;
         }
@@ -40,7 +36,6 @@ public class SessionHandler : IDisposable
 
     public void Dispose()
     {
-        // Do not change this code. Put cleanup code in the Dispose(bool disposing) method.
         Dispose(disposing: true);
         GC.SuppressFinalize(this);
     }
