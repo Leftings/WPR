@@ -45,7 +45,7 @@ function SignUp() {
         let signUpType = chosenType === 1 ? 'signUpPersonal' : 'signUpEmployee';
 
       
-        const data = signUpType === 'signUpPersonalAsync'
+        const data = signUpType === 'signUpPersonal'
             ? {
                 Email: email,
                 Password: password1,
