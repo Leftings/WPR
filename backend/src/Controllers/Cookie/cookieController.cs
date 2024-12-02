@@ -6,7 +6,6 @@ using System;
 using WPR.Repository;
 using MySqlX.XDevAPI.Common;
 using WPR.Cryption;
-using WPR.Cookie;
 
 [Route("api/[controller]")]
 [ApiController]

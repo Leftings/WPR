@@ -1,4 +1,4 @@
-namespace WPR.Cookie;
+namespace WPR.Controllers.Cookie;
 
 public class SessionHandler : IDisposable
 {
