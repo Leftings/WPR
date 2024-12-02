@@ -12,12 +12,12 @@ public class Hash
         _salt = Convert.FromBase64String(envConfig.Get("SALT"));
     }
 
-    public void createSalt()
+    public byte[] createSalt()
     {
         byte[] salt = RandomNumberGenerator.GetBytes(128 / 8); // divide by 8 to convert bits to bytes
-        Console.WriteLine($"Salt: {Convert.ToBase64String(salt)}");
+        return salt;
     }
-
+    
     public string createHash(string password)
     {
         string hashed = Convert.ToBase64String(KeyDerivation.Pbkdf2(
