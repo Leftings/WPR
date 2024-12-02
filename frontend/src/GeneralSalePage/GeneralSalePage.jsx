@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import GeneralHeader from "../GeneralBlocks/header/header.jsx";
 import GeneralFooter from "../GeneralBlocks/footer/footer.jsx";
+import ShowImage from './ShowImage.jsx';
 
 import './GeneralSalePage.css'
 
@@ -27,6 +28,7 @@ function WelcomeUser(setWelcome) {
             console.error('Error:', error);
         });
 }
+
 
 const carsForSale = [
     {
@@ -121,7 +123,7 @@ function GeneralSalePage() {
                         {carsForSale.map((car) => (
                             <div className="car-card" key={car.id}>
                                 <div className="car-blob">
-                                    <img src={car.image} alt={car.name} className="car-image" />
+                                    <ShowImage frameNr={1} className="car-image" />
                                 </div>
                                 <div className="car-info">
                                     <h2 className="car-name">{car.name}</h2>

@@ -63,28 +63,17 @@ function Home() {
             })
             .catch(error => console.error('Logout error', error));
     };
-    
-    return (
-        <>
-            <GeneralHeader isLoggedIn={isLoggedIn} handleLogout={handleLogout} /> 
 
-    useEffect(() => {
-        WelcomeUser(setWelcomeMessage);
-    }, []); // Runs once on component mount
 
     return (
         <>
-            <GeneralHeader />
+            <GeneralHeader isLoggedIn={isLoggedIn} handleLogout={handleLogout} />
             <main>
                 <section className="hero">
                     <h1>Vind de perfecte auto voor jouw avontuur</h1>
                     <p>Betaalbare prijzen, flexibele verhuur en een breed aanbod aan voertuigen om uit te kiezen.</p>
                     <Link to="/GeneralSalePage" className="cta-button">Verken onze Auto's</Link>
                 </section>
-
-                <div className="welcome-message">
-                    <p>{welcomeMessage}</p>
-                </div>
 
                 <div className="container">
                     <section className="features">
