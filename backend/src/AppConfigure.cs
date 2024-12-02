@@ -1,3 +1,4 @@
+using System.Security.Policy;
 using System.Text.Json.Serialization;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.Extensions.Options;
@@ -8,6 +9,7 @@ using WPR.Cryption;
 using WPR.Data;
 using WPR.Database;
 using WPR.Repository;
+using WPR.Hashing;
 
 namespace WPR;
 
@@ -70,6 +72,7 @@ public class AppConfigure
         //builder.Services.AddScoped<IResponseCookies>();
         builder.Services.AddScoped<SessionHandler>(); // Scoped session handler
         builder.Services.AddScoped<Crypt>();
+        builder.Services.AddScoped<Hashing.Hash>();
         
         // Configureer authenticatie met cookie-based authenticatie schema.
         builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
