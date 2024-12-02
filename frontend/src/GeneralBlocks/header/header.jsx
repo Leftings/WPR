@@ -19,7 +19,7 @@ function GeneralHeader({ isLoggedIn, handleLogout}) {
                     <ul className="nav-links">
                         {isLoggedIn ? (
                             <li>
-                            <button onClick={handleLogout} className="logout-button">Logout</button>
+                            <Link onClick={handleLogout} className="logout-button">Logout</Link>
                             </li>
                         ) : (
                             <li>
