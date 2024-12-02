@@ -21,6 +21,5 @@ public interface IUserRepository
     Task<int> GetUserIdAsync(string email);
     Task<string> GetUserNameAsync(string userId);
     Task<(bool status, string message)> EditUserInfoAsync(List<object[]> data);
-    
-
+    Task<bool> IsKvkNumberAsync(int kvkNumber);
 }

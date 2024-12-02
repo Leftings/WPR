@@ -39,7 +39,7 @@ public class SignUpController : ControllerBase
 
     // Wijzigingen die gemaakt worden in signUpPersonal moeten ook gemaakt worden in signUpEmployee
     [HttpPost("signUpPersonal")]
-    public async Task<IActionResult> signUpPersonal([FromBody] SignUpRequest signUpRequest)
+    public async Task<IActionResult> signUpPersonalAsync([FromBody] SignUpRequest signUpRequest)
     {
         var emailCheck = await _userRepository.checkUsageEmailAsync(signUpRequest.Email);
         bool commit = true;
@@ -52,7 +52,7 @@ public class SignUpController : ControllerBase
             try
             {
                 bool filledIn = IsFilledIn(signUpRequest);
-                if (!filledIn || signUpRequest.BirthDate == null)
+                if (!filledIn)
                 {
                     return BadRequest(new { message = "Not all elements are filled in" });
                 }
@@ -77,7 +77,7 @@ public class SignUpController : ControllerBase
                     transaction.Rollback();
                     commit = false;
 
-                    return BadRequest( new { message = "Email allready existing"} );
+                    return BadRequest( new { message = "Email already exists"} );
                 }
                 else if (filledIn && signUpRequest.BirthDate != null)
                 {
@@ -136,7 +136,7 @@ public class SignUpController : ControllerBase
     }
 
     [HttpPost("signUpEmployee")]
-    public async Task<IActionResult> signUpEmployee([FromBody] SignUpRequest signUpRequest)
+    public async Task<IActionResult> signUpEmployeeAsync([FromBody] SignUpRequest signUpRequest)
     {
         var connection = _connector.CreateDbConnection();
         var emailCheck = await _userRepository.checkUsageEmailAsync(signUpRequest.Email);
@@ -147,16 +147,33 @@ public class SignUpController : ControllerBase
             try
             {
                 bool filledIn = IsFilledIn(signUpRequest);
-                if (!filledIn || signUpRequest.KvK == null)
+                if (!filledIn )
                 {
                     return BadRequest(new { message = "Not all elements are filled in" });
+                }
+                if (!EmailChecker.IsValidEmail(signUpRequest.Email))
+                {
+                    return BadRequest(new { message = "Invalid email format" });
+                }
+
+                var kvkChecker = new KvkChecker(_userRepository);
+                var (isValidKvk, kvkErrorMessage) = await kvkChecker.IsKvkNumberValid(signUpRequest.KvK);
+
+                if (!isValidKvk)
+                {
+                    return BadRequest(new { message = kvkErrorMessage });
+                }
+
+                if (!TelChecker.IsValidPhoneNumber(signUpRequest.TelNumber))
+                {
+                    return BadRequest(new { message = "Invalid phone number" });
                 }
                 else if (emailCheck.status)
                 {
                     transaction.Rollback();
                     commit = false;
 
-                    return BadRequest( new { message = "Email allready existing"} );
+                    return BadRequest( new { message = "Email already exists"} );
                 }
                 else if (filledIn && signUpRequest.KvK != null)
                 {

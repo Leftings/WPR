@@ -311,6 +311,32 @@ public class UserRepository : IUserRepository
             }
     }
 
+    public async Task<bool> IsKvkNumberAsync(int kvkNumber)
+    {
+        try
+        {
+            string query = "SELECT COUNT(1) FROM Business WHERE KVK = @kvkNumber";
+
+            using (var connection = _connector.CreateDbConnection())
+            using (var command = new MySqlCommand(query, (MySqlConnection) connection))
+            {
+                command.Parameters.AddWithValue("@kvkNumber", kvkNumber);
+                var result = Convert.ToInt32(await command.ExecuteScalarAsync());
+                return result > 0;
+            }
+        }
+        catch (MySqlException ex)
+        {
+            await Console.Error.WriteLineAsync($"Database error: {ex.Message}");
+            return false;
+        }
+        catch (Exception ex)
+        {
+            await Console.Error.WriteLineAsync($"Unexpected error: {ex.Message}");
+            return false;
+        }
+    }
+
     private async Task<(bool goodQuery, string message)> CreateUserInfoQuery(List<object[]> data)
     {
         int lengthList = data.Count();
@@ -348,4 +374,5 @@ public class UserRepository : IUserRepository
 
         return (true, query += $"WHERE ID = {data[0][1]}");
     }
+    
 }
