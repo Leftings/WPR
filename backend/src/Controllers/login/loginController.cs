@@ -7,6 +7,7 @@ using System;
 using WPR.Controllers.Cookie;
 using WPR.Database;
 using WPR.Cryption;
+using WPR.Hashing;
 
 [Route("api/[controller]")]
 [ApiController]
