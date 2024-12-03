@@ -6,7 +6,7 @@ import './IndividualSalePage.css';
 
 function CarDetailPage() {
     const location = useLocation();
-    const vehicle = location.state?.vehicle; // Safely access the vehicle object.
+    const vehicle = location.state?.vehicle; 
 
     if (!vehicle) {
         return (
