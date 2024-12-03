@@ -105,6 +105,36 @@ const carsForSale = [
 
 function GeneralSalePage() {
     const [welcomeMessage, setWelcomeMessage] = useState('');
+    const [vehicles, setVehicles] = useState([]);
+    const [error, setError] = useState(null);
+
+    const fetchVehicles= async () => {
+        try {
+            const response = await fetch(`http://localhost:5165/api/vehicle/GetAllVehicles`);
+
+            if (!response.ok) {
+                throw new Error(`Error fetching vehicles: ${response.statusText}`)
+            }
+
+            const data = await response.json();
+            console.log(data);
+            setVehicles(data);
+            console.log(vehicles);
+        } catch (e) {
+            console.error(e);
+            setError('Failed to load vehicles')
+        }
+    };
+
+    useEffect(() => {
+        fetchVehicles();
+    }, []);
+
+    useEffect(() => {
+        console.log(vehicles);
+
+
+    })
 
     useEffect(() => {
         WelcomeUser(setWelcomeMessage);
@@ -120,15 +150,22 @@ function GeneralSalePage() {
                 <div className="car-sale-section">
                     <h1 className="title">Cars for Sale</h1>
                     <div className="car-grid">
-                        {carsForSale.map((car) => (
-                            <div className="car-card" key={car.id}>
+                        {vehicles.map((vehicle) => (
+                            <div key={vehicle.FrameNr} className="car-card">
                                 <div className="car-blob">
-                                    <ShowImage frameNr={1} className="car-image" />
+                                    {vehicle.Image ? (
+                                        <img
+                                            src={`data:image/jpeg;base64,${vehicle.Image}`}
+                                            alt={`${vehicle.Brand || 'Unknown'} ${vehicle.Type || ''}`}
+                                        />
+                                    ) : (
+                                        <p>Image not available</p>
+                                    )}
                                 </div>
                                 <div className="car-info">
-                                    <h2 className="car-name">{car.name}</h2>
-                                    <p className="car-price">{car.price}</p>
-                                    <p className="car-description">{car.description}</p>
+                                    <h2 className="car-name">{`${vehicle.Brand || 'Unknown'} ${vehicle.Type || ''}`}</h2>
+                                    <p className="car-price">{`$${vehicle.Price}`}</p>
+                                    <p className="car-description">Vroom Vroom</p>
                                 </div>
                             </div>
                         ))}
@@ -136,7 +173,7 @@ function GeneralSalePage() {
                 </div>
             </div>
 
-            <GeneralFooter />
+            <GeneralFooter/>
         </>
     );
 }
