@@ -163,6 +163,13 @@ function GeneralSalePage() {
                                     <h2 className="car-name">{`${vehicle.brand || 'Unknown'} ${vehicle.type || ''}`}</h2>
                                     <p className="car-price">{`$${vehicle.price}`}</p>
                                     <p className="car-description">Vroom Vroom</p>
+                                    <Link
+                                        to={`/vehicle/${vehicle.frameNr}`}
+                                        state={{ vehicle }}
+                                        className="view-details-link"
+                                    >
+                                        View Details
+                                    </Link>
                                 </div>
                             </div>
                         ))}
