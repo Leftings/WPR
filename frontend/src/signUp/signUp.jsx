@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { getErrorMessage } from '../utils/errorHandler.jsx'
 import "./signUp.css"
 
 function SignUp() {
@@ -45,7 +46,7 @@ function SignUp() {
         let signUpType = chosenType === 1 ? 'signUpPersonal' : 'signUpEmployee';
 
       
-        const data = signUpType === 'signUpPersonalAsync'
+        const data = signUpType === 'signUpPersonal'
             ? {
                 Email: email,
                 Password: password1,
@@ -89,22 +90,7 @@ function SignUp() {
             })
             .catch(error => {
                 console.error('Error:', error);
-                
-                if (error.message === 'Invalid email format') {
-                    setError('The email format is invalid.');
-                } else if (error.message === 'Email already exists') {
-                    setError('The email is already in use. Please use a different email.');
-                } else if (error.message === 'Invalid phone number') {
-                    setError('The phone number is invalid.')
-                } else if (error.message === 'Invalid birthday format') {
-                    setError('The birthday is invalid.');
-                } else if (error.message === 'KVK number must be 8 digits') {
-                    setError('KVK number must be 8 digits');
-                } else if (error.message === 'KVK number is not a valid KVK number') {
-                    setError('KVK number is not a valid KVK number')
-                } else {
-                    setError(`There was an error during making a ${signUpType} account: ${error.message}`);
-                }
+                setError(getErrorMessage(error, signUpType));
             });
     };    
 
