@@ -91,6 +91,10 @@ function Login() {
         <div id="left">
         </div>
 
+        <div id="carLink">
+            <Link to="/">CarAndAll</Link>
+        </div>
+
         <div id="right">
           <Link to="#" onClick={toggleUserType}>
             {isEmployee ? 'Klant' : 'Medewerker'} {/* als isEmployee = true, Klant wordt getoond, als isEmployee = false, Medewerker wordt getoond*/}

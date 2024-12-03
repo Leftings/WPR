@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Mvc;
 using WPR.Database;
 using System;
 using WPR.Repository;
+using WPR.Hashing;
+using WPR.Data;
 
 [Route("api/[controller]")]
 [ApiController]
@@ -13,11 +15,15 @@ public class SignUpController : ControllerBase
 {
     private readonly Connector _connector;
     private readonly IUserRepository _userRepository;
+    private readonly EnvConfig _envConfig;
+    private readonly Hash _hash;
 
-    public SignUpController(Connector connector, IUserRepository userRepository)
+    public SignUpController(Connector connector, IUserRepository userRepository, EnvConfig envConfig, Hash hash)
     {
         _connector = connector ?? throw new ArgumentNullException(nameof(connector));
         _userRepository = userRepository ?? throw new ArgumentNullException(nameof(userRepository));
+        _envConfig = envConfig ?? throw new ArgumentNullException(nameof(envConfig));
+        _hash = hash ?? throw new ArgumentNullException(nameof(hash));
     }
 
     private bool IsFilledIn(SignUpRequest signUpRequest)
@@ -66,6 +72,12 @@ public class SignUpController : ControllerBase
                     return BadRequest(new { message = "Invalid phone number" });
                 }
                 
+                var (isPasswordValid, passwordError) = PasswordChecker.IsValidPassword(signUpRequest.Password);
+                if (!isPasswordValid)
+                {
+                    return BadRequest(new { message = passwordError });
+                }
+                
                 else if (emailCheck.status)
                 {
                     transaction.Rollback();
@@ -79,7 +91,7 @@ public class SignUpController : ControllerBase
                     {
                         signUpRequest.Adres,
                         signUpRequest.TelNumber,
-                        signUpRequest.Password,
+                        _hash.createHash(signUpRequest.Password),
                         signUpRequest.Email,
                         signUpRequest.FirstName,
                         signUpRequest.LastName
@@ -110,7 +122,12 @@ public class SignUpController : ControllerBase
                 transaction.Rollback();
                 commit = false;
 
-                return StatusCode(500, ex);
+                return StatusCode(500, new
+                {
+                    message = ex.Message,
+                    details = ex.Message,
+                    stackTrace = ex.StackTrace 
+                });
             }
             finally
             {
@@ -118,8 +135,6 @@ public class SignUpController : ControllerBase
                 {
                     transaction.Commit();
                 }
-
-                connection.Close();
             }
         }
     }
@@ -151,6 +166,12 @@ public class SignUpController : ControllerBase
                 if (!isValidKvk)
                 {
                     return BadRequest(new { message = kvkErrorMessage });
+                }
+                
+                var (isPasswordValid, passwordError) = PasswordChecker.IsValidPassword(signUpRequest.Password);
+                if (!isPasswordValid)
+                {
+                    return BadRequest(new { message = passwordError });
                 }
 
                 if (!TelChecker.IsValidPhoneNumber(signUpRequest.TelNumber))
@@ -202,7 +223,12 @@ public class SignUpController : ControllerBase
                 transaction.Rollback();
                 commit = false;
                 
-                return StatusCode(500, ex);
+                return StatusCode(500, new
+                {
+                    message = ex.Message,
+                    details = ex.Message,
+                    stackTrace = ex.StackTrace 
+                });
             }
             finally
             {
@@ -210,8 +236,6 @@ public class SignUpController : ControllerBase
                 {
                     transaction.Commit();
                 }
-
-                connection.Close();
             }
         }
         

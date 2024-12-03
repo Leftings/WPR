@@ -34,6 +34,7 @@ const carsForSale = [
         price: '$700.00/dag',
         description: 'A sleek and efficient electric car with a long range and modern features.',
         image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTf_UHxDfJtjBv1c8MsINc_kFNg_suyA3YVAw&s',
+
     },
     {
         id: 2,
@@ -134,7 +135,6 @@ const carsForSale = [
         image: 'https://upload.wikimedia.org/wikipedia/commons/0/01/2016_Mazda_MX-5_Miata.jpg',
     },
 ];
-
 
 function GeneralSalePage() {
     const [welcomeMessage, setWelcomeMessage] = useState('');

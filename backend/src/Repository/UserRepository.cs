@@ -1,10 +1,12 @@
-﻿using System.Data;
+using System.Data;
 using Microsoft.AspNetCore.Mvc;
 using MySql.Data.MySqlClient;
 using WPR.Controllers.Cookie;
 using WPR.Database;
 using Microsoft.AspNetCore.Http.HttpResults;
 using WPR.Utils;
+using WPR.Hashing;
+using Org.BouncyCastle.Crypto.Prng;
 
 namespace WPR.Repository;
 
@@ -15,16 +17,43 @@ namespace WPR.Repository;
 public class UserRepository : IUserRepository
 {
     private readonly Connector _connector;
+    private readonly Hash _hash;
 
-    public UserRepository(Connector connector)
+    public UserRepository(Connector connector, Hash hash)
     {
         _connector = connector ?? throw new ArgumentNullException(nameof(connector));
+        _hash = hash ?? throw new ArgumentNullException(nameof(hash));
     }
+
+    /*private async Task<bool> CheckPassword(string username, string password, string table)
+    {
+        string query = $@"SELECT password FROM {table} WHERE LOWER(email) = LOWER(@Email)";
+
+        using (var connection = _connector.CreateDbConnection())
+        
+        using (var command = new MySqlCommand(query, (MySqlConnection)connection))
+        {
+            command.Parameters.AddWithValue("@Email", username);
+
+            using (var reader = await command.ExecuteReaderAsync())
+            {
+                if (reader.HasRows)
+                {
+                    string passwordUser = reader.GetString("Password");
+
+                    return _hash.(password, passwordUser);
+                }
+
+                return false;
+            }
+        }
+    }
+    */
 
     public async Task<bool> ValidateUserAsync(string username, string password, bool isEmployee)
     {
         string table = isEmployee ? "Staff" : "User_Customer";
-        string query = $@"SELECT 1 FROM {table} WHERE LOWER(email) = LOWER(@Email) AND BINARY password = @Password";
+        /*string query = $@"SELECT 1 FROM {table} WHERE LOWER(email) = LOWER(@Email) AND BINARY password = @Password";
 
         using (var connection = _connector.CreateDbConnection())
         {
@@ -35,9 +64,29 @@ public class UserRepository : IUserRepository
 
                 using (var reader = await command.ExecuteReaderAsync())
                 {
-                    Console.WriteLine(username);
                     return reader.HasRows;
                 }
+            }
+        }
+        */
+
+        string query = $@"SELECT password FROM {table} WHERE LOWER(email) = LOWER(@Email)";
+
+        using (var connection = _connector.CreateDbConnection())
+        
+        using (var command = new MySqlCommand(query, (MySqlConnection)connection))
+        {
+            command.Parameters.AddWithValue("@Email", username);
+
+            using (var reader = await command.ExecuteReaderAsync())
+            {
+                if (await reader.ReadAsync())
+                {
+                    string passwordUser = reader.GetString("Password");
+                    return _hash.createHash(password).Equals(passwordUser);
+                }
+
+                return false;
             }
         }
     }
