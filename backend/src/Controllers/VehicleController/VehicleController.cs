@@ -70,7 +70,7 @@ public class VehicleController : ControllerBase
         catch (Exception ex)
         {
             Console.WriteLine(ex);
-            return StatusCode(500, "An error occurred while fetching the image.");
+            return StatusCode(500, "An error occurred while fetching the name of the car.");
         }
 
     }
@@ -143,8 +143,46 @@ public class VehicleController : ControllerBase
         catch (Exception ex)
         {
             Console.WriteLine(ex);
-            return StatusCode(500, "An error occurred while fetching the image.");
+            return StatusCode(500, "An error occurred while fetching the price.");
         }
+    }
 
+    [HttpGet("GetAllVehicles")]
+    public async Task<IActionResult> GetAllVehiclesAsync(int frameNr)
+    {
+        try
+        {
+            string query = "SELECT FrameNr, Brand, Type, Price, VehicleBlob FROM Vehicle";
+
+            var vehicles = new List<object>();
+
+            using (var connection = _connector.CreateDbConnection())
+            using (var command = new MySqlCommand(query, (MySqlConnection)connection))
+            {
+
+                using (var reader = await command.ExecuteReaderAsync())
+                {
+                    while (reader.Read())
+                    {
+                        vehicles.Add(new
+                        {
+                            FrameNr = reader.GetInt32(0),
+                            Brand = reader.GetString(1),
+                            Type = reader.GetString(2),
+                            Price = reader.GetDecimal(3).ToString("F2"),
+                            Image = !reader.IsDBNull(4)
+                            ? Convert.ToBase64String((byte[])reader["VehicleBlob"]) : null
+                        });
+                    }
+                }
+            }
+
+            return Ok(vehicles);
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex);
+            return StatusCode(500, "An error occurred while fetching vehicles.");
+        }
     }
 }
