@@ -6,7 +6,7 @@ import ShowImage from './ShowImage.jsx';
 
 import './GeneralSalePage.css'
 
-function WelcomeUser(setWelcome) {
+/*function WelcomeUser(setWelcome) {
     fetch('http://localhost:5165/api/Cookie/GetUserName', {
         method: 'GET',
         headers: {
@@ -27,10 +27,10 @@ function WelcomeUser(setWelcome) {
         .catch(error => {
             console.error('Error:', error);
         });
-}
+}*/
 
 
-const carsForSale = [
+/*const carsForSale = [
     {
         id: 1,
         name: 'Tesla Model 3',
@@ -101,7 +101,7 @@ const carsForSale = [
         description: 'A powerful and iconic sports car with timeless style.',
         image: 'https://via.placeholder.com/150',
     },
-];
+];*/
 
 function GeneralSalePage() {
     const [welcomeMessage, setWelcomeMessage] = useState('');
@@ -117,9 +117,8 @@ function GeneralSalePage() {
             }
 
             const data = await response.json();
-            console.log(data);
             setVehicles(data);
-            console.log(vehicles);
+            console.log(data);
         } catch (e) {
             console.error(e);
             setError('Failed to load vehicles')
@@ -128,43 +127,41 @@ function GeneralSalePage() {
 
     useEffect(() => {
         fetchVehicles();
+        /*WelcomeUser(setWelcomeMessage);*/
+
     }, []);
 
     useEffect(() => {
-        console.log(vehicles);
+        console.log(vehicles)
+        /*WelcomeUser(setWelcomeMessage);*/
 
-
-    })
-
-    useEffect(() => {
-        WelcomeUser(setWelcomeMessage);
-    }, []);
+    }, [vehicles]);
 
     return (
         <>
             <GeneralHeader />
 
             <div className="general-sale-page">
-                <h1 className="welcome-message">{welcomeMessage}</h1>
+                {/*<h1 className="welcome-message">{welcomeMessage}</h1>*/}
 
                 <div className="car-sale-section">
                     <h1 className="title">Cars for Sale</h1>
                     <div className="car-grid">
                         {vehicles.map((vehicle) => (
-                            <div key={vehicle.FrameNr} className="car-card">
+                            <div key={vehicle.frameNr} className="car-card">
                                 <div className="car-blob">
-                                    {vehicle.Image ? (
+                                    {vehicle.image ? (
                                         <img
-                                            src={`data:image/jpeg;base64,${vehicle.Image}`}
-                                            alt={`${vehicle.Brand || 'Unknown'} ${vehicle.Type || ''}`}
+                                            src={`data:image/jpeg;base64,${vehicle.image}`}
+                                            alt={`${vehicle.brand || 'Unknown'} ${vehicle.Type || ''}`}
                                         />
                                     ) : (
                                         <p>Image not available</p>
                                     )}
                                 </div>
                                 <div className="car-info">
-                                    <h2 className="car-name">{`${vehicle.Brand || 'Unknown'} ${vehicle.Type || ''}`}</h2>
-                                    <p className="car-price">{`$${vehicle.Price}`}</p>
+                                    <h2 className="car-name">{`${vehicle.brand || 'Unknown'} ${vehicle.Type || ''}`}</h2>
+                                    <p className="car-price">{`$${vehicle.price}`}</p>
                                     <p className="car-description">Vroom Vroom</p>
                                 </div>
                             </div>
