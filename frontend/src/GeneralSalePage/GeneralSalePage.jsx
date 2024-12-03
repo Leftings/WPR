@@ -160,7 +160,7 @@ function GeneralSalePage() {
                                     )}
                                 </div>
                                 <div className="car-info">
-                                    <h2 className="car-name">{`${vehicle.brand || 'Unknown'} ${vehicle.Type || ''}`}</h2>
+                                    <h2 className="car-name">{`${vehicle.brand || 'Unknown'} ${vehicle.type || ''}`}</h2>
                                     <p className="car-price">{`$${vehicle.price}`}</p>
                                     <p className="car-description">Vroom Vroom</p>
                                 </div>
