@@ -1,7 +1,9 @@
-.car-sale-page {
-    padding: 20px;
-    background-color: #f9f9f9;
-    text-align: center;
+html, body {
+    background-color: #F4E8C1;
+    margin: 0;
+    height: 100%;
+    overflow-x: hidden;
+    font-family: Arial, sans-serif;
 }
 
 .title {

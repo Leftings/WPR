@@ -1,0 +1,15 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\backend\\src",
+    "\\frontend",
+    "\\frontend\\src",
+    "\\frontend\\src\\GeneralBlocks",
+    "\\frontend\\src\\GeneralBlocks\\footer",
+    "\\frontend\\src\\GeneralSalePage",
+    "\\frontend\\src\\home",
+    "\\frontend\\src\\login"
+  ],
+  "SelectedNode": "\\frontend\\src\\home\\home.jsx",
+  "PreviewInSolutionExplorer": false
+}

@@ -3,7 +3,7 @@ namespace WPR.Controllers.Cookie;
 public class SessionHandler : IDisposable
 {
     private bool disposedValue;
-
+    
     public void CreateCookie(IResponseCookies responseCookies, string cookieName, string cookieValue)
     {
         responseCookies.Append(cookieName, cookieValue, new CookieOptions

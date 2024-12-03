@@ -8,6 +8,8 @@ import SignUp from './signUp/signUp.jsx';
 import UserSettings from './userSettings/userSettings.jsx';
 import GeneralSalePage from './GeneralSalePage/GeneralSalePage.jsx';
 import TermsAndConditions from './TermsAndConditions/TermsAndConditions.jsx';
+import CarDetailPage from './IndividualCarPage/IndividualSalePage.jsx'; 
+
 
 createRoot(document.getElementById('root')).render(
   <Router>
@@ -21,4 +23,3 @@ createRoot(document.getElementById('root')).render(
     </Routes>
   </Router>
 );
-
