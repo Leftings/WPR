@@ -10,7 +10,7 @@ services:
     networks:
       - wpr-network
     env_file:
-      - .env
+      - ./backend/.env
 
 networks:
   wpr-network:
