@@ -3,7 +3,7 @@ FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /app
 
 # Copy the Backend directory to the container
-COPY Backend/ ./backend/
+COPY backend/ ./backend/
 
 # Publish the backend .NET app
 RUN dotnet publish Backend/WPR.csproj -c Release -o /app/out
@@ -13,10 +13,10 @@ FROM node:18 AS frontend-build
 WORKDIR /frontend
 
 # Copy the Frontend directory to the container
-COPY Frontend/ ./frontend/
+COPY frontend/ ./frontend/
 
 # Set the working directory to where your Vite project is located
-WORKDIR /frontend/Frontend
+WORKDIR /frontend/frontend
 
 # Install dependencies and build the React app (Vite build output goes to dist/)
 RUN npm install
