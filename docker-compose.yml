@@ -5,14 +5,10 @@ services:
     build: .
     ports:
       - "80:80"
-    environment:
-      - ASPNETCORE_ENVIRONMENT=Production
+      - "8443:8443"
+    networks:
+      - wpr-network
 
-  reverse-proxy:
-    image: nginx:latest
-    volumes:
-      - ./nginx.conf:/etc/nginx/nginx.conf
-    ports:
-      - "443:443"
-    depends_on:
-      - app
+networks:
+  wpr-network:
+    driver: bridge
