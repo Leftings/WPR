@@ -2,9 +2,10 @@ version: '3.8'
 
 services:
   app:
+    image: wpr_project
     build: .
     ports:
-      - "80:80"
+      - "5000:80"
       - "8443:8443"
     networks:
       - wpr-network
