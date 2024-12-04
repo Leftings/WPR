@@ -9,6 +9,8 @@ services:
       - "5002:8443" 
     networks:
       - wpr-network
+    env_file:
+      - .env
 
 networks:
   wpr-network:
