@@ -6,7 +6,7 @@ WORKDIR /app
 COPY backend/ ./backend/
 
 # Publish the backend .NET app
-RUN dotnet publish Backend/WPR.csproj -c Release -o /app/out
+RUN dotnet publish backend/WPR.csproj -c Release -o /app/out
 
 # Step 2: Build the React frontend using Vite
 FROM node:18 AS frontend-build
