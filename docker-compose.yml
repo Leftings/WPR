@@ -9,8 +9,6 @@ services:
       - "5002:8443" 
     networks:
       - wpr-network
-    environment:
-      - DB_SERVER=95.99.30.110
 
 networks:
   wpr-network:
