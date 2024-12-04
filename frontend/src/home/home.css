@@ -1,87 +1,108 @@
 body {
+    font-family: 'Arial', sans-serif;
+    color: #333;
+    background-color: #f4f4f9;
     margin: 0;
-    font-family: Arial, sans-serif;
-    height: 100%;
-    overflow: auto;
 }
 
-main {
-    height: 100%;
-}
-
-.logo {
-    font-size: 1.5rem;
-}
-
-.hero {
-    text-align: center;
-    background: url('hero-image.jpg') no-repeat center center/cover;
-    color: black;
-    padding: 80px 20px;
-}
-
-    .hero h1 {
-        font-size: 2.5rem;
-        margin-bottom: 10px;
-    }
-
-    .hero p {
-        font-size: 1.2rem;
-        margin-bottom: 50px;
-    }
-
-.cta-button {
-    background-color: #1D7874;
-    color: white;
-    padding: 10px 20px;
-    margin-top: 30px;
-    border: none;
-    border-radius: 5px;
-    text-decoration: none;
-    font-weight: bold;
-    transition: background-color 0.3s;
-}
-
-    .cta-button:hover {
-        color: white;
-        background-color: #7C6C77;
-    }
-
-.features {
+.buy-page {
     display: flex;
-    justify-content: center;
-    gap: 20px;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.content {
+    flex: 1;
     padding: 40px 20px;
 }
 
-.container {
-    display: flex;
-    justify-content: center;
-    align-items: stretch; 
-    gap: 20px;
-
-}
-
-.feature-card {
-    background: #f9f9f9;
-    padding: 20px;
-    border-radius: 10px;
+.title {
+    font-size: 2.5em;
+    font-weight: bold;
     text-align: center;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    flex: 1; 
-    display: flex;
-    flex-direction: column; 
+    margin-bottom: 40px;
 }
 
-    .feature-card h3 {
-        font-size: 1.5rem;
-        margin-bottom: 0px;
-        color: black;
-    }
+.buy-details {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    background: #fff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 15px;
+}
 
-    .feature-card p {
-        font-size: 1rem;
-        color: #555;
-    }
+.car-info {
+    flex: 1;
+    text-align: center;
+}
 
+.car-title {
+    font-size: 1.8em;
+    color: #1d7874ff;
+    margin-bottom: 20px;
+}
+
+.car-price {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #27ae60;
+    margin-bottom: 20px;
+}
+
+.car-image {
+    width: 100%;
+    max-width: 400px;
+    border-radius: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.user-info {
+    flex: 1;
+    text-align: center;
+}
+
+.user-info-title {
+    font-size: 1.5em;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.input-field {
+    width: 90%;
+    max-width: 400px;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1em;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.input-field:focus {
+    outline: none;
+    border-color: #1d7874ff;
+    box-shadow: 0 0 5px rgba(29, 120, 116, 0.5);
+}
+
+.buy-button {
+    padding: 15px 30px;
+    font-size: 1.2em;
+    color: white;
+    background: linear-gradient(90deg, #27ae60, #2ecc71);
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s;
+}
+
+.buy-button:hover {
+    background: linear-gradient(90deg, #2ecc71, #27ae60);
+    transform: translateY(-3px);
+}
 
