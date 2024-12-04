@@ -30,7 +30,7 @@ WORKDIR /app
 COPY --from=build /app/out ./backend
 
 # Copy the Vite build output (static files) from the frontend build stage
-COPY --from=frontend-build /frontend/Frontend/dist ./wwwroot
+COPY --from=frontend-build /frontend/frontend/dist ./wwwroot
 
 # Set the entrypoint to start the backend application
 ENTRYPOINT ["dotnet", "backend/WPR.dll"]
