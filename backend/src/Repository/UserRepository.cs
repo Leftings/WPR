@@ -52,7 +52,7 @@ public class UserRepository : IUserRepository
 
     public async Task<bool> ValidateUserAsync(string username, string password, bool isEmployee)
     {
-        string table = isEmployee ? "Staff" : "User_Customer";
+        string table = isEmployee ? "Staff" : "UserCustomer";
         /*string query = $@"SELECT 1 FROM {table} WHERE LOWER(email) = LOWER(@Email) AND BINARY password = @Password";
 
         using (var connection = _connector.CreateDbConnection())
@@ -95,7 +95,7 @@ public class UserRepository : IUserRepository
     {
         try
         {
-            string query = "SELECT COUNT(*) FROM User_Customer WHERE LOWER(Email) = LOWER(@E)";
+            string query = "SELECT COUNT(*) FROM UserCustomer WHERE LOWER(Email) = LOWER(@E)";
 
             using (var connection = _connector.CreateDbConnection())
             using (var command = new MySqlCommand(query, (MySqlConnection)connection))
@@ -124,7 +124,7 @@ public class UserRepository : IUserRepository
     {
         try
         {
-            string query = "INSERT INTO User_Customer (Adres, Telnum, Password, Email, FirstName, LastName) values (@A, @T, @P, @E, @F, @L)";
+            string query = "INSERT INTO UserCustomer (Adres, Telnum, Password, Email, FirstName, LastName) values (@A, @T, @P, @E, @F, @L)";
 
             using (var connection = _connector.CreateDbConnection())
             using (var command = new MySqlCommand(query, (MySqlConnection)connection))
@@ -163,7 +163,7 @@ public class UserRepository : IUserRepository
     {
         try
         {
-            string query = "INSERT INTO Personal (ID, BirthDate) values (@I, @B)";
+            string query = "INSERT INTO UserPersonal (ID, BirthDate) values (@I, @B)";
 
             using (var connection = _connector.CreateDbConnection())
             using (var command = new MySqlCommand(query, (MySqlConnection)connection))
@@ -195,7 +195,7 @@ public class UserRepository : IUserRepository
     {
         try
         {
-            string query = "INSERT INTO Employee (ID, Business) values (@I, @B)";
+            string query = "INSERT INTO UserEmployee (ID, Business) values (@I, @B)";
 
             using (var connection = _connector.CreateDbConnection())
             using (var command = new MySqlCommand(query, (MySqlConnection)connection))
@@ -227,7 +227,7 @@ public class UserRepository : IUserRepository
     {
         try
         {
-            string query = "SELECT ID FROM User_Customer WHERE Email = @E";
+            string query = "SELECT ID FROM UserCustomer WHERE Email = @E";
 
             using (var connection = _connector.CreateDbConnection())
             using (var command = new MySqlCommand(query, (MySqlConnection)connection))
@@ -255,7 +255,7 @@ public class UserRepository : IUserRepository
     {
         try
         {
-            string query = "SELECT FirstName FROM User_Customer WHERE ID = @I";
+            string query = "SELECT FirstName FROM UserCustomer WHERE ID = @I";
 
             using (var connection = _connector.CreateDbConnection())
             using (var command = new MySqlCommand(query, (MySqlConnection)connection))
@@ -340,7 +340,7 @@ public class UserRepository : IUserRepository
     private async Task<(bool goodQuery, string message)> CreateUserInfoQuery(List<object[]> data)
     {
         int lengthList = data.Count();
-        string query = "UPDATE User_Customer SET ";
+        string query = "UPDATE UserCustomer SET ";
 
         for (int i = 1; i < lengthList; i++)
         {
