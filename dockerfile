@@ -1,18 +1,41 @@
-# Build Backend
-FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
-WORKDIR /app
-COPY Backend/ ./
-RUN dotnet publish -c Release -o out
-
-# Build Frontend
-FROM node:18 AS frontend-build
+# Stage 1: Build the React frontend
+FROM node:18 AS react-build
 WORKDIR /frontend
-COPY Frontend/ ./
-RUN npm install && npm run build
 
-# Combine Backend and Frontend
-FROM mcr.microsoft.com/dotnet/aspnet:8.0
+# Install dependencies and build the React app
+COPY frontend/package.json frontend/package-lock.json ./
+RUN npm install
+COPY frontend/ ./
+RUN npm run build  # Build the React app (static files)
+
+# Stage 2: Build and configure the .NET backend
+FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
+USER $APP_UID
 WORKDIR /app
-COPY --from=build /app/out ./backend
-COPY --from=frontend-build /frontend/build ./wwwroot
-ENTRYPOINT ["dotnet", "backend\bin\Debug\net8.0\WPR.dll"]
+EXPOSE 80
+EXPOSE 8443 
+
+FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
+ARG BUILD_CONFIGURATION=Release
+WORKDIR /backend
+COPY ["backend/WPR.csproj", "./"]
+RUN dotnet restore "backend/WPR.csproj"
+COPY . .
+WORKDIR "/backend/"
+RUN dotnet build "WPR.csproj" -c $BUILD_CONFIGURATION -o /app/build
+
+FROM build AS publish
+ARG BUILD_CONFIGURATION=Release
+RUN dotnet publish "backend/WPR.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
+
+# Stage 3: Combine React frontend and .NET backend
+FROM base AS final
+WORKDIR /app
+
+# Copy published .NET files
+COPY --from=publish /app/publish .
+
+# Copy the built React files from the react-build stage
+COPY --from=react-build /frontend/build ./wwwroot
+
+ENTRYPOINT ["dotnet", "WPR.dll"]
