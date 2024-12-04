@@ -1,13 +1,17 @@
 # Step 1: Build the .NET Backend
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /app
-COPY Backend/ ./
+
+# Adjust the paths to point to the correct directories
+COPY Backend/ ./Backend/
 RUN dotnet publish -c Release -o /app/out
 
 # Step 2: Build the React Frontend
 FROM node:18 AS frontend-build
 WORKDIR /frontend
-COPY Frontend/ ./
+
+# Adjust the path to the frontend folder
+COPY Frontend/ ./Frontend/
 RUN npm install && npm run build
 
 # Step 3: Combine Backend and Frontend
