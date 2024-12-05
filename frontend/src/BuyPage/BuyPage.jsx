@@ -2,6 +2,8 @@
 import { useLocation, useNavigate } from 'react-router-dom';
 import GeneralHeader from "../GeneralBlocks/header/header.jsx";
 import GeneralFooter from "../GeneralBlocks/footer/footer.jsx";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 import './BuyPage.css';
 
 function CustomSelect({ options, onChange }) {
@@ -48,14 +50,16 @@ function BuyPage() {
         name: "",
         email: "",
         phone: "",
-        billingAddress: "",    
-        rentalStartDate: "",
-        rentalEndDate: "",
+        billingAddress: "",
+        streetAddress: "",
+        city: "",
+        postalCode: "",
+        rentalDates: [null, null], 
     });
 
     const [errorMessage, setErrorMessage] = useState("");
     const [selectedPaymentMethod, setSelectedPaymentMethod] = useState("Select Payment Type");
-    const [vehicleAvailable, setVehicleAvailable] = useState(true); 
+    const [vehicleAvailable, setVehicleAvailable] = useState(true);
 
     const checkVehicleAvailability = async () => {
         try {
@@ -66,22 +70,22 @@ function BuyPage() {
 
             const availabilityData = await response.json();
             if (availabilityData.message === "Vehicle found.") {
-                setVehicleAvailable(true); 
-                setErrorMessage(""); 
+                setVehicleAvailable(true);
+                setErrorMessage("");
             } else {
-                setVehicleAvailable(false); 
+                setVehicleAvailable(false);
                 setErrorMessage("Deze auto is momenteel niet beschikbaar.");
             }
         } catch (error) {
             console.error(error);
-            setVehicleAvailable(false); 
+            setVehicleAvailable(false);
             setErrorMessage("Fout bij het controleren van de beschikbaarheid.");
         }
     };
 
     useEffect(() => {
         if (vehicle) {
-            checkVehicleAvailability(); 
+            checkVehicleAvailability();
         }
     }, [vehicle]);
 
@@ -90,15 +94,27 @@ function BuyPage() {
         setUserDetails((prevDetails) => ({ ...prevDetails, [name]: value }));
     };
 
+    const handleDateChange = (dates) => {
+        const [start, end] = dates;
+        setUserDetails((prevDetails) => ({
+            ...prevDetails,
+            rentalDates: [start, end],
+        }));
+    };
+
     const handlePurchase = () => {
         if (!vehicleAvailable) {
             setErrorMessage("Deze auto is momenteel niet beschikbaar.");
-            return; 
+            return;
         }
 
-        const startDate = new Date(userDetails.rentalStartDate);
-        const endDate = new Date(userDetails.rentalEndDate);
-        const rentalDays = (endDate - startDate) / (1000 * 3600 * 24); 
+        const [startDate, endDate] = userDetails.rentalDates;
+        if (!startDate || !endDate) {
+            setErrorMessage("Selecteer zowel een start- als einddatum.");
+            return;
+        }
+
+        const rentalDays = (endDate - startDate) / (1000 * 3600 * 24);
 
         if (rentalDays <= 0) {
             setErrorMessage("De einddatum moet na de startdatum liggen.");
@@ -106,7 +122,7 @@ function BuyPage() {
         }
 
         alert(`Verhuur succesvol! Aantal dagen: ${rentalDays} dagen`);
-        navigate("/"); 
+        navigate("/");
     };
 
     if (!vehicle) {
@@ -140,35 +156,54 @@ function BuyPage() {
                     <div className="user-info">
                         <h3 className="user-info-title">Factuuradres en Huurperiode</h3>
 
-                        {/* Factuuradres */}
                         <input
                             type="text"
-                            name="billingAddress"
-                            placeholder="Vul uw factuuradres in"
-                            value={userDetails.billingAddress}
+                            name="name"
+                            placeholder="Vul uw volledige naam in"
+                            value={userDetails.name}
                             onChange={handleInputChange}
                             className="input-field"
                         />
 
-                        {/* Startdatum huurperiode */}
-                        <h3> Startdatum huurperiode </h3>
                         <input
-                            type="date"
-                            name="rentalStartDate"
-                            value={userDetails.rentalStartDate}
+                            type="text"
+                            name="streetAddress"
+                            placeholder="Straat en Huisnummer"
+                            value={userDetails.streetAddress}
                             onChange={handleInputChange}
                             className="input-field"
                         />
 
-                        {/* Einddatum huurperiode */}
-                        <h3> Einddatum huurperiode </h3>
                         <input
-                            type="date"
-                            name="rentalEndDate"
-                            value={userDetails.rentalEndDate}
+                            type="text"
+                            name="city"
+                            placeholder="Stad"
+                            value={userDetails.city}
                             onChange={handleInputChange}
                             className="input-field"
                         />
+
+                        <input
+                            type="text"
+                            name="postalCode"
+                            placeholder="Postcode"
+                            value={userDetails.postalCode}
+                            onChange={handleInputChange}
+                            className="input-field"
+                        />
+
+                        <h3>Huurperiode</h3>
+                        <DatePicker
+                            selected={userDetails.rentalDates[0]}
+                            onChange={handleDateChange}
+                            startDate={userDetails.rentalDates[0]}
+                            endDate={userDetails.rentalDates[1]}
+                            selectsRange
+                            inline
+                            dateFormat="yyyy/MM/dd"
+                            placeholderText="Selecteer start- en einddatum"
+                        />
+
                         <CustomSelect
                             options={["Select Payment Type", "Pre-paid", "Pay as you go"]}
                             onChange={(value) => setSelectedPaymentMethod(value)}
