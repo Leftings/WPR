@@ -1,8 +1,43 @@
-﻿import React, { useState } from 'react';
+﻿import React, { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import GeneralHeader from "../GeneralBlocks/header/header.jsx";
 import GeneralFooter from "../GeneralBlocks/footer/footer.jsx";
 import './BuyPage.css';
+
+function CustomSelect({ options, onChange }) {
+    const [selected, setSelected] = useState(options[0]);
+    const [isOpen, setIsOpen] = useState(false);
+
+    const handleSelect = (option) => {
+        setSelected(option);
+        setIsOpen(false);
+        onChange(option);
+    };
+
+    return (
+        <div className="custom-select">
+            <div
+                className={`select-selected ${isOpen ? "select-arrow-active" : ""}`}
+                onClick={() => setIsOpen((prev) => !prev)}
+            >
+                {selected}
+            </div>
+            {isOpen && (
+                <div className="select-items">
+                    {options.map((option, index) => (
+                        <div
+                            key={index}
+                            className={`select-option ${option === selected ? "same-as-selected" : ""}`}
+                            onClick={() => handleSelect(option)}
+                        >
+                            {option}
+                        </div>
+                    ))}
+                </div>
+            )}
+        </div>
+    );
+}
 
 function BuyPage() {
     const location = useLocation();
@@ -16,6 +51,7 @@ function BuyPage() {
     });
 
     const [errorMessage, setErrorMessage] = useState("");
+    const [selectedCar, setSelectedCar] = useState("Select car");
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
@@ -36,14 +72,14 @@ function BuyPage() {
             });
 
             if (!response.ok) {
-                throw new Error("Aankoop mislukt. Probeer het opnieuw.");
+                throw new Error("Verhuur mislukt. Probeer het opnieuw.");
             }
 
-            alert("Aankoop succesvol!");
+            alert("Verhuur succesvol!");
             navigate("/");
         } catch (error) {
             console.error(error);
-            setErrorMessage("Aankoop kon niet worden voltooid. Probeer het opnieuw.");
+            setErrorMessage("Huring kon niet worden voltooid. Probeer het opnieuw.");
         }
     };
 
@@ -86,20 +122,16 @@ function BuyPage() {
                             className="input-field"
                         />
                         <input
-                            type="email"
-                            name="email"
-                            placeholder="Vul uw e-mailadres in"
-                            value={userDetails.email}
-                            onChange={handleInputChange}
-                            className="input-field"
-                        />
-                        <input
                             type="tel"
                             name="phone"
                             placeholder="Vul uw telefoonnummer in"
                             value={userDetails.phone}
                             onChange={handleInputChange}
                             className="input-field"
+                        />
+                        <CustomSelect
+                            options={["Select Payment Type", "Pre-paid", "Pay as you go"]}
+                            onChange={(value) => setSelectedPaymentMethod(value)}
                         />
                         <button className="buy-button" onClick={handlePurchase}>
                             Bevestig Rental
