@@ -3,15 +3,16 @@ import {Link, useNavigate} from 'react-router-dom';
 import GeneralHeader from "../GeneralBlocks/header/header.jsx";
 import GeneralFooter from "../GeneralBlocks/footer/footer.jsx";
 import GeneralSalePage from "../GeneralSalePage/GeneralSalePage.jsx";
-
 import './home.css';
+
+const BACKEND_URL = import.meta.env.VITE_REACT_APP_BACKEND_URL ?? 'http://localhost:5165';
 
 function Home() {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const navigate = useNavigate();
 
     useEffect(() => {
-        fetch('http://localhost:5165/api/Login/CheckSession', { credentials: 'include' })
+        fetch(`${BACKEND_URL}/api/Login/CheckSession`, { credentials: 'include' })
             .then(response => {
                 if (!response.ok) {
                     throw new Error('Not logged in')
@@ -23,7 +24,7 @@ function Home() {
     }, []);
 
     const handleLogout = () => {
-        fetch('http://localhost:5165/api/Cookie/Logout', { method: 'POST', credentials: 'include' })
+        fetch(`${BACKEND_URL}/api/Cookie/Logout`, { method: 'POST', credentials: 'include' })
             .then(() => {
                 setIsLoggedIn(false);
                 navigate('/login');
