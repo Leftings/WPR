@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import {Link, useNavigate} from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import GeneralHeader from "../GeneralBlocks/header/header.jsx";
 import GeneralFooter from "../GeneralBlocks/footer/footer.jsx";
-import GeneralSalePage from "../GeneralSalePage/GeneralSalePage.jsx";
-
 import './home.css';
 
 function Home() {
@@ -14,12 +12,12 @@ function Home() {
         fetch('http://localhost:5165/api/Login/CheckSession', { credentials: 'include' })
             .then(response => {
                 if (!response.ok) {
-                    throw new Error('Not logged in')
+                    throw new Error('Not logged in');
                 }
                 return response.json();
             })
             .then(() => setIsLoggedIn(true))
-            .catch(() =>setIsLoggedIn(false));
+            .catch(() => setIsLoggedIn(false));
     }, []);
 
     const handleLogout = () => {
@@ -56,10 +54,17 @@ function Home() {
                             <p>Kies een huurperiode die perfect bij uw situatie past.</p>
                         </div>
                     </section>
+
+                    <section className="abonnementen-info">
+                        <h2>Bekijk onze Abonnementen</h2>
+                        <p>We bieden verschillende abonnementsopties aan die passen bij jouw huurbehoeften. Bekijk ze en kies de beste optie voor jou!</p>
+                        <Link to="/Abonnementen" className="cta-button">Ontdek Abonnementen</Link>
+                    </section>
                 </div>
             </main>
             <GeneralFooter />
         </>
     );
 }
+
 export default Home;

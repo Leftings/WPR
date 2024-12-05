@@ -1,34 +1,42 @@
+/* General body and layout settings */
 body {
     margin: 0;
     font-family: Arial, sans-serif;
     height: 100%;
-    overflow: auto;
+    display: flex;
+    flex-direction: column;
 }
 
 main {
-    height: 100%;
+    flex: 1; /* Ensures main section expands to take available space */
+    min-height: 100vh; /* Ensures main takes at least the full viewport height */
 }
 
 .logo {
     font-size: 1.5rem;
 }
 
+/* Hero section */
 .hero {
     text-align: center;
     background: url('hero-image.jpg') no-repeat center center/cover;
     color: black;
     padding: 80px 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
-    .hero h1 {
-        font-size: 2.5rem;
-        margin-bottom: 10px;
-    }
+.hero h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+}
 
-    .hero p {
-        font-size: 1.2rem;
-        margin-bottom: 50px;
-    }
+.hero p {
+    font-size: 1.2rem;
+    margin-bottom: 50px;
+}
 
 .cta-button {
     background-color: #1D7874;
@@ -42,25 +50,32 @@ main {
     transition: background-color 0.3s;
 }
 
-    .cta-button:hover {
-        color: white;
-        background-color: #7C6C77;
-    }
+.cta-button:hover {
+    color: white;
+    background-color: #7C6C77;
+}
 
+/* Features section */
 .features {
     display: flex;
     justify-content: center;
     gap: 20px;
     padding: 40px 20px;
+    align-items: center;
 }
 
 .container {
     display: flex;
-    justify-content: center;
-    align-items: stretch; 
+    justify-content: center;  
+    align-items: stretch;     
     gap: 20px;
-
+    width: 100%;              
+    margin: 0 auto;           
+    padding: 0;               
+    box-sizing: border-box;  
 }
+
+
 
 .feature-card {
     background: #f9f9f9;
@@ -68,20 +83,68 @@ main {
     border-radius: 10px;
     text-align: center;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    flex: 1; 
+    flex: 1;
     display: flex;
-    flex-direction: column; 
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
-    .feature-card h3 {
-        font-size: 1.5rem;
-        margin-bottom: 0px;
-        color: black;
-    }
+.feature-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 0px;
+    color: black;
+}
 
-    .feature-card p {
-        font-size: 1rem;
-        color: #555;
-    }
+.feature-card p {
+    font-size: 1rem;
+    color: #555;
+}
 
+/* Abonnementen section */
+.abonnementen-info {
+    text-align: center;
+    margin-top: 40px;
+    padding: 40px 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
 
+.abonnementen-info h2 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+    color: #1D7874;
+}
+
+.abonnementen-info p {
+    font-size: 1.2rem;
+    color: #555;
+    margin-bottom: 20px;
+}
+
+.abonnementen-info .cta-button {
+    background-color: #1D7874;
+    color: white;
+    padding: 10px 20px;
+    font-weight: bold;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.abonnementen-info .cta-button:hover {
+    background-color: #7C6C77;
+}
+
+/* Footer adjustments */
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    margin-top: auto; /* Makes sure footer sticks to the bottom of the page */
+}
