@@ -171,7 +171,8 @@ public class VehicleController : ControllerBase
                             Type = reader.GetString(2),
                             Price = reader.GetDecimal(3).ToString("F2"),
                             Image = !reader.IsDBNull(4)
-                            ? Convert.ToBase64String((byte[])reader["VehicleBlob"]) : null
+                                ? Convert.ToBase64String((byte[])reader["VehicleBlob"])
+                                : null
                         });
                     }
                 }
@@ -183,6 +184,39 @@ public class VehicleController : ControllerBase
         {
             Console.WriteLine(ex);
             return StatusCode(500, "An error occurred while fetching vehicles.");
+        }
+    }
+
+    [HttpGet("CheckIfVehicleExists/{frameNr}")]
+    public async Task<IActionResult> CheckIfVehicleExists(int frameNr)
+    {
+        Console.WriteLine("Received request for CheckIfVehicleExists with frameNr: " + frameNr); // Logging
+
+        try
+        {
+            string query = "SELECT COUNT(*) FROM Vehicle WHERE FrameNr = @FrameNr";
+
+            using (var connection = _connector.CreateDbConnection())
+            using (var command = new MySqlCommand(query, (MySqlConnection)connection))
+            {
+                command.Parameters.AddWithValue("@FrameNr", frameNr);
+
+                int count = Convert.ToInt32(await command.ExecuteScalarAsync());
+
+                if (count > 0)
+                {
+                    return Ok(new { message = "Vehicle found." });
+                }
+                else
+                {
+                    return NotFound(new { message = "Vehicle not found." });
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex);
+            return StatusCode(500, "An error occurred while checking vehicle availability.");
         }
     }
 }
