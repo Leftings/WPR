@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import GeneralHeader from "../GeneralBlocks/header/header.jsx";
-import GeneralFooter from "../GeneralBlocks/footer/footer.jsx";
+import './GeneralSalePage.css';
 
-import './GeneralSalePage.css'
+const BACKEND_URL = import.meta.env.VITE_REACT_APP_BACKEND_URL ?? 'http://localhost:5165';
 
 function WelcomeUser(setWelcome) {
-    fetch('http://localhost:5165/api/Cookie/GetUserName', {
+    fetch(`${BACKEND_URL}/api/Cookie/GetUserName`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',

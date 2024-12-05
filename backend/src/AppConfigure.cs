@@ -46,6 +46,18 @@ public class AppConfigure
     public static WebApplication ConfigureApplication(string[] args)
     {
         var builder = WebApplication.CreateBuilder(args);
+
+        var environment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") ?? "development";
+        builder.Configuration.AddEnvironmentVariables();
+
+        if (environment == "development")
+        {
+            builder.Configuration.AddJsonFile(".env", optional: true, reloadOnChange: true);
+        }
+        else if (environment == "Production")
+        {
+            builder.Configuration.AddJsonFile(".env.deployment", optional: true, reloadOnChange: true);
+        }
         
         // Configure cookie policy options
         var cookiePolicyOptions = new CookiePolicyOptions
@@ -58,7 +70,16 @@ public class AppConfigure
         {
             options.AddPolicy("AllowLocalhost", policy =>
             {
-                policy.WithOrigins("http://localhost:5173")
+                policy.WithOrigins("http://localhost:5173")  // Development URL
+                    .AllowAnyHeader()
+                    .AllowCredentials()
+                    .AllowAnyMethod();
+            });
+
+            // For production
+            options.AddPolicy("AllowProduction", policy =>
+            {
+                policy.WithOrigins("http://carandall.nl") // Production URL
                     .AllowAnyHeader()
                     .AllowCredentials()
                     .AllowAnyMethod();
