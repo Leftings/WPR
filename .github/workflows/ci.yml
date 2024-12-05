@@ -43,7 +43,7 @@ jobs:
 
     # Restore the application (Cross-platform)
     - name: Restore the application
-      run: msbuild ${{ env.Solution_Name }} /t:Restore /p:Configuration=${{ matrix.configuration }}
+      run: dotnet restore ${{ env.Solution_Name }}
       env:
         Configuration: ${{ matrix.configuration }}
         
