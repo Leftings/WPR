@@ -81,6 +81,7 @@ public class AppConfigure
             options.AddPolicy("AllowProduction", policy =>
             {
                 policy.WithOrigins("http://carandall.nl", "https://carandall.nl") // Production URL
+
                     .AllowAnyHeader()
                     .AllowCredentials()
                     .AllowAnyMethod();
