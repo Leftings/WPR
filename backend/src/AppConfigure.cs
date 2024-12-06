@@ -86,7 +86,7 @@ public class AppConfigure
         */
 
         options.AddPolicy("AllowSpecificOrigins", policy =>
-            policy.WithOrigins("http://95.99.30.110:8080", "http://localhost:5173, http://www.carandall.nl:8080/")
+            policy.WithOrigins("http://95.99.30.110:8080", "http://localhost:5173, http://www.carandall.nl:8080")
                 .AllowAnyHeader()
                 .AllowAnyMethod()
                 .AllowCredentials()
