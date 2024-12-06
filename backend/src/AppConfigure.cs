@@ -79,12 +79,14 @@ public class AppConfigure
             // For production
             options.AddPolicy("AllowProduction", policy =>
             {
-                policy.WithOrigins("http://carandall.nl") // Production URL
+                policy.WithOrigins("http://carandall.nl", "https://carandall.nl") // Production URL
+
                     .AllowAnyHeader()
                     .AllowCredentials()
                     .AllowAnyMethod();
             });
         });
+
         
         // Registreer services voor Dependency Injection.
         builder.Services.AddSingleton<EnvConfig>(); // Singleton voor environment configuration
@@ -118,17 +120,24 @@ public class AppConfigure
         
         var app = builder.Build();
 
-        if (app.Environment.IsDevelopment())
+        if (app.Environment.IsProduction())
         {
-            app.UseSwagger();
-            app.UseSwaggerUI(c =>
+            app.UseCors("AllowProduction");
+        }
+        else
+        {
+            if (app.Environment.IsDevelopment())
             {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
-                c.RoutePrefix = string.Empty;
-            });
+                app.UseSwagger();
+                app.UseSwaggerUI(c =>
+                {
+                    c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+                    c.RoutePrefix = string.Empty;
+                });
+            }
+            app.UseCors("AllowLocalhost");
         }
         
-        app.UseCors("AllowLocalhost");
         app.UseHttpsRedirection();
         app.MapControllers();
         app.UseAuthorization();

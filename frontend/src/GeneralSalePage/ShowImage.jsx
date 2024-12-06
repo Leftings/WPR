@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from "react";
 
+const BACKEND_URL = import.meta.env.VITE_REACT_APP_BACKEND_URL ?? 'http://localhost:5165';
+
 function ShowImage({ frameNr }) {
     const [imageSrc, setImageSrc] = useState('');
     const [error, setError] = useState(null);
 
     const fetchVehicleImage = async () => {
         try {
-            const response = await fetch(`http://localhost:5165/api/vehicle/GetVehicleImageAsync?frameNr=${frameNr}`);
+            const response = await fetch(`${BACKEND_URL}/api/vehicle/GetVehicleImageAsync?frameNr=${frameNr}`);
 
             if(!response.ok) {
                 throw new Error(`Error fetching image: ${response.statusText}`);

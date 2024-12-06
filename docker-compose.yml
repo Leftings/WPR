@@ -1,17 +1,46 @@
-version: '3.8'
+version: "3.9"
 
 services:
-  app:
-    image: wpr_project
-    build: .
+  # Backend Service
+  backend:
+    build:
+      context: ./backend
     ports:
-      - "5165:80"
-      - "5002:8443" 
-    networks:
-      - wpr-network
+      - "5000:5000" # Expose port for both dev and production
     env_file:
-      - ./backend/.env
+      - ./backend/.env # Default for development
+    environment:
+      - NODE_ENV=${NODE_ENV:-development} # Development by default
+    networks:
+      - app-network
+
+  # Frontend Service
+  frontend:
+    build:
+      context: ./frontend
+    ports:
+      - "3000:3000" # Development port
+      - "8080:80"   # Production port
+    environment:
+      - REACT_APP_BACKEND_URL=${REACT_APP_BACKEND_URL:-http://localhost:5000}
+    networks:
+      - app-network
+
+  # NGINX Reverse Proxy (Only for Deployment)
+  nginx:
+    build:
+      context: ./nginx
+    ports:
+      - "8080:8080"
+      - "8443:8443"
+    depends_on:
+      - frontend
+      - backend
+    networks:
+      - app-network
+    profiles:
+      - production # Only included when `--profile production` is used
 
 networks:
-  wpr-network:
+  app-network:
     driver: bridge
