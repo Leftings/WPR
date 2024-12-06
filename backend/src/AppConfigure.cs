@@ -70,7 +70,7 @@ public class AppConfigure
     {
         options.AddPolicy("AllowLocalhost", policy =>
         {
-            policy.WithOrigins("http://localhost:5173")  // Development URL
+            policy.WithOrigins("http://localhost:5173", "http://95.99.30.110:8080")  // Development URL
                 .AllowAnyHeader()
                 .AllowCredentials()
                 .AllowAnyMethod();
@@ -78,7 +78,7 @@ public class AppConfigure
 
         options.AddPolicy("AllowProduction", policy =>
         {
-            policy.WithOrigins("http://carandall.nl", "https://carandall.nl, http://localhost:5173") // Production URL
+            policy.WithOrigins("http://carandall.nl", "https://carandall.nl, http://localhost:5173", "http://95.99.30.110:8080") // Production URL
                 .AllowAnyHeader()
                 .AllowCredentials()
                 .AllowAnyMethod();
