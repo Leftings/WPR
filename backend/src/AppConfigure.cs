@@ -10,6 +10,7 @@ using WPR.Data;
 using WPR.Database;
 using WPR.Repository;
 using WPR.Hashing;
+using System.Net;
 
 namespace WPR;
 
@@ -86,6 +87,9 @@ public class AppConfigure
             });
         });
 
+        builder.WebHost.ConfigureKestrel(options =>
+            options.Listen(IPAddress.Any, 80)
+        );
         
         // Registreer services voor Dependency Injection.
         builder.Services.AddSingleton<EnvConfig>(); // Singleton voor environment configuration
