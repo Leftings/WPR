@@ -111,7 +111,7 @@ public class AppConfigure
         // Ensure IP address is valid before binding
         if (uri.Host == "0.0.0.0" || uri.Host == "localhost")
         {
-            options.Listen(IPAddress.Any, uri.Port);  
+            options.Listen(IPAddress.Any, 5000);  
         }
         else
         {
