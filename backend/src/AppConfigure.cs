@@ -68,7 +68,7 @@ public class AppConfigure
 
     builder.Services.AddCors(options =>
     {
-        options.AddPolicy("AllowLocalhost", policy =>
+        /*options.AddPolicy("AllowLocalhost", policy =>
         {
             policy.WithOrigins("http://localhost:5173", "http://95.99.30.110:8080")  // Development URL
                 .AllowAnyHeader()
@@ -83,6 +83,14 @@ public class AppConfigure
                 .AllowCredentials()
                 .AllowAnyMethod();
         });
+        */
+
+        options.AddPolicy("AllowAll",
+            builder => builder
+                .AllowAnyOrigin()
+                .AllowAnyMethod()
+                .AllowAnyHeader()
+        );
     });
 
     var urls = Environment.GetEnvironmentVariable("ASPNETCORE_URLS") ?? "http://0.0.0.0:80"; // Default to port 80 if not set
