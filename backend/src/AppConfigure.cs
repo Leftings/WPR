@@ -175,6 +175,7 @@ public class AppConfigure
         app.UseCors("AllowLocalhost");
     }
 
+    app.UseCors("AllowAll");
     app.UseHttpsRedirection();
     app.MapControllers();
     app.UseAuthorization();
