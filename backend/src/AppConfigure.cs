@@ -46,111 +46,139 @@ public class AppConfigure
     /// <returns>De geconfigureerde WebApplication instantie.</returns>
     public static WebApplication ConfigureApplication(string[] args)
     {
-        var builder = WebApplication.CreateBuilder(args);
+    var builder = WebApplication.CreateBuilder(args);
 
-        var environment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") ?? "development";
-        builder.Configuration.AddEnvironmentVariables();
+    var environment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") ?? "development";
+    builder.Configuration.AddEnvironmentVariables();
 
-        if (environment == "development")
+    if (environment == "development")
+    {
+        builder.Configuration.AddJsonFile(".env", optional: true, reloadOnChange: true);
+    }
+    else if (environment == "Production")
+    {
+        builder.Configuration.AddJsonFile(".env.deployment", optional: true, reloadOnChange: true);
+    }
+
+    var cookiePolicyOptions = new CookiePolicyOptions
+    {
+        MinimumSameSitePolicy = SameSiteMode.Strict
+    };
+
+
+    builder.Services.AddCors(options =>
+    {
+        options.AddPolicy("AllowLocalhost", policy =>
         {
-            builder.Configuration.AddJsonFile(".env", optional: true, reloadOnChange: true);
-        }
-        else if (environment == "Production")
-        {
-            builder.Configuration.AddJsonFile(".env.deployment", optional: true, reloadOnChange: true);
-        }
-        
-        // Configure cookie policy options
-        var cookiePolicyOptions = new CookiePolicyOptions
-        {
-            MinimumSameSitePolicy = SameSiteMode.Strict //  Set the strict sametime policy voor de cookies
-        };
-
-        // Configureer CORS om requests van de specifieke port: "https://localhost:5173" toe te staan met Any method en credentials.
-        builder.Services.AddCors(options =>
-        {
-            options.AddPolicy("AllowLocalhost", policy =>
-            {
-                policy.WithOrigins("http://localhost:5173")  // Development URL
-                    .AllowAnyHeader()
-                    .AllowCredentials()
-                    .AllowAnyMethod();
-            });
-
-            // For production
-            options.AddPolicy("AllowProduction", policy =>
-            {
-                policy.WithOrigins("http://carandall.nl", "https://carandall.nl") // Production URL
-
-                    .AllowAnyHeader()
-                    .AllowCredentials()
-                    .AllowAnyMethod();
-            });
+            policy.WithOrigins("http://localhost:5173")  // Development URL
+                .AllowAnyHeader()
+                .AllowCredentials()
+                .AllowAnyMethod();
         });
 
-        builder.WebHost.ConfigureKestrel(options =>
-            options.Listen(IPAddress.Any, 80)
-        );
-        
-        // Registreer services voor Dependency Injection.
-        builder.Services.AddSingleton<EnvConfig>(); // Singleton voor environment configuration
-        builder.Services.AddTransient<Connector>(); // Transient voor database connection.
-        builder.Services.AddScoped<IUserRepository, UserRepository>(); // Scoped voor user repository
-        //builder.Services.AddScoped<IResponseCookies>();
-        builder.Services.AddScoped<SessionHandler>(); // Scoped session handler
-        builder.Services.AddScoped<Crypt>();
-        builder.Services.AddScoped<Hashing.Hash>();
-        
-        // Configureer authenticatie met cookie-based authenticatie schema.
-        builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
-            .AddCookie(options =>
-            {
-                options.ExpireTimeSpan = TimeSpan.FromMinutes(5);
-                options.SlidingExpiration = true;
-                options.AccessDeniedPath = "/Forbidden/";
-            });
-        
-        
-        builder.Services.AddControllers()
-            .AddJsonOptions(options =>
-            {
-                options.JsonSerializerOptions.ReferenceHandler =
-                    ReferenceHandler.IgnoreCycles;
-            });
-        
-        // Services voor Swagger API
-        builder.Services.AddEndpointsApiExplorer();
-        builder.Services.AddSwaggerGen();
-        
-        var app = builder.Build();
-
-        if (app.Environment.IsProduction())
+        options.AddPolicy("AllowProduction", policy =>
         {
-            app.UseCors("AllowProduction");
+            policy.WithOrigins("http://carandall.nl", "https://carandall.nl, http://localhost:5173") // Production URL
+                .AllowAnyHeader()
+                .AllowCredentials()
+                .AllowAnyMethod();
+        });
+    });
+
+    var urls = Environment.GetEnvironmentVariable("ASPNETCORE_URLS") ?? "http://0.0.0.0:80"; // Default to port 80 if not set
+
+    Uri uri;
+    try
+    {
+        uri = new Uri(urls);
+    }
+    catch (UriFormatException ex)
+    {
+        Console.WriteLine($"Invalid ASPNETCORE_URLS format: {urls}. Using default URL http://0.0.0.0:80");
+        uri = new Uri("http://0.0.0.0:80");
+    }
+
+    builder.WebHost.ConfigureKestrel(options =>
+    {
+        // Ensure IP address is valid before binding
+        if (uri.Host == "0.0.0.0" || uri.Host == "localhost")
+        {
+            options.Listen(IPAddress.Any, uri.Port);  
         }
         else
         {
-            if (app.Environment.IsDevelopment())
+            try
             {
-                app.UseSwagger();
-                app.UseSwaggerUI(c =>
-                {
-                    c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
-                    c.RoutePrefix = string.Empty;
-                });
+                options.Listen(IPAddress.Parse(uri.Host), uri.Port); 
             }
-            app.UseCors("AllowLocalhost");
+            catch (FormatException ex)
+            {
+                Console.WriteLine($"Invalid IP address specified: {uri.Host}. Using default binding to all IPs.");
+                options.Listen(IPAddress.Any, uri.Port);  
+            }
         }
-        
-        app.UseHttpsRedirection();
-        app.MapControllers();
-        app.UseAuthorization();
-        app.UseAuthentication();
-        app.UseCookiePolicy(cookiePolicyOptions);
+    });
 
-        //app.MapRazorPages();
-        app.MapDefaultControllerRoute();
+    // Register services for Dependency Injection
+    builder.Services.AddSingleton<EnvConfig>(); // Singleton for environment configuration
+    builder.Services.AddTransient<Connector>(); // Transient for database connection.
+    builder.Services.AddScoped<IUserRepository, UserRepository>(); // Scoped for user repository
+    builder.Services.AddScoped<SessionHandler>(); // Scoped session handler
+    builder.Services.AddScoped<Crypt>();
+    builder.Services.AddScoped<Hashing.Hash>();
 
-        return app;
+    // Configure authentication with cookie-based authentication schema.
+    builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+        .AddCookie(options =>
+        {
+            options.ExpireTimeSpan = TimeSpan.FromMinutes(5);
+            options.SlidingExpiration = true;
+            options.AccessDeniedPath = "/Forbidden/";
+        });
+
+    builder.Services.AddControllers()
+        .AddJsonOptions(options =>
+        {
+            options.JsonSerializerOptions.ReferenceHandler =
+                ReferenceHandler.IgnoreCycles;
+        });
+
+    // Services for Swagger API
+    builder.Services.AddEndpointsApiExplorer();
+    builder.Services.AddSwaggerGen();
+
+    var app = builder.Build();
+
+    if (app.Environment.IsProduction())
+    {
+        app.UseCors("AllowProduction");
     }
+    else
+    {
+        if (app.Environment.IsDevelopment())
+        {
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+                c.RoutePrefix = string.Empty;
+            });
+        }
+        app.UseCors("AllowLocalhost");
+    }
+
+    app.UseHttpsRedirection();
+    app.MapControllers();
+    app.UseAuthorization();
+    app.UseAuthentication();
+    app.UseCookiePolicy(cookiePolicyOptions);
+
+    //app.MapRazorPages();
+    app.MapDefaultControllerRoute();
+
+    return app;
+    }
+
+
+
 }
