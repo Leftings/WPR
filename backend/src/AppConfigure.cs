@@ -85,11 +85,11 @@ public class AppConfigure
         });
         */
 
-        options.AddPolicy("AllowAll",
-            builder => builder
-                .AllowAnyOrigin()
-                .AllowAnyMethod()
+        options.AddPolicy("AllowSpecificOrigins", policy =>
+            policy.WithOrigins("http://95.99.30.110:8080", "http://localhost:5173")
                 .AllowAnyHeader()
+                .AllowAnyMethod()
+                .AllowCredentials()
         );
     });
 
@@ -175,7 +175,7 @@ public class AppConfigure
         app.UseCors("AllowLocalhost");
     }
 
-    app.UseCors("AllowAll");
+    app.UseCors("AllowSpecificOrigins");
     app.UseHttpsRedirection();
     app.MapControllers();
     app.UseAuthorization();
