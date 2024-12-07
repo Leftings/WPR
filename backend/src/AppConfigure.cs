@@ -71,23 +71,31 @@ public class AppConfigure
 
         builder.WebHost.ConfigureKestrel(options =>
         {
-            var urls = Environment.GetEnvironmentVariable("ASPNETCORE_URLS") ?? "http://localhost:5165"; // Default to localhost:5165
+            var urls = Environment.GetEnvironmentVariable("ASPNETCORE_URLS") ?? "http://localhost:5001"; // Default to localhost:5001
             try
             {
                 Uri uri = new Uri(urls); // Parse the URL
                 Console.WriteLine($"Configuring Kestrel to listen on: {uri.Host}:{uri.Port}");
 
-                // Resolving the hostname to an IP address in case it's 'localhost'
-                var ipAddress = Dns.GetHostAddresses(uri.Host).FirstOrDefault();
-                
-                if (ipAddress != null)
+                // Check if the URI host is '0.0.0.0' or an unspecified address
+                if (uri.Host == "0.0.0.0" || uri.Host == "::0")
                 {
-                    options.Listen(ipAddress, uri.Port);  // Listen on the resolved IP address and port
+                    Console.WriteLine("Binding to all interfaces (0.0.0.0)...");
+                    options.Listen(IPAddress.Any, uri.Port);  // Use IPAddress.Any for all interfaces
                 }
                 else
                 {
-                    Console.WriteLine($"Failed to resolve IP address for {uri.Host}. Falling back to all IPs.");
-                    options.Listen(IPAddress.Any, uri.Port); // Fallback to all IPs if the resolution fails
+                    // Resolving the hostname to an IP address if it's not '0.0.0.0'
+                    var ipAddress = Dns.GetHostAddresses(uri.Host).FirstOrDefault();
+                    if (ipAddress != null)
+                    {
+                        options.Listen(ipAddress, uri.Port);  // Listen on the resolved IP address and port
+                    }
+                    else
+                    {
+                        Console.WriteLine($"Failed to resolve IP address for {uri.Host}. Falling back to all IPs.");
+                        options.Listen(IPAddress.Any, uri.Port); // Fallback to all IPs if resolution fails
+                    }
                 }
             }
             catch (UriFormatException ex)
@@ -96,6 +104,7 @@ public class AppConfigure
                 options.Listen(IPAddress.Any, 5001); // Fallback to all IPs and port 5001
             }
         });
+
 
 
 
