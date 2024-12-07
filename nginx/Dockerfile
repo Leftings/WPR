@@ -1,8 +1,17 @@
-# Use an official NGINX image from the Docker Hub
 FROM nginx:alpine
 
-# Copy your custom nginx configuration into the container
-COPY ./nginx.conf /etc/nginx/nginx.conf
+# Copy the wait-for-it.sh script into the container
+COPY wait-for-it.sh /wait-for-it.sh
 
-# Expose ports 8080 and 8443
+# Make it executable
+RUN chmod +x /wait-for-it.sh
+
+# Copy nginx config and SSL certificates
+COPY ./nginx.conf /etc/nginx/nginx.conf
+COPY ./ssl /etc/nginx/ssl
+
+# Expose the ports for nginx
 EXPOSE 8080 8443
+
+# Set the entrypoint to wait for backend service and then start nginx
+ENTRYPOINT ["/wait-for-it.sh", "backend:5001", "--", "nginx", "-g", "daemon off;"]
