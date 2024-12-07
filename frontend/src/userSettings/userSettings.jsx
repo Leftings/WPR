@@ -145,7 +145,7 @@ function UserSettings() {
 
         if (message === 'Data Updated')
         {
-          navigate('/home');
+          navigate('/');
         }
         else
         {
