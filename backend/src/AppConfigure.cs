@@ -111,7 +111,7 @@ public class AppConfigure
 
         if (uri.Host == "0.0.0.0" || uri.Host == "localhost")
         {
-            options.Listen(IPAddress.Any, 5000);
+            options.Listen(IPAddress.Any, 8443);
         }
         else
         {
