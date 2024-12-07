@@ -98,7 +98,7 @@ public class AppConfigure
 
     builder.WebHost.ConfigureKestrel(options =>
     {
-        Uri uri;
+        /*Uri uri;
         try
         {
             uri = new Uri("http://0.0.0.0:5000");
@@ -127,6 +127,9 @@ public class AppConfigure
                 options.Listen(IPAddress.Any, uri.Port);  
             }
         }
+        */
+
+        options.Listen(IPAddress.Any, 5000);
     });
 
 
