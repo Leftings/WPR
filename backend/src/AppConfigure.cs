@@ -95,23 +95,23 @@ public class AppConfigure
 
     var urls = Environment.GetEnvironmentVariable("ASPNETCORE_URLS") ?? "http://0.0.0.0:80"; // Default to port 80 if not set
 
-    Uri uri;
-    try
-    {
-        uri = new Uri(urls);
-    }
-    catch (UriFormatException ex)
-    {
-        Console.WriteLine($"Invalid ASPNETCORE_URLS format: {urls}. Using default URL http://0.0.0.0:80");
-        uri = new Uri("http://0.0.0.0:80");
-    }
-
     builder.WebHost.ConfigureKestrel(options =>
     {
-        // Ensure IP address is valid before binding
+        Uri uri;
+        try
+        {
+            uri = new Uri("http://192.168.1.25:5000");
+        }
+        catch (UriFormatException ex)
+        {
+            Console.WriteLine($"Error parsing the URI: {ex.Message}");
+            uri = new Uri("http://0.0.0.0:5000"); 
+        }
+
+
         if (uri.Host == "0.0.0.0" || uri.Host == "localhost")
         {
-            options.Listen(IPAddress.Any, 5000);  
+            options.Listen(IPAddress.Any, 5000);
         }
         else
         {
@@ -122,10 +122,12 @@ public class AppConfigure
             catch (FormatException ex)
             {
                 Console.WriteLine($"Invalid IP address specified: {uri.Host}. Using default binding to all IPs.");
+                uri = new Uri("http://0.0.0.0:80");
                 options.Listen(IPAddress.Any, uri.Port);  
             }
         }
     });
+
 
     // Register services for Dependency Injection
     builder.Services.AddSingleton<EnvConfig>(); // Singleton for environment configuration
