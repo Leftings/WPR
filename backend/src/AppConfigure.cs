@@ -137,7 +137,7 @@ public class AppConfigure
         catch (UriFormatException ex)
         {
             Console.WriteLine($"Invalid URL format: {urls}. Using default binding to all IPs.");
-            options.Listen(IPAddress.Any, 5000); 
+            options.Listen(IPAddress.Any, 5001); 
         }
     });
 
