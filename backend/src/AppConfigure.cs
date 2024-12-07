@@ -51,6 +51,7 @@ public class AppConfigure
     var environment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") ?? "development";
     builder.Configuration.AddEnvironmentVariables();
 
+    Console.WriteLine(Environment.GetEnvironmentVariable("ASPNETCORE_URLS"));
     if (environment == "development")
     {
         builder.Configuration.AddJsonFile(".env", optional: true, reloadOnChange: true);
