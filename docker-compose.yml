@@ -1,30 +1,47 @@
-version: '3.9'
+version: "3.9"
 
 services:
-  frontend:
-    image: wpr_frontend
-    ports:
-      - "3000:3000"
-    networks:
-      - app_network
-
+  # Backend Service
   backend:
-    image: wpr_backend
+    build:
+      context: ./backend
     ports:
-      - "5000:5000"
+      - "5001:5000"  # Backend port mapping (Container port : Host port)
+    env_file:
+      - ./backend/.env  # Default for development
+    environment:
+      ASPNETCORE_URLS: "http://0.0.0.0:5001"
     networks:
-      - app_network
+      - app-network
 
-  nginx:
-    image: nginx:latest
-    volumes:
-      - ./nginx.conf:/etc/nginx/nginx.conf
+  # Frontend Service
+  frontend:
+    build:
+      context: ./frontend
     ports:
-      - "8080:8080"
-      - "8443:8443"
+      - "3000:3000"   # Frontend development port
+      - "8081:8080"   # Change production port to 8081
+    environment:
+      - REACT_APP_BACKEND_URL=${REACT_APP_BACKEND_URL:-http://localhost:5000}
     networks:
-      - app_network
+      - app-network
+
+  # NGINX Reverse Proxy (Only for Deployment)
+  nginx:
+    build:
+      context: ./nginx
+    ports:
+      - "8082:8080"  # Changed the host port to 8082
+      - "8443:8443"  # Production SSL port
+    depends_on:
+      - frontend
+      - backend
+    entrypoint: ["./wait-for-it.sh", "backend:8080", "--", "nginx", "-g", "daemon off;"]
+    networks:
+      - app-network
+    profiles:
+      - production  # Only included when `--profile production` is used
 
 networks:
-  app_network:
+  app-network:
     driver: bridge
