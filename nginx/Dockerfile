@@ -7,8 +7,8 @@ COPY wait-for-it.sh /wait-for-it.sh
 RUN chmod +x /wait-for-it.sh
 
 # Copy nginx config and SSL certificates
-COPY ./nginx.conf /etc/nginx/nginx.conf
-COPY ./ssl /etc/nginx/ssl
+COPY nginx.conf /nginx.conf
+#COPY ./ssl /etc/nginx/ssl
 
 # Expose the ports for nginx
 EXPOSE 8080 8443
