@@ -25,7 +25,7 @@ FROM node:18 AS frontend-build
 WORKDIR /frontend
 
 # Copy the Frontend directory to the container
-COPY frontend/ ../frontend/
+COPY frontend/ frontend/
 
 # Set the working directory to where your Vite project is located
 WORKDIR /frontend/frontend
