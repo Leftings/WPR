@@ -2,14 +2,14 @@ version: '3.9'
 
 services:
   frontend:
-    image: your-frontend-image
+    image: wpr_frontend
     ports:
       - "3000:3000"
     networks:
       - app_network
 
   backend:
-    image: your-backend-image
+    image: wpr_backend
     ports:
       - "5000:5000"
     networks:
