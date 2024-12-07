@@ -3,9 +3,11 @@ import {Link, Navigate, useNavigate} from 'react-router-dom';
 
 import './userSettings.css';
 
+const BACKEND_URL = import.meta.env.VITE_REACT_APP_BACKEND_URL ?? 'http://localhost:5165';
+
 function GetUser(setUser)
 {
-  fetch('http://localhost:5165/api/Cookie/GetUserName', {
+  fetch(`${BACKEND_URL}/api/Cookie/GetUserName`, {
     method: 'GET',
     headers: {
         'Content-Type': 'application/json', 
