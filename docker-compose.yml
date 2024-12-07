@@ -10,7 +10,8 @@ services:
     env_file:
       - ./backend/.env  # Default for development
     environment:
-      - NODE_ENV=${NODE_ENV:-development}  # Default is 'development'
+      ASPNETCORE_URLS: "http://0.0.0.0:5001"
+      #NODE_ENV=${NODE_ENV:-development}  # Default is 'development'
     networks:
       - app-network
 
