@@ -6,11 +6,14 @@ services:
     build:
       context: ./backend
     ports:
-      - "5000:5000" # Expose port for both dev and production
+      - "5000:5000" 
     env_file:
-      - ./backend/.env # Default for development
+      - ./backend/.env
     environment:
-      - NODE_ENV=${NODE_ENV:-development} # Development by default
+      - NODE_ENV=${NODE_ENV:-development}
+      - ASPNETCORE_URLS=http://0.0.0.0:5000 
+    volumes:
+      - backend_data:/root/.aspnet/DataProtection-Keys
     networks:
       - app-network
 
@@ -19,8 +22,7 @@ services:
     build:
       context: ./frontend
     ports:
-      - "3000:3000" # Development port
-      - "8080:80"   # Production port
+      - "80:80" 
     environment:
       - REACT_APP_BACKEND_URL=${REACT_APP_BACKEND_URL:-http://localhost:5000}
     networks:
@@ -36,11 +38,17 @@ services:
     depends_on:
       - frontend
       - backend
+    volumes:
+      - ./nginx/conf.d:/etc/nginx/conf.d:ro 
+      - ./ssl/certificates:/etc/letsencrypt  
     networks:
       - app-network
     profiles:
-      - production # Only included when `--profile production` is used
+      - production  
 
 networks:
   app-network:
     driver: bridge
+
+volumes:
+  backend_data: 
