@@ -6,7 +6,7 @@ services:
     build:
       context: ./backend
     ports:
-      - "5001:5000"  # Backend port mapping (Container port : Host port)
+      - "5000:5000"  # Backend port mapping (Container port : Host port)
     env_file:
       - ./backend/.env  # Default for development
     environment:
