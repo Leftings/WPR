@@ -1,10 +1,13 @@
 FROM nginx:alpine
 
 # Copy the wait-for-it.sh script into the container
-COPY nginx/scripts/wait-for-it.sh /wait-for-it.sh
+COPY scripts/wait-for-it.sh /wait-for-it.sh
 
 # Make it executable
 RUN chmod +x /wait-for-it.sh
+
+# Debug step: List the file to verify it's there
+RUN ls -l /wait-for-it.sh
 
 # Copy nginx config and SSL certificates
 COPY nginx.conf /nginx.conf
