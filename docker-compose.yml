@@ -30,7 +30,7 @@ services:
       - backend
     networks:
       - app-network
-    entrypoint: ["./wait-for-it.sh", "backend:8080", "--", "nginx", "-g", "daemon off;"]
+    entrypoint: ["wait-for-it.sh", "backend:8080", "--", "nginx", "-g", "daemon off;"]
 
 networks:
   app-network:
