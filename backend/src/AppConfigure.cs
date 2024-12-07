@@ -100,7 +100,7 @@ public class AppConfigure
         Uri uri;
         try
         {
-            uri = new Uri("http://192.168.1.25:5000");
+            uri = new Uri("http://0.0.0.0:5000");
         }
         catch (UriFormatException ex)
         {
