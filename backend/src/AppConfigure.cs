@@ -129,7 +129,16 @@ public class AppConfigure
         }
         */
 
-        options.Listen(IPAddress.Any, 5000);
+        try
+        {
+            Uri uri = new Uri(urls);
+            options.Listen(IPAddress.Parse(uri.Host), uri.Port);
+        }
+        catch (UriFormatException ex)
+        {
+            Console.WriteLine($"Invalid URL format: {urls}. Using default binding to all IPs.");
+            options.Listen(IPAddress.Any, 5000); 
+        }
     });
 
 
