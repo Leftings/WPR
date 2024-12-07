@@ -32,7 +32,7 @@ function GetUser(setUser)
 
 function GetUserId() {
   return new Promise((resolve, reject) => {
-    fetch(`${BACKEND_URL}api/Cookie/GetUserId`, {
+    fetch(`${BACKEND_URL}/api/Cookie/GetUserId`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json', 
