@@ -68,20 +68,37 @@ public class AppConfigure
             );
         });
 
-        var urls = Environment.GetEnvironmentVariable("ASPNETCORE_URLS") ?? "http://0.0.0.0:5000";  // Default to port 5000
+
         builder.WebHost.ConfigureKestrel(options =>
         {
+            var urls = Environment.GetEnvironmentVariable("ASPNETCORE_URLS") ?? "http://localhost:5165"; // Default to localhost:5165
             try
             {
-                Uri uri = new Uri(urls);
-                options.Listen(IPAddress.Parse(uri.Host), uri.Port);
+                Uri uri = new Uri(urls); // Parse the URL
+                Console.WriteLine($"Configuring Kestrel to listen on: {uri.Host}:{uri.Port}");
+
+                // Resolving the hostname to an IP address in case it's 'localhost'
+                var ipAddress = Dns.GetHostAddresses(uri.Host).FirstOrDefault();
+                
+                if (ipAddress != null)
+                {
+                    options.Listen(ipAddress, uri.Port);  // Listen on the resolved IP address and port
+                }
+                else
+                {
+                    Console.WriteLine($"Failed to resolve IP address for {uri.Host}. Falling back to all IPs.");
+                    options.Listen(IPAddress.Any, uri.Port); // Fallback to all IPs if the resolution fails
+                }
             }
             catch (UriFormatException ex)
             {
                 Console.WriteLine($"Invalid URL format: {urls}. Using default binding to all IPs.");
-                options.Listen(IPAddress.Any, 5001); // Default fallback to 5001
+                options.Listen(IPAddress.Any, 5001); // Fallback to all IPs and port 5001
             }
         });
+
+
+
 
         builder.Services.AddSingleton<EnvConfig>(); // Singleton for environment configuration
         builder.Services.AddTransient<Connector>(); // Transient for database connection
