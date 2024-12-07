@@ -20,7 +20,7 @@ services:
       context: ./frontend
     ports:
       - "3000:3000" # Development port
-      - "8080:80"   # Production port
+      - "8080:8080"   # Production port
     environment:
       - REACT_APP_BACKEND_URL=${REACT_APP_BACKEND_URL:-http://localhost:5000}
     networks:
