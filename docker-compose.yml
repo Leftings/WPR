@@ -19,8 +19,8 @@ services:
     build:
       context: ./frontend
     ports:
-      - "3000:3000"   # Frontend port (Development)
-      - "8080:8080"   # Frontend port (Production)
+      - "3000:3000"   # Frontend development port
+      - "8081:8080"   # Change production port to 8081
     environment:
       - REACT_APP_BACKEND_URL=${REACT_APP_BACKEND_URL:-http://localhost:5000}
     networks:
