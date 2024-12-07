@@ -15,7 +15,7 @@ FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /app
 
 # Copy the Backend directory to the container
-COPY backend/ ../backend/
+COPY backend/ ./backend/
 
 # Publish the backend .NET app
 RUN dotnet publish backend/WPR.csproj -c Release -o /app/out
@@ -25,7 +25,7 @@ FROM node:18 AS frontend-build
 WORKDIR /frontend
 
 # Copy the Frontend directory to the container
-COPY frontend/ frontend/
+COPY frontend/ ./frontend/
 
 # Set the working directory to where your Vite project is located
 WORKDIR /frontend/frontend
