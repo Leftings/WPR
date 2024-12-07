@@ -6,7 +6,7 @@ services:
     build:
       context: ./backend
     ports:
-      - "5000:5000" # Expose port for both dev and production
+      - "5001:5000" # Expose port for both dev and production
     env_file:
       - ./backend/.env # Default for development
     environment:
