@@ -31,7 +31,7 @@ function GetUser(setUser)
 
 function GetUserId() {
   return new Promise((resolve, reject) => {
-    fetch('http://localhost:5165/api/Cookie/GetUserId', {
+    fetch(`${BACKEND_URL}api/Cookie/GetUserId`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json', 
@@ -57,7 +57,7 @@ function GetUserId() {
 
 
 function ChangeUserInfo(userData) {
-  return fetch('http://localhost:5165/api/ChangeUserSettings/ChangeUserInfo', {
+  return fetch(`${BACKEND_URL}/api/ChangeUserSettings/ChangeUserInfo`, {
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json',
@@ -96,7 +96,7 @@ function UserSettings() {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-      fetch('http://localhost:5165/api/Cookie/GetUserId', {
+      fetch(`${BACKEND_URL}/api/Cookie/GetUserId`, {
           method: 'GET',
           headers: {
               'Content-Type': 'application/json',
