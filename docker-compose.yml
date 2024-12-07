@@ -6,11 +6,11 @@ services:
     build:
       context: ./backend
     ports:
-      - "5001:5000" # Expose port for both dev and production
+      - "5001:5000"  # Backend port mapping (Container port : Host port)
     env_file:
-      - ./backend/.env # Default for development
+      - ./backend/.env  # Default for development
     environment:
-      - NODE_ENV=${NODE_ENV:-development} # Development by default
+      - NODE_ENV=${NODE_ENV:-development}  # Default is 'development'
     networks:
       - app-network
 
@@ -19,8 +19,8 @@ services:
     build:
       context: ./frontend
     ports:
-      - "3000:3000" # Development port
-      - "8080:8080"   # Production port
+      - "3000:3000"   # Frontend port (Development)
+      - "8080:8080"   # Frontend port (Production)
     environment:
       - REACT_APP_BACKEND_URL=${REACT_APP_BACKEND_URL:-http://localhost:5000}
     networks:
@@ -32,14 +32,14 @@ services:
       context: ./nginx
     ports:
       - "8080:8080"
-      - "8443:8443"
+      - "8443:8443"  # Production SSL port
     depends_on:
       - frontend
       - backend
     networks:
       - app-network
     profiles:
-      - production # Only included when `--profile production` is used
+      - production  # Only included when `--profile production` is used
 
 networks:
   app-network:
