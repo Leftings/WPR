@@ -4,6 +4,7 @@ import {Link, Navigate, useNavigate} from 'react-router-dom';
 import './userSettings.css';
 
 const BACKEND_URL = import.meta.env.VITE_REACT_APP_BACKEND_URL ?? 'http://localhost:5165';
+console.log('BACKEND URL: ', BACKEND_URL);
 
 function GetUser(setUser)
 {
