@@ -7,7 +7,7 @@ services:
     ports:
       - "5000:5000"
     env_file:
-      - ./backend/.env  # Backend only
+      - ./backend/.env 
     networks:
       - app-network
     environment:
@@ -18,7 +18,7 @@ services:
     build:
       context: ./frontend
     ports:
-      - "3000:3000"  # Frontend development port
+      - "3000:3000"
     networks:
       - app-network
 
