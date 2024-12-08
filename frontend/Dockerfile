@@ -1,7 +1,7 @@
 FROM node:18 AS build
 WORKDIR /app
 COPY package*.json ./
-RUN npm install -D vite --registry=https://registry.yarnpkg.com
+RUN npm ci --registry=https://registry.npmjs.org/
 COPY . .
 RUN npm run build
 
