@@ -22,7 +22,7 @@ services:
       - app-network
 
   nginx:
-    image: nginx:apline
+    image: nginx:alpine
     build:
       context: .  # Root context for the entire project (this includes frontend, backend, nginx)
     ports:
@@ -38,7 +38,8 @@ services:
       - ./nginx/certbot/conf:/etc/letsencrypt
       - ./nginx/certbot/www:/var/www/certbot
       
-    entrypoint: ["nginx", "-g", "daemon off;"] 
+    entrypoint: ["backend:5000", "--", "nginx", "-g", "daemon off;"]
+
 
   certbot:
     image: certbot/certbot

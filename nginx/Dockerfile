@@ -9,4 +9,4 @@ COPY ./frontend/dist /usr/share/nginx/html
 # Expose the ports for nginx
 EXPOSE 8080 8443
 
-ENTRYPOINT ["backend:5001", "--", "nginx", "-g", "daemon off;"]
+ENTRYPOINT ["backend:5000", "--", "nginx", "-g", "daemon off;"]
