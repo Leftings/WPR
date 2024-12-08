@@ -10,9 +10,11 @@ services:
       - ./backend/.env
     networks:
       - app-network
+    
   frontend:
     build:
-      context: ./frontend
+      context: .
+      dockerfile: ./forntend/Dockerfile
     ports:
       - "3000:3000"  # Frontend development port
     env_file:
