@@ -25,6 +25,9 @@ services:
 
   nginx:
     image: nginx:alpine
+    build:
+      context: .
+      dockerfile: Dockerfile.nginx
     ports:
       - "8080:80"
       - "8443:8443"
