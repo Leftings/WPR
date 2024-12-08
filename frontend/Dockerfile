@@ -16,7 +16,7 @@ COPY frontend ./
 RUN npm run build
 
 # Step 2: Set up Nginx to serve the static files
-FROM nginx:alpine
+FROM nginx:latest  
 
 # Copy the built files from the build stage to Nginx's default directory
 COPY --from=build /app/dist /usr/share/nginx/html
@@ -24,5 +24,5 @@ COPY --from=build /app/dist /usr/share/nginx/html
 # Expose port 80 for Nginx to serve the app
 EXPOSE 3000
 
-# Start Nginx in the foreground
+# Ensure Nginx starts correctly in the foreground
 CMD ["nginx", "-g", "daemon off;"]
