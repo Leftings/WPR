@@ -1,34 +1,33 @@
 version: "3.9"
 
 services:
-  # Backend Service
   backend:
     build:
       context: ./backend
     ports:
-      - "5000:5000" 
-    env_file:
-      - ./backend/.env 
+      - "5001:5000"  # Backend port mapping (Container port : Host port)
     networks:
       - app-network
+    environment:
+      ASPNETCORE_URLS: "http://0.0.0.0:5001"
 
-  # Frontend Service
   frontend:
     build:
       context: ./frontend
+    ports:
+      - "3000:3000"  # Frontend development port
     networks:
       - app-network
 
-  # NGINX Reverse Proxy
   nginx:
     build:
-      context: . 
+      context: .  # Root context for the entire project (this includes frontend, backend, nginx)
     ports:
       - "8080:80"
       - "8443:8443"
     depends_on:
       - frontend
-      - backend 
+      - backend  # Ensure backend starts before nginx
     networks:
       - app-network
     volumes:
@@ -37,6 +36,13 @@ services:
       - ./nginx/certbot/www:/var/www/certbot
       
     entrypoint: ["nginx", "-g", "daemon off;"] 
+
+  certbot:
+    image: certbot/certbot
+    volumes:
+      - ./nginx/certbot/conf:/etc/letsencrypt
+      - ./nginx/certbot/www:/var/www/certbot
+    #entrypoint: "/bin/sh -c 'trap exit TERM; while :; do certbot renew; sleep 12h & wait $${!}; done;'"
 
 networks:
   app-network:
