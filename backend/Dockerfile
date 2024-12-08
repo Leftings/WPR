@@ -18,7 +18,7 @@ EXPOSE 5000
 # Use the SDK image to build the application
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /src
-COPY ./backend/WPR.csproj ./
+COPY ./WPR.csproj ./
 RUN dotnet restore "./WPR.csproj"
 COPY ./backend/ ./
 WORKDIR "/src/."
