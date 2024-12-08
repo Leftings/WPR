@@ -4,7 +4,7 @@ COPY ./nginx/scripts/wait-for-it.sh /usr/local/bin/wait-for-it
 RUN chmod +x /usr/local/bin/wait-for-it
 
 # Copy nginx config
-COPY ./nginx.conf /nginx/nginx.conf
+COPY nginx.conf /nginx.conf
 
 # Copy frontend build to the Nginx container
 COPY ./frontend/dist /usr/share/nginx/html
