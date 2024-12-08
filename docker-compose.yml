@@ -9,6 +9,8 @@ services:
       - "5000:5000"  # Expose backend API port
     networks:
       - app-network
+    env_file:
+      "./backend/.env"
 
   frontend:
     build:
