@@ -89,6 +89,7 @@ public class AppConfigure
                     var ipAddress = Dns.GetHostAddresses(uri.Host).FirstOrDefault();
                     if (ipAddress != null)
                     {
+                        Console.WriteLine($"Resolved IP address: {ipAddress}");
                         options.Listen(ipAddress, uri.Port);  // Listen on the resolved IP address and port
                     }
                     else
@@ -101,9 +102,10 @@ public class AppConfigure
             catch (UriFormatException ex)
             {
                 Console.WriteLine($"Invalid URL format: {urls}. Using default binding to all IPs.");
-                options.Listen(IPAddress.Any, 5000); // Fallback to all IPs and port 5001
+                options.Listen(IPAddress.Any, 5000); // Fallback to all IPs and port 5000
             }
         });
+
 
 
 
