@@ -7,9 +7,6 @@ services:
       dockerfile: Dockerfile  # Specifies the Dockerfile to use
     ports:
       - "5000:5000"  # Expose backend API port
-    environment:
-      ASPNETCORE_URLS: "http://0.0.0.0:5000"  # Set the backend's URL to listen on all interfaces
-      DB_SERVER: ${DB_SERVER}  # Set the database server from environment variable
     networks:
       - app-network
 
