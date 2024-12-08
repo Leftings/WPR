@@ -38,8 +38,7 @@ services:
       - ./nginx/certbot/conf:/etc/letsencrypt
       - ./nginx/certbot/www:/var/www/certbot
       
-    entrypoint: ["backend:5000", "--", "nginx", "-g", "daemon off;"]
-
+    entrypoint: ["nginx", "-g", "daemon off;"] 
 
   certbot:
     image: certbot/certbot
