@@ -32,7 +32,8 @@ services:
       - frontend
       - backend  # Ensure backend starts before nginx
     #entrypoint: ["/usr/local/bin/wait-for-it.sh", "backend:5000", "--", "nginx", "-g", "daemon off;"]
-    entrypoint: /bin/sh
+    #entrypoint: /bin/sh
+    entrypoint: ["nginx", "-g", "daemon off;"]
     networks:
       - app-network
     volumes:
