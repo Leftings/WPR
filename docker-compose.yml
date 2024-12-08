@@ -35,7 +35,7 @@ services:
     depends_on:
       - frontend
       - backend
-    command: ["./wait-for-it.sh", "backend:5000", "--", "nginx", "-g", "daemon off;"]
+    #command: ["./wait-for-it.sh", "backend:5000", "--", "nginx", "-g", "daemon off;"]
     networks:
       - app-network
     volumes:
