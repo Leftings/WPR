@@ -3,44 +3,45 @@ version: "3.9"
 services:
   backend:
     build:
-      context: ./backend
-      dockerfile: Dockerfile
+      context: .  # The directory where the Dockerfile is located (root of your project)
+      dockerfile: Dockerfile  # Specifies the Dockerfile to use
     ports:
-      - "5000:5000"
-    env_file:
-      - ./backend/.env 
+      - "5000:5000"  # Expose backend API port
+    environment:
+      ASPNETCORE_URLS: "http://0.0.0.0:5000"  # Set the backend's URL to listen on all interfaces
+      DB_SERVER: ${DB_SERVER}  # Set the database server from environment variable
     networks:
       - app-network
-    environment:
-      ASPNETCORE_URLS: "http://0.0.0.0:5000"
-      DB_SERVER: ${DB_SERVER}
 
   frontend:
     build:
-      context: ./frontend
+      context: .  # Build context is the root of your project
+      dockerfile: Dockerfile  # Same Dockerfile as backend to build both frontend and backend
     ports:
-      - "3000:3000"
+      - "3000:3000"  # Expose React frontend port
     networks:
       - app-network
+    environment:
+      VITE_REACT_APP_BACKEND_URL: "http://backend:5000"  # The backend URL for frontend to communicate with
 
   nginx:
-    image: nginx:alpine
+    image: nginx:alpine  # Use official Nginx image
     build:
-      context: .
+      context: .  # Build Nginx from the current directory
     ports:
-      - "8080:8080"
-      - "8443:8443"
+      - "8080:8080"  # Expose Nginx HTTP port
+      - "8443:8443"  # Expose Nginx HTTPS port
     depends_on:
       - frontend
       - backend
-    #command: ["./wait-for-it.sh", "backend:5000", "--", "nginx", "-g", "daemon off;"]
+    command: ["./wait-for-it.sh", "backend:5000", "--", "nginx", "-g", "daemon off;"]  # Wait for backend before starting Nginx
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro  # Nginx configuration file
+      - ./nginx/certbot/conf:/etc/letsencrypt  # Certbot files for HTTPS certificates
+      - ./nginx/certbot/www:/var/www/certbot  # Certbot webroot directory
     networks:
       - app-network
-    volumes:
-      - ./nginx.conf:/etc/nginx/nginx.conf:ro
-      - ./nginx/certbot/conf:/etc/letsencrypt
-      - ./nginx/certbot/www:/var/www/certbot
 
 networks:
   app-network:
-    driver: bridge
+    driver: bridge  # Define custom bridge network for communication between services
