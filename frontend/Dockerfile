@@ -4,7 +4,7 @@ FROM node:18 AS build
 WORKDIR /app
 
 # Copy package.json and package-lock.json first to install dependencies
-COPY frontend/package.json frontend/package-lock.json ./
+COPY ./frontend/package.json ./frontend/package-lock.json ./
 
 # Install dependencies using npm ci (clean install)
 RUN npm ci
