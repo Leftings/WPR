@@ -10,8 +10,6 @@ services:
       - ./backend/.env
     networks:
       - app-network
-    environment:
-      ASPNETCORE_URLS: "http://0.0.0.0:5000"
 
   frontend:
     build:
