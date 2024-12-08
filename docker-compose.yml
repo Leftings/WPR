@@ -22,6 +22,7 @@ services:
       - app-network
 
   nginx:
+    image: nginx:apline
     build:
       context: .  # Root context for the entire project (this includes frontend, backend, nginx)
     ports:
