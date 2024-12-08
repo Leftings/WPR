@@ -22,8 +22,8 @@ services:
       - "3000:3000"  # Expose React frontend port
     networks:
       - app-network
-    environment:
-      VITE_REACT_APP_BACKEND_URL: "http://backend:5000"  # The backend URL for frontend to communicate with
+    env_file:
+      "./frontend/.env"
 
   nginx:
     container_name: wpr_nginx_1
