@@ -68,7 +68,7 @@ public class AppConfigure
             );
         });
 
-        builder.WebHost.ConfigureKestrel(options =>
+        /*builder.WebHost.ConfigureKestrel(options =>
         {
             var urls = Environment.GetEnvironmentVariable("ASPNETCORE_URLS") ?? "http://localhost:5000"; // Default to localhost:5000
             Console.WriteLine($"DEBUG!!! url: {urls}");
@@ -105,6 +105,13 @@ public class AppConfigure
                 options.Listen(IPAddress.Any, 5000); // Fallback to all IPs and port 5000
             }
         });
+        */
+
+        builder.WebHost.ConfigureKestrel(options =>
+        {
+            options.Listen(IPAddress.Any, 5000);
+        });
+
 
         builder.Services.AddSingleton<EnvConfig>(); // Singleton for environment configuration
         builder.Services.AddTransient<Connector>(); // Transient for database connection
