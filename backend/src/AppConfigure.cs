@@ -81,7 +81,7 @@ public class AppConfigure
                 if (uri.Host == "0.0.0.0" || uri.Host == "::0")
                 {
                     Console.WriteLine("Binding to all interfaces (0.0.0.0)...");
-                    options.Listen(IPAddress.Any, uri.Port);  // Use IPAddress.Any for all interfaces
+                    options.Listen(IPAddress.Any, 5000);  // Use IPAddress.Any for all interfaces
                 }
                 else
                 {
@@ -90,12 +90,12 @@ public class AppConfigure
                     if (ipAddress != null)
                     {
                         Console.WriteLine($"Resolved IP address: {ipAddress}");
-                        options.Listen(ipAddress, uri.Port);  // Listen on the resolved IP address and port
+                        options.Listen(ipAddress, 5000);  // Listen on the resolved IP address and port
                     }
                     else
                     {
                         Console.WriteLine($"Failed to resolve IP address for {uri.Host}. Falling back to all IPs.");
-                        options.Listen(IPAddress.Any, uri.Port); // Fallback to all IPs if resolution fails
+                        options.Listen(IPAddress.Any, 5000); // Fallback to all IPs if resolution fails
                     }
                 }
             }
