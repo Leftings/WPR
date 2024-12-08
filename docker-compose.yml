@@ -25,16 +25,13 @@ services:
 
   nginx:
     image: nginx:alpine
-    build:
-      context: .
-      dockerfile: ./nginx/Dockerfile
     ports:
       - "8080:80"
       - "8443:8443"
     depends_on:
       - frontend
       - backend  # Ensure backend starts before nginx
-    command: ["./wait-for-it.sh", "backend:5000", "--", "nginx", "-g", "daemon off;"]
+    command: ["./nginx/scripts/wait-for-it.sh", "backend:5000", "--", "nginx", "-g", "daemon off;"]
     networks:
       - app-network
     volumes:
