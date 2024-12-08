@@ -22,8 +22,6 @@ services:
       - "3000:3000"
     networks:
       - app-network
-    environment:
-      VITE_REACT_APP_BACKEND_URL: "http://backend:5000"
 
   nginx:
     image: nginx:alpine
