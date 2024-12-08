@@ -1,4 +1,4 @@
-# Step 1: Build the frontend with node:18
+# Step 1: Build the frontend with Node.js and Vite
 FROM node:18 AS build
 
 WORKDIR /app
@@ -6,20 +6,23 @@ WORKDIR /app
 # Copy package.json and package-lock.json first to install dependencies
 COPY package.json package-lock.json ./
 
-# Install dependencies
-RUN npm ci --registry=https://registry.npmjs.org/
+# Install dependencies using npm ci (clean install)
+RUN npm ci
 
-# Copy the rest of the application
+# Copy the rest of the application files (including source code)
 COPY . .
 
-# Step 2: Run the build script
+# Run the build script using Vite
 RUN npm run build
 
-# Step 3: Set up Nginx to serve the static files
+# Step 2: Set up Nginx to serve the static files
 FROM nginx:alpine
 
-# Copy the built files from the build stage to Nginx
+# Copy the built files from the build stage to Nginx's default directory
 COPY --from=build /app/dist /usr/share/nginx/html
 
-# Expose port 80 for Nginx
+# Expose port 80 for Nginx to serve the app
 EXPOSE 80
+
+# Start Nginx in the foreground
+CMD ["nginx", "-g", "daemon off;"]
