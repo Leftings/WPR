@@ -31,7 +31,7 @@ services:
     depends_on:
       - frontend
       - backend  # Ensure backend starts before nginx
-    command: ["./nginx/scripts/wait-for-it.sh", "backend:5000", "--", "nginx", "-g", "daemon off;"]
+    command: ["./wait-for-it.sh", "backend:5000", "--", "nginx", "-g", "daemon off;"]
     networks:
       - app-network
     volumes:
