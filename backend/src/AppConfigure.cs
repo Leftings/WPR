@@ -61,7 +61,7 @@ public class AppConfigure
         builder.Services.AddCors(options =>
         {
             options.AddPolicy("AllowSpecificOrigins", policy =>
-                policy.WithOrigins("https://carandall.nl", "https://95.99.30.110:8443", "http://localhost:5173, http://95.99.30.110:8080")
+                policy.WithOrigins("https://carandall.nl", "https://95.99.30.110:8443", "http://localhost:5173", "http://95.99.30.110:8080")
                     .AllowAnyHeader()
                     .AllowAnyMethod()
                     .AllowCredentials()
