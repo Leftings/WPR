@@ -34,3 +34,4 @@
 
 # Set the entrypoint to start the backend application
 #ENTRYPOINT ["dotnet", "backend/WPR.dll"]
+FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
