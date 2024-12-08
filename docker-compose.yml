@@ -24,7 +24,8 @@ services:
   nginx:
     image: nginx:alpine
     build:
-      context: ./nginx # Root context for the entire project (this includes frontend, backend, nginx)
+      context: .
+      dockerfile: ./nginx/Dockerfile
     ports:
       - "8080:80"
       - "8443:8443"
