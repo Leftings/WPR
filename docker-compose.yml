@@ -2,6 +2,7 @@ version: "3.9"
 
 services:
   backend:
+    container_name: wpr_backend_1
     build:
       context: .  # The directory where the Dockerfile is located (root of your project)
       dockerfile: Dockerfile  # Specifies the Dockerfile to use
@@ -13,6 +14,7 @@ services:
       "./backend/.env"
 
   frontend:
+    container_name: wpr_frontend_1
     build:
       context: .  # Build context is the root of your project
       dockerfile: Dockerfile  # Same Dockerfile as backend to build both frontend and backend
@@ -24,6 +26,7 @@ services:
       VITE_REACT_APP_BACKEND_URL: "http://backend:5000"  # The backend URL for frontend to communicate with
 
   nginx:
+    container_name: wpr_nginx_1
     image: nginx:alpine  # Use official Nginx image
     build:
       context: .  # Build Nginx from the current directory
