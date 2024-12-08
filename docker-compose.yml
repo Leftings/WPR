@@ -6,11 +6,9 @@ services:
     build:
       context: ./backend
     ports:
-      - "5000:5000" # Expose port for both dev and production
+      - "5000:5000" 
     env_file:
-      - ./backend/.env # Default for development
-    environment:
-      - NODE_ENV=${NODE_ENV:-development} # Development by default
+      - ./backend/.env 
     networks:
       - app-network
 
@@ -18,11 +16,6 @@ services:
   frontend:
     build:
       context: ./frontend
-    ports:
-      - "3000:3000" # Development port
-      - "8080:80"   # Production port
-    environment:
-      - REACT_APP_BACKEND_URL=${REACT_APP_BACKEND_URL:-http://localhost:5000}
     networks:
       - app-network
 
