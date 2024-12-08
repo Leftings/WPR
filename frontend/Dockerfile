@@ -16,7 +16,7 @@ COPY frontend ./
 RUN npm run build
 
 # Step 2: Set up Nginx to serve the static files
-FROM nginx:alpine
+FROM nginx:stable-alpine
 
 RUN nginx -v
 
