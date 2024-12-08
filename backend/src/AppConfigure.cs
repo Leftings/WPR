@@ -72,6 +72,7 @@ public class AppConfigure
         builder.WebHost.ConfigureKestrel(options =>
         {
             var urls = Environment.GetEnvironmentVariable("ASPNETCORE_URLS") ?? "http://localhost:5000"; // Default to localhost:5000
+            Console.WriteLine($"DEBUG!!! url: {urls}");
             try
             {
                 Uri uri = new Uri(urls); // Parse the URL
@@ -105,6 +106,8 @@ public class AppConfigure
                 options.Listen(IPAddress.Any, 5000); // Fallback to all IPs and port 5000
             }
         });
+
+
 
 
 
