@@ -20,7 +20,6 @@ FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /src
 COPY ./WPR.csproj ./
 RUN dotnet restore "./WPR.csproj"
-COPY ./backend/ ./
 WORKDIR "/src/."
 RUN dotnet build "WPR.csproj" -c Release -o /app/build
 
