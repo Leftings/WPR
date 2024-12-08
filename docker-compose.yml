@@ -12,6 +12,7 @@ services:
       - app-network
     environment:
       ASPNETCORE_URLS: "http://0.0.0.0:5000"
+      DB_SERVER: ${DB_SERVER}
 
   frontend:
     build:
