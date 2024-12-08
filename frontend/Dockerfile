@@ -18,7 +18,7 @@ RUN npm run build
 # Step 2: Set up Nginx to serve the static files
 FROM nginx:stable-alpine
 
-RUN nginx -v
+RUN apk update && apk add nginx
 
 # Copy the built files from the build stage to Nginx's default directory
 COPY --from=build /app/dist /usr/share/nginx/html
