@@ -14,7 +14,7 @@ services:
   frontend:
     build:
       context: .
-      dockerfile: ./forntend/Dockerfile
+      dockerfile: ./frontend/Dockerfile
     ports:
       - "3000:3000"  # Frontend development port
     env_file:
