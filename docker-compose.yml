@@ -12,21 +12,14 @@ services:
       - app-network
     environment:
       ASPNETCORE_URLS: "http://0.0.0.0:5000"
-      DB_SERVER: ""
-      DB_USER: ""
-      DB_PASSWORD: ""
 
   frontend:
     build:
       context: ./frontend
     ports:
       - "3000:3000"  # Frontend development port
-    env_file:
-      - ./frontend/.env  # Ensure no DB variables here
     networks:
       - app-network
-    environment:
-      VITE_REACT_APP_BACKEND_URL: "http://backend:5000"
 
   nginx:
     image: nginx:alpine
