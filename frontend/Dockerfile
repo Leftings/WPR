@@ -19,6 +19,7 @@ RUN npm run build
 FROM nginx:stable-alpine
 
 RUN apk update && apk add nginx
+RUN which nginx
 
 # Copy the built files from the build stage to Nginx's default directory
 COPY --from=build /app/dist /usr/share/nginx/html
