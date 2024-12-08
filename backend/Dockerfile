@@ -18,14 +18,14 @@ EXPOSE 5000
 # Use the SDK image to build the application
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /src
-COPY ["./backend/BackendProject.csproj", "./"]
-RUN dotnet restore "./BackendProject.csproj"
+COPY ["./backend/WPR.csproj", "./"]
+RUN dotnet restore "./WPR.csproj"
 COPY . .
 WORKDIR "/src/."
-RUN dotnet build "BackendProject.csproj" -c Release -o /app/build
+RUN dotnet build "WPR.csproj" -c Release -o /app/build
 
 FROM build AS publish
-RUN dotnet publish "BackendProject.csproj" -c Release -o /app/publish
+RUN dotnet publish "WPR.csproj" -c Release -o /app/publish
 
 FROM base AS final
 WORKDIR /app
