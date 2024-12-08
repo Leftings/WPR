@@ -7,7 +7,7 @@ RUN chmod +x /usr/local/bin/wait-for-it
 COPY nginx.conf /nginx.conf
 
 # Copy frontend build to the Nginx container
-COPY ./frontend/dist /usr/share/nginx/html
+COPY ./frontend/dist ./forntend.dist/index.html
 
 # Expose the ports for nginx
 EXPOSE 8080 8443
