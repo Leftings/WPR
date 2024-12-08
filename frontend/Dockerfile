@@ -1,7 +1,7 @@
 FROM node:18 AS build
 WORKDIR /app
 COPY package*.json ./
-RUN npm install -D vite
+RUN npm install -D vite --registry=https://registry.npmjs.org/
 COPY . .
 RUN npm run build
 
