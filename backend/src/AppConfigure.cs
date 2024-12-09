@@ -78,7 +78,7 @@ public class AppConfigure
 
         builder.WebHost.ConfigureKestrel(options =>
         {
-            var urls = Environment.GetEnvironmentVariable("ASPNETCORE_URLS") ?? "http://localhost:5000"; // Default to localhost:5000
+            var urls = Environment.GetEnvironmentVariable("ASPNETCORE_URLS"); // Default to localhost:5000
             Console.WriteLine($"DEBUG!!! url: {urls}");
             try
             {
