@@ -1,6 +1,6 @@
 using System.Data;
 
-namespace WPR.Controllers.VehicleController;
+namespace WPR.Controllers.Vehicle;
 
 using Microsoft.AspNetCore.Mvc;
 using WPR.Repository;
