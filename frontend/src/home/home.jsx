@@ -1,36 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import {Link, useNavigate} from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import GeneralHeader from "../GeneralBlocks/header/header.jsx";
 import GeneralFooter from "../GeneralBlocks/footer/footer.jsx";
-
 import './home.css';
-import error from "eslint-plugin-react/lib/util/error.js";
-    
-function WelcomeUser(setWelcome)
-{
-  fetch('http://localhost:5165/api/Cookie/GetUserName', {
-    method: 'GET',
-    headers: {
-        'Content-Type': 'application/json', 
-    },
-    credentials: 'include', // Cookies of authenticatie wordt meegegeven
-    })
-    .then(response => {
-        console.log(response);
-        if (!response.ok) {
-            throw new Error('No Cookie');
-        }
-        return response.json();
-    })
-    .then(async data => {
-      setWelcome(`Welcome, ${data.message}`);
-    })
-    .catch(error => {
-        console.error('Error:', error);
-    });
-}
-function Home() {
 
+function Home() {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const navigate = useNavigate();
 
@@ -38,12 +12,12 @@ function Home() {
         fetch('http://localhost:5165/api/Login/CheckSession', { credentials: 'include' })
             .then(response => {
                 if (!response.ok) {
-                    throw new Error('Not logged in')
+                    throw new Error('Not logged in');
                 }
                 return response.json();
             })
             .then(() => setIsLoggedIn(true))
-            .catch(() =>setIsLoggedIn(false));
+            .catch(() => setIsLoggedIn(false));
     }, []);
 
     const handleLogout = () => {
@@ -54,17 +28,15 @@ function Home() {
             })
             .catch(error => console.error('Logout error', error));
     };
-    
+
     return (
         <>
-            <GeneralHeader isLoggedIn={isLoggedIn} handleLogout={handleLogout} /> 
-
-
+            <GeneralHeader isLoggedIn={isLoggedIn} handleLogout={handleLogout} />
             <main>
                 <section className="hero">
-                    <h1>Vindt de perfecte auto voor jouw avontuur</h1>
+                    <h1>Vind de perfecte auto voor jouw avontuur</h1>
                     <p>Betaalbare prijzen, flexibele verhuur en een breed aanbod aan voertuigen om uit te kiezen.</p>
-                    <Link to="/cars" className="cta-button">Verken onze Auto's</Link>
+                    <Link to="/GeneralSalePage" className="cta-button">Verken onze Auto's</Link>
                 </section>
 
                 <div className="container">
@@ -82,13 +54,17 @@ function Home() {
                             <p>Kies een huurperiode die perfect bij uw situatie past.</p>
                         </div>
                     </section>
+
+                    <section className="abonnementen-info">
+                        <h2>Bekijk onze Abonnementen</h2>
+                        <p>We bieden verschillende abonnementsopties aan die passen bij jouw huurbehoeften. Bekijk ze en kies de beste optie voor jou!</p>
+                        <Link to="/AbonementUitlegPage" className="cta-button">Ontdek Abonnementen</Link>
+                    </section>
                 </div>
             </main>
-
-
-            <GeneralFooter /> 
-
+            <GeneralFooter />
         </>
     );
 }
+
 export default Home;

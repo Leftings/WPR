@@ -1,13 +1,15 @@
-namespace WPR.Cookie;
+namespace WPR.Controllers.Cookie;
 
 public class SessionHandler : IDisposable
 {
+    private bool disposedValue;
+
     public void CreateCookie(IResponseCookies responseCookies, string cookieName, string cookieValue)
     {
         responseCookies.Append(cookieName, cookieValue, new CookieOptions
         {
-            HttpOnly = true, // Cookies zijn alleen toegankelijk voor de server
-            Expires = DateTimeOffset.Now.AddMinutes(30) 
+            HttpOnly = true,
+            Expires = DateTimeOffset.Now.AddMinutes(30)
         });
     }
 
@@ -20,8 +22,21 @@ public class SessionHandler : IDisposable
         });
     }
 
+    protected virtual void Dispose(bool disposing)
+    {
+        if (!disposedValue)
+        {
+            if (disposing)
+            {
+            }
+
+            disposedValue = true;
+        }
+    }
+
     public void Dispose()
     {
-        throw new NotImplementedException();
+        Dispose(disposing: true);
+        GC.SuppressFinalize(this);
     }
 }

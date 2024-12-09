@@ -1,10 +1,12 @@
 ﻿using System.Data;
 using Microsoft.AspNetCore.Mvc;
 using MySql.Data.MySqlClient;
-using WPR.Cookie;
+using WPR.Controllers.Cookie;
 using WPR.Database;
 using Microsoft.AspNetCore.Http.HttpResults;
 using WPR.Utils;
+using WPR.Hashing;
+using Org.BouncyCastle.Crypto.Prng;
 
 namespace WPR.Repository;
 
@@ -15,16 +17,43 @@ namespace WPR.Repository;
 public class UserRepository : IUserRepository
 {
     private readonly Connector _connector;
+    private readonly Hash _hash;
 
-    public UserRepository(Connector connector)
+    public UserRepository(Connector connector, Hash hash)
     {
         _connector = connector ?? throw new ArgumentNullException(nameof(connector));
+        _hash = hash ?? throw new ArgumentNullException(nameof(hash));
     }
+
+    /*private async Task<bool> CheckPassword(string username, string password, string table)
+    {
+        string query = $@"SELECT password FROM {table} WHERE LOWER(email) = LOWER(@Email)";
+
+        using (var connection = _connector.CreateDbConnection())
+        
+        using (var command = new MySqlCommand(query, (MySqlConnection)connection))
+        {
+            command.Parameters.AddWithValue("@Email", username);
+
+            using (var reader = await command.ExecuteReaderAsync())
+            {
+                if (reader.HasRows)
+                {
+                    string passwordUser = reader.GetString("Password");
+
+                    return _hash.(password, passwordUser);
+                }
+
+                return false;
+            }
+        }
+    }
+    */
 
     public async Task<bool> ValidateUserAsync(string username, string password, bool isEmployee)
     {
-        string table = isEmployee ? "Staff" : "User_Customer";
-        string query = $@"SELECT 1 FROM {table} WHERE LOWER(email) = LOWER(@Email) AND BINARY password = @Password";
+        string table = isEmployee ? "Staff" : "UserCustomer";
+        /*string query = $@"SELECT 1 FROM {table} WHERE LOWER(email) = LOWER(@Email) AND BINARY password = @Password";
 
         using (var connection = _connector.CreateDbConnection())
         {
@@ -35,9 +64,29 @@ public class UserRepository : IUserRepository
 
                 using (var reader = await command.ExecuteReaderAsync())
                 {
-                    Console.WriteLine(username);
                     return reader.HasRows;
                 }
+            }
+        }
+        */
+
+        string query = $@"SELECT password FROM {table} WHERE LOWER(email) = LOWER(@Email)";
+
+        using (var connection = _connector.CreateDbConnection())
+        
+        using (var command = new MySqlCommand(query, (MySqlConnection)connection))
+        {
+            command.Parameters.AddWithValue("@Email", username);
+
+            using (var reader = await command.ExecuteReaderAsync())
+            {
+                if (await reader.ReadAsync())
+                {
+                    string passwordUser = reader.GetString("Password");
+                    return _hash.createHash(password).Equals(passwordUser);
+                }
+
+                return false;
             }
         }
     }
@@ -46,7 +95,7 @@ public class UserRepository : IUserRepository
     {
         try
         {
-            string query = "SELECT COUNT(*) FROM User_Customer WHERE LOWER(Email) = LOWER(@E)";
+            string query = "SELECT COUNT(*) FROM UserCustomer WHERE LOWER(Email) = LOWER(@E)";
 
             using (var connection = _connector.CreateDbConnection())
             using (var command = new MySqlCommand(query, (MySqlConnection)connection))
@@ -75,7 +124,7 @@ public class UserRepository : IUserRepository
     {
         try
         {
-            string query = "INSERT INTO User_Customer (Adres, Telnum, Password, Email, FirstName, LastName) values (@A, @T, @P, @E, @F, @L)";
+            string query = "INSERT INTO UserCustomer (Adres, Telnum, Password, Email, FirstName, LastName) values (@A, @T, @P, @E, @F, @L)";
 
             using (var connection = _connector.CreateDbConnection())
             using (var command = new MySqlCommand(query, (MySqlConnection)connection))
@@ -114,7 +163,7 @@ public class UserRepository : IUserRepository
     {
         try
         {
-            string query = "INSERT INTO Personal (ID, BirthDate) values (@I, @B)";
+            string query = "INSERT INTO UserPersonal (ID, BirthDate) values (@I, @B)";
 
             using (var connection = _connector.CreateDbConnection())
             using (var command = new MySqlCommand(query, (MySqlConnection)connection))
@@ -146,7 +195,7 @@ public class UserRepository : IUserRepository
     {
         try
         {
-            string query = "INSERT INTO Employee (ID, Business) values (@I, @B)";
+            string query = "INSERT INTO UserEmployee (ID, Business) values (@I, @B)";
 
             using (var connection = _connector.CreateDbConnection())
             using (var command = new MySqlCommand(query, (MySqlConnection)connection))
@@ -178,7 +227,7 @@ public class UserRepository : IUserRepository
     {
         try
         {
-            string query = "SELECT ID FROM User_Customer WHERE Email = @E";
+            string query = "SELECT ID FROM UserCustomer WHERE Email = @E";
 
             using (var connection = _connector.CreateDbConnection())
             using (var command = new MySqlCommand(query, (MySqlConnection)connection))
@@ -206,7 +255,7 @@ public class UserRepository : IUserRepository
     {
         try
         {
-            string query = "SELECT FirstName FROM User_Customer WHERE ID = @I";
+            string query = "SELECT FirstName FROM UserCustomer WHERE ID = @I";
 
             using (var connection = _connector.CreateDbConnection())
             using (var command = new MySqlCommand(query, (MySqlConnection)connection))
@@ -262,10 +311,36 @@ public class UserRepository : IUserRepository
             }
     }
 
+    public async Task<bool> IsKvkNumberAsync(int kvkNumber)
+    {
+        try
+        {
+            string query = "SELECT COUNT(1) FROM Business WHERE KVK = @kvkNumber";
+
+            using (var connection = _connector.CreateDbConnection())
+            using (var command = new MySqlCommand(query, (MySqlConnection) connection))
+            {
+                command.Parameters.AddWithValue("@kvkNumber", kvkNumber);
+                var result = Convert.ToInt32(await command.ExecuteScalarAsync());
+                return result > 0;
+            }
+        }
+        catch (MySqlException ex)
+        {
+            await Console.Error.WriteLineAsync($"Database error: {ex.Message}");
+            return false;
+        }
+        catch (Exception ex)
+        {
+            await Console.Error.WriteLineAsync($"Unexpected error: {ex.Message}");
+            return false;
+        }
+    }
+
     private async Task<(bool goodQuery, string message)> CreateUserInfoQuery(List<object[]> data)
     {
         int lengthList = data.Count();
-        string query = "UPDATE User_Customer SET ";
+        string query = "UPDATE UserCustomer SET ";
 
         for (int i = 1; i < lengthList; i++)
         {
@@ -299,4 +374,5 @@ public class UserRepository : IUserRepository
 
         return (true, query += $"WHERE ID = {data[0][1]}");
     }
+    
 }

@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { getErrorMessage } from '../utils/errorHandler.jsx'
 import "./signUp.css"
+
+const BACKEND_URL = import.meta.env.VITE_REACT_APP_BACKEND_URL ?? 'http://localhost:5165';
 
 function SignUp() {
     const [chosenType, setChosenType] = useState(null);
@@ -14,7 +17,7 @@ function SignUp() {
     const [password2, setPassword2] = useState('');
     const [error, setError] = useState('');
     const navigate = useNavigate();
-    const [KvK, setKvK] = useState(null)
+    const [KvK, setKvK] = useState('')
 
     const choice = (buttonId) => {
         setChosenType(buttonId);
@@ -23,7 +26,7 @@ function SignUp() {
     const onSubmit = (event) => {
         event.preventDefault();
     
-        if (!email || !adres || !phonenumber || !dateOfBirth || !password1 || !password2) {
+        if (!email || !adres || !phonenumber || !password1 || !password2) {
             setError('Bepaalde verplichte veld(en) zijn niet ingevuld.');
             return;
         }
@@ -32,12 +35,19 @@ function SignUp() {
             setError('Wachtwoorden komen niet overeen.');
             return;
         }
+        
+        if (chosenType === 2) {
+            if (!KvK || KvK.length !== 8) {
+                setError('KVK number must be 8 digits.');
+                return;
+            }
+        }
     
         setError(null);
-    
-        const formattedDate = new Date(dateOfBirth).toISOString().split('T')[0];
+
         let signUpType = chosenType === 1 ? 'signUpPersonal' : 'signUpEmployee';
-    
+
+      
         const data = signUpType === 'signUpPersonal'
             ? {
                 Email: email,
@@ -46,7 +56,7 @@ function SignUp() {
                 LastName: lastName,
                 TelNumber: phonenumber,
                 Adres: adres,
-                BirthDate: formattedDate,
+                BirthDate: new Date(dateOfBirth).toISOString().split('T')[0],
                 KvK: null
             }
             : {
@@ -60,7 +70,7 @@ function SignUp() {
                 KvK: KvK
             };
     
-        fetch(`http://localhost:5165/api/SignUp/${signUpType}`, {
+        fetch(`${BACKEND_URL}/api/SignUp/${signUpType}`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -78,20 +88,11 @@ function SignUp() {
             })
             .then(data => {
                 console.log('Sign up successful', data);
-                navigate('/');
+                navigate('/login');
             })
             .catch(error => {
                 console.error('Error:', error);
-                
-                if (error.message === 'Invalid email format') {
-                    setError('The email format is invalid.');
-                } else if (error.message === 'Email already existing') {
-                    setError('The email is already in use. Please use a different email.');
-                } else if (error.message === 'Invalid phone number format') {
-                    setError('The phone number is invalid.')
-                } else {
-                    setError(`There was an error during making a ${signUpType} account: ${error.message}`);
-                }
+                setError(getErrorMessage(error, signUpType));
             });
     };    
 

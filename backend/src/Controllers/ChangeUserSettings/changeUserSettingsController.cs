@@ -20,7 +20,7 @@ public class ChangeUserSettingsController : ControllerBase
     }
 
     [HttpPut("ChangeUserInfo")]
-    public async Task<IActionResult> ChangeUserInfo([FromBody] ChangeUserRequest changeUserRequest)
+    public async Task<IActionResult> ChangeUserInfoAsync([FromBody] ChangeUserRequest changeUserRequest)
     {
         if (changeUserRequest == null)
         {

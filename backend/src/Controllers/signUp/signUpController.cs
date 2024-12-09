@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Mvc;
 using WPR.Database;
 using System;
 using WPR.Repository;
+using WPR.Hashing;
+using WPR.Data;
 
 [Route("api/[controller]")]
 [ApiController]
@@ -13,11 +15,15 @@ public class SignUpController : ControllerBase
 {
     private readonly Connector _connector;
     private readonly IUserRepository _userRepository;
+    private readonly EnvConfig _envConfig;
+    private readonly Hash _hash;
 
-    public SignUpController(Connector connector, IUserRepository userRepository)
+    public SignUpController(Connector connector, IUserRepository userRepository, EnvConfig envConfig, Hash hash)
     {
         _connector = connector ?? throw new ArgumentNullException(nameof(connector));
         _userRepository = userRepository ?? throw new ArgumentNullException(nameof(userRepository));
+        _envConfig = envConfig ?? throw new ArgumentNullException(nameof(envConfig));
+        _hash = hash ?? throw new ArgumentNullException(nameof(hash));
     }
 
     private bool IsFilledIn(SignUpRequest signUpRequest)
@@ -33,7 +39,7 @@ public class SignUpController : ControllerBase
 
     // Wijzigingen die gemaakt worden in signUpPersonal moeten ook gemaakt worden in signUpEmployee
     [HttpPost("signUpPersonal")]
-    public async Task<IActionResult> signUpPersonal([FromBody] SignUpRequest signUpRequest)
+    public async Task<IActionResult> signUpPersonalAsync([FromBody] SignUpRequest signUpRequest)
     {
         var emailCheck = await _userRepository.checkUsageEmailAsync(signUpRequest.Email);
         bool commit = true;
@@ -46,7 +52,7 @@ public class SignUpController : ControllerBase
             try
             {
                 bool filledIn = IsFilledIn(signUpRequest);
-                if (!filledIn || signUpRequest.BirthDate == null)
+                if (!filledIn)
                 {
                     return BadRequest(new { message = "Not all elements are filled in" });
                 }
@@ -66,12 +72,18 @@ public class SignUpController : ControllerBase
                     return BadRequest(new { message = "Invalid phone number" });
                 }
                 
+                var (isPasswordValid, passwordError) = PasswordChecker.IsValidPassword(signUpRequest.Password);
+                if (!isPasswordValid)
+                {
+                    return BadRequest(new { message = passwordError });
+                }
+                
                 else if (emailCheck.status)
                 {
                     transaction.Rollback();
                     commit = false;
 
-                    return BadRequest( new { message = "Email allready existing"} );
+                    return BadRequest( new { message = "Email already exists"} );
                 }
                 else if (filledIn && signUpRequest.BirthDate != null)
                 {
@@ -79,7 +91,7 @@ public class SignUpController : ControllerBase
                     {
                         signUpRequest.Adres,
                         signUpRequest.TelNumber,
-                        signUpRequest.Password,
+                        _hash.createHash(signUpRequest.Password),
                         signUpRequest.Email,
                         signUpRequest.FirstName,
                         signUpRequest.LastName
@@ -110,7 +122,12 @@ public class SignUpController : ControllerBase
                 transaction.Rollback();
                 commit = false;
 
-                return StatusCode(500, ex);
+                return StatusCode(500, new
+                {
+                    message = ex.Message,
+                    details = ex.Message,
+                    stackTrace = ex.StackTrace 
+                });
             }
             finally
             {
@@ -118,14 +135,12 @@ public class SignUpController : ControllerBase
                 {
                     transaction.Commit();
                 }
-
-                connection.Close();
             }
         }
     }
 
     [HttpPost("signUpEmployee")]
-    public async Task<IActionResult> signUpEmployee([FromBody] SignUpRequest signUpRequest)
+    public async Task<IActionResult> signUpEmployeeAsync([FromBody] SignUpRequest signUpRequest)
     {
         var connection = _connector.CreateDbConnection();
         var emailCheck = await _userRepository.checkUsageEmailAsync(signUpRequest.Email);
@@ -136,16 +151,39 @@ public class SignUpController : ControllerBase
             try
             {
                 bool filledIn = IsFilledIn(signUpRequest);
-                if (!filledIn || signUpRequest.KvK == null)
+                if (!filledIn )
                 {
                     return BadRequest(new { message = "Not all elements are filled in" });
+                }
+                if (!EmailChecker.IsValidEmail(signUpRequest.Email))
+                {
+                    return BadRequest(new { message = "Invalid email format" });
+                }
+
+                var kvkChecker = new KvkChecker(_userRepository);
+                var (isValidKvk, kvkErrorMessage) = await kvkChecker.IsKvkNumberValid(signUpRequest.KvK);
+
+                if (!isValidKvk)
+                {
+                    return BadRequest(new { message = kvkErrorMessage });
+                }
+                
+                var (isPasswordValid, passwordError) = PasswordChecker.IsValidPassword(signUpRequest.Password);
+                if (!isPasswordValid)
+                {
+                    return BadRequest(new { message = passwordError });
+                }
+
+                if (!TelChecker.IsValidPhoneNumber(signUpRequest.TelNumber))
+                {
+                    return BadRequest(new { message = "Invalid phone number" });
                 }
                 else if (emailCheck.status)
                 {
                     transaction.Rollback();
                     commit = false;
 
-                    return BadRequest( new { message = "Email allready existing"} );
+                    return BadRequest( new { message = "Email already exists"} );
                 }
                 else if (filledIn && signUpRequest.KvK != null)
                 {
@@ -185,7 +223,12 @@ public class SignUpController : ControllerBase
                 transaction.Rollback();
                 commit = false;
                 
-                return StatusCode(500, ex);
+                return StatusCode(500, new
+                {
+                    message = ex.Message,
+                    details = ex.Message,
+                    stackTrace = ex.StackTrace 
+                });
             }
             finally
             {
@@ -193,8 +236,6 @@ public class SignUpController : ControllerBase
                 {
                     transaction.Commit();
                 }
-
-                connection.Close();
             }
         }
         
