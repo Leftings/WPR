@@ -19,6 +19,8 @@ services:
       - "3000:3000"  # Frontend development port
     env_file:
       - ./frontend/.env
+    environment:
+      - VITE_REACT_APP_BACKEND_URL=http://95.99.30.110:5000
     networks:
       - app-network
     
