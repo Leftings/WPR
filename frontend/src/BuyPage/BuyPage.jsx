@@ -26,11 +26,12 @@ function BuyPage() {
     const [vehicleAvailable, setVehicleAvailable] = useState(null);
     const [fetchError, setFetchError] = useState(null);
     const [totalCost, setTotalCost] = useState(0);
+    const [rentalDays, setRentalDays] = useState(0); // Add rentalDays to state
 
     const checkVehicleAvailability = async () => {
         if (!Vehicle || !Vehicle.FrameNr) {
             setFetchError("Invalid vehicle frame number.");
-            setVehicleAvailable(false); 
+            setVehicleAvailable(false);
             return;
         }
 
@@ -45,15 +46,14 @@ function BuyPage() {
             setVehicleAvailable(data.isAvailable);
         } catch (error) {
             setFetchError('There was an error checking vehicle availability. Please try again later.');
-            setVehicleAvailable(false); 
+            setVehicleAvailable(false);
             console.error(error);
         }
     };
 
-
     useEffect(() => {
         if (vehicle) {
-            console.log("Vehicle found:", vehicle);  
+            console.log("Vehicle found:", vehicle);
             checkVehicleAvailability();
         }
     }, [vehicle]);
@@ -71,16 +71,21 @@ function BuyPage() {
         }));
 
         if (start && end) {
-            const rentalDays = (end - start) / (1000 * 3600 * 24);
-            const calculatedCost = rentalDays * vehicle.price;
-            setTotalCost(calculatedCost);
+            const calculatedRentalDays = (end - start) / (1000 * 3600 * 24);
+            const calculatedCost = calculatedRentalDays * vehicle.price;
+
+            setRentalDays(calculatedRentalDays); // Store rental days in state
+            setTotalCost(calculatedCost); // Store total cost in state
         }
     };
 
     const handlePurchase = () => {
-        
-        alert(`Verhuur succesvol! Aantal dagen: ${rentalDays} dagen, Totale kosten: €${totalCost.toFixed(2)}`);
-        navigate("/");
+        if (rentalDays > 0 && totalCost > 0) {
+            alert(`Verhuur succesvol! Aantal dagen: ${rentalDays} dagen, Totale kosten: €${totalCost.toFixed(2)}`);
+            navigate("/");
+        } else {
+            setErrorMessage("Voer een geldige huurperiode in.");
+        }
     };
 
     if (!vehicle) {
