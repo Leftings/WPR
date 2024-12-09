@@ -2,8 +2,6 @@ using System.Security.Policy;
 using System.Text.Json.Serialization;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.Extensions.Options;
-using Microsoft.VisualBasic;
-using Org.BouncyCastle.Crypto.Prng;
 using WPR.Controllers.Cookie;
 using WPR.Cryption;
 using WPR.Data;
@@ -66,7 +64,7 @@ public class AppConfigure
                     "https://95.99.30.110:8443",
                     "http://localhost:5173",
                     "http://95.99.30.110:8080",
-                    "http://wpr_backend_1:5000",
+                    "http://wpr_backend_1:5000",  // Include backend address in Docker network
                     "http://wpr_frontend_1:3000",
                     "http://wpr_nginx_1:8080")
                     .AllowAnyHeader()
@@ -75,43 +73,8 @@ public class AppConfigure
             );
         });
 
-        builder.WebHost.ConfigureKestrel(options =>
-        {
-            var urls = Environment.GetEnvironmentVariable("ASPNETCORE_URLS") ?? "http://localhost:5000"; // Default to localhost:5000
-            Console.WriteLine($"DEBUG!!! url: {urls}");
-            try
-            {
-                Uri uri = new Uri(urls); // Parse the URL
-                Console.WriteLine($"Configuring Kestrel to listen on: {uri.Host}:{uri.Port}");
-
-                // Check if the URI host is '0.0.0.0' or an unspecified address
-                if (uri.Host == "0.0.0.0" || uri.Host == "::0")
-                {
-                    Console.WriteLine("Binding to all interfaces (0.0.0.0)...");
-                    options.Listen(IPAddress.Any, 5000);  // Use IPAddress.Any for all interfaces
-                }
-                else
-                {
-                    // Resolving the hostname to an IP address if it's not '0.0.0.0'
-                    var ipAddress = Dns.GetHostAddresses(uri.Host).FirstOrDefault();
-                    if (ipAddress != null)
-                    {
-                        Console.WriteLine($"Resolved IP address: {ipAddress}");
-                        options.Listen(ipAddress, 5165);  // Listen on the resolved IP address and port
-                    }
-                    else
-                    {
-                        Console.WriteLine($"Failed to resolve IP address for {uri.Host}. Falling back to all IPs.");
-                        options.Listen(IPAddress.Any, 5165); // Fallback to all IPs if resolution fails
-                    }
-                }
-            }
-            catch (UriFormatException ex)
-            {
-                Console.WriteLine($"Invalid URL format: {urls}. Using default binding to all IPs.");
-                options.Listen(IPAddress.Any, 5000); // Fallback to all IPs and port 5000
-            }
-        });
+        // Remove Kestrel configuration: Default to use the Docker internal network and port 5000
+        builder.WebHost.UseUrls("http://0.0.0.0:5000"); // Listen on all interfaces and port 5000
 
         builder.Services.AddSingleton<EnvConfig>(); // Singleton for environment configuration
         builder.Services.AddTransient<Connector>(); // Transient for database connection
@@ -168,5 +131,4 @@ public class AppConfigure
 
         return app;
     }
-
 }
