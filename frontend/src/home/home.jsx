@@ -5,7 +5,7 @@ import GeneralFooter from "../GeneralBlocks/footer/footer.jsx";
 import './home.css';
 
 // Access the environment variable
-const BACKEND_URL = import.meta.env.VITE_REACT_APP_BACKEND_URL ?? 'http://localhost:5165';
+const BACKEND_URL = import.meta.env.VITE_REACT_APP_BACKEND_URL || 'http://localhost:5165';
 
 console.log('VITE_REACT_APP_BACKEND_URL: ', import.meta.env.VITE_REACT_APP_BACKEND_URL);
 console.log('BACKEND URL: ', BACKEND_URL);
