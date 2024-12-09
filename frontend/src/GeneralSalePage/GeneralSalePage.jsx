@@ -9,7 +9,7 @@ const BACKEND_URL = import.meta.env.VITE_REACT_APP_BACKEND_URL ?? 'http://localh
 
 function GeneralSalePage() {
     const [vehicles, setVehicles] = useState([]);
-    const [filter, setFilter] = useState(''); // State to hold selected filter
+    const [filter, setFilter] = useState('');
 
     const fetchVehicles = async () => {
         try {
@@ -28,38 +28,24 @@ function GeneralSalePage() {
         }
     };
 
-
     useEffect(() => {
         fetchVehicles();
-    }, [filter]);  
+    }, [filter]);
 
-    // Log the value of filter to check what's happening
-    console.log('Current filter value:', filter);
+    const filteredVehicles = filter
+        ? vehicles.filter(vehicle => vehicle.Sort === filter)
+        : vehicles;
 
-    let filteredVehicles;
-
-    if (filter) {
-        console.log('Filtering vehicles with sort:', filter);
-        filteredVehicles = vehicles.filter(vehicle => vehicle.Sort === filter);
-    } else {
-        filteredVehicles = vehicles;
-        console.log("No filter applied. Showing all vehicles.");
-    }
-
-    return (
+    return ( // This return must be within the component's function body
         <>
             <GeneralHeader />
-
             <div className="general-sale-page">
                 <div className="filter-section">
                     <label htmlFor="filter" className="filter-label">Filter by Vehicle Type:</label>
                     <select
                         id="filter"
                         value={filter}
-                        onChange={(e) => {
-                            console.log("Selected filter:", e.target.value);  // Check what's selected
-                            setFilter(e.target.value);  // Update the filter state
-                        }} 
+                        onChange={(e) => setFilter(e.target.value)}
                         className="filter-dropdown"
                     >
                         <option value="">All</option>
@@ -72,7 +58,7 @@ function GeneralSalePage() {
                 <div className="car-sale-section">
                     <h1 className="title">Vehicles for Sale</h1>
                     <div className="car-grid">
-                        {filteredVehicles.map((vehicle) => (
+                        {filteredVehicles.map(vehicle => (
                             <div key={vehicle.frameNr} className="car-card">
                                 <div className="car-blob">
                                     {vehicle.image ? (
@@ -101,7 +87,6 @@ function GeneralSalePage() {
                     </div>
                 </div>
             </div>
-
             <GeneralFooter />
         </>
     );
