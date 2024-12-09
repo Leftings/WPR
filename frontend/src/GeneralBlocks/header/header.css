@@ -60,9 +60,6 @@ header {
     gap: 10px;
     background-color: #555;
     color: white;
-    position: absolute;
-    right: 0;
-    z-index: 10;
 }
 
     .nav-links li a {
@@ -179,8 +176,5 @@ header {
         background-color: #555;
         width: 100%;
         color: white;
-        position: absolute;
-        left: 0;
-        z-index: 10;
     }
 }
