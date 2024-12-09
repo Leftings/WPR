@@ -15,57 +15,57 @@ function AddVehicle() {
     const [YoP, SetYoP] = useState('');
     const [price, SetPrice] = useState('');
     const [description, SetDescription] = useState('');
-    const [vehicleBlob, SetVehicleBlob] = useState('');
+    const [vehicleBlob, SetVehicleBlob] = useState(null);
     const [error, SetError] = useState([]);
 
     
     const SetVehicle = () => {
-        const data = {
-            YoP: YoP,
-            Brand: brand,
-            Type: type,
-            LicensPlate: licensPlate,
-            Color: color,
-            Sort: kind,
-            Price: price,
-            Description: description,
-            VehicleBlob: vehicleBlob
+        const formData = new FormData();
+    
+        formData.append('YoP', YoP);
+        formData.append('Brand', brand);
+        formData.append('Type', type);
+        formData.append('LicensPlate', licensPlate);
+        formData.append('Color', color);
+        formData.append('Sort', kind);
+        formData.append('Price', price);
+        formData.append('Description', description);
+    
+        if (vehicleBlob && vehicleBlob[0]) {
+            formData.append('vehicleBlob', vehicleBlob[0]); // Append the file object (binary data)
         }
-
+    
         fetch(`${BACKEND_URL}/api/AddVehicle/addVehicle`, {
             method: 'POST',
-            headers: {
-                'Content-Type': 'multipart/form-data',
-            },
-            body: JSON.stringify(data),
             credentials: 'include',
+            body: formData,
         })
-            .then(response => {
-                if (!response.ok)
-                {
-                    return response.json().then(err => {
-                        throw new Error(err.errorMessage);
-                    })
-                }
-                return response.json();
-            })
-            .then(vehicleData => {
-                SetKind('car');
-                SetBrand('');
-                SetType('');
-                SetColor('');
-                SetLicensPlate('');
-                SetYoP('');
-                SetPrice('');
-                SetDescription('');
-                SetVehicleBlob('');
-                SetError([]);
-            })
-            .catch(error => {
-                console.error("Error adding vehicle:", error);
-                SetError([error.message]);
-            });
-    }
+        .then(response => {
+            if (!response.ok) {
+                return response.json().then(err => {
+                    throw new Error(err.message);
+                });
+            }
+            return response.json();
+        })
+        .then(vehicleData => {
+            SetKind('car');
+            SetBrand('');
+            SetType('');
+            SetColor('');
+            SetLicensPlate('');
+            SetYoP('');
+            SetPrice('');
+            SetDescription('');
+            SetVehicleBlob('');
+            SetError([]);
+        })
+        .catch(error => {
+            console.error("Error adding vehicle:", error);
+            SetError([error.message]);
+        });
+    };
+    
 
 
     function Check()
@@ -149,7 +149,7 @@ function AddVehicle() {
             </div>
             <div id="vehicleBlob">
                 <p>Afbeelding voertuig (verplict)</p>
-                <input type="file" value={vehicleBlob} onChange={(e) => SetVehicleBlob(e.target.value)}></input>
+                <input type="file" onChange={(e) => SetVehicleBlob(e.target.files)}></input>
                 <br></br>
             </div>
             <div id="confirm">

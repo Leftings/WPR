@@ -17,11 +17,11 @@ public class UserRepository : IUserRepository
     }
     
     // vehicleBlob is het pad naar de afbeelding
-    public async Task<(bool status, string message)> AddVehicleAsync(int yop, string brand, string type, string licensPlate, string color, string sort, double price, string description, string vehicleBlob)
+    public async Task<(bool status, string message)> AddVehicleAsync(int yop, string brand, string type, string licensePlate, string color, string sort, double price, string description, string vehicleBlob)
     {
         try
         {
-            string query = "INSERT INTO Vehicle (YoP, Brand, Type, LicensPlate, Color, Sort, Price, Description, Vehicleblob) AS (@Y, @B, @T, @L, @C, @S, @P, @D, @V)";
+            string query = "INSERT INTO Vehicle (YoP, Brand, Type, LicensePlate, Color, Sort, Price, Description, Vehicleblob) VALUES (@Y, @B, @T, @L, @C, @S, @P, @D, @V)";
 
             using (var connection = _connector.CreateDbConnection())
             using (var command = new MySqlCommand(query, (MySqlConnection)connection))
@@ -29,12 +29,12 @@ public class UserRepository : IUserRepository
                 command.Parameters.AddWithValue("@Y", yop);
                 command.Parameters.AddWithValue("@B", brand);
                 command.Parameters.AddWithValue("@T", type);
-                command.Parameters.AddWithValue("@L", licensPlate);
+                command.Parameters.AddWithValue("@L", licensePlate);
                 command.Parameters.AddWithValue("@C", color);
                 command.Parameters.AddWithValue("@S", sort);
                 command.Parameters.AddWithValue("@P", price);
                 command.Parameters.AddWithValue("@D", description);
-                command.Parameters.AddWithValue("@V", vehicleBlob);
+                command.Parameters.AddWithValue("@V", System.Text.Encoding.ASCII.GetBytes(vehicleBlob));
 
                 if (await command.ExecuteNonQueryAsync() > 0)
                 {
