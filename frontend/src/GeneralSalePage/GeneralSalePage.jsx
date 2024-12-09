@@ -11,111 +11,34 @@ import './GeneralSalePage.css'
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
-        },
-        credentials: 'include',
-    })
-        .then(response => {
-            console.log(response);
-            if (!response.ok) {
-                throw new Error('No Cookie');
-            }
-            return response.json();
-        })
-        .then(async data => {
-            setWelcome(`Welcome, ${data.message}`);
-        })
+@@ -27,10 +26,9 @@ import './GeneralSalePage.css'
         .catch(error => {
             console.error('Error:', error);
         });
 }*/
 
-
 /*const carsForSale = [
     {
         id: 1,
         name: 'Tesla Model 3',
-        price: '$40,000',
-        description: 'A sleek and efficient electric car with a long range and modern features.',
-        image: 'https://via.placeholder.com/150', 
-    },
-    {
-        id: 2,
-        name: 'Ford Mustang',
-        price: '$35,000',
-        description: 'A powerful and iconic sports car with timeless style.',
-        image: 'https://via.placeholder.com/150', 
-    },
-    {
-        id: 3,
-        name: 'Ford Mustang',
-        price: '$35,000',
-        description: 'A powerful and iconic sports car with timeless style.',
-        image: 'https://via.placeholder.com/150',
-    },
-    {
-        id: 4,
-        name: 'Ford Mustang',
-        price: '$35,000',
-        description: 'A powerful and iconic sports car with timeless style.',
-        image: 'https://via.placeholder.com/150',
-    },
-    {
-        id: 5,
-        name: 'Ford Mustang',
-        price: '$35,000',
-        description: 'A powerful and iconic sports car with timeless style.',
-        image: 'https://via.placeholder.com/150',
-    },
-    {
-        id: 6,
-        name: 'Ford Mustang',
-        price: '$35,000',
-        description: 'A powerful and iconic sports car with timeless style.',
-        image: 'https://via.placeholder.com/150',
-    },
-    {
-        id: 7,
-        name: 'Ford Mustang',
-        price: '$35,000',
-        description: 'A powerful and iconic sports car with timeless style.',
-        image: 'https://via.placeholder.com/150',
-    },
-    {
-        id: 8,
-        name: 'Ford Mustang',
-        price: '$35,000',
-        description: 'A powerful and iconic sports car with timeless style.',
-        image: 'https://via.placeholder.com/150',
-    },
-    {
-        id: 9,
-        name: 'Ford Mustang',
-        price: '$35,000',
-        description: 'A powerful and iconic sports car with timeless style.',
-        image: 'https://via.placeholder.com/150',
-    },
-    {
-        id: 10,
-        name: 'Ford Mustang',
-        price: '$35,000',
+@@ -101,83 +99,42 @@ import './GeneralSalePage.css'
         description: 'A powerful and iconic sports car with timeless style.',
         image: 'https://via.placeholder.com/150',
     },
 ];*/
 
+const BACKEND_URL = import.meta.env.VITE_REACT_APP_BACKEND_URL ?? 'http://localhost:5165';
+
 function GeneralSalePage() {
     const [welcomeMessage, setWelcomeMessage] = useState('');
     const [vehicles, setVehicles] = useState([]);
     const [error, setError] = useState(null);
-
     const fetchVehicles= async () => {
         try {
-            const response = await fetch(`http://localhost:5165/api/vehicle/GetAllVehicles`);
-
+            const response = await fetch(`${BACKEND_URL}/api/vehicle/GetAllVehicles`);
             if (!response.ok) {
                 throw new Error(`Error fetching vehicles: ${response.statusText}`)
             }
-
             const data = await response.json();
             setVehicles(data);
             console.log(data);
@@ -128,15 +51,12 @@ function GeneralSalePage() {
     useEffect(() => {
         fetchVehicles();
         /*WelcomeUser(setWelcomeMessage);*/
-
     }, []);
 
     useEffect(() => {
         console.log(vehicles)
         /*WelcomeUser(setWelcomeMessage);*/
-
     }, [vehicles]);
-
     return (
         <>
             <GeneralHeader />
