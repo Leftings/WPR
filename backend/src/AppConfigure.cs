@@ -61,18 +61,19 @@ public class AppConfigure
         builder.Services.AddCors(options =>
         {
             options.AddPolicy("AllowSpecificOrigins", policy =>
+            {
                 policy.WithOrigins(
-                    "https://carandall.nl",
-                    "https://95.99.30.110:8443",
-                    "http://localhost:5173",
-                    "http://95.99.30.110:8080",
-                    "http://wpr_backend_1:5000",
-                    "http://wpr_frontend_1:3000",
-                    "http://wpr_nginx_1:8080")
+                        "https://carandall.nl",
+                        "https://95.99.30.110:8443",
+                        "http://localhost:5173",
+                        "http://95.99.30.110:8080",
+                        "http://wpr_backend_1:5000",
+                        "http://wpr_frontend_1:3000",
+                        "http://wpr_nginx_1:8080")
                     .AllowAnyHeader()
                     .AllowAnyMethod()
-                    .AllowCredentials()
-            );
+                    .AllowCredentials();
+            });
         });
 
         builder.WebHost.ConfigureKestrel(options =>
