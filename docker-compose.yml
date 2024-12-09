@@ -20,7 +20,7 @@ services:
     env_file:
       - ./frontend/.env
     environment:
-      - VITE_REACT_APP_BACKEND_URL=http://95.99.30.110:5000
+      - VITE_REACT_APP_BACKEND_URL=http://0.0.0.0:5000
     networks:
       - app-network
     
