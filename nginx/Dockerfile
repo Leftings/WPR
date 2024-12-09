@@ -1,5 +1,6 @@
 FROM nginx:alpine
 
+RUN apk add --no-cache bash
 # Copy the wait-for-it script into the container
 COPY ./nginx/scripts/wait-for-it.sh /usr/local/bin/wait-for-it
 RUN chmod +x /usr/local/bin/wait-for-it
