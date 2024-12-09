@@ -8,8 +8,6 @@ services:
       - "5000:5000"  
     env_file:
       - ./backend/.env
-    environment:
-      - ASPNETCORE_URLS=http://0.0.0.0:5000
     networks:
       - app-network
     
