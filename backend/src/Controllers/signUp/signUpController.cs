@@ -191,7 +191,7 @@ public class SignUpController : ControllerBase
                     {
                         signUpRequest.Adres,
                         signUpRequest.TelNumber,
-                        signUpRequest.Password,
+                        _hash.createHash(signUpRequest.Password),
                         signUpRequest.Email,
                         signUpRequest.FirstName,
                         signUpRequest.LastName

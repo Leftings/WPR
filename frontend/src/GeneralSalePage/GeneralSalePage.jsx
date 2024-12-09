@@ -55,8 +55,9 @@ function GeneralSalePage() {
             if (!response.ok) {
                 throw new Error(`Error fetching vehicles: ${response.statusText}`)
             }
-            const data = response.json();
+            const data = await response.json();
             setVehicles(data);
+            console.log(data);
         } catch (e) {
             console.error(e);
             setError('Failed to load cars')
@@ -72,7 +73,8 @@ function GeneralSalePage() {
                 return response.text();
             })
             .then(data => {
-                setIsEmployee(data === 'true');
+                const isUserEmployee = data === 'true';
+                setIsEmployee(isUserEmployee);
             })
             .catch(error => {
                 console.error(error.message);
@@ -81,36 +83,22 @@ function GeneralSalePage() {
     }, []);
 
     useEffect(() => {
-        {isEmployee ? (
-           fetchOnlyCars() 
-        ) : (
-            fetchVehicles()
-        )}
+        /*WelcomeUser(setWelcomeMessage);*/
     }, []);
-    
-    
 
     useEffect(() => {
-        fetch('http://localhost:5165/api/Login/CheckSession', { credentials: 'include' })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Not logged in');
-                }
-                return response.json();
-            })
-            .then(() => setIsLoggedIn(true))
-            .catch(() => setIsLoggedIn(false));
-    }, []);
+        if (isEmployee) {
+            fetchOnlyCars();
+        } else {
+            fetchVehicles();
+        }
+    }, [isEmployee]);
+    
 
     useEffect(() => {
         console.log(vehicles)
         /*WelcomeUser(setWelcomeMessage);*/
     }, [vehicles]);
-
-    useEffect(() => {
-        console.log(vehicles)
-        /*WelcomeUser(setWelcomeMessage);*/
-    }, [isEmployee]);
     
     return (
         <>
