@@ -17,7 +17,7 @@ namespace WPR.Controllers.Staff;
 
 [Route("api/[controller]")]
 [ApiController]
-public class StaffController
+public class StaffController : ControllerBase
 {
     private readonly IUserRepository _userRepository;
     private readonly Connector _connector;
@@ -33,15 +33,30 @@ public class StaffController
     }
 
     [HttpGet("ValidateStaffId")]
-    public Task<IActionResult> ValidateStaffIdAsync(string id)
+    public Task<bool> ValidateStaffIdAsync()
     {
         string loginCookie = HttpContext.Request.Cookies["LoginSession"];
+        string decryptedId = "";
 
+        try
+        {
+            decryptedId = _crypt.Decrypt(loginCookie);
+        }
+        catch
+        {
+            Response.Cookies.Append("LoginSession", "Invalid cookie", new CookieOptions
+            {
+                HttpOnly = true,
+                Secure = true,
+                Expires = DateTimeOffset.UtcNow.AddDays(-1)
+            });
 
+            return _userRepository.IsExistingStaffId("asdfasg") ;
+        }
 
         using (var connection = _connector.CreateDbConnection())
         {
-            return _userRepository.IsExistingStaffId(id);
+            return _userRepository.IsExistingStaffId(decryptedId);
         }
     }
 }

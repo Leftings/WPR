@@ -6,7 +6,6 @@ import './home.css';
 
 function Home() {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
-    const [id, setId] = useState(null);
     const [isStaff, setIsStaff] = useState(false);
     const navigate = useNavigate();
 
@@ -23,24 +22,21 @@ function Home() {
     }, []);
 
     useEffect(() => {
-        fetch('http://localhost:5165/api/Cookie/GetUserId', {credentials: 'include'})
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Not logged in');
-                }
-                setId(response.text());
-            })
-    }, [id]);
-
-    useEffect(() => {
-        fetch(`http://localhost:5165/api/Staff/ValidateStaffId?id=${id}`, {credentials: 'include'})
+        fetch(`http://localhost:5165/api/Staff/ValidateStaffId`, {credentials: 'include'})
             .then(response => {
                 if (!response.ok) {
                     throw new Error('Error validating user type');
                 }
-                setIsStaff(response.json);
+                return response.text();
             })
-    }, [isStaff])
+            .then(data => {
+                setIsStaff(data === 'true');
+            })
+            .catch(error => {
+                console.error(error.message);
+                setIsStaff(false);
+            })
+    }, [])
 
     const handleLogout = () => {
         fetch('http://localhost:5165/api/Cookie/Logout', { method: 'POST', credentials: 'include' })
@@ -59,7 +55,7 @@ function Home() {
                     <h1>Vind de perfecte auto voor jouw avontuur</h1>
                     <p>Betaalbare prijzen, flexibele verhuur en een breed aanbod aan voertuigen om uit te kiezen.</p>
                     <Link to="/GeneralSalePage" className="cta-button">Verken onze Auto's</Link>
-                    {isStaff && isLoggedIn ? (
+                    {isStaff ? (
                         <Link to="/staffTools" className="cta-button">Staff Tools</Link>
                     ) : null}
                 </section>
