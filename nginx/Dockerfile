@@ -1,6 +1,6 @@
 FROM nginx:alpine
 
-COPY ./nginx/scripts/wait-for-it.sh /usr/local/bin/wait-for-it
+COPY ./scripts/wait-for-it.sh /usr/local/bin/wait-for-it
 RUN chmod +x /usr/local/bin/wait-for-it
 
 # Copy nginx config
