@@ -66,10 +66,22 @@
     margin-bottom: 10px;
 }
 
-.car-detail-info p {
+.car-description {
     font-size: 1.2em;
     line-height: 1.5;
     color: #555;
+}
+
+.backToSale {
+    margin: 1rem;
+    font-size: 1.3rem;
+    color: black;
+    font-weight: bolder;
+    transition: color, 0.3s;
+}
+
+.backToSale:hover {
+    color: #1D7874;
 }
 
 .car-actions {

@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import GeneralHeader from "../GeneralBlocks/header/header.jsx";
 import GeneralFooter from "../GeneralBlocks/footer/footer.jsx";
-import ShowImage from './ShowImage.jsx';
 
 import './GeneralSalePage.css'
 
@@ -151,7 +150,7 @@ function GeneralSalePage() {
                             <div key={vehicle.frameNr} className="car-card">
                                 <div className="car-blob">
                                     {vehicle.image ? (
-                                        <img
+                                        <img className="car-image"
                                             src={`data:image/jpeg;base64,${vehicle.image}`}
                                             alt={`${vehicle.brand || 'Unknown'} ${vehicle.Type || ''}`}
                                         />

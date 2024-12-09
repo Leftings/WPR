@@ -18,17 +18,17 @@ function GeneralHeader({ isLoggedIn, handleLogout}) {
                 <nav id="right">
                     <ul className="nav-links">
                         {isLoggedIn ? (
-                            <li>
+                            <lis>
                             <Link onClick={handleLogout} className="logout-button">Logout</Link>
-                            </li>
+                            </lis>
                         ) : (
-                            <li>
+                            <lis>
                                 <Link to="/login">Login</Link>
-                            </li>
+                            </lis>
                         )}
-                        <li><Link to="/GeneralSalePage">Zoek Auto's</Link></li>
-                        <li><Link to="/about">Over ons</Link></li>
-                        <li><Link to="/contact">Contact</Link></li>
+                        <lis><Link to="/GeneralSalePage">Zoek Auto's</Link></lis>
+                        <lis><Link to="/about">Over ons</Link></lis>
+                        <lis><Link to="/contact">Contact</Link></lis>
                         <lis><Link to="/userSettings">Instellingen</Link></lis>
                     </ul>
                 </nav>
