@@ -205,11 +205,11 @@ public class VehicleController : ControllerBase
 
                 if (count > 0)
                 {
-                    return Ok(new { message = "Vehicle found." });
+                    return Ok(new { isAvailable = true }); // Corrected response
                 }
                 else
                 {
-                    return NotFound(new { message = "Vehicle not found." });
+                    return NotFound(new { isAvailable = false }); // Corrected response
                 }
             }
         }

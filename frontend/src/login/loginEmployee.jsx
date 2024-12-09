@@ -2,11 +2,9 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import './login.css';
 
-const BACKEND_URL = import.meta.env.VITE_REACT_APP_BACKEND_URL ?? 'http://localhost:5165';
-
 function CheckCookie()
 {
-  fetch(`${BACKEND_URL}/api/Login/CheckSession`, { credentials: 'include' })
+  fetch('http://localhost:5165/api/Login/CheckSession', { credentials: 'include' })
     .then(response => {
       if (!response.ok)
       {
@@ -56,7 +54,7 @@ function Login() {
         return;
     }
 
-    fetch(`${BACKEND_URL}/api/Login/login`, {
+    fetch('http://localhost:5165/api/Login/login', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json', 

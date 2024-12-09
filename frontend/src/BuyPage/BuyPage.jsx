@@ -54,32 +54,36 @@ function BuyPage() {
         streetAddress: "",
         city: "",
         postalCode: "",
-        rentalDates: [null, null], 
+        rentalDates: [null, null],
     });
 
     const [errorMessage, setErrorMessage] = useState("");
     const [selectedPaymentMethod, setSelectedPaymentMethod] = useState("Select Payment Type");
     const [vehicleAvailable, setVehicleAvailable] = useState(true);
+    const [fetchError, setFetchError] = useState(null);
 
     const checkVehicleAvailability = async () => {
+        if (!vehicle || !vehicle.frameNr) {
+            setFetchError("Invalid vehicle frame number.");
+            return;
+        }
+
+        console.log("Vehicle FrameNr:", Vehicle.FrameNr);  // Log to confirm the vehicle frameNr
+
         try {
-            const response = await fetch(`http://localhost:5165/api/vehicle/CheckIfVehicleExists/${vehicle.frameNr}`);
+            const response = await fetch(`http://localhost:5165/api/vehicle/CheckIfVehicleExists/${Vehicle.FrameNr}`);
+            console.log(response); 
             if (!response.ok) {
-                throw new Error("Fout bij het controleren van de beschikbaarheid van de auto.");
+                throw new Error('Vehicle availability check failed');
             }
 
-            const availabilityData = await response.json();
-            if (availabilityData.message === "Vehicle found.") {
-                setVehicleAvailable(true);
-                setErrorMessage("");
-            } else {
-                setVehicleAvailable(false);
-                setErrorMessage("Deze auto is momenteel niet beschikbaar.");
-            }
+            const data = await response.json();
+            console.log(data);  // Log the response data
+
+            setVehicleAvailable(data.isAvailable);  // Ensure this is the expected response structure
         } catch (error) {
+            setFetchError('There was an error checking vehicle availability. Please try again later.');
             console.error(error);
-            setVehicleAvailable(false);
-            setErrorMessage("Fout bij het controleren van de beschikbaarheid.");
         }
     };
 
@@ -147,11 +151,18 @@ function BuyPage() {
                     <div className="car-info">
                         <h2 className="car-title">{`${vehicle.brand || "Onbekend"} ${vehicle.type || "Model"}`}</h2>
                         <p className="car-price">{`Prijs: $${vehicle.price}`}</p>
-                        <img
-                            src={`data:image/jpeg;base64,${vehicle.image || ""}`}
-                            alt={`${vehicle.brand || "Onbekend"} ${vehicle.type || ""}`}
-                            className="car-image"
-                        />
+
+                        <div className="car-image-container">
+                            {vehicle.image ? (
+                                <img
+                                    src={`data:image/jpeg;base64,${vehicle.image}`}
+                                    alt={`${vehicle.brand || "Onbekend"} ${vehicle.type || ""}`}
+                                    className="car-image"
+                                />
+                            ) : (
+                                <p>Afbeelding niet beschikbaar</p>
+                            )}
+                        </div>
                     </div>
                     <div className="user-info">
                         <h3 className="user-info-title">Factuuradres en Huurperiode</h3>
@@ -211,7 +222,9 @@ function BuyPage() {
                         <button className="buy-button" onClick={handlePurchase}>
                             Bevestig Rental
                         </button>
+
                         {errorMessage && <p className="error-message">{errorMessage}</p>}
+                        {fetchError && <p className="error-message">{fetchError}</p>}
                     </div>
                 </div>
             </div>

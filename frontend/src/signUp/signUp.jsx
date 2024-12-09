@@ -3,8 +3,6 @@ import { Link, useNavigate } from 'react-router-dom';
 import { getErrorMessage } from '../utils/errorHandler.jsx'
 import "./signUp.css"
 
-const BACKEND_URL = import.meta.env.VITE_REACT_APP_BACKEND_URL ?? 'http://localhost:5165';
-
 function SignUp() {
     const [chosenType, setChosenType] = useState(null);
     const [email, setEmail] = useState('');
@@ -70,7 +68,7 @@ function SignUp() {
                 KvK: KvK
             };
     
-        fetch(`${BACKEND_URL}/api/SignUp/${signUpType}`, {
+        fetch(`http://localhost:5165/api/SignUp/${signUpType}`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
