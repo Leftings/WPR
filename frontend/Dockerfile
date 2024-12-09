@@ -13,7 +13,7 @@ RUN npm ci
 COPY frontend ./
 
 # Run the build script using Vite
-RUN npm run build dev
+RUN npm run dev
 
 # Step 2: Set up Nginx to serve the static files
 FROM nginx:stable-alpine
