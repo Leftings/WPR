@@ -6,13 +6,13 @@ import GeneralSalePage from "../GeneralSalePage/GeneralSalePage.jsx";
 import './home.css';
 
 const BACKEND_URL = import.meta.env.VITE_REACT_APP_BACKEND_URL ?? 'http://localhost:5165';
-console.log('BACKEND URL: ', import.meta.env.VITE_REACT_APP_BACKEND_URL);
-console.log('BACKEND URL: ', BACKEND_URL);
 
 
 function Home() {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const navigate = useNavigate();
+    console.log('BACKEND URL: ', import.meta.env.VITE_REACT_APP_BACKEND_URL);
+    console.log('BACKEND URL: ', BACKEND_URL);
 
     useEffect(() => {
         fetch(`${BACKEND_URL}/api/Login/CheckSession`, { credentials: 'include' })
