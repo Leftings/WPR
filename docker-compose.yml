@@ -5,7 +5,7 @@ services:
     build:
       context: ./backend
     ports:
-      - "5000:5000"  
+      - "5165:5000"  
     env_file:
       - ./backend/.env
     networks:
