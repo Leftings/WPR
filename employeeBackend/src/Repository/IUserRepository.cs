@@ -12,5 +12,5 @@ namespace Employee.Repository;
 /// </summary>
 public interface IUserRepository
 {
-    Task<bool> AddVehicleAsync(int yop, string brand, string type, string licensPlate, string color, string sort, double price, string description, string vehicleBlob);
+    Task<(bool status, string message)> AddVehicleAsync(int yop, string brand, string type, string licensPlate, string color, string sort, double price, string description, string vehicleBlob);
 }

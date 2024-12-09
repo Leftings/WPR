@@ -10,6 +10,7 @@ import GeneralSalePage from './GeneralSalePage/GeneralSalePage.jsx';
 import TermsAndConditions from './TermsAndConditions/TermsAndConditions.jsx';
 import CarDetailPage from './IndividualCarPage/IndividualSalePage.jsx';
 import AbonementUitlegPage from './AbonementUitlegPage/AbonementUitlegPage.jsx';
+import AddVehicle from './employeeBackOffice/addVehicle/addVehice.jsx';
 
 createRoot(document.getElementById('root')).render(
     <Router>
@@ -22,6 +23,7 @@ createRoot(document.getElementById('root')).render(
             <Route path="/TermsAndConditions" element={<TermsAndConditions />}></Route>
             <Route path="/AbonementUitlegPage" element={<AbonementUitlegPage />} />
             <Route path="/vehicle/:frameNr" element={<CarDetailPage />} />
+            <Route paht="/backOfficeEmployee/addVehicle" element={<AddVehicle />}></Route>
         </Routes>
     </Router>
 );

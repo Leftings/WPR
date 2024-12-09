@@ -4,6 +4,8 @@ using Microsoft.AspNetCore.Mvc;
 using Employee.Database;
 using System;
 using MySqlX.XDevAPI.Common;
+using Employee.Repository;
+using Employee.Cryption;
 
 [Route("api/[controller]")]
 [ApiController]
@@ -11,38 +13,34 @@ public class CookieController : ControllerBase
 {
     private readonly Connector _connector;
     private readonly IUserRepository _userRepository;
+    private readonly Crypt _crypt;
 
-    public CookieController(Connector connector, IUserRepository userRepository)
+    public CookieController(Connector connector, IUserRepository userRepository, Crypt crypt)
     {
         _connector = connector ?? throw new ArgumentNullException(nameof(connector));
         _userRepository = userRepository ?? throw new ArgumentNullException(nameof(userRepository));
+        _crypt = crypt ?? throw new ArgumentNullException(nameof(crypt));
     }
 
-    [HttpGet("GetEmployeeId")]
-    public async Task<IActionResult> GetEmployeeIdAsync()
+    [HttpGet("AddVehicle")]
+    public async Task<IActionResult> AddVehicleAsync([FromBody] AddVehicleRequest addVehicleRequest)
     {
-        string loginCookie = HttpContext.Request.Cookies["LoginSession"];
+        (bool status, string message) result = await _userRepository.AddVehicleAsync(
+            addVehicleRequest.YoP,
+            addVehicleRequest.Brand,
+            addVehicleRequest.Type,
+            addVehicleRequest.LicensPlate,
+            addVehicleRequest.Color,
+            addVehicleRequest.Sort,
+            addVehicleRequest.Price,
+            addVehicleRequest.Description,
+            addVehicleRequest.Vehicleblob
+        );
 
-        if (string.IsNullOrEmpty(loginCookie))
+        if (result.status)
         {
-            return BadRequest(new { message = "No Cookie" });
+            return Ok( new { message = result.message} );
         }
-
-        try
-        {
-            return Ok(new { message = _crypt.Decrypt(loginCookie) });
-        }
-        catch
-        {
-            Response.Cookies.Append("LoginSession", "Invalid cookie", new CookieOptions
-            {
-                HttpOnly = true,
-                Secure = true,
-                Expires = DateTimeOffset.UtcNow.AddDays(-1)
-            });
-            
-            return BadRequest(new { message = "Invalid Cookie, new cookie set" });
-        }
+        return BadRequest( new { message = result.message} );
     }
-
 }

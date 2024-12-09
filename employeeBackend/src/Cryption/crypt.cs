@@ -1,4 +1,4 @@
-namespace WPR.Cryption;
+namespace Employee.Cryption;
 
 using System;
 using System.IO;

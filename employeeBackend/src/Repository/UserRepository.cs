@@ -1,4 +1,5 @@
-﻿using MySql.Data.MySqlClient;
+﻿using Employee.Database;
+using MySql.Data.MySqlClient;
 
 namespace Employee.Repository;
 
@@ -42,6 +43,9 @@ public class UserRepository : IUserRepository
                 return (false, "Something went wrong while inserting the vehicle");
             }
         }
-        catch ()
+        catch (MySqlException ex)
+        {
+            return (false, ex.Message);
+        }
     }
 }
