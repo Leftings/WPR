@@ -59,6 +59,7 @@ public class AppConfigure
         builder.Services.AddCors(options =>
         {
             options.AddPolicy("AllowSpecificOrigins", policy =>
+            {
                 policy.WithOrigins(
                     "https://carandall.nl",
                     "https://95.99.30.110:8443",
@@ -69,8 +70,8 @@ public class AppConfigure
                     "http://wpr_nginx_1:8080")
                     .AllowAnyHeader()
                     .AllowAnyMethod()
-                    .AllowCredentials()
-            );
+                    .AllowCredentials();
+            });
         });
 
         // Remove Kestrel configuration: Default to use the Docker internal network and port 5000
