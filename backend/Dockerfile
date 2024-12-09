@@ -8,4 +8,4 @@ FROM mcr.microsoft.com/dotnet/aspnet:8.0
 WORKDIR /app
 COPY --from=build /app/out .
 EXPOSE 5000
-CMD ["dotnet", "WPR.dll""]
+CMD ["dotnet", "WPR.dll"]

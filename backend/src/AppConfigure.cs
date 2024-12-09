@@ -68,7 +68,7 @@ public class AppConfigure
 
     builder.Services.AddCors(options =>
     {
-        options.AddPolicy("AllowLocalhost", policy =>
+        /*options.AddPolicy("AllowLocalhost", policy =>
         {
             policy.WithOrigins("http://localhost:5173", "http://95.99.30.110:8080")  // Development URL
                 .AllowAnyHeader()
@@ -83,6 +83,14 @@ public class AppConfigure
                 .AllowCredentials()
                 .AllowAnyMethod();
         });
+        */
+
+        options.AddPolicy("AllowSpecificOrigins", policy =>
+            policy.WithOrigins("http://95.99.30.110:8080", "http://localhost:5173", "http://www.carandall.nl:8080")
+                .AllowAnyHeader()
+                .AllowAnyMethod()
+                .AllowCredentials()
+        );
     });
 
     var urls = Environment.GetEnvironmentVariable("ASPNETCORE_URLS") ?? "http://0.0.0.0:80"; // Default to port 80 if not set
@@ -101,9 +109,9 @@ public class AppConfigure
     builder.WebHost.ConfigureKestrel(options =>
     {
         // Ensure IP address is valid before binding
-        if (uri.Host == "0.0.0.0" || uri.Host == "localhost")
+        if (uri.Host == "0.0.0.0" )
         {
-            options.Listen(IPAddress.Any, uri.Port);  
+            options.Listen(IPAddress.Any, 5000);  
         }
         else
         {
@@ -167,6 +175,7 @@ public class AppConfigure
         app.UseCors("AllowLocalhost");
     }
 
+    app.UseCors("AllowSpecificOrigins");
     app.UseHttpsRedirection();
     app.MapControllers();
     app.UseAuthorization();

@@ -5,6 +5,7 @@
     });
 
     it('should render sign-up page correctly', () => {
+        // Kijk of de pagina laad met het volgende erop:
         cy.get('h1').contains('Aanmelden');
         cy.get('button').contains('Particulier');
         cy.get('button').contains('Zakelijk');
@@ -22,12 +23,14 @@
     });
 
     it('should show an error when required fields are missing', () => {
+        // Moet error laten zien op het scherm wanneer er lege velden zijn
         cy.get('button').contains('Particulier').click();
         cy.get('button').contains('Maak Account').click();
         cy.get('p').contains('Bepaalde verplichte veld(en) zijn niet ingevuld.');
     });
 
     it('should show an error when date of birth is too young or too old', () => {
+        // Moet error laten zien op het scherm wanneer de verjaardag < 18 en > 120 is
         cy.get('button').contains('Particulier').click();
 
         cy.get('input#firstName').type('John');
@@ -42,12 +45,13 @@
         cy.get('button').contains('Maak Account').click();
         cy.get('p').contains('The birthday is invalid.'); // kijk voor error
         
-        cy.get('input#dateOfBirth').clear().type('1010-01-01');
+        cy.get('input#dateOfBirth').clear().type('1010-01-01'); // DoB is te oud
         cy.get('p').contains('The birthday is invalid.'); // kijk voor error
     });
 
 
     it('should show an error when passwords do not match', () => {
+        // Moet een error laten zien wanneer de wachtwoorden niet overeenkomen met elkaar
         cy.get('button').contains('Particulier').click();
 
         cy.get('input#firstName').type('John');
@@ -66,7 +70,7 @@
     it('should show an error when password does not meet the complexity requirements', () => {
         cy.get('button').contains('Particulier').click();
 
-        // Testing passwords that do not meet the complexity requirements
+        // Moet de juiste error laten zien als wachtwoord niet aan eisen voldoet
         cy.get('input#firstName').type('John');
         cy.get('input#lastName').type('Doe');
         cy.get('input#email').type('john.doe@example.com');
@@ -99,6 +103,7 @@
     });
     
     it('should show an error when phone number is not the correct format', () => {
+        // Moet error
         cy.get('button').contains('Particulier').click();
 
         cy.get('input#firstName').type('John');
@@ -116,7 +121,7 @@
         cy.get('input#phonenumber').clear().type('06230230577'); // invalid phone number, begint wel met 06 maar heeft meer dan 10 cijfers
         cy.get('p').contains('The phone number is invalid.');
         
-        
+        // Kijk ook bij zakelijk account maken
         cy.get('button').contains('Zakelijk').click();
         
         cy.get('input#phonenumber').clear().type('1234567890'); // invalid phone number, does not start with 06
@@ -160,6 +165,7 @@
     });
 
     it('should show an error for KVK field validation', () => {
+        // Moet error laten zien als KVK nummer niet klopt
         cy.get('button').contains('Zakelijk').click(); // Click "Zakelijk"
 
         cy.get('input#firstName').type('John');
