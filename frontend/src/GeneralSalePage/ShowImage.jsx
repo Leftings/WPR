@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 
-const BACKEND_URL = import.meta.env.VITE_REACT_APP_BACKEND_URL ?? 'http://localhost:5165';
+//const BACKEND_URL = import.meta.env.VITE_REACT_APP_BACKEND_URL ?? 'http://localhost:5165';
+const BACKEND_URL = "http://95.99.30.110:5000";
 
 function ShowImage({ frameNr }) {
     const [imageSrc, setImageSrc] = useState('');
