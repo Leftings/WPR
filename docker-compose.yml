@@ -37,7 +37,7 @@ services:
 
     #entrypoint: /bin/sh
     #entrypoint: ["nginx", "-g", "daemon off;"]
-    entrypoint: ["sh", "-c", "sleep 30 && nginx -g 'daemon off;'"]
+    entrypoint: ["sh", "-c", "sleep 5 && nginx -g 'daemon off;'"]
     networks:
       - app-network
     volumes:
