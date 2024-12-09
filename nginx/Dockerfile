@@ -1,10 +1,6 @@
 FROM nginx:alpine
 
-# Ensure apk is available and update repositories
-RUN apk update
-
-# Install bash to ensure compatibility with wait-for-it.sh
-RUN apk add --no-cache bash
+RUN apk --no-cache add apk-tools
 # Copy the wait-for-it script into the container
 COPY ./nginx/scripts/wait-for-it.sh /usr/local/bin/wait-for-it
 RUN chmod +x /usr/local/bin/wait-for-it
