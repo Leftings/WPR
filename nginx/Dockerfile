@@ -1,6 +1,6 @@
 FROM nginx:alpine
 
-RUN apk add --no-cache bash
+RUN apk update && apk add --no-cache bash
 
 COPY ./nginx/scripts/wait-for-it.sh /usr/local/bin/wait-for-it
 RUN chmod +x /usr/local/bin/wait-for-it
