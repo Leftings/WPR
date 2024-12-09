@@ -1,4 +1,4 @@
-FROM nginx:alpine
+FROM nginx:stable-alpine
 
 RUN apk --no-cache add apk-tools
 # Copy the wait-for-it script into the container
