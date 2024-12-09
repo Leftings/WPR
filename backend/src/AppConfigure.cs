@@ -23,127 +23,146 @@ public class AppConfigure
     public static void InitDatabase(IServiceProvider services)
     {
         var dbConnector = services.GetRequiredService<Connector>();
+        
         try
         {
             using (var connection = dbConnector.CreateDbConnection())
             {
                 Console.WriteLine("Database connection established");
             }
+
         }
         catch (Exception e)
         {
             Console.WriteLine("Failed to establish database connection");
             Console.WriteLine(e.StackTrace);
         }
+        
     }
-
+    /// <summary>
+    /// Configureer de web applicatie, zoals middleware, services, authentication en CORS settings.
+    /// </summary>
+    /// <param name="args">De command line arguments passed to the application at startup.</param>
+    /// <returns>De geconfigureerde WebApplication instantie.</returns>
     public static WebApplication ConfigureApplication(string[] args)
     {
-        var builder = WebApplication.CreateBuilder(args);
-        var environment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") ?? "development";
-        builder.Configuration.AddEnvironmentVariables();
+    var builder = WebApplication.CreateBuilder(args);
 
-        Console.WriteLine(Environment.GetEnvironmentVariable("ASPNETCORE_URLS"));
-        if (environment == "development")
-        {
-            builder.Configuration.AddJsonFile(".env", optional: true, reloadOnChange: true);
-        }
-        else if (environment == "Production")
-        {
-            builder.Configuration.AddJsonFile(".env.deployment", optional: true, reloadOnChange: true);
-        }
+    var environment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") ?? "development";
+    builder.Configuration.AddEnvironmentVariables();
 
-        var cookiePolicyOptions = new CookiePolicyOptions
-        {
-            MinimumSameSitePolicy = SameSiteMode.Strict
-        };
+    if (environment == "development")
+    {
+        builder.Configuration.AddJsonFile(".env", optional: true, reloadOnChange: true);
+    }
+    else if (environment == "Production")
+    {
+        builder.Configuration.AddJsonFile(".env.deployment", optional: true, reloadOnChange: true);
+    }
 
-        builder.Services.AddCors(options =>
+    var cookiePolicyOptions = new CookiePolicyOptions
+    {
+        MinimumSameSitePolicy = SameSiteMode.Strict
+    };
+
+
+    builder.Services.AddCors(options =>
+    {
+        /*options.AddPolicy("AllowLocalhost", policy =>
         {
-            options.AddPolicy("AllowSpecificOrigins", policy =>
-                policy.WithOrigins(
-                    "https://carandall.nl",
-                    "https://95.99.30.110:8443",
-                    "http://localhost:5173",
-                    "http://95.99.30.110:8080",
-                    "http://wpr_backend_1:5000",
-                    "http://wpr_frontend_1:3000",
-                    "http://wpr_nginx_1:8080")
-                    .AllowAnyHeader()
-                    .AllowAnyMethod()
-                    .AllowCredentials()
-            );
+            policy.WithOrigins("http://localhost:5173", "http://95.99.30.110:8080")  // Development URL
+                .AllowAnyHeader()
+                .AllowCredentials()
+                .AllowAnyMethod();
         });
 
-        builder.WebHost.ConfigureKestrel(options =>
+        options.AddPolicy("AllowProduction", policy =>
         {
-            var urls = Environment.GetEnvironmentVariable("ASPNETCORE_URLS") ?? "http://localhost:5000"; // Default to localhost:5000
-            Console.WriteLine($"DEBUG!!! url: {urls}");
+            policy.WithOrigins("http://carandall.nl", "https://carandall.nl, http://localhost:5173", "http://95.99.30.110:8080") // Production URL
+                .AllowAnyHeader()
+                .AllowCredentials()
+                .AllowAnyMethod();
+        });
+        */
+
+        options.AddPolicy("AllowSpecificOrigins", policy =>
+            policy.WithOrigins("http://95.99.30.110:8080", "http://localhost:5173, http://www.carandall.nl:8080")
+                .AllowAnyHeader()
+                .AllowAnyMethod()
+                .AllowCredentials()
+        );
+    });
+
+    var urls = Environment.GetEnvironmentVariable("ASPNETCORE_URLS") ?? "http://0.0.0.0:80"; // Default to port 80 if not set
+
+    Uri uri;
+    try
+    {
+        uri = new Uri(urls);
+    }
+    catch (UriFormatException ex)
+    {
+        Console.WriteLine($"Invalid ASPNETCORE_URLS format: {urls}. Using default URL http://0.0.0.0:80");
+        uri = new Uri("http://0.0.0.0:80");
+    }
+
+    builder.WebHost.ConfigureKestrel(options =>
+    {
+        // Ensure IP address is valid before binding
+        if (uri.Host == "0.0.0.0" || uri.Host == "localhost")
+        {
+            options.Listen(IPAddress.Any, 5000);  
+        }
+        else
+        {
             try
             {
-                Uri uri = new Uri(urls); // Parse the URL
-                Console.WriteLine($"Configuring Kestrel to listen on: {uri.Host}:{uri.Port}");
-
-                // Check if the URI host is '0.0.0.0' or an unspecified address
-                if (uri.Host == "0.0.0.0" || uri.Host == "::0")
-                {
-                    Console.WriteLine("Binding to all interfaces (0.0.0.0)...");
-                    options.Listen(IPAddress.Any, 5000);  // Use IPAddress.Any for all interfaces
-                }
-                else
-                {
-                    // Resolving the hostname to an IP address if it's not '0.0.0.0'
-                    var ipAddress = Dns.GetHostAddresses(uri.Host).FirstOrDefault();
-                    if (ipAddress != null)
-                    {
-                        Console.WriteLine($"Resolved IP address: {ipAddress}");
-                        options.Listen(ipAddress, 5000);  // Listen on the resolved IP address and port
-                    }
-                    else
-                    {
-                        Console.WriteLine($"Failed to resolve IP address for {uri.Host}. Falling back to all IPs.");
-                        options.Listen(IPAddress.Any, 5000); // Fallback to all IPs if resolution fails
-                    }
-                }
+                options.Listen(IPAddress.Parse(uri.Host), uri.Port); 
             }
-            catch (UriFormatException ex)
+            catch (FormatException ex)
             {
-                Console.WriteLine($"Invalid URL format: {urls}. Using default binding to all IPs.");
-                options.Listen(IPAddress.Any, 5000); // Fallback to all IPs and port 5000
+                Console.WriteLine($"Invalid IP address specified: {uri.Host}. Using default binding to all IPs.");
+                options.Listen(IPAddress.Any, uri.Port);  
             }
+        }
+    });
+
+    // Register services for Dependency Injection
+    builder.Services.AddSingleton<EnvConfig>(); // Singleton for environment configuration
+    builder.Services.AddTransient<Connector>(); // Transient for database connection.
+    builder.Services.AddScoped<IUserRepository, UserRepository>(); // Scoped for user repository
+    builder.Services.AddScoped<SessionHandler>(); // Scoped session handler
+    builder.Services.AddScoped<Crypt>();
+    builder.Services.AddScoped<Hashing.Hash>();
+
+    // Configure authentication with cookie-based authentication schema.
+    builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+        .AddCookie(options =>
+        {
+            options.ExpireTimeSpan = TimeSpan.FromMinutes(5);
+            options.SlidingExpiration = true;
+            options.AccessDeniedPath = "/Forbidden/";
         });
 
-        builder.Services.AddSingleton<EnvConfig>(); // Singleton for environment configuration
-        builder.Services.AddTransient<Connector>(); // Transient for database connection
-        builder.Services.AddScoped<IUserRepository, UserRepository>(); // Scoped for user repository
-        builder.Services.AddScoped<SessionHandler>(); // Scoped session handler
-        builder.Services.AddScoped<Crypt>();
-        builder.Services.AddScoped<Hashing.Hash>();
-
-        builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
-            .AddCookie(options =>
-            {
-                options.ExpireTimeSpan = TimeSpan.FromMinutes(5);
-                options.SlidingExpiration = true;
-                options.AccessDeniedPath = "/Forbidden/";
-            });
-
-        builder.Services.AddControllers()
-            .AddJsonOptions(options =>
-            {
-                options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
-            });
-
-        builder.Services.AddEndpointsApiExplorer();
-        builder.Services.AddSwaggerGen();
-
-        var app = builder.Build();
-
-        if (app.Environment.IsProduction())
+    builder.Services.AddControllers()
+        .AddJsonOptions(options =>
         {
-            app.UseCors("AllowSpecificOrigins");
-        }
+            options.JsonSerializerOptions.ReferenceHandler =
+                ReferenceHandler.IgnoreCycles;
+        });
 
+    // Services for Swagger API
+    builder.Services.AddEndpointsApiExplorer();
+    builder.Services.AddSwaggerGen();
+
+    var app = builder.Build();
+
+    if (app.Environment.IsProduction())
+    {
+        app.UseCors("AllowProduction");
+    }
+    else
+    {
         if (app.Environment.IsDevelopment())
         {
             app.UseSwagger();
@@ -153,20 +172,22 @@ public class AppConfigure
                 c.RoutePrefix = string.Empty;
             });
         }
-
-        app.UseCors("AllowSpecificOrigins");
-
-        // Don't use HTTPS redirection
-        // app.UseHttpsRedirection(); // Comment out or remove this line to disable HTTPS redirection
-
-        app.MapControllers();
-        app.UseAuthorization();
-        app.UseAuthentication();
-        app.UseCookiePolicy(cookiePolicyOptions);
-
-        app.MapDefaultControllerRoute();
-
-        return app;
+        app.UseCors("AllowLocalhost");
     }
+
+    app.UseCors("AllowSpecificOrigins");
+    app.UseHttpsRedirection();
+    app.MapControllers();
+    app.UseAuthorization();
+    app.UseAuthentication();
+    app.UseCookiePolicy(cookiePolicyOptions);
+
+    //app.MapRazorPages();
+    app.MapDefaultControllerRoute();
+
+    return app;
+    }
+
+
 
 }
