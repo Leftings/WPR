@@ -148,70 +148,71 @@ public class VehicleController : ControllerBase
     }
 
     [HttpGet("GetAllVehicles")]
-    public async Task<IActionResult> GetAllVehiclesAsync()
+public async Task<IActionResult> GetAllVehiclesAsync()
+{
+    try
     {
-        try
+        string query = @"
+            SELECT FrameNr, YoP, Brand, Type, LicensePlate, Color, Sort, Price, VehicleBlob, Description
+            FROM Vehicle";
+
+        var vehicles = new List<object>();
+
+        using (var connection = _connector.CreateDbConnection())
+        using (var command = new MySqlCommand(query, (MySqlConnection)connection))
         {
-            string query =
-                "SELECT FrameNr, YoP, Brand, Type, LicensePlate, Color, Sort, Price, VehicleBlob, Description FROM Vehicle";
-
-            var vehicles = new List<object>();
-
-            using (var connection = _connector.CreateDbConnection())
-            using (var command = new MySqlCommand(query, (MySqlConnection)connection))
+            using (var reader = await command.ExecuteReaderAsync())
             {
-
-                using (var reader = await command.ExecuteReaderAsync())
+                while (reader.Read())
                 {
-                    while (reader.Read())
+                    vehicles.Add(new
                     {
-                        vehicles.Add(new
-                        {
-                            FrameNr = reader.GetInt32(0),
-                            Brand = reader.GetString(1),
-                            Type = reader.GetString(2),
-                            Price = reader.GetDecimal(3).ToString("F2"),
-                            Image = !reader.IsDBNull(4)
-                                ? Convert.ToBase64String((byte[])reader["VehicleBlob"])
-                                : null
-                        });
-                    }
+                        FrameNr = reader.GetInt32(0),          
+                        YoP = reader.GetInt32(1),              
+                        Brand = reader.GetString(2),           
+                        Type = reader.GetString(3),
+                        LicensePlate = reader.GetString(4),
+                        Color = reader.GetString(5),
+                        Sort = reader.GetString(6),
+                        Price = reader.GetDecimal(7).ToString("F2"),
+                        Image = reader.IsDBNull(8) ? null : Convert.ToBase64String((byte[])reader["VehicleBlob"]),
+                        Description = reader.IsDBNull(9) ? null : reader.GetString(9)
+                    });
                 }
             }
+        }
 
-            return Ok(vehicles);
-        }
-        catch (Exception ex)
-        {
-            Console.WriteLine(ex);
-            return StatusCode(500, "An error occurred while fetching vehicles.");
-        }
+        return Ok(vehicles);
     }
+    catch (Exception ex)
+    {
+        Console.WriteLine(ex);
+        return StatusCode(500, "An error occurred while fetching vehicles.");
+    }
+}
+
 
     [HttpGet("GetTypeOfVehicles")]
     public async Task<IActionResult> GetTypeOfVehiclesAsync(string vehicleType)
     {
-        if (string.IsNullOrWhiteSpace(vehicleType))
-        {
-            return BadRequest("Vehicle type must be provided.");
-        }
-
         try
         {
             string query = @"
-            SELECT FrameNr, YoP, Brand, Type, LicensePlate, Color, Sort, Price, VehicleBlob, Description 
-            FROM Vehicle 
-            WHERE LOWER(Sort) = LOWER(@Sort)";
+                SELECT FrameNr, YoP, Brand, Type, LicensePlate, Color, Sort, Price, VehicleBlob, Description 
+                FROM Vehicle 
+                WHERE LOWER(Sort) = LOWER(@Sort)";
 
             var vehicles = new List<object>();
 
             using (var connection = _connector.CreateDbConnection())
             {
-                connection.Open(); // Explicitly open the connection
-
                 using (var command = new MySqlCommand(query, (MySqlConnection)connection))
                 {
-                    command.Parameters.AddWithValue("@Sort", vehicleType);
+                    if (!string.IsNullOrWhiteSpace(vehicleType) &&
+                        !vehicleType.Equals("ALL", StringComparison.OrdinalIgnoreCase))
+                    {
+                        command.Parameters.AddWithValue("@Sort", vehicleType);
+                    }
 
                     using (var reader = await command.ExecuteReaderAsync())
                     {
@@ -241,10 +242,7 @@ public class VehicleController : ControllerBase
         }
         catch (Exception ex)
         {
-            // Log the exception (e.g., using a logging library)
-            Console.WriteLine(ex);
-
-            // Return a generic error message to the client
+            Console.WriteLine($"Error: {ex.Message}");
             return StatusCode(500, "An error occurred while fetching vehicles.");
         }
     }
