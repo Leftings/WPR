@@ -1,33 +1,27 @@
 import React, { useState, useEffect } from 'react';
-import {Link, useNavigate} from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import GeneralHeader from "../GeneralBlocks/header/header.jsx";
 import GeneralFooter from "../GeneralBlocks/footer/footer.jsx";
-import GeneralSalePage from "../GeneralSalePage/GeneralSalePage.jsx";
 import './home.css';
-
-const BACKEND_URL = import.meta.env.VITE_REACT_APP_BACKEND_URL ?? 'http://localhost:5165';
-console.log('BACKEND URL: ', import.meta.env.VITE_REACT_APP_BACKEND_URL);
-console.log('BACKEND URL: ', BACKEND_URL);
-
 
 function Home() {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const navigate = useNavigate();
 
     useEffect(() => {
-        fetch(`${BACKEND_URL}/api/Login/CheckSession`, { credentials: 'include' })
+        fetch('http://localhost:5165/api/Login/CheckSession', { credentials: 'include' })
             .then(response => {
                 if (!response.ok) {
-                    throw new Error('Not logged in')
+                    throw new Error('Not logged in');
                 }
                 return response.json();
             })
             .then(() => setIsLoggedIn(true))
-            .catch(() =>setIsLoggedIn(false));
+            .catch(() => setIsLoggedIn(false));
     }, []);
 
     const handleLogout = () => {
-        fetch(`${BACKEND_URL}/api/Cookie/Logout`, { method: 'POST', credentials: 'include' })
+        fetch('http://localhost:5165/api/Cookie/Logout', { method: 'POST', credentials: 'include' })
             .then(() => {
                 setIsLoggedIn(false);
                 navigate('/login');
@@ -60,10 +54,17 @@ function Home() {
                             <p>Kies een huurperiode die perfect bij uw situatie past.</p>
                         </div>
                     </section>
+
+                    <section className="abonnementen-info">
+                        <h2>Bekijk onze Abonnementen</h2>
+                        <p>We bieden verschillende abonnementsopties aan die passen bij jouw huurbehoeften. Bekijk ze en kies de beste optie voor jou!</p>
+                        <Link to="/AbonementUitlegPage" className="cta-button">Ontdek Abonnementen</Link>
+                    </section>
                 </div>
             </main>
             <GeneralFooter />
         </>
     );
 }
+
 export default Home;
