@@ -58,7 +58,7 @@ function Home() {
                     <section className="abonnementen-info">
                         <h2>Bekijk onze Abonnementen</h2>
                         <p>We bieden verschillende abonnementsopties aan die passen bij jouw huurbehoeften. Bekijk ze en kies de beste optie voor jou!</p>
-                        <Link to="/Abonnementen" className="cta-button">Ontdek Abonnementen</Link>
+                        <Link to="/AbonementUitlegPage" className="cta-button">Ontdek Abonnementen</Link>
                     </section>
                 </div>
             </main>

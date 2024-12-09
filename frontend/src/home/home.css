@@ -1,4 +1,3 @@
-/* General body and layout settings */
 body {
     margin: 0;
     font-family: Arial, sans-serif;
@@ -8,15 +7,14 @@ body {
 }
 
 main {
-    flex: 1; /* Ensures main section expands to take available space */
-    min-height: 100vh; /* Ensures main takes at least the full viewport height */
+    flex: 1; 
+    min-height: 100vh;
 }
 
 .logo {
     font-size: 1.5rem;
 }
 
-/* Hero section */
 .hero {
     text-align: center;
     background: url('hero-image.jpg') no-repeat center center/cover;
@@ -55,7 +53,6 @@ main {
     background-color: #7C6C77;
 }
 
-/* Features section */
 .features {
     display: flex;
     justify-content: center;
@@ -140,11 +137,10 @@ main {
     background-color: #7C6C77;
 }
 
-/* Footer adjustments */
 footer {
     background-color: #333;
     color: white;
     text-align: center;
     padding: 20px;
-    margin-top: auto; /* Makes sure footer sticks to the bottom of the page */
+    margin-top: auto; 
 }
