@@ -8,6 +8,8 @@ services:
       - "5000:5000"  
     env_file:
       - ./backend/.env
+    environment:
+      - ASPNETCORE_URLS=http://0.0.0.0:5000
     networks:
       - app-network
     
@@ -19,6 +21,8 @@ services:
       - "3000:3000"  # Frontend development port
     env_file:
       - ./frontend/.env
+    environment:
+      - VITE_REACT_APP_BACKEND_URL=http://95.99.30.110:5000
     networks:
       - app-network
     
@@ -37,7 +41,7 @@ services:
 
     #entrypoint: /bin/sh
     #entrypoint: ["nginx", "-g", "daemon off;"]
-    entrypoint: ["sh", "-c", "sleep 30 && nginx -g 'daemon off;'"]
+    entrypoint: ["sh", "-c", "sleep 5 && nginx -g 'daemon off;'"]
     networks:
       - app-network
     volumes:
