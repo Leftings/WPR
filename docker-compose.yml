@@ -34,7 +34,7 @@ services:
     depends_on:
       - frontend
       - backend  # Ensure backend starts before nginx
-    entrypoint: ["/bin/sh", "-c", "/usr/local/bin/wait-for-it.sh backend:5000 -- nginx -g 'daemon off;'"]
+    entrypoint: ["/bin/sh", "-c", "/usr/local/bin/wait-for-it backend:5000 -- nginx -g 'daemon off;'"]
     #entrypoint: /bin/sh
     #entrypoint: ["nginx", "-g", "daemon off;"]
     networks:
