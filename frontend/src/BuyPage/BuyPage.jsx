@@ -6,41 +6,6 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import './BuyPage.css';
 
-function CustomSelect({ options, onChange }) {
-    const [selected, setSelected] = useState(options[0]);
-    const [isOpen, setIsOpen] = useState(false);
-
-    const handleSelect = (option) => {
-        setSelected(option);
-        setIsOpen(false);
-        onChange(option);
-    };
-
-    return (
-        <div className="custom-select">
-            <div
-                className={`select-selected ${isOpen ? "select-arrow-active" : ""}`}
-                onClick={() => setIsOpen((prev) => !prev)}
-            >
-                {selected}
-            </div>
-            {isOpen && (
-                <div className="select-items">
-                    {options.map((option, index) => (
-                        <div
-                            key={index}
-                            className={`select-option ${option === selected ? "same-as-selected" : ""}`}
-                            onClick={() => handleSelect(option)}
-                        >
-                            {option}
-                        </div>
-                    ))}
-                </div>
-            )}
-        </div>
-    );
-}
-
 function BuyPage() {
     const location = useLocation();
     const navigate = useNavigate();
@@ -58,37 +23,37 @@ function BuyPage() {
     });
 
     const [errorMessage, setErrorMessage] = useState("");
-    const [selectedPaymentMethod, setSelectedPaymentMethod] = useState("Select Payment Type");
-    const [vehicleAvailable, setVehicleAvailable] = useState(true);
+    const [vehicleAvailable, setVehicleAvailable] = useState(null);
     const [fetchError, setFetchError] = useState(null);
+    const [totalCost, setTotalCost] = useState(0);
 
     const checkVehicleAvailability = async () => {
-        if (!vehicle || !vehicle.frameNr) {
+        if (!Vehicle || !Vehicle.FrameNr) {
             setFetchError("Invalid vehicle frame number.");
+            setVehicleAvailable(false); 
             return;
         }
 
-        console.log("Vehicle FrameNr:", Vehicle.FrameNr);  // Log to confirm the vehicle frameNr
-
         try {
             const response = await fetch(`http://localhost:5165/api/vehicle/CheckIfVehicleExists/${Vehicle.FrameNr}`);
-            console.log(response); 
+
             if (!response.ok) {
                 throw new Error('Vehicle availability check failed');
             }
 
             const data = await response.json();
-            console.log(data);  // Log the response data
-
-            setVehicleAvailable(data.isAvailable);  // Ensure this is the expected response structure
+            setVehicleAvailable(data.isAvailable);
         } catch (error) {
             setFetchError('There was an error checking vehicle availability. Please try again later.');
+            setVehicleAvailable(false); 
             console.error(error);
         }
     };
 
+
     useEffect(() => {
         if (vehicle) {
+            console.log("Vehicle found:", vehicle);  
             checkVehicleAvailability();
         }
     }, [vehicle]);
@@ -104,28 +69,17 @@ function BuyPage() {
             ...prevDetails,
             rentalDates: [start, end],
         }));
+
+        if (start && end) {
+            const rentalDays = (end - start) / (1000 * 3600 * 24);
+            const calculatedCost = rentalDays * vehicle.price;
+            setTotalCost(calculatedCost);
+        }
     };
 
     const handlePurchase = () => {
-        if (!vehicleAvailable) {
-            setErrorMessage("Deze auto is momenteel niet beschikbaar.");
-            return;
-        }
-
-        const [startDate, endDate] = userDetails.rentalDates;
-        if (!startDate || !endDate) {
-            setErrorMessage("Selecteer zowel een start- als einddatum.");
-            return;
-        }
-
-        const rentalDays = (endDate - startDate) / (1000 * 3600 * 24);
-
-        if (rentalDays <= 0) {
-            setErrorMessage("De einddatum moet na de startdatum liggen.");
-            return;
-        }
-
-        alert(`Verhuur succesvol! Aantal dagen: ${rentalDays} dagen`);
+        
+        alert(`Verhuur succesvol! Aantal dagen: ${rentalDays} dagen, Totale kosten: €${totalCost.toFixed(2)}`);
         navigate("/");
     };
 
@@ -150,7 +104,7 @@ function BuyPage() {
                 <div className="buy-details">
                     <div className="car-info">
                         <h2 className="car-title">{`${vehicle.brand || "Onbekend"} ${vehicle.type || "Model"}`}</h2>
-                        <p className="car-price">{`Prijs: $${vehicle.price}`}</p>
+                        <p className="car-price">{`Prijs: €${vehicle.price} per dag`}</p>
 
                         <div className="car-image-container">
                             {vehicle.image ? (
@@ -215,11 +169,10 @@ function BuyPage() {
                             placeholderText="Selecteer start- en einddatum"
                         />
 
-                        <CustomSelect
-                            options={["Select Payment Type", "Pre-paid", "Pay as you go"]}
-                            onChange={(value) => setSelectedPaymentMethod(value)}
-                        />
-                        <button className="buy-button" onClick={handlePurchase}>
+                        <button
+                            className="buy-button"
+                            onClick={handlePurchase}
+                        >
                             Bevestig Rental
                         </button>
 
@@ -227,6 +180,13 @@ function BuyPage() {
                         {fetchError && <p className="error-message">{fetchError}</p>}
                     </div>
                 </div>
+
+                {totalCost > 0 && (
+                    <div className="total-cost">
+                        <h3>Totaal Kosten:</h3>
+                        <p>€{totalCost.toFixed(2)}</p>
+                    </div>
+                )}
             </div>
             <GeneralFooter />
         </div>

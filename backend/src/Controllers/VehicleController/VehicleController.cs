@@ -187,10 +187,10 @@ public class VehicleController : ControllerBase
         }
     }
 
-    [HttpGet("CheckIfVehicleExists/{frameNr}")]
-    public async Task<IActionResult> CheckIfVehicleExists(int frameNr)
+    [HttpGet("CheckIfVehicleExists/{FrameNr}")]
+    public async Task<IActionResult> CheckIfVehicleExists(int FrameNr)
     {
-        Console.WriteLine("Received request for CheckIfVehicleExists with frameNr: " + frameNr); // Logging
+        Console.WriteLine("Received request for CheckIfVehicleExists with frameNr: " + FrameNr); // Logging
 
         try
         {
@@ -199,17 +199,17 @@ public class VehicleController : ControllerBase
             using (var connection = _connector.CreateDbConnection())
             using (var command = new MySqlCommand(query, (MySqlConnection)connection))
             {
-                command.Parameters.AddWithValue("@FrameNr", frameNr);
+                command.Parameters.AddWithValue("@FrameNr", FrameNr);
 
                 int count = Convert.ToInt32(await command.ExecuteScalarAsync());
 
                 if (count > 0)
                 {
-                    return Ok(new { isAvailable = true }); // Corrected response
+                    return Ok(new { isAvailable = true }); 
                 }
                 else
                 {
-                    return NotFound(new { isAvailable = false }); // Corrected response
+                    return NotFound(new { isAvailable = false }); 
                 }
             }
         }
