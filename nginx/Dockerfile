@@ -1,8 +1,5 @@
 FROM nginx:alpine
 
-# Install bash and netcat (needed by wait-for-it)
-RUN apk update && apk add --no-cache bash nc
-
 # Copy the wait-for-it script into the container
 COPY ./nginx/scripts/wait-for-it.sh /usr/local/bin/wait-for-it
 RUN chmod +x /usr/local/bin/wait-for-it
