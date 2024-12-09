@@ -6,6 +6,7 @@ using Microsoft.VisualBasic;
 using System.Net;
 using Employee.Data;
 using Employee.Database;
+using Employee.Repository;
 
 namespace Employee;
 
@@ -127,7 +128,7 @@ public class AppConfigure
     // Register services for Dependency Injection
     builder.Services.AddSingleton<EnvConfig>(); // Singleton for environment configuration
     builder.Services.AddTransient<Connector>(); // Transient for database connection.
-    //builder.Services.AddScoped<IUserRepository, UserRepository>(); // Scoped for user repository
+    builder.Services.AddScoped<IUserRepository, UserRepository>(); // Scoped for user repository
     //builder.Services.AddScoped<SessionHandler>(); // Scoped session handler
     //builder.Services.AddScoped<Crypt>();
     //builder.Services.AddScoped<Hashing.Hash>();

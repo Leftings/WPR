@@ -5,24 +5,20 @@ using Employee.Database;
 using System;
 using MySqlX.XDevAPI.Common;
 using Employee.Repository;
-using Employee.Cryption;
-
 [Route("api/[controller]")]
 [ApiController]
-public class CookieController : ControllerBase
+public class AddVehicleController : ControllerBase
 {
     private readonly Connector _connector;
     private readonly IUserRepository _userRepository;
-    private readonly Crypt _crypt;
 
-    public CookieController(Connector connector, IUserRepository userRepository, Crypt crypt)
+    public AddVehicleController(Connector connector, IUserRepository userRepository)
     {
         _connector = connector ?? throw new ArgumentNullException(nameof(connector));
         _userRepository = userRepository ?? throw new ArgumentNullException(nameof(userRepository));
-        _crypt = crypt ?? throw new ArgumentNullException(nameof(crypt));
     }
 
-    [HttpGet("AddVehicle")]
+    [HttpPost("addVehicle")]
     public async Task<IActionResult> AddVehicleAsync([FromBody] AddVehicleRequest addVehicleRequest)
     {
         (bool status, string message) result = await _userRepository.AddVehicleAsync(

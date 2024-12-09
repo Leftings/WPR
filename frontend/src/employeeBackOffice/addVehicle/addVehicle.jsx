@@ -7,62 +7,170 @@ import GeneralFooter from '../../GeneralBlocks/footer/footer';
 const BACKEND_URL = import.meta.env.VITE_REACT_APP_BACKEND_URL_EMPLOYEE ?? 'http://localhost:5276';
 
 function AddVehicle() {
-  return (
-    <>
-      <GeneralHeader>
-      </GeneralHeader>
+    const [kind, SetKind] = useState('car');
+    const [brand, SetBrand] = useState('');
+    const [type, SetType] = useState('');
+    const [color, SetColor] = useState('');
+    const [licensPlate, SetLicensPlate] = useState('');
+    const [YoP, SetYoP] = useState('');
+    const [price, SetPrice] = useState('');
+    const [description, SetDescription] = useState('');
+    const [vehicleBlob, SetVehicleBlob] = useState('');
+    const [error, SetError] = useState([]);
 
-      <body>
-        <h1>Toevoegen voertuig</h1>
-        <div id="kind">
-            <p>Soort voertuig</p>
-            <select name="vehicle">
-                <option value="car">Auto</option>
-                <option value="camper">Camper</option>
-                <option value="caravan">Caravan</option>
-            </select>
-            <br></br>
-        </div>
-        <div id="brand">
-            <p>Merk voertuig</p>
-            <input></input>
-            <br></br>
-        </div>
-        <div id="licensPlate">
-            <p>Nummerbord voertuig</p>
-            <input></input>
-            <br></br>
-        </div>
-        <div id="YoP">
-            <p>Bouwjaar voertuig</p>
-            <input type="number"></input>
-            <br></br>
-        </div>
-        <div id="price">
-            <p>Prijs per dag</p>
-            <input type="number"></input>
-            <br></br>
-        </div>
-        <div id="description">
-            <p>Omschrijving voertuig</p>
-            <input></input>
-            <br></br>
-        </div>
-        <div id="vehicleBlob">
-            <p>Afbeelding voertuig (verplict)</p>
-            <input type="file"></input>
-            <br></br>
-        </div>
-        <div id="confirm">
-            <button>Voertuig toevoegen</button>
-            <br></br>
-        </div>
-      </body>
+    
+    const SetVehicle = () => {
+        const data = {
+            YoP: YoP,
+            Brand: brand,
+            Type: type,
+            LicensPlate: licensPlate,
+            Color: color,
+            Sort: kind,
+            Price: price,
+            Description: description,
+            VehicleBlob: vehicleBlob
+        }
 
-      <GeneralFooter>
-      </GeneralFooter>
-    </>
-  );
+        fetch(`${BACKEND_URL}/api/AddVehicle/addVehicle`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'multipart/form-data',
+            },
+            body: JSON.stringify(data),
+            credentials: 'include',
+        })
+            .then(response => {
+                if (!response.ok)
+                {
+                    return response.json().then(err => {
+                        throw new Error(err.errorMessage);
+                    })
+                }
+                return response.json();
+            })
+            .then(vehicleData => {
+                SetKind('car');
+                SetBrand('');
+                SetType('');
+                SetColor('');
+                SetLicensPlate('');
+                SetYoP('');
+                SetPrice('');
+                SetDescription('');
+                SetVehicleBlob('');
+                SetError([]);
+            })
+            .catch(error => {
+                console.error("Error adding vehicle:", error);
+                SetError([error.message]);
+            });
+    }
+
+
+    function Check()
+    {
+        let vehicleData = {
+            kind,
+            brand,
+            licensPlate,
+            YoP,
+            price,
+            description,
+            vehicleBlob
+        };
+
+        let errors = [];
+        for (let key in vehicleData)
+        {
+            if (vehicleData[key] === '')
+            {
+                errors.push(`${key} is niet ingevuld\n`);
+            }
+            console.log(`${key}: ${vehicleData[key]}`);
+        }
+
+        if (errors.length === 0)
+        {
+            SetVehicle();
+        }
+        SetError(errors);
+    }
+
+
+    return (
+        <>
+        <GeneralHeader>
+        </GeneralHeader>
+
+        <div className="body">
+            <h1>Toevoegen voertuig</h1>
+            <div id="kind" value={kind} onChange={(e) => SetKind(e.target.value)}>
+                <p>Soort voertuig</p>
+                <select name="vehicle">
+                    <option value="car">Auto</option>
+                    <option value="camper">Camper</option>
+                    <option value="caravan">Caravan</option>
+                </select>
+                <br></br>
+            </div>
+            <div id="brand">
+                <p>Merk voertuig</p>
+                <input value={brand} onChange={(e) => SetBrand(e.target.value)}></input>
+                <br></br>
+            </div>
+            <div id="type">
+                <p>Type voertuig</p>
+                <input value={type} onChange={(e) => SetType(e.target.value)}></input>
+            </div>
+            <div id="color">
+                <p>Kleur voertuig</p>
+                <input value={color} onChange={(e) => SetColor(e.target.value)}></input>
+            </div>
+            <div id="licensPlate">
+                <p>Nummerbord voertuig</p>
+                <input value={licensPlate} onChange={(e) => SetLicensPlate(e.target.value)}></input>
+                <br></br>
+            </div>
+            <div id="YoP">
+                <p>Bouwjaar voertuig</p>
+                <input type="number" value={YoP} onChange={(e) => SetYoP(e.target.value)}></input>
+                <br></br>
+            </div>
+            <div id="price">
+                <p>Prijs per dag</p>
+                <input type="number" value={price} onChange={(e) => SetPrice(e.target.value)}></input>
+                <br></br>
+            </div>
+            <div id="description">
+                <p>Omschrijving voertuig</p>
+                <input value={description} onChange={(e) => SetDescription(e.target.value)}></input>
+                <br></br>
+            </div>
+            <div id="vehicleBlob">
+                <p>Afbeelding voertuig (verplict)</p>
+                <input type="file" value={vehicleBlob} onChange={(e) => SetVehicleBlob(e.target.value)}></input>
+                <br></br>
+            </div>
+            <div id="confirm">
+                <button onClick={Check}>Voertuig toevoegen</button>
+                <br></br>
+            </div>
+            {error.length > 0 && (
+                <div id="errors">
+                    <ul>
+                        {error.map((errorMessage, index) => (
+                            <li key={index}>{errorMessage}</li>
+                        ))}
+                    </ul>
+                </div>
+            )}
+        </div>
+
+        <GeneralFooter>
+        </GeneralFooter>
+        </>
+    );
 }
 
 export default AddVehicle;
