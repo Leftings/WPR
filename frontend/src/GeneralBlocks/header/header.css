@@ -12,6 +12,20 @@ header {
     color: white;
 }
 
+.hamburger-menu {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 2.5rem;
+    cursor: pointer;
+    transition: color, 0.3s;
+    margin-right: 10px;
+}
+
+.hamburger-menu:hover {
+    color: #1D7874;
+}
+
 .logo {
     color: white;
     font-size: 1.5rem;
@@ -38,10 +52,17 @@ header {
 }
 
 .nav-links {
+    margin: 0;
+    padding: 10px;
     list-style: none;
     display: flex;
-    gap: 20px;
-    padding-right: 10px
+    flex-direction: column;
+    gap: 10px;
+    background-color: #555;
+    color: white;
+    position: absolute;
+    right: 0;
+    z-index: 10;
 }
 
     .nav-links li a {
@@ -71,6 +92,8 @@ header {
         font-size: 1.2rem;
         margin-bottom: 50px;
     }
+
+
 
 .cta-button {
     background-color: #1D7874;
@@ -144,3 +167,20 @@ header {
     .footer-links a:hover {
         color: white;
     }
+
+@media (max-width: 768px) {
+    .nav-links {
+        margin: 0;
+        padding: 20px;
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        background-color: #555;
+        width: 100%;
+        color: white;
+        position: absolute;
+        left: 0;
+        z-index: 10;
+    }
+}

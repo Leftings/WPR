@@ -144,3 +144,9 @@ footer {
     padding: 20px;
     margin-top: auto; 
 }
+
+@media (max-width: 768px) {
+    .features {
+        flex-direction: column;
+    }
+}
