@@ -26,7 +26,7 @@ function BuyPage() {
     const [vehicleAvailable, setVehicleAvailable] = useState(null);
     const [fetchError, setFetchError] = useState(null);
     const [totalCost, setTotalCost] = useState(0);
-    const [rentalDays, setRentalDays] = useState(0); // Add rentalDays to state
+    const [rentalDays, setRentalDays] = useState(0); 
 
     const checkVehicleAvailability = async () => {
         if (!Vehicle || !Vehicle.FrameNr) {
@@ -74,8 +74,8 @@ function BuyPage() {
             const calculatedRentalDays = (end - start) / (1000 * 3600 * 24);
             const calculatedCost = calculatedRentalDays * vehicle.price;
 
-            setRentalDays(calculatedRentalDays); // Store rental days in state
-            setTotalCost(calculatedCost); // Store total cost in state
+            setRentalDays(calculatedRentalDays); 
+            setTotalCost(calculatedCost); 
         }
     };
 
