@@ -83,7 +83,14 @@ public class UserRepository : IUserRepository
                 if (await reader.ReadAsync())
                 {
                     string passwordUser = reader.GetString("Password");
-                    return _hash.createHash(password).Equals(passwordUser);
+                    bool answer = _hash.createHash(password).Equals(passwordUser);
+
+                    if (!answer)
+                    {
+                        answer = password.Equals(passwordUser);
+                    }
+
+                    return answer;
                 }
 
                 return false;
@@ -375,4 +382,31 @@ public class UserRepository : IUserRepository
         return (true, query += $"WHERE ID = {data[0][1]}");
     }
     
+    public async Task<bool> IsUserEmployee(int id)
+    {
+        try
+        {
+            string query = "SELECT ID FROM UserEmployee WHERE ID = @id";
+
+            using (var connection = _connector.CreateDbConnection())
+            using (var command = new MySqlCommand(query, (MySqlConnection)connection))
+            {
+                command.Parameters.AddWithValue("@id", id);
+
+                var result = await command.ExecuteScalarAsync();
+
+                if (result != null && result.ToString() == id.ToString())
+                {
+                    return true;
+                }
+
+                return false;
+            }
+        }
+        catch (Exception ex)
+        {
+            await Console.Error.WriteLineAsync($"Unexpected error: {ex.Message}");
+            return false;
+        }
+    }
 }

@@ -32,6 +32,7 @@ const BACKEND_URL = import.meta.env.VITE_REACT_APP_BACKEND_URL ?? 'http://localh
 function GeneralSalePage() {
     const [welcomeMessage, setWelcomeMessage] = useState('');
     const [vehicles, setVehicles] = useState([]);
+    const [isEmployee, setIsEmployee] = useState(false);
     const [error, setError] = useState(null);
     const fetchVehicles= async () => {
         try {
@@ -47,16 +48,70 @@ function GeneralSalePage() {
             setError('Failed to load vehicles')
         }
     };
+    
+    const fetchOnlyCars= async () => {
+        try {
+            const response = await fetch(`${BACKEND_URL}/api/vehicle/GetAllCars`)
+            if (!response.ok) {
+                throw new Error(`Error fetching vehicles: ${response.statusText}`)
+            }
+            const data = response.json();
+            setVehicles(data);
+        } catch (e) {
+            console.error(e);
+            setError('Failed to load cars')
+        }
+    }
 
     useEffect(() => {
-        fetchVehicles();
-        /*WelcomeUser(setWelcomeMessage);*/
+        fetch(`${BACKEND_URL}/api/Employee/IsUserEmployee`, { credentials: 'include' })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Error validating user type');
+                }
+                return response.text();
+            })
+            .then(data => {
+                setIsEmployee(data === 'true');
+            })
+            .catch(error => {
+                console.error(error.message);
+                setIsEmployee(false);
+            });
+    }, []);
+
+    useEffect(() => {
+        {isEmployee ? (
+           fetchOnlyCars() 
+        ) : (
+            fetchVehicles()
+        )}
+    }, []);
+    
+    
+
+    useEffect(() => {
+        fetch('http://localhost:5165/api/Login/CheckSession', { credentials: 'include' })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Not logged in');
+                }
+                return response.json();
+            })
+            .then(() => setIsLoggedIn(true))
+            .catch(() => setIsLoggedIn(false));
     }, []);
 
     useEffect(() => {
         console.log(vehicles)
         /*WelcomeUser(setWelcomeMessage);*/
     }, [vehicles]);
+
+    useEffect(() => {
+        console.log(vehicles)
+        /*WelcomeUser(setWelcomeMessage);*/
+    }, [isEmployee]);
+    
     return (
         <>
             <GeneralHeader />
