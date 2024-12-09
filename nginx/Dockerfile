@@ -15,4 +15,4 @@ COPY ./../frontend/dist /usr/share/nginx/html
 EXPOSE 8080 8443
 
 # Use ash to run the wait-for-it script (since bash is not required)
-ENTRYPOINT ["/bin/ash", "-c", "/usr/local/bin/wait-for-it backend:5000 -- nginx -g 'daemon off;'"]
+ENTRYPOINT ["/bin/bash", "-c", "/usr/local/bin/wait-for-it backend:5000 -- nginx -g 'daemon off;'"]
