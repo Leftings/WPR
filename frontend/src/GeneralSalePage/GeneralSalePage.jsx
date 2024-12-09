@@ -30,6 +30,8 @@ import './GeneralSalePage.css'
 const BACKEND_URL = import.meta.env.VITE_REACT_APP_BACKEND_URL ?? 'http://localhost:5165';
 
 function GeneralSalePage() {
+    const [chosenType, setChosenType] = useState(0);
+    const [type, setType] = useState('');
     const [welcomeMessage, setWelcomeMessage] = useState('');
     const [vehicles, setVehicles] = useState([]);
     const [error, setError] = useState(null);
@@ -47,6 +49,15 @@ function GeneralSalePage() {
             setError('Failed to load vehicles')
         }
     };
+
+    { /*const fetchTypeVehicles= async () => {
+        try {
+            const response = await fetch(`${BACKEND_URL}/api/vehicle/GetTypeOfVehicles?vehicleType=${chosenType}`);
+            if (!response.ok) {
+                throw new Error('Error')
+            }
+        }
+    } */}
 
     useEffect(() => {
         fetchVehicles();
@@ -66,6 +77,15 @@ function GeneralSalePage() {
 
                 <div className="car-sale-section">
                     <h1 className="title">Cars for Sale</h1>
+                    <div className="filter-box">
+                        <label for="filter">Filter: </label>
+                        <select name="filter">
+                            <option value="0">All</option>
+                            <option value="1">Car</option>
+                            <option value="2">Camper</option>
+                            <option value="3">Caravan</option>
+                        </select>
+                    </div>
                     <div className="car-grid">
                         {vehicles.map((vehicle) => (
                             <div key={vehicle.frameNr} className="car-card">

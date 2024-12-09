@@ -80,3 +80,29 @@
     color: #555;
     line-height: 1.5;
 }
+
+.filter-box {
+    width: 200px;
+    position: relative;
+    margin: 10px;
+    font-family: Arial;
+    border: none;
+    outline: none;
+}
+
+.filter-box:select {
+    display: none;
+}
+
+.filter-box {
+    width: 200px;
+    position: relative;
+    margin: 10px;
+    font-family: Arial;
+    border: none;
+    outline: none;
+}
+
+.filter-box:select {
+    display: none;
+}
