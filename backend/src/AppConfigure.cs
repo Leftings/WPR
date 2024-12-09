@@ -86,7 +86,7 @@ public class AppConfigure
         */
 
         options.AddPolicy("AllowSpecificOrigins", policy =>
-            policy.WithOrigins("http://95.99.30.110:8080", "http://localhost:5173, http://www.carandall.nl:8080")
+            policy.WithOrigins("http://95.99.30.110:8080", "http://localhost:5173", "http://www.carandall.nl:8080")
                 .AllowAnyHeader()
                 .AllowAnyMethod()
                 .AllowCredentials()
@@ -109,7 +109,7 @@ public class AppConfigure
     builder.WebHost.ConfigureKestrel(options =>
     {
         // Ensure IP address is valid before binding
-        if (uri.Host == "0.0.0.0" || uri.Host == "localhost")
+        if (uri.Host == "0.0.0.0" )
         {
             options.Listen(IPAddress.Any, 5000);  
         }
