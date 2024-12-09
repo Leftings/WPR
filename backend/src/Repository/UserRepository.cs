@@ -82,6 +82,13 @@ public class UserRepository : IUserRepository
             {
                 if (await reader.ReadAsync())
                 {
+                    if (isEmployee)
+                    {
+                        string userPassword = reader.GetString("Password");
+                        Console.WriteLine(userPassword + " " + password);
+                        return password.Equals(userPassword);
+                    }
+
                     string passwordUser = reader.GetString("Password");
                     return _hash.createHash(password).Equals(passwordUser);
                 }
@@ -223,11 +230,20 @@ public class UserRepository : IUserRepository
         }
     }
 
-    public async Task<int> GetUserIdAsync(string email)
+    public async Task<string> GetUserIdAsync(string email, bool isEmployee)
     {
         try
         {
-            string query = "SELECT ID FROM UserCustomer WHERE Email = @E";
+            string table = "";
+            if (isEmployee)
+            {
+                table = "Staff";
+            }
+            else
+            {
+                table = "UserCustomer";
+            }
+            string query = $"SELECT ID FROM {table} WHERE Email = @E";
 
             using (var connection = _connector.CreateDbConnection())
             using (var command = new MySqlCommand(query, (MySqlConnection)connection))
@@ -238,16 +254,16 @@ public class UserRepository : IUserRepository
 
                 if (result != null)
                 {
-                    return Convert.ToInt32(result);
+                    return Convert.ToString(result);
                 }
 
-                return -1;
+                return null;
             }
         }
         catch (Exception ex)
         {
             await Console.Error.WriteLineAsync($"Unexpected error: {ex.Message}");
-            return -1;
+            return null;
         }
     }
 
@@ -374,5 +390,32 @@ public class UserRepository : IUserRepository
 
         return (true, query += $"WHERE ID = {data[0][1]}");
     }
-    
+
+    public async Task<bool> IsExistingStaffId(string id)
+    {
+        try
+        {
+            string query = $"SELECT ID FROM Staff WHERE ID = @id";
+
+            using (var connection = _connector.CreateDbConnection())
+            using (var command = new MySqlCommand(query, (MySqlConnection)connection))
+            {
+                command.Parameters.AddWithValue("@id", id);
+
+                var result = await command.ExecuteScalarAsync();
+
+                if (result != null && result.ToString() == id)
+                {
+                    return true;
+                }
+
+                return false;
+            }
+        }
+        catch (Exception ex)
+        {
+            await Console.Error.WriteLineAsync($"Unexpected error: {ex.Message}");
+            return false;
+        }
+    }
 }

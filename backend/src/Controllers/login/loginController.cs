@@ -32,9 +32,10 @@ public class LoginController : ControllerBase
 
         try
         {
-            int userId = await _userRepository.GetUserIdAsync(loginRequest.Email);
 
-            if (userId <= 0)
+            string userId = await _userRepository.GetUserIdAsync(loginRequest.Email, loginRequest.IsEmployee);
+
+            if (userId == null)
             {
                 return BadRequest(new { message = "User ID not found." });
             }
@@ -88,6 +89,47 @@ public class LoginController : ControllerBase
                     return cookieResult;
                 }
                 
+                return Ok(new { message = "Login Successful." });
+            }
+            else
+            {
+                return Unauthorized(new { message = "Login Failed." });
+            }
+        }
+        catch (MySqlException ex)
+        {
+            Console.Error.WriteLine($"Database error: {ex.Message}");
+            return StatusCode(500, new { message = "An error occurred while accesing the database." });
+        }
+        catch (Exception ex)
+        {
+            Console.Error.WriteLine($"Unexpected error: {ex.Message}");
+            return StatusCode(500, new { message = "An error occurred while processing your request." });
+        }
+    }
+
+    [HttpPost("loginEmployee")]
+    public async Task <IActionResult> LoginEmployeeAsync([FromBody] LoginRequest loginRequest)
+    {
+        if (loginRequest == null || string.IsNullOrEmpty(loginRequest.Email) || string.IsNullOrEmpty(loginRequest.Password))
+        {
+            return BadRequest(new { message = "Invalid input. Please provide email and password." });
+        }
+
+        try
+        {
+            bool isValid = await _userRepository.ValidateUserAsync(loginRequest.Email, loginRequest.Password, loginRequest.IsEmployee);
+
+            if (isValid)
+            {
+                Console.WriteLine($"{loginRequest.Email} {loginRequest.Password} {loginRequest.IsEmployee}");
+                var cookieResult = await SetCookieAsync(loginRequest);
+
+                if (cookieResult is BadRequestObjectResult)
+                {
+                    return cookieResult;
+                }
+
                 return Ok(new { message = "Login Successful." });
             }
             else

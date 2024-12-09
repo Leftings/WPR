@@ -6,6 +6,8 @@ import './home.css';
 
 function Home() {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const [id, setId] = useState(null);
+    const [isStaff, setIsStaff] = useState(false);
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -19,6 +21,26 @@ function Home() {
             .then(() => setIsLoggedIn(true))
             .catch(() => setIsLoggedIn(false));
     }, []);
+
+    useEffect(() => {
+        fetch('http://localhost:5165/api/Cookie/GetUserId', {credentials: 'include'})
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Not logged in');
+                }
+                setId(response.text());
+            })
+    }, [id]);
+
+    useEffect(() => {
+        fetch(`http://localhost:5165/api/Staff/ValidateStaffId?id=${id}`, {credentials: 'include'})
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Error validating user type');
+                }
+                setIsStaff(response.json);
+            })
+    }, [isStaff])
 
     const handleLogout = () => {
         fetch('http://localhost:5165/api/Cookie/Logout', { method: 'POST', credentials: 'include' })
@@ -37,6 +59,9 @@ function Home() {
                     <h1>Vind de perfecte auto voor jouw avontuur</h1>
                     <p>Betaalbare prijzen, flexibele verhuur en een breed aanbod aan voertuigen om uit te kiezen.</p>
                     <Link to="/GeneralSalePage" className="cta-button">Verken onze Auto's</Link>
+                    {isStaff && isLoggedIn ? (
+                        <Link to="/staffTools" className="cta-button">Staff Tools</Link>
+                    ) : null}
                 </section>
 
                 <div className="container">
