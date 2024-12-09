@@ -1,17 +1,21 @@
-FROM nginx:alpine-stable
+FROM nginx:alpine
 
-RUN apk update && apk add --no-cache bash
+# Install bash and netcat (needed by wait-for-it)
+RUN apk update && apk add --no-cache bash nc
 
+# Copy the wait-for-it script into the container
 COPY ./nginx/scripts/wait-for-it.sh /usr/local/bin/wait-for-it
 RUN chmod +x /usr/local/bin/wait-for-it
 
 # Copy nginx config
 COPY nginx.conf /nginx.conf
 
-# Copy frontend build to the Nginx container
+# Copy frontend build to Nginx container
 COPY ./../frontend/dist /usr/share/nginx/html
 
-# Expose the ports for nginx
+# Expose the necessary ports
 EXPOSE 8080 8443
 
-ENTRYPOINT ["nginx", "-g", "daemon off;"]
+# Use wait-for-it to ensure the backend service is ready before starting Nginx
+# Replace 'backend:5000' with the actual host and port of your service.
+ENTRYPOINT ["/bin/bash", "-c", "/usr/local/bin/wait-for-it backend:5000 -- nginx -g 'daemon off;'"]
