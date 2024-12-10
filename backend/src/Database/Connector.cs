@@ -45,10 +45,10 @@ public class Connector : IConnector
 
         try
         {
-            var connection = new MySqlConnection(connectString); 
+            var connection = new MySqlConnection(connectString); // Maak een nieuwe MySQL connectie instantie
             connection.Open();
             Console.WriteLine("Database connection successful");
-            return connection; 
+            return connection; // return de open connectie
         }
         catch (MySqlException ex)
         {

@@ -1,6 +1,4 @@
 using System.Data;
-using System.Text.Json;
-using WPR.Services;
 
 namespace WPR.Controllers.Vehicle;
 
@@ -14,14 +12,12 @@ using WPR.Database;
 [ApiController]
 public class VehicleController : ControllerBase
 {
-    private readonly IConnector _connector;
-    private readonly IEmailService _emailService;
 
-    // Constructor: Injecting IConnector and IEmailService
-    public VehicleController(IConnector connector, IEmailService emailService)
+    private readonly Connector _connector;
+
+    public VehicleController(Connector connector)
     {
         _connector = connector ?? throw new ArgumentNullException(nameof(connector));
-        _emailService = emailService ?? throw new ArgumentNullException(nameof(emailService));
     }
 
     [HttpGet("GetVehicleNameAsync")]
@@ -152,32 +148,92 @@ public class VehicleController : ControllerBase
     }
 
     [HttpGet("GetAllVehicles")]
-    public async Task<IActionResult> GetAllVehiclesAsync(int frameNr)
+public async Task<IActionResult> GetAllVehiclesAsync()
+{
+    try
+    {
+        string query = @"
+            SELECT FrameNr, YoP, Brand, Type, LicensePlate, Color, Sort, Price, VehicleBlob, Description
+            FROM Vehicle";
+
+        var vehicles = new List<object>();
+
+        using (var connection = _connector.CreateDbConnection())
+        using (var command = new MySqlCommand(query, (MySqlConnection)connection))
+        {
+            using (var reader = await command.ExecuteReaderAsync())
+            {
+                while (reader.Read())
+                {
+                    vehicles.Add(new
+                    {
+                        FrameNr = reader.GetInt32(0),          
+                        YoP = reader.GetInt32(1),              
+                        Brand = reader.GetString(2),           
+                        Type = reader.GetString(3),
+                        LicensePlate = reader.GetString(4),
+                        Color = reader.GetString(5),
+                        Sort = reader.GetString(6),
+                        Price = reader.GetDecimal(7).ToString("F2"),
+                        Image = reader.IsDBNull(8) ? null : Convert.ToBase64String((byte[])reader["VehicleBlob"]),
+                        Description = reader.IsDBNull(9) ? null : reader.GetString(9)
+                    });
+                }
+            }
+        }
+
+        return Ok(vehicles);
+    }
+    catch (Exception ex)
+    {
+        Console.WriteLine(ex);
+        return StatusCode(500, "An error occurred while fetching vehicles.");
+    }
+}
+
+
+    [HttpGet("GetTypeOfVehicles")]
+    public async Task<IActionResult> GetTypeOfVehiclesAsync(string vehicleType)
     {
         try
         {
-            string query = "SELECT FrameNr, Brand, Type, Price, VehicleBlob FROM Vehicle";
+            string query = @"
+                SELECT FrameNr, YoP, Brand, Type, LicensePlate, Color, Sort, Price, VehicleBlob, Description 
+                FROM Vehicle 
+                WHERE LOWER(Sort) = LOWER(@Sort)";
 
             var vehicles = new List<object>();
 
             using (var connection = _connector.CreateDbConnection())
-            using (var command = new MySqlCommand(query, (MySqlConnection)connection))
             {
-
-                using (var reader = await command.ExecuteReaderAsync())
+                using (var command = new MySqlCommand(query, (MySqlConnection)connection))
                 {
-                    while (reader.Read())
+                    if (!string.IsNullOrWhiteSpace(vehicleType) &&
+                        !vehicleType.Equals("ALL", StringComparison.OrdinalIgnoreCase))
                     {
-                        vehicles.Add(new
+                        command.Parameters.AddWithValue("@Sort", vehicleType);
+                    }
+
+                    using (var reader = await command.ExecuteReaderAsync())
+                    {
+                        while (reader.Read())
                         {
-                            FrameNr = reader.GetInt32(0),
-                            Brand = reader.GetString(1),
-                            Type = reader.GetString(2),
-                            Price = reader.GetDecimal(3).ToString("F2"),
-                            Image = !reader.IsDBNull(4)
-                                ? Convert.ToBase64String((byte[])reader["VehicleBlob"])
-                                : null
-                        });
+                            vehicles.Add(new
+                            {
+                                FrameNr = reader.GetInt32(0),
+                                YoP = reader.GetInt32(1),
+                                Brand = reader.GetString(2),
+                                Type = reader.GetString(3),
+                                LicensePlate = reader.GetString(4),
+                                Color = reader.GetString(5),
+                                Sort = reader.GetString(6),
+                                Price = reader.GetDecimal(7).ToString("F2"),
+                                Image = !reader.IsDBNull(8)
+                                    ? Convert.ToBase64String((byte[])reader["VehicleBlob"])
+                                    : null,
+                                Description = reader.IsDBNull(9) ? null : reader.GetString(9)
+                            });
+                        }
                     }
                 }
             }
@@ -186,63 +242,8 @@ public class VehicleController : ControllerBase
         }
         catch (Exception ex)
         {
-            Console.WriteLine(ex);
+            Console.WriteLine($"Error: {ex.Message}");
             return StatusCode(500, "An error occurred while fetching vehicles.");
         }
     }
-
-    [HttpGet("CheckIfVehicleExists/{FrameNr}")]
-    public async Task<IActionResult> CheckIfVehicleExists(int FrameNr)
-    {
-        Console.WriteLine("Received request for CheckIfVehicleExists with frameNr: " + FrameNr); // Logging
-
-        try
-        {
-            string query = "SELECT COUNT(*) FROM Vehicle WHERE FrameNr = @FrameNr";
-
-            using (var connection = _connector.CreateDbConnection())
-            using (var command = new MySqlCommand(query, (MySqlConnection)connection))
-            {
-                command.Parameters.AddWithValue("@FrameNr", FrameNr);
-
-                int count = Convert.ToInt32(await command.ExecuteScalarAsync());
-
-                if (count > 0)
-                {
-                    return Ok(new { isAvailable = true });
-                }
-                else
-                {
-                    return NotFound(new { isAvailable = false });
-                }
-            }
-        }
-        catch (Exception ex)
-        {
-            Console.WriteLine(ex);
-            return StatusCode(500, "An error occurred while checking vehicle availability.");
-        }
-    }
-
-    [HttpPost("SendConfirmationEmail")]
-        public async Task<IActionResult> SendConfirmationEmail([FromBody] JsonElement emailData)
-        {
-            try
-            {
-                // Extract the required values from the JsonElement
-                string email = emailData.GetProperty("email").GetString();
-                string name = emailData.GetProperty("name").GetString();
-                string rentalDates = emailData.GetProperty("rentalDates").GetString();
-                decimal totalCost = emailData.GetProperty("totalCost").GetDecimal();
-
-                // Send the email
-                await _emailService.SendConfirmationEmailAsync(email, name, rentalDates, totalCost);
-                return Ok("Confirmation email sent successfully.");
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex);
-                return StatusCode(500, "An error occurred while sending the confirmation email.");
-            }
-        }
-    }
+}

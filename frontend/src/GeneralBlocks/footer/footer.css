@@ -1,15 +1,8 @@
-html, body {
-    height: 100%; /* Remove default margin */
-    display: flex;
-    flex-direction: column;
-}
-
 .footer {
     text-align: center;
     background: #333;
     color: white;
     padding: 20px;
-    margin-top: auto; 
 }
 
 .footer-links a {
@@ -19,6 +12,6 @@ html, body {
     transition: color 0.3s;
 }
 
-.footer-links a:hover {
-    color: white;
-}
+    .footer-links a:hover {
+        color: white;
+    }
