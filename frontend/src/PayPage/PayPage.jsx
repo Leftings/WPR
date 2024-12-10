@@ -29,14 +29,14 @@ function PayPage() {
     const [rentalDays, setRentalDays] = useState(0);
 
     const checkVehicleAvailability = async () => {
-        if (!Vehicle || !Vehicle.FrameNr) { 
+        if (!Vehicle || !Vehicle.FrameNr) {
             setFetchError("Invalid vehicle frame number.");
             setVehicleAvailable(false);
             return;
         }
 
         try {
-            const response = await fetch(`http://localhost:5165/api/vehicle/CheckIfVehicleExists/${Vehicle.FrameNr}`); 
+            const response = await fetch(`http://localhost:5165/api/vehicle/CheckIfVehicleExists/${Vehicle.FrameNr}`);
 
             if (!response.ok) {
                 throw new Error('Vehicle availability check failed');
@@ -50,7 +50,6 @@ function PayPage() {
             console.error(error);
         }
     };
-
 
     useEffect(() => {
         if (vehicle) {
@@ -100,12 +99,44 @@ function PayPage() {
         }
     };
 
-    const handlePurchase = () => {
+    const handlePurchase = async () => {
         if (rentalDays > 0 && totalCost > 0) {
-            alert(`Verhuur succesvol! Aantal dagen: ${rentalDays} dagen, Totale kosten: €${totalCost.toFixed(2)}`);
-            navigate("/");
+            const rentalData = {
+                CustomerName: userDetails.name,
+                Email: userDetails.email,
+                Phone: userDetails.phone,
+                BillingAddress: userDetails.billingAddress,
+                StreetAddress: userDetails.streetAddress,
+                City: userDetails.city,
+                PostalCode: userDetails.postalCode,
+                FrameNrCar: vehicle.FrameNr,
+                StartDate: userDetails.rentalDates[0],
+                EndDate: userDetails.rentalDates[1],
+                Price: totalCost,
+            };
+
+            try {
+                const response = await fetch('http://localhost:5165/api/Rental/CreateRental', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(rentalData),
+                });
+
+                if (!response.ok) {
+                    throw new Error('Rental creation failed');
+                }
+
+                const data = await response.json();
+                alert(`Rental confirmed! Total cost: €${totalCost.toFixed(2)}`);
+                navigate('/');
+            } catch (error) {
+                setErrorMessage('Error creating rental. Please try again later.');
+                console.error(error);
+            }
         } else {
-            setErrorMessage("Voer een geldige huurperiode in.");
+            setErrorMessage("Please enter a valid rental period.");
         }
     };
 
@@ -114,8 +145,8 @@ function PayPage() {
             <div className="buy-page">
                 <GeneralHeader />
                 <div className="error-message">
-                    <h2>Auto niet gevonden!</h2>
-                    <p>Ga terug en selecteer een voertuig.</p>
+                    <h2>Car not found!</h2>
+                    <p>Please go back and select a vehicle.</p>
                 </div>
                 <GeneralFooter />
             </div>
@@ -126,31 +157,31 @@ function PayPage() {
         <div className="buy-page">
             <GeneralHeader />
             <div className="content">
-                <h1 className="title">Bevestig Rental</h1>
+                <h1 className="title">Confirm Rental</h1>
                 <div className="buy-details">
                     <div className="car-info">
-                        <h2 className="car-title">{`${vehicle.brand || "Onbekend"} ${vehicle.type || "Model"}`}</h2>
-                        <p className="car-price">{`Prijs: €${vehicle.price} per dag`}</p>
+                        <h2 className="car-title">{`${vehicle.brand || "Unknown"} ${vehicle.type || "Model"}`}</h2>
+                        <p className="car-price">{`Price: €${vehicle.price} per day`}</p>
 
                         <div className="car-image-container">
                             {vehicle.image ? (
                                 <img
                                     src={`data:image/jpeg;base64,${vehicle.image}`}
-                                    alt={`${vehicle.brand || "Onbekend"} ${vehicle.type || ""}`}
+                                    alt={`${vehicle.brand || "Unknown"} ${vehicle.type || ""}`}
                                     className="car-image"
                                 />
                             ) : (
-                                <p>Afbeelding niet beschikbaar</p>
+                                <p>Image not available</p>
                             )}
                         </div>
                     </div>
                     <div className="user-info">
-                        <h3 className="user-info-title">Factuuradres en Huurperiode</h3>
+                        <h3 className="user-info-title">Billing Address and Rental Period</h3>
 
                         <input
                             type="text"
                             name="name"
-                            placeholder="Vul uw volledige naam in"
+                            placeholder="Enter your full name"
                             value={userDetails.name}
                             onChange={handleInputChange}
                             className="input-field"
@@ -159,7 +190,7 @@ function PayPage() {
                         <input
                             type="text"
                             name="streetAddress"
-                            placeholder="Straat en Huisnummer"
+                            placeholder="Street and House Number"
                             value={userDetails.streetAddress}
                             onChange={handleInputChange}
                             className="input-field"
@@ -168,7 +199,7 @@ function PayPage() {
                         <input
                             type="text"
                             name="city"
-                            placeholder="Stad"
+                            placeholder="City"
                             value={userDetails.city}
                             onChange={handleInputChange}
                             className="input-field"
@@ -177,13 +208,13 @@ function PayPage() {
                         <input
                             type="text"
                             name="postalCode"
-                            placeholder="Postcode"
+                            placeholder="Postal Code"
                             value={userDetails.postalCode}
                             onChange={handleInputChange}
                             className="input-field"
                         />
 
-                        <h3>Huurperiode</h3>
+                        <h3>Rental Period</h3>
                         <DatePicker
                             selected={userDetails.rentalDates[0]}
                             onChange={handleDateChange}
@@ -192,14 +223,14 @@ function PayPage() {
                             selectsRange
                             inline
                             dateFormat="yyyy/MM/dd"
-                            placeholderText="Selecteer start- en einddatum"
+                            placeholderText="Select start and end date"
                         />
 
                         <button
                             className="buy-button"
                             onClick={handlePurchase}
                         >
-                            Bevestig Rental
+                            Confirm Rental
                         </button>
 
                         {errorMessage && <p className="error-message">{errorMessage}</p>}
@@ -209,7 +240,7 @@ function PayPage() {
 
                 {totalCost > 0 && (
                     <div className="total-cost">
-                        <h3>Totaal Kosten:</h3>
+                        <h3>Total Cost:</h3>
                         <p>€{totalCost.toFixed(2)}</p>
                     </div>
                 )}
