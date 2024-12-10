@@ -12,6 +12,7 @@ import CarDetailPage from './IndividualCarPage/IndividualSalePage.jsx';
 import AbonementUitlegPage from './AbonementUitlegPage/AbonementUitlegPage.jsx';
 import EmployeeBackOffice from './employeeBackOffice/employeeBackOffice.jsx';
 import AddVehicle from './employeeBackOffice/addVehicle/addVehicle.jsx';
+import PayPage from './PayPage/PayPage.jsx'
 
 createRoot(document.getElementById('root')).render(
     <Router>
@@ -26,6 +27,7 @@ createRoot(document.getElementById('root')).render(
             <Route path="/vehicle/:frameNr" element={<CarDetailPage />} />
             <Route path="/backOfficeEmployee" element={<EmployeeBackOffice />}></Route>
             <Route path="/backOfficeEmployee/addVehicle" element={<AddVehicle />}></Route>
+            <Route path="/buy" element={<BuyPage />} />
         </Routes>
     </Router>
 );
