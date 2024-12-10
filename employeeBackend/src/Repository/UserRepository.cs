@@ -17,7 +17,7 @@ public class UserRepository : IUserRepository
     }
     
     // vehicleBlob is het pad naar de afbeelding
-    public async Task<(bool status, string message)> AddVehicleAsync(int yop, string brand, string type, string licensePlate, string color, string sort, double price, string description, string vehicleBlob)
+    public async Task<(bool status, string message)> AddVehicleAsync(int yop, string brand, string type, string licensePlate, string color, string sort, double price, string description, byte[] vehicleBlob)
     {
         try
         {
@@ -34,7 +34,7 @@ public class UserRepository : IUserRepository
                 command.Parameters.AddWithValue("@S", sort);
                 command.Parameters.AddWithValue("@P", price);
                 command.Parameters.AddWithValue("@D", description);
-                command.Parameters.AddWithValue("@V", System.Text.Encoding.ASCII.GetBytes(vehicleBlob));
+                command.Parameters.AddWithValue("@V", vehicleBlob);
 
                 if (await command.ExecuteNonQueryAsync() > 0)
                 {

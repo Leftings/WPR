@@ -61,7 +61,7 @@ function AddVehicle() {
             SetError([]);
         })
         .catch(error => {
-            console.error("Error adding vehicle:", error);
+            console.error("Error adding vehicle:", error.message);
             SetError([error.message]);
         });
     };
