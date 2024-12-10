@@ -114,9 +114,10 @@ public class SignUpController : ControllerBase
                         return BadRequest(new { personal.message });
                     }
 
-                    var confirmationLink =
+                    var confirmationLink =  // laat het niet werken
                         $"{_envConfig.Get("APP_BASE_URL")}/api/user/confirm?token={customer.newUserID}";
                     await _emailService.SendConfirmationEmail(signUpRequest.Email, confirmationLink);
+                    // tot hier
                     
                     return Ok(new { message = "Account created successfully. Please check your email to confirm your account" });
                 }
