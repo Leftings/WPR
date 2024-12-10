@@ -166,16 +166,15 @@ public class VehicleController : ControllerBase
                     {
                         vehicles.Add(new
                         {
-                            FrameNr = reader.GetInt32(0),
-                            YoP = reader.GetInt32(1),
-                            Brand = reader.GetString(2),
-                            Type = reader.GetString(3),
-                            LicensePlate = reader.GetString(4),
-                            Color = reader.GetString(5),
-                            Sort = reader.GetString(6),
-                            Price = reader.GetDecimal(7).ToString("F2"),
-                            Image = !reader.IsDBNull(8)
-                                ? Convert.ToBase64String((byte[])reader["VehicleBlob"]) : null,
+                            FrameNr = reader.IsDBNull(0) ? 0 : reader.GetInt32(0),
+                            YoP = reader.IsDBNull(1) ? 0 : reader.GetInt32(1),    
+                            Brand = reader.IsDBNull(2) ? null : reader.GetString(2),
+                            Type = reader.IsDBNull(3) ? null : reader.GetString(3),
+                            LicensePlate = reader.IsDBNull(4) ? null : reader.GetString(4),
+                            Color = reader.IsDBNull(5) ? null : reader.GetString(5),
+                            Sort = reader.IsDBNull(6) ? null : reader.GetString(6),
+                            Price = reader.IsDBNull(7) ? "0.00" : reader.GetDecimal(7).ToString("F2"),
+                            Image = reader.IsDBNull(8) ? null : Convert.ToBase64String((byte[])reader["VehicleBlob"]),
                             Description = reader.IsDBNull(9) ? null : reader.GetString(9)
                         });
                     }
@@ -210,16 +209,14 @@ public class VehicleController : ControllerBase
                     {
                         vehicles.Add(new
                         {
-                            FrameNr = reader.GetInt32(0),
-                            YoP = reader.GetInt32(1),
-                            Brand = reader.GetString(2),
-                            Type = reader.GetString(3),
-                            LicensePlate = reader.GetString(4),
-                            Color = reader.GetString(5),
-                            Sort = reader.GetString(6),
-                            Price = reader.GetDecimal(7).ToString("F2"),
-                            Image = !reader.IsDBNull(8)
-                                ? Convert.ToBase64String((byte[])reader["VehicleBlob"]) : null,
+                            FrameNr = reader.IsDBNull(0) ? 0 : reader.GetInt32(0),
+                            Brand = reader.IsDBNull(2) ? null : reader.GetString(2),
+                            Type = reader.IsDBNull(3) ? null : reader.GetString(3),
+                            LicensePlate = reader.IsDBNull(4) ? null : reader.GetString(4),
+                            Color = reader.IsDBNull(5) ? null : reader.GetString(5),
+                            Sort = reader.IsDBNull(6) ? null : reader.GetString(6),
+                            Price = reader.IsDBNull(7) ? "0.00" : reader.GetDecimal(7).ToString("F2"),
+                            Image = reader.IsDBNull(8) ? null : Convert.ToBase64String((byte[])reader["VehicleBlob"]),
                             Description = reader.IsDBNull(9) ? null : reader.GetString(9)
                         });
                     }
