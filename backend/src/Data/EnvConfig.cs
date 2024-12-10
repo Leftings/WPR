@@ -1,55 +1,50 @@
-﻿using dotenv.net; // library to load .env files
-using Microsoft.Extensions.Configuration;
+﻿using dotenv.net; // library om .env files te laden
 using System;
-using System.Linq;
 
-namespace WPR.Data
+namespace WPR.Data;
+
+/// <summary>
+/// Leez het .env bestand uit waarin de connectie strings staan naar de database.
+/// Deze staan in een apart bestand buiten de git repo,
+/// zodat mensen van buiten niet met de database kunnen verbinden.
+/// </summary>
+
+public class EnvConfig
 {
-    /// <summary>
-    /// Reads the .env file where database connection strings are stored.
-    /// These are stored in a separate file outside the git repo,
-    /// so external parties cannot connect to the database.
-    /// </summary>
-    public class EnvConfig
+    private readonly IConfiguration _configuration;
+    
+    public EnvConfig()
     {
-        private readonly IConfiguration _configuration;
+        DotEnv.Load();  // Gebruikt de dotenv.net library om het bestand te laden
 
-        public EnvConfig(IConfiguration configuration)
+        var builder = new ConfigurationBuilder()
+            .AddEnvironmentVariables(); // Voegt de environment variabelen aan de ConfigurationBuilder
+        
+        _configuration = builder.Build(); // Bouwt het configuratie object
+    }
+
+    /// <summary>
+    /// Haalt de value van de specifieke environement variabelen.
+    /// </summary>
+    /// <param name="key">Ophalen environment variabele key.</param>
+    /// <returns>De value van de specifieke environment variabele, of null als niet gevonden.</returns>
+    public virtual string Get(string key)
+    {
+        var value = _configuration[key]; // Fetch de value van de gegeven key
+        if (string.IsNullOrEmpty(value)) 
         {
-            // Load .env file using dotenv.net library
-            DotEnv.Load();
-
-            // Use the provided IConfiguration instance to access environment variables
-            _configuration = configuration ?? throw new ArgumentNullException(nameof(configuration));
+            Console.WriteLine($"Warning {key} not found in environment");
         }
+        return value;
+    }
 
-        /// <summary>
-        /// Fetches the value of the specific environment variable.
-        /// </summary>
-        /// <param name="key">The environment variable key to fetch.</param>
-        /// <returns>The value of the environment variable, or null if not found.</returns>
-        public string Get(string key)
-        {
-            var value = _configuration[key]; // Fetch the value of the given key from IConfiguration
-            if (string.IsNullOrEmpty(value)) 
-            {
-                // Log a warning if the key is not found in the configuration
-                Console.WriteLine($"Warning: Environment variable {key} not found.");
-            }
-            return value;
-        }
-
-        /// <summary>
-        /// Checks if all required environment variables are configured.
-        /// </summary>
-        /// <returns>True if all keys are present, otherwise false.</returns>
-        public bool IsConfigured()
-        {
-            // List of required environment variables for database connection
-            var requiredKeys = new[] { "DB_SERVER", "DB_DATABASE", "DB_USERNAME", "DB_PASSWORD" };
-
-            // Check if all required keys are present and not empty
-            return requiredKeys.All(key => !string.IsNullOrEmpty(Get(key)));
-        }
+    /// <summary>
+    /// Check om te kijken of alle environment variabelen geconfigureerd zijn.
+    /// </summary>
+    /// <returns>True als alle keys present zijn, anders False.</returns>
+    public virtual bool IsConfigured()
+    {
+        var requiredKeys = new[] { "DB_SERVER", "DB_DATABASE", "DB_USERNAME", "DB_PASSWORD" };
+        return requiredKeys.All(key => !string.IsNullOrEmpty(Get(key)));
     }
 }

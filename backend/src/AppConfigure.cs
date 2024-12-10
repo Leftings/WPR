@@ -11,6 +11,7 @@ using WPR.Database;
 using WPR.Repository;
 using WPR.Hashing;
 using System.Net;
+using WPR.Services;
 
 namespace WPR;
 
@@ -62,6 +63,9 @@ public class AppConfigure
         builder.Services.AddScoped<Crypt>();  // Scoped for Crypt service
         builder.Services.AddScoped<Hashing.Hash>();  // Scoped for Hashing service
 
+        
+        builder.Services.AddScoped<IEmailService, EmailService>();
+        builder.Services.Configure<EmailSettings>(builder.Configuration.GetSection("Smtp"));
         // Configure other services and settings
         builder.Configuration.AddEnvironmentVariables();
 
