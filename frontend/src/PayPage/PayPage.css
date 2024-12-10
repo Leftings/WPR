@@ -32,30 +32,3 @@
     border-radius: 10px;
 }
 
-.user-info input {
-    width: 100%;
-    padding: 10px;
-    margin: 10px 0;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-}
-
-.buy-button {
-    padding: 10px 20px;
-    font-size: 1.2em;
-    color: #fff;
-    background-color: #27ae60;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-.buy-button:hover {
-    background-color: #2ecc71;
-}
-
-.error-message {
-    color: red;
-    margin-top: 10px;
-}
-
