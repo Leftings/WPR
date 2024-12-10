@@ -28,67 +28,49 @@ function PayPage() {
     const [totalCost, setTotalCost] = useState(0);
     const [rentalDays, setRentalDays] = useState(0);
 
-    const checkVehicleAvailability = async () => {
-        if (!Vehicle || !Vehicle.FrameNr) {
-            setFetchError("Invalid vehicle frame number.");
-            setVehicleAvailable(false);
-            return;
-        }
-
+    // Fetch user details directly from the API
+    const fetchUserDetails = async () => {
         try {
-            const response = await fetch(`http://localhost:5165/api/vehicle/CheckIfVehicleExists/${Vehicle.FrameNr}`);
+            const response = await fetch('http://localhost:5165/api/User/GetUserDetails', {
+                method: 'GET',
+                headers: { 'Content-Type': 'application/json' },
+                credentials: 'include', // Only include credentials if necessary for authentication
+            });
 
-            if (!response.ok) {
-                throw new Error('Vehicle availability check failed');
-            }
+            if (!response.ok) throw new Error('Failed to fetch user details');
 
-            const data = await response.json();
-            setVehicleAvailable(data.isAvailable);
+            const userData = await response.json();
+            setUserDetails({
+                ...userDetails,
+                name: userData.name,
+                email: userData.email || "",
+                phone: userData.phone,
+                billingAddress: userData.billingAddress,
+                streetAddress: userData.streetAddress,
+                city: userData.city,
+                postalCode: userData.postalCode,
+            });
         } catch (error) {
-            setFetchError('There was an error checking vehicle availability. Please try again later.');
-            setVehicleAvailable(false);
-            console.error(error);
+            console.error("Error fetching user details:", error);
+            setErrorMessage("Error fetching user details.");
         }
     };
 
     useEffect(() => {
-        if (vehicle) {
-            console.log("Vehicle found:", vehicle);
-            checkVehicleAvailability();
-        }
-    }, [vehicle]);
-
-    const handleInputChange = (e) => {
-        const { name, value } = e.target;
-        setUserDetails((prevDetails) => ({ ...prevDetails, [name]: value }));
-    };
+        fetchUserDetails(); // Fetch user details on component mount
+    }, []);
 
     const handleDateChange = (dates) => {
         const [start, end] = dates;
-        setUserDetails((prevDetails) => ({
-            ...prevDetails,
-            rentalDates: [start, end],
-        }));
+        setUserDetails((prevDetails) => ({ ...prevDetails, rentalDates: [start, end] }));
 
         if (start && end) {
-            const startDate = new Date(start);
-            const endDate = new Date(end);
+            const days = Math.ceil((end - start) / (1000 * 60 * 60 * 24));
+            const pricePerDay = parseFloat(vehicle?.price.replace(',', '.') || "0");
 
-            const calculatedRentalDays = Math.ceil((endDate - startDate) / (1000 * 60 * 60 * 24));
-
-            const rawPrice = vehicle?.price || "0";
-            const pricePerDay = parseFloat(rawPrice.replace(',', '.'));
-
-            if (isNaN(pricePerDay)) {
-                console.error("Invalid vehicle price:", vehicle?.price);
-                setTotalCost(0);
-                setRentalDays(0);
-                return;
-            }
-
-            if (calculatedRentalDays > 0) {
-                setRentalDays(calculatedRentalDays);
-                setTotalCost(calculatedRentalDays * pricePerDay);
+            if (!isNaN(pricePerDay) && days > 0) {
+                setRentalDays(days);
+                setTotalCost(days * pricePerDay);
             } else {
                 setRentalDays(0);
                 setTotalCost(0);
@@ -100,43 +82,37 @@ function PayPage() {
     };
 
     const handlePurchase = async () => {
-        if (rentalDays > 0 && totalCost > 0) {
-            const rentalData = {
-                CustomerName: userDetails.name,
-                Email: userDetails.email,
-                Phone: userDetails.phone,
-                BillingAddress: userDetails.billingAddress,
-                StreetAddress: userDetails.streetAddress,
-                City: userDetails.city,
-                PostalCode: userDetails.postalCode,
-                FrameNrCar: vehicle.FrameNr,
-                StartDate: userDetails.rentalDates[0],
-                EndDate: userDetails.rentalDates[1],
-                Price: totalCost,
-            };
+        if (!userDetails.email || !userDetails.rentalDates[0] || !userDetails.rentalDates[1]) {
+            setErrorMessage("Please complete all required fields.");
+            return;
+        }
 
-            try {
-                const response = await fetch('http://localhost:5165/api/Rental/CreateRental', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(rentalData),
-                });
+        const rentalData = {
+            FrameNrCar: vehicle.FrameNr,
+            StartDate: userDetails.rentalDates[0],
+            EndDate: userDetails.rentalDates[1],
+            Price: totalCost,
+            Email: userDetails.email,
+        };
 
-                if (!response.ok) {
-                    throw new Error('Rental creation failed');
-                }
+        try {
+            const response = await fetch("http://localhost:5165/api/Rental/CreateRental", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(rentalData),
+            });
 
-                const data = await response.json();
-                alert(`Rental confirmed! Total cost: €${totalCost.toFixed(2)}`);
-                navigate('/');
-            } catch (error) {
-                setErrorMessage('Error creating rental. Please try again later.');
-                console.error(error);
+            const data = await response.json();
+
+            if (response.ok) {
+                console.log("Rental created:", data.message);
+                navigate("/confirmation", { state: { rental: data } });
+            } else {
+                setErrorMessage(`Error: ${data.message}`);
             }
-        } else {
-            setErrorMessage("Please enter a valid rental period.");
+        } catch (error) {
+            console.error("Error creating rental:", error);
+            setErrorMessage("There was an error processing your rental. Please try again.");
         }
     };
 
@@ -162,88 +138,26 @@ function PayPage() {
                     <div className="car-info">
                         <h2 className="car-title">{`${vehicle.brand || "Unknown"} ${vehicle.type || "Model"}`}</h2>
                         <p className="car-price">{`Price: €${vehicle.price} per day`}</p>
-
-                        <div className="car-image-container">
-                            {vehicle.image ? (
-                                <img
-                                    src={`data:image/jpeg;base64,${vehicle.image}`}
-                                    alt={`${vehicle.brand || "Unknown"} ${vehicle.type || ""}`}
-                                    className="car-image"
-                                />
-                            ) : (
-                                <p>Image not available</p>
-                            )}
-                        </div>
+                        {vehicle.image ? (
+                            <img
+                                src={`data:image/jpeg;base64,${vehicle.image}`}
+                                alt={`${vehicle.brand || "Unknown"} ${vehicle.type || ""}`}
+                                className="car-image"
+                            />
+                        ) : (
+                            <p>Image not available</p>
+                        )}
                     </div>
                     <div className="user-info">
-                        <h3 className="user-info-title">Billing Address and Rental Period</h3>
-
-                        <input
-                            type="text"
-                            name="name"
-                            placeholder="Enter your full name"
-                            value={userDetails.name}
-                            onChange={handleInputChange}
-                            className="input-field"
-                        />
-
-                        <input
-                            type="text"
-                            name="streetAddress"
-                            placeholder="Street and House Number"
-                            value={userDetails.streetAddress}
-                            onChange={handleInputChange}
-                            className="input-field"
-                        />
-
-                        <input
-                            type="text"
-                            name="city"
-                            placeholder="City"
-                            value={userDetails.city}
-                            onChange={handleInputChange}
-                            className="input-field"
-                        />
-
-                        <input
-                            type="text"
-                            name="postalCode"
-                            placeholder="Postal Code"
-                            value={userDetails.postalCode}
-                            onChange={handleInputChange}
-                            className="input-field"
-                        />
-
-                        <h3>Rental Period</h3>
-                        <DatePicker
-                            selected={userDetails.rentalDates[0]}
-                            onChange={handleDateChange}
-                            startDate={userDetails.rentalDates[0]}
-                            endDate={userDetails.rentalDates[1]}
-                            selectsRange
-                            inline
-                            dateFormat="yyyy/MM/dd"
-                            placeholderText="Select start and end date"
-                        />
-
-                        <button
-                            className="buy-button"
-                            onClick={handlePurchase}
-                        >
-                            Confirm Rental
-                        </button>
-
-                        {errorMessage && <p className="error-message">{errorMessage}</p>}
-                        {fetchError && <p className="error-message">{fetchError}</p>}
+                        <h3>Billing Address and Rental Period</h3>
+                        <input type="text" name="name" placeholder="Enter your full name" value={userDetails.name} onChange={(e) => setUserDetails({ ...userDetails, name: e.target.value })} className="input-field" />
+                        <input type="email" name="email" placeholder="Enter your email" value={userDetails.email} onChange={(e) => setUserDetails({ ...userDetails, email: e.target.value })} className="input-field" />
+                        <DatePicker selected={userDetails.rentalDates[0]} onChange={handleDateChange} startDate={userDetails.rentalDates[0]} endDate={userDetails.rentalDates[1]} selectsRange inline />
+                        <div className="total"><p>Total: €{totalCost.toFixed(2)}</p></div>
                     </div>
+                    <button onClick={handlePurchase} className="purchase-btn">Confirm Rental</button>
                 </div>
-
-                {totalCost > 0 && (
-                    <div className="total-cost">
-                        <h3>Total Cost:</h3>
-                        <p>€{totalCost.toFixed(2)}</p>
-                    </div>
-                )}
+                {errorMessage && <p className="error-message">{errorMessage}</p>}
             </div>
             <GeneralFooter />
         </div>
