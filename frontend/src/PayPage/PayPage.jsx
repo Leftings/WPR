@@ -6,7 +6,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import './PayPage.css';
 
-function BuyPage() {
+function PayPage() {
     const location = useLocation();
     const navigate = useNavigate();
     const vehicle = location.state?.vehicle;
@@ -29,14 +29,14 @@ function BuyPage() {
     const [rentalDays, setRentalDays] = useState(0);
 
     const checkVehicleAvailability = async () => {
-        if (!Vehicle || !Vehicle.FrameNr) {
+        if (!Vehicle || !Vehicle.FrameNr) { 
             setFetchError("Invalid vehicle frame number.");
             setVehicleAvailable(false);
             return;
         }
 
         try {
-            const response = await fetch(`http://localhost:5165/api/vehicle/CheckIfVehicleExists/${Vehicle.FrameNr}`);
+            const response = await fetch(`http://localhost:5165/api/vehicle/CheckIfVehicleExists/${Vehicle.FrameNr}`); 
 
             if (!response.ok) {
                 throw new Error('Vehicle availability check failed');
@@ -50,6 +50,7 @@ function BuyPage() {
             console.error(error);
         }
     };
+
 
     useEffect(() => {
         if (vehicle) {
@@ -71,11 +72,31 @@ function BuyPage() {
         }));
 
         if (start && end) {
-            const calculatedRentalDays = (end - start) / (1000 * 3600 * 24);
-            const calculatedCost = calculatedRentalDays * vehicle.price;
+            const startDate = new Date(start);
+            const endDate = new Date(end);
 
-            setRentalDays(calculatedRentalDays);
-            setTotalCost(calculatedCost);
+            const calculatedRentalDays = Math.ceil((endDate - startDate) / (1000 * 60 * 60 * 24));
+
+            const rawPrice = vehicle?.price || "0";
+            const pricePerDay = parseFloat(rawPrice.replace(',', '.'));
+
+            if (isNaN(pricePerDay)) {
+                console.error("Invalid vehicle price:", vehicle?.price);
+                setTotalCost(0);
+                setRentalDays(0);
+                return;
+            }
+
+            if (calculatedRentalDays > 0) {
+                setRentalDays(calculatedRentalDays);
+                setTotalCost(calculatedRentalDays * pricePerDay);
+            } else {
+                setRentalDays(0);
+                setTotalCost(0);
+            }
+        } else {
+            setRentalDays(0);
+            setTotalCost(0);
         }
     };
 
@@ -198,4 +219,4 @@ function BuyPage() {
     );
 }
 
-export default BuyPage;
+export default PayPage;
