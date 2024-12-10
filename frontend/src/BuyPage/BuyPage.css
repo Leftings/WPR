@@ -1,43 +1,86 @@
 ﻿.buy-page {
     display: flex;
     flex-direction: column;
-    min-height: 100vh; 
+    min-height: 100vh;
 }
 
 .content {
-    flex: 1; 
+    flex: 1;
     padding: 20px;
 }
 
 .buy-details {
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
     align-items: flex-start;
     margin-top: 20px;
+    gap: 40px;
+    flex-wrap: wrap; /* To handle smaller screens */
+}
+
+.car-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 40%; /* Adjust width for a better layout */
+    min-width: 300px;
+    text-align: center;
 }
 
 .car-info h2, .user-info h3 {
     margin-bottom: 20px;
     color: #333;
+    font-size: 1.5em;
 }
 
 .car-price {
     font-size: 1.5em;
     color: #27ae60;
     margin-bottom: 20px;
+    font-weight: bold;
 }
 
 .car-image {
     width: 100%;
     border-radius: 10px;
+    max-height: 450px;
+    object-fit: cover;
 }
 
-.user-info input {
+.user-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 50%; 
+    min-width: 300px;
+}
+
+.input-field {
     width: 100%;
     padding: 10px;
     margin: 10px 0;
     border: 1px solid #ccc;
-    border-radius: 5px;
+    border-radius: 4px;
+    font-size: 1em;
+    box-sizing: border-box;
+}
+
+h3 {
+    color: #333;
+    font-size: 1.2em;
+}
+
+.total-cost {
+    margin-top: 20px;
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #333;
+}
+
+.total-cost p {
+    font-size: 1.5em;
+    color: #e74c3c; /* Price in red */
 }
 
 .buy-button {
@@ -48,6 +91,9 @@
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    margin-top: 20px;
+    width: 100%;
+    max-width: 300px;
 }
 
 .buy-button:hover {
@@ -59,3 +105,72 @@
     margin-top: 10px;
 }
 
+.custom-select {
+    position: relative;
+    width: 200px;
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 3%;
+}
+
+.select-selected {
+    background-color: #f1f1f1;
+    color: #333;
+    padding: 10px;
+    border: 1px solid #ccc;
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: 1em;
+    width: 100%;
+}
+
+.select-items {
+    position: absolute;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    z-index: 99;
+    width: 100%;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    margin-top: 4px;
+}
+
+.select-items .select-option {
+    padding: 10px;
+    color: #333;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.select-items .select-option:hover {
+    background-color: #f0f0f0;
+}
+
+.same-as-selected {
+    font-weight: bold;
+    background-color: #e6e6e6;
+}
+
+.select-arrow-active {
+    border-color: transparent transparent #333 transparent;
+}
+
+@media (max-width: 768px) {
+    .buy-details {
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+    }
+
+    .car-info, .user-info {
+        width: 80%;
+        text-align: center;
+    }
+
+    .buy-button {
+        width: 100%;
+        max-width: 90%;
+    }
+}
