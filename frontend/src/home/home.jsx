@@ -39,7 +39,7 @@ function Home() {
                     <Link to="/GeneralSalePage" className="cta-button">Verken onze Auto's</Link>
                 </section>
 
-                <div className="container">
+                <div className="containerHome">
                     <section className="features">
                         <div className="feature-card">
                             <h3>Grote selectie</h3>

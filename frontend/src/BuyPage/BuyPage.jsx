@@ -53,10 +53,13 @@ function BuyPage() {
 
     useEffect(() => {
         if (vehicle) {
-            console.log("Vehicle found:", vehicle);
+            console.log("Vehicle object:", vehicle);
             checkVehicleAvailability();
+        } else {
+            console.error("Vehicle is undefined or missing required properties.");
         }
     }, [vehicle]);
+
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
@@ -71,22 +74,46 @@ function BuyPage() {
         }));
 
         if (start && end) {
-            const calculatedRentalDays = (end - start) / (1000 * 3600 * 24);
-            const calculatedCost = calculatedRentalDays * vehicle.price;
+            const startDate = new Date(start);
+            const endDate = new Date(end);
 
-            setRentalDays(calculatedRentalDays); 
-            setTotalCost(calculatedCost); 
+            const calculatedRentalDays = Math.ceil((endDate - startDate) / (1000 * 60 * 60 * 24));
+
+            const rawPrice = vehicle?.price || "0";
+            const pricePerDay = parseFloat(rawPrice.replace(',', '.'));
+
+            if (isNaN(pricePerDay)) {
+                console.error("Invalid vehicle price:", vehicle?.price);
+                setTotalCost(0);
+                setRentalDays(0);
+                return;
+            }
+
+            if (calculatedRentalDays > 0) {
+                setRentalDays(calculatedRentalDays);
+                setTotalCost(calculatedRentalDays * pricePerDay);
+            } else {
+                setRentalDays(0);
+                setTotalCost(0);
+            }
+        } else {
+            setRentalDays(0);
+            setTotalCost(0);
         }
     };
 
-    const handlePurchase = () => {
-        if (rentalDays > 0 && totalCost > 0) {
+
+
+    const handlePurchase = async () => {
+        if (rentalDays > 0) {
+            await sendConfirmationEmail();
             alert(`Verhuur succesvol! Aantal dagen: ${rentalDays} dagen, Totale kosten: €${totalCost.toFixed(2)}`);
             navigate("/");
         } else {
             setErrorMessage("Voer een geldige huurperiode in.");
         }
     };
+
 
     if (!vehicle) {
         return (
@@ -100,6 +127,36 @@ function BuyPage() {
             </div>
         );
     }
+
+    const sendConfirmationEmail = async () => {
+        const rentalDatesString = userDetails.rentalDates
+            .map((date) => date?.toISOString().split("T")[0]) // Format as 'YYYY-MM-DD'
+            .join(" to ");
+
+        const emailData = {
+            email: userDetails.email,
+            name: userDetails.name,
+            rentalDates: rentalDatesString,
+            totalCost: totalCost,
+        };
+
+        try {
+            const response = await fetch("http://localhost:5165/api/Vehicle/SendConfirmationEmail", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(emailData),
+            });
+
+            if (!response.ok) {
+                throw new Error("Failed to send confirmation email.");
+            }
+
+            console.log("Confirmation email sent successfully.");
+        } catch (error) {
+            console.error("Error sending confirmation email:", error);
+            setErrorMessage("Could not send confirmation email. Please try again.");
+        }
+    };
 
     return (
         <div className="buy-page">
@@ -127,10 +184,10 @@ function BuyPage() {
                         <h3 className="user-info-title">Factuuradres en Huurperiode</h3>
 
                         <input
-                            type="text"
-                            name="name"
-                            placeholder="Vul uw volledige naam in"
-                            value={userDetails.name}
+                            type="email"
+                            name="email"
+                            placeholder="Voer uw e-mailadres in"
+                            value={userDetails.email}
                             onChange={handleInputChange}
                             className="input-field"
                         />

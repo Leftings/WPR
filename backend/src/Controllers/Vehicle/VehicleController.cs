@@ -1,4 +1,6 @@
 using System.Data;
+using System.Text.Json;
+using WPR.Services;
 
 namespace WPR.Controllers.Vehicle;
 
@@ -12,12 +14,13 @@ using WPR.Database;
 [ApiController]
 public class VehicleController : ControllerBase
 {
+    private readonly IConnector _connector;
+    private readonly IEmailService _emailService;
 
-    private readonly Connector _connector;
-
-    public VehicleController(Connector connector)
+    public VehicleController(IConnector connector, IEmailService emailService)
     {
         _connector = connector ?? throw new ArgumentNullException(nameof(connector));
+        _emailService = emailService ?? throw new ArgumentNullException(nameof(emailService));
     }
 
     [HttpGet("GetVehicleNameAsync")]
@@ -39,12 +42,10 @@ public class VehicleController : ControllerBase
 
                     using (MySqlDataReader reader1 = await command.ExecuteReaderAsync(CommandBehavior.SingleRow))
                     {
-
                         if (reader1.Read() && !reader1.IsDBNull(0))
                         {
                             brand = reader1.GetString(0);
                         }
-
                     }
                 }
 
@@ -63,8 +64,6 @@ public class VehicleController : ControllerBase
                         return NotFound($"Car with frameNr {frameNr} not found.");
                     }
                 }
-
-
             }
         }
         catch (Exception ex)
@@ -72,7 +71,6 @@ public class VehicleController : ControllerBase
             Console.WriteLine(ex);
             return StatusCode(500, "An error occurred while fetching the name of the car.");
         }
-
     }
 
     [HttpGet("GetVehicleImageAsync")]
@@ -88,7 +86,6 @@ public class VehicleController : ControllerBase
                 command.Parameters.AddWithValue("@FrameNr", frameNr);
 
                 using (MySqlDataReader reader = await command.ExecuteReaderAsync(CommandBehavior.SingleRow))
-
                 {
                     if (reader.Read() && !reader.IsDBNull(0))
                     {
@@ -109,7 +106,6 @@ public class VehicleController : ControllerBase
             Console.WriteLine(ex);
             return StatusCode(500, "An error occurred while fetching the image.");
         }
-
     }
 
     [HttpGet("GetVehiclePriceAsync")]
@@ -125,12 +121,11 @@ public class VehicleController : ControllerBase
                 command.Parameters.AddWithValue("@FrameNr", frameNr);
 
                 using (MySqlDataReader reader = await command.ExecuteReaderAsync(CommandBehavior.SingleRow))
-
                 {
                     if (reader.Read() && !reader.IsDBNull(0))
                     {
                         decimal priceDec = reader.GetDecimal(0);
-                        string price = priceDec.ToString();
+                        string price = priceDec.ToString("F2");
                         return Ok(price);
                     }
                     else
@@ -148,7 +143,7 @@ public class VehicleController : ControllerBase
     }
 
     [HttpGet("GetAllVehicles")]
-    public async Task<IActionResult> GetAllVehiclesAsync(int frameNr)
+    public async Task<IActionResult> GetAllVehiclesAsync()
     {
         try
         {
@@ -159,7 +154,6 @@ public class VehicleController : ControllerBase
             using (var connection = _connector.CreateDbConnection())
             using (var command = new MySqlCommand(query, (MySqlConnection)connection))
             {
-
                 using (var reader = await command.ExecuteReaderAsync())
                 {
                     while (reader.Read())
@@ -187,11 +181,9 @@ public class VehicleController : ControllerBase
         }
     }
 
-    [HttpGet("CheckIfVehicleExists/{FrameNr}")]
-    public async Task<IActionResult> CheckIfVehicleExists(int FrameNr)
+    [HttpGet("CheckIfVehicleExists/{frameNr}")]
+    public async Task<IActionResult> CheckIfVehicleExists(int frameNr)
     {
-        Console.WriteLine("Received request for CheckIfVehicleExists with frameNr: " + FrameNr); // Logging
-
         try
         {
             string query = "SELECT COUNT(*) FROM Vehicle WHERE FrameNr = @FrameNr";
@@ -199,24 +191,36 @@ public class VehicleController : ControllerBase
             using (var connection = _connector.CreateDbConnection())
             using (var command = new MySqlCommand(query, (MySqlConnection)connection))
             {
-                command.Parameters.AddWithValue("@FrameNr", FrameNr);
-
+                command.Parameters.AddWithValue("@FrameNr", frameNr);
                 int count = Convert.ToInt32(await command.ExecuteScalarAsync());
 
-                if (count > 0)
-                {
-                    return Ok(new { isAvailable = true }); 
-                }
-                else
-                {
-                    return NotFound(new { isAvailable = false }); 
-                }
+                return Ok(new { isAvailable = count > 0 });
             }
         }
         catch (Exception ex)
         {
             Console.WriteLine(ex);
             return StatusCode(500, "An error occurred while checking vehicle availability.");
+        }
+    }
+
+    [HttpPost("SendConfirmationEmail")]
+    public async Task<IActionResult> SendConfirmationEmail([FromBody] JsonElement emailData)
+    {
+        try
+        {
+            string email = emailData.GetProperty("email").GetString();
+            string name = emailData.GetProperty("name").GetString();
+            string rentalDates = emailData.GetProperty("rentalDates").GetString();
+            decimal totalCost = emailData.GetProperty("totalCost").GetDecimal();
+
+            await _emailService.SendConfirmationEmailAsync(email, name, rentalDates, totalCost);
+            return Ok("Confirmation email sent successfully.");
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex);
+            return StatusCode(500, "An error occurred while sending the confirmation email.");
         }
     }
 }
