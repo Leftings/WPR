@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Http.HttpResults;
 using WPR.Utils;
 using WPR.Hashing;
 using Org.BouncyCastle.Crypto.Prng;
+using WPR.Cryption;
 
 namespace WPR.Repository;
 
@@ -18,11 +19,13 @@ public class UserRepository : IUserRepository
 {
     private readonly Connector _connector;
     private readonly Hash _hash;
+    private readonly Crypt _crypt;
 
-    public UserRepository(Connector connector, Hash hash)
+    public UserRepository(Connector connector, Hash hash, Crypt crypt)
     {
         _connector = connector ?? throw new ArgumentNullException(nameof(connector));
         _hash = hash ?? throw new ArgumentNullException(nameof(hash));
+        _crypt = crypt ?? throw new ArgumentNullException(nameof(crypt));
     }
 
     /*private async Task<bool> CheckPassword(string username, string password, string table)
@@ -337,23 +340,33 @@ public class UserRepository : IUserRepository
         }
     }
 
-    public async Task<(bool status, string message)> DeleteUserAsync(int userId)
+    public async Task<(bool status, string message)> DeleteUserAsync(string userId)
     {
+        Console.WriteLine("TEST");
         try
         {
-            if (!await UserExistsAsync(userId))
-            {
-                return (false, "User not found");
-            }
-            
-            string query = "DELETE FROM UserCustomer WHERE ID = @ID";
+            string queryCustomer = "DELETE FROM UserCustomer WHERE ID = @ID";
+            string queryEmployee = "DELETE FROM UserEmployee WHERE ID = @ID";
+            string queryPersonal = "DELETE FROM UserPersonal WHERE ID = @ID";
 
             using (var connection = _connector.CreateDbConnection())
-            using (var command = new MySqlCommand(query, (MySqlConnection)connection))
+            using (var customerCommand = new MySqlCommand(queryCustomer, (MySqlConnection)connection))
+            using (var employeeCommand = new MySqlCommand(queryEmployee, (MySqlConnection)connection))
+            using (var personalCommand = new MySqlCommand(queryPersonal, (MySqlConnection)connection))
+
             {
-                command.Parameters.AddWithValue("@ID", userId);
+                Console.WriteLine(userId);
+                int userIdInt = Convert.ToInt32(userId);
+                Console.WriteLine(userIdInt);
+
+                customerCommand.Parameters.AddWithValue("@ID", userIdInt);
+                employeeCommand.Parameters.AddWithValue("@ID", userIdInt);
+                personalCommand.Parameters.AddWithValue("@ID", userIdInt);
+
+                await employeeCommand.ExecuteNonQueryAsync();
+                await personalCommand.ExecuteNonQueryAsync();
                 
-                int rowsAffected = await command.ExecuteNonQueryAsync();
+                int rowsAffected = await customerCommand.ExecuteNonQueryAsync();
 
                 if (rowsAffected > 0)
                 {
@@ -378,22 +391,6 @@ public class UserRepository : IUserRepository
             return (false, "Unexpected error: " + ex.Message);
         }
     }
-    
-    private async Task<bool> UserExistsAsync(int userId)
-    {
-        string query = "SELECT COUNT(1) FROM UserCustomer WHERE ID = @ID";
-
-        using (var connection = _connector.CreateDbConnection())
-        using (var command = new MySqlCommand(query, (MySqlConnection)connection))
-        {
-            command.Parameters.AddWithValue("@ID", userId);
-            var result = await command.ExecuteScalarAsync();
-
-            return Convert.ToInt32(result) > 0;
-        }
-    }
-
-
 
 
     private async Task<(bool goodQuery, string message)> CreateUserInfoQuery(List<object[]> data)

@@ -1,3 +1,5 @@
+using WPR.Cryption;
+
 namespace WPR.Controllers.ChangeUserSettings;
 
 using Microsoft.AspNetCore.Mvc;
@@ -12,11 +14,13 @@ public class ChangeUserSettingsController : ControllerBase
 {
     private readonly Connector _connector;
     private readonly IUserRepository _userRepository;
+    private readonly Crypt _crypt;
 
-    public ChangeUserSettingsController(Connector connector, IUserRepository userRepository)
+    public ChangeUserSettingsController(Connector connector, IUserRepository userRepository, Crypt crypt)
     {
         _connector = connector ?? throw new ArgumentNullException(nameof(connector));
         _userRepository = userRepository ?? throw new ArgumentNullException(nameof(userRepository));
+        _crypt = crypt ?? throw new ArgumentNullException(nameof(crypt));
     }
 
     [HttpPut("ChangeUserInfo")]
@@ -54,15 +58,37 @@ public class ChangeUserSettingsController : ControllerBase
         return BadRequest(new {updated.message});
     }
 
-    [HttpDelete("DeleteUser/{userId}")]
-    public async Task<IActionResult> DeleteUserAsync(int userId)
-    {
-        var result = await _userRepository.DeleteUserAsync(userId);
-
-        if (result.status)
+    [HttpDelete("DeleteUser")]
+    public async Task<IActionResult> DeleteUserAsync() {
+        
+        string loginCookie = HttpContext.Request.Cookies["LoginSession"];
+        
+        if(string.IsNullOrEmpty(loginCookie))
         {
-            return Ok(new {message = result.message});
+            Console.WriteLine("No cookie");
+            return BadRequest(new { message = "No Cookie"});
         }
-        return BadRequest(new {message = result.message});
+        
+        Console.WriteLine(loginCookie);
+
+        try
+        {
+            string decryptedLoginCookie = _crypt.Decrypt(loginCookie);
+            Console.WriteLine(decryptedLoginCookie);
+            var result = await _userRepository.DeleteUserAsync(decryptedLoginCookie);
+                if (result.status)
+                {
+                    Response.Cookies.Append("LoginSession", "", new CookieOptions { Expires = DateTimeOffset.Now.AddDays(-1) });
+                    Console.WriteLine("Cookie cleared");
+                    return Ok(new {message = result.message});
+                }
+                return BadRequest(new {message = result.message});
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
+        
     }
 }
