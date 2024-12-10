@@ -11,6 +11,8 @@ function PayPage() {
     const navigate = useNavigate();
     const vehicle = location.state?.vehicle;
 
+    console.log('Vehicle Data:', vehicle); // Add this line to debug vehicle data
+
     const [userDetails, setUserDetails] = useState({
         name: "",
         email: "",
@@ -23,8 +25,6 @@ function PayPage() {
     });
 
     const [errorMessage, setErrorMessage] = useState("");
-    const [vehicleAvailable, setVehicleAvailable] = useState(null);
-    const [fetchError, setFetchError] = useState(null);
     const [totalCost, setTotalCost] = useState(0);
     const [rentalDays, setRentalDays] = useState(0);
 
@@ -40,8 +40,8 @@ function PayPage() {
             if (!response.ok) throw new Error('Failed to fetch user details');
 
             const userData = await response.json();
-            setUserDetails({
-                ...userDetails,
+            setUserDetails((prevDetails) => ({
+                ...prevDetails,
                 name: userData.name,
                 email: userData.email || "",
                 phone: userData.phone,
@@ -49,7 +49,7 @@ function PayPage() {
                 streetAddress: userData.streetAddress,
                 city: userData.city,
                 postalCode: userData.postalCode,
-            });
+            }));
         } catch (error) {
             console.error("Error fetching user details:", error);
             setErrorMessage("Error fetching user details.");
@@ -88,12 +88,14 @@ function PayPage() {
         }
 
         const rentalData = {
-            FrameNrCar: vehicle.FrameNr,
-            StartDate: userDetails.rentalDates[0],
-            EndDate: userDetails.rentalDates[1],
+            FrameNrCar: Vehicle?.FrameNr, // Corrected property name
+            StartDate: userDetails.rentalDates[0].toISOString(),
+            EndDate: userDetails.rentalDates[1].toISOString(),
             Price: totalCost,
             Email: userDetails.email,
         };
+
+        console.log("Rental Data Sent:", rentalData);
 
         try {
             const response = await fetch("http://localhost:5165/api/Rental/CreateRental", {
@@ -102,14 +104,16 @@ function PayPage() {
                 body: JSON.stringify(rentalData),
             });
 
-            const data = await response.json();
-
-            if (response.ok) {
-                console.log("Rental created:", data.message);
-                navigate("/confirmation", { state: { rental: data } });
-            } else {
+            if (!response.ok) {
+                const data = await response.json();
+                console.error("Error Response Data:", data);
                 setErrorMessage(`Error: ${data.message}`);
+                return;
             }
+
+            const data = await response.json();
+            console.log("Rental created:", data.message);
+            navigate("/confirmation", { state: { rental: data } });
         } catch (error) {
             console.error("Error creating rental:", error);
             setErrorMessage("There was an error processing your rental. Please try again.");
