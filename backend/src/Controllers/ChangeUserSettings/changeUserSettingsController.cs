@@ -53,4 +53,16 @@ public class ChangeUserSettingsController : ControllerBase
 
         return BadRequest(new {updated.message});
     }
+
+    [HttpDelete("DeleteUser/{userId}")]
+    public async Task<IActionResult> DeleteUserAsync(int userId)
+    {
+        var result = await _userRepository.DeleteUserAsync(userId);
+
+        if (result.status)
+        {
+            return Ok(new {message = result.message});
+        }
+        return BadRequest(new {message = result.message});
+    }
 }

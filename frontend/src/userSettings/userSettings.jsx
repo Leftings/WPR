@@ -81,6 +81,31 @@ function ChangeUserInfo(userData) {
     });
 }
 
+function DeleteUser(userId) {
+    return fetch(`/api/ChangeUserSettings/DeleteUser/${userId}`, {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+    })
+        .then(response => {
+            if (!response.ok) {
+                return response.json().then(data => {
+                    throw new Error(data.message || 'Error');
+                });
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log('User deleted succesfully:', data.message);
+            return data;
+        })
+        .catch(error => {
+            console.error('Error deleting user:', error);
+            throw error;
+        })
+}
+
 function UserSettings() {
   const navigate = useNavigate();
   const [user, setUser] = useState('');
@@ -211,7 +236,8 @@ function UserSettings() {
                     onChange={(e) => setPassword2(e.target.value)}></input>
             <br></br>
             <button id="button" type="button" onClick={onSubmit}>Opslaan</button>
-
+            
+            <button id="buttonDelete" type="button" onClick={DeleteUser}>Delete account</button>
             {error && <p style={{color: 'red'}}>{error}</p>}
         </div>
       </body>

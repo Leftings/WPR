@@ -337,6 +337,65 @@ public class UserRepository : IUserRepository
         }
     }
 
+    public async Task<(bool status, string message)> DeleteUserAsync(int userId)
+    {
+        try
+        {
+            if (!await UserExistsAsync(userId))
+            {
+                return (false, "User not found");
+            }
+            
+            string query = "DELETE FROM UserCustomer WHERE ID = @ID";
+
+            using (var connection = _connector.CreateDbConnection())
+            using (var command = new MySqlCommand(query, (MySqlConnection)connection))
+            {
+                command.Parameters.AddWithValue("@ID", userId);
+                
+                int rowsAffected = await command.ExecuteNonQueryAsync();
+
+                if (rowsAffected > 0)
+                {
+                    return (true, "User deleted");
+                }
+                else
+                {
+                    return (false, "User could not be deleted");
+                }
+            }
+        }
+        catch (MySqlException ex)
+        {
+            // Handle database errors
+            await Console.Error.WriteLineAsync($"Database error: {ex.Message}");
+            return (false, "Database error: " + ex.Message);
+        }
+        catch (Exception ex)
+        {
+            // Handle other errors
+            await Console.Error.WriteLineAsync($"Unexpected error: {ex.Message}");
+            return (false, "Unexpected error: " + ex.Message);
+        }
+    }
+    
+    private async Task<bool> UserExistsAsync(int userId)
+    {
+        string query = "SELECT COUNT(1) FROM UserCustomer WHERE ID = @ID";
+
+        using (var connection = _connector.CreateDbConnection())
+        using (var command = new MySqlCommand(query, (MySqlConnection)connection))
+        {
+            command.Parameters.AddWithValue("@ID", userId);
+            var result = await command.ExecuteScalarAsync();
+
+            return Convert.ToInt32(result) > 0;
+        }
+    }
+
+
+
+
     private async Task<(bool goodQuery, string message)> CreateUserInfoQuery(List<object[]> data)
     {
         int lengthList = data.Count();
