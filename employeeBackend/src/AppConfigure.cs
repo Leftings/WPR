@@ -3,16 +3,12 @@ using System.Text.Json.Serialization;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.Extensions.Options;
 using Microsoft.VisualBasic;
-using Org.BouncyCastle.Crypto.Prng;
-using WPR.Controllers.Cookie;
-using WPR.Cryption;
-using WPR.Data;
-using WPR.Database;
-using WPR.Repository;
-using WPR.Hashing;
 using System.Net;
+using Employee.Data;
+using Employee.Database;
+using Employee.Repository;
 
-namespace WPR;
+namespace Employee;
 
 /// <summary>
 /// Deze class is responsible voor het configureren van de application services en database connectie
@@ -48,7 +44,7 @@ public class AppConfigure
     {
     var builder = WebApplication.CreateBuilder(args);
 
-    var environment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") ?? "development";
+    /*var environment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") ?? "development";
     builder.Configuration.AddEnvironmentVariables();
 
     if (environment == "development")
@@ -59,6 +55,7 @@ public class AppConfigure
     {
         builder.Configuration.AddJsonFile(".env.deployment", optional: true, reloadOnChange: true);
     }
+    */
 
     var cookiePolicyOptions = new CookiePolicyOptions
     {
@@ -93,7 +90,7 @@ public class AppConfigure
         );
     });
 
-    var urls = Environment.GetEnvironmentVariable("ASPNETCORE_URLS") ?? "http://0.0.0.0:80"; // Default to port 80 if not set
+    /*var urls = Environment.GetEnvironmentVariable("ASPNETCORE_URLS") ?? "http://0.0.0.0:80"; // Default to port 80 if not set
 
     Uri uri;
     try
@@ -126,14 +123,15 @@ public class AppConfigure
             }
         }
     });
+    */
 
     // Register services for Dependency Injection
     builder.Services.AddSingleton<EnvConfig>(); // Singleton for environment configuration
     builder.Services.AddTransient<Connector>(); // Transient for database connection.
     builder.Services.AddScoped<IUserRepository, UserRepository>(); // Scoped for user repository
-    builder.Services.AddScoped<SessionHandler>(); // Scoped session handler
-    builder.Services.AddScoped<Crypt>();
-    builder.Services.AddScoped<Hashing.Hash>();
+    //builder.Services.AddScoped<SessionHandler>(); // Scoped session handler
+    //builder.Services.AddScoped<Crypt>();
+    //builder.Services.AddScoped<Hashing.Hash>();
 
     // Configure authentication with cookie-based authentication schema.
     builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
@@ -176,7 +174,7 @@ public class AppConfigure
     }
 
     app.UseCors("AllowSpecificOrigins");
-    /* app.UseHttpsRedirection(); */
+    //app.UseHttpsRedirection();
     app.MapControllers();
     app.UseAuthorization();
     app.UseAuthentication();
@@ -184,6 +182,8 @@ public class AppConfigure
 
     //app.MapRazorPages();
     app.MapDefaultControllerRoute();
+
+    Console.WriteLine("Employee Backend");
 
     return app;
     }
