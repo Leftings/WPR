@@ -176,6 +176,7 @@ public class AppConfigure
     }
 
     app.UseCors("AllowSpecificOrigins");
+    /* app.UseHttpsRedirection(); */
     app.MapControllers();
     app.UseAuthorization();
     app.UseAuthentication();

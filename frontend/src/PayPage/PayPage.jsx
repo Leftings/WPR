@@ -6,6 +6,28 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import './PayPage.css';
 
+const BACKEND_URL = import.meta.env.VITE_REACT_APP_BACKEND_URL ?? 'http://localhost:5165';
+
+// Function to check if the login session is active
+async function checkSession() {
+    try {
+        const response = await fetch(`${BACKEND_URL}/api/Login/CheckSession`, {
+            credentials: 'include',  // Ensure cookies are sent along with the request
+        });
+
+        if (!response.ok) {
+            throw new Error('Session check failed');
+        }
+
+        const data = await response.json();
+        console.log('Session Active: ', data);
+        return data;
+    } catch (error) {
+        console.error('Error: ', error.message);
+        return null;
+    }
+}
+
 function PayPage() {
     const location = useLocation();
     const navigate = useNavigate();
@@ -44,26 +66,45 @@ function PayPage() {
     };
 
     const handlePurchase = async () => {
+        // Check if session is active before proceeding with rental
+        const session = await checkSession();
+
+        if (!session) {
+            setErrorMessage("Please log in to proceed.");
+            return;
+        }
+
+        // Validate if required fields are set
         if (!userDetails.email || !userDetails.rentalDates[0] || !userDetails.rentalDates[1]) {
             setErrorMessage("Please complete all required fields.");
             return;
         }
 
+        // Ensure FrameNrCar is set from vehicle data
+        if (!vehicle?.frameNr) {
+            setErrorMessage("Vehicle is missing a frame number. Please select a valid vehicle.");
+            return;
+        }
+
         const rentalData = {
-            FrameNrCar: vehicle?.FrameNr,
+            FrameNrCar: String(vehicle.frameNr), 
             StartDate: userDetails.rentalDates[0].toISOString(),
             EndDate: userDetails.rentalDates[1].toISOString(),
             Price: totalCost,
             Email: userDetails.email,
         };
 
+
         console.log("Rental Data Sent:", rentalData);
 
         try {
-            const response = await fetch("http://localhost:5165/api/Rental/CreateRental", {
+            const response = await fetch(`${BACKEND_URL}/api/Rental/CreateRental`, {
                 method: "POST",
-                headers: { "Content-Type": "application/json" },
+                headers: {
+                    "Content-Type": "application/json",
+                },
                 body: JSON.stringify(rentalData),
+                credentials: "include", // Ensure cookies are sent
             });
 
             if (!response.ok) {
