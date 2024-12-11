@@ -11,54 +11,16 @@ function PayPage() {
     const navigate = useNavigate();
     const vehicle = location.state?.vehicle;
 
-    console.log('Vehicle Data:', vehicle); // Add this line to debug vehicle data
+    console.log('Vehicle Data:', vehicle);
 
     const [userDetails, setUserDetails] = useState({
-        name: "",
         email: "",
-        phone: "",
-        billingAddress: "",
-        streetAddress: "",
-        city: "",
-        postalCode: "",
         rentalDates: [null, null],
     });
 
     const [errorMessage, setErrorMessage] = useState("");
     const [totalCost, setTotalCost] = useState(0);
     const [rentalDays, setRentalDays] = useState(0);
-
-    // Fetch user details directly from the API
-    const fetchUserDetails = async () => {
-        try {
-            const response = await fetch('http://localhost:5165/api/User/GetUserDetails', {
-                method: 'GET',
-                headers: { 'Content-Type': 'application/json' },
-                credentials: 'include', // Only include credentials if necessary for authentication
-            });
-
-            if (!response.ok) throw new Error('Failed to fetch user details');
-
-            const userData = await response.json();
-            setUserDetails((prevDetails) => ({
-                ...prevDetails,
-                name: userData.name,
-                email: userData.email || "",
-                phone: userData.phone,
-                billingAddress: userData.billingAddress,
-                streetAddress: userData.streetAddress,
-                city: userData.city,
-                postalCode: userData.postalCode,
-            }));
-        } catch (error) {
-            console.error("Error fetching user details:", error);
-            setErrorMessage("Error fetching user details.");
-        }
-    };
-
-    useEffect(() => {
-        fetchUserDetails(); // Fetch user details on component mount
-    }, []);
 
     const handleDateChange = (dates) => {
         const [start, end] = dates;
@@ -88,7 +50,7 @@ function PayPage() {
         }
 
         const rentalData = {
-            FrameNrCar: Vehicle?.FrameNr, // Corrected property name
+            FrameNrCar: vehicle?.FrameNr,
             StartDate: userDetails.rentalDates[0].toISOString(),
             EndDate: userDetails.rentalDates[1].toISOString(),
             Price: totalCost,
@@ -154,9 +116,22 @@ function PayPage() {
                     </div>
                     <div className="user-info">
                         <h3>Billing Address and Rental Period</h3>
-                        <input type="text" name="name" placeholder="Enter your full name" value={userDetails.name} onChange={(e) => setUserDetails({ ...userDetails, name: e.target.value })} className="input-field" />
-                        <input type="email" name="email" placeholder="Enter your email" value={userDetails.email} onChange={(e) => setUserDetails({ ...userDetails, email: e.target.value })} className="input-field" />
-                        <DatePicker selected={userDetails.rentalDates[0]} onChange={handleDateChange} startDate={userDetails.rentalDates[0]} endDate={userDetails.rentalDates[1]} selectsRange inline />
+                        <input
+                            type="email"
+                            name="email"
+                            placeholder="Enter your email"
+                            value={userDetails.email}
+                            onChange={(e) => setUserDetails({ ...userDetails, email: e.target.value })}
+                            className="input-field"
+                        />
+                        <DatePicker
+                            selected={userDetails.rentalDates[0]}
+                            onChange={handleDateChange}
+                            startDate={userDetails.rentalDates[0]}
+                            endDate={userDetails.rentalDates[1]}
+                            selectsRange
+                            inline
+                        />
                         <div className="total"><p>Total: €{totalCost.toFixed(2)}</p></div>
                     </div>
                     <button onClick={handlePurchase} className="purchase-btn">Confirm Rental</button>
