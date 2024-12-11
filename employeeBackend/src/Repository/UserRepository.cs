@@ -1,4 +1,5 @@
 ﻿using Employee.Database;
+using Employee.Hashing;
 using MySql.Data.MySqlClient;
 
 namespace Employee.Repository;
@@ -10,10 +11,12 @@ namespace Employee.Repository;
 public class UserRepository : IUserRepository
 {
     private readonly Connector _connector;
+    private readonly Hash _hash;
 
-    public UserRepository(Connector connector)
+    public UserRepository(Connector connector, Hash hash)
     {
         _connector = connector ?? throw new ArgumentNullException(nameof(connector));
+        _hash = hash ?? throw new ArgumentNullException(nameof (hash));
     }
     
     // vehicleBlob is het pad naar de afbeelding
@@ -45,6 +48,64 @@ public class UserRepository : IUserRepository
         }
         catch (MySqlException ex)
         {
+            return (false, ex.Message);
+        }
+    }
+
+    public async Task<(bool status, string message)> AddStaff(Object[] personData)
+    {
+        try
+        {
+            string query = "INSERT INTO Staff (FirstName, LastName, Password, Email, Office) VALUES (@F, @L, @P, @E, @O)";
+
+            using (var connection = _connector.CreateDbConnection())
+            using (var command = new MySqlCommand(query, (MySqlConnection)connection))
+            {
+                command.Parameters.AddWithValue("@F", personData[0]);
+                command.Parameters.AddWithValue("@L", personData[1]);
+                command.Parameters.AddWithValue("@P", _hash.createHash(personData[2].ToString()));
+                command.Parameters.AddWithValue("@E", personData[3]);
+                command.Parameters.AddWithValue("@O", personData[4]);
+
+                if (await command.ExecuteNonQueryAsync() > 0)
+                    {
+                        return (true, "Data inserted");
+                    }
+                    
+                    return (false, "Data not inserted");
+            }
+        }
+        catch(MySqlException ex)
+        {
+            return (false, ex.ToString());
+        }
+    }
+
+    public async Task<(bool status, string message)> checkUsageEmailAsync(string email)
+    {
+        try
+        {
+            string query = "SELECT COUNT(*) FROM Staff WHERE LOWER(Email) = LOWER(@E)";
+
+            using (var connection = _connector.CreateDbConnection())
+            using (var command = new MySqlCommand(query, (MySqlConnection)connection))
+            {
+                command.Parameters.AddWithValue("@E", email);
+                bool inUse = Convert.ToInt32(await command.ExecuteScalarAsync()) > 0;
+
+                Console.WriteLine(inUse);
+                return (inUse, inUse ? "Email detected" : "No email detected");
+            }
+        }
+
+        catch (MySqlException ex)
+        {
+            await Console.Error.WriteLineAsync($"Database error: {ex.Message}");
+            return (false, ex.Message);
+        }
+        catch (Exception ex)
+        {
+            await Console.Error.WriteLineAsync($"Unexpected error: {ex.Message}");
             return (false, ex.Message);
         }
     }
