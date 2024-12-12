@@ -15,7 +15,8 @@ import AddVehicle from './employeeBackOffice/addVehicle/addVehicle.jsx';
 import EmployeeFrontOffice from './employeeFrontOffice/employeeFrontOffice.jsx';
 import ReviewHireRequest from './employeeFrontOffice/reviewHireRequest/reviewHireRequest.jsx';
 import AddEmployee from './employeeBackOffice/addEmployee/addEmployee.jsx';
-import PayPage from './PayPage/PayPage.jsx'
+import CarRentalOverview from './CarRentalOverview/CarRentalOverview.jsx';
+import PayPage from './PayPage/PayPage.jsx';
 
 createRoot(document.getElementById('root')).render(
     <Router>
@@ -28,14 +29,13 @@ createRoot(document.getElementById('root')).render(
             <Route path="/TermsAndConditions" element={<TermsAndConditions />}></Route>
             <Route path="/AbonementUitlegPage" element={<AbonementUitlegPage />} />
             <Route path="/vehicle/:frameNr" element={<CarDetailPage />} />
-
             <Route path="/backOfficeEmployee" element={<EmployeeBackOffice />}></Route>
             <Route path="/backOfficeEmployee/addVehicle" element={<AddVehicle />}></Route>
             <Route path="/backOfficeEmployee/addEmployee" element={<AddEmployee />}></Route>
-
             <Route path="/frontOfficeEmployee" element={<EmployeeFrontOffice />}></Route>
             <Route path="/frontOfficeEmployee/reviewHireRequest" element={<ReviewHireRequest />}></Route>
             <Route path="/buy" element={<PayPage />} />
+            <Route path="/overviewRental" element={<CarRentalOverview />} />
         </Routes>
     </Router>
 );
