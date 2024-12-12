@@ -58,4 +58,52 @@ public class EmailService
             throw;
         }
     }
+    
+    public async Task SendRentalConfirmMail(string toEmail, string carName, string carColor, string carPlate , DateTime startDate, DateTime endDate, string price)
+    {
+
+        try
+        {
+            if (string.IsNullOrEmpty(toEmail) || string.IsNullOrEmpty(_fromEmail))
+            {
+                throw new ArgumentException("Email addresses cannot be null or empty");
+            }
+            
+            
+            using var smtpClient = new SmtpClient(_smtpHost)
+            {
+                Port = _smtpPort,
+                Credentials = new NetworkCredential(_fromEmail, _fromPassword),
+                EnableSsl = true
+            };
+
+            using var mailMessage = new MailMessage
+            {
+                From = new MailAddress(_fromEmail),
+                Subject = "Rental Vehicle Confirmation Mail",
+                Body = $"Thank you for renting a vehicle from CarAndAll,<br>" +
+                       $"<br>" +
+                       $"Your rental car:<br>" +
+                       $"Vehicle name: {carName}<br>" +
+                       $"Vehicle color: {carColor}<br>" +
+                       $"<br>" +
+                       $"Your rental period: <br>" +
+                       $"From {startDate} <br>" +
+                       $"until {endDate}<br>" +
+                       $"<br>" +
+                       $"Total rental price: {price}", 
+                IsBodyHtml = true
+            };
+
+            mailMessage.To.Add(toEmail);
+
+            await smtpClient.SendMailAsync(mailMessage);
+
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
+    }
 }
