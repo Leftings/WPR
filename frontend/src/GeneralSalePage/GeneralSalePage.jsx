@@ -65,6 +65,7 @@ function GeneralSalePage() {
                                     <div className="car-blob">
                                         {vehicle.image ? (
                                             <img
+                                                className='car-blob'
                                                 src={`data:image/jpeg;base64,${vehicle.image}`}
                                                 alt={`${vehicle.brand || 'Unknown'} ${vehicle.type || ''}`}
                                             />
