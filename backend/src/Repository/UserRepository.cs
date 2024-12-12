@@ -344,17 +344,21 @@ public class UserRepository : IUserRepository
 
     public async Task<(bool status, string message)> DeleteUserAsync(string userId)
     {
-        Console.WriteLine("TEST");
+        Console.WriteLine("Deleting user");
         try
         {
             string queryCustomer = "DELETE FROM UserCustomer WHERE ID = @ID";
             string queryEmployee = "DELETE FROM UserEmployee WHERE ID = @ID";
             string queryPersonal = "DELETE FROM UserPersonal WHERE ID = @ID";
+            string queryAbonnement = "DELETE FROM Abonnement WHERE Customer = @ID";
+            string queryVehicleUser = "DELETE FROM Vehicle_User WHERE Customer = @ID";
 
             using (var connection = _connector.CreateDbConnection())
             using (var customerCommand = new MySqlCommand(queryCustomer, (MySqlConnection)connection))
             using (var employeeCommand = new MySqlCommand(queryEmployee, (MySqlConnection)connection))
             using (var personalCommand = new MySqlCommand(queryPersonal, (MySqlConnection)connection))
+            using (var abonnementCommand = new MySqlCommand(queryAbonnement, (MySqlConnection)connection))
+            using (var vehicleUserCommand = new MySqlCommand(queryVehicleUser, (MySqlConnection)connection))
 
             {
                 Console.WriteLine(userId);
@@ -364,9 +368,13 @@ public class UserRepository : IUserRepository
                 customerCommand.Parameters.AddWithValue("@ID", userIdInt);
                 employeeCommand.Parameters.AddWithValue("@ID", userIdInt);
                 personalCommand.Parameters.AddWithValue("@ID", userIdInt);
+                vehicleUserCommand.Parameters.AddWithValue("@ID", userIdInt);
+                abonnementCommand.Parameters.AddWithValue("@ID", userIdInt);
 
                 await employeeCommand.ExecuteNonQueryAsync();
                 await personalCommand.ExecuteNonQueryAsync();
+                await abonnementCommand.ExecuteNonQueryAsync();
+                await vehicleUserCommand.ExecuteNonQueryAsync();
                 
                 int rowsAffected = await customerCommand.ExecuteNonQueryAsync();
 
