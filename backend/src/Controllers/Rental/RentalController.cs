@@ -227,5 +227,53 @@ VALUES (@StartDate, @EndDate, @Price, @FrameNrCar, @Customer, @Status, @Reviewed
                 return StatusCode(500, new { message = $"Er is een fout opgetreden bij het aanmaken van de huur: {ex.Message}" });
             }
         }
+
+        [HttpGet("GetAllUserRentals")]
+        public async Task<IActionResult> GetAllUserRentalsAsync()
+        {
+            string loginCookie = HttpContext.Request.Cookies["LoginSession"];
+            int userId = Convert.ToInt32(_crypt.Decrypt(loginCookie));;
+
+            try
+            {
+                string query = @"
+            SELECT StartDate, EndDate, Price, FrameNrCar, Status
+            FROM Abonnement 
+            WHERE Customer = @Customer";
+
+                var rentals = new List<object>();
+
+                using (var connection = _connector.CreateDbConnection())
+                {
+                    using (var command = new MySqlCommand(query, (MySqlConnection)connection))
+                    {
+                        // Ensure userId is added to the query correctly
+                        command.Parameters.AddWithValue("@Customer", userId);
+
+                        using (var reader = await command.ExecuteReaderAsync())
+                        {
+                            while (reader.Read())
+                            {
+                                rentals.Add(new
+                                {
+                                    StartDate = reader.IsDBNull(0) ? (DateTime?)null : reader.GetDateTime(0),
+                                    EndDate = reader.IsDBNull(1) ? (DateTime?)null : reader.GetDateTime(1),
+                                    Price = reader.IsDBNull(2) ? (decimal?)null : reader.GetDecimal(2),
+                                    FrameNrCar = reader.IsDBNull(3) ? (int?)null : reader.GetInt32(3),
+                                    Status = reader.IsDBNull(4) ? null : reader.GetString(4),
+                                });
+                            }
+                        }
+                    }
+                }
+
+                return Ok(rentals);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error: {ex.Message}");
+                return StatusCode(500, "An error occurred while fetching rentals.");
+            }
+        }
     }
 }
