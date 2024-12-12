@@ -153,7 +153,7 @@ namespace WPR.Controllers
                             }
 
                             string insertAbbonementQuery = @"
-INSERT INTO Abbonement (StartDate, EndDate, Price, FrameNrCar, Customer, Status, ReviewedBy) 
+INSERT INTO Abonnement (StartDate, EndDate, Price, FrameNrCar, Customer, Status, ReviewedBy) 
 VALUES (@StartDate, @EndDate, @Price, @FrameNrCar, @Customer, @Status, @ReviewedBy)";
                             using (var command = connection.CreateCommand())
                             {

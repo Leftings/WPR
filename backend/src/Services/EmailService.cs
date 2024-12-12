@@ -21,25 +21,41 @@ public class EmailService
         _fromPassword = envConfig.Get("SMTP_FROM_PASSWORD");
     }
 
-    public async Task SendConfirmationEmail(string toEmail, string confirmationLink)
+    public async Task SendWelcomeEmail(string toEmail)
     {
-        var smtpClient = new SmtpClient(_smtpHost)
-        {
-            Port = _smtpPort,
-            Credentials = new NetworkCredential(_fromEmail, _fromPassword),
-            EnableSsl = true
-        };
 
-        var mailMessage = new MailMessage
+        try
         {
-            From = new MailAddress(_fromEmail),
-            Subject = "Confirm your email",
-            Body = $"Please click the link below to confirm your email address: {confirmationLink}",
-            IsBodyHtml = true
-        };
-        
-        mailMessage.To.Add(toEmail);
-        
-        await smtpClient.SendMailAsync(mailMessage);
+            if (string.IsNullOrEmpty(toEmail) || string.IsNullOrEmpty(_fromEmail))
+            {
+                throw new ArgumentException("Email addresses cannot be null or empty");
+            }
+            
+            
+            using var smtpClient = new SmtpClient(_smtpHost)
+            {
+                Port = _smtpPort,
+                Credentials = new NetworkCredential(_fromEmail, _fromPassword),
+                EnableSsl = true
+            };
+
+            using var mailMessage = new MailMessage
+            {
+                From = new MailAddress(_fromEmail),
+                Subject = "Welcome to CarAndALl",
+                Body = $"Welcome to CarAndAll",
+                IsBodyHtml = true
+            };
+
+            mailMessage.To.Add(toEmail);
+
+            await smtpClient.SendMailAsync(mailMessage);
+
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
     }
 }
