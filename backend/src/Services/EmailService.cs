@@ -86,19 +86,19 @@ public class EmailService
     private string BuildRentalConfirmationBody(string carName, string carColor, string carPlate, DateTime startDate, DateTime endDate, string price)
     {
         return $@"
-            <p>Bedankt voor het huren van een voeruig bij CarAndAll,</p>
+            <p>Bedankt voor het huren van een voertuig bij CarAndAll,</p>
             <p><strong>Uw huur auto:</strong></p>
             <ul>
-                <li>Voertuig naam: {System.Net.WebUtility.HtmlEncode(carName)}</li>
-                <li>Voertuig kleur: {System.Net.WebUtility.HtmlEncode(carColor)}</li>
-                <li>Voertuig kenteken: {System.Net.WebUtility.HtmlEncode(carPlate)}</li>
+                <li>Voertuig naam: {WebUtility.HtmlEncode(carName)}</li>
+                <li>Voertuig kleur: {WebUtility.HtmlEncode(carColor)}</li>
+                <li>Voertuig kenteken: {WebUtility.HtmlEncode(carPlate)}</li>
             </ul>
             <p><strong>Uw huur periode:</strong></p>
             <ul>
-                <li>Vanaf: {startDate:MMMM dd, yyyy}</li>
-                <li>Tot en met: {endDate:MMMM dd, yyyy}</li>
+                <li>Vanaf: {startDate:dd MMMM, yyyy}</li>
+                <li>Tot en met: {endDate:dd MMMM, yyyy}</li>
             </ul>
-            <p><strong>Totale huur prijs:</strong> €{System.Net.WebUtility.HtmlEncode(price)}</p>
+            <p><strong>Totale huur prijs:</strong> €{WebUtility.HtmlEncode(price)}</p>
         ";
     }
 }
