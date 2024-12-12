@@ -8,6 +8,8 @@ const BACKEND_URL = import.meta.env.VITE_REACT_APP_BACKEND_URL ?? 'http://localh
 
 function GeneralSalePage() {
     const [vehicles, setVehicles] = useState([]);
+    const [isEmployee, setIsEmployee] = useState(false);
+    const [error, setError] = useState(null);
     const [filter, setFilter] = useState('');
 
     // Fetch vehicles based on selected filter
@@ -19,7 +21,6 @@ function GeneralSalePage() {
             if (filter === '' || filter === 'All') {
                 url = `${BACKEND_URL}/api/vehicle/GetAllVehicles`;  // Make sure this endpoint returns all vehicles
             } else {
-                // If a filter is selected, fetch vehicles of that type
                 url = `${BACKEND_URL}/api/vehicle/GetTypeOfVehicles?vehicleType=${encodeURIComponent(filter)}`;
             }
 
@@ -34,11 +35,57 @@ function GeneralSalePage() {
             console.error('Failed to fetch vehicles:', error);
         }
     };
+    
+    const fetchOnlyCars= async () => {
+        try {
+            const response = await fetch(`${BACKEND_URL}/api/vehicle/GetAllCars`)
+            if (!response.ok) {
+                throw new Error(`Error fetching vehicles: ${response.statusText}`)
+            }
+            const data = await response.json();
+            setVehicles(data);
+            console.log(data);
+        } catch (e) {
+            console.error(e);
+            setError('Failed to load cars')
+        }
+    }
 
     useEffect(() => {
-        fetchVehicles(); // Re-fetch vehicles whenever the filter changes
-    }, [filter]);
+        fetch(`${BACKEND_URL}/api/Employee/IsUserEmployee`, { credentials: 'include' })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Error validating user type');
+                }
+                return response.text();
+            })
+            .then(data => {
+                const isUserEmployee = data === 'true';
+                setIsEmployee(isUserEmployee);
+            })
+            .catch(error => {
+                console.error(error.message);
+                setIsEmployee(false);
+            });
+    }, []);
 
+    useEffect(() => {
+        if (isEmployee) {
+            fetchOnlyCars();
+        } else {
+            fetchVehicles();
+        }
+    }, [isEmployee]);
+    
+
+    useEffect(() => {
+        console.log(vehicles)
+        /*WelcomeUser(setWelcomeMessage);*/
+    }, [vehicles]);
+    
+  useEffect(() => {
+        fetchVehicles(); 
+    }, [filter]);
     return (
         <>
             <GeneralHeader />
@@ -48,10 +95,10 @@ function GeneralSalePage() {
                     <select
                         id="filter"
                         value={filter}
-                        onChange={(e) => setFilter(e.target.value)} // Update filter state
+                        onChange={(e) => setFilter(e.target.value.trim())} 
                     >
-                        <option value="All">All</option>  
-                        <option value="Car">Car</option>
+                        <option value="All">All</option>
+                        <option value="car">Car</option>
                         <option value="Camper">Camper</option>
                         <option value="Caravan">Caravan</option>
                     </select>
@@ -66,6 +113,7 @@ function GeneralSalePage() {
                                     <div className="car-blob">
                                         {vehicle.image ? (
                                             <img
+                                                className='car-blob'
                                                 src={`data:image/jpeg;base64,${vehicle.image}`}
                                                 alt={`${vehicle.brand || 'Unknown'} ${vehicle.type || ''}`}
                                             />

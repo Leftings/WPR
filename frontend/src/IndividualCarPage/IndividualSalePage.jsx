@@ -1,12 +1,17 @@
 ﻿import React from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import GeneralHeader from "../GeneralBlocks/header/header.jsx";
 import GeneralFooter from "../GeneralBlocks/footer/footer.jsx";
 import './IndividualSalePage.css';
 
 function CarDetailPage() {
     const location = useLocation();
-    const vehicle = location.state?.vehicle; 
+    const navigate = useNavigate();
+    const vehicle = location.state?.vehicle;
+
+    const handleBuyNow = () => {
+        navigate("/buy", { state: { vehicle } });
+    };
 
     if (!vehicle) {
         return (
@@ -43,8 +48,7 @@ function CarDetailPage() {
                         <h3>Description</h3>
                         <p>{vehicle.description || "No description available."}</p>
                         <div className="car-actions">
-                            <button className="buy-button">Buy Now</button>
-                            <button className="add-to-cart-button">Add to Cart</button>
+                            <button className="buy-button" onClick={handleBuyNow}>Buy Now</button>
                         </div>
                     </div>
                 </div>

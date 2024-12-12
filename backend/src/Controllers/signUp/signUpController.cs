@@ -9,6 +9,7 @@ using System;
 using WPR.Repository;
 using WPR.Hashing;
 using WPR.Data;
+using Microsoft.VisualBasic;
 
 [Route("api/[controller]")]
 [ApiController]
@@ -200,7 +201,7 @@ public class SignUpController : ControllerBase
                     {
                         signUpRequest.Adres,
                         signUpRequest.TelNumber,
-                        signUpRequest.Password,
+                        _hash.createHash(signUpRequest.Password),
                         signUpRequest.Email,
                         signUpRequest.FirstName,
                         signUpRequest.LastName
@@ -246,7 +247,6 @@ public class SignUpController : ControllerBase
                     transaction.Commit();
                 }
             }
-        }
-        
+        }    
     }
 }
