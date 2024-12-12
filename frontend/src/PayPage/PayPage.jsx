@@ -177,7 +177,7 @@ function PayPage() {
                         <input
                             type="email"
                             name="email"
-                            placeholder="Vul uw email in voor de confirmatie"
+                            placeholder="emailadress"
                             value={userDetails.email}
                             onChange={(e) => setUserDetails({ ...userDetails, email: e.target.value })}
                             className="input-field"
