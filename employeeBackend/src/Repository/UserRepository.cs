@@ -109,4 +109,181 @@ public class UserRepository : IUserRepository
             return (false, ex.Message);
         }
     }
+
+    public async Task<(bool status, List<Dictionary<string, object>> data)> GetInReviewFromUserAsync(string id)
+    {
+        try
+        {
+            string query = "SELECT * FROM Abonnement WHERE ReviewedBy = @I";
+
+            using (var connection = _connector.CreateDbConnection())
+            using (var command = new MySqlCommand(query, (MySqlConnection)connection))
+            {
+                command.Parameters.AddWithValue("@I", id);
+
+                using (var reader = await command.ExecuteReaderAsync())
+                {
+                    var result = new List<Dictionary<string, object>>();
+
+                    while (await reader.ReadAsync())
+                    {
+                        var row = new Dictionary<string, object>();
+
+                        for (int i = 0; i < reader.FieldCount; i++)
+                        {
+                            row[reader.GetName(i)] = reader.GetValue(i);
+                        }
+
+                        result.Add(row);
+                    }
+
+                    return (true, result);
+                }
+            }
+        }
+        catch (MySqlException ex)
+        {
+            await Console.Error.WriteLineAsync($"Database error: {ex.Message}");
+            return (false, null);
+        }
+        catch (Exception ex)
+        {
+            await Console.Error.WriteLineAsync($"Unexpected error: {ex.Message}");
+            return (false, null);
+        }
+    }
+
+    public async Task<(bool status, List<Dictionary<string, object>> data)> GetRequestedAsync()
+    {
+        try
+        {
+            string query = "SELECT * FROM Abonnement WHERE Status = 'requested'";
+
+            using (var connection = _connector.CreateDbConnection())
+            using (var command = new MySqlCommand(query, (MySqlConnection)connection))
+            {
+                using (var reader = await command.ExecuteReaderAsync())
+                {
+                    var result = new List<Dictionary<string, object>>();
+
+                    while (await reader.ReadAsync())
+                    {
+                        var row = new Dictionary<string, object>();
+
+                        var getUserData = GetUserDataAsync(reader.GetValue(5).ToString());
+                        var getVehiceData = GetVehicleData(reader.GetValue(4).ToString());
+
+                        for (int i = 0; i < reader.FieldCount; i++)
+                        {
+                            row[reader.GetName(i)] = reader.GetValue(i);
+                        }
+
+                        var userData = await getUserData;
+
+                        foreach (var userField in userData.data)
+                        {
+                            row[userField.Key] = userField.Value;
+                        }
+
+                        var vehicleData = await getVehiceData;
+
+                        foreach (var vehicelField in vehicleData.data)
+                        {
+                            row[vehicelField.Key] = vehicelField.Value;
+                        }
+                        
+                        result.Add(row);
+                    }
+
+                    return (true, result);
+                }
+            }
+        }
+        catch (MySqlException ex)
+        {
+            await Console.Error.WriteLineAsync($"Database error: {ex.Message}");
+            return (false, null);
+        }
+        catch (Exception ex)
+        {
+            await Console.Error.WriteLineAsync($"Unexpected error: {ex.Message}");
+            return (false, null);
+        }
+    }
+
+    private async Task<(bool status, Dictionary<string, object> data)> GetUserDataAsync(string userid)
+    {
+        try
+        {
+            string query = "SELECT FirstName, LastName, Adres, Email, TelNum FROM UserCustomer WHERE ID = @I";
+
+            using (var connection = _connector.CreateDbConnection())
+            using (var command = new MySqlCommand(query, (MySqlConnection)connection))
+            {
+                command.Parameters.AddWithValue("@I", userid);
+
+                using (var reader = await command.ExecuteReaderAsync())
+                {
+                    await reader.ReadAsync();
+                    
+                    var row = new Dictionary<string, object>();
+
+                    for (int i = 0; i < reader.FieldCount; i++)
+                    {
+                        row[reader.GetName(i)] = reader.GetValue(i);
+                    }
+
+                    return (true, row);
+                }
+            }
+        }
+        catch (MySqlException ex)
+        {
+            await Console.Error.WriteLineAsync($"Database error: {ex.Message}");
+            return (false, null);
+        }
+        catch (Exception ex)
+        {
+            await Console.Error.WriteLineAsync($"Unexpected error: {ex.Message}");
+            return (false, null);
+        }
+    }
+
+    private async Task<(bool status, Dictionary<string, object> data)> GetVehicleData(string carId)
+    {
+        try
+        {
+            string query = "SELECT Brand, Type, LicensePlate FROM Vehicle WHERE FrameNr = @I";
+
+            using (var connection = _connector.CreateDbConnection())
+            using (var command = new MySqlCommand(query, (MySqlConnection)connection))
+            {
+                command.Parameters.AddWithValue("@I", carId);
+
+                using (var reader = await command.ExecuteReaderAsync())
+                {
+                    await reader.ReadAsync();
+                    
+                    var row = new Dictionary<string, object>();
+
+                    for (int i = 0; i < reader.FieldCount; i++)
+                    {
+                        row[reader.GetName(i)] = reader.GetValue(i);
+                    }
+
+                    return (true, row);
+                }
+            }
+        }
+        catch (MySqlException ex)
+        {
+            await Console.Error.WriteLineAsync($"Database error: {ex.Message}");
+            return (false, null);
+        }
+        catch (Exception ex)
+        {
+            await Console.Error.WriteLineAsync($"Unexpected error: {ex.Message}");
+            return (false, null);
+        }
+    }
 }
