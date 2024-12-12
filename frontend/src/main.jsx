@@ -17,6 +17,8 @@ import ReviewHireRequest from './employeeFrontOffice/reviewHireRequest/reviewHir
 import AddEmployee from './employeeBackOffice/addEmployee/addEmployee.jsx';
 import CarRentalOverview from './CarRentalOverview/CarRentalOverview.jsx';
 import PayPage from './PayPage/PayPage.jsx';
+import ConfirmationPage from './confirmationPage/ConfirmationPage.jsx'
+
 
 createRoot(document.getElementById('root')).render(
     <Router>
@@ -36,6 +38,8 @@ createRoot(document.getElementById('root')).render(
             <Route path="/frontOfficeEmployee/reviewHireRequest" element={<ReviewHireRequest />}></Route>
             <Route path="/buy" element={<PayPage />} />
             <Route path="/overviewRental" element={<CarRentalOverview />} />
+            <Route path="/confirmationPage" element={<ConfirmationPage />}></Route>
+
         </Routes>
     </Router>
 );

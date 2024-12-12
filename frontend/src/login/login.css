@@ -41,11 +41,6 @@ header a:hover {
     width: auto;
 }
 
-body {
-    background-color: #F4E8C1;
-    margin: 0;
-}
-
 h1 {
     text-align: center;
     color: black;
@@ -74,3 +69,11 @@ input
     margin-top: 50px;
     text-align: center;
 }
+
+html, body {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+}
+

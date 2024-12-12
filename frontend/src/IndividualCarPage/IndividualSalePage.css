@@ -47,6 +47,8 @@
     overflow: hidden;
     border: 8px solid #1d7874ff;
     border-radius: 20px;
+    max-width: 500px;
+    max-height: 500px;
 }
 
 .car-detail-image {

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { isRouteErrorResponse, Link, useNavigate } from 'react-router-dom';
 import './login.css';
+import GeneralFooter from "../GeneralBlocks/footer/footer.jsx";
 
 const BACKEND_URL = import.meta.env.VITE_REACT_APP_BACKEND_URL ?? 'http://localhost:5165';
 
@@ -91,96 +92,90 @@ function Login() {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ email, password, isEmployee }),
+      body: JSON.stringify({email, password, isEmployee}),
       credentials: 'include', // Include cookies for authentication
     })
-      .then(response => {
-        if (!response.ok) {
-          setError(`${email} is geen geldig account of het wachtwoord klopt niet`);
-          throw new Error('Login failed');
-        }
-        return response.json();
-      })
-      .then(async data => {
-        if (isEmployee)
-        {
-          await CheckCookieEmployee();
-
-          let officeData = await GetOffice();
-          let office = officeData?.message;
-          console.log(`Office: ${office}`);
-          console.log('***********');
-
-          if (office == 'Front')
-          {
-            navigate('/frontOfficeEmployee');
+        .then(response => {
+          if (!response.ok) {
+            setError(`${email} is geen geldig account of het wachtwoord klopt niet`);
+            throw new Error('Login failed');
           }
-          else if (office == 'Back') 
-          {
-            navigate('/backOfficeEmployee');
-          } 
-        }
-        else
-        {
-          await CheckCookie();
-          navigate('/');
-        }
-      })
-      .catch(error => {
-        console.error('Error:', error);
-      });
+          return response.json();
+        })
+        .then(async data => {
+          if (isEmployee) {
+            await CheckCookieEmployee();
+
+            let officeData = await GetOffice();
+            let office = officeData?.message;
+            console.log(`Office: ${office}`);
+            console.log('***********');
+
+            if (office == 'Front') {
+              navigate('/frontOfficeEmployee');
+            } else if (office == 'Back') {
+              navigate('/backOfficeEmployee');
+            }
+          } else {
+            await CheckCookie();
+            navigate('/');
+          }
+        })
+        .catch(error => {
+          console.error('Error:', error);
+        });
   };
 
   return (
-    <>
-      <header>
-        <div id="left"></div>
-        <div id="carLink">
-          <Link to="/">CarAndAll</Link>
-        </div>
-        <div id="right">
-          <Link to="#" onClick={toggleUserType}>
-            {isEmployee ? 'Klant' : 'Medewerker'}
-          </Link>
-        </div>
-      </header>
-
-      <div>
-        {isEmployee ? (
-          <div id="inlog">
-            <h1>Medewerkers Login</h1>
+      <>
+        <header>
+          <div id="left"></div>
+          <div id="carLink">
+            <Link to="/">CarAndAll</Link>
           </div>
-        ) : (
-          <div id="inlog">
-            <h1>Klanten Login</h1>
+          <div id="right">
+            <Link to="#" onClick={toggleUserType}>
+              {isEmployee ? 'Klant' : 'Medewerker'}
+            </Link>
           </div>
-        )}
+        </header>
 
-        <div id="input">
-          <label htmlFor="user">Email</label>
-          <br />
-          <input type="text" id="user" value={email} onChange={(e) => setEmail(e.target.value)} />
-          <br />
-          <label htmlFor="password">Wachtwoord</label>
-          <br />
-          <input type="password" id="password" value={password} onChange={(e) => setPassword(e.target.value)} />
-          <br />
-          <button id="button" type="button" onClick={onSubmit}>Login</button>
-          {!isEmployee && (
-            <>
-              <br />
-              <label htmlFor="noAccount">
-                Nog geen account bij ons? <Link to="/signUp">Meld nu aan!</Link>
-              </label>
-            </>
+        <main>
+          {isEmployee ? (
+              <div id="inlog">
+                <h1>Medewerkers Login</h1>
+              </div>
+          ) : (
+              <div id="inlog">
+                <h1>Klanten Login</h1>
+              </div>
           )}
-          {error && <p style={{ color: 'red' }}>{error}</p>}
-        </div>
-      </div>
 
-      <footer></footer>
-    </>
+          <div id="input">
+            <label htmlFor="user">Email</label>
+            <br/>
+            <input type="text" id="user" value={email} onChange={(e) => setEmail(e.target.value)}/>
+            <br/>
+            <label htmlFor="password">Wachtwoord</label>
+            <br/>
+            <input type="password" id="password" value={password} onChange={(e) => setPassword(e.target.value)}/>
+            <br/>
+            <button id="button" type="button" onClick={onSubmit}>Login</button>
+            {!isEmployee && (
+                <>
+                  <br/>
+                  <label htmlFor="noAccount">
+                    Nog geen account bij ons? <Link to="/signUp">Meld nu aan!</Link>
+                  </label>
+                </>
+            )}
+            {error && <p style={{color: 'red'}}>{error}</p>}
+          </div>
+        </main>
+
+        <GeneralFooter/>
+      </>
   );
 }
 
-export default Login;
+  export default Login;

@@ -11,6 +11,7 @@ using WPR.Database;
 using WPR.Repository;
 using WPR.Hashing;
 using System.Net;
+using WPR.Services;
 
 namespace WPR;
 
@@ -126,7 +127,7 @@ public class AppConfigure
             }
         }
     });
-
+    
     // Register services for Dependency Injection
     builder.Services.AddSingleton<EnvConfig>(); // Singleton for environment configuration
     builder.Services.AddTransient<Connector>(); // Transient for database connection.
@@ -134,6 +135,7 @@ public class AppConfigure
     builder.Services.AddScoped<SessionHandler>(); // Scoped session handler
     builder.Services.AddScoped<Crypt>();
     builder.Services.AddScoped<Hashing.Hash>();
+    builder.Services.AddScoped<EmailService>();
 
     // Configure authentication with cookie-based authentication schema.
     builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
