@@ -8,6 +8,8 @@ const BACKEND_URL = import.meta.env.VITE_REACT_APP_BACKEND_URL ?? 'http://localh
 
 function GeneralSalePage() {
     const [vehicles, setVehicles] = useState([]);
+    const [isEmployee, setIsEmployee] = useState(false);
+    const [error, setError] = useState(null);
     const [filter, setFilter] = useState('');
 
     // Fetch vehicles based on selected filter
@@ -33,11 +35,57 @@ function GeneralSalePage() {
             console.error('Failed to fetch vehicles:', error);
         }
     };
+    
+    const fetchOnlyCars= async () => {
+        try {
+            const response = await fetch(`${BACKEND_URL}/api/vehicle/GetAllCars`)
+            if (!response.ok) {
+                throw new Error(`Error fetching vehicles: ${response.statusText}`)
+            }
+            const data = await response.json();
+            setVehicles(data);
+            console.log(data);
+        } catch (e) {
+            console.error(e);
+            setError('Failed to load cars')
+        }
+    }
 
     useEffect(() => {
+        fetch(`${BACKEND_URL}/api/Employee/IsUserEmployee`, { credentials: 'include' })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Error validating user type');
+                }
+                return response.text();
+            })
+            .then(data => {
+                const isUserEmployee = data === 'true';
+                setIsEmployee(isUserEmployee);
+            })
+            .catch(error => {
+                console.error(error.message);
+                setIsEmployee(false);
+            });
+    }, []);
+
+    useEffect(() => {
+        if (isEmployee) {
+            fetchOnlyCars();
+        } else {
+            fetchVehicles();
+        }
+    }, [isEmployee]);
+    
+
+    useEffect(() => {
+        console.log(vehicles)
+        /*WelcomeUser(setWelcomeMessage);*/
+    }, [vehicles]);
+    
+  useEffect(() => {
         fetchVehicles(); 
     }, [filter]);
-
     return (
         <>
             <GeneralHeader />
@@ -65,6 +113,7 @@ function GeneralSalePage() {
                                     <div className="car-blob">
                                         {vehicle.image ? (
                                             <img
+                                                className='car-blob'
                                                 src={`data:image/jpeg;base64,${vehicle.image}`}
                                                 alt={`${vehicle.brand || 'Unknown'} ${vehicle.type || ''}`}
                                             />

@@ -6,6 +6,7 @@ import './home.css';
 
 function Home() {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const [isEmployee, setIsEmployee] = useState(false);
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -18,6 +19,24 @@ function Home() {
             })
             .then(() => setIsLoggedIn(true))
             .catch(() => setIsLoggedIn(false));
+    }, []);
+
+    useEffect(() => {
+        fetch(`http://localhost:5165/api/Employee/IsUserEmployee`, { credentials: 'include' })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Error validating user type');
+                }
+                return response.text();
+            })
+            .then(data => {
+                const isUserEmployee = data === 'true';
+                setIsEmployee(isUserEmployee);
+            })
+            .catch(error => {
+                console.error(error.message);
+                setIsEmployee(false);
+            });
     }, []);
 
     const handleLogout = () => {
@@ -55,11 +74,14 @@ function Home() {
                         </div>
                     </section>
 
-                    <section className="abonnementen-info">
-                        <h2>Bekijk onze Abonnementen</h2>
-                        <p>We bieden verschillende abonnementsopties aan die passen bij jouw huurbehoeften. Bekijk ze en kies de beste optie voor jou!</p>
-                        <Link to="/AbonementUitlegPage" className="cta-button">Ontdek Abonnementen</Link>
-                    </section>
+
+                    {isEmployee && (
+                        <section className="abonnementen-info">
+                            <h2>Bekijk onze Abonnementen</h2>
+                            <p>We bieden verschillende abonnementsopties aan die passen bij jouw huurbehoeften. Bekijk ze en kies de beste optie voor jou!</p>
+                            <Link to="/AbonementUitlegPage" className="cta-button">Ontdek Abonnementen</Link>
+                        </section>
+                    )}
                 </div>
             </main>
             <GeneralFooter />
