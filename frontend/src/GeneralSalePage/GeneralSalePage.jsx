@@ -19,7 +19,6 @@ function GeneralSalePage() {
             if (filter === '' || filter === 'All') {
                 url = `${BACKEND_URL}/api/vehicle/GetAllVehicles`;  // Make sure this endpoint returns all vehicles
             } else {
-                // If a filter is selected, fetch vehicles of that type
                 url = `${BACKEND_URL}/api/vehicle/GetTypeOfVehicles?vehicleType=${encodeURIComponent(filter)}`;
             }
 
@@ -36,7 +35,7 @@ function GeneralSalePage() {
     };
 
     useEffect(() => {
-        fetchVehicles(); // Re-fetch vehicles whenever the filter changes
+        fetchVehicles(); 
     }, [filter]);
 
     return (
@@ -48,10 +47,10 @@ function GeneralSalePage() {
                     <select
                         id="filter"
                         value={filter}
-                        onChange={(e) => setFilter(e.target.value)} // Update filter state
+                        onChange={(e) => setFilter(e.target.value.trim())} 
                     >
-                        <option value="All">All</option>  
-                        <option value="Car">Car</option>
+                        <option value="All">All</option>
+                        <option value="car">Car</option>
                         <option value="Camper">Camper</option>
                         <option value="Caravan">Caravan</option>
                     </select>
