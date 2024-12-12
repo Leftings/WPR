@@ -217,7 +217,7 @@ public class SignUpController : ControllerBase
                         return BadRequest(new { employee.status });
                     }
 
-
+                    await _emailService.SendWelcomeEmail(signUpRequest.Email);
                     return Ok(new { employee.status });
                 }
                 else
