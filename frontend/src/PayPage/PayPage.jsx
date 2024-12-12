@@ -117,7 +117,19 @@ function PayPage() {
 
             const data = await response.json();
             console.log("Huur gemaakt:", data.message);
-            navigate("/confirmation", { state: { rental: data } });
+            navigate("/confirmationPage", {
+                state: {
+                    rental: {
+                        vehicleBrand: vehicle.brand,
+                        vehicleType: vehicle.type,
+                        startDate: userDetails.rentalDates[0],
+                        endDate: userDetails.rentalDates[1],
+                        totalCost: totalCost.toFixed(2),
+                    },
+                    vehicle,
+                },
+            });
+
         } catch (error) {
             console.error("Fout bij het maken van de huur:", error);
             setErrorMessage("Er is een fout opgetreden bij het verwerken van uw huur. Probeer het opnieuw.");
