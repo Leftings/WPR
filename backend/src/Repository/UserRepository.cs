@@ -488,4 +488,31 @@ public class UserRepository : IUserRepository
         }
     }
     
+    public async Task<bool> IsUserEmployee(int id)
+    {
+        try
+        {
+            string query = "SELECT ID FROM UserEmployee WHERE ID = @id";
+
+            using (var connection = _connector.CreateDbConnection())
+            using (var command = new MySqlCommand(query, (MySqlConnection)connection))
+            {
+                command.Parameters.AddWithValue("@id", id);
+
+                var result = await command.ExecuteScalarAsync();
+
+                if (result != null && result.ToString() == id.ToString())
+                {
+                    return true;
+                }
+
+                return false;
+            }
+        }
+        catch (Exception ex)
+        {
+            await Console.Error.WriteLineAsync($"Unexpected error: {ex.Message}");
+            return false;
+        }
+    }
 }
