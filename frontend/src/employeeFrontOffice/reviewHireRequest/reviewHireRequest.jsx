@@ -7,46 +7,63 @@ import GeneralFooter from '../../GeneralBlocks/footer/footer';
 const BACKEND_URL = import.meta.env.VITE_REACT_APP_BACKEND_URL_EMPLOYEE ?? 'http://localhost:5276';
 
 function ReviewHireRequest() {
+  const navigate = useNavigate();
   const [newRequests, setNewRequests] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  // Fetch data for new requests
-  const fetchNewRequests = async () => {
-    setLoading(true);  // Set loading to true before making the request
-    setError(null);    // Clear previous errors
+  useEffect(() => {
+    const validateCookie = async () => {
+      try {
+        const response = await fetch(`${BACKEND_URL}/api/Cookie/GetUserId`, {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          credentials: 'include',
+        });
 
-    try {
-      const response = await fetch(`${BACKEND_URL}/api/AcceptHireRequest/getAllRequests`, {
-        method: 'GET',
-        credentials: 'include',
-      });
+        if (!response.ok) {
+          throw new Error('No Cookie');
+        }
 
-      console.log('Response status:', response.status); // Debug response status
-
-      if (!response.ok) {
-        throw new Error('Failed to fetch new requests');
+        await response.json(); 
+      } catch {
+        alert('Cookie was niet geldig');
+        navigate('/');
       }
+    };
 
-      const data = await response.json();
-      console.log('Fetched data:', data); // Debug the fetched data
-
-      if (data?.message) {
-        setNewRequests(data.message);  // Assuming the backend returns data in the "message" field
-      } else {
-        setNewRequests([]); // Handle case where message is missing
-      }
-    } catch (error) {
-      console.error('Error fetching new requests:', error);
-      setError(error.message || 'An unexpected error occurred');
-    } finally {
-      setLoading(false);  // Set loading to false after the request is complete
-    }
-  };
+    validateCookie();
+  }, [navigate]);
 
   useEffect(() => {
+    // Fetch new requests
+    const fetchNewRequests = async () => {
+      setLoading(true);
+      setError(null);
+
+      try {
+        const response = await fetch(`${BACKEND_URL}/api/AcceptHireRequest/getAllRequests`, {
+          method: 'GET',
+          credentials: 'include',
+        });
+
+        if (!response.ok) {
+          throw new Error('Failed to fetch new requests');
+        }
+
+        const data = await response.json();
+        setNewRequests(data?.message || []); 
+      } catch (error) {
+        setError(error.message || 'An unexpected error occurred');
+      } finally {
+        setLoading(false);
+      }
+    };
+
     fetchNewRequests();
-  }, []);  // Empty dependency array ensures this runs only once when the component mounts
+  }, []);
 
   if (loading) {
     return (
@@ -63,32 +80,10 @@ function ReviewHireRequest() {
       </div>
     );
   }
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    fetch(`${BACKEND_URL}/api/Cookie/GetUserId` , {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        credentials: 'include',
-    })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('No Cookie');
-            }
-            return response.json();
-        })
-        .catch(() => {
-            alert("Cookie was niet geldig");
-            navigate('/');
-        })
-    }, [navigate]);
 
   return (
     <>
       <GeneralHeader />
-
       <div className="body">
         <h1>New Requests</h1>
         <div className="requests-box">
@@ -106,7 +101,7 @@ function ReviewHireRequest() {
                   <p><strong>Eind Datum:</strong> {new Date(request.EndDate).toLocaleDateString()}</p>
                   <p><strong>Totaal Prijs:</strong> €{request.Price}</p>
                   <p><strong>Status:</strong> {request.Status}</p>
-                  <div id="buttons"> 
+                  <div id="buttons">
                     <button className="accept">Accepteren</button>
                     <button className="deny">Weigeren</button>
                   </div>
@@ -118,7 +113,6 @@ function ReviewHireRequest() {
           )}
         </div>
       </div>
-
       <GeneralFooter />
     </>
   );
