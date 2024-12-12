@@ -6,6 +6,7 @@ using MySql.Data.MySqlClient;
 using WPR.Controllers.Rental;
 using WPR.Database;
 using WPR.Cryption;
+using WPR.Services;
 
 namespace WPR.Controllers
 {
@@ -15,11 +16,13 @@ namespace WPR.Controllers
     {
         private readonly Connector _connector;
         private readonly Crypt _crypt;
+        private readonly EmailService _emailService;
 
-        public RentalController(Connector connector, Crypt crypt)
+        public RentalController(Connector connector, Crypt crypt, EmailService emailService)
         {
             _connector = connector ?? throw new ArgumentNullException(nameof(connector));
             _crypt = crypt ?? throw new ArgumentNullException(nameof(crypt));
+            _emailService = emailService ?? throw new ArgumentNullException(nameof(emailService));
         }
 
         [HttpPost("CreateRental")]
@@ -210,6 +213,17 @@ VALUES (@StartDate, @EndDate, @Price, @FrameNrCar, @Customer, @Status, @Reviewed
 
                             transaction.Commit();
                             Console.WriteLine("Transactie succesvol gecommit.");
+
+                            await _emailService.SendRentalConfirmMail(
+                                toEmail: rentalRequest.Email,
+                                carName: rentalRequest.FrameNrCar,
+                                carColor: "COLOR HERE",
+                                carPlate: "License plate here",
+                                startDate: rentalRequest.StartDate,
+                                endDate: rentalRequest.EndDate,
+                                price: rentalRequest.Price.ToString()
+                                );
+                            
                             return Ok(new { message = "Huur succesvol aangemaakt." });
                         }
                         catch (Exception transEx)
