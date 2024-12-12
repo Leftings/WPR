@@ -16,6 +16,7 @@ import EmployeeFrontOffice from './employeeFrontOffice/employeeFrontOffice.jsx';
 import ReviewHireRequest from './employeeFrontOffice/reviewHireRequest/reviewHireRequest.jsx';
 import AddEmployee from './employeeBackOffice/addEmployee/addEmployee.jsx';
 import PayPage from './PayPage/PayPage.jsx'
+import ConfirmationPage from './confirmationPage/ConfirmationPage.jsx'
 
 createRoot(document.getElementById('root')).render(
     <Router>
@@ -36,6 +37,7 @@ createRoot(document.getElementById('root')).render(
             <Route path="/frontOfficeEmployee" element={<EmployeeFrontOffice />}></Route>
             <Route path="/frontOfficeEmployee/reviewHireRequest" element={<ReviewHireRequest />}></Route>
             <Route path="/buy" element={<PayPage />} />
+            <Route path="/confirmationPage" element={<ConfirmationPage />}></Route>
         </Routes>
     </Router>
 );
