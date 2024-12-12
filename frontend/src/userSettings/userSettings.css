@@ -81,6 +81,19 @@ input
         background-color: #A5E1E0;
         color: #1D7874;
     }
+#buttonDelete
+{
+    margin: 20px;
+    background-color: red;
+    color: white;
+    font-weight: bold;
+    transition: color 0.3s;
+    transition: background-color 0.3s;
+}
+#buttonDelete:hover {
+    color:red;
+    background-color: white;
+}
 
 #button
 {
