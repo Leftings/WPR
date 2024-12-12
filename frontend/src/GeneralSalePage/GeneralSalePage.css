@@ -1,4 +1,15 @@
 
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 .filter-section {
     position: relative;
     top: 40px;
@@ -53,6 +64,8 @@
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     overflow: hidden;
     transition: transform 0.3s, box-shadow 0.3s;
+    animation: fadeInUp 0.2s ease-in-out forwards;
+    opacity: 0;
 }
 
 .car-card:hover {

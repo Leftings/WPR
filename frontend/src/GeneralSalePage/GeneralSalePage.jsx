@@ -8,101 +8,91 @@ const BACKEND_URL = import.meta.env.VITE_REACT_APP_BACKEND_URL ?? 'http://localh
 
 function GeneralSalePage() {
     const [vehicles, setVehicles] = useState([]);
-    const [isEmployee, setIsEmployee] = useState(false);
+    const [isEmployee, setIsEmployee] = useState(null);
     const [error, setError] = useState(null);
     const [filter, setFilter] = useState('');
 
-    // Fetch vehicles based on selected filter
-    const fetchVehicles = async () => {
-        try {
-            let url;
-
-            // If no filter is selected or "All" is selected, fetch all vehicles
-            if (filter === '' || filter === 'All') {
-                url = `${BACKEND_URL}/api/vehicle/GetAllVehicles`;  // Make sure this endpoint returns all vehicles
-            } else {
-                url = `${BACKEND_URL}/api/vehicle/GetTypeOfVehicles?vehicleType=${encodeURIComponent(filter)}`;
-            }
-
-            const response = await fetch(url);
-            if (!response.ok) {
-                throw new Error(`Error fetching vehicles: ${response.statusText}`);
-            }
-
-            const data = await response.json();
-            setVehicles(data);
-        } catch (error) {
-            console.error('Failed to fetch vehicles:', error);
-        }
-    };
-    
-    const fetchOnlyCars= async () => {
-        try {
-            const response = await fetch(`${BACKEND_URL}/api/vehicle/GetAllCars`)
-            if (!response.ok) {
-                throw new Error(`Error fetching vehicles: ${response.statusText}`)
-            }
-            const data = await response.json();
-            setVehicles(data);
-            console.log(data);
-        } catch (e) {
-            console.error(e);
-            setError('Failed to load cars')
-        }
-    }
-
     useEffect(() => {
-        fetch(`${BACKEND_URL}/api/Employee/IsUserEmployee`, { credentials: 'include' })
-            .then(response => {
+        const checkIfEmployee = async () => {
+            try {
+                const response = await fetch(`${BACKEND_URL}/api/Employee/IsUserEmployee`, { credentials: 'include' });
                 if (!response.ok) {
                     throw new Error('Error validating user type');
                 }
-                return response.text();
-            })
-            .then(data => {
-                const isUserEmployee = data === 'true';
-                setIsEmployee(isUserEmployee);
-            })
-            .catch(error => {
+                const data = await response.text();
+                setIsEmployee(data === 'true');
+
+                if (data === 'true') {
+                    setFilter('Car'); // Default filter for employees
+                }
+            } catch (error) {
                 console.error(error.message);
                 setIsEmployee(false);
-            });
+            }
+        };
+
+        checkIfEmployee();
     }, []);
 
     useEffect(() => {
-        if (isEmployee) {
-            fetchOnlyCars();
-        } else {
-            fetchVehicles();
-        }
-    }, [isEmployee]);
-    
+        const fetchData = async () => {
+            try {
+                let url;
 
-    useEffect(() => {
-        console.log(vehicles)
-        /*WelcomeUser(setWelcomeMessage);*/
-    }, [vehicles]);
-    
-  useEffect(() => {
-        fetchVehicles(); 
-    }, [filter]);
+                if (isEmployee) {
+                    // Employees always fetch cars
+                    url = `${BACKEND_URL}/api/vehicle/GetTypeOfVehicles?vehicleType=Car`;
+                } else if (!filter || filter === 'All') {
+                    // Non-employees fetch all vehicles if no filter is applied
+                    url = `${BACKEND_URL}/api/vehicle/GetAllVehicles`;
+                } else {
+                    // Non-employees fetch filtered vehicles
+                    url = `${BACKEND_URL}/api/vehicle/GetTypeOfVehicles?vehicleType=${encodeURIComponent(filter)}`;
+                }
+
+                const response = await fetch(url);
+                if (!response.ok) {
+                    throw new Error(`Error fetching vehicles: ${response.statusText}`);
+                }
+
+                const data = await response.json();
+
+                // Display vehicles one by one with a delay
+                setVehicles([]); // Clear previous vehicles
+                for (let vehicle of data) {
+                    setVehicles((prev) => [...prev, vehicle]);
+                    await new Promise((resolve) => setTimeout(resolve, 25));
+                }
+            } catch (error) {
+                console.error('Failed to fetch vehicles:', error);
+                setError('Failed to load vehicles');
+            }
+        };
+
+        if (isEmployee !== null) {
+            fetchData();
+        }
+    }, [isEmployee, filter]); // Trigger fetching when `isEmployee` or `filter` changes
+
     return (
         <>
             <GeneralHeader />
             <div className="general-sale-page">
-                <div className="filter-section">
-                    <label htmlFor="filter">Filter by Vehicle Type:</label>
-                    <select
-                        id="filter"
-                        value={filter}
-                        onChange={(e) => setFilter(e.target.value.trim())} 
-                    >
-                        <option value="All">All</option>
-                        <option value="car">Car</option>
-                        <option value="Camper">Camper</option>
-                        <option value="Caravan">Caravan</option>
-                    </select>
-                </div>
+                {!isEmployee && (
+                    <div className="filter-section">
+                        <label htmlFor="filter">Filter by Vehicle Type:</label>
+                        <select
+                            id="filter"
+                            value={filter}
+                            onChange={(e) => setFilter(e.target.value.trim())}
+                        >
+                            <option value="All">All</option>
+                            <option value="Car">Car</option>
+                            <option value="Camper">Camper</option>
+                            <option value="Caravan">Caravan</option>
+                        </select>
+                    </div>
+                )}
 
                 <div className="car-sale-section">
                     <h1 className="title">Vehicles for Sale</h1>
@@ -113,7 +103,7 @@ function GeneralSalePage() {
                                     <div className="car-blob">
                                         {vehicle.image ? (
                                             <img
-                                                className='car-blob'
+                                                className="car-blob"
                                                 src={`data:image/jpeg;base64,${vehicle.image}`}
                                                 alt={`${vehicle.brand || 'Unknown'} ${vehicle.type || ''}`}
                                             />
@@ -144,6 +134,7 @@ function GeneralSalePage() {
             <GeneralFooter />
         </>
     );
+
 }
 
 export default GeneralSalePage;
