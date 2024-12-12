@@ -8,6 +8,7 @@ using System;
 using WPR.Repository;
 using WPR.Hashing;
 using WPR.Data;
+using Microsoft.VisualBasic;
 
 [Route("api/[controller]")]
 [ApiController]
@@ -237,7 +238,6 @@ public class SignUpController : ControllerBase
                     transaction.Commit();
                 }
             }
-        }
-        
+        }    
     }
 }

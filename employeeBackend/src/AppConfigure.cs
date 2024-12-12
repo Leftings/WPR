@@ -7,6 +7,9 @@ using System.Net;
 using Employee.Data;
 using Employee.Database;
 using Employee.Repository;
+using Employee.Hashing;
+using Microsoft.OpenApi.Models;
+using Employee.Swagger;
 
 namespace Employee;
 
@@ -131,7 +134,7 @@ public class AppConfigure
     builder.Services.AddScoped<IUserRepository, UserRepository>(); // Scoped for user repository
     //builder.Services.AddScoped<SessionHandler>(); // Scoped session handler
     //builder.Services.AddScoped<Crypt>();
-    //builder.Services.AddScoped<Hashing.Hash>();
+    builder.Services.AddScoped<Hashing.Hash>();
 
     // Configure authentication with cookie-based authentication schema.
     builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
@@ -151,7 +154,16 @@ public class AppConfigure
 
     // Services for Swagger API
     builder.Services.AddEndpointsApiExplorer();
-    builder.Services.AddSwaggerGen();
+    builder.Services.AddSwaggerGen(c =>
+    {
+        c.MapType<IFormFile>(() => new OpenApiSchema
+        {
+            Type = "string",
+            Format = "binary"
+        });
+
+        c.OperationFilter<FileUploadOperationFilter>();
+    });
 
     var app = builder.Build();
 

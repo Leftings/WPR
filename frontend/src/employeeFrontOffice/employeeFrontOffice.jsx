@@ -1,25 +1,21 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import './employeeBackOffice.css';
+import './employeeFrontOffice.css';
 import GeneralHeader from '../GeneralBlocks/header/header';
 import GeneralFooter from '../GeneralBlocks/footer/footer';
 
 const BACKEND_URL = import.meta.env.VITE_REACT_APP_BACKEND_URL_EMPLOYEE ?? 'http://localhost:5276';
 
-function EmployeeBackOffice() {
+function EmployeeFrontOffice() {
   return (
     <>
       <GeneralHeader>
       </GeneralHeader>
 
-      <div className='body'>
-        <h1>Back Office</h1>
-
-        <div id='backOfficeLinks'>
-          <Link to="./addEmployee">Werknemer toevoegen</Link>
-          <Link to="./addVehicle">Voertuig toevoegen</Link>
-        </div>
-      </div>
+      <body>
+        <h1>Front Office</h1>
+        <Link to="./reviewHireRequest">Huur aanvragen beheren</Link>
+      </body>
 
       <GeneralFooter>
       </GeneralFooter>
@@ -27,4 +23,4 @@ function EmployeeBackOffice() {
   );
 }
 
-export default EmployeeBackOffice;
+export default EmployeeFrontOffice;

@@ -7,7 +7,7 @@ import GeneralFooter from '../../GeneralBlocks/footer/footer';
 const BACKEND_URL = import.meta.env.VITE_REACT_APP_BACKEND_URL_EMPLOYEE ?? 'http://localhost:5276';
 
 function AddVehicle() {
-    const [kind, SetKind] = useState('car');
+    const [kind, SetKind] = useState('Car');
     const [brand, SetBrand] = useState('');
     const [type, SetType] = useState('');
     const [color, SetColor] = useState('');
@@ -49,7 +49,6 @@ function AddVehicle() {
             return response.json();
         })
         .then(vehicleData => {
-            SetKind('car');
             SetBrand('');
             SetType('');
             SetColor('');
@@ -108,9 +107,9 @@ function AddVehicle() {
             <div id="kind" value={kind} onChange={(e) => SetKind(e.target.value)}>
                 <p>Soort voertuig</p>
                 <select name="vehicle">
-                    <option value="car">Auto</option>
-                    <option value="camper">Camper</option>
-                    <option value="caravan">Caravan</option>
+                    <option value="Car">Auto</option>
+                    <option value="Camper">Camper</option>
+                    <option value="Caravan">Caravan</option>
                 </select>
                 <br></br>
             </div>

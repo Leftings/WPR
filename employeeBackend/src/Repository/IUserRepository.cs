@@ -13,4 +13,6 @@ namespace Employee.Repository;
 public interface IUserRepository
 {
     Task<(bool status, string message)> AddVehicleAsync(int yop, string brand, string type, string licensPlate, string color, string sort, double price, string description, byte[] vehicleBlob);
+    Task<(bool status, string message)> AddStaff(Object[] personData);
+    Task<(bool status, string message)> checkUsageEmailAsync(string email);
 }
