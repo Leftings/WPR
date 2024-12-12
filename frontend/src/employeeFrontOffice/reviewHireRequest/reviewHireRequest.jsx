@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import './reviewHireRequest.css';
 import GeneralHeader from '../../GeneralBlocks/header/header';
 import GeneralFooter from '../../GeneralBlocks/footer/footer';
@@ -63,6 +63,27 @@ function ReviewHireRequest() {
       </div>
     );
   }
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    fetch(`${BACKEND_URL}/api/Cookie/GetUserId` , {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        credentials: 'include',
+    })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('No Cookie');
+            }
+            return response.json();
+        })
+        .catch(() => {
+            alert("Cookie was niet geldig");
+            navigate('/');
+        })
+    }, [navigate]);
 
   return (
     <>

@@ -32,9 +32,11 @@ function GeneralHeader({ isLoggedIn, handleLogout}) {
                 <nav>
                     <ul className="nav-links">
                         {isLoggedIn ? (
-                            <li>
-                                <Link onClick={handleLogout} className="logout-button">Logout</Link>
-                            </li>
+                            <>
+                            <li><Link onClick={handleLogout} className="logout-button">Logout</Link></li>
+                            <li><Link to="/overviewRental">Mijn auto's</Link></li>
+                            <li><Link to="/userSettings">Instellingen</Link></li>
+                            </>
                         ) : (
                             <li>
                                 <Link to="/login">Login</Link>
@@ -43,7 +45,6 @@ function GeneralHeader({ isLoggedIn, handleLogout}) {
                         <li><Link to="/GeneralSalePage">Zoek Auto's</Link></li>
                         <li><Link to="/about">Over ons</Link></li>
                         <li><Link to="/contact">Contact</Link></li>
-                        <li><Link to="/userSettings">Instellingen</Link></li>
                     </ul>
                 </nav>
             ) : null}
