@@ -8,54 +8,97 @@ namespace WPR.Services;
 public class EmailService
 {
     private readonly EnvConfig _envConfig; // Instantie van EnConfig om environment variabelen op te halen.
-    private readonly string _smtpHost;
-    private readonly int _smtpPort;
-    private readonly string _fromEmail;
-    private readonly string _fromPassword;
 
     public EmailService(EnvConfig envConfig)
     {
-        _smtpHost = envConfig.Get("SMTP_HOST");
-        _smtpPort = int.Parse(envConfig.Get("SMTP_PORT"));
-        _fromEmail = envConfig.Get("SMTP_FROM_EMAIL");
-        _fromPassword = envConfig.Get("SMTP_FROM_PASSWORD");
+        _envConfig = envConfig ?? throw new ArgumentNullException(nameof(envConfig));
     }
 
-    public async Task SendWelcomeEmail(string toEmail)
+    private SmtpClient CreateSmtpClient()
     {
-
+        return new SmtpClient(_envConfig.Get("SMTP_HOST"))
+        {
+            Port = int.Parse(_envConfig.Get("SMTP_PORT")),
+            Credentials = new NetworkCredential(
+                _envConfig.Get("SMTP_FROM_EMAIL"),
+                _envConfig.Get("SMTP_FROM_PASSWORD")
+                ),
+            EnableSsl = true
+        };
+    }
+    
+    public async Task SendWelcomeEmail(string toEmail)
+    {     
+        if (string.IsNullOrEmpty(toEmail))
+        {
+            throw new ArgumentException("Email addresses cannot be null or empty");
+        }
+        
         try
         {
-            if (string.IsNullOrEmpty(toEmail) || string.IsNullOrEmpty(_fromEmail))
-            {
-                throw new ArgumentException("Email addresses cannot be null or empty");
-            }
-            
-            
-            using var smtpClient = new SmtpClient(_smtpHost)
-            {
-                Port = _smtpPort,
-                Credentials = new NetworkCredential(_fromEmail, _fromPassword),
-                EnableSsl = true
-            };
-
+            using var smtpClient = CreateSmtpClient();
             using var mailMessage = new MailMessage
             {
-                From = new MailAddress(_fromEmail),
-                Subject = "Welcome to CarAndALl",
-                Body = $"Welcome to CarAndAll",
+                From = new MailAddress(_envConfig.Get("SMTP_FROM_EMAIL")),
+                Subject = "Welkom bij CarAndAll",
+                Body = $"Welkom bij CarAndAll",
                 IsBodyHtml = true
             };
-
             mailMessage.To.Add(toEmail);
 
             await smtpClient.SendMailAsync(mailMessage);
-
         }
         catch (Exception e)
         {
             Console.WriteLine(e);
             throw;
         }
+    }
+    
+    public async Task SendRentalConfirmMail(string toEmail, string carName, string carColor, string carPlate , DateTime startDate, DateTime endDate, string price)
+    {
+        if (string.IsNullOrEmpty(toEmail))
+        {
+            throw new ArgumentException("Email addresses cannot be null or empty");
+        }
+        
+        try
+        {
+            using var smtpClient = CreateSmtpClient();
+            using var mailMessage = new MailMessage
+            {
+                From = new MailAddress(_envConfig.Get("SMTP_FROM_EMAIL")),
+                Subject = "Verificatie Voertuig Huren",
+                Body = BuildRentalConfirmationBody(carName, carColor, carPlate, startDate, endDate, price),
+                IsBodyHtml = true
+            };
+            mailMessage.To.Add(toEmail);
+
+            await smtpClient.SendMailAsync(mailMessage);
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
+    }
+    
+    private string BuildRentalConfirmationBody(string carName, string carColor, string carPlate, DateTime startDate, DateTime endDate, string price)
+    {
+        return $@"
+            <p>Bedankt voor het huren van een voertuig bij CarAndAll,</p>
+            <p><strong>Uw huur auto:</strong></p>
+            <ul>
+                <li>Voertuig naam: {WebUtility.HtmlEncode(carName)}</li>
+                <li>Voertuig kleur: {WebUtility.HtmlEncode(carColor)}</li>
+                <li>Voertuig kenteken: {WebUtility.HtmlEncode(carPlate)}</li>
+            </ul>
+            <p><strong>Uw huur periode:</strong></p>
+            <ul>
+                <li>Vanaf: {startDate:dd MMMM, yyyy}</li>
+                <li>Tot en met: {endDate:dd MMMM, yyyy}</li>
+            </ul>
+            <p><strong>Totale huur prijs:</strong> €{WebUtility.HtmlEncode(price)}</p>
+        ";
     }
 }

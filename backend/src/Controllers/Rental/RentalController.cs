@@ -6,6 +6,8 @@ using MySql.Data.MySqlClient;
 using WPR.Controllers.Rental;
 using WPR.Database;
 using WPR.Cryption;
+using WPR.Repository;
+using WPR.Services;
 
 namespace WPR.Controllers
 {
@@ -15,22 +17,26 @@ namespace WPR.Controllers
     {
         private readonly Connector _connector;
         private readonly Crypt _crypt;
+        private readonly EmailService _emailService;
+        private readonly VehicleRepository _vehicleRepo;
 
-        public RentalController(Connector connector, Crypt crypt)
+        public RentalController(Connector connector, Crypt crypt, EmailService emailService, VehicleRepository vehicleRepo)
         {
             _connector = connector ?? throw new ArgumentNullException(nameof(connector));
             _crypt = crypt ?? throw new ArgumentNullException(nameof(crypt));
+            _emailService = emailService ?? throw new ArgumentNullException(nameof(emailService));
+            _vehicleRepo = vehicleRepo ?? throw new ArgumentNullException(nameof(vehicleRepo));
         }
 
         [HttpPost("CreateRental")]
         public async Task<IActionResult> CreateRental([FromBody] RentalRequest rentalRequest)
         {
             // Log de binnenkomende aanvraag
-            Console.WriteLine("CreateRental called with request: " + 
-                $"FrameNrCar: {rentalRequest.FrameNrCar}, " +
-                $"StartDate: {rentalRequest.StartDate}, " +
-                $"EndDate: {rentalRequest.EndDate}, " +
-                $"Price: {rentalRequest.Price}");
+            Console.WriteLine("CreateRental called with request: " +
+                              $"FrameNrCar: {rentalRequest.FrameNrCar}, " +
+                              $"StartDate: {rentalRequest.StartDate}, " +
+                              $"EndDate: {rentalRequest.EndDate}, " +
+                              $"Price: {rentalRequest.Price}");
 
             // Valideer de invoer
             if (rentalRequest == null)
@@ -86,7 +92,8 @@ namespace WPR.Controllers
                         try
                         {
                             // Controleer of de Vehicle_User entry al bestaat
-                            string checkVehicleUserQuery = "SELECT COUNT(*) FROM Vehicle_User WHERE FrameNrCar = @FrameNrCar AND Customer = @Customer";
+                            string checkVehicleUserQuery =
+                                "SELECT COUNT(*) FROM Vehicle_User WHERE FrameNrCar = @FrameNrCar AND Customer = @Customer";
                             using (var command = connection.CreateCommand())
                             {
                                 command.CommandText = checkVehicleUserQuery;
@@ -107,7 +114,8 @@ namespace WPR.Controllers
                                 if (count > 0)
                                 {
                                     // Werk de bestaande Vehicle_User entry bij
-                                    string updateVehicleUserQuery = "UPDATE Vehicle_User SET FrameNrCar = @FrameNrCar WHERE Customer = @Customer";
+                                    string updateVehicleUserQuery =
+                                        "UPDATE Vehicle_User SET FrameNrCar = @FrameNrCar WHERE Customer = @Customer";
                                     using (var updateCommand = connection.CreateCommand())
                                     {
                                         updateCommand.CommandText = updateVehicleUserQuery;
@@ -130,7 +138,8 @@ namespace WPR.Controllers
                                 else
                                 {
                                     // Voeg in de Vehicle_User tabel
-                                    string insertVehicleUserQuery = "INSERT INTO Vehicle_User (FrameNrCar, Customer) VALUES (@FrameNrCar, @Customer)";
+                                    string insertVehicleUserQuery =
+                                        "INSERT INTO Vehicle_User (FrameNrCar, Customer) VALUES (@FrameNrCar, @Customer)";
                                     using (var insertCommand = connection.CreateCommand())
                                     {
                                         insertCommand.CommandText = insertVehicleUserQuery;
@@ -182,7 +191,7 @@ VALUES (@StartDate, @EndDate, @Price, @FrameNrCar, @Customer, @Status, @Reviewed
 
                                 var statusParam = command.CreateParameter();
                                 statusParam.ParameterName = "@Status";
-                                statusParam.Value = "requested"; 
+                                statusParam.Value = "requested";
 
                                 var reviewedByParam = command.CreateParameter();
                                 reviewedByParam.ParameterName = "@ReviewedBy";
@@ -194,7 +203,7 @@ VALUES (@StartDate, @EndDate, @Price, @FrameNrCar, @Customer, @Status, @Reviewed
                                 }
                                 else
                                 {
-                                    reviewedByParam.Value = DBNull.Value; 
+                                    reviewedByParam.Value = DBNull.Value;
                                 }
 
                                 command.Parameters.Add(startDateParam);
@@ -210,6 +219,36 @@ VALUES (@StartDate, @EndDate, @Price, @FrameNrCar, @Customer, @Status, @Reviewed
 
                             transaction.Commit();
                             Console.WriteLine("Transactie succesvol gecommit.");
+
+                            string carName = await _vehicleRepo.GetVehicleNameAsync(int.Parse(rentalRequest.FrameNrCar));
+                            if (string.IsNullOrEmpty(carName))
+                            {
+                                return NotFound(new { message = "Car name not found for the frameNr" });
+                            }
+
+                            string carPlate = await _vehicleRepo.GetVehiclePlateAsync(int.Parse(rentalRequest.FrameNrCar));
+                            if (string.IsNullOrEmpty(carPlate))
+                            {
+                                return NotFound(new { message = "License plate not found for frameNr" });
+                            }
+
+                            string carColor =
+                                await _vehicleRepo.GetVehicleColorAsync(int.Parse(rentalRequest.FrameNrCar));
+                            if (string.IsNullOrEmpty(carColor))
+                            {
+                                return NotFound(new { message = "Color not found for frameNr" });
+                            }
+
+                            await _emailService.SendRentalConfirmMail(
+                                toEmail: rentalRequest.Email,
+                                carName: carName,
+                                carColor: carColor,
+                                carPlate: carPlate,
+                                startDate: rentalRequest.StartDate,
+                                endDate: rentalRequest.EndDate,
+                                price: rentalRequest.Price.ToString()
+                            );
+
                             return Ok(new { message = "Huur succesvol aangemaakt." });
                         }
                         catch (Exception transEx)
@@ -224,7 +263,8 @@ VALUES (@StartDate, @EndDate, @Price, @FrameNrCar, @Customer, @Status, @Reviewed
             catch (Exception ex)
             {
                 Console.WriteLine($"Fout in CreateRental: {ex.Message}\n{ex.StackTrace}");
-                return StatusCode(500, new { message = $"Er is een fout opgetreden bij het aanmaken van de huur: {ex.Message}" });
+                return StatusCode(500,
+                    new { message = $"Er is een fout opgetreden bij het aanmaken van de huur: {ex.Message}" });
             }
         }
 
@@ -232,7 +272,8 @@ VALUES (@StartDate, @EndDate, @Price, @FrameNrCar, @Customer, @Status, @Reviewed
         public async Task<IActionResult> GetAllUserRentalsAsync()
         {
             string loginCookie = HttpContext.Request.Cookies["LoginSession"];
-            int userId = Convert.ToInt32(_crypt.Decrypt(loginCookie));;
+            int userId = Convert.ToInt32(_crypt.Decrypt(loginCookie));
+            ;
 
             try
             {
