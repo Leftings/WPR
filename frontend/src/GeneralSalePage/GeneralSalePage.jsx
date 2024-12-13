@@ -10,6 +10,7 @@ function GeneralSalePage() {
     const [vehicles, setVehicles] = useState([]);
     const [isEmployee, setIsEmployee] = useState(null);
     const [error, setError] = useState(null);
+    const [loading, setLoading] = useState(false);
     const [filter, setFilter] = useState('');
 
     useEffect(() => {
@@ -36,6 +37,7 @@ function GeneralSalePage() {
 
     useEffect(() => {
         const fetchData = async () => {
+            setLoading(true);
             try {
                 let url;
 
@@ -66,6 +68,8 @@ function GeneralSalePage() {
             } catch (error) {
                 console.error('Failed to fetch vehicles:', error);
                 setError('Failed to load vehicles');
+            } finally {
+                setLoading(false);
             }
         };
 
@@ -95,40 +99,44 @@ function GeneralSalePage() {
                 )}
 
                 <div className="car-sale-section">
-                    <h1 className="title">Vehicles for Sale</h1>
-                    <div className="car-grid">
-                        {vehicles.length > 0 ? (
-                            vehicles.map(vehicle => (
-                                <div key={vehicle.frameNr} className="car-card">
-                                    <div className="car-blob">
-                                        {vehicle.image ? (
-                                            <img
-                                                className="car-blob"
-                                                src={`data:image/jpeg;base64,${vehicle.image}`}
-                                                alt={`${vehicle.brand || 'Unknown'} ${vehicle.type || ''}`}
-                                            />
-                                        ) : (
-                                            <p>Image not available</p>
-                                        )}
-                                    </div>
-                                    <div className="car-info">
-                                        <h2 className="car-name">{`${vehicle.brand || 'Unknown'} ${vehicle.type || ''}`}</h2>
-                                        <p className="car-price">{`$${vehicle.price}`}</p>
-                                        <p className="car-description">{vehicle.description || 'No description available'}</p>
+                    <h1 className="title-text">Voertuigen</h1>
+                    {loading ? (
+                        <div className="loading-spinner"></div>
+                    ) : (
+                        <div className="car-grid">
+                            {vehicles.length > 0 ? (
+                                vehicles.map(vehicle => (
+                                    <div key={vehicle.frameNr} className="car-card">
+                                        <div className="car-blob">
+                                            {vehicle.image ? (
+                                                <img
+                                                    className="car-blob"
+                                                    src={`data:image/jpeg;base64,${vehicle.image}`}
+                                                    alt={`${vehicle.brand || 'Unknown'} ${vehicle.type || ''}`}
+                                                />
+                                            ) : (
+                                                <p>Image not available</p>
+                                            )}
+                                        </div>
+                                        <div className="car-info">
+                                            <h2 className="car-name">{`${vehicle.brand || 'Unknown'} ${vehicle.type || ''}`}</h2>
+                                            <p className="car-price">{`$${vehicle.price}`}</p>
+                                            <p className="car-description">{vehicle.description || 'No description available'}</p>
+                                        </div>
                                         <Link
                                             to={`/vehicle/${vehicle.frameNr}`}
                                             state={{ vehicle }}
-                                            className="view-details-link"
+                                            className="huur-link"
                                         >
                                             View Details
                                         </Link>
                                     </div>
-                                </div>
-                            ))
-                        ) : (
-                            <p>No vehicles found for the selected filter.</p>
-                        )}
-                    </div>
+                                ))
+                            ) : (
+                                <p>No vehicles found for the selected filter.</p>
+                            )}
+                        </div>
+                    )}
                 </div>
             </div>
             <GeneralFooter />
