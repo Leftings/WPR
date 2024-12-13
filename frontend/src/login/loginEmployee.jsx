@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { isRouteErrorResponse, Link, useNavigate } from 'react-router-dom';
 import './login.css';
+import logo from '../assets/logo.svg';
+import logoHover from '../assets/logo-green.svg';
 import GeneralFooter from "../GeneralBlocks/footer/footer.jsx";
 
 const BACKEND_URL = import.meta.env.VITE_REACT_APP_BACKEND_URL ?? 'http://localhost:5165';
@@ -67,6 +69,7 @@ function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const navigate = useNavigate();
 
   const toggleUserType = () => {
@@ -126,19 +129,34 @@ function Login() {
         });
   };
 
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
+
   return (
       <>
-        <header>
-          <div id="left"></div>
-          <div id="carLink">
-            <Link to="/">CarAndAll</Link>
-          </div>
-          <div id="right">
-            <Link to="#" onClick={toggleUserType}>
-              {isEmployee ? 'Klant' : 'Medewerker'}
-            </Link>
-          </div>
+        <link rel="preload" as="image" href={logoHover} />
+        <header className="header">
+          <Link to="/">
+            <div id="left" className="logo-container">
+              <img src={logo} alt="Car And All Logo" className="logo-image"/>
+              <h1 className="logo">Car And All</h1>
+            </div>
+          </Link>
+          <button id = "right" className="hamburger-menu" onClick={toggleMenu}>
+            &#9776; {/* Unicode for hamburger icon */}
+          </button>
         </header>
+        {isMenuOpen ? (
+            <nav>
+              <ul className="nav-links">
+                <li><Link to="/GeneralSalePage">Zoek Auto's</Link></li>
+                <li><Link to="/about">Over ons</Link></li>
+                <li><Link to="/contact">Contact</Link></li>
+                <li><Link to="#" onClick={toggleUserType}>{isEmployee ? 'Klant' : 'Medewerker'}</Link></li>
+              </ul>
+            </nav>
+        ) : null}
 
         <main>
           {isEmployee ? (
