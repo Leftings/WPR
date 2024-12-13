@@ -26,6 +26,35 @@ function GetReview(id) {
     });
 }
 
+function SetStatus(id, status, setNewRequests) {
+  return fetch(`${BACKEND_URL}/api/AcceptHireRequest/answerHireRequest`, {
+    method: 'PATCH',
+    headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+    },
+    credentials: 'include',
+    body: JSON.stringify({ Id: id, Status: status }), 
+  })
+  .then(response => {
+      if (!response.ok) {
+        return response.json().then(data => {
+          console.error('error response: ', data);
+          throw new Error(data.message || 'Failed to process the request');
+        });
+      }
+      return response.json();
+    })
+  .then(() => {
+      setNewRequests((prevRequests) => prevRequests.filter((request) => request.ID !== id));
+    })  
+  .catch((error) => {
+    console.error(error);
+    return null;
+  });
+}
+
+
 function ReviewHireRequest() {
   const navigate = useNavigate();
   const [newRequests, setNewRequests] = useState([]);
@@ -146,10 +175,9 @@ function ReviewHireRequest() {
                         <p><strong>Start Datum:</strong> {new Date(request.StartDate).toLocaleDateString()}</p>
                         <p><strong>Eind Datum:</strong> {new Date(request.EndDate).toLocaleDateString()}</p>
                         <p><strong>Totaal Prijs:</strong> €{request.Price}</p>
-                        <p><strong>Status:</strong> {request.Status}</p>
                         <div id="buttons">
-                          <button className="accept">Accepteren</button>
-                          <button className="deny">Weigeren</button>
+                          <button className="accept" onClick={() => SetStatus(request.ID, 'accepted', setNewRequests)}>Accepteren</button>
+                          <button className="deny" onClick={() => SetStatus(request.ID, 'denied', setNewRequests)}>Weigeren</button>
                         </div>
                       </>
                     )}

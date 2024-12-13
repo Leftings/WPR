@@ -1,6 +1,11 @@
+using System.ComponentModel.DataAnnotations;
+
 namespace Employee.Controllers.acceptHireRequest;
 
 public class HireRequest
 {
-    public string Id { get; set; }
+    [Required]
+    public int Id { get; set; }
+    [Required]
+    public string? Status { get; set; }
 }

@@ -8,8 +8,8 @@ using Employee.Repository;
 using MySql.Data.MySqlClient;
 using Employee.Cryption;
 
-[Route("api/[controller]")]
 [ApiController]
+[Route("api/[controller]")]
 public class AcceptHireRequestController : ControllerBase
 {
     private readonly Connector _connector;
@@ -21,12 +21,6 @@ public class AcceptHireRequestController : ControllerBase
         _connector = connector ?? throw new ArgumentNullException(nameof(connector));
         _userRepository = userRepository ?? throw new ArgumentNullException(nameof(userRepository));
         _crypt = crypt ?? throw new ArgumentNullException(nameof(crypt));
-    }
-
-    [HttpPatch("answerHireRequest")]
-    public async Task<IActionResult> AnswerHireRequestAsync([FromForm] acceptHireRequestRequest request)
-    {
-        return Ok();
     }
 
     [HttpGet("getReviewsIds")]
@@ -51,20 +45,26 @@ public class AcceptHireRequestController : ControllerBase
         return Ok(new { message = review.data });
     }
 
-    [HttpGet("GetInProgressFromUser")]
-    public async Task<IActionResult> GetInProgressFromUserAsync()
+    [HttpPatch("answerHireRequest")]
+    public async Task<IActionResult> AnswerHireRequestAsync([FromBody] HireRequest request)
     {
-        var inProgress = await _userRepository.GetInReviewFromUserAsync(GetCurrentUserId());
+        Console.WriteLine($"Received Request - Id: {request.Id}, Status: {request.Status}");
 
-        return Ok(new { message = inProgress.data});
+        if (request == null)
+        {
+            return BadRequest(new { message = "Invalid request body" });
+        }
+
+        var setStatus = await _userRepository.SetStatusAsync(request.Id.ToString(), request.Status, GetCurrentUserId());
+
+        if (setStatus.status)
+        {
+            return Ok(new { message = setStatus.message });
+        }
+
+        return BadRequest(new { message = setStatus.message });
     }
 
-    [HttpGet("getAllRequests")]
-    public async Task<IActionResult> GetAllRequestsAsync()
-    {
-        var available = await _userRepository.GetRequestedAsync();
-        return Ok(new { message = available.data });
-    }
 
     private string GetCurrentUserId()
     {
