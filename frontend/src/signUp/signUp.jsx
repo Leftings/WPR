@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { getErrorMessage } from '../utils/errorHandler.jsx'
 import "./signUp.css"
+import GeneralHeader from "../GeneralBlocks/header/header.jsx";
+import GeneralFooter from "../GeneralBlocks/footer/footer.jsx";
 
 const BACKEND_URL = import.meta.env.VITE_REACT_APP_BACKEND_URL ?? 'http://localhost:5165';
 
@@ -98,22 +100,7 @@ function SignUp() {
 
     return (
         <>
-            <header>
-                <div id="aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa">
-                    <ul className="logo-link">
-                        <h2><Link to={"/"}>CarAndAll</Link></h2>
-                    </ul>
-                </div>
-
-                <nav id="right">
-                    <ul className="nav-links">
-                        <li><Link to="/cars">Zoek Auto's</Link></li>
-                        <li><Link to="/about">Over Ons</Link></li>
-                        <li><Link to="/contact">Contact</Link></li>
-                    </ul>
-                </nav>
-
-            </header>
+            <GeneralHeader />
 
             <div>
                 <div id="aanmelden">
@@ -237,8 +224,7 @@ function SignUp() {
                     {error && <p style={{color: 'red'}}>{error}</p>}
                 </div>
             </div>
-
-            <footer></footer>
+            
         </>
     );
 }
