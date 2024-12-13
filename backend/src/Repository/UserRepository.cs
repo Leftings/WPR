@@ -74,9 +74,10 @@ public class UserRepository : IUserRepository
         */
 
         string query = $@"SELECT password FROM {table} WHERE LOWER(email) = LOWER(@Email)";
+        Console.WriteLine(table);
+        Console.WriteLine(query);
 
         using (var connection = _connector.CreateDbConnection())
-        
         using (var command = new MySqlCommand(query, (MySqlConnection)connection))
         {
             command.Parameters.AddWithValue("@Email", username);
@@ -86,6 +87,7 @@ public class UserRepository : IUserRepository
                 if (await reader.ReadAsync())
                 {
                     string passwordUser = reader.GetString("Password");
+                    Console.WriteLine($"{_hash.createHash(password)} | {passwordUser} || {_hash.createHash(password).Equals(passwordUser)}");
                     return _hash.createHash(password).Equals(passwordUser);
                 }
 
@@ -226,11 +228,11 @@ public class UserRepository : IUserRepository
         }
     }
 
-    public async Task<int> GetUserIdAsync(string email)
+    public async Task<string> GetUserIdAsync(string email, string table)
     {
         try
         {
-            string query = "SELECT ID FROM UserCustomer WHERE Email = @E";
+            string query = $"SELECT ID FROM {table} WHERE Email = @E";
 
             using (var connection = _connector.CreateDbConnection())
             using (var command = new MySqlCommand(query, (MySqlConnection)connection))
@@ -241,16 +243,16 @@ public class UserRepository : IUserRepository
 
                 if (result != null)
                 {
-                    return Convert.ToInt32(result);
+                    return result.ToString();
                 }
 
-                return -1;
+                return "No user found";
             }
         }
         catch (Exception ex)
         {
             await Console.Error.WriteLineAsync($"Unexpected error: {ex.Message}");
-            return -1;
+            return "No user found";
         }
     }
 
@@ -342,17 +344,21 @@ public class UserRepository : IUserRepository
 
     public async Task<(bool status, string message)> DeleteUserAsync(string userId)
     {
-        Console.WriteLine("TEST");
+        Console.WriteLine("Deleting user");
         try
         {
             string queryCustomer = "DELETE FROM UserCustomer WHERE ID = @ID";
             string queryEmployee = "DELETE FROM UserEmployee WHERE ID = @ID";
             string queryPersonal = "DELETE FROM UserPersonal WHERE ID = @ID";
+            string queryAbonnement = "DELETE FROM Abonnement WHERE Customer = @ID";
+            string queryVehicleUser = "DELETE FROM Vehicle_User WHERE Customer = @ID";
 
             using (var connection = _connector.CreateDbConnection())
             using (var customerCommand = new MySqlCommand(queryCustomer, (MySqlConnection)connection))
             using (var employeeCommand = new MySqlCommand(queryEmployee, (MySqlConnection)connection))
             using (var personalCommand = new MySqlCommand(queryPersonal, (MySqlConnection)connection))
+            using (var abonnementCommand = new MySqlCommand(queryAbonnement, (MySqlConnection)connection))
+            using (var vehicleUserCommand = new MySqlCommand(queryVehicleUser, (MySqlConnection)connection))
 
             {
                 Console.WriteLine(userId);
@@ -362,9 +368,13 @@ public class UserRepository : IUserRepository
                 customerCommand.Parameters.AddWithValue("@ID", userIdInt);
                 employeeCommand.Parameters.AddWithValue("@ID", userIdInt);
                 personalCommand.Parameters.AddWithValue("@ID", userIdInt);
+                vehicleUserCommand.Parameters.AddWithValue("@ID", userIdInt);
+                abonnementCommand.Parameters.AddWithValue("@ID", userIdInt);
 
                 await employeeCommand.ExecuteNonQueryAsync();
                 await personalCommand.ExecuteNonQueryAsync();
+                await abonnementCommand.ExecuteNonQueryAsync();
+                await vehicleUserCommand.ExecuteNonQueryAsync();
                 
                 int rowsAffected = await customerCommand.ExecuteNonQueryAsync();
 
@@ -430,5 +440,87 @@ public class UserRepository : IUserRepository
 
         return (true, query += $"WHERE ID = {data[0][1]}");
     }
+
+    public async Task<(bool status, string message)> GetKindEmployeeAsync(string userId)
+    {
+        try
+        {
+            string query = "SELECT Office FROM Staff WHERE ID = @I";
+
+            using (var connection = _connector.CreateDbConnection())
+            using (var command = new MySqlCommand(query, (MySqlConnection)connection))
+            {
+                Console.WriteLine(userId);
+                Console.WriteLine("XXXXXXXXXXXXXXXXXXXXXXXXXX");
+                command.Parameters.AddWithValue("@I", userId);
+
+                var result = await command.ExecuteScalarAsync();
+
+                return (true, result.ToString());
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex);
+            return (false, ex.ToString());
+        }
+
+    }
+
+    public async Task<(bool status, string message)> AddStaff(Object[] personData)
+    {
+        try
+        {
+            string query = "INSERT INTO STAFF (FirstName, LastName, Password, Email, Office) VALUES (@F, @L, @P, @E, @O)";
+
+            using (var connection = _connector.CreateDbConnection())
+            using (var command = new MySqlCommand(query, (MySqlConnection)connection))
+            {
+                command.Parameters.AddWithValue("@F", personData[0]);
+                command.Parameters.AddWithValue("@L", personData[1]);
+                command.Parameters.AddWithValue("@P", _hash.createHash(personData[2].ToString()));
+                command.Parameters.AddWithValue("@E", personData[3]);
+                command.Parameters.AddWithValue("@O", personData[4]);
+
+                if (await command.ExecuteNonQueryAsync() > 0)
+                    {
+                        return (true, "Data inserted");
+                    }
+                    
+                    return (false, "Data not inserted");
+            }
+        }
+        catch(MySqlException ex)
+        {
+            return (false, ex.ToString());
+        }
+    }
     
+    public async Task<bool> IsUserEmployee(int id)
+    {
+        try
+        {
+            string query = "SELECT ID FROM UserEmployee WHERE ID = @id";
+
+            using (var connection = _connector.CreateDbConnection())
+            using (var command = new MySqlCommand(query, (MySqlConnection)connection))
+            {
+                command.Parameters.AddWithValue("@id", id);
+
+                var result = await command.ExecuteScalarAsync();
+
+                if (result != null && result.ToString() == id.ToString())
+                {
+                    return true;
+                }
+
+                return false;
+            }
+        }
+        catch (Exception ex)
+        {
+            await Console.Error.WriteLineAsync($"Unexpected error: {ex.Message}");
+            return false;
+        }
+    }
 }

@@ -1,4 +1,6 @@
 ﻿using Employee.Database;
+using Employee.Hashing;
+using Microsoft.VisualBasic;
 using MySql.Data.MySqlClient;
 
 namespace Employee.Repository;
@@ -10,10 +12,12 @@ namespace Employee.Repository;
 public class UserRepository : IUserRepository
 {
     private readonly Connector _connector;
+    private readonly Hash _hash;
 
-    public UserRepository(Connector connector)
+    public UserRepository(Connector connector, Hash hash)
     {
         _connector = connector ?? throw new ArgumentNullException(nameof(connector));
+        _hash = hash ?? throw new ArgumentNullException(nameof (hash));
     }
     
     // vehicleBlob is het pad naar de afbeelding
@@ -44,6 +48,265 @@ public class UserRepository : IUserRepository
             }
         }
         catch (MySqlException ex)
+        {
+            return (false, ex.Message);
+        }
+    }
+
+    public async Task<(bool status, string message)> AddStaff(Object[] personData)
+    {
+        try
+        {
+            string query = "INSERT INTO Staff (FirstName, LastName, Password, Email, Office) VALUES (@F, @L, @P, @E, @O)";
+
+            using (var connection = _connector.CreateDbConnection())
+            using (var command = new MySqlCommand(query, (MySqlConnection)connection))
+            {
+                command.Parameters.AddWithValue("@F", personData[0]);
+                command.Parameters.AddWithValue("@L", personData[1]);
+                command.Parameters.AddWithValue("@P", _hash.createHash(personData[2].ToString()));
+                command.Parameters.AddWithValue("@E", personData[3]);
+                command.Parameters.AddWithValue("@O", personData[4]);
+
+                if (await command.ExecuteNonQueryAsync() > 0)
+                    {
+                        return (true, "Data inserted");
+                    }
+                    
+                    return (false, "Data not inserted");
+            }
+        }
+        catch(MySqlException ex)
+        {
+            return (false, ex.ToString());
+        }
+    }
+
+    public async Task<(bool status, string message)> checkUsageEmailAsync(string email)
+    {
+        try
+        {
+            string query = "SELECT COUNT(*) FROM Staff WHERE LOWER(Email) = LOWER(@E)";
+
+            using (var connection = _connector.CreateDbConnection())
+            using (var command = new MySqlCommand(query, (MySqlConnection)connection))
+            {
+                command.Parameters.AddWithValue("@E", email);
+                bool inUse = Convert.ToInt32(await command.ExecuteScalarAsync()) > 0;
+
+                Console.WriteLine(inUse);
+                return (inUse, inUse ? "Email detected" : "No email detected");
+            }
+        }
+
+        catch (MySqlException ex)
+        {
+            await Console.Error.WriteLineAsync($"Database error: {ex.Message}");
+            return (false, ex.Message);
+        }
+        catch (Exception ex)
+        {
+            await Console.Error.WriteLineAsync($"Unexpected error: {ex.Message}");
+            return (false, ex.Message);
+        }
+    }
+
+
+    private async Task<(bool status, Dictionary<string, object> data)> GetUserDataAsync(string userid)
+    {
+        try
+        {
+            string query = "SELECT FirstName, LastName, Adres, Email, TelNum FROM UserCustomer WHERE ID = @I";
+
+            using (var connection = _connector.CreateDbConnection())
+            using (var command = new MySqlCommand(query, (MySqlConnection)connection))
+            {
+                command.Parameters.AddWithValue("@I", userid);
+
+                using (var reader = await command.ExecuteReaderAsync())
+                {
+                    await reader.ReadAsync();
+                    
+                    var row = new Dictionary<string, object>();
+
+                    for (int i = 0; i < reader.FieldCount; i++)
+                    {
+                        row[reader.GetName(i)] = reader.GetValue(i);
+                    }
+
+                    return (true, row);
+                }
+            }
+        }
+        catch (MySqlException ex)
+        {
+            await Console.Error.WriteLineAsync($"Database error: {ex.Message}");
+            return (false, null);
+        }
+        catch (Exception ex)
+        {
+            await Console.Error.WriteLineAsync($"Unexpected error: {ex.Message}");
+            return (false, null);
+        }
+    }
+
+    private async Task<(bool status, Dictionary<string, object> data)> GetVehicleData(string carId)
+    {
+        try
+        {
+            string query = "SELECT Brand, Type, LicensePlate FROM Vehicle WHERE FrameNr = @I";
+
+            using (var connection = _connector.CreateDbConnection())
+            using (var command = new MySqlCommand(query, (MySqlConnection)connection))
+            {
+                command.Parameters.AddWithValue("@I", carId);
+
+                using (var reader = await command.ExecuteReaderAsync())
+                {
+                    await reader.ReadAsync();
+                    
+                    var row = new Dictionary<string, object>();
+
+                    for (int i = 0; i < reader.FieldCount; i++)
+                    {
+                        row[reader.GetName(i)] = reader.GetValue(i);
+                        Console.WriteLine($"{reader.GetName(i)} | {reader.GetValue(i)}");
+                    }
+
+                    return (true, row);
+                }
+            }
+        }
+        catch (MySqlException ex)
+        {
+            await Console.Error.WriteLineAsync($"Database error: {ex.Message}");
+            return (false, null);
+        }
+        catch (Exception ex)
+        {
+            await Console.Error.WriteLineAsync($"Unexpected error: {ex.Message}");
+            return (false, null);
+        }
+    }
+
+    public async Task<(bool status, List<string> ids)> GetReviewIdsAsync()
+    {
+        try
+        {
+            string query = "SELECT ID FROM Abonnement WHERE Status = 'requested'";
+
+            using (var connection = _connector.CreateDbConnection())
+            using (var command = new MySqlCommand(query, (MySqlConnection)connection))
+            {
+                using (var reader = await command.ExecuteReaderAsync())
+                {
+                    List<string> ids = new List<string>();
+                    while (await reader.ReadAsync())
+                    {
+                        for (int i = 0; i < reader.FieldCount; i++)
+                        {
+                            ids.Add(reader.GetValue(i).ToString());
+                        }
+                    }
+
+                    return (true, ids);
+                }
+            }
+        }
+        catch (MySqlException ex)
+        {
+            await Console.Error.WriteLineAsync(ex.Message);
+            return (false, null);
+        }
+        catch (Exception ex)
+        {
+            await Console.Error.WriteLineAsync(ex.Message);
+            return (false, null);
+        }
+    }
+
+    public async Task<(bool status, Dictionary<string, object> data)> GetReviewAsync(string id)
+    {
+        try
+        {
+            string query = "SELECT * FROM Abonnement WHERE ID = @I";
+
+            using (var connection = _connector.CreateDbConnection())
+            using (var command = new MySqlCommand(query, (MySqlConnection)connection))
+            {
+                command.Parameters.AddWithValue("@I", id);
+
+                using (var reader = await command.ExecuteReaderAsync())
+                {
+                    await reader.ReadAsync();
+                    
+                    var row = new Dictionary<string, object>();
+
+                    var getUserData = GetUserDataAsync(reader.GetValue(5).ToString());
+                    var getVehiceData = GetVehicleData(reader.GetValue(4).ToString());
+
+                    for (int i = 0; i < reader.FieldCount; i++)
+                    {
+                        row[reader.GetName(i)] = reader.GetValue(i);
+                    }
+
+                    var userData = await getUserData;
+
+                    foreach (var userField in userData.data)
+                    {
+                        row[userField.Key] = userField.Value;
+                    }
+
+                    var vehicleData = await getVehiceData;
+
+                    foreach (var vehicelField in vehicleData.data)
+                    {
+                        row[vehicelField.Key] = vehicelField.Value;
+                    }
+
+                    return (true, row);
+                }
+            }
+        }
+        catch (MySqlException ex)
+        {
+            await Console.Error.WriteLineAsync($"Database error: {ex.Message}");
+            return (false, null);
+        }
+        catch (Exception ex)
+        {
+            await Console.Error.WriteLineAsync($"Unexpected error: {ex.Message}");
+            return (false, null);
+        }
+    }
+
+    public async Task<(bool status, string message)> SetStatusAsync(string id, string status, string employee)
+    {
+        try
+        {
+            Console.WriteLine(employee);
+            string query = "UPDATE Abonnement SET Status = @S, ReviewedBy = @E WHERE ID = @I";
+
+            using (var connection = _connector.CreateDbConnection())
+            using (var command = new MySqlCommand(query, (MySqlConnection)connection))
+            {
+                command.Parameters.AddWithValue("@S", status);
+                command.Parameters.AddWithValue("@E", employee);
+                command.Parameters.AddWithValue("@I", id);
+
+                if (await command.ExecuteNonQueryAsync() > 0)
+                {
+                    return (true, "Status updated");
+                }
+                
+                return (false, "Status not updated");
+            }
+        }
+        catch (MySqlException ex)
+        {
+            return (false, ex.Message);
+        }
+        catch (Exception ex)
         {
             return (false, ex.Message);
         }

@@ -11,6 +11,7 @@ using WPR.Database;
 using WPR.Repository;
 using WPR.Hashing;
 using System.Net;
+using WPR.Services;
 
 namespace WPR;
 
@@ -126,14 +127,17 @@ public class AppConfigure
             }
         }
     });
-
+    
     // Register services for Dependency Injection
     builder.Services.AddSingleton<EnvConfig>(); // Singleton for environment configuration
     builder.Services.AddTransient<Connector>(); // Transient for database connection.
+    builder.Services.AddScoped<VehicleRepository>();
     builder.Services.AddScoped<IUserRepository, UserRepository>(); // Scoped for user repository
+    builder.Services.AddScoped<IVehicleRepository, VehicleRepository>(); // Scoped for Vehicle Repository
     builder.Services.AddScoped<SessionHandler>(); // Scoped session handler
     builder.Services.AddScoped<Crypt>();
     builder.Services.AddScoped<Hashing.Hash>();
+    builder.Services.AddScoped<EmailService>();
 
     // Configure authentication with cookie-based authentication schema.
     builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
@@ -176,7 +180,7 @@ public class AppConfigure
     }
 
     app.UseCors("AllowSpecificOrigins");
-    app.UseHttpsRedirection();
+    /* app.UseHttpsRedirection(); */
     app.MapControllers();
     app.UseAuthorization();
     app.UseAuthentication();

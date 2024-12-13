@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import './addVehicle.css';
 import GeneralHeader from '../../GeneralBlocks/header/header';
@@ -7,11 +7,12 @@ import GeneralFooter from '../../GeneralBlocks/footer/footer';
 const BACKEND_URL = import.meta.env.VITE_REACT_APP_BACKEND_URL_EMPLOYEE ?? 'http://localhost:5276';
 
 function AddVehicle() {
-    const [kind, SetKind] = useState('car');
+    const navigate = useNavigate();
+    const [kind, SetKind] = useState('Car');
     const [brand, SetBrand] = useState('');
     const [type, SetType] = useState('');
     const [color, SetColor] = useState('');
-    const [licensPlate, SetLicensPlate] = useState('');
+    const [licensePlate, SetLicensePlate] = useState('');
     const [YoP, SetYoP] = useState('');
     const [price, SetPrice] = useState('');
     const [description, SetDescription] = useState('');
@@ -25,7 +26,7 @@ function AddVehicle() {
         formData.append('YoP', YoP);
         formData.append('Brand', brand);
         formData.append('Type', type);
-        formData.append('LicensPlate', licensPlate);
+        formData.append('LicensePlate', licensePlate);
         formData.append('Color', color);
         formData.append('Sort', kind);
         formData.append('Price', price);
@@ -49,11 +50,10 @@ function AddVehicle() {
             return response.json();
         })
         .then(vehicleData => {
-            SetKind('car');
             SetBrand('');
             SetType('');
             SetColor('');
-            SetLicensPlate('');
+            SetLicensePlate('');
             SetYoP('');
             SetPrice('');
             SetDescription('');
@@ -73,7 +73,7 @@ function AddVehicle() {
         let vehicleData = {
             kind,
             brand,
-            licensPlate,
+            licensePlate,
             YoP,
             price,
             description,
@@ -97,6 +97,27 @@ function AddVehicle() {
         SetError(errors);
     }
 
+    useEffect(() => {
+        fetch(`${BACKEND_URL}/api/Cookie/GetUserId` , {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            credentials: 'include',
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('No Cookie');
+                }
+                return response.json();
+            })
+            .catch(() => {
+                alert("Cookie was niet geldig");
+                navigate('/');
+            })
+    }, [navigate]);
+  
+
 
     return (
         <>
@@ -108,9 +129,9 @@ function AddVehicle() {
             <div id="kind" value={kind} onChange={(e) => SetKind(e.target.value)}>
                 <p>Soort voertuig</p>
                 <select name="vehicle">
-                    <option value="car">Auto</option>
-                    <option value="camper">Camper</option>
-                    <option value="caravan">Caravan</option>
+                    <option value="Car">Auto</option>
+                    <option value="Camper">Camper</option>
+                    <option value="Caravan">Caravan</option>
                 </select>
                 <br></br>
             </div>
@@ -127,9 +148,9 @@ function AddVehicle() {
                 <p>Kleur voertuig</p>
                 <input value={color} onChange={(e) => SetColor(e.target.value)}></input>
             </div>
-            <div id="licensPlate">
+            <div id="licensePlate">
                 <p>Nummerbord voertuig</p>
-                <input value={licensPlate} onChange={(e) => SetLicensPlate(e.target.value)}></input>
+                <input value={licensePlate} onChange={(e) => SetLicensPlate(e.target.value)}></input>
                 <br></br>
             </div>
             <div id="YoP">

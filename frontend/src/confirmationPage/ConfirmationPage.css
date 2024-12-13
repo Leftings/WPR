@@ -1,0 +1,92 @@
+﻿.confirmation-page {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: #f9f9f9;
+    color: #333;
+    font-family: Arial, sans-serif;
+}
+
+.content {
+    flex: 1;
+    padding: 20px;
+    text-align: center;
+}
+
+.title {
+    font-size: 2em;
+    color: #27ae60;
+    margin-bottom: 20px;
+}
+
+.confirmation-details {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin: 0 auto 20px;
+    max-width: 600px;
+    text-align: left;
+}
+
+.confirmation-details h3 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.confirmation-details p {
+    margin: 5px 0;
+    font-size: 1.1em;
+}
+
+.payment-section {
+    margin: 20px auto;
+    max-width: 600px;
+    text-align: center;
+}
+
+.qr-code-container {
+    margin: 20px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.qr-code {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+}
+
+.payment-note {
+    font-size: 0.9em;
+    color: #999;
+    margin-top: 10px;
+}
+
+.back-button {
+    padding: 10px 20px;
+    font-size: 1.2em;
+    color: #fff;
+    background-color: #27ae60;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: background-color 0.3s ease;
+}
+
+.back-button:hover {
+    background-color: #2ecc71;
+}
+
+.error-message {
+    color: red;
+    margin: 20px;
+    text-align: center;
+}

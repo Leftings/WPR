@@ -21,13 +21,13 @@ public class AddVehicleController : ControllerBase
     }
 
     [HttpPost("addVehicle")]
+    [ApiExplorerSettings(IgnoreApi = true)]
     public async Task<IActionResult> AddVehicleAsync([FromForm] AddVehicleRequest request, [FromForm] IFormFile vehicleBlob)
     {
         try
         {
             byte[] vehicleBlobBytes = null;
-            
-            // Read the file into a byte array
+
             if (vehicleBlob != null)
             {
                 using (var memoryStream = new MemoryStream())
@@ -38,24 +38,26 @@ public class AddVehicleController : ControllerBase
             }
 
             var status = await _userRepository.AddVehicleAsync(
-            request.YoP,
-            request.Brand,
-            request.Type,
-            request.LicensePlate,
-            request.Color,
-            request.Sort,
-            request.Price,
-            request.Description,
-            vehicleBlobBytes );
+                request.YoP,
+                request.Brand,
+                request.Type,
+                request.LicensePlate,
+                request.Color,
+                request.Sort,
+                request.Price,
+                request.Description,
+                vehicleBlobBytes);
 
             if (status.status)
             {
                 return Ok(new { status.message });
             }
             return BadRequest(new { status.message });
-        } catch(Exception ex)
+        }
+        catch (Exception ex)
         {
             return StatusCode(500, new { status = false, message = ex.Message });
         }
     }
+
 }

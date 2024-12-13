@@ -88,4 +88,40 @@ public class CookieController : ControllerBase
         }
         return Ok(new { message = "User Logged Out"});
     }
+
+    [HttpGet("GetKindEmployee")]
+    public async Task<IActionResult> GetKindEmployeeAsync()
+    {
+        string employeeCookie = HttpContext.Request.Cookies["LoginEmployeeSession"];
+        Console.WriteLine(employeeCookie);
+
+        if (string.IsNullOrEmpty(employeeCookie))
+        {
+            return BadRequest(new { message = "No Cookie" });
+        }
+
+        try
+        {
+            (bool status, string message) kindEmployee = await _userRepository.GetKindEmployeeAsync(_crypt.Decrypt(employeeCookie));
+
+            if (kindEmployee.status)
+            {
+                Console.WriteLine(kindEmployee.message);
+                return Ok(new { kindEmployee.message });
+            }
+            
+            return BadRequest(new { message = "No office found" });
+        } 
+        catch
+        {
+            Response.Cookies.Append("LoginSessionEmployee", "Invalid cookie", new CookieOptions
+            {
+                HttpOnly = true,
+                Secure = true,
+                Expires = DateTimeOffset.UtcNow.AddDays(-1)
+            });
+            
+            return BadRequest(new { message = "Invalid Cookie, new cookie set" });
+        }
+    }
 }

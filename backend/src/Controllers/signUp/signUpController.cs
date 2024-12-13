@@ -1,3 +1,4 @@
+using WPR.Services;
 using WPR.Utils;
 
 namespace WPR.Controllers.SignUp;
@@ -8,6 +9,7 @@ using System;
 using WPR.Repository;
 using WPR.Hashing;
 using WPR.Data;
+using Microsoft.VisualBasic;
 
 [Route("api/[controller]")]
 [ApiController]
@@ -17,13 +19,15 @@ public class SignUpController : ControllerBase
     private readonly IUserRepository _userRepository;
     private readonly EnvConfig _envConfig;
     private readonly Hash _hash;
+    private readonly EmailService _emailService;
 
-    public SignUpController(Connector connector, IUserRepository userRepository, EnvConfig envConfig, Hash hash)
+    public SignUpController(Connector connector, IUserRepository userRepository, EnvConfig envConfig, Hash hash, EmailService emailService)
     {
         _connector = connector ?? throw new ArgumentNullException(nameof(connector));
         _userRepository = userRepository ?? throw new ArgumentNullException(nameof(userRepository));
         _envConfig = envConfig ?? throw new ArgumentNullException(nameof(envConfig));
         _hash = hash ?? throw new ArgumentNullException(nameof(hash));
+        _emailService = emailService ?? throw new ArgumentNullException(nameof(emailService));
     }
 
     private bool IsFilledIn(SignUpRequest signUpRequest)
@@ -110,7 +114,10 @@ public class SignUpController : ControllerBase
 
                         return BadRequest(new { personal.message });
                     }
-                    return Ok(new { personal.message });
+
+                    await _emailService.SendWelcomeEmail(signUpRequest.Email);
+                    
+                    return Ok(new { message = "Account created successfully. Please check your email to confirm your account" });
                 }
                 else
                 {
@@ -191,7 +198,7 @@ public class SignUpController : ControllerBase
                     {
                         signUpRequest.Adres,
                         signUpRequest.TelNumber,
-                        signUpRequest.Password,
+                        _hash.createHash(signUpRequest.Password),
                         signUpRequest.Email,
                         signUpRequest.FirstName,
                         signUpRequest.LastName
@@ -210,7 +217,7 @@ public class SignUpController : ControllerBase
                         return BadRequest(new { employee.status });
                     }
 
-
+                    await _emailService.SendWelcomeEmail(signUpRequest.Email);
                     return Ok(new { employee.status });
                 }
                 else
@@ -237,7 +244,6 @@ public class SignUpController : ControllerBase
                     transaction.Commit();
                 }
             }
-        }
-        
+        }    
     }
 }

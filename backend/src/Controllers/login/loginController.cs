@@ -32,15 +32,33 @@ public class LoginController : ControllerBase
 
         try
         {
-            int userId = await _userRepository.GetUserIdAsync(loginRequest.Email);
+            string table;
 
-            if (userId <= 0)
+            if (loginRequest.IsEmployee)
+            {
+                table = "Staff";
+            }
+            else
+            {
+                table = "UserCustomer";
+            }
+
+            string userId = await _userRepository.GetUserIdAsync(loginRequest.Email, table);
+
+            if (userId.Equals("No user found"))
             {
                 return BadRequest(new { message = "User ID not found." });
             }
             
-            _sessionHandler.CreateCookie(Response.Cookies, "LoginSession", _crypt.Encrypt(userId.ToString()));
-
+            if (loginRequest.IsEmployee)
+            {
+                _sessionHandler.CreateCookie(Response.Cookies, "LoginEmployeeSession", _crypt.Encrypt(userId.ToString()));
+                Console.WriteLine(table);
+            }
+            else
+            {
+                _sessionHandler.CreateCookie(Response.Cookies, "LoginSession", _crypt.Encrypt(userId.ToString()));
+            }
         }
         catch (Exception ex)
         {
@@ -67,6 +85,18 @@ public class LoginController : ControllerBase
         return Unauthorized(new { message = "Session expired or is not found" });
     }
 
+    [HttpGet("CheckSessionStaff")]
+    public IActionResult CheckSessionStaff()
+    {
+        string sessionValue = Request.Cookies["LoginEmployeeSession"];
+        
+        if (!string.IsNullOrEmpty(sessionValue))
+        {
+            return Ok( new {message = "session active ", sessionValue});
+        }
+        return Unauthorized(new { message = "Session expired or is not found" });
+    }
+
     [HttpPost("login")]
     public async Task <IActionResult> LoginAsync([FromBody] LoginRequest loginRequest)
     {
@@ -77,7 +107,9 @@ public class LoginController : ControllerBase
 
         try
         {
+            Console.WriteLine(1);
             bool isValid = await _userRepository.ValidateUserAsync(loginRequest.Email, loginRequest.Password, loginRequest.IsEmployee);
+            Console.WriteLine(isValid);
 
             if (isValid)
             {
@@ -98,12 +130,12 @@ public class LoginController : ControllerBase
         catch (MySqlException ex)
         {
             Console.Error.WriteLine($"Database error: {ex.Message}");
-            return StatusCode(500, new { message = "An error occurred while accesing the database." });
+            return StatusCode(500, new { message = ex.Message});
         }
         catch (Exception ex)
         {
             Console.Error.WriteLine($"Unexpected error: {ex.Message}");
-            return StatusCode(500, new { message = "An error occurred while processing your request." });
+            return StatusCode(500, new { message = ex.Message });
         }
     }
 }
