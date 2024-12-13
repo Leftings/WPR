@@ -17,4 +17,6 @@ public interface IUserRepository
     Task<(bool status, string message)> checkUsageEmailAsync(string email);
     Task<(bool status, List<Dictionary<string, object>> data)> GetInReviewFromUserAsync(string id);
     Task<(bool status, List<Dictionary<string, object>> data)> GetRequestedAsync();
+    Task<(bool status, List<string> ids)> GetReviewIdsAsync();
+    Task<(bool status, Dictionary<string, object> data)> GetReviewAsync(string id);
 }

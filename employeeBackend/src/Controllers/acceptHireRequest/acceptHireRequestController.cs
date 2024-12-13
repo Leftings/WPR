@@ -29,6 +29,28 @@ public class AcceptHireRequestController : ControllerBase
         return Ok();
     }
 
+    [HttpGet("getReviewsIds")]
+    public async Task<IActionResult> GetReviewsIdsAsync()
+    {
+        var ids = await _userRepository.GetReviewIdsAsync();
+
+        foreach(string x in ids.ids)
+        {
+            Console.WriteLine(x);
+        }
+
+        return Ok(new { message = ids.ids});
+    }
+
+    [HttpGet("getReview")]
+    public async Task<IActionResult> GetReviewAsync(string id)
+    {
+        var review = await _userRepository.GetReviewAsync(id);
+        Console.WriteLine(review.data);
+
+        return Ok(new { message = review.data });
+    }
+
     [HttpGet("GetInProgressFromUser")]
     public async Task<IActionResult> GetInProgressFromUserAsync()
     {
