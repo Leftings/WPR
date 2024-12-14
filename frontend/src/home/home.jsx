@@ -5,21 +5,8 @@ import GeneralFooter from "../GeneralBlocks/footer/footer.jsx";
 import './home.css';
 
 function Home() {
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [isEmployee, setIsEmployee] = useState(false);
     const navigate = useNavigate();
-
-    useEffect(() => {
-        fetch('http://localhost:5165/api/Login/CheckSession', { credentials: 'include' })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Not logged in');
-                }
-                return response.json();
-            })
-            .then(() => setIsLoggedIn(true))
-            .catch(() => setIsLoggedIn(false));
-    }, []);
 
     useEffect(() => {
         fetch(`http://localhost:5165/api/Employee/IsUserEmployee`, { credentials: 'include' })
@@ -39,18 +26,9 @@ function Home() {
             });
     }, []);
 
-    const handleLogout = () => {
-        fetch('http://localhost:5165/api/Cookie/Logout', { method: 'POST', credentials: 'include' })
-            .then(() => {
-                setIsLoggedIn(false);
-                navigate('/login');
-            })
-            .catch(error => console.error('Logout error', error));
-    };
-
     return (
         <>
-            <GeneralHeader isLoggedIn={isLoggedIn} handleLogout={handleLogout} />
+            <GeneralHeader />
             <main>
                 <section className="hero">
                     <h1>Vind de perfecte auto voor jouw avontuur</h1>
