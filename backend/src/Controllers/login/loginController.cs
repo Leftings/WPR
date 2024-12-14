@@ -8,6 +8,7 @@ using WPR.Controllers.Cookie;
 using WPR.Database;
 using WPR.Cryption;
 using WPR.Hashing;
+using ZstdSharp.Unsafe;
 
 [Route("api/[controller]")]
 [ApiController]
@@ -34,30 +35,39 @@ public class LoginController : ControllerBase
         {
             string table;
 
-            if (loginRequest.IsEmployee)
+            if (loginRequest.UserType.Equals("Employee"))
             {
                 table = "Staff";
             }
-            else
+            else if (loginRequest.UserType.Equals("Customer"))
             {
                 table = "UserCustomer";
             }
+            else
+            {
+                table = "VehicleManager";
+            }
 
             string userId = await _userRepository.GetUserIdAsync(loginRequest.Email, table);
+            Console.WriteLine(userId);
 
             if (userId.Equals("No user found"))
             {
                 return BadRequest(new { message = "User ID not found." });
             }
             
-            if (loginRequest.IsEmployee)
+            if (loginRequest.UserType.Equals("Employee"))
             {
                 _sessionHandler.CreateCookie(Response.Cookies, "LoginEmployeeSession", _crypt.Encrypt(userId.ToString()));
                 Console.WriteLine(table);
             }
-            else
+            else if (loginRequest.UserType.Equals("Customer"))
             {
                 _sessionHandler.CreateCookie(Response.Cookies, "LoginSession", _crypt.Encrypt(userId.ToString()));
+            }
+            else
+            {
+                _sessionHandler.CreateCookie(Response.Cookies, "LoginVehicleManagerSession", _crypt.Encrypt(userId.ToString()));
             }
         }
         catch (Exception ex)
@@ -97,6 +107,18 @@ public class LoginController : ControllerBase
         return Unauthorized(new { message = "Session expired or is not found" });
     }
 
+    [HttpGet("CheckSessionVehicleManager")]
+    public IActionResult CheckSessionVehicleManager()
+    {
+        string sessionValue = Request.Cookies["LoginVehicleManagerSession"];
+        
+        if (!string.IsNullOrEmpty(sessionValue))
+        {
+            return Ok( new {message = "session active ", sessionValue});
+        }
+        return Unauthorized(new { message = "Session expired or is not found" });
+    }
+
     [HttpPost("login")]
     public async Task <IActionResult> LoginAsync([FromBody] LoginRequest loginRequest)
     {
@@ -108,7 +130,7 @@ public class LoginController : ControllerBase
         try
         {
             Console.WriteLine(1);
-            bool isValid = await _userRepository.ValidateUserAsync(loginRequest.Email, loginRequest.Password, loginRequest.IsEmployee);
+            bool isValid = await _userRepository.ValidateUserAsync(loginRequest.Email, loginRequest.Password, loginRequest.UserType);
             Console.WriteLine(isValid);
 
             if (isValid)

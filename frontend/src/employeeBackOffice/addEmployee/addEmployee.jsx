@@ -14,15 +14,16 @@ function AddEmployee() {
     const [Password, SetPassword] = useState('');
     const [Email, SetEmail] = useState('');
     const [ErrorMessage, SetError] = useState([]);
+    const [KvK, SetKvK] = useState('');
 
-    // Function to handle sign-up
     function SignUp() {
         let data = {
-            Office: KindEmployee,
+            Job: KindEmployee,
             FirstName: FirstName,
             LastName: LastName,
             Password: Password,
-            Email: Email
+            Email: Email,
+            KvK: KvK
         };
 
         fetch(`${BACKEND_URL}/api/SignUpStaff/signUpStaff`, {
@@ -42,40 +43,56 @@ function AddEmployee() {
             return response.json();
         })
         .then(data => {
-            // Clear the form fields on success
             SetFirstName('');
             SetLastName('');
             SetEmail('');
             SetPassword('');
-            SetKind('Front'); // reset "KindEmployee" to the default if needed
-            SetError([]); // Clear errors
+            SetKind('Front');
+            SetError([]);
+            SetKvK('');
         })
         .catch(error => {
             console.error("Error adding employee: ", error.message);
-            SetError([error.message]); // Set the error message
+            SetError([error.message]);
         });
     }
 
-    // Function to check if all fields are filled in
     function Check() {
         let data = {
+            KindEmployee,
+            KvK,
             FirstName,
             LastName,
             Password,
-            Email
+            Email,
         };
 
         let errors = [];
         for (let key in data) {
-            if (data[key] === '') {
-                errors.push(`${key} is niet ingevuld\n`);
+            if (data[key] === '')
+            {
+                if (KindEmployee === 'Wagen' && key === 'KvK')
+                {
+                    errors.push(`KvK nummer is niet ingevuld\n`);
+                }
+                else if (key == 'KvK')
+                {
+                    //pass
+                }
+                else
+                {
+                    errors.push(`${key} is niet ingevuld\n`);
+                }
             }
         }
 
-        if (errors.length === 0) {
-            SignUp();  // Proceed with the sign-up if no errors
-        } else {
-            SetError(errors); // Show errors if any fields are empty
+        if (errors.length === 0)
+        {
+            SignUp(); 
+        }
+        else
+        {
+            SetError(errors);
         }
     }
 
@@ -106,12 +123,21 @@ function AddEmployee() {
             <h1>Registreren Werknemer</h1>
             <br></br>
             <div id='registrate'>
-                <label htmlFor='office'>Kantoor</label>
+                <label htmlFor='employee'>Soort Medewerker</label>
                 <br></br>
-                <select id='office'name='office' onChange={(e) => SetKind(e.target.value)} value={KindEmployee}>
+                <select id='employee'name='office' onChange={(e) => SetKind(e.target.value)} value={KindEmployee}>
                     <option value='Front'>Front Office</option>
                     <option value='Back'>Back Office</option>
+                    <option value='Wagen'>Wagenpark Beheerder</option>
                 </select>
+                {KindEmployee == 'Wagen' && (
+                    <>
+                        <br></br>
+                        <label htmlFor='KvK'>KvK nummer</label>
+                        <br></br>
+                        <input id='KvK' type='number' onChange={(e) => SetKvK(e.target.value)} value={KvK}></input>
+                    </>
+                )}
                 <br></br>
                 <label htmlFor='firstName'>Voornaam</label>
                 <br></br>

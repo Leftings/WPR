@@ -25,20 +25,37 @@ public class CookieController : ControllerBase
     [HttpGet("GetUserId")]
     public async Task<IActionResult> GetUserId()
     {
-        string loginCookie = HttpContext.Request.Cookies["LoginEmployeeSession"];
+        string? loginCookie = HttpContext.Request.Cookies["LoginEmployeeSession"];
+        string? loginCookie2 = HttpContext.Request.Cookies["LoginVehicleManagerSession"];
 
-        if (string.IsNullOrEmpty(loginCookie))
-        {
-            return BadRequest(new { message = "No Cookie" });
-        }
+        Console.WriteLine(loginCookie2);
+
+        Console.WriteLine(_crypt.Decrypt(loginCookie2) + "  XXXXXXXXXXXXXX");
 
         try
         {
-            return Ok(new { message = _crypt.Decrypt(loginCookie) });
+            if (!string.IsNullOrEmpty(loginCookie))
+            {
+                return Ok(new { message = _crypt.Decrypt(loginCookie) });
+            }
+            if (!string.IsNullOrEmpty(loginCookie2))
+            {
+                return Ok(new { message = _crypt.Decrypt(loginCookie2) });
+            }
+
+            return BadRequest(new { message = "No Cookie" });
+
         }
         catch
         {
             Response.Cookies.Append("LoginEmployeeSession", "Invalid cookie", new CookieOptions
+            {
+                HttpOnly = true,
+                Secure = true,
+                Expires = DateTimeOffset.UtcNow.AddDays(-1)
+            });
+
+            Response.Cookies.Append("LoginVehicleManagerSession", "Invalid cookie", new CookieOptions
             {
                 HttpOnly = true,
                 Secure = true,
