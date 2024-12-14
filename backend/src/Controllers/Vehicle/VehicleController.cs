@@ -132,7 +132,9 @@ public class VehicleController : ControllerBase
                     if (reader.Read() && !reader.IsDBNull(0))
                     {
                         decimal priceDec = reader.GetDecimal(0);
-                        string price = priceDec.ToString();
+                        
+                        string price = priceDec.ToString("F2");
+                        
                         return Ok(price);
                     }
                     else
