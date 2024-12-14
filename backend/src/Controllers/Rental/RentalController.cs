@@ -20,7 +20,8 @@ namespace WPR.Controllers
         private readonly EmailService _emailService;
         private readonly VehicleRepository _vehicleRepo;
 
-        public RentalController(Connector connector, Crypt crypt, EmailService emailService, VehicleRepository vehicleRepo)
+        public RentalController(Connector connector, Crypt crypt, EmailService emailService,
+            VehicleRepository vehicleRepo)
         {
             _connector = connector ?? throw new ArgumentNullException(nameof(connector));
             _crypt = crypt ?? throw new ArgumentNullException(nameof(crypt));
@@ -220,13 +221,15 @@ VALUES (@StartDate, @EndDate, @Price, @FrameNrCar, @Customer, @Status, @Reviewed
                             transaction.Commit();
                             Console.WriteLine("Transactie succesvol gecommit.");
 
-                            string carName = await _vehicleRepo.GetVehicleNameAsync(int.Parse(rentalRequest.FrameNrCar));
+                            string carName =
+                                await _vehicleRepo.GetVehicleNameAsync(int.Parse(rentalRequest.FrameNrCar));
                             if (string.IsNullOrEmpty(carName))
                             {
                                 return NotFound(new { message = "Car name not found for the frameNr" });
                             }
 
-                            string carPlate = await _vehicleRepo.GetVehiclePlateAsync(int.Parse(rentalRequest.FrameNrCar));
+                            string carPlate =
+                                await _vehicleRepo.GetVehiclePlateAsync(int.Parse(rentalRequest.FrameNrCar));
                             if (string.IsNullOrEmpty(carPlate))
                             {
                                 return NotFound(new { message = "License plate not found for frameNr" });
@@ -273,11 +276,12 @@ VALUES (@StartDate, @EndDate, @Price, @FrameNrCar, @Customer, @Status, @Reviewed
         {
             string loginCookie = HttpContext.Request.Cookies["LoginSession"];
             int userId = Convert.ToInt32(_crypt.Decrypt(loginCookie));
+            ;
 
             try
             {
                 string query = @"
-            SELECT ID, FrameNrCar, StartDate, EndDate, Price, Status
+            SELECT StartDate, EndDate, Price, FrameNrCar, Status
             FROM Abonnement 
             WHERE Customer = @Customer";
 
@@ -287,25 +291,20 @@ VALUES (@StartDate, @EndDate, @Price, @FrameNrCar, @Customer, @Status, @Reviewed
                 {
                     using (var command = new MySqlCommand(query, (MySqlConnection)connection))
                     {
+                        // Ensure userId is added to the query correctly
                         command.Parameters.AddWithValue("@Customer", userId);
 
                         using (var reader = await command.ExecuteReaderAsync())
                         {
                             while (reader.Read())
                             {
-                                string carName = await _vehicleRepo.GetVehicleNameAsync(reader.GetInt32(1));
-                                string licensePlate = await _vehicleRepo.GetVehiclePlateAsync(reader.GetInt32(1));
-                                
                                 rentals.Add(new
                                 {
-                                    Id = reader.IsDBNull(0) ? (int?)null : reader.GetInt32(0),
-                                    FrameNrCar = reader.IsDBNull(1) ? (int?)null : reader.GetInt32(1),
-                                    CarName = carName,
-                                    LicensePlate = licensePlate,
-                                    StartDate = reader.IsDBNull(2) ? (DateTime?)null : reader.GetDateTime(2),
-                                    EndDate = reader.IsDBNull(3) ? (DateTime?)null : reader.GetDateTime(3),
-                                    Price = reader.IsDBNull(4) ? (decimal?)null : reader.GetDecimal(4),
-                                    Status = reader.IsDBNull(5) ? null : reader.GetString(5),
+                                    StartDate = reader.IsDBNull(0) ? (DateTime?)null : reader.GetDateTime(0),
+                                    EndDate = reader.IsDBNull(1) ? (DateTime?)null : reader.GetDateTime(1),
+                                    Price = reader.IsDBNull(2) ? (decimal?)null : reader.GetDecimal(2),
+                                    FrameNrCar = reader.IsDBNull(3) ? (int?)null : reader.GetInt32(3),
+                                    Status = reader.IsDBNull(4) ? null : reader.GetString(4),
                                 });
                             }
                         }
@@ -320,52 +319,101 @@ VALUES (@StartDate, @EndDate, @Price, @FrameNrCar, @Customer, @Status, @Reviewed
                 return StatusCode(500, "An error occurred while fetching rentals.");
             }
         }
-        
-        [HttpDelete("CancelRental")]
-        public async Task<IActionResult> CancelRentalAsync(int rentalId, int frameNr)
+
+        [HttpGet("GetAllUserRentalsWithDetails")]
+        public async Task<IActionResult> GetAllUserRentalsWithDetailsAsync()
         {
-            string loginCookie = HttpContext.Request.Cookies["LoginSession"];
-            int userId = Convert.ToInt32(_crypt.Decrypt(loginCookie));
-            bool deletion1 = false;
-            bool deletion2 = false;
+            try
+            {
+                string query = @"
+            SELECT 
+                ID, 
+                StartDate, 
+                EndDate, 
+                Price, 
+                FrameNrCar, 
+                Customer, 
+                Status, 
+                ReviewedBy, 
+                VMStatus, 
+                Kvk
+            FROM Abonnement";
+
+                var rentals = new List<object>();
+
+                using (var connection = _connector.CreateDbConnection())
+                {
+                    if (connection.State != ConnectionState.Open)
+                    {
+                        connection.Open();
+                    }
+
+                    using (var command = new MySqlCommand(query, (MySqlConnection)connection))
+                    {
+                        using (var reader = await command.ExecuteReaderAsync())
+                        {
+                            while (reader.Read())
+                            {
+                                rentals.Add(new
+                                {
+                                    ID = reader.IsDBNull(0) ? (int?)null : reader.GetInt32(0),
+                                    StartDate = reader.IsDBNull(1) ? (DateTime?)null : reader.GetDateTime(1),
+                                    EndDate = reader.IsDBNull(2) ? (DateTime?)null : reader.GetDateTime(2),
+                                    Price = reader.IsDBNull(3) ? (decimal?)null : reader.GetDecimal(3),
+                                    FrameNrCar = reader.IsDBNull(4) ? (int?)null : reader.GetInt32(4),
+                                    Customer = reader.IsDBNull(5) ? (int?)null : reader.GetInt32(5),
+                                    Status = reader.IsDBNull(6) ? null : reader.GetString(6),
+                                    ReviewedBy = reader.IsDBNull(7) ? (int?)null : reader.GetInt32(7),
+                                    VMStatus = reader.IsDBNull(8) ? null : reader.GetString(8),
+                                    Kvk = reader.IsDBNull(9) ? null : reader.GetString(9)
+                                });
+                            }
+                        }
+                    }
+                }
+
+                return Ok(rentals);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error fetching rentals: {ex.Message}");
+                return StatusCode(500, "An error occurred while fetching rentals.");
+            }
+        }
+        
+        [HttpPut("ChangeRental")]
+        public async Task<IActionResult> ChangeRentalAsync([FromBody] UpdateRentalRequest request)
+        {
 
             try
             {
                 string query1 = @"
-            DELETE FROM Abonnement WHERE ID = @Id AND Customer = @Customer";
-
-                string query2 = @"
-            DELETE FROM Vehicle_User WHERE FrameNrCar = @FrameNr AND Customer = @Customer";
+    UPDATE Abonnement SET StartDate = @StartDate, EndDate = @EndDate, Price = @Price WHERE ID = @Id";
 
                 using (var connection = _connector.CreateDbConnection())
                 {
-                    using (var abonnementCommand = new MySqlCommand(query1, (MySqlConnection)connection))
-                    using (var vUserCommand = new MySqlCommand(query2, (MySqlConnection)connection))
+                    using (var command = new MySqlCommand(query1, (MySqlConnection)connection))
                     {
-                        abonnementCommand.Parameters.AddWithValue("@Id", rentalId);
-                        abonnementCommand.Parameters.AddWithValue("@Customer", userId);
-                        
-                        vUserCommand.Parameters.AddWithValue("@FrameNr", frameNr);
-                        vUserCommand.Parameters.AddWithValue("@Customer", userId);
-                        
-                        int rowsAffectedAbonnement = await abonnementCommand.ExecuteNonQueryAsync();
-                        int rowsAffectedvUser = await vUserCommand.ExecuteNonQueryAsync();
+                        command.Parameters.AddWithValue("@StartDate", request.StartDate);
+                        command.Parameters.AddWithValue("@EndDate", request.EndDate);
+                        command.Parameters.AddWithValue("@Price", request.Price);
+                        command.Parameters.AddWithValue("@Id", request.Id);
 
-                        if (rowsAffectedAbonnement > 0 && rowsAffectedvUser > 0)
+                        Console.WriteLine($"Executing query with rentalId: {request.Id}, StartDate: {request.StartDate}, EndDate: {request.EndDate}, Price: {request.Price}");
+
+                        if (await command.ExecuteNonQueryAsync() > 0)
                         {
-                            return Ok(new { message = "Rental cancelled successfully" });
+                            return Ok(new { message = "Rental updated successfully" });
                         }
-                        else
-                        {
-                            return NotFound(new { message = "Rental not found or you do not have permission to cancel this rental" });
-                        }
+
+                        return BadRequest(new { message = "Rental wasn't updated" });
                     }
                 }
             }
             catch (Exception ex)
             {
                 Console.WriteLine($"Error: {ex.Message}");
-                return StatusCode(500, "An error occurred while cancelling rental");
+                return StatusCode(500, new { message = "An error occurred while processing the rental update" });
             }
         }
     }

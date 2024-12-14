@@ -13,7 +13,7 @@ namespace WPR.Repository;
 public interface IUserRepository
 {
 
-    Task<bool> ValidateUserAsync(string username, string password, bool isEmployee);
+    Task<bool> ValidateUserAsync(string username, string password, string userType);
     Task<(bool status, string message)> checkUsageEmailAsync(string email);
     Task<(bool status, string message, int newUserID)> addCustomerAsync(Object[] personData);
     Task<(bool status, string message)> addPersonalCustomerAsync(Object[] personalData);

@@ -42,7 +42,7 @@ function SetStatus(id, status, setNewRequests) {
       'Accept': 'application/json',
     },
     credentials: 'include',
-    body: JSON.stringify({ Id: id, Status: status, UserType: 'frontOffice'}), 
+    body: JSON.stringify({ Id: id, Status: status, UserType: 'vehicleManager' }), 
   })
   .then(response => {
       if (!response.ok) {
@@ -101,7 +101,7 @@ function ReviewHireRequest() {
       setError(null);
 
       try {
-        const response = await fetch(`${BACKEND_URL}/api/AcceptHireRequest/getReviewsIds?user=frontOffice`, {
+        const response = await fetch(`${BACKEND_URL}/api/AcceptHireRequest/getReviewsIds?user=vehicleManager`, {
           method: 'GET',
           credentials: 'include',
         });

@@ -1,6 +1,6 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes, BrowserRouter } from 'react-router-dom';
 import './index.css';
 import Login from './login/loginEmployee.jsx';
 import Home from './home/home.jsx';
@@ -17,7 +17,11 @@ import ReviewHireRequest from './employeeFrontOffice/reviewHireRequest/reviewHir
 import AddEmployee from './employeeBackOffice/addEmployee/addEmployee.jsx';
 import CarRentalOverview from './CarRentalOverview/CarRentalOverview.jsx';
 import PayPage from './PayPage/PayPage.jsx';
-import ConfirmationPage from './confirmationPage/ConfirmationPage.jsx'
+import ConfirmationPage from './confirmationPage/ConfirmationPage.jsx';
+import ChangeRental from './changeRental/ChangeRental.jsx';
+import VehicleManager from './vehicleManager/vehicleManager.jsx';
+import ReviewHireRequestVehicleManager from './vehicleManager/reviewHireRequest/reviewHireRequest.jsx';
+import WagenparkBeheerderOverzichtPage from './wagenparkBeheerderOverzichtPage/wagenparkBeheerderOverzichtPage.jsx'
 
 
 createRoot(document.getElementById('root')).render(
@@ -39,6 +43,8 @@ createRoot(document.getElementById('root')).render(
             <Route path="/buy" element={<PayPage />} />
             <Route path="/overviewRental" element={<CarRentalOverview />} />
             <Route path="/confirmationPage" element={<ConfirmationPage />}></Route>
+            <Route path="/changeRental" element={<ChangeRental />} />
+            <Route path="/wagenparkBeheerderOverzichtPage" element={<WagenparkBeheerderOverzichtPage />} />
 
         </Routes>
     </Router>
