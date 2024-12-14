@@ -1,0 +1,49 @@
+﻿@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.container {
+    margin: 20px auto;
+    padding: 20px;
+    max-width: 1200px;
+}
+
+.head, .row {
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    gap: 10px;
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    animation: fadeInUp 0.2s ease-in-out forwards;
+    opacity: 0;
+}
+
+
+.row {
+    background-color: #fff;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.error-message {
+    color: #d9534f;
+    text-align: center;
+    font-size: 1.2em;
+    margin: 20px 0;
+    animation: fadeInUp 0.3s ease-in-out forwards;
+    opacity: 0;
+}
+
+@media (max-width: 1024px) {
+    .head, .row {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    }
+}
