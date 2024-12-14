@@ -20,29 +20,30 @@ import PayPage from './PayPage/PayPage.jsx';
 import ConfirmationPage from './confirmationPage/ConfirmationPage.jsx'
 import VehicleManager from './vehicleManager/vehicleManager.jsx';
 import ReviewHireRequestVehicleManager from './vehicleManager/reviewHireRequest/reviewHireRequest.jsx';
+import WagenparkBeheerderOverzichtPage from './wagenparkBeheerderOverzichtPage/wagenparkBeheerderOverzichtPage.jsx'
+
 
 
 createRoot(document.getElementById('root')).render(
-    <BrowserRouter>
-            <Routes>
-                <Route path="/" element={<Home />}></Route>
-                <Route path="/login" element={<Login />}></Route>
-                <Route path="/signUp" element={<SignUp />}></Route>
-                <Route path="/userSettings" element={<UserSettings />}></Route>
-                <Route path="/GeneralSalePage" element={<GeneralSalePage />}></Route>
-                <Route path="/TermsAndConditions" element={<TermsAndConditions />}></Route>
-                <Route path="/AbonementUitlegPage" element={<AbonementUitlegPage />} />
-                <Route path="/vehicle/:frameNr" element={<CarDetailPage />} />
-                <Route path="/backOfficeEmployee" element={<EmployeeBackOffice />}></Route>
-                <Route path="/backOfficeEmployee/addVehicle" element={<AddVehicle />}></Route>
-                <Route path="/backOfficeEmployee/addEmployee" element={<AddEmployee />}></Route>
-                <Route path="/frontOfficeEmployee" element={<EmployeeFrontOffice />}></Route>
-                <Route path="/frontOfficeEmployee/reviewHireRequest" element={<ReviewHireRequest />}></Route>
-                <Route path="/buy" element={<PayPage />} />
-                <Route path="/overviewRental" element={<CarRentalOverview />} />
-                <Route path="/confirmationPage" element={<ConfirmationPage />}></Route>
-                <Route path="/vehicleManager" element={<VehicleManager />}></Route>
-                <Route path="/vehicleManager/reviewHireRequest" element={<ReviewHireRequestVehicleManager />}></Route>
-            </Routes>
-    </BrowserRouter>
+    <Router>
+        <Routes>
+            <Route path="/" element={<Home />}></Route>
+            <Route path="/login" element={<Login />}></Route>
+            <Route path="/signUp" element={<SignUp />}></Route>
+            <Route path="/userSettings" element={<UserSettings />}></Route>
+            <Route path="/GeneralSalePage" element={<GeneralSalePage />}></Route>
+            <Route path="/TermsAndConditions" element={<TermsAndConditions />}></Route>
+            <Route path="/AbonementUitlegPage" element={<AbonementUitlegPage />} />
+            <Route path="/vehicle/:frameNr" element={<CarDetailPage />} />
+            <Route path="/backOfficeEmployee" element={<EmployeeBackOffice />}></Route>
+            <Route path="/backOfficeEmployee/addVehicle" element={<AddVehicle />}></Route>
+            <Route path="/backOfficeEmployee/addEmployee" element={<AddEmployee />}></Route>
+            <Route path="/frontOfficeEmployee" element={<EmployeeFrontOffice />}></Route>
+            <Route path="/frontOfficeEmployee/reviewHireRequest" element={<ReviewHireRequest />}></Route>
+            <Route path="/buy" element={<PayPage />} />
+            <Route path="/overviewRental" element={<CarRentalOverview />} />
+            <Route path="/confirmationPage" element={<ConfirmationPage />}></Route>
+            <Route path="/wagenparkBeheerderOverzichtPage" element={<WagenparkBeheerderOverzichtPage />} />
+        </Routes>
+    </Router>
 );
