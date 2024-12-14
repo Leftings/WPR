@@ -214,7 +214,7 @@ public class UserRepository : IUserRepository
 
             if (isVehicleManager)
             {
-                query = "SELECT ID FROM Abonnement WHERE Status = 'requested' AND VMStatus != 'X' AND KvK = @K";
+                query = "SELECT ID FROM Abonnement WHERE Status = 'requested' AND VMStatus = 'requested' AND KvK = @K";
             }
             else if (user.Equals("frontOffice"))
             {
@@ -224,10 +224,14 @@ public class UserRepository : IUserRepository
 
             using (var connection = _connector.CreateDbConnection())
             using (var command = new MySqlCommand(query, (MySqlConnection)connection))
+            
             {
+
+                Console.WriteLine(GetKvK(userId));
                 if (isVehicleManager)
                 {
-                    command.Parameters.AddWithValue("@K", GetKvK(userId));
+                    var kvk = GetKvK(userId);
+                    command.Parameters.AddWithValue("@K", kvk);
                 }
 
                 using (var reader = await command.ExecuteReaderAsync())
@@ -235,6 +239,7 @@ public class UserRepository : IUserRepository
                     List<string> ids = new List<string>();
                     while (await reader.ReadAsync())
                     {
+                        Console.WriteLine(reader.FieldCount + "XXXX");
                         for (int i = 0; i < reader.FieldCount; i++)
                         {
                             ids.Add(reader.GetValue(i).ToString());

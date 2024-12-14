@@ -44,6 +44,9 @@ createRoot(document.getElementById('root')).render(
             <Route path="/overviewRental" element={<CarRentalOverview />} />
             <Route path="/confirmationPage" element={<ConfirmationPage />}></Route>
             <Route path="/wagenparkBeheerderOverzichtPage" element={<WagenparkBeheerderOverzichtPage />} />
+            <Route path="/vehicleManager" element={<VehicleManager />}></Route>
+            <Route path="/vehicleManager/reviewHireRequest" element={<ReviewHireRequestVehicleManager />}></Route>
+            
         </Routes>
     </Router>
 );
