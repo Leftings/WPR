@@ -20,9 +20,8 @@ function VehicleManager() {
         .then(response => {
             if (!response.ok) {
                 return response.json().then(data => {
-                    console.log(data);
-                  // If the response is not OK, throw an error with the message from the response
-                  throw new Error(data?.message || 'No Cookie'); // Use the response message, or fallback to 'No Cookie'
+                  console.log(data);
+                  throw new Error(data?.message || 'No Cookie'); 
                 });
               }
             return response.json();

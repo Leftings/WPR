@@ -7,7 +7,7 @@ import GeneralFooter from '../../GeneralBlocks/footer/footer';
 const BACKEND_URL = import.meta.env.VITE_REACT_APP_BACKEND_URL_EMPLOYEE ?? 'http://localhost:5276';
 
 function GetReview(id) {
-  return fetch(`${BACKEND_URL}/api/AcceptHireRequest/getReview?id=${id}?user=frontOffice`, {
+  return fetch(`${BACKEND_URL}/api/AcceptHireRequest/getReview?id=${id}`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
@@ -16,9 +16,17 @@ function GetReview(id) {
   })
     .then((response) => {
       if (!response.ok) {
-        throw new Error('Failed to fetch review');
+        return response.json().then(data => {
+          throw new Error(data?.message); 
+        });
       }
       return response.json();
+    })
+    .then((data) => {
+      const combinedData = data?.message.reduce((acc, item) => {
+        return { ...acc, ...item };
+      }, {});
+      return { message: combinedData }; 
     })
     .catch((error) => {
       console.error(error);
@@ -34,7 +42,7 @@ function SetStatus(id, status, setNewRequests) {
       'Accept': 'application/json',
     },
     credentials: 'include',
-    body: JSON.stringify({ Id: id, Status: status }), 
+    body: JSON.stringify({ Id: id, Status: status, UserType: 'frontOffice'}), 
   })
   .then(response => {
       if (!response.ok) {
@@ -93,7 +101,7 @@ function ReviewHireRequest() {
       setError(null);
 
       try {
-        const response = await fetch(`${BACKEND_URL}/api/AcceptHireRequest/getReviewsIds`, {
+        const response = await fetch(`${BACKEND_URL}/api/AcceptHireRequest/getReviewsIds?user=frontOffice`, {
           method: 'GET',
           credentials: 'include',
         });
@@ -109,9 +117,11 @@ function ReviewHireRequest() {
 
         for (const id of requestsToLoad) {
           setLoadingRequests((prevState) => ({ ...prevState, [id]: true }));
+          console.log(id);
           
           try {
             const review = await GetReview(id);
+            console.log(review?.message);
             if (review?.message) {
               setNewRequests((prevRequests) => [...prevRequests, review.message]);
               setLoadingRequests((prevState) => ({ ...prevState, [id]: false }));

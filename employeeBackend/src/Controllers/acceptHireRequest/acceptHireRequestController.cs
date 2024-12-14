@@ -24,23 +24,21 @@ public class AcceptHireRequestController : ControllerBase
     }
 
     [HttpGet("getReviewsIds")]
-    public async Task<IActionResult> GetReviewsIdsAsync()
+    public async Task<IActionResult> GetReviewsIdsAsync(string user)
     {
-        var ids = await _userRepository.GetReviewIdsAsync();
-
-        foreach(string x in ids.ids)
-        {
-            Console.WriteLine(x);
-        }
-
+        var ids = await _userRepository.GetReviewIdsAsync(user, GetCurrentUserId());
         return Ok(new { message = ids.ids});
     }
 
     [HttpGet("getReview")]
-    public async Task<IActionResult> GetReviewAsync(string id, string user)
+    public async Task<IActionResult> GetReviewAsync(string id)
     {
-        var review = await _userRepository.GetReviewAsync(id, user);
-        Console.WriteLine(review.data);
+        var review = await _userRepository.GetReviewAsync(id);
+
+        foreach (var x in review.data)
+        {
+            Console.WriteLine(x);
+        }
 
         return Ok(new { message = review.data });
     }
@@ -55,7 +53,7 @@ public class AcceptHireRequestController : ControllerBase
             return BadRequest(new { message = "Invalid request body" });
         }
 
-        var setStatus = await _userRepository.SetStatusAsync(request.Id.ToString(), request.Status, GetCurrentUserId());
+        var setStatus = await _userRepository.SetStatusAsync(request.Id.ToString(), request.Status, GetCurrentUserId(), request.userType);
 
         if (setStatus.status)
         {
@@ -69,15 +67,25 @@ public class AcceptHireRequestController : ControllerBase
     private string GetCurrentUserId()
     {
         string loginCookie = HttpContext.Request.Cookies["LoginEmployeeSession"];
-
-        if (string.IsNullOrEmpty(loginCookie))
-        {
-            throw new Exception("No Cookie");
-        }
+        string loginCookie2 = HttpContext.Request.Cookies["LoginVehicleManagerSession"];
 
         try
         {
-            return _crypt.Decrypt(loginCookie);
+            if (!string.IsNullOrEmpty(loginCookie))
+            {
+                Console.WriteLine(loginCookie);
+                Console.WriteLine(_crypt.Decrypt(loginCookie));
+                return _crypt.Decrypt(loginCookie);
+            }
+            else if (!string.IsNullOrEmpty(loginCookie2))
+            {
+                Console.WriteLine(loginCookie2);
+                return _crypt.Decrypt(loginCookie2);
+            }
+            else
+            {
+                throw new Exception("No (valid) cookie");
+            }
         }
         catch
         {
