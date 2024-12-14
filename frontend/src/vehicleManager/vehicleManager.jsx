@@ -19,8 +19,12 @@ function VehicleManager() {
     })
         .then(response => {
             if (!response.ok) {
-                throw new Error('No Cookie');
-            }
+                return response.json().then(data => {
+                    console.log(data);
+                  // If the response is not OK, throw an error with the message from the response
+                  throw new Error(data?.message || 'No Cookie'); // Use the response message, or fallback to 'No Cookie'
+                });
+              }
             return response.json();
         })
         .catch(() => {
@@ -34,7 +38,7 @@ function VehicleManager() {
       </GeneralHeader>
 
       <body>
-        <h1>Front Office</h1>
+        <h1>Wagenpark Beheerder</h1>
         <Link to="./reviewHireRequest">Huur aanvragen beheren</Link>
       </body>
 

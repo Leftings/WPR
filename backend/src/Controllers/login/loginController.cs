@@ -49,6 +49,7 @@ public class LoginController : ControllerBase
             }
 
             string userId = await _userRepository.GetUserIdAsync(loginRequest.Email, table);
+            Console.WriteLine(userId);
 
             if (userId.Equals("No user found"))
             {
@@ -98,6 +99,18 @@ public class LoginController : ControllerBase
     public IActionResult CheckSessionStaff()
     {
         string sessionValue = Request.Cookies["LoginEmployeeSession"];
+        
+        if (!string.IsNullOrEmpty(sessionValue))
+        {
+            return Ok( new {message = "session active ", sessionValue});
+        }
+        return Unauthorized(new { message = "Session expired or is not found" });
+    }
+
+    [HttpGet("CheckSessionVehicleManager")]
+    public IActionResult CheckSessionVehicleManager()
+    {
+        string sessionValue = Request.Cookies["LoginVehicleManagerSession"];
         
         if (!string.IsNullOrEmpty(sessionValue))
         {

@@ -7,7 +7,7 @@ import GeneralFooter from '../../GeneralBlocks/footer/footer';
 const BACKEND_URL = import.meta.env.VITE_REACT_APP_BACKEND_URL_EMPLOYEE ?? 'http://localhost:5276';
 
 function GetReview(id) {
-  return fetch(`${BACKEND_URL}/api/AcceptHireRequest/getReview?id=${id}`, {
+  return fetch(`${BACKEND_URL}/api/AcceptHireRequest/getReview?id=${id}?user=vehicleManager`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',

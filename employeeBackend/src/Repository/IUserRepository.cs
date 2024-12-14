@@ -17,6 +17,6 @@ public interface IUserRepository
     Task<(bool status, string message)> AddStaff(Object[] personData);
     Task<(bool status, string message)> checkUsageEmailAsync(string email);
     Task<(bool status, List<string> ids)> GetReviewIdsAsync();
-    Task<(bool status, Dictionary<string, object> data)> GetReviewAsync(string id);
+    Task<(bool status, Dictionary<string, object> data)> GetReviewAsync(string id, string user);
     Task<(bool status, string message)> SetStatusAsync(string id, string status, string employee);
 }

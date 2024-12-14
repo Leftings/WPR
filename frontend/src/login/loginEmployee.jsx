@@ -106,35 +106,35 @@ function Login() {
         setError(`${email} is geen geldig account of het wachtwoord klopt niet`);
         throw new Error('Login failed');
       }
-
-      //const data =  await response.json();
-
-      if (userType === 'Customer')
+      else
       {
-        await fetch(`${BACKEND_URL}/api/Login/CheckSession`, { credentials: 'include' });
-        navigate('/');
-      }
-      else if (userType === 'Employee')
-      {
-        const officeResponse = await fetch(`${BACKEND_URL}/api/Cookie/GetKindEmployee`, { credentials: 'include' });
-        if (!officeResponse.ok) {
-            throw new Error('Failed to fetch the kind of office');
-        }
-        const office = await officeResponse.json();
-        
-        if (office?.message === 'Front')
+        if (userType === 'Customer')
         {
-          navigate('/FrontOfficeEmployee');
+          await fetch(`${BACKEND_URL}/api/Login/CheckSession`, { credentials: 'include' });
+          navigate('/');
+        }
+        else if (userType === 'Employee')
+        {
+          const officeResponse = await fetch(`${BACKEND_URL}/api/Cookie/GetKindEmployee`, { credentials: 'include' });
+          if (!officeResponse.ok) {
+              throw new Error('Failed to fetch the kind of office');
+          }
+          const office = await officeResponse.json();
+  
+          if (office?.message === 'Front')
+          {
+            navigate('/FrontOfficeEmployee');
+          }
+          else
+          {
+            navigate('/BackOfficeEmployee');
+          }
         }
         else
         {
-          navigate('/BackOfficeEmployee');
+          await fetch(`${BACKEND_URL}/api/Login/CheckSessionVehicleManager`, { credentials: 'include' });
+          navigate('/VehicleManager');
         }
-      }
-      else
-      {
-        await fetch(`${BACKEND_URL}/api/Login/VehicleManager`, { credentials: 'include' });
-        navigate('./VehicleManager');
       }
     }
     catch (error)

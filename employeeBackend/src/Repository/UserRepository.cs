@@ -2,6 +2,7 @@
 using Employee.Hashing;
 using Microsoft.VisualBasic;
 using MySql.Data.MySqlClient;
+using MySqlX.XDevAPI.Relational;
 
 namespace Employee.Repository;
 
@@ -242,11 +243,21 @@ public class UserRepository : IUserRepository
         }
     }
 
-    public async Task<(bool status, Dictionary<string, object> data)> GetReviewAsync(string id)
+    public async Task<(bool status, Dictionary<string, object> data)> GetReviewAsync(string id, string user)
     {
         try
         {
-            string query = "SELECT * FROM Abonnement WHERE ID = @I";
+            string table = "NO TABLE SET";
+
+            if (user.Equals("vehicleManager"))
+            {
+                table = "BusinessRental";
+            }
+            else if (user.Equals("frontOffice"))
+            {
+                table = "Abonnement";
+            }
+            string query = $"SELECT * FROM {table} WHERE ID = @I";
 
             using (var connection = _connector.CreateDbConnection())
             using (var command = new MySqlCommand(query, (MySqlConnection)connection))

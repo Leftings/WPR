@@ -37,9 +37,9 @@ public class AcceptHireRequestController : ControllerBase
     }
 
     [HttpGet("getReview")]
-    public async Task<IActionResult> GetReviewAsync(string id)
+    public async Task<IActionResult> GetReviewAsync(string id, string user)
     {
-        var review = await _userRepository.GetReviewAsync(id);
+        var review = await _userRepository.GetReviewAsync(id, user);
         Console.WriteLine(review.data);
 
         return Ok(new { message = review.data });
