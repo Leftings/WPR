@@ -78,13 +78,20 @@ function Home() {
                     {isEmployee && (
                         <section className="abonnementen-info">
                             <h2>Bekijk onze Abonnementen</h2>
-                            <p>We bieden verschillende abonnementsopties aan die passen bij jouw huurbehoeften. Bekijk ze en kies de beste optie voor jou!</p>
+                            <p>We bieden verschillende abonnementsopties aan die passen bij jouw huurbehoeften. Bekijk
+                                ze en kies de beste optie voor jou!</p>
                             <Link to="/AbonementUitlegPage" className="cta-button">Ontdek Abonnementen</Link>
                         </section>
                     )}
+                    <section className="abonnementen-info">
+                        <h2>Bekijk het overzicht van alle Rentals</h2>
+                        <p>Op de volgende pagina zult u een uitgebreide pagina vinden waarin alle verhuurde auto's te
+                            vinden zijn</p>
+                        <Link to="/wagenparkBeheerderOverzichtPage" className="cta-button">Bekijk Rentals</Link>
+                    </section>
                 </div>
             </main>
-            <GeneralFooter />
+            <GeneralFooter/>
         </>
     );
 }

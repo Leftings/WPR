@@ -20,7 +20,8 @@ namespace WPR.Controllers
         private readonly EmailService _emailService;
         private readonly VehicleRepository _vehicleRepo;
 
-        public RentalController(Connector connector, Crypt crypt, EmailService emailService, VehicleRepository vehicleRepo)
+        public RentalController(Connector connector, Crypt crypt, EmailService emailService,
+            VehicleRepository vehicleRepo)
         {
             _connector = connector ?? throw new ArgumentNullException(nameof(connector));
             _crypt = crypt ?? throw new ArgumentNullException(nameof(crypt));
@@ -220,13 +221,15 @@ VALUES (@StartDate, @EndDate, @Price, @FrameNrCar, @Customer, @Status, @Reviewed
                             transaction.Commit();
                             Console.WriteLine("Transactie succesvol gecommit.");
 
-                            string carName = await _vehicleRepo.GetVehicleNameAsync(int.Parse(rentalRequest.FrameNrCar));
+                            string carName =
+                                await _vehicleRepo.GetVehicleNameAsync(int.Parse(rentalRequest.FrameNrCar));
                             if (string.IsNullOrEmpty(carName))
                             {
                                 return NotFound(new { message = "Car name not found for the frameNr" });
                             }
 
-                            string carPlate = await _vehicleRepo.GetVehiclePlateAsync(int.Parse(rentalRequest.FrameNrCar));
+                            string carPlate =
+                                await _vehicleRepo.GetVehiclePlateAsync(int.Parse(rentalRequest.FrameNrCar));
                             if (string.IsNullOrEmpty(carPlate))
                             {
                                 return NotFound(new { message = "License plate not found for frameNr" });
@@ -313,6 +316,67 @@ VALUES (@StartDate, @EndDate, @Price, @FrameNrCar, @Customer, @Status, @Reviewed
             catch (Exception ex)
             {
                 Console.WriteLine($"Error: {ex.Message}");
+                return StatusCode(500, "An error occurred while fetching rentals.");
+            }
+        }
+
+        [HttpGet("GetAllUserRentalsWithDetails")]
+        public async Task<IActionResult> GetAllUserRentalsWithDetailsAsync()
+        {
+            try
+            {
+                string query = @"
+            SELECT 
+                ID, 
+                StartDate, 
+                EndDate, 
+                Price, 
+                FrameNrCar, 
+                Customer, 
+                Status, 
+                ReviewedBy, 
+                VMStatus, 
+                Kvk
+            FROM Abonnement";
+
+                var rentals = new List<object>();
+
+                using (var connection = _connector.CreateDbConnection())
+                {
+                    if (connection.State != ConnectionState.Open)
+                    {
+                        connection.Open();
+                    }
+
+                    using (var command = new MySqlCommand(query, (MySqlConnection)connection))
+                    {
+                        using (var reader = await command.ExecuteReaderAsync())
+                        {
+                            while (reader.Read())
+                            {
+                                rentals.Add(new
+                                {
+                                    ID = reader.IsDBNull(0) ? (int?)null : reader.GetInt32(0),
+                                    StartDate = reader.IsDBNull(1) ? (DateTime?)null : reader.GetDateTime(1),
+                                    EndDate = reader.IsDBNull(2) ? (DateTime?)null : reader.GetDateTime(2),
+                                    Price = reader.IsDBNull(3) ? (decimal?)null : reader.GetDecimal(3),
+                                    FrameNrCar = reader.IsDBNull(4) ? (int?)null : reader.GetInt32(4),
+                                    Customer = reader.IsDBNull(5) ? (int?)null : reader.GetInt32(5),
+                                    Status = reader.IsDBNull(6) ? null : reader.GetString(6),
+                                    ReviewedBy = reader.IsDBNull(7) ? (int?)null : reader.GetInt32(7),
+                                    VMStatus = reader.IsDBNull(8) ? null : reader.GetString(8),
+                                    Kvk = reader.IsDBNull(9) ? null : reader.GetString(9)
+                                });
+                            }
+                        }
+                    }
+                }
+
+                return Ok(rentals);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error fetching rentals: {ex.Message}");
                 return StatusCode(500, "An error occurred while fetching rentals.");
             }
         }
