@@ -53,9 +53,8 @@ public class UserRepository : IUserRepository
     }
     */
 
-    public async Task<bool> ValidateUserAsync(string username, string password, bool isEmployee)
+    public async Task<bool> ValidateUserAsync(string username, string password, string userType)
     {
-        string table = isEmployee ? "Staff" : "UserCustomer";
         /*string query = $@"SELECT 1 FROM {table} WHERE LOWER(email) = LOWER(@Email) AND BINARY password = @Password";
 
         using (var connection = _connector.CreateDbConnection())
@@ -72,6 +71,21 @@ public class UserRepository : IUserRepository
             }
         }
         */
+
+        string table; 
+        
+        if (userType.Equals("Employee"))
+        {
+            table = "Staff";
+        }
+        else if (userType.Equals("Customer"))
+        {
+            table = "UserCustomer";
+        }
+        else
+        {
+            table = "VehicleManager";
+        }
 
         string query = $@"SELECT password FROM {table} WHERE LOWER(email) = LOWER(@Email)";
         Console.WriteLine(table);

@@ -65,18 +65,18 @@ function GetOffice() {
 }
 
 function Login() {
-  const [isEmployee, setIsEmployee] = useState(false);
+  const [userType, SetUserType] = useState('Customer');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const navigate = useNavigate();
 
-  const toggleUserType = () => {
-    setIsEmployee(!isEmployee);
+  const toggleUserType = (event) => {
+    SetUserType(event.target.value);
   };
 
-  const onSubmit = (event) => {
+  const onSubmit = async (event) => {
     event.preventDefault();
 
     if (!email || !password) {
@@ -90,43 +90,57 @@ function Login() {
       return;
     }
 
-    fetch(`${BACKEND_URL}/api/Login/login`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({email, password, isEmployee}),
-      credentials: 'include', // Include cookies for authentication
-    })
-        .then(response => {
-          if (!response.ok) {
-            setError(`${email} is geen geldig account of het wachtwoord klopt niet`);
-            throw new Error('Login failed');
-          }
-          return response.json();
-        })
-        .then(async data => {
-          if (isEmployee) {
-            await CheckCookieEmployee();
+    try
+    {
+      const response = await fetch(`${BACKEND_URL}/api/Login/login`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({email, password, userType}),
+        credentials: 'include', // Include cookies for authentication
+      });
 
-            let officeData = await GetOffice();
-            let office = officeData?.message;
-            console.log(`Office: ${office}`);
-            console.log('***********');
+      if (!response.ok)
+      {
+        setError(`${email} is geen geldig account of het wachtwoord klopt niet`);
+        throw new Error('Login failed');
+      }
 
-            if (office == 'Front') {
-              navigate('/frontOfficeEmployee');
-            } else if (office == 'Back') {
-              navigate('/backOfficeEmployee');
-            }
-          } else {
-            await CheckCookie();
-            navigate('/');
-          }
-        })
-        .catch(error => {
-          console.error('Error:', error);
-        });
+      //const data =  await response.json();
+
+      if (userType === 'Customer')
+      {
+        await fetch(`${BACKEND_URL}/api/Login/CheckSession`, { credentials: 'include' });
+        navigate('/');
+      }
+      else if (userType === 'Employee')
+      {
+        const officeResponse = await fetch(`${BACKEND_URL}/api/Cookie/GetKindEmployee`, { credentials: 'include' });
+        if (!officeResponse.ok) {
+            throw new Error('Failed to fetch the kind of office');
+        }
+        const office = await officeResponse.json();
+        
+        if (office?.message === 'Front')
+        {
+          navigate('/FrontOfficeEmployee');
+        }
+        else
+        {
+          navigate('/BackOfficeEmployee');
+        }
+      }
+      else
+      {
+        await fetch(`${BACKEND_URL}/api/Login/VehicleManager`, { credentials: 'include' });
+        navigate('./VehicleManager');
+      }
+    }
+    catch (error)
+    {
+      console.error('Error: ', error);
+    }
   };
 
   const toggleMenu = () => {
@@ -153,21 +167,23 @@ function Login() {
                 <li><Link to="/GeneralSalePage">Zoek Auto's</Link></li>
                 <li><Link to="/about">Over ons</Link></li>
                 <li><Link to="/contact">Contact</Link></li>
-                <li><Link to="#" onClick={toggleUserType}>{isEmployee ? 'Klant' : 'Medewerker'}</Link></li>
               </ul>
             </nav>
         ) : null}
 
         <main>
-          {isEmployee ? (
-              <div id="inlog">
-                <h1>Medewerkers Login</h1>
-              </div>
-          ) : (
-              <div id="inlog">
-                <h1>Klanten Login</h1>
-              </div>
-          )}
+          <div id="inlog">
+            <h1>Login</h1>
+            <div id="input">
+              <label htmlFor="userType">Ik ben een:</label>
+              <br></br>
+              <select id="userType" value={userType} onChange={toggleUserType}>
+                <option value="Customer">Klant</option>
+                <option value="Employee">Medewerker van Car And All</option>
+                <option value="VehicleManager">Wagenpark Beheerder</option>
+              </select>
+            </div>
+          </div>
 
           <div id="input">
             <label htmlFor="user">Email</label>
@@ -179,7 +195,7 @@ function Login() {
             <input type="password" id="password" value={password} onChange={(e) => setPassword(e.target.value)}/>
             <br/>
             <button id="button" type="button" onClick={onSubmit}>Login</button>
-            {!isEmployee && (
+            {userType === "Customer" && (
                 <>
                   <br/>
                   <label htmlFor="noAccount">

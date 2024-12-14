@@ -57,7 +57,16 @@ public class UserRepository : IUserRepository
     {
         try
         {
-            string query = "INSERT INTO Staff (FirstName, LastName, Password, Email, Office) VALUES (@F, @L, @P, @E, @O)";
+            string query;
+
+            if (personData[4].Equals("Wagen"))
+            {
+                query = "INSERT INTO VehicleManager (FirstName, LastName, Password, Email, Business) VALUES (@F, @L, @P, @E, @B)";
+            }
+            else
+            {
+                query = "INSERT INTO Staff (FirstName, LastName, Password, Email, Office) VALUES (@F, @L, @P, @E, @O)";
+            }
 
             using (var connection = _connector.CreateDbConnection())
             using (var command = new MySqlCommand(query, (MySqlConnection)connection))
@@ -66,7 +75,15 @@ public class UserRepository : IUserRepository
                 command.Parameters.AddWithValue("@L", personData[1]);
                 command.Parameters.AddWithValue("@P", _hash.createHash(personData[2].ToString()));
                 command.Parameters.AddWithValue("@E", personData[3]);
-                command.Parameters.AddWithValue("@O", personData[4]);
+
+                if (personData[4].Equals("Wagen"))
+                {
+                    command.Parameters.AddWithValue("@B", personData[5]);
+                }
+                else
+                {
+                    command.Parameters.AddWithValue("@O", personData[4]);
+                }
 
                 if (await command.ExecuteNonQueryAsync() > 0)
                     {
@@ -78,7 +95,7 @@ public class UserRepository : IUserRepository
         }
         catch(MySqlException ex)
         {
-            return (false, ex.ToString());
+            return (false, ex.Message);
         }
     }
 

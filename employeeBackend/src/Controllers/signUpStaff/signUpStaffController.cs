@@ -19,7 +19,7 @@ public class SignUpStaffController : ControllerBase
     [HttpPost("signUpStaff")]
     public async Task<IActionResult> SignUpStaff([FromBody] SignUpRequest signUpRequest)
     {
-        Object[] personData = new Object[] {signUpRequest.FirstName, signUpRequest.LastName, signUpRequest.Password, signUpRequest.Email, signUpRequest.Office};
+        Object[] personData = new Object[] {signUpRequest.FirstName, signUpRequest.LastName, signUpRequest.Password, signUpRequest.Email, signUpRequest.Job, signUpRequest.KvK};
         var emailCheckTask = _userRepository.checkUsageEmailAsync(signUpRequest.Email);
         var addStaffTask = _userRepository.AddStaff(personData);
 
@@ -45,6 +45,12 @@ public class SignUpStaffController : ControllerBase
         {
             return Ok( new { message = "Data inserted"});
         }
-        return BadRequest (new { messsage = addStaff.message });
+
+        if (addStaff.message.Equals("Cannot add or update a child row: a foreign key constraint fails (`WPR`.`VehicleManager`, CONSTRAINT `VehicleManager_ibfk_1` FOREIGN KEY (`Business`) REFERENCES `Business` (`KVK`))"))
+        {
+            return BadRequest(new { message = "KvK nummer is niet geregistreerd"});
+        }
+
+        return BadRequest(new { messsage = addStaff.message });
     }
 }
