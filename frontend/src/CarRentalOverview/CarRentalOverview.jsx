@@ -15,12 +15,7 @@ function CarRentalOverview() {
 
     const cancellation = (index) => {
         modal.style.display = "block";
-        let rental = {
-            Id: rentals[index].id,
-            Name: rentals[index].carName,
-            LicensePlate: rentals[index].licensePlate,
-            FrameNr: rentals[index].frameNrCar
-        };
+        let rental = rentals[index];
 
         setChosenRental(rental);
     };
@@ -38,7 +33,7 @@ function CarRentalOverview() {
     const handleCancellation = async () => {
 
         try {
-            const response = await fetch(`${BACKEND_URL}/api/Rental/CancelRental?rentalId=${chosenRental.Id}&frameNr=${chosenRental.FrameNr}`, {
+            const response = await fetch(`${BACKEND_URL}/api/Rental/CancelRental?rentalId=${chosenRental.id}&frameNr=${chosenRental.frameNrCar}`, {
                 method: 'DELETE',
                 credentials: 'include',
             });
@@ -53,6 +48,11 @@ function CarRentalOverview() {
             setError('Rental cancellation failed');
         }
     };
+
+    const handleWijziging = (rental) => {
+        console.log('Navigating with rental:', rental);  // Add this log to check rental data
+        navigate("/changeRental", { state: { rental } });
+    }
 
     useEffect(() => {
         const fetchData = async () => {
@@ -94,8 +94,8 @@ function CarRentalOverview() {
                         <p>Contract van volgende voertuig wordt geannuleerd:</p>
                         {chosenRental ? (
                             <>
-                                <p>{`Naam - ${chosenRental.Name}`}</p>
-                                <p>{`Kenteken - ${chosenRental.LicensePlate}`}</p>
+                                <p>{`Naam - ${chosenRental.carName}`}</p>
+                                <p>{`Kenteken - ${chosenRental.licensePlate}`}</p>
                             </>
                         ) : (
                             <p>Geen keuze gemaakt</p>
@@ -128,7 +128,7 @@ function CarRentalOverview() {
                                 <div>{rental.status}</div>
                                 <div className="rental-config">
                                     <button id="button" onClick={() => cancellation(index)}>Annuleer</button>
-                                    <button id="button">Wijzig</button>
+                                    <button id="button" onClick={() => handleWijziging(rental)}>Wijzig</button>
                                 </div>
                             </div>
                         ))
