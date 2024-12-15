@@ -2,7 +2,8 @@ name: Generate UML Diagrams
 
 on:
   workflow_run:
-    workflows: ["Continuous Integration with Merge Blocker and Auto-Merge"]
+    workflows:
+      - "Continuous Integration with Merge Blocker and Auto-Merge" 
     types:
       - completed
 
@@ -15,31 +16,15 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Debug workflow context
-        run: |
-          echo "GitHub event: ${{ github.event_name }}"
-          echo "Workflow: ${{ github.event.workflow_run.workflow }}"
-          echo "Status: ${{ github.event.workflow_run.status }}"
-          echo "Conclusion: ${{ github.event.workflow_run.conclusion }}"
-
-      - name: Check if workflow completed successfully
-        run: |
-          if [[ "${{ github.event.workflow_run.conclusion }}" != "success" ]]; then
-            echo "Previous workflow did not succeed. Skipping UML generation."
-            exit 1
-          fi
-          
       - name: Generate UML for Backend
         run: |
-          echo "Generating UML for Backend"
           puml-gen ./backend/src ./UML/Backend -dir -createAssociation -v
           
       - name: Generate UML for Employee Backend
         run: |
-          echo "Generating UML for Employee Backend"
           puml-gen ./employeeBackend/src ./UML/BackendEmployee -dir -createAssociation -v
 
-      - name: Upload UML Diagrams
+      - name: Upload UML Diagrams as Artifacts
         uses: actions/upload-artifact@v3
         with:
           name: uml-diagrams
