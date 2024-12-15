@@ -1,0 +1,24 @@
+name: Generate UML Diagrams
+
+on:
+  workflow_run:
+    workflows: ["Continuous Integration with Merge Blocker and Auto-Merge"]
+    types:
+      - completed
+
+jobs:
+  generate_uml:
+    name: Generate UML Diagrams
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Generate UML for Backend
+        run: |
+          puml-gen ./backend/src ./UML/Backend -dir -createAssociation -v
+          
+      - name: Generate UML for Employee Backend
+        run: |
+          puml-gen ./employeeBackend/src ./UML/BackendEmployee -dir -createAssociation -v
