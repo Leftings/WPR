@@ -31,8 +31,8 @@ jobs:
         run: |
           mkdir -p UML/Backend
           mkdir -p UML/BackendEmployee
-          ./generate_puml_from_code.sh ./backend/src UML/Backend/backend.puml
-          ./generate_puml_from_code.sh ./employeeBackend/src UML/BackendEmployee/employeeBackend.puml
+          ./UML/scripts/generate_puml_from_code.sh ./backend/src UML/Backend/backend.puml
+          ./UML/scripts/generate_puml_from_code.sh ./employeeBackend/src UML/BackendEmployee/employeeBackend.puml
 
       # Step 5: Generate UML diagrams using PlantUML
       - name: Generate UML Diagrams
