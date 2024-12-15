@@ -19,7 +19,15 @@ jobs:
       # Step 2: Install PlantUML via downloading the jar directly
       - name: Download PlantUML JAR file
         run: |
+          echo "Removing any previous PlantUML JAR if it exists"
+          rm -f plantuml.jar
           curl -L https://github.com/plantuml/plantuml/releases/download/v1.2020.02/plantuml.1.2020.02.jar -o plantuml.jar
+          # Check if the file exists and is not corrupt
+          if [ ! -f plantuml.jar ]; then
+            echo "Error: PlantUML JAR file not found"
+            exit 1
+          fi
+          echo "Successfully downloaded PlantUML JAR file"
 
       # Step 3: Ensure the generate_puml_from_code.sh script is executable
       - name: Make generate_puml_from_code.sh executable
