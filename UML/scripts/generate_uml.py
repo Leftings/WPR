@@ -9,7 +9,7 @@ def find_associations(src_dir):
                 with open(os.path.join(root, file), 'r') as f:
                     lines = f.readlines()
                     for line in lines:
-                        if "uses" in line:
+                        if "uses" in line:  # Check for "uses" or another keyword as needed
                             classes = line.split("uses")
                             associations.append((classes[0].strip(), classes[1].strip()))
     return associations
@@ -43,16 +43,24 @@ backend_dirs = [
     "./employeeBackend/src",  
 ]
 
+output_dir = "./UML"
+os.makedirs(output_dir, exist_ok=True)
+
 for backend_dir in backend_dirs:
     print(f"Processing {backend_dir}...")
     associations = find_associations(backend_dir)
-    backend_name = backend_dir.split('/')[-2]
+    
+    backend_name = os.path.basename(os.path.normpath(backend_dir))
+    
+    if not associations:
+        print(f"No associations found in {backend_dir}")
+        continue
     
     uml_code = generate_uml(associations, backend_name)
     
-    uml_output_path = f"./UML/{backend_name}.puml"
+    uml_output_path = os.path.join(output_dir, f"{backend_name}.puml")
+    
     with open(uml_output_path, 'w') as uml_file:
         uml_file.write(uml_code)
     
     print(f"UML diagram generated for {backend_name}.")
-
