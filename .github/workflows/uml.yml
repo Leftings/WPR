@@ -69,7 +69,7 @@ jobs:
             echo "class TestClass { +void testMethod() }" >> UML/Backend/backend_simplified.puml
             echo "@enduml" >> UML/Backend/backend_simplified.puml
             # Print the content to verify it's correct
-            cat UML/Backend/backend_simplified.puml
+            cat -A UML/Backend/backend_simplified.puml
 
         # Step 9: Generate UML Diagrams using PlantUML (with simplified file for debugging)
       - name: Generate UML Diagrams (debugging step)
