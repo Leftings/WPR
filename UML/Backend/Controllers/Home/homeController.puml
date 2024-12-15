@@ -1,8 +1,0 @@
-@startuml
-class HomeController {
-    + HomeController(connector:Connector, userRepository:IUserRepository)
-}
-ControllerBase <|-- HomeController
-HomeController --> "_connector" Connector
-HomeController --> "_userRepository" IUserRepository
-@enduml

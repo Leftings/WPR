@@ -1,9 +1,0 @@
-@startuml
-class AddVehicleController {
-    + AddVehicleController(connector:Connector, userRepository:IUserRepository)
-    + <<async>> AddVehicleAsync(request:AddVehicleRequest, vehicleBlob:IFormFile) : Task<IActionResult>
-}
-ControllerBase <|-- AddVehicleController
-AddVehicleController --> "_connector" Connector
-AddVehicleController --> "_userRepository" IUserRepository
-@enduml

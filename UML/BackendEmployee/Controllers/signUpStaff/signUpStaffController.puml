@@ -1,8 +1,0 @@
-@startuml
-class SignUpStaffController {
-    + SignUpStaffController(userRepository:IUserRepository)
-    + <<async>> SignUpStaff(signUpRequest:SignUpRequest) : Task<IActionResult>
-}
-ControllerBase <|-- SignUpStaffController
-SignUpStaffController --> "_userRepository" IUserRepository
-@enduml

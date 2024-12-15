@@ -1,8 +1,0 @@
-@startuml
-class EnvConfig {
-    + EnvConfig()
-    + <<virtual>> Get(key:string) : string
-    + <<virtual>> IsConfigured() : bool
-}
-EnvConfig --> "_configuration" IConfiguration
-@enduml

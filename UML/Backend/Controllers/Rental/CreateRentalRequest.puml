@@ -1,9 +1,0 @@
-@startuml
-class RentalRequest {
-    + Email : string <<get>> <<set>>
-    + FrameNrCar : string <<get>> <<set>>
-    + Price : decimal <<get>> <<set>>
-}
-RentalRequest --> "StartDate" DateTime
-RentalRequest --> "EndDate" DateTime
-@enduml

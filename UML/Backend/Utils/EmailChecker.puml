@@ -1,5 +1,0 @@
-@startuml
-class EmailChecker <<static>> {
-    + {static} IsValidEmail(email:string) : bool
-}
-@enduml

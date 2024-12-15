@@ -1,5 +1,0 @@
-@startuml
-class BirthdayChecker {
-    + {static} IsValidBirthday(birthdate:DateTime?) : bool
-}
-@enduml

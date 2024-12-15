@@ -1,6 +1,0 @@
-@startuml
-class AppConfigure {
-    + {static} InitDatabase(services:IServiceProvider) : void
-    + {static} ConfigureApplication(args:string[]) : WebApplication
-}
-@enduml

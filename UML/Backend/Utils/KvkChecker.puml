@@ -1,7 +1,0 @@
-@startuml
-class KvkChecker {
-    + KvkChecker(userRepository:IUserRepository)
-    + <<async>> IsKvkNumberValid(kvkNumber:int?) : Task<(bool isValid, string errorMessage)>
-}
-KvkChecker --> "_userRepository" IUserRepository
-@enduml

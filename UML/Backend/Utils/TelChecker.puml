@@ -1,5 +1,0 @@
-@startuml
-class TelChecker <<static>> {
-    + {static} IsValidPhoneNumber(phoneNumber:string) : bool
-}
-@enduml

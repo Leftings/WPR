@@ -1,6 +1,0 @@
-@startuml
-class acceptHireRequestRequest {
-    - VehcileId : int <<get>> <<set>>
-    - CustomerId : int <<get>> <<set>>
-}
-@enduml

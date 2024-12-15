@@ -1,8 +1,0 @@
-@startuml
-class Crypt {
-    + Crypt(envConfig:EnvConfig)
-    + Encrypt(text:string) : string
-    + Decrypt(encrypted:string) : string
-}
-Crypt --> "_envConfig" EnvConfig
-@enduml
