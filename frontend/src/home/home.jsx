@@ -6,7 +6,35 @@ import './home.css';
 
 function Home() {
     const [isEmployee, setIsEmployee] = useState(false);
+    const [isVehicleManager, setIsVehicleManager] = useState(false);
+    const [error, setError] = useState(null);
     const navigate = useNavigate();
+
+    useEffect(() => {
+        const checkVehicleManager = async () => {
+            try {
+                const response = await fetch('http://localhost:5276/api/Cookie/IsVehicleManager', {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    credentials: 'include',
+                });
+
+                if (!response.ok) {
+                    throw new Error('Error fetching Vehicle Manager info...');
+                }
+                
+                const data = await response.json();
+                setIsVehicleManager(data === true);
+                console.log(isVehicleManager);
+            } catch (error) {
+                console.error(error.message);
+                setIsVehicleManager(false);
+            }
+        };
+        checkVehicleManager();
+    }, []);
 
     useEffect(() => {
         fetch(`http://localhost:5165/api/Employee/IsUserEmployee`, { credentials: 'include' })
@@ -61,12 +89,15 @@ function Home() {
                             <Link to="/AbonementUitlegPage" className="cta-button">Ontdek Abonnementen</Link>
                         </section>
                     )}
+
+                    {isVehicleManager && (
                     <section className="abonnementen-info">
                         <h2>Bekijk het overzicht van alle Rentals</h2>
                         <p>Op de volgende pagina zult u een uitgebreide pagina vinden waarin alle verhuurde auto's te
                             vinden zijn</p>
                         <Link to="/wagenparkBeheerderOverzichtPage" className="cta-button">Bekijk Rentals</Link>
                     </section>
+                    )}
                 </div>
             </main>
             <GeneralFooter/>

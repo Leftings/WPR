@@ -65,4 +65,36 @@ public class CookieController : ControllerBase
             return BadRequest(new { message = "Invalid Cookie, new cookie set" });
         }
     }
+    
+    [HttpGet("IsVehicleManager")]
+    public async Task<IActionResult> IsVehicleManagerAsync()
+    {
+        string? loginCookie2 = HttpContext.Request.Cookies["LoginVehicleManagerSession"];
+
+        string decryptedCookie = _crypt.Decrypt(loginCookie2);
+        
+        Console.WriteLine(_crypt.Decrypt(loginCookie2) + "  XXXXXXXXXXXXXX");
+
+        try
+        {
+            if (!string.IsNullOrEmpty(loginCookie2))
+            {
+                return Ok(true);
+            }
+
+            return BadRequest(new { message = "No Cookie" });
+        }
+        catch
+        {
+
+            Response.Cookies.Append("LoginVehicleManagerSession", "Invalid cookie", new CookieOptions
+            {
+                HttpOnly = true,
+                Secure = true,
+                Expires = DateTimeOffset.UtcNow.AddDays(-1)
+            });
+            
+            return BadRequest(new { message = "Invalid Cookie, new cookie set" });
+        }
+    }
 }
