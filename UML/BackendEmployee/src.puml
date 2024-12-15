@@ -1,0 +1,71 @@
+@startuml src
+left to right direction
+skinparam linetype ortho
+SignUpStaffController -- IUserRepository
+Crypt -- EnvConfig
+Connector -- EnvConfig
+Hash -- EnvConfig
+AcceptHireRequestController ..|> ControllerBase
+AddVehicleController ..|> ControllerBase
+CookieController ..|> ControllerBase
+SignUpStaffController ..|> ControllerBase
+ValidateUserController ..|> ControllerBase
+Connector ..|> IConnector
+UserRepository ..|> IUserRepository
+FileUploadOperationFilter ..|> IOperationFilter
+CheckSessionStaff :  -> 0..1
+Encrypt : string text -> 0..1
+Decrypt : string encrypted -> 0..1
+createHash : string password -> 0..1
+Apply : OpenApiOperation operation, OperationFilterContext context -> 0..1
+package "Shared Associations" {
+    Unknown -- "shared association" dbConnector
+    Unknown -- "shared association" Console
+    Unknown -- "shared association" WebApplication
+    Unknown -- "shared association" Environment
+    Unknown -- "shared association" Configuration
+    Unknown -- "shared association" Services
+    Unknown -- "shared association" options
+    Unknown -- "shared association" policy
+    Unknown -- "shared association" WebHost
+    Unknown -- "shared association" TimeSpan
+    Unknown -- "shared association" builder
+    Unknown -- "shared association" app
+    Unknown -- "shared association" c
+    Unknown -- "shared association" AppConfigure
+    Unknown -- "shared association" _userRepository
+    Unknown -- "shared association" string
+    Unknown -- "shared association" _crypt
+    Unknown -- "shared association" Cookies
+    Unknown -- "shared association" UtcNow
+    Unknown -- "shared association" vehicleBlob
+    Unknown -- "shared association" memoryStream
+    SignUpStaffController -- "shared association" IUserRepository
+    Unknown -- "shared association" EmailChecker
+    Unknown -- "shared association" PasswordChecker
+    Unknown -- "shared association" message
+    Crypt -- "shared association" EnvConfig
+    Unknown -- "shared association" Convert
+    Unknown -- "shared association" Aes
+    Unknown -- "shared association" aes
+    Unknown -- "shared association" sw
+    Unknown -- "shared association" sr
+    Unknown -- "shared association" DotEnv
+    Unknown -- "shared association" requiredKeys
+    Connector -- "shared association" EnvConfig
+    Unknown -- "shared association" _envConfig
+    Unknown -- "shared association" connection
+    Hash -- "shared association" EnvConfig
+    Unknown -- "shared association" RandomNumberGenerator
+    Unknown -- "shared association" _connector
+    Unknown -- "shared association" Parameters
+    Unknown -- "shared association" command
+    Unknown -- "shared association" Error
+    Unknown -- "shared association" reader
+    Unknown -- "shared association" user
+    Unknown -- "shared association" ids
+    Unknown -- "shared association" rows
+    Unknown -- "shared association" userType
+    Unknown -- "shared association" Regex
+}
+@enduml
