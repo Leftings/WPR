@@ -14,10 +14,12 @@ public class VehicleController : ControllerBase
 {
 
     private readonly Connector _connector;
+    private readonly IVehicleRepository _vehicleRepository;
 
-    public VehicleController(Connector connector)
+    public VehicleController(Connector connector, IVehicleRepository vehicleRepository)
     {
         _connector = connector ?? throw new ArgumentNullException(nameof(connector));
+        _vehicleRepository = vehicleRepository ?? throw new ArgumentNullException(nameof(vehicleRepository));
     }
 
     [HttpGet("GetVehicleNameAsync")]
@@ -130,7 +132,9 @@ public class VehicleController : ControllerBase
                     if (reader.Read() && !reader.IsDBNull(0))
                     {
                         decimal priceDec = reader.GetDecimal(0);
-                        string price = priceDec.ToString();
+                        
+                        string price = priceDec.ToString("F2");
+                        
                         return Ok(price);
                     }
                     else
@@ -241,5 +245,19 @@ public class VehicleController : ControllerBase
             Console.WriteLine($"Error: {ex.Message}");
             return StatusCode(500, "An error occurred while fetching vehicles.");
         }
+    }
+
+    [HttpGet("GetFrameNumbers")]
+    public async Task<IActionResult> GetFrameNumbersAsync()
+    {
+        var ids = await _vehicleRepository.GetFrameNumbersAsync();
+        return Ok(new { message = ids });
+    }
+
+    [HttpGet("GetVehicelData")]
+    public async Task<IActionResult> GetVehicleData(string frameNr)
+    {
+        var data = _vehicleRepository.GetVehicleDataAsync(frameNr);
+        return Ok(new { message = data });
     }
 }

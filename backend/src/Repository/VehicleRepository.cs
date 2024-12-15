@@ -1,5 +1,7 @@
 ﻿using System.Data;
+using Microsoft.VisualBasic;
 using MySql.Data.MySqlClient;
+using Org.BouncyCastle.Asn1.Mozilla;
 using WPR.Database;
 
 namespace WPR.Repository;
@@ -98,6 +100,76 @@ public class VehicleRepository : IVehicleRepository
         {
             Console.WriteLine($"Error getting vehicle color {e.Message}");
             throw;
+        }
+    }
+
+    public async Task<List<string>> GetFrameNumbersAsync()
+    {
+        try
+        {
+            string query = "SELECT FrameNr FROM Vehicle";
+
+            using (var connection = _connector.CreateDbConnection())
+            using (var command = new MySqlCommand(query, (MySqlConnection)connection))
+            using (var reader = await command.ExecuteReaderAsync())
+            {
+                var ids = new List<string>();
+                while (await reader.ReadAsync())
+                {
+                    ids.Add(reader.GetValue(0).ToString());
+                }
+
+                return ids;
+            }
+        }
+        catch (MySqlException ex)
+        {
+            Console.WriteLine(ex.Message);
+            return null;
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.Message);
+            return null;
+        }
+    }
+
+    public async Task<List<Dictionary<object, string>>> GetVehicleDataAsync(string frameNr)
+    {
+        try
+        {
+            string query = "SELECT * FROM Vehicle WHERE FrameNR = @F";
+
+            using (var connection = _connector.CreateDbConnection())
+            using (var command = new MySqlCommand(query, (MySqlConnection)connection))
+            using (var reader = await command.ExecuteReaderAsync())
+            {
+                command.Parameters.AddWithValue("@F", frameNr);
+
+                var data = new List<Dictionary<object, string>>();
+
+                while (await reader.ReadAsync())
+                {
+                    for (int i = 0; i < reader.FieldCount; i++)
+                    {
+                        var row = new Dictionary<object, string>();
+                        row[reader.GetName(i)] = reader.GetValue(i).ToString();
+                        data.Add(row);
+                    }
+                }
+
+                return data;
+            }
+        }
+        catch (MySqlException ex)
+        {
+            Console.WriteLine(ex.Message);
+            return null;
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.Message);
+            return null;
         }
     }
 }

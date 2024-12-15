@@ -380,5 +380,41 @@ VALUES (@StartDate, @EndDate, @Price, @FrameNrCar, @Customer, @Status, @Reviewed
                 return StatusCode(500, "An error occurred while fetching rentals.");
             }
         }
+        
+        [HttpPut("ChangeRental")]
+        public async Task<IActionResult> ChangeRentalAsync([FromBody] UpdateRentalRequest request)
+        {
+
+            try
+            {
+                string query1 = @"
+    UPDATE Abonnement SET StartDate = @StartDate, EndDate = @EndDate, Price = @Price WHERE ID = @Id";
+
+                using (var connection = _connector.CreateDbConnection())
+                {
+                    using (var command = new MySqlCommand(query1, (MySqlConnection)connection))
+                    {
+                        command.Parameters.AddWithValue("@StartDate", request.StartDate);
+                        command.Parameters.AddWithValue("@EndDate", request.EndDate);
+                        command.Parameters.AddWithValue("@Price", request.Price);
+                        command.Parameters.AddWithValue("@Id", request.Id);
+
+                        Console.WriteLine($"Executing query with rentalId: {request.Id}, StartDate: {request.StartDate}, EndDate: {request.EndDate}, Price: {request.Price}");
+
+                        if (await command.ExecuteNonQueryAsync() > 0)
+                        {
+                            return Ok(new { message = "Rental updated successfully" });
+                        }
+
+                        return BadRequest(new { message = "Rental wasn't updated" });
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error: {ex.Message}");
+                return StatusCode(500, new { message = "An error occurred while processing the rental update" });
+            }
+        }
     }
 }
