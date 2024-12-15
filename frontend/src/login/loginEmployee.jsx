@@ -123,10 +123,12 @@ function Login() {
   
           if (office?.message === 'Front')
           {
+            await fetch(`${BACKEND_URL}/api/Login/CheckSessionStaff`, { credentials: 'include' });
             navigate('/FrontOfficeEmployee');
           }
           else
           {
+            await fetch(`${BACKEND_URL}/api/Login/CheckSessionStaff`, { credentials: 'include' });
             navigate('/BackOfficeEmployee');
           }
         }

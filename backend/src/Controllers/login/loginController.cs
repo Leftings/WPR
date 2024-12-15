@@ -9,6 +9,7 @@ using WPR.Database;
 using WPR.Cryption;
 using WPR.Hashing;
 using ZstdSharp.Unsafe;
+using System.Transactions;
 
 [Route("api/[controller]")]
 [ApiController]
@@ -27,8 +28,29 @@ public class LoginController : ControllerBase
         _crypt = crypt ?? throw new ArgumentNullException(nameof(crypt));
     }
 
+    private void RemoveOldCookieAsync()
+    {
+        try
+        {
+            if (!string.IsNullOrEmpty(Request.Cookies["LoginEmployeeSession"]))
+            {
+                _sessionHandler.CreateInvalidCookie(Response.Cookies, "LoginEmployeeSession");
+            }
+            
+            if (!string.IsNullOrEmpty(Request.Cookies["LoginVehicleManagerSession"]))
+            {
+                _sessionHandler.CreateInvalidCookie(Response.Cookies, "LoginVehicleManagerSession");
+            }
+        } 
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.Message);
+        }
+    }
+
     private async Task<IActionResult> SetCookieAsync(LoginRequest loginRequest)
     {
+        RemoveOldCookieAsync();
         var connection = _connector.CreateDbConnection();
 
         try
@@ -96,7 +118,7 @@ public class LoginController : ControllerBase
     }
 
     [HttpGet("CheckSessionStaff")]
-    public IActionResult CheckSessionStaff()
+    public async Task<IActionResult> CheckSessionStaff()
     {
         string sessionValue = Request.Cookies["LoginEmployeeSession"];
         
@@ -108,10 +130,9 @@ public class LoginController : ControllerBase
     }
 
     [HttpGet("CheckSessionVehicleManager")]
-    public IActionResult CheckSessionVehicleManager()
+    public async Task<IActionResult> CheckSessionVehicleManager()
     {
         string sessionValue = Request.Cookies["LoginVehicleManagerSession"];
-        
         if (!string.IsNullOrEmpty(sessionValue))
         {
             return Ok( new {message = "session active ", sessionValue});
@@ -129,9 +150,7 @@ public class LoginController : ControllerBase
 
         try
         {
-            Console.WriteLine(1);
             bool isValid = await _userRepository.ValidateUserAsync(loginRequest.Email, loginRequest.Password, loginRequest.UserType);
-            Console.WriteLine(isValid);
 
             if (isValid)
             {
@@ -151,12 +170,10 @@ public class LoginController : ControllerBase
         }
         catch (MySqlException ex)
         {
-            Console.Error.WriteLine($"Database error: {ex.Message}");
             return StatusCode(500, new { message = ex.Message});
         }
         catch (Exception ex)
         {
-            Console.Error.WriteLine($"Unexpected error: {ex.Message}");
             return StatusCode(500, new { message = ex.Message });
         }
     }

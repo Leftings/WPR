@@ -15,11 +15,15 @@ public class SessionHandler : IDisposable
 
     public void CreateInvalidCookie(IResponseCookies responseCookies, string cookieName)
     {
-        responseCookies.Append(cookieName, null, new CookieOptions
+        responseCookies.Append(cookieName, "", new CookieOptions
         {
             HttpOnly = true,
-            Expires = DateTimeOffset.Now.AddMinutes(-1)
+            Expires = DateTimeOffset.Now.AddMinutes(-1),
+            MaxAge = TimeSpan.Zero,
+            Path = "/"
         });
+
+        Console.WriteLine($"Cookie invalidated: {cookieName}");
     }
 
     protected virtual void Dispose(bool disposing)
