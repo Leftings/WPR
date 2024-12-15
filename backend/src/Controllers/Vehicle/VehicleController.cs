@@ -254,10 +254,18 @@ public class VehicleController : ControllerBase
         return Ok(new { message = ids });
     }
 
+    [HttpGet("GetFrameNumbersSpecificType")]
+     public async Task<IActionResult> GetFrameNumbersSpecificTypeAsync(string type)
+    {
+        var ids = await _vehicleRepository.GetFrameNumberSpecifiekTypeAsync(type);
+        return Ok(new { message = ids });
+    }
+
     [HttpGet("GetVehicelData")]
     public async Task<IActionResult> GetVehicleData(string frameNr)
     {
-        var data = _vehicleRepository.GetVehicleDataAsync(frameNr);
+        var data = await _vehicleRepository.GetVehicleDataAsync(frameNr);
+        Console.WriteLine(data);
         return Ok(new { message = data });
     }
 }
