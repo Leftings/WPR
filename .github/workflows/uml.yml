@@ -65,9 +65,9 @@ jobs:
       - name: Simplify backend.puml for debugging
         run: |
             # Overwrite the existing simplified puml file with valid content
-            echo "@startuml" > UML/Backend/backend_simplified.puml
-            echo "class TestClass { +void testMethod() }" >> UML/Backend/backend_simplified.puml
-            echo "@enduml" >> UML/Backend/backend_simplified.puml
+            printf "@startuml" > UML/Backend/backend_simplified.puml
+            printf "class TestClass { +void testMethod() }" >> UML/Backend/backend_simplified.puml
+            printf "@enduml" >> UML/Backend/backend_simplified.puml
             # Print the content to verify it's correct
             cat -A UML/Backend/backend_simplified.puml
 
