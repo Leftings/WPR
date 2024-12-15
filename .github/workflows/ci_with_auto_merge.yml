@@ -97,13 +97,15 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Generate UML for Backend
+      - name: Setup Python environment
         run: |
-          puml-gen ./backend/src ./UML/Backend -dir -createAssociation -v
+          sudo apt-get update
+          sudo apt-get install -y python3 python3-pip
+          pip3 install -r requirements.txt # If you have any additional requirements
 
-      - name: Generate UML for Employee Backend
+      - name: Run Python script to generate UML diagrams
         run: |
-          puml-gen ./employeeBackend/src ./UML/BackendEmployee -dir -createAssociation -v
+          python3 UML/scripts/generate_uml.py
 
       - name: Upload UML Diagrams as Artifacts
         uses: actions/upload-artifact@v3
