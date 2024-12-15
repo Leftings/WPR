@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import GeneralHeader from "../GeneralBlocks/header/header.jsx";
 import GeneralFooter from "../GeneralBlocks/footer/footer.jsx";
@@ -29,8 +29,6 @@ function GetVehicle(id)
             acc[key] = value;
             return acc;
         }, {});
-
-        console.log('Combined Data:', combinedData);
 
         return { message: combinedData };
     })
@@ -115,22 +113,28 @@ function GeneralSalePage() {
     */
 
     useEffect(() => {
+        if (isEmployee === null) return; 
         const fetchVehicles = async () => {
             try
             {
+                setLoading(true)
                 console.log(isEmployee);
+                setVehicles([]);
                 let url;
 
                 if (isEmployee) {
                     // Employees always fetch cars
-                    url = `${BACKEND_URL}/api/vehicle/GetFrameNumbersSpecificType?type='Car'`;
+                    url = `${BACKEND_URL}/api/vehicle/GetFrameNumbersSpecificType?type=Car`;
                 } else if (!filter || filter === 'All') {
                     // Non-employees fetch all vehicles if no filter is applied
                     url = `${BACKEND_URL}/api/vehicle/GetFrameNumbers`;
                 } else {
                     // Non-employees fetch filtered vehicles
+                    console.log(encodeURIComponent(filter));
                     url = `${BACKEND_URL}/api/vehicle/GetFrameNumbersSpecificType?type=${encodeURIComponent(filter)}`;
                 }
+
+                console.log(url);
                 
                 const response = await fetch(url, {
                     method: 'GET',
@@ -172,7 +176,6 @@ function GeneralSalePage() {
                 setLoading(false);
             }
         };
-        fetchVehicles();
 
         if (isEmployee !== null) {
             fetchVehicles();
@@ -207,25 +210,25 @@ function GeneralSalePage() {
                         <div className="car-grid">
                             {vehicles.length > 0 ? (
                                 vehicles.map(vehicle => (
-                                    <div key={vehicle.frameNr} className="car-card">
+                                    <div key={vehicle.FrameNr} className="car-card">
                                         <div className="car-blob">
-                                            {vehicle.image ? (
+                                            {vehicle.VehicleBlob ? (
                                                 <img
                                                     className="car-blob"
-                                                    src={`data:image/jpeg;base64,${vehicle.image}`}
-                                                    alt={`${vehicle.Brand || 'Unknown'} ${vehicle.type || ''}`}
+                                                    src={`data:image/jpeg;base64,${vehicle.VehicleBlob}`}
+                                                    alt={`${vehicle.Brand || 'Unknown'} ${vehicle.Type || ''}`}
                                                 />
                                             ) : (
                                                 <p>Image not available</p>
                                             )}
                                         </div>
                                         <div className="car-info">
-                                            <h2 className="car-name">{`${vehicle.brand || 'Unknown'} ${vehicle.type || ''}`}</h2>
-                                            <p className="car-price">{`$${vehicle.price}`}</p>
-                                            <p className="car-description">{vehicle.description || 'No description available'}</p>
+                                            <h2 className="car-name">{`${vehicle.Brand || 'Unknown'} ${vehicle.Type || ''}`}</h2>
+                                            <p className="car-price">{`$${vehicle.Price}`}</p>
+                                            <p className="car-description">{vehicle.Description || 'No description available'}</p>
                                         </div>
                                         <Link
-                                            to={`/vehicle/${vehicle.frameNr}`}
+                                            to={`/vehicle/${vehicle.FrameNr}`}
                                             state={{ vehicle }}
                                             className="huur-link"
                                         >

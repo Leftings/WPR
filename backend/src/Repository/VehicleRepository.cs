@@ -142,14 +142,16 @@ public class VehicleRepository : IVehicleRepository
 
             using (var connection = _connector.CreateDbConnection())
             using (var command = new MySqlCommand(query, (MySqlConnection)connection))
-            using (var reader = await command.ExecuteReaderAsync())
             {
                 command.Parameters.AddWithValue("@S", type);
-                await command.ExecuteNonQueryAsync();
                 var ids = new List<string>();
-                while (await reader.ReadAsync())
+
+                using (var reader = await command.ExecuteReaderAsync())
                 {
-                    ids.Add(reader.GetValue(0).ToString());
+                    while (await reader.ReadAsync())
+                    {
+                        ids.Add(reader.GetValue(0).ToString());
+                    }
                 }
 
                 return ids;
@@ -186,7 +188,16 @@ public class VehicleRepository : IVehicleRepository
                         for (int i = 0; i < reader.FieldCount; i++)
                         {
                             var row = new Dictionary<object, string>();
-                            row[reader.GetName(i)] = reader.GetValue(i).ToString();
+
+                            if (reader.GetName(i).ToString().Equals("VehicleBlob"))
+                            {
+                                row[reader.GetName(i)] = Convert.ToBase64String((byte[])reader.GetValue(i));
+                            }
+                            else
+                            {
+                                row[reader.GetName(i)] = reader.GetValue(i).ToString();
+                            }
+
                             data.Add(row);
                         }
                     }
