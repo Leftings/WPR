@@ -67,6 +67,8 @@ jobs:
            # Clean the file and overwrite it with valid content using printf
             printf "@startuml\n" > UML/Backend/backend_simplified.puml
             printf "class TestClass\n" >> UML/Backend/backend_simplified.puml
+            printf "class AnotherClass { +void anotherMethod() }\n" >> UML/Backend/backend_simplified.puml
+            printf "TestClass --> AnotherClass\n" >> UML/Backend/backend_simplified.puml
             printf "@enduml\n" >> UML/Backend/backend_simplified.puml
 
             # Print the content to verify it's correct and check for hidden characters
