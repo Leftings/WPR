@@ -76,7 +76,7 @@ jobs:
         # Step 9: Generate UML Diagrams using PlantUML (with simplified file for debugging)
       - name: Generate UML Diagrams (debugging step)
         run: |
-            java -jar plantuml.jar UML/Backend/backend_simplified.puml
+            java -jar -v plantuml.jar UML/Backend/backend_simplified.puml
 
       # Step 10: Upload UML Diagrams as Artifacts (for further analysis)
       - name: Upload UML Diagrams as Artifacts
