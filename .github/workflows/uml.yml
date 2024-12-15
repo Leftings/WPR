@@ -16,24 +16,17 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # Step 2: Install Java (required by PlantUML)
-      - name: Install Java
+      # Step 2: Install dependencies (PlantUML)
+      - name: Install PlantUML
         run: |
           sudo apt-get update
-          sudo apt-get install -y openjdk-11-jre
-          java -version
+          sudo apt-get install -y plantuml
 
-      # Step 3: Download and Install the Latest Version of PlantUML
-      - name: Download and Install PlantUML
-        run: |
-          curl -L -o plantuml.jar https://github.com/plantuml/plantuml/releases/download/v1.2024.0/plantuml-1.2024.0.jar
-          echo "PlantUML installed successfully"
-
-      # Step 4: Ensure the generate_puml_from_code.sh script is executable
+      # Step 3: Ensure the generate_puml_from_code.sh script is executable
       - name: Make generate_puml_from_code.sh executable
         run: chmod +x ./UML/scripts/generate_puml_from_code.sh
 
-      # Step 5: Generate PUML files for Backend and EmployeeBackend
+      # Step 4: Generate PUML files for Backend and EmployeeBackend
       - name: Generate PUML files
         run: |
           mkdir -p UML/Backend
@@ -41,50 +34,42 @@ jobs:
           ./UML/scripts/generate_puml_from_code.sh ./backend/src UML/Backend/backend.puml
           ./UML/scripts/generate_puml_from_code.sh ./employeeBackend/src UML/BackendEmployee/employeeBackend.puml
 
-      # Step 6: Check for hidden characters and debug file contents
-      - name: Check for hidden characters in PUML files
+      # Step 5: Debugging: Check file encoding and hidden characters
+      - name: Check file encoding and hidden characters (backend.puml)
         run: |
-          echo "Checking backend.puml for hidden characters:"
+          file -i UML/Backend/backend.puml
           cat -A UML/Backend/backend.puml
-          echo "Checking employeeBackend.puml for hidden characters:"
+
+      - name: Check file encoding and hidden characters (employeeBackend.puml)
+        run: |
+          file -i UML/BackendEmployee/employeeBackend.puml
           cat -A UML/BackendEmployee/employeeBackend.puml
 
-      # Step 7: Output the generated PUML files contents
-      - name: Output PUML files contents
-        run: |
-          echo "Contents of backend.puml:"
-          cat UML/Backend/backend.puml
-          echo "Contents of employeeBackend.puml:"
-          cat UML/BackendEmployee/employeeBackend.puml
+      # Step 6: Debugging: Print PlantUML version
+      - name: Print PlantUML version
+        run: java -jar plantuml.jar -version
 
-      # Step 8: Simplify PUML files for debugging
-      - name: Simplify PUML files for debugging
+      # Step 7: Debugging: Ensure Java version is compatible
+      - name: Check Java version
+        run: java -version
+
+      # Step 8: Simplify the backend.puml file for testing
+      - name: Simplify backend.puml for debugging
         run: |
           echo "@startuml" > UML/Backend/backend_simplified.puml
           echo "class TestClass { +void testMethod() }" >> UML/Backend/backend_simplified.puml
           echo "@enduml" >> UML/Backend/backend_simplified.puml
 
-          echo "@startuml" > UML/BackendEmployee/employeeBackend_simplified.puml
-          echo "class TestClass { +void testMethod() }" >> UML/BackendEmployee/employeeBackend_simplified.puml
-          echo "@enduml" >> UML/BackendEmployee/employeeBackend_simplified.puml
-
-      # Step 9: Run simplified PUML files through the latest PlantUML
-      - name: Run simplified PUML files through the latest PlantUML
+      # Step 9: Generate UML Diagrams using PlantUML (with simplified file for debugging)
+      - name: Generate UML Diagrams (debugging step)
         run: |
           java -jar plantuml.jar UML/Backend/backend_simplified.puml
-          java -jar plantuml.jar UML/BackendEmployee/employeeBackend_simplified.puml
 
-      # Step 10: Run original PUML files through PlantUML
-      - name: Run original PUML files through the latest PlantUML
-        run: |
-          java -jar plantuml.jar UML/Backend/backend.puml
-          java -jar plantuml.jar UML/BackendEmployee/employeeBackend.puml
-
-      # Step 11: Upload UML Diagrams as Artifacts
+      # Step 10: Upload UML Diagrams as Artifacts (for further analysis)
       - name: Upload UML Diagrams as Artifacts
         uses: actions/upload-artifact@v3
         with:
           name: uml-diagrams
           path: |
-            UML/Backend/backend.png
+            UML/Backend/backend_simplified.png
             UML/BackendEmployee/employeeBackend.png
