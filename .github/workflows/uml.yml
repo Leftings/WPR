@@ -34,21 +34,48 @@ jobs:
           ./UML/scripts/generate_puml_from_code.sh ./backend/src UML/Backend/backend.puml
           ./UML/scripts/generate_puml_from_code.sh ./employeeBackend/src UML/BackendEmployee/employeeBackend.puml
 
-      # Step 5: Output the generated PUML files (Debugging step)
-      - name: Output PUML files (Debugging)
+      # Step 5: Check for hidden characters and debug file contents
+      - name: Check for hidden characters in PUML files
+        run: |
+          echo "Checking backend.puml for hidden characters:"
+          cat -A UML/Backend/backend.puml
+          echo "Checking employeeBackend.puml for hidden characters:"
+          cat -A UML/BackendEmployee/employeeBackend.puml
+
+      # Step 6: Output the generated PUML files (Debugging step)
+      - name: Output PUML files contents
         run: |
           echo "Contents of backend.puml:"
           cat UML/Backend/backend.puml
           echo "Contents of employeeBackend.puml:"
           cat UML/BackendEmployee/employeeBackend.puml
 
-      # Step 6: Generate UML diagrams using PlantUML
-      - name: Generate UML Diagrams
+      # Step 7: Simplify PUML files for debugging (Optional step)
+      - name: Simplify PUML files for debugging
+        run: |
+          # Simplifying the backend.puml file for debugging
+          echo "@startuml" > UML/Backend/backend_simplified.puml
+          echo "class TestClass { +void testMethod() }" >> UML/Backend/backend_simplified.puml
+          echo "@enduml" >> UML/Backend/backend_simplified.puml
+
+          # Simplifying the employeeBackend.puml file for debugging
+          echo "@startuml" > UML/BackendEmployee/employeeBackend_simplified.puml
+          echo "class TestClass { +void testMethod() }" >> UML/BackendEmployee/employeeBackend_simplified.puml
+          echo "@enduml" >> UML/BackendEmployee/employeeBackend_simplified.puml
+
+      # Step 8: Run simplified PUML files through PlantUML to test basic functionality
+      - name: Run simplified PUML files through PlantUML
+        run: |
+          plantuml -v UML/Backend/backend_simplified.puml
+          plantuml -v UML/BackendEmployee/employeeBackend_simplified.puml
+
+      # Step 9: Generate UML diagrams using PlantUML for original files
+      - name: Generate UML Diagrams from Original Files
         run: |
           plantuml -v UML/Backend/backend.puml
           plantuml -v UML/BackendEmployee/employeeBackend.puml
 
-      # Step 7: Upload UML Diagrams as Artifacts
+      # Step 10: Upload UML Diagrams as Artifacts
       - name: Upload UML Diagrams as Artifacts
         uses: actions/upload-artifact@v3
         with:
