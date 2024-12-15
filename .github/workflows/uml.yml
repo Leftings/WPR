@@ -16,11 +16,10 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # Step 2: Install dependencies (PlantUML)
-      - name: Install PlantUML
+      # Step 2: Install PlantUML via downloading the jar directly
+      - name: Download PlantUML JAR file
         run: |
-          sudo apt-get update
-          sudo apt-get install -y plantuml
+          curl -L https://github.com/plantuml/plantuml/releases/download/v1.2020.02/plantuml.1.2020.02.jar -o plantuml.jar
 
       # Step 3: Ensure the generate_puml_from_code.sh script is executable
       - name: Make generate_puml_from_code.sh executable
@@ -47,7 +46,8 @@ jobs:
 
       # Step 6: Debugging: Print PlantUML version
       - name: Print PlantUML version
-        run: java -jar plantuml.jar -version
+        run: |
+          java -jar plantuml.jar -version
 
       # Step 7: Debugging: Ensure Java version is compatible
       - name: Check Java version
