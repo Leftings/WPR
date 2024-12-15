@@ -64,12 +64,12 @@ jobs:
      # Step 8: Ensure the backend.puml file is simplified for testing
       - name: Simplify backend.puml for debugging
         run: |
-            # Overwrite the existing simplified puml file with valid content
-            printf "@startuml\n" > UML/Backend/backend_simplified.puml
-            printf "class TestClass { +void testMethod() }\n" >> UML/Backend/backend_simplified.puml
-            printf "class AnotherClass { +void anotherMethod() }\n" >> UML/Backend/backend_simplified.puml
-            printf "TestClass -- AnotherClass\n" >> UML/Backend/backend_simplified.puml
-            printf "@enduml\n" >> UML/Backend/backend_simplified.puml
+            # Clean the file and overwrite it with valid content
+            echo -n "@startuml" > UML/Backend/backend_simplified.puml
+            echo -n "class TestClass { +void testMethod() }" >> UML/Backend/backend_simplified.puml
+            echo -n "class AnotherClass { +void anotherMethod() }" >> UML/Backend/backend_simplified.puml
+            echo -n "TestClass -- AnotherClass" >> UML/Backend/backend_simplified.puml
+            echo -n "@enduml" >> UML/Backend/backend_simplified.puml
             # Print the content to verify it's correct
             cat -A UML/Backend/backend_simplified.puml
 
