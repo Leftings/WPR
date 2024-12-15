@@ -34,12 +34,17 @@ jobs:
         run: chmod +x ./UML/scripts/generate_puml_from_code.sh
 
       # Step 4: Generate PUML files for Backend and EmployeeBackend
-      - name: Generate PUML files
+      - name: Generate PUML files for Backend and EmployeeBackend
         run: |
           mkdir -p UML/Backend
           mkdir -p UML/BackendEmployee
+          echo "Generating UML files..."
           ./UML/scripts/generate_puml_from_code.sh ./backend/src UML/Backend/backend.puml
           ./UML/scripts/generate_puml_from_code.sh ./employeeBackend/src UML/BackendEmployee/employeeBackend.puml
+
+          # Check if the .puml files are generated
+          ls -l UML/Backend/backend.puml
+          ls -l UML/BackendEmployee/employeeBackend.puml
 
       # Step 5: Debugging: Check file encoding and hidden characters
       - name: Check file encoding and hidden characters (backend.puml)
