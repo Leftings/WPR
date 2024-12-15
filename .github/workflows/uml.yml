@@ -65,13 +65,13 @@ jobs:
       - name: Simplify backend.puml for debugging
         run: |
             # Clean the file and overwrite it with valid content
-            echo -n "@startuml" > UML/Backend/backend_simplified.puml
-            echo -n "class TestClass { +void testMethod() }" >> UML/Backend/backend_simplified.puml
-            echo -n "class AnotherClass { +void anotherMethod() }" >> UML/Backend/backend_simplified.puml
-            echo -n "TestClass -- AnotherClass" >> UML/Backend/backend_simplified.puml
-            echo -n "@enduml" >> UML/Backend/backend_simplified.puml
+            echo "@startuml" > UML/Backend/backend_simplified.puml
+            echo "class TestClass { +void testMethod() }" >> UML/Backend/backend_simplified.puml
+            echo "class AnotherClass { +void anotherMethod() }" >> UML/Backend/backend_simplified.puml
+            echo "TestClass -- AnotherClass" >> UML/Backend/backend_simplified.puml
+            echo "@enduml" >> UML/Backend/backend_simplified.puml
             # Print the content to verify it's correct
-            cat -A UML/Backend/backend_simplified.puml
+            cat UML/Backend/backend_simplified.puml
 
         # Step 9: Generate UML Diagrams using PlantUML (with simplified file for debugging)
       - name: Generate UML Diagrams (debugging step)
