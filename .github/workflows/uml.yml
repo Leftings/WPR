@@ -61,30 +61,20 @@ jobs:
       - name: Check Java version
         run: java -version
 
-     # Step 8: Ensure the backend.puml file is simplified for testing
-      - name: Simplify backend.puml for debugging
+      # Step 8: Generate UML Diagrams using PlantUML for backend.puml and employeeBackend.puml
+      - name: Generate UML Diagrams
         run: |
-           # Clean the file and overwrite it with valid content using printf
-            printf "@startuml\n" > UML/Backend/backend_simplified.puml
-            printf "class TestClass\n" >> UML/Backend/backend_simplified.puml
-            printf "class AnotherClass\n" >> UML/Backend/backend_simplified.puml
-            printf "AnotherClass : +void anotherMethod()\n" >> UML/Backend/backend_simplified.puml
-            printf "TestClass --> AnotherClass\n" >> UML/Backend/backend_simplified.puml
-            printf "@enduml\n" >> UML/Backend/backend_simplified.puml
+            echo "Running PlantUML with verbose output for backend.puml..."
+            java -jar plantuml.jar -v UML/Backend/backend.puml
 
-            # Print the content to verify it's correct and check for hidden characters
-            cat -A UML/Backend/backend_simplified.puml
-        # Step 9: Generate UML Diagrams using PlantUML (with simplified file for debugging)
-      - name: Generate UML Diagrams (debugging step)
-        run: |
-            echo "Running PlantUML with verbose output..."
-            java -jar plantuml.jar -v UML/Backend/backend_simplified.puml
+            echo "Running PlantUML with verbose output for employeeBackend.puml..."
+            java -jar plantuml.jar -v UML/BackendEmployee/employeeBackend.puml
 
-      # Step 10: Upload UML Diagrams as Artifacts (for further analysis)
+      # Step 9: Upload UML Diagrams as Artifacts (for further analysis)
       - name: Upload UML Diagrams as Artifacts
         uses: actions/upload-artifact@v3
         with:
           name: uml-diagrams
           path: |
-            UML/Backend/backend_simplified.png
+            UML/Backend/backend.png
             UML/BackendEmployee/employeeBackend.png
