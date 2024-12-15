@@ -1,0 +1,10 @@
+@startuml
+class VehicleRepository {
+    + VehicleRepository(connector:Connector)
+    + <<async>> GetVehiclePlateAsync(frameNr:int) : Task<string>
+    + <<async>> GetVehicleNameAsync(frameNr:int) : Task<string>
+    + <<async>> GetVehicleColorAsync(frameNr:int) : Task<string>
+}
+IVehicleRepository <|-- VehicleRepository
+VehicleRepository --> "_connector" Connector
+@enduml

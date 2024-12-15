@@ -1,0 +1,14 @@
+@startuml
+class SignUpController {
+    + SignUpController(connector:Connector, userRepository:IUserRepository, envConfig:EnvConfig, hash:Hash, emailService:EmailService)
+    - IsFilledIn(signUpRequest:SignUpRequest) : bool
+    + <<async>> signUpPersonalAsync(signUpRequest:SignUpRequest) : Task<IActionResult>
+    + <<async>> signUpEmployeeAsync(signUpRequest:SignUpRequest) : Task<IActionResult>
+}
+ControllerBase <|-- SignUpController
+SignUpController --> "_connector" Connector
+SignUpController --> "_userRepository" IUserRepository
+SignUpController --> "_envConfig" EnvConfig
+SignUpController --> "_hash" Hash
+SignUpController --> "_emailService" EmailService
+@enduml

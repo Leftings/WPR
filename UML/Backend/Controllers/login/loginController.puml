@@ -1,0 +1,15 @@
+@startuml
+class LoginController {
+    + LoginController(userRepository:IUserRepository, connector:Connector, sessionHandler:SessionHandler, crypt:Crypt)
+    - <<async>> SetCookieAsync(loginRequest:LoginRequest) : Task<IActionResult>
+    + CheckSession() : IActionResult
+    + CheckSessionStaff() : IActionResult
+    + CheckSessionVehicleManager() : IActionResult
+    + <<async>> LoginAsync(loginRequest:LoginRequest) : Task <IActionResult>
+}
+ControllerBase <|-- LoginController
+LoginController --> "_userRepository" IUserRepository
+LoginController --> "_connector" Connector
+LoginController --> "_sessionHandler" SessionHandler
+LoginController --> "_crypt" Crypt
+@enduml

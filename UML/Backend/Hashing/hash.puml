@@ -1,0 +1,7 @@
+@startuml
+class Hash {
+    + Hash(envConfig:EnvConfig)
+    + createSalt() : byte[]
+    + createHash(password:string) : string
+}
+@enduml
