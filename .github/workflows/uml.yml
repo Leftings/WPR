@@ -1,73 +1,21 @@
-name: Auto-Generate UML Diagrams
+name: UML Diagram Generation
 
 on:
-  push:
-    branches:
-      - '*'
-  pull_request:
-    branches:
-      - '*'
+  workflow_run:
+    workflows: ["Continuous Integration with Merge Blocker"]
+    types:
+      - completed
 
 jobs:
-  # Simple job with no dependencies (Dummy job)
-  dummy_job:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Just run to satisfy GitHub Actions requirement
-        run: echo "This is a dummy job that runs independently."
-
-  # Job to block or allow merge based on tests
-  merge_blocker:
-    name: Block Merge if Tests Fail or Auto-Merge if Pass
-    runs-on: ubuntu-latest
-    needs: build
-    if: always()
-
-    steps:
-      - name: Debug Pull Request Event Context
-        run: |
-          echo "Pull request number: ${{ github.event.pull_request.number }}"
-          echo "Repository: ${{ github.repository }}"
-          echo "Event: ${{ github.event_name }}"
-
-      - name: Get commit message
-        id: commit_message
-        run: |
-          PR_COMMIT_SHA=$(curl -s "https://api.github.com/repos/${{ github.repository }}/pulls/${{ github.event.pull_request.number }}" | jq -r '.head.sha')
-          COMMIT_MESSAGE=$(curl -s "https://api.github.com/repos/${{ github.repository }}/commits/${PR_COMMIT_SHA}" | jq -r '.commit.message')
-          echo "Commit message: $COMMIT_MESSAGE"
-          echo "commit_message=$COMMIT_MESSAGE" >> $GITHUB_ENV
-
-      - name: Check if tests passed and block/allow merge
-        run: |
-          if [[ "${{ needs.build.result }}" == "success" ]]; then
-            echo "Tests passed successfully. Merge is allowed."
-            curl -X PUT \
-              -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
-              -H "Accept: application/vnd.github.v3+json" \
-              -d '{"commit_title":"${{ env.commit_message }}","commit_message":"${{ env.commit_message }}","merge_method":"squash"}' \
-              "https://api.github.com/repos/${{ github.repository }}/pulls/${{ github.event.pull_request.number }}/merge" || {
-                echo "Failed to auto-merge. Check for conflicts or branch protection rules."
-                exit 1
-              }
-          else
-            echo "Tests failed. Merge blocked."
-            exit 1
-          fi
-
-  # Job to generate UML Diagrams after successful merge
   generate_uml:
-    name: Auto-Generate UML Diagrams
+    name: Generate UML Diagrams
     runs-on: ubuntu-latest
-    needs: merge_blocker  # This ensures UML generation happens only after merge_blocker job
-    if: success()  # Only run if merge_blocker has completed successfully (merge was done)
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}  # Run only if CI workflow succeeded
     steps:
-      # Step 1: Checkout repository
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # Step 2: Install PlantUML via downloading the jar directly
-      - name: Download PlantUML JAR file
+      - name: Install PlantUML via downloading the jar
         run: |
           echo "Removing any previous PlantUML JAR if it exists"
           rm -f plantuml.jar
@@ -79,63 +27,13 @@ jobs:
           fi
           echo "Successfully downloaded PlantUML JAR file"
 
-      # Step 3: Ensure the generate_puml_from_code.sh script is executable
-      - name: Make generate_puml_from_code.sh executable
-        run: chmod +x ./UML/scripts/generate_puml_from_code.sh
-
-      # Step 4: Generate PUML files for Backend and EmployeeBackend
-      - name: Generate PUML files for Backend and EmployeeBackend
-        run: |
-          mkdir -p UML/Backend
-          mkdir -p UML/BackendEmployee
-          echo "Generating UML files..."
-          ./UML/scripts/generate_puml_from_code.sh ./backend/src UML/Backend/backend.puml
-          ./UML/scripts/generate_puml_from_code.sh ./employeeBackend/src UML/BackendEmployee/employeeBackend.puml
-
-          # Check if the .puml files are generated
-          ls -l UML/Backend/backend.puml
-          ls -l UML/BackendEmployee/employeeBackend.puml
-
-      # Step 5: Debugging: Check file encoding and hidden characters
-      - name: Check file encoding and hidden characters (backend.puml)
-        run: |
-          file -i UML/Backend/backend.puml
-          cat -A UML/Backend/backend.puml
-
-      - name: Check file encoding and hidden characters (employeeBackend.puml)
-        run: |
-          file -i UML/BackendEmployee/employeeBackend.puml
-          cat -A UML/BackendEmployee/employeeBackend.puml
-
-      # Step 6: Debugging: Print PlantUML version
-      - name: Print PlantUML version
-        run: |
-          java -jar plantuml.jar -version
-
-      # Step 7: Debugging: Ensure Java version is compatible
-      - name: Check Java version
-        run: java -version
-
-      # Step 8: Generate UML Diagrams using PlantUML for backend.puml and employeeBackend.puml
       - name: Generate UML Diagrams
         run: |
-            echo "Running PlantUML with verbose output for backend.puml..."
-            java -jar plantuml.jar -v UML/Backend/backend.puml
-            if [ $? -eq 0 ]; then
-              echo "Successfully generated backend diagram."
-            else
-              echo "Failed to generate backend diagram."
-            fi
+            echo "Running PlantUML for backend.puml..."
+            java -jar plantuml.jar UML/Backend/backend.puml
+            echo "Running PlantUML for employeeBackend.puml..."
+            java -jar plantuml.jar UML/BackendEmployee/employeeBackend.puml
 
-            echo "Running PlantUML with verbose output for employeeBackend.puml..."
-            java -jar plantuml.jar -v UML/BackendEmployee/employeeBackend.puml
-            if [ $? -eq 0 ]; then
-              echo "Successfully generated employee backend diagram."
-            else
-              echo "Failed to generate employee backend diagram."
-            fi
-
-      # Step 9: Upload UML Diagrams as Artifacts (for further analysis)
       - name: Upload UML Diagrams as Artifacts
         uses: actions/upload-artifact@v3
         with:
