@@ -57,7 +57,7 @@ function GeneralSalePage() {
                 setIsEmployee(data === 'true');
 
                 if (data === 'true') {
-                    setFilter('Car'); // Default filter for employees
+                    setFilter('Car');
                 }
             } catch (error) {
                 console.error(error.message);
@@ -123,13 +123,10 @@ function GeneralSalePage() {
                 let url;
 
                 if (isEmployee) {
-                    // Employees always fetch cars
                     url = `${BACKEND_URL}/api/vehicle/GetFrameNumbersSpecificType?type=Car`;
                 } else if (!filter || filter === 'All') {
-                    // Non-employees fetch all vehicles if no filter is applied
                     url = `${BACKEND_URL}/api/vehicle/GetFrameNumbers`;
                 } else {
-                    // Non-employees fetch filtered vehicles
                     console.log(encodeURIComponent(filter));
                     url = `${BACKEND_URL}/api/vehicle/GetFrameNumbersSpecificType?type=${encodeURIComponent(filter)}`;
                 }
@@ -154,12 +151,12 @@ function GeneralSalePage() {
                 console.log(requestsToLoad.length);
 
                 requestsToLoad.forEach(async (id, index) => {
-                    console.log(`Processing ID ${id} at index ${index}`); // Log each ID
+                    console.log(`Processing ID ${id} at index ${index}`); 
                     SetLoadingRequests((prevState) => ({ ...prevState, [id]: true }));
                 
                     try {
                         const vehicle = await GetVehicle(id);
-                        console.log('Vehicle Data:', vehicle?.message); // Log the vehicle data
+                        console.log('Vehicle Data:', vehicle?.message); 
                 
                         if (vehicle?.message) {
                             setVehicles((prevRequest) => [...prevRequest, vehicle.message]);
