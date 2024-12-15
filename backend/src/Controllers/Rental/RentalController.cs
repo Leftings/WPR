@@ -365,7 +365,7 @@ VALUES (@StartDate, @EndDate, @Price, @FrameNrCar, @Customer, @Status, @Reviewed
                                     Status = reader.IsDBNull(6) ? null : reader.GetString(6),
                                     ReviewedBy = reader.IsDBNull(7) ? (int?)null : reader.GetInt32(7),
                                     VMStatus = reader.IsDBNull(8) ? null : reader.GetString(8),
-                                    Kvk = reader.IsDBNull(9) ? null : reader.GetString(9)
+                                    Kvk = reader.IsDBNull(9) ? (int?)null : reader.GetInt32(9),
                                 });
                             }
                         }
