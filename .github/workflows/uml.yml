@@ -45,8 +45,8 @@ jobs:
       # Step 6: Generate UML diagrams using PlantUML
       - name: Generate UML Diagrams
         run: |
-          plantuml UML/Backend/backend.puml
-          plantuml UML/BackendEmployee/employeeBackend.puml
+          plantuml -v UML/Backend/backend.puml
+          plantuml -v UML/BackendEmployee/employeeBackend.puml
 
       # Step 7: Upload UML Diagrams as Artifacts
       - name: Upload UML Diagrams as Artifacts
