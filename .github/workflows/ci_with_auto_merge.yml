@@ -109,8 +109,8 @@ jobs:
 
       - name: Generate PNG from PUML files
         run: |
-          plantuml UML/Backend.puml
-          plantuml UML/BackendEmployee.puml
+          plantuml UML/Backend/backend.puml
+          plantuml UML/BackendEmployee/employeeBackend.puml
 
       - name: Upload UML Diagrams as Artifacts
         uses: actions/upload-artifact@v3
