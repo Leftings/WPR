@@ -1,0 +1,16 @@
+@startuml
+interface IUserRepository {
+    ValidateUserAsync(username:string, password:string, userType:string) : Task<bool>
+    checkUsageEmailAsync(email:string) : Task<(bool status, string message)>
+    addCustomerAsync(personData:Object[]) : Task<(bool status, string message, int newUserID)>
+    addPersonalCustomerAsync(personalData:Object[]) : Task<(bool status, string message)>
+    addEmployeeCustomerAsync(employeeData:Object[]) : Task<(bool status, string message)>
+    GetUserIdAsync(email:string, table:string) : Task<string>
+    GetUserNameAsync(userId:string) : Task<string>
+    EditUserInfoAsync(data:List<object[]>) : Task<(bool status, string message)>
+    IsKvkNumberAsync(kvkNumber:int) : Task<bool>
+    IsUserEmployee(id:int) : Task<bool>
+    DeleteUserAsync(userId:string) : Task<(bool status, string message)>
+    GetKindEmployeeAsync(userId:string) : Task<(bool status, string message)>
+}
+@enduml

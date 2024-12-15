@@ -1,0 +1,12 @@
+@startuml
+class AddVehicleRequest {
+    + YoP : int <<get>> <<set>>
+    + Brand : string? <<get>> <<set>>
+    + Type : string? <<get>> <<set>>
+    + LicensePlate : string? <<get>> <<set>>
+    + Color : string? <<get>> <<set>>
+    + Sort : string? <<get>> <<set>>
+    + Price : double <<get>> <<set>>
+    + Description : string? <<get>> <<set>>
+}
+@enduml

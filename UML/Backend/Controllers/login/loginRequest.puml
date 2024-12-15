@@ -1,0 +1,7 @@
+@startuml
+class LoginRequest {
+    + Email : string <<get>> <<set>>
+    + Password : string <<get>> <<set>>
+    + UserType : string <<get>> <<set>>
+}
+@enduml
