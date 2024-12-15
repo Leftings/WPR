@@ -1,0 +1,12 @@
+@startuml
+class VehicleController {
+    + VehicleController(connector:Connector)
+    + <<async>> GetVehicleName(frameNr:int) : Task<IActionResult>
+    + <<async>> GetVehicleImageAsync(frameNr:int) : Task<IActionResult>
+    + <<async>> GetVehiclePriceAsync(frameNr:int) : Task<IActionResult>
+    + <<async>> GetAllVehiclesAsync() : Task<IActionResult>
+    + <<async>> GetTypeOfVehiclesAsync(vehicleType:string) : Task<IActionResult>
+}
+ControllerBase <|-- VehicleController
+VehicleController --> "_connector" Connector
+@enduml
