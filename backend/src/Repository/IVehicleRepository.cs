@@ -7,4 +7,5 @@ public interface IVehicleRepository
     Task<string> GetVehicleColorAsync(int frameNr);
     public Task<List<string>> GetFrameNumbersAsync();
     public Task<List<Dictionary<object, string>>> GetVehicleDataAsync(string frameNr);
+    public Task<List<string>> GetFrameNumberSpecifiekTypeAsync(string type);
 }

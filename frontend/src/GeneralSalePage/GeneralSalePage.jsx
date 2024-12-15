@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import GeneralHeader from "../GeneralBlocks/header/header.jsx";
 import GeneralFooter from "../GeneralBlocks/footer/footer.jsx";
@@ -6,12 +6,45 @@ import './GeneralSalePage.css';
 
 const BACKEND_URL = import.meta.env.VITE_REACT_APP_BACKEND_URL ?? 'http://localhost:5165';
 
+function GetVehicle(id)
+{
+    return fetch(`${BACKEND_URL}/api/Vehicle/GetVehicelData?frameNr=${id}`, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        credentials: 'include'
+    })
+    .then((response) => {
+        if (!response.ok) {
+          return response.json().then(data => {
+            throw new Error(data?.message); 
+          });
+        }
+        return response.json();
+      })
+      .then((data) => {
+        const combinedData = data?.message?.reduce((acc, item) => {
+            const [key, value] = Object.entries(item)[0];
+            acc[key] = value;
+            return acc;
+        }, {});
+
+        return { message: combinedData };
+    })
+    .catch((error) => {
+        console.error(error);
+        return null;
+      });
+}
+
 function GeneralSalePage() {
     const [vehicles, setVehicles] = useState([]);
     const [isEmployee, setIsEmployee] = useState(null);
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(false);
     const [filter, setFilter] = useState('');
+    const [loadingRequests, SetLoadingRequests] = useState({});
 
     useEffect(() => {
         const checkIfEmployee = async () => {
@@ -35,7 +68,7 @@ function GeneralSalePage() {
         checkIfEmployee();
     }, []);
 
-    useEffect(() => {
+    /*useEffect(() => {
         const fetchData = async () => {
             setLoading(true);
             try {
@@ -77,6 +110,77 @@ function GeneralSalePage() {
             fetchData();
         }
     }, [isEmployee, filter]); // Trigger fetching when `isEmployee` or `filter` changes
+    */
+
+    useEffect(() => {
+        if (isEmployee === null) return; 
+        const fetchVehicles = async () => {
+            try
+            {
+                setLoading(true)
+                console.log(isEmployee);
+                setVehicles([]);
+                let url;
+
+                if (isEmployee) {
+                    // Employees always fetch cars
+                    url = `${BACKEND_URL}/api/vehicle/GetFrameNumbersSpecificType?type=Car`;
+                } else if (!filter || filter === 'All') {
+                    // Non-employees fetch all vehicles if no filter is applied
+                    url = `${BACKEND_URL}/api/vehicle/GetFrameNumbers`;
+                } else {
+                    // Non-employees fetch filtered vehicles
+                    console.log(encodeURIComponent(filter));
+                    url = `${BACKEND_URL}/api/vehicle/GetFrameNumbersSpecificType?type=${encodeURIComponent(filter)}`;
+                }
+
+                console.log(url);
+                
+                const response = await fetch(url, {
+                    method: 'GET',
+                    credentials: 'include'
+                });
+
+                if (!response.ok)
+                {
+                    throw new Error('Failed to fetch new request');
+                }
+
+                const data = await response.json();
+                console.log('Fetched data: ', data);
+
+                const requestsToLoad = data?.message || [];
+
+                console.log(requestsToLoad.length);
+
+                requestsToLoad.forEach(async (id, index) => {
+                    console.log(`Processing ID ${id} at index ${index}`); // Log each ID
+                    SetLoadingRequests((prevState) => ({ ...prevState, [id]: true }));
+                
+                    try {
+                        const vehicle = await GetVehicle(id);
+                        console.log('Vehicle Data:', vehicle?.message); // Log the vehicle data
+                
+                        if (vehicle?.message) {
+                            setVehicles((prevRequest) => [...prevRequest, vehicle.message]);
+                            SetLoadingRequests((prevState) => ({ ...prevState, [id]: false }));
+                            setLoading(false);
+                        }
+                    } catch (err) {
+                        console.error(`Failed to fetch vehicle for ID ${id}:`, err);
+                    }
+                });
+            } catch (error) {
+                setError(error.message || 'An unexpected error occurred');
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        if (isEmployee !== null) {
+            fetchVehicles();
+        }
+    }, [isEmployee, filter])
 
     return (
         <>
@@ -106,25 +210,25 @@ function GeneralSalePage() {
                         <div className="car-grid">
                             {vehicles.length > 0 ? (
                                 vehicles.map(vehicle => (
-                                    <div key={vehicle.frameNr} className="car-card">
+                                    <div key={vehicle.FrameNr} className="car-card">
                                         <div className="car-blob">
-                                            {vehicle.image ? (
+                                            {vehicle.VehicleBlob ? (
                                                 <img
                                                     className="car-blob"
-                                                    src={`data:image/jpeg;base64,${vehicle.image}`}
-                                                    alt={`${vehicle.brand || 'Unknown'} ${vehicle.type || ''}`}
+                                                    src={`data:image/jpeg;base64,${vehicle.VehicleBlob}`}
+                                                    alt={`${vehicle.Brand || 'Unknown'} ${vehicle.Type || ''}`}
                                                 />
                                             ) : (
                                                 <p>Image not available</p>
                                             )}
                                         </div>
                                         <div className="car-info">
-                                            <h2 className="car-name">{`${vehicle.brand || 'Unknown'} ${vehicle.type || ''}`}</h2>
-                                            <p className="car-price">{`$${vehicle.price}`}</p>
-                                            <p className="car-description">{vehicle.description || 'No description available'}</p>
+                                            <h2 className="car-name">{`${vehicle.Brand || 'Unknown'} ${vehicle.Type || ''}`}</h2>
+                                            <p className="car-price">{`$${vehicle.Price}`}</p>
+                                            <p className="car-description">{vehicle.Description || 'No description available'}</p>
                                         </div>
                                         <Link
-                                            to={`/vehicle/${vehicle.frameNr}`}
+                                            to={`/vehicle/${vehicle.FrameNr}`}
                                             state={{ vehicle }}
                                             className="huur-link"
                                         >
