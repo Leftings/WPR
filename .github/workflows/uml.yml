@@ -71,9 +71,19 @@ jobs:
         run: |
             echo "Running PlantUML with verbose output for backend.puml..."
             java -jar plantuml.jar -v UML/Backend/backend.puml
+            if [ $? -eq 0 ]; then
+              echo "Successfully generated backend diagram."
+            else
+              echo "Failed to generate backend diagram."
+            fi
 
             echo "Running PlantUML with verbose output for employeeBackend.puml..."
             java -jar plantuml.jar -v UML/BackendEmployee/employeeBackend.puml
+            if [ $? -eq 0 ]; then
+              echo "Successfully generated employee backend diagram."
+            else
+              echo "Failed to generate employee backend diagram."
+            fi
 
       # Step 9: Upload UML Diagrams as Artifacts (for further analysis)
       - name: Upload UML Diagrams as Artifacts
