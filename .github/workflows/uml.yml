@@ -23,10 +23,11 @@ jobs:
           sudo apt-get install -y openjdk-11-jre
           java -version
 
-      # Step 3: Install PlantUML
-      - name: Install PlantUML
+      # Step 3: Download and Install the Latest Version of PlantUML
+      - name: Download and Install PlantUML
         run: |
-          sudo apt-get install -y plantuml
+          curl -L -o plantuml.jar https://github.com/plantuml/plantuml/releases/download/v1.2024.0/plantuml-1.2024.0.jar
+          echo "PlantUML installed successfully"
 
       # Step 4: Ensure the generate_puml_from_code.sh script is executable
       - name: Make generate_puml_from_code.sh executable
@@ -67,17 +68,17 @@ jobs:
           echo "class TestClass { +void testMethod() }" >> UML/BackendEmployee/employeeBackend_simplified.puml
           echo "@enduml" >> UML/BackendEmployee/employeeBackend_simplified.puml
 
-      # Step 9: Run simplified PUML files through PlantUML
-      - name: Run simplified PUML files through PlantUML
+      # Step 9: Run simplified PUML files through the latest PlantUML
+      - name: Run simplified PUML files through the latest PlantUML
         run: |
-          plantuml -v UML/Backend/backend_simplified.puml
-          plantuml -v UML/BackendEmployee/employeeBackend_simplified.puml
+          java -jar plantuml.jar UML/Backend/backend_simplified.puml
+          java -jar plantuml.jar UML/BackendEmployee/employeeBackend_simplified.puml
 
       # Step 10: Run original PUML files through PlantUML
-      - name: Run original PUML files through PlantUML
+      - name: Run original PUML files through the latest PlantUML
         run: |
-          plantuml -v UML/Backend/backend.puml
-          plantuml -v UML/BackendEmployee/employeeBackend.puml
+          java -jar plantuml.jar UML/Backend/backend.puml
+          java -jar plantuml.jar UML/BackendEmployee/employeeBackend.puml
 
       # Step 11: Upload UML Diagrams as Artifacts
       - name: Upload UML Diagrams as Artifacts
