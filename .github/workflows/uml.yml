@@ -22,7 +22,11 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y plantuml
 
-      # Step 3: Generate PUML files for Backend and EmployeeBackend
+      # Step 3: Ensure the generate_puml_from_code.sh script is executable
+      - name: Make generate_puml_from_code.sh executable
+        run: chmod +x ./UML/scripts/generate_puml_from_code.sh
+
+      # Step 4: Generate PUML files for Backend and EmployeeBackend
       - name: Generate PUML files
         run: |
           mkdir -p UML/Backend
@@ -30,13 +34,13 @@ jobs:
           ./generate_puml_from_code.sh ./backend/src UML/Backend/backend.puml
           ./generate_puml_from_code.sh ./employeeBackend/src UML/BackendEmployee/employeeBackend.puml
 
-      # Step 4: Generate UML diagrams using PlantUML
+      # Step 5: Generate UML diagrams using PlantUML
       - name: Generate UML Diagrams
         run: |
           plantuml UML/Backend/backend.puml
           plantuml UML/BackendEmployee/employeeBackend.puml
 
-      # Step 5: Upload UML Diagrams as Artifacts
+      # Step 6: Upload UML Diagrams as Artifacts
       - name: Upload UML Diagrams as Artifacts
         uses: actions/upload-artifact@v3
         with:
