@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import TermsAndConditions from "../../GeneralSalePage/GeneralSalePage.jsx";
 import logo from '../../assets/logo.svg';
 import logoHover from '../../assets/logo-green.svg';
@@ -10,6 +10,7 @@ import './header.css';
 function GeneralHeader() {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const navigate = useNavigate();
 
     useEffect(() => {
         fetch('http://localhost:5165/api/Login/CheckSession', { credentials: 'include' })
