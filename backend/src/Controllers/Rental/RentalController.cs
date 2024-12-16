@@ -283,24 +283,17 @@ VALUES (@StartDate, @EndDate, @Price, @FrameNrCar, @Customer, @Status, @Reviewed
             {
                 string query1 = @"
             DELETE FROM Abonnement WHERE ID = @Id AND Customer = @Customer";
-                string query2 = @"
-            DELETE FROM Vehicle_User WHERE FrameNrCar = @FrameNr AND Customer = @Customer";
 
                 using (var connection = _connector.CreateDbConnection())
                 {
                     using (var abonnementCommand = new MySqlCommand(query1, (MySqlConnection)connection))
-                    using (var vUserCommand = new MySqlCommand(query2, (MySqlConnection)connection))
-
                     {
                         abonnementCommand.Parameters.AddWithValue("@Id", rentalId);
                         abonnementCommand.Parameters.AddWithValue("@Customer", userId);
-
-                        vUserCommand.Parameters.AddWithValue("@FrameNr", frameNr);
-                        vUserCommand.Parameters.AddWithValue("@Customer", userId);
+                        
 
                         int rowsAffectedAbonnement = await abonnementCommand.ExecuteNonQueryAsync();
-                        int rowsAffectedUser = await vUserCommand.ExecuteNonQueryAsync();
-                        if (rowsAffectedAbonnement > 0 && rowsAffectedUser > 0)
+                        if (rowsAffectedAbonnement > 0)
                         {
                             return Ok(new { message = "Rental cancelled successfully" });
                         }
