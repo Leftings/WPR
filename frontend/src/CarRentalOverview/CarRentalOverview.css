@@ -54,8 +54,8 @@ main {
     padding: 20px;
 }
 
-.head,
-.row {
+.heads,
+.rows {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
     padding: 10px;
@@ -63,32 +63,32 @@ main {
     border-bottom: 2px solid #ddd;
 }
 
-.head div,
-.row div {
+.heads div,
+.rows div {
     padding: 10px;
     gap: 0;
     text-align: center;
     position: relative;
 }
 
-.head div:not(:last-child) {
+.heads div:not(:last-child) {
     border-right: 1px solid #000;
 }
 
-.row div:not(:last-child) {
+.rows div:not(:last-child) {
     border-right: 1px solid #000;
 }
 
-.row {
+.rows {
     background-color: #f4f4f4;
     transition: color, 0.3s;
 }
 
-.row:hover {
+.rows:hover {
     background-color: #dbdbdb;
 }
 
-.head {
+.heads {
     background-color: #c4c4c4;
 }
 

@@ -107,7 +107,7 @@ function CarRentalOverview() {
                 <div className="container">
                     {error && <div className="error-message">{error}</div>} {/* Display error message */}
 
-                    <div className="head">
+                    <div className="heads">
                         <div>Voertuig</div>
                         <div>Kenteken</div>
                         <div>Startdatum</div>
@@ -119,7 +119,7 @@ function CarRentalOverview() {
 
                     {rentals.length > 0 ? (
                         rentals.map((rental, index) => (
-                            <div className="row" key={index}>
+                            <div className="rows" key={index}>
                                 <div>{rental.carName}</div>
                                 <div>{rental.licensePlate}</div>
                                 <div>{rental.startDate}</div>

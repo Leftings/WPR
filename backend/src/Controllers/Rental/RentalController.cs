@@ -331,7 +331,7 @@ VALUES (@StartDate, @EndDate, @Price, @FrameNrCar, @Customer, @Status, @Reviewed
             try
             {
                 string query = @"
-            SELECT StartDate, EndDate, Price, FrameNrCar, Status
+            SELECT ID, FrameNrCar, StartDate, EndDate, Price, Status
             FROM Abonnement 
             WHERE Customer = @Customer";
 
@@ -348,13 +348,20 @@ VALUES (@StartDate, @EndDate, @Price, @FrameNrCar, @Customer, @Status, @Reviewed
                         {
                             while (reader.Read())
                             {
+
+                                string carName = await _vehicleRepo.GetVehicleNameAsync(reader.GetInt32(1));
+                                string licensePlate = await _vehicleRepo.GetVehiclePlateAsync(reader.GetInt32(1));
+
                                 rentals.Add(new
                                 {
-                                    StartDate = reader.IsDBNull(0) ? (DateTime?)null : reader.GetDateTime(0),
-                                    EndDate = reader.IsDBNull(1) ? (DateTime?)null : reader.GetDateTime(1),
-                                    Price = reader.IsDBNull(2) ? (decimal?)null : reader.GetDecimal(2),
-                                    FrameNrCar = reader.IsDBNull(3) ? (int?)null : reader.GetInt32(3),
-                                    Status = reader.IsDBNull(4) ? null : reader.GetString(4),
+                                    Id = reader.IsDBNull(0) ? (int?)null : reader.GetInt32(0),
+                                    FrameNrCar = reader.IsDBNull(1) ? (int?)null : reader.GetInt32(1),
+                                    CarName = carName,
+                                    LicensePlate = licensePlate,
+                                    StartDate = reader.IsDBNull(2) ? (DateTime?)null : reader.GetDateTime(2),
+                                    EndDate = reader.IsDBNull(3) ? (DateTime?)null : reader.GetDateTime(3),
+                                    Price = reader.IsDBNull(4) ? (decimal?)null : reader.GetDecimal(4),
+                                    Status = reader.IsDBNull(5) ? null : reader.GetString(5),
                                 });
                             }
                         }
