@@ -87,6 +87,8 @@ public class EmailService
     {
         return $@"
             <p>Bedankt voor het huren van een voertuig bij CarAndAll,</p>
+            <p>U krijgt binnen 48 uur bericht of uw aanvraag is geaccepteerd of geweigerd,</p>
+
             <p><strong>Uw huur auto:</strong></p>
             <ul>
                 <li>Voertuig naam: {WebUtility.HtmlEncode(carName)}</li>
