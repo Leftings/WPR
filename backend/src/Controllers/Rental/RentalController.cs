@@ -271,6 +271,56 @@ VALUES (@StartDate, @EndDate, @Price, @FrameNrCar, @Customer, @Status, @Reviewed
             }
         }
 
+        [HttpDelete("CancelRental")]
+        public async Task<IActionResult> CancelRentalAsync(int rentalId, int frameNr)
+        {
+            string loginCookie = HttpContext.Request.Cookies["LoginSession"];
+            int userId = Convert.ToInt32(_crypt.Decrypt(loginCookie));
+            bool deletion1 = false;
+            bool deletion2 = false;
+
+            try
+            {
+                string query1 = @"
+            DELETE FROM Abonnement WHERE ID = @Id AND Customer = @Customer";
+                string query2 = @"
+            DELETE FROM Vehicle_User WHERE FrameNrCar = @FrameNr AND Customer = @Customer";
+
+                using (var connection = _connector.CreateDbConnection())
+                {
+                    using (var abonnementCommand = new MySqlCommand(query1, (MySqlConnection)connection))
+                    using (var vUserCommand = new MySqlCommand(query2, (MySqlConnection)connection))
+
+                    {
+                        abonnementCommand.Parameters.AddWithValue("@Id", rentalId);
+                        abonnementCommand.Parameters.AddWithValue("@Customer", userId);
+
+                        vUserCommand.Parameters.AddWithValue("@FrameNr", frameNr);
+                        vUserCommand.Parameters.AddWithValue("@Customer", userId);
+
+                        int rowsAffectedAbonnement = await abonnementCommand.ExecuteNonQueryAsync();
+                        int rowsAffectedUser = await vUserCommand.ExecuteNonQueryAsync();
+                        if (rowsAffectedAbonnement > 0 && rowsAffectedUser > 0)
+                        {
+                            return Ok(new { message = "Rental cancelled successfully" });
+                        }
+                        else
+                        {
+                            return NotFound(new
+                                { message = "Rental not found or you do not have permission to cancel this rental" });
+
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error: {ex.Message}");
+                return StatusCode(500, "An error occurred while cancelling rental");
+            }
+        }
+
+
         [HttpGet("GetAllUserRentals")]
         public async Task<IActionResult> GetAllUserRentalsAsync()
         {
