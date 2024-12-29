@@ -150,7 +150,7 @@ function AddVehicle() {
             </div>
             <div id="licensePlate">
                 <p>Nummerbord voertuig</p>
-                <input value={licensePlate} onChange={(e) => SetLicensPlate(e.target.value)}></input>
+                <input value={licensePlate} onChange={(e) => SetLicensePlate(e.target.value)}></input>
                 <br></br>
             </div>
             <div id="YoP">

@@ -17,27 +17,27 @@ function AddEmployee() {
     const [KvK, SetKvK] = useState('');
 
     function SignUp() {
-        let data = {
+        const data = {
             Job: KindEmployee,
             FirstName: FirstName,
             LastName: LastName,
             Password: Password,
             Email: Email,
-            KvK: KvK
+            KvK: KindEmployee === 'Wagen' ? KvK : null
         };
-
+    
         fetch(`${BACKEND_URL}/api/SignUpStaff/signUpStaff`, {
             method: 'POST',
             credentials: 'include',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json', // Ensure the content type is set to JSON
             },
-            body: JSON.stringify(data)
+            body: JSON.stringify(data), // Serialize the data to JSON
         })
         .then(response => {
             if (!response.ok) {
                 return response.json().then(err => {
-                    throw new Error(err.message);
+                    throw new Error(err.message || 'Error occurred');
                 });
             }
             return response.json();
@@ -56,6 +56,7 @@ function AddEmployee() {
             SetError([error.message]);
         });
     }
+    
 
     function Check() {
         let data = {

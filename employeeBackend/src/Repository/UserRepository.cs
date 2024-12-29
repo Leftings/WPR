@@ -50,6 +50,7 @@ public class UserRepository : IUserRepository
         }
         catch (MySqlException ex)
         {
+            Console.WriteLine(ex.Message);
             return (false, ex.Message);
         }
     }
@@ -96,6 +97,7 @@ public class UserRepository : IUserRepository
         }
         catch(MySqlException ex)
         {
+            Console.WriteLine(ex.Message);
             return (false, ex.Message);
         }
     }

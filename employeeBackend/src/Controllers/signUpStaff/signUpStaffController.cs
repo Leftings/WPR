@@ -20,8 +20,20 @@ public class SignUpStaffController : ControllerBase
     public async Task<IActionResult> SignUpStaff([FromBody] SignUpRequest signUpRequest)
     {
         Object[] personData = new Object[] {signUpRequest.FirstName, signUpRequest.LastName, signUpRequest.Password, signUpRequest.Email, signUpRequest.Job, signUpRequest.KvK};
+        foreach(object x in personData)
+        {
+            Console.WriteLine(x);
+        }
+
+        Console.WriteLine($"Job: {signUpRequest.Job}");
+        Console.WriteLine($"FirstName: {signUpRequest.FirstName}");
+        Console.WriteLine($"LastName: {signUpRequest.LastName}");
+        Console.WriteLine($"Password: {signUpRequest.Password}");
+        Console.WriteLine($"Email: {signUpRequest.Email}");
+        Console.WriteLine($"KvK: {signUpRequest.KvK}");
+        
         var emailCheckTask = _userRepository.checkUsageEmailAsync(signUpRequest.Email);
-        var addStaffTask = _userRepository.AddStaff(personData);
+        //var addStaffTask = _userRepository.AddStaff(personData);
 
         if (!EmailChecker.IsValidEmail(signUpRequest.Email))
         {
@@ -29,6 +41,7 @@ public class SignUpStaffController : ControllerBase
         }
 
         (bool status,string message) statusPassword = PasswordChecker.IsValidPassword(signUpRequest.Password);
+        Console.WriteLine(statusPassword.status);
         if (!statusPassword.status)
         {
             return BadRequest( new { message = statusPassword.message });
@@ -40,7 +53,8 @@ public class SignUpStaffController : ControllerBase
             return BadRequest(new { message = "Email allready in use"});
         }
 
-        var addStaff = await addStaffTask;
+        //var addStaff = await addStaffTask;
+        var addStaff = await _userRepository.AddStaff(personData);
         if (addStaff.status)
         {
             return Ok( new { message = "Data inserted"});
