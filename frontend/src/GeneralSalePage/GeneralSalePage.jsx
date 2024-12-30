@@ -8,6 +8,7 @@ const BACKEND_URL = import.meta.env.VITE_REACT_APP_BACKEND_URL ?? 'http://localh
 
 function GetVehicle(id)
 {
+    // Individueel voertuig laden
     return fetch(`${BACKEND_URL}/api/Vehicle/GetVehicelData?frameNr=${id}`, {
         method: 'GET',
         headers: {
@@ -24,6 +25,7 @@ function GetVehicle(id)
         return response.json();
       })
       .then((data) => {
+        // Voertuig data omzetten naar een list
         const combinedData = data?.message?.reduce((acc, item) => {
             const [key, value] = Object.entries(item)[0];
             acc[key] = value;
@@ -125,16 +127,16 @@ function GeneralSalePage() {
                 let url;
 
                 if (isEmployee) {
+                    // Gebruiker kan alleen auto's zien
                     url = `${BACKEND_URL}/api/vehicle/GetFrameNumbersSpecificType?type=Car`;
                 } else if (!filter || filter === 'All') {
+                    // Alle voertuigen worden geladen voor de gebruiker
                     url = `${BACKEND_URL}/api/vehicle/GetFrameNumbers`;
                 } else {
-                    console.log(encodeURIComponent(filter));
+                    // Alleen de voertuigen van het geselecteerde type worden voor de gebruiker geladen
                     url = `${BACKEND_URL}/api/vehicle/GetFrameNumbersSpecificType?type=${encodeURIComponent(filter)}`;
                 }
 
-                console.log(url);
-                
                 const response = await fetch(url, {
                     method: 'GET',
                     credentials: 'include'
@@ -146,23 +148,22 @@ function GeneralSalePage() {
                 }
 
                 const data = await response.json();
-                console.log('Fetched data: ', data);
-
                 const requestsToLoad = data?.message || [];
-
-                console.log(requestsToLoad.length);
-
+                
+                // Er wordt door elk voertuig id heen gegaan
                 requestsToLoad.forEach(async (id, index) => {
-                    console.log(`Processing ID ${id} at index ${index}`); 
+                    // Laden voor voertuig wordt aangezet
                     SetLoadingRequests((prevState) => ({ ...prevState, [id]: true }));
                 
                     try {
                         const vehicle = await GetVehicle(id);
-                        console.log('Vehicle Data:', vehicle?.message); 
                 
                         if (vehicle?.message) {
+                            // Voertuig wordt toegevoegd aan voertuigen
                             setVehicles((prevRequest) => [...prevRequest, vehicle.message]);
+                            // Laden voor voertuig wordt uitgezet
                             SetLoadingRequests((prevState) => ({ ...prevState, [id]: false }));
+                            // Algemene laadpagina wordt uigezet
                             setLoading(false);
                         }
                     } catch (err) {

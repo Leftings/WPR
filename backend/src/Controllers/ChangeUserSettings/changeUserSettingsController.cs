@@ -23,6 +23,7 @@ public class ChangeUserSettingsController : ControllerBase
         _crypt = crypt ?? throw new ArgumentNullException(nameof(crypt));
     }
 
+    // Gewijzigde gegevens worden gefilter van de ongewijzigde gegevens en worden verstuurd naar de backend
     [HttpPut("ChangeUserInfo")]
     public async Task<IActionResult> ChangeUserInfoAsync([FromBody] ChangeUserRequest changeUserRequest)
     {
@@ -33,6 +34,7 @@ public class ChangeUserSettingsController : ControllerBase
 
         List<object[]> data = new List<object[]>();
 
+        // gegevens worden uit de lijst gehaald (naam van de collom, de nieuwe waarde, soort waarde)
         foreach (var propertyInfo in typeof(ChangeUserRequest).GetProperties())
         {
             var propertyName = propertyInfo.Name;
@@ -41,7 +43,6 @@ public class ChangeUserSettingsController : ControllerBase
 
             if (!propertyValue.Equals(""))
             {
-                Console.WriteLine($"{propertyName} {propertyValue} {propertyType}");
                 data.Add(new object[] {propertyName, propertyValue, propertyType});
             }
         }
@@ -51,9 +52,6 @@ public class ChangeUserSettingsController : ControllerBase
         {
             return Ok(new {message = "Data Updated"});
         }
-
-        Console.WriteLine(updated.message);
-        Console.WriteLine(updated.message.Length);
 
         return BadRequest(new {updated.message});
     }

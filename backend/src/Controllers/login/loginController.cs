@@ -28,6 +28,7 @@ public class LoginController : ControllerBase
         _crypt = crypt ?? throw new ArgumentNullException(nameof(crypt));
     }
 
+    // Op het moment van inloggen worden alle cookies van mogelijke gebruikers verwijderd
     private void RemoveOldCookieAsync()
     {
         try
@@ -48,6 +49,7 @@ public class LoginController : ControllerBase
         }
     }
 
+    // Een nieuw coookie wordt gezet, met de juiste cookie naa men waarders
     private async Task<IActionResult> SetCookieAsync(LoginRequest loginRequest)
     {
         RemoveOldCookieAsync();
@@ -55,6 +57,7 @@ public class LoginController : ControllerBase
 
         try
         {
+            // De table voor de gebruiker wordt vastgesteld
             string table;
 
             if (loginRequest.UserType.Equals("Employee"))
@@ -70,18 +73,18 @@ public class LoginController : ControllerBase
                 table = "VehicleManager";
             }
 
+            // De user id wordt opgehaald, doormiddel van de meegegeven email en jusite tabel
             string userId = await _userRepository.GetUserIdAsync(loginRequest.Email, table);
-            Console.WriteLine(userId);
 
             if (userId.Equals("No user found"))
             {
                 return BadRequest(new { message = "User ID not found." });
             }
             
+            // De juiste cookie wordt aangemaakt, doormiddel van het gebruikers type die meegegeven wordt via de inlog request
             if (loginRequest.UserType.Equals("Employee"))
             {
                 _sessionHandler.CreateCookie(Response.Cookies, "LoginEmployeeSession", _crypt.Encrypt(userId.ToString()));
-                Console.WriteLine(table);
             }
             else if (loginRequest.UserType.Equals("Customer"))
             {
@@ -94,8 +97,7 @@ public class LoginController : ControllerBase
         }
         catch (Exception ex)
         {
-            Console.WriteLine(ex);
-            return BadRequest();
+            return BadRequest(new { message = ex.Message });
         }
         finally
         {
@@ -105,6 +107,7 @@ public class LoginController : ControllerBase
         return Ok();
     }
 
+    // De session voor de customer wordt gecheckt
     [HttpGet("CheckSession")]
     public IActionResult CheckSession()
     {
@@ -117,6 +120,7 @@ public class LoginController : ControllerBase
         return Unauthorized(new { message = "Session expired or is not found" });
     }
 
+    // De session voor de Car and All medewerker wordt gecheckt
     [HttpGet("CheckSessionStaff")]
     public async Task<IActionResult> CheckSessionStaff()
     {
@@ -129,6 +133,7 @@ public class LoginController : ControllerBase
         return Unauthorized(new { message = "Session expired or is not found" });
     }
 
+    // De session voor de Vehicle Manager wordt gecheckt
     [HttpGet("CheckSessionVehicleManager")]
     public async Task<IActionResult> CheckSessionVehicleManager()
     {
@@ -140,9 +145,11 @@ public class LoginController : ControllerBase
         return Unauthorized(new { message = "Session expired or is not found" });
     }
 
+    // Een gebruiker wordt ingelogt
     [HttpPost("login")]
     public async Task <IActionResult> LoginAsync([FromBody] LoginRequest loginRequest)
     {
+        // Er wordt gekeken of de loginrequest niet null is en of er een emailadres en wachtwoord is ingevuld
         if (loginRequest == null || string.IsNullOrEmpty(loginRequest.Email) || string.IsNullOrEmpty(loginRequest.Password))
         {
             return BadRequest(new { message = "Invalid input. Please provide email and password." });
@@ -150,10 +157,12 @@ public class LoginController : ControllerBase
 
         try
         {
+            // Er wordt gekeken of het emailadres en wachtwoord overeenkomt in de juiste tabel (UserCustomer, Staff of VehicleManager)
             bool isValid = await _userRepository.ValidateUserAsync(loginRequest.Email, loginRequest.Password, loginRequest.UserType);
 
             if (isValid)
             {
+                // Een nieuw cookie wordt aangemaakt
                 var cookieResult = await SetCookieAsync(loginRequest);
 
                 if (cookieResult is BadRequestObjectResult)
@@ -165,6 +174,7 @@ public class LoginController : ControllerBase
             }
             else
             {
+                // De gegevens kwamen niet overeen met wat er in de DataBase stond en wordt geweigerd
                 return Unauthorized(new { message = "Login Failed." });
             }
         }

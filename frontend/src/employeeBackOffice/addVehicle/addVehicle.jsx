@@ -21,6 +21,7 @@ function AddVehicle() {
 
     
     const SetVehicle = () => {
+        // Er wordt een format data aangemaakt
         const formData = new FormData();
     
         formData.append('YoP', YoP);
@@ -33,7 +34,7 @@ function AddVehicle() {
         formData.append('Description', description);
     
         if (vehicleBlob && vehicleBlob[0]) {
-            formData.append('vehicleBlob', vehicleBlob[0]); // Append the file object (binary data)
+            formData.append('vehicleBlob', vehicleBlob[0]); // vehicleBlob wordt omgezet naar binary
         }
     
         fetch(`${BACKEND_URL}/api/AddVehicle/addVehicle`, {
@@ -50,6 +51,7 @@ function AddVehicle() {
             return response.json();
         })
         .then(vehicleData => {
+            // Alle velden worden geleegt
             SetBrand('');
             SetType('');
             SetColor('');
@@ -80,6 +82,7 @@ function AddVehicle() {
             vehicleBlob
         };
 
+        // Errors worden automatisch aangemaakt, doormiddel van de keys
         let errors = [];
         for (let key in vehicleData)
         {
@@ -98,6 +101,7 @@ function AddVehicle() {
     }
 
     useEffect(() => {
+        // Authoristatie check
         fetch(`${BACKEND_URL}/api/Cookie/GetUserId` , {
             method: 'GET',
             headers: {
@@ -177,6 +181,8 @@ function AddVehicle() {
                 <button onClick={Check}>Voertuig toevoegen</button>
                 <br></br>
             </div>
+            
+            {/*Errors worden netjes onder elkaar uitgelijnt*/}
             {error.length > 0 && (
                 <div id="errors">
                     <ul>

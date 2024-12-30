@@ -23,6 +23,7 @@ public class EmployeeController : ControllerBase
         _crypt = crypt ?? throw new ArgumentNullException(nameof(crypt));
     }
 
+    // Er wordt gekeken of de user een medewerker is
     [HttpGet("IsUserEmployee")]
     public Task<bool> IsUserEmployee()
     {

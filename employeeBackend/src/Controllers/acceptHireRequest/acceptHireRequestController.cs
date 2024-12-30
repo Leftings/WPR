@@ -23,6 +23,7 @@ public class AcceptHireRequestController : ControllerBase
         _crypt = crypt ?? throw new ArgumentNullException(nameof(crypt));
     }
 
+    // Alle ids van de aanvragen worden opgehaald
     [HttpGet("getReviewsIds")]
     public async Task<IActionResult> GetReviewsIdsAsync(string user)
     {
@@ -30,24 +31,18 @@ public class AcceptHireRequestController : ControllerBase
         return Ok(new { message = ids.ids});
     }
 
+    // De gegevens van een specifieke id worden opgehaald
     [HttpGet("getReview")]
     public async Task<IActionResult> GetReviewAsync(string id)
     {
         var review = await _userRepository.GetReviewAsync(id);
-
-        foreach (var x in review.data)
-        {
-            Console.WriteLine(x);
-        }
-
         return Ok(new { message = review.data });
     }
 
+    // Een aanvraag kan beantwoord worden
     [HttpPatch("answerHireRequest")]
     public async Task<IActionResult> AnswerHireRequestAsync([FromBody] HireRequest request)
     {
-        Console.WriteLine($"Received Request - Id: {request.Id}, Status: {request.Status}");
-
         if (request == null)
         {
             return BadRequest(new { message = "Invalid request body" });
@@ -63,9 +58,10 @@ public class AcceptHireRequestController : ControllerBase
         return BadRequest(new { message = setStatus.message });
     }
 
-
+    // Huidige user id wordt opgehaald
     private string GetCurrentUserId()
     {
+        // Alleen de cookie van Employee of Vehicle Manager bestaat
         string loginCookie = HttpContext.Request.Cookies["LoginEmployeeSession"];
         string loginCookie2 = HttpContext.Request.Cookies["LoginVehicleManagerSession"];
 
@@ -73,13 +69,10 @@ public class AcceptHireRequestController : ControllerBase
         {
             if (!string.IsNullOrEmpty(loginCookie))
             {
-                Console.WriteLine(loginCookie);
-                Console.WriteLine(_crypt.Decrypt(loginCookie));
                 return _crypt.Decrypt(loginCookie);
             }
             else if (!string.IsNullOrEmpty(loginCookie2))
             {
-                Console.WriteLine(loginCookie2);
                 return _crypt.Decrypt(loginCookie2);
             }
             else
@@ -89,6 +82,7 @@ public class AcceptHireRequestController : ControllerBase
         }
         catch
         {
+            // Ongeldig cookie wordt meteen verwijderd
             Response.Cookies.Append("LoginEmployeeSession", "Invalid cookie", new CookieOptions
             {
                 HttpOnly = true,

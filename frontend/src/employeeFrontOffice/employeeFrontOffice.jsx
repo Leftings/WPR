@@ -10,6 +10,7 @@ function EmployeeFrontOffice() {
   const navigate = useNavigate();
 
   useEffect(() => {
+    // Authorisatie check
     fetch(`${BACKEND_URL}/api/Cookie/GetUserId` , {
         method: 'GET',
         headers: {

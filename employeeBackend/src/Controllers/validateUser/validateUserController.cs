@@ -6,6 +6,7 @@ namespace Employee.Controllers.validateUser;
 [ApiController]
 public class ValidateUserController : ControllerBase
 {
+    // Er wordt gekeken of de gebruiker geautoriseerd is voor de webpagina
     [HttpGet("CheckSessionStaff")]
     public IActionResult CheckSessionStaff()
     {
