@@ -271,6 +271,49 @@ VALUES (@StartDate, @EndDate, @Price, @FrameNrCar, @Customer, @Status, @Reviewed
             }
         }
 
+        [HttpDelete("CancelRental")]
+        public async Task<IActionResult> CancelRentalAsync(int rentalId, int frameNr)
+        {
+            string loginCookie = HttpContext.Request.Cookies["LoginSession"];
+            int userId = Convert.ToInt32(_crypt.Decrypt(loginCookie));
+            bool deletion1 = false;
+            bool deletion2 = false;
+
+            try
+            {
+                string query1 = @"
+            DELETE FROM Abonnement WHERE OrderId = @Id AND Customer = @Customer";
+
+                using (var connection = _connector.CreateDbConnection())
+                {
+                    using (var abonnementCommand = new MySqlCommand(query1, (MySqlConnection)connection))
+                    {
+                        abonnementCommand.Parameters.AddWithValue("@Id", rentalId);
+                        abonnementCommand.Parameters.AddWithValue("@Customer", userId);
+                        
+
+                        int rowsAffectedAbonnement = await abonnementCommand.ExecuteNonQueryAsync();
+                        if (rowsAffectedAbonnement > 0)
+                        {
+                            return Ok(new { message = "Rental cancelled successfully" });
+                        }
+                        else
+                        {
+                            return NotFound(new
+                                { message = "Rental not found or you do not have permission to cancel this rental" });
+
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error: {ex.Message}");
+                return StatusCode(500, "An error occurred while cancelling rental");
+            }
+        }
+
+
         [HttpGet("GetAllUserRentals")]
         public async Task<IActionResult> GetAllUserRentalsAsync()
         {
@@ -281,7 +324,7 @@ VALUES (@StartDate, @EndDate, @Price, @FrameNrCar, @Customer, @Status, @Reviewed
             try
             {
                 string query = @"
-            SELECT StartDate, EndDate, Price, FrameNrCar, Status
+            SELECT OrderId, FrameNrCar, StartDate, EndDate, Price, Status
             FROM Abonnement 
             WHERE Customer = @Customer";
 
@@ -298,13 +341,20 @@ VALUES (@StartDate, @EndDate, @Price, @FrameNrCar, @Customer, @Status, @Reviewed
                         {
                             while (reader.Read())
                             {
+
+                                string carName = await _vehicleRepo.GetVehicleNameAsync(reader.GetInt32(1));
+                                string licensePlate = await _vehicleRepo.GetVehiclePlateAsync(reader.GetInt32(1));
+
                                 rentals.Add(new
                                 {
-                                    StartDate = reader.IsDBNull(0) ? (DateTime?)null : reader.GetDateTime(0),
-                                    EndDate = reader.IsDBNull(1) ? (DateTime?)null : reader.GetDateTime(1),
-                                    Price = reader.IsDBNull(2) ? (decimal?)null : reader.GetDecimal(2),
-                                    FrameNrCar = reader.IsDBNull(3) ? (int?)null : reader.GetInt32(3),
-                                    Status = reader.IsDBNull(4) ? null : reader.GetString(4),
+                                    Id = reader.IsDBNull(0) ? (int?)null : reader.GetInt32(0),
+                                    FrameNrCar = reader.IsDBNull(1) ? (int?)null : reader.GetInt32(1),
+                                    CarName = carName,
+                                    LicensePlate = licensePlate,
+                                    StartDate = reader.IsDBNull(2) ? (DateTime?)null : reader.GetDateTime(2),
+                                    EndDate = reader.IsDBNull(3) ? (DateTime?)null : reader.GetDateTime(3),
+                                    Price = reader.IsDBNull(4) ? (decimal?)null : reader.GetDecimal(4),
+                                    Status = reader.IsDBNull(5) ? null : reader.GetString(5),
                                 });
                             }
                         }
@@ -327,7 +377,7 @@ VALUES (@StartDate, @EndDate, @Price, @FrameNrCar, @Customer, @Status, @Reviewed
             {
                 string query = @"
             SELECT 
-                ID, 
+                OrderId, 
                 StartDate, 
                 EndDate, 
                 Price, 
@@ -388,7 +438,7 @@ VALUES (@StartDate, @EndDate, @Price, @FrameNrCar, @Customer, @Status, @Reviewed
             try
             {
                 string query1 = @"
-    UPDATE Abonnement SET StartDate = @StartDate, EndDate = @EndDate, Price = @Price WHERE ID = @Id";
+    UPDATE Abonnement SET StartDate = @StartDate, EndDate = @EndDate, Price = @Price WHERE OrderId = @Id";
 
                 using (var connection = _connector.CreateDbConnection())
                 {

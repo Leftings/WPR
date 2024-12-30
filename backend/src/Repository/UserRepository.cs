@@ -72,6 +72,7 @@ public class UserRepository : IUserRepository
         }
         */
 
+        // De table voor de DataBase wordt vastgesteld
         string table; 
         
         if (userType.Equals("Employee"))
@@ -88,20 +89,22 @@ public class UserRepository : IUserRepository
         }
 
         string query = $@"SELECT password FROM {table} WHERE LOWER(email) = LOWER(@Email)";
-        Console.WriteLine(table);
-        Console.WriteLine(query);
 
+        // Er wordt een connectie met de Database aangemaakt met de bovenstaande query
         using (var connection = _connector.CreateDbConnection())
         using (var command = new MySqlCommand(query, (MySqlConnection)connection))
         {
+            // In de query wordt vastgesteld welke row er geselecteerd moet worden doormiddel van het invullen van het emailadres
             command.Parameters.AddWithValue("@Email", username);
 
+            // De query wordt uitgevoerd
             using (var reader = await command.ExecuteReaderAsync())
-            {
+            {   
+                // De query wordt uitgelezen en gekeken of er rows gevonden zijn
                 if (await reader.ReadAsync())
                 {
+                    // Het gehashte wachtwoord wordt opgehaald en wordt vergeleken met het gehaste meegegeven wachtwoord
                     string passwordUser = reader.GetString("Password");
-                    Console.WriteLine($"{_hash.createHash(password)} | {passwordUser} || {_hash.createHash(password).Equals(passwordUser)}");
                     return _hash.createHash(password).Equals(passwordUser);
                 }
 
@@ -112,17 +115,20 @@ public class UserRepository : IUserRepository
 
     public async Task<(bool status, string message)> checkUsageEmailAsync(string email)
     {
+        // Er wordt gekeken of het emailadress al ingebruik is
         try
         {
             string query = "SELECT COUNT(*) FROM UserCustomer WHERE LOWER(Email) = LOWER(@E)";
 
+            // Er wordt een connectie aangemaakt met de DataBase met bovenstaande query
             using (var connection = _connector.CreateDbConnection())
             using (var command = new MySqlCommand(query, (MySqlConnection)connection))
             {
+                // Het emailadres wordt in de query ingevuld en er wordt gekeken of er rows zijn gevonden
                 command.Parameters.AddWithValue("@E", email);
                 bool inUse = Convert.ToInt32(await command.ExecuteScalarAsync()) > 0;
 
-                Console.WriteLine(inUse);
+                // Als het aantal gevoden rows > 0, dan inUse = true, "Email detected" anders inUser = false, "No email detected"
                 return (inUse, inUse ? "Email detected" : "No email detected");
             }
         }
@@ -145,9 +151,11 @@ public class UserRepository : IUserRepository
         {
             string query = "INSERT INTO UserCustomer (Adres, Telnum, Password, Email, FirstName, LastName) values (@A, @T, @P, @E, @F, @L)";
 
+            // Er wordt een connectie aangemaakt met de DataBase met bovenstaande query 
             using (var connection = _connector.CreateDbConnection())
             using (var command = new MySqlCommand(query, (MySqlConnection)connection))
             {
+                // Alle parameters worden ingevuld met de megegeven persoons gegevens
                 command.Parameters.AddWithValue("@A", personData[0]);
                 command.Parameters.AddWithValue("@T", personData[1]);
                 command.Parameters.AddWithValue("@P", personData[2]);
@@ -157,6 +165,7 @@ public class UserRepository : IUserRepository
 
                 if (await command.ExecuteNonQueryAsync() > 0)
                 {
+                    // Als de query succesvol is uitgevoerd wordt de laatste ingevoerde userId meegegeven
                     command.CommandText = "SELECT LAST_INSERT_ID();";
                     int newUserID = Convert.ToInt32(await command.ExecuteScalarAsync());
 
@@ -184,14 +193,17 @@ public class UserRepository : IUserRepository
         {
             string query = "INSERT INTO UserPersonal (ID, BirthDate) values (@I, @B)";
 
+            // Er wordt een connectie aangemaakt met de DataBase met bovenstaande query 
             using (var connection = _connector.CreateDbConnection())
             using (var command = new MySqlCommand(query, (MySqlConnection)connection))
             {
+                // De parameters worden ingevuld met de persoonlijke gegevens
                 command.Parameters.AddWithValue("@I", personalData[0]);
                 command.Parameters.AddWithValue("@B", personalData[1]);
 
                 if (await command.ExecuteNonQueryAsync() > 0)
                 {
+                    // Er wordt gekeken of de gegevens zijn ingevoert in de DataBase
                     return (true, "Data Inserted");
                 }
                 return (false, "No Data Inserted");
@@ -216,14 +228,17 @@ public class UserRepository : IUserRepository
         {
             string query = "INSERT INTO UserEmployee (ID, Business) values (@I, @B)";
 
+            // Er wordt een connectie aangemaakt met de DataBase met bovenstaande query 
             using (var connection = _connector.CreateDbConnection())
             using (var command = new MySqlCommand(query, (MySqlConnection)connection))
             {
+                // Alle parameters worden ingevuld
                 command.Parameters.AddWithValue("@I", employeeData[0]);
                 command.Parameters.AddWithValue("@B", employeeData[1]);
 
                 if (await command.ExecuteNonQueryAsync() > 0)
                 {
+                    // Er wordt gekeken of de gegevens zijn ingevoerd in de DataBase
                     return (true, "Data Inserted");
                 }
                 return (false, "No Data Inserted");
@@ -248,15 +263,18 @@ public class UserRepository : IUserRepository
         {
             string query = $"SELECT ID FROM {table} WHERE Email = @E";
 
+            // Er wordt een connectie aangemaakt met de DataBase met bovenstaande query 
             using (var connection = _connector.CreateDbConnection())
             using (var command = new MySqlCommand(query, (MySqlConnection)connection))
             {
+                // De parameter wordt ingevuld
                 command.Parameters.AddWithValue("@E", email);
 
                 var result = await command.ExecuteScalarAsync();
 
                 if (result != null)
                 {
+                    // De user id wordt meegegeven
                     return result.ToString();
                 }
 
@@ -276,14 +294,16 @@ public class UserRepository : IUserRepository
         {
             string query = "SELECT FirstName FROM UserCustomer WHERE ID = @I";
 
+            // Er wordt een connectie aangemaakt met de DataBase met bovenstaande query 
             using (var connection = _connector.CreateDbConnection())
             using (var command = new MySqlCommand(query, (MySqlConnection)connection))
             {
-                Console.WriteLine(userId);
+                // De paramater wordt ingevuld
                 command.Parameters.AddWithValue("@I", Convert.ToInt32(userId));
 
                 var result = await command.ExecuteScalarAsync();
 
+                // De gebruikersnaam wordt meegegeven
                 return result.ToString();
             }
         }
@@ -298,20 +318,20 @@ public class UserRepository : IUserRepository
     {
         try
         {
+            // Er wordt een custom query aangemaakt
             var query = await CreateUserInfoQuery(data);
 
             if (query.goodQuery)
             {
+                // Er wordt een connectie aangemaakt met de DataBase met bovenstaande query 
                 using (var connection = _connector.CreateDbConnection())
                 using (var command = new MySqlCommand(query.message, (MySqlConnection)connection))
                 {
                     var result = await command.ExecuteNonQueryAsync();
 
-                    Console.WriteLine(result);
-                    Console.WriteLine(query);
-
                     if (await command.ExecuteNonQueryAsync() > 0)
                     {
+                        // Er wordt gecontrolleerd of de gegeven in de DataBase zijn ingevoerd
                         return (true, "Data inserted");
                     }
                     
@@ -365,15 +385,12 @@ public class UserRepository : IUserRepository
             string queryEmployee = "DELETE FROM UserEmployee WHERE ID = @ID";
             string queryPersonal = "DELETE FROM UserPersonal WHERE ID = @ID";
             string queryAbonnement = "DELETE FROM Abonnement WHERE Customer = @ID";
-            string queryVehicleUser = "DELETE FROM Vehicle_User WHERE Customer = @ID";
 
             using (var connection = _connector.CreateDbConnection())
             using (var customerCommand = new MySqlCommand(queryCustomer, (MySqlConnection)connection))
             using (var employeeCommand = new MySqlCommand(queryEmployee, (MySqlConnection)connection))
             using (var personalCommand = new MySqlCommand(queryPersonal, (MySqlConnection)connection))
             using (var abonnementCommand = new MySqlCommand(queryAbonnement, (MySqlConnection)connection))
-            using (var vehicleUserCommand = new MySqlCommand(queryVehicleUser, (MySqlConnection)connection))
-
             {
                 Console.WriteLine(userId);
                 int userIdInt = Convert.ToInt32(userId);
@@ -382,13 +399,11 @@ public class UserRepository : IUserRepository
                 customerCommand.Parameters.AddWithValue("@ID", userIdInt);
                 employeeCommand.Parameters.AddWithValue("@ID", userIdInt);
                 personalCommand.Parameters.AddWithValue("@ID", userIdInt);
-                vehicleUserCommand.Parameters.AddWithValue("@ID", userIdInt);
                 abonnementCommand.Parameters.AddWithValue("@ID", userIdInt);
 
                 await employeeCommand.ExecuteNonQueryAsync();
                 await personalCommand.ExecuteNonQueryAsync();
                 await abonnementCommand.ExecuteNonQueryAsync();
-                await vehicleUserCommand.ExecuteNonQueryAsync();
                 
                 int rowsAffected = await customerCommand.ExecuteNonQueryAsync();
 
@@ -419,19 +434,24 @@ public class UserRepository : IUserRepository
 
     private async Task<(bool goodQuery, string message)> CreateUserInfoQuery(List<object[]> data)
     {
-        int lengthList = data.Count();
-        string query = "UPDATE UserCustomer SET ";
+        int lengthList = data.Count(); // De lengte voor de loopt wordt vastgesteld
+        string query = "UPDATE UserCustomer SET "; // Het begin van de query wordt aangemaakt
 
         for (int i = 1; i < lengthList; i++)
         {
+            // Item[0] = Colom naam
+            // Item[1] = Colom data
+            // Item[2] = Type colom data
             object[] item = data[i];
 
+            // Als de 3e item in de list een integer is, worden er geen verdere checks gedaan
             if (item[2].Equals("System.Int32"))
             {
                 query += $"{item[0]} = {item[1]}";
             }
             else
             {
+                // Als de naam van de colomn gelijks is aan "Email" wordt er een email check gedaan
                 if (item[0].ToString().Equals("Email"))
                 {
                     var emailCheck = await checkUsageEmailAsync(item[1].ToString());
@@ -446,12 +466,14 @@ public class UserRepository : IUserRepository
 
             if (i + 1 != lengthList)
             {
+                // De query kan worden uitgebreid
                 query += ",";
             }
 
             query += " ";
         }
 
+        // De query wordt afgesloten
         return (true, query += $"WHERE ID = {data[0][1]}");
     }
 
@@ -461,15 +483,16 @@ public class UserRepository : IUserRepository
         {
             string query = "SELECT Office FROM Staff WHERE ID = @I";
 
+            // Er wordt een connectie aangemaakt met de DataBase met bovenstaande query 
             using (var connection = _connector.CreateDbConnection())
             using (var command = new MySqlCommand(query, (MySqlConnection)connection))
             {
-                Console.WriteLine(userId);
-                Console.WriteLine("XXXXXXXXXXXXXXXXXXXXXXXXXX");
+                // De parameter wordt ingevuld
                 command.Parameters.AddWithValue("@I", userId);
 
                 var result = await command.ExecuteScalarAsync();
 
+                // De office wordt meegegeven
                 return (true, result.ToString());
             }
         }
@@ -487,9 +510,11 @@ public class UserRepository : IUserRepository
         {
             string query = "INSERT INTO STAFF (FirstName, LastName, Password, Email, Office) VALUES (@F, @L, @P, @E, @O)";
 
+            // Er wordt een connectie aangemaakt met de DataBase met bovenstaande query 
             using (var connection = _connector.CreateDbConnection())
             using (var command = new MySqlCommand(query, (MySqlConnection)connection))
             {
+                // Alle parameters worden ingevuld
                 command.Parameters.AddWithValue("@F", personData[0]);
                 command.Parameters.AddWithValue("@L", personData[1]);
                 command.Parameters.AddWithValue("@P", _hash.createHash(personData[2].ToString()));
@@ -498,6 +523,7 @@ public class UserRepository : IUserRepository
 
                 if (await command.ExecuteNonQueryAsync() > 0)
                     {
+                        // Er wordt gekeken of de gegevens zijn ingevoerd in de DataBase
                         return (true, "Data inserted");
                     }
                     
@@ -516,15 +542,18 @@ public class UserRepository : IUserRepository
         {
             string query = "SELECT ID FROM UserEmployee WHERE ID = @id";
 
+            // Er wordt een connectie aangemaakt met de DataBase met bovenstaande query 
             using (var connection = _connector.CreateDbConnection())
             using (var command = new MySqlCommand(query, (MySqlConnection)connection))
             {
+                // De parameter wordt ingevuld
                 command.Parameters.AddWithValue("@id", id);
 
                 var result = await command.ExecuteScalarAsync();
 
                 if (result != null && result.ToString() == id.ToString())
                 {
+                    // Er wordt gekeken of de gebruiker bestaat
                     return true;
                 }
 

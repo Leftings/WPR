@@ -49,7 +49,7 @@ function SignUp() {
 
         let signUpType = chosenType === 1 ? 'signUpPersonal' : 'signUpEmployee';
 
-      
+        // Als er een particulier account wordt aangemaakt, moet er een geboorte datum ingevuld worden, anders een KvK nummer
         const data = signUpType === 'signUpPersonal'
             ? {
                 Email: email,
@@ -71,7 +71,8 @@ function SignUp() {
                 BirthDate: null,
                 KvK: KvK
             };
-    
+        
+        // Sign up aanvragen via de backend
         fetch(`${BACKEND_URL}/api/SignUp/${signUpType}`, {
             method: 'POST',
             headers: {

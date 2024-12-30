@@ -51,7 +51,7 @@ function PayPage() {
 
         if (start && end) {
             const days = Math.ceil((end - start) / (1000 * 60 * 60 * 24));
-            const pricePerDay = parseFloat(vehicle?.price.replace(',', '.') || "0");
+            const pricePerDay = parseFloat(vehicle?.Price.replace(',', '.') || "0");
 
             if (!isNaN(pricePerDay) && days > 0) {
                 setRentalDays(days);
@@ -82,13 +82,13 @@ function PayPage() {
         }
 
         // Zorgt ervoor dat FrameNrCar is ingesteld op basis van voertuiggegevens
-        if (!vehicle?.frameNr) {
+        if (!vehicle?.FrameNr) {
             setErrorMessage("Voertuig heeft geen framenummer. Kies een geldig voertuig.");
             return;
         }
 
         const rentalData = {
-            FrameNrCar: String(vehicle.frameNr),
+            FrameNrCar: String(vehicle.FrameNr),
             StartDate: userDetails.rentalDates[0].toISOString(),
             EndDate: userDetails.rentalDates[1].toISOString(),
             Price: totalCost,
@@ -120,8 +120,8 @@ function PayPage() {
             navigate("/confirmationPage", {
                 state: {
                     rental: {
-                        vehicleBrand: vehicle.brand,
-                        vehicleType: vehicle.type,
+                        vehicleBrand: vehicle.Brand,
+                        vehicleType: vehicle.Type,
                         startDate: userDetails.rentalDates[0],
                         endDate: userDetails.rentalDates[1],
                         totalCost: totalCost.toFixed(2),
@@ -156,14 +156,14 @@ function PayPage() {
                 <h1 className="title">Bevestig Rental</h1>
                 <div className="buy-details">
                     <div className="car-info">
-                        <h2 className="car-title">{`${vehicle.brand || "Onbekend"} ${vehicle.type || "Model"}`}</h2>
-                        <p className="car-price">{`Prijs: €${vehicle.price} per dag`}</p>
+                        <h2 className="car-title">{`${vehicle.Brand || "Onbekend"} ${vehicle.Type || "Model"}`}</h2>
+                        <p className="car-price">{`Prijs: €${vehicle.Price} per dag`}</p>
 
                         <div className="car-image-container">
-                            {vehicle.image ? (
+                            {vehicle.VehicleBlob ? (
                                 <img
-                                    src={`data:image/jpeg;base64,${vehicle.image}`}
-                                    alt={`${vehicle.brand || "Onbekend"} ${vehicle.type || ""}`}
+                                    src={`data:image/jpeg;base64,${vehicle.VehicleBlob}`}
+                                    alt={`${vehicle.Brand || "Onbekend"} ${vehicle.Type || ""}`}
                                     className="car-image"
                                 />
                             ) : (

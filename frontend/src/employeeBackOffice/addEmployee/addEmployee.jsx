@@ -17,32 +17,34 @@ function AddEmployee() {
     const [KvK, SetKvK] = useState('');
 
     function SignUp() {
-        let data = {
+        // Alle gegevens worden naar JSON omgezet
+        const data = {
             Job: KindEmployee,
             FirstName: FirstName,
             LastName: LastName,
             Password: Password,
             Email: Email,
-            KvK: KvK
+            KvK: KindEmployee === 'Wagen' ? KvK : null // Als KindEmployee niet Wagen is, wordt KvK null
         };
-
+    
         fetch(`${BACKEND_URL}/api/SignUpStaff/signUpStaff`, {
             method: 'POST',
             credentials: 'include',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
             },
-            body: JSON.stringify(data)
+            body: JSON.stringify(data),
         })
         .then(response => {
             if (!response.ok) {
                 return response.json().then(err => {
-                    throw new Error(err.message);
+                    throw new Error(err.message || 'Error occurred');
                 });
             }
             return response.json();
         })
         .then(data => {
+            // Alle velden worden gereset
             SetFirstName('');
             SetLastName('');
             SetEmail('');
@@ -56,6 +58,7 @@ function AddEmployee() {
             SetError([error.message]);
         });
     }
+    
 
     function Check() {
         let data = {
@@ -66,7 +69,8 @@ function AddEmployee() {
             Password,
             Email,
         };
-
+        
+        // Errors voor het niet invullen van een veld worden automatisch aangemaakt, door middel van de keys
         let errors = [];
         for (let key in data) {
             if (data[key] === '')
@@ -97,6 +101,7 @@ function AddEmployee() {
     }
 
     useEffect(() => {
+        // Authorisatie checker
         fetch(`${BACKEND_URL}/api/Cookie/GetUserId` , {
             method: 'GET',
             headers: {
@@ -157,7 +162,8 @@ function AddEmployee() {
             </div>
 
             <button onClick={Check}>Registreren</button>
-
+            
+            {/*Errors worden netjes onder elkaar uitgezet*/}
             {ErrorMessage.length > 0 && (
                 <div id="errors">
                     <ul>

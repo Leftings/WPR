@@ -7,6 +7,7 @@ import GeneralFooter from '../../GeneralBlocks/footer/footer';
 const BACKEND_URL = import.meta.env.VITE_REACT_APP_BACKEND_URL_EMPLOYEE ?? 'http://localhost:5276';
 
 function GetReview(id) {
+  // Data wordt opgehaald van een specifieke review
   return fetch(`${BACKEND_URL}/api/AcceptHireRequest/getReview?id=${id}`, {
     method: 'GET',
     headers: {
@@ -23,6 +24,7 @@ function GetReview(id) {
       return response.json();
     })
     .then((data) => {
+      // Alle gegevens owrden omgezet naar 1 list
       const combinedData = data?.message.reduce((acc, item) => {
         return { ...acc, ...item };
       }, {});
@@ -35,6 +37,7 @@ function GetReview(id) {
 }
 
 function SetStatus(id, status, setNewRequests) {
+  // Status van een aanvraag kan worden aangepast
   return fetch(`${BACKEND_URL}/api/AcceptHireRequest/answerHireRequest`, {
     method: 'PATCH',
     headers: {
@@ -54,7 +57,8 @@ function SetStatus(id, status, setNewRequests) {
       return response.json();
     })
   .then(() => {
-      setNewRequests((prevRequests) => prevRequests.filter((request) => request.ID !== id));
+      // Aanvraag wordt weggehaald
+      setNewRequests((prevRequests) => prevRequests.filter((request) => request.OrderId !== id));
     })  
   .catch((error) => {
     console.error(error);
@@ -71,6 +75,7 @@ function ReviewHireRequest() {
   const [loadingRequests, setLoadingRequests] = useState({}); 
 
   useEffect(() => {
+    // Authoristatie check
     const validateCookie = async () => {
       try {
         const response = await fetch(`${BACKEND_URL}/api/Cookie/GetUserId`, {
@@ -96,11 +101,13 @@ function ReviewHireRequest() {
   }, [navigate]);
 
   useEffect(() => {
+    // Aanvragen worden opgehaald
     const fetchNewRequests = async () => {
       setLoading(true);
       setError(null);
 
       try {
+        // Alle ids worden opgehaald
         const response = await fetch(`${BACKEND_URL}/api/AcceptHireRequest/getReviewsIds?user=frontOffice`, {
           method: 'GET',
           credentials: 'include',
@@ -111,20 +118,22 @@ function ReviewHireRequest() {
         }
 
         const data = await response.json();
-        console.log('Fetched Data:', data);
-
         const requestsToLoad = data?.message || [];
 
+        // Elke id wordt afzonderlijk geladen (async)
         for (const id of requestsToLoad) {
+          // Aanzetten laden
           setLoadingRequests((prevState) => ({ ...prevState, [id]: true }));
-          console.log(id);
           
           try {
             const review = await GetReview(id);
-            console.log(review?.message);
+            
             if (review?.message) {
+              // Request toevoegen aan requests
               setNewRequests((prevRequests) => [...prevRequests, review.message]);
+              // Laden uitzetten requests
               setLoadingRequests((prevState) => ({ ...prevState, [id]: false }));
+              // Algemeen laatscherm uitzetten
               setLoading(false);
             }
           } catch (err) {
@@ -186,8 +195,8 @@ function ReviewHireRequest() {
                         <p><strong>Eind Datum:</strong> {new Date(request.EndDate).toLocaleDateString()}</p>
                         <p><strong>Totaal Prijs:</strong> €{request.Price}</p>
                         <div id="buttons">
-                          <button className="accept" onClick={() => SetStatus(request.ID, 'accepted', setNewRequests)}>Accepteren</button>
-                          <button className="deny" onClick={() => SetStatus(request.ID, 'denied', setNewRequests)}>Weigeren</button>
+                          <button className="accept" onClick={() => SetStatus(request.OrderId, 'accepted', setNewRequests)}>Accepteren</button>
+                          <button className="deny" onClick={() => SetStatus(request.OrderId, 'denied', setNewRequests)}>Weigeren</button>
                         </div>
                       </>
                     )}

@@ -22,15 +22,13 @@ public class CookieController : ControllerBase
         _crypt = crypt ?? throw new ArgumentNullException(nameof(crypt));
     }
 
+    // User id wordt opgevraagd vanuit cookie 
     [HttpGet("GetUserId")]
     public async Task<IActionResult> GetUserId()
     {
+        // Employee cookie en Vehicle Manager cookie kunnen niet tergelijktijd bestaan
         string? loginCookie = HttpContext.Request.Cookies["LoginEmployeeSession"];
         string? loginCookie2 = HttpContext.Request.Cookies["LoginVehicleManagerSession"];
-
-        Console.WriteLine(loginCookie2);
-
-        Console.WriteLine(_crypt.Decrypt(loginCookie2) + "  XXXXXXXXXXXXXX");
 
         try
         {
@@ -48,12 +46,46 @@ public class CookieController : ControllerBase
         }
         catch
         {
+            // Ongeldige cookies worden verwijderd
             Response.Cookies.Append("LoginEmployeeSession", "Invalid cookie", new CookieOptions
             {
                 HttpOnly = true,
                 Secure = true,
                 Expires = DateTimeOffset.UtcNow.AddDays(-1)
             });
+
+            Response.Cookies.Append("LoginVehicleManagerSession", "Invalid cookie", new CookieOptions
+            {
+                HttpOnly = true,
+                Secure = true,
+                Expires = DateTimeOffset.UtcNow.AddDays(-1)
+            });
+            
+            return BadRequest(new { message = "Invalid Cookie, new cookie set" });
+        }
+    }
+
+
+    // Er wordt gekeken of de Vehicle Manager bestaat
+    [HttpGet("IsVehicleManager")]
+    public async Task<IActionResult> IsVehicleManagerAsync()
+    {
+        string? loginCookie2 = HttpContext.Request.Cookies["LoginVehicleManagerSession"];
+
+        string decryptedCookie = _crypt.Decrypt(loginCookie2);
+
+
+        try
+        {
+            if (!string.IsNullOrEmpty(loginCookie2))
+            {
+                return Ok(true);
+            }
+
+            return BadRequest(new { message = "No Cookie" });
+        }
+        catch
+        {
 
             Response.Cookies.Append("LoginVehicleManagerSession", "Invalid cookie", new CookieOptions
             {

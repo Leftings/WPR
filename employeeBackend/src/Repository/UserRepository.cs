@@ -28,9 +28,11 @@ public class UserRepository : IUserRepository
         {
             string query = "INSERT INTO Vehicle (YoP, Brand, Type, LicensePlate, Color, Sort, Price, Description, Vehicleblob) VALUES (@Y, @B, @T, @L, @C, @S, @P, @D, @V)";
 
+            // Er wordt een connectie met de DataBase gemaakt met de bovenstaande query
             using (var connection = _connector.CreateDbConnection())
             using (var command = new MySqlCommand(query, (MySqlConnection)connection))
             {
+                // Alle parameters worden ingevuld
                 command.Parameters.AddWithValue("@Y", yop);
                 command.Parameters.AddWithValue("@B", brand);
                 command.Parameters.AddWithValue("@T", type);
@@ -43,6 +45,7 @@ public class UserRepository : IUserRepository
 
                 if (await command.ExecuteNonQueryAsync() > 0)
                 {
+                    // Er wordt gekeken of de gegevens zijn ingevoerd in de DataBase
                     return (true, "Vehicle inserted");
                 }
                 return (false, "Something went wrong while inserting the vehicle");
@@ -50,6 +53,7 @@ public class UserRepository : IUserRepository
         }
         catch (MySqlException ex)
         {
+            Console.WriteLine(ex.Message);
             return (false, ex.Message);
         }
     }
@@ -58,6 +62,7 @@ public class UserRepository : IUserRepository
     {
         try
         {
+            // Er wordt een specifieke query aangewezen tussen VehicleManagers en Offices
             string query;
 
             if (personData[4].Equals("Wagen"))
@@ -69,9 +74,11 @@ public class UserRepository : IUserRepository
                 query = "INSERT INTO Staff (FirstName, LastName, Password, Email, Office) VALUES (@F, @L, @P, @E, @O)";
             }
 
+            // Er wordt een connectie met de DataBase gemaakt met de bovenstaande query
             using (var connection = _connector.CreateDbConnection())
             using (var command = new MySqlCommand(query, (MySqlConnection)connection))
             {
+                // Alle parameters worden ingevuld
                 command.Parameters.AddWithValue("@F", personData[0]);
                 command.Parameters.AddWithValue("@L", personData[1]);
                 command.Parameters.AddWithValue("@P", _hash.createHash(personData[2].ToString()));
@@ -88,6 +95,7 @@ public class UserRepository : IUserRepository
 
                 if (await command.ExecuteNonQueryAsync() > 0)
                     {
+                        // Er wordt gekeken of de gegevens zijn ingevoerd in de DataBase
                         return (true, "Data inserted");
                     }
                     
@@ -96,6 +104,7 @@ public class UserRepository : IUserRepository
         }
         catch(MySqlException ex)
         {
+            Console.WriteLine(ex.Message);
             return (false, ex.Message);
         }
     }
@@ -106,12 +115,15 @@ public class UserRepository : IUserRepository
         {
             string query = "SELECT COUNT(*) FROM Staff WHERE LOWER(Email) = LOWER(@E)";
 
+            // Er wordt een connectie met de DataBase gemaakt met de bovenstaande query
             using (var connection = _connector.CreateDbConnection())
             using (var command = new MySqlCommand(query, (MySqlConnection)connection))
             {
+                // De paramater wordt ingevuld
                 command.Parameters.AddWithValue("@E", email);
                 bool inUse = Convert.ToInt32(await command.ExecuteScalarAsync()) > 0;
 
+                // Als de uitvoer van de query > 0, dan inUse = true, "Email detected", anders inUse = false, "No email detected"
                 return (inUse, inUse ? "Email detected" : "No email detected");
             }
         }
@@ -135,13 +147,16 @@ public class UserRepository : IUserRepository
         {
             string query = "SELECT FirstName, LastName, Adres, Email, TelNum FROM UserCustomer WHERE ID = @I";
 
+            // Er wordt een connectie met de DataBase gemaakt met de bovenstaande query
             using (var connection = _connector.CreateDbConnection())
             using (var command = new MySqlCommand(query, (MySqlConnection)connection))
             {
+                // De parameter wordt ingevuld
                 command.Parameters.AddWithValue("@I", userid);
 
                 using (var reader = await command.ExecuteReaderAsync())
                 {
+                    // Alle gegevens in de row worden verzameld <Kolom naam : Kolom data>
                     await reader.ReadAsync();
                     
                     var row = new Dictionary<string, object>();
@@ -173,13 +188,16 @@ public class UserRepository : IUserRepository
         {
             string query = "SELECT Brand, Type, LicensePlate FROM Vehicle WHERE FrameNr = @I";
 
+            // Er wordt een connectie met de DataBase gemaakt met de bovenstaande query
             using (var connection = _connector.CreateDbConnection())
             using (var command = new MySqlCommand(query, (MySqlConnection)connection))
             {
+                // De parameter wordt ingevuld
                 command.Parameters.AddWithValue("@I", carId);
 
                 using (var reader = await command.ExecuteReaderAsync())
                 {
+                    // Alle gegevens in de row worden verzameld <Kolom naam : Kolom data>
                     await reader.ReadAsync();
                     
                     var row = new Dictionary<string, object>();
@@ -214,21 +232,22 @@ public class UserRepository : IUserRepository
 
             if (isVehicleManager)
             {
-                query = "SELECT ID FROM Abonnement WHERE Status = 'requested' AND VMStatus = 'requested' AND KvK = @K";
+                query = "SELECT OrderId FROM Abonnement WHERE Status = 'requested' AND VMStatus = 'requested' AND KvK = @K";
 
             }
             else if (user.Equals("frontOffice"))
             {
-                query = "SELECT ID FROM Abonnement WHERE Status = 'requested' AND (VMStatus = 'X' OR VMStatus = 'accepted')";
+                query = "SELECT OrderId FROM Abonnement WHERE Status = 'requested' AND (VMStatus = 'X' OR VMStatus = 'accepted')";
             }
 
-
+            // Er wordt een connectie met de DataBase gemaakt met de bovenstaande query
             using (var connection = _connector.CreateDbConnection())
             using (var command = new MySqlCommand(query, (MySqlConnection)connection))
             
             {
                 if (isVehicleManager)
                 {
+                    // De parameter wordt ingevuld
                     command.Parameters.AddWithValue("@K", GetKvK(userId));
                 }
 
@@ -237,7 +256,7 @@ public class UserRepository : IUserRepository
                     List<string> ids = new List<string>();
                     while (await reader.ReadAsync())
                     {
-                        Console.WriteLine(reader.FieldCount + "XXXX");
+                        // Alle ids worden in een list gestopt
                         for (int i = 0; i < reader.FieldCount; i++)
                         {
                             ids.Add(reader.GetValue(i).ToString());
@@ -264,24 +283,29 @@ public class UserRepository : IUserRepository
     {
         try
         {
-            string query = "SELECT * FROM Abonnement WHERE ID = @I";
+            string query = "SELECT * FROM Abonnement WHERE OrderId = @I";
 
+            // Er wordt een connectie met de DataBase gemaakt met de bovenstaande query
             using (var connection = _connector.CreateDbConnection())
             using (var command = new MySqlCommand(query, (MySqlConnection)connection))
             {
+                // De parameter wordt ingevuld
                 command.Parameters.AddWithValue("@I", id);
 
+                // De query wordt uitgevoerd
                 using (var reader = await command.ExecuteReaderAsync())
                 {
                     if (await reader.ReadAsync())
                     {
+                        // Er wordt een lijst gemaakt met alle waarders van elke row van de uitgevoerde query
                         var rows = new List<Dictionary<string, object>>();
-
+                        // De gegevens in de row worden opgeslagen in een dictonary <Kolom naam : Kolom data>
                         var row = new Dictionary<string, object>();
 
                         var getUserData = GetUserDataAsync(reader.GetValue(5).ToString());
                         var getVehiceData = GetVehicleData(reader.GetValue(4).ToString());
 
+                        // alle gegvens in de row worden verzameld
                         for (int i = 0; i < reader.FieldCount; i++)
                         {
                             row = new Dictionary<string, object>();
@@ -291,6 +315,7 @@ public class UserRepository : IUserRepository
 
                         var userData = await getUserData;
 
+                        // Alle gebruikers gegevens worden verzameld
                         foreach (var userField in userData.data)
                         {
                             row = new Dictionary<string, object>();
@@ -300,6 +325,7 @@ public class UserRepository : IUserRepository
 
                         var vehicleData = await getVehiceData;
 
+                        // Alle voertuig gegevens worden verzameld
                         foreach (var vehicelField in vehicleData.data)
                         {
                             row = new Dictionary<string, object>();
@@ -332,9 +358,11 @@ public class UserRepository : IUserRepository
         {
             string query = "SELECT Business FROM VehicleManager WHERE ID = @I";
 
+            // Er wordt een connectie met de DataBase gemaakt met de bovenstaande query
             using (var connection = _connector.CreateDbConnection())
             using (var command = new MySqlCommand(query, (MySqlConnection)connection))
             {
+                // De parameter wordt ingevuld
                 command.Parameters.AddWithValue("@I", id);
 
                 return command.ExecuteScalar().ToString();
@@ -358,18 +386,21 @@ public class UserRepository : IUserRepository
         {
             bool isOfficeType = userType.Equals("frontOffice");
             string query = "QUERY";
+
             if (isOfficeType)
             {
-                query = "UPDATE Abonnement SET Status = @S, ReviewedBy = @E WHERE ID = @I";
+                query = "UPDATE Abonnement SET Status = @S, ReviewedBy = @E WHERE OrderId = @I";
             }
             else if (userType.Equals("vehicleManager"))
             {
-                query = "UPDATE Abonnement SET VMStatus = @S WHERE ID = @I";
+                query = "UPDATE Abonnement SET VMStatus = @S WHERE OrderId = @I";
             }
 
+            // Er wordt een connectie met de DataBase gemaakt met de bovenstaande query
             using (var connection = _connector.CreateDbConnection())
             using (var command = new MySqlCommand(query, (MySqlConnection)connection))
             {
+                // De parameters worden ingevuld
                 command.Parameters.AddWithValue("@S", status);
                 command.Parameters.AddWithValue("@I", id);
 
@@ -380,6 +411,7 @@ public class UserRepository : IUserRepository
 
                 if (await command.ExecuteNonQueryAsync() > 0)
                 {
+                    // Er wordt gekeken of de gegevens zijn ingevoerd in de DataBase
                     return (true, "Status updated");
                 }
                 

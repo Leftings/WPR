@@ -247,6 +247,7 @@ public class VehicleController : ControllerBase
         }
     }
 
+    // Alle framenummers van de voertuigen worden verzameld
     [HttpGet("GetFrameNumbers")]
     public async Task<IActionResult> GetFrameNumbersAsync()
     {
@@ -254,10 +255,19 @@ public class VehicleController : ControllerBase
         return Ok(new { message = ids });
     }
 
+    // Alle framenummers van een specifieke voertuig soort wordt verzameld
+    [HttpGet("GetFrameNumbersSpecificType")]
+     public async Task<IActionResult> GetFrameNumbersSpecificTypeAsync(string type)
+    {
+        var ids = await _vehicleRepository.GetFrameNumberSpecifiekTypeAsync(type);
+        return Ok(new { message = ids });
+    }
+
+    // Alle gegevens van 1 specifiek voertuig wordt opgehaald
     [HttpGet("GetVehicelData")]
     public async Task<IActionResult> GetVehicleData(string frameNr)
     {
-        var data = _vehicleRepository.GetVehicleDataAsync(frameNr);
+        var data = await _vehicleRepository.GetVehicleDataAsync(frameNr);
         return Ok(new { message = data });
     }
 }

@@ -109,14 +109,55 @@ public class VehicleRepository : IVehicleRepository
         {
             string query = "SELECT FrameNr FROM Vehicle";
 
+            // Er wordt een connectie aangemaakt met de DataBase met bovenstaande query 
             using (var connection = _connector.CreateDbConnection())
             using (var command = new MySqlCommand(query, (MySqlConnection)connection))
             using (var reader = await command.ExecuteReaderAsync())
             {
+                // Er wordt een lijst met alle frameNrs
                 var ids = new List<string>();
                 while (await reader.ReadAsync())
                 {
                     ids.Add(reader.GetValue(0).ToString());
+                }
+
+                return ids;
+            }
+        }
+        catch (MySqlException ex)
+        {
+            Console.WriteLine(ex.Message);
+            return null;
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.Message);
+            return null;
+        }
+    }
+
+    public async Task<List<string>> GetFrameNumberSpecifiekTypeAsync(string type)
+    {
+        try
+        {
+            string query = "SELECT FrameNr FROM Vehicle WHERE Sort = @S";
+
+            // Er wordt een connectie aangemaakt met de DataBase met bovenstaande query 
+            using (var connection = _connector.CreateDbConnection())
+            using (var command = new MySqlCommand(query, (MySqlConnection)connection))
+            {
+                // De parameter wordt ingevuld
+                command.Parameters.AddWithValue("@S", type);
+
+                //Er wordt een lijst gemaakt met alle FrameNrs van een specifieke voertuigsoort
+                var ids = new List<string>();
+
+                using (var reader = await command.ExecuteReaderAsync())
+                {
+                    while (await reader.ReadAsync())
+                    {
+                        ids.Add(reader.GetValue(0).ToString());
+                    }
                 }
 
                 return ids;
@@ -140,21 +181,35 @@ public class VehicleRepository : IVehicleRepository
         {
             string query = "SELECT * FROM Vehicle WHERE FrameNR = @F";
 
+            // Er wordt een connectie aangemaakt met de DataBase met bovenstaande query 
             using (var connection = _connector.CreateDbConnection())
             using (var command = new MySqlCommand(query, (MySqlConnection)connection))
-            using (var reader = await command.ExecuteReaderAsync())
             {
+                // De parameter wordt ingevuld
                 command.Parameters.AddWithValue("@F", frameNr);
 
+                // Er wordt een lijst aangemaakt met alle gegevens van het voertuig
                 var data = new List<Dictionary<object, string>>();
-
-                while (await reader.ReadAsync())
+                using (var reader = await command.ExecuteReaderAsync())
                 {
-                    for (int i = 0; i < reader.FieldCount; i++)
+                    while (await reader.ReadAsync())
                     {
-                        var row = new Dictionary<object, string>();
-                        row[reader.GetName(i)] = reader.GetValue(i).ToString();
-                        data.Add(row);
+                        for (int i = 0; i < reader.FieldCount; i++)
+                        {
+                            // Van elke row worden colom namen met gegevens vastgesteld 
+                            var row = new Dictionary<object, string>();
+
+                            if (reader.GetName(i).ToString().Equals("VehicleBlob"))
+                            {
+                                row[reader.GetName(i)] = Convert.ToBase64String((byte[])reader.GetValue(i));
+                            }
+                            else
+                            {
+                                row[reader.GetName(i)] = reader.GetValue(i).ToString();
+                            }
+
+                            data.Add(row);
+                        }
                     }
                 }
 

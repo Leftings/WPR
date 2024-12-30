@@ -4,6 +4,7 @@ public class SessionHandler : IDisposable
 {
     private bool disposedValue;
 
+    // Cookie kunnen worden aangemaakt doormiddel van een naam, de waarde en er kunnen opties ingezet worden
     public void CreateCookie(IResponseCookies responseCookies, string cookieName, string cookieValue)
     {
         responseCookies.Append(cookieName, cookieValue, new CookieOptions
@@ -13,13 +14,18 @@ public class SessionHandler : IDisposable
         });
     }
 
+    // Als er een ongeldige cookie is gedetecteerd, wordt deze verwijderd
     public void CreateInvalidCookie(IResponseCookies responseCookies, string cookieName)
     {
-        responseCookies.Append(cookieName, null, new CookieOptions
+        responseCookies.Append(cookieName, "", new CookieOptions
         {
             HttpOnly = true,
-            Expires = DateTimeOffset.Now.AddMinutes(-1)
+            Expires = DateTimeOffset.Now.AddMinutes(-1),
+            MaxAge = TimeSpan.Zero,
+            Path = "/"
         });
+
+        Console.WriteLine($"Cookie invalidated: {cookieName}");
     }
 
     protected virtual void Dispose(bool disposing)

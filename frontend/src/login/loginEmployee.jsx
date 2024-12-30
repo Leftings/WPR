@@ -98,7 +98,7 @@ function Login() {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({email, password, userType}),
-        credentials: 'include', // Include cookies for authentication
+        credentials: 'include',
       });
 
       if (!response.ok)
@@ -110,28 +110,35 @@ function Login() {
       {
         if (userType === 'Customer')
         {
+          // klant wordt ingelogd terug naar de homepage gestuurd
           await fetch(`${BACKEND_URL}/api/Login/CheckSession`, { credentials: 'include' });
           navigate('/');
         }
         else if (userType === 'Employee')
         {
+          // Soort medewerker wordt vastgesteld
           const officeResponse = await fetch(`${BACKEND_URL}/api/Cookie/GetKindEmployee`, { credentials: 'include' });
           if (!officeResponse.ok) {
               throw new Error('Failed to fetch the kind of office');
           }
           const office = await officeResponse.json();
-  
+          
           if (office?.message === 'Front')
           {
+            // Medewerker wordt naar de frontoffice gestuurd
+            await fetch(`${BACKEND_URL}/api/Login/CheckSessionStaff`, { credentials: 'include' });
             navigate('/FrontOfficeEmployee');
           }
           else
           {
+            // Medewerker wordt naar de backoffice gestuurd
+            await fetch(`${BACKEND_URL}/api/Login/CheckSessionStaff`, { credentials: 'include' });
             navigate('/BackOfficeEmployee');
           }
         }
         else
         {
+          // Vehicle Manager wordt naar Vehicle Manager gestuurd
           await fetch(`${BACKEND_URL}/api/Login/CheckSessionVehicleManager`, { credentials: 'include' });
           navigate('/VehicleManager');
         }
