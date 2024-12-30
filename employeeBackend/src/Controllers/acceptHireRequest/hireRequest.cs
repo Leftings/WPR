@@ -2,6 +2,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Employee.Controllers.acceptHireRequest;
 
+// Body voor de HireRequest
 public class HireRequest
 {
     [Required]

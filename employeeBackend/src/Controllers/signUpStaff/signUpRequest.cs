@@ -1,4 +1,6 @@
 namespace Employee.Controllers.signUpStaff;
+
+// Body voor het aanmaken van een nieuw account
 public class SignUpRequest
 {
     public string? Email { get; set; }

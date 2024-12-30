@@ -20,12 +20,15 @@ public class AddVehicleController : ControllerBase
         _userRepository = userRepository ?? throw new ArgumentNullException(nameof(userRepository));
     }
 
+    // Voertuig toevoegen
     [HttpPost("addVehicle")]
+    // Niet te testen via Swagger, wegens het toevoegen van een afbeelding
     [ApiExplorerSettings(IgnoreApi = true)]
     public async Task<IActionResult> AddVehicleAsync([FromForm] AddVehicleRequest request, [FromForm] IFormFile vehicleBlob)
     {
         try
         {
+            // Vehicle blob wordt omgezet naar bytes
             byte[] vehicleBlobBytes = null;
 
             if (vehicleBlob != null)
@@ -37,6 +40,7 @@ public class AddVehicleController : ControllerBase
                 }
             }
 
+            // Gegevens worden doorgestuurd naar de userRepository
             var status = await _userRepository.AddVehicleAsync(
                 request.YoP,
                 request.Brand,

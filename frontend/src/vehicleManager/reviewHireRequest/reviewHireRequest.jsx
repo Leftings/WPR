@@ -7,6 +7,7 @@ import GeneralFooter from '../../GeneralBlocks/footer/footer';
 const BACKEND_URL = import.meta.env.VITE_REACT_APP_BACKEND_URL_EMPLOYEE ?? 'http://localhost:5276';
 
 function GetReview(id) {
+  // Specifieke gegevens van een review opvragen
   return fetch(`${BACKEND_URL}/api/AcceptHireRequest/getReview?id=${id}`, {
     method: 'GET',
     headers: {
@@ -23,6 +24,7 @@ function GetReview(id) {
       return response.json();
     })
     .then((data) => {
+      // Een list van alle gegevens maken
       const combinedData = data?.message.reduce((acc, item) => {
         return { ...acc, ...item };
       }, {});
@@ -35,6 +37,7 @@ function GetReview(id) {
 }
 
 function SetStatus(id, status, setNewRequests) {
+  // Status zetten op accepteren of weigeren
   return fetch(`${BACKEND_URL}/api/AcceptHireRequest/answerHireRequest`, {
     method: 'PATCH',
     headers: {
@@ -71,6 +74,7 @@ function ReviewHireRequest() {
   const [loadingRequests, setLoadingRequests] = useState({}); 
 
   useEffect(() => {
+    // Authenticatie Check
     const validateCookie = async () => {
       try {
         const response = await fetch(`${BACKEND_URL}/api/Cookie/GetUserId`, {
@@ -111,20 +115,23 @@ function ReviewHireRequest() {
         }
 
         const data = await response.json();
-        console.log('Fetched Data:', data);
-
         const requestsToLoad = data?.message || [];
-
+        
+        // Er wordt door elk id heen gegaan
         for (const id of requestsToLoad) {
+          // Laden aanzetten voor review
           setLoadingRequests((prevState) => ({ ...prevState, [id]: true }));
-          console.log(id);
           
           try {
+            // review gegevens opvragen
             const review = await GetReview(id);
-            console.log(review?.message);
+
             if (review?.message) {
+              // Review toevoegen aan reviews
               setNewRequests((prevRequests) => [...prevRequests, review.message]);
+              // Review laden uitzetten
               setLoadingRequests((prevState) => ({ ...prevState, [id]: false }));
+              // Algemeen laden uitzetten
               setLoading(false);
             }
           } catch (err) {

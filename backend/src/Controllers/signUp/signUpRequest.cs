@@ -2,6 +2,7 @@ using System.Security.Policy;
 
 namespace WPR.Controllers.SignUp;
 
+// Er wordt een body aangemaakt voor alle gegevens voor het aanmaken van een account
 public class SignUpRequest
 {
     public string? Email { get; set; }

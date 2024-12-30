@@ -22,6 +22,7 @@ public class CookieController : ControllerBase
         _crypt = crypt ?? throw new ArgumentNullException(nameof(crypt));
     }
 
+    // De geencrypted user id wordt uit de cookie gepakt en wordt vervolgens gedecrypt doorgestuurd
     [HttpGet("GetUserId")]
     public async Task<IActionResult> GetUserId()
     {
@@ -38,6 +39,7 @@ public class CookieController : ControllerBase
         }
         catch
         {
+            // Als er geen geldig cookie is, wordt deze verwijderd
             Response.Cookies.Append("LoginSession", "Invalid cookie", new CookieOptions
             {
                 HttpOnly = true,
@@ -50,6 +52,7 @@ public class CookieController : ControllerBase
     }
 
 
+    // De gebruikersnaam wordt via de user id opgehaald via de backend 
     [HttpGet("GetUserName")]
     public async Task<IActionResult> GetUserName()
     {
@@ -57,23 +60,21 @@ public class CookieController : ControllerBase
 
         if(string.IsNullOrEmpty(loginCookie))
         {
-            Console.WriteLine("No cookie");
             return BadRequest(new { message = "No Cookie"});
         }
         
         try
         {
             string userName = await _userRepository.GetUserNameAsync(_crypt.Decrypt(loginCookie));
-            Console.WriteLine(userName);
             return Ok(new { message = userName });
         }
         catch (Exception ex)
         {
-            Console.WriteLine(ex);
-            return BadRequest(new { message = "User Not Found"});
+            return BadRequest(new { message = $"{ex.Message}\nUser Not Found"});
         }
     }
 
+    // De loginsession cookie wordt veranderd naar een cookie met een negatieve tijd, zodat de cookie expires
     [HttpPost("Logout")]
     public IActionResult Logout()
     {
@@ -89,6 +90,7 @@ public class CookieController : ControllerBase
         return Ok(new { message = "User Logged Out"});
     }
 
+    // Het soort medewerker wordt uit de cookie opgehaald, door middel van de user id, zodat de juiste soort medewerker naar de frontend verstuurd wordt
     [HttpGet("GetKindEmployee")]
     public async Task<IActionResult> GetKindEmployeeAsync()
     {
@@ -114,6 +116,7 @@ public class CookieController : ControllerBase
         } 
         catch
         {
+            // Als er geen geldig cookie is, wordt deze verwijderd
             Response.Cookies.Append("LoginSessionEmployee", "Invalid cookie", new CookieOptions
             {
                 HttpOnly = true,
