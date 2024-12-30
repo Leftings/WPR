@@ -20,6 +20,7 @@ function GetReview(id) {
           throw new Error(data?.message); 
         });
       }
+      console.log("X");
       return response.json();
     })
     .then((data) => {
@@ -35,6 +36,7 @@ function GetReview(id) {
 }
 
 function SetStatus(id, status, setNewRequests) {
+  console.log(id);
   return fetch(`${BACKEND_URL}/api/AcceptHireRequest/answerHireRequest`, {
     method: 'PATCH',
     headers: {
@@ -54,7 +56,7 @@ function SetStatus(id, status, setNewRequests) {
       return response.json();
     })
   .then(() => {
-      setNewRequests((prevRequests) => prevRequests.filter((request) => request.ID !== id));
+      setNewRequests((prevRequests) => prevRequests.filter((request) => request.OrderId !== id));
     })  
   .catch((error) => {
     console.error(error);
@@ -99,6 +101,7 @@ function ReviewHireRequest() {
     const fetchNewRequests = async () => {
       setLoading(true);
       setError(null);
+      console.log("X");
 
       try {
         const response = await fetch(`${BACKEND_URL}/api/AcceptHireRequest/getReviewsIds?user=frontOffice`, {
@@ -186,8 +189,8 @@ function ReviewHireRequest() {
                         <p><strong>Eind Datum:</strong> {new Date(request.EndDate).toLocaleDateString()}</p>
                         <p><strong>Totaal Prijs:</strong> €{request.Price}</p>
                         <div id="buttons">
-                          <button className="accept" onClick={() => SetStatus(request.ID, 'accepted', setNewRequests)}>Accepteren</button>
-                          <button className="deny" onClick={() => SetStatus(request.ID, 'denied', setNewRequests)}>Weigeren</button>
+                          <button className="accept" onClick={() => SetStatus(request.OrderId, 'accepted', setNewRequests)}>Accepteren</button>
+                          <button className="deny" onClick={() => SetStatus(request.OrderId, 'denied', setNewRequests)}>Weigeren</button>
                         </div>
                       </>
                     )}

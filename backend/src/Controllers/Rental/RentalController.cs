@@ -282,7 +282,7 @@ VALUES (@StartDate, @EndDate, @Price, @FrameNrCar, @Customer, @Status, @Reviewed
             try
             {
                 string query1 = @"
-            DELETE FROM Abonnement WHERE ID = @Id AND Customer = @Customer";
+            DELETE FROM Abonnement WHERE OrderId = @Id AND Customer = @Customer";
 
                 using (var connection = _connector.CreateDbConnection())
                 {
@@ -324,7 +324,7 @@ VALUES (@StartDate, @EndDate, @Price, @FrameNrCar, @Customer, @Status, @Reviewed
             try
             {
                 string query = @"
-            SELECT ID, FrameNrCar, StartDate, EndDate, Price, Status
+            SELECT OrderId, FrameNrCar, StartDate, EndDate, Price, Status
             FROM Abonnement 
             WHERE Customer = @Customer";
 
@@ -377,7 +377,7 @@ VALUES (@StartDate, @EndDate, @Price, @FrameNrCar, @Customer, @Status, @Reviewed
             {
                 string query = @"
             SELECT 
-                ID, 
+                OrderId, 
                 StartDate, 
                 EndDate, 
                 Price, 
@@ -438,7 +438,7 @@ VALUES (@StartDate, @EndDate, @Price, @FrameNrCar, @Customer, @Status, @Reviewed
             try
             {
                 string query1 = @"
-    UPDATE Abonnement SET StartDate = @StartDate, EndDate = @EndDate, Price = @Price WHERE ID = @Id";
+    UPDATE Abonnement SET StartDate = @StartDate, EndDate = @EndDate, Price = @Price WHERE OrderId = @Id";
 
                 using (var connection = _connector.CreateDbConnection())
                 {

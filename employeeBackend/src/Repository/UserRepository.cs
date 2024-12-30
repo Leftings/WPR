@@ -216,12 +216,12 @@ public class UserRepository : IUserRepository
 
             if (isVehicleManager)
             {
-                query = "SELECT ID FROM Abonnement WHERE Status = 'requested' AND VMStatus = 'requested' AND KvK = @K";
+                query = "SELECT OrderId FROM Abonnement WHERE Status = 'requested' AND VMStatus = 'requested' AND KvK = @K";
 
             }
             else if (user.Equals("frontOffice"))
             {
-                query = "SELECT ID FROM Abonnement WHERE Status = 'requested' AND (VMStatus = 'X' OR VMStatus = 'accepted')";
+                query = "SELECT OrderId FROM Abonnement WHERE Status = 'requested' AND (VMStatus = 'X' OR VMStatus = 'accepted')";
             }
 
 
@@ -266,7 +266,7 @@ public class UserRepository : IUserRepository
     {
         try
         {
-            string query = "SELECT * FROM Abonnement WHERE ID = @I";
+            string query = "SELECT * FROM Abonnement WHERE OrderId = @I";
 
             using (var connection = _connector.CreateDbConnection())
             using (var command = new MySqlCommand(query, (MySqlConnection)connection))
@@ -358,15 +358,16 @@ public class UserRepository : IUserRepository
     {
         try
         {
+            Console.WriteLine($"{id} | {status} | {employee} | {userType}");
             bool isOfficeType = userType.Equals("frontOffice");
             string query = "QUERY";
             if (isOfficeType)
             {
-                query = "UPDATE Abonnement SET Status = @S, ReviewedBy = @E WHERE ID = @I";
+                query = "UPDATE Abonnement SET Status = @S, ReviewedBy = @E WHERE OrderId = @I";
             }
             else if (userType.Equals("vehicleManager"))
             {
-                query = "UPDATE Abonnement SET VMStatus = @S WHERE ID = @I";
+                query = "UPDATE Abonnement SET VMStatus = @S WHERE OrderId = @I";
             }
 
             using (var connection = _connector.CreateDbConnection())
