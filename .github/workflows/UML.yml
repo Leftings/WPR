@@ -1,0 +1,30 @@
+name: Generate UML Diagrams
+
+on:
+  push:
+    branches:
+      - '*'
+  pull_request:
+    branches:
+      - '*'
+
+jobs:
+  generate-uml:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up Doxygen
+      run: |
+        sudo apt-get install doxygen graphviz
+
+    - name: Generate UML with Doxygen
+      run: doxygen Doxyfile
+
+    - name: Upload UML Diagrams to GitHub
+      uses: actions/upload-artifact@v2
+      with:
+        name: uml-diagrams
+        path: ./output/uml/
