@@ -1,0 +1,81 @@
+\doxysection{Employee.\+Data.\+Env\+Config Class Reference}
+\hypertarget{class_employee_1_1_data_1_1_env_config}{}\label{class_employee_1_1_data_1_1_env_config}\index{Employee.Data.EnvConfig@{Employee.Data.EnvConfig}}
+
+
+Leez het .env bestand uit waarin de connectie strings staan naar de database. Deze staan in een apart bestand buiten de git repo, zodat mensen van buiten niet met de database kunnen verbinden.  
+
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_employee_1_1_data_1_1_env_config_ac9c96b167e76f72a44f17145ce82c22f}{Env\+Config}} ()
+\item 
+virtual string \mbox{\hyperlink{class_employee_1_1_data_1_1_env_config_a4f5fd76aedc3c3cdfb96244287c559dc}{Get}} (string key)
+\begin{DoxyCompactList}\small\item\em Haalt de value van de specifieke environement variabelen. \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{class_employee_1_1_data_1_1_env_config_ab3d0850748829eb272295f7b4e9752f1}{Is\+Configured}} ()
+\begin{DoxyCompactList}\small\item\em Check om te kijken of alle environment variabelen geconfigureerd zijn. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+readonly IConfiguration \mbox{\hyperlink{class_employee_1_1_data_1_1_env_config_a554040b445f17cd4424ad00e7b7a0bc5}{\+\_\+configuration}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Leez het .env bestand uit waarin de connectie strings staan naar de database. Deze staan in een apart bestand buiten de git repo, zodat mensen van buiten niet met de database kunnen verbinden. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_employee_1_1_data_1_1_env_config_ac9c96b167e76f72a44f17145ce82c22f}\index{Employee.Data.EnvConfig@{Employee.Data.EnvConfig}!EnvConfig@{EnvConfig}}
+\index{EnvConfig@{EnvConfig}!Employee.Data.EnvConfig@{Employee.Data.EnvConfig}}
+\doxysubsubsection{\texorpdfstring{EnvConfig()}{EnvConfig()}}
+{\footnotesize\ttfamily \label{class_employee_1_1_data_1_1_env_config_ac9c96b167e76f72a44f17145ce82c22f} 
+Employee.\+Data.\+Env\+Config.\+Env\+Config (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_employee_1_1_data_1_1_env_config_a4f5fd76aedc3c3cdfb96244287c559dc}\index{Employee.Data.EnvConfig@{Employee.Data.EnvConfig}!Get@{Get}}
+\index{Get@{Get}!Employee.Data.EnvConfig@{Employee.Data.EnvConfig}}
+\doxysubsubsection{\texorpdfstring{Get()}{Get()}}
+{\footnotesize\ttfamily \label{class_employee_1_1_data_1_1_env_config_a4f5fd76aedc3c3cdfb96244287c559dc} 
+virtual string Employee.\+Data.\+Env\+Config.\+Get (\begin{DoxyParamCaption}\item[{string}]{key}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Haalt de value van de specifieke environement variabelen. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em key} & Ophalen environment variabele key.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+De value van de specifieke environment variabele, of null als niet gevonden.
+\end{DoxyReturn}
+\Hypertarget{class_employee_1_1_data_1_1_env_config_ab3d0850748829eb272295f7b4e9752f1}\index{Employee.Data.EnvConfig@{Employee.Data.EnvConfig}!IsConfigured@{IsConfigured}}
+\index{IsConfigured@{IsConfigured}!Employee.Data.EnvConfig@{Employee.Data.EnvConfig}}
+\doxysubsubsection{\texorpdfstring{IsConfigured()}{IsConfigured()}}
+{\footnotesize\ttfamily \label{class_employee_1_1_data_1_1_env_config_ab3d0850748829eb272295f7b4e9752f1} 
+virtual bool Employee.\+Data.\+Env\+Config.\+Is\+Configured (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Check om te kijken of alle environment variabelen geconfigureerd zijn. 
+
+\begin{DoxyReturn}{Returns}
+True als alle keys present zijn, anders False.
+\end{DoxyReturn}
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{class_employee_1_1_data_1_1_env_config_a554040b445f17cd4424ad00e7b7a0bc5}\index{Employee.Data.EnvConfig@{Employee.Data.EnvConfig}!\_configuration@{\_configuration}}
+\index{\_configuration@{\_configuration}!Employee.Data.EnvConfig@{Employee.Data.EnvConfig}}
+\doxysubsubsection{\texorpdfstring{\_configuration}{\_configuration}}
+{\footnotesize\ttfamily \label{class_employee_1_1_data_1_1_env_config_a554040b445f17cd4424ad00e7b7a0bc5} 
+readonly IConfiguration Employee.\+Data.\+Env\+Config.\+\_\+configuration\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+employee\+Backend/src/\+Data/\mbox{\hyperlink{employee_backend_2src_2_data_2_env_config_8cs}{Env\+Config.\+cs}}\end{DoxyCompactItemize}

@@ -1,0 +1,95 @@
+\doxysection{Employee.\+Controllers.\+accept\+Hire\+Request.\+Accept\+Hire\+Request\+Controller Class Reference}
+\hypertarget{class_employee_1_1_controllers_1_1accept_hire_request_1_1_accept_hire_request_controller}{}\label{class_employee_1_1_controllers_1_1accept_hire_request_1_1_accept_hire_request_controller}\index{Employee.Controllers.acceptHireRequest.AcceptHireRequestController@{Employee.Controllers.acceptHireRequest.AcceptHireRequestController}}
+Inheritance diagram for Employee.\+Controllers.\+accept\+Hire\+Request.\+Accept\+Hire\+Request\+Controller\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_employee_1_1_controllers_1_1accept_hire_request_1_1_accept_hire_request_controller}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_employee_1_1_controllers_1_1accept_hire_request_1_1_accept_hire_request_controller_af30767d35a19b0c6d5bb6516d6e22741}{Accept\+Hire\+Request\+Controller}} (\mbox{\hyperlink{class_employee_1_1_database_1_1_connector}{Connector}} connector, \mbox{\hyperlink{interface_employee_1_1_repository_1_1_i_user_repository}{IUser\+Repository}} user\+Repository, \mbox{\hyperlink{class_employee_1_1_cryption_1_1_crypt}{Crypt}} crypt)
+\item 
+async Task$<$ IAction\+Result $>$ \mbox{\hyperlink{class_employee_1_1_controllers_1_1accept_hire_request_1_1_accept_hire_request_controller_ae3d5a7679299172c8fb6121d9e1b1a6d}{Get\+Reviews\+Ids\+Async}} (string user)
+\item 
+async Task$<$ IAction\+Result $>$ \mbox{\hyperlink{class_employee_1_1_controllers_1_1accept_hire_request_1_1_accept_hire_request_controller_a014d4b42cccb4fa36b26fa6b7ff91fed}{Get\+Review\+Async}} (string id)
+\item 
+async Task$<$ IAction\+Result $>$ \mbox{\hyperlink{class_employee_1_1_controllers_1_1accept_hire_request_1_1_accept_hire_request_controller_a6a07e70f8d5bfdcf6d15239e555139bd}{Answer\+Hire\+Request\+Async}} (\mbox{[}From\+Body\mbox{]} \mbox{\hyperlink{class_employee_1_1_controllers_1_1accept_hire_request_1_1_hire_request}{Hire\+Request}} request)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+string \mbox{\hyperlink{class_employee_1_1_controllers_1_1accept_hire_request_1_1_accept_hire_request_controller_aba9650bd220b2cb4dedf917054c67ba2}{Get\+Current\+User\+Id}} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+readonly \mbox{\hyperlink{class_employee_1_1_database_1_1_connector}{Connector}} \mbox{\hyperlink{class_employee_1_1_controllers_1_1accept_hire_request_1_1_accept_hire_request_controller_af151ced993d955f352e4e2c99e5d2273}{\+\_\+connector}}
+\item 
+readonly \mbox{\hyperlink{interface_employee_1_1_repository_1_1_i_user_repository}{IUser\+Repository}} \mbox{\hyperlink{class_employee_1_1_controllers_1_1accept_hire_request_1_1_accept_hire_request_controller_acfd847d79bd88d66692ebd3828cfaf6c}{\+\_\+user\+Repository}}
+\item 
+readonly \mbox{\hyperlink{class_employee_1_1_cryption_1_1_crypt}{Crypt}} \mbox{\hyperlink{class_employee_1_1_controllers_1_1accept_hire_request_1_1_accept_hire_request_controller_a4e522f7fe25efcde2deaf12c0fd0b6a5}{\+\_\+crypt}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_employee_1_1_controllers_1_1accept_hire_request_1_1_accept_hire_request_controller_af30767d35a19b0c6d5bb6516d6e22741}\index{Employee.Controllers.acceptHireRequest.AcceptHireRequestController@{Employee.Controllers.acceptHireRequest.AcceptHireRequestController}!AcceptHireRequestController@{AcceptHireRequestController}}
+\index{AcceptHireRequestController@{AcceptHireRequestController}!Employee.Controllers.acceptHireRequest.AcceptHireRequestController@{Employee.Controllers.acceptHireRequest.AcceptHireRequestController}}
+\doxysubsubsection{\texorpdfstring{AcceptHireRequestController()}{AcceptHireRequestController()}}
+{\footnotesize\ttfamily \label{class_employee_1_1_controllers_1_1accept_hire_request_1_1_accept_hire_request_controller_af30767d35a19b0c6d5bb6516d6e22741} 
+Employee.\+Controllers.\+accept\+Hire\+Request.\+Accept\+Hire\+Request\+Controller.\+Accept\+Hire\+Request\+Controller (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_employee_1_1_database_1_1_connector}{Connector}}}]{connector}{, }\item[{\mbox{\hyperlink{interface_employee_1_1_repository_1_1_i_user_repository}{IUser\+Repository}}}]{user\+Repository}{, }\item[{\mbox{\hyperlink{class_employee_1_1_cryption_1_1_crypt}{Crypt}}}]{crypt}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_employee_1_1_controllers_1_1accept_hire_request_1_1_accept_hire_request_controller_a6a07e70f8d5bfdcf6d15239e555139bd}\index{Employee.Controllers.acceptHireRequest.AcceptHireRequestController@{Employee.Controllers.acceptHireRequest.AcceptHireRequestController}!AnswerHireRequestAsync@{AnswerHireRequestAsync}}
+\index{AnswerHireRequestAsync@{AnswerHireRequestAsync}!Employee.Controllers.acceptHireRequest.AcceptHireRequestController@{Employee.Controllers.acceptHireRequest.AcceptHireRequestController}}
+\doxysubsubsection{\texorpdfstring{AnswerHireRequestAsync()}{AnswerHireRequestAsync()}}
+{\footnotesize\ttfamily \label{class_employee_1_1_controllers_1_1accept_hire_request_1_1_accept_hire_request_controller_a6a07e70f8d5bfdcf6d15239e555139bd} 
+async Task$<$ IAction\+Result $>$ Employee.\+Controllers.\+accept\+Hire\+Request.\+Accept\+Hire\+Request\+Controller.\+Answer\+Hire\+Request\+Async (\begin{DoxyParamCaption}\item[{\mbox{[}\+From\+Body\mbox{]} \mbox{\hyperlink{class_employee_1_1_controllers_1_1accept_hire_request_1_1_hire_request}{Hire\+Request}}}]{request}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{class_employee_1_1_controllers_1_1accept_hire_request_1_1_accept_hire_request_controller_aba9650bd220b2cb4dedf917054c67ba2}\index{Employee.Controllers.acceptHireRequest.AcceptHireRequestController@{Employee.Controllers.acceptHireRequest.AcceptHireRequestController}!GetCurrentUserId@{GetCurrentUserId}}
+\index{GetCurrentUserId@{GetCurrentUserId}!Employee.Controllers.acceptHireRequest.AcceptHireRequestController@{Employee.Controllers.acceptHireRequest.AcceptHireRequestController}}
+\doxysubsubsection{\texorpdfstring{GetCurrentUserId()}{GetCurrentUserId()}}
+{\footnotesize\ttfamily \label{class_employee_1_1_controllers_1_1accept_hire_request_1_1_accept_hire_request_controller_aba9650bd220b2cb4dedf917054c67ba2} 
+string Employee.\+Controllers.\+accept\+Hire\+Request.\+Accept\+Hire\+Request\+Controller.\+Get\+Current\+User\+Id (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+\Hypertarget{class_employee_1_1_controllers_1_1accept_hire_request_1_1_accept_hire_request_controller_a014d4b42cccb4fa36b26fa6b7ff91fed}\index{Employee.Controllers.acceptHireRequest.AcceptHireRequestController@{Employee.Controllers.acceptHireRequest.AcceptHireRequestController}!GetReviewAsync@{GetReviewAsync}}
+\index{GetReviewAsync@{GetReviewAsync}!Employee.Controllers.acceptHireRequest.AcceptHireRequestController@{Employee.Controllers.acceptHireRequest.AcceptHireRequestController}}
+\doxysubsubsection{\texorpdfstring{GetReviewAsync()}{GetReviewAsync()}}
+{\footnotesize\ttfamily \label{class_employee_1_1_controllers_1_1accept_hire_request_1_1_accept_hire_request_controller_a014d4b42cccb4fa36b26fa6b7ff91fed} 
+async Task$<$ IAction\+Result $>$ Employee.\+Controllers.\+accept\+Hire\+Request.\+Accept\+Hire\+Request\+Controller.\+Get\+Review\+Async (\begin{DoxyParamCaption}\item[{string}]{id}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{class_employee_1_1_controllers_1_1accept_hire_request_1_1_accept_hire_request_controller_ae3d5a7679299172c8fb6121d9e1b1a6d}\index{Employee.Controllers.acceptHireRequest.AcceptHireRequestController@{Employee.Controllers.acceptHireRequest.AcceptHireRequestController}!GetReviewsIdsAsync@{GetReviewsIdsAsync}}
+\index{GetReviewsIdsAsync@{GetReviewsIdsAsync}!Employee.Controllers.acceptHireRequest.AcceptHireRequestController@{Employee.Controllers.acceptHireRequest.AcceptHireRequestController}}
+\doxysubsubsection{\texorpdfstring{GetReviewsIdsAsync()}{GetReviewsIdsAsync()}}
+{\footnotesize\ttfamily \label{class_employee_1_1_controllers_1_1accept_hire_request_1_1_accept_hire_request_controller_ae3d5a7679299172c8fb6121d9e1b1a6d} 
+async Task$<$ IAction\+Result $>$ Employee.\+Controllers.\+accept\+Hire\+Request.\+Accept\+Hire\+Request\+Controller.\+Get\+Reviews\+Ids\+Async (\begin{DoxyParamCaption}\item[{string}]{user}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{class_employee_1_1_controllers_1_1accept_hire_request_1_1_accept_hire_request_controller_af151ced993d955f352e4e2c99e5d2273}\index{Employee.Controllers.acceptHireRequest.AcceptHireRequestController@{Employee.Controllers.acceptHireRequest.AcceptHireRequestController}!\_connector@{\_connector}}
+\index{\_connector@{\_connector}!Employee.Controllers.acceptHireRequest.AcceptHireRequestController@{Employee.Controllers.acceptHireRequest.AcceptHireRequestController}}
+\doxysubsubsection{\texorpdfstring{\_connector}{\_connector}}
+{\footnotesize\ttfamily \label{class_employee_1_1_controllers_1_1accept_hire_request_1_1_accept_hire_request_controller_af151ced993d955f352e4e2c99e5d2273} 
+readonly \mbox{\hyperlink{class_employee_1_1_database_1_1_connector}{Connector}} Employee.\+Controllers.\+accept\+Hire\+Request.\+Accept\+Hire\+Request\+Controller.\+\_\+connector\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_employee_1_1_controllers_1_1accept_hire_request_1_1_accept_hire_request_controller_a4e522f7fe25efcde2deaf12c0fd0b6a5}\index{Employee.Controllers.acceptHireRequest.AcceptHireRequestController@{Employee.Controllers.acceptHireRequest.AcceptHireRequestController}!\_crypt@{\_crypt}}
+\index{\_crypt@{\_crypt}!Employee.Controllers.acceptHireRequest.AcceptHireRequestController@{Employee.Controllers.acceptHireRequest.AcceptHireRequestController}}
+\doxysubsubsection{\texorpdfstring{\_crypt}{\_crypt}}
+{\footnotesize\ttfamily \label{class_employee_1_1_controllers_1_1accept_hire_request_1_1_accept_hire_request_controller_a4e522f7fe25efcde2deaf12c0fd0b6a5} 
+readonly \mbox{\hyperlink{class_employee_1_1_cryption_1_1_crypt}{Crypt}} Employee.\+Controllers.\+accept\+Hire\+Request.\+Accept\+Hire\+Request\+Controller.\+\_\+crypt\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_employee_1_1_controllers_1_1accept_hire_request_1_1_accept_hire_request_controller_acfd847d79bd88d66692ebd3828cfaf6c}\index{Employee.Controllers.acceptHireRequest.AcceptHireRequestController@{Employee.Controllers.acceptHireRequest.AcceptHireRequestController}!\_userRepository@{\_userRepository}}
+\index{\_userRepository@{\_userRepository}!Employee.Controllers.acceptHireRequest.AcceptHireRequestController@{Employee.Controllers.acceptHireRequest.AcceptHireRequestController}}
+\doxysubsubsection{\texorpdfstring{\_userRepository}{\_userRepository}}
+{\footnotesize\ttfamily \label{class_employee_1_1_controllers_1_1accept_hire_request_1_1_accept_hire_request_controller_acfd847d79bd88d66692ebd3828cfaf6c} 
+readonly \mbox{\hyperlink{interface_employee_1_1_repository_1_1_i_user_repository}{IUser\+Repository}} Employee.\+Controllers.\+accept\+Hire\+Request.\+Accept\+Hire\+Request\+Controller.\+\_\+user\+Repository\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+employee\+Backend/src/\+Controllers/accept\+Hire\+Request/\mbox{\hyperlink{accept_hire_request_controller_8cs}{accept\+Hire\+Request\+Controller.\+cs}}\end{DoxyCompactItemize}
