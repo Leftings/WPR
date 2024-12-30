@@ -1,4 +1,0 @@
-var accept_hire_request_controller_8cs =
-[
-    [ "Employee.Controllers.acceptHireRequest.AcceptHireRequestController", "class_employee_1_1_controllers_1_1accept_hire_request_1_1_accept_hire_request_controller.html", "class_employee_1_1_controllers_1_1accept_hire_request_1_1_accept_hire_request_controller" ]
-];
