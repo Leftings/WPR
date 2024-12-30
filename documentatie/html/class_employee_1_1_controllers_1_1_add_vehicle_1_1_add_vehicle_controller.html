@@ -176,6 +176,12 @@ Private Attributen</h2></td></tr>
 </div><div class="memdoc">
 
 <p class="definition">De definitie bevindt zich op regel <a class="el" href="add_vehicle_controller_8cs_source.html#l00017">17</a> in het bestand <a class="el" href="add_vehicle_controller_8cs_source.html">addVehicleController.cs</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   18</span>    {</div>
+<div class="line"><span class="lineno">   19</span>        _connector = connector ?? <span class="keywordflow">throw</span> <span class="keyword">new</span> ArgumentNullException(nameof(connector));</div>
+<div class="line"><span class="lineno">   20</span>        _userRepository = userRepository ?? <span class="keywordflow">throw</span> <span class="keyword">new</span> ArgumentNullException(nameof(userRepository));</div>
+<div class="line"><span class="lineno">   21</span>    }</div>
+</div><!-- fragment -->
+<p class="reference">Gebruikt <a class="el" href="add_vehicle_controller_8cs_source.html#l00014">_connector</a> en <a class="el" href="add_vehicle_controller_8cs_source.html#l00015">_userRepository</a>.</p>
 
 </div>
 </div>
@@ -200,6 +206,46 @@ Private Attributen</h2></td></tr>
 </div><div class="memdoc">
 
 <p class="definition">De definitie bevindt zich op regel <a class="el" href="add_vehicle_controller_8cs_source.html#l00027">27</a> in het bestand <a class="el" href="add_vehicle_controller_8cs_source.html">addVehicleController.cs</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   28</span>    {</div>
+<div class="line"><span class="lineno">   29</span>        <span class="keywordflow">try</span></div>
+<div class="line"><span class="lineno">   30</span>        {</div>
+<div class="line"><span class="lineno">   31</span>            <span class="comment">// Vehicle blob wordt omgezet naar bytes</span></div>
+<div class="line"><span class="lineno">   32</span>            <span class="keywordtype">byte</span>[] vehicleBlobBytes = <span class="keyword">null</span>;</div>
+<div class="line"><span class="lineno">   33</span> </div>
+<div class="line"><span class="lineno">   34</span>            <span class="keywordflow">if</span> (vehicleBlob != <span class="keyword">null</span>)</div>
+<div class="line"><span class="lineno">   35</span>            {</div>
+<div class="line"><span class="lineno">   36</span>                <span class="keyword">using</span> (var memoryStream = <span class="keyword">new</span> MemoryStream())</div>
+<div class="line"><span class="lineno">   37</span>                {</div>
+<div class="line"><span class="lineno">   38</span>                    await vehicleBlob.CopyToAsync(memoryStream);</div>
+<div class="line"><span class="lineno">   39</span>                    vehicleBlobBytes = memoryStream.ToArray();</div>
+<div class="line"><span class="lineno">   40</span>                }</div>
+<div class="line"><span class="lineno">   41</span>            }</div>
+<div class="line"><span class="lineno">   42</span> </div>
+<div class="line"><span class="lineno">   43</span>            <span class="comment">// Gegevens worden doorgestuurd naar de userRepository</span></div>
+<div class="line"><span class="lineno">   44</span>            var status = await _userRepository.AddVehicleAsync(</div>
+<div class="line"><span class="lineno">   45</span>                request.YoP,</div>
+<div class="line"><span class="lineno">   46</span>                request.Brand,</div>
+<div class="line"><span class="lineno">   47</span>                request.Type,</div>
+<div class="line"><span class="lineno">   48</span>                request.LicensePlate,</div>
+<div class="line"><span class="lineno">   49</span>                request.Color,</div>
+<div class="line"><span class="lineno">   50</span>                request.Sort,</div>
+<div class="line"><span class="lineno">   51</span>                request.Price,</div>
+<div class="line"><span class="lineno">   52</span>                request.Description,</div>
+<div class="line"><span class="lineno">   53</span>                vehicleBlobBytes);</div>
+<div class="line"><span class="lineno">   54</span> </div>
+<div class="line"><span class="lineno">   55</span>            <span class="keywordflow">if</span> (status.status)</div>
+<div class="line"><span class="lineno">   56</span>            {</div>
+<div class="line"><span class="lineno">   57</span>                <span class="keywordflow">return</span> Ok(<span class="keyword">new</span> { status.message });</div>
+<div class="line"><span class="lineno">   58</span>            }</div>
+<div class="line"><span class="lineno">   59</span>            <span class="keywordflow">return</span> BadRequest(<span class="keyword">new</span> { status.message });</div>
+<div class="line"><span class="lineno">   60</span>        }</div>
+<div class="line"><span class="lineno">   61</span>        <span class="keywordflow">catch</span> (Exception ex)</div>
+<div class="line"><span class="lineno">   62</span>        {</div>
+<div class="line"><span class="lineno">   63</span>            <span class="keywordflow">return</span> StatusCode(500, <span class="keyword">new</span> { status = <span class="keyword">false</span>, message = ex.Message });</div>
+<div class="line"><span class="lineno">   64</span>        }</div>
+<div class="line"><span class="lineno">   65</span>    }</div>
+</div><!-- fragment -->
+<p class="reference">Gebruikt <a class="el" href="add_vehicle_controller_8cs_source.html#l00015">_userRepository</a>.</p>
 
 </div>
 </div>
@@ -226,6 +272,8 @@ Private Attributen</h2></td></tr>
 
 <p class="definition">De definitie bevindt zich op regel <a class="el" href="add_vehicle_controller_8cs_source.html#l00014">14</a> in het bestand <a class="el" href="add_vehicle_controller_8cs_source.html">addVehicleController.cs</a>.</p>
 
+<p class="reference">Wordt aangeroepen door <a class="el" href="add_vehicle_controller_8cs_source.html#l00017">AddVehicleController()</a>.</p>
+
 </div>
 </div>
 <a id="a4912c2e984d138d05b7c6bda0644ca88" name="a4912c2e984d138d05b7c6bda0644ca88"></a>
@@ -249,6 +297,8 @@ Private Attributen</h2></td></tr>
 </div><div class="memdoc">
 
 <p class="definition">De definitie bevindt zich op regel <a class="el" href="add_vehicle_controller_8cs_source.html#l00015">15</a> in het bestand <a class="el" href="add_vehicle_controller_8cs_source.html">addVehicleController.cs</a>.</p>
+
+<p class="reference">Wordt aangeroepen door <a class="el" href="add_vehicle_controller_8cs_source.html#l00027">AddVehicleAsync()</a> en <a class="el" href="add_vehicle_controller_8cs_source.html#l00017">AddVehicleController()</a>.</p>
 
 </div>
 </div>

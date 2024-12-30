@@ -7,8 +7,7 @@ Checked om te kijken of het een correct telefoon nummer is.
 
 
 
-Collaboratie diagram voor WPR.\+Utils.\+Tel\+Checker\+:
-\nopagebreak
+Collaboratie diagram voor WPR.\+Utils.\+Tel\+Checker\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -40,8 +39,23 @@ static bool WPR.\+Utils.\+Tel\+Checker.\+Is\+Valid\+Phone\+Number (\begin{DoxyPa
 
 De definitie bevindt zich op regel \mbox{\hyperlink{_tel_checker_8cs_source_l00009}{9}} in het bestand \mbox{\hyperlink{_tel_checker_8cs_source}{Tel\+Checker.\+cs}}.
 
-Hier is de caller graaf voor deze functie\+:
-\nopagebreak
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00010\ \ \ \ \ \{}
+\DoxyCodeLine{00011\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Kijkt\ of\ het\ nummer\ 10\ cijfers\ is,\ begint\ met\ 06\ en\ alles\ in\ het\ nummer\ een\ cijfer\ is.}}
+\DoxyCodeLine{00012\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (phoneNumber.Length\ ==\ 10\ \&\&\ phoneNumber.StartsWith(\textcolor{stringliteral}{"{}06"{}})\ \&\&\ phoneNumber.All(\textcolor{keywordtype}{char}.IsDigit))}
+\DoxyCodeLine{00013\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00014\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00015\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00016\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00017\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+Wordt aangeroepen door \mbox{\hyperlink{sign_up_controller_8cs_source_l00166}{WPR.\+Controllers.\+Sign\+Up.\+Sign\+Up\+Controller.\+sign\+Up\+Employee\+Async()}} en \mbox{\hyperlink{sign_up_controller_8cs_source_l00047}{WPR.\+Controllers.\+Sign\+Up.\+Sign\+Up\+Controller.\+sign\+Up\+Personal\+Async()}}.
+
+Hier is de caller graaf voor deze functie\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode

@@ -10,7 +10,7 @@
 <area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="362,153,375,242,387,317,382,318,370,243,357,154"/>
 <area shape="rect" id="Node000005" href="$class_w_p_r_1_1_data_1_1_env_config.html" title="Leez het .env bestand uit waarin de connectie strings staan naar de database. Deze staan in een apart..." alt="" coords="455,5,596,203"/>
 <area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="457,192,445,205,428,216,414,228,400,263,394,301,389,300,395,262,409,225,424,211,441,201,454,188"/>
-<area shape="rect" id="Node000006" href="$class_w_p_r_1_1_cryption_1_1_crypt.html" title=" " alt="" coords="429,493,561,627"/>
+<area shape="rect" id="Node000006" href="$class_w_p_r_1_1_cryption_1_1_crypt.html" title="De klasse Crypt zorgt voor een veilige manier om te encrypten en te decrypten." alt="" coords="429,493,561,627"/>
 <area shape="poly" id="edge6_Node000006_Node000005" title=" " alt="" coords="522,203,503,476,498,476,516,202"/>
 <area shape="rect" id="Node000007" href="$class_w_p_r_1_1_services_1_1_email_service.html" title=" " alt="" coords="568,483,771,637"/>
 <area shape="poly" id="edge8_Node000007_Node000005" title=" " alt="" coords="588,201,599,226,620,287,637,349,660,465,654,466,631,351,615,288,594,228,583,203"/>

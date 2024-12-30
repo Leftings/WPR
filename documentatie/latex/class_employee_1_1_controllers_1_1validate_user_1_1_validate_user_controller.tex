@@ -2,8 +2,7 @@
 \hypertarget{class_employee_1_1_controllers_1_1validate_user_1_1_validate_user_controller}{}\label{class_employee_1_1_controllers_1_1validate_user_1_1_validate_user_controller}\index{Employee.Controllers.validateUser.ValidateUserController@{Employee.Controllers.validateUser.ValidateUserController}}
 
 
-Klasse diagram voor Employee.\+Controllers.\+validate\+User.\+Validate\+User\+Controller
-\nopagebreak
+Klasse diagram voor Employee.\+Controllers.\+validate\+User.\+Validate\+User\+Controller\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -12,8 +11,7 @@ Klasse diagram voor Employee.\+Controllers.\+validate\+User.\+Validate\+User\+Co
 \end{figure}
 
 
-Collaboratie diagram voor Employee.\+Controllers.\+validate\+User.\+Validate\+User\+Controller\+:
-\nopagebreak
+Collaboratie diagram voor Employee.\+Controllers.\+validate\+User.\+Validate\+User\+Controller\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -45,6 +43,19 @@ IAction\+Result Employee.\+Controllers.\+validate\+User.\+Validate\+User\+Contro
 
 De definitie bevindt zich op regel \mbox{\hyperlink{validate_user_controller_8cs_source_l00011}{11}} in het bestand \mbox{\hyperlink{validate_user_controller_8cs_source}{validate\+User\+Controller.\+cs}}.
 
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00012\ \ \ \ \ \{}
+\DoxyCodeLine{00013\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ sessionValue\ =\ Request.Cookies[\textcolor{stringliteral}{"{}LoginEmployeeSession"{}}];}
+\DoxyCodeLine{00014\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00015\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\textcolor{keywordtype}{string}.IsNullOrEmpty(sessionValue))}
+\DoxyCodeLine{00016\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00017\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Ok(\ \textcolor{keyword}{new}\ \{message\ =\ \textcolor{stringliteral}{"{}session\ active\ "{}},\ sessionValue\});}
+\DoxyCodeLine{00018\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00019\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Unauthorized(\textcolor{keyword}{new}\ \{\ message\ =\ \textcolor{stringliteral}{"{}Session\ expired\ or\ is\ not\ found"{}}\ \});}
+\DoxyCodeLine{00020\ \ \ \ \ \}}
+
+\end{DoxyCode}
 
 
 De documentatie voor deze klasse is gegenereerd op basis van het volgende bestand\+:\begin{DoxyCompactItemize}

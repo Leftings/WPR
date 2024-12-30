@@ -154,7 +154,16 @@ Public Members</h2></td></tr>
 </div><div class="memdoc">
 
 <p class="definition">De definitie bevindt zich op regel <a class="el" href="validate_user_controller_8cs_source.html#l00011">11</a> in het bestand <a class="el" href="validate_user_controller_8cs_source.html">validateUserController.cs</a>.</p>
-
+<div class="fragment"><div class="line"><span class="lineno">   12</span>    {</div>
+<div class="line"><span class="lineno">   13</span>        <span class="keywordtype">string</span> sessionValue = Request.Cookies[<span class="stringliteral">&quot;LoginEmployeeSession&quot;</span>];</div>
+<div class="line"><span class="lineno">   14</span>        </div>
+<div class="line"><span class="lineno">   15</span>        <span class="keywordflow">if</span> (!<span class="keywordtype">string</span>.IsNullOrEmpty(sessionValue))</div>
+<div class="line"><span class="lineno">   16</span>        {</div>
+<div class="line"><span class="lineno">   17</span>            <span class="keywordflow">return</span> Ok( <span class="keyword">new</span> {message = <span class="stringliteral">&quot;session active &quot;</span>, sessionValue});</div>
+<div class="line"><span class="lineno">   18</span>        }</div>
+<div class="line"><span class="lineno">   19</span>        <span class="keywordflow">return</span> Unauthorized(<span class="keyword">new</span> { message = <span class="stringliteral">&quot;Session expired or is not found&quot;</span> });</div>
+<div class="line"><span class="lineno">   20</span>    }</div>
+</div><!-- fragment -->
 </div>
 </div>
 <hr/>De documentatie voor deze klasse is gegenereerd op basis van het volgende bestand:<ul>

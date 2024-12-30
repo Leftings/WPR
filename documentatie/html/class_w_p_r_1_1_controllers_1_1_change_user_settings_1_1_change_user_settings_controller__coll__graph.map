@@ -8,7 +8,7 @@
 <area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="212,153,212,374,207,374,207,153"/>
 <area shape="rect" id="Node000005" href="$class_w_p_r_1_1_data_1_1_env_config.html" title="Leez het .env bestand uit waarin de connectie strings staan naar de database. Deze staan in een apart..." alt="" coords="311,5,452,203"/>
 <area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="319,204,305,228,239,359,234,357,300,225,314,201"/>
-<area shape="rect" id="Node000007" href="$class_w_p_r_1_1_cryption_1_1_crypt.html" title=" " alt="" coords="317,352,449,485"/>
+<area shape="rect" id="Node000007" href="$class_w_p_r_1_1_cryption_1_1_crypt.html" title="De klasse Crypt zorgt voor een veilige manier om te encrypten en te decrypten." alt="" coords="317,352,449,485"/>
 <area shape="poly" id="edge7_Node000007_Node000005" title=" " alt="" coords="385,202,385,336,380,336,379,202"/>
 <area shape="rect" id="Node000006" href="$interface_w_p_r_1_1_repository_1_1_i_user_repository.html" title="Interface defining methods voor user gerelateerde database operaties, validatie, user management,..." alt="" coords="472,267,680,571"/>
 <area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="474,560,462,573,401,626,398,622,458,569,471,556"/>

@@ -135,7 +135,7 @@ Collaboratie diagram voor WPR.Controllers.Employee.EmployeeController:</div>
 <area shape="poly" title=" " alt="" coords="443,153,443,374,438,374,438,153"/>
 <area shape="rect" href="class_w_p_r_1_1_data_1_1_env_config.html" title="Leez het .env bestand uit waarin de connectie strings staan naar de database. Deze staan in een apart..." alt="" coords="543,5,684,203"/>
 <area shape="poly" title=" " alt="" coords="551,204,537,228,470,359,465,357,532,225,546,201"/>
-<area shape="rect" href="class_w_p_r_1_1_cryption_1_1_crypt.html" title=" " alt="" coords="548,352,680,485"/>
+<area shape="rect" href="class_w_p_r_1_1_cryption_1_1_crypt.html" title="De klasse Crypt zorgt voor een veilige manier om te encrypten en te decrypten." alt="" coords="548,352,680,485"/>
 <area shape="poly" title=" " alt="" coords="616,202,616,336,611,336,611,202"/>
 <area shape="rect" href="class_w_p_r_1_1_controllers_1_1_cookie_1_1_session_handler.html" title=" " alt="" coords="704,344,910,493"/>
 <area shape="poly" title=" " alt="" coords="764,495,731,536,693,573,658,598,620,619,545,654,543,649,618,615,655,593,689,569,727,532,759,492"/>
@@ -197,6 +197,14 @@ Private Attributen</h2></td></tr>
 </div><div class="memdoc">
 
 <p class="definition">De definitie bevindt zich op regel <a class="el" href="_employee_controller_8cs_source.html#l00018">18</a> in het bestand <a class="el" href="_employee_controller_8cs_source.html">EmployeeController.cs</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   19</span>    {</div>
+<div class="line"><span class="lineno">   20</span>        _userRepository = userRepository ?? <span class="keywordflow">throw</span> <span class="keyword">new</span> ArgumentNullException(nameof(userRepository));</div>
+<div class="line"><span class="lineno">   21</span>        _connector = connector ?? <span class="keywordflow">throw</span> <span class="keyword">new</span> ArgumentNullException(nameof(connector));</div>
+<div class="line"><span class="lineno">   22</span>        _sessionHandler = sessionHandler ?? <span class="keywordflow">throw</span> <span class="keyword">new</span> ArgumentNullException(nameof(sessionHandler));</div>
+<div class="line"><span class="lineno">   23</span>        _crypt = crypt ?? <span class="keywordflow">throw</span> <span class="keyword">new</span> ArgumentNullException(nameof(crypt));</div>
+<div class="line"><span class="lineno">   24</span>    }</div>
+</div><!-- fragment -->
+<p class="reference">Gebruikt <a class="el" href="_employee_controller_8cs_source.html#l00014">_connector</a>, <a class="el" href="_employee_controller_8cs_source.html#l00016">_crypt</a>, <a class="el" href="_employee_controller_8cs_source.html#l00015">_sessionHandler</a> en <a class="el" href="_employee_controller_8cs_source.html#l00013">_userRepository</a>.</p>
 
 </div>
 </div>
@@ -217,6 +225,34 @@ Private Attributen</h2></td></tr>
 </div><div class="memdoc">
 
 <p class="definition">De definitie bevindt zich op regel <a class="el" href="_employee_controller_8cs_source.html#l00028">28</a> in het bestand <a class="el" href="_employee_controller_8cs_source.html">EmployeeController.cs</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   29</span>    {</div>
+<div class="line"><span class="lineno">   30</span>        <span class="keywordtype">string</span> loginCookie = HttpContext.Request.Cookies[<span class="stringliteral">&quot;LoginSession&quot;</span>];</div>
+<div class="line"><span class="lineno">   31</span>        <span class="keywordtype">int</span> id;</div>
+<div class="line"><span class="lineno">   32</span>        </div>
+<div class="line"><span class="lineno">   33</span>        <span class="keywordflow">if</span> (<span class="keywordtype">string</span>.IsNullOrEmpty(loginCookie))</div>
+<div class="line"><span class="lineno">   34</span>        {</div>
+<div class="line"><span class="lineno">   35</span>            <span class="keywordflow">return</span> _userRepository.IsUserEmployee(-1);</div>
+<div class="line"><span class="lineno">   36</span>        }</div>
+<div class="line"><span class="lineno">   37</span> </div>
+<div class="line"><span class="lineno">   38</span>        <span class="keywordflow">try</span></div>
+<div class="line"><span class="lineno">   39</span>        {</div>
+<div class="line"><span class="lineno">   40</span>            <span class="keywordtype">id</span> = Convert.ToInt32(_crypt.Decrypt(loginCookie));</div>
+<div class="line"><span class="lineno">   41</span>            <span class="keywordflow">return</span> _userRepository.IsUserEmployee(<span class="keywordtype">id</span>);</div>
+<div class="line"><span class="lineno">   42</span>        }</div>
+<div class="line"><span class="lineno">   43</span>        <span class="keywordflow">catch</span></div>
+<div class="line"><span class="lineno">   44</span>        {</div>
+<div class="line"><span class="lineno">   45</span>            Response.Cookies.Append(<span class="stringliteral">&quot;LoginSession&quot;</span>, <span class="stringliteral">&quot;Invalid cookie&quot;</span>, <span class="keyword">new</span> CookieOptions</div>
+<div class="line"><span class="lineno">   46</span>            {</div>
+<div class="line"><span class="lineno">   47</span>                HttpOnly = <span class="keyword">true</span>,</div>
+<div class="line"><span class="lineno">   48</span>                Secure = <span class="keyword">true</span>,</div>
+<div class="line"><span class="lineno">   49</span>                Expires = DateTimeOffset.UtcNow.AddDays(-1)</div>
+<div class="line"><span class="lineno">   50</span>            });</div>
+<div class="line"><span class="lineno">   51</span> </div>
+<div class="line"><span class="lineno">   52</span>            <span class="keywordflow">return</span> _userRepository.IsUserEmployee(-1);</div>
+<div class="line"><span class="lineno">   53</span>        }</div>
+<div class="line"><span class="lineno">   54</span>    }</div>
+</div><!-- fragment -->
+<p class="reference">Gebruikt <a class="el" href="_employee_controller_8cs_source.html#l00016">_crypt</a> en <a class="el" href="_employee_controller_8cs_source.html#l00013">_userRepository</a>.</p>
 
 </div>
 </div>
@@ -243,6 +279,8 @@ Private Attributen</h2></td></tr>
 
 <p class="definition">De definitie bevindt zich op regel <a class="el" href="_employee_controller_8cs_source.html#l00014">14</a> in het bestand <a class="el" href="_employee_controller_8cs_source.html">EmployeeController.cs</a>.</p>
 
+<p class="reference">Wordt aangeroepen door <a class="el" href="_employee_controller_8cs_source.html#l00018">EmployeeController()</a>.</p>
+
 </div>
 </div>
 <a id="a6e7d09da79cd05db89e58e530793f8ae" name="a6e7d09da79cd05db89e58e530793f8ae"></a>
@@ -266,6 +304,8 @@ Private Attributen</h2></td></tr>
 </div><div class="memdoc">
 
 <p class="definition">De definitie bevindt zich op regel <a class="el" href="_employee_controller_8cs_source.html#l00016">16</a> in het bestand <a class="el" href="_employee_controller_8cs_source.html">EmployeeController.cs</a>.</p>
+
+<p class="reference">Wordt aangeroepen door <a class="el" href="_employee_controller_8cs_source.html#l00018">EmployeeController()</a> en <a class="el" href="_employee_controller_8cs_source.html#l00028">IsUserEmployee()</a>.</p>
 
 </div>
 </div>
@@ -291,6 +331,8 @@ Private Attributen</h2></td></tr>
 
 <p class="definition">De definitie bevindt zich op regel <a class="el" href="_employee_controller_8cs_source.html#l00015">15</a> in het bestand <a class="el" href="_employee_controller_8cs_source.html">EmployeeController.cs</a>.</p>
 
+<p class="reference">Wordt aangeroepen door <a class="el" href="_employee_controller_8cs_source.html#l00018">EmployeeController()</a>.</p>
+
 </div>
 </div>
 <a id="ab297d58cb8cb5a24df4e8c3e7b0ba00c" name="ab297d58cb8cb5a24df4e8c3e7b0ba00c"></a>
@@ -314,6 +356,8 @@ Private Attributen</h2></td></tr>
 </div><div class="memdoc">
 
 <p class="definition">De definitie bevindt zich op regel <a class="el" href="_employee_controller_8cs_source.html#l00013">13</a> in het bestand <a class="el" href="_employee_controller_8cs_source.html">EmployeeController.cs</a>.</p>
+
+<p class="reference">Wordt aangeroepen door <a class="el" href="_employee_controller_8cs_source.html#l00018">EmployeeController()</a> en <a class="el" href="_employee_controller_8cs_source.html#l00028">IsUserEmployee()</a>.</p>
 
 </div>
 </div>

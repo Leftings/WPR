@@ -2,8 +2,7 @@
 \hypertarget{class_w_p_r_1_1_services_1_1_email_service}{}\label{class_w_p_r_1_1_services_1_1_email_service}\index{WPR.Services.EmailService@{WPR.Services.EmailService}}
 
 
-Collaboratie diagram voor WPR.\+Services.\+Email\+Service\+:
-\nopagebreak
+Collaboratie diagram voor WPR.\+Services.\+Email\+Service\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -52,6 +51,17 @@ WPR.\+Services.\+Email\+Service.\+Email\+Service (\begin{DoxyParamCaption}\item[
 De definitie bevindt zich op regel \mbox{\hyperlink{_email_service_8cs_source_l00012}{12}} in het bestand \mbox{\hyperlink{_email_service_8cs_source}{Email\+Service.\+cs}}.
 
 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00013\ \ \ \ \ \{}
+\DoxyCodeLine{00014\ \ \ \ \ \ \ \ \ \_envConfig\ =\ envConfig\ ??\ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ ArgumentNullException(nameof(envConfig));}
+\DoxyCodeLine{00015\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+Gebruikt \mbox{\hyperlink{_email_service_8cs_source_l00010}{\+\_\+env\+Config}}.
+
+
 
 \doxysubsection{Documentatie van functie members}
 \Hypertarget{class_w_p_r_1_1_services_1_1_email_service_ae494002e0de59b64d18083d36162c657}\index{WPR.Services.EmailService@{WPR.Services.EmailService}!BuildRentalConfirmationBody@{BuildRentalConfirmationBody}}
@@ -64,8 +74,18 @@ string WPR.\+Services.\+Email\+Service.\+Build\+Rental\+Confirmation\+Body (\beg
 
 De definitie bevindt zich op regel \mbox{\hyperlink{_email_service_8cs_source_l00086}{86}} in het bestand \mbox{\hyperlink{_email_service_8cs_source}{Email\+Service.\+cs}}.
 
-Hier is de caller graaf voor deze functie\+:
-\nopagebreak
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00087\ \ \ \ \ \{}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{\$@"{}}}
+\DoxyCodeLine{00089\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ <p>Bedankt\ voor\ het\ huren\ van\ een\ voertuig\ bij\ CarAndAll,</p> }}
+
+\end{DoxyCode}
+
+
+Wordt aangeroepen door \mbox{\hyperlink{_email_service_8cs_source_l00058}{Send\+Rental\+Confirm\+Mail()}}.
+
+Hier is de caller graaf voor deze functie\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -82,8 +102,30 @@ Smtp\+Client WPR.\+Services.\+Email\+Service.\+Create\+Smtp\+Client (\begin{Doxy
 
 De definitie bevindt zich op regel \mbox{\hyperlink{_email_service_8cs_source_l00017}{17}} in het bestand \mbox{\hyperlink{_email_service_8cs_source}{Email\+Service.\+cs}}.
 
-Hier is de caller graaf voor deze functie\+:
-\nopagebreak
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00018\ \ \ \ \ \{}
+\DoxyCodeLine{00019\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{new}\ SmtpClient(\_envConfig.Get(\textcolor{stringliteral}{"{}SMTP\_HOST"{}})) }
+\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ \ \ \ \ Port\ =\ \textcolor{keywordtype}{int}.Parse(\_envConfig.Get(\textcolor{stringliteral}{"{}SMTP\_PORT"{}})),}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ \ \ \ \ Credentials\ =\ \textcolor{keyword}{new}\ NetworkCredential(}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \_envConfig.Get(\textcolor{stringliteral}{"{}SMTP\_FROM\_EMAIL"{}}),}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \_envConfig.Get(\textcolor{stringliteral}{"{}SMTP\_FROM\_PASSWORD"{}})}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ),}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \ \ \ \ EnableSsl\ =\ \textcolor{keyword}{true}}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00028\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+Gebruikt \mbox{\hyperlink{_email_service_8cs_source_l00010}{\+\_\+env\+Config}}.
+
+
+
+Wordt aangeroepen door \mbox{\hyperlink{_email_service_8cs_source_l00058}{Send\+Rental\+Confirm\+Mail()}} en \mbox{\hyperlink{_email_service_8cs_source_l00030}{Send\+Welcome\+Email()}}.
+
+Hier is de caller graaf voor deze functie\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -100,8 +142,41 @@ async Task WPR.\+Services.\+Email\+Service.\+Send\+Rental\+Confirm\+Mail (\begin
 
 De definitie bevindt zich op regel \mbox{\hyperlink{_email_service_8cs_source_l00058}{58}} in het bestand \mbox{\hyperlink{_email_service_8cs_source}{Email\+Service.\+cs}}.
 
-Hier is de call graaf voor deze functie\+:
-\nopagebreak
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00059\ \ \ \ \ \{}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\textcolor{keywordtype}{string}.IsNullOrEmpty(toEmail))}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ ArgumentException(\textcolor{stringliteral}{"{}Email\ addresses\ cannot\ be\ null\ or\ empty"{}});}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }var\ smtpClient\ =\ CreateSmtpClient();}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }var\ mailMessage\ =\ \textcolor{keyword}{new}\ MailMessage}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ From\ =\ \textcolor{keyword}{new}\ MailAddress(\_envConfig.Get(\textcolor{stringliteral}{"{}SMTP\_FROM\_EMAIL"{}})),}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Subject\ =\ \textcolor{stringliteral}{"{}Verificatie\ Voertuig\ Huren"{}},}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Body\ =\ BuildRentalConfirmationBody(carName,\ carColor,\ carPlate,\ startDate,\ endDate,\ price),}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ IsBodyHtml\ =\ \textcolor{keyword}{true}}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \ \ \ \ mailMessage.To.Add(toEmail);}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \ \ \ \ await\ smtpClient.SendMailAsync(mailMessage);}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (Exception\ e)}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \ \ \ \ Console.WriteLine(e);}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw};}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00084\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+Gebruikt \mbox{\hyperlink{_email_service_8cs_source_l00010}{\+\_\+env\+Config}}, \mbox{\hyperlink{_email_service_8cs_source_l00086}{Build\+Rental\+Confirmation\+Body()}} en \mbox{\hyperlink{_email_service_8cs_source_l00017}{Create\+Smtp\+Client()}}.
+
+Hier is de call graaf voor deze functie\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -118,8 +193,41 @@ async Task WPR.\+Services.\+Email\+Service.\+Send\+Welcome\+Email (\begin{DoxyPa
 
 De definitie bevindt zich op regel \mbox{\hyperlink{_email_service_8cs_source_l00030}{30}} in het bestand \mbox{\hyperlink{_email_service_8cs_source}{Email\+Service.\+cs}}.
 
-Hier is de call graaf voor deze functie\+:
-\nopagebreak
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00031\ \ \ \ \ \{\ \ \ \ \ }
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\textcolor{keywordtype}{string}.IsNullOrEmpty(toEmail))}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ ArgumentException(\textcolor{stringliteral}{"{}Email\ addresses\ cannot\ be\ null\ or\ empty"{}});}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }var\ smtpClient\ =\ CreateSmtpClient();}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }var\ mailMessage\ =\ \textcolor{keyword}{new}\ MailMessage}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ From\ =\ \textcolor{keyword}{new}\ MailAddress(\_envConfig.Get(\textcolor{stringliteral}{"{}SMTP\_FROM\_EMAIL"{}})),}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Subject\ =\ \textcolor{stringliteral}{"{}Welkom\ bij\ CarAndAll"{}},}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Body\ =\ \$\textcolor{stringliteral}{"{}Welkom\ bij\ CarAndAll"{}},}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ IsBodyHtml\ =\ \textcolor{keyword}{true}}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \ \ \ \ mailMessage.To.Add(toEmail);}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \ \ \ \ await\ smtpClient.SendMailAsync(mailMessage);}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (Exception\ e)}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \ \ \ \ Console.WriteLine(e);}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw};}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00056\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+Gebruikt \mbox{\hyperlink{_email_service_8cs_source_l00010}{\+\_\+env\+Config}} en \mbox{\hyperlink{_email_service_8cs_source_l00017}{Create\+Smtp\+Client()}}.
+
+Hier is de call graaf voor deze functie\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -138,6 +246,10 @@ readonly \mbox{\hyperlink{class_w_p_r_1_1_data_1_1_env_config}{Env\+Config}} WPR
 
 
 De definitie bevindt zich op regel \mbox{\hyperlink{_email_service_8cs_source_l00010}{10}} in het bestand \mbox{\hyperlink{_email_service_8cs_source}{Email\+Service.\+cs}}.
+
+
+
+Wordt aangeroepen door \mbox{\hyperlink{_email_service_8cs_source_l00017}{Create\+Smtp\+Client()}}, \mbox{\hyperlink{_email_service_8cs_source_l00012}{Email\+Service()}}, \mbox{\hyperlink{_email_service_8cs_source_l00058}{Send\+Rental\+Confirm\+Mail()}} en \mbox{\hyperlink{_email_service_8cs_source_l00030}{Send\+Welcome\+Email()}}.
 
 
 

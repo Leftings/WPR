@@ -7,8 +7,7 @@ Leez het .env bestand uit waarin de connectie strings staan naar de database. De
 
 
 
-Collaboratie diagram voor WPR.\+Data.\+Env\+Config\+:
-\nopagebreak
+Collaboratie diagram voor WPR.\+Data.\+Env\+Config\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -58,6 +57,22 @@ WPR.\+Data.\+Env\+Config.\+Env\+Config (\begin{DoxyParamCaption}{}{}\end{DoxyPar
 De definitie bevindt zich op regel \mbox{\hyperlink{backend_2src_2_data_2_env_config_8cs_source_l00016}{16}} in het bestand \mbox{\hyperlink{backend_2src_2_data_2_env_config_8cs_source}{Env\+Config.\+cs}}.
 
 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00017\ \ \ \ \ \{}
+\DoxyCodeLine{00018\ \ \ \ \ \ \ \ \ DotEnv.Load();\ \ \textcolor{comment}{//\ Gebruikt\ de\ dotenv.net\ library\ om\ het\ bestand\ te\ laden}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ var\ builder\ =\ \textcolor{keyword}{new}\ ConfigurationBuilder()}
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ \ \ \ \ .AddEnvironmentVariables();\ \textcolor{comment}{//\ Voegt\ de\ environment\ variabelen\ aan\ de\ ConfigurationBuilder}}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \_configuration\ =\ builder.Build();\ \textcolor{comment}{//\ Bouwt\ het\ configuratie\ object}}
+\DoxyCodeLine{00024\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+Gebruikt \mbox{\hyperlink{backend_2src_2_data_2_env_config_8cs_source_l00014}{\+\_\+configuration}}.
+
+
 
 \doxysubsection{Documentatie van functie members}
 \Hypertarget{class_w_p_r_1_1_data_1_1_env_config_aa9ca09132345c9c5905f2c408fe73fef}\index{WPR.Data.EnvConfig@{WPR.Data.EnvConfig}!Get@{Get}}
@@ -82,8 +97,27 @@ De value van de specifieke environment variabele, of null als niet gevonden.
 
 De definitie bevindt zich op regel \mbox{\hyperlink{backend_2src_2_data_2_env_config_8cs_source_l00031}{31}} in het bestand \mbox{\hyperlink{backend_2src_2_data_2_env_config_8cs_source}{Env\+Config.\+cs}}.
 
-Hier is de caller graaf voor deze functie\+:
-\nopagebreak
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00032\ \ \ \ \ \{}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ var\ value\ =\ \_configuration[key];\ \textcolor{comment}{//\ Fetch\ de\ value\ van\ de\ gegeven\ key}}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\textcolor{keywordtype}{string}.IsNullOrEmpty(value))\ }
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \ \ \ \ Console.WriteLine(\$\textcolor{stringliteral}{"{}Warning\ \{key\}\ not\ found\ in\ environment"{}});}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ value;}
+\DoxyCodeLine{00039\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+Gebruikt \mbox{\hyperlink{backend_2src_2_data_2_env_config_8cs_source_l00014}{\+\_\+configuration}}.
+
+
+
+Wordt aangeroepen door \mbox{\hyperlink{backend_2src_2_hashing_2hash_8cs_source_l00010}{WPR.\+Hashing.\+Hash.\+Hash()}} en \mbox{\hyperlink{backend_2src_2_data_2_env_config_8cs_source_l00045}{Is\+Configured()}}.
+
+Hier is de caller graaf voor deze functie\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -131,8 +165,19 @@ True als alle keys present zijn, anders False.
 
 De definitie bevindt zich op regel \mbox{\hyperlink{backend_2src_2_data_2_env_config_8cs_source_l00045}{45}} in het bestand \mbox{\hyperlink{backend_2src_2_data_2_env_config_8cs_source}{Env\+Config.\+cs}}.
 
-Hier is de call graaf voor deze functie\+:
-\nopagebreak
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00046\ \ \ \ \ \{}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ var\ requiredKeys\ =\ \textcolor{keyword}{new}[]\ \{\ \textcolor{stringliteral}{"{}DB\_SERVER"{}},\ \textcolor{stringliteral}{"{}DB\_DATABASE"{}},\ \textcolor{stringliteral}{"{}DB\_USERNAME"{}},\ \textcolor{stringliteral}{"{}DB\_PASSWORD"{}}\ \};}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ requiredKeys.All(key\ =>\ !\textcolor{keywordtype}{string}.IsNullOrEmpty(Get(key)));}
+\DoxyCodeLine{00049\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+Gebruikt \mbox{\hyperlink{backend_2src_2_data_2_env_config_8cs_source_l00031}{Get()}}.
+
+Hier is de call graaf voor deze functie\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -151,6 +196,10 @@ readonly IConfiguration WPR.\+Data.\+Env\+Config.\+\_\+configuration\hspace{0.3c
 
 
 De definitie bevindt zich op regel \mbox{\hyperlink{backend_2src_2_data_2_env_config_8cs_source_l00014}{14}} in het bestand \mbox{\hyperlink{backend_2src_2_data_2_env_config_8cs_source}{Env\+Config.\+cs}}.
+
+
+
+Wordt aangeroepen door \mbox{\hyperlink{backend_2src_2_data_2_env_config_8cs_source_l00016}{Env\+Config()}} en \mbox{\hyperlink{backend_2src_2_data_2_env_config_8cs_source_l00031}{Get()}}.
 
 
 

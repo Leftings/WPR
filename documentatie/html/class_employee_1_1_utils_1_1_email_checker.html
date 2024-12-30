@@ -154,6 +154,18 @@ Static Public Members</h2></td></tr>
 </div><div class="memdoc">
 
 <p class="definition">De definitie bevindt zich op regel <a class="el" href="employee_backend_2src_2_utils_2_email_checker_8cs_source.html#l00010">10</a> in het bestand <a class="el" href="employee_backend_2src_2_utils_2_email_checker_8cs_source.html">EmailChecker.cs</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   11</span>            {</div>
+<div class="line"><span class="lineno">   12</span>                <span class="keywordflow">if</span> (<span class="keywordtype">string</span>.IsNullOrEmpty(email))</div>
+<div class="line"><span class="lineno">   13</span>                    <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><span class="lineno">   14</span> </div>
+<div class="line"><span class="lineno">   15</span>                <span class="comment">// Regular expression pattern voor een standaard correcte email format</span></div>
+<div class="line"><span class="lineno">   16</span>                <span class="keywordtype">string</span> emailPattern = <span class="stringliteral">@&quot;^[^@\s]+@[^@\s]+\.[^@\s]+$&quot;</span>;</div>
+<div class="line"><span class="lineno">   17</span> </div>
+<div class="line"><span class="lineno">   18</span>                <span class="comment">// Gebruik Regex om te checken of de gegeven email matched met het pattern</span></div>
+<div class="line"><span class="lineno">   19</span>                <span class="keywordflow">return</span> Regex.IsMatch(email, emailPattern);</div>
+<div class="line"><span class="lineno">   20</span>            }</div>
+</div><!-- fragment -->
+<p class="reference">Wordt aangeroepen door <a class="el" href="sign_up_staff_controller_8cs_source.html#l00021">Employee.Controllers.signUpStaff.SignUpStaffController.SignUpStaff()</a>.</p>
 <div class="dynheader">
 Hier is de caller graaf voor deze functie:</div>
 <div class="dyncontent">

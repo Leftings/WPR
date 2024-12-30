@@ -2,8 +2,7 @@
 \hypertarget{class_w_p_r_1_1_controllers_1_1_rental_controller}{}\label{class_w_p_r_1_1_controllers_1_1_rental_controller}\index{WPR.Controllers.RentalController@{WPR.Controllers.RentalController}}
 
 
-Klasse diagram voor WPR.\+Controllers.\+Rental\+Controller
-\nopagebreak
+Klasse diagram voor WPR.\+Controllers.\+Rental\+Controller\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -67,6 +66,20 @@ WPR.\+Controllers.\+Rental\+Controller.\+Rental\+Controller (\begin{DoxyParamCap
 De definitie bevindt zich op regel \mbox{\hyperlink{_rental_controller_8cs_source_l00023}{23}} in het bestand \mbox{\hyperlink{_rental_controller_8cs_source}{Rental\+Controller.\+cs}}.
 
 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \ \ \ \ \_connector\ =\ connector\ ??\ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ ArgumentNullException(nameof(connector));}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \ \ \ \ \_crypt\ =\ crypt\ ??\ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ ArgumentNullException(nameof(crypt));}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \ \ \ \ \_emailService\ =\ emailService\ ??\ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ ArgumentNullException(nameof(emailService));}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \ \ \ \ \_vehicleRepo\ =\ vehicleRepo\ ??\ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ ArgumentNullException(nameof(vehicleRepo));}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+Gebruikt \mbox{\hyperlink{_rental_controller_8cs_source_l00018}{\+\_\+connector}}, \mbox{\hyperlink{_rental_controller_8cs_source_l00019}{\+\_\+crypt}}, \mbox{\hyperlink{_rental_controller_8cs_source_l00020}{\+\_\+email\+Service}} en \mbox{\hyperlink{_rental_controller_8cs_source_l00021}{\+\_\+vehicle\+Repo}}.
+
+
 
 \doxysubsection{Documentatie van functie members}
 \Hypertarget{class_w_p_r_1_1_controllers_1_1_rental_controller_a225f85994c2e758e5ae55c1c1a58061e}\index{WPR.Controllers.RentalController@{WPR.Controllers.RentalController}!CancelRentalAsync@{CancelRentalAsync}}
@@ -79,6 +92,53 @@ async Task$<$ IAction\+Result $>$ WPR.\+Controllers.\+Rental\+Controller.\+Cance
 
 De definitie bevindt zich op regel \mbox{\hyperlink{_rental_controller_8cs_source_l00275}{275}} in het bestand \mbox{\hyperlink{_rental_controller_8cs_source}{Rental\+Controller.\+cs}}.
 
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00276\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00277\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ loginCookie\ =\ HttpContext.Request.Cookies[\textcolor{stringliteral}{"{}LoginSession"{}}];}
+\DoxyCodeLine{00278\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ userId\ =\ Convert.ToInt32(\_crypt.Decrypt(loginCookie));}
+\DoxyCodeLine{00279\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ deletion1\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00280\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ deletion2\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00281\ }
+\DoxyCodeLine{00282\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}}
+\DoxyCodeLine{00283\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00284\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ query1\ =\ \textcolor{stringliteral}{@"{}}}
+\DoxyCodeLine{00285\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ DELETE\ FROM\ Abonnement\ WHERE\ OrderId\ =\ @Id\ AND\ Customer\ =\ @Customer"{}};}
+\DoxyCodeLine{00286\ }
+\DoxyCodeLine{00287\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using}\ (var\ connection\ =\ \_connector.CreateDbConnection())}
+\DoxyCodeLine{00288\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00289\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using}\ (var\ abonnementCommand\ =\ \textcolor{keyword}{new}\ MySqlCommand(query1,\ (MySqlConnection)connection))}
+\DoxyCodeLine{00290\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00291\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ abonnementCommand.Parameters.AddWithValue(\textcolor{stringliteral}{"{}@Id"{}},\ rentalId);}
+\DoxyCodeLine{00292\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ abonnementCommand.Parameters.AddWithValue(\textcolor{stringliteral}{"{}@Customer"{}},\ userId);}
+\DoxyCodeLine{00293\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00294\ }
+\DoxyCodeLine{00295\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ rowsAffectedAbonnement\ =\ await\ abonnementCommand.ExecuteNonQueryAsync();}
+\DoxyCodeLine{00296\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (rowsAffectedAbonnement\ >\ 0)}
+\DoxyCodeLine{00297\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00298\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Ok(\textcolor{keyword}{new}\ \{\ message\ =\ \textcolor{stringliteral}{"{}Rental\ cancelled\ successfully"{}}\ \});}
+\DoxyCodeLine{00299\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00300\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00301\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00302\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ NotFound(\textcolor{keyword}{new}}
+\DoxyCodeLine{00303\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ message\ =\ \textcolor{stringliteral}{"{}Rental\ not\ found\ or\ you\ do\ not\ have\ permission\ to\ cancel\ this\ rental"{}}\ \});}
+\DoxyCodeLine{00304\ }
+\DoxyCodeLine{00305\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00306\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00307\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00308\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00309\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (Exception\ ex)}
+\DoxyCodeLine{00310\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00311\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Console.WriteLine(\$\textcolor{stringliteral}{"{}Error:\ \{ex.Message\}"{}});}
+\DoxyCodeLine{00312\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ StatusCode(500,\ \textcolor{stringliteral}{"{}An\ error\ occurred\ while\ cancelling\ rental"{}});}
+\DoxyCodeLine{00313\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00314\ \ \ \ \ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+Gebruikt \mbox{\hyperlink{_rental_controller_8cs_source_l00018}{\+\_\+connector}} en \mbox{\hyperlink{_rental_controller_8cs_source_l00019}{\+\_\+crypt}}.
+
 \Hypertarget{class_w_p_r_1_1_controllers_1_1_rental_controller_a12c084f7d5f7f8ac3996d02c270e7636}\index{WPR.Controllers.RentalController@{WPR.Controllers.RentalController}!ChangeRentalAsync@{ChangeRentalAsync}}
 \index{ChangeRentalAsync@{ChangeRentalAsync}!WPR.Controllers.RentalController@{WPR.Controllers.RentalController}}
 \doxysubsubsection{\texorpdfstring{ChangeRentalAsync()}{ChangeRentalAsync()}}
@@ -88,6 +148,47 @@ async Task$<$ IAction\+Result $>$ WPR.\+Controllers.\+Rental\+Controller.\+Chang
 
 
 De definitie bevindt zich op regel \mbox{\hyperlink{_rental_controller_8cs_source_l00435}{435}} in het bestand \mbox{\hyperlink{_rental_controller_8cs_source}{Rental\+Controller.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00436\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00437\ }
+\DoxyCodeLine{00438\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}}
+\DoxyCodeLine{00439\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00440\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ query1\ =\ \textcolor{stringliteral}{@"{}}}
+\DoxyCodeLine{00441\ \textcolor{stringliteral}{\ \ \ \ UPDATE\ Abonnement\ SET\ StartDate\ =\ @StartDate,\ EndDate\ =\ @EndDate,\ Price\ =\ @Price\ WHERE\ OrderId\ =\ @Id"{}};}
+\DoxyCodeLine{00442\ }
+\DoxyCodeLine{00443\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using}\ (var\ connection\ =\ \_connector.CreateDbConnection())}
+\DoxyCodeLine{00444\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00445\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using}\ (var\ command\ =\ \textcolor{keyword}{new}\ MySqlCommand(query1,\ (MySqlConnection)connection))}
+\DoxyCodeLine{00446\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00447\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ command.Parameters.AddWithValue(\textcolor{stringliteral}{"{}@StartDate"{}},\ request.\mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_rental_1_1_update_rental_request_abfeef5e0440a3e7896d64b3fc410a183}{StartDate}});}
+\DoxyCodeLine{00448\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ command.Parameters.AddWithValue(\textcolor{stringliteral}{"{}@EndDate"{}},\ request.\mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_rental_1_1_update_rental_request_a4aad31eb4aaa804cf69ab64e3cd889b3}{EndDate}});}
+\DoxyCodeLine{00449\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ command.Parameters.AddWithValue(\textcolor{stringliteral}{"{}@Price"{}},\ request.\mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_rental_1_1_update_rental_request_a96aed6b03e571c85d344209fddffa264}{Price}});}
+\DoxyCodeLine{00450\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ command.Parameters.AddWithValue(\textcolor{stringliteral}{"{}@Id"{}},\ request.\mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_rental_1_1_update_rental_request_a172e4c568078e5bb961a53fedd7e90c9}{Id}});}
+\DoxyCodeLine{00451\ }
+\DoxyCodeLine{00452\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Console.WriteLine(\$\textcolor{stringliteral}{"{}Executing\ query\ with\ rentalId:\ \{request.Id\},\ StartDate:\ \{request.StartDate\},\ EndDate:\ \{request.EndDate\},\ Price:\ \{request.Price\}"{}});}
+\DoxyCodeLine{00453\ }
+\DoxyCodeLine{00454\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (await\ command.ExecuteNonQueryAsync()\ >\ 0)}
+\DoxyCodeLine{00455\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00456\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Ok(\textcolor{keyword}{new}\ \{\ message\ =\ \textcolor{stringliteral}{"{}Rental\ updated\ successfully"{}}\ \});}
+\DoxyCodeLine{00457\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00458\ }
+\DoxyCodeLine{00459\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ BadRequest(\textcolor{keyword}{new}\ \{\ message\ =\ \textcolor{stringliteral}{"{}Rental\ wasn't\ updated"{}}\ \});}
+\DoxyCodeLine{00460\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00461\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00462\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00463\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (Exception\ ex)}
+\DoxyCodeLine{00464\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00465\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Console.WriteLine(\$\textcolor{stringliteral}{"{}Error:\ \{ex.Message\}"{}});}
+\DoxyCodeLine{00466\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ StatusCode(500,\ \textcolor{keyword}{new}\ \{\ message\ =\ \textcolor{stringliteral}{"{}An\ error\ occurred\ while\ processing\ the\ rental\ update"{}}\ \});}
+\DoxyCodeLine{00467\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00468\ \ \ \ \ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+Gebruikt \mbox{\hyperlink{_rental_controller_8cs_source_l00018}{\+\_\+connector}}.
 
 \Hypertarget{class_w_p_r_1_1_controllers_1_1_rental_controller_a2867bc2129d7c6770a0cff439b3c8695}\index{WPR.Controllers.RentalController@{WPR.Controllers.RentalController}!CreateRental@{CreateRental}}
 \index{CreateRental@{CreateRental}!WPR.Controllers.RentalController@{WPR.Controllers.RentalController}}
@@ -99,6 +200,253 @@ async Task$<$ IAction\+Result $>$ WPR.\+Controllers.\+Rental\+Controller.\+Creat
 
 De definitie bevindt zich op regel \mbox{\hyperlink{_rental_controller_8cs_source_l00033}{33}} in het bestand \mbox{\hyperlink{_rental_controller_8cs_source}{Rental\+Controller.\+cs}}.
 
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Log\ de\ binnenkomende\ aanvraag}}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \ \ \ \ Console.WriteLine(\textcolor{stringliteral}{"{}CreateRental\ called\ with\ request:\ "{}}\ +}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$\textcolor{stringliteral}{"{}FrameNrCar:\ \{rentalRequest.FrameNrCar\},\ "{}}\ +}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$\textcolor{stringliteral}{"{}StartDate:\ \{rentalRequest.StartDate\},\ "{}}\ +}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$\textcolor{stringliteral}{"{}EndDate:\ \{rentalRequest.EndDate\},\ "{}}\ +}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$\textcolor{stringliteral}{"{}Price:\ \{rentalRequest.Price\}"{}});}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Valideer\ de\ invoer}}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (rentalRequest\ ==\ \textcolor{keyword}{null})}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ BadRequest(\textcolor{keyword}{new}\ \{\ message\ =\ \textcolor{stringliteral}{"{}Huurverzoek\ kan\ niet\ null\ zijn."{}}\ \});}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\textcolor{keywordtype}{string}.IsNullOrWhiteSpace(rentalRequest.\mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_rental_1_1_rental_request_a2a4c86dd4beb6158287dededefbcbc25}{FrameNrCar}})\ ||}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ rentalRequest.\mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_rental_1_1_rental_request_a2229665b651e4e35e28008eca172f423}{StartDate}}\ ==\ \textcolor{keywordflow}{default}\ ||}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ rentalRequest.\mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_rental_1_1_rental_request_ac93c79565cc8d3ac9593725c38bedffe}{EndDate}}\ ==\ \textcolor{keywordflow}{default}\ ||}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ rentalRequest.\mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_rental_1_1_rental_request_ae2de64e37ef79cfa663ca4628751483c}{Price}}\ <=\ 0)}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ BadRequest(\textcolor{keyword}{new}\ \{\ message\ =\ \textcolor{stringliteral}{"{}Ongeldige\ invoergegevens."{}}\ \});}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (rentalRequest.\mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_rental_1_1_rental_request_a2229665b651e4e35e28008eca172f423}{StartDate}}\ >=\ rentalRequest.\mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_rental_1_1_rental_request_ac93c79565cc8d3ac9593725c38bedffe}{EndDate}})}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ BadRequest(\textcolor{keyword}{new}\ \{\ message\ =\ \textcolor{stringliteral}{"{}Startdatum\ moet\ voor\ einddatum\ zijn."{}}\ \});}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Haal\ CustomerID\ uit\ de\ cookie}}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ loginCookie\ =\ HttpContext.Request.Cookies[\textcolor{stringliteral}{"{}LoginSession"{}}];}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\textcolor{keywordtype}{string}.IsNullOrEmpty(loginCookie))}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Console.WriteLine(\textcolor{stringliteral}{"{}Geen\ login\ sessie\ cookie\ gevonden"{}});}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Unauthorized(\textcolor{keyword}{new}\ \{\ message\ =\ \textcolor{stringliteral}{"{}Geen\ actieve\ sessie."{}}\ \});}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ userId;}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ userId\ =\ \textcolor{keywordtype}{int}.Parse(\_crypt.Decrypt(loginCookie));}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Console.WriteLine(\$\textcolor{stringliteral}{"{}Gedecodeerde\ Gebruiker\ ID:\ \{userId\}"{}});}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (Exception\ ex)}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Console.WriteLine(\$\textcolor{stringliteral}{"{}Fout\ bij\ het\ decoderen\ van\ cookie:\ \{ex.Message\}"{}});}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Unauthorized(\textcolor{keyword}{new}\ \{\ message\ =\ \textcolor{stringliteral}{"{}Ongeldige\ sessie."{}}\ \});}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using}\ (var\ connection\ =\ \_connector.CreateDbConnection())}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (connection.State\ !=\ ConnectionState.Open)}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ connection.Open();}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Console.WriteLine(\textcolor{stringliteral}{"{}Databaseverbinding\ geopend."{}});}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00090\ }
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using}\ (var\ transaction\ =\ connection.BeginTransaction())}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Controleer\ of\ de\ Vehicle\_User\ entry\ al\ bestaat}}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ checkVehicleUserQuery\ =}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}SELECT\ COUNT(*)\ FROM\ Vehicle\_User\ WHERE\ FrameNrCar\ =\ @FrameNrCar\ AND\ Customer\ =\ @Customer"{}};}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using}\ (var\ command\ =\ connection.CreateCommand())}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ command.CommandText\ =\ checkVehicleUserQuery;}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ command.CommandType\ =\ CommandType.Text;}
+\DoxyCodeLine{00102\ }
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ var\ frameNrParam\ =\ command.CreateParameter();}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ frameNrParam.ParameterName\ =\ \textcolor{stringliteral}{"{}@FrameNrCar"{}};}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ frameNrParam.Value\ =\ rentalRequest.\mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_rental_1_1_rental_request_a2a4c86dd4beb6158287dededefbcbc25}{FrameNrCar}};}
+\DoxyCodeLine{00106\ }
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ var\ customerParam\ =\ command.CreateParameter();}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ customerParam.ParameterName\ =\ \textcolor{stringliteral}{"{}@Customer"{}};}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ customerParam.Value\ =\ userId;}
+\DoxyCodeLine{00110\ }
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ command.Parameters.Add(frameNrParam);}
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ command.Parameters.Add(customerParam);}
+\DoxyCodeLine{00113\ }
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ var\ count\ =\ Convert.ToInt32(command.ExecuteScalar());}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (count\ >\ 0)}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Werk\ de\ bestaande\ Vehicle\_User\ entry\ bij}}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ updateVehicleUserQuery\ =}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}UPDATE\ Vehicle\_User\ SET\ FrameNrCar\ =\ @FrameNrCar\ WHERE\ Customer\ =\ @Customer"{}};}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using}\ (var\ updateCommand\ =\ connection.CreateCommand())}
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ updateCommand.CommandText\ =\ updateVehicleUserQuery;}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ updateCommand.CommandType\ =\ CommandType.Text;}
+\DoxyCodeLine{00124\ }
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ var\ updateFrameNrParam\ =\ updateCommand.CreateParameter();}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ updateFrameNrParam.ParameterName\ =\ \textcolor{stringliteral}{"{}@FrameNrCar"{}};}
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ updateFrameNrParam.Value\ =\ rentalRequest.\mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_rental_1_1_rental_request_a2a4c86dd4beb6158287dededefbcbc25}{FrameNrCar}};}
+\DoxyCodeLine{00128\ }
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ var\ updateCustomerParam\ =\ updateCommand.CreateParameter();}
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ updateCustomerParam.ParameterName\ =\ \textcolor{stringliteral}{"{}@Customer"{}};}
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ updateCustomerParam.Value\ =\ userId;}
+\DoxyCodeLine{00132\ }
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ updateCommand.Parameters.Add(updateFrameNrParam);}
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ updateCommand.Parameters.Add(updateCustomerParam);}
+\DoxyCodeLine{00135\ }
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ updateCommand.ExecuteNonQuery();}
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Voeg\ in\ de\ Vehicle\_User\ tabel}}
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ insertVehicleUserQuery\ =}
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}INSERT\ INTO\ Vehicle\_User\ (FrameNrCar,\ Customer)\ VALUES\ (@FrameNrCar,\ @Customer)"{}};}
+\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using}\ (var\ insertCommand\ =\ connection.CreateCommand())}
+\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ insertCommand.CommandText\ =\ insertVehicleUserQuery;}
+\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ insertCommand.CommandType\ =\ CommandType.Text;}
+\DoxyCodeLine{00148\ }
+\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ var\ frameNrParamInsert\ =\ insertCommand.CreateParameter();}
+\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ frameNrParamInsert.ParameterName\ =\ \textcolor{stringliteral}{"{}@FrameNrCar"{}};}
+\DoxyCodeLine{00151\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ frameNrParamInsert.Value\ =\ rentalRequest.\mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_rental_1_1_rental_request_a2a4c86dd4beb6158287dededefbcbc25}{FrameNrCar}};}
+\DoxyCodeLine{00152\ }
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ var\ customerParamInsert\ =\ insertCommand.CreateParameter();}
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ customerParamInsert.ParameterName\ =\ \textcolor{stringliteral}{"{}@Customer"{}};}
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ customerParamInsert.Value\ =\ userId;}
+\DoxyCodeLine{00156\ }
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ insertCommand.Parameters.Add(frameNrParamInsert);}
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ insertCommand.Parameters.Add(customerParamInsert);}
+\DoxyCodeLine{00159\ }
+\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ insertCommand.ExecuteNonQuery();}
+\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00164\ }
+\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ insertAbbonementQuery\ =\ \textcolor{stringliteral}{@"{}}}
+\DoxyCodeLine{00166\ \textcolor{stringliteral}{INSERT\ INTO\ Abonnement\ (StartDate,\ EndDate,\ Price,\ FrameNrCar,\ Customer,\ Status,\ ReviewedBy)\  }}
+\DoxyCodeLine{00167\ \textcolor{stringliteral}{VALUES\ (@StartDate,\ @EndDate,\ @Price,\ @FrameNrCar,\ @Customer,\ @Status,\ @ReviewedBy)"{}};}
+\DoxyCodeLine{00168\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using}\ (var\ command\ =\ connection.CreateCommand())}
+\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00170\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ command.CommandText\ =\ insertAbbonementQuery;}
+\DoxyCodeLine{00171\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ command.CommandType\ =\ CommandType.Text;}
+\DoxyCodeLine{00172\ }
+\DoxyCodeLine{00173\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ var\ startDateParam\ =\ command.CreateParameter();}
+\DoxyCodeLine{00174\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ startDateParam.ParameterName\ =\ \textcolor{stringliteral}{"{}@StartDate"{}};}
+\DoxyCodeLine{00175\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ startDateParam.Value\ =\ rentalRequest.\mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_rental_1_1_rental_request_a2229665b651e4e35e28008eca172f423}{StartDate}};}
+\DoxyCodeLine{00176\ }
+\DoxyCodeLine{00177\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ var\ endDateParam\ =\ command.CreateParameter();}
+\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ endDateParam.ParameterName\ =\ \textcolor{stringliteral}{"{}@EndDate"{}};}
+\DoxyCodeLine{00179\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ endDateParam.Value\ =\ rentalRequest.\mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_rental_1_1_rental_request_ac93c79565cc8d3ac9593725c38bedffe}{EndDate}};}
+\DoxyCodeLine{00180\ }
+\DoxyCodeLine{00181\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ var\ priceParam\ =\ command.CreateParameter();}
+\DoxyCodeLine{00182\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ priceParam.ParameterName\ =\ \textcolor{stringliteral}{"{}@Price"{}};}
+\DoxyCodeLine{00183\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ priceParam.Value\ =\ Convert.ToDecimal(rentalRequest.\mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_rental_1_1_rental_request_ae2de64e37ef79cfa663ca4628751483c}{Price}});}
+\DoxyCodeLine{00184\ }
+\DoxyCodeLine{00185\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ var\ frameNrParam\ =\ command.CreateParameter();}
+\DoxyCodeLine{00186\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ frameNrParam.ParameterName\ =\ \textcolor{stringliteral}{"{}@FrameNrCar"{}};}
+\DoxyCodeLine{00187\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ frameNrParam.Value\ =\ rentalRequest.\mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_rental_1_1_rental_request_a2a4c86dd4beb6158287dededefbcbc25}{FrameNrCar}};}
+\DoxyCodeLine{00188\ }
+\DoxyCodeLine{00189\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ var\ customerParam\ =\ command.CreateParameter();}
+\DoxyCodeLine{00190\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ customerParam.ParameterName\ =\ \textcolor{stringliteral}{"{}@Customer"{}};}
+\DoxyCodeLine{00191\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ customerParam.Value\ =\ userId;}
+\DoxyCodeLine{00192\ }
+\DoxyCodeLine{00193\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ var\ statusParam\ =\ command.CreateParameter();}
+\DoxyCodeLine{00194\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ statusParam.ParameterName\ =\ \textcolor{stringliteral}{"{}@Status"{}};}
+\DoxyCodeLine{00195\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ statusParam.Value\ =\ \textcolor{stringliteral}{"{}requested"{}};}
+\DoxyCodeLine{00196\ }
+\DoxyCodeLine{00197\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ var\ reviewedByParam\ =\ command.CreateParameter();}
+\DoxyCodeLine{00198\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ reviewedByParam.ParameterName\ =\ \textcolor{stringliteral}{"{}@ReviewedBy"{}};}
+\DoxyCodeLine{00199\ }
+\DoxyCodeLine{00200\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Als\ de\ status\ 'requested'\ is,\ stellen\ we\ ReviewedBy\ in\ op\ NULL}}
+\DoxyCodeLine{00201\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (statusParam.Value.ToString()\ ==\ \textcolor{stringliteral}{"{}requested"{}})}
+\DoxyCodeLine{00202\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00203\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ reviewedByParam.Value\ =\ DBNull.Value;}
+\DoxyCodeLine{00204\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00205\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00206\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00207\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ reviewedByParam.Value\ =\ DBNull.Value;}
+\DoxyCodeLine{00208\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00209\ }
+\DoxyCodeLine{00210\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ command.Parameters.Add(startDateParam);}
+\DoxyCodeLine{00211\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ command.Parameters.Add(endDateParam);}
+\DoxyCodeLine{00212\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ command.Parameters.Add(priceParam);}
+\DoxyCodeLine{00213\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ command.Parameters.Add(frameNrParam);}
+\DoxyCodeLine{00214\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ command.Parameters.Add(customerParam);}
+\DoxyCodeLine{00215\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ command.Parameters.Add(statusParam);}
+\DoxyCodeLine{00216\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ command.Parameters.Add(reviewedByParam);}
+\DoxyCodeLine{00217\ }
+\DoxyCodeLine{00218\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ command.ExecuteNonQuery();}
+\DoxyCodeLine{00219\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00220\ }
+\DoxyCodeLine{00221\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ transaction.Commit();}
+\DoxyCodeLine{00222\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Console.WriteLine(\textcolor{stringliteral}{"{}Transactie\ succesvol\ gecommit."{}});}
+\DoxyCodeLine{00223\ }
+\DoxyCodeLine{00224\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ carName\ =}
+\DoxyCodeLine{00225\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ await\ \_vehicleRepo.GetVehicleNameAsync(\textcolor{keywordtype}{int}.Parse(rentalRequest.\mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_rental_1_1_rental_request_a2a4c86dd4beb6158287dededefbcbc25}{FrameNrCar}}));}
+\DoxyCodeLine{00226\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\textcolor{keywordtype}{string}.IsNullOrEmpty(carName))}
+\DoxyCodeLine{00227\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00228\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ NotFound(\textcolor{keyword}{new}\ \{\ message\ =\ \textcolor{stringliteral}{"{}Car\ name\ not\ found\ for\ the\ frameNr"{}}\ \});}
+\DoxyCodeLine{00229\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00230\ }
+\DoxyCodeLine{00231\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ carPlate\ =}
+\DoxyCodeLine{00232\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ await\ \_vehicleRepo.GetVehiclePlateAsync(\textcolor{keywordtype}{int}.Parse(rentalRequest.\mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_rental_1_1_rental_request_a2a4c86dd4beb6158287dededefbcbc25}{FrameNrCar}}));}
+\DoxyCodeLine{00233\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\textcolor{keywordtype}{string}.IsNullOrEmpty(carPlate))}
+\DoxyCodeLine{00234\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00235\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ NotFound(\textcolor{keyword}{new}\ \{\ message\ =\ \textcolor{stringliteral}{"{}License\ plate\ not\ found\ for\ frameNr"{}}\ \});}
+\DoxyCodeLine{00236\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00237\ }
+\DoxyCodeLine{00238\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ carColor\ =}
+\DoxyCodeLine{00239\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ await\ \_vehicleRepo.GetVehicleColorAsync(\textcolor{keywordtype}{int}.Parse(rentalRequest.\mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_rental_1_1_rental_request_a2a4c86dd4beb6158287dededefbcbc25}{FrameNrCar}}));}
+\DoxyCodeLine{00240\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\textcolor{keywordtype}{string}.IsNullOrEmpty(carColor))}
+\DoxyCodeLine{00241\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00242\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ NotFound(\textcolor{keyword}{new}\ \{\ message\ =\ \textcolor{stringliteral}{"{}Color\ not\ found\ for\ frameNr"{}}\ \});}
+\DoxyCodeLine{00243\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00244\ }
+\DoxyCodeLine{00245\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ await\ \_emailService.SendRentalConfirmMail(}
+\DoxyCodeLine{00246\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ toEmail:\ rentalRequest.\mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_rental_1_1_rental_request_add50ddec2bd6ed87bfdd5cc0f91e05b0}{Email}},}
+\DoxyCodeLine{00247\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ carName:\ carName,}
+\DoxyCodeLine{00248\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ carColor:\ carColor,}
+\DoxyCodeLine{00249\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ carPlate:\ carPlate,}
+\DoxyCodeLine{00250\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ startDate:\ rentalRequest.\mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_rental_1_1_rental_request_a2229665b651e4e35e28008eca172f423}{StartDate}},}
+\DoxyCodeLine{00251\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ endDate:\ rentalRequest.\mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_rental_1_1_rental_request_ac93c79565cc8d3ac9593725c38bedffe}{EndDate}},}
+\DoxyCodeLine{00252\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ price:\ rentalRequest.\mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_rental_1_1_rental_request_ae2de64e37ef79cfa663ca4628751483c}{Price}}.ToString()}
+\DoxyCodeLine{00253\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{00254\ }
+\DoxyCodeLine{00255\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Ok(\textcolor{keyword}{new}\ \{\ message\ =\ \textcolor{stringliteral}{"{}Huur\ succesvol\ aangemaakt."{}}\ \});}
+\DoxyCodeLine{00256\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00257\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (Exception\ transEx)}
+\DoxyCodeLine{00258\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00259\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ transaction.Rollback();}
+\DoxyCodeLine{00260\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Console.WriteLine(\$\textcolor{stringliteral}{"{}Transactie\ teruggedraaid:\ \{transEx.Message\}"{}});}
+\DoxyCodeLine{00261\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw};}
+\DoxyCodeLine{00262\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00263\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00264\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00265\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00266\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (Exception\ ex)}
+\DoxyCodeLine{00267\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00268\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Console.WriteLine(\$\textcolor{stringliteral}{"{}Fout\ in\ CreateRental:\ \{ex.Message\}\(\backslash\)n\{ex.StackTrace\}"{}});}
+\DoxyCodeLine{00269\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ StatusCode(500,}
+\DoxyCodeLine{00270\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{new}\ \{\ message\ =\ \$\textcolor{stringliteral}{"{}Er\ is\ een\ fout\ opgetreden\ bij\ het\ aanmaken\ van\ de\ huur:\ \{ex.Message\}"{}}\ \});}
+\DoxyCodeLine{00271\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00272\ \ \ \ \ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+Gebruikt \mbox{\hyperlink{_rental_controller_8cs_source_l00018}{\+\_\+connector}}, \mbox{\hyperlink{_rental_controller_8cs_source_l00019}{\+\_\+crypt}}, \mbox{\hyperlink{_rental_controller_8cs_source_l00020}{\+\_\+email\+Service}} en \mbox{\hyperlink{_rental_controller_8cs_source_l00021}{\+\_\+vehicle\+Repo}}.
+
 \Hypertarget{class_w_p_r_1_1_controllers_1_1_rental_controller_a73310658c1eb5a14c2635e9778326598}\index{WPR.Controllers.RentalController@{WPR.Controllers.RentalController}!GetAllUserRentalsAsync@{GetAllUserRentalsAsync}}
 \index{GetAllUserRentalsAsync@{GetAllUserRentalsAsync}!WPR.Controllers.RentalController@{WPR.Controllers.RentalController}}
 \doxysubsubsection{\texorpdfstring{GetAllUserRentalsAsync()}{GetAllUserRentalsAsync()}}
@@ -109,6 +457,67 @@ async Task$<$ IAction\+Result $>$ WPR.\+Controllers.\+Rental\+Controller.\+Get\+
 
 De definitie bevindt zich op regel \mbox{\hyperlink{_rental_controller_8cs_source_l00318}{318}} in het bestand \mbox{\hyperlink{_rental_controller_8cs_source}{Rental\+Controller.\+cs}}.
 
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00319\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00320\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ loginCookie\ =\ HttpContext.Request.Cookies[\textcolor{stringliteral}{"{}LoginSession"{}}];}
+\DoxyCodeLine{00321\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ userId\ =\ Convert.ToInt32(\_crypt.Decrypt(loginCookie));}
+\DoxyCodeLine{00322\ \ \ \ \ \ \ \ \ \ \ \ \ ;}
+\DoxyCodeLine{00323\ }
+\DoxyCodeLine{00324\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}}
+\DoxyCodeLine{00325\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00326\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ query\ =\ \textcolor{stringliteral}{@"{}}}
+\DoxyCodeLine{00327\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ SELECT\ OrderId,\ FrameNrCar,\ StartDate,\ EndDate,\ Price,\ Status }}
+\DoxyCodeLine{00328\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ FROM\ Abonnement\  }}
+\DoxyCodeLine{00329\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ WHERE\ Customer\ =\ @Customer"{}};}
+\DoxyCodeLine{00330\ }
+\DoxyCodeLine{00331\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ var\ rentals\ =\ \textcolor{keyword}{new}\ List<object>();}
+\DoxyCodeLine{00332\ }
+\DoxyCodeLine{00333\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using}\ (var\ connection\ =\ \_connector.CreateDbConnection())}
+\DoxyCodeLine{00334\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00335\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using}\ (var\ command\ =\ \textcolor{keyword}{new}\ MySqlCommand(query,\ (MySqlConnection)connection))}
+\DoxyCodeLine{00336\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00337\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Ensure\ userId\ is\ added\ to\ the\ query\ correctly}}
+\DoxyCodeLine{00338\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ command.Parameters.AddWithValue(\textcolor{stringliteral}{"{}@Customer"{}},\ userId);}
+\DoxyCodeLine{00339\ }
+\DoxyCodeLine{00340\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using}\ (var\ reader\ =\ await\ command.ExecuteReaderAsync())}
+\DoxyCodeLine{00341\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00342\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (reader.Read())}
+\DoxyCodeLine{00343\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00344\ }
+\DoxyCodeLine{00345\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ carName\ =\ await\ \_vehicleRepo.GetVehicleNameAsync(reader.GetInt32(1));}
+\DoxyCodeLine{00346\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ licensePlate\ =\ await\ \_vehicleRepo.GetVehiclePlateAsync(reader.GetInt32(1));}
+\DoxyCodeLine{00347\ }
+\DoxyCodeLine{00348\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ rentals.Add(\textcolor{keyword}{new}}
+\DoxyCodeLine{00349\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00350\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Id\ =\ reader.IsDBNull(0)\ ?\ (\textcolor{keywordtype}{int}?)\textcolor{keyword}{null}\ :\ reader.GetInt32(0),}
+\DoxyCodeLine{00351\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ FrameNrCar\ =\ reader.IsDBNull(1)\ ?\ (int?)null\ :\ reader.GetInt32(1),}
+\DoxyCodeLine{00352\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ CarName\ =\ carName,}
+\DoxyCodeLine{00353\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ LicensePlate\ =\ licensePlate,}
+\DoxyCodeLine{00354\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ StartDate\ =\ reader.IsDBNull(2)\ ?\ (DateTime?)null\ :\ reader.GetDateTime(2),}
+\DoxyCodeLine{00355\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ EndDate\ =\ reader.IsDBNull(3)\ ?\ (DateTime?)null\ :\ reader.GetDateTime(3),}
+\DoxyCodeLine{00356\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Price\ =\ reader.IsDBNull(4)\ ?\ (decimal?)null\ :\ reader.GetDecimal(4),}
+\DoxyCodeLine{00357\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Status\ =\ reader.IsDBNull(5)\ ?\ null\ :\ reader.GetString(5),}
+\DoxyCodeLine{00358\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{00359\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00360\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00361\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00362\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00363\ }
+\DoxyCodeLine{00364\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Ok(rentals);}
+\DoxyCodeLine{00365\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00366\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (Exception\ ex)}
+\DoxyCodeLine{00367\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00368\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Console.WriteLine(\$\textcolor{stringliteral}{"{}Error:\ \{ex.Message\}"{}});}
+\DoxyCodeLine{00369\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ StatusCode(500,\ \textcolor{stringliteral}{"{}An\ error\ occurred\ while\ fetching\ rentals."{}});}
+\DoxyCodeLine{00370\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00371\ \ \ \ \ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+Gebruikt \mbox{\hyperlink{_rental_controller_8cs_source_l00018}{\+\_\+connector}}, \mbox{\hyperlink{_rental_controller_8cs_source_l00019}{\+\_\+crypt}} en \mbox{\hyperlink{_rental_controller_8cs_source_l00021}{\+\_\+vehicle\+Repo}}.
+
 \Hypertarget{class_w_p_r_1_1_controllers_1_1_rental_controller_a44ec5e9f9d368cd9c161cae931853bd0}\index{WPR.Controllers.RentalController@{WPR.Controllers.RentalController}!GetAllUserRentalsWithDetailsAsync@{GetAllUserRentalsWithDetailsAsync}}
 \index{GetAllUserRentalsWithDetailsAsync@{GetAllUserRentalsWithDetailsAsync}!WPR.Controllers.RentalController@{WPR.Controllers.RentalController}}
 \doxysubsubsection{\texorpdfstring{GetAllUserRentalsWithDetailsAsync()}{GetAllUserRentalsWithDetailsAsync()}}
@@ -118,6 +527,72 @@ async Task$<$ IAction\+Result $>$ WPR.\+Controllers.\+Rental\+Controller.\+Get\+
 
 
 De definitie bevindt zich op regel \mbox{\hyperlink{_rental_controller_8cs_source_l00374}{374}} in het bestand \mbox{\hyperlink{_rental_controller_8cs_source}{Rental\+Controller.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00375\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00376\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}}
+\DoxyCodeLine{00377\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00378\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ query\ =\ \textcolor{stringliteral}{@"{}}}
+\DoxyCodeLine{00379\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ SELECT\  }}
+\DoxyCodeLine{00380\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ OrderId,\  }}
+\DoxyCodeLine{00381\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ StartDate,\  }}
+\DoxyCodeLine{00382\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ EndDate,\  }}
+\DoxyCodeLine{00383\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Price,\  }}
+\DoxyCodeLine{00384\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ FrameNrCar,\  }}
+\DoxyCodeLine{00385\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Customer,\  }}
+\DoxyCodeLine{00386\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Status,\  }}
+\DoxyCodeLine{00387\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ReviewedBy,\  }}
+\DoxyCodeLine{00388\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ VMStatus,\  }}
+\DoxyCodeLine{00389\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Kvk }}
+\DoxyCodeLine{00390\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ FROM\ Abonnement"{}};}
+\DoxyCodeLine{00391\ }
+\DoxyCodeLine{00392\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ var\ rentals\ =\ \textcolor{keyword}{new}\ List<object>();}
+\DoxyCodeLine{00393\ }
+\DoxyCodeLine{00394\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using}\ (var\ connection\ =\ \_connector.CreateDbConnection())}
+\DoxyCodeLine{00395\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00396\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (connection.State\ !=\ ConnectionState.Open)}
+\DoxyCodeLine{00397\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00398\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ connection.Open();}
+\DoxyCodeLine{00399\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00400\ }
+\DoxyCodeLine{00401\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using}\ (var\ command\ =\ \textcolor{keyword}{new}\ MySqlCommand(query,\ (MySqlConnection)connection))}
+\DoxyCodeLine{00402\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00403\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using}\ (var\ reader\ =\ await\ command.ExecuteReaderAsync())}
+\DoxyCodeLine{00404\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00405\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (reader.Read())}
+\DoxyCodeLine{00406\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00407\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ rentals.Add(\textcolor{keyword}{new}}
+\DoxyCodeLine{00408\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00409\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ID\ =\ reader.IsDBNull(0)\ ?\ (\textcolor{keywordtype}{int}?)\textcolor{keyword}{null}\ :\ reader.GetInt32(0),}
+\DoxyCodeLine{00410\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ StartDate\ =\ reader.IsDBNull(1)\ ?\ (DateTime?)null\ :\ reader.GetDateTime(1),}
+\DoxyCodeLine{00411\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ EndDate\ =\ reader.IsDBNull(2)\ ?\ (DateTime?)null\ :\ reader.GetDateTime(2),}
+\DoxyCodeLine{00412\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Price\ =\ reader.IsDBNull(3)\ ?\ (decimal?)null\ :\ reader.GetDecimal(3),}
+\DoxyCodeLine{00413\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ FrameNrCar\ =\ reader.IsDBNull(4)\ ?\ (int?)null\ :\ reader.GetInt32(4),}
+\DoxyCodeLine{00414\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Customer\ =\ reader.IsDBNull(5)\ ?\ (int?)null\ :\ reader.GetInt32(5),}
+\DoxyCodeLine{00415\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Status\ =\ reader.IsDBNull(6)\ ?\ null\ :\ reader.GetString(6),}
+\DoxyCodeLine{00416\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ReviewedBy\ =\ reader.IsDBNull(7)\ ?\ (int?)null\ :\ reader.GetInt32(7),}
+\DoxyCodeLine{00417\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ VMStatus\ =\ reader.IsDBNull(8)\ ?\ null\ :\ reader.GetString(8),}
+\DoxyCodeLine{00418\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Kvk\ =\ reader.IsDBNull(9)\ ?\ (int?)null\ :\ reader.GetInt32(9),}
+\DoxyCodeLine{00419\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{00420\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00421\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00422\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00423\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00424\ }
+\DoxyCodeLine{00425\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Ok(rentals);}
+\DoxyCodeLine{00426\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00427\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (Exception\ ex)}
+\DoxyCodeLine{00428\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00429\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Console.WriteLine(\$\textcolor{stringliteral}{"{}Error\ fetching\ rentals:\ \{ex.Message\}"{}});}
+\DoxyCodeLine{00430\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ StatusCode(500,\ \textcolor{stringliteral}{"{}An\ error\ occurred\ while\ fetching\ rentals."{}});}
+\DoxyCodeLine{00431\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00432\ \ \ \ \ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+Gebruikt \mbox{\hyperlink{_rental_controller_8cs_source_l00018}{\+\_\+connector}}.
 
 
 
@@ -132,6 +607,10 @@ readonly \mbox{\hyperlink{class_w_p_r_1_1_database_1_1_connector}{Connector}} WP
 
 De definitie bevindt zich op regel \mbox{\hyperlink{_rental_controller_8cs_source_l00018}{18}} in het bestand \mbox{\hyperlink{_rental_controller_8cs_source}{Rental\+Controller.\+cs}}.
 
+
+
+Wordt aangeroepen door \mbox{\hyperlink{_rental_controller_8cs_source_l00275}{Cancel\+Rental\+Async()}}, \mbox{\hyperlink{_rental_controller_8cs_source_l00435}{Change\+Rental\+Async()}}, \mbox{\hyperlink{_rental_controller_8cs_source_l00033}{Create\+Rental()}}, \mbox{\hyperlink{_rental_controller_8cs_source_l00318}{Get\+All\+User\+Rentals\+Async()}}, \mbox{\hyperlink{_rental_controller_8cs_source_l00374}{Get\+All\+User\+Rentals\+With\+Details\+Async()}} en \mbox{\hyperlink{_rental_controller_8cs_source_l00023}{Rental\+Controller()}}.
+
 \Hypertarget{class_w_p_r_1_1_controllers_1_1_rental_controller_a1545b2a353f33bc4c5f5154e76430a91}\index{WPR.Controllers.RentalController@{WPR.Controllers.RentalController}!\_crypt@{\_crypt}}
 \index{\_crypt@{\_crypt}!WPR.Controllers.RentalController@{WPR.Controllers.RentalController}}
 \doxysubsubsection{\texorpdfstring{\_crypt}{\_crypt}}
@@ -141,6 +620,10 @@ readonly \mbox{\hyperlink{class_w_p_r_1_1_cryption_1_1_crypt}{Crypt}} WPR.\+Cont
 
 
 De definitie bevindt zich op regel \mbox{\hyperlink{_rental_controller_8cs_source_l00019}{19}} in het bestand \mbox{\hyperlink{_rental_controller_8cs_source}{Rental\+Controller.\+cs}}.
+
+
+
+Wordt aangeroepen door \mbox{\hyperlink{_rental_controller_8cs_source_l00275}{Cancel\+Rental\+Async()}}, \mbox{\hyperlink{_rental_controller_8cs_source_l00033}{Create\+Rental()}}, \mbox{\hyperlink{_rental_controller_8cs_source_l00318}{Get\+All\+User\+Rentals\+Async()}} en \mbox{\hyperlink{_rental_controller_8cs_source_l00023}{Rental\+Controller()}}.
 
 \Hypertarget{class_w_p_r_1_1_controllers_1_1_rental_controller_ad6953d21870b99114e18e2743dc25347}\index{WPR.Controllers.RentalController@{WPR.Controllers.RentalController}!\_emailService@{\_emailService}}
 \index{\_emailService@{\_emailService}!WPR.Controllers.RentalController@{WPR.Controllers.RentalController}}
@@ -152,6 +635,10 @@ readonly \mbox{\hyperlink{class_w_p_r_1_1_services_1_1_email_service}{Email\+Ser
 
 De definitie bevindt zich op regel \mbox{\hyperlink{_rental_controller_8cs_source_l00020}{20}} in het bestand \mbox{\hyperlink{_rental_controller_8cs_source}{Rental\+Controller.\+cs}}.
 
+
+
+Wordt aangeroepen door \mbox{\hyperlink{_rental_controller_8cs_source_l00033}{Create\+Rental()}} en \mbox{\hyperlink{_rental_controller_8cs_source_l00023}{Rental\+Controller()}}.
+
 \Hypertarget{class_w_p_r_1_1_controllers_1_1_rental_controller_a895fe897d0d83bccbe12f6a40e25f5af}\index{WPR.Controllers.RentalController@{WPR.Controllers.RentalController}!\_vehicleRepo@{\_vehicleRepo}}
 \index{\_vehicleRepo@{\_vehicleRepo}!WPR.Controllers.RentalController@{WPR.Controllers.RentalController}}
 \doxysubsubsection{\texorpdfstring{\_vehicleRepo}{\_vehicleRepo}}
@@ -161,6 +648,10 @@ readonly \mbox{\hyperlink{class_w_p_r_1_1_repository_1_1_vehicle_repository}{Veh
 
 
 De definitie bevindt zich op regel \mbox{\hyperlink{_rental_controller_8cs_source_l00021}{21}} in het bestand \mbox{\hyperlink{_rental_controller_8cs_source}{Rental\+Controller.\+cs}}.
+
+
+
+Wordt aangeroepen door \mbox{\hyperlink{_rental_controller_8cs_source_l00033}{Create\+Rental()}}, \mbox{\hyperlink{_rental_controller_8cs_source_l00318}{Get\+All\+User\+Rentals\+Async()}} en \mbox{\hyperlink{_rental_controller_8cs_source_l00023}{Rental\+Controller()}}.
 
 
 

@@ -2,8 +2,7 @@
 \hypertarget{class_w_p_r_1_1_controllers_1_1_cookie_1_1_session_handler}{}\label{class_w_p_r_1_1_controllers_1_1_cookie_1_1_session_handler}\index{WPR.Controllers.Cookie.SessionHandler@{WPR.Controllers.Cookie.SessionHandler}}
 
 
-Klasse diagram voor WPR.\+Controllers.\+Cookie.\+Session\+Handler
-\nopagebreak
+Klasse diagram voor WPR.\+Controllers.\+Cookie.\+Session\+Handler\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -12,8 +11,7 @@ Klasse diagram voor WPR.\+Controllers.\+Cookie.\+Session\+Handler
 \end{figure}
 
 
-Collaboratie diagram voor WPR.\+Controllers.\+Cookie.\+Session\+Handler\+:
-\nopagebreak
+Collaboratie diagram voor WPR.\+Controllers.\+Cookie.\+Session\+Handler\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -59,6 +57,17 @@ void WPR.\+Controllers.\+Cookie.\+Session\+Handler.\+Create\+Cookie (\begin{Doxy
 
 De definitie bevindt zich op regel \mbox{\hyperlink{_session_handler_8cs_source_l00008}{8}} in het bestand \mbox{\hyperlink{_session_handler_8cs_source}{Session\+Handler.\+cs}}.
 
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00009\ \ \ \ \ \{}
+\DoxyCodeLine{00010\ \ \ \ \ \ \ \ \ responseCookies.Append(cookieName,\ cookieValue,\ \textcolor{keyword}{new}\ CookieOptions}
+\DoxyCodeLine{00011\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00012\ \ \ \ \ \ \ \ \ \ \ \ \ HttpOnly\ =\ \textcolor{keyword}{true},}
+\DoxyCodeLine{00013\ \ \ \ \ \ \ \ \ \ \ \ \ Expires\ =\ DateTimeOffset.Now.AddMinutes(30)}
+\DoxyCodeLine{00014\ \ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{00015\ \ \ \ \ \}}
+
+\end{DoxyCode}
 \Hypertarget{class_w_p_r_1_1_controllers_1_1_cookie_1_1_session_handler_a9a47c7ed04e4289c42c25b497edecb85}\index{WPR.Controllers.Cookie.SessionHandler@{WPR.Controllers.Cookie.SessionHandler}!CreateInvalidCookie@{CreateInvalidCookie}}
 \index{CreateInvalidCookie@{CreateInvalidCookie}!WPR.Controllers.Cookie.SessionHandler@{WPR.Controllers.Cookie.SessionHandler}}
 \doxysubsubsection{\texorpdfstring{CreateInvalidCookie()}{CreateInvalidCookie()}}
@@ -69,6 +78,21 @@ void WPR.\+Controllers.\+Cookie.\+Session\+Handler.\+Create\+Invalid\+Cookie (\b
 
 De definitie bevindt zich op regel \mbox{\hyperlink{_session_handler_8cs_source_l00018}{18}} in het bestand \mbox{\hyperlink{_session_handler_8cs_source}{Session\+Handler.\+cs}}.
 
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00019\ \ \ \ \ \{}
+\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ responseCookies.Append(cookieName,\ \textcolor{stringliteral}{"{}"{}},\ \textcolor{keyword}{new}\ CookieOptions}
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ \ \ \ \ HttpOnly\ =\ \textcolor{keyword}{true},}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \ \ \ \ Expires\ =\ DateTimeOffset.Now.AddMinutes(-\/1),}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \ \ \ \ MaxAge\ =\ TimeSpan.Zero,}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \ \ \ \ Path\ =\ \textcolor{stringliteral}{"{}/"{}}}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ Console.WriteLine(\$\textcolor{stringliteral}{"{}Cookie\ invalidated:\ \{cookieName\}"{}});}
+\DoxyCodeLine{00029\ \ \ \ \ \}}
+
+\end{DoxyCode}
 \Hypertarget{class_w_p_r_1_1_controllers_1_1_cookie_1_1_session_handler_a86bb829c60b456125325fe40176732bd}\index{WPR.Controllers.Cookie.SessionHandler@{WPR.Controllers.Cookie.SessionHandler}!Dispose@{Dispose}}
 \index{Dispose@{Dispose}!WPR.Controllers.Cookie.SessionHandler@{WPR.Controllers.Cookie.SessionHandler}}
 \doxysubsubsection{\texorpdfstring{Dispose()}{Dispose()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
@@ -79,16 +103,30 @@ void WPR.\+Controllers.\+Cookie.\+Session\+Handler.\+Dispose (\begin{DoxyParamCa
 
 De definitie bevindt zich op regel \mbox{\hyperlink{_session_handler_8cs_source_l00043}{43}} in het bestand \mbox{\hyperlink{_session_handler_8cs_source}{Session\+Handler.\+cs}}.
 
-Hier is de call graaf voor deze functie\+:
-\nopagebreak
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00044\ \ \ \ \ \{}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ Dispose(disposing:\ \textcolor{keyword}{true});}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ GC.SuppressFinalize(\textcolor{keyword}{this});}
+\DoxyCodeLine{00047\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+Gebruikt \mbox{\hyperlink{_session_handler_8cs_source_l00043}{Dispose()}}.
+
+
+
+Wordt aangeroepen door \mbox{\hyperlink{_session_handler_8cs_source_l00043}{Dispose()}}.
+
+Hier is de call graaf voor deze functie\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=242pt]{class_w_p_r_1_1_controllers_1_1_cookie_1_1_session_handler_a86bb829c60b456125325fe40176732bd_cgraph}
 \end{center}
 \end{figure}
-Hier is de caller graaf voor deze functie\+:
-\nopagebreak
+Hier is de caller graaf voor deze functie\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -106,6 +144,24 @@ virtual void WPR.\+Controllers.\+Cookie.\+Session\+Handler.\+Dispose (\begin{Dox
 De definitie bevindt zich op regel \mbox{\hyperlink{_session_handler_8cs_source_l00031}{31}} in het bestand \mbox{\hyperlink{_session_handler_8cs_source}{Session\+Handler.\+cs}}.
 
 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00032\ \ \ \ \ \{}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!disposedValue)}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (disposing)}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \ \ \ \ disposedValue\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00041\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+Gebruikt \mbox{\hyperlink{_session_handler_8cs_source_l00005}{disposed\+Value}}.
+
+
 
 \doxysubsection{Documentatie van data members}
 \Hypertarget{class_w_p_r_1_1_controllers_1_1_cookie_1_1_session_handler_a004fffde172842d3c33da2c8923c4762}\index{WPR.Controllers.Cookie.SessionHandler@{WPR.Controllers.Cookie.SessionHandler}!disposedValue@{disposedValue}}
@@ -117,6 +173,10 @@ bool WPR.\+Controllers.\+Cookie.\+Session\+Handler.\+disposed\+Value\hspace{0.3c
 
 
 De definitie bevindt zich op regel \mbox{\hyperlink{_session_handler_8cs_source_l00005}{5}} in het bestand \mbox{\hyperlink{_session_handler_8cs_source}{Session\+Handler.\+cs}}.
+
+
+
+Wordt aangeroepen door \mbox{\hyperlink{_session_handler_8cs_source_l00031}{Dispose()}}.
 
 
 

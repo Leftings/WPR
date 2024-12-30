@@ -158,6 +158,13 @@ Private Attributen</h2></td></tr>
 </div><div class="memdoc">
 
 <p class="definition">De definitie bevindt zich op regel <a class="el" href="employee_backend_2src_2_cryption_2crypt_8cs_source.html#l00013">13</a> in het bestand <a class="el" href="employee_backend_2src_2_cryption_2crypt_8cs_source.html">crypt.cs</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   14</span>    {</div>
+<div class="line"><span class="lineno">   15</span>        _envConfig = envConfig;</div>
+<div class="line"><span class="lineno">   16</span>        _key = Convert.FromBase64String(_envConfig.Get(<span class="stringliteral">&quot;CRYPTION_KEY&quot;</span>));</div>
+<div class="line"><span class="lineno">   17</span>        _IV = Convert.FromBase64String(_envConfig.Get(<span class="stringliteral">&quot;CRYPTION_IV&quot;</span>));</div>
+<div class="line"><span class="lineno">   18</span>    }</div>
+</div><!-- fragment -->
+<p class="reference">Gebruikt <a class="el" href="employee_backend_2src_2_cryption_2crypt_8cs_source.html#l00010">_envConfig</a>, <a class="el" href="employee_backend_2src_2_cryption_2crypt_8cs_source.html#l00012">_IV</a> en <a class="el" href="employee_backend_2src_2_cryption_2crypt_8cs_source.html#l00011">_key</a>.</p>
 
 </div>
 </div>
@@ -178,6 +185,32 @@ Private Attributen</h2></td></tr>
 </div><div class="memdoc">
 
 <p class="definition">De definitie bevindt zich op regel <a class="el" href="employee_backend_2src_2_cryption_2crypt_8cs_source.html#l00051">51</a> in het bestand <a class="el" href="employee_backend_2src_2_cryption_2crypt_8cs_source.html">crypt.cs</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   52</span>    {</div>
+<div class="line"><span class="lineno">   53</span>        <span class="keywordflow">if</span> (<span class="keywordtype">string</span>.IsNullOrEmpty(encrypted))</div>
+<div class="line"><span class="lineno">   54</span>        {</div>
+<div class="line"><span class="lineno">   55</span>            <span class="keywordflow">return</span> <span class="stringliteral">&quot;Nothing to decrypt&quot;</span>;</div>
+<div class="line"><span class="lineno">   56</span>        }</div>
+<div class="line"><span class="lineno">   57</span> </div>
+<div class="line"><span class="lineno">   58</span>        <span class="comment">// Er wordt een nieuw Advanced Encryption Standard (AES) aangemaakt</span></div>
+<div class="line"><span class="lineno">   59</span>        <span class="keyword">using</span> (Aes aes = Aes.Create())</div>
+<div class="line"><span class="lineno">   60</span>        {</div>
+<div class="line"><span class="lineno">   61</span>            aes.Key = _key; <span class="comment">// 256-bit sleutel</span></div>
+<div class="line"><span class="lineno">   62</span>            aes.IV = _IV; <span class="comment">// 128-bit IV, waardoor dezelfde tekst op verschillend geencrypt kan worden</span></div>
+<div class="line"><span class="lineno">   63</span> </div>
+<div class="line"><span class="lineno">   64</span>            <span class="keywordtype">byte</span>[] buffer = Convert.FromBase64String(encrypted); <span class="comment">// De gencrypte tekst wordt omgezet in bytes</span></div>
+<div class="line"><span class="lineno">   65</span> </div>
+<div class="line"><span class="lineno">   66</span>            <span class="comment">// De Crypto Stream zorgt ervoor dat er gedecrypt kan worden</span></div>
+<div class="line"><span class="lineno">   67</span>            <span class="comment">// De Stream Write zorgt ervoor dat de de tekst naar de Crypto Stream wordt geschreven</span></div>
+<div class="line"><span class="lineno">   68</span>            <span class="keyword">using</span> (MemoryStream ms = <span class="keyword">new</span> MemoryStream(buffer))</div>
+<div class="line"><span class="lineno">   69</span>            <span class="keyword">using</span> (CryptoStream cs = <span class="keyword">new</span> CryptoStream(ms, aes.CreateDecryptor(), CryptoStreamMode.Read))</div>
+<div class="line"><span class="lineno">   70</span>            <span class="keyword">using</span> (StreamReader sr = <span class="keyword">new</span> StreamReader(cs))</div>
+<div class="line"><span class="lineno">   71</span>            {</div>
+<div class="line"><span class="lineno">   72</span>                <span class="keywordflow">return</span> sr.ReadToEnd();</div>
+<div class="line"><span class="lineno">   73</span>            }</div>
+<div class="line"><span class="lineno">   74</span>        }</div>
+<div class="line"><span class="lineno">   75</span>    }</div>
+</div><!-- fragment -->
+<p class="reference">Gebruikt <a class="el" href="employee_backend_2src_2_cryption_2crypt_8cs_source.html#l00012">_IV</a> en <a class="el" href="employee_backend_2src_2_cryption_2crypt_8cs_source.html#l00011">_key</a>.</p>
 
 </div>
 </div>
@@ -197,6 +230,35 @@ Private Attributen</h2></td></tr>
 </div><div class="memdoc">
 
 <p class="definition">De definitie bevindt zich op regel <a class="el" href="employee_backend_2src_2_cryption_2crypt_8cs_source.html#l00021">21</a> in het bestand <a class="el" href="employee_backend_2src_2_cryption_2crypt_8cs_source.html">crypt.cs</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   22</span>    {</div>
+<div class="line"><span class="lineno">   23</span>        <span class="keywordflow">if</span> (<span class="keywordtype">string</span>.IsNullOrEmpty(text))</div>
+<div class="line"><span class="lineno">   24</span>        {</div>
+<div class="line"><span class="lineno">   25</span>            <span class="keywordflow">return</span> <span class="stringliteral">&quot;Nothing to encrypt&quot;</span>;</div>
+<div class="line"><span class="lineno">   26</span>        }</div>
+<div class="line"><span class="lineno">   27</span> </div>
+<div class="line"><span class="lineno">   28</span>        <span class="comment">// Er wordt een nieuw Advanced Encryption Standard (AES) aangemaakt</span></div>
+<div class="line"><span class="lineno">   29</span>        <span class="keyword">using</span> (Aes aes = Aes.Create())</div>
+<div class="line"><span class="lineno">   30</span>        {</div>
+<div class="line"><span class="lineno">   31</span>            aes.Key = _key; <span class="comment">// 256-bit sleutel</span></div>
+<div class="line"><span class="lineno">   32</span>            aes.IV = _IV; <span class="comment">// 128-bit IV, waardoor dezelfde tekst op verschillend geencrypt kan worden</span></div>
+<div class="line"><span class="lineno">   33</span> </div>
+<div class="line"><span class="lineno">   34</span>            <span class="comment">// Meegegevens text wordt tijdelijk in het geheugen gebruikt en maakt van de geencrypte tekst een Base64 string</span></div>
+<div class="line"><span class="lineno">   35</span>            <span class="keyword">using</span> (MemoryStream ms = <span class="keyword">new</span> MemoryStream())</div>
+<div class="line"><span class="lineno">   36</span>            {</div>
+<div class="line"><span class="lineno">   37</span>                <span class="comment">// De Crypto Stream zorgt ervoor dat er geencrypt kan worden</span></div>
+<div class="line"><span class="lineno">   38</span>                <span class="comment">// De Stream Write zorgt ervoor dat de de tekst naar de Crypto Stream wordt geschreven</span></div>
+<div class="line"><span class="lineno">   39</span>                <span class="keyword">using</span> (CryptoStream cs = <span class="keyword">new</span> CryptoStream(ms, aes.CreateEncryptor(), CryptoStreamMode.Write))</div>
+<div class="line"><span class="lineno">   40</span>                <span class="keyword">using</span> (StreamWriter sw = <span class="keyword">new</span> StreamWriter(cs))</div>
+<div class="line"><span class="lineno">   41</span>                {</div>
+<div class="line"><span class="lineno">   42</span>                    sw.Write(text);</div>
+<div class="line"><span class="lineno">   43</span>                }</div>
+<div class="line"><span class="lineno">   44</span> </div>
+<div class="line"><span class="lineno">   45</span>                <span class="keywordflow">return</span> Convert.ToBase64String(ms.ToArray());</div>
+<div class="line"><span class="lineno">   46</span>            }</div>
+<div class="line"><span class="lineno">   47</span>        }</div>
+<div class="line"><span class="lineno">   48</span>    }</div>
+</div><!-- fragment -->
+<p class="reference">Gebruikt <a class="el" href="employee_backend_2src_2_cryption_2crypt_8cs_source.html#l00012">_IV</a> en <a class="el" href="employee_backend_2src_2_cryption_2crypt_8cs_source.html#l00011">_key</a>.</p>
 
 </div>
 </div>
@@ -223,6 +285,8 @@ Private Attributen</h2></td></tr>
 
 <p class="definition">De definitie bevindt zich op regel <a class="el" href="employee_backend_2src_2_cryption_2crypt_8cs_source.html#l00010">10</a> in het bestand <a class="el" href="employee_backend_2src_2_cryption_2crypt_8cs_source.html">crypt.cs</a>.</p>
 
+<p class="reference">Wordt aangeroepen door <a class="el" href="employee_backend_2src_2_cryption_2crypt_8cs_source.html#l00013">Crypt()</a>.</p>
+
 </div>
 </div>
 <a id="ae725194d093e1ec8bf0690429d1945af" name="ae725194d093e1ec8bf0690429d1945af"></a>
@@ -247,6 +311,8 @@ Private Attributen</h2></td></tr>
 
 <p class="definition">De definitie bevindt zich op regel <a class="el" href="employee_backend_2src_2_cryption_2crypt_8cs_source.html#l00012">12</a> in het bestand <a class="el" href="employee_backend_2src_2_cryption_2crypt_8cs_source.html">crypt.cs</a>.</p>
 
+<p class="reference">Wordt aangeroepen door <a class="el" href="employee_backend_2src_2_cryption_2crypt_8cs_source.html#l00013">Crypt()</a>, <a class="el" href="employee_backend_2src_2_cryption_2crypt_8cs_source.html#l00051">Decrypt()</a> en <a class="el" href="employee_backend_2src_2_cryption_2crypt_8cs_source.html#l00021">Encrypt()</a>.</p>
+
 </div>
 </div>
 <a id="a39dbf846563e4e9d437d973af0e298e7" name="a39dbf846563e4e9d437d973af0e298e7"></a>
@@ -270,6 +336,8 @@ Private Attributen</h2></td></tr>
 </div><div class="memdoc">
 
 <p class="definition">De definitie bevindt zich op regel <a class="el" href="employee_backend_2src_2_cryption_2crypt_8cs_source.html#l00011">11</a> in het bestand <a class="el" href="employee_backend_2src_2_cryption_2crypt_8cs_source.html">crypt.cs</a>.</p>
+
+<p class="reference">Wordt aangeroepen door <a class="el" href="employee_backend_2src_2_cryption_2crypt_8cs_source.html#l00013">Crypt()</a>, <a class="el" href="employee_backend_2src_2_cryption_2crypt_8cs_source.html#l00051">Decrypt()</a> en <a class="el" href="employee_backend_2src_2_cryption_2crypt_8cs_source.html#l00021">Encrypt()</a>.</p>
 
 </div>
 </div>

@@ -150,6 +150,19 @@ Static Public Members</h2></td></tr>
 </div><div class="memdoc">
 
 <p class="definition">De definitie bevindt zich op regel <a class="el" href="employee_backend_2src_2_program_8cs_source.html#l00005">5</a> in het bestand <a class="el" href="employee_backend_2src_2_program_8cs_source.html">Program.cs</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">    6</span>    {</div>
+<div class="line"><span class="lineno">    7</span> </div>
+<div class="line"><span class="lineno">    8</span>        var app = AppConfigure.ConfigureApplication(args);</div>
+<div class="line"><span class="lineno">    9</span> </div>
+<div class="line"><span class="lineno">   10</span>        <span class="keyword">using</span> (var scope = app.Services.CreateScope())</div>
+<div class="line"><span class="lineno">   11</span>        {</div>
+<div class="line"><span class="lineno">   12</span>            AppConfigure.InitDatabase(scope.ServiceProvider);</div>
+<div class="line"><span class="lineno">   13</span>        }</div>
+<div class="line"><span class="lineno">   14</span> </div>
+<div class="line"><span class="lineno">   15</span>        app.Run();</div>
+<div class="line"><span class="lineno">   16</span>    }</div>
+</div><!-- fragment -->
+<p class="reference">Gebruikt <a class="el" href="employee_backend_2src_2_app_configure_8cs_source.html#l00047">Employee.AppConfigure.ConfigureApplication()</a> en <a class="el" href="employee_backend_2src_2_app_configure_8cs_source.html#l00023">Employee.AppConfigure.InitDatabase()</a>.</p>
 <div class="dynheader">
 Hier is de call graaf voor deze functie:</div>
 <div class="dyncontent">

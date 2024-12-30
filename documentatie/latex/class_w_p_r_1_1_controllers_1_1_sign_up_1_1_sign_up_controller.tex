@@ -2,8 +2,7 @@
 \hypertarget{class_w_p_r_1_1_controllers_1_1_sign_up_1_1_sign_up_controller}{}\label{class_w_p_r_1_1_controllers_1_1_sign_up_1_1_sign_up_controller}\index{WPR.Controllers.SignUp.SignUpController@{WPR.Controllers.SignUp.SignUpController}}
 
 
-Klasse diagram voor WPR.\+Controllers.\+Sign\+Up.\+Sign\+Up\+Controller
-\nopagebreak
+Klasse diagram voor WPR.\+Controllers.\+Sign\+Up.\+Sign\+Up\+Controller\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -12,8 +11,7 @@ Klasse diagram voor WPR.\+Controllers.\+Sign\+Up.\+Sign\+Up\+Controller
 \end{figure}
 
 
-Collaboratie diagram voor WPR.\+Controllers.\+Sign\+Up.\+Sign\+Up\+Controller\+:
-\nopagebreak
+Collaboratie diagram voor WPR.\+Controllers.\+Sign\+Up.\+Sign\+Up\+Controller\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -68,6 +66,21 @@ WPR.\+Controllers.\+Sign\+Up.\+Sign\+Up\+Controller.\+Sign\+Up\+Controller (\beg
 De definitie bevindt zich op regel \mbox{\hyperlink{sign_up_controller_8cs_source_l00024}{24}} in het bestand \mbox{\hyperlink{sign_up_controller_8cs_source}{sign\+Up\+Controller.\+cs}}.
 
 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00025\ \ \ \ \ \{}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \_connector\ =\ connector\ ??\ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ ArgumentNullException(nameof(connector));}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \_userRepository\ =\ userRepository\ ??\ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ ArgumentNullException(nameof(userRepository));}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \_envConfig\ =\ envConfig\ ??\ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ ArgumentNullException(nameof(envConfig));}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \_hash\ =\ hash\ ??\ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ ArgumentNullException(nameof(hash));}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \_emailService\ =\ emailService\ ??\ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ ArgumentNullException(nameof(emailService));}
+\DoxyCodeLine{00031\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+Gebruikt \mbox{\hyperlink{sign_up_controller_8cs_source_l00018}{\+\_\+connector}}, \mbox{\hyperlink{sign_up_controller_8cs_source_l00022}{\+\_\+email\+Service}}, \mbox{\hyperlink{sign_up_controller_8cs_source_l00020}{\+\_\+env\+Config}}, \mbox{\hyperlink{sign_up_controller_8cs_source_l00021}{\+\_\+hash}} en \mbox{\hyperlink{sign_up_controller_8cs_source_l00019}{\+\_\+user\+Repository}}.
+
+
 
 \doxysubsection{Documentatie van functie members}
 \Hypertarget{class_w_p_r_1_1_controllers_1_1_sign_up_1_1_sign_up_controller_a26f172ac90a38512ee5b1863f405649a}\index{WPR.Controllers.SignUp.SignUpController@{WPR.Controllers.SignUp.SignUpController}!IsFilledIn@{IsFilledIn}}
@@ -80,8 +93,28 @@ bool WPR.\+Controllers.\+Sign\+Up.\+Sign\+Up\+Controller.\+Is\+Filled\+In (\begi
 
 De definitie bevindt zich op regel \mbox{\hyperlink{sign_up_controller_8cs_source_l00034}{34}} in het bestand \mbox{\hyperlink{sign_up_controller_8cs_source}{sign\+Up\+Controller.\+cs}}.
 
-Hier is de caller graaf voor deze functie\+:
-\nopagebreak
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00035\ \ \ \ \ \{}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ }
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ !(signUpRequest\ ==\ \textcolor{keyword}{null}}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ ||\ \textcolor{keywordtype}{string}.IsNullOrEmpty(signUpRequest.Email)}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ ||\ \textcolor{keywordtype}{string}.IsNullOrEmpty(signUpRequest.Password)}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ ||\ \textcolor{keywordtype}{string}.IsNullOrEmpty(signUpRequest.FirstName)}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ ||\ \textcolor{keywordtype}{string}.IsNullOrEmpty(signUpRequest.LastName)}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ ||\ \textcolor{keywordtype}{string}.IsNullOrEmpty(signUpRequest.TelNumber));}
+\DoxyCodeLine{00043\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+Gebruikt \mbox{\hyperlink{backend_2src_2_controllers_2sign_up_2sign_up_request_8cs_source_l00008}{WPR.\+Controllers.\+Sign\+Up.\+Sign\+Up\+Request.\+Email}}, \mbox{\hyperlink{backend_2src_2_controllers_2sign_up_2sign_up_request_8cs_source_l00010}{WPR.\+Controllers.\+Sign\+Up.\+Sign\+Up\+Request.\+First\+Name}}, \mbox{\hyperlink{backend_2src_2_controllers_2sign_up_2sign_up_request_8cs_source_l00011}{WPR.\+Controllers.\+Sign\+Up.\+Sign\+Up\+Request.\+Last\+Name}}, \mbox{\hyperlink{backend_2src_2_controllers_2sign_up_2sign_up_request_8cs_source_l00009}{WPR.\+Controllers.\+Sign\+Up.\+Sign\+Up\+Request.\+Password}} en \mbox{\hyperlink{backend_2src_2_controllers_2sign_up_2sign_up_request_8cs_source_l00012}{WPR.\+Controllers.\+Sign\+Up.\+Sign\+Up\+Request.\+Tel\+Number}}.
+
+
+
+Wordt aangeroepen door \mbox{\hyperlink{sign_up_controller_8cs_source_l00166}{sign\+Up\+Employee\+Async()}} en \mbox{\hyperlink{sign_up_controller_8cs_source_l00047}{sign\+Up\+Personal\+Async()}}.
+
+Hier is de caller graaf voor deze functie\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -98,8 +131,126 @@ async Task$<$ IAction\+Result $>$ WPR.\+Controllers.\+Sign\+Up.\+Sign\+Up\+Contr
 
 De definitie bevindt zich op regel \mbox{\hyperlink{sign_up_controller_8cs_source_l00166}{166}} in het bestand \mbox{\hyperlink{sign_up_controller_8cs_source}{sign\+Up\+Controller.\+cs}}.
 
-Hier is de call graaf voor deze functie\+:
-\nopagebreak
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00167\ \ \ \ \ \{}
+\DoxyCodeLine{00168\ \ \ \ \ \ \ \ \ var\ connection\ =\ \_connector.CreateDbConnection();}
+\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ var\ emailCheck\ =\ \_userRepository.checkUsageEmailAsync(signUpRequest.Email);}
+\DoxyCodeLine{00170\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ commit\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00171\ }
+\DoxyCodeLine{00172\ \ \ \ \ \ \ \ \ \textcolor{keyword}{using}\ (var\ transaction\ =\ connection.BeginTransaction())}
+\DoxyCodeLine{00173\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00174\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}}
+\DoxyCodeLine{00175\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00176\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Er\ wordt\ gekeken\ of\ alle\ velden\ zijn\ ingevuld}}
+\DoxyCodeLine{00177\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ filledIn\ =\ IsFilledIn(signUpRequest);}
+\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!filledIn\ )}
+\DoxyCodeLine{00179\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00180\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ BadRequest(\textcolor{keyword}{new}\ \{\ message\ =\ \textcolor{stringliteral}{"{}Not\ all\ elements\ are\ filled\ in"{}}\ \});}
+\DoxyCodeLine{00181\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00182\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Er\ wordt\ gekeken\ of\ het\ opgegeven\ emailadress\ valid\ is}}
+\DoxyCodeLine{00183\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!EmailChecker.IsValidEmail(signUpRequest.Email))}
+\DoxyCodeLine{00184\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00185\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ BadRequest(\textcolor{keyword}{new}\ \{\ message\ =\ \textcolor{stringliteral}{"{}Invalid\ email\ format"{}}\ \});}
+\DoxyCodeLine{00186\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00187\ }
+\DoxyCodeLine{00188\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ er\ wordt\ gekeken\ of\ het\ opgegevens\ KvK\ nummer\ in\ de\ DataBase\ staat}}
+\DoxyCodeLine{00189\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ var\ kvkChecker\ =\ \textcolor{keyword}{new}\ KvkChecker(\_userRepository);}
+\DoxyCodeLine{00190\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ var\ (isValidKvk,\ kvkErrorMessage)\ =\ await\ kvkChecker.IsKvkNumberValid(signUpRequest.KvK);}
+\DoxyCodeLine{00191\ }
+\DoxyCodeLine{00192\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!isValidKvk)}
+\DoxyCodeLine{00193\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00194\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ BadRequest(\textcolor{keyword}{new}\ \{\ message\ =\ kvkErrorMessage\ \});}
+\DoxyCodeLine{00195\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00196\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00197\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Er\ wordt\ gekeken\ of\ het\ wachtwoord\ bestaat\ uit\ minstens\ 10\ karakters,\ 1\ hoofdletter,\ 1\ kleine\ letter,\ 1\ cijfer\ en\ 1\ speciaal\ teken}}
+\DoxyCodeLine{00198\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ var\ (isPasswordValid,\ passwordError)\ =\ PasswordChecker.IsValidPassword(signUpRequest.Password);}
+\DoxyCodeLine{00199\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!isPasswordValid)}
+\DoxyCodeLine{00200\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00201\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ BadRequest(\textcolor{keyword}{new}\ \{\ message\ =\ passwordError\ \});}
+\DoxyCodeLine{00202\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00203\ }
+\DoxyCodeLine{00204\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ var\ emailStatus\ =\ await\ emailCheck;}
+\DoxyCodeLine{00205\ }
+\DoxyCodeLine{00206\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Er\ wordt\ gekeken\ of\ er\ een\ geldig\ 06-\/nummer\ is\ opgegeven}}
+\DoxyCodeLine{00207\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!TelChecker.IsValidPhoneNumber(signUpRequest.TelNumber))}
+\DoxyCodeLine{00208\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00209\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ BadRequest(\textcolor{keyword}{new}\ \{\ message\ =\ \textcolor{stringliteral}{"{}Invalid\ phone\ number"{}}\ \});}
+\DoxyCodeLine{00210\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00211\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (emailStatus.status)}
+\DoxyCodeLine{00212\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00213\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ transaction.Rollback();}
+\DoxyCodeLine{00214\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ commit\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00215\ }
+\DoxyCodeLine{00216\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ BadRequest(\ \textcolor{keyword}{new}\ \{\ message\ =\ \textcolor{stringliteral}{"{}Email\ already\ exists"{}}\}\ );}
+\DoxyCodeLine{00217\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00218\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Als\ alle\ velden\ zijn\ ingevuld\ en\ het\ KvK\ nummer\ is\ niet\ leeg,\ dan\ wordt\ er\ een\ nieuwe\ customer\ aangemaakt}}
+\DoxyCodeLine{00219\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (filledIn\ \&\&\ signUpRequest.KvK\ !=\ \textcolor{keyword}{null})}
+\DoxyCodeLine{00220\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00221\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Er\ wordt\ in\ de\ table\ UserCustomer\ een\ gebruiker\ aangemaakt}}
+\DoxyCodeLine{00222\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ var\ customer\ =\ await\ \_userRepository.addCustomerAsync(\textcolor{keyword}{new}\ \textcolor{keywordtype}{object}[]\ }
+\DoxyCodeLine{00223\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00224\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ signUpRequest.Adres,}
+\DoxyCodeLine{00225\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ signUpRequest.TelNumber,}
+\DoxyCodeLine{00226\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \_hash.createHash(signUpRequest.Password),}
+\DoxyCodeLine{00227\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ signUpRequest.Email,}
+\DoxyCodeLine{00228\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ signUpRequest.FirstName,}
+\DoxyCodeLine{00229\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ signUpRequest.LastName}
+\DoxyCodeLine{00230\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{00231\ }
+\DoxyCodeLine{00232\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Er\ wordt\ aan\ de\ nieuw\ aangemaakt\ customer\ het\ opgegeven\ KvK\ nummer\ gekoppeld\ in\ de\ tabel\ UserEmployee}}
+\DoxyCodeLine{00233\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ var\ employee\ =\ await\ \_userRepository.addEmployeeCustomerAsync(\textcolor{keyword}{new}\ \textcolor{keywordtype}{object}[]\ }
+\DoxyCodeLine{00234\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00235\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ customer.newUserID,}
+\DoxyCodeLine{00236\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ signUpRequest.KvK}
+\DoxyCodeLine{00237\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{00238\ }
+\DoxyCodeLine{00239\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Als\ het\ opslaan\ van\ de\ medewerker\ mislukt\ wordt\ te\ transactie\ gerollbacked}}
+\DoxyCodeLine{00240\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!employee.status)}
+\DoxyCodeLine{00241\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00242\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ transaction.Rollback();}
+\DoxyCodeLine{00243\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ commit\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00244\ }
+\DoxyCodeLine{00245\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ BadRequest(\textcolor{keyword}{new}\ \{\ employee.status\ \});}
+\DoxyCodeLine{00246\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00247\ }
+\DoxyCodeLine{00248\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Er\ wordt\ een\ welkomsemail\ verstuurd}}
+\DoxyCodeLine{00249\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ await\ \_emailService.SendWelcomeEmail(signUpRequest.Email);}
+\DoxyCodeLine{00250\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Ok(\textcolor{keyword}{new}\ \{\ employee.status\ \});}
+\DoxyCodeLine{00251\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00252\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00253\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00254\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ BadRequest(\textcolor{keyword}{new}\ \{\ message\ =\ \textcolor{stringliteral}{"{}Something\ went\ wrong\ (Nothing\ mathced)"{}}\ \});}
+\DoxyCodeLine{00255\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00256\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00257\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (Exception\ ex)}
+\DoxyCodeLine{00258\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00259\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ transaction.Rollback();}
+\DoxyCodeLine{00260\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ commit\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00261\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00262\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ StatusCode(500,\ \textcolor{keyword}{new}}
+\DoxyCodeLine{00263\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00264\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ message\ =\ ex.Message,}
+\DoxyCodeLine{00265\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ details\ =\ ex.Message,}
+\DoxyCodeLine{00266\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ stackTrace\ =\ ex.StackTrace\ }
+\DoxyCodeLine{00267\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{00268\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00269\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{finally}}
+\DoxyCodeLine{00270\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00271\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (commit)}
+\DoxyCodeLine{00272\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00273\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ transaction.Commit();}
+\DoxyCodeLine{00274\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00275\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00276\ \ \ \ \ \ \ \ \ \}\ \ \ \ }
+\DoxyCodeLine{00277\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+Gebruikt \mbox{\hyperlink{sign_up_controller_8cs_source_l00018}{\+\_\+connector}}, \mbox{\hyperlink{sign_up_controller_8cs_source_l00022}{\+\_\+email\+Service}}, \mbox{\hyperlink{sign_up_controller_8cs_source_l00021}{\+\_\+hash}}, \mbox{\hyperlink{sign_up_controller_8cs_source_l00019}{\+\_\+user\+Repository}}, \mbox{\hyperlink{sign_up_controller_8cs_source_l00034}{Is\+Filled\+In()}}, \mbox{\hyperlink{backend_2src_2_utils_2_email_checker_8cs_source_l00010}{WPR.\+Utils.\+Email\+Checker.\+Is\+Valid\+Email()}}, \mbox{\hyperlink{backend_2src_2_utils_2_password_checker_8cs_source_l00011}{WPR.\+Utils.\+Password\+Checker.\+Is\+Valid\+Password()}} en \mbox{\hyperlink{_tel_checker_8cs_source_l00009}{WPR.\+Utils.\+Tel\+Checker.\+Is\+Valid\+Phone\+Number()}}.
+
+Hier is de call graaf voor deze functie\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -116,8 +267,131 @@ async Task$<$ IAction\+Result $>$ WPR.\+Controllers.\+Sign\+Up.\+Sign\+Up\+Contr
 
 De definitie bevindt zich op regel \mbox{\hyperlink{sign_up_controller_8cs_source_l00047}{47}} in het bestand \mbox{\hyperlink{sign_up_controller_8cs_source}{sign\+Up\+Controller.\+cs}}.
 
-Hier is de call graaf voor deze functie\+:
-\nopagebreak
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00048\ \ \ \ \ \{}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Het\ emailadres\ wordt\ gecontrolleerd\ of\ het\ emailadres\ al\ bestaat}}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ var\ emailCheck\ =\ \ \_userRepository.checkUsageEmailAsync(signUpRequest.Email);}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ commit\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \textcolor{keyword}{using}\ (var\ connection\ =\ \_connector.CreateDbConnection())}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \textcolor{keyword}{using}\ (var\ transaction\ =\ connection.BeginTransaction())}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \ \ \ \ Console.WriteLine(\$\textcolor{stringliteral}{"{}Received\ BirthDate:\ \{signUpRequest.BirthDate\}"{}});}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \ \ \ \ Console.WriteLine(\$\textcolor{stringliteral}{"{}\{signUpRequest.Email\}\ |\ \{signUpRequest.Password\}\ |\ \{signUpRequest.FirstName\}\ |\ \{signUpRequest.LastName\}\ |\ \{signUpRequest.TelNumber\}\ \{signUpRequest.Adres\}\ |\ \{signUpRequest.BirthDate\}"{}});}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Er\ wordt\ gekeken\ of\ alle\ gegevens\ ingevuld\ zijn}}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ filledIn\ =\ IsFilledIn(signUpRequest);}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!filledIn)}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ BadRequest(\textcolor{keyword}{new}\ \{\ message\ =\ \textcolor{stringliteral}{"{}Not\ all\ elements\ are\ filled\ in"{}}\ \});}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Er\ wordt\ gekeken\ of\ het\ opgegeven\ emailadres\ valid\ is}}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!EmailChecker.IsValidEmail(signUpRequest.Email))}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ BadRequest(\textcolor{keyword}{new}\ \{\ message\ =\ \textcolor{stringliteral}{"{}Invalid\ email\ format"{}}\ \});}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Er\ wordt\ gekeken\ of\ er\ een\ geldige\ geboorte\ datum\ ingevuld\ is\ (niet\ groter\ dan\ 120)}}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!BirthdayChecker.IsValidBirthday(signUpRequest.BirthDate))}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ BadRequest(\textcolor{keyword}{new}\ \{\ message\ =\ \textcolor{stringliteral}{"{}Invalid\ birthday\ format"{}}\ \});}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Er\ wordt\ gekeken\ of\ het\ ingevoerde\ telefoonnummer\ een\ geldig\ nederlands\ nummer\ is}}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!TelChecker.IsValidPhoneNumber(signUpRequest.TelNumber))}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ BadRequest(\textcolor{keyword}{new}\ \{\ message\ =\ \textcolor{stringliteral}{"{}Invalid\ phone\ number"{}}\ \});}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Er\ wordt\ gekeken\ of\ het\ wachtwoord\ bestaat\ uit\ minstens\ 10\ karakters,\ 1\ hoofdletter,\ 1\ kleine\ letter,\ 1\ cijfer\ en\ 1\ speciaal\ teken}}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ var\ (isPasswordValid,\ passwordError)\ =\ PasswordChecker.IsValidPassword(signUpRequest.Password);}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ var\ emailStatus\ =\ await\ emailCheck;}
+\DoxyCodeLine{00088\ }
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!isPasswordValid)}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ BadRequest(\textcolor{keyword}{new}\ \{\ message\ =\ passwordError\ \});}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00093\ }
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Als\ het\ emailadres\ al\ bestaat\ worden\ de\ gegevens\ gerollbacked}}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (emailStatus.status)}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ transaction.Rollback();}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ commit\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00099\ }
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ BadRequest(\ \textcolor{keyword}{new}\ \{\ message\ =\ \textcolor{stringliteral}{"{}Email\ already\ exists"{}}\}\ );}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00102\ }
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Als\ alle\ velden\ zijn\ ingevuld\ en\ de\ geboorte\ datum\ is\ ingevuld,\ wordt\ er\ een\ nieuwe\ customer\ aangemaakt}}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (filledIn\ \&\&\ signUpRequest.BirthDate\ !=\ \textcolor{keyword}{null})}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Er\ wordt\ een\ nieuwe\ gebruiker\ aangemaakt\ in\ de\ tabel\ UserCustomer}}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ var\ customer\ =\ await\ \_userRepository.addCustomerAsync(\textcolor{keyword}{new}\ \textcolor{keywordtype}{object}[]\ }
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ signUpRequest.Adres,}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ signUpRequest.TelNumber,}
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \_hash.createHash(signUpRequest.Password),}
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ signUpRequest.Email,}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ signUpRequest.FirstName,}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ signUpRequest.LastName}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{00116\ }
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Er\ wordt\ aan\ de\ nieuwe\ customer\ het\ opgegeven\ geboortedatum\ gekoppeld\ in\ de\ tabel\ UserPersonal}}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ var\ personal\ =\ await\ \_userRepository.addPersonalCustomerAsync(\textcolor{keyword}{new}\ \textcolor{keywordtype}{object}[]\ }
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ customer.newUserID,\ }
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ signUpRequest.BirthDate}
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{00123\ }
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Als\ het\ koppelen\ mislukt\ wordt\ de\ transactie\ geroldbacked}}
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!personal.status)}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ transaction.Rollback();}
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ commit\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00129\ }
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ BadRequest(\textcolor{keyword}{new}\ \{\ personal.message\ \});}
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00132\ }
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Er\ wordt\ een\ welkomsemail\ verstuurd}}
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ await\ \_emailService.SendWelcomeEmail(signUpRequest.Email);}
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Ok(\textcolor{keyword}{new}\ \{\ message\ =\ \textcolor{stringliteral}{"{}Account\ created\ successfully.\ Please\ check\ your\ email\ to\ confirm\ your\ account"{}}\ \});}
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ BadRequest(\textcolor{keyword}{new}\ \{\ message\ =\ \textcolor{stringliteral}{"{}Something\ went\ wrong\ (Nothing\ matched)"{}}\ \});}
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (Exception\ ex)}
+\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ transaction.Rollback();}
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ commit\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00147\ }
+\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ StatusCode(500,\ \textcolor{keyword}{new}}
+\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ message\ =\ ex.Message,}
+\DoxyCodeLine{00151\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ details\ =\ ex.Message,}
+\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ stackTrace\ =\ ex.StackTrace\ }
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{finally}}
+\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (commit)}
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ transaction.Commit();}
+\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00163\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+Gebruikt \mbox{\hyperlink{sign_up_controller_8cs_source_l00018}{\+\_\+connector}}, \mbox{\hyperlink{sign_up_controller_8cs_source_l00022}{\+\_\+email\+Service}}, \mbox{\hyperlink{sign_up_controller_8cs_source_l00021}{\+\_\+hash}}, \mbox{\hyperlink{sign_up_controller_8cs_source_l00019}{\+\_\+user\+Repository}}, \mbox{\hyperlink{sign_up_controller_8cs_source_l00034}{Is\+Filled\+In()}}, \mbox{\hyperlink{_birthday_checker_8cs_source_l00011}{WPR.\+Utils.\+Birthday\+Checker.\+Is\+Valid\+Birthday()}}, \mbox{\hyperlink{backend_2src_2_utils_2_email_checker_8cs_source_l00010}{WPR.\+Utils.\+Email\+Checker.\+Is\+Valid\+Email()}}, \mbox{\hyperlink{backend_2src_2_utils_2_password_checker_8cs_source_l00011}{WPR.\+Utils.\+Password\+Checker.\+Is\+Valid\+Password()}} en \mbox{\hyperlink{_tel_checker_8cs_source_l00009}{WPR.\+Utils.\+Tel\+Checker.\+Is\+Valid\+Phone\+Number()}}.
+
+Hier is de call graaf voor deze functie\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -137,6 +411,10 @@ readonly \mbox{\hyperlink{class_w_p_r_1_1_database_1_1_connector}{Connector}} WP
 
 De definitie bevindt zich op regel \mbox{\hyperlink{sign_up_controller_8cs_source_l00018}{18}} in het bestand \mbox{\hyperlink{sign_up_controller_8cs_source}{sign\+Up\+Controller.\+cs}}.
 
+
+
+Wordt aangeroepen door \mbox{\hyperlink{sign_up_controller_8cs_source_l00024}{Sign\+Up\+Controller()}}, \mbox{\hyperlink{sign_up_controller_8cs_source_l00166}{sign\+Up\+Employee\+Async()}} en \mbox{\hyperlink{sign_up_controller_8cs_source_l00047}{sign\+Up\+Personal\+Async()}}.
+
 \Hypertarget{class_w_p_r_1_1_controllers_1_1_sign_up_1_1_sign_up_controller_a242408fdc7b8a24e7d9d2fe42d025772}\index{WPR.Controllers.SignUp.SignUpController@{WPR.Controllers.SignUp.SignUpController}!\_emailService@{\_emailService}}
 \index{\_emailService@{\_emailService}!WPR.Controllers.SignUp.SignUpController@{WPR.Controllers.SignUp.SignUpController}}
 \doxysubsubsection{\texorpdfstring{\_emailService}{\_emailService}}
@@ -146,6 +424,10 @@ readonly \mbox{\hyperlink{class_w_p_r_1_1_services_1_1_email_service}{Email\+Ser
 
 
 De definitie bevindt zich op regel \mbox{\hyperlink{sign_up_controller_8cs_source_l00022}{22}} in het bestand \mbox{\hyperlink{sign_up_controller_8cs_source}{sign\+Up\+Controller.\+cs}}.
+
+
+
+Wordt aangeroepen door \mbox{\hyperlink{sign_up_controller_8cs_source_l00024}{Sign\+Up\+Controller()}}, \mbox{\hyperlink{sign_up_controller_8cs_source_l00166}{sign\+Up\+Employee\+Async()}} en \mbox{\hyperlink{sign_up_controller_8cs_source_l00047}{sign\+Up\+Personal\+Async()}}.
 
 \Hypertarget{class_w_p_r_1_1_controllers_1_1_sign_up_1_1_sign_up_controller_af1b0d02dc593a08292e221fde58142ef}\index{WPR.Controllers.SignUp.SignUpController@{WPR.Controllers.SignUp.SignUpController}!\_envConfig@{\_envConfig}}
 \index{\_envConfig@{\_envConfig}!WPR.Controllers.SignUp.SignUpController@{WPR.Controllers.SignUp.SignUpController}}
@@ -157,6 +439,10 @@ readonly \mbox{\hyperlink{class_w_p_r_1_1_data_1_1_env_config}{Env\+Config}} WPR
 
 De definitie bevindt zich op regel \mbox{\hyperlink{sign_up_controller_8cs_source_l00020}{20}} in het bestand \mbox{\hyperlink{sign_up_controller_8cs_source}{sign\+Up\+Controller.\+cs}}.
 
+
+
+Wordt aangeroepen door \mbox{\hyperlink{sign_up_controller_8cs_source_l00024}{Sign\+Up\+Controller()}}.
+
 \Hypertarget{class_w_p_r_1_1_controllers_1_1_sign_up_1_1_sign_up_controller_a0d25d7a98e5cab10fe7e1fa4c826b112}\index{WPR.Controllers.SignUp.SignUpController@{WPR.Controllers.SignUp.SignUpController}!\_hash@{\_hash}}
 \index{\_hash@{\_hash}!WPR.Controllers.SignUp.SignUpController@{WPR.Controllers.SignUp.SignUpController}}
 \doxysubsubsection{\texorpdfstring{\_hash}{\_hash}}
@@ -167,6 +453,10 @@ readonly \mbox{\hyperlink{class_w_p_r_1_1_hashing_1_1_hash}{Hash}} WPR.\+Control
 
 De definitie bevindt zich op regel \mbox{\hyperlink{sign_up_controller_8cs_source_l00021}{21}} in het bestand \mbox{\hyperlink{sign_up_controller_8cs_source}{sign\+Up\+Controller.\+cs}}.
 
+
+
+Wordt aangeroepen door \mbox{\hyperlink{sign_up_controller_8cs_source_l00024}{Sign\+Up\+Controller()}}, \mbox{\hyperlink{sign_up_controller_8cs_source_l00166}{sign\+Up\+Employee\+Async()}} en \mbox{\hyperlink{sign_up_controller_8cs_source_l00047}{sign\+Up\+Personal\+Async()}}.
+
 \Hypertarget{class_w_p_r_1_1_controllers_1_1_sign_up_1_1_sign_up_controller_a984d34e65a16edbb1b1f5356e856f3cd}\index{WPR.Controllers.SignUp.SignUpController@{WPR.Controllers.SignUp.SignUpController}!\_userRepository@{\_userRepository}}
 \index{\_userRepository@{\_userRepository}!WPR.Controllers.SignUp.SignUpController@{WPR.Controllers.SignUp.SignUpController}}
 \doxysubsubsection{\texorpdfstring{\_userRepository}{\_userRepository}}
@@ -176,6 +466,10 @@ readonly \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_user_repository}{
 
 
 De definitie bevindt zich op regel \mbox{\hyperlink{sign_up_controller_8cs_source_l00019}{19}} in het bestand \mbox{\hyperlink{sign_up_controller_8cs_source}{sign\+Up\+Controller.\+cs}}.
+
+
+
+Wordt aangeroepen door \mbox{\hyperlink{sign_up_controller_8cs_source_l00024}{Sign\+Up\+Controller()}}, \mbox{\hyperlink{sign_up_controller_8cs_source_l00166}{sign\+Up\+Employee\+Async()}} en \mbox{\hyperlink{sign_up_controller_8cs_source_l00047}{sign\+Up\+Personal\+Async()}}.
 
 
 

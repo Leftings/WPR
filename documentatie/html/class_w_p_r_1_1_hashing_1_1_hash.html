@@ -152,6 +152,12 @@ Properties</h2></td></tr>
 </div><div class="memdoc">
 
 <p class="definition">De definitie bevindt zich op regel <a class="el" href="backend_2src_2_hashing_2hash_8cs_source.html#l00010">10</a> in het bestand <a class="el" href="backend_2src_2_hashing_2hash_8cs_source.html">hash.cs</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   11</span>    {</div>
+<div class="line"><span class="lineno">   12</span>        _salt = Convert.FromBase64String(envConfig.<a class="code hl_function" href="class_w_p_r_1_1_data_1_1_env_config.html#aa9ca09132345c9c5905f2c408fe73fef">Get</a>(<span class="stringliteral">&quot;SALT&quot;</span>));</div>
+<div class="line"><span class="lineno">   13</span>    }</div>
+<div class="ttc" id="aclass_w_p_r_1_1_data_1_1_env_config_html_aa9ca09132345c9c5905f2c408fe73fef"><div class="ttname"><a href="class_w_p_r_1_1_data_1_1_env_config.html#aa9ca09132345c9c5905f2c408fe73fef">WPR.Data.EnvConfig.Get</a></div><div class="ttdeci">virtual string Get(string key)</div><div class="ttdoc">Haalt de value van de specifieke environement variabelen.</div><div class="ttdef"><b>Definitie</b> <a href="backend_2src_2_data_2_env_config_8cs_source.html#l00031">EnvConfig.cs:31</a></div></div>
+</div><!-- fragment -->
+<p class="reference">Gebruikt <a class="el" href="backend_2src_2_hashing_2hash_8cs_source.html#l00009">_salt</a> en <a class="el" href="backend_2src_2_data_2_env_config_8cs_source.html#l00031">WPR.Data.EnvConfig.Get()</a>.</p>
 <div class="dynheader">
 Hier is de call graaf voor deze functie:</div>
 <div class="dyncontent">
@@ -182,6 +188,18 @@ Hier is de call graaf voor deze functie:</div>
 </div><div class="memdoc">
 
 <p class="definition">De definitie bevindt zich op regel <a class="el" href="backend_2src_2_hashing_2hash_8cs_source.html#l00023">23</a> in het bestand <a class="el" href="backend_2src_2_hashing_2hash_8cs_source.html">hash.cs</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   24</span>    {</div>
+<div class="line"><span class="lineno">   25</span>        <span class="keywordtype">string</span> hashed = Convert.ToBase64String(KeyDerivation.Pbkdf2(</div>
+<div class="line"><span class="lineno">   26</span>            password: password!, <span class="comment">// Het wachtwoord</span></div>
+<div class="line"><span class="lineno">   27</span>            salt: _salt, <span class="comment">// Salt wordt toegevoegd aan de hash</span></div>
+<div class="line"><span class="lineno">   28</span>            prf: KeyDerivationPrf.HMACSHA256, <span class="comment">// Er wordt gebruik gemaakt van het HMACSHA256 hash algoritme</span></div>
+<div class="line"><span class="lineno">   29</span>            iterationCount: 100000, <span class="comment">// Hoeveel itteraties het algoritme draaid</span></div>
+<div class="line"><span class="lineno">   30</span>            numBytesRequested: 256 / 8)); <span class="comment">// zet de 256 bites om naar 32 bytes</span></div>
+<div class="line"><span class="lineno">   31</span> </div>
+<div class="line"><span class="lineno">   32</span>        <span class="keywordflow">return</span> hashed;</div>
+<div class="line"><span class="lineno">   33</span>    }</div>
+</div><!-- fragment -->
+<p class="reference">Gebruikt <a class="el" href="backend_2src_2_hashing_2hash_8cs_source.html#l00009">_salt</a>.</p>
 
 </div>
 </div>
@@ -201,7 +219,11 @@ Hier is de call graaf voor deze functie:</div>
 </div><div class="memdoc">
 
 <p class="definition">De definitie bevindt zich op regel <a class="el" href="backend_2src_2_hashing_2hash_8cs_source.html#l00016">16</a> in het bestand <a class="el" href="backend_2src_2_hashing_2hash_8cs_source.html">hash.cs</a>.</p>
-
+<div class="fragment"><div class="line"><span class="lineno">   17</span>    {</div>
+<div class="line"><span class="lineno">   18</span>        <span class="keywordtype">byte</span>[] salt = RandomNumberGenerator.GetBytes(128 / 8); <span class="comment">// de bites worden naar bytes omgezet</span></div>
+<div class="line"><span class="lineno">   19</span>        <span class="keywordflow">return</span> salt;</div>
+<div class="line"><span class="lineno">   20</span>    }</div>
+</div><!-- fragment -->
 </div>
 </div>
 <h2 class="groupheader">Property Documentatie</h2>
@@ -226,6 +248,9 @@ Hier is de call graaf voor deze functie:</div>
 </div><div class="memdoc">
 
 <p class="definition">De definitie bevindt zich op regel <a class="el" href="backend_2src_2_hashing_2hash_8cs_source.html#l00009">9</a> in het bestand <a class="el" href="backend_2src_2_hashing_2hash_8cs_source.html">hash.cs</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">    9</span>{ <span class="keyword">get</span>; <span class="keyword">set</span>; }</div>
+</div><!-- fragment -->
+<p class="reference">Wordt aangeroepen door <a class="el" href="backend_2src_2_hashing_2hash_8cs_source.html#l00023">createHash()</a> en <a class="el" href="backend_2src_2_hashing_2hash_8cs_source.html#l00010">Hash()</a>.</p>
 
 </div>
 </div>
