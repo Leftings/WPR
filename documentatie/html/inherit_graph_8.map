@@ -1,0 +1,5 @@
+<map id="Grafische Klasse Hiërarchie" name="Grafische Klasse Hiërarchie">
+<area shape="rect" id="Node000000" href="$interface_employee_1_1_database_1_1_i_connector.html" title="Connector class om verbinding te maken met de database, maakt gebruik van de connectie strings die zi..." alt="" coords="5,5,213,32"/>
+<area shape="rect" id="Node000001" href="$class_employee_1_1_database_1_1_connector.html" title=" " alt="" coords="261,5,464,32"/>
+<area shape="poly" id="edge14_Node000000_Node000001" title=" " alt="" coords="228,16,260,16,260,21,228,21"/>
+</map>

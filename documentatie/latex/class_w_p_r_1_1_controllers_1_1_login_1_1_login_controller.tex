@@ -1,0 +1,216 @@
+\doxysection{WPR.\+Controllers.\+Login.\+Login\+Controller Class Referentie}
+\hypertarget{class_w_p_r_1_1_controllers_1_1_login_1_1_login_controller}{}\label{class_w_p_r_1_1_controllers_1_1_login_1_1_login_controller}\index{WPR.Controllers.Login.LoginController@{WPR.Controllers.Login.LoginController}}
+
+
+Klasse diagram voor WPR.\+Controllers.\+Login.\+Login\+Controller
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=237pt]{class_w_p_r_1_1_controllers_1_1_login_1_1_login_controller__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboratie diagram voor WPR.\+Controllers.\+Login.\+Login\+Controller\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_w_p_r_1_1_controllers_1_1_login_1_1_login_controller__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Members}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_login_1_1_login_controller_a717ff181355a01ce6b085568dbaef159}{Login\+Controller}} (\mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_user_repository}{IUser\+Repository}} user\+Repository, \mbox{\hyperlink{class_w_p_r_1_1_database_1_1_connector}{Connector}} connector, \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_cookie_1_1_session_handler}{Session\+Handler}} session\+Handler, \mbox{\hyperlink{class_w_p_r_1_1_cryption_1_1_crypt}{Crypt}} crypt)
+\item 
+IAction\+Result \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_login_1_1_login_controller_aa773ceab1e05816b0c8def14cb7642ee}{Check\+Session}} ()
+\item 
+async Task$<$ IAction\+Result $>$ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_login_1_1_login_controller_abc668c11a053fbb57cf194c50895e88c}{Check\+Session\+Staff}} ()
+\item 
+async Task$<$ IAction\+Result $>$ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_login_1_1_login_controller_a6454cfd79a90895c494968f8d072daa9}{Check\+Session\+Vehicle\+Manager}} ()
+\item 
+async Task$<$ IAction\+Result $>$ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_login_1_1_login_controller_aad067048eb061fa08bd6bd4f60b34dab}{Login\+Async}} (\mbox{[}From\+Body\mbox{]} \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_login_1_1_login_request}{Login\+Request}} login\+Request)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Members}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_login_1_1_login_controller_a567846e3dae581eccd1fc88aae2da359}{Remove\+Old\+Cookie\+Async}} ()
+\item 
+async Task$<$ IAction\+Result $>$ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_login_1_1_login_controller_ab221bb3fe656879c67f0efb80b3cdb0a}{Set\+Cookie\+Async}} (\mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_login_1_1_login_request}{Login\+Request}} login\+Request)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributen}
+\begin{DoxyCompactItemize}
+\item 
+readonly \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_user_repository}{IUser\+Repository}} \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_login_1_1_login_controller_ab8c6d4f9003ae35758ef1f409c953ce6}{\+\_\+user\+Repository}}
+\item 
+readonly \mbox{\hyperlink{class_w_p_r_1_1_database_1_1_connector}{Connector}} \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_login_1_1_login_controller_a7c83d3d790691cebb801435f0d31423e}{\+\_\+connector}}
+\item 
+readonly \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_cookie_1_1_session_handler}{Session\+Handler}} \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_login_1_1_login_controller_a5fc3fe614e607f138e30058c242f1df3}{\+\_\+session\+Handler}}
+\item 
+readonly \mbox{\hyperlink{class_w_p_r_1_1_cryption_1_1_crypt}{Crypt}} \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_login_1_1_login_controller_ab0e03ac44085b86e72e213a44320c754}{\+\_\+crypt}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Gedetailleerde Beschrijving}
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{login_controller_8cs_source_l00016}{16}} in het bestand \mbox{\hyperlink{login_controller_8cs_source}{login\+Controller.\+cs}}.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentatie}
+\Hypertarget{class_w_p_r_1_1_controllers_1_1_login_1_1_login_controller_a717ff181355a01ce6b085568dbaef159}\index{WPR.Controllers.Login.LoginController@{WPR.Controllers.Login.LoginController}!LoginController@{LoginController}}
+\index{LoginController@{LoginController}!WPR.Controllers.Login.LoginController@{WPR.Controllers.Login.LoginController}}
+\doxysubsubsection{\texorpdfstring{LoginController()}{LoginController()}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_controllers_1_1_login_1_1_login_controller_a717ff181355a01ce6b085568dbaef159} 
+WPR.\+Controllers.\+Login.\+Login\+Controller.\+Login\+Controller (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_user_repository}{IUser\+Repository}}}]{user\+Repository}{, }\item[{\mbox{\hyperlink{class_w_p_r_1_1_database_1_1_connector}{Connector}}}]{connector}{, }\item[{\mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_cookie_1_1_session_handler}{Session\+Handler}}}]{session\+Handler}{, }\item[{\mbox{\hyperlink{class_w_p_r_1_1_cryption_1_1_crypt}{Crypt}}}]{crypt}{}\end{DoxyParamCaption})}
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{login_controller_8cs_source_l00023}{23}} in het bestand \mbox{\hyperlink{login_controller_8cs_source}{login\+Controller.\+cs}}.
+
+
+
+\doxysubsection{Documentatie van functie members}
+\Hypertarget{class_w_p_r_1_1_controllers_1_1_login_1_1_login_controller_aa773ceab1e05816b0c8def14cb7642ee}\index{WPR.Controllers.Login.LoginController@{WPR.Controllers.Login.LoginController}!CheckSession@{CheckSession}}
+\index{CheckSession@{CheckSession}!WPR.Controllers.Login.LoginController@{WPR.Controllers.Login.LoginController}}
+\doxysubsubsection{\texorpdfstring{CheckSession()}{CheckSession()}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_controllers_1_1_login_1_1_login_controller_aa773ceab1e05816b0c8def14cb7642ee} 
+IAction\+Result WPR.\+Controllers.\+Login.\+Login\+Controller.\+Check\+Session (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{login_controller_8cs_source_l00112}{112}} in het bestand \mbox{\hyperlink{login_controller_8cs_source}{login\+Controller.\+cs}}.
+
+\Hypertarget{class_w_p_r_1_1_controllers_1_1_login_1_1_login_controller_abc668c11a053fbb57cf194c50895e88c}\index{WPR.Controllers.Login.LoginController@{WPR.Controllers.Login.LoginController}!CheckSessionStaff@{CheckSessionStaff}}
+\index{CheckSessionStaff@{CheckSessionStaff}!WPR.Controllers.Login.LoginController@{WPR.Controllers.Login.LoginController}}
+\doxysubsubsection{\texorpdfstring{CheckSessionStaff()}{CheckSessionStaff()}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_controllers_1_1_login_1_1_login_controller_abc668c11a053fbb57cf194c50895e88c} 
+async Task$<$ IAction\+Result $>$ WPR.\+Controllers.\+Login.\+Login\+Controller.\+Check\+Session\+Staff (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{login_controller_8cs_source_l00125}{125}} in het bestand \mbox{\hyperlink{login_controller_8cs_source}{login\+Controller.\+cs}}.
+
+\Hypertarget{class_w_p_r_1_1_controllers_1_1_login_1_1_login_controller_a6454cfd79a90895c494968f8d072daa9}\index{WPR.Controllers.Login.LoginController@{WPR.Controllers.Login.LoginController}!CheckSessionVehicleManager@{CheckSessionVehicleManager}}
+\index{CheckSessionVehicleManager@{CheckSessionVehicleManager}!WPR.Controllers.Login.LoginController@{WPR.Controllers.Login.LoginController}}
+\doxysubsubsection{\texorpdfstring{CheckSessionVehicleManager()}{CheckSessionVehicleManager()}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_controllers_1_1_login_1_1_login_controller_a6454cfd79a90895c494968f8d072daa9} 
+async Task$<$ IAction\+Result $>$ WPR.\+Controllers.\+Login.\+Login\+Controller.\+Check\+Session\+Vehicle\+Manager (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{login_controller_8cs_source_l00138}{138}} in het bestand \mbox{\hyperlink{login_controller_8cs_source}{login\+Controller.\+cs}}.
+
+\Hypertarget{class_w_p_r_1_1_controllers_1_1_login_1_1_login_controller_aad067048eb061fa08bd6bd4f60b34dab}\index{WPR.Controllers.Login.LoginController@{WPR.Controllers.Login.LoginController}!LoginAsync@{LoginAsync}}
+\index{LoginAsync@{LoginAsync}!WPR.Controllers.Login.LoginController@{WPR.Controllers.Login.LoginController}}
+\doxysubsubsection{\texorpdfstring{LoginAsync()}{LoginAsync()}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_controllers_1_1_login_1_1_login_controller_aad067048eb061fa08bd6bd4f60b34dab} 
+async Task$<$ IAction\+Result $>$ WPR.\+Controllers.\+Login.\+Login\+Controller.\+Login\+Async (\begin{DoxyParamCaption}\item[{\mbox{[}\+From\+Body\mbox{]} \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_login_1_1_login_request}{Login\+Request}}}]{login\+Request}{}\end{DoxyParamCaption})}
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{login_controller_8cs_source_l00150}{150}} in het bestand \mbox{\hyperlink{login_controller_8cs_source}{login\+Controller.\+cs}}.
+
+Hier is de call graaf voor deze functie\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_w_p_r_1_1_controllers_1_1_login_1_1_login_controller_aad067048eb061fa08bd6bd4f60b34dab_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_w_p_r_1_1_controllers_1_1_login_1_1_login_controller_a567846e3dae581eccd1fc88aae2da359}\index{WPR.Controllers.Login.LoginController@{WPR.Controllers.Login.LoginController}!RemoveOldCookieAsync@{RemoveOldCookieAsync}}
+\index{RemoveOldCookieAsync@{RemoveOldCookieAsync}!WPR.Controllers.Login.LoginController@{WPR.Controllers.Login.LoginController}}
+\doxysubsubsection{\texorpdfstring{RemoveOldCookieAsync()}{RemoveOldCookieAsync()}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_controllers_1_1_login_1_1_login_controller_a567846e3dae581eccd1fc88aae2da359} 
+void WPR.\+Controllers.\+Login.\+Login\+Controller.\+Remove\+Old\+Cookie\+Async (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{login_controller_8cs_source_l00032}{32}} in het bestand \mbox{\hyperlink{login_controller_8cs_source}{login\+Controller.\+cs}}.
+
+Hier is de caller graaf voor deze functie\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_w_p_r_1_1_controllers_1_1_login_1_1_login_controller_a567846e3dae581eccd1fc88aae2da359_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_w_p_r_1_1_controllers_1_1_login_1_1_login_controller_ab221bb3fe656879c67f0efb80b3cdb0a}\index{WPR.Controllers.Login.LoginController@{WPR.Controllers.Login.LoginController}!SetCookieAsync@{SetCookieAsync}}
+\index{SetCookieAsync@{SetCookieAsync}!WPR.Controllers.Login.LoginController@{WPR.Controllers.Login.LoginController}}
+\doxysubsubsection{\texorpdfstring{SetCookieAsync()}{SetCookieAsync()}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_controllers_1_1_login_1_1_login_controller_ab221bb3fe656879c67f0efb80b3cdb0a} 
+async Task$<$ IAction\+Result $>$ WPR.\+Controllers.\+Login.\+Login\+Controller.\+Set\+Cookie\+Async (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_login_1_1_login_request}{Login\+Request}}}]{login\+Request}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{login_controller_8cs_source_l00053}{53}} in het bestand \mbox{\hyperlink{login_controller_8cs_source}{login\+Controller.\+cs}}.
+
+Hier is de call graaf voor deze functie\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_w_p_r_1_1_controllers_1_1_login_1_1_login_controller_ab221bb3fe656879c67f0efb80b3cdb0a_cgraph}
+\end{center}
+\end{figure}
+Hier is de caller graaf voor deze functie\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_w_p_r_1_1_controllers_1_1_login_1_1_login_controller_ab221bb3fe656879c67f0efb80b3cdb0a_icgraph}
+\end{center}
+\end{figure}
+
+
+\doxysubsection{Documentatie van data members}
+\Hypertarget{class_w_p_r_1_1_controllers_1_1_login_1_1_login_controller_a7c83d3d790691cebb801435f0d31423e}\index{WPR.Controllers.Login.LoginController@{WPR.Controllers.Login.LoginController}!\_connector@{\_connector}}
+\index{\_connector@{\_connector}!WPR.Controllers.Login.LoginController@{WPR.Controllers.Login.LoginController}}
+\doxysubsubsection{\texorpdfstring{\_connector}{\_connector}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_controllers_1_1_login_1_1_login_controller_a7c83d3d790691cebb801435f0d31423e} 
+readonly \mbox{\hyperlink{class_w_p_r_1_1_database_1_1_connector}{Connector}} WPR.\+Controllers.\+Login.\+Login\+Controller.\+\_\+connector\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{login_controller_8cs_source_l00019}{19}} in het bestand \mbox{\hyperlink{login_controller_8cs_source}{login\+Controller.\+cs}}.
+
+\Hypertarget{class_w_p_r_1_1_controllers_1_1_login_1_1_login_controller_ab0e03ac44085b86e72e213a44320c754}\index{WPR.Controllers.Login.LoginController@{WPR.Controllers.Login.LoginController}!\_crypt@{\_crypt}}
+\index{\_crypt@{\_crypt}!WPR.Controllers.Login.LoginController@{WPR.Controllers.Login.LoginController}}
+\doxysubsubsection{\texorpdfstring{\_crypt}{\_crypt}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_controllers_1_1_login_1_1_login_controller_ab0e03ac44085b86e72e213a44320c754} 
+readonly \mbox{\hyperlink{class_w_p_r_1_1_cryption_1_1_crypt}{Crypt}} WPR.\+Controllers.\+Login.\+Login\+Controller.\+\_\+crypt\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{login_controller_8cs_source_l00021}{21}} in het bestand \mbox{\hyperlink{login_controller_8cs_source}{login\+Controller.\+cs}}.
+
+\Hypertarget{class_w_p_r_1_1_controllers_1_1_login_1_1_login_controller_a5fc3fe614e607f138e30058c242f1df3}\index{WPR.Controllers.Login.LoginController@{WPR.Controllers.Login.LoginController}!\_sessionHandler@{\_sessionHandler}}
+\index{\_sessionHandler@{\_sessionHandler}!WPR.Controllers.Login.LoginController@{WPR.Controllers.Login.LoginController}}
+\doxysubsubsection{\texorpdfstring{\_sessionHandler}{\_sessionHandler}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_controllers_1_1_login_1_1_login_controller_a5fc3fe614e607f138e30058c242f1df3} 
+readonly \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_cookie_1_1_session_handler}{Session\+Handler}} WPR.\+Controllers.\+Login.\+Login\+Controller.\+\_\+session\+Handler\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{login_controller_8cs_source_l00020}{20}} in het bestand \mbox{\hyperlink{login_controller_8cs_source}{login\+Controller.\+cs}}.
+
+\Hypertarget{class_w_p_r_1_1_controllers_1_1_login_1_1_login_controller_ab8c6d4f9003ae35758ef1f409c953ce6}\index{WPR.Controllers.Login.LoginController@{WPR.Controllers.Login.LoginController}!\_userRepository@{\_userRepository}}
+\index{\_userRepository@{\_userRepository}!WPR.Controllers.Login.LoginController@{WPR.Controllers.Login.LoginController}}
+\doxysubsubsection{\texorpdfstring{\_userRepository}{\_userRepository}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_controllers_1_1_login_1_1_login_controller_ab8c6d4f9003ae35758ef1f409c953ce6} 
+readonly \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_user_repository}{IUser\+Repository}} WPR.\+Controllers.\+Login.\+Login\+Controller.\+\_\+user\+Repository\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{login_controller_8cs_source_l00018}{18}} in het bestand \mbox{\hyperlink{login_controller_8cs_source}{login\+Controller.\+cs}}.
+
+
+
+De documentatie voor deze klasse is gegenereerd op basis van het volgende bestand\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/codes/\+WPR/backend/src/\+Controllers/login/\mbox{\hyperlink{login_controller_8cs}{login\+Controller.\+cs}}\end{DoxyCompactItemize}

@@ -1,0 +1,96 @@
+\doxysection{WPR.\+Database.\+Connector Class Referentie}
+\hypertarget{class_w_p_r_1_1_database_1_1_connector}{}\label{class_w_p_r_1_1_database_1_1_connector}\index{WPR.Database.Connector@{WPR.Database.Connector}}
+
+
+Klasse diagram voor WPR.\+Database.\+Connector
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=205pt]{class_w_p_r_1_1_database_1_1_connector__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboratie diagram voor WPR.\+Database.\+Connector\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=320pt]{class_w_p_r_1_1_database_1_1_connector__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Members}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_w_p_r_1_1_database_1_1_connector_aef9768c7e1a3661c653d6f916b6f708b}{Connector}} (\mbox{\hyperlink{class_w_p_r_1_1_data_1_1_env_config}{Env\+Config}} env\+Config)
+\item 
+virtual IDb\+Connection \mbox{\hyperlink{class_w_p_r_1_1_database_1_1_connector_ad1c237b93824801ec2441a5f55806d9f}{Create\+Db\+Connection}} ()
+\begin{DoxyCompactList}\small\item\em Create en open de database connectie door het gebruiken van de configuratie values. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributen}
+\begin{DoxyCompactItemize}
+\item 
+readonly \mbox{\hyperlink{class_w_p_r_1_1_data_1_1_env_config}{Env\+Config}} \mbox{\hyperlink{class_w_p_r_1_1_database_1_1_connector_a2a2cfc96e4450468ed6425bc8d34a45d}{\+\_\+env\+Config}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Gedetailleerde Beschrijving}
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{backend_2src_2_database_2_connector_8cs_source_l00017}{17}} in het bestand \mbox{\hyperlink{backend_2src_2_database_2_connector_8cs_source}{Connector.\+cs}}.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentatie}
+\Hypertarget{class_w_p_r_1_1_database_1_1_connector_aef9768c7e1a3661c653d6f916b6f708b}\index{WPR.Database.Connector@{WPR.Database.Connector}!Connector@{Connector}}
+\index{Connector@{Connector}!WPR.Database.Connector@{WPR.Database.Connector}}
+\doxysubsubsection{\texorpdfstring{Connector()}{Connector()}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_database_1_1_connector_aef9768c7e1a3661c653d6f916b6f708b} 
+WPR.\+Database.\+Connector.\+Connector (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_w_p_r_1_1_data_1_1_env_config}{Env\+Config}}}]{env\+Config}{}\end{DoxyParamCaption})}
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{backend_2src_2_database_2_connector_8cs_source_l00021}{21}} in het bestand \mbox{\hyperlink{backend_2src_2_database_2_connector_8cs_source}{Connector.\+cs}}.
+
+
+
+\doxysubsection{Documentatie van functie members}
+\Hypertarget{class_w_p_r_1_1_database_1_1_connector_ad1c237b93824801ec2441a5f55806d9f}\index{WPR.Database.Connector@{WPR.Database.Connector}!CreateDbConnection@{CreateDbConnection}}
+\index{CreateDbConnection@{CreateDbConnection}!WPR.Database.Connector@{WPR.Database.Connector}}
+\doxysubsubsection{\texorpdfstring{CreateDbConnection()}{CreateDbConnection()}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_database_1_1_connector_ad1c237b93824801ec2441a5f55806d9f} 
+virtual IDb\+Connection WPR.\+Database.\+Connector.\+Create\+Db\+Connection (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Create en open de database connectie door het gebruiken van de configuratie values. 
+
+\begin{DoxyReturn}{Retourneert}
+Een geopende IDb\+Connection instantie
+\end{DoxyReturn}
+
+
+Implementeert \mbox{\hyperlink{interface_w_p_r_1_1_database_1_1_i_connector_a34630d1ca83042b6b9296d67de63ba91}{WPR.\+Database.\+IConnector}}.
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{backend_2src_2_database_2_connector_8cs_source_l00030}{30}} in het bestand \mbox{\hyperlink{backend_2src_2_database_2_connector_8cs_source}{Connector.\+cs}}.
+
+
+
+\doxysubsection{Documentatie van data members}
+\Hypertarget{class_w_p_r_1_1_database_1_1_connector_a2a2cfc96e4450468ed6425bc8d34a45d}\index{WPR.Database.Connector@{WPR.Database.Connector}!\_envConfig@{\_envConfig}}
+\index{\_envConfig@{\_envConfig}!WPR.Database.Connector@{WPR.Database.Connector}}
+\doxysubsubsection{\texorpdfstring{\_envConfig}{\_envConfig}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_database_1_1_connector_a2a2cfc96e4450468ed6425bc8d34a45d} 
+readonly \mbox{\hyperlink{class_w_p_r_1_1_data_1_1_env_config}{Env\+Config}} WPR.\+Database.\+Connector.\+\_\+env\+Config\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{backend_2src_2_database_2_connector_8cs_source_l00019}{19}} in het bestand \mbox{\hyperlink{backend_2src_2_database_2_connector_8cs_source}{Connector.\+cs}}.
+
+
+
+De documentatie voor deze klasse is gegenereerd op basis van het volgende bestand\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/codes/\+WPR/backend/src/\+Database/\mbox{\hyperlink{backend_2src_2_database_2_connector_8cs}{Connector.\+cs}}\end{DoxyCompactItemize}

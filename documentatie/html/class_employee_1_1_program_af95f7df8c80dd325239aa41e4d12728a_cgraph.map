@@ -1,0 +1,7 @@
+<map id="Employee.Program.Main" name="Employee.Program.Main">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,47,170,73"/>
+<area shape="rect" id="Node000002" href="$class_employee_1_1_app_configure.html#abe2ace8d0cbed6e55d8ca1fb11b9f65f" title="Configureer de web applicatie, zoals middleware, services, authentication en CORS settings." alt="" coords="218,5,440,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="170,46,202,41,203,47,171,51"/>
+<area shape="rect" id="Node000003" href="$class_employee_1_1_app_configure.html#a865e5736ae22f527ac4003c95b362bad" title=" " alt="" coords="237,72,421,115"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="171,69,222,76,221,81,170,74"/>
+</map>

@@ -1,0 +1,87 @@
+\doxysection{WPR.\+App\+Configure Class Referentie}
+\hypertarget{class_w_p_r_1_1_app_configure}{}\label{class_w_p_r_1_1_app_configure}\index{WPR.AppConfigure@{WPR.AppConfigure}}
+
+
+Deze class is responsible voor het configureren van de application services en database connectie Het heeft methodes om de database te initializeren en het configureren van de web applicatie.  
+
+
+
+
+Collaboratie diagram voor WPR.\+App\+Configure\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=194pt]{class_w_p_r_1_1_app_configure__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Static Public Members}
+\begin{DoxyCompactItemize}
+\item 
+static void \mbox{\hyperlink{class_w_p_r_1_1_app_configure_a03bdad8277429c64d59c0b6781b17329}{Init\+Database}} (IService\+Provider services)
+\item 
+static Web\+Application \mbox{\hyperlink{class_w_p_r_1_1_app_configure_a77a92db2b597250930168694b79931d7}{Configure\+Application}} (string\mbox{[}$\,$\mbox{]} args)
+\begin{DoxyCompactList}\small\item\em Configureer de web applicatie, zoals middleware, services, authentication en CORS settings. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Gedetailleerde Beschrijving}
+Deze class is responsible voor het configureren van de application services en database connectie Het heeft methodes om de database te initializeren en het configureren van de web applicatie. 
+
+De definitie bevindt zich op regel \mbox{\hyperlink{backend_2src_2_app_configure_8cs_source_l00022}{22}} in het bestand \mbox{\hyperlink{backend_2src_2_app_configure_8cs_source}{App\+Configure.\+cs}}.
+
+
+
+\doxysubsection{Documentatie van functie members}
+\Hypertarget{class_w_p_r_1_1_app_configure_a77a92db2b597250930168694b79931d7}\index{WPR.AppConfigure@{WPR.AppConfigure}!ConfigureApplication@{ConfigureApplication}}
+\index{ConfigureApplication@{ConfigureApplication}!WPR.AppConfigure@{WPR.AppConfigure}}
+\doxysubsubsection{\texorpdfstring{ConfigureApplication()}{ConfigureApplication()}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_app_configure_a77a92db2b597250930168694b79931d7} 
+static Web\+Application WPR.\+App\+Configure.\+Configure\+Application (\begin{DoxyParamCaption}\item[{string\mbox{[}$\,$\mbox{]}}]{args}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Configureer de web applicatie, zoals middleware, services, authentication en CORS settings. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em args} & De command line arguments passed to the application at startup.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retourneert}
+De geconfigureerde Web\+Application instantie.
+\end{DoxyReturn}
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{backend_2src_2_app_configure_8cs_source_l00048}{48}} in het bestand \mbox{\hyperlink{backend_2src_2_app_configure_8cs_source}{App\+Configure.\+cs}}.
+
+Hier is de caller graaf voor deze functie\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_w_p_r_1_1_app_configure_a77a92db2b597250930168694b79931d7_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_w_p_r_1_1_app_configure_a03bdad8277429c64d59c0b6781b17329}\index{WPR.AppConfigure@{WPR.AppConfigure}!InitDatabase@{InitDatabase}}
+\index{InitDatabase@{InitDatabase}!WPR.AppConfigure@{WPR.AppConfigure}}
+\doxysubsubsection{\texorpdfstring{InitDatabase()}{InitDatabase()}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_app_configure_a03bdad8277429c64d59c0b6781b17329} 
+static void WPR.\+App\+Configure.\+Init\+Database (\begin{DoxyParamCaption}\item[{IService\+Provider}]{services}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{backend_2src_2_app_configure_8cs_source_l00024}{24}} in het bestand \mbox{\hyperlink{backend_2src_2_app_configure_8cs_source}{App\+Configure.\+cs}}.
+
+Hier is de caller graaf voor deze functie\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_w_p_r_1_1_app_configure_a03bdad8277429c64d59c0b6781b17329_icgraph}
+\end{center}
+\end{figure}
+
+
+De documentatie voor deze klasse is gegenereerd op basis van het volgende bestand\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/codes/\+WPR/backend/src/\mbox{\hyperlink{backend_2src_2_app_configure_8cs}{App\+Configure.\+cs}}\end{DoxyCompactItemize}

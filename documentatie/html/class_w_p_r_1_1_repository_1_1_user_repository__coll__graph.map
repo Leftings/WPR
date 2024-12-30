@@ -1,0 +1,16 @@
+<map id="WPR.Repository.UserRepository" name="WPR.Repository.UserRepository">
+<area shape="rect" id="Node000001" title="De UserRepository class geeft de methodes voor de interactie met de database voor gebruiker gerelatee..." alt="" coords="301,635,506,1003"/>
+<area shape="rect" id="Node000002" href="$interface_w_p_r_1_1_repository_1_1_i_user_repository.html" title="Interface defining methods voor user gerelateerde database operaties, validatie, user management,..." alt="" coords="5,267,210,571"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="221,568,304,678,299,682,217,571"/>
+<area shape="rect" id="Node000003" href="$class_w_p_r_1_1_database_1_1_connector.html" title=" " alt="" coords="234,373,400,464"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="328,463,357,610,359,618,354,619,352,611,323,464"/>
+<area shape="rect" id="Node000004" href="$interface_w_p_r_1_1_database_1_1_i_connector.html" title="Connector class om verbinding te maken met de database, maakt gebruik van de connectie strings die zi..." alt="" coords="240,69,394,139"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="320,153,320,374,314,374,314,153"/>
+<area shape="rect" id="Node000005" href="$class_w_p_r_1_1_data_1_1_env_config.html" title="Leez het .env bestand uit waarin de connectie strings staan naar de database. Deze staan in een apart..." alt="" coords="419,5,560,203"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="426,204,412,228,346,359,341,357,407,225,422,201"/>
+<area shape="rect" id="Node000007" href="$class_w_p_r_1_1_cryption_1_1_crypt.html" title=" " alt="" coords="425,352,556,485"/>
+<area shape="poly" id="edge7_Node000007_Node000005" title=" " alt="" coords="492,202,493,336,487,336,487,202"/>
+<area shape="rect" id="Node000006" href="$class_w_p_r_1_1_hashing_1_1_hash.html" title=" " alt="" coords="580,363,710,475"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="621,476,570,572,518,656,513,653,566,569,617,473"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="479,486,450,619,445,617,474,485"/>
+</map>

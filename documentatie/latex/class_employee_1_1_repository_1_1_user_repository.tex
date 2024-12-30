@@ -1,0 +1,265 @@
+\doxysection{Employee.\+Repository.\+User\+Repository Class Referentie}
+\hypertarget{class_employee_1_1_repository_1_1_user_repository}{}\label{class_employee_1_1_repository_1_1_user_repository}\index{Employee.Repository.UserRepository@{Employee.Repository.UserRepository}}
+
+
+De \doxylink{class_employee_1_1_repository_1_1_user_repository}{User\+Repository} class geeft de methodes voor de interactie met de database voor gebruiker gerelateerde operaties. Het implementeert de \doxylink{interface_employee_1_1_repository_1_1_i_user_repository}{IUser\+Repository} interface.  
+
+
+
+
+Klasse diagram voor Employee.\+Repository.\+User\+Repository
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=211pt]{class_employee_1_1_repository_1_1_user_repository__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboratie diagram voor Employee.\+Repository.\+User\+Repository\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_employee_1_1_repository_1_1_user_repository__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Members}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_employee_1_1_repository_1_1_user_repository_ac03ba1f1e1cb1577f1b7a8c383574360}{User\+Repository}} (\mbox{\hyperlink{class_employee_1_1_database_1_1_connector}{Connector}} connector, \mbox{\hyperlink{class_employee_1_1_hashing_1_1_hash}{Hash}} hash)
+\item 
+async Task$<$(bool status, string message)$>$ \mbox{\hyperlink{class_employee_1_1_repository_1_1_user_repository_acb9173fc7b391fc43dcd1a5d1c573e27}{Add\+Vehicle\+Async}} (int yop, string brand, string type, string license\+Plate, string color, string sort, double price, string description, byte\mbox{[}$\,$\mbox{]} vehicle\+Blob)
+\item 
+async Task$<$(bool status, string message)$>$ \mbox{\hyperlink{class_employee_1_1_repository_1_1_user_repository_a97c6f5b40203c481ffacbafa0e55848d}{Add\+Staff}} (Object\mbox{[}$\,$\mbox{]} person\+Data)
+\item 
+async Task$<$(bool status, string message)$>$ \mbox{\hyperlink{class_employee_1_1_repository_1_1_user_repository_a5b5d20c13b902c7311cd83bba63a2768}{check\+Usage\+Email\+Async}} (string email)
+\item 
+async Task$<$(bool status, List$<$ string $>$ ids)$>$ \mbox{\hyperlink{class_employee_1_1_repository_1_1_user_repository_ab4d471f0db952b9783c67d06169bcb6e}{Get\+Review\+Ids\+Async}} (string user, string user\+Id)
+\item 
+async Task$<$(bool status, List$<$ Dictionary$<$ string, object $>$ $>$ data)$>$ \mbox{\hyperlink{class_employee_1_1_repository_1_1_user_repository_a8b0039b2bb022113aae5abb95e9eaaae}{Get\+Review\+Async}} (string id)
+\item 
+async Task$<$(bool status, string message)$>$ \mbox{\hyperlink{class_employee_1_1_repository_1_1_user_repository_a8525cb1d0ebaa40194a3fcdab1e0544e}{Set\+Status\+Async}} (string id, string status, string employee, string user\+Type)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Members}
+\begin{DoxyCompactItemize}
+\item 
+async Task$<$(bool status, Dictionary$<$ string, object $>$ data)$>$ \mbox{\hyperlink{class_employee_1_1_repository_1_1_user_repository_ad4f94baa7bb1cb7938d0af1e3962b752}{Get\+User\+Data\+Async}} (string userid)
+\item 
+async Task$<$(bool status, Dictionary$<$ string, object $>$ data)$>$ \mbox{\hyperlink{class_employee_1_1_repository_1_1_user_repository_a227e2c2d2a609c5962413efb6c1c9ab7}{Get\+Vehicle\+Data}} (string car\+Id)
+\item 
+string \mbox{\hyperlink{class_employee_1_1_repository_1_1_user_repository_a7bc4e59bb4f6a459175a87e20b256e07}{Get\+KvK}} (string id)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributen}
+\begin{DoxyCompactItemize}
+\item 
+readonly \mbox{\hyperlink{class_employee_1_1_database_1_1_connector}{Connector}} \mbox{\hyperlink{class_employee_1_1_repository_1_1_user_repository_a546336b18cbdefc607d513d2e82a759d}{\+\_\+connector}}
+\item 
+readonly \mbox{\hyperlink{class_employee_1_1_hashing_1_1_hash}{Hash}} \mbox{\hyperlink{class_employee_1_1_repository_1_1_user_repository_ac8ac00963484df3e2775c8a87c86e176}{\+\_\+hash}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Gedetailleerde Beschrijving}
+De \doxylink{class_employee_1_1_repository_1_1_user_repository}{User\+Repository} class geeft de methodes voor de interactie met de database voor gebruiker gerelateerde operaties. Het implementeert de \doxylink{interface_employee_1_1_repository_1_1_i_user_repository}{IUser\+Repository} interface. 
+
+De definitie bevindt zich op regel \mbox{\hyperlink{employee_backend_2src_2_repository_2_user_repository_8cs_source_l00013}{13}} in het bestand \mbox{\hyperlink{employee_backend_2src_2_repository_2_user_repository_8cs_source}{User\+Repository.\+cs}}.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentatie}
+\Hypertarget{class_employee_1_1_repository_1_1_user_repository_ac03ba1f1e1cb1577f1b7a8c383574360}\index{Employee.Repository.UserRepository@{Employee.Repository.UserRepository}!UserRepository@{UserRepository}}
+\index{UserRepository@{UserRepository}!Employee.Repository.UserRepository@{Employee.Repository.UserRepository}}
+\doxysubsubsection{\texorpdfstring{UserRepository()}{UserRepository()}}
+{\footnotesize\ttfamily \label{class_employee_1_1_repository_1_1_user_repository_ac03ba1f1e1cb1577f1b7a8c383574360} 
+Employee.\+Repository.\+User\+Repository.\+User\+Repository (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_employee_1_1_database_1_1_connector}{Connector}}}]{connector}{, }\item[{\mbox{\hyperlink{class_employee_1_1_hashing_1_1_hash}{Hash}}}]{hash}{}\end{DoxyParamCaption})}
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{employee_backend_2src_2_repository_2_user_repository_8cs_source_l00018}{18}} in het bestand \mbox{\hyperlink{employee_backend_2src_2_repository_2_user_repository_8cs_source}{User\+Repository.\+cs}}.
+
+
+
+\doxysubsection{Documentatie van functie members}
+\Hypertarget{class_employee_1_1_repository_1_1_user_repository_a97c6f5b40203c481ffacbafa0e55848d}\index{Employee.Repository.UserRepository@{Employee.Repository.UserRepository}!AddStaff@{AddStaff}}
+\index{AddStaff@{AddStaff}!Employee.Repository.UserRepository@{Employee.Repository.UserRepository}}
+\doxysubsubsection{\texorpdfstring{AddStaff()}{AddStaff()}}
+{\footnotesize\ttfamily \label{class_employee_1_1_repository_1_1_user_repository_a97c6f5b40203c481ffacbafa0e55848d} 
+async Task$<$(bool status, string message)$>$ Employee.\+Repository.\+User\+Repository.\+Add\+Staff (\begin{DoxyParamCaption}\item[{Object\mbox{[}$\,$\mbox{]}}]{person\+Data}{}\end{DoxyParamCaption})}
+
+
+
+Implementeert \mbox{\hyperlink{interface_employee_1_1_repository_1_1_i_user_repository_a7b55190082233792307a234ac085d318}{Employee.\+Repository.\+IUser\+Repository}}.
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{employee_backend_2src_2_repository_2_user_repository_8cs_source_l00061}{61}} in het bestand \mbox{\hyperlink{employee_backend_2src_2_repository_2_user_repository_8cs_source}{User\+Repository.\+cs}}.
+
+\Hypertarget{class_employee_1_1_repository_1_1_user_repository_acb9173fc7b391fc43dcd1a5d1c573e27}\index{Employee.Repository.UserRepository@{Employee.Repository.UserRepository}!AddVehicleAsync@{AddVehicleAsync}}
+\index{AddVehicleAsync@{AddVehicleAsync}!Employee.Repository.UserRepository@{Employee.Repository.UserRepository}}
+\doxysubsubsection{\texorpdfstring{AddVehicleAsync()}{AddVehicleAsync()}}
+{\footnotesize\ttfamily \label{class_employee_1_1_repository_1_1_user_repository_acb9173fc7b391fc43dcd1a5d1c573e27} 
+async Task$<$(bool status, string message)$>$ Employee.\+Repository.\+User\+Repository.\+Add\+Vehicle\+Async (\begin{DoxyParamCaption}\item[{int}]{yop}{, }\item[{string}]{brand}{, }\item[{string}]{type}{, }\item[{string}]{license\+Plate}{, }\item[{string}]{color}{, }\item[{string}]{sort}{, }\item[{double}]{price}{, }\item[{string}]{description}{, }\item[{byte\mbox{[}$\,$\mbox{]}}]{vehicle\+Blob}{}\end{DoxyParamCaption})}
+
+
+
+Implementeert \mbox{\hyperlink{interface_employee_1_1_repository_1_1_i_user_repository_a02e61a8be334c58c4fa32776afa2d07a}{Employee.\+Repository.\+IUser\+Repository}}.
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{employee_backend_2src_2_repository_2_user_repository_8cs_source_l00025}{25}} in het bestand \mbox{\hyperlink{employee_backend_2src_2_repository_2_user_repository_8cs_source}{User\+Repository.\+cs}}.
+
+\Hypertarget{class_employee_1_1_repository_1_1_user_repository_a5b5d20c13b902c7311cd83bba63a2768}\index{Employee.Repository.UserRepository@{Employee.Repository.UserRepository}!checkUsageEmailAsync@{checkUsageEmailAsync}}
+\index{checkUsageEmailAsync@{checkUsageEmailAsync}!Employee.Repository.UserRepository@{Employee.Repository.UserRepository}}
+\doxysubsubsection{\texorpdfstring{checkUsageEmailAsync()}{checkUsageEmailAsync()}}
+{\footnotesize\ttfamily \label{class_employee_1_1_repository_1_1_user_repository_a5b5d20c13b902c7311cd83bba63a2768} 
+async Task$<$(bool status, string message)$>$ Employee.\+Repository.\+User\+Repository.\+check\+Usage\+Email\+Async (\begin{DoxyParamCaption}\item[{string}]{email}{}\end{DoxyParamCaption})}
+
+
+
+Implementeert \mbox{\hyperlink{interface_employee_1_1_repository_1_1_i_user_repository_a791de1915ba5ff0a602bc41d1a711d49}{Employee.\+Repository.\+IUser\+Repository}}.
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{employee_backend_2src_2_repository_2_user_repository_8cs_source_l00112}{112}} in het bestand \mbox{\hyperlink{employee_backend_2src_2_repository_2_user_repository_8cs_source}{User\+Repository.\+cs}}.
+
+\Hypertarget{class_employee_1_1_repository_1_1_user_repository_a7bc4e59bb4f6a459175a87e20b256e07}\index{Employee.Repository.UserRepository@{Employee.Repository.UserRepository}!GetKvK@{GetKvK}}
+\index{GetKvK@{GetKvK}!Employee.Repository.UserRepository@{Employee.Repository.UserRepository}}
+\doxysubsubsection{\texorpdfstring{GetKvK()}{GetKvK()}}
+{\footnotesize\ttfamily \label{class_employee_1_1_repository_1_1_user_repository_a7bc4e59bb4f6a459175a87e20b256e07} 
+string Employee.\+Repository.\+User\+Repository.\+Get\+KvK (\begin{DoxyParamCaption}\item[{string}]{id}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{employee_backend_2src_2_repository_2_user_repository_8cs_source_l00355}{355}} in het bestand \mbox{\hyperlink{employee_backend_2src_2_repository_2_user_repository_8cs_source}{User\+Repository.\+cs}}.
+
+Hier is de caller graaf voor deze functie\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_employee_1_1_repository_1_1_user_repository_a7bc4e59bb4f6a459175a87e20b256e07_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_employee_1_1_repository_1_1_user_repository_a8b0039b2bb022113aae5abb95e9eaaae}\index{Employee.Repository.UserRepository@{Employee.Repository.UserRepository}!GetReviewAsync@{GetReviewAsync}}
+\index{GetReviewAsync@{GetReviewAsync}!Employee.Repository.UserRepository@{Employee.Repository.UserRepository}}
+\doxysubsubsection{\texorpdfstring{GetReviewAsync()}{GetReviewAsync()}}
+{\footnotesize\ttfamily \label{class_employee_1_1_repository_1_1_user_repository_a8b0039b2bb022113aae5abb95e9eaaae} 
+async Task$<$(bool status, List$<$ Dictionary$<$ string, object $>$ $>$ data)$>$ Employee.\+Repository.\+User\+Repository.\+Get\+Review\+Async (\begin{DoxyParamCaption}\item[{string}]{id}{}\end{DoxyParamCaption})}
+
+
+
+Implementeert \mbox{\hyperlink{interface_employee_1_1_repository_1_1_i_user_repository_abc77ef0d8d663473b4626d8378ff8d03}{Employee.\+Repository.\+IUser\+Repository}}.
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{employee_backend_2src_2_repository_2_user_repository_8cs_source_l00282}{282}} in het bestand \mbox{\hyperlink{employee_backend_2src_2_repository_2_user_repository_8cs_source}{User\+Repository.\+cs}}.
+
+Hier is de call graaf voor deze functie\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_employee_1_1_repository_1_1_user_repository_a8b0039b2bb022113aae5abb95e9eaaae_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_employee_1_1_repository_1_1_user_repository_ab4d471f0db952b9783c67d06169bcb6e}\index{Employee.Repository.UserRepository@{Employee.Repository.UserRepository}!GetReviewIdsAsync@{GetReviewIdsAsync}}
+\index{GetReviewIdsAsync@{GetReviewIdsAsync}!Employee.Repository.UserRepository@{Employee.Repository.UserRepository}}
+\doxysubsubsection{\texorpdfstring{GetReviewIdsAsync()}{GetReviewIdsAsync()}}
+{\footnotesize\ttfamily \label{class_employee_1_1_repository_1_1_user_repository_ab4d471f0db952b9783c67d06169bcb6e} 
+async Task$<$(bool status, List$<$ string $>$ ids)$>$ Employee.\+Repository.\+User\+Repository.\+Get\+Review\+Ids\+Async (\begin{DoxyParamCaption}\item[{string}]{user}{, }\item[{string}]{user\+Id}{}\end{DoxyParamCaption})}
+
+
+
+Implementeert \mbox{\hyperlink{interface_employee_1_1_repository_1_1_i_user_repository_ab81e43e275458086a96c727a63abcb6c}{Employee.\+Repository.\+IUser\+Repository}}.
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{employee_backend_2src_2_repository_2_user_repository_8cs_source_l00226}{226}} in het bestand \mbox{\hyperlink{employee_backend_2src_2_repository_2_user_repository_8cs_source}{User\+Repository.\+cs}}.
+
+Hier is de call graaf voor deze functie\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_employee_1_1_repository_1_1_user_repository_ab4d471f0db952b9783c67d06169bcb6e_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_employee_1_1_repository_1_1_user_repository_ad4f94baa7bb1cb7938d0af1e3962b752}\index{Employee.Repository.UserRepository@{Employee.Repository.UserRepository}!GetUserDataAsync@{GetUserDataAsync}}
+\index{GetUserDataAsync@{GetUserDataAsync}!Employee.Repository.UserRepository@{Employee.Repository.UserRepository}}
+\doxysubsubsection{\texorpdfstring{GetUserDataAsync()}{GetUserDataAsync()}}
+{\footnotesize\ttfamily \label{class_employee_1_1_repository_1_1_user_repository_ad4f94baa7bb1cb7938d0af1e3962b752} 
+async Task$<$(bool status, Dictionary$<$ string, object $>$ data)$>$ Employee.\+Repository.\+User\+Repository.\+Get\+User\+Data\+Async (\begin{DoxyParamCaption}\item[{string}]{userid}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{employee_backend_2src_2_repository_2_user_repository_8cs_source_l00144}{144}} in het bestand \mbox{\hyperlink{employee_backend_2src_2_repository_2_user_repository_8cs_source}{User\+Repository.\+cs}}.
+
+Hier is de caller graaf voor deze functie\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_employee_1_1_repository_1_1_user_repository_ad4f94baa7bb1cb7938d0af1e3962b752_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_employee_1_1_repository_1_1_user_repository_a227e2c2d2a609c5962413efb6c1c9ab7}\index{Employee.Repository.UserRepository@{Employee.Repository.UserRepository}!GetVehicleData@{GetVehicleData}}
+\index{GetVehicleData@{GetVehicleData}!Employee.Repository.UserRepository@{Employee.Repository.UserRepository}}
+\doxysubsubsection{\texorpdfstring{GetVehicleData()}{GetVehicleData()}}
+{\footnotesize\ttfamily \label{class_employee_1_1_repository_1_1_user_repository_a227e2c2d2a609c5962413efb6c1c9ab7} 
+async Task$<$(bool status, Dictionary$<$ string, object $>$ data)$>$ Employee.\+Repository.\+User\+Repository.\+Get\+Vehicle\+Data (\begin{DoxyParamCaption}\item[{string}]{car\+Id}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{employee_backend_2src_2_repository_2_user_repository_8cs_source_l00185}{185}} in het bestand \mbox{\hyperlink{employee_backend_2src_2_repository_2_user_repository_8cs_source}{User\+Repository.\+cs}}.
+
+Hier is de caller graaf voor deze functie\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_employee_1_1_repository_1_1_user_repository_a227e2c2d2a609c5962413efb6c1c9ab7_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_employee_1_1_repository_1_1_user_repository_a8525cb1d0ebaa40194a3fcdab1e0544e}\index{Employee.Repository.UserRepository@{Employee.Repository.UserRepository}!SetStatusAsync@{SetStatusAsync}}
+\index{SetStatusAsync@{SetStatusAsync}!Employee.Repository.UserRepository@{Employee.Repository.UserRepository}}
+\doxysubsubsection{\texorpdfstring{SetStatusAsync()}{SetStatusAsync()}}
+{\footnotesize\ttfamily \label{class_employee_1_1_repository_1_1_user_repository_a8525cb1d0ebaa40194a3fcdab1e0544e} 
+async Task$<$(bool status, string message)$>$ Employee.\+Repository.\+User\+Repository.\+Set\+Status\+Async (\begin{DoxyParamCaption}\item[{string}]{id}{, }\item[{string}]{status}{, }\item[{string}]{employee}{, }\item[{string}]{user\+Type}{}\end{DoxyParamCaption})}
+
+
+
+Implementeert \mbox{\hyperlink{interface_employee_1_1_repository_1_1_i_user_repository_a0b2fc7bc457fce9252a8b95a2e19f668}{Employee.\+Repository.\+IUser\+Repository}}.
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{employee_backend_2src_2_repository_2_user_repository_8cs_source_l00383}{383}} in het bestand \mbox{\hyperlink{employee_backend_2src_2_repository_2_user_repository_8cs_source}{User\+Repository.\+cs}}.
+
+
+
+\doxysubsection{Documentatie van data members}
+\Hypertarget{class_employee_1_1_repository_1_1_user_repository_a546336b18cbdefc607d513d2e82a759d}\index{Employee.Repository.UserRepository@{Employee.Repository.UserRepository}!\_connector@{\_connector}}
+\index{\_connector@{\_connector}!Employee.Repository.UserRepository@{Employee.Repository.UserRepository}}
+\doxysubsubsection{\texorpdfstring{\_connector}{\_connector}}
+{\footnotesize\ttfamily \label{class_employee_1_1_repository_1_1_user_repository_a546336b18cbdefc607d513d2e82a759d} 
+readonly \mbox{\hyperlink{class_employee_1_1_database_1_1_connector}{Connector}} Employee.\+Repository.\+User\+Repository.\+\_\+connector\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{employee_backend_2src_2_repository_2_user_repository_8cs_source_l00015}{15}} in het bestand \mbox{\hyperlink{employee_backend_2src_2_repository_2_user_repository_8cs_source}{User\+Repository.\+cs}}.
+
+\Hypertarget{class_employee_1_1_repository_1_1_user_repository_ac8ac00963484df3e2775c8a87c86e176}\index{Employee.Repository.UserRepository@{Employee.Repository.UserRepository}!\_hash@{\_hash}}
+\index{\_hash@{\_hash}!Employee.Repository.UserRepository@{Employee.Repository.UserRepository}}
+\doxysubsubsection{\texorpdfstring{\_hash}{\_hash}}
+{\footnotesize\ttfamily \label{class_employee_1_1_repository_1_1_user_repository_ac8ac00963484df3e2775c8a87c86e176} 
+readonly \mbox{\hyperlink{class_employee_1_1_hashing_1_1_hash}{Hash}} Employee.\+Repository.\+User\+Repository.\+\_\+hash\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{employee_backend_2src_2_repository_2_user_repository_8cs_source_l00016}{16}} in het bestand \mbox{\hyperlink{employee_backend_2src_2_repository_2_user_repository_8cs_source}{User\+Repository.\+cs}}.
+
+
+
+De documentatie voor deze klasse is gegenereerd op basis van het volgende bestand\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/codes/\+WPR/employee\+Backend/src/\+Repository/\mbox{\hyperlink{employee_backend_2src_2_repository_2_user_repository_8cs}{User\+Repository.\+cs}}\end{DoxyCompactItemize}

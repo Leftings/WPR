@@ -1,0 +1,146 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="nl">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.13.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>WPR: D:/codes/WPR/backend/src/Controllers/signUp/signUpRequest.cs Bron Bestand</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+  $(function() { init_search(); });
+/* @license-end */
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">WPR
+   </div>
+  </td>
+    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect"                onmouseover="return searchBox.OnSearchSelectShow()"                onmouseout="return searchBox.OnSearchSelectHide()">&#160;</span>
+          <input type="text" id="MSearchField" value="" placeholder="Zoeken" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Gegenereerd door Doxygen 1.13.0 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){initNavTree('backend_2src_2_controllers_2sign_up_2sign_up_request_8cs_source.html',''); initResizable(true); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Laden...</div>
+<div class="SRStatus" id="Searching">Zoeken...</div>
+<div class="SRStatus" id="NoMatches">Niets gevonden</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">signUpRequest.cs</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="backend_2src_2_controllers_2sign_up_2sign_up_request_8cs.html">Ga naar de documentatie van dit bestand.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="keyword">using </span>System.Security.Policy;</div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span> </div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespace_w_p_r_1_1_controllers_1_1_sign_up.html">WPR.Controllers.SignUp</a>;</div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span> </div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment">// Er wordt een body aangemaakt voor alle gegevens voor het aanmaken van een account</span></div>
+<div class="foldopen" id="foldopen00006" data-start="{" data-end="};">
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno"><a class="line" href="class_w_p_r_1_1_controllers_1_1_sign_up_1_1_sign_up_request.html">    6</a></span><span class="keyword">public</span> <span class="keyword">class </span><a class="code hl_class" href="class_w_p_r_1_1_controllers_1_1_sign_up_1_1_sign_up_request.html">SignUpRequest</a></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span>{</div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno"><a class="line" href="class_w_p_r_1_1_controllers_1_1_sign_up_1_1_sign_up_request.html#a5d7f5222ad93c0086d382c63705f2064">    8</a></span>    <span class="keyword">public</span> <span class="keywordtype">string</span>? <a class="code hl_property" href="class_w_p_r_1_1_controllers_1_1_sign_up_1_1_sign_up_request.html#a5d7f5222ad93c0086d382c63705f2064">Email</a> { <span class="keyword">get</span>; <span class="keyword">set</span>; }</div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno"><a class="line" href="class_w_p_r_1_1_controllers_1_1_sign_up_1_1_sign_up_request.html#a1214c9d8c4eacb7a53f694b8e02d6d6a">    9</a></span>    <span class="keyword">public</span> <span class="keywordtype">string</span>? <a class="code hl_property" href="class_w_p_r_1_1_controllers_1_1_sign_up_1_1_sign_up_request.html#a1214c9d8c4eacb7a53f694b8e02d6d6a">Password</a> { <span class="keyword">get</span>; <span class="keyword">set</span>; }</div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno"><a class="line" href="class_w_p_r_1_1_controllers_1_1_sign_up_1_1_sign_up_request.html#aab4bf78da69eedced426531d0907a587">   10</a></span>    <span class="keyword">public</span> <span class="keywordtype">string</span>? <a class="code hl_property" href="class_w_p_r_1_1_controllers_1_1_sign_up_1_1_sign_up_request.html#aab4bf78da69eedced426531d0907a587">FirstName</a> { <span class="keyword">get</span>; <span class="keyword">set</span>; }</div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno"><a class="line" href="class_w_p_r_1_1_controllers_1_1_sign_up_1_1_sign_up_request.html#a42be350bbc6a89dbb7d94fdf452698ac">   11</a></span>    <span class="keyword">public</span> <span class="keywordtype">string</span>? <a class="code hl_property" href="class_w_p_r_1_1_controllers_1_1_sign_up_1_1_sign_up_request.html#a42be350bbc6a89dbb7d94fdf452698ac">LastName</a> { <span class="keyword">get</span>; <span class="keyword">set</span>; }</div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno"><a class="line" href="class_w_p_r_1_1_controllers_1_1_sign_up_1_1_sign_up_request.html#a045f7f505490596af697a9292fd42e82">   12</a></span>    <span class="keyword">public</span> <span class="keywordtype">string</span> <a class="code hl_property" href="class_w_p_r_1_1_controllers_1_1_sign_up_1_1_sign_up_request.html#a045f7f505490596af697a9292fd42e82">TelNumber</a> { <span class="keyword">get</span>; <span class="keyword">set</span>; }</div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno"><a class="line" href="class_w_p_r_1_1_controllers_1_1_sign_up_1_1_sign_up_request.html#ab1884360c4d12422558eb8b7ff5235d9">   13</a></span>    <span class="keyword">public</span> <span class="keywordtype">string</span>? <a class="code hl_property" href="class_w_p_r_1_1_controllers_1_1_sign_up_1_1_sign_up_request.html#ab1884360c4d12422558eb8b7ff5235d9">Adres</a> { <span class="keyword">get</span>; <span class="keyword">set</span>; }</div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno"><a class="line" href="class_w_p_r_1_1_controllers_1_1_sign_up_1_1_sign_up_request.html#a1159906d00457c6a9a8ac50b002299b6">   14</a></span>    <span class="keyword">public</span> DateTime? <a class="code hl_property" href="class_w_p_r_1_1_controllers_1_1_sign_up_1_1_sign_up_request.html#a1159906d00457c6a9a8ac50b002299b6">BirthDate</a> { <span class="keyword">get</span>; <span class="keyword">set</span>; }</div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno"><a class="line" href="class_w_p_r_1_1_controllers_1_1_sign_up_1_1_sign_up_request.html#a4b4f3c21a6f9dad0e4b720bafc5432e8">   15</a></span>    <span class="keyword">public</span> <span class="keywordtype">int</span>? <a class="code hl_property" href="class_w_p_r_1_1_controllers_1_1_sign_up_1_1_sign_up_request.html#a4b4f3c21a6f9dad0e4b720bafc5432e8">KvK</a> { <span class="keyword">get</span>; <span class="keyword">set</span>; }</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>}</div>
+</div>
+<div class="ttc" id="aclass_w_p_r_1_1_controllers_1_1_sign_up_1_1_sign_up_request_html"><div class="ttname"><a href="class_w_p_r_1_1_controllers_1_1_sign_up_1_1_sign_up_request.html">WPR.Controllers.SignUp.SignUpRequest</a></div><div class="ttdef"><b>Definitie</b> <a href="#l00006">signUpRequest.cs:7</a></div></div>
+<div class="ttc" id="aclass_w_p_r_1_1_controllers_1_1_sign_up_1_1_sign_up_request_html_a045f7f505490596af697a9292fd42e82"><div class="ttname"><a href="class_w_p_r_1_1_controllers_1_1_sign_up_1_1_sign_up_request.html#a045f7f505490596af697a9292fd42e82">WPR.Controllers.SignUp.SignUpRequest.TelNumber</a></div><div class="ttdeci">string TelNumber</div><div class="ttdef"><b>Definitie</b> <a href="#l00012">signUpRequest.cs:12</a></div></div>
+<div class="ttc" id="aclass_w_p_r_1_1_controllers_1_1_sign_up_1_1_sign_up_request_html_a1159906d00457c6a9a8ac50b002299b6"><div class="ttname"><a href="class_w_p_r_1_1_controllers_1_1_sign_up_1_1_sign_up_request.html#a1159906d00457c6a9a8ac50b002299b6">WPR.Controllers.SignUp.SignUpRequest.BirthDate</a></div><div class="ttdeci">DateTime? BirthDate</div><div class="ttdef"><b>Definitie</b> <a href="#l00014">signUpRequest.cs:14</a></div></div>
+<div class="ttc" id="aclass_w_p_r_1_1_controllers_1_1_sign_up_1_1_sign_up_request_html_a1214c9d8c4eacb7a53f694b8e02d6d6a"><div class="ttname"><a href="class_w_p_r_1_1_controllers_1_1_sign_up_1_1_sign_up_request.html#a1214c9d8c4eacb7a53f694b8e02d6d6a">WPR.Controllers.SignUp.SignUpRequest.Password</a></div><div class="ttdeci">string? Password</div><div class="ttdef"><b>Definitie</b> <a href="#l00009">signUpRequest.cs:9</a></div></div>
+<div class="ttc" id="aclass_w_p_r_1_1_controllers_1_1_sign_up_1_1_sign_up_request_html_a42be350bbc6a89dbb7d94fdf452698ac"><div class="ttname"><a href="class_w_p_r_1_1_controllers_1_1_sign_up_1_1_sign_up_request.html#a42be350bbc6a89dbb7d94fdf452698ac">WPR.Controllers.SignUp.SignUpRequest.LastName</a></div><div class="ttdeci">string? LastName</div><div class="ttdef"><b>Definitie</b> <a href="#l00011">signUpRequest.cs:11</a></div></div>
+<div class="ttc" id="aclass_w_p_r_1_1_controllers_1_1_sign_up_1_1_sign_up_request_html_a4b4f3c21a6f9dad0e4b720bafc5432e8"><div class="ttname"><a href="class_w_p_r_1_1_controllers_1_1_sign_up_1_1_sign_up_request.html#a4b4f3c21a6f9dad0e4b720bafc5432e8">WPR.Controllers.SignUp.SignUpRequest.KvK</a></div><div class="ttdeci">int? KvK</div><div class="ttdef"><b>Definitie</b> <a href="#l00015">signUpRequest.cs:15</a></div></div>
+<div class="ttc" id="aclass_w_p_r_1_1_controllers_1_1_sign_up_1_1_sign_up_request_html_a5d7f5222ad93c0086d382c63705f2064"><div class="ttname"><a href="class_w_p_r_1_1_controllers_1_1_sign_up_1_1_sign_up_request.html#a5d7f5222ad93c0086d382c63705f2064">WPR.Controllers.SignUp.SignUpRequest.Email</a></div><div class="ttdeci">string? Email</div><div class="ttdef"><b>Definitie</b> <a href="#l00008">signUpRequest.cs:8</a></div></div>
+<div class="ttc" id="aclass_w_p_r_1_1_controllers_1_1_sign_up_1_1_sign_up_request_html_aab4bf78da69eedced426531d0907a587"><div class="ttname"><a href="class_w_p_r_1_1_controllers_1_1_sign_up_1_1_sign_up_request.html#aab4bf78da69eedced426531d0907a587">WPR.Controllers.SignUp.SignUpRequest.FirstName</a></div><div class="ttdeci">string? FirstName</div><div class="ttdef"><b>Definitie</b> <a href="#l00010">signUpRequest.cs:10</a></div></div>
+<div class="ttc" id="aclass_w_p_r_1_1_controllers_1_1_sign_up_1_1_sign_up_request_html_ab1884360c4d12422558eb8b7ff5235d9"><div class="ttname"><a href="class_w_p_r_1_1_controllers_1_1_sign_up_1_1_sign_up_request.html#ab1884360c4d12422558eb8b7ff5235d9">WPR.Controllers.SignUp.SignUpRequest.Adres</a></div><div class="ttdeci">string? Adres</div><div class="ttdef"><b>Definitie</b> <a href="#l00013">signUpRequest.cs:13</a></div></div>
+<div class="ttc" id="anamespace_w_p_r_1_1_controllers_1_1_sign_up_html"><div class="ttname"><a href="namespace_w_p_r_1_1_controllers_1_1_sign_up.html">WPR.Controllers.SignUp</a></div><div class="ttdef"><b>Definitie</b> <a href="sign_up_controller_8cs_source.html#l00004">signUpController.cs:4</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_275089585c7fc1b5fd5d7d42c69cb1da.html">D:</a></li><li class="navelem"><a class="el" href="dir_0ed3cff9c303c270f033a5ffad5fea27.html">codes</a></li><li class="navelem"><a class="el" href="dir_372eb59b6417494335933a4faebbb329.html">WPR</a></li><li class="navelem"><a class="el" href="dir_d4433a7322261b01fe88c3323532d8df.html">backend</a></li><li class="navelem"><a class="el" href="dir_943616b150bdcde3816cee0cfa1e728c.html">src</a></li><li class="navelem"><a class="el" href="dir_bebb09a505ca2b3f44265bdf90a46771.html">Controllers</a></li><li class="navelem"><a class="el" href="dir_c3afd07f5a02ae14a5c3442b53f551f2.html">signUp</a></li><li class="navelem"><a class="el" href="backend_2src_2_controllers_2sign_up_2sign_up_request_8cs.html">signUpRequest.cs</a></li>
+    <li class="footer">Gegenereerd door <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.0 </li>
+  </ul>
+</div>
+</body>
+</html>

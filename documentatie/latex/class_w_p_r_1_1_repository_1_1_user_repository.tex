@@ -1,0 +1,353 @@
+\doxysection{WPR.\+Repository.\+User\+Repository Class Referentie}
+\hypertarget{class_w_p_r_1_1_repository_1_1_user_repository}{}\label{class_w_p_r_1_1_repository_1_1_user_repository}\index{WPR.Repository.UserRepository@{WPR.Repository.UserRepository}}
+
+
+De \doxylink{class_w_p_r_1_1_repository_1_1_user_repository}{User\+Repository} class geeft de methodes voor de interactie met de database voor gebruiker gerelateerde operaties. Het implementeert de \doxylink{interface_w_p_r_1_1_repository_1_1_i_user_repository}{IUser\+Repository} interface.  
+
+
+
+
+Klasse diagram voor WPR.\+Repository.\+User\+Repository
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{class_w_p_r_1_1_repository_1_1_user_repository__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboratie diagram voor WPR.\+Repository.\+User\+Repository\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_w_p_r_1_1_repository_1_1_user_repository__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Members}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_w_p_r_1_1_repository_1_1_user_repository_a5ad793b7ddf7cb678bc9e64d403ba53a}{User\+Repository}} (\mbox{\hyperlink{class_w_p_r_1_1_database_1_1_connector}{Connector}} connector, \mbox{\hyperlink{class_w_p_r_1_1_hashing_1_1_hash}{Hash}} hash, \mbox{\hyperlink{class_w_p_r_1_1_cryption_1_1_crypt}{Crypt}} crypt)
+\item 
+async Task$<$ bool $>$ \mbox{\hyperlink{class_w_p_r_1_1_repository_1_1_user_repository_adb512c98ffbaeb97a9b9f2fdc8994549}{Validate\+User\+Async}} (string username, string password, string user\+Type)
+\item 
+async Task$<$(bool status, string message)$>$ \mbox{\hyperlink{class_w_p_r_1_1_repository_1_1_user_repository_a7903e03bfe7076a6ee7b352636cb854d}{check\+Usage\+Email\+Async}} (string email)
+\item 
+async Task$<$(bool status, string message, int new\+User\+ID)$>$ \mbox{\hyperlink{class_w_p_r_1_1_repository_1_1_user_repository_a42ef5421fcb8544d4aab8ed834325a74}{add\+Customer\+Async}} (Object\mbox{[}$\,$\mbox{]} person\+Data)
+\item 
+async Task$<$(bool status, string message)$>$ \mbox{\hyperlink{class_w_p_r_1_1_repository_1_1_user_repository_a25a2f860883fcc39ea7fa8a932fde475}{add\+Personal\+Customer\+Async}} (Object\mbox{[}$\,$\mbox{]} personal\+Data)
+\item 
+async Task$<$(bool status, string message)$>$ \mbox{\hyperlink{class_w_p_r_1_1_repository_1_1_user_repository_a281b2d169ce34a240a18b3f106e2f95d}{add\+Employee\+Customer\+Async}} (Object\mbox{[}$\,$\mbox{]} employee\+Data)
+\item 
+async Task$<$ string $>$ \mbox{\hyperlink{class_w_p_r_1_1_repository_1_1_user_repository_aea5055bbf69f618cfea05d82dba1becb}{Get\+User\+Id\+Async}} (string email, string table)
+\item 
+async Task$<$ string $>$ \mbox{\hyperlink{class_w_p_r_1_1_repository_1_1_user_repository_acb618d51bcc50e8f72102e11f6bed987}{Get\+User\+Name\+Async}} (string user\+Id)
+\item 
+async Task$<$(bool status, string message)$>$ \mbox{\hyperlink{class_w_p_r_1_1_repository_1_1_user_repository_af9a5424f00a5cfc023cc147a1e0a59cf}{Edit\+User\+Info\+Async}} (List$<$ object\mbox{[}$\,$\mbox{]}$>$ data)
+\item 
+async Task$<$ bool $>$ \mbox{\hyperlink{class_w_p_r_1_1_repository_1_1_user_repository_a49c76e9c3e780a07b7036dd2a6d30263}{Is\+Kvk\+Number\+Async}} (int kvk\+Number)
+\item 
+async Task$<$(bool status, string message)$>$ \mbox{\hyperlink{class_w_p_r_1_1_repository_1_1_user_repository_a23bd5c36ff2c79f375a1b88727134636}{Delete\+User\+Async}} (string user\+Id)
+\item 
+async Task$<$(bool status, string message)$>$ \mbox{\hyperlink{class_w_p_r_1_1_repository_1_1_user_repository_a70df464a9677bb005de76ae46290a8ad}{Get\+Kind\+Employee\+Async}} (string user\+Id)
+\item 
+async Task$<$(bool status, string message)$>$ \mbox{\hyperlink{class_w_p_r_1_1_repository_1_1_user_repository_a09794bb8a3181b5be3f2676421dc4b12}{Add\+Staff}} (Object\mbox{[}$\,$\mbox{]} person\+Data)
+\item 
+async Task$<$ bool $>$ \mbox{\hyperlink{class_w_p_r_1_1_repository_1_1_user_repository_a9897bc253b72e7422cca16f676d4e53c}{Is\+User\+Employee}} (int id)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Members}
+\begin{DoxyCompactItemize}
+\item 
+async Task$<$(bool good\+Query, string message)$>$ \mbox{\hyperlink{class_w_p_r_1_1_repository_1_1_user_repository_af1ae304fd24d3ae358db293b0033e484}{Create\+User\+Info\+Query}} (List$<$ object\mbox{[}$\,$\mbox{]}$>$ data)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributen}
+\begin{DoxyCompactItemize}
+\item 
+readonly \mbox{\hyperlink{class_w_p_r_1_1_database_1_1_connector}{Connector}} \mbox{\hyperlink{class_w_p_r_1_1_repository_1_1_user_repository_a183c2adefcdd48e81e8341e438662d7c}{\+\_\+connector}}
+\item 
+readonly \mbox{\hyperlink{class_w_p_r_1_1_hashing_1_1_hash}{Hash}} \mbox{\hyperlink{class_w_p_r_1_1_repository_1_1_user_repository_a1b11b787b41fa41a34ef2515f5eaa6d3}{\+\_\+hash}}
+\item 
+readonly \mbox{\hyperlink{class_w_p_r_1_1_cryption_1_1_crypt}{Crypt}} \mbox{\hyperlink{class_w_p_r_1_1_repository_1_1_user_repository_ac8ad4a8f0e0ab9918ee233a207c2b125}{\+\_\+crypt}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Gedetailleerde Beschrijving}
+De \doxylink{class_w_p_r_1_1_repository_1_1_user_repository}{User\+Repository} class geeft de methodes voor de interactie met de database voor gebruiker gerelateerde operaties. Het implementeert de \doxylink{interface_w_p_r_1_1_repository_1_1_i_user_repository}{IUser\+Repository} interface. 
+
+De definitie bevindt zich op regel \mbox{\hyperlink{backend_2src_2_repository_2_user_repository_8cs_source_l00018}{18}} in het bestand \mbox{\hyperlink{backend_2src_2_repository_2_user_repository_8cs_source}{User\+Repository.\+cs}}.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentatie}
+\Hypertarget{class_w_p_r_1_1_repository_1_1_user_repository_a5ad793b7ddf7cb678bc9e64d403ba53a}\index{WPR.Repository.UserRepository@{WPR.Repository.UserRepository}!UserRepository@{UserRepository}}
+\index{UserRepository@{UserRepository}!WPR.Repository.UserRepository@{WPR.Repository.UserRepository}}
+\doxysubsubsection{\texorpdfstring{UserRepository()}{UserRepository()}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_repository_1_1_user_repository_a5ad793b7ddf7cb678bc9e64d403ba53a} 
+WPR.\+Repository.\+User\+Repository.\+User\+Repository (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_w_p_r_1_1_database_1_1_connector}{Connector}}}]{connector}{, }\item[{\mbox{\hyperlink{class_w_p_r_1_1_hashing_1_1_hash}{Hash}}}]{hash}{, }\item[{\mbox{\hyperlink{class_w_p_r_1_1_cryption_1_1_crypt}{Crypt}}}]{crypt}{}\end{DoxyParamCaption})}
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{backend_2src_2_repository_2_user_repository_8cs_source_l00024}{24}} in het bestand \mbox{\hyperlink{backend_2src_2_repository_2_user_repository_8cs_source}{User\+Repository.\+cs}}.
+
+
+
+\doxysubsection{Documentatie van functie members}
+\Hypertarget{class_w_p_r_1_1_repository_1_1_user_repository_a42ef5421fcb8544d4aab8ed834325a74}\index{WPR.Repository.UserRepository@{WPR.Repository.UserRepository}!addCustomerAsync@{addCustomerAsync}}
+\index{addCustomerAsync@{addCustomerAsync}!WPR.Repository.UserRepository@{WPR.Repository.UserRepository}}
+\doxysubsubsection{\texorpdfstring{addCustomerAsync()}{addCustomerAsync()}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_repository_1_1_user_repository_a42ef5421fcb8544d4aab8ed834325a74} 
+async Task$<$(bool status, string message, int new\+User\+ID)$>$ WPR.\+Repository.\+User\+Repository.\+add\+Customer\+Async (\begin{DoxyParamCaption}\item[{Object\mbox{[}$\,$\mbox{]}}]{person\+Data}{}\end{DoxyParamCaption})}
+
+
+
+Implementeert \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_user_repository_a0e52cd72018fad6b2fe68da104f5a971}{WPR.\+Repository.\+IUser\+Repository}}.
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{backend_2src_2_repository_2_user_repository_8cs_source_l00148}{148}} in het bestand \mbox{\hyperlink{backend_2src_2_repository_2_user_repository_8cs_source}{User\+Repository.\+cs}}.
+
+\Hypertarget{class_w_p_r_1_1_repository_1_1_user_repository_a281b2d169ce34a240a18b3f106e2f95d}\index{WPR.Repository.UserRepository@{WPR.Repository.UserRepository}!addEmployeeCustomerAsync@{addEmployeeCustomerAsync}}
+\index{addEmployeeCustomerAsync@{addEmployeeCustomerAsync}!WPR.Repository.UserRepository@{WPR.Repository.UserRepository}}
+\doxysubsubsection{\texorpdfstring{addEmployeeCustomerAsync()}{addEmployeeCustomerAsync()}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_repository_1_1_user_repository_a281b2d169ce34a240a18b3f106e2f95d} 
+async Task$<$(bool status, string message)$>$ WPR.\+Repository.\+User\+Repository.\+add\+Employee\+Customer\+Async (\begin{DoxyParamCaption}\item[{Object\mbox{[}$\,$\mbox{]}}]{employee\+Data}{}\end{DoxyParamCaption})}
+
+
+
+Implementeert \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_user_repository_afe0de5259233749214ee4eb6a4069e70}{WPR.\+Repository.\+IUser\+Repository}}.
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{backend_2src_2_repository_2_user_repository_8cs_source_l00225}{225}} in het bestand \mbox{\hyperlink{backend_2src_2_repository_2_user_repository_8cs_source}{User\+Repository.\+cs}}.
+
+\Hypertarget{class_w_p_r_1_1_repository_1_1_user_repository_a25a2f860883fcc39ea7fa8a932fde475}\index{WPR.Repository.UserRepository@{WPR.Repository.UserRepository}!addPersonalCustomerAsync@{addPersonalCustomerAsync}}
+\index{addPersonalCustomerAsync@{addPersonalCustomerAsync}!WPR.Repository.UserRepository@{WPR.Repository.UserRepository}}
+\doxysubsubsection{\texorpdfstring{addPersonalCustomerAsync()}{addPersonalCustomerAsync()}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_repository_1_1_user_repository_a25a2f860883fcc39ea7fa8a932fde475} 
+async Task$<$(bool status, string message)$>$ WPR.\+Repository.\+User\+Repository.\+add\+Personal\+Customer\+Async (\begin{DoxyParamCaption}\item[{Object\mbox{[}$\,$\mbox{]}}]{personal\+Data}{}\end{DoxyParamCaption})}
+
+
+
+Implementeert \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_user_repository_a8302234bdf3953c8329a4487c03992e8}{WPR.\+Repository.\+IUser\+Repository}}.
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{backend_2src_2_repository_2_user_repository_8cs_source_l00190}{190}} in het bestand \mbox{\hyperlink{backend_2src_2_repository_2_user_repository_8cs_source}{User\+Repository.\+cs}}.
+
+\Hypertarget{class_w_p_r_1_1_repository_1_1_user_repository_a09794bb8a3181b5be3f2676421dc4b12}\index{WPR.Repository.UserRepository@{WPR.Repository.UserRepository}!AddStaff@{AddStaff}}
+\index{AddStaff@{AddStaff}!WPR.Repository.UserRepository@{WPR.Repository.UserRepository}}
+\doxysubsubsection{\texorpdfstring{AddStaff()}{AddStaff()}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_repository_1_1_user_repository_a09794bb8a3181b5be3f2676421dc4b12} 
+async Task$<$(bool status, string message)$>$ WPR.\+Repository.\+User\+Repository.\+Add\+Staff (\begin{DoxyParamCaption}\item[{Object\mbox{[}$\,$\mbox{]}}]{person\+Data}{}\end{DoxyParamCaption})}
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{backend_2src_2_repository_2_user_repository_8cs_source_l00507}{507}} in het bestand \mbox{\hyperlink{backend_2src_2_repository_2_user_repository_8cs_source}{User\+Repository.\+cs}}.
+
+\Hypertarget{class_w_p_r_1_1_repository_1_1_user_repository_a7903e03bfe7076a6ee7b352636cb854d}\index{WPR.Repository.UserRepository@{WPR.Repository.UserRepository}!checkUsageEmailAsync@{checkUsageEmailAsync}}
+\index{checkUsageEmailAsync@{checkUsageEmailAsync}!WPR.Repository.UserRepository@{WPR.Repository.UserRepository}}
+\doxysubsubsection{\texorpdfstring{checkUsageEmailAsync()}{checkUsageEmailAsync()}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_repository_1_1_user_repository_a7903e03bfe7076a6ee7b352636cb854d} 
+async Task$<$(bool status, string message)$>$ WPR.\+Repository.\+User\+Repository.\+check\+Usage\+Email\+Async (\begin{DoxyParamCaption}\item[{string}]{email}{}\end{DoxyParamCaption})}
+
+
+
+Implementeert \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_user_repository_a9c716662bd52a8dec74a868954dee50e}{WPR.\+Repository.\+IUser\+Repository}}.
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{backend_2src_2_repository_2_user_repository_8cs_source_l00116}{116}} in het bestand \mbox{\hyperlink{backend_2src_2_repository_2_user_repository_8cs_source}{User\+Repository.\+cs}}.
+
+Hier is de caller graaf voor deze functie\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_w_p_r_1_1_repository_1_1_user_repository_a7903e03bfe7076a6ee7b352636cb854d_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_w_p_r_1_1_repository_1_1_user_repository_af1ae304fd24d3ae358db293b0033e484}\index{WPR.Repository.UserRepository@{WPR.Repository.UserRepository}!CreateUserInfoQuery@{CreateUserInfoQuery}}
+\index{CreateUserInfoQuery@{CreateUserInfoQuery}!WPR.Repository.UserRepository@{WPR.Repository.UserRepository}}
+\doxysubsubsection{\texorpdfstring{CreateUserInfoQuery()}{CreateUserInfoQuery()}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_repository_1_1_user_repository_af1ae304fd24d3ae358db293b0033e484} 
+async Task$<$(bool good\+Query, string message)$>$ WPR.\+Repository.\+User\+Repository.\+Create\+User\+Info\+Query (\begin{DoxyParamCaption}\item[{List$<$ object\mbox{[}$\,$\mbox{]}$>$}]{data}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{backend_2src_2_repository_2_user_repository_8cs_source_l00435}{435}} in het bestand \mbox{\hyperlink{backend_2src_2_repository_2_user_repository_8cs_source}{User\+Repository.\+cs}}.
+
+Hier is de call graaf voor deze functie\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_w_p_r_1_1_repository_1_1_user_repository_af1ae304fd24d3ae358db293b0033e484_cgraph}
+\end{center}
+\end{figure}
+Hier is de caller graaf voor deze functie\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_w_p_r_1_1_repository_1_1_user_repository_af1ae304fd24d3ae358db293b0033e484_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_w_p_r_1_1_repository_1_1_user_repository_a23bd5c36ff2c79f375a1b88727134636}\index{WPR.Repository.UserRepository@{WPR.Repository.UserRepository}!DeleteUserAsync@{DeleteUserAsync}}
+\index{DeleteUserAsync@{DeleteUserAsync}!WPR.Repository.UserRepository@{WPR.Repository.UserRepository}}
+\doxysubsubsection{\texorpdfstring{DeleteUserAsync()}{DeleteUserAsync()}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_repository_1_1_user_repository_a23bd5c36ff2c79f375a1b88727134636} 
+async Task$<$(bool status, string message)$>$ WPR.\+Repository.\+User\+Repository.\+Delete\+User\+Async (\begin{DoxyParamCaption}\item[{string}]{user\+Id}{}\end{DoxyParamCaption})}
+
+
+
+Implementeert \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_user_repository_ab8bc076a0fa5153144ae7a810515bf5a}{WPR.\+Repository.\+IUser\+Repository}}.
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{backend_2src_2_repository_2_user_repository_8cs_source_l00379}{379}} in het bestand \mbox{\hyperlink{backend_2src_2_repository_2_user_repository_8cs_source}{User\+Repository.\+cs}}.
+
+\Hypertarget{class_w_p_r_1_1_repository_1_1_user_repository_af9a5424f00a5cfc023cc147a1e0a59cf}\index{WPR.Repository.UserRepository@{WPR.Repository.UserRepository}!EditUserInfoAsync@{EditUserInfoAsync}}
+\index{EditUserInfoAsync@{EditUserInfoAsync}!WPR.Repository.UserRepository@{WPR.Repository.UserRepository}}
+\doxysubsubsection{\texorpdfstring{EditUserInfoAsync()}{EditUserInfoAsync()}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_repository_1_1_user_repository_af9a5424f00a5cfc023cc147a1e0a59cf} 
+async Task$<$(bool status, string message)$>$ WPR.\+Repository.\+User\+Repository.\+Edit\+User\+Info\+Async (\begin{DoxyParamCaption}\item[{List$<$ object\mbox{[}$\,$\mbox{]}$>$}]{data}{}\end{DoxyParamCaption})}
+
+
+
+Implementeert \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_user_repository_a69bf2dfc071328b914d0dd2b0e28036c}{WPR.\+Repository.\+IUser\+Repository}}.
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{backend_2src_2_repository_2_user_repository_8cs_source_l00317}{317}} in het bestand \mbox{\hyperlink{backend_2src_2_repository_2_user_repository_8cs_source}{User\+Repository.\+cs}}.
+
+Hier is de call graaf voor deze functie\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_w_p_r_1_1_repository_1_1_user_repository_af9a5424f00a5cfc023cc147a1e0a59cf_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_w_p_r_1_1_repository_1_1_user_repository_a70df464a9677bb005de76ae46290a8ad}\index{WPR.Repository.UserRepository@{WPR.Repository.UserRepository}!GetKindEmployeeAsync@{GetKindEmployeeAsync}}
+\index{GetKindEmployeeAsync@{GetKindEmployeeAsync}!WPR.Repository.UserRepository@{WPR.Repository.UserRepository}}
+\doxysubsubsection{\texorpdfstring{GetKindEmployeeAsync()}{GetKindEmployeeAsync()}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_repository_1_1_user_repository_a70df464a9677bb005de76ae46290a8ad} 
+async Task$<$(bool status, string message)$>$ WPR.\+Repository.\+User\+Repository.\+Get\+Kind\+Employee\+Async (\begin{DoxyParamCaption}\item[{string}]{user\+Id}{}\end{DoxyParamCaption})}
+
+
+
+Implementeert \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_user_repository_a61c1809923dff794670663107f64df14}{WPR.\+Repository.\+IUser\+Repository}}.
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{backend_2src_2_repository_2_user_repository_8cs_source_l00480}{480}} in het bestand \mbox{\hyperlink{backend_2src_2_repository_2_user_repository_8cs_source}{User\+Repository.\+cs}}.
+
+\Hypertarget{class_w_p_r_1_1_repository_1_1_user_repository_aea5055bbf69f618cfea05d82dba1becb}\index{WPR.Repository.UserRepository@{WPR.Repository.UserRepository}!GetUserIdAsync@{GetUserIdAsync}}
+\index{GetUserIdAsync@{GetUserIdAsync}!WPR.Repository.UserRepository@{WPR.Repository.UserRepository}}
+\doxysubsubsection{\texorpdfstring{GetUserIdAsync()}{GetUserIdAsync()}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_repository_1_1_user_repository_aea5055bbf69f618cfea05d82dba1becb} 
+async Task$<$ string $>$ WPR.\+Repository.\+User\+Repository.\+Get\+User\+Id\+Async (\begin{DoxyParamCaption}\item[{string}]{email}{, }\item[{string}]{table}{}\end{DoxyParamCaption})}
+
+
+
+Implementeert \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_user_repository_a4c1e54015ce6e7f4e3f71a22db6c6de3}{WPR.\+Repository.\+IUser\+Repository}}.
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{backend_2src_2_repository_2_user_repository_8cs_source_l00260}{260}} in het bestand \mbox{\hyperlink{backend_2src_2_repository_2_user_repository_8cs_source}{User\+Repository.\+cs}}.
+
+\Hypertarget{class_w_p_r_1_1_repository_1_1_user_repository_acb618d51bcc50e8f72102e11f6bed987}\index{WPR.Repository.UserRepository@{WPR.Repository.UserRepository}!GetUserNameAsync@{GetUserNameAsync}}
+\index{GetUserNameAsync@{GetUserNameAsync}!WPR.Repository.UserRepository@{WPR.Repository.UserRepository}}
+\doxysubsubsection{\texorpdfstring{GetUserNameAsync()}{GetUserNameAsync()}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_repository_1_1_user_repository_acb618d51bcc50e8f72102e11f6bed987} 
+async Task$<$ string $>$ WPR.\+Repository.\+User\+Repository.\+Get\+User\+Name\+Async (\begin{DoxyParamCaption}\item[{string}]{user\+Id}{}\end{DoxyParamCaption})}
+
+
+
+Implementeert \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_user_repository_adea3e199f30f2118d56fbb649c6d9b85}{WPR.\+Repository.\+IUser\+Repository}}.
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{backend_2src_2_repository_2_user_repository_8cs_source_l00291}{291}} in het bestand \mbox{\hyperlink{backend_2src_2_repository_2_user_repository_8cs_source}{User\+Repository.\+cs}}.
+
+\Hypertarget{class_w_p_r_1_1_repository_1_1_user_repository_a49c76e9c3e780a07b7036dd2a6d30263}\index{WPR.Repository.UserRepository@{WPR.Repository.UserRepository}!IsKvkNumberAsync@{IsKvkNumberAsync}}
+\index{IsKvkNumberAsync@{IsKvkNumberAsync}!WPR.Repository.UserRepository@{WPR.Repository.UserRepository}}
+\doxysubsubsection{\texorpdfstring{IsKvkNumberAsync()}{IsKvkNumberAsync()}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_repository_1_1_user_repository_a49c76e9c3e780a07b7036dd2a6d30263} 
+async Task$<$ bool $>$ WPR.\+Repository.\+User\+Repository.\+Is\+Kvk\+Number\+Async (\begin{DoxyParamCaption}\item[{int}]{kvk\+Number}{}\end{DoxyParamCaption})}
+
+
+
+Implementeert \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_user_repository_a670f6c2c74f0ecdf1386af0f6069c9fd}{WPR.\+Repository.\+IUser\+Repository}}.
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{backend_2src_2_repository_2_user_repository_8cs_source_l00353}{353}} in het bestand \mbox{\hyperlink{backend_2src_2_repository_2_user_repository_8cs_source}{User\+Repository.\+cs}}.
+
+\Hypertarget{class_w_p_r_1_1_repository_1_1_user_repository_a9897bc253b72e7422cca16f676d4e53c}\index{WPR.Repository.UserRepository@{WPR.Repository.UserRepository}!IsUserEmployee@{IsUserEmployee}}
+\index{IsUserEmployee@{IsUserEmployee}!WPR.Repository.UserRepository@{WPR.Repository.UserRepository}}
+\doxysubsubsection{\texorpdfstring{IsUserEmployee()}{IsUserEmployee()}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_repository_1_1_user_repository_a9897bc253b72e7422cca16f676d4e53c} 
+async Task$<$ bool $>$ WPR.\+Repository.\+User\+Repository.\+Is\+User\+Employee (\begin{DoxyParamCaption}\item[{int}]{id}{}\end{DoxyParamCaption})}
+
+
+
+Implementeert \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_user_repository_aab80cef291c4192ce799937ca1e08312}{WPR.\+Repository.\+IUser\+Repository}}.
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{backend_2src_2_repository_2_user_repository_8cs_source_l00539}{539}} in het bestand \mbox{\hyperlink{backend_2src_2_repository_2_user_repository_8cs_source}{User\+Repository.\+cs}}.
+
+\Hypertarget{class_w_p_r_1_1_repository_1_1_user_repository_adb512c98ffbaeb97a9b9f2fdc8994549}\index{WPR.Repository.UserRepository@{WPR.Repository.UserRepository}!ValidateUserAsync@{ValidateUserAsync}}
+\index{ValidateUserAsync@{ValidateUserAsync}!WPR.Repository.UserRepository@{WPR.Repository.UserRepository}}
+\doxysubsubsection{\texorpdfstring{ValidateUserAsync()}{ValidateUserAsync()}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_repository_1_1_user_repository_adb512c98ffbaeb97a9b9f2fdc8994549} 
+async Task$<$ bool $>$ WPR.\+Repository.\+User\+Repository.\+Validate\+User\+Async (\begin{DoxyParamCaption}\item[{string}]{username}{, }\item[{string}]{password}{, }\item[{string}]{user\+Type}{}\end{DoxyParamCaption})}
+
+
+
+Implementeert \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_user_repository_a7dd4b3be17516ffd565fec621cbd7452}{WPR.\+Repository.\+IUser\+Repository}}.
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{backend_2src_2_repository_2_user_repository_8cs_source_l00056}{56}} in het bestand \mbox{\hyperlink{backend_2src_2_repository_2_user_repository_8cs_source}{User\+Repository.\+cs}}.
+
+
+
+\doxysubsection{Documentatie van data members}
+\Hypertarget{class_w_p_r_1_1_repository_1_1_user_repository_a183c2adefcdd48e81e8341e438662d7c}\index{WPR.Repository.UserRepository@{WPR.Repository.UserRepository}!\_connector@{\_connector}}
+\index{\_connector@{\_connector}!WPR.Repository.UserRepository@{WPR.Repository.UserRepository}}
+\doxysubsubsection{\texorpdfstring{\_connector}{\_connector}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_repository_1_1_user_repository_a183c2adefcdd48e81e8341e438662d7c} 
+readonly \mbox{\hyperlink{class_w_p_r_1_1_database_1_1_connector}{Connector}} WPR.\+Repository.\+User\+Repository.\+\_\+connector\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{backend_2src_2_repository_2_user_repository_8cs_source_l00020}{20}} in het bestand \mbox{\hyperlink{backend_2src_2_repository_2_user_repository_8cs_source}{User\+Repository.\+cs}}.
+
+\Hypertarget{class_w_p_r_1_1_repository_1_1_user_repository_ac8ad4a8f0e0ab9918ee233a207c2b125}\index{WPR.Repository.UserRepository@{WPR.Repository.UserRepository}!\_crypt@{\_crypt}}
+\index{\_crypt@{\_crypt}!WPR.Repository.UserRepository@{WPR.Repository.UserRepository}}
+\doxysubsubsection{\texorpdfstring{\_crypt}{\_crypt}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_repository_1_1_user_repository_ac8ad4a8f0e0ab9918ee233a207c2b125} 
+readonly \mbox{\hyperlink{class_w_p_r_1_1_cryption_1_1_crypt}{Crypt}} WPR.\+Repository.\+User\+Repository.\+\_\+crypt\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{backend_2src_2_repository_2_user_repository_8cs_source_l00022}{22}} in het bestand \mbox{\hyperlink{backend_2src_2_repository_2_user_repository_8cs_source}{User\+Repository.\+cs}}.
+
+\Hypertarget{class_w_p_r_1_1_repository_1_1_user_repository_a1b11b787b41fa41a34ef2515f5eaa6d3}\index{WPR.Repository.UserRepository@{WPR.Repository.UserRepository}!\_hash@{\_hash}}
+\index{\_hash@{\_hash}!WPR.Repository.UserRepository@{WPR.Repository.UserRepository}}
+\doxysubsubsection{\texorpdfstring{\_hash}{\_hash}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_repository_1_1_user_repository_a1b11b787b41fa41a34ef2515f5eaa6d3} 
+readonly \mbox{\hyperlink{class_w_p_r_1_1_hashing_1_1_hash}{Hash}} WPR.\+Repository.\+User\+Repository.\+\_\+hash\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{backend_2src_2_repository_2_user_repository_8cs_source_l00021}{21}} in het bestand \mbox{\hyperlink{backend_2src_2_repository_2_user_repository_8cs_source}{User\+Repository.\+cs}}.
+
+
+
+De documentatie voor deze klasse is gegenereerd op basis van het volgende bestand\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/codes/\+WPR/backend/src/\+Repository/\mbox{\hyperlink{backend_2src_2_repository_2_user_repository_8cs}{User\+Repository.\+cs}}\end{DoxyCompactItemize}

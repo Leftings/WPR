@@ -1,0 +1,119 @@
+\doxysection{Employee.\+Repository.\+IUser\+Repository Interface Referentie}
+\hypertarget{interface_employee_1_1_repository_1_1_i_user_repository}{}\label{interface_employee_1_1_repository_1_1_i_user_repository}\index{Employee.Repository.IUserRepository@{Employee.Repository.IUserRepository}}
+
+
+Interface defining methods voor user gerelateerde database operaties, validatie, user management, data retrieval.  
+
+
+
+
+Klasse diagram voor Employee.\+Repository.\+IUser\+Repository
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=211pt]{interface_employee_1_1_repository_1_1_i_user_repository__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboratie diagram voor Employee.\+Repository.\+IUser\+Repository\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=211pt]{interface_employee_1_1_repository_1_1_i_user_repository__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Members}
+\begin{DoxyCompactItemize}
+\item 
+Task$<$(bool status, string message)$>$ \mbox{\hyperlink{interface_employee_1_1_repository_1_1_i_user_repository_a02e61a8be334c58c4fa32776afa2d07a}{Add\+Vehicle\+Async}} (int yop, string brand, string type, string licens\+Plate, string color, string sort, double price, string description, byte\mbox{[}$\,$\mbox{]} vehicle\+Blob)
+\item 
+Task$<$(bool status, string message)$>$ \mbox{\hyperlink{interface_employee_1_1_repository_1_1_i_user_repository_a7b55190082233792307a234ac085d318}{Add\+Staff}} (Object\mbox{[}$\,$\mbox{]} person\+Data)
+\item 
+Task$<$(bool status, string message)$>$ \mbox{\hyperlink{interface_employee_1_1_repository_1_1_i_user_repository_a791de1915ba5ff0a602bc41d1a711d49}{check\+Usage\+Email\+Async}} (string email)
+\item 
+Task$<$(bool status, List$<$ string $>$ ids)$>$ \mbox{\hyperlink{interface_employee_1_1_repository_1_1_i_user_repository_ab81e43e275458086a96c727a63abcb6c}{Get\+Review\+Ids\+Async}} (string user, string user\+Id)
+\item 
+Task$<$(bool status, List$<$ Dictionary$<$ string, object $>$ $>$ data)$>$ \mbox{\hyperlink{interface_employee_1_1_repository_1_1_i_user_repository_abc77ef0d8d663473b4626d8378ff8d03}{Get\+Review\+Async}} (string id)
+\item 
+Task$<$(bool status, string message)$>$ \mbox{\hyperlink{interface_employee_1_1_repository_1_1_i_user_repository_a0b2fc7bc457fce9252a8b95a2e19f668}{Set\+Status\+Async}} (string id, string status, string employee, string user\+Type)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Gedetailleerde Beschrijving}
+Interface defining methods voor user gerelateerde database operaties, validatie, user management, data retrieval. 
+
+Het \doxylink{namespace_employee_1_1_repository}{Repository} Pattern abstraheert de logica voor data toegang en zorgt voor gecentraliseerde en consitente interface voor interactie met de database. Dit is goed voor\+: testbaarheid, onderhoudbaarheid en scheiding van verantwoordelijkheden binnen de applicatie. 
+
+De definitie bevindt zich op regel \mbox{\hyperlink{employee_backend_2src_2_repository_2_i_user_repository_8cs_source_l00014}{14}} in het bestand \mbox{\hyperlink{employee_backend_2src_2_repository_2_i_user_repository_8cs_source}{IUser\+Repository.\+cs}}.
+
+
+
+\doxysubsection{Documentatie van functie members}
+\Hypertarget{interface_employee_1_1_repository_1_1_i_user_repository_a7b55190082233792307a234ac085d318}\index{Employee.Repository.IUserRepository@{Employee.Repository.IUserRepository}!AddStaff@{AddStaff}}
+\index{AddStaff@{AddStaff}!Employee.Repository.IUserRepository@{Employee.Repository.IUserRepository}}
+\doxysubsubsection{\texorpdfstring{AddStaff()}{AddStaff()}}
+{\footnotesize\ttfamily \label{interface_employee_1_1_repository_1_1_i_user_repository_a7b55190082233792307a234ac085d318} 
+Task$<$(bool status, string message)$>$ Employee.\+Repository.\+IUser\+Repository.\+Add\+Staff (\begin{DoxyParamCaption}\item[{Object\mbox{[}$\,$\mbox{]}}]{person\+Data}{}\end{DoxyParamCaption})}
+
+
+
+Wordt geïmplementeerd door \mbox{\hyperlink{class_employee_1_1_repository_1_1_user_repository_a97c6f5b40203c481ffacbafa0e55848d}{Employee.\+Repository.\+User\+Repository}}.
+
+\Hypertarget{interface_employee_1_1_repository_1_1_i_user_repository_a02e61a8be334c58c4fa32776afa2d07a}\index{Employee.Repository.IUserRepository@{Employee.Repository.IUserRepository}!AddVehicleAsync@{AddVehicleAsync}}
+\index{AddVehicleAsync@{AddVehicleAsync}!Employee.Repository.IUserRepository@{Employee.Repository.IUserRepository}}
+\doxysubsubsection{\texorpdfstring{AddVehicleAsync()}{AddVehicleAsync()}}
+{\footnotesize\ttfamily \label{interface_employee_1_1_repository_1_1_i_user_repository_a02e61a8be334c58c4fa32776afa2d07a} 
+Task$<$(bool status, string message)$>$ Employee.\+Repository.\+IUser\+Repository.\+Add\+Vehicle\+Async (\begin{DoxyParamCaption}\item[{int}]{yop}{, }\item[{string}]{brand}{, }\item[{string}]{type}{, }\item[{string}]{licens\+Plate}{, }\item[{string}]{color}{, }\item[{string}]{sort}{, }\item[{double}]{price}{, }\item[{string}]{description}{, }\item[{byte\mbox{[}$\,$\mbox{]}}]{vehicle\+Blob}{}\end{DoxyParamCaption})}
+
+
+
+Wordt geïmplementeerd door \mbox{\hyperlink{class_employee_1_1_repository_1_1_user_repository_acb9173fc7b391fc43dcd1a5d1c573e27}{Employee.\+Repository.\+User\+Repository}}.
+
+\Hypertarget{interface_employee_1_1_repository_1_1_i_user_repository_a791de1915ba5ff0a602bc41d1a711d49}\index{Employee.Repository.IUserRepository@{Employee.Repository.IUserRepository}!checkUsageEmailAsync@{checkUsageEmailAsync}}
+\index{checkUsageEmailAsync@{checkUsageEmailAsync}!Employee.Repository.IUserRepository@{Employee.Repository.IUserRepository}}
+\doxysubsubsection{\texorpdfstring{checkUsageEmailAsync()}{checkUsageEmailAsync()}}
+{\footnotesize\ttfamily \label{interface_employee_1_1_repository_1_1_i_user_repository_a791de1915ba5ff0a602bc41d1a711d49} 
+Task$<$(bool status, string message)$>$ Employee.\+Repository.\+IUser\+Repository.\+check\+Usage\+Email\+Async (\begin{DoxyParamCaption}\item[{string}]{email}{}\end{DoxyParamCaption})}
+
+
+
+Wordt geïmplementeerd door \mbox{\hyperlink{class_employee_1_1_repository_1_1_user_repository_a5b5d20c13b902c7311cd83bba63a2768}{Employee.\+Repository.\+User\+Repository}}.
+
+\Hypertarget{interface_employee_1_1_repository_1_1_i_user_repository_abc77ef0d8d663473b4626d8378ff8d03}\index{Employee.Repository.IUserRepository@{Employee.Repository.IUserRepository}!GetReviewAsync@{GetReviewAsync}}
+\index{GetReviewAsync@{GetReviewAsync}!Employee.Repository.IUserRepository@{Employee.Repository.IUserRepository}}
+\doxysubsubsection{\texorpdfstring{GetReviewAsync()}{GetReviewAsync()}}
+{\footnotesize\ttfamily \label{interface_employee_1_1_repository_1_1_i_user_repository_abc77ef0d8d663473b4626d8378ff8d03} 
+Task$<$(bool status, List$<$ Dictionary$<$ string, object $>$ $>$ data)$>$ Employee.\+Repository.\+IUser\+Repository.\+Get\+Review\+Async (\begin{DoxyParamCaption}\item[{string}]{id}{}\end{DoxyParamCaption})}
+
+
+
+Wordt geïmplementeerd door \mbox{\hyperlink{class_employee_1_1_repository_1_1_user_repository_a8b0039b2bb022113aae5abb95e9eaaae}{Employee.\+Repository.\+User\+Repository}}.
+
+\Hypertarget{interface_employee_1_1_repository_1_1_i_user_repository_ab81e43e275458086a96c727a63abcb6c}\index{Employee.Repository.IUserRepository@{Employee.Repository.IUserRepository}!GetReviewIdsAsync@{GetReviewIdsAsync}}
+\index{GetReviewIdsAsync@{GetReviewIdsAsync}!Employee.Repository.IUserRepository@{Employee.Repository.IUserRepository}}
+\doxysubsubsection{\texorpdfstring{GetReviewIdsAsync()}{GetReviewIdsAsync()}}
+{\footnotesize\ttfamily \label{interface_employee_1_1_repository_1_1_i_user_repository_ab81e43e275458086a96c727a63abcb6c} 
+Task$<$(bool status, List$<$ string $>$ ids)$>$ Employee.\+Repository.\+IUser\+Repository.\+Get\+Review\+Ids\+Async (\begin{DoxyParamCaption}\item[{string}]{user}{, }\item[{string}]{user\+Id}{}\end{DoxyParamCaption})}
+
+
+
+Wordt geïmplementeerd door \mbox{\hyperlink{class_employee_1_1_repository_1_1_user_repository_ab4d471f0db952b9783c67d06169bcb6e}{Employee.\+Repository.\+User\+Repository}}.
+
+\Hypertarget{interface_employee_1_1_repository_1_1_i_user_repository_a0b2fc7bc457fce9252a8b95a2e19f668}\index{Employee.Repository.IUserRepository@{Employee.Repository.IUserRepository}!SetStatusAsync@{SetStatusAsync}}
+\index{SetStatusAsync@{SetStatusAsync}!Employee.Repository.IUserRepository@{Employee.Repository.IUserRepository}}
+\doxysubsubsection{\texorpdfstring{SetStatusAsync()}{SetStatusAsync()}}
+{\footnotesize\ttfamily \label{interface_employee_1_1_repository_1_1_i_user_repository_a0b2fc7bc457fce9252a8b95a2e19f668} 
+Task$<$(bool status, string message)$>$ Employee.\+Repository.\+IUser\+Repository.\+Set\+Status\+Async (\begin{DoxyParamCaption}\item[{string}]{id}{, }\item[{string}]{status}{, }\item[{string}]{employee}{, }\item[{string}]{user\+Type}{}\end{DoxyParamCaption})}
+
+
+
+Wordt geïmplementeerd door \mbox{\hyperlink{class_employee_1_1_repository_1_1_user_repository_a8525cb1d0ebaa40194a3fcdab1e0544e}{Employee.\+Repository.\+User\+Repository}}.
+
+
+
+De documentatie voor dit interface is gegenereerd op basis van het volgende bestand\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/codes/\+WPR/employee\+Backend/src/\+Repository/\mbox{\hyperlink{employee_backend_2src_2_repository_2_i_user_repository_8cs}{IUser\+Repository.\+cs}}\end{DoxyCompactItemize}

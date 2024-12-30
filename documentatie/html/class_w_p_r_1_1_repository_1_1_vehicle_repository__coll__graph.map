@@ -1,0 +1,11 @@
+<map id="WPR.Repository.VehicleRepository" name="WPR.Repository.VehicleRepository">
+<area shape="rect" id="Node000001" title=" " alt="" coords="23,523,240,736"/>
+<area shape="rect" id="Node000002" href="$interface_w_p_r_1_1_repository_1_1_i_vehicle_repository.html" title=" " alt="" coords="5,267,215,459"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="122,473,126,523,121,523,117,474"/>
+<area shape="rect" id="Node000003" href="$class_w_p_r_1_1_database_1_1_connector.html" title=" " alt="" coords="239,317,406,408"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="293,409,220,511,215,507,289,406"/>
+<area shape="rect" id="Node000004" href="$interface_w_p_r_1_1_database_1_1_i_connector.html" title="Connector class om verbinding te maken met de database, maakt gebruik van de connectie strings die zi..." alt="" coords="159,69,313,139"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="254,152,310,317,305,318,249,153"/>
+<area shape="rect" id="Node000005" href="$class_w_p_r_1_1_data_1_1_env_config.html" title="Leez het .env bestand uit waarin de connectie strings staan naar de database. Deze staan in een apart..." alt="" coords="337,5,478,203"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="378,203,345,302,340,300,373,202"/>
+</map>

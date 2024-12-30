@@ -1,0 +1,146 @@
+\doxysection{WPR.\+Services.\+Email\+Service Class Referentie}
+\hypertarget{class_w_p_r_1_1_services_1_1_email_service}{}\label{class_w_p_r_1_1_services_1_1_email_service}\index{WPR.Services.EmailService@{WPR.Services.EmailService}}
+
+
+Collaboratie diagram voor WPR.\+Services.\+Email\+Service\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=232pt]{class_w_p_r_1_1_services_1_1_email_service__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Members}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_w_p_r_1_1_services_1_1_email_service_a08080381a9593a6c0d25174e350aec1f}{Email\+Service}} (\mbox{\hyperlink{class_w_p_r_1_1_data_1_1_env_config}{Env\+Config}} env\+Config)
+\item 
+async Task \mbox{\hyperlink{class_w_p_r_1_1_services_1_1_email_service_a00a227fa3bbc1b22634908be5be363ef}{Send\+Welcome\+Email}} (string to\+Email)
+\item 
+async Task \mbox{\hyperlink{class_w_p_r_1_1_services_1_1_email_service_a23aed78b7ecd45ab31ca9acb6ce78b5e}{Send\+Rental\+Confirm\+Mail}} (string to\+Email, string car\+Name, string car\+Color, string car\+Plate, Date\+Time start\+Date, Date\+Time end\+Date, string price)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Members}
+\begin{DoxyCompactItemize}
+\item 
+Smtp\+Client \mbox{\hyperlink{class_w_p_r_1_1_services_1_1_email_service_ab31b08101a79b7e7634ccb24fb771d33}{Create\+Smtp\+Client}} ()
+\item 
+string \mbox{\hyperlink{class_w_p_r_1_1_services_1_1_email_service_ae494002e0de59b64d18083d36162c657}{Build\+Rental\+Confirmation\+Body}} (string car\+Name, string car\+Color, string car\+Plate, Date\+Time start\+Date, Date\+Time end\+Date, string price)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributen}
+\begin{DoxyCompactItemize}
+\item 
+readonly \mbox{\hyperlink{class_w_p_r_1_1_data_1_1_env_config}{Env\+Config}} \mbox{\hyperlink{class_w_p_r_1_1_services_1_1_email_service_a1b24680ee23b68d526051d9c96e50536}{\+\_\+env\+Config}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Gedetailleerde Beschrijving}
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{_email_service_8cs_source_l00008}{8}} in het bestand \mbox{\hyperlink{_email_service_8cs_source}{Email\+Service.\+cs}}.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentatie}
+\Hypertarget{class_w_p_r_1_1_services_1_1_email_service_a08080381a9593a6c0d25174e350aec1f}\index{WPR.Services.EmailService@{WPR.Services.EmailService}!EmailService@{EmailService}}
+\index{EmailService@{EmailService}!WPR.Services.EmailService@{WPR.Services.EmailService}}
+\doxysubsubsection{\texorpdfstring{EmailService()}{EmailService()}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_services_1_1_email_service_a08080381a9593a6c0d25174e350aec1f} 
+WPR.\+Services.\+Email\+Service.\+Email\+Service (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_w_p_r_1_1_data_1_1_env_config}{Env\+Config}}}]{env\+Config}{}\end{DoxyParamCaption})}
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{_email_service_8cs_source_l00012}{12}} in het bestand \mbox{\hyperlink{_email_service_8cs_source}{Email\+Service.\+cs}}.
+
+
+
+\doxysubsection{Documentatie van functie members}
+\Hypertarget{class_w_p_r_1_1_services_1_1_email_service_ae494002e0de59b64d18083d36162c657}\index{WPR.Services.EmailService@{WPR.Services.EmailService}!BuildRentalConfirmationBody@{BuildRentalConfirmationBody}}
+\index{BuildRentalConfirmationBody@{BuildRentalConfirmationBody}!WPR.Services.EmailService@{WPR.Services.EmailService}}
+\doxysubsubsection{\texorpdfstring{BuildRentalConfirmationBody()}{BuildRentalConfirmationBody()}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_services_1_1_email_service_ae494002e0de59b64d18083d36162c657} 
+string WPR.\+Services.\+Email\+Service.\+Build\+Rental\+Confirmation\+Body (\begin{DoxyParamCaption}\item[{string}]{car\+Name}{, }\item[{string}]{car\+Color}{, }\item[{string}]{car\+Plate}{, }\item[{Date\+Time}]{start\+Date}{, }\item[{Date\+Time}]{end\+Date}{, }\item[{string}]{price}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{_email_service_8cs_source_l00086}{86}} in het bestand \mbox{\hyperlink{_email_service_8cs_source}{Email\+Service.\+cs}}.
+
+Hier is de caller graaf voor deze functie\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_w_p_r_1_1_services_1_1_email_service_ae494002e0de59b64d18083d36162c657_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_w_p_r_1_1_services_1_1_email_service_ab31b08101a79b7e7634ccb24fb771d33}\index{WPR.Services.EmailService@{WPR.Services.EmailService}!CreateSmtpClient@{CreateSmtpClient}}
+\index{CreateSmtpClient@{CreateSmtpClient}!WPR.Services.EmailService@{WPR.Services.EmailService}}
+\doxysubsubsection{\texorpdfstring{CreateSmtpClient()}{CreateSmtpClient()}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_services_1_1_email_service_ab31b08101a79b7e7634ccb24fb771d33} 
+Smtp\+Client WPR.\+Services.\+Email\+Service.\+Create\+Smtp\+Client (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{_email_service_8cs_source_l00017}{17}} in het bestand \mbox{\hyperlink{_email_service_8cs_source}{Email\+Service.\+cs}}.
+
+Hier is de caller graaf voor deze functie\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_w_p_r_1_1_services_1_1_email_service_ab31b08101a79b7e7634ccb24fb771d33_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_w_p_r_1_1_services_1_1_email_service_a23aed78b7ecd45ab31ca9acb6ce78b5e}\index{WPR.Services.EmailService@{WPR.Services.EmailService}!SendRentalConfirmMail@{SendRentalConfirmMail}}
+\index{SendRentalConfirmMail@{SendRentalConfirmMail}!WPR.Services.EmailService@{WPR.Services.EmailService}}
+\doxysubsubsection{\texorpdfstring{SendRentalConfirmMail()}{SendRentalConfirmMail()}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_services_1_1_email_service_a23aed78b7ecd45ab31ca9acb6ce78b5e} 
+async Task WPR.\+Services.\+Email\+Service.\+Send\+Rental\+Confirm\+Mail (\begin{DoxyParamCaption}\item[{string}]{to\+Email}{, }\item[{string}]{car\+Name}{, }\item[{string}]{car\+Color}{, }\item[{string}]{car\+Plate}{, }\item[{Date\+Time}]{start\+Date}{, }\item[{Date\+Time}]{end\+Date}{, }\item[{string}]{price}{}\end{DoxyParamCaption})}
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{_email_service_8cs_source_l00058}{58}} in het bestand \mbox{\hyperlink{_email_service_8cs_source}{Email\+Service.\+cs}}.
+
+Hier is de call graaf voor deze functie\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_w_p_r_1_1_services_1_1_email_service_a23aed78b7ecd45ab31ca9acb6ce78b5e_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_w_p_r_1_1_services_1_1_email_service_a00a227fa3bbc1b22634908be5be363ef}\index{WPR.Services.EmailService@{WPR.Services.EmailService}!SendWelcomeEmail@{SendWelcomeEmail}}
+\index{SendWelcomeEmail@{SendWelcomeEmail}!WPR.Services.EmailService@{WPR.Services.EmailService}}
+\doxysubsubsection{\texorpdfstring{SendWelcomeEmail()}{SendWelcomeEmail()}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_services_1_1_email_service_a00a227fa3bbc1b22634908be5be363ef} 
+async Task WPR.\+Services.\+Email\+Service.\+Send\+Welcome\+Email (\begin{DoxyParamCaption}\item[{string}]{to\+Email}{}\end{DoxyParamCaption})}
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{_email_service_8cs_source_l00030}{30}} in het bestand \mbox{\hyperlink{_email_service_8cs_source}{Email\+Service.\+cs}}.
+
+Hier is de call graaf voor deze functie\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_w_p_r_1_1_services_1_1_email_service_a00a227fa3bbc1b22634908be5be363ef_cgraph}
+\end{center}
+\end{figure}
+
+
+\doxysubsection{Documentatie van data members}
+\Hypertarget{class_w_p_r_1_1_services_1_1_email_service_a1b24680ee23b68d526051d9c96e50536}\index{WPR.Services.EmailService@{WPR.Services.EmailService}!\_envConfig@{\_envConfig}}
+\index{\_envConfig@{\_envConfig}!WPR.Services.EmailService@{WPR.Services.EmailService}}
+\doxysubsubsection{\texorpdfstring{\_envConfig}{\_envConfig}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_services_1_1_email_service_a1b24680ee23b68d526051d9c96e50536} 
+readonly \mbox{\hyperlink{class_w_p_r_1_1_data_1_1_env_config}{Env\+Config}} WPR.\+Services.\+Email\+Service.\+\_\+env\+Config\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{_email_service_8cs_source_l00010}{10}} in het bestand \mbox{\hyperlink{_email_service_8cs_source}{Email\+Service.\+cs}}.
+
+
+
+De documentatie voor deze klasse is gegenereerd op basis van het volgende bestand\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/codes/\+WPR/backend/src/\+Services/\mbox{\hyperlink{_email_service_8cs}{Email\+Service.\+cs}}\end{DoxyCompactItemize}

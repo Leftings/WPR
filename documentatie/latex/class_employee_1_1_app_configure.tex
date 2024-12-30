@@ -1,0 +1,87 @@
+\doxysection{Employee.\+App\+Configure Class Referentie}
+\hypertarget{class_employee_1_1_app_configure}{}\label{class_employee_1_1_app_configure}\index{Employee.AppConfigure@{Employee.AppConfigure}}
+
+
+Deze class is responsible voor het configureren van de application services en database connectie Het heeft methodes om de database te initializeren en het configureren van de web applicatie.  
+
+
+
+
+Collaboratie diagram voor Employee.\+App\+Configure\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=194pt]{class_employee_1_1_app_configure__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Static Public Members}
+\begin{DoxyCompactItemize}
+\item 
+static void \mbox{\hyperlink{class_employee_1_1_app_configure_a865e5736ae22f527ac4003c95b362bad}{Init\+Database}} (IService\+Provider services)
+\item 
+static Web\+Application \mbox{\hyperlink{class_employee_1_1_app_configure_abe2ace8d0cbed6e55d8ca1fb11b9f65f}{Configure\+Application}} (string\mbox{[}$\,$\mbox{]} args)
+\begin{DoxyCompactList}\small\item\em Configureer de web applicatie, zoals middleware, services, authentication en CORS settings. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Gedetailleerde Beschrijving}
+Deze class is responsible voor het configureren van de application services en database connectie Het heeft methodes om de database te initializeren en het configureren van de web applicatie. 
+
+De definitie bevindt zich op regel \mbox{\hyperlink{employee_backend_2src_2_app_configure_8cs_source_l00021}{21}} in het bestand \mbox{\hyperlink{employee_backend_2src_2_app_configure_8cs_source}{App\+Configure.\+cs}}.
+
+
+
+\doxysubsection{Documentatie van functie members}
+\Hypertarget{class_employee_1_1_app_configure_abe2ace8d0cbed6e55d8ca1fb11b9f65f}\index{Employee.AppConfigure@{Employee.AppConfigure}!ConfigureApplication@{ConfigureApplication}}
+\index{ConfigureApplication@{ConfigureApplication}!Employee.AppConfigure@{Employee.AppConfigure}}
+\doxysubsubsection{\texorpdfstring{ConfigureApplication()}{ConfigureApplication()}}
+{\footnotesize\ttfamily \label{class_employee_1_1_app_configure_abe2ace8d0cbed6e55d8ca1fb11b9f65f} 
+static Web\+Application Employee.\+App\+Configure.\+Configure\+Application (\begin{DoxyParamCaption}\item[{string\mbox{[}$\,$\mbox{]}}]{args}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Configureer de web applicatie, zoals middleware, services, authentication en CORS settings. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em args} & De command line arguments passed to the application at startup.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retourneert}
+De geconfigureerde Web\+Application instantie.
+\end{DoxyReturn}
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{employee_backend_2src_2_app_configure_8cs_source_l00047}{47}} in het bestand \mbox{\hyperlink{employee_backend_2src_2_app_configure_8cs_source}{App\+Configure.\+cs}}.
+
+Hier is de caller graaf voor deze functie\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_employee_1_1_app_configure_abe2ace8d0cbed6e55d8ca1fb11b9f65f_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_employee_1_1_app_configure_a865e5736ae22f527ac4003c95b362bad}\index{Employee.AppConfigure@{Employee.AppConfigure}!InitDatabase@{InitDatabase}}
+\index{InitDatabase@{InitDatabase}!Employee.AppConfigure@{Employee.AppConfigure}}
+\doxysubsubsection{\texorpdfstring{InitDatabase()}{InitDatabase()}}
+{\footnotesize\ttfamily \label{class_employee_1_1_app_configure_a865e5736ae22f527ac4003c95b362bad} 
+static void Employee.\+App\+Configure.\+Init\+Database (\begin{DoxyParamCaption}\item[{IService\+Provider}]{services}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{employee_backend_2src_2_app_configure_8cs_source_l00023}{23}} in het bestand \mbox{\hyperlink{employee_backend_2src_2_app_configure_8cs_source}{App\+Configure.\+cs}}.
+
+Hier is de caller graaf voor deze functie\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_employee_1_1_app_configure_a865e5736ae22f527ac4003c95b362bad_icgraph}
+\end{center}
+\end{figure}
+
+
+De documentatie voor deze klasse is gegenereerd op basis van het volgende bestand\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/codes/\+WPR/employee\+Backend/src/\mbox{\hyperlink{employee_backend_2src_2_app_configure_8cs}{App\+Configure.\+cs}}\end{DoxyCompactItemize}

@@ -1,0 +1,169 @@
+\doxysection{WPR.\+Controllers.\+Rental\+Controller Class Referentie}
+\hypertarget{class_w_p_r_1_1_controllers_1_1_rental_controller}{}\label{class_w_p_r_1_1_controllers_1_1_rental_controller}\index{WPR.Controllers.RentalController@{WPR.Controllers.RentalController}}
+
+
+Klasse diagram voor WPR.\+Controllers.\+Rental\+Controller
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=236pt]{class_w_p_r_1_1_controllers_1_1_rental_controller__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboratie diagram voor WPR.\+Controllers.\+Rental\+Controller\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_w_p_r_1_1_controllers_1_1_rental_controller__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Members}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_rental_controller_af9a6c86c92ef463305181c15c82e631f}{Rental\+Controller}} (\mbox{\hyperlink{class_w_p_r_1_1_database_1_1_connector}{Connector}} connector, \mbox{\hyperlink{class_w_p_r_1_1_cryption_1_1_crypt}{Crypt}} crypt, \mbox{\hyperlink{class_w_p_r_1_1_services_1_1_email_service}{Email\+Service}} email\+Service, \mbox{\hyperlink{class_w_p_r_1_1_repository_1_1_vehicle_repository}{Vehicle\+Repository}} vehicle\+Repo)
+\item 
+async Task$<$ IAction\+Result $>$ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_rental_controller_a2867bc2129d7c6770a0cff439b3c8695}{Create\+Rental}} (\mbox{[}From\+Body\mbox{]} \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_rental_1_1_rental_request}{Rental\+Request}} rental\+Request)
+\item 
+async Task$<$ IAction\+Result $>$ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_rental_controller_a225f85994c2e758e5ae55c1c1a58061e}{Cancel\+Rental\+Async}} (int rental\+Id, int frame\+Nr)
+\item 
+async Task$<$ IAction\+Result $>$ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_rental_controller_a73310658c1eb5a14c2635e9778326598}{Get\+All\+User\+Rentals\+Async}} ()
+\item 
+async Task$<$ IAction\+Result $>$ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_rental_controller_a44ec5e9f9d368cd9c161cae931853bd0}{Get\+All\+User\+Rentals\+With\+Details\+Async}} ()
+\item 
+async Task$<$ IAction\+Result $>$ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_rental_controller_a12c084f7d5f7f8ac3996d02c270e7636}{Change\+Rental\+Async}} (\mbox{[}From\+Body\mbox{]} \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_rental_1_1_update_rental_request}{Update\+Rental\+Request}} request)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributen}
+\begin{DoxyCompactItemize}
+\item 
+readonly \mbox{\hyperlink{class_w_p_r_1_1_database_1_1_connector}{Connector}} \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_rental_controller_aea46c310dfef4c28632f43b27dd05aaf}{\+\_\+connector}}
+\item 
+readonly \mbox{\hyperlink{class_w_p_r_1_1_cryption_1_1_crypt}{Crypt}} \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_rental_controller_a1545b2a353f33bc4c5f5154e76430a91}{\+\_\+crypt}}
+\item 
+readonly \mbox{\hyperlink{class_w_p_r_1_1_services_1_1_email_service}{Email\+Service}} \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_rental_controller_ad6953d21870b99114e18e2743dc25347}{\+\_\+email\+Service}}
+\item 
+readonly \mbox{\hyperlink{class_w_p_r_1_1_repository_1_1_vehicle_repository}{Vehicle\+Repository}} \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_rental_controller_a895fe897d0d83bccbe12f6a40e25f5af}{\+\_\+vehicle\+Repo}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Gedetailleerde Beschrijving}
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{_rental_controller_8cs_source_l00016}{16}} in het bestand \mbox{\hyperlink{_rental_controller_8cs_source}{Rental\+Controller.\+cs}}.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentatie}
+\Hypertarget{class_w_p_r_1_1_controllers_1_1_rental_controller_af9a6c86c92ef463305181c15c82e631f}\index{WPR.Controllers.RentalController@{WPR.Controllers.RentalController}!RentalController@{RentalController}}
+\index{RentalController@{RentalController}!WPR.Controllers.RentalController@{WPR.Controllers.RentalController}}
+\doxysubsubsection{\texorpdfstring{RentalController()}{RentalController()}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_controllers_1_1_rental_controller_af9a6c86c92ef463305181c15c82e631f} 
+WPR.\+Controllers.\+Rental\+Controller.\+Rental\+Controller (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_w_p_r_1_1_database_1_1_connector}{Connector}}}]{connector}{, }\item[{\mbox{\hyperlink{class_w_p_r_1_1_cryption_1_1_crypt}{Crypt}}}]{crypt}{, }\item[{\mbox{\hyperlink{class_w_p_r_1_1_services_1_1_email_service}{Email\+Service}}}]{email\+Service}{, }\item[{\mbox{\hyperlink{class_w_p_r_1_1_repository_1_1_vehicle_repository}{Vehicle\+Repository}}}]{vehicle\+Repo}{}\end{DoxyParamCaption})}
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{_rental_controller_8cs_source_l00023}{23}} in het bestand \mbox{\hyperlink{_rental_controller_8cs_source}{Rental\+Controller.\+cs}}.
+
+
+
+\doxysubsection{Documentatie van functie members}
+\Hypertarget{class_w_p_r_1_1_controllers_1_1_rental_controller_a225f85994c2e758e5ae55c1c1a58061e}\index{WPR.Controllers.RentalController@{WPR.Controllers.RentalController}!CancelRentalAsync@{CancelRentalAsync}}
+\index{CancelRentalAsync@{CancelRentalAsync}!WPR.Controllers.RentalController@{WPR.Controllers.RentalController}}
+\doxysubsubsection{\texorpdfstring{CancelRentalAsync()}{CancelRentalAsync()}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_controllers_1_1_rental_controller_a225f85994c2e758e5ae55c1c1a58061e} 
+async Task$<$ IAction\+Result $>$ WPR.\+Controllers.\+Rental\+Controller.\+Cancel\+Rental\+Async (\begin{DoxyParamCaption}\item[{int}]{rental\+Id}{, }\item[{int}]{frame\+Nr}{}\end{DoxyParamCaption})}
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{_rental_controller_8cs_source_l00275}{275}} in het bestand \mbox{\hyperlink{_rental_controller_8cs_source}{Rental\+Controller.\+cs}}.
+
+\Hypertarget{class_w_p_r_1_1_controllers_1_1_rental_controller_a12c084f7d5f7f8ac3996d02c270e7636}\index{WPR.Controllers.RentalController@{WPR.Controllers.RentalController}!ChangeRentalAsync@{ChangeRentalAsync}}
+\index{ChangeRentalAsync@{ChangeRentalAsync}!WPR.Controllers.RentalController@{WPR.Controllers.RentalController}}
+\doxysubsubsection{\texorpdfstring{ChangeRentalAsync()}{ChangeRentalAsync()}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_controllers_1_1_rental_controller_a12c084f7d5f7f8ac3996d02c270e7636} 
+async Task$<$ IAction\+Result $>$ WPR.\+Controllers.\+Rental\+Controller.\+Change\+Rental\+Async (\begin{DoxyParamCaption}\item[{\mbox{[}\+From\+Body\mbox{]} \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_rental_1_1_update_rental_request}{Update\+Rental\+Request}}}]{request}{}\end{DoxyParamCaption})}
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{_rental_controller_8cs_source_l00435}{435}} in het bestand \mbox{\hyperlink{_rental_controller_8cs_source}{Rental\+Controller.\+cs}}.
+
+\Hypertarget{class_w_p_r_1_1_controllers_1_1_rental_controller_a2867bc2129d7c6770a0cff439b3c8695}\index{WPR.Controllers.RentalController@{WPR.Controllers.RentalController}!CreateRental@{CreateRental}}
+\index{CreateRental@{CreateRental}!WPR.Controllers.RentalController@{WPR.Controllers.RentalController}}
+\doxysubsubsection{\texorpdfstring{CreateRental()}{CreateRental()}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_controllers_1_1_rental_controller_a2867bc2129d7c6770a0cff439b3c8695} 
+async Task$<$ IAction\+Result $>$ WPR.\+Controllers.\+Rental\+Controller.\+Create\+Rental (\begin{DoxyParamCaption}\item[{\mbox{[}\+From\+Body\mbox{]} \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_rental_1_1_rental_request}{Rental\+Request}}}]{rental\+Request}{}\end{DoxyParamCaption})}
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{_rental_controller_8cs_source_l00033}{33}} in het bestand \mbox{\hyperlink{_rental_controller_8cs_source}{Rental\+Controller.\+cs}}.
+
+\Hypertarget{class_w_p_r_1_1_controllers_1_1_rental_controller_a73310658c1eb5a14c2635e9778326598}\index{WPR.Controllers.RentalController@{WPR.Controllers.RentalController}!GetAllUserRentalsAsync@{GetAllUserRentalsAsync}}
+\index{GetAllUserRentalsAsync@{GetAllUserRentalsAsync}!WPR.Controllers.RentalController@{WPR.Controllers.RentalController}}
+\doxysubsubsection{\texorpdfstring{GetAllUserRentalsAsync()}{GetAllUserRentalsAsync()}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_controllers_1_1_rental_controller_a73310658c1eb5a14c2635e9778326598} 
+async Task$<$ IAction\+Result $>$ WPR.\+Controllers.\+Rental\+Controller.\+Get\+All\+User\+Rentals\+Async (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{_rental_controller_8cs_source_l00318}{318}} in het bestand \mbox{\hyperlink{_rental_controller_8cs_source}{Rental\+Controller.\+cs}}.
+
+\Hypertarget{class_w_p_r_1_1_controllers_1_1_rental_controller_a44ec5e9f9d368cd9c161cae931853bd0}\index{WPR.Controllers.RentalController@{WPR.Controllers.RentalController}!GetAllUserRentalsWithDetailsAsync@{GetAllUserRentalsWithDetailsAsync}}
+\index{GetAllUserRentalsWithDetailsAsync@{GetAllUserRentalsWithDetailsAsync}!WPR.Controllers.RentalController@{WPR.Controllers.RentalController}}
+\doxysubsubsection{\texorpdfstring{GetAllUserRentalsWithDetailsAsync()}{GetAllUserRentalsWithDetailsAsync()}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_controllers_1_1_rental_controller_a44ec5e9f9d368cd9c161cae931853bd0} 
+async Task$<$ IAction\+Result $>$ WPR.\+Controllers.\+Rental\+Controller.\+Get\+All\+User\+Rentals\+With\+Details\+Async (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{_rental_controller_8cs_source_l00374}{374}} in het bestand \mbox{\hyperlink{_rental_controller_8cs_source}{Rental\+Controller.\+cs}}.
+
+
+
+\doxysubsection{Documentatie van data members}
+\Hypertarget{class_w_p_r_1_1_controllers_1_1_rental_controller_aea46c310dfef4c28632f43b27dd05aaf}\index{WPR.Controllers.RentalController@{WPR.Controllers.RentalController}!\_connector@{\_connector}}
+\index{\_connector@{\_connector}!WPR.Controllers.RentalController@{WPR.Controllers.RentalController}}
+\doxysubsubsection{\texorpdfstring{\_connector}{\_connector}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_controllers_1_1_rental_controller_aea46c310dfef4c28632f43b27dd05aaf} 
+readonly \mbox{\hyperlink{class_w_p_r_1_1_database_1_1_connector}{Connector}} WPR.\+Controllers.\+Rental\+Controller.\+\_\+connector\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{_rental_controller_8cs_source_l00018}{18}} in het bestand \mbox{\hyperlink{_rental_controller_8cs_source}{Rental\+Controller.\+cs}}.
+
+\Hypertarget{class_w_p_r_1_1_controllers_1_1_rental_controller_a1545b2a353f33bc4c5f5154e76430a91}\index{WPR.Controllers.RentalController@{WPR.Controllers.RentalController}!\_crypt@{\_crypt}}
+\index{\_crypt@{\_crypt}!WPR.Controllers.RentalController@{WPR.Controllers.RentalController}}
+\doxysubsubsection{\texorpdfstring{\_crypt}{\_crypt}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_controllers_1_1_rental_controller_a1545b2a353f33bc4c5f5154e76430a91} 
+readonly \mbox{\hyperlink{class_w_p_r_1_1_cryption_1_1_crypt}{Crypt}} WPR.\+Controllers.\+Rental\+Controller.\+\_\+crypt\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{_rental_controller_8cs_source_l00019}{19}} in het bestand \mbox{\hyperlink{_rental_controller_8cs_source}{Rental\+Controller.\+cs}}.
+
+\Hypertarget{class_w_p_r_1_1_controllers_1_1_rental_controller_ad6953d21870b99114e18e2743dc25347}\index{WPR.Controllers.RentalController@{WPR.Controllers.RentalController}!\_emailService@{\_emailService}}
+\index{\_emailService@{\_emailService}!WPR.Controllers.RentalController@{WPR.Controllers.RentalController}}
+\doxysubsubsection{\texorpdfstring{\_emailService}{\_emailService}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_controllers_1_1_rental_controller_ad6953d21870b99114e18e2743dc25347} 
+readonly \mbox{\hyperlink{class_w_p_r_1_1_services_1_1_email_service}{Email\+Service}} WPR.\+Controllers.\+Rental\+Controller.\+\_\+email\+Service\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{_rental_controller_8cs_source_l00020}{20}} in het bestand \mbox{\hyperlink{_rental_controller_8cs_source}{Rental\+Controller.\+cs}}.
+
+\Hypertarget{class_w_p_r_1_1_controllers_1_1_rental_controller_a895fe897d0d83bccbe12f6a40e25f5af}\index{WPR.Controllers.RentalController@{WPR.Controllers.RentalController}!\_vehicleRepo@{\_vehicleRepo}}
+\index{\_vehicleRepo@{\_vehicleRepo}!WPR.Controllers.RentalController@{WPR.Controllers.RentalController}}
+\doxysubsubsection{\texorpdfstring{\_vehicleRepo}{\_vehicleRepo}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_controllers_1_1_rental_controller_a895fe897d0d83bccbe12f6a40e25f5af} 
+readonly \mbox{\hyperlink{class_w_p_r_1_1_repository_1_1_vehicle_repository}{Vehicle\+Repository}} WPR.\+Controllers.\+Rental\+Controller.\+\_\+vehicle\+Repo\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{_rental_controller_8cs_source_l00021}{21}} in het bestand \mbox{\hyperlink{_rental_controller_8cs_source}{Rental\+Controller.\+cs}}.
+
+
+
+De documentatie voor deze klasse is gegenereerd op basis van het volgende bestand\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/codes/\+WPR/backend/src/\+Controllers/\+Rental/\mbox{\hyperlink{_rental_controller_8cs}{Rental\+Controller.\+cs}}\end{DoxyCompactItemize}

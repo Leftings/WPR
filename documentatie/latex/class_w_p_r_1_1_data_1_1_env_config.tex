@@ -1,0 +1,159 @@
+\doxysection{WPR.\+Data.\+Env\+Config Class Referentie}
+\hypertarget{class_w_p_r_1_1_data_1_1_env_config}{}\label{class_w_p_r_1_1_data_1_1_env_config}\index{WPR.Data.EnvConfig@{WPR.Data.EnvConfig}}
+
+
+Leez het .env bestand uit waarin de connectie strings staan naar de database. Deze staan in een apart bestand buiten de git repo, zodat mensen van buiten niet met de database kunnen verbinden.  
+
+
+
+
+Collaboratie diagram voor WPR.\+Data.\+Env\+Config\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=186pt]{class_w_p_r_1_1_data_1_1_env_config__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Members}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_w_p_r_1_1_data_1_1_env_config_af630a471e51828ba21e00170bb645d34}{Env\+Config}} ()
+\item 
+virtual string \mbox{\hyperlink{class_w_p_r_1_1_data_1_1_env_config_aa9ca09132345c9c5905f2c408fe73fef}{Get}} (string key)
+\begin{DoxyCompactList}\small\item\em Haalt de value van de specifieke environement variabelen. \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{class_w_p_r_1_1_data_1_1_env_config_ae47188947dca2b84bcfdbcb3a9ce472e}{Is\+Configured}} ()
+\begin{DoxyCompactList}\small\item\em Check om te kijken of alle environment variabelen geconfigureerd zijn. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{class_w_p_r_1_1_data_1_1_env_config_a89d399eb83dc010d25923952e6151dd1}{Get\+Smtp\+Host}} ()
+\item 
+int \mbox{\hyperlink{class_w_p_r_1_1_data_1_1_env_config_a8542468d06bad8f21a620f40baba9181}{Get\+Smtp\+Port}} ()
+\item 
+string \mbox{\hyperlink{class_w_p_r_1_1_data_1_1_env_config_ad3c37f72796004518b66f16dda580964}{Get\+From\+Email}} ()
+\item 
+string \mbox{\hyperlink{class_w_p_r_1_1_data_1_1_env_config_aa3dca15a880fd5fedecdff4fe7c3fc03}{Get\+From\+Password}} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributen}
+\begin{DoxyCompactItemize}
+\item 
+readonly IConfiguration \mbox{\hyperlink{class_w_p_r_1_1_data_1_1_env_config_a821cd9298c4c2d0fe8392034bc38c7db}{\+\_\+configuration}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Gedetailleerde Beschrijving}
+Leez het .env bestand uit waarin de connectie strings staan naar de database. Deze staan in een apart bestand buiten de git repo, zodat mensen van buiten niet met de database kunnen verbinden. 
+
+De definitie bevindt zich op regel \mbox{\hyperlink{backend_2src_2_data_2_env_config_8cs_source_l00012}{12}} in het bestand \mbox{\hyperlink{backend_2src_2_data_2_env_config_8cs_source}{Env\+Config.\+cs}}.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentatie}
+\Hypertarget{class_w_p_r_1_1_data_1_1_env_config_af630a471e51828ba21e00170bb645d34}\index{WPR.Data.EnvConfig@{WPR.Data.EnvConfig}!EnvConfig@{EnvConfig}}
+\index{EnvConfig@{EnvConfig}!WPR.Data.EnvConfig@{WPR.Data.EnvConfig}}
+\doxysubsubsection{\texorpdfstring{EnvConfig()}{EnvConfig()}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_data_1_1_env_config_af630a471e51828ba21e00170bb645d34} 
+WPR.\+Data.\+Env\+Config.\+Env\+Config (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{backend_2src_2_data_2_env_config_8cs_source_l00016}{16}} in het bestand \mbox{\hyperlink{backend_2src_2_data_2_env_config_8cs_source}{Env\+Config.\+cs}}.
+
+
+
+\doxysubsection{Documentatie van functie members}
+\Hypertarget{class_w_p_r_1_1_data_1_1_env_config_aa9ca09132345c9c5905f2c408fe73fef}\index{WPR.Data.EnvConfig@{WPR.Data.EnvConfig}!Get@{Get}}
+\index{Get@{Get}!WPR.Data.EnvConfig@{WPR.Data.EnvConfig}}
+\doxysubsubsection{\texorpdfstring{Get()}{Get()}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_data_1_1_env_config_aa9ca09132345c9c5905f2c408fe73fef} 
+virtual string WPR.\+Data.\+Env\+Config.\+Get (\begin{DoxyParamCaption}\item[{string}]{key}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Haalt de value van de specifieke environement variabelen. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em key} & Ophalen environment variabele key.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retourneert}
+De value van de specifieke environment variabele, of null als niet gevonden.
+\end{DoxyReturn}
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{backend_2src_2_data_2_env_config_8cs_source_l00031}{31}} in het bestand \mbox{\hyperlink{backend_2src_2_data_2_env_config_8cs_source}{Env\+Config.\+cs}}.
+
+Hier is de caller graaf voor deze functie\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_w_p_r_1_1_data_1_1_env_config_aa9ca09132345c9c5905f2c408fe73fef_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_w_p_r_1_1_data_1_1_env_config_ad3c37f72796004518b66f16dda580964}\index{WPR.Data.EnvConfig@{WPR.Data.EnvConfig}!GetFromEmail@{GetFromEmail}}
+\index{GetFromEmail@{GetFromEmail}!WPR.Data.EnvConfig@{WPR.Data.EnvConfig}}
+\doxysubsubsection{\texorpdfstring{GetFromEmail()}{GetFromEmail()}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_data_1_1_env_config_ad3c37f72796004518b66f16dda580964} 
+string WPR.\+Data.\+Env\+Config.\+Get\+From\+Email (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{class_w_p_r_1_1_data_1_1_env_config_aa3dca15a880fd5fedecdff4fe7c3fc03}\index{WPR.Data.EnvConfig@{WPR.Data.EnvConfig}!GetFromPassword@{GetFromPassword}}
+\index{GetFromPassword@{GetFromPassword}!WPR.Data.EnvConfig@{WPR.Data.EnvConfig}}
+\doxysubsubsection{\texorpdfstring{GetFromPassword()}{GetFromPassword()}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_data_1_1_env_config_aa3dca15a880fd5fedecdff4fe7c3fc03} 
+string WPR.\+Data.\+Env\+Config.\+Get\+From\+Password (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{class_w_p_r_1_1_data_1_1_env_config_a89d399eb83dc010d25923952e6151dd1}\index{WPR.Data.EnvConfig@{WPR.Data.EnvConfig}!GetSmtpHost@{GetSmtpHost}}
+\index{GetSmtpHost@{GetSmtpHost}!WPR.Data.EnvConfig@{WPR.Data.EnvConfig}}
+\doxysubsubsection{\texorpdfstring{GetSmtpHost()}{GetSmtpHost()}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_data_1_1_env_config_a89d399eb83dc010d25923952e6151dd1} 
+string WPR.\+Data.\+Env\+Config.\+Get\+Smtp\+Host (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{class_w_p_r_1_1_data_1_1_env_config_a8542468d06bad8f21a620f40baba9181}\index{WPR.Data.EnvConfig@{WPR.Data.EnvConfig}!GetSmtpPort@{GetSmtpPort}}
+\index{GetSmtpPort@{GetSmtpPort}!WPR.Data.EnvConfig@{WPR.Data.EnvConfig}}
+\doxysubsubsection{\texorpdfstring{GetSmtpPort()}{GetSmtpPort()}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_data_1_1_env_config_a8542468d06bad8f21a620f40baba9181} 
+int WPR.\+Data.\+Env\+Config.\+Get\+Smtp\+Port (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{class_w_p_r_1_1_data_1_1_env_config_ae47188947dca2b84bcfdbcb3a9ce472e}\index{WPR.Data.EnvConfig@{WPR.Data.EnvConfig}!IsConfigured@{IsConfigured}}
+\index{IsConfigured@{IsConfigured}!WPR.Data.EnvConfig@{WPR.Data.EnvConfig}}
+\doxysubsubsection{\texorpdfstring{IsConfigured()}{IsConfigured()}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_data_1_1_env_config_ae47188947dca2b84bcfdbcb3a9ce472e} 
+virtual bool WPR.\+Data.\+Env\+Config.\+Is\+Configured (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Check om te kijken of alle environment variabelen geconfigureerd zijn. 
+
+\begin{DoxyReturn}{Retourneert}
+True als alle keys present zijn, anders False.
+\end{DoxyReturn}
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{backend_2src_2_data_2_env_config_8cs_source_l00045}{45}} in het bestand \mbox{\hyperlink{backend_2src_2_data_2_env_config_8cs_source}{Env\+Config.\+cs}}.
+
+Hier is de call graaf voor deze functie\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_w_p_r_1_1_data_1_1_env_config_ae47188947dca2b84bcfdbcb3a9ce472e_cgraph}
+\end{center}
+\end{figure}
+
+
+\doxysubsection{Documentatie van data members}
+\Hypertarget{class_w_p_r_1_1_data_1_1_env_config_a821cd9298c4c2d0fe8392034bc38c7db}\index{WPR.Data.EnvConfig@{WPR.Data.EnvConfig}!\_configuration@{\_configuration}}
+\index{\_configuration@{\_configuration}!WPR.Data.EnvConfig@{WPR.Data.EnvConfig}}
+\doxysubsubsection{\texorpdfstring{\_configuration}{\_configuration}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_data_1_1_env_config_a821cd9298c4c2d0fe8392034bc38c7db} 
+readonly IConfiguration WPR.\+Data.\+Env\+Config.\+\_\+configuration\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{backend_2src_2_data_2_env_config_8cs_source_l00014}{14}} in het bestand \mbox{\hyperlink{backend_2src_2_data_2_env_config_8cs_source}{Env\+Config.\+cs}}.
+
+
+
+De documentatie voor deze klasse is gegenereerd op basis van het volgende bestand\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/codes/\+WPR/backend/src/\+Data/\mbox{\hyperlink{backend_2src_2_data_2_env_config_8cs}{Env\+Config.\+cs}}\end{DoxyCompactItemize}
