@@ -1,0 +1,279 @@
+\doxysection{Vehicle\+Controller.\+cs}
+\hypertarget{_vehicle_controller_8cs_source}{}\label{_vehicle_controller_8cs_source}\index{D:/codes/WPR/backend/src/Controllers/Vehicle/VehicleController.cs@{D:/codes/WPR/backend/src/Controllers/Vehicle/VehicleController.cs}}
+\mbox{\hyperlink{_vehicle_controller_8cs}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00001}00001\ \textcolor{keyword}{using\ }System.Data;}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00003}\mbox{\hyperlink{namespace_w_p_r_1_1_controllers_1_1_vehicle}{00003}}\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_w_p_r_1_1_controllers_1_1_vehicle}{WPR.Controllers.Vehicle}};}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00004}00004\ }
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00005}00005\ \textcolor{keyword}{using\ }Microsoft.AspNetCore.Mvc;}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00006}00006\ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespace_w_p_r_1_1_repository}{WPR.Repository}};}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00007}00007\ \textcolor{keyword}{using\ }MySql.Data.MySqlClient;}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00008}00008\ \textcolor{keyword}{using\ }System;}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00009}00009\ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespace_w_p_r_1_1_database}{WPR.Database}};}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00010}00010\ }
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00011}00011\ [Route(\textcolor{stringliteral}{"{}api/Vehicle"{}})]}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00012}00012\ [ApiController]}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00013}\mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_vehicle_1_1_vehicle_controller}{00013}}\ \textcolor{keyword}{public}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_vehicle_1_1_vehicle_controller_a2d19355781c3fc473f9caf9626210d14}{VehicleController}}\ :\ ControllerBase}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00014}00014\ \{}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00015}00015\ }
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00016}\mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_vehicle_1_1_vehicle_controller_a6300ae1fba1249c4324b48e71738abb1}{00016}}\ \ \ \ \ \textcolor{keyword}{private}\ readonly\ \mbox{\hyperlink{class_w_p_r_1_1_database_1_1_connector}{Connector}}\ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_vehicle_1_1_vehicle_controller_a6300ae1fba1249c4324b48e71738abb1}{\_connector}};}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00017}\mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_vehicle_1_1_vehicle_controller_a4fc359036464325cc952bc906ade4f2c}{00017}}\ \ \ \ \ \textcolor{keyword}{private}\ readonly\ \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_vehicle_repository}{IVehicleRepository}}\ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_vehicle_1_1_vehicle_controller_a4fc359036464325cc952bc906ade4f2c}{\_vehicleRepository}};}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00018}00018\ }
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00019}\mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_vehicle_1_1_vehicle_controller_a2d19355781c3fc473f9caf9626210d14}{00019}}\ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_vehicle_1_1_vehicle_controller_a2d19355781c3fc473f9caf9626210d14}{VehicleController}}(\mbox{\hyperlink{class_w_p_r_1_1_database_1_1_connector}{Connector}}\ connector,\ \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_vehicle_repository}{IVehicleRepository}}\ vehicleRepository)}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00020}00020\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00021}00021\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_vehicle_1_1_vehicle_controller_a6300ae1fba1249c4324b48e71738abb1}{\_connector}}\ =\ connector\ ??\ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ ArgumentNullException(nameof(connector));}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00022}00022\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_vehicle_1_1_vehicle_controller_a4fc359036464325cc952bc906ade4f2c}{\_vehicleRepository}}\ =\ vehicleRepository\ ??\ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ ArgumentNullException(nameof(vehicleRepository));}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00023}00023\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00024}00024\ }
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00025}00025\ \ \ \ \ [HttpGet(\textcolor{stringliteral}{"{}GetVehicleNameAsync"{}})]}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00026}\mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_vehicle_1_1_vehicle_controller_a0346f4fadf25ec8f5d6d48ddc8415849}{00026}}\ \ \ \ \ \textcolor{keyword}{public}\ async\ Task<IActionResult>\ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_vehicle_1_1_vehicle_controller_a0346f4fadf25ec8f5d6d48ddc8415849}{GetVehicleName}}(\textcolor{keywordtype}{int}\ frameNr)}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00027}00027\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00028}00028\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00029}00029\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00030}00030\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ query1\ =\ \textcolor{stringliteral}{"{}SELECT\ Brand\ FROM\ Vehicle\ WHERE\ FrameNr\ =\ @FrameNr"{}};}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00031}00031\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ query2\ =\ \textcolor{stringliteral}{"{}SELECT\ Type\ from\ Vehicle\ WHERE\ FrameNr\ =\ @FrameNr"{}};}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00032}00032\ }
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00033}00033\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using}\ (var\ connection\ =\ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_vehicle_1_1_vehicle_controller_a6300ae1fba1249c4324b48e71738abb1}{\_connector}}.CreateDbConnection())}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00034}00034\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00035}00035\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ brand\ =\ \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00036}00036\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ type\ =\ \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00037}00037\ }
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00038}00038\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using}\ (var\ command\ =\ \textcolor{keyword}{new}\ MySqlCommand(query1,\ (MySqlConnection)connection))}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00039}00039\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00040}00040\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ command.Parameters.AddWithValue(\textcolor{stringliteral}{"{}@FrameNr"{}},\ frameNr);}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00041}00041\ }
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00042}00042\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using}\ (MySqlDataReader\ reader1\ =\ await\ command.ExecuteReaderAsync(CommandBehavior.SingleRow))}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00043}00043\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00044}00044\ }
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00045}00045\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (reader1.Read()\ \&\&\ !reader1.IsDBNull(0))}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00046}00046\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00047}00047\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ brand\ =\ reader1.GetString(0);}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00048}00048\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00049}00049\ }
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00050}00050\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00051}00051\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00052}00052\ }
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00053}00053\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using}\ (var\ command2\ =\ \textcolor{keyword}{new}\ MySqlCommand(query2,\ (MySqlConnection)connection))}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00054}00054\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00055}00055\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ command2.Parameters.AddWithValue(\textcolor{stringliteral}{"{}@FrameNr"{}},\ frameNr);}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00056}00056\ }
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00057}00057\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using}\ (MySqlDataReader\ reader2\ =\ await\ command2.ExecuteReaderAsync(CommandBehavior.SingleRow))}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00058}00058\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00059}00059\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (reader2.Read()\ \&\&\ !reader2.IsDBNull(0))}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00060}00060\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00061}00061\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ type\ =\ reader2.GetString(0);}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00062}00062\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Ok(\$\textcolor{stringliteral}{"{}\{brand\}\ \{type\}"{}});}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00063}00063\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00064}00064\ }
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00065}00065\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ NotFound(\$\textcolor{stringliteral}{"{}Car\ with\ frameNr\ \{frameNr\}\ not\ found."{}});}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00066}00066\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00067}00067\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00068}00068\ }
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00069}00069\ }
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00070}00070\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00071}00071\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00072}00072\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (Exception\ ex)}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00073}00073\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00074}00074\ \ \ \ \ \ \ \ \ \ \ \ \ Console.WriteLine(ex);}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00075}00075\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ StatusCode(500,\ \textcolor{stringliteral}{"{}An\ error\ occurred\ while\ fetching\ the\ name\ of\ the\ car."{}});}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00076}00076\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00077}00077\ }
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00078}00078\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00079}00079\ }
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00080}00080\ \ \ \ \ [HttpGet(\textcolor{stringliteral}{"{}GetVehicleImageAsync"{}})]}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00081}\mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_vehicle_1_1_vehicle_controller_afb35edb52b3117b670806d1c01d29e41}{00081}}\ \ \ \ \ \textcolor{keyword}{public}\ async\ Task<IActionResult>\ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_vehicle_1_1_vehicle_controller_afb35edb52b3117b670806d1c01d29e41}{GetVehicleImageAsync}}(\textcolor{keywordtype}{int}\ frameNr)}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00082}00082\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00083}00083\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00084}00084\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00085}00085\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ query\ =\ \textcolor{stringliteral}{"{}SELECT\ VehicleBlob\ FROM\ Vehicle\ WHERE\ FrameNr\ =\ @FrameNr"{}};}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00086}00086\ }
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00087}00087\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using}\ (var\ connection\ =\ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_vehicle_1_1_vehicle_controller_a6300ae1fba1249c4324b48e71738abb1}{\_connector}}.CreateDbConnection())}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00088}00088\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using}\ (var\ command\ =\ \textcolor{keyword}{new}\ MySqlCommand(query,\ (MySqlConnection)connection))}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00089}00089\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00090}00090\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ command.Parameters.AddWithValue(\textcolor{stringliteral}{"{}@FrameNr"{}},\ frameNr);}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00091}00091\ }
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00092}00092\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using}\ (MySqlDataReader\ reader\ =\ await\ command.ExecuteReaderAsync(CommandBehavior.SingleRow))}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00093}00093\ }
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00094}00094\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00095}00095\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (reader.Read()\ \&\&\ !reader.IsDBNull(0))}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00096}00096\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00097}00097\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{byte}[]\ imageBytes\ =\ (\textcolor{keywordtype}{byte}[])reader[\textcolor{stringliteral}{"{}VehicleBlob"{}}];}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00098}00098\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ base64Image\ =\ Convert.ToBase64String(imageBytes);}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00099}00099\ }
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00100}00100\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Ok(base64Image);}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00101}00101\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00102}00102\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00103}00103\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00104}00104\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ NotFound(\$\textcolor{stringliteral}{"{}Image\ with\ frameNr\ \{frameNr\}\ not\ found."{}});}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00105}00105\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00106}00106\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00107}00107\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00108}00108\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00109}00109\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (Exception\ ex)}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00110}00110\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00111}00111\ \ \ \ \ \ \ \ \ \ \ \ \ Console.WriteLine(ex);}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00112}00112\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ StatusCode(500,\ \textcolor{stringliteral}{"{}An\ error\ occurred\ while\ fetching\ the\ image."{}});}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00113}00113\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00114}00114\ }
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00115}00115\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00116}00116\ }
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00117}00117\ \ \ \ \ [HttpGet(\textcolor{stringliteral}{"{}GetVehiclePriceAsync"{}})]}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00118}\mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_vehicle_1_1_vehicle_controller_a50d61675d018a8ad2dbcff470ab30d82}{00118}}\ \ \ \ \ \textcolor{keyword}{public}\ async\ Task<IActionResult>\ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_vehicle_1_1_vehicle_controller_a50d61675d018a8ad2dbcff470ab30d82}{GetVehiclePriceAsync}}(\textcolor{keywordtype}{int}\ frameNr)}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00119}00119\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00120}00120\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00121}00121\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00122}00122\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ query\ =\ \textcolor{stringliteral}{"{}SELECT\ Price\ FROM\ Vehicle\ WHERE\ FrameNr\ =\ @FrameNr"{}};}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00123}00123\ }
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00124}00124\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using}\ (var\ connection\ =\ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_vehicle_1_1_vehicle_controller_a6300ae1fba1249c4324b48e71738abb1}{\_connector}}.CreateDbConnection())}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00125}00125\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using}\ (var\ command\ =\ \textcolor{keyword}{new}\ MySqlCommand(query,\ (MySqlConnection)connection))}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00126}00126\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00127}00127\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ command.Parameters.AddWithValue(\textcolor{stringliteral}{"{}@FrameNr"{}},\ frameNr);}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00128}00128\ }
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00129}00129\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using}\ (MySqlDataReader\ reader\ =\ await\ command.ExecuteReaderAsync(CommandBehavior.SingleRow))}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00130}00130\ }
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00131}00131\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00132}00132\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (reader.Read()\ \&\&\ !reader.IsDBNull(0))}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00133}00133\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00134}00134\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ decimal\ priceDec\ =\ reader.GetDecimal(0);}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00135}00135\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00136}00136\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ price\ =\ priceDec.ToString(\textcolor{stringliteral}{"{}F2"{}});}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00137}00137\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00138}00138\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Ok(price);}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00139}00139\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00140}00140\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00141}00141\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00142}00142\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ NotFound(\$\textcolor{stringliteral}{"{}Price\ of\ car\ with\ frameNr\ \{frameNr\}\ not\ found."{}});}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00143}00143\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00144}00144\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00145}00145\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00146}00146\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00147}00147\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (Exception\ ex)}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00148}00148\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00149}00149\ \ \ \ \ \ \ \ \ \ \ \ \ Console.WriteLine(ex);}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00150}00150\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ StatusCode(500,\ \textcolor{stringliteral}{"{}An\ error\ occurred\ while\ fetching\ the\ price."{}});}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00151}00151\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00152}00152\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00153}00153\ }
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00154}00154\ \ \ \ \ [HttpGet(\textcolor{stringliteral}{"{}GetAllVehicles"{}})]}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00155}\mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_vehicle_1_1_vehicle_controller_a91b8953460bc03bb3872b9201ee896e2}{00155}}\ \ \ \ \ \textcolor{keyword}{public}\ async\ Task<IActionResult>\ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_vehicle_1_1_vehicle_controller_a91b8953460bc03bb3872b9201ee896e2}{GetAllVehiclesAsync}}()}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00156}00156\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00157}00157\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00158}00158\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00159}00159\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ query\ =\ \textcolor{stringliteral}{@"{}}}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00160}00160\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ SELECT\ FrameNr,\ YoP,\ Brand,\ Type,\ LicensePlate,\ Color,\ Sort,\ Price,\ VehicleBlob,\ Description}}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00161}00161\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ FROM\ Vehicle"{}};}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00162}00162\ \ \ \ \ \ \ \ \ \ \ \ \ var\ vehicles\ =\ \textcolor{keyword}{new}\ List<object>();}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00163}00163\ }
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00164}00164\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using}\ (var\ connection\ =\ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_vehicle_1_1_vehicle_controller_a6300ae1fba1249c4324b48e71738abb1}{\_connector}}.CreateDbConnection())}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00165}00165\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using}\ (var\ command\ =\ \textcolor{keyword}{new}\ MySqlCommand(query,\ (MySqlConnection)connection))}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00166}00166\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00167}00167\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using}\ (var\ reader\ =\ await\ command.ExecuteReaderAsync())}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00168}00168\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00169}00169\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (reader.Read())}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00170}00170\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00171}00171\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ vehicles.Add(\textcolor{keyword}{new}}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00172}00172\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00173}00173\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ FrameNr\ =\ reader.IsDBNull(0)\ ?\ 0\ :\ reader.GetInt32(0),}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00174}00174\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ YoP\ =\ reader.IsDBNull(1)\ ?\ 0\ :\ reader.GetInt32(1),\ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00175}00175\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Brand\ =\ reader.IsDBNull(2)\ ?\ null\ :\ reader.GetString(2),}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00176}00176\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Type\ =\ reader.IsDBNull(3)\ ?\ null\ :\ reader.GetString(3),}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00177}00177\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ LicensePlate\ =\ reader.IsDBNull(4)\ ?\ null\ :\ reader.GetString(4),}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00178}00178\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Color\ =\ reader.IsDBNull(5)\ ?\ null\ :\ reader.GetString(5),}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00179}00179\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Sort\ =\ reader.IsDBNull(6)\ ?\ null\ :\ reader.GetString(6),}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00180}00180\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Price\ =\ reader.IsDBNull(7)\ ?\ \textcolor{stringliteral}{"{}0.00"{}}\ :\ reader.GetDecimal(7).ToString(\textcolor{stringliteral}{"{}F2"{}}),}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00181}00181\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Image\ =\ reader.IsDBNull(8)\ ?\ null\ :\ Convert.ToBase64String((\textcolor{keywordtype}{byte}[])reader[\textcolor{stringliteral}{"{}VehicleBlob"{}}]),}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00182}00182\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Description\ =\ reader.IsDBNull(9)\ ?\ null\ :\ reader.GetString(9)}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00183}00183\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00184}00184\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00185}00185\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00186}00186\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00187}00187\ }
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00188}00188\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Ok(vehicles);}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00189}00189\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00190}00190\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (Exception\ ex)}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00191}00191\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00192}00192\ \ \ \ \ \ \ \ \ \ \ \ \ Console.WriteLine(ex);}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00193}00193\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ StatusCode(500,\ \textcolor{stringliteral}{"{}An\ error\ occurred\ while\ fetching\ vehicles."{}});}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00194}00194\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00195}00195\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00196}00196\ }
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00197}00197\ \ \ \ \ [HttpGet(\textcolor{stringliteral}{"{}GetTypeOfVehicles"{}})]}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00198}\mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_vehicle_1_1_vehicle_controller_a590700edfe67537ef39b45c5177831f8}{00198}}\ \ \ \ \ \textcolor{keyword}{public}\ async\ Task<IActionResult>\ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_vehicle_1_1_vehicle_controller_a590700edfe67537ef39b45c5177831f8}{GetTypeOfVehiclesAsync}}(\textcolor{keywordtype}{string}\ vehicleType)}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00199}00199\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00200}00200\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00201}00201\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00202}00202\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ query\ =\ \textcolor{stringliteral}{@"{}}}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00203}00203\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ SELECT\ FrameNr,\ YoP,\ Brand,\ Type,\ LicensePlate,\ Color,\ Sort,\ Price,\ VehicleBlob,\ Description\ }}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00204}00204\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ FROM\ Vehicle\ }}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00205}00205\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ WHERE\ LOWER(Sort)\ =\ LOWER(@Sort)"{}};}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00206}00206\ }
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00207}00207\ \ \ \ \ \ \ \ \ \ \ \ \ var\ vehicles\ =\ \textcolor{keyword}{new}\ List<object>();}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00208}00208\ }
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00209}00209\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using}\ (var\ connection\ =\ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_vehicle_1_1_vehicle_controller_a6300ae1fba1249c4324b48e71738abb1}{\_connector}}.CreateDbConnection())}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00210}00210\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00211}00211\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using}\ (var\ command\ =\ \textcolor{keyword}{new}\ MySqlCommand(query,\ (MySqlConnection)connection))}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00212}00212\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00213}00213\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\textcolor{keywordtype}{string}.IsNullOrWhiteSpace(vehicleType)\ \&\&}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00214}00214\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !vehicleType.Equals(\textcolor{stringliteral}{"{}ALL"{}},\ StringComparison.OrdinalIgnoreCase))}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00215}00215\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00216}00216\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ command.Parameters.AddWithValue(\textcolor{stringliteral}{"{}@Sort"{}},\ vehicleType);}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00217}00217\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00218}00218\ }
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00219}00219\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using}\ (var\ reader\ =\ await\ command.ExecuteReaderAsync())}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00220}00220\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00221}00221\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (reader.Read())}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00222}00222\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00223}00223\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ vehicles.Add(\textcolor{keyword}{new}}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00224}00224\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00225}00225\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ FrameNr\ =\ reader.GetInt32(0),\ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00226}00226\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ YoP\ =\ reader.GetInt32(1),\ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00227}00227\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Brand\ =\ reader.IsDBNull(2)\ ?\ null\ :\ reader.GetString(2),}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00228}00228\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Type\ =\ reader.IsDBNull(3)\ ?\ null\ :\ reader.GetString(3),}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00229}00229\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ LicensePlate\ =\ reader.IsDBNull(4)\ ?\ null\ :\ reader.GetString(4),}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00230}00230\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Color\ =\ reader.IsDBNull(5)\ ?\ null\ :\ reader.GetString(5),}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00231}00231\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Sort\ =\ reader.IsDBNull(6)\ ?\ null\ :\ reader.GetString(6),}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00232}00232\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Price\ =\ reader.IsDBNull(7)\ ?\ null\ :\ reader.GetDecimal(7).ToString(\textcolor{stringliteral}{"{}F2"{}}),}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00233}00233\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Image\ =\ reader.IsDBNull(8)\ ?\ null\ :\ Convert.ToBase64String((\textcolor{keywordtype}{byte}[])reader[\textcolor{stringliteral}{"{}VehicleBlob"{}}]),}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00234}00234\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Description\ =\ reader.IsDBNull(9)\ ?\ null\ :\ reader.GetString(9)}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00235}00235\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00236}00236\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00237}00237\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00238}00238\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00239}00239\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00240}00240\ }
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00241}00241\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Ok(vehicles);}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00242}00242\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00243}00243\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (Exception\ ex)}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00244}00244\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00245}00245\ \ \ \ \ \ \ \ \ \ \ \ \ Console.WriteLine(\$\textcolor{stringliteral}{"{}Error:\ \{ex.Message\}"{}});}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00246}00246\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ StatusCode(500,\ \textcolor{stringliteral}{"{}An\ error\ occurred\ while\ fetching\ vehicles."{}});}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00247}00247\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00248}00248\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00249}00249\ }
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00250}00250\ \ \ \ \ \textcolor{comment}{//\ Alle\ framenummers\ van\ de\ voertuigen\ worden\ verzameld}}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00251}00251\ \ \ \ \ [HttpGet(\textcolor{stringliteral}{"{}GetFrameNumbers"{}})]}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00252}\mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_vehicle_1_1_vehicle_controller_af40a4251c23707e82094745a7be18ae5}{00252}}\ \ \ \ \ \textcolor{keyword}{public}\ async\ Task<IActionResult>\ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_vehicle_1_1_vehicle_controller_af40a4251c23707e82094745a7be18ae5}{GetFrameNumbersAsync}}()}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00253}00253\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00254}00254\ \ \ \ \ \ \ \ \ var\ ids\ =\ await\ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_vehicle_1_1_vehicle_controller_a4fc359036464325cc952bc906ade4f2c}{\_vehicleRepository}}.GetFrameNumbersAsync();}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00255}00255\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Ok(\textcolor{keyword}{new}\ \{\ message\ =\ ids\ \});}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00256}00256\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00257}00257\ }
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00258}00258\ \ \ \ \ \textcolor{comment}{//\ Alle\ framenummers\ van\ een\ specifieke\ voertuig\ soort\ wordt\ verzameld}}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00259}00259\ \ \ \ \ [HttpGet(\textcolor{stringliteral}{"{}GetFrameNumbersSpecificType"{}})]}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00260}\mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_vehicle_1_1_vehicle_controller_aa33f054897f02e724bc028d7f45fb415}{00260}}\ \ \ \ \ \ \textcolor{keyword}{public}\ async\ Task<IActionResult>\ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_vehicle_1_1_vehicle_controller_aa33f054897f02e724bc028d7f45fb415}{GetFrameNumbersSpecificTypeAsync}}(\textcolor{keywordtype}{string}\ type)}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00261}00261\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00262}00262\ \ \ \ \ \ \ \ \ var\ ids\ =\ await\ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_vehicle_1_1_vehicle_controller_a4fc359036464325cc952bc906ade4f2c}{\_vehicleRepository}}.GetFrameNumberSpecifiekTypeAsync(type);}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00263}00263\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Ok(\textcolor{keyword}{new}\ \{\ message\ =\ ids\ \});}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00264}00264\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00265}00265\ }
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00266}00266\ \ \ \ \ \textcolor{comment}{//\ Alle\ gegevens\ van\ 1\ specifiek\ voertuig\ wordt\ opgehaald}}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00267}00267\ \ \ \ \ [HttpGet(\textcolor{stringliteral}{"{}GetVehicelData"{}})]}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00268}\mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_vehicle_1_1_vehicle_controller_a3001d1c49e6ca7cec1d4f6ba2f875300}{00268}}\ \ \ \ \ \textcolor{keyword}{public}\ async\ Task<IActionResult>\ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_vehicle_1_1_vehicle_controller_a3001d1c49e6ca7cec1d4f6ba2f875300}{GetVehicleData}}(\textcolor{keywordtype}{string}\ frameNr)}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00269}00269\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00270}00270\ \ \ \ \ \ \ \ \ var\ data\ =\ await\ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_vehicle_1_1_vehicle_controller_a4fc359036464325cc952bc906ade4f2c}{\_vehicleRepository}}.GetVehicleDataAsync(frameNr);}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00271}00271\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Ok(\textcolor{keyword}{new}\ \{\ message\ =\ data\ \});}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00272}00272\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_vehicle_controller_8cs_source_l00273}00273\ \}}
+
+\end{DoxyCode}

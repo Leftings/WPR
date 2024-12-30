@@ -1,0 +1,160 @@
+\doxysection{WPR.\+Controllers.\+Sign\+Up.\+Sign\+Up\+Controller Class Reference}
+\hypertarget{class_w_p_r_1_1_controllers_1_1_sign_up_1_1_sign_up_controller}{}\label{class_w_p_r_1_1_controllers_1_1_sign_up_1_1_sign_up_controller}\index{WPR.Controllers.SignUp.SignUpController@{WPR.Controllers.SignUp.SignUpController}}
+
+
+Inheritance diagram for WPR.\+Controllers.\+Sign\+Up.\+Sign\+Up\+Controller\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=220pt]{class_w_p_r_1_1_controllers_1_1_sign_up_1_1_sign_up_controller__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for WPR.\+Controllers.\+Sign\+Up.\+Sign\+Up\+Controller\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_w_p_r_1_1_controllers_1_1_sign_up_1_1_sign_up_controller__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_sign_up_1_1_sign_up_controller_ad73279f8056baa50a8b9d7ad8999fed2}{Sign\+Up\+Controller}} (\mbox{\hyperlink{class_w_p_r_1_1_database_1_1_connector}{Connector}} connector, \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_user_repository}{IUser\+Repository}} user\+Repository, \mbox{\hyperlink{class_w_p_r_1_1_data_1_1_env_config}{Env\+Config}} env\+Config, \mbox{\hyperlink{class_w_p_r_1_1_hashing_1_1_hash}{Hash}} hash, \mbox{\hyperlink{class_w_p_r_1_1_services_1_1_email_service}{Email\+Service}} email\+Service)
+\item 
+async Task$<$ IAction\+Result $>$ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_sign_up_1_1_sign_up_controller_a78865896515c1c12ad9e08c7f2dd5220}{sign\+Up\+Personal\+Async}} (\mbox{[}From\+Body\mbox{]} \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_sign_up_1_1_sign_up_request}{Sign\+Up\+Request}} sign\+Up\+Request)
+\item 
+async Task$<$ IAction\+Result $>$ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_sign_up_1_1_sign_up_controller_ab7084fa7e9719398e37f48c24cf301b5}{sign\+Up\+Employee\+Async}} (\mbox{[}From\+Body\mbox{]} \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_sign_up_1_1_sign_up_request}{Sign\+Up\+Request}} sign\+Up\+Request)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_sign_up_1_1_sign_up_controller_a26f172ac90a38512ee5b1863f405649a}{Is\+Filled\+In}} (\mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_sign_up_1_1_sign_up_request}{Sign\+Up\+Request}} sign\+Up\+Request)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+readonly \mbox{\hyperlink{class_w_p_r_1_1_database_1_1_connector}{Connector}} \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_sign_up_1_1_sign_up_controller_afc05cc2579ded1ada773ed2e21350aa1}{\+\_\+connector}}
+\item 
+readonly \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_user_repository}{IUser\+Repository}} \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_sign_up_1_1_sign_up_controller_a984d34e65a16edbb1b1f5356e856f3cd}{\+\_\+user\+Repository}}
+\item 
+readonly \mbox{\hyperlink{class_w_p_r_1_1_data_1_1_env_config}{Env\+Config}} \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_sign_up_1_1_sign_up_controller_af1b0d02dc593a08292e221fde58142ef}{\+\_\+env\+Config}}
+\item 
+readonly \mbox{\hyperlink{class_w_p_r_1_1_hashing_1_1_hash}{Hash}} \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_sign_up_1_1_sign_up_controller_a0d25d7a98e5cab10fe7e1fa4c826b112}{\+\_\+hash}}
+\item 
+readonly \mbox{\hyperlink{class_w_p_r_1_1_services_1_1_email_service}{Email\+Service}} \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_sign_up_1_1_sign_up_controller_a242408fdc7b8a24e7d9d2fe42d025772}{\+\_\+email\+Service}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line \mbox{\hyperlink{sign_up_controller_8cs_source_l00016}{16}} of file \mbox{\hyperlink{sign_up_controller_8cs_source}{sign\+Up\+Controller.\+cs}}.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_w_p_r_1_1_controllers_1_1_sign_up_1_1_sign_up_controller_ad73279f8056baa50a8b9d7ad8999fed2}\index{WPR.Controllers.SignUp.SignUpController@{WPR.Controllers.SignUp.SignUpController}!SignUpController@{SignUpController}}
+\index{SignUpController@{SignUpController}!WPR.Controllers.SignUp.SignUpController@{WPR.Controllers.SignUp.SignUpController}}
+\doxysubsubsection{\texorpdfstring{SignUpController()}{SignUpController()}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_controllers_1_1_sign_up_1_1_sign_up_controller_ad73279f8056baa50a8b9d7ad8999fed2} 
+WPR.\+Controllers.\+Sign\+Up.\+Sign\+Up\+Controller.\+Sign\+Up\+Controller (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_w_p_r_1_1_database_1_1_connector}{Connector}}}]{connector}{, }\item[{\mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_user_repository}{IUser\+Repository}}}]{user\+Repository}{, }\item[{\mbox{\hyperlink{class_w_p_r_1_1_data_1_1_env_config}{Env\+Config}}}]{env\+Config}{, }\item[{\mbox{\hyperlink{class_w_p_r_1_1_hashing_1_1_hash}{Hash}}}]{hash}{, }\item[{\mbox{\hyperlink{class_w_p_r_1_1_services_1_1_email_service}{Email\+Service}}}]{email\+Service}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{sign_up_controller_8cs_source_l00024}{24}} of file \mbox{\hyperlink{sign_up_controller_8cs_source}{sign\+Up\+Controller.\+cs}}.
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_w_p_r_1_1_controllers_1_1_sign_up_1_1_sign_up_controller_a26f172ac90a38512ee5b1863f405649a}\index{WPR.Controllers.SignUp.SignUpController@{WPR.Controllers.SignUp.SignUpController}!IsFilledIn@{IsFilledIn}}
+\index{IsFilledIn@{IsFilledIn}!WPR.Controllers.SignUp.SignUpController@{WPR.Controllers.SignUp.SignUpController}}
+\doxysubsubsection{\texorpdfstring{IsFilledIn()}{IsFilledIn()}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_controllers_1_1_sign_up_1_1_sign_up_controller_a26f172ac90a38512ee5b1863f405649a} 
+bool WPR.\+Controllers.\+Sign\+Up.\+Sign\+Up\+Controller.\+Is\+Filled\+In (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_sign_up_1_1_sign_up_request}{Sign\+Up\+Request}}}]{sign\+Up\+Request}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Definition at line \mbox{\hyperlink{sign_up_controller_8cs_source_l00034}{34}} of file \mbox{\hyperlink{sign_up_controller_8cs_source}{sign\+Up\+Controller.\+cs}}.
+
+\Hypertarget{class_w_p_r_1_1_controllers_1_1_sign_up_1_1_sign_up_controller_ab7084fa7e9719398e37f48c24cf301b5}\index{WPR.Controllers.SignUp.SignUpController@{WPR.Controllers.SignUp.SignUpController}!signUpEmployeeAsync@{signUpEmployeeAsync}}
+\index{signUpEmployeeAsync@{signUpEmployeeAsync}!WPR.Controllers.SignUp.SignUpController@{WPR.Controllers.SignUp.SignUpController}}
+\doxysubsubsection{\texorpdfstring{signUpEmployeeAsync()}{signUpEmployeeAsync()}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_controllers_1_1_sign_up_1_1_sign_up_controller_ab7084fa7e9719398e37f48c24cf301b5} 
+async Task$<$ IAction\+Result $>$ WPR.\+Controllers.\+Sign\+Up.\+Sign\+Up\+Controller.\+sign\+Up\+Employee\+Async (\begin{DoxyParamCaption}\item[{\mbox{[}\+From\+Body\mbox{]} \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_sign_up_1_1_sign_up_request}{Sign\+Up\+Request}}}]{sign\+Up\+Request}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{sign_up_controller_8cs_source_l00166}{166}} of file \mbox{\hyperlink{sign_up_controller_8cs_source}{sign\+Up\+Controller.\+cs}}.
+
+\Hypertarget{class_w_p_r_1_1_controllers_1_1_sign_up_1_1_sign_up_controller_a78865896515c1c12ad9e08c7f2dd5220}\index{WPR.Controllers.SignUp.SignUpController@{WPR.Controllers.SignUp.SignUpController}!signUpPersonalAsync@{signUpPersonalAsync}}
+\index{signUpPersonalAsync@{signUpPersonalAsync}!WPR.Controllers.SignUp.SignUpController@{WPR.Controllers.SignUp.SignUpController}}
+\doxysubsubsection{\texorpdfstring{signUpPersonalAsync()}{signUpPersonalAsync()}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_controllers_1_1_sign_up_1_1_sign_up_controller_a78865896515c1c12ad9e08c7f2dd5220} 
+async Task$<$ IAction\+Result $>$ WPR.\+Controllers.\+Sign\+Up.\+Sign\+Up\+Controller.\+sign\+Up\+Personal\+Async (\begin{DoxyParamCaption}\item[{\mbox{[}\+From\+Body\mbox{]} \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_sign_up_1_1_sign_up_request}{Sign\+Up\+Request}}}]{sign\+Up\+Request}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{sign_up_controller_8cs_source_l00047}{47}} of file \mbox{\hyperlink{sign_up_controller_8cs_source}{sign\+Up\+Controller.\+cs}}.
+
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{class_w_p_r_1_1_controllers_1_1_sign_up_1_1_sign_up_controller_afc05cc2579ded1ada773ed2e21350aa1}\index{WPR.Controllers.SignUp.SignUpController@{WPR.Controllers.SignUp.SignUpController}!\_connector@{\_connector}}
+\index{\_connector@{\_connector}!WPR.Controllers.SignUp.SignUpController@{WPR.Controllers.SignUp.SignUpController}}
+\doxysubsubsection{\texorpdfstring{\_connector}{\_connector}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_controllers_1_1_sign_up_1_1_sign_up_controller_afc05cc2579ded1ada773ed2e21350aa1} 
+readonly \mbox{\hyperlink{class_w_p_r_1_1_database_1_1_connector}{Connector}} WPR.\+Controllers.\+Sign\+Up.\+Sign\+Up\+Controller.\+\_\+connector\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \mbox{\hyperlink{sign_up_controller_8cs_source_l00018}{18}} of file \mbox{\hyperlink{sign_up_controller_8cs_source}{sign\+Up\+Controller.\+cs}}.
+
+\Hypertarget{class_w_p_r_1_1_controllers_1_1_sign_up_1_1_sign_up_controller_a242408fdc7b8a24e7d9d2fe42d025772}\index{WPR.Controllers.SignUp.SignUpController@{WPR.Controllers.SignUp.SignUpController}!\_emailService@{\_emailService}}
+\index{\_emailService@{\_emailService}!WPR.Controllers.SignUp.SignUpController@{WPR.Controllers.SignUp.SignUpController}}
+\doxysubsubsection{\texorpdfstring{\_emailService}{\_emailService}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_controllers_1_1_sign_up_1_1_sign_up_controller_a242408fdc7b8a24e7d9d2fe42d025772} 
+readonly \mbox{\hyperlink{class_w_p_r_1_1_services_1_1_email_service}{Email\+Service}} WPR.\+Controllers.\+Sign\+Up.\+Sign\+Up\+Controller.\+\_\+email\+Service\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \mbox{\hyperlink{sign_up_controller_8cs_source_l00022}{22}} of file \mbox{\hyperlink{sign_up_controller_8cs_source}{sign\+Up\+Controller.\+cs}}.
+
+\Hypertarget{class_w_p_r_1_1_controllers_1_1_sign_up_1_1_sign_up_controller_af1b0d02dc593a08292e221fde58142ef}\index{WPR.Controllers.SignUp.SignUpController@{WPR.Controllers.SignUp.SignUpController}!\_envConfig@{\_envConfig}}
+\index{\_envConfig@{\_envConfig}!WPR.Controllers.SignUp.SignUpController@{WPR.Controllers.SignUp.SignUpController}}
+\doxysubsubsection{\texorpdfstring{\_envConfig}{\_envConfig}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_controllers_1_1_sign_up_1_1_sign_up_controller_af1b0d02dc593a08292e221fde58142ef} 
+readonly \mbox{\hyperlink{class_w_p_r_1_1_data_1_1_env_config}{Env\+Config}} WPR.\+Controllers.\+Sign\+Up.\+Sign\+Up\+Controller.\+\_\+env\+Config\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \mbox{\hyperlink{sign_up_controller_8cs_source_l00020}{20}} of file \mbox{\hyperlink{sign_up_controller_8cs_source}{sign\+Up\+Controller.\+cs}}.
+
+\Hypertarget{class_w_p_r_1_1_controllers_1_1_sign_up_1_1_sign_up_controller_a0d25d7a98e5cab10fe7e1fa4c826b112}\index{WPR.Controllers.SignUp.SignUpController@{WPR.Controllers.SignUp.SignUpController}!\_hash@{\_hash}}
+\index{\_hash@{\_hash}!WPR.Controllers.SignUp.SignUpController@{WPR.Controllers.SignUp.SignUpController}}
+\doxysubsubsection{\texorpdfstring{\_hash}{\_hash}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_controllers_1_1_sign_up_1_1_sign_up_controller_a0d25d7a98e5cab10fe7e1fa4c826b112} 
+readonly \mbox{\hyperlink{class_w_p_r_1_1_hashing_1_1_hash}{Hash}} WPR.\+Controllers.\+Sign\+Up.\+Sign\+Up\+Controller.\+\_\+hash\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \mbox{\hyperlink{sign_up_controller_8cs_source_l00021}{21}} of file \mbox{\hyperlink{sign_up_controller_8cs_source}{sign\+Up\+Controller.\+cs}}.
+
+\Hypertarget{class_w_p_r_1_1_controllers_1_1_sign_up_1_1_sign_up_controller_a984d34e65a16edbb1b1f5356e856f3cd}\index{WPR.Controllers.SignUp.SignUpController@{WPR.Controllers.SignUp.SignUpController}!\_userRepository@{\_userRepository}}
+\index{\_userRepository@{\_userRepository}!WPR.Controllers.SignUp.SignUpController@{WPR.Controllers.SignUp.SignUpController}}
+\doxysubsubsection{\texorpdfstring{\_userRepository}{\_userRepository}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_controllers_1_1_sign_up_1_1_sign_up_controller_a984d34e65a16edbb1b1f5356e856f3cd} 
+readonly \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_user_repository}{IUser\+Repository}} WPR.\+Controllers.\+Sign\+Up.\+Sign\+Up\+Controller.\+\_\+user\+Repository\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \mbox{\hyperlink{sign_up_controller_8cs_source_l00019}{19}} of file \mbox{\hyperlink{sign_up_controller_8cs_source}{sign\+Up\+Controller.\+cs}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/codes/\+WPR/backend/src/\+Controllers/sign\+Up/\mbox{\hyperlink{sign_up_controller_8cs}{sign\+Up\+Controller.\+cs}}\end{DoxyCompactItemize}

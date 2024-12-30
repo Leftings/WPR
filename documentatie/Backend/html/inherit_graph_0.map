@@ -1,0 +1,19 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="Node000000" title=" " alt="" coords="5,247,113,273"/>
+<area shape="rect" id="Node000001" href="$class_w_p_r_1_1_controllers_1_1_change_user_settings_1_1_change_user_settings_controller.html" title=" " alt="" coords="161,5,411,48"/>
+<area shape="poly" id="edge1_Node000000_Node000001" title=" " alt="" coords="64,231,76,192,95,145,122,98,159,58,177,46,180,51,162,62,126,101,100,148,81,194,69,233"/>
+<area shape="rect" id="Node000002" href="$class_w_p_r_1_1_controllers_1_1_cookie_1_1_cookie_controller.html" title=" " alt="" coords="181,72,391,115"/>
+<area shape="poly" id="edge2_Node000000_Node000002" title=" " alt="" coords="71,232,106,177,131,149,159,124,180,113,183,118,162,129,134,152,110,180,76,234"/>
+<area shape="rect" id="Node000003" href="$class_w_p_r_1_1_controllers_1_1_employee_1_1_employee_controller.html" title=" " alt="" coords="193,139,379,181"/>
+<area shape="poly" id="edge3_Node000000_Node000003" title=" " alt="" coords="88,235,121,212,160,191,191,179,193,184,162,196,124,216,91,239"/>
+<area shape="rect" id="Node000004" href="$class_w_p_r_1_1_controllers_1_1_home_1_1_home_controller.html" title=" " alt="" coords="187,205,385,248"/>
+<area shape="poly" id="edge4_Node000000_Node000004" title=" " alt="" coords="127,247,186,239,186,244,128,253"/>
+<area shape="rect" id="Node000005" href="$class_w_p_r_1_1_controllers_1_1_login_1_1_login_controller.html" title=" " alt="" coords="191,272,381,315"/>
+<area shape="poly" id="edge5_Node000000_Node000005" title=" " alt="" coords="128,267,190,277,190,282,128,273"/>
+<area shape="rect" id="Node000006" href="$class_w_p_r_1_1_controllers_1_1_rental_controller.html" title=" " alt="" coords="177,339,395,365"/>
+<area shape="poly" id="edge6_Node000000_Node000006" title=" " alt="" coords="90,281,124,304,162,324,196,336,194,341,160,329,121,309,87,286"/>
+<area shape="rect" id="Node000007" href="$class_w_p_r_1_1_controllers_1_1_sign_up_1_1_sign_up_controller.html" title=" " alt="" coords="187,389,384,432"/>
+<area shape="poly" id="edge7_Node000000_Node000007" title=" " alt="" coords="79,285,113,332,136,355,162,375,188,388,186,393,159,380,133,359,109,335,74,289"/>
+<area shape="rect" id="Node000008" href="$class_w_p_r_1_1_controllers_1_1_vehicle_1_1_vehicle_controller.html" title=" " alt="" coords="201,456,371,499"/>
+<area shape="poly" id="edge8_Node000000_Node000008" title=" " alt="" coords="70,287,83,323,102,365,128,407,162,442,181,454,201,462,199,467,178,458,159,446,124,410,97,367,78,325,65,289"/>
+</map>
