@@ -61,7 +61,7 @@ function Home() {
                 <section className="hero">
                     <h1>Vind de perfecte auto voor jouw avontuur</h1>
                     <p>Betaalbare prijzen, flexibele verhuur en een breed aanbod aan voertuigen om uit te kiezen.</p>
-                    <Link to="/GeneralSalePage" className="cta-button">Verken onze Auto's</Link>
+                    <Link to="/vehicles" className="cta-button">Verken onze Auto's</Link>
                 </section>
 
                 <div className="container">
