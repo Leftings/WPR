@@ -105,8 +105,7 @@ $(function(){initNavTree('class_w_p_r_1_1_services_1_1_email_service.html',''); 
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pri-methods">Private Member Functions</a> &#124;
-<a href="#pri-attribs">Private Attributes</a> &#124;
-<a href="class_w_p_r_1_1_services_1_1_email_service-members.html">List of all members</a>  </div>
+<a href="#pri-attribs">Private Attributes</a>  </div>
   <div class="headertitle"><div class="title">WPR.Services.EmailService Class Reference</div></div>
 </div><!--header-->
 <div class="contents">
@@ -170,6 +169,11 @@ Private Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p class="definition">Definition at line <a class="el" href="_email_service_8cs_source.html#l00012">12</a> of file <a class="el" href="_email_service_8cs_source.html">EmailService.cs</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   13</span>    {</div>
+<div class="line"><span class="lineno">   14</span>        _envConfig = envConfig ?? <span class="keywordflow">throw</span> <span class="keyword">new</span> ArgumentNullException(nameof(envConfig));</div>
+<div class="line"><span class="lineno">   15</span>    }</div>
+</div><!-- fragment -->
+<p class="reference">References <a class="el" href="_email_service_8cs_source.html#l00010">_envConfig</a>.</p>
 
 </div>
 </div>
@@ -222,6 +226,21 @@ Private Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p class="definition">Definition at line <a class="el" href="_email_service_8cs_source.html#l00086">86</a> of file <a class="el" href="_email_service_8cs_source.html">EmailService.cs</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   87</span>    {</div>
+<div class="line"><span class="lineno">   88</span>        <span class="keywordflow">return</span> <span class="stringliteral">$@&quot;</span></div>
+<div class="line"><span class="lineno">   89</span><span class="stringliteral">            &lt;p&gt;Bedankt voor het huren van een voertuig bij CarAndAll,&lt;/p&gt;</span></div>
+</div><!-- fragment -->
+<p class="reference">Referenced by <a class="el" href="_email_service_8cs_source.html#l00058">SendRentalConfirmMail()</a>.</p>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_w_p_r_1_1_services_1_1_email_service_ae494002e0de59b64d18083d36162c657_icgraph.png" border="0" usemap="#aclass_w_p_r_1_1_services_1_1_email_service_ae494002e0de59b64d18083d36162c657_icgraph" alt=""/></div>
+<map name="aclass_w_p_r_1_1_services_1_1_email_service_ae494002e0de59b64d18083d36162c657_icgraph" id="aclass_w_p_r_1_1_services_1_1_email_service_ae494002e0de59b64d18083d36162c657_icgraph">
+<area shape="rect" title=" " alt="" coords="247,5,440,48"/>
+<area shape="rect" href="class_w_p_r_1_1_services_1_1_email_service.html#a23aed78b7ecd45ab31ca9acb6ce78b5e" title=" " alt="" coords="5,5,199,48"/>
+<area shape="poly" title=" " alt="" coords="231,29,199,29,199,24,231,24"/>
+</map>
+</div>
 
 </div>
 </div>
@@ -249,6 +268,33 @@ Private Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p class="definition">Definition at line <a class="el" href="_email_service_8cs_source.html#l00017">17</a> of file <a class="el" href="_email_service_8cs_source.html">EmailService.cs</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   18</span>    {</div>
+<div class="line"><span class="lineno">   19</span>        <span class="keywordflow">return</span> <span class="keyword">new</span> SmtpClient(_envConfig.Get(<span class="stringliteral">&quot;SMTP_HOST&quot;</span>))</div>
+<div class="line"><span class="lineno">   20</span>        {</div>
+<div class="line"><span class="lineno">   21</span>            Port = <span class="keywordtype">int</span>.Parse(_envConfig.Get(<span class="stringliteral">&quot;SMTP_PORT&quot;</span>)),</div>
+<div class="line"><span class="lineno">   22</span>            Credentials = <span class="keyword">new</span> NetworkCredential(</div>
+<div class="line"><span class="lineno">   23</span>                _envConfig.Get(<span class="stringliteral">&quot;SMTP_FROM_EMAIL&quot;</span>),</div>
+<div class="line"><span class="lineno">   24</span>                _envConfig.Get(<span class="stringliteral">&quot;SMTP_FROM_PASSWORD&quot;</span>)</div>
+<div class="line"><span class="lineno">   25</span>                ),</div>
+<div class="line"><span class="lineno">   26</span>            EnableSsl = <span class="keyword">true</span></div>
+<div class="line"><span class="lineno">   27</span>        };</div>
+<div class="line"><span class="lineno">   28</span>    }</div>
+</div><!-- fragment -->
+<p class="reference">References <a class="el" href="_email_service_8cs_source.html#l00010">_envConfig</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="_email_service_8cs_source.html#l00058">SendRentalConfirmMail()</a>, and <a class="el" href="_email_service_8cs_source.html#l00030">SendWelcomeEmail()</a>.</p>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_w_p_r_1_1_services_1_1_email_service_ab31b08101a79b7e7634ccb24fb771d33_icgraph.png" border="0" usemap="#aclass_w_p_r_1_1_services_1_1_email_service_ab31b08101a79b7e7634ccb24fb771d33_icgraph" alt=""/></div>
+<map name="aclass_w_p_r_1_1_services_1_1_email_service_ab31b08101a79b7e7634ccb24fb771d33_icgraph" id="aclass_w_p_r_1_1_services_1_1_email_service_ab31b08101a79b7e7634ccb24fb771d33_icgraph">
+<area shape="rect" title=" " alt="" coords="247,39,440,81"/>
+<area shape="rect" href="class_w_p_r_1_1_services_1_1_email_service.html#a23aed78b7ecd45ab31ca9acb6ce78b5e" title=" " alt="" coords="5,5,199,48"/>
+<area shape="poly" title=" " alt="" coords="231,47,199,43,199,37,232,42"/>
+<area shape="rect" href="class_w_p_r_1_1_services_1_1_email_service.html#a00a227fa3bbc1b22634908be5be363ef" title=" " alt="" coords="5,72,199,115"/>
+<area shape="poly" title=" " alt="" coords="232,78,199,83,199,77,231,73"/>
+</map>
+</div>
 
 </div>
 </div>
@@ -305,6 +351,46 @@ Private Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p class="definition">Definition at line <a class="el" href="_email_service_8cs_source.html#l00058">58</a> of file <a class="el" href="_email_service_8cs_source.html">EmailService.cs</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   59</span>    {</div>
+<div class="line"><span class="lineno">   60</span>        <span class="keywordflow">if</span> (<span class="keywordtype">string</span>.IsNullOrEmpty(toEmail))</div>
+<div class="line"><span class="lineno">   61</span>        {</div>
+<div class="line"><span class="lineno">   62</span>            <span class="keywordflow">throw</span> <span class="keyword">new</span> ArgumentException(<span class="stringliteral">&quot;Email addresses cannot be null or empty&quot;</span>);</div>
+<div class="line"><span class="lineno">   63</span>        }</div>
+<div class="line"><span class="lineno">   64</span>        </div>
+<div class="line"><span class="lineno">   65</span>        <span class="keywordflow">try</span></div>
+<div class="line"><span class="lineno">   66</span>        {</div>
+<div class="line"><span class="lineno">   67</span>            <span class="keyword">using </span>var smtpClient = CreateSmtpClient();</div>
+<div class="line"><span class="lineno">   68</span>            <span class="keyword">using </span>var mailMessage = <span class="keyword">new</span> MailMessage</div>
+<div class="line"><span class="lineno">   69</span>            {</div>
+<div class="line"><span class="lineno">   70</span>                From = <span class="keyword">new</span> MailAddress(_envConfig.Get(<span class="stringliteral">&quot;SMTP_FROM_EMAIL&quot;</span>)),</div>
+<div class="line"><span class="lineno">   71</span>                Subject = <span class="stringliteral">&quot;Verificatie Voertuig Huren&quot;</span>,</div>
+<div class="line"><span class="lineno">   72</span>                Body = BuildRentalConfirmationBody(carName, carColor, carPlate, startDate, endDate, price),</div>
+<div class="line"><span class="lineno">   73</span>                IsBodyHtml = <span class="keyword">true</span></div>
+<div class="line"><span class="lineno">   74</span>            };</div>
+<div class="line"><span class="lineno">   75</span>            mailMessage.To.Add(toEmail);</div>
+<div class="line"><span class="lineno">   76</span> </div>
+<div class="line"><span class="lineno">   77</span>            await smtpClient.SendMailAsync(mailMessage);</div>
+<div class="line"><span class="lineno">   78</span>        }</div>
+<div class="line"><span class="lineno">   79</span>        <span class="keywordflow">catch</span> (Exception e)</div>
+<div class="line"><span class="lineno">   80</span>        {</div>
+<div class="line"><span class="lineno">   81</span>            Console.WriteLine(e);</div>
+<div class="line"><span class="lineno">   82</span>            <span class="keywordflow">throw</span>;</div>
+<div class="line"><span class="lineno">   83</span>        }</div>
+<div class="line"><span class="lineno">   84</span>    }</div>
+</div><!-- fragment -->
+<p class="reference">References <a class="el" href="_email_service_8cs_source.html#l00010">_envConfig</a>, <a class="el" href="_email_service_8cs_source.html#l00086">BuildRentalConfirmationBody()</a>, and <a class="el" href="_email_service_8cs_source.html#l00017">CreateSmtpClient()</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_w_p_r_1_1_services_1_1_email_service_a23aed78b7ecd45ab31ca9acb6ce78b5e_cgraph.png" border="0" usemap="#aclass_w_p_r_1_1_services_1_1_email_service_a23aed78b7ecd45ab31ca9acb6ce78b5e_cgraph" alt=""/></div>
+<map name="aclass_w_p_r_1_1_services_1_1_email_service_a23aed78b7ecd45ab31ca9acb6ce78b5e_cgraph" id="aclass_w_p_r_1_1_services_1_1_email_service_a23aed78b7ecd45ab31ca9acb6ce78b5e_cgraph">
+<area shape="rect" title=" " alt="" coords="5,39,199,81"/>
+<area shape="rect" href="class_w_p_r_1_1_services_1_1_email_service.html#ae494002e0de59b64d18083d36162c657" title=" " alt="" coords="247,5,440,48"/>
+<area shape="poly" title=" " alt="" coords="199,44,231,40,232,45,199,49"/>
+<area shape="rect" href="class_w_p_r_1_1_services_1_1_email_service.html#ab31b08101a79b7e7634ccb24fb771d33" title=" " alt="" coords="247,72,440,115"/>
+<area shape="poly" title=" " alt="" coords="199,71,232,75,231,80,199,76"/>
+</map>
+</div>
 
 </div>
 </div>
@@ -332,10 +418,48 @@ Private Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p class="definition">Definition at line <a class="el" href="_email_service_8cs_source.html#l00030">30</a> of file <a class="el" href="_email_service_8cs_source.html">EmailService.cs</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   31</span>    {     </div>
+<div class="line"><span class="lineno">   32</span>        <span class="keywordflow">if</span> (<span class="keywordtype">string</span>.IsNullOrEmpty(toEmail))</div>
+<div class="line"><span class="lineno">   33</span>        {</div>
+<div class="line"><span class="lineno">   34</span>            <span class="keywordflow">throw</span> <span class="keyword">new</span> ArgumentException(<span class="stringliteral">&quot;Email addresses cannot be null or empty&quot;</span>);</div>
+<div class="line"><span class="lineno">   35</span>        }</div>
+<div class="line"><span class="lineno">   36</span>        </div>
+<div class="line"><span class="lineno">   37</span>        <span class="keywordflow">try</span></div>
+<div class="line"><span class="lineno">   38</span>        {</div>
+<div class="line"><span class="lineno">   39</span>            <span class="keyword">using </span>var smtpClient = CreateSmtpClient();</div>
+<div class="line"><span class="lineno">   40</span>            <span class="keyword">using </span>var mailMessage = <span class="keyword">new</span> MailMessage</div>
+<div class="line"><span class="lineno">   41</span>            {</div>
+<div class="line"><span class="lineno">   42</span>                From = <span class="keyword">new</span> MailAddress(_envConfig.Get(<span class="stringliteral">&quot;SMTP_FROM_EMAIL&quot;</span>)),</div>
+<div class="line"><span class="lineno">   43</span>                Subject = <span class="stringliteral">&quot;Welkom bij CarAndAll&quot;</span>,</div>
+<div class="line"><span class="lineno">   44</span>                Body = $<span class="stringliteral">&quot;Welkom bij CarAndAll&quot;</span>,</div>
+<div class="line"><span class="lineno">   45</span>                IsBodyHtml = <span class="keyword">true</span></div>
+<div class="line"><span class="lineno">   46</span>            };</div>
+<div class="line"><span class="lineno">   47</span>            mailMessage.To.Add(toEmail);</div>
+<div class="line"><span class="lineno">   48</span> </div>
+<div class="line"><span class="lineno">   49</span>            await smtpClient.SendMailAsync(mailMessage);</div>
+<div class="line"><span class="lineno">   50</span>        }</div>
+<div class="line"><span class="lineno">   51</span>        <span class="keywordflow">catch</span> (Exception e)</div>
+<div class="line"><span class="lineno">   52</span>        {</div>
+<div class="line"><span class="lineno">   53</span>            Console.WriteLine(e);</div>
+<div class="line"><span class="lineno">   54</span>            <span class="keywordflow">throw</span>;</div>
+<div class="line"><span class="lineno">   55</span>        }</div>
+<div class="line"><span class="lineno">   56</span>    }</div>
+</div><!-- fragment -->
+<p class="reference">References <a class="el" href="_email_service_8cs_source.html#l00010">_envConfig</a>, and <a class="el" href="_email_service_8cs_source.html#l00017">CreateSmtpClient()</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_w_p_r_1_1_services_1_1_email_service_a00a227fa3bbc1b22634908be5be363ef_cgraph.png" border="0" usemap="#aclass_w_p_r_1_1_services_1_1_email_service_a00a227fa3bbc1b22634908be5be363ef_cgraph" alt=""/></div>
+<map name="aclass_w_p_r_1_1_services_1_1_email_service_a00a227fa3bbc1b22634908be5be363ef_cgraph" id="aclass_w_p_r_1_1_services_1_1_email_service_a00a227fa3bbc1b22634908be5be363ef_cgraph">
+<area shape="rect" title=" " alt="" coords="5,5,199,48"/>
+<area shape="rect" href="class_w_p_r_1_1_services_1_1_email_service.html#ab31b08101a79b7e7634ccb24fb771d33" title=" " alt="" coords="247,5,440,48"/>
+<area shape="poly" title=" " alt="" coords="199,24,231,24,231,29,199,29"/>
+</map>
+</div>
 
 </div>
 </div>
-<h2 class="groupheader">Member Data Documentation</h2>
+<h2 class="groupheader">Field Documentation</h2>
 <a id="a1b24680ee23b68d526051d9c96e50536" name="a1b24680ee23b68d526051d9c96e50536"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a1b24680ee23b68d526051d9c96e50536">&#9670;&#160;</a></span>_envConfig</h2>
 
@@ -357,6 +481,8 @@ Private Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p class="definition">Definition at line <a class="el" href="_email_service_8cs_source.html#l00010">10</a> of file <a class="el" href="_email_service_8cs_source.html">EmailService.cs</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="_email_service_8cs_source.html#l00017">CreateSmtpClient()</a>, <a class="el" href="_email_service_8cs_source.html#l00012">EmailService()</a>, <a class="el" href="_email_service_8cs_source.html#l00058">SendRentalConfirmMail()</a>, and <a class="el" href="_email_service_8cs_source.html#l00030">SendWelcomeEmail()</a>.</p>
 
 </div>
 </div>

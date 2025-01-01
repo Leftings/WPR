@@ -105,8 +105,7 @@ $(function(){initNavTree('class_w_p_r_1_1_controllers_1_1_cookie_1_1_session_han
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pro-methods">Protected Member Functions</a> &#124;
-<a href="#pri-attribs">Private Attributes</a> &#124;
-<a href="class_w_p_r_1_1_controllers_1_1_cookie_1_1_session_handler-members.html">List of all members</a>  </div>
+<a href="#pri-attribs">Private Attributes</a>  </div>
   <div class="headertitle"><div class="title">WPR.Controllers.Cookie.SessionHandler Class Reference</div></div>
 </div><!--header-->
 <div class="contents">
@@ -187,7 +186,14 @@ Private Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p class="definition">Definition at line <a class="el" href="_session_handler_8cs_source.html#l00008">8</a> of file <a class="el" href="_session_handler_8cs_source.html">SessionHandler.cs</a>.</p>
-
+<div class="fragment"><div class="line"><span class="lineno">    9</span>    {</div>
+<div class="line"><span class="lineno">   10</span>        responseCookies.Append(cookieName, cookieValue, <span class="keyword">new</span> CookieOptions</div>
+<div class="line"><span class="lineno">   11</span>        {</div>
+<div class="line"><span class="lineno">   12</span>            HttpOnly = <span class="keyword">true</span>,</div>
+<div class="line"><span class="lineno">   13</span>            Expires = DateTimeOffset.Now.AddMinutes(30)</div>
+<div class="line"><span class="lineno">   14</span>        });</div>
+<div class="line"><span class="lineno">   15</span>    }</div>
+</div><!-- fragment -->
 </div>
 </div>
 <a id="a9a47c7ed04e4289c42c25b497edecb85" name="a9a47c7ed04e4289c42c25b497edecb85"></a>
@@ -218,7 +224,18 @@ Private Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p class="definition">Definition at line <a class="el" href="_session_handler_8cs_source.html#l00018">18</a> of file <a class="el" href="_session_handler_8cs_source.html">SessionHandler.cs</a>.</p>
-
+<div class="fragment"><div class="line"><span class="lineno">   19</span>    {</div>
+<div class="line"><span class="lineno">   20</span>        responseCookies.Append(cookieName, <span class="stringliteral">&quot;&quot;</span>, <span class="keyword">new</span> CookieOptions</div>
+<div class="line"><span class="lineno">   21</span>        {</div>
+<div class="line"><span class="lineno">   22</span>            HttpOnly = <span class="keyword">true</span>,</div>
+<div class="line"><span class="lineno">   23</span>            Expires = DateTimeOffset.Now.AddMinutes(-1),</div>
+<div class="line"><span class="lineno">   24</span>            MaxAge = TimeSpan.Zero,</div>
+<div class="line"><span class="lineno">   25</span>            Path = <span class="stringliteral">&quot;/&quot;</span></div>
+<div class="line"><span class="lineno">   26</span>        });</div>
+<div class="line"><span class="lineno">   27</span> </div>
+<div class="line"><span class="lineno">   28</span>        Console.WriteLine($<span class="stringliteral">&quot;Cookie invalidated: {cookieName}&quot;</span>);</div>
+<div class="line"><span class="lineno">   29</span>    }</div>
+</div><!-- fragment -->
 </div>
 </div>
 <a id="a86bb829c60b456125325fe40176732bd" name="a86bb829c60b456125325fe40176732bd"></a>
@@ -245,6 +262,32 @@ Private Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p class="definition">Definition at line <a class="el" href="_session_handler_8cs_source.html#l00043">43</a> of file <a class="el" href="_session_handler_8cs_source.html">SessionHandler.cs</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   44</span>    {</div>
+<div class="line"><span class="lineno">   45</span>        Dispose(disposing: <span class="keyword">true</span>);</div>
+<div class="line"><span class="lineno">   46</span>        GC.SuppressFinalize(<span class="keyword">this</span>);</div>
+<div class="line"><span class="lineno">   47</span>    }</div>
+</div><!-- fragment -->
+<p class="reference">References <a class="el" href="_session_handler_8cs_source.html#l00043">Dispose()</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="_session_handler_8cs_source.html#l00043">Dispose()</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_w_p_r_1_1_controllers_1_1_cookie_1_1_session_handler_a86bb829c60b456125325fe40176732bd_cgraph.png" border="0" usemap="#aclass_w_p_r_1_1_controllers_1_1_cookie_1_1_session_handler_a86bb829c60b456125325fe40176732bd_cgraph" alt=""/></div>
+<map name="aclass_w_p_r_1_1_controllers_1_1_cookie_1_1_session_handler_a86bb829c60b456125325fe40176732bd_cgraph" id="aclass_w_p_r_1_1_controllers_1_1_cookie_1_1_session_handler_a86bb829c60b456125325fe40176732bd_cgraph">
+<area shape="rect" title=" " alt="" coords="5,29,222,72"/>
+<area shape="poly" title=" " alt="" coords="72,29,71,19,78,10,92,5,114,3,137,5,151,11,148,16,135,10,113,8,93,10,81,15,76,21,77,28"/>
+</map>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_w_p_r_1_1_controllers_1_1_cookie_1_1_session_handler_a86bb829c60b456125325fe40176732bd_icgraph.png" border="0" usemap="#aclass_w_p_r_1_1_controllers_1_1_cookie_1_1_session_handler_a86bb829c60b456125325fe40176732bd_icgraph" alt=""/></div>
+<map name="aclass_w_p_r_1_1_controllers_1_1_cookie_1_1_session_handler_a86bb829c60b456125325fe40176732bd_icgraph" id="aclass_w_p_r_1_1_controllers_1_1_cookie_1_1_session_handler_a86bb829c60b456125325fe40176732bd_icgraph">
+<area shape="rect" title=" " alt="" coords="5,29,222,72"/>
+<area shape="poly" title=" " alt="" coords="148,16,135,10,113,8,93,10,81,15,76,21,77,28,72,29,71,19,78,10,92,5,114,3,137,5,151,11"/>
+</map>
+</div>
 
 </div>
 </div>
@@ -272,10 +315,22 @@ Private Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p class="definition">Definition at line <a class="el" href="_session_handler_8cs_source.html#l00031">31</a> of file <a class="el" href="_session_handler_8cs_source.html">SessionHandler.cs</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   32</span>    {</div>
+<div class="line"><span class="lineno">   33</span>        <span class="keywordflow">if</span> (!disposedValue)</div>
+<div class="line"><span class="lineno">   34</span>        {</div>
+<div class="line"><span class="lineno">   35</span>            <span class="keywordflow">if</span> (disposing)</div>
+<div class="line"><span class="lineno">   36</span>            {</div>
+<div class="line"><span class="lineno">   37</span>            }</div>
+<div class="line"><span class="lineno">   38</span> </div>
+<div class="line"><span class="lineno">   39</span>            disposedValue = <span class="keyword">true</span>;</div>
+<div class="line"><span class="lineno">   40</span>        }</div>
+<div class="line"><span class="lineno">   41</span>    }</div>
+</div><!-- fragment -->
+<p class="reference">References <a class="el" href="_session_handler_8cs_source.html#l00005">disposedValue</a>.</p>
 
 </div>
 </div>
-<h2 class="groupheader">Member Data Documentation</h2>
+<h2 class="groupheader">Field Documentation</h2>
 <a id="a004fffde172842d3c33da2c8923c4762" name="a004fffde172842d3c33da2c8923c4762"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a004fffde172842d3c33da2c8923c4762">&#9670;&#160;</a></span>disposedValue</h2>
 
@@ -297,6 +352,8 @@ Private Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p class="definition">Definition at line <a class="el" href="_session_handler_8cs_source.html#l00005">5</a> of file <a class="el" href="_session_handler_8cs_source.html">SessionHandler.cs</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="_session_handler_8cs_source.html#l00031">Dispose()</a>.</p>
 
 </div>
 </div>

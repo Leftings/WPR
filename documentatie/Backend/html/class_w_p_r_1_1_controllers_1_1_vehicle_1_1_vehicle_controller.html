@@ -104,8 +104,7 @@ $(function(){initNavTree('class_w_p_r_1_1_controllers_1_1_vehicle_1_1_vehicle_co
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
-<a href="#pri-attribs">Private Attributes</a> &#124;
-<a href="class_w_p_r_1_1_controllers_1_1_vehicle_1_1_vehicle_controller-members.html">List of all members</a>  </div>
+<a href="#pri-attribs">Private Attributes</a>  </div>
   <div class="headertitle"><div class="title">WPR.Controllers.Vehicle.VehicleController Class Reference</div></div>
 </div><!--header-->
 <div class="contents">
@@ -198,6 +197,12 @@ Private Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p class="definition">Definition at line <a class="el" href="_vehicle_controller_8cs_source.html#l00019">19</a> of file <a class="el" href="_vehicle_controller_8cs_source.html">VehicleController.cs</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   20</span>    {</div>
+<div class="line"><span class="lineno">   21</span>        _connector = connector ?? <span class="keywordflow">throw</span> <span class="keyword">new</span> ArgumentNullException(nameof(connector));</div>
+<div class="line"><span class="lineno">   22</span>        _vehicleRepository = vehicleRepository ?? <span class="keywordflow">throw</span> <span class="keyword">new</span> ArgumentNullException(nameof(vehicleRepository));</div>
+<div class="line"><span class="lineno">   23</span>    }</div>
+</div><!-- fragment -->
+<p class="reference">References <a class="el" href="_vehicle_controller_8cs_source.html#l00016">_connector</a>, and <a class="el" href="_vehicle_controller_8cs_source.html#l00017">_vehicleRepository</a>.</p>
 
 </div>
 </div>
@@ -226,6 +231,48 @@ Private Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p class="definition">Definition at line <a class="el" href="_vehicle_controller_8cs_source.html#l00155">155</a> of file <a class="el" href="_vehicle_controller_8cs_source.html">VehicleController.cs</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  156</span>    {</div>
+<div class="line"><span class="lineno">  157</span>        <span class="keywordflow">try</span></div>
+<div class="line"><span class="lineno">  158</span>        {</div>
+<div class="line"><span class="lineno">  159</span>            <span class="keywordtype">string</span> query = <span class="stringliteral">@&quot;</span></div>
+<div class="line"><span class="lineno">  160</span><span class="stringliteral">            SELECT FrameNr, YoP, Brand, Type, LicensePlate, Color, Sort, Price, VehicleBlob, Description</span></div>
+<div class="line"><span class="lineno">  161</span><span class="stringliteral">            FROM Vehicle&quot;</span>;</div>
+<div class="line"><span class="lineno">  162</span>            var vehicles = <span class="keyword">new</span> List&lt;object&gt;();</div>
+<div class="line"><span class="lineno">  163</span> </div>
+<div class="line"><span class="lineno">  164</span>            <span class="keyword">using</span> (var connection = _connector.CreateDbConnection())</div>
+<div class="line"><span class="lineno">  165</span>            <span class="keyword">using</span> (var command = <span class="keyword">new</span> MySqlCommand(query, (MySqlConnection)connection))</div>
+<div class="line"><span class="lineno">  166</span>            {</div>
+<div class="line"><span class="lineno">  167</span>                <span class="keyword">using</span> (var reader = await command.ExecuteReaderAsync())</div>
+<div class="line"><span class="lineno">  168</span>                {</div>
+<div class="line"><span class="lineno">  169</span>                    <span class="keywordflow">while</span> (reader.Read())</div>
+<div class="line"><span class="lineno">  170</span>                    {</div>
+<div class="line"><span class="lineno">  171</span>                        vehicles.Add(<span class="keyword">new</span></div>
+<div class="line"><span class="lineno">  172</span>                        {</div>
+<div class="line"><span class="lineno">  173</span>                            FrameNr = reader.IsDBNull(0) ? 0 : reader.GetInt32(0),</div>
+<div class="line"><span class="lineno">  174</span>                            YoP = reader.IsDBNull(1) ? 0 : reader.GetInt32(1),    </div>
+<div class="line"><span class="lineno">  175</span>                            Brand = reader.IsDBNull(2) ? null : reader.GetString(2),</div>
+<div class="line"><span class="lineno">  176</span>                            Type = reader.IsDBNull(3) ? null : reader.GetString(3),</div>
+<div class="line"><span class="lineno">  177</span>                            LicensePlate = reader.IsDBNull(4) ? null : reader.GetString(4),</div>
+<div class="line"><span class="lineno">  178</span>                            Color = reader.IsDBNull(5) ? null : reader.GetString(5),</div>
+<div class="line"><span class="lineno">  179</span>                            Sort = reader.IsDBNull(6) ? null : reader.GetString(6),</div>
+<div class="line"><span class="lineno">  180</span>                            Price = reader.IsDBNull(7) ? <span class="stringliteral">&quot;0.00&quot;</span> : reader.GetDecimal(7).ToString(<span class="stringliteral">&quot;F2&quot;</span>),</div>
+<div class="line"><span class="lineno">  181</span>                            Image = reader.IsDBNull(8) ? null : Convert.ToBase64String((<span class="keywordtype">byte</span>[])reader[<span class="stringliteral">&quot;VehicleBlob&quot;</span>]),</div>
+<div class="line"><span class="lineno">  182</span>                            Description = reader.IsDBNull(9) ? null : reader.GetString(9)</div>
+<div class="line"><span class="lineno">  183</span>                        });</div>
+<div class="line"><span class="lineno">  184</span>                    }</div>
+<div class="line"><span class="lineno">  185</span>                }</div>
+<div class="line"><span class="lineno">  186</span>            }</div>
+<div class="line"><span class="lineno">  187</span> </div>
+<div class="line"><span class="lineno">  188</span>            <span class="keywordflow">return</span> Ok(vehicles);</div>
+<div class="line"><span class="lineno">  189</span>        }</div>
+<div class="line"><span class="lineno">  190</span>        <span class="keywordflow">catch</span> (Exception ex)</div>
+<div class="line"><span class="lineno">  191</span>        {</div>
+<div class="line"><span class="lineno">  192</span>            Console.WriteLine(ex);</div>
+<div class="line"><span class="lineno">  193</span>            <span class="keywordflow">return</span> StatusCode(500, <span class="stringliteral">&quot;An error occurred while fetching vehicles.&quot;</span>);</div>
+<div class="line"><span class="lineno">  194</span>        }</div>
+<div class="line"><span class="lineno">  195</span>    }</div>
+</div><!-- fragment -->
+<p class="reference">References <a class="el" href="_vehicle_controller_8cs_source.html#l00016">_connector</a>.</p>
 
 </div>
 </div>
@@ -253,6 +300,12 @@ Private Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p class="definition">Definition at line <a class="el" href="_vehicle_controller_8cs_source.html#l00252">252</a> of file <a class="el" href="_vehicle_controller_8cs_source.html">VehicleController.cs</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  253</span>    {</div>
+<div class="line"><span class="lineno">  254</span>        var ids = await _vehicleRepository.GetFrameNumbersAsync();</div>
+<div class="line"><span class="lineno">  255</span>        <span class="keywordflow">return</span> Ok(<span class="keyword">new</span> { message = ids });</div>
+<div class="line"><span class="lineno">  256</span>    }</div>
+</div><!-- fragment -->
+<p class="reference">References <a class="el" href="_vehicle_controller_8cs_source.html#l00017">_vehicleRepository</a>.</p>
 
 </div>
 </div>
@@ -280,6 +333,12 @@ Private Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p class="definition">Definition at line <a class="el" href="_vehicle_controller_8cs_source.html#l00260">260</a> of file <a class="el" href="_vehicle_controller_8cs_source.html">VehicleController.cs</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  261</span>    {</div>
+<div class="line"><span class="lineno">  262</span>        var ids = await _vehicleRepository.GetFrameNumberSpecifiekTypeAsync(type);</div>
+<div class="line"><span class="lineno">  263</span>        <span class="keywordflow">return</span> Ok(<span class="keyword">new</span> { message = ids });</div>
+<div class="line"><span class="lineno">  264</span>    }</div>
+</div><!-- fragment -->
+<p class="reference">References <a class="el" href="_vehicle_controller_8cs_source.html#l00017">_vehicleRepository</a>.</p>
 
 </div>
 </div>
@@ -307,6 +366,58 @@ Private Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p class="definition">Definition at line <a class="el" href="_vehicle_controller_8cs_source.html#l00198">198</a> of file <a class="el" href="_vehicle_controller_8cs_source.html">VehicleController.cs</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  199</span>    {</div>
+<div class="line"><span class="lineno">  200</span>        <span class="keywordflow">try</span></div>
+<div class="line"><span class="lineno">  201</span>        {</div>
+<div class="line"><span class="lineno">  202</span>            <span class="keywordtype">string</span> query = <span class="stringliteral">@&quot;</span></div>
+<div class="line"><span class="lineno">  203</span><span class="stringliteral">                SELECT FrameNr, YoP, Brand, Type, LicensePlate, Color, Sort, Price, VehicleBlob, Description </span></div>
+<div class="line"><span class="lineno">  204</span><span class="stringliteral">                FROM Vehicle </span></div>
+<div class="line"><span class="lineno">  205</span><span class="stringliteral">                WHERE LOWER(Sort) = LOWER(@Sort)&quot;</span>;</div>
+<div class="line"><span class="lineno">  206</span> </div>
+<div class="line"><span class="lineno">  207</span>            var vehicles = <span class="keyword">new</span> List&lt;object&gt;();</div>
+<div class="line"><span class="lineno">  208</span> </div>
+<div class="line"><span class="lineno">  209</span>            <span class="keyword">using</span> (var connection = _connector.CreateDbConnection())</div>
+<div class="line"><span class="lineno">  210</span>            {</div>
+<div class="line"><span class="lineno">  211</span>                <span class="keyword">using</span> (var command = <span class="keyword">new</span> MySqlCommand(query, (MySqlConnection)connection))</div>
+<div class="line"><span class="lineno">  212</span>                {</div>
+<div class="line"><span class="lineno">  213</span>                    <span class="keywordflow">if</span> (!<span class="keywordtype">string</span>.IsNullOrWhiteSpace(vehicleType) &amp;&amp;</div>
+<div class="line"><span class="lineno">  214</span>                        !vehicleType.Equals(<span class="stringliteral">&quot;ALL&quot;</span>, StringComparison.OrdinalIgnoreCase))</div>
+<div class="line"><span class="lineno">  215</span>                    {</div>
+<div class="line"><span class="lineno">  216</span>                        command.Parameters.AddWithValue(<span class="stringliteral">&quot;@Sort&quot;</span>, vehicleType);</div>
+<div class="line"><span class="lineno">  217</span>                    }</div>
+<div class="line"><span class="lineno">  218</span> </div>
+<div class="line"><span class="lineno">  219</span>                    <span class="keyword">using</span> (var reader = await command.ExecuteReaderAsync())</div>
+<div class="line"><span class="lineno">  220</span>                    {</div>
+<div class="line"><span class="lineno">  221</span>                        <span class="keywordflow">while</span> (reader.Read())</div>
+<div class="line"><span class="lineno">  222</span>                        {</div>
+<div class="line"><span class="lineno">  223</span>                            vehicles.Add(<span class="keyword">new</span></div>
+<div class="line"><span class="lineno">  224</span>                            {</div>
+<div class="line"><span class="lineno">  225</span>                                FrameNr = reader.GetInt32(0),          </div>
+<div class="line"><span class="lineno">  226</span>                                YoP = reader.GetInt32(1),              </div>
+<div class="line"><span class="lineno">  227</span>                                Brand = reader.IsDBNull(2) ? null : reader.GetString(2),</div>
+<div class="line"><span class="lineno">  228</span>                                Type = reader.IsDBNull(3) ? null : reader.GetString(3),</div>
+<div class="line"><span class="lineno">  229</span>                                LicensePlate = reader.IsDBNull(4) ? null : reader.GetString(4),</div>
+<div class="line"><span class="lineno">  230</span>                                Color = reader.IsDBNull(5) ? null : reader.GetString(5),</div>
+<div class="line"><span class="lineno">  231</span>                                Sort = reader.IsDBNull(6) ? null : reader.GetString(6),</div>
+<div class="line"><span class="lineno">  232</span>                                Price = reader.IsDBNull(7) ? null : reader.GetDecimal(7).ToString(<span class="stringliteral">&quot;F2&quot;</span>),</div>
+<div class="line"><span class="lineno">  233</span>                                Image = reader.IsDBNull(8) ? null : Convert.ToBase64String((<span class="keywordtype">byte</span>[])reader[<span class="stringliteral">&quot;VehicleBlob&quot;</span>]),</div>
+<div class="line"><span class="lineno">  234</span>                                Description = reader.IsDBNull(9) ? null : reader.GetString(9)</div>
+<div class="line"><span class="lineno">  235</span>                            });</div>
+<div class="line"><span class="lineno">  236</span>                        }</div>
+<div class="line"><span class="lineno">  237</span>                    }</div>
+<div class="line"><span class="lineno">  238</span>                }</div>
+<div class="line"><span class="lineno">  239</span>            }</div>
+<div class="line"><span class="lineno">  240</span> </div>
+<div class="line"><span class="lineno">  241</span>            <span class="keywordflow">return</span> Ok(vehicles);</div>
+<div class="line"><span class="lineno">  242</span>        }</div>
+<div class="line"><span class="lineno">  243</span>        <span class="keywordflow">catch</span> (Exception ex)</div>
+<div class="line"><span class="lineno">  244</span>        {</div>
+<div class="line"><span class="lineno">  245</span>            Console.WriteLine($<span class="stringliteral">&quot;Error: {ex.Message}&quot;</span>);</div>
+<div class="line"><span class="lineno">  246</span>            <span class="keywordflow">return</span> StatusCode(500, <span class="stringliteral">&quot;An error occurred while fetching vehicles.&quot;</span>);</div>
+<div class="line"><span class="lineno">  247</span>        }</div>
+<div class="line"><span class="lineno">  248</span>    }</div>
+</div><!-- fragment -->
+<p class="reference">References <a class="el" href="_vehicle_controller_8cs_source.html#l00016">_connector</a>.</p>
 
 </div>
 </div>
@@ -334,6 +445,12 @@ Private Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p class="definition">Definition at line <a class="el" href="_vehicle_controller_8cs_source.html#l00268">268</a> of file <a class="el" href="_vehicle_controller_8cs_source.html">VehicleController.cs</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  269</span>    {</div>
+<div class="line"><span class="lineno">  270</span>        var data = await _vehicleRepository.GetVehicleDataAsync(frameNr);</div>
+<div class="line"><span class="lineno">  271</span>        <span class="keywordflow">return</span> Ok(<span class="keyword">new</span> { message = data });</div>
+<div class="line"><span class="lineno">  272</span>    }</div>
+</div><!-- fragment -->
+<p class="reference">References <a class="el" href="_vehicle_controller_8cs_source.html#l00017">_vehicleRepository</a>.</p>
 
 </div>
 </div>
@@ -361,6 +478,42 @@ Private Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p class="definition">Definition at line <a class="el" href="_vehicle_controller_8cs_source.html#l00081">81</a> of file <a class="el" href="_vehicle_controller_8cs_source.html">VehicleController.cs</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   82</span>    {</div>
+<div class="line"><span class="lineno">   83</span>        <span class="keywordflow">try</span></div>
+<div class="line"><span class="lineno">   84</span>        {</div>
+<div class="line"><span class="lineno">   85</span>            <span class="keywordtype">string</span> query = <span class="stringliteral">&quot;SELECT VehicleBlob FROM Vehicle WHERE FrameNr = @FrameNr&quot;</span>;</div>
+<div class="line"><span class="lineno">   86</span> </div>
+<div class="line"><span class="lineno">   87</span>            <span class="keyword">using</span> (var connection = _connector.CreateDbConnection())</div>
+<div class="line"><span class="lineno">   88</span>            <span class="keyword">using</span> (var command = <span class="keyword">new</span> MySqlCommand(query, (MySqlConnection)connection))</div>
+<div class="line"><span class="lineno">   89</span>            {</div>
+<div class="line"><span class="lineno">   90</span>                command.Parameters.AddWithValue(<span class="stringliteral">&quot;@FrameNr&quot;</span>, frameNr);</div>
+<div class="line"><span class="lineno">   91</span> </div>
+<div class="line"><span class="lineno">   92</span>                <span class="keyword">using</span> (MySqlDataReader reader = await command.ExecuteReaderAsync(CommandBehavior.SingleRow))</div>
+<div class="line"><span class="lineno">   93</span> </div>
+<div class="line"><span class="lineno">   94</span>                {</div>
+<div class="line"><span class="lineno">   95</span>                    <span class="keywordflow">if</span> (reader.Read() &amp;&amp; !reader.IsDBNull(0))</div>
+<div class="line"><span class="lineno">   96</span>                    {</div>
+<div class="line"><span class="lineno">   97</span>                        <span class="keywordtype">byte</span>[] imageBytes = (<span class="keywordtype">byte</span>[])reader[<span class="stringliteral">&quot;VehicleBlob&quot;</span>];</div>
+<div class="line"><span class="lineno">   98</span>                        <span class="keywordtype">string</span> base64Image = Convert.ToBase64String(imageBytes);</div>
+<div class="line"><span class="lineno">   99</span> </div>
+<div class="line"><span class="lineno">  100</span>                        <span class="keywordflow">return</span> Ok(base64Image);</div>
+<div class="line"><span class="lineno">  101</span>                    }</div>
+<div class="line"><span class="lineno">  102</span>                    <span class="keywordflow">else</span></div>
+<div class="line"><span class="lineno">  103</span>                    {</div>
+<div class="line"><span class="lineno">  104</span>                        <span class="keywordflow">return</span> NotFound($<span class="stringliteral">&quot;Image with frameNr {frameNr} not found.&quot;</span>);</div>
+<div class="line"><span class="lineno">  105</span>                    }</div>
+<div class="line"><span class="lineno">  106</span>                }</div>
+<div class="line"><span class="lineno">  107</span>            }</div>
+<div class="line"><span class="lineno">  108</span>        }</div>
+<div class="line"><span class="lineno">  109</span>        <span class="keywordflow">catch</span> (Exception ex)</div>
+<div class="line"><span class="lineno">  110</span>        {</div>
+<div class="line"><span class="lineno">  111</span>            Console.WriteLine(ex);</div>
+<div class="line"><span class="lineno">  112</span>            <span class="keywordflow">return</span> StatusCode(500, <span class="stringliteral">&quot;An error occurred while fetching the image.&quot;</span>);</div>
+<div class="line"><span class="lineno">  113</span>        }</div>
+<div class="line"><span class="lineno">  114</span> </div>
+<div class="line"><span class="lineno">  115</span>    }</div>
+</div><!-- fragment -->
+<p class="reference">References <a class="el" href="_vehicle_controller_8cs_source.html#l00016">_connector</a>.</p>
 
 </div>
 </div>
@@ -388,6 +541,60 @@ Private Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p class="definition">Definition at line <a class="el" href="_vehicle_controller_8cs_source.html#l00026">26</a> of file <a class="el" href="_vehicle_controller_8cs_source.html">VehicleController.cs</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   27</span>    {</div>
+<div class="line"><span class="lineno">   28</span>        <span class="keywordflow">try</span></div>
+<div class="line"><span class="lineno">   29</span>        {</div>
+<div class="line"><span class="lineno">   30</span>            <span class="keywordtype">string</span> query1 = <span class="stringliteral">&quot;SELECT Brand FROM Vehicle WHERE FrameNr = @FrameNr&quot;</span>;</div>
+<div class="line"><span class="lineno">   31</span>            <span class="keywordtype">string</span> query2 = <span class="stringliteral">&quot;SELECT Type from Vehicle WHERE FrameNr = @FrameNr&quot;</span>;</div>
+<div class="line"><span class="lineno">   32</span> </div>
+<div class="line"><span class="lineno">   33</span>            <span class="keyword">using</span> (var connection = _connector.CreateDbConnection())</div>
+<div class="line"><span class="lineno">   34</span>            {</div>
+<div class="line"><span class="lineno">   35</span>                <span class="keywordtype">string</span> brand = <span class="stringliteral">&quot;&quot;</span>;</div>
+<div class="line"><span class="lineno">   36</span>                <span class="keywordtype">string</span> type = <span class="stringliteral">&quot;&quot;</span>;</div>
+<div class="line"><span class="lineno">   37</span> </div>
+<div class="line"><span class="lineno">   38</span>                <span class="keyword">using</span> (var command = <span class="keyword">new</span> MySqlCommand(query1, (MySqlConnection)connection))</div>
+<div class="line"><span class="lineno">   39</span>                {</div>
+<div class="line"><span class="lineno">   40</span>                    command.Parameters.AddWithValue(<span class="stringliteral">&quot;@FrameNr&quot;</span>, frameNr);</div>
+<div class="line"><span class="lineno">   41</span> </div>
+<div class="line"><span class="lineno">   42</span>                    <span class="keyword">using</span> (MySqlDataReader reader1 = await command.ExecuteReaderAsync(CommandBehavior.SingleRow))</div>
+<div class="line"><span class="lineno">   43</span>                    {</div>
+<div class="line"><span class="lineno">   44</span> </div>
+<div class="line"><span class="lineno">   45</span>                        <span class="keywordflow">if</span> (reader1.Read() &amp;&amp; !reader1.IsDBNull(0))</div>
+<div class="line"><span class="lineno">   46</span>                        {</div>
+<div class="line"><span class="lineno">   47</span>                            brand = reader1.GetString(0);</div>
+<div class="line"><span class="lineno">   48</span>                        }</div>
+<div class="line"><span class="lineno">   49</span> </div>
+<div class="line"><span class="lineno">   50</span>                    }</div>
+<div class="line"><span class="lineno">   51</span>                }</div>
+<div class="line"><span class="lineno">   52</span> </div>
+<div class="line"><span class="lineno">   53</span>                <span class="keyword">using</span> (var command2 = <span class="keyword">new</span> MySqlCommand(query2, (MySqlConnection)connection))</div>
+<div class="line"><span class="lineno">   54</span>                {</div>
+<div class="line"><span class="lineno">   55</span>                    command2.Parameters.AddWithValue(<span class="stringliteral">&quot;@FrameNr&quot;</span>, frameNr);</div>
+<div class="line"><span class="lineno">   56</span> </div>
+<div class="line"><span class="lineno">   57</span>                    <span class="keyword">using</span> (MySqlDataReader reader2 = await command2.ExecuteReaderAsync(CommandBehavior.SingleRow))</div>
+<div class="line"><span class="lineno">   58</span>                    {</div>
+<div class="line"><span class="lineno">   59</span>                        <span class="keywordflow">if</span> (reader2.Read() &amp;&amp; !reader2.IsDBNull(0))</div>
+<div class="line"><span class="lineno">   60</span>                        {</div>
+<div class="line"><span class="lineno">   61</span>                            type = reader2.GetString(0);</div>
+<div class="line"><span class="lineno">   62</span>                            <span class="keywordflow">return</span> Ok($<span class="stringliteral">&quot;{brand} {type}&quot;</span>);</div>
+<div class="line"><span class="lineno">   63</span>                        }</div>
+<div class="line"><span class="lineno">   64</span> </div>
+<div class="line"><span class="lineno">   65</span>                        <span class="keywordflow">return</span> NotFound($<span class="stringliteral">&quot;Car with frameNr {frameNr} not found.&quot;</span>);</div>
+<div class="line"><span class="lineno">   66</span>                    }</div>
+<div class="line"><span class="lineno">   67</span>                }</div>
+<div class="line"><span class="lineno">   68</span> </div>
+<div class="line"><span class="lineno">   69</span> </div>
+<div class="line"><span class="lineno">   70</span>            }</div>
+<div class="line"><span class="lineno">   71</span>        }</div>
+<div class="line"><span class="lineno">   72</span>        <span class="keywordflow">catch</span> (Exception ex)</div>
+<div class="line"><span class="lineno">   73</span>        {</div>
+<div class="line"><span class="lineno">   74</span>            Console.WriteLine(ex);</div>
+<div class="line"><span class="lineno">   75</span>            <span class="keywordflow">return</span> StatusCode(500, <span class="stringliteral">&quot;An error occurred while fetching the name of the car.&quot;</span>);</div>
+<div class="line"><span class="lineno">   76</span>        }</div>
+<div class="line"><span class="lineno">   77</span> </div>
+<div class="line"><span class="lineno">   78</span>    }</div>
+</div><!-- fragment -->
+<p class="reference">References <a class="el" href="_vehicle_controller_8cs_source.html#l00016">_connector</a>.</p>
 
 </div>
 </div>
@@ -415,10 +622,46 @@ Private Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p class="definition">Definition at line <a class="el" href="_vehicle_controller_8cs_source.html#l00118">118</a> of file <a class="el" href="_vehicle_controller_8cs_source.html">VehicleController.cs</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  119</span>    {</div>
+<div class="line"><span class="lineno">  120</span>        <span class="keywordflow">try</span></div>
+<div class="line"><span class="lineno">  121</span>        {</div>
+<div class="line"><span class="lineno">  122</span>            <span class="keywordtype">string</span> query = <span class="stringliteral">&quot;SELECT Price FROM Vehicle WHERE FrameNr = @FrameNr&quot;</span>;</div>
+<div class="line"><span class="lineno">  123</span> </div>
+<div class="line"><span class="lineno">  124</span>            <span class="keyword">using</span> (var connection = _connector.CreateDbConnection())</div>
+<div class="line"><span class="lineno">  125</span>            <span class="keyword">using</span> (var command = <span class="keyword">new</span> MySqlCommand(query, (MySqlConnection)connection))</div>
+<div class="line"><span class="lineno">  126</span>            {</div>
+<div class="line"><span class="lineno">  127</span>                command.Parameters.AddWithValue(<span class="stringliteral">&quot;@FrameNr&quot;</span>, frameNr);</div>
+<div class="line"><span class="lineno">  128</span> </div>
+<div class="line"><span class="lineno">  129</span>                <span class="keyword">using</span> (MySqlDataReader reader = await command.ExecuteReaderAsync(CommandBehavior.SingleRow))</div>
+<div class="line"><span class="lineno">  130</span> </div>
+<div class="line"><span class="lineno">  131</span>                {</div>
+<div class="line"><span class="lineno">  132</span>                    <span class="keywordflow">if</span> (reader.Read() &amp;&amp; !reader.IsDBNull(0))</div>
+<div class="line"><span class="lineno">  133</span>                    {</div>
+<div class="line"><span class="lineno">  134</span>                        decimal priceDec = reader.GetDecimal(0);</div>
+<div class="line"><span class="lineno">  135</span>                        </div>
+<div class="line"><span class="lineno">  136</span>                        <span class="keywordtype">string</span> price = priceDec.ToString(<span class="stringliteral">&quot;F2&quot;</span>);</div>
+<div class="line"><span class="lineno">  137</span>                        </div>
+<div class="line"><span class="lineno">  138</span>                        <span class="keywordflow">return</span> Ok(price);</div>
+<div class="line"><span class="lineno">  139</span>                    }</div>
+<div class="line"><span class="lineno">  140</span>                    <span class="keywordflow">else</span></div>
+<div class="line"><span class="lineno">  141</span>                    {</div>
+<div class="line"><span class="lineno">  142</span>                        <span class="keywordflow">return</span> NotFound($<span class="stringliteral">&quot;Price of car with frameNr {frameNr} not found.&quot;</span>);</div>
+<div class="line"><span class="lineno">  143</span>                    }</div>
+<div class="line"><span class="lineno">  144</span>                }</div>
+<div class="line"><span class="lineno">  145</span>            }</div>
+<div class="line"><span class="lineno">  146</span>        }</div>
+<div class="line"><span class="lineno">  147</span>        <span class="keywordflow">catch</span> (Exception ex)</div>
+<div class="line"><span class="lineno">  148</span>        {</div>
+<div class="line"><span class="lineno">  149</span>            Console.WriteLine(ex);</div>
+<div class="line"><span class="lineno">  150</span>            <span class="keywordflow">return</span> StatusCode(500, <span class="stringliteral">&quot;An error occurred while fetching the price.&quot;</span>);</div>
+<div class="line"><span class="lineno">  151</span>        }</div>
+<div class="line"><span class="lineno">  152</span>    }</div>
+</div><!-- fragment -->
+<p class="reference">References <a class="el" href="_vehicle_controller_8cs_source.html#l00016">_connector</a>.</p>
 
 </div>
 </div>
-<h2 class="groupheader">Member Data Documentation</h2>
+<h2 class="groupheader">Field Documentation</h2>
 <a id="a6300ae1fba1249c4324b48e71738abb1" name="a6300ae1fba1249c4324b48e71738abb1"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a6300ae1fba1249c4324b48e71738abb1">&#9670;&#160;</a></span>_connector</h2>
 
@@ -440,6 +683,8 @@ Private Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p class="definition">Definition at line <a class="el" href="_vehicle_controller_8cs_source.html#l00016">16</a> of file <a class="el" href="_vehicle_controller_8cs_source.html">VehicleController.cs</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="_vehicle_controller_8cs_source.html#l00155">GetAllVehiclesAsync()</a>, <a class="el" href="_vehicle_controller_8cs_source.html#l00198">GetTypeOfVehiclesAsync()</a>, <a class="el" href="_vehicle_controller_8cs_source.html#l00081">GetVehicleImageAsync()</a>, <a class="el" href="_vehicle_controller_8cs_source.html#l00026">GetVehicleName()</a>, <a class="el" href="_vehicle_controller_8cs_source.html#l00118">GetVehiclePriceAsync()</a>, and <a class="el" href="_vehicle_controller_8cs_source.html#l00019">VehicleController()</a>.</p>
 
 </div>
 </div>
@@ -464,6 +709,8 @@ Private Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p class="definition">Definition at line <a class="el" href="_vehicle_controller_8cs_source.html#l00017">17</a> of file <a class="el" href="_vehicle_controller_8cs_source.html">VehicleController.cs</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="_vehicle_controller_8cs_source.html#l00252">GetFrameNumbersAsync()</a>, <a class="el" href="_vehicle_controller_8cs_source.html#l00260">GetFrameNumbersSpecificTypeAsync()</a>, <a class="el" href="_vehicle_controller_8cs_source.html#l00268">GetVehicleData()</a>, and <a class="el" href="_vehicle_controller_8cs_source.html#l00019">VehicleController()</a>.</p>
 
 </div>
 </div>

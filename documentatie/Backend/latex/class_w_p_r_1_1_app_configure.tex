@@ -7,8 +7,7 @@ Deze class is responsible voor het configureren van de application services en d
 
 
 
-Collaboration diagram for WPR.\+App\+Configure\+:
-\nopagebreak
+Collaboration diagram for WPR.\+App\+Configure\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -54,6 +53,166 @@ De geconfigureerde Web\+Application instantie.
 
 Definition at line \mbox{\hyperlink{_app_configure_8cs_source_l00048}{48}} of file \mbox{\hyperlink{_app_configure_8cs_source}{App\+Configure.\+cs}}.
 
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00049\ \ \ \ \ \{}
+\DoxyCodeLine{00050\ \ \ \ \ var\ builder\ =\ WebApplication.CreateBuilder(args);}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ \ \ \ \ var\ environment\ =\ Environment.GetEnvironmentVariable(\textcolor{stringliteral}{"{}ASPNETCORE\_ENVIRONMENT"{}})\ ??\ \textcolor{stringliteral}{"{}development"{}};}
+\DoxyCodeLine{00053\ \ \ \ \ builder.Configuration.AddEnvironmentVariables();}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{keywordflow}{if}\ (environment\ ==\ \textcolor{stringliteral}{"{}development"{}})}
+\DoxyCodeLine{00056\ \ \ \ \ \{}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ builder.Configuration.AddJsonFile(\textcolor{stringliteral}{"{}.env"{}},\ optional:\ \textcolor{keyword}{true},\ reloadOnChange:\ \textcolor{keyword}{true});}
+\DoxyCodeLine{00058\ \ \ \ \ \}}
+\DoxyCodeLine{00059\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (environment\ ==\ \textcolor{stringliteral}{"{}Production"{}})}
+\DoxyCodeLine{00060\ \ \ \ \ \{}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ builder.Configuration.AddJsonFile(\textcolor{stringliteral}{"{}.env.deployment"{}},\ optional:\ \textcolor{keyword}{true},\ reloadOnChange:\ \textcolor{keyword}{true});}
+\DoxyCodeLine{00062\ \ \ \ \ \}}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00064\ \ \ \ \ var\ cookiePolicyOptions\ =\ \textcolor{keyword}{new}\ CookiePolicyOptions}
+\DoxyCodeLine{00065\ \ \ \ \ \{}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ MinimumSameSitePolicy\ =\ SameSiteMode.Strict}
+\DoxyCodeLine{00067\ \ \ \ \ \};}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00070\ \ \ \ \ builder.Services.AddCors(options\ =>}
+\DoxyCodeLine{00071\ \ \ \ \ \{}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \textcolor{comment}{/*options.AddPolicy("{}AllowLocalhost"{},\ policy\ => }}
+\DoxyCodeLine{00073\ \textcolor{comment}{\ \ \ \ \ \ \ \ \{ }}
+\DoxyCodeLine{00074\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ policy.WithOrigins("{}http://localhost:5173"{},\ "{}http://95.99.30.110:8080"{})\ \ //\ Development\ URL }}
+\DoxyCodeLine{00075\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .AllowAnyHeader() }}
+\DoxyCodeLine{00076\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .AllowCredentials() }}
+\DoxyCodeLine{00077\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .AllowAnyMethod(); }}
+\DoxyCodeLine{00078\ \textcolor{comment}{\ \ \ \ \ \ \ \ \}); }}
+\DoxyCodeLine{00079\ \textcolor{comment}{}}
+\DoxyCodeLine{00080\ \textcolor{comment}{\ \ \ \ \ \ \ \ options.AddPolicy("{}AllowProduction"{},\ policy\ => }}
+\DoxyCodeLine{00081\ \textcolor{comment}{\ \ \ \ \ \ \ \ \{ }}
+\DoxyCodeLine{00082\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ policy.WithOrigins("{}http://carandall.nl"{},\ "{}https://carandall.nl,\ http://localhost:5173"{},\ "{}http://95.99.30.110:8080"{})\ //\ Production\ URL }}
+\DoxyCodeLine{00083\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .AllowAnyHeader() }}
+\DoxyCodeLine{00084\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .AllowCredentials() }}
+\DoxyCodeLine{00085\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .AllowAnyMethod(); }}
+\DoxyCodeLine{00086\ \textcolor{comment}{\ \ \ \ \ \ \ \ \}); }}
+\DoxyCodeLine{00087\ \textcolor{comment}{\ \ \ \ \ \ \ \ */}}
+\DoxyCodeLine{00088\ }
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ options.AddPolicy(\textcolor{stringliteral}{"{}AllowSpecificOrigins"{}},\ policy\ =>}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \ \ \ \ policy.WithOrigins(\textcolor{stringliteral}{"{}http://95.99.30.110:8080"{}},\ \textcolor{stringliteral}{"{}http://localhost:5173"{}},\ \textcolor{stringliteral}{"{}http://www.carandall.nl:8080"{}})}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .AllowAnyHeader()}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .AllowAnyMethod()}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .AllowCredentials()}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{00095\ \ \ \ \ \});}
+\DoxyCodeLine{00096\ }
+\DoxyCodeLine{00097\ \ \ \ \ var\ urls\ =\ Environment.GetEnvironmentVariable(\textcolor{stringliteral}{"{}ASPNETCORE\_URLS"{}})\ ??\ \textcolor{stringliteral}{"{}http://0.0.0.0:80"{}};\ \textcolor{comment}{//\ Default\ to\ port\ 80\ if\ not\ set}}
+\DoxyCodeLine{00098\ }
+\DoxyCodeLine{00099\ \ \ \ \ Uri\ uri;}
+\DoxyCodeLine{00100\ \ \ \ \ \textcolor{keywordflow}{try}}
+\DoxyCodeLine{00101\ \ \ \ \ \{}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ uri\ =\ \textcolor{keyword}{new}\ Uri(urls);}
+\DoxyCodeLine{00103\ \ \ \ \ \}}
+\DoxyCodeLine{00104\ \ \ \ \ \textcolor{keywordflow}{catch}\ (UriFormatException\ ex)}
+\DoxyCodeLine{00105\ \ \ \ \ \{}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ Console.WriteLine(\$\textcolor{stringliteral}{"{}Invalid\ ASPNETCORE\_URLS\ format:\ \{urls\}.\ Using\ default\ URL\ http://0.0.0.0:80"{}});}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ uri\ =\ \textcolor{keyword}{new}\ Uri(\textcolor{stringliteral}{"{}http://0.0.0.0:80"{}});}
+\DoxyCodeLine{00108\ \ \ \ \ \}}
+\DoxyCodeLine{00109\ }
+\DoxyCodeLine{00110\ \ \ \ \ builder.WebHost.ConfigureKestrel(options\ =>}
+\DoxyCodeLine{00111\ \ \ \ \ \{}
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Ensure\ IP\ address\ is\ valid\ before\ binding}}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (uri.Host\ ==\ \textcolor{stringliteral}{"{}0.0.0.0"{}}\ )}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \ \ \ \ options.Listen(IPAddress.Any,\ 5000);\ \ }
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ options.Listen(IPAddress.Parse(uri.Host),\ uri.Port);\ }
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (FormatException\ ex)}
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Console.WriteLine(\$\textcolor{stringliteral}{"{}Invalid\ IP\ address\ specified:\ \{uri.Host\}.\ Using\ default\ binding\ to\ all\ IPs."{}});}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ options.Listen(IPAddress.Any,\ uri.Port);\ \ }
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00129\ \ \ \ \ \});}
+\DoxyCodeLine{00130\ \ \ \ \ }
+\DoxyCodeLine{00131\ \ \ \ \ \textcolor{comment}{//\ Register\ services\ for\ Dependency\ Injection}}
+\DoxyCodeLine{00132\ \ \ \ \ builder.Services.AddSingleton<EnvConfig>();\ \textcolor{comment}{//\ Singleton\ for\ environment\ configuration}}
+\DoxyCodeLine{00133\ \ \ \ \ builder.Services.AddTransient<Connector>();\ \textcolor{comment}{//\ Transient\ for\ database\ connection.}}
+\DoxyCodeLine{00134\ \ \ \ \ builder.Services.AddScoped<VehicleRepository>();}
+\DoxyCodeLine{00135\ \ \ \ \ builder.Services.AddScoped<IUserRepository,\ UserRepository>();\ \textcolor{comment}{//\ Scoped\ for\ user\ repository}}
+\DoxyCodeLine{00136\ \ \ \ \ builder.Services.AddScoped<IVehicleRepository,\ VehicleRepository>();\ \textcolor{comment}{//\ Scoped\ for\ Vehicle\ Repository}}
+\DoxyCodeLine{00137\ \ \ \ \ builder.Services.AddScoped<SessionHandler>();\ \textcolor{comment}{//\ Scoped\ session\ handler}}
+\DoxyCodeLine{00138\ \ \ \ \ builder.Services.AddScoped<Crypt>();}
+\DoxyCodeLine{00139\ \ \ \ \ builder.Services.AddScoped<Hashing.Hash>();}
+\DoxyCodeLine{00140\ \ \ \ \ builder.Services.AddScoped<EmailService>();}
+\DoxyCodeLine{00141\ }
+\DoxyCodeLine{00142\ \ \ \ \ \textcolor{comment}{//\ Configure\ authentication\ with\ cookie-\/based\ authentication\ schema.}}
+\DoxyCodeLine{00143\ \ \ \ \ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)}
+\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ .AddCookie(options\ =>}
+\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ \ \ \ \ options.ExpireTimeSpan\ =\ TimeSpan.FromMinutes(5);}
+\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ \ \ \ \ options.SlidingExpiration\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ \ \ \ \ options.AccessDeniedPath\ =\ \textcolor{stringliteral}{"{}/Forbidden/"{}};}
+\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{00150\ }
+\DoxyCodeLine{00151\ \ \ \ \ builder.Services.AddControllers()}
+\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ .AddJsonOptions(options\ =>}
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ \ \ \ \ options.JsonSerializerOptions.ReferenceHandler\ =}
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ReferenceHandler.IgnoreCycles;}
+\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{00157\ }
+\DoxyCodeLine{00158\ \ \ \ \ \textcolor{comment}{//\ Services\ for\ Swagger\ API}}
+\DoxyCodeLine{00159\ \ \ \ \ builder.Services.AddEndpointsApiExplorer();}
+\DoxyCodeLine{00160\ \ \ \ \ builder.Services.AddSwaggerGen();}
+\DoxyCodeLine{00161\ }
+\DoxyCodeLine{00162\ \ \ \ \ var\ app\ =\ builder.Build();}
+\DoxyCodeLine{00163\ }
+\DoxyCodeLine{00164\ \ \ \ \ \textcolor{keywordflow}{if}\ (app.Environment.IsProduction())}
+\DoxyCodeLine{00165\ \ \ \ \ \{}
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ app.UseCors(\textcolor{stringliteral}{"{}AllowProduction"{}});}
+\DoxyCodeLine{00167\ \ \ \ \ \}}
+\DoxyCodeLine{00168\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00169\ \ \ \ \ \{}
+\DoxyCodeLine{00170\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (app.Environment.IsDevelopment())}
+\DoxyCodeLine{00171\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00172\ \ \ \ \ \ \ \ \ \ \ \ \ app.UseSwagger();}
+\DoxyCodeLine{00173\ \ \ \ \ \ \ \ \ \ \ \ \ app.UseSwaggerUI(c\ =>}
+\DoxyCodeLine{00174\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00175\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ c.SwaggerEndpoint(\textcolor{stringliteral}{"{}/swagger/v1/swagger.json"{}},\ \textcolor{stringliteral}{"{}My\ API\ V1"{}});}
+\DoxyCodeLine{00176\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ c.RoutePrefix\ =\ \textcolor{keywordtype}{string}.Empty;}
+\DoxyCodeLine{00177\ \ \ \ \ \ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00179\ \ \ \ \ \ \ \ \ app.UseCors(\textcolor{stringliteral}{"{}AllowLocalhost"{}});}
+\DoxyCodeLine{00180\ \ \ \ \ \}}
+\DoxyCodeLine{00181\ }
+\DoxyCodeLine{00182\ \ \ \ \ app.UseCors(\textcolor{stringliteral}{"{}AllowSpecificOrigins"{}});}
+\DoxyCodeLine{00183\ \ \ \ \ \textcolor{comment}{/*\ app.UseHttpsRedirection();\ */}}
+\DoxyCodeLine{00184\ \ \ \ \ app.MapControllers();}
+\DoxyCodeLine{00185\ \ \ \ \ app.UseAuthorization();}
+\DoxyCodeLine{00186\ \ \ \ \ app.UseAuthentication();}
+\DoxyCodeLine{00187\ \ \ \ \ app.UseCookiePolicy(cookiePolicyOptions);}
+\DoxyCodeLine{00188\ }
+\DoxyCodeLine{00189\ \ \ \ \ \textcolor{comment}{//app.MapRazorPages();}}
+\DoxyCodeLine{00190\ \ \ \ \ app.MapDefaultControllerRoute();}
+\DoxyCodeLine{00191\ }
+\DoxyCodeLine{00192\ \ \ \ \ \textcolor{keywordflow}{return}\ app;}
+\DoxyCodeLine{00193\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+Referenced by \mbox{\hyperlink{_program_8cs_source_l00005}{WPR.\+Program.\+Main()}}.
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_w_p_r_1_1_app_configure_a77a92db2b597250930168694b79931d7_icgraph}
+\end{center}
+\end{figure}
 \Hypertarget{class_w_p_r_1_1_app_configure_a03bdad8277429c64d59c0b6781b17329}\index{WPR.AppConfigure@{WPR.AppConfigure}!InitDatabase@{InitDatabase}}
 \index{InitDatabase@{InitDatabase}!WPR.AppConfigure@{WPR.AppConfigure}}
 \doxysubsubsection{\texorpdfstring{InitDatabase()}{InitDatabase()}}
@@ -64,6 +223,39 @@ static void WPR.\+App\+Configure.\+Init\+Database (\begin{DoxyParamCaption}\item
 
 Definition at line \mbox{\hyperlink{_app_configure_8cs_source_l00024}{24}} of file \mbox{\hyperlink{_app_configure_8cs_source}{App\+Configure.\+cs}}.
 
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00025\ \ \ \ \ \{}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ var\ dbConnector\ =\ services.GetRequiredService<Connector>();}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using}\ (var\ connection\ =\ dbConnector.CreateDbConnection())}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Console.WriteLine(\textcolor{stringliteral}{"{}Database\ connection\ established"{}});}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (Exception\ e)}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \ \ \ \ Console.WriteLine(\textcolor{stringliteral}{"{}Failed\ to\ establish\ database\ connection"{}});}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \ \ \ \ Console.WriteLine(e.StackTrace);}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00042\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+Referenced by \mbox{\hyperlink{_program_8cs_source_l00005}{WPR.\+Program.\+Main()}}.
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_w_p_r_1_1_app_configure_a03bdad8277429c64d59c0b6781b17329_icgraph}
+\end{center}
+\end{figure}
 
 
 The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}

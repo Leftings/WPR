@@ -103,8 +103,7 @@ $(function(){initNavTree('class_w_p_r_1_1_utils_1_1_email_checker.html',''); ini
 
 <div class="header">
   <div class="summary">
-<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
-<a href="class_w_p_r_1_1_utils_1_1_email_checker-members.html">List of all members</a>  </div>
+<a href="#pub-static-methods">Static Public Member Functions</a>  </div>
   <div class="headertitle"><div class="title">WPR.Utils.EmailChecker Class Reference</div></div>
 </div><!--header-->
 <div class="contents">
@@ -154,6 +153,30 @@ Static Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p class="definition">Definition at line <a class="el" href="_email_checker_8cs_source.html#l00010">10</a> of file <a class="el" href="_email_checker_8cs_source.html">EmailChecker.cs</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   11</span>            {</div>
+<div class="line"><span class="lineno">   12</span>                <span class="keywordflow">if</span> (<span class="keywordtype">string</span>.IsNullOrEmpty(email))</div>
+<div class="line"><span class="lineno">   13</span>                    <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><span class="lineno">   14</span> </div>
+<div class="line"><span class="lineno">   15</span>                <span class="comment">// Regular expression pattern voor een standaard correcte email format</span></div>
+<div class="line"><span class="lineno">   16</span>                <span class="keywordtype">string</span> emailPattern = <span class="stringliteral">@&quot;^[^@\s]+@[^@\s]+\.[^@\s]+$&quot;</span>;</div>
+<div class="line"><span class="lineno">   17</span> </div>
+<div class="line"><span class="lineno">   18</span>                <span class="comment">// Gebruik Regex om te checken of de gegeven email matched met het pattern</span></div>
+<div class="line"><span class="lineno">   19</span>                <span class="keywordflow">return</span> Regex.IsMatch(email, emailPattern);</div>
+<div class="line"><span class="lineno">   20</span>            }</div>
+</div><!-- fragment -->
+<p class="reference">Referenced by <a class="el" href="sign_up_controller_8cs_source.html#l00166">WPR.Controllers.SignUp.SignUpController.signUpEmployeeAsync()</a>, and <a class="el" href="sign_up_controller_8cs_source.html#l00047">WPR.Controllers.SignUp.SignUpController.signUpPersonalAsync()</a>.</p>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_w_p_r_1_1_utils_1_1_email_checker_ab97bf7cde61a138766de208bad9d5c7c_icgraph.png" border="0" usemap="#aclass_w_p_r_1_1_utils_1_1_email_checker_ab97bf7cde61a138766de208bad9d5c7c_icgraph" alt=""/></div>
+<map name="aclass_w_p_r_1_1_utils_1_1_email_checker_ab97bf7cde61a138766de208bad9d5c7c_icgraph" id="aclass_w_p_r_1_1_utils_1_1_email_checker_ab97bf7cde61a138766de208bad9d5c7c_icgraph">
+<area shape="rect" title=" " alt="" coords="288,39,473,81"/>
+<area shape="rect" href="class_w_p_r_1_1_controllers_1_1_sign_up_1_1_sign_up_controller.html#ab7084fa7e9719398e37f48c24cf301b5" title=" " alt="" coords="5,5,240,48"/>
+<area shape="poly" title=" " alt="" coords="272,49,240,45,240,39,273,43"/>
+<area shape="rect" href="class_w_p_r_1_1_controllers_1_1_sign_up_1_1_sign_up_controller.html#a78865896515c1c12ad9e08c7f2dd5220" title=" " alt="" coords="9,72,236,115"/>
+<area shape="poly" title=" " alt="" coords="273,77,237,81,236,76,272,71"/>
+</map>
+</div>
 
 </div>
 </div>

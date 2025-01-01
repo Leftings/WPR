@@ -105,8 +105,7 @@ $(function(){initNavTree('class_w_p_r_1_1_repository_1_1_user_repository.html','
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pri-methods">Private Member Functions</a> &#124;
-<a href="#pri-attribs">Private Attributes</a> &#124;
-<a href="class_w_p_r_1_1_repository_1_1_user_repository-members.html">List of all members</a>  </div>
+<a href="#pri-attribs">Private Attributes</a>  </div>
   <div class="headertitle"><div class="title">WPR.Repository.UserRepository Class Reference</div></div>
 </div><!--header-->
 <div class="contents">
@@ -228,6 +227,13 @@ Private Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p class="definition">Definition at line <a class="el" href="_user_repository_8cs_source.html#l00024">24</a> of file <a class="el" href="_user_repository_8cs_source.html">UserRepository.cs</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   25</span>    {</div>
+<div class="line"><span class="lineno">   26</span>        _connector = connector ?? <span class="keywordflow">throw</span> <span class="keyword">new</span> ArgumentNullException(nameof(connector));</div>
+<div class="line"><span class="lineno">   27</span>        _hash = hash ?? <span class="keywordflow">throw</span> <span class="keyword">new</span> ArgumentNullException(nameof(hash));</div>
+<div class="line"><span class="lineno">   28</span>        _crypt = crypt ?? <span class="keywordflow">throw</span> <span class="keyword">new</span> ArgumentNullException(nameof(crypt));</div>
+<div class="line"><span class="lineno">   29</span>    }</div>
+</div><!-- fragment -->
+<p class="reference">References <a class="el" href="_user_repository_8cs_source.html#l00020">_connector</a>, <a class="el" href="_user_repository_8cs_source.html#l00022">_crypt</a>, and <a class="el" href="_user_repository_8cs_source.html#l00021">_hash</a>.</p>
 
 </div>
 </div>
@@ -258,6 +264,48 @@ Private Attributes</h2></td></tr>
 <p>Implements <a class="el" href="interface_w_p_r_1_1_repository_1_1_i_user_repository.html#a0e52cd72018fad6b2fe68da104f5a971">WPR.Repository.IUserRepository</a>.</p>
 
 <p class="definition">Definition at line <a class="el" href="_user_repository_8cs_source.html#l00148">148</a> of file <a class="el" href="_user_repository_8cs_source.html">UserRepository.cs</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  149</span>    {</div>
+<div class="line"><span class="lineno">  150</span>        <span class="keywordflow">try</span></div>
+<div class="line"><span class="lineno">  151</span>        {</div>
+<div class="line"><span class="lineno">  152</span>            <span class="keywordtype">string</span> query = <span class="stringliteral">&quot;INSERT INTO UserCustomer (Adres, Telnum, Password, Email, FirstName, LastName) values (@A, @T, @P, @E, @F, @L)&quot;</span>;</div>
+<div class="line"><span class="lineno">  153</span> </div>
+<div class="line"><span class="lineno">  154</span>            <span class="comment">// Er wordt een connectie aangemaakt met de DataBase met bovenstaande query </span></div>
+<div class="line"><span class="lineno">  155</span>            <span class="keyword">using</span> (var connection = _connector.CreateDbConnection())</div>
+<div class="line"><span class="lineno">  156</span>            <span class="keyword">using</span> (var command = <span class="keyword">new</span> MySqlCommand(query, (MySqlConnection)connection))</div>
+<div class="line"><span class="lineno">  157</span>            {</div>
+<div class="line"><span class="lineno">  158</span>                <span class="comment">// Alle parameters worden ingevuld met de megegeven persoons gegevens</span></div>
+<div class="line"><span class="lineno">  159</span>                command.Parameters.AddWithValue(<span class="stringliteral">&quot;@A&quot;</span>, personData[0]);</div>
+<div class="line"><span class="lineno">  160</span>                command.Parameters.AddWithValue(<span class="stringliteral">&quot;@T&quot;</span>, personData[1]);</div>
+<div class="line"><span class="lineno">  161</span>                command.Parameters.AddWithValue(<span class="stringliteral">&quot;@P&quot;</span>, personData[2]);</div>
+<div class="line"><span class="lineno">  162</span>                command.Parameters.AddWithValue(<span class="stringliteral">&quot;@E&quot;</span>, personData[3]);</div>
+<div class="line"><span class="lineno">  163</span>                command.Parameters.AddWithValue(<span class="stringliteral">&quot;@F&quot;</span>, personData[4]);</div>
+<div class="line"><span class="lineno">  164</span>                command.Parameters.AddWithValue(<span class="stringliteral">&quot;@L&quot;</span>, personData[5]);</div>
+<div class="line"><span class="lineno">  165</span> </div>
+<div class="line"><span class="lineno">  166</span>                <span class="keywordflow">if</span> (await command.ExecuteNonQueryAsync() &gt; 0)</div>
+<div class="line"><span class="lineno">  167</span>                {</div>
+<div class="line"><span class="lineno">  168</span>                    <span class="comment">// Als de query succesvol is uitgevoerd wordt de laatste ingevoerde userId meegegeven</span></div>
+<div class="line"><span class="lineno">  169</span>                    command.CommandText = <span class="stringliteral">&quot;SELECT LAST_INSERT_ID();&quot;</span>;</div>
+<div class="line"><span class="lineno">  170</span>                    <span class="keywordtype">int</span> newUserID = Convert.ToInt32(await command.ExecuteScalarAsync());</div>
+<div class="line"><span class="lineno">  171</span> </div>
+<div class="line"><span class="lineno">  172</span>                    <span class="keywordflow">return</span> (<span class="keyword">true</span>, <span class="stringliteral">&quot;Data Inserted&quot;</span>, newUserID);</div>
+<div class="line"><span class="lineno">  173</span>                }</div>
+<div class="line"><span class="lineno">  174</span>                <span class="keywordflow">return</span> (<span class="keyword">false</span>, <span class="stringliteral">&quot;No Data Inserted&quot;</span>, -1);</div>
+<div class="line"><span class="lineno">  175</span>            }</div>
+<div class="line"><span class="lineno">  176</span>        }</div>
+<div class="line"><span class="lineno">  177</span> </div>
+<div class="line"><span class="lineno">  178</span>        <span class="keywordflow">catch</span> (MySqlException ex)</div>
+<div class="line"><span class="lineno">  179</span>        {</div>
+<div class="line"><span class="lineno">  180</span>            await Console.Error.WriteLineAsync($<span class="stringliteral">&quot;Database error: {ex.Message}&quot;</span>);</div>
+<div class="line"><span class="lineno">  181</span>            <span class="keywordflow">return</span> (<span class="keyword">false</span>, ex.Message, -1);</div>
+<div class="line"><span class="lineno">  182</span>        }</div>
+<div class="line"><span class="lineno">  183</span>        <span class="keywordflow">catch</span> (Exception ex)</div>
+<div class="line"><span class="lineno">  184</span>        {</div>
+<div class="line"><span class="lineno">  185</span>            await Console.Error.WriteLineAsync($<span class="stringliteral">&quot;Unexpected error: {ex.Message}&quot;</span>);</div>
+<div class="line"><span class="lineno">  186</span>            <span class="keywordflow">return</span> (<span class="keyword">false</span>, ex.Message, -1);</div>
+<div class="line"><span class="lineno">  187</span>        }</div>
+<div class="line"><span class="lineno">  188</span>    }</div>
+</div><!-- fragment -->
+<p class="reference">References <a class="el" href="_user_repository_8cs_source.html#l00020">_connector</a>.</p>
 
 </div>
 </div>
@@ -287,6 +335,41 @@ Private Attributes</h2></td></tr>
 <p>Implements <a class="el" href="interface_w_p_r_1_1_repository_1_1_i_user_repository.html#afe0de5259233749214ee4eb6a4069e70">WPR.Repository.IUserRepository</a>.</p>
 
 <p class="definition">Definition at line <a class="el" href="_user_repository_8cs_source.html#l00225">225</a> of file <a class="el" href="_user_repository_8cs_source.html">UserRepository.cs</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  226</span>    {</div>
+<div class="line"><span class="lineno">  227</span>        <span class="keywordflow">try</span></div>
+<div class="line"><span class="lineno">  228</span>        {</div>
+<div class="line"><span class="lineno">  229</span>            <span class="keywordtype">string</span> query = <span class="stringliteral">&quot;INSERT INTO UserEmployee (ID, Business) values (@I, @B)&quot;</span>;</div>
+<div class="line"><span class="lineno">  230</span> </div>
+<div class="line"><span class="lineno">  231</span>            <span class="comment">// Er wordt een connectie aangemaakt met de DataBase met bovenstaande query </span></div>
+<div class="line"><span class="lineno">  232</span>            <span class="keyword">using</span> (var connection = _connector.CreateDbConnection())</div>
+<div class="line"><span class="lineno">  233</span>            <span class="keyword">using</span> (var command = <span class="keyword">new</span> MySqlCommand(query, (MySqlConnection)connection))</div>
+<div class="line"><span class="lineno">  234</span>            {</div>
+<div class="line"><span class="lineno">  235</span>                <span class="comment">// Alle parameters worden ingevuld</span></div>
+<div class="line"><span class="lineno">  236</span>                command.Parameters.AddWithValue(<span class="stringliteral">&quot;@I&quot;</span>, employeeData[0]);</div>
+<div class="line"><span class="lineno">  237</span>                command.Parameters.AddWithValue(<span class="stringliteral">&quot;@B&quot;</span>, employeeData[1]);</div>
+<div class="line"><span class="lineno">  238</span> </div>
+<div class="line"><span class="lineno">  239</span>                <span class="keywordflow">if</span> (await command.ExecuteNonQueryAsync() &gt; 0)</div>
+<div class="line"><span class="lineno">  240</span>                {</div>
+<div class="line"><span class="lineno">  241</span>                    <span class="comment">// Er wordt gekeken of de gegevens zijn ingevoerd in de DataBase</span></div>
+<div class="line"><span class="lineno">  242</span>                    <span class="keywordflow">return</span> (<span class="keyword">true</span>, <span class="stringliteral">&quot;Data Inserted&quot;</span>);</div>
+<div class="line"><span class="lineno">  243</span>                }</div>
+<div class="line"><span class="lineno">  244</span>                <span class="keywordflow">return</span> (<span class="keyword">false</span>, <span class="stringliteral">&quot;No Data Inserted&quot;</span>);</div>
+<div class="line"><span class="lineno">  245</span>            }</div>
+<div class="line"><span class="lineno">  246</span>        }</div>
+<div class="line"><span class="lineno">  247</span> </div>
+<div class="line"><span class="lineno">  248</span>        <span class="keywordflow">catch</span> (MySqlException ex)</div>
+<div class="line"><span class="lineno">  249</span>        {</div>
+<div class="line"><span class="lineno">  250</span>            await Console.Error.WriteLineAsync($<span class="stringliteral">&quot;Database error: {ex.Message}&quot;</span>);</div>
+<div class="line"><span class="lineno">  251</span>            <span class="keywordflow">return</span> (<span class="keyword">false</span>, ex.Message);</div>
+<div class="line"><span class="lineno">  252</span>        }</div>
+<div class="line"><span class="lineno">  253</span>        <span class="keywordflow">catch</span> (Exception ex)</div>
+<div class="line"><span class="lineno">  254</span>        {</div>
+<div class="line"><span class="lineno">  255</span>            await Console.Error.WriteLineAsync($<span class="stringliteral">&quot;Unexpected error: {ex.Message}&quot;</span>);</div>
+<div class="line"><span class="lineno">  256</span>            <span class="keywordflow">return</span> (<span class="keyword">false</span>, ex.Message);</div>
+<div class="line"><span class="lineno">  257</span>        }</div>
+<div class="line"><span class="lineno">  258</span>    }</div>
+</div><!-- fragment -->
+<p class="reference">References <a class="el" href="_user_repository_8cs_source.html#l00020">_connector</a>.</p>
 
 </div>
 </div>
@@ -316,6 +399,41 @@ Private Attributes</h2></td></tr>
 <p>Implements <a class="el" href="interface_w_p_r_1_1_repository_1_1_i_user_repository.html#a8302234bdf3953c8329a4487c03992e8">WPR.Repository.IUserRepository</a>.</p>
 
 <p class="definition">Definition at line <a class="el" href="_user_repository_8cs_source.html#l00190">190</a> of file <a class="el" href="_user_repository_8cs_source.html">UserRepository.cs</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  191</span>    {</div>
+<div class="line"><span class="lineno">  192</span>        <span class="keywordflow">try</span></div>
+<div class="line"><span class="lineno">  193</span>        {</div>
+<div class="line"><span class="lineno">  194</span>            <span class="keywordtype">string</span> query = <span class="stringliteral">&quot;INSERT INTO UserPersonal (ID, BirthDate) values (@I, @B)&quot;</span>;</div>
+<div class="line"><span class="lineno">  195</span> </div>
+<div class="line"><span class="lineno">  196</span>            <span class="comment">// Er wordt een connectie aangemaakt met de DataBase met bovenstaande query </span></div>
+<div class="line"><span class="lineno">  197</span>            <span class="keyword">using</span> (var connection = _connector.CreateDbConnection())</div>
+<div class="line"><span class="lineno">  198</span>            <span class="keyword">using</span> (var command = <span class="keyword">new</span> MySqlCommand(query, (MySqlConnection)connection))</div>
+<div class="line"><span class="lineno">  199</span>            {</div>
+<div class="line"><span class="lineno">  200</span>                <span class="comment">// De parameters worden ingevuld met de persoonlijke gegevens</span></div>
+<div class="line"><span class="lineno">  201</span>                command.Parameters.AddWithValue(<span class="stringliteral">&quot;@I&quot;</span>, personalData[0]);</div>
+<div class="line"><span class="lineno">  202</span>                command.Parameters.AddWithValue(<span class="stringliteral">&quot;@B&quot;</span>, personalData[1]);</div>
+<div class="line"><span class="lineno">  203</span> </div>
+<div class="line"><span class="lineno">  204</span>                <span class="keywordflow">if</span> (await command.ExecuteNonQueryAsync() &gt; 0)</div>
+<div class="line"><span class="lineno">  205</span>                {</div>
+<div class="line"><span class="lineno">  206</span>                    <span class="comment">// Er wordt gekeken of de gegevens zijn ingevoert in de DataBase</span></div>
+<div class="line"><span class="lineno">  207</span>                    <span class="keywordflow">return</span> (<span class="keyword">true</span>, <span class="stringliteral">&quot;Data Inserted&quot;</span>);</div>
+<div class="line"><span class="lineno">  208</span>                }</div>
+<div class="line"><span class="lineno">  209</span>                <span class="keywordflow">return</span> (<span class="keyword">false</span>, <span class="stringliteral">&quot;No Data Inserted&quot;</span>);</div>
+<div class="line"><span class="lineno">  210</span>            }</div>
+<div class="line"><span class="lineno">  211</span>        }</div>
+<div class="line"><span class="lineno">  212</span> </div>
+<div class="line"><span class="lineno">  213</span>        <span class="keywordflow">catch</span> (MySqlException ex)</div>
+<div class="line"><span class="lineno">  214</span>        {</div>
+<div class="line"><span class="lineno">  215</span>            await Console.Error.WriteLineAsync($<span class="stringliteral">&quot;Database error: {ex.Message}&quot;</span>);</div>
+<div class="line"><span class="lineno">  216</span>            <span class="keywordflow">return</span> (<span class="keyword">false</span>, ex.Message);</div>
+<div class="line"><span class="lineno">  217</span>        }</div>
+<div class="line"><span class="lineno">  218</span>        <span class="keywordflow">catch</span> (Exception ex)</div>
+<div class="line"><span class="lineno">  219</span>        {</div>
+<div class="line"><span class="lineno">  220</span>            await Console.Error.WriteLineAsync($<span class="stringliteral">&quot;Unexpected error: {ex.Message}&quot;</span>);</div>
+<div class="line"><span class="lineno">  221</span>            <span class="keywordflow">return</span> (<span class="keyword">false</span>, ex.Message);</div>
+<div class="line"><span class="lineno">  222</span>        }</div>
+<div class="line"><span class="lineno">  223</span>    }</div>
+</div><!-- fragment -->
+<p class="reference">References <a class="el" href="_user_repository_8cs_source.html#l00020">_connector</a>.</p>
 
 </div>
 </div>
@@ -343,6 +461,38 @@ Private Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p class="definition">Definition at line <a class="el" href="_user_repository_8cs_source.html#l00507">507</a> of file <a class="el" href="_user_repository_8cs_source.html">UserRepository.cs</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  508</span>    {</div>
+<div class="line"><span class="lineno">  509</span>        <span class="keywordflow">try</span></div>
+<div class="line"><span class="lineno">  510</span>        {</div>
+<div class="line"><span class="lineno">  511</span>            <span class="keywordtype">string</span> query = <span class="stringliteral">&quot;INSERT INTO STAFF (FirstName, LastName, Password, Email, Office) VALUES (@F, @L, @P, @E, @O)&quot;</span>;</div>
+<div class="line"><span class="lineno">  512</span> </div>
+<div class="line"><span class="lineno">  513</span>            <span class="comment">// Er wordt een connectie aangemaakt met de DataBase met bovenstaande query </span></div>
+<div class="line"><span class="lineno">  514</span>            <span class="keyword">using</span> (var connection = _connector.CreateDbConnection())</div>
+<div class="line"><span class="lineno">  515</span>            <span class="keyword">using</span> (var command = <span class="keyword">new</span> MySqlCommand(query, (MySqlConnection)connection))</div>
+<div class="line"><span class="lineno">  516</span>            {</div>
+<div class="line"><span class="lineno">  517</span>                <span class="comment">// Alle parameters worden ingevuld</span></div>
+<div class="line"><span class="lineno">  518</span>                command.Parameters.AddWithValue(<span class="stringliteral">&quot;@F&quot;</span>, personData[0]);</div>
+<div class="line"><span class="lineno">  519</span>                command.Parameters.AddWithValue(<span class="stringliteral">&quot;@L&quot;</span>, personData[1]);</div>
+<div class="line"><span class="lineno">  520</span>                command.Parameters.AddWithValue(<span class="stringliteral">&quot;@P&quot;</span>, _hash.createHash(personData[2].ToString()));</div>
+<div class="line"><span class="lineno">  521</span>                command.Parameters.AddWithValue(<span class="stringliteral">&quot;@E&quot;</span>, personData[3]);</div>
+<div class="line"><span class="lineno">  522</span>                command.Parameters.AddWithValue(<span class="stringliteral">&quot;@O&quot;</span>, personData[4]);</div>
+<div class="line"><span class="lineno">  523</span> </div>
+<div class="line"><span class="lineno">  524</span>                <span class="keywordflow">if</span> (await command.ExecuteNonQueryAsync() &gt; 0)</div>
+<div class="line"><span class="lineno">  525</span>                    {</div>
+<div class="line"><span class="lineno">  526</span>                        <span class="comment">// Er wordt gekeken of de gegevens zijn ingevoerd in de DataBase</span></div>
+<div class="line"><span class="lineno">  527</span>                        <span class="keywordflow">return</span> (<span class="keyword">true</span>, <span class="stringliteral">&quot;Data inserted&quot;</span>);</div>
+<div class="line"><span class="lineno">  528</span>                    }</div>
+<div class="line"><span class="lineno">  529</span>                    </div>
+<div class="line"><span class="lineno">  530</span>                    <span class="keywordflow">return</span> (<span class="keyword">false</span>, <span class="stringliteral">&quot;Data not inserted&quot;</span>);</div>
+<div class="line"><span class="lineno">  531</span>            }</div>
+<div class="line"><span class="lineno">  532</span>        }</div>
+<div class="line"><span class="lineno">  533</span>        <span class="keywordflow">catch</span>(MySqlException ex)</div>
+<div class="line"><span class="lineno">  534</span>        {</div>
+<div class="line"><span class="lineno">  535</span>            <span class="keywordflow">return</span> (<span class="keyword">false</span>, ex.ToString());</div>
+<div class="line"><span class="lineno">  536</span>        }</div>
+<div class="line"><span class="lineno">  537</span>    }</div>
+</div><!-- fragment -->
+<p class="reference">References <a class="el" href="_user_repository_8cs_source.html#l00020">_connector</a>, and <a class="el" href="_user_repository_8cs_source.html#l00021">_hash</a>.</p>
 
 </div>
 </div>
@@ -372,6 +522,52 @@ Private Attributes</h2></td></tr>
 <p>Implements <a class="el" href="interface_w_p_r_1_1_repository_1_1_i_user_repository.html#a9c716662bd52a8dec74a868954dee50e">WPR.Repository.IUserRepository</a>.</p>
 
 <p class="definition">Definition at line <a class="el" href="_user_repository_8cs_source.html#l00116">116</a> of file <a class="el" href="_user_repository_8cs_source.html">UserRepository.cs</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  117</span>    {</div>
+<div class="line"><span class="lineno">  118</span>        <span class="comment">// Er wordt gekeken of het emailadress al ingebruik is</span></div>
+<div class="line"><span class="lineno">  119</span>        <span class="keywordflow">try</span></div>
+<div class="line"><span class="lineno">  120</span>        {</div>
+<div class="line"><span class="lineno">  121</span>            <span class="keywordtype">string</span> query = <span class="stringliteral">&quot;SELECT COUNT(*) FROM UserCustomer WHERE LOWER(Email) = LOWER(@E)&quot;</span>;</div>
+<div class="line"><span class="lineno">  122</span> </div>
+<div class="line"><span class="lineno">  123</span>            <span class="comment">// Er wordt een connectie aangemaakt met de DataBase met bovenstaande query</span></div>
+<div class="line"><span class="lineno">  124</span>            <span class="keyword">using</span> (var connection = _connector.CreateDbConnection())</div>
+<div class="line"><span class="lineno">  125</span>            <span class="keyword">using</span> (var command = <span class="keyword">new</span> MySqlCommand(query, (MySqlConnection)connection))</div>
+<div class="line"><span class="lineno">  126</span>            {</div>
+<div class="line"><span class="lineno">  127</span>                <span class="comment">// Het emailadres wordt in de query ingevuld en er wordt gekeken of er rows zijn gevonden</span></div>
+<div class="line"><span class="lineno">  128</span>                command.Parameters.AddWithValue(<span class="stringliteral">&quot;@E&quot;</span>, email);</div>
+<div class="line"><span class="lineno">  129</span>                <span class="keywordtype">bool</span> inUse = Convert.ToInt32(await command.ExecuteScalarAsync()) &gt; 0;</div>
+<div class="line"><span class="lineno">  130</span> </div>
+<div class="line"><span class="lineno">  131</span>                <span class="comment">// Als het aantal gevoden rows &gt; 0, dan inUse = true, &quot;Email detected&quot; anders inUser = false, &quot;No email detected&quot;</span></div>
+<div class="line"><span class="lineno">  132</span>                <span class="keywordflow">return</span> (inUse, inUse ? <span class="stringliteral">&quot;Email detected&quot;</span> : <span class="stringliteral">&quot;No email detected&quot;</span>);</div>
+<div class="line"><span class="lineno">  133</span>            }</div>
+<div class="line"><span class="lineno">  134</span>        }</div>
+<div class="line"><span class="lineno">  135</span> </div>
+<div class="line"><span class="lineno">  136</span>        <span class="keywordflow">catch</span> (MySqlException ex)</div>
+<div class="line"><span class="lineno">  137</span>        {</div>
+<div class="line"><span class="lineno">  138</span>            await Console.Error.WriteLineAsync($<span class="stringliteral">&quot;Database error: {ex.Message}&quot;</span>);</div>
+<div class="line"><span class="lineno">  139</span>            <span class="keywordflow">return</span> (<span class="keyword">false</span>, ex.Message);</div>
+<div class="line"><span class="lineno">  140</span>        }</div>
+<div class="line"><span class="lineno">  141</span>        <span class="keywordflow">catch</span> (Exception ex)</div>
+<div class="line"><span class="lineno">  142</span>        {</div>
+<div class="line"><span class="lineno">  143</span>            await Console.Error.WriteLineAsync($<span class="stringliteral">&quot;Unexpected error: {ex.Message}&quot;</span>);</div>
+<div class="line"><span class="lineno">  144</span>            <span class="keywordflow">return</span> (<span class="keyword">false</span>, ex.Message);</div>
+<div class="line"><span class="lineno">  145</span>        }</div>
+<div class="line"><span class="lineno">  146</span>    }</div>
+</div><!-- fragment -->
+<p class="reference">References <a class="el" href="_user_repository_8cs_source.html#l00020">_connector</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="_user_repository_8cs_source.html#l00435">CreateUserInfoQuery()</a>.</p>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_w_p_r_1_1_repository_1_1_user_repository_a7903e03bfe7076a6ee7b352636cb854d_icgraph.png" border="0" usemap="#aclass_w_p_r_1_1_repository_1_1_user_repository_a7903e03bfe7076a6ee7b352636cb854d_icgraph" alt=""/></div>
+<map name="aclass_w_p_r_1_1_repository_1_1_user_repository_a7903e03bfe7076a6ee7b352636cb854d_icgraph" id="aclass_w_p_r_1_1_repository_1_1_user_repository_a7903e03bfe7076a6ee7b352636cb854d_icgraph">
+<area shape="rect" title=" " alt="" coords="536,5,788,48"/>
+<area shape="rect" href="class_w_p_r_1_1_repository_1_1_user_repository.html#af1ae304fd24d3ae358db293b0033e484" title=" " alt="" coords="271,5,488,48"/>
+<area shape="poly" title=" " alt="" coords="520,29,488,29,488,24,520,24"/>
+<area shape="rect" href="class_w_p_r_1_1_repository_1_1_user_repository.html#af9a5424f00a5cfc023cc147a1e0a59cf" title=" " alt="" coords="5,5,223,48"/>
+<area shape="poly" title=" " alt="" coords="255,29,223,29,223,24,255,24"/>
+</map>
+</div>
 
 </div>
 </div>
@@ -399,6 +595,73 @@ Private Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p class="definition">Definition at line <a class="el" href="_user_repository_8cs_source.html#l00435">435</a> of file <a class="el" href="_user_repository_8cs_source.html">UserRepository.cs</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  436</span>    {</div>
+<div class="line"><span class="lineno">  437</span>        <span class="keywordtype">int</span> lengthList = data.Count(); <span class="comment">// De lengte voor de loopt wordt vastgesteld</span></div>
+<div class="line"><span class="lineno">  438</span>        <span class="keywordtype">string</span> query = <span class="stringliteral">&quot;UPDATE UserCustomer SET &quot;</span>; <span class="comment">// Het begin van de query wordt aangemaakt</span></div>
+<div class="line"><span class="lineno">  439</span> </div>
+<div class="line"><span class="lineno">  440</span>        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 1; i &lt; lengthList; i++)</div>
+<div class="line"><span class="lineno">  441</span>        {</div>
+<div class="line"><span class="lineno">  442</span>            <span class="comment">// Item[0] = Colom naam</span></div>
+<div class="line"><span class="lineno">  443</span>            <span class="comment">// Item[1] = Colom data</span></div>
+<div class="line"><span class="lineno">  444</span>            <span class="comment">// Item[2] = Type colom data</span></div>
+<div class="line"><span class="lineno">  445</span>            <span class="keywordtype">object</span>[] item = data[i];</div>
+<div class="line"><span class="lineno">  446</span> </div>
+<div class="line"><span class="lineno">  447</span>            <span class="comment">// Als de 3e item in de list een integer is, worden er geen verdere checks gedaan</span></div>
+<div class="line"><span class="lineno">  448</span>            <span class="keywordflow">if</span> (item[2].Equals(<span class="stringliteral">&quot;System.Int32&quot;</span>))</div>
+<div class="line"><span class="lineno">  449</span>            {</div>
+<div class="line"><span class="lineno">  450</span>                query += $<span class="stringliteral">&quot;{item[0]} = {item[1]}&quot;</span>;</div>
+<div class="line"><span class="lineno">  451</span>            }</div>
+<div class="line"><span class="lineno">  452</span>            <span class="keywordflow">else</span></div>
+<div class="line"><span class="lineno">  453</span>            {</div>
+<div class="line"><span class="lineno">  454</span>                <span class="comment">// Als de naam van de colomn gelijks is aan &quot;Email&quot; wordt er een email check gedaan</span></div>
+<div class="line"><span class="lineno">  455</span>                <span class="keywordflow">if</span> (item[0].ToString().Equals(<span class="stringliteral">&quot;Email&quot;</span>))</div>
+<div class="line"><span class="lineno">  456</span>                {</div>
+<div class="line"><span class="lineno">  457</span>                    var emailCheck = await checkUsageEmailAsync(item[1].ToString());</div>
+<div class="line"><span class="lineno">  458</span> </div>
+<div class="line"><span class="lineno">  459</span>                    <span class="keywordflow">if</span> (emailCheck.status)</div>
+<div class="line"><span class="lineno">  460</span>                    {</div>
+<div class="line"><span class="lineno">  461</span>                        <span class="keywordflow">return</span> (<span class="keyword">false</span>, emailCheck.message);</div>
+<div class="line"><span class="lineno">  462</span>                    }</div>
+<div class="line"><span class="lineno">  463</span>                }</div>
+<div class="line"><span class="lineno">  464</span>                query += $<span class="stringliteral">&quot;{item[0]} = &#39;{item[1]}&#39;&quot;</span>;</div>
+<div class="line"><span class="lineno">  465</span>            }</div>
+<div class="line"><span class="lineno">  466</span> </div>
+<div class="line"><span class="lineno">  467</span>            <span class="keywordflow">if</span> (i + 1 != lengthList)</div>
+<div class="line"><span class="lineno">  468</span>            {</div>
+<div class="line"><span class="lineno">  469</span>                <span class="comment">// De query kan worden uitgebreid</span></div>
+<div class="line"><span class="lineno">  470</span>                query += <span class="stringliteral">&quot;,&quot;</span>;</div>
+<div class="line"><span class="lineno">  471</span>            }</div>
+<div class="line"><span class="lineno">  472</span> </div>
+<div class="line"><span class="lineno">  473</span>            query += <span class="stringliteral">&quot; &quot;</span>;</div>
+<div class="line"><span class="lineno">  474</span>        }</div>
+<div class="line"><span class="lineno">  475</span> </div>
+<div class="line"><span class="lineno">  476</span>        <span class="comment">// De query wordt afgesloten</span></div>
+<div class="line"><span class="lineno">  477</span>        <span class="keywordflow">return</span> (<span class="keyword">true</span>, query += $<span class="stringliteral">&quot;WHERE ID = {data[0][1]}&quot;</span>);</div>
+<div class="line"><span class="lineno">  478</span>    }</div>
+</div><!-- fragment -->
+<p class="reference">References <a class="el" href="_user_repository_8cs_source.html#l00116">checkUsageEmailAsync()</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="_user_repository_8cs_source.html#l00317">EditUserInfoAsync()</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_w_p_r_1_1_repository_1_1_user_repository_af1ae304fd24d3ae358db293b0033e484_cgraph.png" border="0" usemap="#aclass_w_p_r_1_1_repository_1_1_user_repository_af1ae304fd24d3ae358db293b0033e484_cgraph" alt=""/></div>
+<map name="aclass_w_p_r_1_1_repository_1_1_user_repository_af1ae304fd24d3ae358db293b0033e484_cgraph" id="aclass_w_p_r_1_1_repository_1_1_user_repository_af1ae304fd24d3ae358db293b0033e484_cgraph">
+<area shape="rect" title=" " alt="" coords="5,5,223,48"/>
+<area shape="rect" href="class_w_p_r_1_1_repository_1_1_user_repository.html#a7903e03bfe7076a6ee7b352636cb854d" title=" " alt="" coords="271,5,523,48"/>
+<area shape="poly" title=" " alt="" coords="223,24,255,24,255,29,223,29"/>
+</map>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_w_p_r_1_1_repository_1_1_user_repository_af1ae304fd24d3ae358db293b0033e484_icgraph.png" border="0" usemap="#aclass_w_p_r_1_1_repository_1_1_user_repository_af1ae304fd24d3ae358db293b0033e484_icgraph" alt=""/></div>
+<map name="aclass_w_p_r_1_1_repository_1_1_user_repository_af1ae304fd24d3ae358db293b0033e484_icgraph" id="aclass_w_p_r_1_1_repository_1_1_user_repository_af1ae304fd24d3ae358db293b0033e484_icgraph">
+<area shape="rect" title=" " alt="" coords="271,5,488,48"/>
+<area shape="rect" href="class_w_p_r_1_1_repository_1_1_user_repository.html#af9a5424f00a5cfc023cc147a1e0a59cf" title=" " alt="" coords="5,5,223,48"/>
+<area shape="poly" title=" " alt="" coords="255,29,223,29,223,24,255,24"/>
+</map>
+</div>
 
 </div>
 </div>
@@ -428,6 +691,61 @@ Private Attributes</h2></td></tr>
 <p>Implements <a class="el" href="interface_w_p_r_1_1_repository_1_1_i_user_repository.html#ab8bc076a0fa5153144ae7a810515bf5a">WPR.Repository.IUserRepository</a>.</p>
 
 <p class="definition">Definition at line <a class="el" href="_user_repository_8cs_source.html#l00379">379</a> of file <a class="el" href="_user_repository_8cs_source.html">UserRepository.cs</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  380</span>    {</div>
+<div class="line"><span class="lineno">  381</span>        Console.WriteLine(<span class="stringliteral">&quot;Deleting user&quot;</span>);</div>
+<div class="line"><span class="lineno">  382</span>        <span class="keywordflow">try</span></div>
+<div class="line"><span class="lineno">  383</span>        {</div>
+<div class="line"><span class="lineno">  384</span>            <span class="keywordtype">string</span> queryCustomer = <span class="stringliteral">&quot;DELETE FROM UserCustomer WHERE ID = @ID&quot;</span>;</div>
+<div class="line"><span class="lineno">  385</span>            <span class="keywordtype">string</span> queryEmployee = <span class="stringliteral">&quot;DELETE FROM UserEmployee WHERE ID = @ID&quot;</span>;</div>
+<div class="line"><span class="lineno">  386</span>            <span class="keywordtype">string</span> queryPersonal = <span class="stringliteral">&quot;DELETE FROM UserPersonal WHERE ID = @ID&quot;</span>;</div>
+<div class="line"><span class="lineno">  387</span>            <span class="keywordtype">string</span> queryAbonnement = <span class="stringliteral">&quot;DELETE FROM Abonnement WHERE Customer = @ID&quot;</span>;</div>
+<div class="line"><span class="lineno">  388</span> </div>
+<div class="line"><span class="lineno">  389</span>            <span class="keyword">using</span> (var connection = _connector.CreateDbConnection())</div>
+<div class="line"><span class="lineno">  390</span>            <span class="keyword">using</span> (var customerCommand = <span class="keyword">new</span> MySqlCommand(queryCustomer, (MySqlConnection)connection))</div>
+<div class="line"><span class="lineno">  391</span>            <span class="keyword">using</span> (var employeeCommand = <span class="keyword">new</span> MySqlCommand(queryEmployee, (MySqlConnection)connection))</div>
+<div class="line"><span class="lineno">  392</span>            <span class="keyword">using</span> (var personalCommand = <span class="keyword">new</span> MySqlCommand(queryPersonal, (MySqlConnection)connection))</div>
+<div class="line"><span class="lineno">  393</span>            <span class="keyword">using</span> (var abonnementCommand = <span class="keyword">new</span> MySqlCommand(queryAbonnement, (MySqlConnection)connection))</div>
+<div class="line"><span class="lineno">  394</span>            {</div>
+<div class="line"><span class="lineno">  395</span>                Console.WriteLine(userId);</div>
+<div class="line"><span class="lineno">  396</span>                <span class="keywordtype">int</span> userIdInt = Convert.ToInt32(userId);</div>
+<div class="line"><span class="lineno">  397</span>                Console.WriteLine(userIdInt);</div>
+<div class="line"><span class="lineno">  398</span> </div>
+<div class="line"><span class="lineno">  399</span>                customerCommand.Parameters.AddWithValue(<span class="stringliteral">&quot;@ID&quot;</span>, userIdInt);</div>
+<div class="line"><span class="lineno">  400</span>                employeeCommand.Parameters.AddWithValue(<span class="stringliteral">&quot;@ID&quot;</span>, userIdInt);</div>
+<div class="line"><span class="lineno">  401</span>                personalCommand.Parameters.AddWithValue(<span class="stringliteral">&quot;@ID&quot;</span>, userIdInt);</div>
+<div class="line"><span class="lineno">  402</span>                abonnementCommand.Parameters.AddWithValue(<span class="stringliteral">&quot;@ID&quot;</span>, userIdInt);</div>
+<div class="line"><span class="lineno">  403</span> </div>
+<div class="line"><span class="lineno">  404</span>                await employeeCommand.ExecuteNonQueryAsync();</div>
+<div class="line"><span class="lineno">  405</span>                await personalCommand.ExecuteNonQueryAsync();</div>
+<div class="line"><span class="lineno">  406</span>                await abonnementCommand.ExecuteNonQueryAsync();</div>
+<div class="line"><span class="lineno">  407</span>                </div>
+<div class="line"><span class="lineno">  408</span>                <span class="keywordtype">int</span> rowsAffected = await customerCommand.ExecuteNonQueryAsync();</div>
+<div class="line"><span class="lineno">  409</span> </div>
+<div class="line"><span class="lineno">  410</span>                <span class="keywordflow">if</span> (rowsAffected &gt; 0)</div>
+<div class="line"><span class="lineno">  411</span>                {</div>
+<div class="line"><span class="lineno">  412</span>                    <span class="keywordflow">return</span> (<span class="keyword">true</span>, <span class="stringliteral">&quot;User deleted&quot;</span>);</div>
+<div class="line"><span class="lineno">  413</span>                }</div>
+<div class="line"><span class="lineno">  414</span>                <span class="keywordflow">else</span></div>
+<div class="line"><span class="lineno">  415</span>                {</div>
+<div class="line"><span class="lineno">  416</span>                    <span class="keywordflow">return</span> (<span class="keyword">false</span>, <span class="stringliteral">&quot;User could not be deleted&quot;</span>);</div>
+<div class="line"><span class="lineno">  417</span>                }</div>
+<div class="line"><span class="lineno">  418</span>            }</div>
+<div class="line"><span class="lineno">  419</span>        }</div>
+<div class="line"><span class="lineno">  420</span>        <span class="keywordflow">catch</span> (MySqlException ex)</div>
+<div class="line"><span class="lineno">  421</span>        {</div>
+<div class="line"><span class="lineno">  422</span>            <span class="comment">// Handle database errors</span></div>
+<div class="line"><span class="lineno">  423</span>            await Console.Error.WriteLineAsync($<span class="stringliteral">&quot;Database error: {ex.Message}&quot;</span>);</div>
+<div class="line"><span class="lineno">  424</span>            <span class="keywordflow">return</span> (<span class="keyword">false</span>, <span class="stringliteral">&quot;Database error: &quot;</span> + ex.Message);</div>
+<div class="line"><span class="lineno">  425</span>        }</div>
+<div class="line"><span class="lineno">  426</span>        <span class="keywordflow">catch</span> (Exception ex)</div>
+<div class="line"><span class="lineno">  427</span>        {</div>
+<div class="line"><span class="lineno">  428</span>            <span class="comment">// Handle other errors</span></div>
+<div class="line"><span class="lineno">  429</span>            await Console.Error.WriteLineAsync($<span class="stringliteral">&quot;Unexpected error: {ex.Message}&quot;</span>);</div>
+<div class="line"><span class="lineno">  430</span>            <span class="keywordflow">return</span> (<span class="keyword">false</span>, <span class="stringliteral">&quot;Unexpected error: &quot;</span> + ex.Message);</div>
+<div class="line"><span class="lineno">  431</span>        }</div>
+<div class="line"><span class="lineno">  432</span>    }</div>
+</div><!-- fragment -->
+<p class="reference">References <a class="el" href="_user_repository_8cs_source.html#l00020">_connector</a>.</p>
 
 </div>
 </div>
@@ -457,6 +775,54 @@ Private Attributes</h2></td></tr>
 <p>Implements <a class="el" href="interface_w_p_r_1_1_repository_1_1_i_user_repository.html#a69bf2dfc071328b914d0dd2b0e28036c">WPR.Repository.IUserRepository</a>.</p>
 
 <p class="definition">Definition at line <a class="el" href="_user_repository_8cs_source.html#l00317">317</a> of file <a class="el" href="_user_repository_8cs_source.html">UserRepository.cs</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  318</span>    {</div>
+<div class="line"><span class="lineno">  319</span>        <span class="keywordflow">try</span></div>
+<div class="line"><span class="lineno">  320</span>        {</div>
+<div class="line"><span class="lineno">  321</span>            <span class="comment">// Er wordt een custom query aangemaakt</span></div>
+<div class="line"><span class="lineno">  322</span>            var query = await CreateUserInfoQuery(data);</div>
+<div class="line"><span class="lineno">  323</span> </div>
+<div class="line"><span class="lineno">  324</span>            <span class="keywordflow">if</span> (query.goodQuery)</div>
+<div class="line"><span class="lineno">  325</span>            {</div>
+<div class="line"><span class="lineno">  326</span>                <span class="comment">// Er wordt een connectie aangemaakt met de DataBase met bovenstaande query </span></div>
+<div class="line"><span class="lineno">  327</span>                <span class="keyword">using</span> (var connection = _connector.CreateDbConnection())</div>
+<div class="line"><span class="lineno">  328</span>                <span class="keyword">using</span> (var command = <span class="keyword">new</span> MySqlCommand(query.message, (MySqlConnection)connection))</div>
+<div class="line"><span class="lineno">  329</span>                {</div>
+<div class="line"><span class="lineno">  330</span>                    var result = await command.ExecuteNonQueryAsync();</div>
+<div class="line"><span class="lineno">  331</span> </div>
+<div class="line"><span class="lineno">  332</span>                    <span class="keywordflow">if</span> (await command.ExecuteNonQueryAsync() &gt; 0)</div>
+<div class="line"><span class="lineno">  333</span>                    {</div>
+<div class="line"><span class="lineno">  334</span>                        <span class="comment">// Er wordt gecontrolleerd of de gegeven in de DataBase zijn ingevoerd</span></div>
+<div class="line"><span class="lineno">  335</span>                        <span class="keywordflow">return</span> (<span class="keyword">true</span>, <span class="stringliteral">&quot;Data inserted&quot;</span>);</div>
+<div class="line"><span class="lineno">  336</span>                    }</div>
+<div class="line"><span class="lineno">  337</span>                    </div>
+<div class="line"><span class="lineno">  338</span>                    <span class="keywordflow">return</span> (<span class="keyword">false</span>, <span class="stringliteral">&quot;Data not inserted&quot;</span>);</div>
+<div class="line"><span class="lineno">  339</span>                }</div>
+<div class="line"><span class="lineno">  340</span>            }</div>
+<div class="line"><span class="lineno">  341</span>            <span class="keywordflow">else</span></div>
+<div class="line"><span class="lineno">  342</span>            {</div>
+<div class="line"><span class="lineno">  343</span>                <span class="keywordflow">return</span> (<span class="keyword">false</span>, query.message);</div>
+<div class="line"><span class="lineno">  344</span>            }</div>
+<div class="line"><span class="lineno">  345</span>        }</div>
+<div class="line"><span class="lineno">  346</span>        <span class="keywordflow">catch</span> (Exception ex)</div>
+<div class="line"><span class="lineno">  347</span>            {</div>
+<div class="line"><span class="lineno">  348</span>                Console.WriteLine($<span class="stringliteral">&quot;Error: {ex}&quot;</span>);</div>
+<div class="line"><span class="lineno">  349</span>                <span class="keywordflow">return</span> (<span class="keyword">false</span>, ex.ToString());</div>
+<div class="line"><span class="lineno">  350</span>            }</div>
+<div class="line"><span class="lineno">  351</span>    }</div>
+</div><!-- fragment -->
+<p class="reference">References <a class="el" href="_user_repository_8cs_source.html#l00020">_connector</a>, and <a class="el" href="_user_repository_8cs_source.html#l00435">CreateUserInfoQuery()</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_w_p_r_1_1_repository_1_1_user_repository_af9a5424f00a5cfc023cc147a1e0a59cf_cgraph.png" border="0" usemap="#aclass_w_p_r_1_1_repository_1_1_user_repository_af9a5424f00a5cfc023cc147a1e0a59cf_cgraph" alt=""/></div>
+<map name="aclass_w_p_r_1_1_repository_1_1_user_repository_af9a5424f00a5cfc023cc147a1e0a59cf_cgraph" id="aclass_w_p_r_1_1_repository_1_1_user_repository_af9a5424f00a5cfc023cc147a1e0a59cf_cgraph">
+<area shape="rect" title=" " alt="" coords="5,5,223,48"/>
+<area shape="rect" href="class_w_p_r_1_1_repository_1_1_user_repository.html#af1ae304fd24d3ae358db293b0033e484" title=" " alt="" coords="271,5,488,48"/>
+<area shape="poly" title=" " alt="" coords="223,24,255,24,255,29,223,29"/>
+<area shape="rect" href="class_w_p_r_1_1_repository_1_1_user_repository.html#a7903e03bfe7076a6ee7b352636cb854d" title=" " alt="" coords="536,5,788,48"/>
+<area shape="poly" title=" " alt="" coords="489,24,521,24,521,29,489,29"/>
+</map>
+</div>
 
 </div>
 </div>
@@ -486,6 +852,33 @@ Private Attributes</h2></td></tr>
 <p>Implements <a class="el" href="interface_w_p_r_1_1_repository_1_1_i_user_repository.html#a61c1809923dff794670663107f64df14">WPR.Repository.IUserRepository</a>.</p>
 
 <p class="definition">Definition at line <a class="el" href="_user_repository_8cs_source.html#l00480">480</a> of file <a class="el" href="_user_repository_8cs_source.html">UserRepository.cs</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  481</span>    {</div>
+<div class="line"><span class="lineno">  482</span>        <span class="keywordflow">try</span></div>
+<div class="line"><span class="lineno">  483</span>        {</div>
+<div class="line"><span class="lineno">  484</span>            <span class="keywordtype">string</span> query = <span class="stringliteral">&quot;SELECT Office FROM Staff WHERE ID = @I&quot;</span>;</div>
+<div class="line"><span class="lineno">  485</span> </div>
+<div class="line"><span class="lineno">  486</span>            <span class="comment">// Er wordt een connectie aangemaakt met de DataBase met bovenstaande query </span></div>
+<div class="line"><span class="lineno">  487</span>            <span class="keyword">using</span> (var connection = _connector.CreateDbConnection())</div>
+<div class="line"><span class="lineno">  488</span>            <span class="keyword">using</span> (var command = <span class="keyword">new</span> MySqlCommand(query, (MySqlConnection)connection))</div>
+<div class="line"><span class="lineno">  489</span>            {</div>
+<div class="line"><span class="lineno">  490</span>                <span class="comment">// De parameter wordt ingevuld</span></div>
+<div class="line"><span class="lineno">  491</span>                command.Parameters.AddWithValue(<span class="stringliteral">&quot;@I&quot;</span>, userId);</div>
+<div class="line"><span class="lineno">  492</span> </div>
+<div class="line"><span class="lineno">  493</span>                var result = await command.ExecuteScalarAsync();</div>
+<div class="line"><span class="lineno">  494</span> </div>
+<div class="line"><span class="lineno">  495</span>                <span class="comment">// De office wordt meegegeven</span></div>
+<div class="line"><span class="lineno">  496</span>                <span class="keywordflow">return</span> (<span class="keyword">true</span>, result.ToString());</div>
+<div class="line"><span class="lineno">  497</span>            }</div>
+<div class="line"><span class="lineno">  498</span>        }</div>
+<div class="line"><span class="lineno">  499</span>        <span class="keywordflow">catch</span> (Exception ex)</div>
+<div class="line"><span class="lineno">  500</span>        {</div>
+<div class="line"><span class="lineno">  501</span>            Console.WriteLine(ex);</div>
+<div class="line"><span class="lineno">  502</span>            <span class="keywordflow">return</span> (<span class="keyword">false</span>, ex.ToString());</div>
+<div class="line"><span class="lineno">  503</span>        }</div>
+<div class="line"><span class="lineno">  504</span> </div>
+<div class="line"><span class="lineno">  505</span>    }</div>
+</div><!-- fragment -->
+<p class="reference">References <a class="el" href="_user_repository_8cs_source.html#l00020">_connector</a>.</p>
 
 </div>
 </div>
@@ -519,6 +912,37 @@ Private Attributes</h2></td></tr>
 <p>Implements <a class="el" href="interface_w_p_r_1_1_repository_1_1_i_user_repository.html#a4c1e54015ce6e7f4e3f71a22db6c6de3">WPR.Repository.IUserRepository</a>.</p>
 
 <p class="definition">Definition at line <a class="el" href="_user_repository_8cs_source.html#l00260">260</a> of file <a class="el" href="_user_repository_8cs_source.html">UserRepository.cs</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  261</span>    {</div>
+<div class="line"><span class="lineno">  262</span>        <span class="keywordflow">try</span></div>
+<div class="line"><span class="lineno">  263</span>        {</div>
+<div class="line"><span class="lineno">  264</span>            <span class="keywordtype">string</span> query = $<span class="stringliteral">&quot;SELECT ID FROM {table} WHERE Email = @E&quot;</span>;</div>
+<div class="line"><span class="lineno">  265</span> </div>
+<div class="line"><span class="lineno">  266</span>            <span class="comment">// Er wordt een connectie aangemaakt met de DataBase met bovenstaande query </span></div>
+<div class="line"><span class="lineno">  267</span>            <span class="keyword">using</span> (var connection = _connector.CreateDbConnection())</div>
+<div class="line"><span class="lineno">  268</span>            <span class="keyword">using</span> (var command = <span class="keyword">new</span> MySqlCommand(query, (MySqlConnection)connection))</div>
+<div class="line"><span class="lineno">  269</span>            {</div>
+<div class="line"><span class="lineno">  270</span>                <span class="comment">// De parameter wordt ingevuld</span></div>
+<div class="line"><span class="lineno">  271</span>                command.Parameters.AddWithValue(<span class="stringliteral">&quot;@E&quot;</span>, email);</div>
+<div class="line"><span class="lineno">  272</span> </div>
+<div class="line"><span class="lineno">  273</span>                var result = await command.ExecuteScalarAsync();</div>
+<div class="line"><span class="lineno">  274</span> </div>
+<div class="line"><span class="lineno">  275</span>                <span class="keywordflow">if</span> (result != <span class="keyword">null</span>)</div>
+<div class="line"><span class="lineno">  276</span>                {</div>
+<div class="line"><span class="lineno">  277</span>                    <span class="comment">// De user id wordt meegegeven</span></div>
+<div class="line"><span class="lineno">  278</span>                    <span class="keywordflow">return</span> result.ToString();</div>
+<div class="line"><span class="lineno">  279</span>                }</div>
+<div class="line"><span class="lineno">  280</span> </div>
+<div class="line"><span class="lineno">  281</span>                <span class="keywordflow">return</span> <span class="stringliteral">&quot;No user found&quot;</span>;</div>
+<div class="line"><span class="lineno">  282</span>            }</div>
+<div class="line"><span class="lineno">  283</span>        }</div>
+<div class="line"><span class="lineno">  284</span>        <span class="keywordflow">catch</span> (Exception ex)</div>
+<div class="line"><span class="lineno">  285</span>        {</div>
+<div class="line"><span class="lineno">  286</span>            await Console.Error.WriteLineAsync($<span class="stringliteral">&quot;Unexpected error: {ex.Message}&quot;</span>);</div>
+<div class="line"><span class="lineno">  287</span>            <span class="keywordflow">return</span> <span class="stringliteral">&quot;No user found&quot;</span>;</div>
+<div class="line"><span class="lineno">  288</span>        }</div>
+<div class="line"><span class="lineno">  289</span>    }</div>
+</div><!-- fragment -->
+<p class="reference">References <a class="el" href="_user_repository_8cs_source.html#l00020">_connector</a>.</p>
 
 </div>
 </div>
@@ -548,6 +972,32 @@ Private Attributes</h2></td></tr>
 <p>Implements <a class="el" href="interface_w_p_r_1_1_repository_1_1_i_user_repository.html#adea3e199f30f2118d56fbb649c6d9b85">WPR.Repository.IUserRepository</a>.</p>
 
 <p class="definition">Definition at line <a class="el" href="_user_repository_8cs_source.html#l00291">291</a> of file <a class="el" href="_user_repository_8cs_source.html">UserRepository.cs</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  292</span>    {</div>
+<div class="line"><span class="lineno">  293</span>        <span class="keywordflow">try</span></div>
+<div class="line"><span class="lineno">  294</span>        {</div>
+<div class="line"><span class="lineno">  295</span>            <span class="keywordtype">string</span> query = <span class="stringliteral">&quot;SELECT FirstName FROM UserCustomer WHERE ID = @I&quot;</span>;</div>
+<div class="line"><span class="lineno">  296</span> </div>
+<div class="line"><span class="lineno">  297</span>            <span class="comment">// Er wordt een connectie aangemaakt met de DataBase met bovenstaande query </span></div>
+<div class="line"><span class="lineno">  298</span>            <span class="keyword">using</span> (var connection = _connector.CreateDbConnection())</div>
+<div class="line"><span class="lineno">  299</span>            <span class="keyword">using</span> (var command = <span class="keyword">new</span> MySqlCommand(query, (MySqlConnection)connection))</div>
+<div class="line"><span class="lineno">  300</span>            {</div>
+<div class="line"><span class="lineno">  301</span>                <span class="comment">// De paramater wordt ingevuld</span></div>
+<div class="line"><span class="lineno">  302</span>                command.Parameters.AddWithValue(<span class="stringliteral">&quot;@I&quot;</span>, Convert.ToInt32(userId));</div>
+<div class="line"><span class="lineno">  303</span> </div>
+<div class="line"><span class="lineno">  304</span>                var result = await command.ExecuteScalarAsync();</div>
+<div class="line"><span class="lineno">  305</span> </div>
+<div class="line"><span class="lineno">  306</span>                <span class="comment">// De gebruikersnaam wordt meegegeven</span></div>
+<div class="line"><span class="lineno">  307</span>                <span class="keywordflow">return</span> result.ToString();</div>
+<div class="line"><span class="lineno">  308</span>            }</div>
+<div class="line"><span class="lineno">  309</span>        }</div>
+<div class="line"><span class="lineno">  310</span>        <span class="keywordflow">catch</span> (Exception ex)</div>
+<div class="line"><span class="lineno">  311</span>        {</div>
+<div class="line"><span class="lineno">  312</span>            await Console.Error.WriteLineAsync($<span class="stringliteral">&quot;Unexpected error: {ex.Message}&quot;</span>);</div>
+<div class="line"><span class="lineno">  313</span>            <span class="keywordflow">return</span> ex.ToString();</div>
+<div class="line"><span class="lineno">  314</span>        }</div>
+<div class="line"><span class="lineno">  315</span>    }</div>
+</div><!-- fragment -->
+<p class="reference">References <a class="el" href="_user_repository_8cs_source.html#l00020">_connector</a>.</p>
 
 </div>
 </div>
@@ -577,6 +1027,32 @@ Private Attributes</h2></td></tr>
 <p>Implements <a class="el" href="interface_w_p_r_1_1_repository_1_1_i_user_repository.html#a670f6c2c74f0ecdf1386af0f6069c9fd">WPR.Repository.IUserRepository</a>.</p>
 
 <p class="definition">Definition at line <a class="el" href="_user_repository_8cs_source.html#l00353">353</a> of file <a class="el" href="_user_repository_8cs_source.html">UserRepository.cs</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  354</span>    {</div>
+<div class="line"><span class="lineno">  355</span>        <span class="keywordflow">try</span></div>
+<div class="line"><span class="lineno">  356</span>        {</div>
+<div class="line"><span class="lineno">  357</span>            <span class="keywordtype">string</span> query = <span class="stringliteral">&quot;SELECT COUNT(1) FROM Business WHERE KVK = @kvkNumber&quot;</span>;</div>
+<div class="line"><span class="lineno">  358</span> </div>
+<div class="line"><span class="lineno">  359</span>            <span class="keyword">using</span> (var connection = _connector.CreateDbConnection())</div>
+<div class="line"><span class="lineno">  360</span>            <span class="keyword">using</span> (var command = <span class="keyword">new</span> MySqlCommand(query, (MySqlConnection) connection))</div>
+<div class="line"><span class="lineno">  361</span>            {</div>
+<div class="line"><span class="lineno">  362</span>                command.Parameters.AddWithValue(<span class="stringliteral">&quot;@kvkNumber&quot;</span>, kvkNumber);</div>
+<div class="line"><span class="lineno">  363</span>                var result = Convert.ToInt32(await command.ExecuteScalarAsync());</div>
+<div class="line"><span class="lineno">  364</span>                <span class="keywordflow">return</span> result &gt; 0;</div>
+<div class="line"><span class="lineno">  365</span>            }</div>
+<div class="line"><span class="lineno">  366</span>        }</div>
+<div class="line"><span class="lineno">  367</span>        <span class="keywordflow">catch</span> (MySqlException ex)</div>
+<div class="line"><span class="lineno">  368</span>        {</div>
+<div class="line"><span class="lineno">  369</span>            await Console.Error.WriteLineAsync($<span class="stringliteral">&quot;Database error: {ex.Message}&quot;</span>);</div>
+<div class="line"><span class="lineno">  370</span>            <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><span class="lineno">  371</span>        }</div>
+<div class="line"><span class="lineno">  372</span>        <span class="keywordflow">catch</span> (Exception ex)</div>
+<div class="line"><span class="lineno">  373</span>        {</div>
+<div class="line"><span class="lineno">  374</span>            await Console.Error.WriteLineAsync($<span class="stringliteral">&quot;Unexpected error: {ex.Message}&quot;</span>);</div>
+<div class="line"><span class="lineno">  375</span>            <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><span class="lineno">  376</span>        }</div>
+<div class="line"><span class="lineno">  377</span>    }</div>
+</div><!-- fragment -->
+<p class="reference">References <a class="el" href="_user_repository_8cs_source.html#l00020">_connector</a>.</p>
 
 </div>
 </div>
@@ -606,6 +1082,37 @@ Private Attributes</h2></td></tr>
 <p>Implements <a class="el" href="interface_w_p_r_1_1_repository_1_1_i_user_repository.html#aab80cef291c4192ce799937ca1e08312">WPR.Repository.IUserRepository</a>.</p>
 
 <p class="definition">Definition at line <a class="el" href="_user_repository_8cs_source.html#l00539">539</a> of file <a class="el" href="_user_repository_8cs_source.html">UserRepository.cs</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  540</span>    {</div>
+<div class="line"><span class="lineno">  541</span>        <span class="keywordflow">try</span></div>
+<div class="line"><span class="lineno">  542</span>        {</div>
+<div class="line"><span class="lineno">  543</span>            <span class="keywordtype">string</span> query = <span class="stringliteral">&quot;SELECT ID FROM UserEmployee WHERE ID = @id&quot;</span>;</div>
+<div class="line"><span class="lineno">  544</span> </div>
+<div class="line"><span class="lineno">  545</span>            <span class="comment">// Er wordt een connectie aangemaakt met de DataBase met bovenstaande query </span></div>
+<div class="line"><span class="lineno">  546</span>            <span class="keyword">using</span> (var connection = _connector.CreateDbConnection())</div>
+<div class="line"><span class="lineno">  547</span>            <span class="keyword">using</span> (var command = <span class="keyword">new</span> MySqlCommand(query, (MySqlConnection)connection))</div>
+<div class="line"><span class="lineno">  548</span>            {</div>
+<div class="line"><span class="lineno">  549</span>                <span class="comment">// De parameter wordt ingevuld</span></div>
+<div class="line"><span class="lineno">  550</span>                command.Parameters.AddWithValue(<span class="stringliteral">&quot;@id&quot;</span>, <span class="keywordtype">id</span>);</div>
+<div class="line"><span class="lineno">  551</span> </div>
+<div class="line"><span class="lineno">  552</span>                var result = await command.ExecuteScalarAsync();</div>
+<div class="line"><span class="lineno">  553</span> </div>
+<div class="line"><span class="lineno">  554</span>                <span class="keywordflow">if</span> (result != <span class="keyword">null</span> &amp;&amp; result.ToString() == <span class="keywordtype">id</span>.ToString())</div>
+<div class="line"><span class="lineno">  555</span>                {</div>
+<div class="line"><span class="lineno">  556</span>                    <span class="comment">// Er wordt gekeken of de gebruiker bestaat</span></div>
+<div class="line"><span class="lineno">  557</span>                    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><span class="lineno">  558</span>                }</div>
+<div class="line"><span class="lineno">  559</span> </div>
+<div class="line"><span class="lineno">  560</span>                <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><span class="lineno">  561</span>            }</div>
+<div class="line"><span class="lineno">  562</span>        }</div>
+<div class="line"><span class="lineno">  563</span>        <span class="keywordflow">catch</span> (Exception ex)</div>
+<div class="line"><span class="lineno">  564</span>        {</div>
+<div class="line"><span class="lineno">  565</span>            await Console.Error.WriteLineAsync($<span class="stringliteral">&quot;Unexpected error: {ex.Message}&quot;</span>);</div>
+<div class="line"><span class="lineno">  566</span>            <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><span class="lineno">  567</span>        }</div>
+<div class="line"><span class="lineno">  568</span>    }</div>
+</div><!-- fragment -->
+<p class="reference">References <a class="el" href="_user_repository_8cs_source.html#l00020">_connector</a>.</p>
 
 </div>
 </div>
@@ -644,10 +1151,70 @@ Private Attributes</h2></td></tr>
 <p>Implements <a class="el" href="interface_w_p_r_1_1_repository_1_1_i_user_repository.html#a7dd4b3be17516ffd565fec621cbd7452">WPR.Repository.IUserRepository</a>.</p>
 
 <p class="definition">Definition at line <a class="el" href="_user_repository_8cs_source.html#l00056">56</a> of file <a class="el" href="_user_repository_8cs_source.html">UserRepository.cs</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   57</span>    {</div>
+<div class="line"><span class="lineno">   58</span>        <span class="comment">/*string query = $@&quot;SELECT 1 FROM {table} WHERE LOWER(email) = LOWER(@Email) AND BINARY password = @Password&quot;;</span></div>
+<div class="line"><span class="lineno">   59</span><span class="comment"></span> </div>
+<div class="line"><span class="lineno">   60</span><span class="comment">        using (var connection = _connector.CreateDbConnection())</span></div>
+<div class="line"><span class="lineno">   61</span><span class="comment">        {</span></div>
+<div class="line"><span class="lineno">   62</span><span class="comment">            using (var command = new MySqlCommand(query, (MySqlConnection)connection))</span></div>
+<div class="line"><span class="lineno">   63</span><span class="comment">            {</span></div>
+<div class="line"><span class="lineno">   64</span><span class="comment">                command.Parameters.AddWithValue(&quot;@Email&quot;, username);</span></div>
+<div class="line"><span class="lineno">   65</span><span class="comment">                command.Parameters.AddWithValue(&quot;@Password&quot;, password);</span></div>
+<div class="line"><span class="lineno">   66</span><span class="comment"></span> </div>
+<div class="line"><span class="lineno">   67</span><span class="comment">                using (var reader = await command.ExecuteReaderAsync())</span></div>
+<div class="line"><span class="lineno">   68</span><span class="comment">                {</span></div>
+<div class="line"><span class="lineno">   69</span><span class="comment">                    return reader.HasRows;</span></div>
+<div class="line"><span class="lineno">   70</span><span class="comment">                }</span></div>
+<div class="line"><span class="lineno">   71</span><span class="comment">            }</span></div>
+<div class="line"><span class="lineno">   72</span><span class="comment">        }</span></div>
+<div class="line"><span class="lineno">   73</span><span class="comment">        */</span></div>
+<div class="line"><span class="lineno">   74</span> </div>
+<div class="line"><span class="lineno">   75</span>        <span class="comment">// De table voor de DataBase wordt vastgesteld</span></div>
+<div class="line"><span class="lineno">   76</span>        <span class="keywordtype">string</span> table; </div>
+<div class="line"><span class="lineno">   77</span>        </div>
+<div class="line"><span class="lineno">   78</span>        <span class="keywordflow">if</span> (userType.Equals(<span class="stringliteral">&quot;Employee&quot;</span>))</div>
+<div class="line"><span class="lineno">   79</span>        {</div>
+<div class="line"><span class="lineno">   80</span>            table = <span class="stringliteral">&quot;Staff&quot;</span>;</div>
+<div class="line"><span class="lineno">   81</span>        }</div>
+<div class="line"><span class="lineno">   82</span>        <span class="keywordflow">else</span> <span class="keywordflow">if</span> (userType.Equals(<span class="stringliteral">&quot;Customer&quot;</span>))</div>
+<div class="line"><span class="lineno">   83</span>        {</div>
+<div class="line"><span class="lineno">   84</span>            table = <span class="stringliteral">&quot;UserCustomer&quot;</span>;</div>
+<div class="line"><span class="lineno">   85</span>        }</div>
+<div class="line"><span class="lineno">   86</span>        <span class="keywordflow">else</span></div>
+<div class="line"><span class="lineno">   87</span>        {</div>
+<div class="line"><span class="lineno">   88</span>            table = <span class="stringliteral">&quot;VehicleManager&quot;</span>;</div>
+<div class="line"><span class="lineno">   89</span>        }</div>
+<div class="line"><span class="lineno">   90</span> </div>
+<div class="line"><span class="lineno">   91</span>        <span class="keywordtype">string</span> query = <span class="stringliteral">$@&quot;SELECT password FROM {table} WHERE LOWER(email) = LOWER(@Email)&quot;</span>;</div>
+<div class="line"><span class="lineno">   92</span> </div>
+<div class="line"><span class="lineno">   93</span>        <span class="comment">// Er wordt een connectie met de Database aangemaakt met de bovenstaande query</span></div>
+<div class="line"><span class="lineno">   94</span>        <span class="keyword">using</span> (var connection = _connector.CreateDbConnection())</div>
+<div class="line"><span class="lineno">   95</span>        <span class="keyword">using</span> (var command = <span class="keyword">new</span> MySqlCommand(query, (MySqlConnection)connection))</div>
+<div class="line"><span class="lineno">   96</span>        {</div>
+<div class="line"><span class="lineno">   97</span>            <span class="comment">// In de query wordt vastgesteld welke row er geselecteerd moet worden doormiddel van het invullen van het emailadres</span></div>
+<div class="line"><span class="lineno">   98</span>            command.Parameters.AddWithValue(<span class="stringliteral">&quot;@Email&quot;</span>, username);</div>
+<div class="line"><span class="lineno">   99</span> </div>
+<div class="line"><span class="lineno">  100</span>            <span class="comment">// De query wordt uitgevoerd</span></div>
+<div class="line"><span class="lineno">  101</span>            <span class="keyword">using</span> (var reader = await command.ExecuteReaderAsync())</div>
+<div class="line"><span class="lineno">  102</span>            {   </div>
+<div class="line"><span class="lineno">  103</span>                <span class="comment">// De query wordt uitgelezen en gekeken of er rows gevonden zijn</span></div>
+<div class="line"><span class="lineno">  104</span>                <span class="keywordflow">if</span> (await reader.ReadAsync())</div>
+<div class="line"><span class="lineno">  105</span>                {</div>
+<div class="line"><span class="lineno">  106</span>                    <span class="comment">// Het gehashte wachtwoord wordt opgehaald en wordt vergeleken met het gehaste meegegeven wachtwoord</span></div>
+<div class="line"><span class="lineno">  107</span>                    <span class="keywordtype">string</span> passwordUser = reader.GetString(<span class="stringliteral">&quot;Password&quot;</span>);</div>
+<div class="line"><span class="lineno">  108</span>                    <span class="keywordflow">return</span> _hash.createHash(password).Equals(passwordUser);</div>
+<div class="line"><span class="lineno">  109</span>                }</div>
+<div class="line"><span class="lineno">  110</span> </div>
+<div class="line"><span class="lineno">  111</span>                <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><span class="lineno">  112</span>            }</div>
+<div class="line"><span class="lineno">  113</span>        }</div>
+<div class="line"><span class="lineno">  114</span>    }</div>
+</div><!-- fragment -->
+<p class="reference">References <a class="el" href="_user_repository_8cs_source.html#l00020">_connector</a>, and <a class="el" href="_user_repository_8cs_source.html#l00021">_hash</a>.</p>
 
 </div>
 </div>
-<h2 class="groupheader">Member Data Documentation</h2>
+<h2 class="groupheader">Field Documentation</h2>
 <a id="a183c2adefcdd48e81e8341e438662d7c" name="a183c2adefcdd48e81e8341e438662d7c"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a183c2adefcdd48e81e8341e438662d7c">&#9670;&#160;</a></span>_connector</h2>
 
@@ -669,6 +1236,8 @@ Private Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p class="definition">Definition at line <a class="el" href="_user_repository_8cs_source.html#l00020">20</a> of file <a class="el" href="_user_repository_8cs_source.html">UserRepository.cs</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="_user_repository_8cs_source.html#l00148">addCustomerAsync()</a>, <a class="el" href="_user_repository_8cs_source.html#l00225">addEmployeeCustomerAsync()</a>, <a class="el" href="_user_repository_8cs_source.html#l00190">addPersonalCustomerAsync()</a>, <a class="el" href="_user_repository_8cs_source.html#l00507">AddStaff()</a>, <a class="el" href="_user_repository_8cs_source.html#l00116">checkUsageEmailAsync()</a>, <a class="el" href="_user_repository_8cs_source.html#l00379">DeleteUserAsync()</a>, <a class="el" href="_user_repository_8cs_source.html#l00317">EditUserInfoAsync()</a>, <a class="el" href="_user_repository_8cs_source.html#l00480">GetKindEmployeeAsync()</a>, <a class="el" href="_user_repository_8cs_source.html#l00260">GetUserIdAsync()</a>, <a class="el" href="_user_repository_8cs_source.html#l00291">GetUserNameAsync()</a>, <a class="el" href="_user_repository_8cs_source.html#l00353">IsKvkNumberAsync()</a>, <a class="el" href="_user_repository_8cs_source.html#l00539">IsUserEmployee()</a>, <a class="el" href="_user_repository_8cs_source.html#l00024">UserRepository()</a>, and <a class="el" href="_user_repository_8cs_source.html#l00056">ValidateUserAsync()</a>.</p>
 
 </div>
 </div>
@@ -694,6 +1263,8 @@ Private Attributes</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="_user_repository_8cs_source.html#l00022">22</a> of file <a class="el" href="_user_repository_8cs_source.html">UserRepository.cs</a>.</p>
 
+<p class="reference">Referenced by <a class="el" href="_user_repository_8cs_source.html#l00024">UserRepository()</a>.</p>
+
 </div>
 </div>
 <a id="a1b11b787b41fa41a34ef2515f5eaa6d3" name="a1b11b787b41fa41a34ef2515f5eaa6d3"></a>
@@ -717,6 +1288,8 @@ Private Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p class="definition">Definition at line <a class="el" href="_user_repository_8cs_source.html#l00021">21</a> of file <a class="el" href="_user_repository_8cs_source.html">UserRepository.cs</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="_user_repository_8cs_source.html#l00507">AddStaff()</a>, <a class="el" href="_user_repository_8cs_source.html#l00024">UserRepository()</a>, and <a class="el" href="_user_repository_8cs_source.html#l00056">ValidateUserAsync()</a>.</p>
 
 </div>
 </div>

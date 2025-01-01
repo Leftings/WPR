@@ -1,0 +1,13 @@
+<map id="Employee.Repository.UserRepository" name="Employee.Repository.UserRepository">
+<area shape="rect" id="Node000001" title="De UserRepository class geeft de methodes voor de interactie met de database voor gebruiker gerelatee..." alt="" coords="213,421,388,699"/>
+<area shape="rect" id="Node000002" href="$interface_employee_1_1_repository_1_1_i_user_repository.html" title="Interface defining methods voor user gerelateerde database operaties, validatie, user management,..." alt="" coords="5,181,180,357"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="166,368,216,436,211,439,162,371"/>
+<area shape="rect" id="Node000003" href="$class_employee_1_1_database_1_1_connector.html" title=" " alt="" coords="204,224,397,315"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="304,314,304,404,298,404,298,314"/>
+<area shape="rect" id="Node000004" href="$interface_employee_1_1_database_1_1_i_connector.html" title="Connector class om verbinding te maken met de database, maakt gebruik van de connectie strings die zi..." alt="" coords="132,27,286,96"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="232,109,284,223,279,225,227,111"/>
+<area shape="rect" id="Node000005" href="$class_employee_1_1_data_1_1_env_config.html" title="Leez het .env bestand uit waarin de connectie strings staan naar de database. Deze staan in een apart..." alt="" coords="310,5,476,117"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="371,118,330,210,325,207,366,116"/>
+<area shape="rect" id="Node000006" href="$class_employee_1_1_hashing_1_1_hash.html" title=" " alt="" coords="422,213,577,325"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="464,327,400,420,396,416,460,324"/>
+</map>

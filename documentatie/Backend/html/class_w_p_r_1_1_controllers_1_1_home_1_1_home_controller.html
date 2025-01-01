@@ -104,8 +104,7 @@ $(function(){initNavTree('class_w_p_r_1_1_controllers_1_1_home_1_1_home_controll
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
-<a href="#pri-attribs">Private Attributes</a> &#124;
-<a href="class_w_p_r_1_1_controllers_1_1_home_1_1_home_controller-members.html">List of all members</a>  </div>
+<a href="#pri-attribs">Private Attributes</a>  </div>
   <div class="headertitle"><div class="title">WPR.Controllers.Home.HomeController Class Reference</div></div>
 </div><!--header-->
 <div class="contents">
@@ -182,10 +181,16 @@ Private Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p class="definition">Definition at line <a class="el" href="home_controller_8cs_source.html#l00016">16</a> of file <a class="el" href="home_controller_8cs_source.html">homeController.cs</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   17</span>    {</div>
+<div class="line"><span class="lineno">   18</span>        _connector = connector ?? <span class="keywordflow">throw</span> <span class="keyword">new</span> ArgumentNullException(nameof(connector));</div>
+<div class="line"><span class="lineno">   19</span>        _userRepository = userRepository ?? <span class="keywordflow">throw</span> <span class="keyword">new</span> ArgumentNullException(nameof(userRepository));</div>
+<div class="line"><span class="lineno">   20</span>    }</div>
+</div><!-- fragment -->
+<p class="reference">References <a class="el" href="home_controller_8cs_source.html#l00013">_connector</a>, and <a class="el" href="home_controller_8cs_source.html#l00014">_userRepository</a>.</p>
 
 </div>
 </div>
-<h2 class="groupheader">Member Data Documentation</h2>
+<h2 class="groupheader">Field Documentation</h2>
 <a id="ac512164d51adfc8206fbca1b9b895fea" name="ac512164d51adfc8206fbca1b9b895fea"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ac512164d51adfc8206fbca1b9b895fea">&#9670;&#160;</a></span>_connector</h2>
 
@@ -207,6 +212,8 @@ Private Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p class="definition">Definition at line <a class="el" href="home_controller_8cs_source.html#l00013">13</a> of file <a class="el" href="home_controller_8cs_source.html">homeController.cs</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="home_controller_8cs_source.html#l00016">HomeController()</a>.</p>
 
 </div>
 </div>
@@ -231,6 +238,8 @@ Private Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p class="definition">Definition at line <a class="el" href="home_controller_8cs_source.html#l00014">14</a> of file <a class="el" href="home_controller_8cs_source.html">homeController.cs</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="home_controller_8cs_source.html#l00016">HomeController()</a>.</p>
 
 </div>
 </div>

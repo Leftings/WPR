@@ -2,8 +2,7 @@
 \hypertarget{class_w_p_r_1_1_program}{}\label{class_w_p_r_1_1_program}\index{WPR.Program@{WPR.Program}}
 
 
-Collaboration diagram for WPR.\+Program\+:
-\nopagebreak
+Collaboration diagram for WPR.\+Program\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -35,6 +34,32 @@ static void WPR.\+Program.\+Main (\begin{DoxyParamCaption}\item[{string\mbox{[}$
 
 Definition at line \mbox{\hyperlink{_program_8cs_source_l00005}{5}} of file \mbox{\hyperlink{_program_8cs_source}{Program.\+cs}}.
 
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00006\ \ \ \ \ \{}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \ \ \ \ \ \ \ \ var\ app\ =\ AppConfigure.ConfigureApplication(args);}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \ \ \ \ \ \ \ \ \textcolor{keyword}{using}\ (var\ scope\ =\ app.Services.CreateScope())}
+\DoxyCodeLine{00011\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00012\ \ \ \ \ \ \ \ \ \ \ \ \ AppConfigure.InitDatabase(scope.ServiceProvider);}
+\DoxyCodeLine{00013\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \ \ \ \ \ \ \ \ app.Run();}
+\DoxyCodeLine{00016\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{_app_configure_8cs_source_l00048}{WPR.\+App\+Configure.\+Configure\+Application()}}, and \mbox{\hyperlink{_app_configure_8cs_source_l00024}{WPR.\+App\+Configure.\+Init\+Database()}}.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_w_p_r_1_1_program_af392a4477cf6bbb6174656a59193bcaf_cgraph}
+\end{center}
+\end{figure}
 
 
 The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}

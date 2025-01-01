@@ -1,0 +1,63 @@
+\doxysection{Employee.\+Controllers.\+validate\+User.\+Validate\+User\+Controller Class Referentie}
+\hypertarget{class_employee_1_1_controllers_1_1validate_user_1_1_validate_user_controller}{}\label{class_employee_1_1_controllers_1_1validate_user_1_1_validate_user_controller}\index{Employee.Controllers.validateUser.ValidateUserController@{Employee.Controllers.validateUser.ValidateUserController}}
+
+
+Klasse diagram voor Employee.\+Controllers.\+validate\+User.\+Validate\+User\+Controller\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=219pt]{class_employee_1_1_controllers_1_1validate_user_1_1_validate_user_controller__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboratie diagram voor Employee.\+Controllers.\+validate\+User.\+Validate\+User\+Controller\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=219pt]{class_employee_1_1_controllers_1_1validate_user_1_1_validate_user_controller__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Members}
+\begin{DoxyCompactItemize}
+\item 
+IAction\+Result \mbox{\hyperlink{class_employee_1_1_controllers_1_1validate_user_1_1_validate_user_controller_ac7bb8073c361501c0a410a847794aeba}{Check\+Session\+Staff}} ()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Gedetailleerde Beschrijving}
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{validate_user_controller_8cs_source_l00007}{7}} in het bestand \mbox{\hyperlink{validate_user_controller_8cs_source}{validate\+User\+Controller.\+cs}}.
+
+
+
+\doxysubsection{Documentatie van functie members}
+\Hypertarget{class_employee_1_1_controllers_1_1validate_user_1_1_validate_user_controller_ac7bb8073c361501c0a410a847794aeba}\index{Employee.Controllers.validateUser.ValidateUserController@{Employee.Controllers.validateUser.ValidateUserController}!CheckSessionStaff@{CheckSessionStaff}}
+\index{CheckSessionStaff@{CheckSessionStaff}!Employee.Controllers.validateUser.ValidateUserController@{Employee.Controllers.validateUser.ValidateUserController}}
+\doxysubsubsection{\texorpdfstring{CheckSessionStaff()}{CheckSessionStaff()}}
+{\footnotesize\ttfamily \label{class_employee_1_1_controllers_1_1validate_user_1_1_validate_user_controller_ac7bb8073c361501c0a410a847794aeba} 
+IAction\+Result Employee.\+Controllers.\+validate\+User.\+Validate\+User\+Controller.\+Check\+Session\+Staff (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{validate_user_controller_8cs_source_l00011}{11}} in het bestand \mbox{\hyperlink{validate_user_controller_8cs_source}{validate\+User\+Controller.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00012\ \ \ \ \ \{}
+\DoxyCodeLine{00013\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ sessionValue\ =\ Request.Cookies[\textcolor{stringliteral}{"{}LoginEmployeeSession"{}}];}
+\DoxyCodeLine{00014\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00015\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\textcolor{keywordtype}{string}.IsNullOrEmpty(sessionValue))}
+\DoxyCodeLine{00016\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00017\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Ok(\ \textcolor{keyword}{new}\ \{message\ =\ \textcolor{stringliteral}{"{}session\ active\ "{}},\ sessionValue\});}
+\DoxyCodeLine{00018\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00019\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Unauthorized(\textcolor{keyword}{new}\ \{\ message\ =\ \textcolor{stringliteral}{"{}Session\ expired\ or\ is\ not\ found"{}}\ \});}
+\DoxyCodeLine{00020\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+De documentatie voor deze klasse is gegenereerd op basis van het volgende bestand\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/codes/\+WPR/employee\+Backend/src/\+Controllers/validate\+User/\mbox{\hyperlink{validate_user_controller_8cs}{validate\+User\+Controller.\+cs}}\end{DoxyCompactItemize}

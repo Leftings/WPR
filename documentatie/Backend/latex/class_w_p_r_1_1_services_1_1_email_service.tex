@@ -2,8 +2,7 @@
 \hypertarget{class_w_p_r_1_1_services_1_1_email_service}{}\label{class_w_p_r_1_1_services_1_1_email_service}\index{WPR.Services.EmailService@{WPR.Services.EmailService}}
 
 
-Collaboration diagram for WPR.\+Services.\+Email\+Service\+:
-\nopagebreak
+Collaboration diagram for WPR.\+Services.\+Email\+Service\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -52,6 +51,17 @@ WPR.\+Services.\+Email\+Service.\+Email\+Service (\begin{DoxyParamCaption}\item[
 Definition at line \mbox{\hyperlink{_email_service_8cs_source_l00012}{12}} of file \mbox{\hyperlink{_email_service_8cs_source}{Email\+Service.\+cs}}.
 
 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00013\ \ \ \ \ \{}
+\DoxyCodeLine{00014\ \ \ \ \ \ \ \ \ \_envConfig\ =\ envConfig\ ??\ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ ArgumentNullException(nameof(envConfig));}
+\DoxyCodeLine{00015\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{_email_service_8cs_source_l00010}{\+\_\+env\+Config}}.
+
+
 
 \doxysubsection{Member Function Documentation}
 \Hypertarget{class_w_p_r_1_1_services_1_1_email_service_ae494002e0de59b64d18083d36162c657}\index{WPR.Services.EmailService@{WPR.Services.EmailService}!BuildRentalConfirmationBody@{BuildRentalConfirmationBody}}
@@ -64,6 +74,24 @@ string WPR.\+Services.\+Email\+Service.\+Build\+Rental\+Confirmation\+Body (\beg
 
 Definition at line \mbox{\hyperlink{_email_service_8cs_source_l00086}{86}} of file \mbox{\hyperlink{_email_service_8cs_source}{Email\+Service.\+cs}}.
 
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00087\ \ \ \ \ \{}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{\$@"{}}}
+\DoxyCodeLine{00089\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ <p>Bedankt\ voor\ het\ huren\ van\ een\ voertuig\ bij\ CarAndAll,</p> }}
+
+\end{DoxyCode}
+
+
+Referenced by \mbox{\hyperlink{_email_service_8cs_source_l00058}{Send\+Rental\+Confirm\+Mail()}}.
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_w_p_r_1_1_services_1_1_email_service_ae494002e0de59b64d18083d36162c657_icgraph}
+\end{center}
+\end{figure}
 \Hypertarget{class_w_p_r_1_1_services_1_1_email_service_ab31b08101a79b7e7634ccb24fb771d33}\index{WPR.Services.EmailService@{WPR.Services.EmailService}!CreateSmtpClient@{CreateSmtpClient}}
 \index{CreateSmtpClient@{CreateSmtpClient}!WPR.Services.EmailService@{WPR.Services.EmailService}}
 \doxysubsubsection{\texorpdfstring{CreateSmtpClient()}{CreateSmtpClient()}}
@@ -74,6 +102,36 @@ Smtp\+Client WPR.\+Services.\+Email\+Service.\+Create\+Smtp\+Client (\begin{Doxy
 
 Definition at line \mbox{\hyperlink{_email_service_8cs_source_l00017}{17}} of file \mbox{\hyperlink{_email_service_8cs_source}{Email\+Service.\+cs}}.
 
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00018\ \ \ \ \ \{}
+\DoxyCodeLine{00019\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{new}\ SmtpClient(\_envConfig.Get(\textcolor{stringliteral}{"{}SMTP\_HOST"{}})) }
+\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ \ \ \ \ Port\ =\ \textcolor{keywordtype}{int}.Parse(\_envConfig.Get(\textcolor{stringliteral}{"{}SMTP\_PORT"{}})),}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ \ \ \ \ Credentials\ =\ \textcolor{keyword}{new}\ NetworkCredential(}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \_envConfig.Get(\textcolor{stringliteral}{"{}SMTP\_FROM\_EMAIL"{}}),}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \_envConfig.Get(\textcolor{stringliteral}{"{}SMTP\_FROM\_PASSWORD"{}})}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ),}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \ \ \ \ EnableSsl\ =\ \textcolor{keyword}{true}}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00028\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{_email_service_8cs_source_l00010}{\+\_\+env\+Config}}.
+
+
+
+Referenced by \mbox{\hyperlink{_email_service_8cs_source_l00058}{Send\+Rental\+Confirm\+Mail()}}, and \mbox{\hyperlink{_email_service_8cs_source_l00030}{Send\+Welcome\+Email()}}.
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_w_p_r_1_1_services_1_1_email_service_ab31b08101a79b7e7634ccb24fb771d33_icgraph}
+\end{center}
+\end{figure}
 \Hypertarget{class_w_p_r_1_1_services_1_1_email_service_a23aed78b7ecd45ab31ca9acb6ce78b5e}\index{WPR.Services.EmailService@{WPR.Services.EmailService}!SendRentalConfirmMail@{SendRentalConfirmMail}}
 \index{SendRentalConfirmMail@{SendRentalConfirmMail}!WPR.Services.EmailService@{WPR.Services.EmailService}}
 \doxysubsubsection{\texorpdfstring{SendRentalConfirmMail()}{SendRentalConfirmMail()}}
@@ -84,6 +142,47 @@ async Task WPR.\+Services.\+Email\+Service.\+Send\+Rental\+Confirm\+Mail (\begin
 
 Definition at line \mbox{\hyperlink{_email_service_8cs_source_l00058}{58}} of file \mbox{\hyperlink{_email_service_8cs_source}{Email\+Service.\+cs}}.
 
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00059\ \ \ \ \ \{}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\textcolor{keywordtype}{string}.IsNullOrEmpty(toEmail))}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ ArgumentException(\textcolor{stringliteral}{"{}Email\ addresses\ cannot\ be\ null\ or\ empty"{}});}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }var\ smtpClient\ =\ CreateSmtpClient();}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }var\ mailMessage\ =\ \textcolor{keyword}{new}\ MailMessage}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ From\ =\ \textcolor{keyword}{new}\ MailAddress(\_envConfig.Get(\textcolor{stringliteral}{"{}SMTP\_FROM\_EMAIL"{}})),}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Subject\ =\ \textcolor{stringliteral}{"{}Verificatie\ Voertuig\ Huren"{}},}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Body\ =\ BuildRentalConfirmationBody(carName,\ carColor,\ carPlate,\ startDate,\ endDate,\ price),}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ IsBodyHtml\ =\ \textcolor{keyword}{true}}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \ \ \ \ mailMessage.To.Add(toEmail);}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \ \ \ \ await\ smtpClient.SendMailAsync(mailMessage);}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (Exception\ e)}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \ \ \ \ Console.WriteLine(e);}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw};}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00084\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{_email_service_8cs_source_l00010}{\+\_\+env\+Config}}, \mbox{\hyperlink{_email_service_8cs_source_l00086}{Build\+Rental\+Confirmation\+Body()}}, and \mbox{\hyperlink{_email_service_8cs_source_l00017}{Create\+Smtp\+Client()}}.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_w_p_r_1_1_services_1_1_email_service_a23aed78b7ecd45ab31ca9acb6ce78b5e_cgraph}
+\end{center}
+\end{figure}
 \Hypertarget{class_w_p_r_1_1_services_1_1_email_service_a00a227fa3bbc1b22634908be5be363ef}\index{WPR.Services.EmailService@{WPR.Services.EmailService}!SendWelcomeEmail@{SendWelcomeEmail}}
 \index{SendWelcomeEmail@{SendWelcomeEmail}!WPR.Services.EmailService@{WPR.Services.EmailService}}
 \doxysubsubsection{\texorpdfstring{SendWelcomeEmail()}{SendWelcomeEmail()}}
@@ -95,8 +194,49 @@ async Task WPR.\+Services.\+Email\+Service.\+Send\+Welcome\+Email (\begin{DoxyPa
 Definition at line \mbox{\hyperlink{_email_service_8cs_source_l00030}{30}} of file \mbox{\hyperlink{_email_service_8cs_source}{Email\+Service.\+cs}}.
 
 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00031\ \ \ \ \ \{\ \ \ \ \ }
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\textcolor{keywordtype}{string}.IsNullOrEmpty(toEmail))}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ ArgumentException(\textcolor{stringliteral}{"{}Email\ addresses\ cannot\ be\ null\ or\ empty"{}});}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }var\ smtpClient\ =\ CreateSmtpClient();}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }var\ mailMessage\ =\ \textcolor{keyword}{new}\ MailMessage}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ From\ =\ \textcolor{keyword}{new}\ MailAddress(\_envConfig.Get(\textcolor{stringliteral}{"{}SMTP\_FROM\_EMAIL"{}})),}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Subject\ =\ \textcolor{stringliteral}{"{}Welkom\ bij\ CarAndAll"{}},}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Body\ =\ \$\textcolor{stringliteral}{"{}Welkom\ bij\ CarAndAll"{}},}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ IsBodyHtml\ =\ \textcolor{keyword}{true}}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \ \ \ \ mailMessage.To.Add(toEmail);}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \ \ \ \ await\ smtpClient.SendMailAsync(mailMessage);}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (Exception\ e)}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \ \ \ \ Console.WriteLine(e);}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw};}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00056\ \ \ \ \ \}}
 
-\doxysubsection{Member Data Documentation}
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{_email_service_8cs_source_l00010}{\+\_\+env\+Config}}, and \mbox{\hyperlink{_email_service_8cs_source_l00017}{Create\+Smtp\+Client()}}.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_w_p_r_1_1_services_1_1_email_service_a00a227fa3bbc1b22634908be5be363ef_cgraph}
+\end{center}
+\end{figure}
+
+
+\doxysubsection{Field Documentation}
 \Hypertarget{class_w_p_r_1_1_services_1_1_email_service_a1b24680ee23b68d526051d9c96e50536}\index{WPR.Services.EmailService@{WPR.Services.EmailService}!\_envConfig@{\_envConfig}}
 \index{\_envConfig@{\_envConfig}!WPR.Services.EmailService@{WPR.Services.EmailService}}
 \doxysubsubsection{\texorpdfstring{\_envConfig}{\_envConfig}}
@@ -106,6 +246,10 @@ readonly \mbox{\hyperlink{class_w_p_r_1_1_data_1_1_env_config}{Env\+Config}} WPR
 
 
 Definition at line \mbox{\hyperlink{_email_service_8cs_source_l00010}{10}} of file \mbox{\hyperlink{_email_service_8cs_source}{Email\+Service.\+cs}}.
+
+
+
+Referenced by \mbox{\hyperlink{_email_service_8cs_source_l00017}{Create\+Smtp\+Client()}}, \mbox{\hyperlink{_email_service_8cs_source_l00012}{Email\+Service()}}, \mbox{\hyperlink{_email_service_8cs_source_l00058}{Send\+Rental\+Confirm\+Mail()}}, and \mbox{\hyperlink{_email_service_8cs_source_l00030}{Send\+Welcome\+Email()}}.
 
 
 

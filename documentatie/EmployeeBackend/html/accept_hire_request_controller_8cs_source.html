@@ -1,0 +1,244 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="nl">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.13.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>WPR - EmployeeBackend: D:/codes/WPR/employeeBackend/src/Controllers/acceptHireRequest/acceptHireRequestController.cs Bron Bestand</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+  $(function() { init_search(); });
+/* @license-end */
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">WPR - EmployeeBackend
+   </div>
+  </td>
+    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect"                onmouseover="return searchBox.OnSearchSelectShow()"                onmouseout="return searchBox.OnSearchSelectHide()">&#160;</span>
+          <input type="text" id="MSearchField" value="" placeholder="Zoeken" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Gegenereerd door Doxygen 1.13.0 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){initNavTree('accept_hire_request_controller_8cs_source.html',''); initResizable(true); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Laden...</div>
+<div class="SRStatus" id="Searching">Zoeken...</div>
+<div class="SRStatus" id="NoMatches">Niets gevonden</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">acceptHireRequestController.cs</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="accept_hire_request_controller_8cs.html">Ga naar de documentatie van dit bestand.</a><div class="fragment"><div class="foldopen" id="foldopen00001" data-start="{" data-end="}">
+<div class="line"><a id="l00001" name="l00001"></a><span class="lineno"><a class="line" href="namespace_employee.html">    1</a></span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespace_employee_1_1_controllers_1_1accept_hire_request.html">Employee.Controllers.acceptHireRequest</a>;</div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span> </div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="keyword">using </span>Microsoft.AspNetCore.Mvc;</div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="keyword">using </span><a class="code hl_namespace" href="namespace_employee_1_1_database.html">Employee.Database</a>;</div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="keyword">using </span>System;</div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="keyword">using </span>MySqlX.XDevAPI.Common;</div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="keyword">using </span><a class="code hl_namespace" href="namespace_employee_1_1_repository.html">Employee.Repository</a>;</div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="keyword">using </span>MySql.Data.MySqlClient;</div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="keyword">using </span><a class="code hl_namespace" href="namespace_employee_1_1_cryption.html">Employee.Cryption</a>;</div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span> </div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span>[ApiController]</div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span>[Route(<span class="stringliteral">&quot;api/[controller]&quot;</span>)]</div>
+<div class="foldopen" id="foldopen00013" data-start="{" data-end="};">
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno"><a class="line" href="class_employee_1_1_controllers_1_1accept_hire_request_1_1_accept_hire_request_controller.html">   13</a></span><span class="keyword">public</span> <span class="keyword">class </span><a class="code hl_function" href="class_employee_1_1_controllers_1_1accept_hire_request_1_1_accept_hire_request_controller.html#af30767d35a19b0c6d5bb6516d6e22741">AcceptHireRequestController</a> : ControllerBase</div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>{</div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno"><a class="line" href="class_employee_1_1_controllers_1_1accept_hire_request_1_1_accept_hire_request_controller.html#af151ced993d955f352e4e2c99e5d2273">   15</a></span>    <span class="keyword">private</span> readonly <a class="code hl_class" href="class_employee_1_1_database_1_1_connector.html">Connector</a> <a class="code hl_variable" href="class_employee_1_1_controllers_1_1accept_hire_request_1_1_accept_hire_request_controller.html#af151ced993d955f352e4e2c99e5d2273">_connector</a>;</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno"><a class="line" href="class_employee_1_1_controllers_1_1accept_hire_request_1_1_accept_hire_request_controller.html#acfd847d79bd88d66692ebd3828cfaf6c">   16</a></span>    <span class="keyword">private</span> readonly <a class="code hl_interface" href="interface_employee_1_1_repository_1_1_i_user_repository.html">IUserRepository</a> <a class="code hl_variable" href="class_employee_1_1_controllers_1_1accept_hire_request_1_1_accept_hire_request_controller.html#acfd847d79bd88d66692ebd3828cfaf6c">_userRepository</a>;</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno"><a class="line" href="class_employee_1_1_controllers_1_1accept_hire_request_1_1_accept_hire_request_controller.html#a4e522f7fe25efcde2deaf12c0fd0b6a5">   17</a></span>    <span class="keyword">private</span> readonly <a class="code hl_class" href="class_employee_1_1_cryption_1_1_crypt.html">Crypt</a> <a class="code hl_variable" href="class_employee_1_1_controllers_1_1accept_hire_request_1_1_accept_hire_request_controller.html#a4e522f7fe25efcde2deaf12c0fd0b6a5">_crypt</a>;</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span> </div>
+<div class="foldopen" id="foldopen00019" data-start="{" data-end="}">
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno"><a class="line" href="class_employee_1_1_controllers_1_1accept_hire_request_1_1_accept_hire_request_controller.html#af30767d35a19b0c6d5bb6516d6e22741">   19</a></span>    <span class="keyword">public</span> <a class="code hl_function" href="class_employee_1_1_controllers_1_1accept_hire_request_1_1_accept_hire_request_controller.html#af30767d35a19b0c6d5bb6516d6e22741">AcceptHireRequestController</a>(<a class="code hl_class" href="class_employee_1_1_database_1_1_connector.html">Connector</a> connector, <a class="code hl_interface" href="interface_employee_1_1_repository_1_1_i_user_repository.html">IUserRepository</a> userRepository, <a class="code hl_class" href="class_employee_1_1_cryption_1_1_crypt.html">Crypt</a> crypt)</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>    {</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>        <a class="code hl_variable" href="class_employee_1_1_controllers_1_1accept_hire_request_1_1_accept_hire_request_controller.html#af151ced993d955f352e4e2c99e5d2273">_connector</a> = connector ?? <span class="keywordflow">throw</span> <span class="keyword">new</span> ArgumentNullException(nameof(connector));</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>        <a class="code hl_variable" href="class_employee_1_1_controllers_1_1accept_hire_request_1_1_accept_hire_request_controller.html#acfd847d79bd88d66692ebd3828cfaf6c">_userRepository</a> = userRepository ?? <span class="keywordflow">throw</span> <span class="keyword">new</span> ArgumentNullException(nameof(userRepository));</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>        <a class="code hl_variable" href="class_employee_1_1_controllers_1_1accept_hire_request_1_1_accept_hire_request_controller.html#a4e522f7fe25efcde2deaf12c0fd0b6a5">_crypt</a> = crypt ?? <span class="keywordflow">throw</span> <span class="keyword">new</span> ArgumentNullException(nameof(crypt));</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>    }</div>
+</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span> </div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>    <span class="comment">// Alle ids van de aanvragen worden opgehaald</span></div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>    [HttpGet(<span class="stringliteral">&quot;getReviewsIds&quot;</span>)]</div>
+<div class="foldopen" id="foldopen00028" data-start="{" data-end="}">
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno"><a class="line" href="class_employee_1_1_controllers_1_1accept_hire_request_1_1_accept_hire_request_controller.html#ae3d5a7679299172c8fb6121d9e1b1a6d">   28</a></span>    <span class="keyword">public</span> async Task&lt;IActionResult&gt; <a class="code hl_function" href="class_employee_1_1_controllers_1_1accept_hire_request_1_1_accept_hire_request_controller.html#ae3d5a7679299172c8fb6121d9e1b1a6d">GetReviewsIdsAsync</a>(<span class="keywordtype">string</span> user)</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>    {</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>        var ids = await <a class="code hl_variable" href="class_employee_1_1_controllers_1_1accept_hire_request_1_1_accept_hire_request_controller.html#acfd847d79bd88d66692ebd3828cfaf6c">_userRepository</a>.GetReviewIdsAsync(user, <a class="code hl_function" href="class_employee_1_1_controllers_1_1accept_hire_request_1_1_accept_hire_request_controller.html#aba9650bd220b2cb4dedf917054c67ba2">GetCurrentUserId</a>());</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>        <span class="keywordflow">return</span> Ok(<span class="keyword">new</span> { message = ids.ids});</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>    }</div>
+</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span> </div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>    <span class="comment">// De gegevens van een specifieke id worden opgehaald</span></div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    [HttpGet(<span class="stringliteral">&quot;getReview&quot;</span>)]</div>
+<div class="foldopen" id="foldopen00036" data-start="{" data-end="}">
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno"><a class="line" href="class_employee_1_1_controllers_1_1accept_hire_request_1_1_accept_hire_request_controller.html#a014d4b42cccb4fa36b26fa6b7ff91fed">   36</a></span>    <span class="keyword">public</span> async Task&lt;IActionResult&gt; <a class="code hl_function" href="class_employee_1_1_controllers_1_1accept_hire_request_1_1_accept_hire_request_controller.html#a014d4b42cccb4fa36b26fa6b7ff91fed">GetReviewAsync</a>(<span class="keywordtype">string</span> <span class="keywordtype">id</span>)</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    {</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>        var review = await <a class="code hl_variable" href="class_employee_1_1_controllers_1_1accept_hire_request_1_1_accept_hire_request_controller.html#acfd847d79bd88d66692ebd3828cfaf6c">_userRepository</a>.GetReviewAsync(<span class="keywordtype">id</span>);</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>        <span class="keywordflow">return</span> Ok(<span class="keyword">new</span> { message = review.data });</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    }</div>
+</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span> </div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    <span class="comment">// Een aanvraag kan beantwoord worden</span></div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    [HttpPatch(<span class="stringliteral">&quot;answerHireRequest&quot;</span>)]</div>
+<div class="foldopen" id="foldopen00044" data-start="{" data-end="}">
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno"><a class="line" href="class_employee_1_1_controllers_1_1accept_hire_request_1_1_accept_hire_request_controller.html#a6a07e70f8d5bfdcf6d15239e555139bd">   44</a></span>    <span class="keyword">public</span> async Task&lt;IActionResult&gt; <a class="code hl_function" href="class_employee_1_1_controllers_1_1accept_hire_request_1_1_accept_hire_request_controller.html#a6a07e70f8d5bfdcf6d15239e555139bd">AnswerHireRequestAsync</a>([FromBody] <a class="code hl_class" href="class_employee_1_1_controllers_1_1accept_hire_request_1_1_hire_request.html">HireRequest</a> request)</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    {</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>        <span class="keywordflow">if</span> (request == <span class="keyword">null</span>)</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>        {</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>            <span class="keywordflow">return</span> BadRequest(<span class="keyword">new</span> { message = <span class="stringliteral">&quot;Invalid request body&quot;</span> });</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>        }</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span> </div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>        var setStatus = await <a class="code hl_variable" href="class_employee_1_1_controllers_1_1accept_hire_request_1_1_accept_hire_request_controller.html#acfd847d79bd88d66692ebd3828cfaf6c">_userRepository</a>.SetStatusAsync(request.Id.ToString(), request.Status, <a class="code hl_function" href="class_employee_1_1_controllers_1_1accept_hire_request_1_1_accept_hire_request_controller.html#aba9650bd220b2cb4dedf917054c67ba2">GetCurrentUserId</a>(), request.userType);</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span> </div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>        <span class="keywordflow">if</span> (setStatus.status)</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>        {</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>            <span class="keywordflow">return</span> Ok(<span class="keyword">new</span> { message = setStatus.message });</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>        }</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span> </div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>        <span class="keywordflow">return</span> BadRequest(<span class="keyword">new</span> { message = setStatus.message });</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>    }</div>
+</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span> </div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>    <span class="comment">// Huidige user id wordt opgehaald</span></div>
+<div class="foldopen" id="foldopen00062" data-start="{" data-end="}">
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno"><a class="line" href="class_employee_1_1_controllers_1_1accept_hire_request_1_1_accept_hire_request_controller.html#aba9650bd220b2cb4dedf917054c67ba2">   62</a></span>    <span class="keyword">private</span> <span class="keywordtype">string</span> <a class="code hl_function" href="class_employee_1_1_controllers_1_1accept_hire_request_1_1_accept_hire_request_controller.html#aba9650bd220b2cb4dedf917054c67ba2">GetCurrentUserId</a>()</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>    {</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>        <span class="comment">// Alleen de cookie van Employee of Vehicle Manager bestaat</span></div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>        <span class="keywordtype">string</span> loginCookie = HttpContext.Request.Cookies[<span class="stringliteral">&quot;LoginEmployeeSession&quot;</span>];</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>        <span class="keywordtype">string</span> loginCookie2 = HttpContext.Request.Cookies[<span class="stringliteral">&quot;LoginVehicleManagerSession&quot;</span>];</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span> </div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>        <span class="keywordflow">try</span></div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>        {</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>            <span class="keywordflow">if</span> (!<span class="keywordtype">string</span>.IsNullOrEmpty(loginCookie))</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>            {</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>                <span class="keywordflow">return</span> <a class="code hl_variable" href="class_employee_1_1_controllers_1_1accept_hire_request_1_1_accept_hire_request_controller.html#a4e522f7fe25efcde2deaf12c0fd0b6a5">_crypt</a>.Decrypt(loginCookie);</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>            }</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>            <span class="keywordflow">else</span> <span class="keywordflow">if</span> (!<span class="keywordtype">string</span>.IsNullOrEmpty(loginCookie2))</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>            {</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>                <span class="keywordflow">return</span> <a class="code hl_variable" href="class_employee_1_1_controllers_1_1accept_hire_request_1_1_accept_hire_request_controller.html#a4e522f7fe25efcde2deaf12c0fd0b6a5">_crypt</a>.Decrypt(loginCookie2);</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>            }</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>            <span class="keywordflow">else</span></div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>            {</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>                <span class="keywordflow">throw</span> <span class="keyword">new</span> Exception(<span class="stringliteral">&quot;No (valid) cookie&quot;</span>);</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>            }</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>        }</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>        <span class="keywordflow">catch</span></div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>        {</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>            <span class="comment">// Ongeldig cookie wordt meteen verwijderd</span></div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>            Response.Cookies.Append(<span class="stringliteral">&quot;LoginEmployeeSession&quot;</span>, <span class="stringliteral">&quot;Invalid cookie&quot;</span>, <span class="keyword">new</span> CookieOptions</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>            {</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>                HttpOnly = <span class="keyword">true</span>,</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>                Secure = <span class="keyword">true</span>,</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>                Expires = DateTimeOffset.UtcNow.AddDays(-1)</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>            });</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span> </div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>            <span class="keywordflow">throw</span> <span class="keyword">new</span> Exception(<span class="stringliteral">&quot;Invalid Cookie&quot;</span>);</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>        }</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>    }</div>
+</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>}</div>
+</div>
+</div>
+<div class="ttc" id="aclass_employee_1_1_controllers_1_1accept_hire_request_1_1_accept_hire_request_controller_html_a014d4b42cccb4fa36b26fa6b7ff91fed"><div class="ttname"><a href="class_employee_1_1_controllers_1_1accept_hire_request_1_1_accept_hire_request_controller.html#a014d4b42cccb4fa36b26fa6b7ff91fed">Employee.Controllers.acceptHireRequest.AcceptHireRequestController.GetReviewAsync</a></div><div class="ttdeci">async Task&lt; IActionResult &gt; GetReviewAsync(string id)</div><div class="ttdef"><b>Definitie</b> <a href="#l00036">acceptHireRequestController.cs:36</a></div></div>
+<div class="ttc" id="aclass_employee_1_1_controllers_1_1accept_hire_request_1_1_accept_hire_request_controller_html_a4e522f7fe25efcde2deaf12c0fd0b6a5"><div class="ttname"><a href="class_employee_1_1_controllers_1_1accept_hire_request_1_1_accept_hire_request_controller.html#a4e522f7fe25efcde2deaf12c0fd0b6a5">Employee.Controllers.acceptHireRequest.AcceptHireRequestController._crypt</a></div><div class="ttdeci">readonly Crypt _crypt</div><div class="ttdef"><b>Definitie</b> <a href="#l00017">acceptHireRequestController.cs:17</a></div></div>
+<div class="ttc" id="aclass_employee_1_1_controllers_1_1accept_hire_request_1_1_accept_hire_request_controller_html_a6a07e70f8d5bfdcf6d15239e555139bd"><div class="ttname"><a href="class_employee_1_1_controllers_1_1accept_hire_request_1_1_accept_hire_request_controller.html#a6a07e70f8d5bfdcf6d15239e555139bd">Employee.Controllers.acceptHireRequest.AcceptHireRequestController.AnswerHireRequestAsync</a></div><div class="ttdeci">async Task&lt; IActionResult &gt; AnswerHireRequestAsync([FromBody] HireRequest request)</div><div class="ttdef"><b>Definitie</b> <a href="#l00044">acceptHireRequestController.cs:44</a></div></div>
+<div class="ttc" id="aclass_employee_1_1_controllers_1_1accept_hire_request_1_1_accept_hire_request_controller_html_aba9650bd220b2cb4dedf917054c67ba2"><div class="ttname"><a href="class_employee_1_1_controllers_1_1accept_hire_request_1_1_accept_hire_request_controller.html#aba9650bd220b2cb4dedf917054c67ba2">Employee.Controllers.acceptHireRequest.AcceptHireRequestController.GetCurrentUserId</a></div><div class="ttdeci">string GetCurrentUserId()</div><div class="ttdef"><b>Definitie</b> <a href="#l00062">acceptHireRequestController.cs:62</a></div></div>
+<div class="ttc" id="aclass_employee_1_1_controllers_1_1accept_hire_request_1_1_accept_hire_request_controller_html_acfd847d79bd88d66692ebd3828cfaf6c"><div class="ttname"><a href="class_employee_1_1_controllers_1_1accept_hire_request_1_1_accept_hire_request_controller.html#acfd847d79bd88d66692ebd3828cfaf6c">Employee.Controllers.acceptHireRequest.AcceptHireRequestController._userRepository</a></div><div class="ttdeci">readonly IUserRepository _userRepository</div><div class="ttdef"><b>Definitie</b> <a href="#l00016">acceptHireRequestController.cs:16</a></div></div>
+<div class="ttc" id="aclass_employee_1_1_controllers_1_1accept_hire_request_1_1_accept_hire_request_controller_html_ae3d5a7679299172c8fb6121d9e1b1a6d"><div class="ttname"><a href="class_employee_1_1_controllers_1_1accept_hire_request_1_1_accept_hire_request_controller.html#ae3d5a7679299172c8fb6121d9e1b1a6d">Employee.Controllers.acceptHireRequest.AcceptHireRequestController.GetReviewsIdsAsync</a></div><div class="ttdeci">async Task&lt; IActionResult &gt; GetReviewsIdsAsync(string user)</div><div class="ttdef"><b>Definitie</b> <a href="#l00028">acceptHireRequestController.cs:28</a></div></div>
+<div class="ttc" id="aclass_employee_1_1_controllers_1_1accept_hire_request_1_1_accept_hire_request_controller_html_af151ced993d955f352e4e2c99e5d2273"><div class="ttname"><a href="class_employee_1_1_controllers_1_1accept_hire_request_1_1_accept_hire_request_controller.html#af151ced993d955f352e4e2c99e5d2273">Employee.Controllers.acceptHireRequest.AcceptHireRequestController._connector</a></div><div class="ttdeci">readonly Connector _connector</div><div class="ttdef"><b>Definitie</b> <a href="#l00015">acceptHireRequestController.cs:15</a></div></div>
+<div class="ttc" id="aclass_employee_1_1_controllers_1_1accept_hire_request_1_1_accept_hire_request_controller_html_af30767d35a19b0c6d5bb6516d6e22741"><div class="ttname"><a href="class_employee_1_1_controllers_1_1accept_hire_request_1_1_accept_hire_request_controller.html#af30767d35a19b0c6d5bb6516d6e22741">Employee.Controllers.acceptHireRequest.AcceptHireRequestController.AcceptHireRequestController</a></div><div class="ttdeci">AcceptHireRequestController(Connector connector, IUserRepository userRepository, Crypt crypt)</div><div class="ttdef"><b>Definitie</b> <a href="#l00019">acceptHireRequestController.cs:19</a></div></div>
+<div class="ttc" id="aclass_employee_1_1_controllers_1_1accept_hire_request_1_1_hire_request_html"><div class="ttname"><a href="class_employee_1_1_controllers_1_1accept_hire_request_1_1_hire_request.html">Employee.Controllers.acceptHireRequest.HireRequest</a></div><div class="ttdef"><b>Definitie</b> <a href="hire_request_8cs_source.html#l00006">hireRequest.cs:7</a></div></div>
+<div class="ttc" id="aclass_employee_1_1_cryption_1_1_crypt_html"><div class="ttname"><a href="class_employee_1_1_cryption_1_1_crypt.html">Employee.Cryption.Crypt</a></div><div class="ttdef"><b>Definitie</b> <a href="crypt_8cs_source.html#l00008">crypt.cs:9</a></div></div>
+<div class="ttc" id="aclass_employee_1_1_database_1_1_connector_html"><div class="ttname"><a href="class_employee_1_1_database_1_1_connector.html">Employee.Database.Connector</a></div><div class="ttdef"><b>Definitie</b> <a href="_connector_8cs_source.html#l00017">Connector.cs:18</a></div></div>
+<div class="ttc" id="ainterface_employee_1_1_repository_1_1_i_user_repository_html"><div class="ttname"><a href="interface_employee_1_1_repository_1_1_i_user_repository.html">Employee.Repository.IUserRepository</a></div><div class="ttdoc">Interface defining methods voor user gerelateerde database operaties, validatie, user management,...</div><div class="ttdef"><b>Definitie</b> <a href="_i_user_repository_8cs_source.html#l00014">IUserRepository.cs:15</a></div></div>
+<div class="ttc" id="anamespace_employee_1_1_controllers_1_1accept_hire_request_html"><div class="ttname"><a href="namespace_employee_1_1_controllers_1_1accept_hire_request.html">Employee.Controllers.acceptHireRequest</a></div><div class="ttdef"><b>Definitie</b> <a href="#l00001">acceptHireRequestController.cs:1</a></div></div>
+<div class="ttc" id="anamespace_employee_1_1_cryption_html"><div class="ttname"><a href="namespace_employee_1_1_cryption.html">Employee.Cryption</a></div><div class="ttdef"><b>Definitie</b> <a href="crypt_8cs_source.html#l00001">crypt.cs:1</a></div></div>
+<div class="ttc" id="anamespace_employee_1_1_database_html"><div class="ttname"><a href="namespace_employee_1_1_database.html">Employee.Database</a></div><div class="ttdef"><b>Definitie</b> <a href="_connector_8cs_source.html#l00005">Connector.cs:5</a></div></div>
+<div class="ttc" id="anamespace_employee_1_1_repository_html"><div class="ttname"><a href="namespace_employee_1_1_repository.html">Employee.Repository</a></div><div class="ttdef"><b>Definitie</b> <a href="_i_user_repository_8cs_source.html#l00004">IUserRepository.cs:4</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_bc012ee3045d956d5d0dee760c7871d5.html">employeeBackend</a></li><li class="navelem"><a class="el" href="dir_00ca091921162207a98cadacde6bb2a3.html">src</a></li><li class="navelem"><a class="el" href="dir_89353b811f7aa55cf15c444e8ddfaa0c.html">Controllers</a></li><li class="navelem"><a class="el" href="dir_0587da469f00f9df8e343ab77856f007.html">acceptHireRequest</a></li><li class="navelem"><a class="el" href="accept_hire_request_controller_8cs.html">acceptHireRequestController.cs</a></li>
+    <li class="footer">Gegenereerd door <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.0 </li>
+  </ul>
+</div>
+</body>
+</html>

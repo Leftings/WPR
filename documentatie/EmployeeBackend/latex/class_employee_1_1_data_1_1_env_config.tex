@@ -1,0 +1,176 @@
+\doxysection{Employee.\+Data.\+Env\+Config Class Referentie}
+\hypertarget{class_employee_1_1_data_1_1_env_config}{}\label{class_employee_1_1_data_1_1_env_config}\index{Employee.Data.EnvConfig@{Employee.Data.EnvConfig}}
+
+
+Leez het .env bestand uit waarin de connectie strings staan naar de database. Deze staan in een apart bestand buiten de git repo, zodat mensen van buiten niet met de database kunnen verbinden.  
+
+
+
+
+Collaboratie diagram voor Employee.\+Data.\+Env\+Config\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=204pt]{class_employee_1_1_data_1_1_env_config__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Members}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_employee_1_1_data_1_1_env_config_ac9c96b167e76f72a44f17145ce82c22f}{Env\+Config}} ()
+\item 
+virtual string \mbox{\hyperlink{class_employee_1_1_data_1_1_env_config_a4f5fd76aedc3c3cdfb96244287c559dc}{Get}} (string key)
+\begin{DoxyCompactList}\small\item\em Haalt de value van de specifieke environement variabelen. \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{class_employee_1_1_data_1_1_env_config_ab3d0850748829eb272295f7b4e9752f1}{Is\+Configured}} ()
+\begin{DoxyCompactList}\small\item\em Check om te kijken of alle environment variabelen geconfigureerd zijn. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributen}
+\begin{DoxyCompactItemize}
+\item 
+readonly IConfiguration \mbox{\hyperlink{class_employee_1_1_data_1_1_env_config_a554040b445f17cd4424ad00e7b7a0bc5}{\+\_\+configuration}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Gedetailleerde Beschrijving}
+Leez het .env bestand uit waarin de connectie strings staan naar de database. Deze staan in een apart bestand buiten de git repo, zodat mensen van buiten niet met de database kunnen verbinden. 
+
+De definitie bevindt zich op regel \mbox{\hyperlink{_env_config_8cs_source_l00012}{12}} in het bestand \mbox{\hyperlink{_env_config_8cs_source}{Env\+Config.\+cs}}.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentatie}
+\Hypertarget{class_employee_1_1_data_1_1_env_config_ac9c96b167e76f72a44f17145ce82c22f}\index{Employee.Data.EnvConfig@{Employee.Data.EnvConfig}!EnvConfig@{EnvConfig}}
+\index{EnvConfig@{EnvConfig}!Employee.Data.EnvConfig@{Employee.Data.EnvConfig}}
+\doxysubsubsection{\texorpdfstring{EnvConfig()}{EnvConfig()}}
+{\footnotesize\ttfamily \label{class_employee_1_1_data_1_1_env_config_ac9c96b167e76f72a44f17145ce82c22f} 
+Employee.\+Data.\+Env\+Config.\+Env\+Config (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{_env_config_8cs_source_l00016}{16}} in het bestand \mbox{\hyperlink{_env_config_8cs_source}{Env\+Config.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00017\ \ \ \ \ \{}
+\DoxyCodeLine{00018\ \ \ \ \ \ \ \ \ DotEnv.Load();\ \ \textcolor{comment}{//\ Gebruikt\ de\ dotenv.net\ library\ om\ het\ bestand\ te\ laden}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ var\ builder\ =\ \textcolor{keyword}{new}\ ConfigurationBuilder()}
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ \ \ \ \ .AddEnvironmentVariables();\ \textcolor{comment}{//\ Voegt\ de\ environment\ variabelen\ aan\ de\ ConfigurationBuilder}}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \_configuration\ =\ builder.Build();\ \textcolor{comment}{//\ Bouwt\ het\ configuratie\ object}}
+\DoxyCodeLine{00024\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+Gebruikt \mbox{\hyperlink{_env_config_8cs_source_l00014}{\+\_\+configuration}}.
+
+
+
+\doxysubsection{Documentatie van functie members}
+\Hypertarget{class_employee_1_1_data_1_1_env_config_a4f5fd76aedc3c3cdfb96244287c559dc}\index{Employee.Data.EnvConfig@{Employee.Data.EnvConfig}!Get@{Get}}
+\index{Get@{Get}!Employee.Data.EnvConfig@{Employee.Data.EnvConfig}}
+\doxysubsubsection{\texorpdfstring{Get()}{Get()}}
+{\footnotesize\ttfamily \label{class_employee_1_1_data_1_1_env_config_a4f5fd76aedc3c3cdfb96244287c559dc} 
+virtual string Employee.\+Data.\+Env\+Config.\+Get (\begin{DoxyParamCaption}\item[{string}]{key}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Haalt de value van de specifieke environement variabelen. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em key} & Ophalen environment variabele key.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retourneert}
+De value van de specifieke environment variabele, of null als niet gevonden.
+\end{DoxyReturn}
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{_env_config_8cs_source_l00031}{31}} in het bestand \mbox{\hyperlink{_env_config_8cs_source}{Env\+Config.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00032\ \ \ \ \ \{}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ var\ value\ =\ \_configuration[key];\ \textcolor{comment}{//\ Fetch\ de\ value\ van\ de\ gegeven\ key}}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\textcolor{keywordtype}{string}.IsNullOrEmpty(value))\ }
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \ \ \ \ Console.WriteLine(\$\textcolor{stringliteral}{"{}Warning\ \{key\}\ not\ found\ in\ environment"{}});}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ value;}
+\DoxyCodeLine{00039\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+Gebruikt \mbox{\hyperlink{_env_config_8cs_source_l00014}{\+\_\+configuration}}.
+
+
+
+Wordt aangeroepen door \mbox{\hyperlink{hash_8cs_source_l00010}{Employee.\+Hashing.\+Hash.\+Hash()}} en \mbox{\hyperlink{_env_config_8cs_source_l00045}{Is\+Configured()}}.
+
+Hier is de caller graaf voor deze functie\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_employee_1_1_data_1_1_env_config_a4f5fd76aedc3c3cdfb96244287c559dc_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_employee_1_1_data_1_1_env_config_ab3d0850748829eb272295f7b4e9752f1}\index{Employee.Data.EnvConfig@{Employee.Data.EnvConfig}!IsConfigured@{IsConfigured}}
+\index{IsConfigured@{IsConfigured}!Employee.Data.EnvConfig@{Employee.Data.EnvConfig}}
+\doxysubsubsection{\texorpdfstring{IsConfigured()}{IsConfigured()}}
+{\footnotesize\ttfamily \label{class_employee_1_1_data_1_1_env_config_ab3d0850748829eb272295f7b4e9752f1} 
+virtual bool Employee.\+Data.\+Env\+Config.\+Is\+Configured (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Check om te kijken of alle environment variabelen geconfigureerd zijn. 
+
+\begin{DoxyReturn}{Retourneert}
+True als alle keys present zijn, anders False.
+\end{DoxyReturn}
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{_env_config_8cs_source_l00045}{45}} in het bestand \mbox{\hyperlink{_env_config_8cs_source}{Env\+Config.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00046\ \ \ \ \ \{}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ var\ requiredKeys\ =\ \textcolor{keyword}{new}[]\ \{\ \textcolor{stringliteral}{"{}DB\_SERVER"{}},\ \textcolor{stringliteral}{"{}DB\_DATABASE"{}},\ \textcolor{stringliteral}{"{}DB\_USERNAME"{}},\ \textcolor{stringliteral}{"{}DB\_PASSWORD"{}}\ \};}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ requiredKeys.All(key\ =>\ !\textcolor{keywordtype}{string}.IsNullOrEmpty(Get(key)));}
+\DoxyCodeLine{00049\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+Gebruikt \mbox{\hyperlink{_env_config_8cs_source_l00031}{Get()}}.
+
+Hier is de call graaf voor deze functie\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_employee_1_1_data_1_1_env_config_ab3d0850748829eb272295f7b4e9752f1_cgraph}
+\end{center}
+\end{figure}
+
+
+\doxysubsection{Documentatie van data members}
+\Hypertarget{class_employee_1_1_data_1_1_env_config_a554040b445f17cd4424ad00e7b7a0bc5}\index{Employee.Data.EnvConfig@{Employee.Data.EnvConfig}!\_configuration@{\_configuration}}
+\index{\_configuration@{\_configuration}!Employee.Data.EnvConfig@{Employee.Data.EnvConfig}}
+\doxysubsubsection{\texorpdfstring{\_configuration}{\_configuration}}
+{\footnotesize\ttfamily \label{class_employee_1_1_data_1_1_env_config_a554040b445f17cd4424ad00e7b7a0bc5} 
+readonly IConfiguration Employee.\+Data.\+Env\+Config.\+\_\+configuration\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{_env_config_8cs_source_l00014}{14}} in het bestand \mbox{\hyperlink{_env_config_8cs_source}{Env\+Config.\+cs}}.
+
+
+
+Wordt aangeroepen door \mbox{\hyperlink{_env_config_8cs_source_l00016}{Env\+Config()}} en \mbox{\hyperlink{_env_config_8cs_source_l00031}{Get()}}.
+
+
+
+De documentatie voor deze klasse is gegenereerd op basis van het volgende bestand\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/codes/\+WPR/employee\+Backend/src/\+Data/\mbox{\hyperlink{_env_config_8cs}{Env\+Config.\+cs}}\end{DoxyCompactItemize}

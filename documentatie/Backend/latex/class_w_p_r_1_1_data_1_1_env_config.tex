@@ -7,8 +7,7 @@ Leez het .env bestand uit waarin de connectie strings staan naar de database. De
 
 
 
-Collaboration diagram for WPR.\+Data.\+Env\+Config\+:
-\nopagebreak
+Collaboration diagram for WPR.\+Data.\+Env\+Config\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -58,6 +57,22 @@ WPR.\+Data.\+Env\+Config.\+Env\+Config (\begin{DoxyParamCaption}{}{}\end{DoxyPar
 Definition at line \mbox{\hyperlink{_env_config_8cs_source_l00016}{16}} of file \mbox{\hyperlink{_env_config_8cs_source}{Env\+Config.\+cs}}.
 
 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00017\ \ \ \ \ \{}
+\DoxyCodeLine{00018\ \ \ \ \ \ \ \ \ DotEnv.Load();\ \ \textcolor{comment}{//\ Gebruikt\ de\ dotenv.net\ library\ om\ het\ bestand\ te\ laden}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ var\ builder\ =\ \textcolor{keyword}{new}\ ConfigurationBuilder()}
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ \ \ \ \ .AddEnvironmentVariables();\ \textcolor{comment}{//\ Voegt\ de\ environment\ variabelen\ aan\ de\ ConfigurationBuilder}}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \_configuration\ =\ builder.Build();\ \textcolor{comment}{//\ Bouwt\ het\ configuratie\ object}}
+\DoxyCodeLine{00024\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{_env_config_8cs_source_l00014}{\+\_\+configuration}}.
+
+
 
 \doxysubsection{Member Function Documentation}
 \Hypertarget{class_w_p_r_1_1_data_1_1_env_config_aa9ca09132345c9c5905f2c408fe73fef}\index{WPR.Data.EnvConfig@{WPR.Data.EnvConfig}!Get@{Get}}
@@ -82,6 +97,33 @@ De value van de specifieke environment variabele, of null als niet gevonden.
 
 Definition at line \mbox{\hyperlink{_env_config_8cs_source_l00031}{31}} of file \mbox{\hyperlink{_env_config_8cs_source}{Env\+Config.\+cs}}.
 
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00032\ \ \ \ \ \{}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ var\ value\ =\ \_configuration[key];\ \textcolor{comment}{//\ Fetch\ de\ value\ van\ de\ gegeven\ key}}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\textcolor{keywordtype}{string}.IsNullOrEmpty(value))\ }
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \ \ \ \ Console.WriteLine(\$\textcolor{stringliteral}{"{}Warning\ \{key\}\ not\ found\ in\ environment"{}});}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ value;}
+\DoxyCodeLine{00039\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{_env_config_8cs_source_l00014}{\+\_\+configuration}}.
+
+
+
+Referenced by \mbox{\hyperlink{hash_8cs_source_l00010}{WPR.\+Hashing.\+Hash.\+Hash()}}, and \mbox{\hyperlink{_env_config_8cs_source_l00045}{Is\+Configured()}}.
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_w_p_r_1_1_data_1_1_env_config_aa9ca09132345c9c5905f2c408fe73fef_icgraph}
+\end{center}
+\end{figure}
 \Hypertarget{class_w_p_r_1_1_data_1_1_env_config_ad3c37f72796004518b66f16dda580964}\index{WPR.Data.EnvConfig@{WPR.Data.EnvConfig}!GetFromEmail@{GetFromEmail}}
 \index{GetFromEmail@{GetFromEmail}!WPR.Data.EnvConfig@{WPR.Data.EnvConfig}}
 \doxysubsubsection{\texorpdfstring{GetFromEmail()}{GetFromEmail()}}
@@ -124,8 +166,27 @@ True als alle keys present zijn, anders False.
 Definition at line \mbox{\hyperlink{_env_config_8cs_source_l00045}{45}} of file \mbox{\hyperlink{_env_config_8cs_source}{Env\+Config.\+cs}}.
 
 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00046\ \ \ \ \ \{}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ var\ requiredKeys\ =\ \textcolor{keyword}{new}[]\ \{\ \textcolor{stringliteral}{"{}DB\_SERVER"{}},\ \textcolor{stringliteral}{"{}DB\_DATABASE"{}},\ \textcolor{stringliteral}{"{}DB\_USERNAME"{}},\ \textcolor{stringliteral}{"{}DB\_PASSWORD"{}}\ \};}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ requiredKeys.All(key\ =>\ !\textcolor{keywordtype}{string}.IsNullOrEmpty(Get(key)));}
+\DoxyCodeLine{00049\ \ \ \ \ \}}
 
-\doxysubsection{Member Data Documentation}
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{_env_config_8cs_source_l00031}{Get()}}.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_w_p_r_1_1_data_1_1_env_config_ae47188947dca2b84bcfdbcb3a9ce472e_cgraph}
+\end{center}
+\end{figure}
+
+
+\doxysubsection{Field Documentation}
 \Hypertarget{class_w_p_r_1_1_data_1_1_env_config_a821cd9298c4c2d0fe8392034bc38c7db}\index{WPR.Data.EnvConfig@{WPR.Data.EnvConfig}!\_configuration@{\_configuration}}
 \index{\_configuration@{\_configuration}!WPR.Data.EnvConfig@{WPR.Data.EnvConfig}}
 \doxysubsubsection{\texorpdfstring{\_configuration}{\_configuration}}
@@ -135,6 +196,10 @@ readonly IConfiguration WPR.\+Data.\+Env\+Config.\+\_\+configuration\hspace{0.3c
 
 
 Definition at line \mbox{\hyperlink{_env_config_8cs_source_l00014}{14}} of file \mbox{\hyperlink{_env_config_8cs_source}{Env\+Config.\+cs}}.
+
+
+
+Referenced by \mbox{\hyperlink{_env_config_8cs_source_l00016}{Env\+Config()}}, and \mbox{\hyperlink{_env_config_8cs_source_l00031}{Get()}}.
 
 
 

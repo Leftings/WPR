@@ -2,8 +2,7 @@
 \hypertarget{class_w_p_r_1_1_hashing_1_1_hash}{}\label{class_w_p_r_1_1_hashing_1_1_hash}\index{WPR.Hashing.Hash@{WPR.Hashing.Hash}}
 
 
-Collaboration diagram for WPR.\+Hashing.\+Hash\+:
-\nopagebreak
+Collaboration diagram for WPR.\+Hashing.\+Hash\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -45,6 +44,24 @@ WPR.\+Hashing.\+Hash.\+Hash (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{cla
 Definition at line \mbox{\hyperlink{hash_8cs_source_l00010}{10}} of file \mbox{\hyperlink{hash_8cs_source}{hash.\+cs}}.
 
 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00011\ \ \ \ \ \{}
+\DoxyCodeLine{00012\ \ \ \ \ \ \ \ \ \_salt\ =\ Convert.FromBase64String(envConfig.\mbox{\hyperlink{class_w_p_r_1_1_data_1_1_env_config_aa9ca09132345c9c5905f2c408fe73fef}{Get}}(\textcolor{stringliteral}{"{}SALT"{}}));}
+\DoxyCodeLine{00013\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{hash_8cs_source_l00009}{\+\_\+salt}}, and \mbox{\hyperlink{_env_config_8cs_source_l00031}{WPR.\+Data.\+Env\+Config.\+Get()}}.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_w_p_r_1_1_hashing_1_1_hash_a5e083798081f2a97774dbbf4cdaa4101_cgraph}
+\end{center}
+\end{figure}
+
 
 \doxysubsection{Member Function Documentation}
 \Hypertarget{class_w_p_r_1_1_hashing_1_1_hash_a7cf6dc2829b1ec38a0aa71df73ef5dba}\index{WPR.Hashing.Hash@{WPR.Hashing.Hash}!createHash@{createHash}}
@@ -57,6 +74,24 @@ string WPR.\+Hashing.\+Hash.\+create\+Hash (\begin{DoxyParamCaption}\item[{strin
 
 Definition at line \mbox{\hyperlink{hash_8cs_source_l00023}{23}} of file \mbox{\hyperlink{hash_8cs_source}{hash.\+cs}}.
 
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00024\ \ \ \ \ \{}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ hashed\ =\ Convert.ToBase64String(KeyDerivation.Pbkdf2(}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \ \ \ \ password:\ password!,\ \textcolor{comment}{//\ Het\ wachtwoord}}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \ \ \ \ salt:\ \_salt,\ \textcolor{comment}{//\ Salt\ wordt\ toegevoegd\ aan\ de\ hash}}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \ \ \ \ prf:\ KeyDerivationPrf.HMACSHA256,\ \textcolor{comment}{//\ Er\ wordt\ gebruik\ gemaakt\ van\ het\ HMACSHA256\ hash\ algoritme}}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \ \ \ \ iterationCount:\ 100000,\ \textcolor{comment}{//\ Hoeveel\ itteraties\ het\ algoritme\ draaid}}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \ \ \ \ numBytesRequested:\ 256\ /\ 8));\ \textcolor{comment}{//\ zet\ de\ 256\ bites\ om\ naar\ 32\ bytes}}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ hashed;}
+\DoxyCodeLine{00033\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{hash_8cs_source_l00009}{\+\_\+salt}}.
+
 \Hypertarget{class_w_p_r_1_1_hashing_1_1_hash_ad8bd693b06b99631e79c606a3a1f3cc1}\index{WPR.Hashing.Hash@{WPR.Hashing.Hash}!createSalt@{createSalt}}
 \index{createSalt@{createSalt}!WPR.Hashing.Hash@{WPR.Hashing.Hash}}
 \doxysubsubsection{\texorpdfstring{createSalt()}{createSalt()}}
@@ -67,6 +102,14 @@ byte\mbox{[}$\,$\mbox{]} WPR.\+Hashing.\+Hash.\+create\+Salt (\begin{DoxyParamCa
 
 Definition at line \mbox{\hyperlink{hash_8cs_source_l00016}{16}} of file \mbox{\hyperlink{hash_8cs_source}{hash.\+cs}}.
 
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00017\ \ \ \ \ \{}
+\DoxyCodeLine{00018\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{byte}[]\ salt\ =\ RandomNumberGenerator.GetBytes(128\ /\ 8);\ \textcolor{comment}{//\ de\ bites\ worden\ naar\ bytes\ omgezet}}
+\DoxyCodeLine{00019\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ salt;}
+\DoxyCodeLine{00020\ \ \ \ \ \}}
+
+\end{DoxyCode}
 
 
 \doxysubsection{Property Documentation}
@@ -79,6 +122,15 @@ byte? \mbox{[}$\,$\mbox{]} WPR.\+Hashing.\+Hash.\+\_\+salt\hspace{0.3cm}{\ttfami
 
 
 Definition at line \mbox{\hyperlink{hash_8cs_source_l00009}{9}} of file \mbox{\hyperlink{hash_8cs_source}{hash.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00009\ \{\ \textcolor{keyword}{get};\ \textcolor{keyword}{set};\ \}}
+
+\end{DoxyCode}
+
+
+Referenced by \mbox{\hyperlink{hash_8cs_source_l00023}{create\+Hash()}}, and \mbox{\hyperlink{hash_8cs_source_l00010}{Hash()}}.
 
 
 

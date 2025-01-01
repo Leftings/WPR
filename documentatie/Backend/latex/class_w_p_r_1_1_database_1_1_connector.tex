@@ -2,8 +2,7 @@
 \hypertarget{class_w_p_r_1_1_database_1_1_connector}{}\label{class_w_p_r_1_1_database_1_1_connector}\index{WPR.Database.Connector@{WPR.Database.Connector}}
 
 
-Inheritance diagram for WPR.\+Database.\+Connector\+:
-\nopagebreak
+Inheritance diagram for WPR.\+Database.\+Connector\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -12,8 +11,7 @@ Inheritance diagram for WPR.\+Database.\+Connector\+:
 \end{figure}
 
 
-Collaboration diagram for WPR.\+Database.\+Connector\+:
-\nopagebreak
+Collaboration diagram for WPR.\+Database.\+Connector\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -53,6 +51,17 @@ WPR.\+Database.\+Connector.\+Connector (\begin{DoxyParamCaption}\item[{\mbox{\hy
 Definition at line \mbox{\hyperlink{_connector_8cs_source_l00021}{21}} of file \mbox{\hyperlink{_connector_8cs_source}{Connector.\+cs}}.
 
 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00022\ \ \ \ \ \{}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \_envConfig\ =\ envConfig;}
+\DoxyCodeLine{00024\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{_connector_8cs_source_l00019}{\+\_\+env\+Config}}.
+
+
 
 \doxysubsection{Member Function Documentation}
 \Hypertarget{class_w_p_r_1_1_database_1_1_connector_ad1c237b93824801ec2441a5f55806d9f}\index{WPR.Database.Connector@{WPR.Database.Connector}!CreateDbConnection@{CreateDbConnection}}
@@ -77,8 +86,44 @@ Implements \mbox{\hyperlink{interface_w_p_r_1_1_database_1_1_i_connector_a34630d
 Definition at line \mbox{\hyperlink{_connector_8cs_source_l00030}{30}} of file \mbox{\hyperlink{_connector_8cs_source}{Connector.\+cs}}.
 
 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00031\ \ \ \ \ \{}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\_envConfig.IsConfigured())\ \textcolor{comment}{//\ Check\ of\ alle\ environment\ variabelen\ zijn\ geconfigureerd}}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ InvalidOperationException(\textcolor{stringliteral}{"{}Not\ configured"{}});}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Haal\ connectie\ strings\ op\ van\ de\ environment\ configuratie}}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ server\ =\ \_envConfig.Get(\textcolor{stringliteral}{"{}DB\_SERVER"{}});}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ database\ =\ \_envConfig.Get(\textcolor{stringliteral}{"{}DB\_DATABASE"{}});}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ username\ =\ \_envConfig.Get(\textcolor{stringliteral}{"{}DB\_USERNAME"{}});}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ password\ =\ \_envConfig.Get(\textcolor{stringliteral}{"{}DB\_PASSWORD"{}});}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Connectie\ string\ met\ de\ opgehaalde\ parameters}}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ connectString\ =\ \$\textcolor{stringliteral}{"{}Server=\{server\};Database=\{database\};User\ ID=\{username\};Password=\{password\};"{}};}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \ \ \ \ var\ connection\ =\ \textcolor{keyword}{new}\ MySqlConnection(connectString);\ \textcolor{comment}{//\ Maak\ een\ nieuwe\ MySQL\ connectie\ instantie}}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \ \ \ \ connection.Open();}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \ \ \ \ Console.WriteLine(\textcolor{stringliteral}{"{}Database\ connection\ successful"{}});}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ connection;\ \textcolor{comment}{//\ return\ de\ open\ connectie}}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (MySqlException\ ex)}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \ \ \ \ Console.WriteLine(\$\textcolor{stringliteral}{"{}Error\ connecting\ to\ database:\ \{ex.Message\}"{}});}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw};\ }
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00058\ \ \ \ \ \}}
 
-\doxysubsection{Member Data Documentation}
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{_connector_8cs_source_l00019}{\+\_\+env\+Config}}.
+
+
+
+\doxysubsection{Field Documentation}
 \Hypertarget{class_w_p_r_1_1_database_1_1_connector_a2a2cfc96e4450468ed6425bc8d34a45d}\index{WPR.Database.Connector@{WPR.Database.Connector}!\_envConfig@{\_envConfig}}
 \index{\_envConfig@{\_envConfig}!WPR.Database.Connector@{WPR.Database.Connector}}
 \doxysubsubsection{\texorpdfstring{\_envConfig}{\_envConfig}}
@@ -88,6 +133,10 @@ readonly \mbox{\hyperlink{class_w_p_r_1_1_data_1_1_env_config}{Env\+Config}} WPR
 
 
 Definition at line \mbox{\hyperlink{_connector_8cs_source_l00019}{19}} of file \mbox{\hyperlink{_connector_8cs_source}{Connector.\+cs}}.
+
+
+
+Referenced by \mbox{\hyperlink{_connector_8cs_source_l00021}{Connector()}}, and \mbox{\hyperlink{_connector_8cs_source_l00030}{Create\+Db\+Connection()}}.
 
 
 
