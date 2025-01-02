@@ -10,8 +10,6 @@ using Employee.Repository;
 using Employee.Hashing;
 using Employee.Cryption;
 using Microsoft.OpenApi.Models;
-using Employee.Swagger;
-
 namespace Employee;
 
 /// <summary>
@@ -155,16 +153,7 @@ public class AppConfigure
 
     // Services for Swagger API
     builder.Services.AddEndpointsApiExplorer();
-    builder.Services.AddSwaggerGen(c =>
-    {
-        c.MapType<IFormFile>(() => new OpenApiSchema
-        {
-            Type = "string",
-            Format = "binary"
-        });
-
-        c.OperationFilter<FileUploadOperationFilter>();
-    });
+    builder.Services.AddSwaggerGen();
 
     var app = builder.Build();
 
