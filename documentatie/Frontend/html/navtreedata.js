@@ -33,7 +33,7 @@ var NAVTREE =
 
 var NAVTREEINDEX =
 [
-"_abonement_uitleg_page_8css.html"
+"_abonement_uitleg_page_8jsx.html"
 ];
 
 var SYNCONMSG = 'klik hier om de paneel synchronisatie uit te schakelen';

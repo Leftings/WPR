@@ -108,12 +108,15 @@ $(function(){initNavTree('class_w_p_r_1_1_hashing_1_1_hash.html',''); initResiza
   <div class="headertitle"><div class="title">WPR.Hashing.Hash Class Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Class <a class="el" href="class_w_p_r_1_1_hashing_1_1_hash.html" title="Class Hash zorgt ervoor dat wachtwoorden op een veilige manier worden gehashed doormiddel van het HMA...">Hash</a> zorgt ervoor dat wachtwoorden op een veilige manier worden gehashed doormiddel van het HMACSGA256 algoritme.  
+ <a href="#details">More...</a></p>
 <div class="dynheader">
 Collaboration diagram for WPR.Hashing.Hash:</div>
 <div class="dyncontent">
 <div class="center"><img src="class_w_p_r_1_1_hashing_1_1_hash__coll__graph.png" border="0" usemap="#a_w_p_r_8_hashing_8_hash_coll__map" alt="Collaboration graph"/></div>
 <map name="a_w_p_r_8_hashing_8_hash_coll__map" id="a_w_p_r_8_hashing_8_hash_coll__map">
-<area shape="rect" title=" " alt="" coords="5,5,135,117"/>
+<area shape="rect" title="Class Hash zorgt ervoor dat wachtwoorden op een veilige manier worden gehashed doormiddel van het HMA..." alt="" coords="5,5,135,117"/>
 </map>
 </div>
 <table class="memberdecls">
@@ -122,8 +125,10 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a5e083798081f2a97774dbbf4cdaa4101" id="r_a5e083798081f2a97774dbbf4cdaa4101"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5e083798081f2a97774dbbf4cdaa4101">Hash</a> (<a class="el" href="class_w_p_r_1_1_data_1_1_env_config.html">EnvConfig</a> envConfig)</td></tr>
 <tr class="separator:a5e083798081f2a97774dbbf4cdaa4101"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad8bd693b06b99631e79c606a3a1f3cc1" id="r_ad8bd693b06b99631e79c606a3a1f3cc1"><td class="memItemLeft" align="right" valign="top">byte[]&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad8bd693b06b99631e79c606a3a1f3cc1">createSalt</a> ()</td></tr>
+<tr class="memdesc:ad8bd693b06b99631e79c606a3a1f3cc1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Het creëren van een salt.  <br /></td></tr>
 <tr class="separator:ad8bd693b06b99631e79c606a3a1f3cc1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7cf6dc2829b1ec38a0aa71df73ef5dba" id="r_a7cf6dc2829b1ec38a0aa71df73ef5dba"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7cf6dc2829b1ec38a0aa71df73ef5dba">createHash</a> (string password)</td></tr>
+<tr class="memdesc:a7cf6dc2829b1ec38a0aa71df73ef5dba"><td class="mdescLeft">&#160;</td><td class="mdescRight">Er wordt een hash toegepast op het meegegeven wachtwoord.  <br /></td></tr>
 <tr class="separator:a7cf6dc2829b1ec38a0aa71df73ef5dba"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="properties" name="properties"></a>
@@ -132,8 +137,9 @@ Properties</h2></td></tr>
 <tr class="separator:a3622296fc9f30fe092de6b43de5e351d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock">
-<p class="definition">Definition at line <a class="el" href="hash_8cs_source.html#l00007">7</a> of file <a class="el" href="hash_8cs_source.html">hash.cs</a>.</p>
+<div class="textblock"><p>Class <a class="el" href="class_w_p_r_1_1_hashing_1_1_hash.html" title="Class Hash zorgt ervoor dat wachtwoorden op een veilige manier worden gehashed doormiddel van het HMA...">Hash</a> zorgt ervoor dat wachtwoorden op een veilige manier worden gehashed doormiddel van het HMACSGA256 algoritme. </p>
+
+<p class="definition">Definition at line <a class="el" href="hash_8cs_source.html#l00010">10</a> of file <a class="el" href="hash_8cs_source.html">hash.cs</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a5e083798081f2a97774dbbf4cdaa4101" name="a5e083798081f2a97774dbbf4cdaa4101"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a5e083798081f2a97774dbbf4cdaa4101">&#9670;&#160;</a></span>Hash()</h2>
@@ -158,13 +164,13 @@ Properties</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="hash_8cs_source.html#l00010">10</a> of file <a class="el" href="hash_8cs_source.html">hash.cs</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   11</span>    {</div>
-<div class="line"><span class="lineno">   12</span>        _salt = Convert.FromBase64String(envConfig.<a class="code hl_function" href="class_w_p_r_1_1_data_1_1_env_config.html#aa9ca09132345c9c5905f2c408fe73fef">Get</a>(<span class="stringliteral">&quot;SALT&quot;</span>));</div>
-<div class="line"><span class="lineno">   13</span>    }</div>
+<p class="definition">Definition at line <a class="el" href="hash_8cs_source.html#l00013">13</a> of file <a class="el" href="hash_8cs_source.html">hash.cs</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   14</span>    {</div>
+<div class="line"><span class="lineno">   15</span>        _salt = Convert.FromBase64String(envConfig.<a class="code hl_function" href="class_w_p_r_1_1_data_1_1_env_config.html#aa9ca09132345c9c5905f2c408fe73fef">Get</a>(<span class="stringliteral">&quot;SALT&quot;</span>));</div>
+<div class="line"><span class="lineno">   16</span>    }</div>
 <div class="ttc" id="aclass_w_p_r_1_1_data_1_1_env_config_html_aa9ca09132345c9c5905f2c408fe73fef"><div class="ttname"><a href="class_w_p_r_1_1_data_1_1_env_config.html#aa9ca09132345c9c5905f2c408fe73fef">WPR.Data.EnvConfig.Get</a></div><div class="ttdeci">virtual string Get(string key)</div><div class="ttdoc">Haalt de value van de specifieke environement variabelen.</div><div class="ttdef"><b>Definition</b> <a href="_env_config_8cs_source.html#l00031">EnvConfig.cs:31</a></div></div>
 </div><!-- fragment -->
-<p class="reference">References <a class="el" href="hash_8cs_source.html#l00009">_salt</a>, and <a class="el" href="_env_config_8cs_source.html#l00031">WPR.Data.EnvConfig.Get()</a>.</p>
+<p class="reference">References <a class="el" href="hash_8cs_source.html#l00012">_salt</a>, and <a class="el" href="_env_config_8cs_source.html#l00031">WPR.Data.EnvConfig.Get()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -202,19 +208,28 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="hash_8cs_source.html#l00023">23</a> of file <a class="el" href="hash_8cs_source.html">hash.cs</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   24</span>    {</div>
-<div class="line"><span class="lineno">   25</span>        <span class="keywordtype">string</span> hashed = Convert.ToBase64String(KeyDerivation.Pbkdf2(</div>
-<div class="line"><span class="lineno">   26</span>            password: password!, <span class="comment">// Het wachtwoord</span></div>
-<div class="line"><span class="lineno">   27</span>            salt: _salt, <span class="comment">// Salt wordt toegevoegd aan de hash</span></div>
-<div class="line"><span class="lineno">   28</span>            prf: KeyDerivationPrf.HMACSHA256, <span class="comment">// Er wordt gebruik gemaakt van het HMACSHA256 hash algoritme</span></div>
-<div class="line"><span class="lineno">   29</span>            iterationCount: 100000, <span class="comment">// Hoeveel itteraties het algoritme draaid</span></div>
-<div class="line"><span class="lineno">   30</span>            numBytesRequested: 256 / 8)); <span class="comment">// zet de 256 bites om naar 32 bytes</span></div>
-<div class="line"><span class="lineno">   31</span> </div>
-<div class="line"><span class="lineno">   32</span>        <span class="keywordflow">return</span> hashed;</div>
-<div class="line"><span class="lineno">   33</span>    }</div>
+<p>Er wordt een hash toegepast op het meegegeven wachtwoord. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">password</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="hash_8cs_source.html#l00033">33</a> of file <a class="el" href="hash_8cs_source.html">hash.cs</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   34</span>    {</div>
+<div class="line"><span class="lineno">   35</span>        <span class="keywordtype">string</span> hashed = Convert.ToBase64String(KeyDerivation.Pbkdf2(</div>
+<div class="line"><span class="lineno">   36</span>            password: password!, <span class="comment">// Het wachtwoord</span></div>
+<div class="line"><span class="lineno">   37</span>            salt: _salt, <span class="comment">// Salt wordt toegevoegd aan de hash</span></div>
+<div class="line"><span class="lineno">   38</span>            prf: KeyDerivationPrf.HMACSHA256, <span class="comment">// Er wordt gebruik gemaakt van het HMACSHA256 hash algoritme</span></div>
+<div class="line"><span class="lineno">   39</span>            iterationCount: 100000, <span class="comment">// Hoeveel itteraties het algoritme draaid</span></div>
+<div class="line"><span class="lineno">   40</span>            numBytesRequested: 256 / 8)); <span class="comment">// zet de 256 bites om naar 32 bytes</span></div>
+<div class="line"><span class="lineno">   41</span> </div>
+<div class="line"><span class="lineno">   42</span>        <span class="keywordflow">return</span> hashed;</div>
+<div class="line"><span class="lineno">   43</span>    }</div>
 </div><!-- fragment -->
-<p class="reference">References <a class="el" href="hash_8cs_source.html#l00009">_salt</a>.</p>
+<p class="reference">References <a class="el" href="hash_8cs_source.html#l00012">_salt</a>.</p>
 
 </div>
 </div>
@@ -241,11 +256,14 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="hash_8cs_source.html#l00016">16</a> of file <a class="el" href="hash_8cs_source.html">hash.cs</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   17</span>    {</div>
-<div class="line"><span class="lineno">   18</span>        <span class="keywordtype">byte</span>[] salt = RandomNumberGenerator.GetBytes(128 / 8); <span class="comment">// de bites worden naar bytes omgezet</span></div>
-<div class="line"><span class="lineno">   19</span>        <span class="keywordflow">return</span> salt;</div>
-<div class="line"><span class="lineno">   20</span>    }</div>
+<p>Het creëren van een salt. </p>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="hash_8cs_source.html#l00022">22</a> of file <a class="el" href="hash_8cs_source.html">hash.cs</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   23</span>    {</div>
+<div class="line"><span class="lineno">   24</span>        <span class="keywordtype">byte</span>[] salt = RandomNumberGenerator.GetBytes(128 / 8); <span class="comment">// de bites worden naar bytes omgezet</span></div>
+<div class="line"><span class="lineno">   25</span>        <span class="keywordflow">return</span> salt;</div>
+<div class="line"><span class="lineno">   26</span>    }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -270,10 +288,10 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="hash_8cs_source.html#l00009">9</a> of file <a class="el" href="hash_8cs_source.html">hash.cs</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">    9</span>{ <span class="keyword">get</span>; <span class="keyword">set</span>; }</div>
+<p class="definition">Definition at line <a class="el" href="hash_8cs_source.html#l00012">12</a> of file <a class="el" href="hash_8cs_source.html">hash.cs</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   12</span>{ <span class="keyword">get</span>; <span class="keyword">set</span>; }</div>
 </div><!-- fragment -->
-<p class="reference">Referenced by <a class="el" href="hash_8cs_source.html#l00023">createHash()</a>, and <a class="el" href="hash_8cs_source.html#l00010">Hash()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="hash_8cs_source.html#l00033">createHash()</a>, and <a class="el" href="hash_8cs_source.html#l00013">Hash()</a>.</p>
 
 </div>
 </div>

@@ -1,5 +1,5 @@
 <map id="WPR.Controllers.SignUp.SignUpController" name="WPR.Controllers.SignUp.SignUpController">
-<area shape="rect" id="Node000001" title=" " alt="" coords="310,635,496,784"/>
+<area shape="rect" id="Node000001" title="SignUpController zorgt ervoor dat persoonlijke en zakelijke accounts aangemaakt kunnen worden." alt="" coords="310,635,496,784"/>
 <area shape="rect" id="Node000002" title=" " alt="" coords="5,384,102,453"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="66,467,84,520,98,546,116,569,159,607,209,638,261,662,311,681,309,686,259,667,207,643,156,611,112,572,93,549,79,522,61,469"/>
 <area shape="rect" id="Node000003" href="$class_w_p_r_1_1_database_1_1_connector.html" title=" " alt="" coords="126,373,293,464"/>
@@ -13,7 +13,7 @@
 <area shape="poly" id="edge9_Node000008_Node000005" title=" " alt="" coords="412,201,488,326,484,328,407,204"/>
 <area shape="rect" id="Node000006" href="$interface_w_p_r_1_1_repository_1_1_i_user_repository.html" title="Interface defining methods voor user gerelateerde database operaties, validatie, user management,..." alt="" coords="667,267,875,571"/>
 <area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="669,562,657,573,586,623,513,663,511,659,584,619,653,569,665,558"/>
-<area shape="rect" id="Node000007" href="$class_w_p_r_1_1_hashing_1_1_hash.html" title=" " alt="" coords="900,363,1029,475"/>
+<area shape="rect" id="Node000007" href="$class_w_p_r_1_1_hashing_1_1_hash.html" title="Class Hash zorgt ervoor dat wachtwoorden op een veilige manier worden gehashed doormiddel van het HMA..." alt="" coords="900,363,1029,475"/>
 <area shape="poly" id="edge7_Node000001_Node000007" title=" " alt="" coords="951,476,927,527,910,552,889,573,846,603,800,629,751,650,701,667,602,691,514,704,513,699,601,686,699,662,749,645,797,624,843,599,885,569,906,548,922,524,946,473"/>
 <area shape="poly" id="edge8_Node000001_Node000008" title=" " alt="" coords="508,497,448,621,443,618,503,495"/>
 </map>

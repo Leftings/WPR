@@ -2,7 +2,13 @@
 \hypertarget{class_w_p_r_1_1_controllers_1_1_cookie_1_1_session_handler}{}\label{class_w_p_r_1_1_controllers_1_1_cookie_1_1_session_handler}\index{WPR.Controllers.Cookie.SessionHandler@{WPR.Controllers.Cookie.SessionHandler}}
 
 
-Inheritance diagram for WPR.\+Controllers.\+Cookie.\+Session\+Handler\+:\nopagebreak
+\doxylink{class_w_p_r_1_1_controllers_1_1_cookie_1_1_session_handler}{Session\+Handler} zorgt ervoor dat er cookies aangemaakt kunnen worden op een simpele manier.  
+
+
+
+
+Inheritance diagram for WPR.\+Controllers.\+Cookie.\+Session\+Handler\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -11,7 +17,8 @@ Inheritance diagram for WPR.\+Controllers.\+Cookie.\+Session\+Handler\+:\nopageb
 \end{figure}
 
 
-Collaboration diagram for WPR.\+Controllers.\+Cookie.\+Session\+Handler\+:\nopagebreak
+Collaboration diagram for WPR.\+Controllers.\+Cookie.\+Session\+Handler\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -22,9 +29,9 @@ Collaboration diagram for WPR.\+Controllers.\+Cookie.\+Session\+Handler\+:\nopag
 \begin{DoxyCompactItemize}
 \item 
 void \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_cookie_1_1_session_handler_a601b5bdfde1f53b9c4d44cdfb8f93d14}{Create\+Cookie}} (IResponse\+Cookies response\+Cookies, string cookie\+Name, string cookie\+Value)
-\item 
+\begin{DoxyCompactList}\small\item\em \doxylink{namespace_w_p_r_1_1_controllers_1_1_cookie}{Cookie} kunnen worden aangemaakt doormiddel van een naam, de waarde en er kunnen opties ingezet worden. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_cookie_1_1_session_handler_a9a47c7ed04e4289c42c25b497edecb85}{Create\+Invalid\+Cookie}} (IResponse\+Cookies response\+Cookies, string cookie\+Name)
-\item 
+\begin{DoxyCompactList}\small\item\em // Als er een ongeldige cookie is gedetecteerd, wordt deze verwijderd \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_cookie_1_1_session_handler_a86bb829c60b456125325fe40176732bd}{Dispose}} ()
 \end{DoxyCompactItemize}
 \doxysubsubsection*{Protected Member Functions}
@@ -40,9 +47,9 @@ bool \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_cookie_1_1_session_handler
 
 
 \doxysubsection{Detailed Description}
+\doxylink{class_w_p_r_1_1_controllers_1_1_cookie_1_1_session_handler}{Session\+Handler} zorgt ervoor dat er cookies aangemaakt kunnen worden op een simpele manier. 
 
-
-Definition at line \mbox{\hyperlink{_session_handler_8cs_source_l00003}{3}} of file \mbox{\hyperlink{_session_handler_8cs_source}{Session\+Handler.\+cs}}.
+Definition at line \mbox{\hyperlink{_session_handler_8cs_source_l00006}{6}} of file \mbox{\hyperlink{_session_handler_8cs_source}{Session\+Handler.\+cs}}.
 
 
 
@@ -55,17 +62,30 @@ void WPR.\+Controllers.\+Cookie.\+Session\+Handler.\+Create\+Cookie (\begin{Doxy
 
 
 
-Definition at line \mbox{\hyperlink{_session_handler_8cs_source_l00008}{8}} of file \mbox{\hyperlink{_session_handler_8cs_source}{Session\+Handler.\+cs}}.
+\doxylink{namespace_w_p_r_1_1_controllers_1_1_cookie}{Cookie} kunnen worden aangemaakt doormiddel van een naam, de waarde en er kunnen opties ingezet worden. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em response\+Cookies} & \\
+\hline
+{\em cookie\+Name} & \\
+\hline
+{\em cookie\+Value} & \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{_session_handler_8cs_source_l00016}{16}} of file \mbox{\hyperlink{_session_handler_8cs_source}{Session\+Handler.\+cs}}.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00009\ \ \ \ \ \{}
-\DoxyCodeLine{00010\ \ \ \ \ \ \ \ \ responseCookies.Append(cookieName,\ cookieValue,\ \textcolor{keyword}{new}\ CookieOptions}
-\DoxyCodeLine{00011\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00012\ \ \ \ \ \ \ \ \ \ \ \ \ HttpOnly\ =\ \textcolor{keyword}{true},}
-\DoxyCodeLine{00013\ \ \ \ \ \ \ \ \ \ \ \ \ Expires\ =\ DateTimeOffset.Now.AddMinutes(30)}
-\DoxyCodeLine{00014\ \ \ \ \ \ \ \ \ \});}
-\DoxyCodeLine{00015\ \ \ \ \ \}}
+\DoxyCodeLine{00017\ \ \ \ \ \{}
+\DoxyCodeLine{00018\ \ \ \ \ \ \ \ \ responseCookies.Append(cookieName,\ cookieValue,\ \textcolor{keyword}{new}\ CookieOptions}
+\DoxyCodeLine{00019\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ \ \ \ \ HttpOnly\ =\ \textcolor{keyword}{true},}
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ \ \ \ \ Expires\ =\ DateTimeOffset.Now.AddMinutes(30)}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{00023\ \ \ \ \ \}}
 
 \end{DoxyCode}
 \Hypertarget{class_w_p_r_1_1_controllers_1_1_cookie_1_1_session_handler_a9a47c7ed04e4289c42c25b497edecb85}\index{WPR.Controllers.Cookie.SessionHandler@{WPR.Controllers.Cookie.SessionHandler}!CreateInvalidCookie@{CreateInvalidCookie}}
@@ -76,21 +96,32 @@ void WPR.\+Controllers.\+Cookie.\+Session\+Handler.\+Create\+Invalid\+Cookie (\b
 
 
 
-Definition at line \mbox{\hyperlink{_session_handler_8cs_source_l00018}{18}} of file \mbox{\hyperlink{_session_handler_8cs_source}{Session\+Handler.\+cs}}.
+// Als er een ongeldige cookie is gedetecteerd, wordt deze verwijderd 
+
+
+\begin{DoxyParams}{Parameters}
+{\em response\+Cookies} & \\
+\hline
+{\em cookie\+Name} & \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{_session_handler_8cs_source_l00030}{30}} of file \mbox{\hyperlink{_session_handler_8cs_source}{Session\+Handler.\+cs}}.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00019\ \ \ \ \ \{}
-\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ responseCookies.Append(cookieName,\ \textcolor{stringliteral}{"{}"{}},\ \textcolor{keyword}{new}\ CookieOptions}
-\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ \ \ \ \ HttpOnly\ =\ \textcolor{keyword}{true},}
-\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \ \ \ \ Expires\ =\ DateTimeOffset.Now.AddMinutes(-\/1),}
-\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \ \ \ \ MaxAge\ =\ TimeSpan.Zero,}
-\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \ \ \ \ Path\ =\ \textcolor{stringliteral}{"{}/"{}}}
-\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \});}
-\DoxyCodeLine{00027\ }
-\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ Console.WriteLine(\$\textcolor{stringliteral}{"{}Cookie\ invalidated:\ \{cookieName\}"{}});}
-\DoxyCodeLine{00029\ \ \ \ \ \}}
+\DoxyCodeLine{00031\ \ \ \ \ \{}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ responseCookies.Append(cookieName,\ \textcolor{stringliteral}{"{}"{}},\ \textcolor{keyword}{new}\ CookieOptions}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \ \ \ \ HttpOnly\ =\ \textcolor{keyword}{true},}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \ \ \ \ Expires\ =\ DateTimeOffset.Now.AddMinutes(-\/1),}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \ \ \ \ MaxAge\ =\ TimeSpan.Zero,}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \ \ \ \ Path\ =\ \textcolor{stringliteral}{"{}/"{}}}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ Console.WriteLine(\$\textcolor{stringliteral}{"{}Cookie\ invalidated:\ \{cookieName\}"{}});}
+\DoxyCodeLine{00041\ \ \ \ \ \}}
 
 \end{DoxyCode}
 \Hypertarget{class_w_p_r_1_1_controllers_1_1_cookie_1_1_session_handler_a86bb829c60b456125325fe40176732bd}\index{WPR.Controllers.Cookie.SessionHandler@{WPR.Controllers.Cookie.SessionHandler}!Dispose@{Dispose}}
@@ -101,23 +132,23 @@ void WPR.\+Controllers.\+Cookie.\+Session\+Handler.\+Dispose (\begin{DoxyParamCa
 
 
 
-Definition at line \mbox{\hyperlink{_session_handler_8cs_source_l00043}{43}} of file \mbox{\hyperlink{_session_handler_8cs_source}{Session\+Handler.\+cs}}.
+Definition at line \mbox{\hyperlink{_session_handler_8cs_source_l00055}{55}} of file \mbox{\hyperlink{_session_handler_8cs_source}{Session\+Handler.\+cs}}.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00044\ \ \ \ \ \{}
-\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ Dispose(disposing:\ \textcolor{keyword}{true});}
-\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ GC.SuppressFinalize(\textcolor{keyword}{this});}
-\DoxyCodeLine{00047\ \ \ \ \ \}}
+\DoxyCodeLine{00056\ \ \ \ \ \{}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ Dispose(disposing:\ \textcolor{keyword}{true});}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ GC.SuppressFinalize(\textcolor{keyword}{this});}
+\DoxyCodeLine{00059\ \ \ \ \ \}}
 
 \end{DoxyCode}
 
 
-References \mbox{\hyperlink{_session_handler_8cs_source_l00043}{Dispose()}}.
+References \mbox{\hyperlink{_session_handler_8cs_source_l00055}{Dispose()}}.
 
 
 
-Referenced by \mbox{\hyperlink{_session_handler_8cs_source_l00043}{Dispose()}}.
+Referenced by \mbox{\hyperlink{_session_handler_8cs_source_l00055}{Dispose()}}.
 
 Here is the call graph for this function\+:\nopagebreak
 \begin{figure}[H]
@@ -141,25 +172,25 @@ virtual void WPR.\+Controllers.\+Cookie.\+Session\+Handler.\+Dispose (\begin{Dox
 
 
 
-Definition at line \mbox{\hyperlink{_session_handler_8cs_source_l00031}{31}} of file \mbox{\hyperlink{_session_handler_8cs_source}{Session\+Handler.\+cs}}.
+Definition at line \mbox{\hyperlink{_session_handler_8cs_source_l00043}{43}} of file \mbox{\hyperlink{_session_handler_8cs_source}{Session\+Handler.\+cs}}.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00032\ \ \ \ \ \{}
-\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!disposedValue)}
-\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (disposing)}
-\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00038\ }
-\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \ \ \ \ disposedValue\ =\ \textcolor{keyword}{true};}
-\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00041\ \ \ \ \ \}}
+\DoxyCodeLine{00044\ \ \ \ \ \{}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!disposedValue)}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (disposing)}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \ \ \ \ disposedValue\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00053\ \ \ \ \ \}}
 
 \end{DoxyCode}
 
 
-References \mbox{\hyperlink{_session_handler_8cs_source_l00005}{disposed\+Value}}.
+References \mbox{\hyperlink{_session_handler_8cs_source_l00008}{disposed\+Value}}.
 
 
 
@@ -172,11 +203,11 @@ bool WPR.\+Controllers.\+Cookie.\+Session\+Handler.\+disposed\+Value\hspace{0.3c
 
 
 
-Definition at line \mbox{\hyperlink{_session_handler_8cs_source_l00005}{5}} of file \mbox{\hyperlink{_session_handler_8cs_source}{Session\+Handler.\+cs}}.
+Definition at line \mbox{\hyperlink{_session_handler_8cs_source_l00008}{8}} of file \mbox{\hyperlink{_session_handler_8cs_source}{Session\+Handler.\+cs}}.
 
 
 
-Referenced by \mbox{\hyperlink{_session_handler_8cs_source_l00031}{Dispose()}}.
+Referenced by \mbox{\hyperlink{_session_handler_8cs_source_l00043}{Dispose()}}.
 
 
 

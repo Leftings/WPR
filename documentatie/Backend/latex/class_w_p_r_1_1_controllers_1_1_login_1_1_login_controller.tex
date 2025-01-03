@@ -2,7 +2,13 @@
 \hypertarget{class_w_p_r_1_1_controllers_1_1_login_1_1_login_controller}{}\label{class_w_p_r_1_1_controllers_1_1_login_1_1_login_controller}\index{WPR.Controllers.Login.LoginController@{WPR.Controllers.Login.LoginController}}
 
 
-Inheritance diagram for WPR.\+Controllers.\+Login.\+Login\+Controller\+:\nopagebreak
+\doxylink{class_w_p_r_1_1_controllers_1_1_login_1_1_login_controller}{Login\+Controller} zorgt ervoor dat een gebruiker kan inloggen, daarnaast wordt er ook gekeken of de gebruiker een geldige cookie heeft.  
+
+
+
+
+Inheritance diagram for WPR.\+Controllers.\+Login.\+Login\+Controller\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -11,7 +17,8 @@ Inheritance diagram for WPR.\+Controllers.\+Login.\+Login\+Controller\+:\nopageb
 \end{figure}
 
 
-Collaboration diagram for WPR.\+Controllers.\+Login.\+Login\+Controller\+:\nopagebreak
+Collaboration diagram for WPR.\+Controllers.\+Login.\+Login\+Controller\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -24,20 +31,20 @@ Collaboration diagram for WPR.\+Controllers.\+Login.\+Login\+Controller\+:\nopag
 \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_login_1_1_login_controller_a717ff181355a01ce6b085568dbaef159}{Login\+Controller}} (\mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_user_repository}{IUser\+Repository}} user\+Repository, \mbox{\hyperlink{class_w_p_r_1_1_database_1_1_connector}{Connector}} connector, \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_cookie_1_1_session_handler}{Session\+Handler}} session\+Handler, \mbox{\hyperlink{class_w_p_r_1_1_cryption_1_1_crypt}{Crypt}} crypt)
 \item 
 IAction\+Result \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_login_1_1_login_controller_aa773ceab1e05816b0c8def14cb7642ee}{Check\+Session}} ()
-\item 
+\begin{DoxyCompactList}\small\item\em De session voor de customer wordt gecheckt. \end{DoxyCompactList}\item 
 async Task$<$ IAction\+Result $>$ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_login_1_1_login_controller_abc668c11a053fbb57cf194c50895e88c}{Check\+Session\+Staff}} ()
-\item 
+\begin{DoxyCompactList}\small\item\em De session voor de Car and All medewerker wordt gecheckt. \end{DoxyCompactList}\item 
 async Task$<$ IAction\+Result $>$ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_login_1_1_login_controller_a6454cfd79a90895c494968f8d072daa9}{Check\+Session\+Vehicle\+Manager}} ()
-\item 
+\begin{DoxyCompactList}\small\item\em De session voor de \doxylink{namespace_w_p_r_1_1_controllers_1_1_vehicle}{Vehicle} Manager wordt gecheckt. \end{DoxyCompactList}\item 
 async Task$<$ IAction\+Result $>$ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_login_1_1_login_controller_aad067048eb061fa08bd6bd4f60b34dab}{Login\+Async}} (\mbox{[}From\+Body\mbox{]} \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_login_1_1_login_request}{Login\+Request}} login\+Request)
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Een gebruiker wordt ingelogt. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsection*{Private Member Functions}
 \begin{DoxyCompactItemize}
 \item 
 void \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_login_1_1_login_controller_a567846e3dae581eccd1fc88aae2da359}{Remove\+Old\+Cookie\+Async}} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Op het moment van inloggen worden alle cookies van mogelijke gebruikers verwijderd. \end{DoxyCompactList}\item 
 async Task$<$ IAction\+Result $>$ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_login_1_1_login_controller_ab221bb3fe656879c67f0efb80b3cdb0a}{Set\+Cookie\+Async}} (\mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_login_1_1_login_request}{Login\+Request}} login\+Request)
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Een nieuw cookie wordt gezet, met de juiste cookie naa men waarders. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsection*{Private Attributes}
 \begin{DoxyCompactItemize}
 \item 
@@ -52,9 +59,9 @@ readonly \mbox{\hyperlink{class_w_p_r_1_1_cryption_1_1_crypt}{Crypt}} \mbox{\hyp
 
 
 \doxysubsection{Detailed Description}
+\doxylink{class_w_p_r_1_1_controllers_1_1_login_1_1_login_controller}{Login\+Controller} zorgt ervoor dat een gebruiker kan inloggen, daarnaast wordt er ook gekeken of de gebruiker een geldige cookie heeft. 
 
-
-Definition at line \mbox{\hyperlink{login_controller_8cs_source_l00016}{16}} of file \mbox{\hyperlink{login_controller_8cs_source}{login\+Controller.\+cs}}.
+Definition at line \mbox{\hyperlink{login_controller_8cs_source_l00019}{19}} of file \mbox{\hyperlink{login_controller_8cs_source}{login\+Controller.\+cs}}.
 
 
 
@@ -67,21 +74,21 @@ WPR.\+Controllers.\+Login.\+Login\+Controller.\+Login\+Controller (\begin{DoxyPa
 
 
 
-Definition at line \mbox{\hyperlink{login_controller_8cs_source_l00023}{23}} of file \mbox{\hyperlink{login_controller_8cs_source}{login\+Controller.\+cs}}.
+Definition at line \mbox{\hyperlink{login_controller_8cs_source_l00026}{26}} of file \mbox{\hyperlink{login_controller_8cs_source}{login\+Controller.\+cs}}.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00024\ \ \ \ \ \{}
-\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \_userRepository\ =\ userRepository\ ??\ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ ArgumentNullException(nameof(userRepository));}
-\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \_connector\ =\ connector\ ??\ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ ArgumentNullException(nameof(connector));}
-\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \_sessionHandler\ =\ sessionHandler\ ??\ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ ArgumentNullException(nameof(sessionHandler));}
-\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \_crypt\ =\ crypt\ ??\ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ ArgumentNullException(nameof(crypt));}
-\DoxyCodeLine{00029\ \ \ \ \ \}}
+\DoxyCodeLine{00027\ \ \ \ \ \{}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \_userRepository\ =\ userRepository\ ??\ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ ArgumentNullException(nameof(userRepository));}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \_connector\ =\ connector\ ??\ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ ArgumentNullException(nameof(connector));}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \_sessionHandler\ =\ sessionHandler\ ??\ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ ArgumentNullException(nameof(sessionHandler));}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \_crypt\ =\ crypt\ ??\ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ ArgumentNullException(nameof(crypt));}
+\DoxyCodeLine{00032\ \ \ \ \ \}}
 
 \end{DoxyCode}
 
 
-References \mbox{\hyperlink{login_controller_8cs_source_l00019}{\+\_\+connector}}, \mbox{\hyperlink{login_controller_8cs_source_l00021}{\+\_\+crypt}}, \mbox{\hyperlink{login_controller_8cs_source_l00020}{\+\_\+session\+Handler}}, and \mbox{\hyperlink{login_controller_8cs_source_l00018}{\+\_\+user\+Repository}}.
+References \mbox{\hyperlink{login_controller_8cs_source_l00022}{\+\_\+connector}}, \mbox{\hyperlink{login_controller_8cs_source_l00024}{\+\_\+crypt}}, \mbox{\hyperlink{login_controller_8cs_source_l00023}{\+\_\+session\+Handler}}, and \mbox{\hyperlink{login_controller_8cs_source_l00021}{\+\_\+user\+Repository}}.
 
 
 
@@ -94,19 +101,26 @@ IAction\+Result WPR.\+Controllers.\+Login.\+Login\+Controller.\+Check\+Session (
 
 
 
-Definition at line \mbox{\hyperlink{login_controller_8cs_source_l00112}{112}} of file \mbox{\hyperlink{login_controller_8cs_source}{login\+Controller.\+cs}}.
+De session voor de customer wordt gecheckt. 
+
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{login_controller_8cs_source_l00124}{124}} of file \mbox{\hyperlink{login_controller_8cs_source}{login\+Controller.\+cs}}.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00113\ \ \ \ \ \{}
-\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ sessionValue\ =\ Request.Cookies[\textcolor{stringliteral}{"{}LoginSession"{}}];}
-\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\textcolor{keywordtype}{string}.IsNullOrEmpty(sessionValue))}
-\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Ok(\ \textcolor{keyword}{new}\ \{message\ =\ \textcolor{stringliteral}{"{}session\ active\ "{}},\ sessionValue\});}
-\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Unauthorized(\textcolor{keyword}{new}\ \{\ message\ =\ \textcolor{stringliteral}{"{}Session\ expired\ or\ is\ not\ found"{}}\ \});}
-\DoxyCodeLine{00121\ \ \ \ \ \}}
+\DoxyCodeLine{00125\ \ \ \ \ \{}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ sessionValue\ =\ Request.Cookies[\textcolor{stringliteral}{"{}LoginSession"{}}];}
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\textcolor{keywordtype}{string}.IsNullOrEmpty(sessionValue))}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Ok(\ \textcolor{keyword}{new}\ \{message\ =\ \textcolor{stringliteral}{"{}session\ active\ "{}},\ sessionValue\});}
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Unauthorized(\textcolor{keyword}{new}\ \{\ message\ =\ \textcolor{stringliteral}{"{}Session\ expired\ or\ is\ not\ found"{}}\ \});}
+\DoxyCodeLine{00133\ \ \ \ \ \}}
 
 \end{DoxyCode}
 \Hypertarget{class_w_p_r_1_1_controllers_1_1_login_1_1_login_controller_abc668c11a053fbb57cf194c50895e88c}\index{WPR.Controllers.Login.LoginController@{WPR.Controllers.Login.LoginController}!CheckSessionStaff@{CheckSessionStaff}}
@@ -117,19 +131,26 @@ async Task$<$ IAction\+Result $>$ WPR.\+Controllers.\+Login.\+Login\+Controller.
 
 
 
-Definition at line \mbox{\hyperlink{login_controller_8cs_source_l00125}{125}} of file \mbox{\hyperlink{login_controller_8cs_source}{login\+Controller.\+cs}}.
+De session voor de Car and All medewerker wordt gecheckt. 
+
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{login_controller_8cs_source_l00140}{140}} of file \mbox{\hyperlink{login_controller_8cs_source}{login\+Controller.\+cs}}.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00126\ \ \ \ \ \{}
-\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ sessionValue\ =\ Request.Cookies[\textcolor{stringliteral}{"{}LoginEmployeeSession"{}}];}
-\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\textcolor{keywordtype}{string}.IsNullOrEmpty(sessionValue))}
-\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Ok(\ \textcolor{keyword}{new}\ \{message\ =\ \textcolor{stringliteral}{"{}session\ active\ "{}},\ sessionValue\});}
-\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Unauthorized(\textcolor{keyword}{new}\ \{\ message\ =\ \textcolor{stringliteral}{"{}Session\ expired\ or\ is\ not\ found"{}}\ \});}
-\DoxyCodeLine{00134\ \ \ \ \ \}}
+\DoxyCodeLine{00141\ \ \ \ \ \{}
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ sessionValue\ =\ Request.Cookies[\textcolor{stringliteral}{"{}LoginEmployeeSession"{}}];}
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\textcolor{keywordtype}{string}.IsNullOrEmpty(sessionValue))}
+\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Ok(\ \textcolor{keyword}{new}\ \{message\ =\ \textcolor{stringliteral}{"{}session\ active\ "{}},\ sessionValue\});}
+\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Unauthorized(\textcolor{keyword}{new}\ \{\ message\ =\ \textcolor{stringliteral}{"{}Session\ expired\ or\ is\ not\ found"{}}\ \});}
+\DoxyCodeLine{00149\ \ \ \ \ \}}
 
 \end{DoxyCode}
 \Hypertarget{class_w_p_r_1_1_controllers_1_1_login_1_1_login_controller_a6454cfd79a90895c494968f8d072daa9}\index{WPR.Controllers.Login.LoginController@{WPR.Controllers.Login.LoginController}!CheckSessionVehicleManager@{CheckSessionVehicleManager}}
@@ -140,18 +161,25 @@ async Task$<$ IAction\+Result $>$ WPR.\+Controllers.\+Login.\+Login\+Controller.
 
 
 
-Definition at line \mbox{\hyperlink{login_controller_8cs_source_l00138}{138}} of file \mbox{\hyperlink{login_controller_8cs_source}{login\+Controller.\+cs}}.
+De session voor de \doxylink{namespace_w_p_r_1_1_controllers_1_1_vehicle}{Vehicle} Manager wordt gecheckt. 
+
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{login_controller_8cs_source_l00156}{156}} of file \mbox{\hyperlink{login_controller_8cs_source}{login\+Controller.\+cs}}.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00139\ \ \ \ \ \{}
-\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ sessionValue\ =\ Request.Cookies[\textcolor{stringliteral}{"{}LoginVehicleManagerSession"{}}];}
-\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\textcolor{keywordtype}{string}.IsNullOrEmpty(sessionValue))}
-\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Ok(\ \textcolor{keyword}{new}\ \{message\ =\ \textcolor{stringliteral}{"{}session\ active\ "{}},\ sessionValue\});}
-\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Unauthorized(\textcolor{keyword}{new}\ \{\ message\ =\ \textcolor{stringliteral}{"{}Session\ expired\ or\ is\ not\ found"{}}\ \});}
-\DoxyCodeLine{00146\ \ \ \ \ \}}
+\DoxyCodeLine{00157\ \ \ \ \ \{}
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ sessionValue\ =\ Request.Cookies[\textcolor{stringliteral}{"{}LoginVehicleManagerSession"{}}];}
+\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\textcolor{keywordtype}{string}.IsNullOrEmpty(sessionValue))}
+\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Ok(\ \textcolor{keyword}{new}\ \{message\ =\ \textcolor{stringliteral}{"{}session\ active\ "{}},\ sessionValue\});}
+\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Unauthorized(\textcolor{keyword}{new}\ \{\ message\ =\ \textcolor{stringliteral}{"{}Session\ expired\ or\ is\ not\ found"{}}\ \});}
+\DoxyCodeLine{00164\ \ \ \ \ \}}
 
 \end{DoxyCode}
 \Hypertarget{class_w_p_r_1_1_controllers_1_1_login_1_1_login_controller_aad067048eb061fa08bd6bd4f60b34dab}\index{WPR.Controllers.Login.LoginController@{WPR.Controllers.Login.LoginController}!LoginAsync@{LoginAsync}}
@@ -162,56 +190,69 @@ async Task$<$ IAction\+Result $>$ WPR.\+Controllers.\+Login.\+Login\+Controller.
 
 
 
-Definition at line \mbox{\hyperlink{login_controller_8cs_source_l00150}{150}} of file \mbox{\hyperlink{login_controller_8cs_source}{login\+Controller.\+cs}}.
+Een gebruiker wordt ingelogt. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em login\+Request} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{login_controller_8cs_source_l00172}{172}} of file \mbox{\hyperlink{login_controller_8cs_source}{login\+Controller.\+cs}}.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00151\ \ \ \ \ \{}
-\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Er\ wordt\ gekeken\ of\ de\ loginrequest\ niet\ null\ is\ en\ of\ er\ een\ emailadres\ en\ wachtwoord\ is\ ingevuld}}
-\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (loginRequest\ ==\ \textcolor{keyword}{null}\ ||\ \textcolor{keywordtype}{string}.IsNullOrEmpty(loginRequest.Email)\ ||\ \textcolor{keywordtype}{string}.IsNullOrEmpty(loginRequest.Password))}
-\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ BadRequest(\textcolor{keyword}{new}\ \{\ message\ =\ \textcolor{stringliteral}{"{}Invalid\ input.\ Please\ provide\ email\ and\ password."{}}\ \});}
-\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00157\ }
-\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}}
-\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Er\ wordt\ gekeken\ of\ het\ emailadres\ en\ wachtwoord\ overeenkomt\ in\ de\ juiste\ tabel\ (UserCustomer,\ Staff\ of\ VehicleManager)}}
-\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ isValid\ =\ await\ \_userRepository.ValidateUserAsync(loginRequest.Email,\ loginRequest.Password,\ loginRequest.UserType);}
-\DoxyCodeLine{00162\ }
-\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (isValid)}
-\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Een\ nieuw\ cookie\ wordt\ aangemaakt}}
-\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ var\ cookieResult\ =\ await\ SetCookieAsync(loginRequest);}
-\DoxyCodeLine{00167\ }
-\DoxyCodeLine{00168\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (cookieResult\ is\ BadRequestObjectResult)}
-\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00170\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ cookieResult;}
-\DoxyCodeLine{00171\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00172\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{00173\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Ok(\textcolor{keyword}{new}\ \{\ message\ =\ \textcolor{stringliteral}{"{}Login\ Successful."{}}\ \});}
-\DoxyCodeLine{00174\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00175\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
-\DoxyCodeLine{00176\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00177\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ De\ gegevens\ kwamen\ niet\ overeen\ met\ wat\ er\ in\ de\ DataBase\ stond\ en\ wordt\ geweigerd}}
-\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Unauthorized(\textcolor{keyword}{new}\ \{\ message\ =\ \textcolor{stringliteral}{"{}Login\ Failed."{}}\ \});}
-\DoxyCodeLine{00179\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00180\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00181\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (MySqlException\ ex)}
-\DoxyCodeLine{00182\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00183\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ StatusCode(500,\ \textcolor{keyword}{new}\ \{\ message\ =\ ex.Message\});}
-\DoxyCodeLine{00184\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00185\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (Exception\ ex)}
-\DoxyCodeLine{00186\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00187\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ StatusCode(500,\ \textcolor{keyword}{new}\ \{\ message\ =\ ex.Message\ \});}
-\DoxyCodeLine{00188\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00189\ \ \ \ \ \}}
+\DoxyCodeLine{00173\ \ \ \ \ \{}
+\DoxyCodeLine{00174\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Er\ wordt\ gekeken\ of\ de\ loginrequest\ niet\ null\ is\ en\ of\ er\ een\ emailadres\ en\ wachtwoord\ is\ ingevuld}}
+\DoxyCodeLine{00175\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (loginRequest\ ==\ \textcolor{keyword}{null}\ ||\ \textcolor{keywordtype}{string}.IsNullOrEmpty(loginRequest.Email)\ ||\ \textcolor{keywordtype}{string}.IsNullOrEmpty(loginRequest.Password))}
+\DoxyCodeLine{00176\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00177\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ BadRequest(\textcolor{keyword}{new}\ \{\ message\ =\ \textcolor{stringliteral}{"{}Invalid\ input.\ Please\ provide\ email\ and\ password."{}}\ \});}
+\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00179\ }
+\DoxyCodeLine{00180\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}}
+\DoxyCodeLine{00181\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00182\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Er\ wordt\ gekeken\ of\ het\ emailadres\ en\ wachtwoord\ overeenkomt\ in\ de\ juiste\ tabel\ (UserCustomer,\ Staff\ of\ VehicleManager)}}
+\DoxyCodeLine{00183\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ isValid\ =\ await\ \_userRepository.ValidateUserAsync(loginRequest.Email,\ loginRequest.Password,\ loginRequest.UserType);}
+\DoxyCodeLine{00184\ }
+\DoxyCodeLine{00185\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (isValid)}
+\DoxyCodeLine{00186\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00187\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Een\ nieuw\ cookie\ wordt\ aangemaakt}}
+\DoxyCodeLine{00188\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ var\ cookieResult\ =\ await\ SetCookieAsync(loginRequest);}
+\DoxyCodeLine{00189\ }
+\DoxyCodeLine{00190\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (cookieResult\ is\ BadRequestObjectResult)}
+\DoxyCodeLine{00191\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00192\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ cookieResult;}
+\DoxyCodeLine{00193\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00194\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00195\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Ok(\textcolor{keyword}{new}\ \{\ message\ =\ \textcolor{stringliteral}{"{}Login\ Successful."{}}\ \});}
+\DoxyCodeLine{00196\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00197\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00198\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00199\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ De\ gegevens\ kwamen\ niet\ overeen\ met\ wat\ er\ in\ de\ DataBase\ stond\ en\ wordt\ geweigerd}}
+\DoxyCodeLine{00200\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Unauthorized(\textcolor{keyword}{new}\ \{\ message\ =\ \textcolor{stringliteral}{"{}Login\ Failed."{}}\ \});}
+\DoxyCodeLine{00201\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00202\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00203\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (MySqlException\ ex)}
+\DoxyCodeLine{00204\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00205\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ StatusCode(500,\ \textcolor{keyword}{new}\ \{\ message\ =\ ex.Message\});}
+\DoxyCodeLine{00206\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00207\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (Exception\ ex)}
+\DoxyCodeLine{00208\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00209\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ StatusCode(500,\ \textcolor{keyword}{new}\ \{\ message\ =\ ex.Message\ \});}
+\DoxyCodeLine{00210\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00211\ \ \ \ \ \}}
 
 \end{DoxyCode}
 
 
-References \mbox{\hyperlink{login_controller_8cs_source_l00018}{\+\_\+user\+Repository}}, and \mbox{\hyperlink{login_controller_8cs_source_l00053}{Set\+Cookie\+Async()}}.
+References \mbox{\hyperlink{login_controller_8cs_source_l00021}{\+\_\+user\+Repository}}, and \mbox{\hyperlink{login_controller_8cs_source_l00062}{Set\+Cookie\+Async()}}.
 
-Here is the call graph for this function\+:\nopagebreak
+Here is the call graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -226,39 +267,44 @@ void WPR.\+Controllers.\+Login.\+Login\+Controller.\+Remove\+Old\+Cookie\+Async 
 
 
 
-Definition at line \mbox{\hyperlink{login_controller_8cs_source_l00032}{32}} of file \mbox{\hyperlink{login_controller_8cs_source}{login\+Controller.\+cs}}.
+Op het moment van inloggen worden alle cookies van mogelijke gebruikers verwijderd. 
+
+
+
+Definition at line \mbox{\hyperlink{login_controller_8cs_source_l00037}{37}} of file \mbox{\hyperlink{login_controller_8cs_source}{login\+Controller.\+cs}}.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00033\ \ \ \ \ \{}
-\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}}
-\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\textcolor{keywordtype}{string}.IsNullOrEmpty(Request.Cookies[\textcolor{stringliteral}{"{}LoginEmployeeSession"{}}]))}
-\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \_sessionHandler.CreateInvalidCookie(Response.Cookies,\ \textcolor{stringliteral}{"{}LoginEmployeeSession"{}});}
-\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\textcolor{keywordtype}{string}.IsNullOrEmpty(Request.Cookies[\textcolor{stringliteral}{"{}LoginVehicleManagerSession"{}}]))}
+\DoxyCodeLine{00038\ \ \ \ \ \{}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\textcolor{keywordtype}{string}.IsNullOrEmpty(Request.Cookies[\textcolor{stringliteral}{"{}LoginEmployeeSession"{}}]))}
 \DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \_sessionHandler.CreateInvalidCookie(Response.Cookies,\ \textcolor{stringliteral}{"{}LoginVehicleManagerSession"{}});}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \_sessionHandler.CreateInvalidCookie(Response.Cookies,\ \textcolor{stringliteral}{"{}LoginEmployeeSession"{}});}
 \DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \}\ }
-\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (Exception\ ex)}
-\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \ \ \ \ Console.WriteLine(ex.Message);}
-\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00050\ \ \ \ \ \}}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\textcolor{keywordtype}{string}.IsNullOrEmpty(Request.Cookies[\textcolor{stringliteral}{"{}LoginVehicleManagerSession"{}}]))}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \_sessionHandler.CreateInvalidCookie(Response.Cookies,\ \textcolor{stringliteral}{"{}LoginVehicleManagerSession"{}});}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \}\ }
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (Exception\ ex)}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \ \ \ \ Console.WriteLine(ex.Message);}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00055\ \ \ \ \ \}}
 
 \end{DoxyCode}
 
 
-References \mbox{\hyperlink{login_controller_8cs_source_l00020}{\+\_\+session\+Handler}}.
+References \mbox{\hyperlink{login_controller_8cs_source_l00023}{\+\_\+session\+Handler}}.
 
 
 
-Referenced by \mbox{\hyperlink{login_controller_8cs_source_l00053}{Set\+Cookie\+Async()}}.
+Referenced by \mbox{\hyperlink{login_controller_8cs_source_l00062}{Set\+Cookie\+Async()}}.
 
-Here is the caller graph for this function\+:\nopagebreak
+Here is the caller graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -273,83 +319,97 @@ async Task$<$ IAction\+Result $>$ WPR.\+Controllers.\+Login.\+Login\+Controller.
 
 
 
-Definition at line \mbox{\hyperlink{login_controller_8cs_source_l00053}{53}} of file \mbox{\hyperlink{login_controller_8cs_source}{login\+Controller.\+cs}}.
+Een nieuw cookie wordt gezet, met de juiste cookie naa men waarders. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em login\+Request} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{login_controller_8cs_source_l00062}{62}} of file \mbox{\hyperlink{login_controller_8cs_source}{login\+Controller.\+cs}}.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00054\ \ \ \ \ \{}
-\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ RemoveOldCookieAsync();}
-\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ var\ connection\ =\ \_connector.CreateDbConnection();}
-\DoxyCodeLine{00057\ }
-\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}}
-\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ De\ table\ voor\ de\ gebruiker\ wordt\ vastgesteld}}
-\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ table;}
-\DoxyCodeLine{00062\ }
-\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (loginRequest.UserType.Equals(\textcolor{stringliteral}{"{}Employee"{}}))}
-\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ table\ =\ \textcolor{stringliteral}{"{}Staff"{}};}
-\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (loginRequest.UserType.Equals(\textcolor{stringliteral}{"{}Customer"{}}))}
-\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ table\ =\ \textcolor{stringliteral}{"{}UserCustomer"{}};}
-\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
-\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ table\ =\ \textcolor{stringliteral}{"{}VehicleManager"{}};}
-\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00075\ }
-\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ De\ user\ id\ wordt\ opgehaald,\ doormiddel\ van\ de\ meegegeven\ email\ en\ jusite\ tabel}}
-\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ userId\ =\ await\ \_userRepository.GetUserIdAsync(loginRequest.Email,\ table);}
-\DoxyCodeLine{00078\ }
-\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (userId.Equals(\textcolor{stringliteral}{"{}No\ user\ found"{}}))}
-\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ BadRequest(\textcolor{keyword}{new}\ \{\ message\ =\ \textcolor{stringliteral}{"{}User\ ID\ not\ found."{}}\ \});}
-\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ De\ juiste\ cookie\ wordt\ aangemaakt,\ doormiddel\ van\ het\ gebruikers\ type\ die\ meegegeven\ wordt\ via\ de\ inlog\ request}}
-\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (loginRequest.UserType.Equals(\textcolor{stringliteral}{"{}Employee"{}}))}
-\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \_sessionHandler.CreateCookie(Response.Cookies,\ \textcolor{stringliteral}{"{}LoginEmployeeSession"{}},\ \_crypt.Encrypt(userId.ToString()));}
-\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (loginRequest.UserType.Equals(\textcolor{stringliteral}{"{}Customer"{}}))}
-\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \_sessionHandler.CreateCookie(Response.Cookies,\ \textcolor{stringliteral}{"{}LoginSession"{}},\ \_crypt.Encrypt(userId.ToString()));}
-\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
-\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \_sessionHandler.CreateCookie(Response.Cookies,\ \textcolor{stringliteral}{"{}LoginVehicleManagerSession"{}},\ \_crypt.Encrypt(userId.ToString()));}
-\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (Exception\ ex)}
-\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ BadRequest(\textcolor{keyword}{new}\ \{\ message\ =\ ex.Message\ \});}
-\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{finally}}
-\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \ \ \ \ connection.Close();}
-\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00106\ }
-\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Ok();}
-\DoxyCodeLine{00108\ \ \ \ \ \}}
+\DoxyCodeLine{00063\ \ \ \ \ \{}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ RemoveOldCookieAsync();}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ var\ connection\ =\ \_connector.CreateDbConnection();}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ De\ table\ voor\ de\ gebruiker\ wordt\ vastgesteld}}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ table;}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (loginRequest.UserType.Equals(\textcolor{stringliteral}{"{}Employee"{}}))}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ table\ =\ \textcolor{stringliteral}{"{}Staff"{}};}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (loginRequest.UserType.Equals(\textcolor{stringliteral}{"{}Customer"{}}))}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ table\ =\ \textcolor{stringliteral}{"{}UserCustomer"{}};}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ table\ =\ \textcolor{stringliteral}{"{}VehicleManager"{}};}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00084\ }
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ De\ user\ id\ wordt\ opgehaald,\ doormiddel\ van\ de\ meegegeven\ email\ en\ jusite\ tabel}}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ userId\ =\ await\ \_userRepository.GetUserIdAsync(loginRequest.Email,\ table);}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (userId.Equals(\textcolor{stringliteral}{"{}No\ user\ found"{}}))}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ BadRequest(\textcolor{keyword}{new}\ \{\ message\ =\ \textcolor{stringliteral}{"{}User\ ID\ not\ found."{}}\ \});}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ De\ juiste\ cookie\ wordt\ aangemaakt,\ doormiddel\ van\ het\ gebruikers\ type\ die\ meegegeven\ wordt\ via\ de\ inlog\ request}}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (loginRequest.UserType.Equals(\textcolor{stringliteral}{"{}Employee"{}}))}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \_sessionHandler.CreateCookie(Response.Cookies,\ \textcolor{stringliteral}{"{}LoginEmployeeSession"{}},\ \_crypt.Encrypt(userId.ToString()));}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (loginRequest.UserType.Equals(\textcolor{stringliteral}{"{}Customer"{}}))}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \_sessionHandler.CreateCookie(Response.Cookies,\ \textcolor{stringliteral}{"{}LoginSession"{}},\ \_crypt.Encrypt(userId.ToString()));}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \_sessionHandler.CreateCookie(Response.Cookies,\ \textcolor{stringliteral}{"{}LoginVehicleManagerSession"{}},\ \_crypt.Encrypt(userId.ToString()));}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (Exception\ ex)}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ BadRequest(\textcolor{keyword}{new}\ \{\ message\ =\ ex.Message\ \});}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{finally}}
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \ \ \ \ connection.Close();}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00115\ }
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Ok();}
+\DoxyCodeLine{00117\ \ \ \ \ \}}
 
 \end{DoxyCode}
 
 
-References \mbox{\hyperlink{login_controller_8cs_source_l00019}{\+\_\+connector}}, \mbox{\hyperlink{login_controller_8cs_source_l00021}{\+\_\+crypt}}, \mbox{\hyperlink{login_controller_8cs_source_l00020}{\+\_\+session\+Handler}}, \mbox{\hyperlink{login_controller_8cs_source_l00018}{\+\_\+user\+Repository}}, \mbox{\hyperlink{login_request_8cs_source_l00005}{WPR.\+Controllers.\+Login.\+Login\+Request.\+Email}}, \mbox{\hyperlink{login_controller_8cs_source_l00032}{Remove\+Old\+Cookie\+Async()}}, and \mbox{\hyperlink{login_request_8cs_source_l00007}{WPR.\+Controllers.\+Login.\+Login\+Request.\+User\+Type}}.
+References \mbox{\hyperlink{login_controller_8cs_source_l00022}{\+\_\+connector}}, \mbox{\hyperlink{login_controller_8cs_source_l00024}{\+\_\+crypt}}, \mbox{\hyperlink{login_controller_8cs_source_l00023}{\+\_\+session\+Handler}}, \mbox{\hyperlink{login_controller_8cs_source_l00021}{\+\_\+user\+Repository}}, \mbox{\hyperlink{login_request_8cs_source_l00008}{WPR.\+Controllers.\+Login.\+Login\+Request.\+Email}}, \mbox{\hyperlink{login_controller_8cs_source_l00037}{Remove\+Old\+Cookie\+Async()}}, and \mbox{\hyperlink{login_request_8cs_source_l00010}{WPR.\+Controllers.\+Login.\+Login\+Request.\+User\+Type}}.
 
 
 
-Referenced by \mbox{\hyperlink{login_controller_8cs_source_l00150}{Login\+Async()}}.
+Referenced by \mbox{\hyperlink{login_controller_8cs_source_l00172}{Login\+Async()}}.
 
-Here is the call graph for this function\+:\nopagebreak
+Here is the call graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{class_w_p_r_1_1_controllers_1_1_login_1_1_login_controller_ab221bb3fe656879c67f0efb80b3cdb0a_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function\+:\nopagebreak
+Here is the caller graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -367,11 +427,11 @@ readonly \mbox{\hyperlink{class_w_p_r_1_1_database_1_1_connector}{Connector}} WP
 
 
 
-Definition at line \mbox{\hyperlink{login_controller_8cs_source_l00019}{19}} of file \mbox{\hyperlink{login_controller_8cs_source}{login\+Controller.\+cs}}.
+Definition at line \mbox{\hyperlink{login_controller_8cs_source_l00022}{22}} of file \mbox{\hyperlink{login_controller_8cs_source}{login\+Controller.\+cs}}.
 
 
 
-Referenced by \mbox{\hyperlink{login_controller_8cs_source_l00023}{Login\+Controller()}}, and \mbox{\hyperlink{login_controller_8cs_source_l00053}{Set\+Cookie\+Async()}}.
+Referenced by \mbox{\hyperlink{login_controller_8cs_source_l00026}{Login\+Controller()}}, and \mbox{\hyperlink{login_controller_8cs_source_l00062}{Set\+Cookie\+Async()}}.
 
 \Hypertarget{class_w_p_r_1_1_controllers_1_1_login_1_1_login_controller_ab0e03ac44085b86e72e213a44320c754}\index{WPR.Controllers.Login.LoginController@{WPR.Controllers.Login.LoginController}!\_crypt@{\_crypt}}
 \index{\_crypt@{\_crypt}!WPR.Controllers.Login.LoginController@{WPR.Controllers.Login.LoginController}}
@@ -381,11 +441,11 @@ readonly \mbox{\hyperlink{class_w_p_r_1_1_cryption_1_1_crypt}{Crypt}} WPR.\+Cont
 
 
 
-Definition at line \mbox{\hyperlink{login_controller_8cs_source_l00021}{21}} of file \mbox{\hyperlink{login_controller_8cs_source}{login\+Controller.\+cs}}.
+Definition at line \mbox{\hyperlink{login_controller_8cs_source_l00024}{24}} of file \mbox{\hyperlink{login_controller_8cs_source}{login\+Controller.\+cs}}.
 
 
 
-Referenced by \mbox{\hyperlink{login_controller_8cs_source_l00023}{Login\+Controller()}}, and \mbox{\hyperlink{login_controller_8cs_source_l00053}{Set\+Cookie\+Async()}}.
+Referenced by \mbox{\hyperlink{login_controller_8cs_source_l00026}{Login\+Controller()}}, and \mbox{\hyperlink{login_controller_8cs_source_l00062}{Set\+Cookie\+Async()}}.
 
 \Hypertarget{class_w_p_r_1_1_controllers_1_1_login_1_1_login_controller_a5fc3fe614e607f138e30058c242f1df3}\index{WPR.Controllers.Login.LoginController@{WPR.Controllers.Login.LoginController}!\_sessionHandler@{\_sessionHandler}}
 \index{\_sessionHandler@{\_sessionHandler}!WPR.Controllers.Login.LoginController@{WPR.Controllers.Login.LoginController}}
@@ -395,11 +455,11 @@ readonly \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_cookie_1_1_session_han
 
 
 
-Definition at line \mbox{\hyperlink{login_controller_8cs_source_l00020}{20}} of file \mbox{\hyperlink{login_controller_8cs_source}{login\+Controller.\+cs}}.
+Definition at line \mbox{\hyperlink{login_controller_8cs_source_l00023}{23}} of file \mbox{\hyperlink{login_controller_8cs_source}{login\+Controller.\+cs}}.
 
 
 
-Referenced by \mbox{\hyperlink{login_controller_8cs_source_l00023}{Login\+Controller()}}, \mbox{\hyperlink{login_controller_8cs_source_l00032}{Remove\+Old\+Cookie\+Async()}}, and \mbox{\hyperlink{login_controller_8cs_source_l00053}{Set\+Cookie\+Async()}}.
+Referenced by \mbox{\hyperlink{login_controller_8cs_source_l00026}{Login\+Controller()}}, \mbox{\hyperlink{login_controller_8cs_source_l00037}{Remove\+Old\+Cookie\+Async()}}, and \mbox{\hyperlink{login_controller_8cs_source_l00062}{Set\+Cookie\+Async()}}.
 
 \Hypertarget{class_w_p_r_1_1_controllers_1_1_login_1_1_login_controller_ab8c6d4f9003ae35758ef1f409c953ce6}\index{WPR.Controllers.Login.LoginController@{WPR.Controllers.Login.LoginController}!\_userRepository@{\_userRepository}}
 \index{\_userRepository@{\_userRepository}!WPR.Controllers.Login.LoginController@{WPR.Controllers.Login.LoginController}}
@@ -409,11 +469,11 @@ readonly \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_user_repository}{
 
 
 
-Definition at line \mbox{\hyperlink{login_controller_8cs_source_l00018}{18}} of file \mbox{\hyperlink{login_controller_8cs_source}{login\+Controller.\+cs}}.
+Definition at line \mbox{\hyperlink{login_controller_8cs_source_l00021}{21}} of file \mbox{\hyperlink{login_controller_8cs_source}{login\+Controller.\+cs}}.
 
 
 
-Referenced by \mbox{\hyperlink{login_controller_8cs_source_l00150}{Login\+Async()}}, \mbox{\hyperlink{login_controller_8cs_source_l00023}{Login\+Controller()}}, and \mbox{\hyperlink{login_controller_8cs_source_l00053}{Set\+Cookie\+Async()}}.
+Referenced by \mbox{\hyperlink{login_controller_8cs_source_l00172}{Login\+Async()}}, \mbox{\hyperlink{login_controller_8cs_source_l00026}{Login\+Controller()}}, and \mbox{\hyperlink{login_controller_8cs_source_l00062}{Set\+Cookie\+Async()}}.
 
 
 

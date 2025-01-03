@@ -1,5 +1,5 @@
 <map id="Employee.Repository.UserRepository.GetReviewIdsAsync" name="Employee.Repository.UserRepository.GetReviewIdsAsync">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,5,213,48"/>
-<area shape="rect" id="Node000002" href="$class_employee_1_1_repository_1_1_user_repository.html#a7bc4e59bb4f6a459175a87e20b256e07" title=" " alt="" coords="261,5,438,48"/>
+<area shape="rect" id="Node000001" title="Voor een zakelijke huuraanvraag moet deze eerst geaccepteerd worden door de wagenparkbeheerdeer van h..." alt="" coords="5,5,213,48"/>
+<area shape="rect" id="Node000002" href="$class_employee_1_1_repository_1_1_user_repository.html#a7bc4e59bb4f6a459175a87e20b256e07" title="Het KvK&#45;nummer van de wagenparkbeheerder wordt opgehaald uit de database en gereturnd." alt="" coords="261,5,438,48"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="213,24,245,24,245,29,213,29"/>
 </map>

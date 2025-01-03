@@ -2,7 +2,13 @@
 \hypertarget{class_w_p_r_1_1_controllers_1_1_employee_1_1_employee_controller}{}\label{class_w_p_r_1_1_controllers_1_1_employee_1_1_employee_controller}\index{WPR.Controllers.Employee.EmployeeController@{WPR.Controllers.Employee.EmployeeController}}
 
 
-Inheritance diagram for WPR.\+Controllers.\+Employee.\+Employee\+Controller\+:\nopagebreak
+\doxylink{class_w_p_r_1_1_controllers_1_1_employee_1_1_employee_controller}{Employee\+Controller} is de controller die ervoor zorgt dat er gekeken wordt of de ingelogde gebruiker een medewerker is.  
+
+
+
+
+Inheritance diagram for WPR.\+Controllers.\+Employee.\+Employee\+Controller\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -11,7 +17,8 @@ Inheritance diagram for WPR.\+Controllers.\+Employee.\+Employee\+Controller\+:\n
 \end{figure}
 
 
-Collaboration diagram for WPR.\+Controllers.\+Employee.\+Employee\+Controller\+:\nopagebreak
+Collaboration diagram for WPR.\+Controllers.\+Employee.\+Employee\+Controller\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -24,7 +31,7 @@ Collaboration diagram for WPR.\+Controllers.\+Employee.\+Employee\+Controller\+:
 \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_employee_1_1_employee_controller_a1a106908e7e33a3c6d0db9e15fff36b6}{Employee\+Controller}} (\mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_user_repository}{IUser\+Repository}} user\+Repository, \mbox{\hyperlink{class_w_p_r_1_1_database_1_1_connector}{Connector}} connector, \mbox{\hyperlink{class_w_p_r_1_1_cryption_1_1_crypt}{Crypt}} crypt, \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_cookie_1_1_session_handler}{Session\+Handler}} session\+Handler)
 \item 
 Task$<$ bool $>$ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_employee_1_1_employee_controller_abe50225f91399062ed3d2c35b9dbeda4}{Is\+User\+Employee}} ()
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Er wordt gekeken of de user een medewerker is. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsection*{Private Attributes}
 \begin{DoxyCompactItemize}
 \item 
@@ -39,9 +46,9 @@ readonly \mbox{\hyperlink{class_w_p_r_1_1_cryption_1_1_crypt}{Crypt}} \mbox{\hyp
 
 
 \doxysubsection{Detailed Description}
+\doxylink{class_w_p_r_1_1_controllers_1_1_employee_1_1_employee_controller}{Employee\+Controller} is de controller die ervoor zorgt dat er gekeken wordt of de ingelogde gebruiker een medewerker is. 
 
-
-Definition at line \mbox{\hyperlink{_employee_controller_8cs_source_l00011}{11}} of file \mbox{\hyperlink{_employee_controller_8cs_source}{Employee\+Controller.\+cs}}.
+Definition at line \mbox{\hyperlink{_employee_controller_8cs_source_l00014}{14}} of file \mbox{\hyperlink{_employee_controller_8cs_source}{Employee\+Controller.\+cs}}.
 
 
 
@@ -54,21 +61,21 @@ WPR.\+Controllers.\+Employee.\+Employee\+Controller.\+Employee\+Controller (\beg
 
 
 
-Definition at line \mbox{\hyperlink{_employee_controller_8cs_source_l00018}{18}} of file \mbox{\hyperlink{_employee_controller_8cs_source}{Employee\+Controller.\+cs}}.
+Definition at line \mbox{\hyperlink{_employee_controller_8cs_source_l00021}{21}} of file \mbox{\hyperlink{_employee_controller_8cs_source}{Employee\+Controller.\+cs}}.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00019\ \ \ \ \ \{}
-\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ \_userRepository\ =\ userRepository\ ??\ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ ArgumentNullException(nameof(userRepository));}
-\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ \_connector\ =\ connector\ ??\ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ ArgumentNullException(nameof(connector));}
-\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ \_sessionHandler\ =\ sessionHandler\ ??\ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ ArgumentNullException(nameof(sessionHandler));}
-\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \_crypt\ =\ crypt\ ??\ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ ArgumentNullException(nameof(crypt));}
-\DoxyCodeLine{00024\ \ \ \ \ \}}
+\DoxyCodeLine{00022\ \ \ \ \ \{}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \_userRepository\ =\ userRepository\ ??\ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ ArgumentNullException(nameof(userRepository));}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \_connector\ =\ connector\ ??\ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ ArgumentNullException(nameof(connector));}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \_sessionHandler\ =\ sessionHandler\ ??\ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ ArgumentNullException(nameof(sessionHandler));}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \_crypt\ =\ crypt\ ??\ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ ArgumentNullException(nameof(crypt));}
+\DoxyCodeLine{00027\ \ \ \ \ \}}
 
 \end{DoxyCode}
 
 
-References \mbox{\hyperlink{_employee_controller_8cs_source_l00014}{\+\_\+connector}}, \mbox{\hyperlink{_employee_controller_8cs_source_l00016}{\+\_\+crypt}}, \mbox{\hyperlink{_employee_controller_8cs_source_l00015}{\+\_\+session\+Handler}}, and \mbox{\hyperlink{_employee_controller_8cs_source_l00013}{\+\_\+user\+Repository}}.
+References \mbox{\hyperlink{_employee_controller_8cs_source_l00017}{\+\_\+connector}}, \mbox{\hyperlink{_employee_controller_8cs_source_l00019}{\+\_\+crypt}}, \mbox{\hyperlink{_employee_controller_8cs_source_l00018}{\+\_\+session\+Handler}}, and \mbox{\hyperlink{_employee_controller_8cs_source_l00016}{\+\_\+user\+Repository}}.
 
 
 
@@ -81,41 +88,48 @@ Task$<$ bool $>$ WPR.\+Controllers.\+Employee.\+Employee\+Controller.\+Is\+User\
 
 
 
-Definition at line \mbox{\hyperlink{_employee_controller_8cs_source_l00028}{28}} of file \mbox{\hyperlink{_employee_controller_8cs_source}{Employee\+Controller.\+cs}}.
+Er wordt gekeken of de user een medewerker is. 
+
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{_employee_controller_8cs_source_l00034}{34}} of file \mbox{\hyperlink{_employee_controller_8cs_source}{Employee\+Controller.\+cs}}.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00029\ \ \ \ \ \{}
-\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ loginCookie\ =\ HttpContext.Request.Cookies[\textcolor{stringliteral}{"{}LoginSession"{}}];}
-\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ id;}
-\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\textcolor{keywordtype}{string}.IsNullOrEmpty(loginCookie))}
-\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \_userRepository.IsUserEmployee(-\/1);}
-\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00037\ }
-\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}}
-\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{id}\ =\ Convert.ToInt32(\_crypt.Decrypt(loginCookie));}
-\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \_userRepository.IsUserEmployee(\textcolor{keywordtype}{id});}
+\DoxyCodeLine{00035\ \ \ \ \ \{}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ loginCookie\ =\ HttpContext.Request.Cookies[\textcolor{stringliteral}{"{}LoginSession"{}}];}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ id;}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\textcolor{keywordtype}{string}.IsNullOrEmpty(loginCookie))}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \_userRepository.IsUserEmployee(-\/1);}
 \DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}}
-\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \ \ \ \ Response.Cookies.Append(\textcolor{stringliteral}{"{}LoginSession"{}},\ \textcolor{stringliteral}{"{}Invalid\ cookie"{}},\ \textcolor{keyword}{new}\ CookieOptions}
-\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ HttpOnly\ =\ \textcolor{keyword}{true},}
-\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Secure\ =\ \textcolor{keyword}{true},}
-\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Expires\ =\ DateTimeOffset.UtcNow.AddDays(-\/1)}
-\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \ \ \ \ \});}
-\DoxyCodeLine{00051\ }
-\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \_userRepository.IsUserEmployee(-\/1);}
-\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00054\ \ \ \ \ \}}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{id}\ =\ Convert.ToInt32(\_crypt.Decrypt(loginCookie));}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \_userRepository.IsUserEmployee(\textcolor{keywordtype}{id});}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \ \ \ \ Response.Cookies.Append(\textcolor{stringliteral}{"{}LoginSession"{}},\ \textcolor{stringliteral}{"{}Invalid\ cookie"{}},\ \textcolor{keyword}{new}\ CookieOptions}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ HttpOnly\ =\ \textcolor{keyword}{true},}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Secure\ =\ \textcolor{keyword}{true},}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Expires\ =\ DateTimeOffset.UtcNow.AddDays(-\/1)}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \_userRepository.IsUserEmployee(-\/1);}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00060\ \ \ \ \ \}}
 
 \end{DoxyCode}
 
 
-References \mbox{\hyperlink{_employee_controller_8cs_source_l00016}{\+\_\+crypt}}, and \mbox{\hyperlink{_employee_controller_8cs_source_l00013}{\+\_\+user\+Repository}}.
+References \mbox{\hyperlink{_employee_controller_8cs_source_l00019}{\+\_\+crypt}}, and \mbox{\hyperlink{_employee_controller_8cs_source_l00016}{\+\_\+user\+Repository}}.
 
 
 
@@ -128,11 +142,11 @@ readonly \mbox{\hyperlink{class_w_p_r_1_1_database_1_1_connector}{Connector}} WP
 
 
 
-Definition at line \mbox{\hyperlink{_employee_controller_8cs_source_l00014}{14}} of file \mbox{\hyperlink{_employee_controller_8cs_source}{Employee\+Controller.\+cs}}.
+Definition at line \mbox{\hyperlink{_employee_controller_8cs_source_l00017}{17}} of file \mbox{\hyperlink{_employee_controller_8cs_source}{Employee\+Controller.\+cs}}.
 
 
 
-Referenced by \mbox{\hyperlink{_employee_controller_8cs_source_l00018}{Employee\+Controller()}}.
+Referenced by \mbox{\hyperlink{_employee_controller_8cs_source_l00021}{Employee\+Controller()}}.
 
 \Hypertarget{class_w_p_r_1_1_controllers_1_1_employee_1_1_employee_controller_a6e7d09da79cd05db89e58e530793f8ae}\index{WPR.Controllers.Employee.EmployeeController@{WPR.Controllers.Employee.EmployeeController}!\_crypt@{\_crypt}}
 \index{\_crypt@{\_crypt}!WPR.Controllers.Employee.EmployeeController@{WPR.Controllers.Employee.EmployeeController}}
@@ -142,11 +156,11 @@ readonly \mbox{\hyperlink{class_w_p_r_1_1_cryption_1_1_crypt}{Crypt}} WPR.\+Cont
 
 
 
-Definition at line \mbox{\hyperlink{_employee_controller_8cs_source_l00016}{16}} of file \mbox{\hyperlink{_employee_controller_8cs_source}{Employee\+Controller.\+cs}}.
+Definition at line \mbox{\hyperlink{_employee_controller_8cs_source_l00019}{19}} of file \mbox{\hyperlink{_employee_controller_8cs_source}{Employee\+Controller.\+cs}}.
 
 
 
-Referenced by \mbox{\hyperlink{_employee_controller_8cs_source_l00018}{Employee\+Controller()}}, and \mbox{\hyperlink{_employee_controller_8cs_source_l00028}{Is\+User\+Employee()}}.
+Referenced by \mbox{\hyperlink{_employee_controller_8cs_source_l00021}{Employee\+Controller()}}, and \mbox{\hyperlink{_employee_controller_8cs_source_l00034}{Is\+User\+Employee()}}.
 
 \Hypertarget{class_w_p_r_1_1_controllers_1_1_employee_1_1_employee_controller_ae90031e9fa144e46c454fc5397de8925}\index{WPR.Controllers.Employee.EmployeeController@{WPR.Controllers.Employee.EmployeeController}!\_sessionHandler@{\_sessionHandler}}
 \index{\_sessionHandler@{\_sessionHandler}!WPR.Controllers.Employee.EmployeeController@{WPR.Controllers.Employee.EmployeeController}}
@@ -156,11 +170,11 @@ readonly \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_cookie_1_1_session_han
 
 
 
-Definition at line \mbox{\hyperlink{_employee_controller_8cs_source_l00015}{15}} of file \mbox{\hyperlink{_employee_controller_8cs_source}{Employee\+Controller.\+cs}}.
+Definition at line \mbox{\hyperlink{_employee_controller_8cs_source_l00018}{18}} of file \mbox{\hyperlink{_employee_controller_8cs_source}{Employee\+Controller.\+cs}}.
 
 
 
-Referenced by \mbox{\hyperlink{_employee_controller_8cs_source_l00018}{Employee\+Controller()}}.
+Referenced by \mbox{\hyperlink{_employee_controller_8cs_source_l00021}{Employee\+Controller()}}.
 
 \Hypertarget{class_w_p_r_1_1_controllers_1_1_employee_1_1_employee_controller_ab297d58cb8cb5a24df4e8c3e7b0ba00c}\index{WPR.Controllers.Employee.EmployeeController@{WPR.Controllers.Employee.EmployeeController}!\_userRepository@{\_userRepository}}
 \index{\_userRepository@{\_userRepository}!WPR.Controllers.Employee.EmployeeController@{WPR.Controllers.Employee.EmployeeController}}
@@ -170,11 +184,11 @@ readonly \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_user_repository}{
 
 
 
-Definition at line \mbox{\hyperlink{_employee_controller_8cs_source_l00013}{13}} of file \mbox{\hyperlink{_employee_controller_8cs_source}{Employee\+Controller.\+cs}}.
+Definition at line \mbox{\hyperlink{_employee_controller_8cs_source_l00016}{16}} of file \mbox{\hyperlink{_employee_controller_8cs_source}{Employee\+Controller.\+cs}}.
 
 
 
-Referenced by \mbox{\hyperlink{_employee_controller_8cs_source_l00018}{Employee\+Controller()}}, and \mbox{\hyperlink{_employee_controller_8cs_source_l00028}{Is\+User\+Employee()}}.
+Referenced by \mbox{\hyperlink{_employee_controller_8cs_source_l00021}{Employee\+Controller()}}, and \mbox{\hyperlink{_employee_controller_8cs_source_l00034}{Is\+User\+Employee()}}.
 
 
 

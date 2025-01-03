@@ -1,5 +1,5 @@
 <map id="Employee.Controllers.AddVehicle.AddVehicleController" name="Employee.Controllers.AddVehicle.AddVehicleController">
-<area shape="rect" id="Node000001" title=" " alt="" coords="134,437,312,544"/>
+<area shape="rect" id="Node000001" title="AddVehicleController zorgt ervoor dat voertuigen toegevoegd kunnen worden aan de database." alt="" coords="134,437,312,544"/>
 <area shape="rect" id="Node000002" title=" " alt="" coords="5,243,102,312"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="83,323,117,372,173,436,169,439,113,375,79,326"/>
 <area shape="rect" id="Node000003" href="$class_employee_1_1_database_1_1_connector.html" title=" " alt="" coords="127,232,319,323"/>

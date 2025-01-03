@@ -18,6 +18,5 @@ var dir_debbd63f1d8db984f7ce6be7690dc411 =
     [ "utils", "dir_7db235fd26f4f42a9d6cf75aff7c861f.html", "dir_7db235fd26f4f42a9d6cf75aff7c861f" ],
     [ "vehicleManager", "dir_07c516c4ff09d59cd6fbd670e07890b9.html", "dir_07c516c4ff09d59cd6fbd670e07890b9" ],
     [ "wagenparkBeheerderOverzichtPage", "dir_7013124e9cde6b54c89d0cea2261d29a.html", "dir_7013124e9cde6b54c89d0cea2261d29a" ],
-    [ "index.css", "index_8css.html", null ],
     [ "main.jsx", "main_8jsx.html", null ]
 ];

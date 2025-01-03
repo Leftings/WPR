@@ -1,5 +1,5 @@
 <map id="Employee.Controllers.acceptHireRequest.AcceptHireRequestController" name="Employee.Controllers.acceptHireRequest.AcceptHireRequestController">
-<area shape="rect" id="Node000001" title=" " alt="" coords="193,437,450,608"/>
+<area shape="rect" id="Node000001" title="AcceptHireRequestController zorgt ervoor dat alle huuraanvragen verzameld worden en bestempelt kunnen..." alt="" coords="193,437,450,608"/>
 <area shape="rect" id="Node000002" title=" " alt="" coords="5,243,102,312"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="81,324,117,372,154,407,195,439,192,443,151,411,113,375,77,327"/>
 <area shape="rect" id="Node000003" href="$class_employee_1_1_database_1_1_connector.html" title=" " alt="" coords="127,232,319,323"/>
@@ -8,7 +8,7 @@
 <area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="226,111,226,232,220,232,220,111"/>
 <area shape="rect" id="Node000005" href="$class_employee_1_1_data_1_1_env_config.html" title="Leez het .env bestand uit waarin de connectie strings staan naar de database. Deze staan in een apart..." alt="" coords="331,5,496,117"/>
 <area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="361,119,339,143,272,221,268,217,335,140,358,115"/>
-<area shape="rect" id="Node000007" href="$class_employee_1_1_cryption_1_1_crypt.html" title=" " alt="" coords="343,211,500,344"/>
+<area shape="rect" id="Node000007" href="$class_employee_1_1_cryption_1_1_crypt.html" title="Class Crypt zorgt voor een veilig encryptie en decryptie van strings. De Crptie wordt gedaan door het..." alt="" coords="343,211,500,344"/>
 <area shape="poly" id="edge7_Node000007_Node000005" title=" " alt="" coords="418,117,421,193,416,193,413,117"/>
 <area shape="rect" id="Node000006" href="$interface_employee_1_1_repository_1_1_i_user_repository.html" title="Interface defining methods voor user gerelateerde database operaties, validatie, user management,..." alt="" coords="525,181,700,373"/>
 <area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="527,364,514,375,449,429,445,425,511,371,523,360"/>

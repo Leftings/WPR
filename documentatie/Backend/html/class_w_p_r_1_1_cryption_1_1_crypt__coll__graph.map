@@ -1,5 +1,5 @@
 <map id="WPR.Cryption.Crypt" name="WPR.Cryption.Crypt">
-<area shape="rect" id="Node000001" title="De klasse Crypt zorgt voor een veilige manier om te encrypten en te decrypten." alt="" coords="10,267,142,400"/>
+<area shape="rect" id="Node000001" title="Class Crypt zorgt voor een veilig encryptie en decryptie van strings. De Crptie wordt gedaan door het..." alt="" coords="10,267,142,400"/>
 <area shape="rect" id="Node000002" href="$class_w_p_r_1_1_data_1_1_env_config.html" title="Leez het .env bestand uit waarin de connectie strings staan naar de database. Deze staan in een apart..." alt="" coords="5,5,146,203"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="78,202,78,250,73,250,73,202"/>
 </map>

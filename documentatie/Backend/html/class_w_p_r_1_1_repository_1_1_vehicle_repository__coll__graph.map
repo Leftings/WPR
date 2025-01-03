@@ -1,5 +1,5 @@
 <map id="WPR.Repository.VehicleRepository" name="WPR.Repository.VehicleRepository">
-<area shape="rect" id="Node000001" title=" " alt="" coords="23,523,240,736"/>
+<area shape="rect" id="Node000001" title="De VehicleRepository class geeft de methodes voor de interactie met de database voor gebruiker gerela..." alt="" coords="23,523,240,736"/>
 <area shape="rect" id="Node000002" href="$interface_w_p_r_1_1_repository_1_1_i_vehicle_repository.html" title=" " alt="" coords="5,267,215,459"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="122,473,126,523,121,523,117,474"/>
 <area shape="rect" id="Node000003" href="$class_w_p_r_1_1_database_1_1_connector.html" title=" " alt="" coords="239,317,406,408"/>

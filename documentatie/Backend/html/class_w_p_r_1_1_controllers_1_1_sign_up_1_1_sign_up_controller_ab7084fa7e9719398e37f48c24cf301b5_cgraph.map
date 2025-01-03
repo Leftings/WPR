@@ -1,6 +1,6 @@
 <map id="WPR.Controllers.SignUp.SignUpController.signUpEmployeeAsync" name="WPR.Controllers.SignUp.SignUpController.signUpEmployeeAsync">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,105,240,148"/>
-<area shape="rect" id="Node000002" href="$class_w_p_r_1_1_controllers_1_1_sign_up_1_1_sign_up_controller.html#a26f172ac90a38512ee5b1863f405649a" title=" " alt="" coords="289,5,486,48"/>
+<area shape="rect" id="Node000001" title="Een account voor zakelijke gebruikers kan aangemaakt worden (onderscheiden door KvK&#45;nummer)" alt="" coords="5,105,240,148"/>
+<area shape="rect" id="Node000002" href="$class_w_p_r_1_1_controllers_1_1_sign_up_1_1_sign_up_controller.html#a26f172ac90a38512ee5b1863f405649a" title="Er wordt gekeken of alle noodzakelijke velden voor het aanmaken van een account ingevuld zijn." alt="" coords="289,5,486,48"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="175,102,287,58,305,51,306,56,289,62,177,107"/>
 <area shape="rect" id="Node000003" href="$class_w_p_r_1_1_utils_1_1_email_checker.html#ab97bf7cde61a138766de208bad9d5c7c" title=" " alt="" coords="295,72,480,115"/>
 <area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="240,109,279,104,280,110,240,115"/>

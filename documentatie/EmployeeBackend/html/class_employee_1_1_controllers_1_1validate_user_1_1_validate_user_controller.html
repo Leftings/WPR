@@ -108,12 +108,15 @@ $(function(){initNavTree('class_employee_1_1_controllers_1_1validate_user_1_1_va
   <div class="headertitle"><div class="title">Employee.Controllers.validateUser.ValidateUserController Class Referentie</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>In validateUserController wordt gekeken of er een gelidge medewerkers sessie aanwezig is. (Buitenwerking)  
+ <a href="#details">Meer...</a></p>
 <div class="dynheader">
 Klasse diagram voor Employee.Controllers.validateUser.ValidateUserController</div>
 <div class="dyncontent">
 <div class="center"><img src="class_employee_1_1_controllers_1_1validate_user_1_1_validate_user_controller__inherit__graph.png" border="0" usemap="#a_employee_8_controllers_8validate_user_8_validate_user_controller_inherit__map" alt="Inheritance graph"/></div>
 <map name="a_employee_8_controllers_8validate_user_8_validate_user_controller_inherit__map" id="a_employee_8_controllers_8validate_user_8_validate_user_controller_inherit__map">
-<area shape="rect" title=" " alt="" coords="5,123,190,208"/>
+<area shape="rect" title="In validateUserController wordt gekeken of er een gelidge medewerkers sessie aanwezig is...." alt="" coords="5,123,190,208"/>
 <area shape="rect" title=" " alt="" coords="49,5,146,75"/>
 <area shape="poly" title=" " alt="" coords="100,89,100,123,95,123,95,89"/>
 </map>
@@ -123,7 +126,7 @@ Collaboratie diagram voor Employee.Controllers.validateUser.ValidateUserControll
 <div class="dyncontent">
 <div class="center"><img src="class_employee_1_1_controllers_1_1validate_user_1_1_validate_user_controller__coll__graph.png" border="0" usemap="#a_employee_8_controllers_8validate_user_8_validate_user_controller_coll__map" alt="Collaboration graph"/></div>
 <map name="a_employee_8_controllers_8validate_user_8_validate_user_controller_coll__map" id="a_employee_8_controllers_8validate_user_8_validate_user_controller_coll__map">
-<area shape="rect" title=" " alt="" coords="5,123,190,208"/>
+<area shape="rect" title="In validateUserController wordt gekeken of er een gelidge medewerkers sessie aanwezig is...." alt="" coords="5,123,190,208"/>
 <area shape="rect" title=" " alt="" coords="49,5,146,75"/>
 <area shape="poly" title=" " alt="" coords="100,89,100,123,95,123,95,89"/>
 </map>
@@ -135,8 +138,9 @@ Public Members</h2></td></tr>
 <tr class="separator:ac7bb8073c361501c0a410a847794aeba"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Gedetailleerde Beschrijving</h2>
-<div class="textblock">
-<p class="definition">De definitie bevindt zich op regel <a class="el" href="validate_user_controller_8cs_source.html#l00007">7</a> in het bestand <a class="el" href="validate_user_controller_8cs_source.html">validateUserController.cs</a>.</p>
+<div class="textblock"><p>In validateUserController wordt gekeken of er een gelidge medewerkers sessie aanwezig is. (Buitenwerking) </p>
+
+<p class="definition">De definitie bevindt zich op regel <a class="el" href="validate_user_controller_8cs_source.html#l00011">11</a> in het bestand <a class="el" href="validate_user_controller_8cs_source.html">validateUserController.cs</a>.</p>
 </div><h2 class="groupheader">Documentatie van functie members</h2>
 <a id="ac7bb8073c361501c0a410a847794aeba" name="ac7bb8073c361501c0a410a847794aeba"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ac7bb8073c361501c0a410a847794aeba">&#9670;&#160;</a></span>CheckSessionStaff()</h2>
@@ -153,16 +157,16 @@ Public Members</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">De definitie bevindt zich op regel <a class="el" href="validate_user_controller_8cs_source.html#l00011">11</a> in het bestand <a class="el" href="validate_user_controller_8cs_source.html">validateUserController.cs</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   12</span>    {</div>
-<div class="line"><span class="lineno">   13</span>        <span class="keywordtype">string</span> sessionValue = Request.Cookies[<span class="stringliteral">&quot;LoginEmployeeSession&quot;</span>];</div>
-<div class="line"><span class="lineno">   14</span>        </div>
-<div class="line"><span class="lineno">   15</span>        <span class="keywordflow">if</span> (!<span class="keywordtype">string</span>.IsNullOrEmpty(sessionValue))</div>
-<div class="line"><span class="lineno">   16</span>        {</div>
-<div class="line"><span class="lineno">   17</span>            <span class="keywordflow">return</span> Ok( <span class="keyword">new</span> {message = <span class="stringliteral">&quot;session active &quot;</span>, sessionValue});</div>
-<div class="line"><span class="lineno">   18</span>        }</div>
-<div class="line"><span class="lineno">   19</span>        <span class="keywordflow">return</span> Unauthorized(<span class="keyword">new</span> { message = <span class="stringliteral">&quot;Session expired or is not found&quot;</span> });</div>
-<div class="line"><span class="lineno">   20</span>    }</div>
+<p class="definition">De definitie bevindt zich op regel <a class="el" href="validate_user_controller_8cs_source.html#l00015">15</a> in het bestand <a class="el" href="validate_user_controller_8cs_source.html">validateUserController.cs</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   16</span>    {</div>
+<div class="line"><span class="lineno">   17</span>        <span class="keywordtype">string</span> sessionValue = Request.Cookies[<span class="stringliteral">&quot;LoginEmployeeSession&quot;</span>];</div>
+<div class="line"><span class="lineno">   18</span>        </div>
+<div class="line"><span class="lineno">   19</span>        <span class="keywordflow">if</span> (!<span class="keywordtype">string</span>.IsNullOrEmpty(sessionValue))</div>
+<div class="line"><span class="lineno">   20</span>        {</div>
+<div class="line"><span class="lineno">   21</span>            <span class="keywordflow">return</span> Ok( <span class="keyword">new</span> {message = <span class="stringliteral">&quot;session active &quot;</span>, sessionValue});</div>
+<div class="line"><span class="lineno">   22</span>        }</div>
+<div class="line"><span class="lineno">   23</span>        <span class="keywordflow">return</span> Unauthorized(<span class="keyword">new</span> { message = <span class="stringliteral">&quot;Session expired or is not found&quot;</span> });</div>
+<div class="line"><span class="lineno">   24</span>    }</div>
 </div><!-- fragment -->
 </div>
 </div>

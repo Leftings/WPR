@@ -111,50 +111,48 @@ $(function(){initNavTree('hash_8cs_source.html',''); initResizable(true); });
 <div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span> </div>
 <div class="foldopen" id="foldopen00005" data-start="{" data-end="}">
 <div class="line"><a id="l00005" name="l00005"></a><span class="lineno"><a class="line" href="namespace_w_p_r_1_1_hashing.html">    5</a></span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespace_w_p_r_1_1_hashing.html">WPR.Hashing</a>;</div>
-<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
-<div class="foldopen" id="foldopen00007" data-start="{" data-end="};">
-<div class="line"><a id="l00007" name="l00007"></a><span class="lineno"><a class="line" href="class_w_p_r_1_1_hashing_1_1_hash.html">    7</a></span><span class="keyword">public</span> <span class="keyword">class </span><a class="code hl_function" href="class_w_p_r_1_1_hashing_1_1_hash.html#a5e083798081f2a97774dbbf4cdaa4101">Hash</a></div>
-<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span>{</div>
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno"><a class="line" href="class_w_p_r_1_1_hashing_1_1_hash.html#a3622296fc9f30fe092de6b43de5e351d">    9</a></span>    <span class="keyword">private</span> <span class="keywordtype">byte</span>[]? <a class="code hl_property" href="class_w_p_r_1_1_hashing_1_1_hash.html#a3622296fc9f30fe092de6b43de5e351d">_salt</a> { <span class="keyword">get</span>; <span class="keyword">set</span>; }</div>
-<div class="foldopen" id="foldopen00010" data-start="{" data-end="}">
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno"><a class="line" href="class_w_p_r_1_1_hashing_1_1_hash.html#a5e083798081f2a97774dbbf4cdaa4101">   10</a></span>    <span class="keyword">public</span> <a class="code hl_function" href="class_w_p_r_1_1_hashing_1_1_hash.html#a5e083798081f2a97774dbbf4cdaa4101">Hash</a>(<a class="code hl_class" href="class_w_p_r_1_1_data_1_1_env_config.html">EnvConfig</a> envConfig)</div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span>    {</div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span>        <a class="code hl_property" href="class_w_p_r_1_1_hashing_1_1_hash.html#a3622296fc9f30fe092de6b43de5e351d">_salt</a> = Convert.FromBase64String(envConfig.<a class="code hl_function" href="class_w_p_r_1_1_data_1_1_env_config.html#aa9ca09132345c9c5905f2c408fe73fef">Get</a>(<span class="stringliteral">&quot;SALT&quot;</span>));</div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>    }</div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span></div>
+<div class="foldopen" id="foldopen00010" data-start="{" data-end="};">
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno"><a class="line" href="class_w_p_r_1_1_hashing_1_1_hash.html">   10</a></span><span class="keyword">public</span> <span class="keyword">class </span><a class="code hl_function" href="class_w_p_r_1_1_hashing_1_1_hash.html#a5e083798081f2a97774dbbf4cdaa4101">Hash</a></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span>{</div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno"><a class="line" href="class_w_p_r_1_1_hashing_1_1_hash.html#a3622296fc9f30fe092de6b43de5e351d">   12</a></span>    <span class="keyword">private</span> <span class="keywordtype">byte</span>[]? <a class="code hl_property" href="class_w_p_r_1_1_hashing_1_1_hash.html#a3622296fc9f30fe092de6b43de5e351d">_salt</a> { <span class="keyword">get</span>; <span class="keyword">set</span>; }</div>
+<div class="foldopen" id="foldopen00013" data-start="{" data-end="}">
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno"><a class="line" href="class_w_p_r_1_1_hashing_1_1_hash.html#a5e083798081f2a97774dbbf4cdaa4101">   13</a></span>    <span class="keyword">public</span> <a class="code hl_function" href="class_w_p_r_1_1_hashing_1_1_hash.html#a5e083798081f2a97774dbbf4cdaa4101">Hash</a>(<a class="code hl_class" href="class_w_p_r_1_1_data_1_1_env_config.html">EnvConfig</a> envConfig)</div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>    {</div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>        <a class="code hl_property" href="class_w_p_r_1_1_hashing_1_1_hash.html#a3622296fc9f30fe092de6b43de5e351d">_salt</a> = Convert.FromBase64String(envConfig.<a class="code hl_function" href="class_w_p_r_1_1_data_1_1_env_config.html#aa9ca09132345c9c5905f2c408fe73fef">Get</a>(<span class="stringliteral">&quot;SALT&quot;</span>));</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>    }</div>
 </div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span> </div>
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>    <span class="comment">// Het creëren van een salt</span></div>
-<div class="foldopen" id="foldopen00016" data-start="{" data-end="}">
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno"><a class="line" href="class_w_p_r_1_1_hashing_1_1_hash.html#ad8bd693b06b99631e79c606a3a1f3cc1">   16</a></span>    <span class="keyword">public</span> <span class="keywordtype">byte</span>[] <a class="code hl_function" href="class_w_p_r_1_1_hashing_1_1_hash.html#ad8bd693b06b99631e79c606a3a1f3cc1">createSalt</a>()</div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>    {</div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>        <span class="keywordtype">byte</span>[] salt = RandomNumberGenerator.GetBytes(128 / 8); <span class="comment">// de bites worden naar bytes omgezet</span></div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>        <span class="keywordflow">return</span> salt;</div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>    }</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span></div>
+<div class="foldopen" id="foldopen00022" data-start="{" data-end="}">
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno"><a class="line" href="class_w_p_r_1_1_hashing_1_1_hash.html#ad8bd693b06b99631e79c606a3a1f3cc1">   22</a></span>    <span class="keyword">public</span> <span class="keywordtype">byte</span>[] <a class="code hl_function" href="class_w_p_r_1_1_hashing_1_1_hash.html#ad8bd693b06b99631e79c606a3a1f3cc1">createSalt</a>()</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>    {</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>        <span class="keywordtype">byte</span>[] salt = RandomNumberGenerator.GetBytes(128 / 8); <span class="comment">// de bites worden naar bytes omgezet</span></div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>        <span class="keywordflow">return</span> salt;</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>    }</div>
 </div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>    </div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>    <span class="comment">// Er wordt een hash toegepast op het meegegeven wachtwoord</span></div>
-<div class="foldopen" id="foldopen00023" data-start="{" data-end="}">
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno"><a class="line" href="class_w_p_r_1_1_hashing_1_1_hash.html#a7cf6dc2829b1ec38a0aa71df73ef5dba">   23</a></span>    <span class="keyword">public</span> <span class="keywordtype">string</span> <a class="code hl_function" href="class_w_p_r_1_1_hashing_1_1_hash.html#a7cf6dc2829b1ec38a0aa71df73ef5dba">createHash</a>(<span class="keywordtype">string</span> password)</div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>    {</div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>        <span class="keywordtype">string</span> hashed = Convert.ToBase64String(KeyDerivation.Pbkdf2(</div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>            password: password!, <span class="comment">// Het wachtwoord</span></div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>            salt: <a class="code hl_property" href="class_w_p_r_1_1_hashing_1_1_hash.html#a3622296fc9f30fe092de6b43de5e351d">_salt</a>, <span class="comment">// Salt wordt toegevoegd aan de hash</span></div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>            prf: KeyDerivationPrf.HMACSHA256, <span class="comment">// Er wordt gebruik gemaakt van het HMACSHA256 hash algoritme</span></div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>            iterationCount: 100000, <span class="comment">// Hoeveel itteraties het algoritme draaid</span></div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>            numBytesRequested: 256 / 8)); <span class="comment">// zet de 256 bites om naar 32 bytes</span></div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span> </div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>        <span class="keywordflow">return</span> hashed;</div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    }</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>    </div>
+<div class="foldopen" id="foldopen00033" data-start="{" data-end="}">
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno"><a class="line" href="class_w_p_r_1_1_hashing_1_1_hash.html#a7cf6dc2829b1ec38a0aa71df73ef5dba">   33</a></span>    <span class="keyword">public</span> <span class="keywordtype">string</span> <a class="code hl_function" href="class_w_p_r_1_1_hashing_1_1_hash.html#a7cf6dc2829b1ec38a0aa71df73ef5dba">createHash</a>(<span class="keywordtype">string</span> password)</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>    {</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>        <span class="keywordtype">string</span> hashed = Convert.ToBase64String(KeyDerivation.Pbkdf2(</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>            password: password!, <span class="comment">// Het wachtwoord</span></div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>            salt: <a class="code hl_property" href="class_w_p_r_1_1_hashing_1_1_hash.html#a3622296fc9f30fe092de6b43de5e351d">_salt</a>, <span class="comment">// Salt wordt toegevoegd aan de hash</span></div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>            prf: KeyDerivationPrf.HMACSHA256, <span class="comment">// Er wordt gebruik gemaakt van het HMACSHA256 hash algoritme</span></div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>            iterationCount: 100000, <span class="comment">// Hoeveel itteraties het algoritme draaid</span></div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>            numBytesRequested: 256 / 8)); <span class="comment">// zet de 256 bites om naar 32 bytes</span></div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span> </div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>        <span class="keywordflow">return</span> hashed;</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    }</div>
 </div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>}</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>}</div>
 </div>
 </div>
 <div class="ttc" id="aclass_w_p_r_1_1_data_1_1_env_config_html"><div class="ttname"><a href="class_w_p_r_1_1_data_1_1_env_config.html">WPR.Data.EnvConfig</a></div><div class="ttdoc">Leez het .env bestand uit waarin de connectie strings staan naar de database. Deze staan in een apart...</div><div class="ttdef"><b>Definition</b> <a href="_env_config_8cs_source.html#l00012">EnvConfig.cs:13</a></div></div>
 <div class="ttc" id="aclass_w_p_r_1_1_data_1_1_env_config_html_aa9ca09132345c9c5905f2c408fe73fef"><div class="ttname"><a href="class_w_p_r_1_1_data_1_1_env_config.html#aa9ca09132345c9c5905f2c408fe73fef">WPR.Data.EnvConfig.Get</a></div><div class="ttdeci">virtual string Get(string key)</div><div class="ttdoc">Haalt de value van de specifieke environement variabelen.</div><div class="ttdef"><b>Definition</b> <a href="_env_config_8cs_source.html#l00031">EnvConfig.cs:31</a></div></div>
-<div class="ttc" id="aclass_w_p_r_1_1_hashing_1_1_hash_html_a3622296fc9f30fe092de6b43de5e351d"><div class="ttname"><a href="class_w_p_r_1_1_hashing_1_1_hash.html#a3622296fc9f30fe092de6b43de5e351d">WPR.Hashing.Hash._salt</a></div><div class="ttdeci">byte?[] _salt</div><div class="ttdef"><b>Definition</b> <a href="#l00009">hash.cs:9</a></div></div>
-<div class="ttc" id="aclass_w_p_r_1_1_hashing_1_1_hash_html_a5e083798081f2a97774dbbf4cdaa4101"><div class="ttname"><a href="class_w_p_r_1_1_hashing_1_1_hash.html#a5e083798081f2a97774dbbf4cdaa4101">WPR.Hashing.Hash.Hash</a></div><div class="ttdeci">Hash(EnvConfig envConfig)</div><div class="ttdef"><b>Definition</b> <a href="#l00010">hash.cs:10</a></div></div>
-<div class="ttc" id="aclass_w_p_r_1_1_hashing_1_1_hash_html_a7cf6dc2829b1ec38a0aa71df73ef5dba"><div class="ttname"><a href="class_w_p_r_1_1_hashing_1_1_hash.html#a7cf6dc2829b1ec38a0aa71df73ef5dba">WPR.Hashing.Hash.createHash</a></div><div class="ttdeci">string createHash(string password)</div><div class="ttdef"><b>Definition</b> <a href="#l00023">hash.cs:23</a></div></div>
-<div class="ttc" id="aclass_w_p_r_1_1_hashing_1_1_hash_html_ad8bd693b06b99631e79c606a3a1f3cc1"><div class="ttname"><a href="class_w_p_r_1_1_hashing_1_1_hash.html#ad8bd693b06b99631e79c606a3a1f3cc1">WPR.Hashing.Hash.createSalt</a></div><div class="ttdeci">byte[] createSalt()</div><div class="ttdef"><b>Definition</b> <a href="#l00016">hash.cs:16</a></div></div>
+<div class="ttc" id="aclass_w_p_r_1_1_hashing_1_1_hash_html_a3622296fc9f30fe092de6b43de5e351d"><div class="ttname"><a href="class_w_p_r_1_1_hashing_1_1_hash.html#a3622296fc9f30fe092de6b43de5e351d">WPR.Hashing.Hash._salt</a></div><div class="ttdeci">byte?[] _salt</div><div class="ttdef"><b>Definition</b> <a href="#l00012">hash.cs:12</a></div></div>
+<div class="ttc" id="aclass_w_p_r_1_1_hashing_1_1_hash_html_a5e083798081f2a97774dbbf4cdaa4101"><div class="ttname"><a href="class_w_p_r_1_1_hashing_1_1_hash.html#a5e083798081f2a97774dbbf4cdaa4101">WPR.Hashing.Hash.Hash</a></div><div class="ttdeci">Hash(EnvConfig envConfig)</div><div class="ttdef"><b>Definition</b> <a href="#l00013">hash.cs:13</a></div></div>
+<div class="ttc" id="aclass_w_p_r_1_1_hashing_1_1_hash_html_a7cf6dc2829b1ec38a0aa71df73ef5dba"><div class="ttname"><a href="class_w_p_r_1_1_hashing_1_1_hash.html#a7cf6dc2829b1ec38a0aa71df73ef5dba">WPR.Hashing.Hash.createHash</a></div><div class="ttdeci">string createHash(string password)</div><div class="ttdoc">Er wordt een hash toegepast op het meegegeven wachtwoord.</div><div class="ttdef"><b>Definition</b> <a href="#l00033">hash.cs:33</a></div></div>
+<div class="ttc" id="aclass_w_p_r_1_1_hashing_1_1_hash_html_ad8bd693b06b99631e79c606a3a1f3cc1"><div class="ttname"><a href="class_w_p_r_1_1_hashing_1_1_hash.html#ad8bd693b06b99631e79c606a3a1f3cc1">WPR.Hashing.Hash.createSalt</a></div><div class="ttdeci">byte[] createSalt()</div><div class="ttdoc">Het creëren van een salt.</div><div class="ttdef"><b>Definition</b> <a href="#l00022">hash.cs:22</a></div></div>
 <div class="ttc" id="anamespace_w_p_r_1_1_data_html"><div class="ttname"><a href="namespace_w_p_r_1_1_data.html">WPR.Data</a></div><div class="ttdef"><b>Definition</b> <a href="_env_config_8cs_source.html#l00004">EnvConfig.cs:4</a></div></div>
 <div class="ttc" id="anamespace_w_p_r_1_1_hashing_html"><div class="ttname"><a href="namespace_w_p_r_1_1_hashing.html">WPR.Hashing</a></div><div class="ttdef"><b>Definition</b> <a href="#l00005">hash.cs:5</a></div></div>
 </div><!-- fragment --></div><!-- contents -->

@@ -11,63 +11,62 @@
 \DoxyCodeLine{\Hypertarget{add_vehicle_controller_8cs_source_l00007}00007\ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespace_employee_1_1_repository}{Employee.Repository}};}
 \DoxyCodeLine{\Hypertarget{add_vehicle_controller_8cs_source_l00008}00008\ \textcolor{keyword}{using\ }MySql.Data.MySqlClient;}
 \DoxyCodeLine{\Hypertarget{add_vehicle_controller_8cs_source_l00009}00009\ }
-\DoxyCodeLine{\Hypertarget{add_vehicle_controller_8cs_source_l00010}00010\ [Route(\textcolor{stringliteral}{"{}api/[controller]"{}})]}
-\DoxyCodeLine{\Hypertarget{add_vehicle_controller_8cs_source_l00011}00011\ [ApiController]}
-\DoxyCodeLine{\Hypertarget{add_vehicle_controller_8cs_source_l00012}\mbox{\hyperlink{class_employee_1_1_controllers_1_1_add_vehicle_1_1_add_vehicle_controller}{00012}}\ \textcolor{keyword}{public}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_employee_1_1_controllers_1_1_add_vehicle_1_1_add_vehicle_controller_a6e5b3361248de8b29ef1f880c7011484}{AddVehicleController}}\ :\ ControllerBase}
-\DoxyCodeLine{\Hypertarget{add_vehicle_controller_8cs_source_l00013}00013\ \{}
-\DoxyCodeLine{\Hypertarget{add_vehicle_controller_8cs_source_l00014}\mbox{\hyperlink{class_employee_1_1_controllers_1_1_add_vehicle_1_1_add_vehicle_controller_a49cf6b990b77a83219b0e1822595724f}{00014}}\ \ \ \ \ \textcolor{keyword}{private}\ readonly\ \mbox{\hyperlink{class_employee_1_1_database_1_1_connector}{Connector}}\ \mbox{\hyperlink{class_employee_1_1_controllers_1_1_add_vehicle_1_1_add_vehicle_controller_a49cf6b990b77a83219b0e1822595724f}{\_connector}};}
-\DoxyCodeLine{\Hypertarget{add_vehicle_controller_8cs_source_l00015}\mbox{\hyperlink{class_employee_1_1_controllers_1_1_add_vehicle_1_1_add_vehicle_controller_a4912c2e984d138d05b7c6bda0644ca88}{00015}}\ \ \ \ \ \textcolor{keyword}{private}\ readonly\ \mbox{\hyperlink{interface_employee_1_1_repository_1_1_i_user_repository}{IUserRepository}}\ \mbox{\hyperlink{class_employee_1_1_controllers_1_1_add_vehicle_1_1_add_vehicle_controller_a4912c2e984d138d05b7c6bda0644ca88}{\_userRepository}};}
-\DoxyCodeLine{\Hypertarget{add_vehicle_controller_8cs_source_l00016}00016\ }
-\DoxyCodeLine{\Hypertarget{add_vehicle_controller_8cs_source_l00017}\mbox{\hyperlink{class_employee_1_1_controllers_1_1_add_vehicle_1_1_add_vehicle_controller_a6e5b3361248de8b29ef1f880c7011484}{00017}}\ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_employee_1_1_controllers_1_1_add_vehicle_1_1_add_vehicle_controller_a6e5b3361248de8b29ef1f880c7011484}{AddVehicleController}}(\mbox{\hyperlink{class_employee_1_1_database_1_1_connector}{Connector}}\ connector,\ \mbox{\hyperlink{interface_employee_1_1_repository_1_1_i_user_repository}{IUserRepository}}\ userRepository)}
-\DoxyCodeLine{\Hypertarget{add_vehicle_controller_8cs_source_l00018}00018\ \ \ \ \ \{}
-\DoxyCodeLine{\Hypertarget{add_vehicle_controller_8cs_source_l00019}00019\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_employee_1_1_controllers_1_1_add_vehicle_1_1_add_vehicle_controller_a49cf6b990b77a83219b0e1822595724f}{\_connector}}\ =\ connector\ ??\ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ ArgumentNullException(nameof(connector));}
-\DoxyCodeLine{\Hypertarget{add_vehicle_controller_8cs_source_l00020}00020\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_employee_1_1_controllers_1_1_add_vehicle_1_1_add_vehicle_controller_a4912c2e984d138d05b7c6bda0644ca88}{\_userRepository}}\ =\ userRepository\ ??\ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ ArgumentNullException(nameof(userRepository));}
-\DoxyCodeLine{\Hypertarget{add_vehicle_controller_8cs_source_l00021}00021\ \ \ \ \ \}}
-\DoxyCodeLine{\Hypertarget{add_vehicle_controller_8cs_source_l00022}00022\ }
-\DoxyCodeLine{\Hypertarget{add_vehicle_controller_8cs_source_l00023}00023\ \ \ \ \ \textcolor{comment}{//\ Voertuig\ toevoegen}}
-\DoxyCodeLine{\Hypertarget{add_vehicle_controller_8cs_source_l00024}00024\ \ \ \ \ [HttpPost(\textcolor{stringliteral}{"{}addVehicle"{}})]}
-\DoxyCodeLine{\Hypertarget{add_vehicle_controller_8cs_source_l00025}00025\ \ \ \ \ \textcolor{comment}{//\ Niet\ te\ testen\ via\ Swagger,\ wegens\ het\ toevoegen\ van\ een\ afbeelding}}
-\DoxyCodeLine{\Hypertarget{add_vehicle_controller_8cs_source_l00026}00026\ \ \ \ \ [ApiExplorerSettings(IgnoreApi\ =\ \textcolor{keyword}{true})]}
-\DoxyCodeLine{\Hypertarget{add_vehicle_controller_8cs_source_l00027}\mbox{\hyperlink{class_employee_1_1_controllers_1_1_add_vehicle_1_1_add_vehicle_controller_aa38d4b49a60803dd9d9ce8fb27c9d0eb}{00027}}\ \ \ \ \ \textcolor{keyword}{public}\ async\ Task<IActionResult>\ \mbox{\hyperlink{class_employee_1_1_controllers_1_1_add_vehicle_1_1_add_vehicle_controller_aa38d4b49a60803dd9d9ce8fb27c9d0eb}{AddVehicleAsync}}([FromForm]\ \mbox{\hyperlink{class_employee_1_1_controllers_1_1_add_vehicle_1_1_add_vehicle_request}{AddVehicleRequest}}\ request,\ [FromForm]\ IFormFile\ vehicleBlob)}
-\DoxyCodeLine{\Hypertarget{add_vehicle_controller_8cs_source_l00028}00028\ \ \ \ \ \{}
-\DoxyCodeLine{\Hypertarget{add_vehicle_controller_8cs_source_l00029}00029\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}}
-\DoxyCodeLine{\Hypertarget{add_vehicle_controller_8cs_source_l00030}00030\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{\Hypertarget{add_vehicle_controller_8cs_source_l00031}00031\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Vehicle\ blob\ wordt\ omgezet\ naar\ bytes}}
-\DoxyCodeLine{\Hypertarget{add_vehicle_controller_8cs_source_l00032}00032\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{byte}[]\ vehicleBlobBytes\ =\ \textcolor{keyword}{null};}
-\DoxyCodeLine{\Hypertarget{add_vehicle_controller_8cs_source_l00033}00033\ }
-\DoxyCodeLine{\Hypertarget{add_vehicle_controller_8cs_source_l00034}00034\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (vehicleBlob\ !=\ \textcolor{keyword}{null})}
-\DoxyCodeLine{\Hypertarget{add_vehicle_controller_8cs_source_l00035}00035\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{\Hypertarget{add_vehicle_controller_8cs_source_l00036}00036\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using}\ (var\ memoryStream\ =\ \textcolor{keyword}{new}\ MemoryStream())}
-\DoxyCodeLine{\Hypertarget{add_vehicle_controller_8cs_source_l00037}00037\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{\Hypertarget{add_vehicle_controller_8cs_source_l00038}00038\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ await\ vehicleBlob.CopyToAsync(memoryStream);}
-\DoxyCodeLine{\Hypertarget{add_vehicle_controller_8cs_source_l00039}00039\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ vehicleBlobBytes\ =\ memoryStream.ToArray();}
-\DoxyCodeLine{\Hypertarget{add_vehicle_controller_8cs_source_l00040}00040\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{\Hypertarget{add_vehicle_controller_8cs_source_l00041}00041\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{\Hypertarget{add_vehicle_controller_8cs_source_l00042}00042\ }
-\DoxyCodeLine{\Hypertarget{add_vehicle_controller_8cs_source_l00043}00043\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Gegevens\ worden\ doorgestuurd\ naar\ de\ userRepository}}
-\DoxyCodeLine{\Hypertarget{add_vehicle_controller_8cs_source_l00044}00044\ \ \ \ \ \ \ \ \ \ \ \ \ var\ status\ =\ await\ \mbox{\hyperlink{class_employee_1_1_controllers_1_1_add_vehicle_1_1_add_vehicle_controller_a4912c2e984d138d05b7c6bda0644ca88}{\_userRepository}}.AddVehicleAsync(}
-\DoxyCodeLine{\Hypertarget{add_vehicle_controller_8cs_source_l00045}00045\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ request.YoP,}
-\DoxyCodeLine{\Hypertarget{add_vehicle_controller_8cs_source_l00046}00046\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ request.Brand,}
-\DoxyCodeLine{\Hypertarget{add_vehicle_controller_8cs_source_l00047}00047\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ request.Type,}
-\DoxyCodeLine{\Hypertarget{add_vehicle_controller_8cs_source_l00048}00048\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ request.LicensePlate,}
-\DoxyCodeLine{\Hypertarget{add_vehicle_controller_8cs_source_l00049}00049\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ request.Color,}
-\DoxyCodeLine{\Hypertarget{add_vehicle_controller_8cs_source_l00050}00050\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ request.Sort,}
-\DoxyCodeLine{\Hypertarget{add_vehicle_controller_8cs_source_l00051}00051\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ request.Price,}
-\DoxyCodeLine{\Hypertarget{add_vehicle_controller_8cs_source_l00052}00052\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ request.Description,}
-\DoxyCodeLine{\Hypertarget{add_vehicle_controller_8cs_source_l00053}00053\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ vehicleBlobBytes);}
-\DoxyCodeLine{\Hypertarget{add_vehicle_controller_8cs_source_l00054}00054\ }
-\DoxyCodeLine{\Hypertarget{add_vehicle_controller_8cs_source_l00055}00055\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (status.status)}
-\DoxyCodeLine{\Hypertarget{add_vehicle_controller_8cs_source_l00056}00056\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{\Hypertarget{add_vehicle_controller_8cs_source_l00057}00057\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Ok(\textcolor{keyword}{new}\ \{\ status.message\ \});}
-\DoxyCodeLine{\Hypertarget{add_vehicle_controller_8cs_source_l00058}00058\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{\Hypertarget{add_vehicle_controller_8cs_source_l00059}00059\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ BadRequest(\textcolor{keyword}{new}\ \{\ status.message\ \});}
-\DoxyCodeLine{\Hypertarget{add_vehicle_controller_8cs_source_l00060}00060\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{\Hypertarget{add_vehicle_controller_8cs_source_l00061}00061\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (Exception\ ex)}
-\DoxyCodeLine{\Hypertarget{add_vehicle_controller_8cs_source_l00062}00062\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{\Hypertarget{add_vehicle_controller_8cs_source_l00063}00063\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ StatusCode(500,\ \textcolor{keyword}{new}\ \{\ status\ =\ \textcolor{keyword}{false},\ message\ =\ ex.Message\ \});}
-\DoxyCodeLine{\Hypertarget{add_vehicle_controller_8cs_source_l00064}00064\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{\Hypertarget{add_vehicle_controller_8cs_source_l00065}00065\ \ \ \ \ \}}
-\DoxyCodeLine{\Hypertarget{add_vehicle_controller_8cs_source_l00066}00066\ }
-\DoxyCodeLine{\Hypertarget{add_vehicle_controller_8cs_source_l00067}00067\ \}}
+\DoxyCodeLine{\Hypertarget{add_vehicle_controller_8cs_source_l00013}00013\ [Route(\textcolor{stringliteral}{"{}api/[controller]"{}})]}
+\DoxyCodeLine{\Hypertarget{add_vehicle_controller_8cs_source_l00014}00014\ [ApiController]}
+\DoxyCodeLine{\Hypertarget{add_vehicle_controller_8cs_source_l00015}\mbox{\hyperlink{class_employee_1_1_controllers_1_1_add_vehicle_1_1_add_vehicle_controller}{00015}}\ \textcolor{keyword}{public}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_employee_1_1_controllers_1_1_add_vehicle_1_1_add_vehicle_controller_a6e5b3361248de8b29ef1f880c7011484}{AddVehicleController}}\ :\ ControllerBase}
+\DoxyCodeLine{\Hypertarget{add_vehicle_controller_8cs_source_l00016}00016\ \{}
+\DoxyCodeLine{\Hypertarget{add_vehicle_controller_8cs_source_l00017}\mbox{\hyperlink{class_employee_1_1_controllers_1_1_add_vehicle_1_1_add_vehicle_controller_a49cf6b990b77a83219b0e1822595724f}{00017}}\ \ \ \ \ \textcolor{keyword}{private}\ readonly\ \mbox{\hyperlink{class_employee_1_1_database_1_1_connector}{Connector}}\ \mbox{\hyperlink{class_employee_1_1_controllers_1_1_add_vehicle_1_1_add_vehicle_controller_a49cf6b990b77a83219b0e1822595724f}{\_connector}};}
+\DoxyCodeLine{\Hypertarget{add_vehicle_controller_8cs_source_l00018}\mbox{\hyperlink{class_employee_1_1_controllers_1_1_add_vehicle_1_1_add_vehicle_controller_a4912c2e984d138d05b7c6bda0644ca88}{00018}}\ \ \ \ \ \textcolor{keyword}{private}\ readonly\ \mbox{\hyperlink{interface_employee_1_1_repository_1_1_i_user_repository}{IUserRepository}}\ \mbox{\hyperlink{class_employee_1_1_controllers_1_1_add_vehicle_1_1_add_vehicle_controller_a4912c2e984d138d05b7c6bda0644ca88}{\_userRepository}};}
+\DoxyCodeLine{\Hypertarget{add_vehicle_controller_8cs_source_l00019}00019\ }
+\DoxyCodeLine{\Hypertarget{add_vehicle_controller_8cs_source_l00020}\mbox{\hyperlink{class_employee_1_1_controllers_1_1_add_vehicle_1_1_add_vehicle_controller_a6e5b3361248de8b29ef1f880c7011484}{00020}}\ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_employee_1_1_controllers_1_1_add_vehicle_1_1_add_vehicle_controller_a6e5b3361248de8b29ef1f880c7011484}{AddVehicleController}}(\mbox{\hyperlink{class_employee_1_1_database_1_1_connector}{Connector}}\ connector,\ \mbox{\hyperlink{interface_employee_1_1_repository_1_1_i_user_repository}{IUserRepository}}\ userRepository)}
+\DoxyCodeLine{\Hypertarget{add_vehicle_controller_8cs_source_l00021}00021\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{add_vehicle_controller_8cs_source_l00022}00022\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_employee_1_1_controllers_1_1_add_vehicle_1_1_add_vehicle_controller_a49cf6b990b77a83219b0e1822595724f}{\_connector}}\ =\ connector\ ??\ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ ArgumentNullException(nameof(connector));}
+\DoxyCodeLine{\Hypertarget{add_vehicle_controller_8cs_source_l00023}00023\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_employee_1_1_controllers_1_1_add_vehicle_1_1_add_vehicle_controller_a4912c2e984d138d05b7c6bda0644ca88}{\_userRepository}}\ =\ userRepository\ ??\ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ ArgumentNullException(nameof(userRepository));}
+\DoxyCodeLine{\Hypertarget{add_vehicle_controller_8cs_source_l00024}00024\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{add_vehicle_controller_8cs_source_l00025}00025\ }
+\DoxyCodeLine{\Hypertarget{add_vehicle_controller_8cs_source_l00032}00032\ \ \ \ \ [HttpPost(\textcolor{stringliteral}{"{}addVehicle"{}})]}
+\DoxyCodeLine{\Hypertarget{add_vehicle_controller_8cs_source_l00033}00033\ \ \ \ \ \textcolor{comment}{//\ Niet\ te\ testen\ via\ Swagger,\ wegens\ het\ toevoegen\ van\ een\ afbeelding}}
+\DoxyCodeLine{\Hypertarget{add_vehicle_controller_8cs_source_l00034}00034\ \ \ \ \ [ApiExplorerSettings(IgnoreApi\ =\ \textcolor{keyword}{true})]}
+\DoxyCodeLine{\Hypertarget{add_vehicle_controller_8cs_source_l00035}\mbox{\hyperlink{class_employee_1_1_controllers_1_1_add_vehicle_1_1_add_vehicle_controller_aa38d4b49a60803dd9d9ce8fb27c9d0eb}{00035}}\ \ \ \ \ \textcolor{keyword}{public}\ async\ Task<IActionResult>\ \mbox{\hyperlink{class_employee_1_1_controllers_1_1_add_vehicle_1_1_add_vehicle_controller_aa38d4b49a60803dd9d9ce8fb27c9d0eb}{AddVehicleAsync}}([FromForm]\ \mbox{\hyperlink{class_employee_1_1_controllers_1_1_add_vehicle_1_1_add_vehicle_request}{AddVehicleRequest}}\ request,\ [FromForm]\ IFormFile\ vehicleBlob)}
+\DoxyCodeLine{\Hypertarget{add_vehicle_controller_8cs_source_l00036}00036\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{add_vehicle_controller_8cs_source_l00037}00037\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}}
+\DoxyCodeLine{\Hypertarget{add_vehicle_controller_8cs_source_l00038}00038\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{add_vehicle_controller_8cs_source_l00039}00039\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Vehicle\ blob\ wordt\ omgezet\ naar\ bytes}}
+\DoxyCodeLine{\Hypertarget{add_vehicle_controller_8cs_source_l00040}00040\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{byte}[]\ vehicleBlobBytes\ =\ \textcolor{keyword}{null};}
+\DoxyCodeLine{\Hypertarget{add_vehicle_controller_8cs_source_l00041}00041\ }
+\DoxyCodeLine{\Hypertarget{add_vehicle_controller_8cs_source_l00042}00042\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (vehicleBlob\ !=\ \textcolor{keyword}{null})}
+\DoxyCodeLine{\Hypertarget{add_vehicle_controller_8cs_source_l00043}00043\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{add_vehicle_controller_8cs_source_l00044}00044\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using}\ (var\ memoryStream\ =\ \textcolor{keyword}{new}\ MemoryStream())}
+\DoxyCodeLine{\Hypertarget{add_vehicle_controller_8cs_source_l00045}00045\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{add_vehicle_controller_8cs_source_l00046}00046\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ await\ vehicleBlob.CopyToAsync(memoryStream);}
+\DoxyCodeLine{\Hypertarget{add_vehicle_controller_8cs_source_l00047}00047\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ vehicleBlobBytes\ =\ memoryStream.ToArray();}
+\DoxyCodeLine{\Hypertarget{add_vehicle_controller_8cs_source_l00048}00048\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{add_vehicle_controller_8cs_source_l00049}00049\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{add_vehicle_controller_8cs_source_l00050}00050\ }
+\DoxyCodeLine{\Hypertarget{add_vehicle_controller_8cs_source_l00051}00051\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Gegevens\ worden\ doorgestuurd\ naar\ de\ userRepository}}
+\DoxyCodeLine{\Hypertarget{add_vehicle_controller_8cs_source_l00052}00052\ \ \ \ \ \ \ \ \ \ \ \ \ var\ status\ =\ await\ \mbox{\hyperlink{class_employee_1_1_controllers_1_1_add_vehicle_1_1_add_vehicle_controller_a4912c2e984d138d05b7c6bda0644ca88}{\_userRepository}}.AddVehicleAsync(}
+\DoxyCodeLine{\Hypertarget{add_vehicle_controller_8cs_source_l00053}00053\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ request.YoP,}
+\DoxyCodeLine{\Hypertarget{add_vehicle_controller_8cs_source_l00054}00054\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ request.Brand,}
+\DoxyCodeLine{\Hypertarget{add_vehicle_controller_8cs_source_l00055}00055\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ request.Type,}
+\DoxyCodeLine{\Hypertarget{add_vehicle_controller_8cs_source_l00056}00056\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ request.LicensePlate,}
+\DoxyCodeLine{\Hypertarget{add_vehicle_controller_8cs_source_l00057}00057\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ request.Color,}
+\DoxyCodeLine{\Hypertarget{add_vehicle_controller_8cs_source_l00058}00058\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ request.Sort,}
+\DoxyCodeLine{\Hypertarget{add_vehicle_controller_8cs_source_l00059}00059\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ request.Price,}
+\DoxyCodeLine{\Hypertarget{add_vehicle_controller_8cs_source_l00060}00060\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ request.Description,}
+\DoxyCodeLine{\Hypertarget{add_vehicle_controller_8cs_source_l00061}00061\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ vehicleBlobBytes);}
+\DoxyCodeLine{\Hypertarget{add_vehicle_controller_8cs_source_l00062}00062\ }
+\DoxyCodeLine{\Hypertarget{add_vehicle_controller_8cs_source_l00063}00063\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (status.status)}
+\DoxyCodeLine{\Hypertarget{add_vehicle_controller_8cs_source_l00064}00064\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{add_vehicle_controller_8cs_source_l00065}00065\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Ok(\textcolor{keyword}{new}\ \{\ status.message\ \});}
+\DoxyCodeLine{\Hypertarget{add_vehicle_controller_8cs_source_l00066}00066\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{add_vehicle_controller_8cs_source_l00067}00067\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ BadRequest(\textcolor{keyword}{new}\ \{\ status.message\ \});}
+\DoxyCodeLine{\Hypertarget{add_vehicle_controller_8cs_source_l00068}00068\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{add_vehicle_controller_8cs_source_l00069}00069\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (Exception\ ex)}
+\DoxyCodeLine{\Hypertarget{add_vehicle_controller_8cs_source_l00070}00070\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{add_vehicle_controller_8cs_source_l00071}00071\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ StatusCode(500,\ \textcolor{keyword}{new}\ \{\ status\ =\ \textcolor{keyword}{false},\ message\ =\ ex.Message\ \});}
+\DoxyCodeLine{\Hypertarget{add_vehicle_controller_8cs_source_l00072}00072\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{add_vehicle_controller_8cs_source_l00073}00073\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{add_vehicle_controller_8cs_source_l00074}00074\ }
+\DoxyCodeLine{\Hypertarget{add_vehicle_controller_8cs_source_l00075}00075\ \}}
 
 \end{DoxyCode}

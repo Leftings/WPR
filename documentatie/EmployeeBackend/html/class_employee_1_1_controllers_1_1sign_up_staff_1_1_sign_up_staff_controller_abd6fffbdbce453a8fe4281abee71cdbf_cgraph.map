@@ -1,5 +1,5 @@
 <map id="Employee.Controllers.signUpStaff.SignUpStaffController.SignUpStaff" name="Employee.Controllers.signUpStaff.SignUpStaffController.SignUpStaff">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,31,205,89"/>
+<area shape="rect" id="Node000001" title="Car and All medewerkers / Vehicle Managers kunnen hier aangemaakt worden. Mocht het emailadres al bes..." alt="" coords="5,31,205,89"/>
 <area shape="rect" id="Node000002" href="$class_employee_1_1_utils_1_1_email_checker.html#a2ab5d86d5340c04ed71482edec8b19f7" title=" " alt="" coords="265,5,466,48"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="205,45,249,39,250,44,206,50"/>
 <area shape="rect" id="Node000003" href="$class_employee_1_1_utils_1_1_password_checker.html#a073e56457d7387894dbf196395a41090" title=" " alt="" coords="253,72,478,115"/>

@@ -1,5 +1,5 @@
 <map id="Employee.Repository.UserRepository.GetVehicleData" name="Employee.Repository.UserRepository.GetVehicleData">
-<area shape="rect" id="Node000001" title=" " alt="" coords="243,5,421,48"/>
-<area shape="rect" id="Node000002" href="$class_employee_1_1_repository_1_1_user_repository.html#a8b0039b2bb022113aae5abb95e9eaaae" title=" " alt="" coords="5,5,195,48"/>
+<area shape="rect" id="Node000001" title="Het voertuigmerk, type en nummerbord worden uit de tabel Vehicle getrokken, doormiddel van hun frame ..." alt="" coords="243,5,421,48"/>
+<area shape="rect" id="Node000002" href="$class_employee_1_1_repository_1_1_user_repository.html#a8b0039b2bb022113aae5abb95e9eaaae" title="Er wordt een specifieke id opgevraagd en deze wordt uit de tabel Abonnement opgevraagd met alle data ..." alt="" coords="5,5,195,48"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="227,29,195,29,195,24,227,24"/>
 </map>

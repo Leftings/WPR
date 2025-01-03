@@ -2,12 +2,13 @@
 \hypertarget{class_w_p_r_1_1_cryption_1_1_crypt}{}\label{class_w_p_r_1_1_cryption_1_1_crypt}\index{WPR.Cryption.Crypt@{WPR.Cryption.Crypt}}
 
 
-De klasse \doxylink{class_w_p_r_1_1_cryption_1_1_crypt}{Crypt} zorgt voor een veilige manier om te encrypten en te decrypten.  
+Class \doxylink{class_w_p_r_1_1_cryption_1_1_crypt}{Crypt} zorgt voor een veilig encryptie en decryptie van strings. De Crptie wordt gedaan door het Advanced Encryption Standard (AES)  
 
 
 
 
-Collaboration diagram for WPR.\+Cryption.\+Crypt\+:\nopagebreak
+Collaboration diagram for WPR.\+Cryption.\+Crypt\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -20,9 +21,9 @@ Collaboration diagram for WPR.\+Cryption.\+Crypt\+:\nopagebreak
 \mbox{\hyperlink{class_w_p_r_1_1_cryption_1_1_crypt_abf13a1a845d4385d8daae32582c23358}{Crypt}} (\mbox{\hyperlink{class_w_p_r_1_1_data_1_1_env_config}{Env\+Config}} env\+Config)
 \begin{DoxyCompactList}\small\item\em Initaliseerd een nieuwe instantie van de cref=\+Crypt klasse. \end{DoxyCompactList}\item 
 string \mbox{\hyperlink{class_w_p_r_1_1_cryption_1_1_crypt_a40fd01006a4528f41d6430e1f9ff4f9b}{Encrypt}} (string text)
-\begin{DoxyCompactList}\small\item\em Encrypt de meegegeven tekst. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em De meegegeven text wordt geencrypt. \end{DoxyCompactList}\item 
 string \mbox{\hyperlink{class_w_p_r_1_1_cryption_1_1_crypt_a849477bb765d59afe80f995d4603613a}{Decrypt}} (string encrypted)
-\begin{DoxyCompactList}\small\item\em Decrypt de meegegeven tekst. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em De meegegeven encryptie wordt gedecrypt. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsection*{Private Attributes}
 \begin{DoxyCompactItemize}
 \item 
@@ -35,9 +36,9 @@ readonly byte\mbox{[}$\,$\mbox{]} \mbox{\hyperlink{class_w_p_r_1_1_cryption_1_1_
 
 
 \doxysubsection{Detailed Description}
-De klasse \doxylink{class_w_p_r_1_1_cryption_1_1_crypt}{Crypt} zorgt voor een veilige manier om te encrypten en te decrypten. 
+Class \doxylink{class_w_p_r_1_1_cryption_1_1_crypt}{Crypt} zorgt voor een veilig encryptie en decryptie van strings. De Crptie wordt gedaan door het Advanced Encryption Standard (AES) 
 
-Definition at line \mbox{\hyperlink{crypt_8cs_source_l00011}{11}} of file \mbox{\hyperlink{crypt_8cs_source}{crypt.\+cs}}.
+Definition at line \mbox{\hyperlink{crypt_8cs_source_l00012}{12}} of file \mbox{\hyperlink{crypt_8cs_source}{crypt.\+cs}}.
 
 
 
@@ -59,20 +60,20 @@ Initaliseerd een nieuwe instantie van de cref=\+Crypt klasse.
 \end{DoxyParams}
 
 
-Definition at line \mbox{\hyperlink{crypt_8cs_source_l00021}{21}} of file \mbox{\hyperlink{crypt_8cs_source}{crypt.\+cs}}.
+Definition at line \mbox{\hyperlink{crypt_8cs_source_l00022}{22}} of file \mbox{\hyperlink{crypt_8cs_source}{crypt.\+cs}}.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00022\ \ \ \ \ \{}
-\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \_envConfig\ =\ envConfig;}
-\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \_key\ =\ Convert.FromBase64String(\_envConfig.Get(\textcolor{stringliteral}{"{}CRYPTION\_KEY"{}}));}
-\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \_IV\ =\ Convert.FromBase64String(\_envConfig.Get(\textcolor{stringliteral}{"{}CRYPTION\_IV"{}}));}
-\DoxyCodeLine{00026\ \ \ \ \ \}}
+\DoxyCodeLine{00023\ \ \ \ \ \{}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \_envConfig\ =\ envConfig;}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \_key\ =\ Convert.FromBase64String(\_envConfig.Get(\textcolor{stringliteral}{"{}CRYPTION\_KEY"{}}));}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \_IV\ =\ Convert.FromBase64String(\_envConfig.Get(\textcolor{stringliteral}{"{}CRYPTION\_IV"{}}));}
+\DoxyCodeLine{00027\ \ \ \ \ \}}
 
 \end{DoxyCode}
 
 
-References \mbox{\hyperlink{crypt_8cs_source_l00013}{\+\_\+env\+Config}}, \mbox{\hyperlink{crypt_8cs_source_l00015}{\+\_\+\+IV}}, and \mbox{\hyperlink{crypt_8cs_source_l00014}{\+\_\+key}}.
+References \mbox{\hyperlink{crypt_8cs_source_l00014}{\+\_\+env\+Config}}, \mbox{\hyperlink{crypt_8cs_source_l00016}{\+\_\+\+IV}}, and \mbox{\hyperlink{crypt_8cs_source_l00015}{\+\_\+key}}.
 
 
 
@@ -85,7 +86,7 @@ string WPR.\+Cryption.\+Crypt.\+Decrypt (\begin{DoxyParamCaption}\item[{string}]
 
 
 
-Decrypt de meegegeven tekst. 
+De meegegeven encryptie wordt gedecrypt. 
 
 
 \begin{DoxyParams}{Parameters}
@@ -97,39 +98,39 @@ Decrypt de meegegeven tekst.
 \end{DoxyReturn}
 
 
-Definition at line \mbox{\hyperlink{crypt_8cs_source_l00069}{69}} of file \mbox{\hyperlink{crypt_8cs_source}{crypt.\+cs}}.
+Definition at line \mbox{\hyperlink{crypt_8cs_source_l00068}{68}} of file \mbox{\hyperlink{crypt_8cs_source}{crypt.\+cs}}.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00070\ \ \ \ \ \{}
-\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\textcolor{keywordtype}{string}.IsNullOrEmpty(encrypted))}
-\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}Nothing\ to\ decrypt"{}};}
-\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00075\ }
-\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Er\ wordt\ een\ nieuw\ Advanced\ Encryption\ Standard\ (AES)\ aangemaakt}}
-\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \textcolor{keyword}{using}\ (Aes\ aes\ =\ Aes.Create())}
-\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \ \ \ \ aes.Key\ =\ \_key;\ \textcolor{comment}{//\ 256-\/bit\ sleutel}}
-\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \ \ \ \ aes.IV\ =\ \_IV;\ \textcolor{comment}{//\ 128-\/bit\ IV,\ waardoor\ dezelfde\ tekst\ op\ verschillend\ geencrypt\ kan\ worden}}
-\DoxyCodeLine{00081\ }
-\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{byte}[]\ buffer\ =\ Convert.FromBase64String(encrypted);\ \textcolor{comment}{//\ De\ gencrypte\ tekst\ wordt\ omgezet\ in\ bytes}}
-\DoxyCodeLine{00083\ }
-\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ De\ Crypto\ Stream\ zorgt\ ervoor\ dat\ er\ gedecrypt\ kan\ worden}}
-\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ De\ Stream\ Write\ zorgt\ ervoor\ dat\ de\ de\ tekst\ naar\ de\ Crypto\ Stream\ wordt\ geschreven}}
-\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using}\ (MemoryStream\ ms\ =\ \textcolor{keyword}{new}\ MemoryStream(buffer))}
-\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using}\ (CryptoStream\ cs\ =\ \textcolor{keyword}{new}\ CryptoStream(ms,\ aes.CreateDecryptor(),\ CryptoStreamMode.Read))}
-\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using}\ (StreamReader\ sr\ =\ \textcolor{keyword}{new}\ StreamReader(cs))}
-\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ sr.ReadToEnd();}
-\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00093\ \ \ \ \ \}}
+\DoxyCodeLine{00069\ \ \ \ \ \{}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\textcolor{keywordtype}{string}.IsNullOrEmpty(encrypted))}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}Nothing\ to\ decrypt"{}};}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Er\ wordt\ een\ nieuw\ Advanced\ Encryption\ Standard\ (AES)\ aangemaakt}}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \textcolor{keyword}{using}\ (Aes\ aes\ =\ Aes.Create())}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \ \ \ \ aes.Key\ =\ \_key;\ \textcolor{comment}{//\ 256-\/bit\ sleutel}}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \ \ \ \ aes.IV\ =\ \_IV;\ \textcolor{comment}{//\ 128-\/bit\ IV,\ waardoor\ dezelfde\ tekst\ op\ verschillend\ geencrypt\ kan\ worden}}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{byte}[]\ buffer\ =\ Convert.FromBase64String(encrypted);\ \textcolor{comment}{//\ De\ gencrypte\ tekst\ wordt\ omgezet\ in\ bytes}}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ De\ Crypto\ Stream\ zorgt\ ervoor\ dat\ er\ gedecrypt\ kan\ worden}}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ De\ Stream\ Write\ zorgt\ ervoor\ dat\ de\ de\ tekst\ naar\ de\ Crypto\ Stream\ wordt\ geschreven}}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using}\ (MemoryStream\ ms\ =\ \textcolor{keyword}{new}\ MemoryStream(buffer))}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using}\ (CryptoStream\ cs\ =\ \textcolor{keyword}{new}\ CryptoStream(ms,\ aes.CreateDecryptor(),\ CryptoStreamMode.Read))}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using}\ (StreamReader\ sr\ =\ \textcolor{keyword}{new}\ StreamReader(cs))}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ sr.ReadToEnd();}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00092\ \ \ \ \ \}}
 
 \end{DoxyCode}
 
 
-References \mbox{\hyperlink{crypt_8cs_source_l00015}{\+\_\+\+IV}}, and \mbox{\hyperlink{crypt_8cs_source_l00014}{\+\_\+key}}.
+References \mbox{\hyperlink{crypt_8cs_source_l00016}{\+\_\+\+IV}}, and \mbox{\hyperlink{crypt_8cs_source_l00015}{\+\_\+key}}.
 
 \Hypertarget{class_w_p_r_1_1_cryption_1_1_crypt_a40fd01006a4528f41d6430e1f9ff4f9b}\index{WPR.Cryption.Crypt@{WPR.Cryption.Crypt}!Encrypt@{Encrypt}}
 \index{Encrypt@{Encrypt}!WPR.Cryption.Crypt@{WPR.Cryption.Crypt}}
@@ -139,7 +140,7 @@ string WPR.\+Cryption.\+Crypt.\+Encrypt (\begin{DoxyParamCaption}\item[{string}]
 
 
 
-Encrypt de meegegeven tekst. 
+De meegegeven text wordt geencrypt. 
 
 
 \begin{DoxyParams}{Parameters}
@@ -186,7 +187,7 @@ Definition at line \mbox{\hyperlink{crypt_8cs_source_l00034}{34}} of file \mbox{
 \end{DoxyCode}
 
 
-References \mbox{\hyperlink{crypt_8cs_source_l00015}{\+\_\+\+IV}}, and \mbox{\hyperlink{crypt_8cs_source_l00014}{\+\_\+key}}.
+References \mbox{\hyperlink{crypt_8cs_source_l00016}{\+\_\+\+IV}}, and \mbox{\hyperlink{crypt_8cs_source_l00015}{\+\_\+key}}.
 
 
 
@@ -199,11 +200,11 @@ readonly \mbox{\hyperlink{class_w_p_r_1_1_data_1_1_env_config}{Env\+Config}} WPR
 
 
 
-Definition at line \mbox{\hyperlink{crypt_8cs_source_l00013}{13}} of file \mbox{\hyperlink{crypt_8cs_source}{crypt.\+cs}}.
+Definition at line \mbox{\hyperlink{crypt_8cs_source_l00014}{14}} of file \mbox{\hyperlink{crypt_8cs_source}{crypt.\+cs}}.
 
 
 
-Referenced by \mbox{\hyperlink{crypt_8cs_source_l00021}{Crypt()}}.
+Referenced by \mbox{\hyperlink{crypt_8cs_source_l00022}{Crypt()}}.
 
 \Hypertarget{class_w_p_r_1_1_cryption_1_1_crypt_adc22b1f7ffb89ea14d39498d5f0c2a10}\index{WPR.Cryption.Crypt@{WPR.Cryption.Crypt}!\_IV@{\_IV}}
 \index{\_IV@{\_IV}!WPR.Cryption.Crypt@{WPR.Cryption.Crypt}}
@@ -213,11 +214,11 @@ readonly byte \mbox{[}$\,$\mbox{]} WPR.\+Cryption.\+Crypt.\+\_\+\+IV\hspace{0.3c
 
 
 
-Definition at line \mbox{\hyperlink{crypt_8cs_source_l00015}{15}} of file \mbox{\hyperlink{crypt_8cs_source}{crypt.\+cs}}.
+Definition at line \mbox{\hyperlink{crypt_8cs_source_l00016}{16}} of file \mbox{\hyperlink{crypt_8cs_source}{crypt.\+cs}}.
 
 
 
-Referenced by \mbox{\hyperlink{crypt_8cs_source_l00021}{Crypt()}}, \mbox{\hyperlink{crypt_8cs_source_l00069}{Decrypt()}}, and \mbox{\hyperlink{crypt_8cs_source_l00034}{Encrypt()}}.
+Referenced by \mbox{\hyperlink{crypt_8cs_source_l00022}{Crypt()}}, \mbox{\hyperlink{crypt_8cs_source_l00068}{Decrypt()}}, and \mbox{\hyperlink{crypt_8cs_source_l00034}{Encrypt()}}.
 
 \Hypertarget{class_w_p_r_1_1_cryption_1_1_crypt_aef681b3b00472f906064ac70e4789c0b}\index{WPR.Cryption.Crypt@{WPR.Cryption.Crypt}!\_key@{\_key}}
 \index{\_key@{\_key}!WPR.Cryption.Crypt@{WPR.Cryption.Crypt}}
@@ -227,11 +228,11 @@ readonly byte \mbox{[}$\,$\mbox{]} WPR.\+Cryption.\+Crypt.\+\_\+key\hspace{0.3cm
 
 
 
-Definition at line \mbox{\hyperlink{crypt_8cs_source_l00014}{14}} of file \mbox{\hyperlink{crypt_8cs_source}{crypt.\+cs}}.
+Definition at line \mbox{\hyperlink{crypt_8cs_source_l00015}{15}} of file \mbox{\hyperlink{crypt_8cs_source}{crypt.\+cs}}.
 
 
 
-Referenced by \mbox{\hyperlink{crypt_8cs_source_l00021}{Crypt()}}, \mbox{\hyperlink{crypt_8cs_source_l00069}{Decrypt()}}, and \mbox{\hyperlink{crypt_8cs_source_l00034}{Encrypt()}}.
+Referenced by \mbox{\hyperlink{crypt_8cs_source_l00022}{Crypt()}}, \mbox{\hyperlink{crypt_8cs_source_l00068}{Decrypt()}}, and \mbox{\hyperlink{crypt_8cs_source_l00034}{Encrypt()}}.
 
 
 
