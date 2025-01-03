@@ -8,6 +8,9 @@ using System;
 using WPR.Repository;
 using MySqlX.XDevAPI.Common;
 
+/// <summary>
+/// ChangeUserSettingsController is de controller die aanvragen van buitenaf ontvangt en vervolgens gegevens uit de backend ophaald een terug geeft 
+/// </summary>
 [Route("api/[controller]")]
 [ApiController]
 public class ChangeUserSettingsController : ControllerBase
@@ -23,7 +26,11 @@ public class ChangeUserSettingsController : ControllerBase
         _crypt = crypt ?? throw new ArgumentNullException(nameof(crypt));
     }
 
-    // Gewijzigde gegevens worden gefilter van de ongewijzigde gegevens en worden verstuurd naar de backend
+    /// <summary>
+    /// Gewijzigde gegevens worden gefilter van de ongewijzigde gegevens en worden verstuurd naar de backend
+    /// </summary>
+    /// <param name="changeUserRequest"></param>
+    /// <returns></returns>
     [HttpPut("ChangeUserInfo")]
     public async Task<IActionResult> ChangeUserInfoAsync([FromBody] ChangeUserRequest changeUserRequest)
     {
@@ -56,6 +63,10 @@ public class ChangeUserSettingsController : ControllerBase
         return BadRequest(new {updated.message});
     }
 
+    /// <summary>
+    /// Gebruikers kunnen hun account, samen met hun gegevens, verwijderen uit het systeem
+    /// </summary>
+    /// <returns></returns>
     [HttpDelete("DeleteUser")]
     public async Task<IActionResult> DeleteUserAsync() {
         

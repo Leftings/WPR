@@ -6,7 +6,8 @@ using System.Security.Cryptography;
 using WPR.Data;
 
 /// <summary>
-/// De klasse Crypt zorgt voor een veilige manier om te encrypten en te decrypten
+/// Class Crypt zorgt voor een veilig encryptie en decryptie van strings.
+/// De Crptie wordt gedaan door het Advanced Encryption Standard (AES)
 /// </summary>
 public class Crypt
 {
@@ -25,9 +26,8 @@ public class Crypt
         _IV = Convert.FromBase64String(_envConfig.Get("CRYPTION_IV"));
     }
 
-    // De meegegeven text wordt geencrypt
     /// <summary>
-    /// Encrypt de meegegeven tekst
+    /// De meegegeven text wordt geencrypt
     /// </summary>
     /// <param name="text"></param>
     /// <returns></returns>
@@ -61,11 +61,10 @@ public class Crypt
     }
 
     /// <summary>
-    /// Decrypt de meegegeven tekst
+    /// De meegegeven encryptie wordt gedecrypt
     /// </summary>
     /// <param name="encrypted"></param>
     /// <returns></returns>
-    // De meegegeven encryptie wordt gedecrypt
     public string Decrypt(string encrypted)
     {
         if (string.IsNullOrEmpty(encrypted))
