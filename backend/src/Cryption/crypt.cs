@@ -14,6 +14,11 @@ public class Crypt
     private readonly EnvConfig _envConfig;
     private readonly byte[]  _key;
     private readonly byte[] _IV;
+
+    /// <summary>
+    /// Initaliseerd een nieuwe instantie van de <see cref="cref=Crypt"/> klasse 
+    /// </summary>
+    /// <param name="envConfig"></param>
     public Crypt(EnvConfig envConfig)
     {
         _envConfig = envConfig;

@@ -1,0 +1,59 @@
+\doxysection{employee\+Back\+Office.\+jsx}
+\hypertarget{employee_back_office_8jsx_source}{}\label{employee_back_office_8jsx_source}\index{D:/codes/WPR/frontend/src/employeeBackOffice/employeeBackOffice.jsx@{D:/codes/WPR/frontend/src/employeeBackOffice/employeeBackOffice.jsx}}
+\mbox{\hyperlink{employee_back_office_8jsx}{Ga naar de documentatie van dit bestand.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{employee_back_office_8jsx_source_l00001}00001\ import\ React,\ \{\ useState,\ useEffect\ \}\ from\ 'react';}
+\DoxyCodeLine{\Hypertarget{employee_back_office_8jsx_source_l00002}00002\ import\ \{\ Link,\ useNavigate\ \}\ from\ 'react-\/router-\/dom';}
+\DoxyCodeLine{\Hypertarget{employee_back_office_8jsx_source_l00003}00003\ import\ './employeeBackOffice.css';}
+\DoxyCodeLine{\Hypertarget{employee_back_office_8jsx_source_l00004}00004\ import\ GeneralHeader\ from\ '../GeneralBlocks/header/header';}
+\DoxyCodeLine{\Hypertarget{employee_back_office_8jsx_source_l00005}00005\ import\ GeneralFooter\ from\ '../GeneralBlocks/footer/footer';}
+\DoxyCodeLine{\Hypertarget{employee_back_office_8jsx_source_l00006}00006\ }
+\DoxyCodeLine{\Hypertarget{employee_back_office_8jsx_source_l00007}00007\ const\ BACKEND\_URL\ =\ import.meta.env.VITE\_REACT\_APP\_BACKEND\_URL\_EMPLOYEE\ ??\ 'http://localhost:5276';}
+\DoxyCodeLine{\Hypertarget{employee_back_office_8jsx_source_l00008}00008\ }
+\DoxyCodeLine{\Hypertarget{employee_back_office_8jsx_source_l00009}00009\ function\ EmployeeBackOffice()\ \{}
+\DoxyCodeLine{\Hypertarget{employee_back_office_8jsx_source_l00010}00010\ \ \ const\ navigate\ =\ useNavigate();}
+\DoxyCodeLine{\Hypertarget{employee_back_office_8jsx_source_l00011}00011\ }
+\DoxyCodeLine{\Hypertarget{employee_back_office_8jsx_source_l00012}00012\ \ \ useEffect(()\ =>\ \{}
+\DoxyCodeLine{\Hypertarget{employee_back_office_8jsx_source_l00013}00013\ \ \ \ \ //\ Authorisatie\ check}
+\DoxyCodeLine{\Hypertarget{employee_back_office_8jsx_source_l00014}00014\ \ \ \ \ fetch(`\$\{BACKEND\_URL\}/api/Cookie/GetUserId`\ ,\ \{}
+\DoxyCodeLine{\Hypertarget{employee_back_office_8jsx_source_l00015}00015\ \ \ \ \ \ \ \ \ method:\ 'GET',}
+\DoxyCodeLine{\Hypertarget{employee_back_office_8jsx_source_l00016}00016\ \ \ \ \ \ \ \ \ headers:\ \{}
+\DoxyCodeLine{\Hypertarget{employee_back_office_8jsx_source_l00017}00017\ \ \ \ \ \ \ \ \ \ \ \ \ 'Content-\/Type':\ 'application/json',}
+\DoxyCodeLine{\Hypertarget{employee_back_office_8jsx_source_l00018}00018\ \ \ \ \ \ \ \ \ \},}
+\DoxyCodeLine{\Hypertarget{employee_back_office_8jsx_source_l00019}00019\ \ \ \ \ \ \ \ \ credentials:\ 'include',}
+\DoxyCodeLine{\Hypertarget{employee_back_office_8jsx_source_l00020}00020\ \ \ \ \ \})}
+\DoxyCodeLine{\Hypertarget{employee_back_office_8jsx_source_l00021}00021\ \ \ \ \ \ \ \ \ .then(response\ =>\ \{}
+\DoxyCodeLine{\Hypertarget{employee_back_office_8jsx_source_l00022}00022\ \ \ \ \ \ \ \ \ \ \ \ \ if\ (!response.ok)\ \{}
+\DoxyCodeLine{\Hypertarget{employee_back_office_8jsx_source_l00023}00023\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ throw\ new\ Error('No\ Cookie');}
+\DoxyCodeLine{\Hypertarget{employee_back_office_8jsx_source_l00024}00024\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{employee_back_office_8jsx_source_l00025}00025\ \ \ \ \ \ \ \ \ \ \ \ \ return\ response.json();}
+\DoxyCodeLine{\Hypertarget{employee_back_office_8jsx_source_l00026}00026\ \ \ \ \ \ \ \ \ \})}
+\DoxyCodeLine{\Hypertarget{employee_back_office_8jsx_source_l00027}00027\ \ \ \ \ \ \ \ \ .catch(()\ =>\ \{}
+\DoxyCodeLine{\Hypertarget{employee_back_office_8jsx_source_l00028}00028\ \ \ \ \ \ \ \ \ \ \ \ \ alert("{}Cookie\ was\ niet\ geldig"{});}
+\DoxyCodeLine{\Hypertarget{employee_back_office_8jsx_source_l00029}00029\ \ \ \ \ \ \ \ \ \ \ \ \ navigate('/');}
+\DoxyCodeLine{\Hypertarget{employee_back_office_8jsx_source_l00030}00030\ \ \ \ \ \ \ \ \ \})}
+\DoxyCodeLine{\Hypertarget{employee_back_office_8jsx_source_l00031}00031\ \ \ \ \ \},\ [navigate]);}
+\DoxyCodeLine{\Hypertarget{employee_back_office_8jsx_source_l00032}00032\ }
+\DoxyCodeLine{\Hypertarget{employee_back_office_8jsx_source_l00033}00033\ \ \ return\ (}
+\DoxyCodeLine{\Hypertarget{employee_back_office_8jsx_source_l00034}00034\ \ \ \ \ <>}
+\DoxyCodeLine{\Hypertarget{employee_back_office_8jsx_source_l00035}00035\ \ \ \ \ \ \ <GeneralHeader>}
+\DoxyCodeLine{\Hypertarget{employee_back_office_8jsx_source_l00036}00036\ \ \ \ \ \ \ </GeneralHeader>}
+\DoxyCodeLine{\Hypertarget{employee_back_office_8jsx_source_l00037}00037\ }
+\DoxyCodeLine{\Hypertarget{employee_back_office_8jsx_source_l00038}00038\ \ \ \ \ \ \ <div\ className='body'>}
+\DoxyCodeLine{\Hypertarget{employee_back_office_8jsx_source_l00039}00039\ \ \ \ \ \ \ \ \ <h1>Back\ Office</h1>}
+\DoxyCodeLine{\Hypertarget{employee_back_office_8jsx_source_l00040}00040\ }
+\DoxyCodeLine{\Hypertarget{employee_back_office_8jsx_source_l00041}00041\ \ \ \ \ \ \ \ \ <div\ id='backOfficeLinks'>}
+\DoxyCodeLine{\Hypertarget{employee_back_office_8jsx_source_l00042}00042\ \ \ \ \ \ \ \ \ \ \ <Link\ to="{}./addEmployee"{}>Werknemer\ toevoegen</Link>}
+\DoxyCodeLine{\Hypertarget{employee_back_office_8jsx_source_l00043}00043\ \ \ \ \ \ \ \ \ \ \ <Link\ to="{}./addVehicle"{}>Voertuig\ toevoegen</Link>}
+\DoxyCodeLine{\Hypertarget{employee_back_office_8jsx_source_l00044}00044\ \ \ \ \ \ \ \ \ </div>}
+\DoxyCodeLine{\Hypertarget{employee_back_office_8jsx_source_l00045}00045\ \ \ \ \ \ \ </div>}
+\DoxyCodeLine{\Hypertarget{employee_back_office_8jsx_source_l00046}00046\ }
+\DoxyCodeLine{\Hypertarget{employee_back_office_8jsx_source_l00047}00047\ \ \ \ \ \ \ <GeneralFooter>}
+\DoxyCodeLine{\Hypertarget{employee_back_office_8jsx_source_l00048}00048\ \ \ \ \ \ \ </GeneralFooter>}
+\DoxyCodeLine{\Hypertarget{employee_back_office_8jsx_source_l00049}00049\ \ \ \ \ </>}
+\DoxyCodeLine{\Hypertarget{employee_back_office_8jsx_source_l00050}00050\ \ \ );}
+\DoxyCodeLine{\Hypertarget{employee_back_office_8jsx_source_l00051}00051\ \}}
+\DoxyCodeLine{\Hypertarget{employee_back_office_8jsx_source_l00052}00052\ }
+\DoxyCodeLine{\Hypertarget{employee_back_office_8jsx_source_l00053}00053\ export\ default\ EmployeeBackOffice;}
+
+\end{DoxyCode}

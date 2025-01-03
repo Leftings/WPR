@@ -1,0 +1,5 @@
+<map id="Employee.Controllers.acceptHireRequest.AcceptHireRequestController.AnswerHireRequestAsync" name="Employee.Controllers.acceptHireRequest.AcceptHireRequestController.AnswerHireRequestAsync">
+<area shape="rect" id="Node000001" title="Een aanvraag kan beantwoord worden." alt="" coords="5,5,278,64"/>
+<area shape="rect" id="Node000002" href="$class_employee_1_1_controllers_1_1accept_hire_request_1_1_accept_hire_request_controller.html#aba9650bd220b2cb4dedf917054c67ba2" title="Huidige user id wordt opgehaald, voor validatie en logging." alt="" coords="326,5,598,64"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="278,32,310,32,310,37,278,37"/>
+</map>
