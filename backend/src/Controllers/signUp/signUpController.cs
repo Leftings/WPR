@@ -11,6 +11,9 @@ using WPR.Hashing;
 using WPR.Data;
 using Microsoft.VisualBasic;
 
+/// <summary>
+/// SignUpController zorgt ervoor dat persoonlijke en zakelijke accounts aangemaakt kunnen worden
+/// </summary>
 [Route("api/[controller]")]
 [ApiController]
 public class SignUpController : ControllerBase
@@ -30,7 +33,11 @@ public class SignUpController : ControllerBase
         _emailService = emailService ?? throw new ArgumentNullException(nameof(emailService));
     }
 
-    // Er wordt gecontrolleerd of alle velden zijn ingevuld door de gebruiker (false als iets mist, true als alles klopt)
+    /// <summary>
+    /// Er wordt gekeken of alle noodzakelijke velden voor het aanmaken van een account ingevuld zijn
+    /// </summary>
+    /// <param name="signUpRequest"></param>
+    /// <returns></returns>
     private bool IsFilledIn(SignUpRequest signUpRequest)
     {
         return 
@@ -41,7 +48,12 @@ public class SignUpController : ControllerBase
         || string.IsNullOrEmpty(signUpRequest.LastName)
         || string.IsNullOrEmpty(signUpRequest.TelNumber));
     }
-
+    
+    /// <summary>
+    /// Een account voor particuliere gebruikers kan aangemaakt worden (onderscheiden door geboortedatum)
+    /// </summary>
+    /// <param name="signUpRequest"></param>
+    /// <returns></returns>
     // Wijzigingen die gemaakt worden in signUpPersonal moeten ook gemaakt worden in signUpEmployee
     [HttpPost("signUpPersonal")]
     public async Task<IActionResult> signUpPersonalAsync([FromBody] SignUpRequest signUpRequest)
@@ -162,6 +174,11 @@ public class SignUpController : ControllerBase
         }
     }
 
+    /// <summary>
+    /// Een account voor zakelijke gebruikers kan aangemaakt worden (onderscheiden door KvK-nummer)
+    /// </summary>
+    /// <param name="signUpRequest"></param>
+    /// <returns></returns>
     [HttpPost("signUpEmployee")]
     public async Task<IActionResult> signUpEmployeeAsync([FromBody] SignUpRequest signUpRequest)
     {

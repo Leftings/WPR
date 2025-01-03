@@ -4,6 +4,9 @@ using WPR.Data;
 
 namespace WPR.Hashing;
 
+/// <summary>
+/// Class Hash zorgt ervoor dat wachtwoorden op een veilige manier worden gehashed doormiddel van het HMACSGA256 algoritme
+/// </summary>
 public class Hash
 {
     private byte[]? _salt { get; set; }
@@ -12,14 +15,21 @@ public class Hash
         _salt = Convert.FromBase64String(envConfig.Get("SALT"));
     }
 
-    // Het creëren van een salt
+    /// <summary>
+    /// Het creëren van een salt
+    /// </summary>
+    /// <returns></returns>
     public byte[] createSalt()
     {
         byte[] salt = RandomNumberGenerator.GetBytes(128 / 8); // de bites worden naar bytes omgezet
         return salt;
     }
     
-    // Er wordt een hash toegepast op het meegegeven wachtwoord
+    /// <summary>
+    /// Er wordt een hash toegepast op het meegegeven wachtwoord
+    /// </summary>
+    /// <param name="password"></param>
+    /// <returns></returns>
     public string createHash(string password)
     {
         string hashed = Convert.ToBase64String(KeyDerivation.Pbkdf2(

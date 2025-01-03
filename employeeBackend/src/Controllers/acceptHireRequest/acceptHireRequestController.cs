@@ -8,6 +8,9 @@ using Employee.Repository;
 using MySql.Data.MySqlClient;
 using Employee.Cryption;
 
+/// <summary>
+/// AcceptHireRequestController zorgt ervoor dat alle huuraanvragen verzameld worden en bestempelt kunnen worden als geacepteerd of geweigerd
+/// </summary>
 [ApiController]
 [Route("api/[controller]")]
 public class AcceptHireRequestController : ControllerBase
@@ -23,7 +26,11 @@ public class AcceptHireRequestController : ControllerBase
         _crypt = crypt ?? throw new ArgumentNullException(nameof(crypt));
     }
 
-    // Alle ids van de aanvragen worden opgehaald
+    /// <summary>
+    /// Alle ids van de aanvragen worden opgehaald
+    /// </summary>
+    /// <param name="user"></param>
+    /// <returns></returns>
     [HttpGet("getReviewsIds")]
     public async Task<IActionResult> GetReviewsIdsAsync(string user)
     {
@@ -31,7 +38,11 @@ public class AcceptHireRequestController : ControllerBase
         return Ok(new { message = ids.ids});
     }
 
-    // De gegevens van een specifieke id worden opgehaald
+    /// <summary>
+    /// De gegevens van een specifieke aanvraag worden opgehaald
+    /// </summary>
+    /// <param name="id"></param>
+    /// <returns></returns>
     [HttpGet("getReview")]
     public async Task<IActionResult> GetReviewAsync(string id)
     {
@@ -39,7 +50,11 @@ public class AcceptHireRequestController : ControllerBase
         return Ok(new { message = review.data });
     }
 
-    // Een aanvraag kan beantwoord worden
+    /// <summary>
+    /// Een aanvraag kan beantwoord worden
+    /// </summary>
+    /// <param name="request"></param>
+    /// <returns></returns>
     [HttpPatch("answerHireRequest")]
     public async Task<IActionResult> AnswerHireRequestAsync([FromBody] HireRequest request)
     {
@@ -58,7 +73,11 @@ public class AcceptHireRequestController : ControllerBase
         return BadRequest(new { message = setStatus.message });
     }
 
-    // Huidige user id wordt opgehaald
+    /// <summary>
+    /// Huidige user id wordt opgehaald, voor validatie en logging
+    /// </summary>
+    /// <returns></returns>
+    /// <exception cref="Exception"></exception>
     private string GetCurrentUserId()
     {
         // Alleen de cookie van Employee of Vehicle Manager bestaat

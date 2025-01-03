@@ -1,10 +1,18 @@
 namespace WPR.Controllers.Cookie;
 
+/// <summary>
+/// SessionHandler zorgt ervoor dat er cookies aangemaakt kunnen worden op een simpele manier
+/// </summary>
 public class SessionHandler : IDisposable
 {
     private bool disposedValue;
 
-    // Cookie kunnen worden aangemaakt doormiddel van een naam, de waarde en er kunnen opties ingezet worden
+    /// <summary>
+    /// Cookie kunnen worden aangemaakt doormiddel van een naam, de waarde en er kunnen opties ingezet worden
+    /// </summary>
+    /// <param name="responseCookies"></param>
+    /// <param name="cookieName"></param>
+    /// <param name="cookieValue"></param>
     public void CreateCookie(IResponseCookies responseCookies, string cookieName, string cookieValue)
     {
         responseCookies.Append(cookieName, cookieValue, new CookieOptions
@@ -14,7 +22,11 @@ public class SessionHandler : IDisposable
         });
     }
 
-    // Als er een ongeldige cookie is gedetecteerd, wordt deze verwijderd
+    /// <summary>
+    /// // Als er een ongeldige cookie is gedetecteerd, wordt deze verwijderd
+    /// </summary>
+    /// <param name="responseCookies"></param>
+    /// <param name="cookieName"></param>
     public void CreateInvalidCookie(IResponseCookies responseCookies, string cookieName)
     {
         responseCookies.Append(cookieName, "", new CookieOptions

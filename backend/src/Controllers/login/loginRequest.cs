@@ -1,5 +1,8 @@
 namespace WPR.Controllers.Login;
 
+/// <summary>
+/// Body voor LoginRequest
+/// </summary>
 public class LoginRequest
 {
     public string Email { get; set; }
