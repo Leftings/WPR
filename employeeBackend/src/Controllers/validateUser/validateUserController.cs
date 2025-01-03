@@ -2,6 +2,10 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Employee.Controllers.validateUser;
 
+/// <summary>
+/// In validateUserController wordt gekeken of er een gelidge medewerkers sessie aanwezig is.
+/// (Buitenwerking)
+/// </summary>
 [Route("api/[controller]")]
 [ApiController]
 public class ValidateUserController : ControllerBase
