@@ -1,0 +1,5 @@
+<map id="WPR.Utils.BirthdayChecker.IsValidBirthday" name="WPR.Utils.BirthdayChecker.IsValidBirthday">
+<area shape="rect" id="Node000001" title="Check om te kijken of het een correcte verjaardag is Leeftijd mag niet onder de 18 zijn en niet boven..." alt="" coords="281,5,470,48"/>
+<area shape="rect" id="Node000002" href="$class_w_p_r_1_1_controllers_1_1_sign_up_1_1_sign_up_controller.html#a78865896515c1c12ad9e08c7f2dd5220" title="Een account voor particuliere gebruikers kan aangemaakt worden (onderscheiden door geboortedatum)" alt="" coords="5,5,233,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="265,29,233,29,233,24,265,24"/>
+</map>

@@ -1,0 +1,11 @@
+<map id="WPR.Controllers.SignUp.SignUpController.signUpEmployeeAsync" name="WPR.Controllers.SignUp.SignUpController.signUpEmployeeAsync">
+<area shape="rect" id="Node000001" title="Een account voor zakelijke gebruikers kan aangemaakt worden (onderscheiden door KvK&#45;nummer)" alt="" coords="5,105,240,148"/>
+<area shape="rect" id="Node000002" href="$class_w_p_r_1_1_controllers_1_1_sign_up_1_1_sign_up_controller.html#a26f172ac90a38512ee5b1863f405649a" title="Er wordt gekeken of alle noodzakelijke velden voor het aanmaken van een account ingevuld zijn." alt="" coords="289,5,486,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="175,102,287,58,305,51,306,56,289,62,177,107"/>
+<area shape="rect" id="Node000003" href="$class_w_p_r_1_1_utils_1_1_email_checker.html#ab97bf7cde61a138766de208bad9d5c7c" title=" " alt="" coords="295,72,480,115"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="240,109,279,104,280,110,240,115"/>
+<area shape="rect" id="Node000004" href="$class_w_p_r_1_1_utils_1_1_password_checker.html#a3874adc7b516a8fb893ed18cd0a29a94" title=" " alt="" coords="288,139,487,181"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="240,139,273,143,272,148,240,144"/>
+<area shape="rect" id="Node000005" href="$class_w_p_r_1_1_utils_1_1_tel_checker.html#aa8036be39d90b4bd0482cc25b9bbfc5a" title=" " alt="" coords="289,205,486,248"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="177,146,289,191,306,197,305,202,287,196,175,151"/>
+</map>

@@ -1,0 +1,56 @@
+\doxysection{vehicle\+Manager.\+jsx}
+\hypertarget{vehicle_manager_8jsx_source}{}\label{vehicle_manager_8jsx_source}\index{D:/codes/WPR/frontend/src/vehicleManager/vehicleManager.jsx@{D:/codes/WPR/frontend/src/vehicleManager/vehicleManager.jsx}}
+\mbox{\hyperlink{vehicle_manager_8jsx}{Ga naar de documentatie van dit bestand.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{vehicle_manager_8jsx_source_l00001}00001\ import\ React,\ \{\ useState,\ useEffect\ \}\ from\ 'react';}
+\DoxyCodeLine{\Hypertarget{vehicle_manager_8jsx_source_l00002}00002\ import\ \{\ Link,\ useNavigate\ \}\ from\ 'react-\/router-\/dom';}
+\DoxyCodeLine{\Hypertarget{vehicle_manager_8jsx_source_l00003}00003\ import\ './vehicleManager.css';}
+\DoxyCodeLine{\Hypertarget{vehicle_manager_8jsx_source_l00004}00004\ import\ GeneralHeader\ from\ '../GeneralBlocks/header/header';}
+\DoxyCodeLine{\Hypertarget{vehicle_manager_8jsx_source_l00005}00005\ import\ GeneralFooter\ from\ '../GeneralBlocks/footer/footer';}
+\DoxyCodeLine{\Hypertarget{vehicle_manager_8jsx_source_l00006}00006\ }
+\DoxyCodeLine{\Hypertarget{vehicle_manager_8jsx_source_l00007}00007\ const\ BACKEND\_URL\ =\ import.meta.env.VITE\_REACT\_APP\_BACKEND\_URL\_EMPLOYEE\ ??\ 'http://localhost:5276';}
+\DoxyCodeLine{\Hypertarget{vehicle_manager_8jsx_source_l00008}00008\ }
+\DoxyCodeLine{\Hypertarget{vehicle_manager_8jsx_source_l00009}00009\ function\ VehicleManager()\ \{}
+\DoxyCodeLine{\Hypertarget{vehicle_manager_8jsx_source_l00010}00010\ \ \ const\ navigate\ =\ useNavigate();}
+\DoxyCodeLine{\Hypertarget{vehicle_manager_8jsx_source_l00011}00011\ }
+\DoxyCodeLine{\Hypertarget{vehicle_manager_8jsx_source_l00012}00012\ \ \ useEffect(()\ =>\ \{}
+\DoxyCodeLine{\Hypertarget{vehicle_manager_8jsx_source_l00013}00013\ \ \ \ \ fetch(`\$\{BACKEND\_URL\}/api/Cookie/GetUserId`\ ,\ \{}
+\DoxyCodeLine{\Hypertarget{vehicle_manager_8jsx_source_l00014}00014\ \ \ \ \ \ \ \ \ method:\ 'GET',}
+\DoxyCodeLine{\Hypertarget{vehicle_manager_8jsx_source_l00015}00015\ \ \ \ \ \ \ \ \ headers:\ \{}
+\DoxyCodeLine{\Hypertarget{vehicle_manager_8jsx_source_l00016}00016\ \ \ \ \ \ \ \ \ \ \ \ \ 'Content-\/Type':\ 'application/json',}
+\DoxyCodeLine{\Hypertarget{vehicle_manager_8jsx_source_l00017}00017\ \ \ \ \ \ \ \ \ \},}
+\DoxyCodeLine{\Hypertarget{vehicle_manager_8jsx_source_l00018}00018\ \ \ \ \ \ \ \ \ credentials:\ 'include',}
+\DoxyCodeLine{\Hypertarget{vehicle_manager_8jsx_source_l00019}00019\ \ \ \ \ \})}
+\DoxyCodeLine{\Hypertarget{vehicle_manager_8jsx_source_l00020}00020\ \ \ \ \ \ \ \ \ .then(response\ =>\ \{}
+\DoxyCodeLine{\Hypertarget{vehicle_manager_8jsx_source_l00021}00021\ \ \ \ \ \ \ \ \ \ \ \ \ if\ (!response.ok)\ \{}
+\DoxyCodeLine{\Hypertarget{vehicle_manager_8jsx_source_l00022}00022\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ return\ response.json().then(data\ =>\ \{}
+\DoxyCodeLine{\Hypertarget{vehicle_manager_8jsx_source_l00023}00023\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ console.log(data);}
+\DoxyCodeLine{\Hypertarget{vehicle_manager_8jsx_source_l00024}00024\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ throw\ new\ Error(data?.message\ ||\ 'No\ Cookie');\ }
+\DoxyCodeLine{\Hypertarget{vehicle_manager_8jsx_source_l00025}00025\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{\Hypertarget{vehicle_manager_8jsx_source_l00026}00026\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{vehicle_manager_8jsx_source_l00027}00027\ \ \ \ \ \ \ \ \ \ \ \ \ return\ response.json();}
+\DoxyCodeLine{\Hypertarget{vehicle_manager_8jsx_source_l00028}00028\ \ \ \ \ \ \ \ \ \})}
+\DoxyCodeLine{\Hypertarget{vehicle_manager_8jsx_source_l00029}00029\ \ \ \ \ \ \ \ \ .catch(()\ =>\ \{}
+\DoxyCodeLine{\Hypertarget{vehicle_manager_8jsx_source_l00030}00030\ \ \ \ \ \ \ \ \ \ \ \ \ alert("{}Cookie\ was\ niet\ geldig"{});}
+\DoxyCodeLine{\Hypertarget{vehicle_manager_8jsx_source_l00031}00031\ \ \ \ \ \ \ \ \ \ \ \ \ navigate('/');}
+\DoxyCodeLine{\Hypertarget{vehicle_manager_8jsx_source_l00032}00032\ \ \ \ \ \ \ \ \ \})}
+\DoxyCodeLine{\Hypertarget{vehicle_manager_8jsx_source_l00033}00033\ \ \ \ \ \},\ [navigate]);}
+\DoxyCodeLine{\Hypertarget{vehicle_manager_8jsx_source_l00034}00034\ \ \ return\ (}
+\DoxyCodeLine{\Hypertarget{vehicle_manager_8jsx_source_l00035}00035\ \ \ \ \ <>}
+\DoxyCodeLine{\Hypertarget{vehicle_manager_8jsx_source_l00036}00036\ \ \ \ \ \ \ <GeneralHeader>}
+\DoxyCodeLine{\Hypertarget{vehicle_manager_8jsx_source_l00037}00037\ \ \ \ \ \ \ </GeneralHeader>}
+\DoxyCodeLine{\Hypertarget{vehicle_manager_8jsx_source_l00038}00038\ }
+\DoxyCodeLine{\Hypertarget{vehicle_manager_8jsx_source_l00039}00039\ \ \ \ \ \ \ <body>}
+\DoxyCodeLine{\Hypertarget{vehicle_manager_8jsx_source_l00040}00040\ \ \ \ \ \ \ \ \ <h1>Wagenpark\ Beheerder</h1>}
+\DoxyCodeLine{\Hypertarget{vehicle_manager_8jsx_source_l00041}00041\ \ \ \ \ \ \ \ \ <Link\ to="{}./reviewHireRequest"{}>Huur\ aanvragen\ beheren</Link>}
+\DoxyCodeLine{\Hypertarget{vehicle_manager_8jsx_source_l00042}00042\ \ \ \ \ \ \ </body>}
+\DoxyCodeLine{\Hypertarget{vehicle_manager_8jsx_source_l00043}00043\ }
+\DoxyCodeLine{\Hypertarget{vehicle_manager_8jsx_source_l00044}00044\ \ \ \ \ \ \ <GeneralFooter>}
+\DoxyCodeLine{\Hypertarget{vehicle_manager_8jsx_source_l00045}00045\ \ \ \ \ \ \ </GeneralFooter>}
+\DoxyCodeLine{\Hypertarget{vehicle_manager_8jsx_source_l00046}00046\ \ \ \ \ </>}
+\DoxyCodeLine{\Hypertarget{vehicle_manager_8jsx_source_l00047}00047\ \ \ );}
+\DoxyCodeLine{\Hypertarget{vehicle_manager_8jsx_source_l00048}00048\ \}}
+\DoxyCodeLine{\Hypertarget{vehicle_manager_8jsx_source_l00049}00049\ }
+\DoxyCodeLine{\Hypertarget{vehicle_manager_8jsx_source_l00050}00050\ export\ default\ VehicleManager;}
+
+\end{DoxyCode}

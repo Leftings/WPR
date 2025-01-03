@@ -1,0 +1,26 @@
+name: Generate UML Diagrams
+
+on:
+  workflow_dispatch:
+
+jobs:
+  generate_uml:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Doxygen
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y doxygen graphviz
+
+      - name: Generate UML with Doxygen
+        run: doxygen Doxyfile
+
+      - name: Upload UML Diagrams as Artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: uml-diagrams
+          path: ./output/uml/

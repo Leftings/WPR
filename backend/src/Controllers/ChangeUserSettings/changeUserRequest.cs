@@ -1,6 +1,7 @@
 namespace WPR.Controllers.ChangeUserSettings;
-
-// Body voor het wijzigen van gebruikergegevens
+/// <summary>
+/// Body voor het wijzigen van gebruikergegevens
+/// </summary>
 public class ChangeUserRequest
 {
     public int Id { get; set; }

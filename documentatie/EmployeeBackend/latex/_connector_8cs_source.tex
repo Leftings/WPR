@@ -1,0 +1,57 @@
+\doxysection{Connector.\+cs}
+\hypertarget{_connector_8cs_source}{}\label{_connector_8cs_source}\index{D:/codes/WPR/employeeBackend/src/Database/Connector.cs@{D:/codes/WPR/employeeBackend/src/Database/Connector.cs}}
+\mbox{\hyperlink{_connector_8cs}{Ga naar de documentatie van dit bestand.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_connector_8cs_source_l00001}00001\ \textcolor{keyword}{using\ }System.Data;}
+\DoxyCodeLine{\Hypertarget{_connector_8cs_source_l00002}00002\ \textcolor{keyword}{using\ }MySql.Data.MySqlClient;}
+\DoxyCodeLine{\Hypertarget{_connector_8cs_source_l00003}00003\ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespace_employee_1_1_data}{Employee.Data}};}
+\DoxyCodeLine{\Hypertarget{_connector_8cs_source_l00004}00004\ }
+\DoxyCodeLine{\Hypertarget{_connector_8cs_source_l00005}\mbox{\hyperlink{namespace_employee_1_1_database}{00005}}\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_employee_1_1_database}{Employee.Database}};}
+\DoxyCodeLine{\Hypertarget{_connector_8cs_source_l00006}00006\ }
+\DoxyCodeLine{\Hypertarget{_connector_8cs_source_l00011}00011\ }
+\DoxyCodeLine{\Hypertarget{_connector_8cs_source_l00012}\mbox{\hyperlink{interface_employee_1_1_database_1_1_i_connector}{00012}}\ \textcolor{keyword}{public}\ \textcolor{keyword}{interface\ }\mbox{\hyperlink{interface_employee_1_1_database_1_1_i_connector}{IConnector}}}
+\DoxyCodeLine{\Hypertarget{_connector_8cs_source_l00013}00013\ \{}
+\DoxyCodeLine{\Hypertarget{_connector_8cs_source_l00014}\mbox{\hyperlink{interface_employee_1_1_database_1_1_i_connector_a83a983e41b98c5fdc37d9b80dba7a4bf}{00014}}\ \ \ \ \ IDbConnection\ \mbox{\hyperlink{interface_employee_1_1_database_1_1_i_connector_a83a983e41b98c5fdc37d9b80dba7a4bf}{CreateDbConnection}}();}
+\DoxyCodeLine{\Hypertarget{_connector_8cs_source_l00015}00015\ \}}
+\DoxyCodeLine{\Hypertarget{_connector_8cs_source_l00016}00016\ }
+\DoxyCodeLine{\Hypertarget{_connector_8cs_source_l00017}\mbox{\hyperlink{class_employee_1_1_database_1_1_connector}{00017}}\ \textcolor{keyword}{public}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_employee_1_1_database_1_1_connector_a915284aba8c8cd52d5f9c91257ee461a}{Connector}}\ :\ \mbox{\hyperlink{interface_employee_1_1_database_1_1_i_connector}{IConnector}}}
+\DoxyCodeLine{\Hypertarget{_connector_8cs_source_l00018}00018\ \{}
+\DoxyCodeLine{\Hypertarget{_connector_8cs_source_l00019}\mbox{\hyperlink{class_employee_1_1_database_1_1_connector_a8a35455521dff4d872660015b9afb335}{00019}}\ \ \ \ \ \textcolor{keyword}{private}\ readonly\ \mbox{\hyperlink{class_employee_1_1_data_1_1_env_config}{EnvConfig}}\ \mbox{\hyperlink{class_employee_1_1_database_1_1_connector_a8a35455521dff4d872660015b9afb335}{\_envConfig}};\ \textcolor{comment}{//\ Instantie\ van\ EnConfig\ om\ environment\ variabelen\ op\ te\ halen.}}
+\DoxyCodeLine{\Hypertarget{_connector_8cs_source_l00020}00020\ }
+\DoxyCodeLine{\Hypertarget{_connector_8cs_source_l00021}\mbox{\hyperlink{class_employee_1_1_database_1_1_connector_a915284aba8c8cd52d5f9c91257ee461a}{00021}}\ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_employee_1_1_database_1_1_connector_a915284aba8c8cd52d5f9c91257ee461a}{Connector}}(\mbox{\hyperlink{class_employee_1_1_data_1_1_env_config}{EnvConfig}}\ envConfig)}
+\DoxyCodeLine{\Hypertarget{_connector_8cs_source_l00022}00022\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_connector_8cs_source_l00023}00023\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_employee_1_1_database_1_1_connector_a8a35455521dff4d872660015b9afb335}{\_envConfig}}\ =\ envConfig;}
+\DoxyCodeLine{\Hypertarget{_connector_8cs_source_l00024}00024\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_connector_8cs_source_l00025}00025\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_connector_8cs_source_l00030}\mbox{\hyperlink{class_employee_1_1_database_1_1_connector_aa62155302a67e7a9606f90b4a73e290a}{00030}}\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{virtual}\ IDbConnection\ \mbox{\hyperlink{class_employee_1_1_database_1_1_connector_aa62155302a67e7a9606f90b4a73e290a}{CreateDbConnection}}()}
+\DoxyCodeLine{\Hypertarget{_connector_8cs_source_l00031}00031\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_connector_8cs_source_l00032}00032\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{class_employee_1_1_database_1_1_connector_a8a35455521dff4d872660015b9afb335}{\_envConfig}}.IsConfigured())\ \textcolor{comment}{//\ Check\ of\ alle\ environment\ variabelen\ zijn\ geconfigureerd}}
+\DoxyCodeLine{\Hypertarget{_connector_8cs_source_l00033}00033\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_connector_8cs_source_l00034}00034\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ InvalidOperationException(\textcolor{stringliteral}{"{}Not\ configured"{}});}
+\DoxyCodeLine{\Hypertarget{_connector_8cs_source_l00035}00035\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_connector_8cs_source_l00036}00036\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_connector_8cs_source_l00037}00037\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Haal\ connectie\ strings\ op\ van\ de\ environment\ configuratie}}
+\DoxyCodeLine{\Hypertarget{_connector_8cs_source_l00038}00038\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ server\ =\ \mbox{\hyperlink{class_employee_1_1_database_1_1_connector_a8a35455521dff4d872660015b9afb335}{\_envConfig}}.Get(\textcolor{stringliteral}{"{}DB\_SERVER"{}});}
+\DoxyCodeLine{\Hypertarget{_connector_8cs_source_l00039}00039\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ database\ =\ \mbox{\hyperlink{class_employee_1_1_database_1_1_connector_a8a35455521dff4d872660015b9afb335}{\_envConfig}}.Get(\textcolor{stringliteral}{"{}DB\_DATABASE"{}});}
+\DoxyCodeLine{\Hypertarget{_connector_8cs_source_l00040}00040\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ username\ =\ \mbox{\hyperlink{class_employee_1_1_database_1_1_connector_a8a35455521dff4d872660015b9afb335}{\_envConfig}}.Get(\textcolor{stringliteral}{"{}DB\_USERNAME"{}});}
+\DoxyCodeLine{\Hypertarget{_connector_8cs_source_l00041}00041\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ password\ =\ \mbox{\hyperlink{class_employee_1_1_database_1_1_connector_a8a35455521dff4d872660015b9afb335}{\_envConfig}}.Get(\textcolor{stringliteral}{"{}DB\_PASSWORD"{}});}
+\DoxyCodeLine{\Hypertarget{_connector_8cs_source_l00042}00042\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_connector_8cs_source_l00043}00043\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Connectie\ string\ met\ de\ opgehaalde\ parameters}}
+\DoxyCodeLine{\Hypertarget{_connector_8cs_source_l00044}00044\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ connectString\ =\ \$\textcolor{stringliteral}{"{}Server=\{server\};Database=\{database\};User\ ID=\{username\};Password=\{password\};"{}};}
+\DoxyCodeLine{\Hypertarget{_connector_8cs_source_l00045}00045\ }
+\DoxyCodeLine{\Hypertarget{_connector_8cs_source_l00046}00046\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}}
+\DoxyCodeLine{\Hypertarget{_connector_8cs_source_l00047}00047\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_connector_8cs_source_l00048}00048\ \ \ \ \ \ \ \ \ \ \ \ \ var\ connection\ =\ \textcolor{keyword}{new}\ MySqlConnection(connectString);\ \textcolor{comment}{//\ Maak\ een\ nieuwe\ MySQL\ connectie\ instantie}}
+\DoxyCodeLine{\Hypertarget{_connector_8cs_source_l00049}00049\ \ \ \ \ \ \ \ \ \ \ \ \ connection.Open();}
+\DoxyCodeLine{\Hypertarget{_connector_8cs_source_l00050}00050\ \ \ \ \ \ \ \ \ \ \ \ \ Console.WriteLine(\textcolor{stringliteral}{"{}Database\ connection\ successful"{}});}
+\DoxyCodeLine{\Hypertarget{_connector_8cs_source_l00051}00051\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ connection;\ \textcolor{comment}{//\ return\ de\ open\ connectie}}
+\DoxyCodeLine{\Hypertarget{_connector_8cs_source_l00052}00052\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_connector_8cs_source_l00053}00053\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (MySqlException\ ex)}
+\DoxyCodeLine{\Hypertarget{_connector_8cs_source_l00054}00054\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_connector_8cs_source_l00055}00055\ \ \ \ \ \ \ \ \ \ \ \ \ Console.WriteLine(\$\textcolor{stringliteral}{"{}Error\ connecting\ to\ database:\ \{ex.Message\}"{}});}
+\DoxyCodeLine{\Hypertarget{_connector_8cs_source_l00056}00056\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw};\ }
+\DoxyCodeLine{\Hypertarget{_connector_8cs_source_l00057}00057\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_connector_8cs_source_l00058}00058\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_connector_8cs_source_l00059}00059\ \}}
+
+\end{DoxyCode}

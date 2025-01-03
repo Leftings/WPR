@@ -1,0 +1,5 @@
+<map id="Employee.Data.EnvConfig.IsConfigured" name="Employee.Data.EnvConfig.IsConfigured">
+<area shape="rect" id="Node000001" title="Check om te kijken of alle environment variabelen geconfigureerd zijn." alt="" coords="5,5,186,48"/>
+<area shape="rect" id="Node000002" href="$class_employee_1_1_data_1_1_env_config.html#a4f5fd76aedc3c3cdfb96244287c559dc" title="Haalt de value van de specifieke environement variabelen." alt="" coords="234,13,435,40"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="186,24,218,24,218,29,186,29"/>
+</map>

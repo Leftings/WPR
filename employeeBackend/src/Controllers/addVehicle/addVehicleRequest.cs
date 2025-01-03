@@ -1,6 +1,8 @@
 namespace Employee.Controllers.AddVehicle;
 
-// Body voor het toevoegen van een voertuig
+/// <summary>
+/// Body voor het toevoegen van een voertuig
+/// </summary>
 public class AddVehicleRequest
 {
     public int YoP { get; set; }

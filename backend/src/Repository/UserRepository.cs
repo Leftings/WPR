@@ -53,6 +53,15 @@ public class UserRepository : IUserRepository
     }
     */
 
+    /// <summary>
+    /// Er wordt door middel van de meegegeven userType een query aangemaakt, om de juiste gegevens uit de juiste tabel op te halen.
+    /// Vervolgens wordt er in de query het meegegeven emailadress gestopt, om zo het gehaste wachtwoord uit de database te halen
+    /// Nadat er een gebruiker met wachtwoord uit de query komt, zal dit gehaste wachtwoord vergelek worden met het meegegeven gehaste wachtwoord
+    /// </summary>
+    /// <param name="username"></param>
+    /// <param name="password"></param>
+    /// <param name="userType"></param>
+    /// <returns></returns>
     public async Task<bool> ValidateUserAsync(string username, string password, string userType)
     {
         /*string query = $@"SELECT 1 FROM {table} WHERE LOWER(email) = LOWER(@Email) AND BINARY password = @Password";
@@ -113,6 +122,11 @@ public class UserRepository : IUserRepository
         }
     }
 
+    /// <summary>
+    /// Er wordt gekeken of het emailadres al bestaat in de databse
+    /// </summary>
+    /// <param name="email"></param>
+    /// <returns></returns>
     public async Task<(bool status, string message)> checkUsageEmailAsync(string email)
     {
         // Er wordt gekeken of het emailadress al ingebruik is
@@ -145,6 +159,12 @@ public class UserRepository : IUserRepository
         }
     }
 
+    /// <summary>
+    /// Een gebruiker (klant) wordt toegevoegd aan de database, doormiddel van alle meegegeven persoondata.
+    /// Deze persoondata zal vervolgens in de query geïmplementeerd worden en vervolgens worden uitgevoerd.
+    /// </summary>
+    /// <param name="personData"></param>
+    /// <returns></returns>
     public async Task<(bool status, string message, int newUserID)> addCustomerAsync(Object[] personData)
     {
         try
@@ -187,6 +207,12 @@ public class UserRepository : IUserRepository
         }
     }
 
+    /// <summary>
+    /// Het aangemaakte account wordt gekoppeld aan de particuliere tabel, doormiddel van alle meegegeven persoondata.
+    /// Deze persoondata zal vervolgens in de query geïmplementeerd worden en vervolgens worden uitgevoerd.
+    /// </summary>
+    /// <param name="personalData"></param>
+    /// <returns></returns>
     public async Task<(bool status, string message)> addPersonalCustomerAsync(Object[] personalData)
     {
         try
@@ -222,6 +248,12 @@ public class UserRepository : IUserRepository
         }
     }
 
+    /// <summary>
+    /// Het aangemaakte account wordt gekoppeld aan de medewerkers tabel, doormiddel van alle meegegeven persoondata.
+    /// Deze persoondata zal vervolgens in de query geïmplementeerd worden en vervolgens worden uitgevoerd.
+    /// </summary>
+    /// <param name="employeeData"></param>
+    /// <returns></returns>
     public async Task<(bool status, string message)> addEmployeeCustomerAsync(Object[] employeeData)
     {
         try
@@ -431,7 +463,11 @@ public class UserRepository : IUserRepository
         }
     }
 
-
+    /// <summary>
+    /// Er wordt een query aangemaakt, met daarin de meegeven gegevens die veranderd moeten worden in het account van de gebruiker.
+    /// </summary>
+    /// <param name="data"></param>
+    /// <returns></returns>
     private async Task<(bool goodQuery, string message)> CreateUserInfoQuery(List<object[]> data)
     {
         int lengthList = data.Count(); // De lengte voor de loopt wordt vastgesteld
@@ -477,6 +513,11 @@ public class UserRepository : IUserRepository
         return (true, query += $"WHERE ID = {data[0][1]}");
     }
 
+    /// <summary>
+    /// Er wordt door de query, doormiddel van de user id, vastgesteld tot wat voor soort office de medewerker van Car and All behoort
+    /// </summary>
+    /// <param name="userId"></param>
+    /// <returns></returns>
     public async Task<(bool status, string message)> GetKindEmployeeAsync(string userId)
     {
         try
@@ -504,6 +545,12 @@ public class UserRepository : IUserRepository
 
     }
 
+    /// <summary>
+    /// Er kunnen medewewerkers van Car and All toegevoegd worden aan de database, door middel van hun gegevens.
+    /// De database voorziet de gegevens van een automatische id
+    /// </summary>
+    /// <param name="personData"></param>
+    /// <returns></returns>
     public async Task<(bool status, string message)> AddStaff(Object[] personData)
     {
         try
@@ -536,6 +583,11 @@ public class UserRepository : IUserRepository
         }
     }
     
+    /// <summary>
+    /// Er wordt gekeken door middel van het id of de gebruiker een geldig medewerkers id heeft
+    /// </summary>
+    /// <param name="id"></param>
+    /// <returns></returns>
     public async Task<bool> IsUserEmployee(int id)
     {
         try

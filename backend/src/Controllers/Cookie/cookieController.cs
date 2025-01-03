@@ -7,6 +7,9 @@ using WPR.Repository;
 using MySqlX.XDevAPI.Common;
 using WPR.Cryption;
 
+/// <summary>
+/// CookieController is de controller voor het aanmaken, verwijderen en ondervragen van cookies
+/// </summary>
 [Route("api/[controller]")]
 [ApiController]
 public class CookieController : ControllerBase
@@ -22,7 +25,10 @@ public class CookieController : ControllerBase
         _crypt = crypt ?? throw new ArgumentNullException(nameof(crypt));
     }
 
-    // De geencrypted user id wordt uit de cookie gepakt en wordt vervolgens gedecrypt doorgestuurd
+    /// <summary>
+    /// De geencrypted user id wordt uit de cookie gepakt en wordt vervolgens gedecrypt doorgestuurd
+    /// </summary>
+    /// <returns></returns>
     [HttpGet("GetUserId")]
     public async Task<IActionResult> GetUserId()
     {
@@ -51,8 +57,10 @@ public class CookieController : ControllerBase
         }
     }
 
-
-    // De gebruikersnaam wordt via de user id opgehaald via de backend 
+    /// <summary>
+    /// De gebruikersnaam wordt via de user id opgehaald via de backend
+    /// </summary>
+    /// <returns></returns> 
     [HttpGet("GetUserName")]
     public async Task<IActionResult> GetUserName()
     {
@@ -74,7 +82,10 @@ public class CookieController : ControllerBase
         }
     }
 
-    // De loginsession cookie wordt veranderd naar een cookie met een negatieve tijd, zodat de cookie expires
+    /// <summary>
+    /// De loginsession cookie wordt veranderd naar een cookie met een negatieve tijd, zodat de cookie expires
+    /// </summary>
+    /// <returns></returns>
     [HttpPost("Logout")]
     public IActionResult Logout()
     {
@@ -90,7 +101,10 @@ public class CookieController : ControllerBase
         return Ok(new { message = "User Logged Out"});
     }
 
-    // Het soort medewerker wordt uit de cookie opgehaald, door middel van de user id, zodat de juiste soort medewerker naar de frontend verstuurd wordt
+    /// <summary>
+    /// Het soort medewerker wordt uit de cookie opgehaald, door middel van de user id, zodat de juiste soort medewerker naar de frontend verstuurd wordt
+    /// </summary>
+    /// <returns></returns>
     [HttpGet("GetKindEmployee")]
     public async Task<IActionResult> GetKindEmployeeAsync()
     {

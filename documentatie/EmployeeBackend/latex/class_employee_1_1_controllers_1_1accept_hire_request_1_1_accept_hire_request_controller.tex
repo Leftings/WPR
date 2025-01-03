@@ -1,0 +1,337 @@
+\doxysection{Employee.\+Controllers.\+accept\+Hire\+Request.\+Accept\+Hire\+Request\+Controller Class Referentie}
+\hypertarget{class_employee_1_1_controllers_1_1accept_hire_request_1_1_accept_hire_request_controller}{}\label{class_employee_1_1_controllers_1_1accept_hire_request_1_1_accept_hire_request_controller}\index{Employee.Controllers.acceptHireRequest.AcceptHireRequestController@{Employee.Controllers.acceptHireRequest.AcceptHireRequestController}}
+
+
+\doxylink{class_employee_1_1_controllers_1_1accept_hire_request_1_1_accept_hire_request_controller}{Accept\+Hire\+Request\+Controller} zorgt ervoor dat alle huuraanvragen verzameld worden en bestempelt kunnen worden als geacepteerd of geweigerd.  
+
+
+
+
+Klasse diagram voor Employee.\+Controllers.\+accept\+Hire\+Request.\+Accept\+Hire\+Request\+Controller\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=273pt]{class_employee_1_1_controllers_1_1accept_hire_request_1_1_accept_hire_request_controller__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboratie diagram voor Employee.\+Controllers.\+accept\+Hire\+Request.\+Accept\+Hire\+Request\+Controller\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_employee_1_1_controllers_1_1accept_hire_request_1_1_accept_hire_request_controller__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Members}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_employee_1_1_controllers_1_1accept_hire_request_1_1_accept_hire_request_controller_af30767d35a19b0c6d5bb6516d6e22741}{Accept\+Hire\+Request\+Controller}} (\mbox{\hyperlink{class_employee_1_1_database_1_1_connector}{Connector}} connector, \mbox{\hyperlink{interface_employee_1_1_repository_1_1_i_user_repository}{IUser\+Repository}} user\+Repository, \mbox{\hyperlink{class_employee_1_1_cryption_1_1_crypt}{Crypt}} crypt)
+\item 
+async Task$<$ IAction\+Result $>$ \mbox{\hyperlink{class_employee_1_1_controllers_1_1accept_hire_request_1_1_accept_hire_request_controller_ae3d5a7679299172c8fb6121d9e1b1a6d}{Get\+Reviews\+Ids\+Async}} (string user)
+\begin{DoxyCompactList}\small\item\em Alle ids van de aanvragen worden opgehaald. \end{DoxyCompactList}\item 
+async Task$<$ IAction\+Result $>$ \mbox{\hyperlink{class_employee_1_1_controllers_1_1accept_hire_request_1_1_accept_hire_request_controller_a014d4b42cccb4fa36b26fa6b7ff91fed}{Get\+Review\+Async}} (string id)
+\begin{DoxyCompactList}\small\item\em De gegevens van een specifieke aanvraag worden opgehaald. \end{DoxyCompactList}\item 
+async Task$<$ IAction\+Result $>$ \mbox{\hyperlink{class_employee_1_1_controllers_1_1accept_hire_request_1_1_accept_hire_request_controller_a6a07e70f8d5bfdcf6d15239e555139bd}{Answer\+Hire\+Request\+Async}} (\mbox{[}From\+Body\mbox{]} \mbox{\hyperlink{class_employee_1_1_controllers_1_1accept_hire_request_1_1_hire_request}{Hire\+Request}} request)
+\begin{DoxyCompactList}\small\item\em Een aanvraag kan beantwoord worden. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Members}
+\begin{DoxyCompactItemize}
+\item 
+string \mbox{\hyperlink{class_employee_1_1_controllers_1_1accept_hire_request_1_1_accept_hire_request_controller_aba9650bd220b2cb4dedf917054c67ba2}{Get\+Current\+User\+Id}} ()
+\begin{DoxyCompactList}\small\item\em Huidige user id wordt opgehaald, voor validatie en logging. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributen}
+\begin{DoxyCompactItemize}
+\item 
+readonly \mbox{\hyperlink{class_employee_1_1_database_1_1_connector}{Connector}} \mbox{\hyperlink{class_employee_1_1_controllers_1_1accept_hire_request_1_1_accept_hire_request_controller_af151ced993d955f352e4e2c99e5d2273}{\+\_\+connector}}
+\item 
+readonly \mbox{\hyperlink{interface_employee_1_1_repository_1_1_i_user_repository}{IUser\+Repository}} \mbox{\hyperlink{class_employee_1_1_controllers_1_1accept_hire_request_1_1_accept_hire_request_controller_acfd847d79bd88d66692ebd3828cfaf6c}{\+\_\+user\+Repository}}
+\item 
+readonly \mbox{\hyperlink{class_employee_1_1_cryption_1_1_crypt}{Crypt}} \mbox{\hyperlink{class_employee_1_1_controllers_1_1accept_hire_request_1_1_accept_hire_request_controller_a4e522f7fe25efcde2deaf12c0fd0b6a5}{\+\_\+crypt}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Gedetailleerde Beschrijving}
+\doxylink{class_employee_1_1_controllers_1_1accept_hire_request_1_1_accept_hire_request_controller}{Accept\+Hire\+Request\+Controller} zorgt ervoor dat alle huuraanvragen verzameld worden en bestempelt kunnen worden als geacepteerd of geweigerd. 
+
+De definitie bevindt zich op regel \mbox{\hyperlink{accept_hire_request_controller_8cs_source_l00016}{16}} in het bestand \mbox{\hyperlink{accept_hire_request_controller_8cs_source}{accept\+Hire\+Request\+Controller.\+cs}}.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentatie}
+\Hypertarget{class_employee_1_1_controllers_1_1accept_hire_request_1_1_accept_hire_request_controller_af30767d35a19b0c6d5bb6516d6e22741}\index{Employee.Controllers.acceptHireRequest.AcceptHireRequestController@{Employee.Controllers.acceptHireRequest.AcceptHireRequestController}!AcceptHireRequestController@{AcceptHireRequestController}}
+\index{AcceptHireRequestController@{AcceptHireRequestController}!Employee.Controllers.acceptHireRequest.AcceptHireRequestController@{Employee.Controllers.acceptHireRequest.AcceptHireRequestController}}
+\doxysubsubsection{\texorpdfstring{AcceptHireRequestController()}{AcceptHireRequestController()}}
+{\footnotesize\ttfamily \label{class_employee_1_1_controllers_1_1accept_hire_request_1_1_accept_hire_request_controller_af30767d35a19b0c6d5bb6516d6e22741} 
+Employee.\+Controllers.\+accept\+Hire\+Request.\+Accept\+Hire\+Request\+Controller.\+Accept\+Hire\+Request\+Controller (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_employee_1_1_database_1_1_connector}{Connector}}}]{connector}{, }\item[{\mbox{\hyperlink{interface_employee_1_1_repository_1_1_i_user_repository}{IUser\+Repository}}}]{user\+Repository}{, }\item[{\mbox{\hyperlink{class_employee_1_1_cryption_1_1_crypt}{Crypt}}}]{crypt}{}\end{DoxyParamCaption})}
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{accept_hire_request_controller_8cs_source_l00022}{22}} in het bestand \mbox{\hyperlink{accept_hire_request_controller_8cs_source}{accept\+Hire\+Request\+Controller.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00023\ \ \ \ \ \{}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \_connector\ =\ connector\ ??\ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ ArgumentNullException(nameof(connector));}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \_userRepository\ =\ userRepository\ ??\ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ ArgumentNullException(nameof(userRepository));}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \_crypt\ =\ crypt\ ??\ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ ArgumentNullException(nameof(crypt));}
+\DoxyCodeLine{00027\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+Gebruikt \mbox{\hyperlink{accept_hire_request_controller_8cs_source_l00018}{\+\_\+connector}}, \mbox{\hyperlink{accept_hire_request_controller_8cs_source_l00020}{\+\_\+crypt}} en \mbox{\hyperlink{accept_hire_request_controller_8cs_source_l00019}{\+\_\+user\+Repository}}.
+
+
+
+\doxysubsection{Documentatie van functie members}
+\Hypertarget{class_employee_1_1_controllers_1_1accept_hire_request_1_1_accept_hire_request_controller_a6a07e70f8d5bfdcf6d15239e555139bd}\index{Employee.Controllers.acceptHireRequest.AcceptHireRequestController@{Employee.Controllers.acceptHireRequest.AcceptHireRequestController}!AnswerHireRequestAsync@{AnswerHireRequestAsync}}
+\index{AnswerHireRequestAsync@{AnswerHireRequestAsync}!Employee.Controllers.acceptHireRequest.AcceptHireRequestController@{Employee.Controllers.acceptHireRequest.AcceptHireRequestController}}
+\doxysubsubsection{\texorpdfstring{AnswerHireRequestAsync()}{AnswerHireRequestAsync()}}
+{\footnotesize\ttfamily \label{class_employee_1_1_controllers_1_1accept_hire_request_1_1_accept_hire_request_controller_a6a07e70f8d5bfdcf6d15239e555139bd} 
+async Task$<$ IAction\+Result $>$ Employee.\+Controllers.\+accept\+Hire\+Request.\+Accept\+Hire\+Request\+Controller.\+Answer\+Hire\+Request\+Async (\begin{DoxyParamCaption}\item[{\mbox{[}\+From\+Body\mbox{]} \mbox{\hyperlink{class_employee_1_1_controllers_1_1accept_hire_request_1_1_hire_request}{Hire\+Request}}}]{request}{}\end{DoxyParamCaption})}
+
+
+
+Een aanvraag kan beantwoord worden. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em request} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retourneert}
+
+\end{DoxyReturn}
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{accept_hire_request_controller_8cs_source_l00059}{59}} in het bestand \mbox{\hyperlink{accept_hire_request_controller_8cs_source}{accept\+Hire\+Request\+Controller.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00060\ \ \ \ \ \{}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (request\ ==\ \textcolor{keyword}{null})}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ BadRequest(\textcolor{keyword}{new}\ \{\ message\ =\ \textcolor{stringliteral}{"{}Invalid\ request\ body"{}}\ \});}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ var\ setStatus\ =\ await\ \_userRepository.SetStatusAsync(request.Id.ToString(),\ request.Status,\ GetCurrentUserId(),\ request.userType);}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (setStatus.status)}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Ok(\textcolor{keyword}{new}\ \{\ message\ =\ setStatus.message\ \});}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ BadRequest(\textcolor{keyword}{new}\ \{\ message\ =\ setStatus.message\ \});}
+\DoxyCodeLine{00074\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+Gebruikt \mbox{\hyperlink{accept_hire_request_controller_8cs_source_l00019}{\+\_\+user\+Repository}} en \mbox{\hyperlink{accept_hire_request_controller_8cs_source_l00081}{Get\+Current\+User\+Id()}}.
+
+Hier is de call graaf voor deze functie\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_employee_1_1_controllers_1_1accept_hire_request_1_1_accept_hire_request_controller_a6a07e70f8d5bfdcf6d15239e555139bd_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_employee_1_1_controllers_1_1accept_hire_request_1_1_accept_hire_request_controller_aba9650bd220b2cb4dedf917054c67ba2}\index{Employee.Controllers.acceptHireRequest.AcceptHireRequestController@{Employee.Controllers.acceptHireRequest.AcceptHireRequestController}!GetCurrentUserId@{GetCurrentUserId}}
+\index{GetCurrentUserId@{GetCurrentUserId}!Employee.Controllers.acceptHireRequest.AcceptHireRequestController@{Employee.Controllers.acceptHireRequest.AcceptHireRequestController}}
+\doxysubsubsection{\texorpdfstring{GetCurrentUserId()}{GetCurrentUserId()}}
+{\footnotesize\ttfamily \label{class_employee_1_1_controllers_1_1accept_hire_request_1_1_accept_hire_request_controller_aba9650bd220b2cb4dedf917054c67ba2} 
+string Employee.\+Controllers.\+accept\+Hire\+Request.\+Accept\+Hire\+Request\+Controller.\+Get\+Current\+User\+Id (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Huidige user id wordt opgehaald, voor validatie en logging. 
+
+\begin{DoxyReturn}{Retourneert}
+
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Excepties}
+{\em Exception} & \\
+\hline
+\end{DoxyExceptions}
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{accept_hire_request_controller_8cs_source_l00081}{81}} in het bestand \mbox{\hyperlink{accept_hire_request_controller_8cs_source}{accept\+Hire\+Request\+Controller.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00082\ \ \ \ \ \{}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Alleen\ de\ cookie\ van\ Employee\ of\ Vehicle\ Manager\ bestaat}}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ loginCookie\ =\ HttpContext.Request.Cookies[\textcolor{stringliteral}{"{}LoginEmployeeSession"{}}];}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ loginCookie2\ =\ HttpContext.Request.Cookies[\textcolor{stringliteral}{"{}LoginVehicleManagerSession"{}}];}
+\DoxyCodeLine{00086\ }
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\textcolor{keywordtype}{string}.IsNullOrEmpty(loginCookie))}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \_crypt.Decrypt(loginCookie);}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (!\textcolor{keywordtype}{string}.IsNullOrEmpty(loginCookie2))}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \_crypt.Decrypt(loginCookie2);}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ Exception(\textcolor{stringliteral}{"{}No\ (valid)\ cookie"{}});}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Ongeldig\ cookie\ wordt\ meteen\ verwijderd}}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \ \ \ \ Response.Cookies.Append(\textcolor{stringliteral}{"{}LoginEmployeeSession"{}},\ \textcolor{stringliteral}{"{}Invalid\ cookie"{}},\ \textcolor{keyword}{new}\ CookieOptions}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ HttpOnly\ =\ \textcolor{keyword}{true},}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Secure\ =\ \textcolor{keyword}{true},}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Expires\ =\ DateTimeOffset.UtcNow.AddDays(-\/1)}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{00111\ }
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ Exception(\textcolor{stringliteral}{"{}Invalid\ Cookie"{}});}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00114\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+Gebruikt \mbox{\hyperlink{accept_hire_request_controller_8cs_source_l00020}{\+\_\+crypt}}.
+
+
+
+Wordt aangeroepen door \mbox{\hyperlink{accept_hire_request_controller_8cs_source_l00059}{Answer\+Hire\+Request\+Async()}} en \mbox{\hyperlink{accept_hire_request_controller_8cs_source_l00035}{Get\+Reviews\+Ids\+Async()}}.
+
+Hier is de caller graaf voor deze functie\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_employee_1_1_controllers_1_1accept_hire_request_1_1_accept_hire_request_controller_aba9650bd220b2cb4dedf917054c67ba2_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_employee_1_1_controllers_1_1accept_hire_request_1_1_accept_hire_request_controller_a014d4b42cccb4fa36b26fa6b7ff91fed}\index{Employee.Controllers.acceptHireRequest.AcceptHireRequestController@{Employee.Controllers.acceptHireRequest.AcceptHireRequestController}!GetReviewAsync@{GetReviewAsync}}
+\index{GetReviewAsync@{GetReviewAsync}!Employee.Controllers.acceptHireRequest.AcceptHireRequestController@{Employee.Controllers.acceptHireRequest.AcceptHireRequestController}}
+\doxysubsubsection{\texorpdfstring{GetReviewAsync()}{GetReviewAsync()}}
+{\footnotesize\ttfamily \label{class_employee_1_1_controllers_1_1accept_hire_request_1_1_accept_hire_request_controller_a014d4b42cccb4fa36b26fa6b7ff91fed} 
+async Task$<$ IAction\+Result $>$ Employee.\+Controllers.\+accept\+Hire\+Request.\+Accept\+Hire\+Request\+Controller.\+Get\+Review\+Async (\begin{DoxyParamCaption}\item[{string}]{id}{}\end{DoxyParamCaption})}
+
+
+
+De gegevens van een specifieke aanvraag worden opgehaald. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retourneert}
+
+\end{DoxyReturn}
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{accept_hire_request_controller_8cs_source_l00047}{47}} in het bestand \mbox{\hyperlink{accept_hire_request_controller_8cs_source}{accept\+Hire\+Request\+Controller.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00048\ \ \ \ \ \{}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ var\ review\ =\ await\ \_userRepository.GetReviewAsync(\textcolor{keywordtype}{id});}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Ok(\textcolor{keyword}{new}\ \{\ message\ =\ review.data\ \});}
+\DoxyCodeLine{00051\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+Gebruikt \mbox{\hyperlink{accept_hire_request_controller_8cs_source_l00019}{\+\_\+user\+Repository}}.
+
+\Hypertarget{class_employee_1_1_controllers_1_1accept_hire_request_1_1_accept_hire_request_controller_ae3d5a7679299172c8fb6121d9e1b1a6d}\index{Employee.Controllers.acceptHireRequest.AcceptHireRequestController@{Employee.Controllers.acceptHireRequest.AcceptHireRequestController}!GetReviewsIdsAsync@{GetReviewsIdsAsync}}
+\index{GetReviewsIdsAsync@{GetReviewsIdsAsync}!Employee.Controllers.acceptHireRequest.AcceptHireRequestController@{Employee.Controllers.acceptHireRequest.AcceptHireRequestController}}
+\doxysubsubsection{\texorpdfstring{GetReviewsIdsAsync()}{GetReviewsIdsAsync()}}
+{\footnotesize\ttfamily \label{class_employee_1_1_controllers_1_1accept_hire_request_1_1_accept_hire_request_controller_ae3d5a7679299172c8fb6121d9e1b1a6d} 
+async Task$<$ IAction\+Result $>$ Employee.\+Controllers.\+accept\+Hire\+Request.\+Accept\+Hire\+Request\+Controller.\+Get\+Reviews\+Ids\+Async (\begin{DoxyParamCaption}\item[{string}]{user}{}\end{DoxyParamCaption})}
+
+
+
+Alle ids van de aanvragen worden opgehaald. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em user} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retourneert}
+
+\end{DoxyReturn}
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{accept_hire_request_controller_8cs_source_l00035}{35}} in het bestand \mbox{\hyperlink{accept_hire_request_controller_8cs_source}{accept\+Hire\+Request\+Controller.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00036\ \ \ \ \ \{}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ var\ ids\ =\ await\ \_userRepository.GetReviewIdsAsync(user,\ GetCurrentUserId());}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Ok(\textcolor{keyword}{new}\ \{\ message\ =\ ids.ids\});}
+\DoxyCodeLine{00039\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+Gebruikt \mbox{\hyperlink{accept_hire_request_controller_8cs_source_l00019}{\+\_\+user\+Repository}} en \mbox{\hyperlink{accept_hire_request_controller_8cs_source_l00081}{Get\+Current\+User\+Id()}}.
+
+Hier is de call graaf voor deze functie\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_employee_1_1_controllers_1_1accept_hire_request_1_1_accept_hire_request_controller_ae3d5a7679299172c8fb6121d9e1b1a6d_cgraph}
+\end{center}
+\end{figure}
+
+
+\doxysubsection{Documentatie van data members}
+\Hypertarget{class_employee_1_1_controllers_1_1accept_hire_request_1_1_accept_hire_request_controller_af151ced993d955f352e4e2c99e5d2273}\index{Employee.Controllers.acceptHireRequest.AcceptHireRequestController@{Employee.Controllers.acceptHireRequest.AcceptHireRequestController}!\_connector@{\_connector}}
+\index{\_connector@{\_connector}!Employee.Controllers.acceptHireRequest.AcceptHireRequestController@{Employee.Controllers.acceptHireRequest.AcceptHireRequestController}}
+\doxysubsubsection{\texorpdfstring{\_connector}{\_connector}}
+{\footnotesize\ttfamily \label{class_employee_1_1_controllers_1_1accept_hire_request_1_1_accept_hire_request_controller_af151ced993d955f352e4e2c99e5d2273} 
+readonly \mbox{\hyperlink{class_employee_1_1_database_1_1_connector}{Connector}} Employee.\+Controllers.\+accept\+Hire\+Request.\+Accept\+Hire\+Request\+Controller.\+\_\+connector\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{accept_hire_request_controller_8cs_source_l00018}{18}} in het bestand \mbox{\hyperlink{accept_hire_request_controller_8cs_source}{accept\+Hire\+Request\+Controller.\+cs}}.
+
+
+
+Wordt aangeroepen door \mbox{\hyperlink{accept_hire_request_controller_8cs_source_l00022}{Accept\+Hire\+Request\+Controller()}}.
+
+\Hypertarget{class_employee_1_1_controllers_1_1accept_hire_request_1_1_accept_hire_request_controller_a4e522f7fe25efcde2deaf12c0fd0b6a5}\index{Employee.Controllers.acceptHireRequest.AcceptHireRequestController@{Employee.Controllers.acceptHireRequest.AcceptHireRequestController}!\_crypt@{\_crypt}}
+\index{\_crypt@{\_crypt}!Employee.Controllers.acceptHireRequest.AcceptHireRequestController@{Employee.Controllers.acceptHireRequest.AcceptHireRequestController}}
+\doxysubsubsection{\texorpdfstring{\_crypt}{\_crypt}}
+{\footnotesize\ttfamily \label{class_employee_1_1_controllers_1_1accept_hire_request_1_1_accept_hire_request_controller_a4e522f7fe25efcde2deaf12c0fd0b6a5} 
+readonly \mbox{\hyperlink{class_employee_1_1_cryption_1_1_crypt}{Crypt}} Employee.\+Controllers.\+accept\+Hire\+Request.\+Accept\+Hire\+Request\+Controller.\+\_\+crypt\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{accept_hire_request_controller_8cs_source_l00020}{20}} in het bestand \mbox{\hyperlink{accept_hire_request_controller_8cs_source}{accept\+Hire\+Request\+Controller.\+cs}}.
+
+
+
+Wordt aangeroepen door \mbox{\hyperlink{accept_hire_request_controller_8cs_source_l00022}{Accept\+Hire\+Request\+Controller()}} en \mbox{\hyperlink{accept_hire_request_controller_8cs_source_l00081}{Get\+Current\+User\+Id()}}.
+
+\Hypertarget{class_employee_1_1_controllers_1_1accept_hire_request_1_1_accept_hire_request_controller_acfd847d79bd88d66692ebd3828cfaf6c}\index{Employee.Controllers.acceptHireRequest.AcceptHireRequestController@{Employee.Controllers.acceptHireRequest.AcceptHireRequestController}!\_userRepository@{\_userRepository}}
+\index{\_userRepository@{\_userRepository}!Employee.Controllers.acceptHireRequest.AcceptHireRequestController@{Employee.Controllers.acceptHireRequest.AcceptHireRequestController}}
+\doxysubsubsection{\texorpdfstring{\_userRepository}{\_userRepository}}
+{\footnotesize\ttfamily \label{class_employee_1_1_controllers_1_1accept_hire_request_1_1_accept_hire_request_controller_acfd847d79bd88d66692ebd3828cfaf6c} 
+readonly \mbox{\hyperlink{interface_employee_1_1_repository_1_1_i_user_repository}{IUser\+Repository}} Employee.\+Controllers.\+accept\+Hire\+Request.\+Accept\+Hire\+Request\+Controller.\+\_\+user\+Repository\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{accept_hire_request_controller_8cs_source_l00019}{19}} in het bestand \mbox{\hyperlink{accept_hire_request_controller_8cs_source}{accept\+Hire\+Request\+Controller.\+cs}}.
+
+
+
+Wordt aangeroepen door \mbox{\hyperlink{accept_hire_request_controller_8cs_source_l00022}{Accept\+Hire\+Request\+Controller()}}, \mbox{\hyperlink{accept_hire_request_controller_8cs_source_l00059}{Answer\+Hire\+Request\+Async()}}, \mbox{\hyperlink{accept_hire_request_controller_8cs_source_l00047}{Get\+Review\+Async()}} en \mbox{\hyperlink{accept_hire_request_controller_8cs_source_l00035}{Get\+Reviews\+Ids\+Async()}}.
+
+
+
+De documentatie voor deze klasse is gegenereerd op basis van het volgende bestand\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/codes/\+WPR/employee\+Backend/src/\+Controllers/accept\+Hire\+Request/\mbox{\hyperlink{accept_hire_request_controller_8cs}{accept\+Hire\+Request\+Controller.\+cs}}\end{DoxyCompactItemize}

@@ -1,0 +1,247 @@
+\doxysection{WPR.\+Controllers.\+Change\+User\+Settings.\+Change\+User\+Settings\+Controller Class Reference}
+\hypertarget{class_w_p_r_1_1_controllers_1_1_change_user_settings_1_1_change_user_settings_controller}{}\label{class_w_p_r_1_1_controllers_1_1_change_user_settings_1_1_change_user_settings_controller}\index{WPR.Controllers.ChangeUserSettings.ChangeUserSettingsController@{WPR.Controllers.ChangeUserSettings.ChangeUserSettingsController}}
+
+
+\doxylink{class_w_p_r_1_1_controllers_1_1_change_user_settings_1_1_change_user_settings_controller}{Change\+User\+Settings\+Controller} is de controller die aanvragen van buitenaf ontvangt en vervolgens gegevens uit de backend ophaald een terug geeft.  
+
+
+
+
+Inheritance diagram for WPR.\+Controllers.\+Change\+User\+Settings.\+Change\+User\+Settings\+Controller\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=260pt]{class_w_p_r_1_1_controllers_1_1_change_user_settings_1_1_change_user_settings_controller__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for WPR.\+Controllers.\+Change\+User\+Settings.\+Change\+User\+Settings\+Controller\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_w_p_r_1_1_controllers_1_1_change_user_settings_1_1_change_user_settings_controller__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_change_user_settings_1_1_change_user_settings_controller_a6f45dbb5d9c5d46b3f715f22afdfb2a8}{Change\+User\+Settings\+Controller}} (\mbox{\hyperlink{class_w_p_r_1_1_database_1_1_connector}{Connector}} connector, \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_user_repository}{IUser\+Repository}} user\+Repository, \mbox{\hyperlink{class_w_p_r_1_1_cryption_1_1_crypt}{Crypt}} crypt)
+\item 
+async Task$<$ IAction\+Result $>$ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_change_user_settings_1_1_change_user_settings_controller_a1dd5b74c8326003559d9276a2c24edeb}{Change\+User\+Info\+Async}} (\mbox{[}From\+Body\mbox{]} \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_change_user_settings_1_1_change_user_request}{Change\+User\+Request}} change\+User\+Request)
+\begin{DoxyCompactList}\small\item\em Gewijzigde gegevens worden gefilter van de ongewijzigde gegevens en worden verstuurd naar de backend. \end{DoxyCompactList}\item 
+async Task$<$ IAction\+Result $>$ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_change_user_settings_1_1_change_user_settings_controller_ac65fb68739c3afd705c6ddb464e94d67}{Delete\+User\+Async}} ()
+\begin{DoxyCompactList}\small\item\em Gebruikers kunnen hun account, samen met hun gegevens, verwijderen uit het systeem. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+readonly \mbox{\hyperlink{class_w_p_r_1_1_database_1_1_connector}{Connector}} \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_change_user_settings_1_1_change_user_settings_controller_a4a9bb7e88a1e5361b5550d7bfe3d1c9d}{\+\_\+connector}}
+\item 
+readonly \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_user_repository}{IUser\+Repository}} \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_change_user_settings_1_1_change_user_settings_controller_a299a1e7942541a6c9af73c94c15e10f3}{\+\_\+user\+Repository}}
+\item 
+readonly \mbox{\hyperlink{class_w_p_r_1_1_cryption_1_1_crypt}{Crypt}} \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_change_user_settings_1_1_change_user_settings_controller_abc6dcfbdb00b3104aca8e154f08fbc98}{\+\_\+crypt}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\doxylink{class_w_p_r_1_1_controllers_1_1_change_user_settings_1_1_change_user_settings_controller}{Change\+User\+Settings\+Controller} is de controller die aanvragen van buitenaf ontvangt en vervolgens gegevens uit de backend ophaald een terug geeft. 
+
+Definition at line \mbox{\hyperlink{change_user_settings_controller_8cs_source_l00016}{16}} of file \mbox{\hyperlink{change_user_settings_controller_8cs_source}{change\+User\+Settings\+Controller.\+cs}}.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_w_p_r_1_1_controllers_1_1_change_user_settings_1_1_change_user_settings_controller_a6f45dbb5d9c5d46b3f715f22afdfb2a8}\index{WPR.Controllers.ChangeUserSettings.ChangeUserSettingsController@{WPR.Controllers.ChangeUserSettings.ChangeUserSettingsController}!ChangeUserSettingsController@{ChangeUserSettingsController}}
+\index{ChangeUserSettingsController@{ChangeUserSettingsController}!WPR.Controllers.ChangeUserSettings.ChangeUserSettingsController@{WPR.Controllers.ChangeUserSettings.ChangeUserSettingsController}}
+\doxysubsubsection{\texorpdfstring{ChangeUserSettingsController()}{ChangeUserSettingsController()}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_controllers_1_1_change_user_settings_1_1_change_user_settings_controller_a6f45dbb5d9c5d46b3f715f22afdfb2a8} 
+WPR.\+Controllers.\+Change\+User\+Settings.\+Change\+User\+Settings\+Controller.\+Change\+User\+Settings\+Controller (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_w_p_r_1_1_database_1_1_connector}{Connector}}}]{connector}{, }\item[{\mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_user_repository}{IUser\+Repository}}}]{user\+Repository}{, }\item[{\mbox{\hyperlink{class_w_p_r_1_1_cryption_1_1_crypt}{Crypt}}}]{crypt}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{change_user_settings_controller_8cs_source_l00022}{22}} of file \mbox{\hyperlink{change_user_settings_controller_8cs_source}{change\+User\+Settings\+Controller.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00023\ \ \ \ \ \{}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \_connector\ =\ connector\ ??\ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ ArgumentNullException(nameof(connector));}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \_userRepository\ =\ userRepository\ ??\ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ ArgumentNullException(nameof(userRepository));}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \_crypt\ =\ crypt\ ??\ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ ArgumentNullException(nameof(crypt));}
+\DoxyCodeLine{00027\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{change_user_settings_controller_8cs_source_l00018}{\+\_\+connector}}, \mbox{\hyperlink{change_user_settings_controller_8cs_source_l00020}{\+\_\+crypt}}, and \mbox{\hyperlink{change_user_settings_controller_8cs_source_l00019}{\+\_\+user\+Repository}}.
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_w_p_r_1_1_controllers_1_1_change_user_settings_1_1_change_user_settings_controller_a1dd5b74c8326003559d9276a2c24edeb}\index{WPR.Controllers.ChangeUserSettings.ChangeUserSettingsController@{WPR.Controllers.ChangeUserSettings.ChangeUserSettingsController}!ChangeUserInfoAsync@{ChangeUserInfoAsync}}
+\index{ChangeUserInfoAsync@{ChangeUserInfoAsync}!WPR.Controllers.ChangeUserSettings.ChangeUserSettingsController@{WPR.Controllers.ChangeUserSettings.ChangeUserSettingsController}}
+\doxysubsubsection{\texorpdfstring{ChangeUserInfoAsync()}{ChangeUserInfoAsync()}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_controllers_1_1_change_user_settings_1_1_change_user_settings_controller_a1dd5b74c8326003559d9276a2c24edeb} 
+async Task$<$ IAction\+Result $>$ WPR.\+Controllers.\+Change\+User\+Settings.\+Change\+User\+Settings\+Controller.\+Change\+User\+Info\+Async (\begin{DoxyParamCaption}\item[{\mbox{[}\+From\+Body\mbox{]} \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_change_user_settings_1_1_change_user_request}{Change\+User\+Request}}}]{change\+User\+Request}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Gewijzigde gegevens worden gefilter van de ongewijzigde gegevens en worden verstuurd naar de backend. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em change\+User\+Request} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{change_user_settings_controller_8cs_source_l00035}{35}} of file \mbox{\hyperlink{change_user_settings_controller_8cs_source}{change\+User\+Settings\+Controller.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00036\ \ \ \ \ \{}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (changeUserRequest\ ==\ \textcolor{keyword}{null})}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ BadRequest(\textcolor{stringliteral}{"{}Body\ can\ not\ be\ null"{}});}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ List<object[]>\ data\ =\ \textcolor{keyword}{new}\ List<object[]>();}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ gegevens\ worden\ uit\ de\ lijst\ gehaald\ (naam\ van\ de\ collom,\ de\ nieuwe\ waarde,\ soort\ waarde)}}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{foreach}\ (var\ propertyInfo\ \textcolor{keywordflow}{in}\ typeof(ChangeUserRequest).GetProperties())}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \ \ \ \ var\ propertyName\ =\ propertyInfo.Name;}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \ \ \ \ var\ propertyValue\ =\ propertyInfo.GetValue(changeUserRequest);}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \ \ \ \ var\ propertyType\ =\ propertyInfo.PropertyType;}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!propertyValue.Equals(\textcolor{stringliteral}{"{}"{}}))}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ data.Add(\textcolor{keyword}{new}\ \textcolor{keywordtype}{object}[]\ \{propertyName,\ propertyValue,\ propertyType\});}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ var\ updated\ =\ await\ \_userRepository.EditUserInfoAsync(data);}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (updated.status)}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Ok(\textcolor{keyword}{new}\ \{message\ =\ \textcolor{stringliteral}{"{}Data\ Updated"{}}\});}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ BadRequest(\textcolor{keyword}{new}\ \{updated.message\});}
+\DoxyCodeLine{00064\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{change_user_settings_controller_8cs_source_l00019}{\+\_\+user\+Repository}}.
+
+\Hypertarget{class_w_p_r_1_1_controllers_1_1_change_user_settings_1_1_change_user_settings_controller_ac65fb68739c3afd705c6ddb464e94d67}\index{WPR.Controllers.ChangeUserSettings.ChangeUserSettingsController@{WPR.Controllers.ChangeUserSettings.ChangeUserSettingsController}!DeleteUserAsync@{DeleteUserAsync}}
+\index{DeleteUserAsync@{DeleteUserAsync}!WPR.Controllers.ChangeUserSettings.ChangeUserSettingsController@{WPR.Controllers.ChangeUserSettings.ChangeUserSettingsController}}
+\doxysubsubsection{\texorpdfstring{DeleteUserAsync()}{DeleteUserAsync()}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_controllers_1_1_change_user_settings_1_1_change_user_settings_controller_ac65fb68739c3afd705c6ddb464e94d67} 
+async Task$<$ IAction\+Result $>$ WPR.\+Controllers.\+Change\+User\+Settings.\+Change\+User\+Settings\+Controller.\+Delete\+User\+Async (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Gebruikers kunnen hun account, samen met hun gegevens, verwijderen uit het systeem. 
+
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{change_user_settings_controller_8cs_source_l00071}{71}} of file \mbox{\hyperlink{change_user_settings_controller_8cs_source}{change\+User\+Settings\+Controller.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ loginCookie\ =\ HttpContext.Request.Cookies[\textcolor{stringliteral}{"{}LoginSession"{}}];}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\textcolor{keywordtype}{string}.IsNullOrEmpty(loginCookie))}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \ \ \ \ Console.WriteLine(\textcolor{stringliteral}{"{}No\ cookie"{}});}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ BadRequest(\textcolor{keyword}{new}\ \{\ message\ =\ \textcolor{stringliteral}{"{}No\ Cookie"{}}\});}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ Console.WriteLine(loginCookie);}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ decryptedLoginCookie\ =\ \_crypt.Decrypt(loginCookie);}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \ \ \ \ Console.WriteLine(decryptedLoginCookie);}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \ \ \ \ var\ result\ =\ await\ \_userRepository.DeleteUserAsync(decryptedLoginCookie);}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (result.status)}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Response.Cookies.Append(\textcolor{stringliteral}{"{}LoginSession"{}},\ \textcolor{stringliteral}{"{}"{}},\ \textcolor{keyword}{new}\ CookieOptions\ \{\ Expires\ =\ DateTimeOffset.Now.AddDays(-\/1)\ \});}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Console.WriteLine(\textcolor{stringliteral}{"{}Cookie\ cleared"{}});}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Ok(\textcolor{keyword}{new}\ \{message\ =\ result.message\});}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ BadRequest(\textcolor{keyword}{new}\ \{message\ =\ result.message\});}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (Exception\ e)}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \ \ \ \ Console.WriteLine(e);}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw};}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00102\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{change_user_settings_controller_8cs_source_l00020}{\+\_\+crypt}}, and \mbox{\hyperlink{change_user_settings_controller_8cs_source_l00019}{\+\_\+user\+Repository}}.
+
+
+
+\doxysubsection{Field Documentation}
+\Hypertarget{class_w_p_r_1_1_controllers_1_1_change_user_settings_1_1_change_user_settings_controller_a4a9bb7e88a1e5361b5550d7bfe3d1c9d}\index{WPR.Controllers.ChangeUserSettings.ChangeUserSettingsController@{WPR.Controllers.ChangeUserSettings.ChangeUserSettingsController}!\_connector@{\_connector}}
+\index{\_connector@{\_connector}!WPR.Controllers.ChangeUserSettings.ChangeUserSettingsController@{WPR.Controllers.ChangeUserSettings.ChangeUserSettingsController}}
+\doxysubsubsection{\texorpdfstring{\_connector}{\_connector}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_controllers_1_1_change_user_settings_1_1_change_user_settings_controller_a4a9bb7e88a1e5361b5550d7bfe3d1c9d} 
+readonly \mbox{\hyperlink{class_w_p_r_1_1_database_1_1_connector}{Connector}} WPR.\+Controllers.\+Change\+User\+Settings.\+Change\+User\+Settings\+Controller.\+\_\+connector\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \mbox{\hyperlink{change_user_settings_controller_8cs_source_l00018}{18}} of file \mbox{\hyperlink{change_user_settings_controller_8cs_source}{change\+User\+Settings\+Controller.\+cs}}.
+
+
+
+Referenced by \mbox{\hyperlink{change_user_settings_controller_8cs_source_l00022}{Change\+User\+Settings\+Controller()}}.
+
+\Hypertarget{class_w_p_r_1_1_controllers_1_1_change_user_settings_1_1_change_user_settings_controller_abc6dcfbdb00b3104aca8e154f08fbc98}\index{WPR.Controllers.ChangeUserSettings.ChangeUserSettingsController@{WPR.Controllers.ChangeUserSettings.ChangeUserSettingsController}!\_crypt@{\_crypt}}
+\index{\_crypt@{\_crypt}!WPR.Controllers.ChangeUserSettings.ChangeUserSettingsController@{WPR.Controllers.ChangeUserSettings.ChangeUserSettingsController}}
+\doxysubsubsection{\texorpdfstring{\_crypt}{\_crypt}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_controllers_1_1_change_user_settings_1_1_change_user_settings_controller_abc6dcfbdb00b3104aca8e154f08fbc98} 
+readonly \mbox{\hyperlink{class_w_p_r_1_1_cryption_1_1_crypt}{Crypt}} WPR.\+Controllers.\+Change\+User\+Settings.\+Change\+User\+Settings\+Controller.\+\_\+crypt\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \mbox{\hyperlink{change_user_settings_controller_8cs_source_l00020}{20}} of file \mbox{\hyperlink{change_user_settings_controller_8cs_source}{change\+User\+Settings\+Controller.\+cs}}.
+
+
+
+Referenced by \mbox{\hyperlink{change_user_settings_controller_8cs_source_l00022}{Change\+User\+Settings\+Controller()}}, and \mbox{\hyperlink{change_user_settings_controller_8cs_source_l00071}{Delete\+User\+Async()}}.
+
+\Hypertarget{class_w_p_r_1_1_controllers_1_1_change_user_settings_1_1_change_user_settings_controller_a299a1e7942541a6c9af73c94c15e10f3}\index{WPR.Controllers.ChangeUserSettings.ChangeUserSettingsController@{WPR.Controllers.ChangeUserSettings.ChangeUserSettingsController}!\_userRepository@{\_userRepository}}
+\index{\_userRepository@{\_userRepository}!WPR.Controllers.ChangeUserSettings.ChangeUserSettingsController@{WPR.Controllers.ChangeUserSettings.ChangeUserSettingsController}}
+\doxysubsubsection{\texorpdfstring{\_userRepository}{\_userRepository}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_controllers_1_1_change_user_settings_1_1_change_user_settings_controller_a299a1e7942541a6c9af73c94c15e10f3} 
+readonly \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_user_repository}{IUser\+Repository}} WPR.\+Controllers.\+Change\+User\+Settings.\+Change\+User\+Settings\+Controller.\+\_\+user\+Repository\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \mbox{\hyperlink{change_user_settings_controller_8cs_source_l00019}{19}} of file \mbox{\hyperlink{change_user_settings_controller_8cs_source}{change\+User\+Settings\+Controller.\+cs}}.
+
+
+
+Referenced by \mbox{\hyperlink{change_user_settings_controller_8cs_source_l00035}{Change\+User\+Info\+Async()}}, \mbox{\hyperlink{change_user_settings_controller_8cs_source_l00022}{Change\+User\+Settings\+Controller()}}, and \mbox{\hyperlink{change_user_settings_controller_8cs_source_l00071}{Delete\+User\+Async()}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/codes/\+WPR/backend/src/\+Controllers/\+Change\+User\+Settings/\mbox{\hyperlink{change_user_settings_controller_8cs}{change\+User\+Settings\+Controller.\+cs}}\end{DoxyCompactItemize}

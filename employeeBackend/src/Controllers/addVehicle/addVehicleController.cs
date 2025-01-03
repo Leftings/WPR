@@ -7,6 +7,9 @@ using MySqlX.XDevAPI.Common;
 using Employee.Repository;
 using MySql.Data.MySqlClient;
 
+/// <summary>
+/// AddVehicleController zorgt ervoor dat voertuigen toegevoegd kunnen worden aan de database
+/// </summary>
 [Route("api/[controller]")]
 [ApiController]
 public class AddVehicleController : ControllerBase
@@ -20,7 +23,12 @@ public class AddVehicleController : ControllerBase
         _userRepository = userRepository ?? throw new ArgumentNullException(nameof(userRepository));
     }
 
-    // Voertuig toevoegen
+    /// <summary>
+    /// Er kan een voertuig toegevoegd worden
+    /// </summary>
+    /// <param name="request"></param>
+    /// <param name="vehicleBlob"></param>
+    /// <returns></returns>
     [HttpPost("addVehicle")]
     // Niet te testen via Swagger, wegens het toevoegen van een afbeelding
     [ApiExplorerSettings(IgnoreApi = true)]

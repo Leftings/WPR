@@ -11,6 +11,9 @@ using WPR.Hashing;
 using ZstdSharp.Unsafe;
 using System.Transactions;
 
+/// <summary>
+/// LoginController zorgt ervoor dat een gebruiker kan inloggen, daarnaast wordt er ook gekeken of de gebruiker een geldige cookie heeft
+/// </summary>
 [Route("api/[controller]")]
 [ApiController]
 public class LoginController : ControllerBase
@@ -28,7 +31,9 @@ public class LoginController : ControllerBase
         _crypt = crypt ?? throw new ArgumentNullException(nameof(crypt));
     }
 
-    // Op het moment van inloggen worden alle cookies van mogelijke gebruikers verwijderd
+    /// <summary>
+    /// Op het moment van inloggen worden alle cookies van mogelijke gebruikers verwijderd
+    /// </summary>
     private void RemoveOldCookieAsync()
     {
         try
@@ -49,7 +54,11 @@ public class LoginController : ControllerBase
         }
     }
 
-    // Een nieuw coookie wordt gezet, met de juiste cookie naa men waarders
+    /// <summary>
+    /// Een nieuw cookie wordt gezet, met de juiste cookie naa men waarders
+    /// </summary>
+    /// <param name="loginRequest"></param>
+    /// <returns></returns>
     private async Task<IActionResult> SetCookieAsync(LoginRequest loginRequest)
     {
         RemoveOldCookieAsync();
@@ -107,7 +116,10 @@ public class LoginController : ControllerBase
         return Ok();
     }
 
-    // De session voor de customer wordt gecheckt
+    /// <summary>
+    /// De session voor de customer wordt gecheckt
+    /// </summary>
+    /// <returns></returns>
     [HttpGet("CheckSession")]
     public IActionResult CheckSession()
     {
@@ -120,7 +132,10 @@ public class LoginController : ControllerBase
         return Unauthorized(new { message = "Session expired or is not found" });
     }
 
-    // De session voor de Car and All medewerker wordt gecheckt
+    /// <summary>
+    /// De session voor de Car and All medewerker wordt gecheckt
+    /// </summary>
+    /// <returns></returns>
     [HttpGet("CheckSessionStaff")]
     public async Task<IActionResult> CheckSessionStaff()
     {
@@ -133,7 +148,10 @@ public class LoginController : ControllerBase
         return Unauthorized(new { message = "Session expired or is not found" });
     }
 
-    // De session voor de Vehicle Manager wordt gecheckt
+    /// <summary>
+    /// De session voor de Vehicle Manager wordt gecheckt
+    /// </summary>
+    /// <returns></returns>
     [HttpGet("CheckSessionVehicleManager")]
     public async Task<IActionResult> CheckSessionVehicleManager()
     {
@@ -145,7 +163,11 @@ public class LoginController : ControllerBase
         return Unauthorized(new { message = "Session expired or is not found" });
     }
 
-    // Een gebruiker wordt ingelogt
+    /// <summary>
+    /// Een gebruiker wordt ingelogt
+    /// </summary>
+    /// <param name="loginRequest"></param>
+    /// <returns></returns>
     [HttpPost("login")]
     public async Task <IActionResult> LoginAsync([FromBody] LoginRequest loginRequest)
     {

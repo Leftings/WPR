@@ -1,0 +1,228 @@
+\doxysection{login\+Employee.\+jsx}
+\hypertarget{login_employee_8jsx_source}{}\label{login_employee_8jsx_source}\index{D:/codes/WPR/frontend/src/login/loginEmployee.jsx@{D:/codes/WPR/frontend/src/login/loginEmployee.jsx}}
+\mbox{\hyperlink{login_employee_8jsx}{Ga naar de documentatie van dit bestand.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00001}00001\ import\ React,\ \{\ useState\ \}\ from\ 'react';}
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00002}00002\ import\ \{\ isRouteErrorResponse,\ Link,\ useNavigate\ \}\ from\ 'react-\/router-\/dom';}
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00003}00003\ import\ './login.css';}
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00004}00004\ import\ logo\ from\ '../assets/logo.svg';}
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00005}00005\ import\ logoHover\ from\ '../assets/logo-\/green.svg';}
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00006}00006\ import\ GeneralFooter\ from\ "{}../GeneralBlocks/footer/footer.jsx"{};}
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00007}00007\ }
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00008}00008\ const\ BACKEND\_URL\ =\ import.meta.env.VITE\_REACT\_APP\_BACKEND\_URL\ ??\ 'http://localhost:5165';}
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00009}00009\ }
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00010}00010\ function\ CheckCookie()\ \{}
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00011}00011\ \ \ return\ fetch(`\$\{BACKEND\_URL\}/api/Login/CheckSession`,\ \{\ credentials:\ 'include'\ \})}
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00012}00012\ \ \ \ \ .then(response\ =>\ \{}
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00013}00013\ \ \ \ \ \ \ if\ (!response.ok)\ \{}
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00014}00014\ \ \ \ \ \ \ \ \ throw\ new\ Error('Session\ check\ failed');}
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00015}00015\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00016}00016\ \ \ \ \ \ \ return\ response.json();}
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00017}00017\ \ \ \ \ \})}
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00018}00018\ \ \ \ \ .then(data\ =>\ \{}
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00019}00019\ \ \ \ \ \ \ console.log('Session\ Active:\ ',\ data);}
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00020}00020\ \ \ \ \ \ \ return\ data;}
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00021}00021\ \ \ \ \ \})}
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00022}00022\ \ \ \ \ .catch(error\ =>\ \{}
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00023}00023\ \ \ \ \ \ \ console.error('Error:\ ',\ error.message);}
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00024}00024\ \ \ \ \ \ \ return\ null;}
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00025}00025\ \ \ \ \ \});}
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00026}00026\ \}}
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00027}00027\ }
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00028}00028\ function\ CheckCookieEmployee()}
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00029}00029\ \{}
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00030}00030\ \ \ return\ fetch(`\$\{BACKEND\_URL\}/api/Login/CheckSessionStaff`,\ \{\ credentials:\ 'include'\ \})}
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00031}00031\ \ \ \ \ .then(response\ =>\ \{}
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00032}00032\ \ \ \ \ \ \ if\ (!response.ok)\ \{}
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00033}00033\ \ \ \ \ \ \ \ \ throw\ new\ Error('Session\ check\ failed');}
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00034}00034\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00035}00035\ \ \ \ \ \ \ return\ response.json();}
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00036}00036\ \ \ \ \ \})}
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00037}00037\ \ \ \ \ .then(data\ =>\ \{}
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00038}00038\ \ \ \ \ \ \ console.log('Session\ Active:\ ',\ data);}
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00039}00039\ \ \ \ \ \ \ return\ data;}
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00040}00040\ \ \ \ \ \})}
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00041}00041\ \ \ \ \ .catch(error\ =>\ \{}
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00042}00042\ \ \ \ \ \ \ console.error('Error:\ ',\ error.message);}
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00043}00043\ \ \ \ \ \ \ return\ null;}
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00044}00044\ \ \ \ \ \});}
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00045}00045\ \}}
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00046}00046\ }
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00047}00047\ function\ GetOffice()\ \{}
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00048}00048\ \ \ console.log('Backend\ URL:',\ BACKEND\_URL);}
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00049}00049\ \ \ console.log('Sending\ request\ to\ GetKindEmployee');}
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00050}00050\ \ \ return\ fetch(`\$\{BACKEND\_URL\}/api/Cookie/GetKindEmployee`,\ \{\ credentials:\ 'include'\ \})}
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00051}00051\ \ \ \ \ .then(response\ =>\ \{}
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00052}00052\ \ \ \ \ \ \ if\ (!response.ok)\ \{}
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00053}00053\ \ \ \ \ \ \ \ \ throw\ new\ Error('Getting\ kind\ of\ office\ failed');}
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00054}00054\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00055}00055\ \ \ \ \ \ \ return\ response.json();}
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00056}00056\ \ \ \ \ \})}
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00057}00057\ \ \ \ \ .then(data\ =>\ \{}
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00058}00058\ \ \ \ \ \ \ console.log('Kind\ office:\ ',\ data);}
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00059}00059\ \ \ \ \ \ \ return\ data;\ //\ The\ office\ type\ (e.g.,\ "{}Front"{}\ or\ "{}Back"{})}
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00060}00060\ \ \ \ \ \})}
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00061}00061\ \ \ \ \ .catch(error\ =>\ \{}
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00062}00062\ \ \ \ \ \ \ console.error('Error:\ ',\ error.message);}
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00063}00063\ \ \ \ \ \ \ return\ null;}
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00064}00064\ \ \ \ \ \});}
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00065}00065\ \}}
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00066}00066\ }
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00067}00067\ function\ Login()\ \{}
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00068}00068\ \ \ const\ [userType,\ SetUserType]\ =\ useState('Customer');}
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00069}00069\ \ \ const\ [email,\ setEmail]\ =\ useState('');}
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00070}00070\ \ \ const\ [password,\ setPassword]\ =\ useState('');}
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00071}00071\ \ \ const\ [error,\ setError]\ =\ useState('');}
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00072}00072\ \ \ const\ [isMenuOpen,\ setIsMenuOpen]\ =\ useState(false);}
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00073}00073\ \ \ const\ navigate\ =\ useNavigate();}
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00074}00074\ }
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00075}00075\ \ \ const\ toggleUserType\ =\ (event)\ =>\ \{}
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00076}00076\ \ \ \ \ SetUserType(event.target.value);}
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00077}00077\ \ \ \};}
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00078}00078\ }
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00079}00079\ \ \ const\ onSubmit\ =\ async\ (event)\ =>\ \{}
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00080}00080\ \ \ \ \ event.preventDefault();}
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00081}00081\ }
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00082}00082\ \ \ \ \ if\ (!email\ ||\ !password)\ \{}
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00083}00083\ \ \ \ \ \ \ if\ (!email\ \&\&\ !password)\ \{}
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00084}00084\ \ \ \ \ \ \ \ \ setError('Vul\ een\ emailadres\ en\ wachtwoord\ in');}
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00085}00085\ \ \ \ \ \ \ \}\ else\ if\ (!email)\ \{}
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00086}00086\ \ \ \ \ \ \ \ \ setError('Vul\ een\ emailadres\ in');}
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00087}00087\ \ \ \ \ \ \ \}\ else\ \{}
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00088}00088\ \ \ \ \ \ \ \ \ setError('Vul\ een\ wachtwoord\ in');}
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00089}00089\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00090}00090\ \ \ \ \ \ \ return;}
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00091}00091\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00092}00092\ }
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00093}00093\ \ \ \ \ try}
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00094}00094\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00095}00095\ \ \ \ \ \ \ const\ response\ =\ await\ fetch(`\$\{BACKEND\_URL\}/api/Login/login`,\ \{}
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00096}00096\ \ \ \ \ \ \ \ \ method:\ 'POST',}
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00097}00097\ \ \ \ \ \ \ \ \ headers:\ \{}
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00098}00098\ \ \ \ \ \ \ \ \ \ \ 'Content-\/Type':\ 'application/json',}
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00099}00099\ \ \ \ \ \ \ \ \ \},}
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00100}00100\ \ \ \ \ \ \ \ \ body:\ JSON.stringify(\{email,\ password,\ userType\}),}
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00101}00101\ \ \ \ \ \ \ \ \ credentials:\ 'include',}
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00102}00102\ \ \ \ \ \ \ \});}
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00103}00103\ }
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00104}00104\ \ \ \ \ \ \ if\ (!response.ok)}
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00105}00105\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00106}00106\ \ \ \ \ \ \ \ \ setError(`\$\{email\}\ is\ geen\ geldig\ account\ of\ het\ wachtwoord\ klopt\ niet`);}
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00107}00107\ \ \ \ \ \ \ \ \ throw\ new\ Error('Login\ failed');}
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00108}00108\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00109}00109\ \ \ \ \ \ \ else}
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00110}00110\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00111}00111\ \ \ \ \ \ \ \ \ if\ (userType\ ===\ 'Customer')}
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00112}00112\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00113}00113\ \ \ \ \ \ \ \ \ \ \ //\ klant\ wordt\ ingelogd\ terug\ naar\ de\ homepage\ gestuurd}
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00114}00114\ \ \ \ \ \ \ \ \ \ \ await\ fetch(`\$\{BACKEND\_URL\}/api/Login/CheckSession`,\ \{\ credentials:\ 'include'\ \});}
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00115}00115\ \ \ \ \ \ \ \ \ \ \ navigate('/');}
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00116}00116\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00117}00117\ \ \ \ \ \ \ \ \ else\ if\ (userType\ ===\ 'Employee')}
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00118}00118\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00119}00119\ \ \ \ \ \ \ \ \ \ \ //\ Soort\ medewerker\ wordt\ vastgesteld}
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00120}00120\ \ \ \ \ \ \ \ \ \ \ const\ officeResponse\ =\ await\ fetch(`\$\{BACKEND\_URL\}/api/Cookie/GetKindEmployee`,\ \{\ credentials:\ 'include'\ \});}
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00121}00121\ \ \ \ \ \ \ \ \ \ \ if\ (!officeResponse.ok)\ \{}
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00122}00122\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ throw\ new\ Error('Failed\ to\ fetch\ the\ kind\ of\ office');}
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00123}00123\ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00124}00124\ \ \ \ \ \ \ \ \ \ \ const\ office\ =\ await\ officeResponse.json();}
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00125}00125\ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00126}00126\ \ \ \ \ \ \ \ \ \ \ if\ (office?.message\ ===\ 'Front')}
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00127}00127\ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00128}00128\ \ \ \ \ \ \ \ \ \ \ \ \ //\ Medewerker\ wordt\ naar\ de\ frontoffice\ gestuurd}
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00129}00129\ \ \ \ \ \ \ \ \ \ \ \ \ await\ fetch(`\$\{BACKEND\_URL\}/api/Login/CheckSessionStaff`,\ \{\ credentials:\ 'include'\ \});}
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00130}00130\ \ \ \ \ \ \ \ \ \ \ \ \ navigate('/FrontOfficeEmployee');}
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00131}00131\ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00132}00132\ \ \ \ \ \ \ \ \ \ \ else}
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00133}00133\ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00134}00134\ \ \ \ \ \ \ \ \ \ \ \ \ //\ Medewerker\ wordt\ naar\ de\ backoffice\ gestuurd}
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00135}00135\ \ \ \ \ \ \ \ \ \ \ \ \ await\ fetch(`\$\{BACKEND\_URL\}/api/Login/CheckSessionStaff`,\ \{\ credentials:\ 'include'\ \});}
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00136}00136\ \ \ \ \ \ \ \ \ \ \ \ \ navigate('/BackOfficeEmployee');}
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00137}00137\ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00138}00138\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00139}00139\ \ \ \ \ \ \ \ \ else}
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00140}00140\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00141}00141\ \ \ \ \ \ \ \ \ \ \ //\ Vehicle\ Manager\ wordt\ naar\ Vehicle\ Manager\ gestuurd}
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00142}00142\ \ \ \ \ \ \ \ \ \ \ await\ fetch(`\$\{BACKEND\_URL\}/api/Login/CheckSessionVehicleManager`,\ \{\ credentials:\ 'include'\ \});}
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00143}00143\ \ \ \ \ \ \ \ \ \ \ navigate('/VehicleManager');}
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00144}00144\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00145}00145\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00146}00146\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00147}00147\ \ \ \ \ catch\ (error)}
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00148}00148\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00149}00149\ \ \ \ \ \ \ console.error('Error:\ ',\ error);}
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00150}00150\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00151}00151\ \ \ \};}
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00152}00152\ }
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00153}00153\ \ \ const\ toggleMenu\ =\ ()\ =>\ \{}
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00154}00154\ \ \ \ \ setIsMenuOpen(!isMenuOpen);}
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00155}00155\ \ \ \};}
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00156}00156\ }
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00157}00157\ \ \ return\ (}
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00158}00158\ \ \ \ \ \ \ <>}
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00159}00159\ \ \ \ \ \ \ \ \ <link\ rel="{}preload"{}\ as="{}image"{}\ href=\{logoHover\}\ />}
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00160}00160\ \ \ \ \ \ \ \ \ <header\ className="{}header"{}>}
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00161}00161\ \ \ \ \ \ \ \ \ \ \ <Link\ to="{}/"{}>}
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00162}00162\ \ \ \ \ \ \ \ \ \ \ \ \ <div\ id="{}left"{}\ className="{}logo-\/container"{}>}
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00163}00163\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <img\ src=\{logo\}\ alt="{}Car\ And\ All\ Logo"{}\ className="{}logo-\/image"{}/>}
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00164}00164\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <h1\ className="{}logo"{}>Car\ And\ All</h1>}
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00165}00165\ \ \ \ \ \ \ \ \ \ \ \ \ </div>}
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00166}00166\ \ \ \ \ \ \ \ \ \ \ </Link>}
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00167}00167\ \ \ \ \ \ \ \ \ \ \ <button\ id\ =\ "{}right"{}\ className="{}hamburger-\/menu"{}\ onClick=\{toggleMenu\}>}
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00168}00168\ \ \ \ \ \ \ \ \ \ \ \ \ \&\#9776;\ \{/*\ Unicode\ for\ hamburger\ icon\ */\}}
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00169}00169\ \ \ \ \ \ \ \ \ \ \ </button>}
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00170}00170\ \ \ \ \ \ \ \ \ </header>}
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00171}00171\ \ \ \ \ \ \ \ \ \{isMenuOpen\ ?\ (}
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00172}00172\ \ \ \ \ \ \ \ \ \ \ \ \ <nav>}
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00173}00173\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <ul\ className="{}nav-\/links"{}>}
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00174}00174\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <li><Link\ to="{}/GeneralSalePage"{}>Zoek\ Auto's</Link></li>}
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00175}00175\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <li><Link\ to="{}/about"{}>Over\ ons</Link></li>}
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00176}00176\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <li><Link\ to="{}/contact"{}>Contact</Link></li>}
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00177}00177\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ </ul>}
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00178}00178\ \ \ \ \ \ \ \ \ \ \ \ \ </nav>}
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00179}00179\ \ \ \ \ \ \ \ \ )\ :\ null\}}
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00180}00180\ }
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00181}00181\ \ \ \ \ \ \ \ \ <main>}
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00182}00182\ \ \ \ \ \ \ \ \ \ \ <div\ id="{}inlog"{}>}
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00183}00183\ \ \ \ \ \ \ \ \ \ \ \ \ <h1>Login</h1>}
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00184}00184\ \ \ \ \ \ \ \ \ \ \ \ \ <div\ id="{}input"{}>}
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00185}00185\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <label\ htmlFor="{}userType"{}>Ik\ ben\ een:</label>}
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00186}00186\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <br></br>}
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00187}00187\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <select\ id="{}userType"{}\ value=\{userType\}\ onChange=\{toggleUserType\}>}
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00188}00188\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <option\ value="{}Customer"{}>Klant</option>}
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00189}00189\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <option\ value="{}Employee"{}>Medewerker\ van\ Car\ And\ All</option>}
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00190}00190\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <option\ value="{}VehicleManager"{}>Wagenpark\ Beheerder</option>}
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00191}00191\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ </select>}
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00192}00192\ \ \ \ \ \ \ \ \ \ \ \ \ </div>}
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00193}00193\ \ \ \ \ \ \ \ \ \ \ </div>}
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00194}00194\ }
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00195}00195\ \ \ \ \ \ \ \ \ \ \ <div\ id="{}input"{}>}
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00196}00196\ \ \ \ \ \ \ \ \ \ \ \ \ <label\ htmlFor="{}user"{}>Email</label>}
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00197}00197\ \ \ \ \ \ \ \ \ \ \ \ \ <br/>}
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00198}00198\ \ \ \ \ \ \ \ \ \ \ \ \ <input\ type="{}text"{}\ id="{}user"{}\ value=\{email\}\ onChange=\{(e)\ =>\ setEmail(e.target.value)\}/>}
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00199}00199\ \ \ \ \ \ \ \ \ \ \ \ \ <br/>}
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00200}00200\ \ \ \ \ \ \ \ \ \ \ \ \ <label\ htmlFor="{}password"{}>Wachtwoord</label>}
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00201}00201\ \ \ \ \ \ \ \ \ \ \ \ \ <br/>}
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00202}00202\ \ \ \ \ \ \ \ \ \ \ \ \ <input\ type="{}password"{}\ id="{}password"{}\ value=\{password\}\ onChange=\{(e)\ =>\ setPassword(e.target.value)\}/>}
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00203}00203\ \ \ \ \ \ \ \ \ \ \ \ \ <br/>}
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00204}00204\ \ \ \ \ \ \ \ \ \ \ \ \ <button\ id="{}button"{}\ type="{}button"{}\ onClick=\{onSubmit\}>Login</button>}
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00205}00205\ \ \ \ \ \ \ \ \ \ \ \ \ \{userType\ ===\ "{}Customer"{}\ \&\&\ (}
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00206}00206\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <>}
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00207}00207\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <br/>}
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00208}00208\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <label\ htmlFor="{}noAccount"{}>}
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00209}00209\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Nog\ geen\ account\ bij\ ons?\ <Link\ to="{}/signUp"{}>Meld\ nu\ aan!</Link>}
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00210}00210\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ </label>}
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00211}00211\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ </>}
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00212}00212\ \ \ \ \ \ \ \ \ \ \ \ \ )\}}
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00213}00213\ \ \ \ \ \ \ \ \ \ \ \ \ \{error\ \&\&\ <p\ style=\{\{color:\ 'red'\}\}>\{error\}</p>\}}
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00214}00214\ \ \ \ \ \ \ \ \ \ \ </div>}
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00215}00215\ \ \ \ \ \ \ \ \ </main>}
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00216}00216\ }
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00217}00217\ \ \ \ \ \ \ \ \ <GeneralFooter/>}
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00218}00218\ \ \ \ \ \ \ </>}
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00219}00219\ \ \ );}
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00220}00220\ \}}
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00221}00221\ }
+\DoxyCodeLine{\Hypertarget{login_employee_8jsx_source_l00222}00222\ \ \ export\ default\ Login;}
+
+\end{DoxyCode}

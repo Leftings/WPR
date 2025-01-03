@@ -8,6 +8,9 @@ using MySql.Data.MySqlClient;
 using System;
 using WPR.Database;
 
+/// <summary>
+/// VehicleController zorgt ervoor dat voertuiggegevens uit de backend gehaald kunnen worden
+/// </summary>
 [Route("api/Vehicle")]
 [ApiController]
 public class VehicleController : ControllerBase
@@ -247,7 +250,10 @@ public class VehicleController : ControllerBase
         }
     }
 
-    // Alle framenummers van de voertuigen worden verzameld
+    /// <summary>
+    /// Alle framenummers van de voertuigen worden verzameld
+    /// </summary>
+    /// <returns></returns>
     [HttpGet("GetFrameNumbers")]
     public async Task<IActionResult> GetFrameNumbersAsync()
     {
@@ -255,7 +261,11 @@ public class VehicleController : ControllerBase
         return Ok(new { message = ids });
     }
 
-    // Alle framenummers van een specifieke voertuig soort wordt verzameld
+    /// <summary>
+    /// Alle framenummers van een specifieke voertuig soort wordt verzameld
+    /// </summary>
+    /// <param name="type"></param>
+    /// <returns></returns>
     [HttpGet("GetFrameNumbersSpecificType")]
      public async Task<IActionResult> GetFrameNumbersSpecificTypeAsync(string type)
     {
@@ -263,7 +273,11 @@ public class VehicleController : ControllerBase
         return Ok(new { message = ids });
     }
 
-    // Alle gegevens van 1 specifiek voertuig wordt opgehaald
+    /// <summary>
+    /// Alle gegevens van 1 specifiek voertuig wordt opgehaald
+    /// </summary>
+    /// <param name="frameNr"></param>
+    /// <returns></returns>
     [HttpGet("GetVehicelData")]
     public async Task<IActionResult> GetVehicleData(string frameNr)
     {

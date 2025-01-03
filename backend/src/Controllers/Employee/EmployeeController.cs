@@ -6,6 +6,9 @@ using WPR.Repository;
 
 namespace WPR.Controllers.Employee;
 
+/// <summary>
+/// EmployeeController is de controller die ervoor zorgt dat er gekeken wordt of de ingelogde gebruiker een medewerker is
+/// </summary>
 [Route("api/[controller]")]
 [ApiController]
 public class EmployeeController : ControllerBase
@@ -23,7 +26,10 @@ public class EmployeeController : ControllerBase
         _crypt = crypt ?? throw new ArgumentNullException(nameof(crypt));
     }
 
-    // Er wordt gekeken of de user een medewerker is
+    /// <summary>
+    /// Er wordt gekeken of de user een medewerker is
+    /// </summary>
+    /// <returns></returns>
     [HttpGet("IsUserEmployee")]
     public Task<bool> IsUserEmployee()
     {

@@ -21,6 +21,21 @@ public class UserRepository : IUserRepository
         _hash = hash ?? throw new ArgumentNullException(nameof (hash));
     }
     
+    /// <summary>
+    /// Er wordt een query aangemaakt met de meegegeven gegevens voor een voertuig.
+    /// Nadat de query volledig is, wordt deze uitgevoerd.
+    /// Frame nummers worden automatisch toegepast op het voertuig.
+    /// </summary>
+    /// <param name="yop"></param>
+    /// <param name="brand"></param>
+    /// <param name="type"></param>
+    /// <param name="licensePlate"></param>
+    /// <param name="color"></param>
+    /// <param name="sort"></param>
+    /// <param name="price"></param>
+    /// <param name="description"></param>
+    /// <param name="vehicleBlob"></param>
+    /// <returns></returns>
     // vehicleBlob is het pad naar de afbeelding
     public async Task<(bool status, string message)> AddVehicleAsync(int yop, string brand, string type, string licensePlate, string color, string sort, double price, string description, byte[] vehicleBlob)
     {
@@ -58,6 +73,14 @@ public class UserRepository : IUserRepository
         }
     }
 
+    /// <summary>
+    /// Er kunnen medewerkers toegevoegd worden aan het systeem.
+    /// Als er in de meegegeven data naar voren komt dat een er wagenparkbeheerder toegevoegd wordt, wordt daarvoor een aparte query gemaakt.
+    /// Als er in de meegegeven data naar voren komt dat er een Car and All medewerker toegevoegd wordt, wordt daarvoor een aparte query gemaakt.
+    /// De mee gegeven gegvens worden in de query geïmplementeerd en vervolgens uitgevoerd.
+    /// </summary>
+    /// <param name="personData"></param>
+    /// <returns></returns>
     public async Task<(bool status, string message)> AddStaff(Object[] personData)
     {
         try
@@ -109,6 +132,11 @@ public class UserRepository : IUserRepository
         }
     }
 
+    /// <summary>
+    /// Er wordt query aangemaakt die zoekt in de Staff tabel naar het ingevoerde emailadress, zodat de emailadressen altijd uniek blijven.
+    /// </summary>
+    /// <param name="email"></param>
+    /// <returns></returns>
     public async Task<(bool status, string message)> checkUsageEmailAsync(string email)
     {
         try
@@ -140,7 +168,12 @@ public class UserRepository : IUserRepository
         }
     }
 
-
+    /// <summary>
+    /// De voornaam, achternaam, adres, emailadres en telefoonnummer wordt uit de UserCustomer tabel gehaald, om deze te laten tonen bij de huuraanvragen.
+    /// De gegevens van de klant worden verzameld doormiddel van hun id.
+    /// </summary>
+    /// <param name="userid"></param>
+    /// <returns></returns>
     private async Task<(bool status, Dictionary<string, object> data)> GetUserDataAsync(string userid)
     {
         try
@@ -182,6 +215,11 @@ public class UserRepository : IUserRepository
         }
     }
 
+    /// <summary>
+    /// Het voertuigmerk, type en nummerbord worden uit de tabel Vehicle getrokken, doormiddel van hun frame nummer
+    /// </summary>
+    /// <param name="carId"></param>
+    /// <returns></returns>
     private async Task<(bool status, Dictionary<string, object> data)> GetVehicleData(string carId)
     {
         try
@@ -223,6 +261,18 @@ public class UserRepository : IUserRepository
         }
     }
 
+    /// <summary>
+    /// Voor een zakelijke huuraanvraag moet deze eerst geaccepteerd worden door de wagenparkbeheerdeer van het bedrijf.
+    /// Deze aanvragen worden geselecteerd door middel van de status van de aanvraag op te vragen en te kijken of deze overeen komt met 'requested', de VMstatus overeen komt met 'requested'en of het KvK nummer van gebruiker gelijk is aan het KvK nummer van de wagenparkbeheerder.
+    /// 
+    /// Voor een particuliere huuraanvraag of geaccepteerde zakelijke huuraanvraag worden deze geaccepteerd door een frontoffice medewerker van Car and All.
+    /// Hierbij wordt gekekenof de status nog steeds 'requested' is en of de VMstatus gelijk is aan 'X' of 'accepted'.
+    /// 
+    /// Alle ids van deze aanvragen worden in een list gestopt een gereturnt.
+    /// </summary>
+    /// <param name="user"></param>
+    /// <param name="userId"></param>
+    /// <returns></returns>
     public async Task<(bool status, List<string> ids)> GetReviewIdsAsync(string user, string userId)
     {
         try
@@ -279,6 +329,18 @@ public class UserRepository : IUserRepository
         }
     }
 
+    /// <summary>
+    /// Er wordt een specifieke id opgevraagd en deze wordt uit de tabel Abonnement opgevraagd met alle data in de juiste rij.
+    /// 
+    /// Vervogelens worden de gegevens huurder en het voertuig async opgevraagd.
+    /// Daarna worden door alle kolomen heen gegegaan om de gegevens in een dictonary te stoppen.
+    /// In de dictonary wordt de kolom naam als key gebruikt en de kolom waarde als waarde en vervolgens in een list gestopt.
+    /// Vervolgens wordt in hetzelfde gedaan met de verzamelde gegevens van de gebruiker en het voertuig.
+    /// 
+    /// Uiteindelijk wordt de list met alle dictonaries met gegevens gereturnt.
+    /// </summary>
+    /// <param name="id"></param>
+    /// <returns></returns>
     public async Task<(bool status, List<Dictionary<string, object>> data)> GetReviewAsync(string id)
     {
         try
@@ -352,6 +414,11 @@ public class UserRepository : IUserRepository
         }
     }
 
+    /// <summary>
+    /// Het KvK-nummer van de wagenparkbeheerder wordt opgehaald uit de database en gereturnd.
+    /// </summary>
+    /// <param name="id"></param>
+    /// <returns></returns>
     private string GetKvK(string id)
     {
         try
@@ -380,6 +447,14 @@ public class UserRepository : IUserRepository
         }
     }
 
+    /// <summary>
+    /// De status van de frontoffice medewerker of wagenparkbeheerder wordt geupdate in de huuraanvraag.
+    /// </summary>
+    /// <param name="id"></param>
+    /// <param name="status"></param>
+    /// <param name="employee"></param>
+    /// <param name="userType"></param>
+    /// <returns></returns>
     public async Task<(bool status, string message)> SetStatusAsync(string id, string status, string employee, string userType)
     {
         try

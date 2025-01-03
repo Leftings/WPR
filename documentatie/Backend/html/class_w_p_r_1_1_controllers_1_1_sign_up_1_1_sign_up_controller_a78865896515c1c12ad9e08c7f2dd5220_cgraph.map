@@ -1,0 +1,13 @@
+<map id="WPR.Controllers.SignUp.SignUpController.signUpPersonalAsync" name="WPR.Controllers.SignUp.SignUpController.signUpPersonalAsync">
+<area shape="rect" id="Node000001" title="Een account voor particuliere gebruikers kan aangemaakt worden (onderscheiden door geboortedatum)" alt="" coords="5,139,233,181"/>
+<area shape="rect" id="Node000002" href="$class_w_p_r_1_1_controllers_1_1_sign_up_1_1_sign_up_controller.html#a26f172ac90a38512ee5b1863f405649a" title="Er wordt gekeken of alle noodzakelijke velden voor het aanmaken van een account ingevuld zijn." alt="" coords="282,5,479,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="149,136,208,97,279,58,293,52,295,57,282,62,211,102,152,140"/>
+<area shape="rect" id="Node000003" href="$class_w_p_r_1_1_utils_1_1_birthday_checker.html#a4c7d3943364075179b3f1ca2e0f05c46" title="Check om te kijken of het een correcte verjaardag is Leeftijd mag niet onder de 18 zijn en niet boven..." alt="" coords="286,72,475,115"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="205,135,279,116,280,122,206,141"/>
+<area shape="rect" id="Node000004" href="$class_w_p_r_1_1_utils_1_1_email_checker.html#ab97bf7cde61a138766de208bad9d5c7c" title=" " alt="" coords="288,139,473,181"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="233,157,272,157,272,163,233,163"/>
+<area shape="rect" id="Node000005" href="$class_w_p_r_1_1_utils_1_1_password_checker.html#a3874adc7b516a8fb893ed18cd0a29a94" title=" " alt="" coords="281,205,480,248"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="206,179,280,198,279,204,205,185"/>
+<area shape="rect" id="Node000006" href="$class_w_p_r_1_1_utils_1_1_tel_checker.html#aa8036be39d90b4bd0482cc25b9bbfc5a" title=" " alt="" coords="282,272,479,315"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="152,180,211,218,282,258,295,263,293,268,279,262,208,223,149,184"/>
+</map>

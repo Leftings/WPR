@@ -5,6 +5,9 @@ using Microsoft.VisualBasic;
 
 namespace Employee.Controllers.signUpStaff;
 
+/// <summary>
+/// SignUpStaffController zorgt ervoor dat er front-, backoffice en wagenparkbeheerders toegevoegd kunnen worden aan het systeem
+/// </summary>
 [Route("api/[controller]")]
 [ApiController]
 public class SignUpStaffController : ControllerBase
@@ -16,7 +19,13 @@ public class SignUpStaffController : ControllerBase
         _userRepository = userRepository ?? throw new ArgumentNullException(nameof(userRepository));
     }
 
-    // Car and All medewerkers / Vehicle Managers kunnen hier aangemaakt worden
+    /// <summary>
+    /// Car and All medewerkers / Vehicle Managers kunnen hier aangemaakt worden.
+    /// Mocht het emailadres al bestaan of ongelig zijn, dan wordt de aanvraag geweigerd.
+    /// Mocht het wachtwoord niet aan de eisen (minimaal 10 karakters, 1 hoofdletter, 1 kleine letter, 1 cijfer en 1 symbool), dan wordt de aanvraag geweigerd.
+    /// </summary>
+    /// <param name="signUpRequest"></param>
+    /// <returns></returns>
     [HttpPost("signUpStaff")]
     public async Task<IActionResult> SignUpStaff([FromBody] SignUpRequest signUpRequest)
     {

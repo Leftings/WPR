@@ -6,6 +6,10 @@ using WPR.Database;
 
 namespace WPR.Repository;
 
+/// <summary>
+/// De VehicleRepository class geeft de methodes voor de interactie met de database voor gebruiker gerelateerde operaties.
+/// Het implementeert de IVehicleRepository interface.
+/// </summary>
 public class VehicleRepository : IVehicleRepository
 {
     private readonly Connector _connector;
@@ -103,6 +107,10 @@ public class VehicleRepository : IVehicleRepository
         }
     }
 
+    /// <summary>
+    /// Alle framenummers van de voertuigen worden verzameld en in een list gestopt
+    /// </summary>
+    /// <returns></returns>
     public async Task<List<string>> GetFrameNumbersAsync()
     {
         try
@@ -136,6 +144,11 @@ public class VehicleRepository : IVehicleRepository
         }
     }
 
+    /// <summary>
+    /// Alle framenummers van een specifiek voertuigtype worden verzameld en in een list gestopt
+    /// </summary>
+    /// <param name="type"></param>
+    /// <returns></returns>
     public async Task<List<string>> GetFrameNumberSpecifiekTypeAsync(string type)
     {
         try
@@ -175,6 +188,13 @@ public class VehicleRepository : IVehicleRepository
         }
     }
 
+    /// <summary>
+    /// Er wordt doormiddel van een specifiek framenummer alle gegevens van dit voertuig verzameld.
+    /// De gegevens worden in een list gestopt die bestaat uit dictonaries.
+    /// In de dictonaries wordt als key de colomnaam gebruikt en als waarde de data van de colom
+    /// </summary>
+    /// <param name="frameNr"></param>
+    /// <returns></returns>
     public async Task<List<Dictionary<object, string>>> GetVehicleDataAsync(string frameNr)
     {
         try
