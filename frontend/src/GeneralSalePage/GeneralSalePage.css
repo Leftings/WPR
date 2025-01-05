@@ -21,15 +21,149 @@
     }
 }
 
-.filter-section {
-    position: relative;
-    top: 40px;
-    left: 20px;
-    background-color: #fff;
+
+.filter-bar {
+    position: fixed;
+    left: -300px;
+    top: 0;
+    height: 100%;
+    width: 250px;
+    background-color: #333;
+    color: white;
     padding: 20px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    width: 350px;
-    max-width: 100%;
+    transition: left 0.3s ease-in-out;
+    z-index: 5;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.filter-spacer {
+    flex-grow: 1;
+}
+
+.filter-bar.open {
+    left: 0;
+}
+
+.filter-section {
+    margin-bottom: 20px;
+}
+
+.filter-types {
+    max-height: 0;
+    pointer-events: none;
+    opacity: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    transition: max-height 0.3s ease, opacity 0.3s ease
+}
+
+.filter-types.show {
+    max-height: 500px;
+    opacity: 1;
+    pointer-events: all;
+}
+
+.checkbox-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.checkbox-item input[type="checkbox"] {
+    cursor: pointer;
+    width: auto;
+}
+
+.filter-section p {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    justify-content: space-between;
+    user-select: none;
+}
+
+.filter-bar-exit {
+    user-select: none;
+    cursor: pointer;
+}
+
+.toggle-icon {
+    display: inline-block;
+    font-size: 20px;
+    transition: transform 0.3s ease;
+    margin-left: 8px;
+    user-select: none;
+}
+
+.toggle-icon.rotated {
+    transform: rotate(45deg); 
+}
+
+.checkbox-item label {
+    font-size: 1.1em;
+    cursor: pointer;
+}
+
+.checkbox-item label:hover {
+    text-decoration: underline;
+}
+
+.filter-bar h2 {
+    font-size: 1.5em;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 0;
+}
+
+.filter-bar p {
+    cursor: pointer;
+    font-size: 1em;
+    color: white;
+    padding: 0px;
+}
+
+.filter-bar hr {
+    border: none;
+    border-top: 1px solid;
+    margin: 0px;
+}
+
+
+.filter-button {
+    background-color: #1d7874;
+    color: white;
+    margin-left: 20px;
+}
+
+.container {
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 22px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 4;
 }
 
 .filter-section label {
@@ -110,6 +244,7 @@
     font-size: 1.5em;
     margin: 0 0 10px;
     color: #333;
+    width: auto;
 }
 
 .car-price {

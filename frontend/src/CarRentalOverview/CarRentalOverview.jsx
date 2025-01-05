@@ -6,6 +6,14 @@ import './CarRentalOverview.css';
 
 const BACKEND_URL = import.meta.env.VITE_REACT_APP_BACKEND_URL ?? 'http://localhost:5165';
 
+/**
+ * CarRentalOverview is een component die alle gehuurde voertuigen toont voor de gebruiker.
+ * Het ondersteunt het annuleren van een huur en het wijzigen van huurgegevens.
+ * 
+ * @component
+ * @example
+ * <CarRentalOverview />
+ */
 function CarRentalOverview() {
     const [rentals, setRentals] = useState([]);
     const [error, setError] = useState(null);
@@ -13,6 +21,12 @@ function CarRentalOverview() {
     const navigate = useNavigate();
     var modal = document.getElementById("myModal");
 
+    /**
+     * @brief Cancelen van huur
+     * Functie voor het openen van de annuleermodus voor een geselecteerd voertuig.
+     * 
+     * @param {number} index - De index van het geselecteerde voertuig in de lijst.
+     */
     const cancellation = (index) => {
         modal.style.display = "block";
         let rental = rentals[index];
@@ -20,6 +34,9 @@ function CarRentalOverview() {
         setChosenRental(rental);
     };
     
+    /**
+     * Functie voor het sluiten van de annuleermodus.
+     */
     const closeCancellation = () => {
         modal.style.display = "none";
     };
@@ -49,12 +66,21 @@ function CarRentalOverview() {
         }
     };
 
+    /**
+     * Functie voor het navigeren naar de pagina voor het wijzigen van de huurgegevens.
+     * 
+     * @param {Object} rental - Het huurvoertuig waarvan de gegevens gewijzigd moeten worden.
+     */
     const handleWijziging = (rental) => {
         console.log('Navigating with rental:', rental);  // Add this log to check rental data
         navigate("/changeRental", { state: { rental } });
     }
 
     useEffect(() => {
+        /**
+         * Functie voor het ophalen van huurgegevens van de server.
+         * De gegevens worden getoond in de lijst zodra ze zijn opgehaald.
+         */
         const fetchData = async () => {
 
             try {
@@ -80,6 +106,11 @@ function CarRentalOverview() {
         fetchData();
     }, []);
 
+    /**
+     * Functie voor het annuleren van de huur van een voertuig.
+     * 
+     * Stuur een verzoek naar de server om de huur te annuleren en vernieuw de pagina bij succes.
+     */
     return (
         <>
             <GeneralHeader />

@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import TermsAndConditions from "../../GeneralSalePage/GeneralSalePage.jsx";
 import logo from '../../assets/logo.svg';
 import logoHover from '../../assets/logo-green.svg';
+import '@fortawesome/fontawesome-free/css/all.css';
 
 import './header.css';
 
@@ -65,7 +66,7 @@ function GeneralHeader() {
                                 <Link to="/login">Login</Link>
                             </li>
                         )}
-                        <li><Link to="/GeneralSalePage">Zoek Auto's</Link></li>
+                        <li><Link to="/vehicles">Zoek Auto's</Link></li>
                         <li><Link to="/about">Over ons</Link></li>
                         <li><Link to="/contact">Contact</Link></li>
                     </ul>

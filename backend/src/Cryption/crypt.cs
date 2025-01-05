@@ -5,11 +5,20 @@ using System.IO;
 using System.Security.Cryptography;
 using WPR.Data;
 
+/// <summary>
+/// Class Crypt zorgt voor een veilig encryptie en decryptie van strings.
+/// De Crptie wordt gedaan door het Advanced Encryption Standard (AES)
+/// </summary>
 public class Crypt
 {
     private readonly EnvConfig _envConfig;
     private readonly byte[]  _key;
     private readonly byte[] _IV;
+
+    /// <summary>
+    /// Initaliseerd een nieuwe instantie van de <see cref="cref=Crypt"/> klasse 
+    /// </summary>
+    /// <param name="envConfig"></param>
     public Crypt(EnvConfig envConfig)
     {
         _envConfig = envConfig;
@@ -17,7 +26,11 @@ public class Crypt
         _IV = Convert.FromBase64String(_envConfig.Get("CRYPTION_IV"));
     }
 
-    // De meegegeven text wordt geencrypt
+    /// <summary>
+    /// De meegegeven text wordt geencrypt
+    /// </summary>
+    /// <param name="text"></param>
+    /// <returns></returns>
     public string Encrypt(string text)
     {
         if (string.IsNullOrEmpty(text))
@@ -47,7 +60,11 @@ public class Crypt
         }
     }
 
-    // De meegegeven encryptie wordt gedecrypt
+    /// <summary>
+    /// De meegegeven encryptie wordt gedecrypt
+    /// </summary>
+    /// <param name="encrypted"></param>
+    /// <returns></returns>
     public string Decrypt(string encrypted)
     {
         if (string.IsNullOrEmpty(encrypted))

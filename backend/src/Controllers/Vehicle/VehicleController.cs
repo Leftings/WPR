@@ -8,6 +8,9 @@ using MySql.Data.MySqlClient;
 using System;
 using WPR.Database;
 
+/// <summary>
+/// VehicleController zorgt ervoor dat voertuiggegevens uit de backend gehaald kunnen worden
+/// </summary>
 [Route("api/Vehicle")]
 [ApiController]
 public class VehicleController : ControllerBase
@@ -157,7 +160,7 @@ public class VehicleController : ControllerBase
         try
         {
             string query = @"
-            SELECT FrameNr, YoP, Brand, Type, LicensePlate, Color, Sort, Price, VehicleBlob, Description
+            SELECT FrameNr, YoP, Brand, Type, LicensePlate, Color, Sort, Price, VehicleBlob, Description, Seats
             FROM Vehicle";
             var vehicles = new List<object>();
 
@@ -179,7 +182,8 @@ public class VehicleController : ControllerBase
                             Sort = reader.IsDBNull(6) ? null : reader.GetString(6),
                             Price = reader.IsDBNull(7) ? "0.00" : reader.GetDecimal(7).ToString("F2"),
                             Image = reader.IsDBNull(8) ? null : Convert.ToBase64String((byte[])reader["VehicleBlob"]),
-                            Description = reader.IsDBNull(9) ? null : reader.GetString(9)
+                            Description = reader.IsDBNull(9) ? null : reader.GetString(9),
+                            Seats = reader.GetInt32(10)
                         });
                     }
                 }
@@ -200,7 +204,7 @@ public class VehicleController : ControllerBase
         try
         {
             string query = @"
-                SELECT FrameNr, YoP, Brand, Type, LicensePlate, Color, Sort, Price, VehicleBlob, Description 
+                SELECT FrameNr, YoP, Brand, Type, LicensePlate, Color, Sort, Price, VehicleBlob, Description, Seats 
                 FROM Vehicle 
                 WHERE LOWER(Sort) = LOWER(@Sort)";
 
@@ -231,7 +235,8 @@ public class VehicleController : ControllerBase
                                 Sort = reader.IsDBNull(6) ? null : reader.GetString(6),
                                 Price = reader.IsDBNull(7) ? null : reader.GetDecimal(7).ToString("F2"),
                                 Image = reader.IsDBNull(8) ? null : Convert.ToBase64String((byte[])reader["VehicleBlob"]),
-                                Description = reader.IsDBNull(9) ? null : reader.GetString(9)
+                                Description = reader.IsDBNull(9) ? null : reader.GetString(9),
+                                Seats = reader.GetInt32(10)
                             });
                         }
                     }
@@ -247,7 +252,10 @@ public class VehicleController : ControllerBase
         }
     }
 
-    // Alle framenummers van de voertuigen worden verzameld
+    /// <summary>
+    /// Alle framenummers van de voertuigen worden verzameld
+    /// </summary>
+    /// <returns></returns>
     [HttpGet("GetFrameNumbers")]
     public async Task<IActionResult> GetFrameNumbersAsync()
     {
@@ -255,7 +263,11 @@ public class VehicleController : ControllerBase
         return Ok(new { message = ids });
     }
 
-    // Alle framenummers van een specifieke voertuig soort wordt verzameld
+    /// <summary>
+    /// Alle framenummers van een specifieke voertuig soort wordt verzameld
+    /// </summary>
+    /// <param name="type"></param>
+    /// <returns></returns>
     [HttpGet("GetFrameNumbersSpecificType")]
      public async Task<IActionResult> GetFrameNumbersSpecificTypeAsync(string type)
     {
@@ -263,7 +275,11 @@ public class VehicleController : ControllerBase
         return Ok(new { message = ids });
     }
 
-    // Alle gegevens van 1 specifiek voertuig wordt opgehaald
+    /// <summary>
+    /// Alle gegevens van 1 specifiek voertuig wordt opgehaald
+    /// </summary>
+    /// <param name="frameNr"></param>
+    /// <returns></returns>
     [HttpGet("GetVehicelData")]
     public async Task<IActionResult> GetVehicleData(string frameNr)
     {

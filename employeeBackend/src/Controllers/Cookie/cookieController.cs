@@ -7,6 +7,9 @@ using Employee.Repository;
 using MySqlX.XDevAPI.Common;
 using Employee.Cryption;
 
+/// <summary>
+/// Controller voor het aanmaken en ondervragen van cookies
+/// </summary>
 [Route("api/[controller]")]
 [ApiController]
 public class CookieController : ControllerBase
@@ -22,7 +25,11 @@ public class CookieController : ControllerBase
         _crypt = crypt ?? throw new ArgumentNullException(nameof(crypt));
     }
 
-    // User id wordt opgevraagd vanuit cookie 
+    /// <summary>
+    /// User id wordt opgevraagd vanuit cookie.
+    /// Als de cookie ongeldig is, wordt deze verwijderd.
+    /// </summary>
+    /// <returns></returns>
     [HttpGet("GetUserId")]
     public async Task<IActionResult> GetUserId()
     {
@@ -65,8 +72,11 @@ public class CookieController : ControllerBase
         }
     }
 
-
-    // Er wordt gekeken of de Vehicle Manager bestaat
+    /// <summary>
+    /// Er wordt gekeken of de Vehicle Manager bestaat.
+    /// Ongeldige cookies worden verwijderd.
+    /// </summary>
+    /// <returns></returns>
     [HttpGet("IsVehicleManager")]
     public async Task<IActionResult> IsVehicleManagerAsync()
     {
