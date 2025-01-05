@@ -45,8 +45,44 @@ function GeneralSalePage() {
     const [isEmployee, setIsEmployee] = useState(null);
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(false);
-    const [filter, setFilter] = useState('');
     const [loadingRequests, SetLoadingRequests] = useState({});
+    const [isFiltersOpen, setIsFiltersOpen] = useState(false);
+
+    const [showColorFilters, setShowColorFilters] = useState(false);
+    const [showBrandFilters, setShowBrandFilters] = useState(false);
+    const [showTypesFilters, setShowTypesFilters] = useState(false);
+    const [showSeatsFilters, setShowSeatsFilters] = useState(false);
+
+    const toggleFilters = () => {
+        setIsFiltersOpen(!isFiltersOpen);
+    };
+    
+    const [filters, setFilters] = useState({
+        vehicleTypes: [],
+        color: [],
+        brand: [],
+        seat: []
+    });
+    
+    const handleFilterChange = (category, value) => {
+        setFilters(prevFilters => {
+            const updatedCategory = prevFilters[category].includes(value)
+                ? prevFilters[category].filter(v => v !== value)
+                : [...prevFilters[category], value];
+            
+            return { ...prevFilters, [category]: updatedCategory };
+        });
+    };
+    
+    const filteredVehicles = vehicles.filter(vehicle => {
+        
+        const matchesVehicleTypes = filters.vehicleTypes.length === 0 || filters.vehicleTypes.includes(vehicle.Sort);
+        const matchesColor = filters.color.length === 0 || filters.color.includes(vehicle.Color);
+        const matchesBrand = filters.brand.length === 0 || filters.brand.includes(vehicle.Brand);
+        const matchesSeat = filters.seat.length === 0 || filters.seat.includes(vehicle.Seats);
+        
+        return matchesVehicleTypes && matchesBrand && matchesColor && matchesSeat;
+    })
 
     useEffect(() => {
         const checkIfEmployee = async () => {
@@ -59,7 +95,10 @@ function GeneralSalePage() {
                 setIsEmployee(data === 'true');
 
                 if (data === 'true') {
-                    setFilter('Car');
+                    setFilters(prevFilters => ({
+                        ...prevFilters,
+                        vehicleTypes: ['Car']
+                    }));
                 }
             } catch (error) {
                 console.error(error.message);
@@ -125,17 +164,8 @@ function GeneralSalePage() {
                 console.log(isEmployee);
                 setVehicles([]);
                 let url;
-
-                if (isEmployee) {
-                    // Gebruiker kan alleen auto's zien
-                    url = `${BACKEND_URL}/api/vehicle/GetFrameNumbersSpecificType?type=Car`;
-                } else if (!filter || filter === 'All') {
-                    // Alle voertuigen worden geladen voor de gebruiker
-                    url = `${BACKEND_URL}/api/vehicle/GetFrameNumbers`;
-                } else {
-                    // Alleen de voertuigen van het geselecteerde type worden voor de gebruiker geladen
-                    url = `${BACKEND_URL}/api/vehicle/GetFrameNumbersSpecificType?type=${encodeURIComponent(filter)}`;
-                }
+                
+                url = `${BACKEND_URL}/api/vehicle/GetFrameNumbers`;
 
                 const response = await fetch(url, {
                     method: 'GET',
@@ -180,37 +210,146 @@ function GeneralSalePage() {
         if (isEmployee !== null) {
             fetchVehicles();
         }
-    }, [isEmployee, filter])
-    
+    }, [isEmployee])
+
+    useEffect(() => {
+        if (isFiltersOpen) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = 'auto';
+        }
+
+        return () => {
+            document.body.style.overflow = 'auto';
+        };
+    }, [isFiltersOpen]);
 
     return (
         <>
-            <GeneralHeader />
-            <div className="general-sale-page">
+            <div className={`filter-bar ${isFiltersOpen ? 'open' : ''}`}>
+                <h2 className="filter-bar-title">
+                    Filters 
+                    <span className="filter-bar-exit" onClick={toggleFilters}><i className="fas fa-times" /></span></h2>
+                <hr/>
+
                 {!isEmployee && (
+                    <>
                     <div className="filter-section">
-                        <label htmlFor="filter">Filter by Vehicle Type:</label>
-                        <select
-                            id="filter"
-                            value={filter}
-                            onChange={(e) => setFilter(e.target.value.trim())}
-                        >
-                            <option value="All">All</option>
-                            <option value="Car">Car</option>
-                            <option value="Camper">Camper</option>
-                            <option value="Caravan">Caravan</option>
-                        </select>
+                        <p onClick={() => setShowTypesFilters(!showTypesFilters)}>Soort voertuig 
+                            <span className={`toggle-icon ${showTypesFilters ? 'rotated' : ''}`}>+</span>
+                        </p>
+                        <div className={`filter-types ${showTypesFilters ? 'show' : ''}`}>
+                        {['Car', 'Camper', 'Caravan'].map((vehicleType) => (
+                                <div key={vehicleType} className="checkbox-item">
+                                    <input
+                                        type="checkbox"
+                                        id={vehicleType}
+                                        value={vehicleType}
+                                        name={vehicleType}
+                                        checked={filters.vehicleTypes.includes(vehicleType)}
+                                        onChange={() => handleFilterChange("vehicleTypes", vehicleType)}
+                                    />
+                                    <label htmlFor={vehicleType}>{vehicleType}</label>
+                                </div>
+                            ))}
+                        </div>
                     </div>
+                    <hr/>
+                    </>
                 )}
 
+                <div className="filter-section">
+                    <p onClick={() => setShowColorFilters(!showColorFilters)}>Kleur
+                        <span className={`toggle-icon ${showColorFilters ? 'rotated' : ''}`}>+</span>
+                    </p>
+                    <div className={`filter-types ${showColorFilters ? 'show' : ''}`}>
+                        {['Rood', 'Blauw', 'Groen', 'Zwart', 'Wit', 'Grijs'].map((color) => (
+                            <div key={color} className="checkbox-item">
+                                <input
+                                    type="checkbox"
+                                    id={color}
+                                    value={color}
+                                    checked={filters.color.includes(color)}
+                                    name={color}
+                                    onChange={() => handleFilterChange("color", color)}
+                                />
+                                <label htmlFor={color}>{color}</label>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+                <hr/>
+
+                <div className="filter-section">
+                    <p onClick={() => setShowBrandFilters(!showBrandFilters)}>Merk
+                        <span className={`toggle-icon ${showBrandFilters ? 'rotated' : ''}`}>+</span>
+                    </p>
+                    <div className={`filter-types ${showBrandFilters ? 'show' : ''}`}>
+                        {['Volkswagen', 'Mercedes', 'Ford', 'Fiat', 'Citroën', 'Peugeot', 'Renault', 'Nissan', 'Opel', 'Iveco'].map((brand) => (
+                            <div key={brand} className="checkbox-item">
+                                <input
+                                    type="checkbox"
+                                    id={brand}
+                                    value={brand}
+                                    checked={filters.brand.includes(brand)}
+                                    name={brand}
+                                    onChange={() => handleFilterChange("brand", brand)}
+                                />
+                                <label htmlFor={brand}>{brand}</label>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+
+                <hr/>
+                <div className="filter-section">
+                    <p onClick={() => setShowSeatsFilters(!showSeatsFilters)}>Aantal passagiers
+                        <span className={`toggle-icon ${showSeatsFilters ? 'rotated' : ''}`}>+</span>
+                    </p>
+                    <div className={`filter-types ${showSeatsFilters ? 'show' : ''}`}>
+                        {['4', '5', '6'].map((seat) => (
+                            <div key={seat} className="checkbox-item">
+                                <input
+                                    type="checkbox"
+                                    id={seat}
+                                    value={seat}
+                                    checked={filters.seat.includes(seat)}
+                                    name={seat}
+                                    onChange={() => handleFilterChange("seat", seat)}
+                                />
+                                <label htmlFor={seat}>{seat}</label>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+                <div className="filter-section">
+                    <div classname="filter-spacer"></div>
+                </div>
+            </div>
+
+            {isFiltersOpen && <div className="overlay" onClick={toggleFilters}></div>}
+
+            <GeneralHeader/>
+            <div className="general-sale-page">
+
                 <div className="car-sale-section">
+
+                    {!isEmployee && (
+                        <>
+                        </>
+
+                    )}
+
                     <h1 className="title-text">Voertuigen</h1>
+                    <button htmlFor="filter" onClick={toggleFilters} className="filter-button"><i
+                        className="fas fa-filter"></i> Filter
+                    </button>
                     {loading ? (
                         <div className="loading-spinner"></div>
                     ) : (
                         <div className="car-grid">
-                            {vehicles.length > 0 ? (
-                                vehicles.map(vehicle => (
+                            {filteredVehicles.length > 0 ? (
+                                filteredVehicles.map(vehicle => (
                                     <div key={vehicle.FrameNr} className="car-card">
                                         <div className="car-blob">
                                             {vehicle.VehicleBlob ? (
@@ -230,7 +369,7 @@ function GeneralSalePage() {
                                         </div>
                                         <Link
                                             to={`/vehicle/${vehicle.FrameNr}`}
-                                            state={{ vehicle }}
+                                            state={{vehicle}}
                                             className="huur-link"
                                         >
                                             View Details
@@ -244,7 +383,7 @@ function GeneralSalePage() {
                     )}
                 </div>
             </div>
-            <GeneralFooter />
+            <GeneralFooter/>
         </>
     );
 

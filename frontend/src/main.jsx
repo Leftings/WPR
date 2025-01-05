@@ -31,7 +31,7 @@ createRoot(document.getElementById('root')).render(
             <Route path="/login" element={<Login />}></Route>
             <Route path="/signUp" element={<SignUp />}></Route>
             <Route path="/userSettings" element={<UserSettings />}></Route>
-            <Route path="/GeneralSalePage" element={<GeneralSalePage />}></Route>
+            <Route path="/vehicles" element={<GeneralSalePage />}></Route>
             <Route path="/TermsAndConditions" element={<TermsAndConditions />}></Route>
             <Route path="/AbonementUitlegPage" element={<AbonementUitlegPage />} />
             <Route path="/vehicle/:frameNr" element={<CarDetailPage />} />
