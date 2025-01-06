@@ -8,16 +8,21 @@ using MySql.Data.MySqlClient;
 using System;
 using WPR.Database;
 
+/// <summary>
+/// VehicleController zorgt ervoor dat voertuiggegevens uit de backend gehaald kunnen worden
+/// </summary>
 [Route("api/Vehicle")]
 [ApiController]
 public class VehicleController : ControllerBase
 {
 
     private readonly Connector _connector;
+    private readonly IVehicleRepository _vehicleRepository;
 
-    public VehicleController(Connector connector)
+    public VehicleController(Connector connector, IVehicleRepository vehicleRepository)
     {
         _connector = connector ?? throw new ArgumentNullException(nameof(connector));
+        _vehicleRepository = vehicleRepository ?? throw new ArgumentNullException(nameof(vehicleRepository));
     }
 
     [HttpGet("GetVehicleNameAsync")]
@@ -130,7 +135,9 @@ public class VehicleController : ControllerBase
                     if (reader.Read() && !reader.IsDBNull(0))
                     {
                         decimal priceDec = reader.GetDecimal(0);
-                        string price = priceDec.ToString();
+                        
+                        string price = priceDec.ToString("F2");
+                        
                         return Ok(price);
                     }
                     else
@@ -148,30 +155,35 @@ public class VehicleController : ControllerBase
     }
 
     [HttpGet("GetAllVehicles")]
-    public async Task<IActionResult> GetAllVehiclesAsync(int frameNr)
+    public async Task<IActionResult> GetAllVehiclesAsync()
     {
         try
         {
-            string query = "SELECT FrameNr, Brand, Type, Price, VehicleBlob FROM Vehicle";
-
+            string query = @"
+            SELECT FrameNr, YoP, Brand, Type, LicensePlate, Color, Sort, Price, VehicleBlob, Description, Seats
+            FROM Vehicle";
             var vehicles = new List<object>();
 
             using (var connection = _connector.CreateDbConnection())
             using (var command = new MySqlCommand(query, (MySqlConnection)connection))
             {
-
                 using (var reader = await command.ExecuteReaderAsync())
                 {
                     while (reader.Read())
                     {
                         vehicles.Add(new
                         {
-                            FrameNr = reader.GetInt32(0),
-                            Brand = reader.GetString(1),
-                            Type = reader.GetString(2),
-                            Price = reader.GetDecimal(3).ToString("F2"),
-                            Image = !reader.IsDBNull(4)
-                            ? Convert.ToBase64String((byte[])reader["VehicleBlob"]) : null
+                            FrameNr = reader.IsDBNull(0) ? 0 : reader.GetInt32(0),
+                            YoP = reader.IsDBNull(1) ? 0 : reader.GetInt32(1),    
+                            Brand = reader.IsDBNull(2) ? null : reader.GetString(2),
+                            Type = reader.IsDBNull(3) ? null : reader.GetString(3),
+                            LicensePlate = reader.IsDBNull(4) ? null : reader.GetString(4),
+                            Color = reader.IsDBNull(5) ? null : reader.GetString(5),
+                            Sort = reader.IsDBNull(6) ? null : reader.GetString(6),
+                            Price = reader.IsDBNull(7) ? "0.00" : reader.GetDecimal(7).ToString("F2"),
+                            Image = reader.IsDBNull(8) ? null : Convert.ToBase64String((byte[])reader["VehicleBlob"]),
+                            Description = reader.IsDBNull(9) ? null : reader.GetString(9),
+                            Seats = reader.GetInt32(10)
                         });
                     }
                 }
@@ -184,5 +196,94 @@ public class VehicleController : ControllerBase
             Console.WriteLine(ex);
             return StatusCode(500, "An error occurred while fetching vehicles.");
         }
+    }
+
+    [HttpGet("GetTypeOfVehicles")]
+    public async Task<IActionResult> GetTypeOfVehiclesAsync(string vehicleType)
+    {
+        try
+        {
+            string query = @"
+                SELECT FrameNr, YoP, Brand, Type, LicensePlate, Color, Sort, Price, VehicleBlob, Description, Seats 
+                FROM Vehicle 
+                WHERE LOWER(Sort) = LOWER(@Sort)";
+
+            var vehicles = new List<object>();
+
+            using (var connection = _connector.CreateDbConnection())
+            {
+                using (var command = new MySqlCommand(query, (MySqlConnection)connection))
+                {
+                    if (!string.IsNullOrWhiteSpace(vehicleType) &&
+                        !vehicleType.Equals("ALL", StringComparison.OrdinalIgnoreCase))
+                    {
+                        command.Parameters.AddWithValue("@Sort", vehicleType);
+                    }
+
+                    using (var reader = await command.ExecuteReaderAsync())
+                    {
+                        while (reader.Read())
+                        {
+                            vehicles.Add(new
+                            {
+                                FrameNr = reader.GetInt32(0),          
+                                YoP = reader.GetInt32(1),              
+                                Brand = reader.IsDBNull(2) ? null : reader.GetString(2),
+                                Type = reader.IsDBNull(3) ? null : reader.GetString(3),
+                                LicensePlate = reader.IsDBNull(4) ? null : reader.GetString(4),
+                                Color = reader.IsDBNull(5) ? null : reader.GetString(5),
+                                Sort = reader.IsDBNull(6) ? null : reader.GetString(6),
+                                Price = reader.IsDBNull(7) ? null : reader.GetDecimal(7).ToString("F2"),
+                                Image = reader.IsDBNull(8) ? null : Convert.ToBase64String((byte[])reader["VehicleBlob"]),
+                                Description = reader.IsDBNull(9) ? null : reader.GetString(9),
+                                Seats = reader.GetInt32(10)
+                            });
+                        }
+                    }
+                }
+            }
+
+            return Ok(vehicles);
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error: {ex.Message}");
+            return StatusCode(500, "An error occurred while fetching vehicles.");
+        }
+    }
+
+    /// <summary>
+    /// Alle framenummers van de voertuigen worden verzameld
+    /// </summary>
+    /// <returns></returns>
+    [HttpGet("GetFrameNumbers")]
+    public async Task<IActionResult> GetFrameNumbersAsync()
+    {
+        var ids = await _vehicleRepository.GetFrameNumbersAsync();
+        return Ok(new { message = ids });
+    }
+
+    /// <summary>
+    /// Alle framenummers van een specifieke voertuig soort wordt verzameld
+    /// </summary>
+    /// <param name="type"></param>
+    /// <returns></returns>
+    [HttpGet("GetFrameNumbersSpecificType")]
+     public async Task<IActionResult> GetFrameNumbersSpecificTypeAsync(string type)
+    {
+        var ids = await _vehicleRepository.GetFrameNumberSpecifiekTypeAsync(type);
+        return Ok(new { message = ids });
+    }
+
+    /// <summary>
+    /// Alle gegevens van 1 specifiek voertuig wordt opgehaald
+    /// </summary>
+    /// <param name="frameNr"></param>
+    /// <returns></returns>
+    [HttpGet("GetVehicelData")]
+    public async Task<IActionResult> GetVehicleData(string frameNr)
+    {
+        var data = await _vehicleRepository.GetVehicleDataAsync(frameNr);
+        return Ok(new { message = data });
     }
 }

@@ -1,0 +1,7 @@
+@startuml
+class HireRequest {
+    + Id : int <<get>> <<set>>
+    + Status : string? <<get>> <<set>>
+    + userType : string <<get>> <<set>>
+}
+@enduml

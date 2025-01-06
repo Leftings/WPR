@@ -1,0 +1,23 @@
+\doxysection{error\+Handler.\+jsx}
+\hypertarget{error_handler_8jsx_source}{}\label{error_handler_8jsx_source}\index{D:/codes/WPR/frontend/src/utils/errorHandler.jsx@{D:/codes/WPR/frontend/src/utils/errorHandler.jsx}}
+\mbox{\hyperlink{error_handler_8jsx}{Ga naar de documentatie van dit bestand.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{error_handler_8jsx_source_l00001}00001\ export\ const\ getErrorMessage\ =\ (error,\ signUpType)\ =>\ \{}
+\DoxyCodeLine{\Hypertarget{error_handler_8jsx_source_l00002}00002\ \ \ \ \ const\ errorMessages\ =\ \{}
+\DoxyCodeLine{\Hypertarget{error_handler_8jsx_source_l00003}00003\ \ \ \ \ \ \ \ \ 'Invalid\ email\ format'\ :\ 'The\ email\ format\ is\ invalid',}
+\DoxyCodeLine{\Hypertarget{error_handler_8jsx_source_l00004}00004\ \ \ \ \ \ \ \ \ 'Email\ already\ exists'\ :\ 'The\ email\ is\ already\ in\ use.\ Please\ use\ a\ different\ email.',}
+\DoxyCodeLine{\Hypertarget{error_handler_8jsx_source_l00005}00005\ \ \ \ \ \ \ \ \ 'Invalid\ phone\ number'\ :\ 'The\ phone\ number\ is\ invalid.',}
+\DoxyCodeLine{\Hypertarget{error_handler_8jsx_source_l00006}00006\ \ \ \ \ \ \ \ \ 'Invalid\ birthday\ format'\ :\ 'The\ birthday\ is\ invalid.',}
+\DoxyCodeLine{\Hypertarget{error_handler_8jsx_source_l00007}00007\ \ \ \ \ \ \ \ \ 'KVK\ number\ must\ be\ 8\ digits'\ :\ 'KVK\ number\ must\ be\ 8\ digits',}
+\DoxyCodeLine{\Hypertarget{error_handler_8jsx_source_l00008}00008\ \ \ \ \ \ \ \ \ 'KVK\ number\ is\ not\ a\ valid\ KVK\ number'\ :\ 'KVK\ number\ is\ not\ a\ valid\ KVK\ number',}
+\DoxyCodeLine{\Hypertarget{error_handler_8jsx_source_l00009}00009\ \ \ \ \ \ \ \ \ 'Password\ must\ be\ at\ least\ 8\ characters.'\ :\ 'Password\ must\ be\ at\ least\ 8\ characters.',}
+\DoxyCodeLine{\Hypertarget{error_handler_8jsx_source_l00010}00010\ \ \ \ \ \ \ \ \ 'Password\ must\ contain\ at\ least\ one\ number.'\ :\ 'Password\ must\ contain\ at\ least\ one\ number.',}
+\DoxyCodeLine{\Hypertarget{error_handler_8jsx_source_l00011}00011\ \ \ \ \ \ \ \ \ 'Password\ must\ contain\ at\ least\ one\ upper\ case\ letter.'\ :\ 'Password\ must\ contain\ at\ least\ one\ upper\ case\ letter.',}
+\DoxyCodeLine{\Hypertarget{error_handler_8jsx_source_l00012}00012\ \ \ \ \ \ \ \ \ 'Password\ must\ contain\ at\ least\ one\ lower\ case\ letter.'\ :\ 'Password\ must\ contain\ at\ least\ one\ lower\ case\ letter.',}
+\DoxyCodeLine{\Hypertarget{error_handler_8jsx_source_l00013}00013\ \ \ \ \ \ \ \ \ 'Password\ must\ contain\ at\ least\ one\ symbol'\ :\ 'Password\ must\ contain\ at\ least\ one\ symbol'}
+\DoxyCodeLine{\Hypertarget{error_handler_8jsx_source_l00014}00014\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{error_handler_8jsx_source_l00015}00015\ \ \ \ \ \};}
+\DoxyCodeLine{\Hypertarget{error_handler_8jsx_source_l00016}00016\ \ \ \ \ return\ errorMessages[error.message]\ ||\ \`{}There\ was\ an\ error\ during\ making\ a\ \$\{signUpType\}\ account:\ \$\{error.message\}`;}
+\DoxyCodeLine{\Hypertarget{error_handler_8jsx_source_l00017}00017\ \};}
+
+\end{DoxyCode}

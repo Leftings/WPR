@@ -1,5 +1,10 @@
+using System.Security.Policy;
+
 namespace WPR.Controllers.SignUp;
 
+/// <summary>
+/// Body voor SignUpRequest
+/// </summary>
 public class SignUpRequest
 {
     public string? Email { get; set; }

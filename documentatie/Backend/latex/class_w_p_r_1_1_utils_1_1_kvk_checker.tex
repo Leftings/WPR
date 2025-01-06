@@ -1,0 +1,111 @@
+\doxysection{WPR.\+Utils.\+Kvk\+Checker Class Reference}
+\hypertarget{class_w_p_r_1_1_utils_1_1_kvk_checker}{}\label{class_w_p_r_1_1_utils_1_1_kvk_checker}\index{WPR.Utils.KvkChecker@{WPR.Utils.KvkChecker}}
+
+
+Collaboration diagram for WPR.\+Utils.\+Kvk\+Checker\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=236pt]{class_w_p_r_1_1_utils_1_1_kvk_checker__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_w_p_r_1_1_utils_1_1_kvk_checker_a615f7bc3551a179f7650703d613504fc}{Kvk\+Checker}} (\mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_user_repository}{IUser\+Repository}} user\+Repository)
+\item 
+async Task$<$(bool is\+Valid, string error\+Message)$>$ \mbox{\hyperlink{class_w_p_r_1_1_utils_1_1_kvk_checker_a0a705c242e76b5f3055bf598bd532b3b}{Is\+Kvk\+Number\+Valid}} (int? kvk\+Number)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+readonly \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_user_repository}{IUser\+Repository}} \mbox{\hyperlink{class_w_p_r_1_1_utils_1_1_kvk_checker_a8ab80d821d0b0578f2fc1bec5bbd1011}{\+\_\+user\+Repository}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line \mbox{\hyperlink{_kvk_checker_8cs_source_l00006}{6}} of file \mbox{\hyperlink{_kvk_checker_8cs_source}{Kvk\+Checker.\+cs}}.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_w_p_r_1_1_utils_1_1_kvk_checker_a615f7bc3551a179f7650703d613504fc}\index{WPR.Utils.KvkChecker@{WPR.Utils.KvkChecker}!KvkChecker@{KvkChecker}}
+\index{KvkChecker@{KvkChecker}!WPR.Utils.KvkChecker@{WPR.Utils.KvkChecker}}
+\doxysubsubsection{\texorpdfstring{KvkChecker()}{KvkChecker()}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_utils_1_1_kvk_checker_a615f7bc3551a179f7650703d613504fc} 
+WPR.\+Utils.\+Kvk\+Checker.\+Kvk\+Checker (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_user_repository}{IUser\+Repository}}}]{user\+Repository}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{_kvk_checker_8cs_source_l00010}{10}} of file \mbox{\hyperlink{_kvk_checker_8cs_source}{Kvk\+Checker.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00011\ \ \ \ \ \{}
+\DoxyCodeLine{00012\ \ \ \ \ \ \ \ \ \_userRepository\ =\ userRepository;}
+\DoxyCodeLine{00013\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{_kvk_checker_8cs_source_l00008}{\+\_\+user\+Repository}}.
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_w_p_r_1_1_utils_1_1_kvk_checker_a0a705c242e76b5f3055bf598bd532b3b}\index{WPR.Utils.KvkChecker@{WPR.Utils.KvkChecker}!IsKvkNumberValid@{IsKvkNumberValid}}
+\index{IsKvkNumberValid@{IsKvkNumberValid}!WPR.Utils.KvkChecker@{WPR.Utils.KvkChecker}}
+\doxysubsubsection{\texorpdfstring{IsKvkNumberValid()}{IsKvkNumberValid()}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_utils_1_1_kvk_checker_a0a705c242e76b5f3055bf598bd532b3b} 
+async Task$<$(bool is\+Valid, string error\+Message)$>$ WPR.\+Utils.\+Kvk\+Checker.\+Is\+Kvk\+Number\+Valid (\begin{DoxyParamCaption}\item[{int?}]{kvk\+Number}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{_kvk_checker_8cs_source_l00015}{15}} of file \mbox{\hyperlink{_kvk_checker_8cs_source}{Kvk\+Checker.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00016\ \ \ \ \ \{}
+\DoxyCodeLine{00017\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!kvkNumber.HasValue\ ||\ kvkNumber.Value.ToString().Length\ !=\ 8)}
+\DoxyCodeLine{00018\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00019\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (\textcolor{keyword}{false},\ \textcolor{stringliteral}{"{}KVK\ number\ must\ be\ 8\ digits"{}});}
+\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ inDatabase\ =\ await\ \_userRepository.IsKvkNumberAsync(kvkNumber.Value);}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!inDatabase)}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (\textcolor{keyword}{false},\ \textcolor{stringliteral}{"{}KVK\ number\ is\ not\ a\ valid\ KVK\ number"{}});}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (\textcolor{keyword}{true},\ \textcolor{keyword}{null});}
+\DoxyCodeLine{00029\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{_kvk_checker_8cs_source_l00008}{\+\_\+user\+Repository}}.
+
+
+
+\doxysubsection{Field Documentation}
+\Hypertarget{class_w_p_r_1_1_utils_1_1_kvk_checker_a8ab80d821d0b0578f2fc1bec5bbd1011}\index{WPR.Utils.KvkChecker@{WPR.Utils.KvkChecker}!\_userRepository@{\_userRepository}}
+\index{\_userRepository@{\_userRepository}!WPR.Utils.KvkChecker@{WPR.Utils.KvkChecker}}
+\doxysubsubsection{\texorpdfstring{\_userRepository}{\_userRepository}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_utils_1_1_kvk_checker_a8ab80d821d0b0578f2fc1bec5bbd1011} 
+readonly \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_user_repository}{IUser\+Repository}} WPR.\+Utils.\+Kvk\+Checker.\+\_\+user\+Repository\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \mbox{\hyperlink{_kvk_checker_8cs_source_l00008}{8}} of file \mbox{\hyperlink{_kvk_checker_8cs_source}{Kvk\+Checker.\+cs}}.
+
+
+
+Referenced by \mbox{\hyperlink{_kvk_checker_8cs_source_l00015}{Is\+Kvk\+Number\+Valid()}}, and \mbox{\hyperlink{_kvk_checker_8cs_source_l00010}{Kvk\+Checker()}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/codes/\+WPR/backend/src/\+Utils/\mbox{\hyperlink{_kvk_checker_8cs}{Kvk\+Checker.\+cs}}\end{DoxyCompactItemize}

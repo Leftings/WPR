@@ -47,4 +47,9 @@ public class EnvConfig
         var requiredKeys = new[] { "DB_SERVER", "DB_DATABASE", "DB_USERNAME", "DB_PASSWORD" };
         return requiredKeys.All(key => !string.IsNullOrEmpty(Get(key)));
     }
+    
+    public string GetSmtpHost() => Get("SMTP_HOST");
+    public int GetSmtpPort() => int.TryParse(Get("SMTP_PORT"), out var port) ? port : 0;
+    public string GetFromEmail() => Get("FROM_EMAIL");
+    public string GetFromPassword() => Get("FROM_PASSWORD");
 }
