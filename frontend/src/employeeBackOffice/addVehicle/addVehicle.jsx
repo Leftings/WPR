@@ -6,6 +6,15 @@ import GeneralFooter from '../../GeneralBlocks/footer/footer';
 
 const BACKEND_URL = import.meta.env.VITE_REACT_APP_BACKEND_URL_EMPLOYEE ?? 'http://localhost:5276';
 
+function SyntaxLicensePlate(licensePlate)
+{
+    if (licensePlate.length % 3 === 0 && licensePlate.length !== 9)
+    {
+        licensePlate += '-';
+    }
+    return licensePlate;
+}
+
 function AddVehicle() {
     const navigate = useNavigate();
     const [kind, SetKind] = useState('Car');
@@ -162,7 +171,7 @@ function AddVehicle() {
             </div>
             <div id="licensePlate">
                 <p>Nummerbord voertuig</p>
-                <input value={licensePlate} onChange={(e) => SetLicensePlate(e.target.value)}></input>
+                <input value={licensePlate} onChange={(e) => SetLicensePlate(SyntaxLicensePlate(e.target.value))}></input>
                 <br></br>
             </div>
             <div id="YoP">
