@@ -6,13 +6,52 @@ import GeneralFooter from '../../GeneralBlocks/footer/footer';
 
 const BACKEND_URL = import.meta.env.VITE_REACT_APP_BACKEND_URL_EMPLOYEE ?? 'http://localhost:5276';
 
-function SyntaxLicensePlate(licensePlate)
+function IsValidPlate(licensePlate)
 {
-    if (licensePlate.length % 3 === 0 && licensePlate.length !== 9)
+    licensePlate.toUpperCase(licensePlate);
+
+    if (/[A-Za-z0-9]/.test(licensePlate[licensePlate.length-1]))
     {
-        licensePlate += '-';
+        return true;
     }
-    return licensePlate;
+    return false;
+}
+
+function SyntaxLicensePlate(licensePlate, oldPlate)
+{
+    if (licensePlate > oldPlate && IsValidPlate(licensePlate))
+    {
+        if (licensePlate.length !== 10)
+        {
+            if (licensePlate.length % 3 === 0 && licensePlate.length !== 9)
+            {
+                licensePlate += '-';
+            }
+        }
+        
+        if (licensePlate.length > 10)
+        {
+            let temp = '';
+    
+            for (let i = 0; i < 10; i++)
+            {
+                temp += licensePlate[i];
+            }
+
+            return temp;
+        }
+        return licensePlate;
+    }
+    return licensePlate.slice(0, -1);
+}
+
+function NumberCheck(input)
+{
+    if (/[0-9]/.test(input[input.length -1 ]))
+    {
+        return input;
+    }
+    return input.slice(0, -1);
 }
 
 function AddVehicle() {
@@ -167,16 +206,16 @@ function AddVehicle() {
             </div>
             <div id="places">
                 <p>Aantal zitplaatsen</p>
-                <input type="number" value={places} onChange={(e) => SetPlaces(e.target.value)}></input>
+                <input value={places} onChange={(e) => SetPlaces(NumberCheck(e.target.value))}></input>
             </div>
             <div id="licensePlate">
                 <p>Nummerbord voertuig</p>
-                <input value={licensePlate} onChange={(e) => SetLicensePlate(SyntaxLicensePlate(e.target.value))}></input>
+                <input value={licensePlate} onChange={(e) => SetLicensePlate(SyntaxLicensePlate(e.target.value, licensePlate))}></input>
                 <br></br>
             </div>
             <div id="YoP">
                 <p>Bouwjaar voertuig</p>
-                <input type="number" value={YoP} onChange={(e) => SetYoP(e.target.value)}></input>
+                <input value={YoP} onChange={(e) => SetYoP(NumberCheck(e.target.value))}></input>
                 <br></br>
             </div>
             <div id="price">
