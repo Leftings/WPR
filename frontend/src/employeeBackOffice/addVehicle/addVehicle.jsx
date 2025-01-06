@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import './addVehicle.css';
 import GeneralHeader from '../../GeneralBlocks/header/header';
@@ -6,13 +6,52 @@ import GeneralFooter from '../../GeneralBlocks/footer/footer';
 
 const BACKEND_URL = import.meta.env.VITE_REACT_APP_BACKEND_URL_EMPLOYEE ?? 'http://localhost:5276';
 
-function SyntaxLicensePlate(licensePlate)
+function IsValidPlate(licensePlate)
 {
-    if (licensePlate.length % 3 === 0 && licensePlate.length !== 9)
+    licensePlate.toUpperCase(licensePlate);
+
+    if (/[A-Za-z0-9]/.test(licensePlate[licensePlate.length-1]))
     {
-        licensePlate += '-';
+        return true;
     }
-    return licensePlate;
+    return false;
+}
+
+function SyntaxLicensePlate(licensePlate, oldPlate)
+{
+    if (licensePlate > oldPlate && IsValidPlate(licensePlate))
+    {
+        if (licensePlate.length !== 10)
+        {
+            if (licensePlate.length % 3 === 0 && licensePlate.length !== 9)
+            {
+                licensePlate += '-';
+            }
+        }
+        
+        if (licensePlate.length > 10)
+        {
+            let temp = '';
+    
+            for (let i = 0; i < 10; i++)
+            {
+                temp += licensePlate[i];
+            }
+
+            return temp;
+        }
+        return licensePlate;
+    }
+    return licensePlate.slice(0, -1);
+}
+
+function NumberCheck(input)
+{
+    if (/[0-9]/.test(input[input.length -1 ]))
+    {
+        return input;
+    }
+    return input.slice(0, -1);
 }
 
 function AddVehicle() {
@@ -28,6 +67,7 @@ function AddVehicle() {
     const [places, SetPlaces] = useState('');
     const [vehicleBlob, SetVehicleBlob] = useState(null);
     const [error, SetError] = useState([]);
+    const reference = useRef(null);
 
     
     const SetVehicle = () => {
@@ -70,9 +110,11 @@ function AddVehicle() {
             SetYoP('');
             SetPrice('');
             SetDescription('');
-            SetVehicleBlob('');
-            SetPlace('');
+            SetVehicleBlob(null);
+            SetPlaces('');
             SetError([]);
+
+            reference.current.value = '';
         })
         .catch(error => {
             console.error("Error adding vehicle:", error.message);
@@ -99,11 +141,17 @@ function AddVehicle() {
         let errors = [];
         for (let key in vehicleData)
         {
-            if (vehicleData[key] === '')
+            console.log(key);
+            if (vehicleData[key] === '' || vehicleData[key] === null)
             {
                 errors.push(`${key} is niet ingevuld\n`);
             }
             console.log(`${key}: ${vehicleData[key]}`);
+        }
+
+        if (licensePlate.length !== 10)
+        {
+            errors.push('licenseplate heeft geen geldige lengte');
         }
 
         if (errors.length === 0)
@@ -167,21 +215,21 @@ function AddVehicle() {
             </div>
             <div id="places">
                 <p>Aantal zitplaatsen</p>
-                <input type="number" value={places} onChange={(e) => SetPlaces(e.target.value)}></input>
+                <input value={places} onChange={(e) => SetPlaces(NumberCheck(e.target.value))}></input>
             </div>
             <div id="licensePlate">
                 <p>Nummerbord voertuig</p>
-                <input value={licensePlate} onChange={(e) => SetLicensePlate(SyntaxLicensePlate(e.target.value))}></input>
+                <input value={licensePlate} onChange={(e) => SetLicensePlate(SyntaxLicensePlate(e.target.value, licensePlate))}></input>
                 <br></br>
             </div>
             <div id="YoP">
                 <p>Bouwjaar voertuig</p>
-                <input type="number" value={YoP} onChange={(e) => SetYoP(e.target.value)}></input>
+                <input value={YoP} onChange={(e) => SetYoP(NumberCheck(e.target.value))}></input>
                 <br></br>
             </div>
             <div id="price">
                 <p>Prijs per dag</p>
-                <input type="number" value={price} onChange={(e) => SetPrice(e.target.value)}></input>
+                <input value={price} onChange={(e) => SetPrice(NumberCheck(e.target.value))}></input>
                 <br></br>
             </div>
             <div id="description">
@@ -191,7 +239,7 @@ function AddVehicle() {
             </div>
             <div id="vehicleBlob">
                 <p>Afbeelding voertuig (verplict)</p>
-                <input type="file" onChange={(e) => SetVehicleBlob(e.target.files)}></input>
+                <input type="file" ref={reference} onChange={(e) => SetVehicleBlob(e.target.files)}></input>
                 <br></br>
             </div>
             <div id="confirm">
