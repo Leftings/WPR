@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import './addVehicle.css';
 import GeneralHeader from '../../GeneralBlocks/header/header';
@@ -67,6 +67,7 @@ function AddVehicle() {
     const [places, SetPlaces] = useState('');
     const [vehicleBlob, SetVehicleBlob] = useState(null);
     const [error, SetError] = useState([]);
+    const reference = useRef(null);
 
     
     const SetVehicle = () => {
@@ -112,6 +113,8 @@ function AddVehicle() {
             SetVehicleBlob(null);
             SetPlaces('');
             SetError([]);
+
+            reference.current.value = '';
         })
         .catch(error => {
             console.error("Error adding vehicle:", error.message);
@@ -138,11 +141,17 @@ function AddVehicle() {
         let errors = [];
         for (let key in vehicleData)
         {
-            if (vehicleData[key] === '')
+            console.log(key);
+            if (vehicleData[key] === '' || vehicleData[key] === null)
             {
                 errors.push(`${key} is niet ingevuld\n`);
             }
             console.log(`${key}: ${vehicleData[key]}`);
+        }
+
+        if (licensePlate.length !== 10)
+        {
+            errors.push('licenseplate heeft geen geldige lengte');
         }
 
         if (errors.length === 0)
@@ -230,7 +239,7 @@ function AddVehicle() {
             </div>
             <div id="vehicleBlob">
                 <p>Afbeelding voertuig (verplict)</p>
-                <input type="file" onChange={(e) => SetVehicleBlob(e.target.files)}></input>
+                <input type="file" ref={reference} onChange={(e) => SetVehicleBlob(e.target.files)}></input>
                 <br></br>
             </div>
             <div id="confirm">
