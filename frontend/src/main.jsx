@@ -21,7 +21,8 @@ import ConfirmationPage from './confirmationPage/ConfirmationPage.jsx';
 import ChangeRental from './changeRental/ChangeRental.jsx';
 import VehicleManager from './vehicleManager/vehicleManager.jsx';
 import ReviewHireRequestVehicleManager from './vehicleManager/reviewHireRequest/reviewHireRequest.jsx';
-import WagenparkBeheerderOverzichtPage from './wagenparkBeheerderOverzichtPage/wagenparkBeheerderOverzichtPage.jsx'
+import WagenparkBeheerderOverzichtPage from './wagenparkBeheerderOverzichtPage/wagenparkBeheerderOverzichtPage.jsx';
+import AddBusiness from './employeeFrontOffice/addBusiness/addBusiness.jsx';
 
 
 createRoot(document.getElementById('root')).render(
@@ -47,6 +48,7 @@ createRoot(document.getElementById('root')).render(
             <Route path="/wagenparkBeheerderOverzichtPage" element={<WagenparkBeheerderOverzichtPage />} />
             <Route path="/vehicleManager" element={<VehicleManager />}></Route>
             <Route path="/vehicleManager/reviewHireRequest" element={<ReviewHireRequestVehicleManager />}></Route>
+            <Route path="/frontOfficeEmployee/addBusiness" element={<AddBusiness />}></Route>
         </Routes>
     </Router>
 );

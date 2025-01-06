@@ -3,6 +3,7 @@ using Employee.Hashing;
 using Microsoft.VisualBasic;
 using MySql.Data.MySqlClient;
 using MySqlX.XDevAPI.Relational;
+using Employee.Controllers.AddBusiness;
 
 namespace Employee.Repository;
 
@@ -499,6 +500,36 @@ public class UserRepository : IUserRepository
             return (false, ex.Message);
         }
         catch (Exception ex)
+        {
+            return (false, ex.Message);
+        }
+    }
+
+    public (bool status, string message) AddBusiness(AddBusinessRequest request)
+    {
+        try
+        {
+            string query = "INSERT INTO Business (KvK, BusinessName, Adres) VALUES (@K, @B, @A)";
+
+            using (var connection = _connector.CreateDbConnection())
+            using (var command = new MySqlCommand(query, (MySqlConnection)connection))
+            {
+                command.Parameters.AddWithValue("@K", request.KvK);
+                command.Parameters.AddWithValue("@B", request.Name);
+                command.Parameters.AddWithValue("@A", request.Adress);
+
+                if (command.ExecuteNonQuery() > 0)
+                {
+                    return (true, "Succesfull added business");
+                }
+                return (false, "Error occured adding business");
+            }
+        }
+        catch(MySqlException ex)
+        {
+            return (false, ex.Message);
+        }
+        catch(Exception ex)
         {
             return (false, ex.Message);
         }

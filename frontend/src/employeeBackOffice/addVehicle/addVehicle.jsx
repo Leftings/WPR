@@ -3,56 +3,11 @@ import { Link, useNavigate } from 'react-router-dom';
 import './addVehicle.css';
 import GeneralHeader from '../../GeneralBlocks/header/header';
 import GeneralFooter from '../../GeneralBlocks/footer/footer';
+import { SyntaxLicensePlate } from '../../utils/stringFieldChecker.js'
+import { NumberCheck } from '../../utils/numberFieldChecker.js';
+import { EmptyFieldChecker } from '../../utils/errorChecker.js';
 
 const BACKEND_URL = import.meta.env.VITE_REACT_APP_BACKEND_URL_EMPLOYEE ?? 'http://localhost:5276';
-
-function IsValidPlate(licensePlate)
-{
-    licensePlate.toUpperCase(licensePlate);
-
-    if (/[A-Za-z0-9]/.test(licensePlate[licensePlate.length-1]))
-    {
-        return true;
-    }
-    return false;
-}
-
-function SyntaxLicensePlate(licensePlate, oldPlate)
-{
-    if (licensePlate > oldPlate && IsValidPlate(licensePlate))
-    {
-        if (licensePlate.length !== 10)
-        {
-            if (licensePlate.length % 3 === 0 && licensePlate.length !== 9)
-            {
-                licensePlate += '-';
-            }
-        }
-        
-        if (licensePlate.length > 10)
-        {
-            let temp = '';
-    
-            for (let i = 0; i < 10; i++)
-            {
-                temp += licensePlate[i];
-            }
-
-            return temp;
-        }
-        return licensePlate;
-    }
-    return licensePlate.slice(0, -1);
-}
-
-function NumberCheck(input)
-{
-    if (/[0-9]/.test(input[input.length -1 ]))
-    {
-        return input;
-    }
-    return input.slice(0, -1);
-}
 
 function AddVehicle() {
     const navigate = useNavigate();
@@ -137,17 +92,7 @@ function AddVehicle() {
             places
         };
 
-        // Errors worden automatisch aangemaakt, doormiddel van de keys
-        let errors = [];
-        for (let key in vehicleData)
-        {
-            console.log(key);
-            if (vehicleData[key] === '' || vehicleData[key] === null)
-            {
-                errors.push(`${key} is niet ingevuld\n`);
-            }
-            console.log(`${key}: ${vehicleData[key]}`);
-        }
+        let errors = EmptyFieldChecker(vehicleData);
 
         if (licensePlate.length !== 10)
         {
