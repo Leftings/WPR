@@ -58,7 +58,8 @@ public class AddVehicleController : ControllerBase
                 request.Sort,
                 request.Price,
                 request.Description,
-                vehicleBlobBytes);
+                vehicleBlobBytes,
+                request.Places);
 
             if (status.status)
             {
