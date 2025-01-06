@@ -109,8 +109,8 @@ function AddVehicle() {
             SetYoP('');
             SetPrice('');
             SetDescription('');
-            SetVehicleBlob('');
-            SetPlace('');
+            SetVehicleBlob(null);
+            SetPlaces('');
             SetError([]);
         })
         .catch(error => {
@@ -220,7 +220,7 @@ function AddVehicle() {
             </div>
             <div id="price">
                 <p>Prijs per dag</p>
-                <input type="number" value={price} onChange={(e) => SetPrice(e.target.value)}></input>
+                <input value={price} onChange={(e) => SetPrice(NumberCheck(e.target.value))}></input>
                 <br></br>
             </div>
             <div id="description">
