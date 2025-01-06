@@ -16,6 +16,7 @@ function AddVehicle() {
     const [YoP, SetYoP] = useState('');
     const [price, SetPrice] = useState('');
     const [description, SetDescription] = useState('');
+    const [places, SetPlaces] = useState('');
     const [vehicleBlob, SetVehicleBlob] = useState(null);
     const [error, SetError] = useState([]);
 
@@ -32,6 +33,7 @@ function AddVehicle() {
         formData.append('Sort', kind);
         formData.append('Price', price);
         formData.append('Description', description);
+        formData.append('Places', places);
     
         if (vehicleBlob && vehicleBlob[0]) {
             formData.append('vehicleBlob', vehicleBlob[0]); // vehicleBlob wordt omgezet naar binary
@@ -60,6 +62,7 @@ function AddVehicle() {
             SetPrice('');
             SetDescription('');
             SetVehicleBlob('');
+            SetPlace('');
             SetError([]);
         })
         .catch(error => {
@@ -79,7 +82,8 @@ function AddVehicle() {
             YoP,
             price,
             description,
-            vehicleBlob
+            vehicleBlob,
+            places
         };
 
         // Errors worden automatisch aangemaakt, doormiddel van de keys
@@ -151,6 +155,10 @@ function AddVehicle() {
             <div id="color">
                 <p>Kleur voertuig</p>
                 <input value={color} onChange={(e) => SetColor(e.target.value)}></input>
+            </div>
+            <div id="places">
+                <p>Aantal zitplaatsen</p>
+                <input type="number" value={places} onChange={(e) => SetPlaces(e.target.value)}></input>
             </div>
             <div id="licensePlate">
                 <p>Nummerbord voertuig</p>

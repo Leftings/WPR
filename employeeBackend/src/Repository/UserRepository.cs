@@ -37,11 +37,11 @@ public class UserRepository : IUserRepository
     /// <param name="vehicleBlob"></param>
     /// <returns></returns>
     // vehicleBlob is het pad naar de afbeelding
-    public async Task<(bool status, string message)> AddVehicleAsync(int yop, string brand, string type, string licensePlate, string color, string sort, double price, string description, byte[] vehicleBlob)
+    public async Task<(bool status, string message)> AddVehicleAsync(int yop, string brand, string type, string licensePlate, string color, string sort, double price, string description, byte[] vehicleBlob, int places)
     {
         try
         {
-            string query = "INSERT INTO Vehicle (YoP, Brand, Type, LicensePlate, Color, Sort, Price, Description, Vehicleblob) VALUES (@Y, @B, @T, @L, @C, @S, @P, @D, @V)";
+            string query = "INSERT INTO Vehicle (YoP, Brand, Type, LicensePlate, Color, Sort, Price, Description, Vehicleblob, Seats) VALUES (@Y, @B, @T, @L, @C, @S, @P, @D, @V, @SE)";
 
             // Er wordt een connectie met de DataBase gemaakt met de bovenstaande query
             using (var connection = _connector.CreateDbConnection())
@@ -57,6 +57,7 @@ public class UserRepository : IUserRepository
                 command.Parameters.AddWithValue("@P", price);
                 command.Parameters.AddWithValue("@D", description);
                 command.Parameters.AddWithValue("@V", vehicleBlob);
+                command.Parameters.AddWithValue("@SE", places);
 
                 if (await command.ExecuteNonQueryAsync() > 0)
                 {
