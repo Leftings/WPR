@@ -1,6 +1,6 @@
 ﻿using System.Data;
 using System.Diagnostics;
-
+using Employee.Controllers.AddBusiness;
 namespace Employee.Repository;
 
 /// <summary>
@@ -19,4 +19,5 @@ public interface IUserRepository
     Task<(bool status, List<string> ids)> GetReviewIdsAsync(string user, string userId);
     Task<(bool status, List<Dictionary<string, object>> data)> GetReviewAsync(string id);
     Task<(bool status, string message)> SetStatusAsync(string id, string status, string employee, string userType);
+    (bool status, string message) AddBusiness(AddBusinessRequest request);
 }

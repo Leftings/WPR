@@ -3,6 +3,7 @@ using Employee.Hashing;
 using Microsoft.VisualBasic;
 using MySql.Data.MySqlClient;
 using MySqlX.XDevAPI.Relational;
+using Employee.Controllers.AddBusiness;
 
 namespace Employee.Repository;
 
@@ -499,6 +500,46 @@ public class UserRepository : IUserRepository
             return (false, ex.Message);
         }
         catch (Exception ex)
+        {
+            return (false, ex.Message);
+        }
+    }
+
+    /// <summary>
+    /// Maakt een connectie met de database door middel van de connector en de query.
+    /// De gegevens worden uit de AddBusinessRequest getrokken en verwerkt in de query.
+    /// De query wordt uitgevoerd en checkt of deze ook succesvol is uitgevoerd
+    /// </summary>
+    /// <param name="request"></param>
+    /// <returns></returns>
+    public (bool status, string message) AddBusiness(AddBusinessRequest request)
+    {
+        try
+        {
+            string query = "INSERT INTO Business (KvK, BusinessName, Adres) VALUES (@K, @B, @A)";
+
+            // Er wordt een connectie met de database gemaakt
+            using (var connection = _connector.CreateDbConnection())
+            using (var command = new MySqlCommand(query, (MySqlConnection)connection))
+            {
+                // Parameters van de query worden ingevuld
+                command.Parameters.AddWithValue("@K", request.KvK);
+                command.Parameters.AddWithValue("@B", request.Name);
+                command.Parameters.AddWithValue("@A", request.Adress);
+
+                // Er wordt gekeken of de query succesvol is uitgevoerd
+                if (command.ExecuteNonQuery() > 0)
+                {
+                    return (true, "Succesfull added business");
+                }
+                return (false, "Error occured adding business");
+            }
+        }
+        catch(MySqlException ex)
+        {
+            return (false, ex.Message);
+        }
+        catch(Exception ex)
         {
             return (false, ex.Message);
         }

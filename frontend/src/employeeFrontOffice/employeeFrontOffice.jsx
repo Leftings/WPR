@@ -37,6 +37,7 @@ function EmployeeFrontOffice() {
       <body>
         <h1>Front Office</h1>
         <Link to="./reviewHireRequest">Huur aanvragen beheren</Link>
+        <Link to="./addBusiness">Bedrijf toevoegen</Link>
       </body>
 
       <GeneralFooter>
