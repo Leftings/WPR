@@ -41,6 +41,7 @@ function EmployeeBackOffice() {
         <div id='backOfficeLinks'>
           <Link to="./addEmployee">Werknemer toevoegen</Link>
           <Link to="./addVehicle">Voertuig toevoegen</Link>
+          <Link to="./viewRentalData">Verhuur inzicht</Link>
         </div>
       </div>
 

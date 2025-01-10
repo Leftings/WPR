@@ -13,7 +13,7 @@ public class viewRentalDataController : ControllerBase
         _backOfficeRepository = backOfficeRepository ?? throw new ArgumentNullException(nameof(backOfficeRepository));
     }
 
-    [HttpGet("/GetReviews")]
+    [HttpGet("GetReviews")]
     public async Task<IActionResult> GetReviews(string sort, string how)
     {
         (bool Status, string Message, IList<Dictionary<string, object>> Data) response = _backOfficeRepository.GetDataReviews(sort, how);
