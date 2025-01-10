@@ -1,5 +1,8 @@
 namespace Employee.Controllers.AddBusiness;
 
+/// <summary>
+/// Body voor het toevoegen van een bedrijf
+/// </summary>
 public class AddBusinessRequest()
 {
     public int KvK { get; set; }

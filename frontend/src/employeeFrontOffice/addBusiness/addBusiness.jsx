@@ -53,9 +53,13 @@ function AddBusiness() {
             })
             .then(reset => {
                 SetName('');
-                SetKvK('');
+                SetKvk('');
                 SetStreet('');
+                SetNumber('');
                 SetAdd('');
+            })
+            .catch(error => {
+                SetErrors([error.message]);
             })
         }
     }
@@ -74,7 +78,7 @@ function AddBusiness() {
                 <p>Nummer</p>
                 <input value={number} onChange={(e) => SetNumber(NumberCheck(e.target.value))}></input>
                 <p>Toevoeging (niet verplicht)</p>
-                <input value={add} onChange={(e) => SetAdd(NoSpecialCharacters(e.target.value))}></input>
+                <input value={add} onChange={(e) => SetAdd(NoSpecialCharacters(e.target.value.toUpperCase()))}></input>
                 <button onClick={Push}>Bevestig</button>
 
                 {error.length > 0 && (
