@@ -3,6 +3,9 @@ import { useNavigate } from 'react-router-dom';
 import './viewRentalData.css';
 import GeneralHeader from '../../GeneralBlocks/header/header';
 import GeneralFooter from '../../GeneralBlocks/footer/footer';
+import { sorter, specific } from '../../utils/sorter.js'
+import { loadList, loadSingle } from '../../utils/backendLoader.js';
+
 
 const BACKEND_URL = import.meta.env.VITE_REACT_APP_BACKEND_URL_EMPLOYEE ?? 'http://localhost:5276';
 
@@ -12,6 +15,9 @@ function ViewRentalData() {
   const [rentalData, setRentalData] = useState([]);
   const [filterType, setFilterType] = useState('Price');
   const [filterHow, setFilterHow] = useState('Low');
+  const [loadingRequests, setLoadingRequests] = useState({}); 
+  const [loading, setLoading] = useState(true);
+  const [allData, setAllData] = useState([]);
 
   useEffect(() => {
     // Authoristatie check
@@ -41,35 +47,97 @@ function ViewRentalData() {
 
   useEffect(() => {
     const fetchData = async (filterType, filterHow) => {
+        setFilterType('Price');
         setError(null);
         setRentalData([]);
+        setLoading(true);
 
+        const tempData = [];
         try
         {
-            console.log(filterType, filterHow);
             // Alle ids worden opgehaald
-            const response = await fetch(`${BACKEND_URL}/api/viewRentalData/GetReviews?sort=${filterType}&how=${filterHow}`, {
-                method: 'GET',
-                credentials: 'include',
-            });
-
-            if (!response.ok) {
-                throw new Error('Failed to fetch data');
+            const response = await loadSingle(`${BACKEND_URL}/api/viewRentalData/GetReviewsIds`);
+            
+            if (!response)
+            {
+              console.error('Failed to load data');
+              return;
             }
 
             const data = await response.json();
-            const { message } = data;
+            const requestsToLoad = data?.message || [];
 
-            setRentalData(message);
-            console.log(data);
+            for (const id of requestsToLoad)
+            {
+              setLoadingRequests((prevState) => ({...prevState, [id]: true}));
+
+              try
+              {
+                const review = await loadList(`${BACKEND_URL}/api/viewRentalData/GetReviewData?id=${id}`);
+
+                if (review?.message)
+                {
+                  setRentalData((prevRequest) => sorter([...prevRequest, review.message], filterType, filterHow).reverse());
+                  setAllData((prevRequest) => sorter([...prevRequest, review.message], filterType, filterHow).reverse());
+                  setLoadingRequests((prevState) => ({ ...prevState, [id]: false }));
+                  setLoading(false);
+
+                }
+              }
+              catch (err) {
+                console.error(`Failed to fetch data from ID: ${id}: `, err);
+              }
+            }
         }
         catch (error)
         {
             console.error(error);
         }
+        finally
+        {
+          setRentalData((prevRequest) => [...sorter(prevRequest, filterType, filterHow).reverse()]);
+          setAllData((prevRequest) => [...sorter(prevRequest, filterType, filterHow).reverse()]);
+        }
     }
+
     fetchData(filterType, filterHow);
-    }, [filterType, filterHow]);
+    }, []);
+
+    useEffect(() => {
+      const sortedData = sorter(rentalData, filterType, filterHow)
+      setRentalData(sortedData);
+    }, [filterType, filterHow, rentalData])
+
+    useEffect(() => {
+      setFilterHow({ type: "Low" });
+      if (filterType === "VMStatus")
+      {
+        const VMData = specific([...rentalData], filterType, "Low");
+        setRentalData(VMData);
+      }
+      else
+      {
+        const sortedData = sorter(allData, filterType, "Low").reverse();
+        setRentalData(sortedData);
+      }
+    }, [filterType]);
+
+    if (loading) {
+      return (
+        <div className="loading-screen">
+          <p>Loading requests...</p>
+        </div>
+      );
+    }
+  
+    if (error) {
+      return (
+        <div className="error-screen">
+          <p>Error: {error}</p>
+        </div>
+      );
+    }
+
 
   return (
     <>
@@ -77,7 +145,6 @@ function ViewRentalData() {
       <div className="body">
         <h1>Overzicht Huur Aanvragen</h1>
         <div className="filters">
-            <select name="Colums" id="filter" onChange={(e) => {const newFilterType = e.target.value; setFilterType(newFilterType);}}>
                 <option value="Price">Totaal Prijs</option>
                 <option value="StartDate">Start Datum</option>
                 <option value="EndDate">Eind Datum</option>
@@ -87,16 +154,62 @@ function ViewRentalData() {
             </select>
 
             <select name="Sorteren" id="filter" onChange={(e) => {const newFilterHow = e.target.value; setFilterHow(newFilterHow);}}>
-                <option value="Low">Laag - Hoog</option>
-                <option value="High">Hoog - Laag</option>
+              {filterType === 'Price' && (
+                <>
+                  <option value="Low">Laag - Hoog </option>
+                  <option value="High">Hoog - Laag </option>
+                </>
+              )}
+
+              {filterType === 'StartDate' && (
+                <>
+                  <option value="Low">Oudste - Recenste </option>
+                  <option value="High">Recenste - Oudste </option>
+                </>
+              )}
+
+              {filterType === 'EndDate' && (
+                <>
+                  <option value="Low">Oudste - Recenste </option>
+                  <option value="High">Recenste - Oudste </option>
+                </>
+              )}
+
+              {filterType === 'Status' && (
+                <>
+                  <option value="Low">Gesloten - Open </option>
+                  <option value="High">Open - Gesloten </option>
+                </>
+              )}
+
+              {filterType === 'VMStatus' && (
+                <>
+                  <option value="Low">Gesloten - Open </option>
+                  <option value="High">Open - Gesloten </option>
+                </>
+              )}
+
+              {filterType === 'OrderId' && (
+                <>
+                  <option value="Low">Laag - Hoog </option>
+                  <option value="High">Hoog - Laag </option>
+                </>
+              )}
             </select>
         </div>
         <div className="requests-box">
           {rentalData.length > 0 ? (
             <div className="requests-grid">
               {rentalData.map((data, index) => {
+                const isLoading = loadingRequests[rentalData.ID];
+
                 return (
                   <div key={index} className="request-card">
+                    {isLoading ? (
+                      <div className="loading-screen">
+                        <p>Loading...</p>
+                      </div>
+                      ) : (
                       <>
                         <p><strong>Naam:</strong> {data.NameCustomer}</p>
                         <p><strong>Voertuig:</strong> {data.Vehicle}</p>
@@ -106,7 +219,8 @@ function ViewRentalData() {
                         <p><strong>Status: </strong>{data.Status}</p>
                         {data.Status === 'requested' ? null : (<p><strong>Beoordeeld Door: </strong>{data.NameEmployee}</p>)}
                         {data.VMStatus === 'X' ? null : (<p><strong>Oordeel Wagenpark Beheerder: </strong>{data.VMStatus}</p>)}
-                      </>
+                      </>)
+                    }
                   </div>
                 );
               })}

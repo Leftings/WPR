@@ -13,10 +13,10 @@ public class viewRentalDataController : ControllerBase
         _backOfficeRepository = backOfficeRepository ?? throw new ArgumentNullException(nameof(backOfficeRepository));
     }
 
-    [HttpGet("GetReviews")]
-    public async Task<IActionResult> GetReviews(string sort, string how)
+    [HttpGet("GetReviewData")]
+    public async Task<IActionResult> GetReviews(int id)
     {
-        (bool Status, string Message, IList<Dictionary<string, object>> Data) response = _backOfficeRepository.GetDataReviews(sort, how);
+        (bool Status, string Message, Dictionary<string, object> Data) response = _backOfficeRepository.GetDataReview(id);
 
         if (response.Status)
         {
@@ -24,4 +24,18 @@ public class viewRentalDataController : ControllerBase
         }
         return BadRequest(new { message = response.Message });
     }
+
+    [HttpGet("GetReviewsIds")]
+    public async Task<IActionResult> GetDataReviewIds()
+    {
+        (bool Status, string Message, int[] Ids) response = _backOfficeRepository.GetDataReviewIds();
+
+        if (response.Status)
+        {
+            Console.WriteLine("OK");
+            return Ok(new { message = response.Ids});
+        }
+        return BadRequest(new { message = response.Message});
+    }
+
 }

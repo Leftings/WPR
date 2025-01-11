@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import './reviewHireRequest.css';
 import GeneralHeader from '../../GeneralBlocks/header/header';
 import GeneralFooter from '../../GeneralBlocks/footer/footer';
+import { loadList, loadSingle } from '../../utils/backendLoader';
 
 const BACKEND_URL = import.meta.env.VITE_REACT_APP_BACKEND_URL_EMPLOYEE ?? 'http://localhost:5276';
 
@@ -108,7 +109,7 @@ function ReviewHireRequest() {
 
       try {
         // Alle ids worden opgehaald
-        const response = await fetch(`${BACKEND_URL}/api/AcceptHireRequest/getReviewsIds?user=frontOffice`, {
+        const response = await loadSingle(`${BACKEND_URL}/api/AcceptHireRequest/getReviewsIds?user=frontOffice`) /*fetch(`${BACKEND_URL}/api/AcceptHireRequest/getReviewsIds?user=frontOffice`, {
           method: 'GET',
           credentials: 'include',
         });
@@ -116,6 +117,7 @@ function ReviewHireRequest() {
         if (!response.ok) {
           throw new Error('Failed to fetch new requests');
         }
+          */
 
         const data = await response.json();
         const requestsToLoad = data?.message || [];
@@ -126,7 +128,7 @@ function ReviewHireRequest() {
           setLoadingRequests((prevState) => ({ ...prevState, [id]: true }));
           
           try {
-            const review = await GetReview(id);
+            const review = await loadList(`${BACKEND_URL}/api/AcceptHireRequest/getReview?id=${id}`);//await GetReview(id);
             
             if (review?.message) {
               // Request toevoegen aan requests
@@ -149,6 +151,11 @@ function ReviewHireRequest() {
 
     fetchNewRequests();
   }, []);
+
+  useEffect(() => {
+    console.log('New Requests:', newRequests, 'size:', newRequests.length);
+  }, [newRequests]);
+  
 
   if (loading) {
     return (
