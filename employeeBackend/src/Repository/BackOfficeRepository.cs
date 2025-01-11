@@ -3,6 +3,7 @@ using System.Runtime.CompilerServices;
 using Employee.Controllers.viewRentalData;
 using Employee.Database;
 using MySql.Data.MySqlClient;
+using Org.BouncyCastle.Utilities;
 
 namespace Employee.Repository;
 
@@ -16,51 +17,52 @@ public class BackOfficeRepository(Connector connector) : IBackOfficeRepository
     /// (Dit kan in 1 keer gedaan worden, omdat er geen grote gegevens verstuurd worden)
     /// </summary>
     /// <returns></returns>
-    private (bool status, IList<Dictionary<string, object>> rows) GetFromDB()
+    private (bool status, Dictionary<string, object> row) GetFromDB(int id)
     {
         try
         {
-            IList<Dictionary<string, object>> rows = new List<Dictionary<string, object>>();
-            string query = "SELECT * FROM Abonnement";
+           Dictionary<string, object> row = new Dictionary<string, object>();
+            string query = "SELECT * FROM Abonnement WHERE OrderId = @I";
 
             using (var connection = _connector.CreateDbConnection())
-            using (var command = new MySqlCommand(query, (MySqlConnection)connection))
-            using (var reader = command.ExecuteReader())
+            using (var command = new MySqlCommand(query, (MySqlConnection)connection))         
             {
-                int columns = reader.FieldCount;
-
-                // Zolang er rijen zijn, blijft de loop doorgaan
-                while (reader.Read())
+                command.Parameters.AddWithValue("@I", id);
+                using (var reader = command.ExecuteReader())
                 {
-                    // Alle gegevens per kolom worden opgeslagen
-                    Dictionary<string, object> column = new Dictionary<string, object>();
+                    int columns = reader.FieldCount;
 
-                    for (int col = 0; col < columns; col++)
+                    // Zolang er rijen zijn, blijft de loop doorgaan
+                    while (reader.Read())
                     {
-                        string columnName = reader.GetName(col);
-                        object columnData = reader.GetValue(col);
+                        // Alle gegevens per kolom worden opgeslagen
 
-                        column[columnName] = columnData;
+                        for (int col = 0; col < columns; col++)
+                        {
+                            string columnName = reader.GetName(col);
+                            object columnData = reader.GetValue(col);
 
-                        // Extra gegevens worden vanuit andere tabellen opgehaald
-                        if (columnName.Equals("Customer"))
-                        {
-                            column["NameCustomer"] = GetName(columnData, "UserCustomer");
-                        }
-                        else if (columnName.Equals("ReviewedBy"))
-                        {
-                            column["NameEmployee"] = GetName(columnData, "Staff");
-                        }
-                        else if (columnName.Equals("FrameNrCar"))
-                        {
-                            column["Vehicle"] = GetVehicleName(columnData);
+                            row[columnName] = columnData;
+
+                            // Extra gegevens worden vanuit andere tabellen opgehaald
+                            if (columnName.Equals("Customer"))
+                            {
+                                row["NameCustomer"] = GetName(columnData, "UserCustomer");
+                            }
+                            else if (columnName.Equals("ReviewedBy"))
+                            {
+                                row["NameEmployee"] = GetName(columnData, "Staff");
+                            }
+                            else if (columnName.Equals("FrameNrCar"))
+                            {
+                                row["Vehicle"] = GetVehicleInfo(columnData);
+                            }
                         }
                     }
-                    rows.Add(column);
                 }
             }
 
-            return (true, rows);
+            return (true, row);
         }
         catch (MySqlException ex)
         {
@@ -124,7 +126,7 @@ public class BackOfficeRepository(Connector connector) : IBackOfficeRepository
     /// </summary>
     /// <param name="frameNr"></param>
     /// <returns></returns>
-    private object GetVehicleName(object frameNr)
+    private object GetVehicleInfo(object frameNr)
     {
         try
         {
@@ -154,135 +156,55 @@ public class BackOfficeRepository(Connector connector) : IBackOfficeRepository
         }
     }
 
-    /// <summary>
-    /// De rijen worden gesorteerd op basis van de kolom waarop de gebruiker wilt sorteren (Double).
-    /// rows: Lijst met alle rijen erin als Dictionary vorm
-    /// how: Van laag naar hoog of van hoog naar laag
-    /// column: Op welke kolom gesorteerd moet worden
-    /// </summary>
-    /// <param name="rows"></param>
-    /// <param name="how"></param>
-    /// <param name="column"></param>
-    /// <returns></returns>
-    private IList<Dictionary<string, object>> SortNumber(IList<Dictionary<string, object>> rows, string how, string column)
+    public (bool Status, string Message, Dictionary<string, object> Data) GetDataReview(int id)
     {
-        for (int row = 1; row < rows.Count; row++)
-        {
-            Dictionary<string, object> key = rows[row];
-            int j = row - 1;
-
-            while (j >= 0 &&
-                (how.Equals("Low") 
-                    ? Convert.ToDouble(key[column]) <= Convert.ToDouble(rows[j][column])
-                    :  Convert.ToDouble(key[column]) >= Convert.ToDouble(rows[j][column])
-            ))
-            {
-                rows[j + 1] = rows[j];
-                j = j - 1;
-            }
-            rows[j + 1] = key;
-        }
-
-        return rows;
-    }
-
-    /// <summary>
-    /// De rijen worden gesorteerd op basis van de kolom waarop de gebruiker wilt sorteren (String).
-    /// rows: Lijst met alle rijen erin als Dictionary vorm
-    /// how: Van laag naar hoog of van hoog naar laag
-    /// column: Op welke kolom gesorteerd moet worden
-    /// </summary>
-    /// <param name="rows"></param>
-    /// <param name="how"></param>
-    /// <param name="column"></param>
-    /// <returns></returns>
-    private IList<Dictionary<string, object>> SortName(IList<Dictionary<string, object>> rows, string how, string column)
-    {
-        for (int row = 1; row < rows.Count; row++)
-        {
-            Dictionary<string, object> key = rows[row];
-            int j = row - 1;
-
-            while (j >= 0 &&
-                (how.Equals("Low") 
-                    ? String.Compare((String)key[column], (String)rows[j][column]) > 0
-                    : String.Compare((String)key[column], (String)rows[j][column]) <= 0
-            ))
-            {
-                rows[j + 1] = rows[j];
-                j = j - 1;
-            }
-            rows[j + 1] = key;
-        }
-
-        return rows;
-    }
-
-    /// <summary>
-    /// De rijen worden gesorteerd op basis van de kolom waarop de gebruiker wilt sorteren (DateTime).
-    /// rows: Lijst met alle rijen erin als Dictionary vorm
-    /// how: Van laag naar hoog of van hoog naar laag
-    /// column: Op welke kolom gesorteerd moet worden
-    /// </summary>
-    /// <param name="rows"></param>
-    /// <param name="how"></param>
-    /// <param name="column"></param>
-    /// <returns></returns>
-    private IList<Dictionary<string, object>> SortDate(IList<Dictionary<string, object>> rows, string how, string column)
-    {
-        for (int row = 1; row < rows.Count; row++)
-        {
-            Dictionary<string, object> key = rows[row];
-            int j = row - 1;
-
-            while (j >= 0 &&
-                (how.Equals("Low") 
-                    ? DateTime.Compare((DateTime)key[column], (DateTime)rows[j][column]) <= 0
-                    : DateTime.Compare((DateTime)key[column], (DateTime)rows[j][column]) > 0
-            ))
-            {
-                rows[j + 1] = rows[j];
-                j = j - 1;
-            }
-            rows[j + 1] = key;
-        }
-
-        return rows;
-    }
-
-    /// <summary>
-    /// Vanuit GetDataReviews worden de gegevens verzameld en gesorteerd
-    /// sort: Op welke kolom gesorteerd moet worden
-    /// how: Hoe er gesorteerd moet worden (laag - hoog, hoog - laag)
-    /// </summary>
-    /// <param name="sort"></param>
-    /// <param name="how"></param>
-    /// <returns></returns>
-    public (bool Status, string Message, IList<Dictionary<string, object>> Data) GetDataReviews(string sort, string how)
-    {
-        (bool Status, IList<Dictionary<string, object>> rows) data = GetFromDB();
+        (bool Status, Dictionary<string, object> row) data = GetFromDB(id);
 
         if (!data.Status)
         {
             return (false, _exception.Message, null);
         }
+        return (true, null, data.row);
+    }
 
+    public (bool Status, string Message, int[] Ids) GetDataReviewIds()
+    {
         try
         {
-            Convert.ToDouble(data.rows[0][sort]);
-            return (true, sort, SortNumber(data.rows, how, sort));
+            string size = "SELECT COUNT(*) FROM Abonnement";
+            int rows = 0;
+            using(var connection = _connector.CreateDbConnection())
+            using(var rowsCommand = new MySqlCommand(size, (MySqlConnection)connection))
+            using(var rowsReader = rowsCommand.ExecuteReader())
+            {
+                rowsReader.Read();
+                rows = Convert.ToInt32(rowsReader.GetValue(0));
+            }
+
+            string query = "SELECT OrderId FROM Abonnement";
+
+            using(var connection = _connector.CreateDbConnection())
+            using(var command = new MySqlCommand(query, (MySqlConnection)connection))
+            using(var reader = command.ExecuteReader())
+            {
+                int[] ids = new int[rows];
+                int place = 0;
+
+                while(reader.Read())
+                {
+                    ids[place++] = (int)reader.GetValue(0);
+                }
+
+                return (true, "Ids", ids);
+            }
+        }
+        catch (MySqlException ex)
+        {
+            return (false, ex.Message, null);
         }
         catch (Exception ex)
         {
-            try
-            {
-                Convert.ToString(data.rows[0][sort]);
-                return (true, sort, SortName(data.rows, how, sort));
-            }
-            catch (Exception ex2)
-            {
-                return (true, sort, SortDate(data.rows, how, sort));
-            }
+            return (false, ex.Message, null);
         }
     }
 }
