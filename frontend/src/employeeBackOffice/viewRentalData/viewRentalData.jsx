@@ -6,6 +6,7 @@ import GeneralFooter from '../../GeneralBlocks/footer/footer';
 import { sorter, specific } from '../../utils/sorter.js'
 import { loadList, loadSingle } from '../../utils/backendLoader.js';
 
+
 const BACKEND_URL = import.meta.env.VITE_REACT_APP_BACKEND_URL_EMPLOYEE ?? 'http://localhost:5276';
 
 function ViewRentalData() {
@@ -137,13 +138,13 @@ function ViewRentalData() {
       );
     }
 
+
   return (
     <>
       <GeneralHeader />
       <div className="body">
         <h1>Overzicht Huur Aanvragen</h1>
         <div className="filters">
-            <select name="Colums" id="filter" onChange={(e) => {const newFilterType = e.target.value; setFilterType(newFilterType); }}>
                 <option value="Price">Totaal Prijs</option>
                 <option value="StartDate">Start Datum</option>
                 <option value="EndDate">Eind Datum</option>

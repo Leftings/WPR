@@ -37,4 +37,5 @@ public class viewRentalDataController : ControllerBase
         }
         return BadRequest(new { message = response.Message});
     }
+
 }

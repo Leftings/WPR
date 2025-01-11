@@ -2,7 +2,6 @@ using System.Data;
 using System.Runtime.CompilerServices;
 using Employee.Controllers.viewRentalData;
 using Employee.Database;
-using MySql.Data.MySqlClient;
 using Org.BouncyCastle.Utilities;
 
 namespace Employee.Repository;
@@ -17,6 +16,7 @@ public class BackOfficeRepository(Connector connector) : IBackOfficeRepository
     /// (Dit kan in 1 keer gedaan worden, omdat er geen grote gegevens verstuurd worden)
     /// </summary>
     /// <returns></returns>
+
     private (bool status, Dictionary<string, object> row) GetFromDB(int id)
     {
         try
@@ -63,6 +63,7 @@ public class BackOfficeRepository(Connector connector) : IBackOfficeRepository
             }
 
             return (true, row);
+
         }
         catch (MySqlException ex)
         {
@@ -205,6 +206,7 @@ public class BackOfficeRepository(Connector connector) : IBackOfficeRepository
         catch (Exception ex)
         {
             return (false, ex.Message, null);
+
         }
     }
 }
