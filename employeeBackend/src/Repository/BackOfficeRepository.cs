@@ -90,6 +90,7 @@ public class BackOfficeRepository(Connector connector) : IBackOfficeRepository
             }
 
             return (true, row);
+
         }
         catch (MySqlException ex)
         {
@@ -330,6 +331,7 @@ public class BackOfficeRepository(Connector connector) : IBackOfficeRepository
         catch (Exception ex)
         {
             return (false, ex.Message, null);
+
         }
     }
 }

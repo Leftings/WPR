@@ -1,7 +1,10 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client';
-import { BrowserRouter as Router, Route, Routes, BrowserRouter } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import './index.css';
+
 import Login from './login/loginEmployee.jsx';
 import Home from './home/home.jsx';
 import SignUp from './signUp/signUp.jsx';
@@ -25,9 +28,18 @@ import WagenparkBeheerderOverzichtPage from './wagenparkBeheerderOverzichtPage/w
 import AddBusiness from './employeeFrontOffice/addBusiness/addBusiness.jsx';
 import ViewRentalData from './employeeBackOffice/viewRentalData/viewRentalData.jsx';
 
-
 createRoot(document.getElementById('root')).render(
     <Router>
+        {}
+        <ToastContainer
+            position="top-right"
+            autoClose={3000}
+            hideProgressBar={false}
+            newestOnTop={true}
+            closeOnClick
+            pauseOnHover
+            draggable
+        />
         <Routes>
             <Route path="/" element={<Home />}></Route>
             <Route path="/login" element={<Login />}></Route>
