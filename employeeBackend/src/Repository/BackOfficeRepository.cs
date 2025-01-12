@@ -149,9 +149,74 @@ public class BackOfficeRepository(Connector connector) : IBackOfficeRepository
         }
     }
 
+    private Dictionary<string, object> GetBusinessInfo(object employee)
+    {
+        try
+        {
+            string query = $"SELECT Business From UserEmployee WHERE ID = @I";
+            object business = "";
+
+            using (var connection = _connector.CreateDbConnection())
+            using (var command = new MySqlCommand(query, (MySqlConnection)connection))
+            {
+                command.Parameters.AddWithValue("@I", employee);
+                using (var reader = command.ExecuteReader())
+                {
+                    Console.WriteLine("Y");
+                    while (reader.Read())
+                    {
+                        business = reader.GetValue(0).ToString();
+                    }
+                }
+            }
+
+            string query2 = "SELECT * FROM Business WHERE KvK = @K";
+            using (var connection = _connector.CreateDbConnection())
+            using (var command = new MySqlCommand(query2, (MySqlConnection)connection))
+            {
+                command.Parameters.AddWithValue("@K", business);
+                using (var reader = command.ExecuteReader())
+                {
+                    Dictionary<string, object> data = new Dictionary<string, object>();
+
+                    while (reader.Read())
+                    {
+                        for (int i = 0; i < reader.FieldCount; i++)
+                        {
+                            Console.WriteLine(reader.GetName(i));
+                            if (reader.GetName(i).Equals("Adres"))
+                            {
+                                data["AdresBusiness"] = reader.GetValue(i);
+                            }
+                            else
+                            {
+                                data[reader.GetName(i)] = reader.GetValue(i);
+                            }
+                        }
+                    }
+
+                    return data;
+                }
+            }
+
+        }
+        catch (MySqlException ex)
+        {
+            Console.WriteLine(ex);
+            _exception = ex;
+            return null;
+        }
+        catch (Exception ex)
+        {
+            _exception = ex;
+            Console.WriteLine(ex);
+            return null;
+        }
+    }
+
     private Dictionary<string, object> GetFullPerson(object id)
     {
-         try
+        try
         {
             string query = $"SELECT * From UserCustomer WHERE ID = @I";
 
@@ -167,7 +232,24 @@ public class BackOfficeRepository(Connector connector) : IBackOfficeRepository
                     {
                         for (int i = 0; i < reader.FieldCount; i++)
                         {
+                            string columnName = reader.GetName(i);
+                            object columnData = reader.GetValue(i);
+
                             person[reader.GetName(i)] = reader.GetValue(i);
+
+                            Console.WriteLine(columnName);
+
+                            if (columnName.Equals("ID"))
+                            {
+                                foreach (var item in GetBusinessInfo(columnData))
+                                {
+                                    Console.WriteLine(item.Key);
+                                    if (!person.ContainsKey(item.Key))
+                                    {
+                                        person[item.Key] = item.Value;
+                                    }
+                                }
+                            }
                         }
                     }
                     return person;

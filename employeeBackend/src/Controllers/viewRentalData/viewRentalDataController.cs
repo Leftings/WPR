@@ -45,6 +45,7 @@ public class viewRentalDataController : ControllerBase
 
         if (response.Status)
         {
+            Console.WriteLine(response.Data);
             return Ok(new { message = response.Data });
         }
         return BadRequest(new { message = response.Message });

@@ -4,6 +4,7 @@ import { getErrorMessage } from '../utils/errorHandler.jsx'
 import "./signUp.css"
 import GeneralHeader from "../GeneralBlocks/header/header.jsx";
 import GeneralFooter from "../GeneralBlocks/footer/footer.jsx";
+import {KvKChecker, NumberCheck} from "../utils/numberFieldChecker.js";
 
 const BACKEND_URL = import.meta.env.VITE_REACT_APP_BACKEND_URL ?? 'http://localhost:5165';
 
@@ -204,7 +205,7 @@ function SignUp() {
                             <label htmlFor="kvk">KVK</label>
                             <br></br>
                             <input type="text" id="kvk" value={KvK}
-                                   onChange={(e) => setKvK(e.target.value)}></input>
+                                   onChange={(e) => setKvK(NumberCheck(KvKChecker(e.target.value)))}></input>
                             <br></br>
                             <label htmlFor="password">Wachtwoord</label>
                             <br></br>

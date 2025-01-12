@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './viewRentalData.css';
 import GeneralHeader from '../../GeneralBlocks/header/header';
@@ -20,6 +20,9 @@ function ViewRentalData() {
   const [allData, setAllData] = useState([]);
   const [selectedCard, setSelectedCard] = useState(null);
   const [specificData, setSpecificData] = useState([]);
+  const [specificDataLoading, setSpecificDataLoading] = useState(false);
+  const [, updateState] = useState();
+  const forceUpdate = useCallback(() => updateState({}), []);
 
   useEffect(() => {
     // Authoristatie check
@@ -54,7 +57,6 @@ function ViewRentalData() {
         setRentalData([]);
         setLoading(true);
 
-        const tempData = [];
         try
         {
             // Alle ids worden opgehaald
@@ -134,10 +136,26 @@ function ViewRentalData() {
 
     async function collectSpecificData(id)
     {
-      const data = await loadList(`${BACKEND_URL}/api/viewRentalData/GetFullReviewData?id=${id}`);
-      console.log(data);
-      setSpecificData(data);
+      setSpecificDataLoading(true);
+      try
+      {
+        const data = await loadList(`${BACKEND_URL}/api/viewRentalData/GetFullReviewData?id=${id}`);
+        console.log(data);
+        setSpecificData([data.message]);
+      }
+      catch (error)
+      {
+        console.error(error);
+        setSpecificData([]);
+      }
+      finally
+      {
+        setSpecificDataLoading(false);
+        forceUpdate();
+        console.log(specificData);
+      }
     }
+
 
     if (loading) {
       return (
@@ -228,35 +246,57 @@ function ViewRentalData() {
         </div>
         {selectedCard && (
           <div className="fullscreen-card-overlay">
-            <div className="fullscreen-card">
-              <button className="close-btn" onClick={() => setSelectedCard(null)}>X</button>
+            {specificDataLoading ? (
+              <div className="loading-screen">
+                <p>Loading detailed data...</p>
+              </div>
+            ) : (
+              specificData.map((data, index) => (
+                <div key={index} className="fullscreen-card">
+                  <h1><span>Huur gegevens</span></h1>
+                  <button className="close-btn" onClick={() => setSelectedCard(null)}>X</button>
 
-              <h1>Huur gegevens</h1>
-              <div className="person">
-                <h2>Persoons gegevens</h2>
-                <p><strong>Naam:</strong> {specificData[0]}, {specificData?.FirstName}</p>
-              </div>
-              <div className="vehicle">
-                <h2>Voertuig gegevens</h2>
-                <p><strong>Voertuig:</strong> {selectedCard.Vehicle}</p>
-              </div>
-              <div className="rental">
-                <h2>Overige huurgegevens</h2>
-                <p><strong>Start Datum:</strong> {new Date(selectedCard.StartDate).toLocaleDateString()}</p>
-                <p><strong>Eind Datum:</strong> {new Date(selectedCard.EndDate).toLocaleDateString()}</p>
-                <p><strong>Totaal Prijs:</strong> €{selectedCard.Price}</p>
-                <p><strong>Status: </strong>{selectedCard.Status}</p>
-                {selectedCard.Status !== 'requested' && (
-                <p><strong>Beoordeeld Door:</strong> {selectedCard.NameEmployee}</p>
-                )}
-              </div>
-              {selectedCard.VMStatus !== 'X' && (
-                <div className="business">
-                  <h2>Bedrijf gegevens</h2>
-                  <p><strong>Oordeel Wagenpark Beheerder:</strong> {selectedCard.VMStatus}</p>
+                  <div className="person">
+                    <h2>Persoons gegevens</h2>
+                    <p><strong>Naam:</strong> {data.LastName}, {data.FirstName}</p>
+                    <p><strong>Email:</strong> {data.Email}</p>
+                    <p><strong>Telefoon Nummer:</strong> {data.Telnum}</p>
+                    <p><strong>Adres:</strong> {data.Adres}</p>
+                  </div>
+                  <div className="vehicle">
+                    <h2>Voertuig gegevens</h2>
+                    <p><strong>Merk:</strong> {data.Brand}</p>
+                    <p><strong>Type:</strong> {data.Type}</p>
+                    <p><strong>Bouwjaar:</strong> {data.YoP}</p>
+                    <p><strong>Kleur:</strong> {data.Color}</p>
+                    <p><strong>Soort Voertuig:</strong> {data.Sort}</p>
+                    <p><strong>Nummer Plaat:</strong> {data.LicensePlate}</p>
+                  </div>
+                  <div className="rental">
+                    <h2>Overige huurgegevens</h2>
+                    <p><strong>Start Datum:</strong> {new Date(data.StartDate).toLocaleDateString()}</p>
+                    <p><strong>Eind Datum:</strong> {new Date(data.EndDate).toLocaleDateString()}</p>
+                    <p><strong>Totaal Prijs:</strong> €{data.Price}</p>
+                    <p><strong>Status: </strong>{data.Status}</p>
+                    {selectedCard.Status !== 'requested' && (
+                      <p><strong>Beoordeeld Door:</strong> {data.NameEmployee}</p>
+                    )}
+                  </div>
+                  {selectedCard.VMStatus !== 'X' && (
+                    <div className="business">
+                      <h2>Bedrijf gegevens</h2>
+                      <p><strong>Bedrijfs Naam:</strong> {data.BusinessName}</p>
+                      <p><strong>KvK nummer:</strong> {data.KvK}</p>
+                      <p><strong>Adres:</strong> {data.AdresBusiness}</p>
+                      <p><strong>Oordeel Wagenpark Beheerder:</strong> {data.VMStatus}</p>
+                    </div>
+                  )}
+                  <div className={`blob ${selectedCard.VMStatus === 'X' ? 'blob-right' : ''}`}>
+                    <img src={`data:image/jpeg;base64,${data.VehicleBlob}`} alt="vehicle" />
+                  </div>
                 </div>
-              )}
-            </div>
+              ))
+            )}
           </div>
         )}
       </div>

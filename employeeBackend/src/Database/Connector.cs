@@ -47,7 +47,6 @@ public class Connector : IConnector
         {
             var connection = new MySqlConnection(connectString); // Maak een nieuwe MySQL connectie instantie
             connection.Open();
-            Console.WriteLine("Database connection successful");
             return connection; // return de open connectie
         }
         catch (MySqlException ex)

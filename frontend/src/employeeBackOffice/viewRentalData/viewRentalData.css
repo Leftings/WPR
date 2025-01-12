@@ -78,6 +78,7 @@
   align-items: center;
   height: 100vh;
   font-size: 1.5em;
+  color: #f0f0f0;
 }
 
 .loading-screen::before {
@@ -97,12 +98,12 @@
 }
 
 .fullscreen-card-overlay {
-  position: fixed; 
+  position: fixed;
   top: 0;
   left: 0;
-  width: 100%; 
-  height: 100%; 
-  background-color: rgba(0, 0, 0, 0.5); 
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -110,14 +111,19 @@
 }
 
 .fullscreen-card {
-  background-color: #fff; 
+  background-color: #f0f0f0;
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   max-width: 90%;
   max-height: 90%;
-  overflow-y: auto;
+  overflow: scroll;
   position: relative;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto auto auto;
+  grid-gap: 20px;
+  min-width: 350px;
 }
 
 .close-btn {
@@ -128,10 +134,74 @@
   border: none;
   font-size: 1.5rem;
   cursor: pointer;
-  color: #333;
+  color: #ff0000;
+  z-index: 1001;
 }
 
 .close-btn:hover {
   color: #000;
 }
+
+.fullscreen-card h1 {
+  grid-column: 1 / span 2;
+  text-align: center;
+  margin: 0;
+  margin-bottom: 20px;
+  padding: 0;
+}
+
+.person, .vehicle, .rental, .business, .blob {
+  background-color: #fff;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  width: 350px;
+  height: 300px;
+}
+
+.person {
+  grid-column: 1;
+}
+
+.vehicle {
+  grid-column: 2;
+}
+
+.rental {
+  grid-column: 1;
+}
+
+.business {
+  grid-column: 2;
+}
+
+.blob {
+  grid-column: 1 / span 2;
+  margin-top: 0;
+}
+
+.blob-right {
+  grid-column: 2;
+}
+
+.blob img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+@media (max-width: 768px) {
+  .fullscreen-card {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto auto auto;
+  }
+  .fullscreen-card h1 {
+    grid-column: 1;
+  }
+  .blob {
+    grid-column: 1;
+  }
+}
+
 
