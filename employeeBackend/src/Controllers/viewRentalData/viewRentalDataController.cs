@@ -37,7 +37,7 @@ public class viewRentalDataController : ControllerBase
         }
         return BadRequest(new { message = response.Message});
     }
-
+    
     [HttpGet("GetFullReviewData")]
     public async Task<IActionResult> GetFullReview(int id)
     {

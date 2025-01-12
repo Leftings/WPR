@@ -24,6 +24,7 @@ function ViewRentalData() {
   const [, updateState] = useState();
   const forceUpdate = useCallback(() => updateState({}), []);
 
+
   useEffect(() => {
     // Authoristatie check
     const validateCookie = async () => {
@@ -57,6 +58,7 @@ function ViewRentalData() {
         setRentalData([]);
         setLoading(true);
 
+        const tempData = [];
         try
         {
             // Alle ids worden opgehaald
@@ -78,14 +80,13 @@ function ViewRentalData() {
               try
               {
                 const review = await loadList(`${BACKEND_URL}/api/viewRentalData/GetReviewData?id=${id}`);
-
+                
                 if (review?.message)
                 {
                   setRentalData((prevRequest) => sorter([...prevRequest, review.message], filterType, filterHow));
                   setAllData((prevRequest) => sorter([...prevRequest, review.message], filterType, filterHow));
                   setLoadingRequests((prevState) => ({ ...prevState, [id]: false }));
                   setLoading(false);
-
                 }
               }
               catch (err) {
@@ -108,6 +109,7 @@ function ViewRentalData() {
     }, []);
 
     useEffect(() => {
+
       const sortedData = sorter([...rentalData], filterType, filterHow)
       setRentalData(sortedData);
     }, [filterHow])
@@ -156,7 +158,6 @@ function ViewRentalData() {
       }
     }
 
-
     if (loading) {
       return (
         <div className="loading-screen">
@@ -188,7 +189,6 @@ function ViewRentalData() {
                 <option value="VMStatus">Wagenpark Beheerder Status</option>
                 <option value="OrderId">Order Id</option>
             </select>
-
             <select name="Sorteren" id="filter" value={filterHow} onChange={(e) => {const newFilterHow = e.target.value; setFilterHow(newFilterHow);}}>
               {['Price', 'OrderId'].includes(filterType) && (
                 <>
@@ -196,7 +196,6 @@ function ViewRentalData() {
                   <option value="High">Hoog - Laag </option>
                 </>
               )}
-
               {['StartDate', 'EndDate'].includes(filterType) && (
                 <>
                   <option value="Low">Oudste - Recenste </option>

@@ -23,6 +23,7 @@ public class BackOfficeRepository(Connector connector) : IBackOfficeRepository
         try
         {
             Dictionary<string, object> row = new Dictionary<string, object>();
+
             string query = "SELECT * FROM Abonnement WHERE OrderId = @I";
 
             using (var connection = _connector.CreateDbConnection())
@@ -356,7 +357,7 @@ public class BackOfficeRepository(Connector connector) : IBackOfficeRepository
     public (bool Status, string Message, Dictionary<string, object> Data) GetFullDataReview(int id)
     {
         (bool Status, Dictionary<string, object> row) data = GetFromDB(id, true);
-
+        
         if (!data.Status)
         {
             return (false, _exception.Message, null);
