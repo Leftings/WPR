@@ -6,9 +6,9 @@ export const sorter = (dataList, orderBy, orderHow) =>
         let j = data - 1;
 
         while (j >= 0 && (
-            orderHow === "Low"
-            ? key[orderBy] > dataList[j][orderBy]
-            : key[orderBy] <= dataList[j][orderBy])
+            orderHow.toString().toLowerCase() === "low"
+            ? key[orderBy] <= dataList[j][orderBy]
+            : key[orderBy] > dataList[j][orderBy])
         )
         {
             dataList[j + 1] = dataList[j];
@@ -20,14 +20,14 @@ export const sorter = (dataList, orderBy, orderHow) =>
     return dataList;
 }
 
-export const specific = (dataList, orderBy, orderHow) =>
+export const specific = (dataList, orderBy, orderHow, prefix) =>
 {
     console.log(typeof dataList);
     let length = dataList.length;
     for (let data = 0; data < length; data++)
     {
         console.log(dataList[data][orderBy]);
-        if (dataList[data][orderBy] === 'X')
+        if (dataList[data][orderBy] === prefix)
         {
            dataList.splice(data, 1);
            data -= 1;
