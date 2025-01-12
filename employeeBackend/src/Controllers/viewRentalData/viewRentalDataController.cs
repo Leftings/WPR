@@ -37,5 +37,17 @@ public class viewRentalDataController : ControllerBase
         }
         return BadRequest(new { message = response.Message});
     }
+    
+    [HttpGet("GetFullReviewData")]
+    public async Task<IActionResult> GetFullReview(int id)
+    {
+        (bool Status, string Message, Dictionary<string, object> Data) response = _backOfficeRepository.GetFullDataReview(id);
 
+        if (response.Status)
+        {
+            Console.WriteLine(response.Data);
+            return Ok(new { message = response.Data });
+        }
+        return BadRequest(new { message = response.Message });
+    }
 }
