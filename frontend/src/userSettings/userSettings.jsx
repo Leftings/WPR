@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import {Await, Link, Navigate, useNavigate} from 'react-router-dom';
+import GeneralHeader from "../GeneralBlocks/header/header.jsx";
+import GeneralFooter from "../GeneralBlocks/footer/footer.jsx";
 
 import './userSettings.css';
 
@@ -212,15 +214,8 @@ function UserSettings() {
 
   return (
     <>
-      <header>
-        <div id="left">
-            <p id="user">{user}</p>
-        </div>
-
-        <div id="right">
-        </div>
-      </header>
-
+    <GeneralHeader />
+    <main>
       <body>
         <div>
             <h1>Gebruikers Instellingen: {user}</h1>
@@ -271,7 +266,8 @@ function UserSettings() {
         </div>
       </body>
 
-      <footer></footer>
+        </main>
+        <GeneralFooter />
     </>
   );
 }
