@@ -1,46 +1,66 @@
 .requests-box {
-    border: 2px solid #ccc; 
-    padding: 20px;
-    margin-top: 20px;
-    background-color: #f9f9f9; 
-    border-radius: 8px;
-    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
-  }
-  
-  .requests-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 20px;
-  }
-  
-  .request-card {
-    background-color: #fff;
-    padding: 15px;
-    border-radius: 8px; 
-    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
-    max-width: 350;
-    min-width: 350px;
-    text-align: center;
-  }
-  
-  .request-card p {
-    margin: 5px 0;
-  }
-  
+  border: 2px solid #ccc; 
+  padding: 20px;
+  margin-top: 20px;
+  background-color: #f9f9f9; 
+  border-radius: 8px;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+  width: auto; /* Set the container to 80% width */
+  margin-left: auto; /* Center the container */
+  margin-right: auto;
+}
+
+.requests-grid {
+  display: grid;
+  gap: 20px;
+  grid-auto-rows: auto; /* Ensure cards are evenly spaced */
+  justify-content: center; /* Center-align the grid */
+}
+
+.request-card {
+  background-color: #fff;
+  padding: 15px;
+  border-radius: 8px; 
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+  width: 350px; /* Fixed card width */
+  height: auto; /* Allow content to dictate height */
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.request-card:hover {
+  transform: scale(1.03); /* Slight zoom on hover */
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2); /* Deeper shadow on hover */
+}
+
+.request-card p {
+  margin: 5px 0;
+}
+
 .accept {
-    background-color: #1D7874;
-    color: #fff;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
+  background-color: #1D7874;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.accept:hover {
+  background-color: #14615c; /* Darker shade on hover */
 }
 
 .deny {
-    background-color: red;
-    color: #fff;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
+  background-color: red;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.deny:hover {
+  background-color: #b30000; /* Darker red on hover */
 }
 
 #buttons {
@@ -50,28 +70,28 @@
   margin-top: 10px;
 }
 
-  .request-card strong {
-    font-weight: bold;
+.request-card strong {
+  font-weight: bold;
+}
+
+@media (max-width: 1200px) {
+  .requests-grid {
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); /* Adjust grid dynamically */
   }
-  
-  @media (max-width: 1200px) {
-    .requests-grid {
-      grid-template-columns: repeat(3, 1fr);
-    }
+}
+
+@media (max-width: 900px) {
+  .requests-grid {
+    grid-template-columns: repeat(2, 1fr); /* Two columns for smaller screens */
   }
-  
-  @media (max-width: 900px) {
-    .requests-grid {
-      grid-template-columns: repeat(2, 1fr);
-    }
+}
+
+@media (max-width: 600px) {
+  .requests-grid {
+    grid-template-columns: 1fr; /* One column for very small screens */
   }
-  
-  @media (max-width: 600px) {
-    .requests-grid {
-      grid-template-columns: 1fr;
-    }
-  }
-  
+}
+
 .loading-screen {
   display: flex;
   justify-content: center;
@@ -117,7 +137,7 @@
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   max-width: 90%;
   max-height: 90%;
-  overflow: scroll;
+  overflow-y: auto; /* Scrollable content */
   position: relative;
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -135,19 +155,17 @@
   font-size: 1.5rem;
   cursor: pointer;
   color: #ff0000;
-  z-index: 1001;
+  transition: color 0.3s ease;
 }
 
 .close-btn:hover {
-  color: #000;
+  color: #000; /* Hover effect for close button */
 }
 
 .fullscreen-card h1 {
   grid-column: 1 / span 2;
   text-align: center;
-  margin: 0;
-  margin-bottom: 20px;
-  padding: 0;
+  margin: 0 0 20px;
 }
 
 .person, .vehicle, .rental, .business, .blob {
@@ -196,11 +214,12 @@
     grid-template-columns: 1fr;
     grid-template-rows: auto auto auto auto;
   }
+
   .fullscreen-card h1 {
     grid-column: 1;
   }
+
   .blob {
     grid-column: 1;
   }
 }
-

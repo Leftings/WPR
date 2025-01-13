@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import './reviewHireRequest.css';
 import GeneralHeader from '../../GeneralBlocks/header/header';
 import GeneralFooter from '../../GeneralBlocks/footer/footer';
-import { loadList, loadSingle } from '../../utils/backendLoader';
+import { loadArray, loadSingle } from '../../utils/backendLoader';
 
 const BACKEND_URL = import.meta.env.VITE_REACT_APP_BACKEND_URL ?? 'http://localhost:5165';
 
@@ -128,7 +128,7 @@ function ReviewHireRequest() {
           setLoadingRequests((prevState) => ({ ...prevState, [id]: true }));
           
           try {
-            const review = await loadList(`${BACKEND_URL}/api/AcceptHireRequest/getReview?id=${id}`);//await GetReview(id);
+            const review = await loadArray(`${BACKEND_URL}/api/AcceptHireRequest/getReview?id=${id}`);//await GetReview(id);
             
             if (review?.message) {
               // Request toevoegen aan requests
