@@ -1,7 +1,7 @@
 ﻿using System.Data;
 using System.Diagnostics;
-using Employee.Controllers.AddBusiness;
-namespace Employee.Repository;
+using WPR.Controllers.AddBusiness;
+namespace WPR.Repository;
 
 /// <summary>
 /// Interface defining methods voor user gerelateerde database operaties,
@@ -11,7 +11,7 @@ namespace Employee.Repository;
 /// en consitente interface voor interactie met de database.
 /// Dit is goed voor: testbaarheid, onderhoudbaarheid en scheiding van verantwoordelijkheden binnen de applicatie.
 /// </summary>
-public interface IUserRepository
+public interface IEmployeeRepository
 {
     Task<(bool status, string message)> AddVehicleAsync(int yop, string brand, string type, string licensPlate, string color, string sort, double price, string description, byte[] vehicleBlob, int places);
     Task<(bool status, string message)> AddStaff(Object[] personData);

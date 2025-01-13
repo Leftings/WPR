@@ -33,20 +33,45 @@ public class CookieController : ControllerBase
     public async Task<IActionResult> GetUserId()
     {
         string loginCookie = HttpContext.Request.Cookies["LoginSession"];
-
-        if (string.IsNullOrEmpty(loginCookie))
-        {
-            return BadRequest(new { message = "No Cookie" });
-        }
+        string? loginCookie2 = HttpContext.Request.Cookies["LoginVehicleManagerSession"];
+        string? loginCookie3 = HttpContext.Request.Cookies["LoginEmployeeSession"];
 
         try
         {
-            return Ok(new { message = _crypt.Decrypt(loginCookie) });
+            if (!string.IsNullOrEmpty(loginCookie))
+            {
+                return Ok(new { message = _crypt.Decrypt(loginCookie) });
+            }
+            if (!string.IsNullOrEmpty(loginCookie2))
+            {
+                return Ok(new { message = _crypt.Decrypt(loginCookie2) });
+            }
+            if (!string.IsNullOrEmpty(loginCookie3))
+            {
+                return Ok(new { message = _crypt.Decrypt(loginCookie3)} );
+            }
+
+            return BadRequest(new { message = "No Cookie" });
+
         }
         catch
         {
-            // Als er geen geldig cookie is, wordt deze verwijderd
+            // Ongeldige cookies worden verwijderd
             Response.Cookies.Append("LoginSession", "Invalid cookie", new CookieOptions
+            {
+                HttpOnly = true,
+                Secure = true,
+                Expires = DateTimeOffset.UtcNow.AddDays(-1)
+            });
+
+            Response.Cookies.Append("LoginEmployeeSession", "Invalid cookie", new CookieOptions
+            {
+                HttpOnly = true,
+                Secure = true,
+                Expires = DateTimeOffset.UtcNow.AddDays(-1)
+            });
+
+            Response.Cookies.Append("LoginVehicleManagerSession", "Invalid cookie", new CookieOptions
             {
                 HttpOnly = true,
                 Secure = true,
@@ -132,6 +157,42 @@ public class CookieController : ControllerBase
         {
             // Als er geen geldig cookie is, wordt deze verwijderd
             Response.Cookies.Append("LoginSessionEmployee", "Invalid cookie", new CookieOptions
+            {
+                HttpOnly = true,
+                Secure = true,
+                Expires = DateTimeOffset.UtcNow.AddDays(-1)
+            });
+            
+            return BadRequest(new { message = "Invalid Cookie, new cookie set" });
+        }
+    }
+
+    /// <summary>
+    /// Er wordt gekeken of de Vehicle Manager bestaat.
+    /// Ongeldige cookies worden verwijderd.
+    /// </summary>
+    /// <returns></returns>
+    [HttpGet("IsVehicleManager")]
+    public async Task<IActionResult> IsVehicleManagerAsync()
+    {
+        string? loginCookie2 = HttpContext.Request.Cookies["LoginVehicleManagerSession"];
+
+        string decryptedCookie = _crypt.Decrypt(loginCookie2);
+
+
+        try
+        {
+            if (!string.IsNullOrEmpty(loginCookie2))
+            {
+                return Ok(true);
+            }
+
+            return BadRequest(new { message = "No Cookie" });
+        }
+        catch
+        {
+
+            Response.Cookies.Append("LoginVehicleManagerSession", "Invalid cookie", new CookieOptions
             {
                 HttpOnly = true,
                 Secure = true,

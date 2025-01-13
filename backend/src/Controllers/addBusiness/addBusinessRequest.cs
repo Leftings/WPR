@@ -1,4 +1,4 @@
-namespace Employee.Controllers.AddBusiness;
+namespace WPR.Controllers.AddBusiness;
 
 /// <summary>
 /// Body voor het toevoegen van een bedrijf

@@ -1,12 +1,12 @@
 using System.Data;
 using System.Runtime.CompilerServices;
-using Employee.Controllers.viewRentalData;
-using Employee.Database;
+using WPR.Controllers.viewRentalData;
+using WPR.Database;
 using MySql.Data.MySqlClient;
 using Org.BouncyCastle.Asn1.X509.SigI;
 using Org.BouncyCastle.Utilities;
 
-namespace Employee.Repository;
+namespace WPR.Repository;
 
 public class BackOfficeRepository(Connector connector) : IBackOfficeRepository
 {

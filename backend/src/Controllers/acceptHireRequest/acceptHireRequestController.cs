@@ -1,12 +1,12 @@
-namespace Employee.Controllers.acceptHireRequest;
+namespace WPR.Controllers.acceptHireRequest;
 
 using Microsoft.AspNetCore.Mvc;
-using Employee.Database;
+using WPR.Database;
 using System;
 using MySqlX.XDevAPI.Common;
-using Employee.Repository;
+using WPR.Repository;
 using MySql.Data.MySqlClient;
-using Employee.Cryption;
+using WPR.Cryption;
 
 /// <summary>
 /// AcceptHireRequestController zorgt ervoor dat alle huuraanvragen verzameld worden en bestempelt kunnen worden als geacepteerd of geweigerd
@@ -16,10 +16,10 @@ using Employee.Cryption;
 public class AcceptHireRequestController : ControllerBase
 {
     private readonly Connector _connector;
-    private readonly IUserRepository _userRepository;
+    private readonly IEmployeeRepository _userRepository;
     private readonly Crypt _crypt;
 
-    public AcceptHireRequestController(Connector connector, IUserRepository userRepository, Crypt crypt)
+    public AcceptHireRequestController(Connector connector, IEmployeeRepository userRepository, Crypt crypt)
     {
         _connector = connector ?? throw new ArgumentNullException(nameof(connector));
         _userRepository = userRepository ?? throw new ArgumentNullException(nameof(userRepository));

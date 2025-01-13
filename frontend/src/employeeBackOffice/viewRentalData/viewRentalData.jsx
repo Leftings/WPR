@@ -7,7 +7,7 @@ import { sorter, specific } from '../../utils/sorter.js'
 import { loadList, loadSingle } from '../../utils/backendLoader.js';
 
 
-const BACKEND_URL = import.meta.env.VITE_REACT_APP_BACKEND_URL_EMPLOYEE ?? 'http://localhost:5276';
+const BACKEND_URL = import.meta.env.VITE_REACT_APP_BACKEND_URL ?? 'http://localhost:5165';
 
 function ViewRentalData() {
   const navigate = useNavigate();
@@ -23,7 +23,6 @@ function ViewRentalData() {
   const [specificDataLoading, setSpecificDataLoading] = useState(false);
   const [, updateState] = useState();
   const forceUpdate = useCallback(() => updateState({}), []);
-
 
   useEffect(() => {
     // Authoristatie check
@@ -215,7 +214,7 @@ function ViewRentalData() {
           {rentalData.length > 0 ? (
             <div className="requests-grid">
               {rentalData.map((data, index) => {
-                const isLoading = loadingRequests[rentalData.ID];
+                const isLoading = loadingRequests[data.ID];
 
                 return (
                   <div key={index} className="request-card" role="Button" tabIndex={0} onClick={async () => {setSelectedCard(data); await collectSpecificData(data.OrderId)}} onKeyDown={async (e) => { if (e.key === "Enter" || e.key === " "){setSelectedCard(data); await collectSpecificData(data.OrderId)}}}>

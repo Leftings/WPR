@@ -1,4 +1,4 @@
-namespace Employee.Controllers.viewRentalData;
+namespace WPR.Controllers.viewRentalData;
 
 public class ViewRentalDataRequest
 {
