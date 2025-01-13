@@ -333,13 +333,6 @@ function GeneralSalePage() {
             <div className="general-sale-page">
 
                 <div className="car-sale-section">
-
-                    {!isEmployee && (
-                        <>
-                        </>
-
-                    )}
-
                     <h1 className="title-text">Voertuigen</h1>
                     <button htmlFor="filter" onClick={toggleFilters} className="filter-button"><i
                         className="fas fa-filter"></i> Filter
