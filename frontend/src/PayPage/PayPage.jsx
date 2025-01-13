@@ -8,7 +8,6 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import './PayPage.css';
 
-// Constante voor backend URL
 const BACKEND_URL = import.meta.env.VITE_REACT_APP_BACKEND_URL ?? 'http://localhost:5165';
 
 // Functie om te controleren of de sessie actief is
@@ -166,7 +165,6 @@ function PayPage() {
         );
     }
 
-    // Hoofdcomponent renderen
     return (
         <div className="buy-page">
             <GeneralHeader />
