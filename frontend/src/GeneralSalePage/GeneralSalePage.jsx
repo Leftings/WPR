@@ -45,29 +45,39 @@ function GeneralSalePage() {
     const [loading, setLoading] = useState(false);
     const [loadingRequests, SetLoadingRequests] = useState({});
     const [isFiltersOpen, setIsFiltersOpen] = useState(false);
+    const [showBrandFilters, setShowBrandFilters] = useState(false);
+    const [showSeatsFilters, setShowSeatsFilters] = useState(false);
+
 
     const [filters, setFilters] = useState({
         vehicleTypes: [],
         color: [],
-        brand: [],
-        seat: [],
         startDate: null,
-        endDate: null
+        endDate: null,
+        brand: [],
+        seat: []
     });
+
 
     const toggleFilters = () => {
         setIsFiltersOpen(!isFiltersOpen);
     };
 
-    const handleFilterChange = (category, value) => {
+    const handleFilterChange = (filterType, value) => {
         setFilters(prevFilters => {
-            const updatedCategory = prevFilters[category].includes(value)
-                ? prevFilters[category].filter(v => v !== value)
-                : [...prevFilters[category], value];
+            const updatedFilters = {...prevFilters};
 
-            return { ...prevFilters, [category]: updatedCategory };
+            // Toggle filter value for checkbox inputs
+            if (updatedFilters[filterType].includes(value)) {
+                updatedFilters[filterType] = updatedFilters[filterType].filter(item => item !== value);
+            } else {
+                updatedFilters[filterType].push(value);
+            }
+
+            return updatedFilters;
         });
     };
+
 
     const handleDateFilterChange = (dates) => {
         const [start, end] = dates;
@@ -98,7 +108,7 @@ function GeneralSalePage() {
     useEffect(() => {
         const checkIfEmployee = async () => {
             try {
-                const response = await fetch(`${BACKEND_URL}/api/Employee/IsUserEmployee`, { credentials: 'include' });
+                const response = await fetch(`${BACKEND_URL}/api/Employee/IsUserEmployee`, {credentials: 'include'});
                 if (!response.ok) {
                     throw new Error('Error validating user type');
                 }
@@ -142,14 +152,14 @@ function GeneralSalePage() {
                 const requestsToLoad = data?.message || [];
 
                 requestsToLoad.forEach(async (id) => {
-                    SetLoadingRequests((prevState) => ({ ...prevState, [id]: true }));
+                    SetLoadingRequests((prevState) => ({...prevState, [id]: true}));
 
                     try {
                         const vehicle = await GetVehicle(id);
 
                         if (vehicle?.message) {
                             setVehicles((prevRequest) => [...prevRequest, vehicle.message]);
-                            SetLoadingRequests((prevState) => ({ ...prevState, [id]: false }));
+                            SetLoadingRequests((prevState) => ({...prevState, [id]: false}));
                             setLoading(false);
                         }
                     } catch (err) {
@@ -185,8 +195,9 @@ function GeneralSalePage() {
             <div className={`filter-bar ${isFiltersOpen ? 'open' : ''}`}>
                 <h2 className="filter-bar-title">
                     Filters
-                    <span className="filter-bar-exit" onClick={toggleFilters}><i className="fas fa-times" /></span></h2>
-                <hr />
+                    <span className="filter-bar-exit" onClick={toggleFilters}><i className="fas fa-times"/></span>
+                </h2>
+                <hr/>
 
                 {/* Original filter sections */}
                 <div className="filter-section">
@@ -206,9 +217,8 @@ function GeneralSalePage() {
                         ))}
                     </div>
                 </div>
-                <hr />
+                <hr/>
 
-                {/* Color Filter */}
                 <div className="filter-section">
                     <p>Kleur</p>
                     <div>
@@ -226,9 +236,8 @@ function GeneralSalePage() {
                         ))}
                     </div>
                 </div>
-                <hr />
+                <hr/>
 
-                {/* Date Range Filter */}
                 <div className="filter-section">
                     <p>Selecteer datumbereik:</p>
                     <DatePicker
@@ -242,15 +251,63 @@ function GeneralSalePage() {
                         placeholderText="Selecteer start- en einddatum"
                     />
                 </div>
+                <hr/>
+
+                {/* Merk Filter */}
+                <div className="filter-section">
+                    <p onClick={() => setShowBrandFilters(!showBrandFilters)}>Merk
+                        <span className={`toggle-icon ${showBrandFilters ? 'rotated' : ''}`}>+</span>
+                    </p>
+                    <div className={`filter-types ${showBrandFilters ? 'show' : ''}`}>
+                        {['Volkswagen', 'Mercedes', 'Ford', 'Fiat', 'Citroën', 'Peugeot', 'Renault', 'Nissan', 'Opel', 'Iveco'].map((brand) => (
+                            <div key={brand} className="checkbox-item">
+                                <input
+                                    type="checkbox"
+                                    id={brand}
+                                    value={brand}
+                                    checked={filters.brand.includes(brand)}
+                                    name={brand}
+                                    onChange={() => handleFilterChange("brand", brand)}
+                                />
+                                <label htmlFor={brand}>{brand}</label>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+                <hr/>
+
+                {/* Aantal passagiers Filter */}
+                <div className="filter-section">
+                    <p onClick={() => setShowSeatsFilters(!showSeatsFilters)}>Aantal passagiers
+                        <span className={`toggle-icon ${showSeatsFilters ? 'rotated' : ''}`}>+</span>
+                    </p>
+                    <div className={`filter-types ${showSeatsFilters ? 'show' : ''}`}>
+                        {['4', '5', '6'].map((seat) => (
+                            <div key={seat} className="checkbox-item">
+                                <input
+                                    type="checkbox"
+                                    id={seat}
+                                    value={seat}
+                                    checked={filters.seat.includes(seat)}
+                                    name={seat}
+                                    onChange={() => handleFilterChange("seat", seat)}
+                                />
+                                <label htmlFor={seat}>{seat}</label>
+                            </div>
+                        ))}
+                    </div>
+                </div>
             </div>
 
             {isFiltersOpen && <div className="overlay" onClick={toggleFilters}></div>}
 
-            <GeneralHeader />
+            <GeneralHeader/>
             <div className="general-sale-page">
                 <div className="car-sale-section">
                     <h1 className="title-text">Voertuigen</h1>
-                    <button htmlFor="filter" onClick={toggleFilters} className="filter-button"><i className="fas fa-filter"></i> Filter</button>
+                    <button htmlFor="filter" onClick={toggleFilters} className="filter-button"><i
+                        className="fas fa-filter"></i> Filter
+                    </button>
 
                     {loading ? (
                         <div className="loading-spinner"></div>
@@ -277,7 +334,7 @@ function GeneralSalePage() {
                                         </div>
                                         <Link
                                             to={`/vehicle/${vehicle.FrameNr}`}
-                                            state={{ vehicle }}
+                                            state={{vehicle}}
                                             className="huur-link"
                                         >
                                             View Details
@@ -291,9 +348,9 @@ function GeneralSalePage() {
                     )}
                 </div>
             </div>
-            <GeneralFooter />
+            <GeneralFooter/>
         </>
     );
 }
 
-export default GeneralSalePage;
+    export default GeneralSalePage;
