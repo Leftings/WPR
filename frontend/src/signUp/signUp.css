@@ -1,0 +1,152 @@
+header {
+    width: 100%;
+    height: 7.5%;
+    background-color: #333;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    color: white;
+    
+}
+
+header Link {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+header Link:hover {
+    color: #1D7874;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+    padding-right: 10px;
+}
+    .nav-links li a {
+        color: white;
+        text-decoration: none;
+        font-weight: bold;
+        transition: color 0.3s;
+    }
+        .nav-links li a:hover {
+            color: #1D7874;
+        }
+
+#left {
+    text-align: left;
+}
+
+#right {
+    text-align: right;
+    padding-right: 20px;
+}
+
+.logo
+{
+    font-size: 1.5rem;
+}
+
+html, body {
+    background-color: #F4E8C1;
+    margin: 0;
+    height: 100%;
+    font-family: Arial, sans-serif;
+}
+
+h1 {
+    text-align: center;
+    color: black;
+    font-size: 2.5rem;
+}
+
+#input
+{
+    text-align: center;
+    color: black;
+}
+
+input
+{
+    width: 100%;
+    max-width: 275px;
+    padding: 10px 15px;
+    font-size: 1rem;
+    background-color: white;
+    border: 1.5px solid #ccc;
+    color: black;
+    outline: none;
+    border-radius: 8px;
+    transition: border 0.3s;
+    transition: color 0.3s;
+}
+    input:focus {
+        border:1.5px solid #1D7874;
+        color: #1D7874
+    }
+
+    input::selection {
+        background-color: #A5E1E0;
+        color: #1D7874;
+    }
+
+#button
+{
+    margin: 20px;
+    background-color: #1D7874;
+    color: white;
+    font-weight: bold;
+    transition: color 0.3s;
+    transition: background-color 0.3s;
+}
+    #button:hover {
+        color:#1D7874;
+        background-color: white;
+    }
+
+#typeButton
+{
+    margin: 10px;
+    background-color: #1D7874;
+    color: white;
+    font-weight: bold;
+    border: 1px solid transparent;
+    transition: border-color 0.3s ease;
+}
+    #typeButton:hover{
+        border: 1px solid #FFFFFF
+    }
+
+#typeButton-active
+{
+    margin: 10px;
+    background-color: white;
+    color: #1D7874;
+    font-weight: bold;
+    border: 1px solid transparent;
+    transition: border-color 0.3s ease;
+}
+
+    #typeButton-active:hover {
+        border: 1px solid #1D7874;
+    }
+
+
+
+#aanmelden {
+    margin-top: 50px;
+    text-align: center;
+}
+
+#redirect {
+    color: #1D7874;
+    font-weight: bold;
+}
+
+#signUpInfo {
+
+}

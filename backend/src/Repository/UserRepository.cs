@@ -1,0 +1,621 @@
+﻿using System.Data;
+using Microsoft.AspNetCore.Mvc;
+using MySql.Data.MySqlClient;
+using WPR.Controllers.Cookie;
+using WPR.Database;
+using Microsoft.AspNetCore.Http.HttpResults;
+using WPR.Utils;
+using WPR.Hashing;
+using Org.BouncyCastle.Crypto.Prng;
+using WPR.Cryption;
+
+namespace WPR.Repository;
+
+/// <summary>
+/// De UserRepository class geeft de methodes voor de interactie met de database voor gebruiker gerelateerde operaties.
+/// Het implementeert de IUserRepository interface.
+/// </summary>
+public class UserRepository : IUserRepository
+{
+    private readonly Connector _connector;
+    private readonly Hash _hash;
+    private readonly Crypt _crypt;
+
+    public UserRepository(Connector connector, Hash hash, Crypt crypt)
+    {
+        _connector = connector ?? throw new ArgumentNullException(nameof(connector));
+        _hash = hash ?? throw new ArgumentNullException(nameof(hash));
+        _crypt = crypt ?? throw new ArgumentNullException(nameof(crypt));
+    }
+
+    /*private async Task<bool> CheckPassword(string username, string password, string table)
+    {
+        string query = $@"SELECT password FROM {table} WHERE LOWER(email) = LOWER(@Email)";
+
+        using (var connection = _connector.CreateDbConnection())
+        
+        using (var command = new MySqlCommand(query, (MySqlConnection)connection))
+        {
+            command.Parameters.AddWithValue("@Email", username);
+
+            using (var reader = await command.ExecuteReaderAsync())
+            {
+                if (reader.HasRows)
+                {
+                    string passwordUser = reader.GetString("Password");
+
+                    return _hash.(password, passwordUser);
+                }
+
+                return false;
+            }
+        }
+    }
+    */
+
+    /// <summary>
+    /// Er wordt door middel van de meegegeven userType een query aangemaakt, om de juiste gegevens uit de juiste tabel op te halen.
+    /// Vervolgens wordt er in de query het meegegeven emailadress gestopt, om zo het gehaste wachtwoord uit de database te halen
+    /// Nadat er een gebruiker met wachtwoord uit de query komt, zal dit gehaste wachtwoord vergelek worden met het meegegeven gehaste wachtwoord
+    /// </summary>
+    /// <param name="username"></param>
+    /// <param name="password"></param>
+    /// <param name="userType"></param>
+    /// <returns></returns>
+    public async Task<bool> ValidateUserAsync(string username, string password, string userType)
+    {
+        /*string query = $@"SELECT 1 FROM {table} WHERE LOWER(email) = LOWER(@Email) AND BINARY password = @Password";
+
+        using (var connection = _connector.CreateDbConnection())
+        {
+            using (var command = new MySqlCommand(query, (MySqlConnection)connection))
+            {
+                command.Parameters.AddWithValue("@Email", username);
+                command.Parameters.AddWithValue("@Password", password);
+
+                using (var reader = await command.ExecuteReaderAsync())
+                {
+                    return reader.HasRows;
+                }
+            }
+        }
+        */
+
+        // De table voor de DataBase wordt vastgesteld
+        string table; 
+        
+        if (userType.Equals("Employee"))
+        {
+            table = "Staff";
+        }
+        else if (userType.Equals("Customer"))
+        {
+            table = "UserCustomer";
+        }
+        else
+        {
+            table = "VehicleManager";
+        }
+
+        string query = $@"SELECT password FROM {table} WHERE LOWER(email) = LOWER(@Email)";
+
+        // Er wordt een connectie met de Database aangemaakt met de bovenstaande query
+        using (var connection = _connector.CreateDbConnection())
+        using (var command = new MySqlCommand(query, (MySqlConnection)connection))
+        {
+            // In de query wordt vastgesteld welke row er geselecteerd moet worden doormiddel van het invullen van het emailadres
+            command.Parameters.AddWithValue("@Email", username);
+
+            // De query wordt uitgevoerd
+            using (var reader = await command.ExecuteReaderAsync())
+            {   
+                // De query wordt uitgelezen en gekeken of er rows gevonden zijn
+                if (await reader.ReadAsync())
+                {
+                    // Het gehashte wachtwoord wordt opgehaald en wordt vergeleken met het gehaste meegegeven wachtwoord
+                    string passwordUser = reader.GetString("Password");
+                    return _hash.createHash(password).Equals(passwordUser);
+                }
+
+                return false;
+            }
+        }
+    }
+
+    /// <summary>
+    /// Er wordt gekeken of het emailadres al bestaat in de databse
+    /// </summary>
+    /// <param name="email"></param>
+    /// <returns></returns>
+    public async Task<(bool status, string message)> checkUsageEmailAsync(string email)
+    {
+        // Er wordt gekeken of het emailadress al ingebruik is
+        try
+        {
+            string query = "SELECT COUNT(*) FROM UserCustomer WHERE LOWER(Email) = LOWER(@E)";
+
+            // Er wordt een connectie aangemaakt met de DataBase met bovenstaande query
+            using (var connection = _connector.CreateDbConnection())
+            using (var command = new MySqlCommand(query, (MySqlConnection)connection))
+            {
+                // Het emailadres wordt in de query ingevuld en er wordt gekeken of er rows zijn gevonden
+                command.Parameters.AddWithValue("@E", email);
+                bool inUse = Convert.ToInt32(await command.ExecuteScalarAsync()) > 0;
+
+                // Als het aantal gevoden rows > 0, dan inUse = true, "Email detected" anders inUser = false, "No email detected"
+                return (inUse, inUse ? "Email detected" : "No email detected");
+            }
+        }
+
+        catch (MySqlException ex)
+        {
+            await Console.Error.WriteLineAsync($"Database error: {ex.Message}");
+            return (false, ex.Message);
+        }
+        catch (Exception ex)
+        {
+            await Console.Error.WriteLineAsync($"Unexpected error: {ex.Message}");
+            return (false, ex.Message);
+        }
+    }
+
+    /// <summary>
+    /// Een gebruiker (klant) wordt toegevoegd aan de database, doormiddel van alle meegegeven persoondata.
+    /// Deze persoondata zal vervolgens in de query geïmplementeerd worden en vervolgens worden uitgevoerd.
+    /// </summary>
+    /// <param name="personData"></param>
+    /// <returns></returns>
+    public async Task<(bool status, string message, int newUserID)> addCustomerAsync(Object[] personData)
+    {
+        try
+        {
+            string query = "INSERT INTO UserCustomer (Adres, Telnum, Password, Email, FirstName, LastName) values (@A, @T, @P, @E, @F, @L)";
+
+            // Er wordt een connectie aangemaakt met de DataBase met bovenstaande query 
+            using (var connection = _connector.CreateDbConnection())
+            using (var command = new MySqlCommand(query, (MySqlConnection)connection))
+            {
+                // Alle parameters worden ingevuld met de megegeven persoons gegevens
+                command.Parameters.AddWithValue("@A", personData[0]);
+                command.Parameters.AddWithValue("@T", personData[1]);
+                command.Parameters.AddWithValue("@P", personData[2]);
+                command.Parameters.AddWithValue("@E", personData[3]);
+                command.Parameters.AddWithValue("@F", personData[4]);
+                command.Parameters.AddWithValue("@L", personData[5]);
+
+                if (await command.ExecuteNonQueryAsync() > 0)
+                {
+                    // Als de query succesvol is uitgevoerd wordt de laatste ingevoerde userId meegegeven
+                    command.CommandText = "SELECT LAST_INSERT_ID();";
+                    int newUserID = Convert.ToInt32(await command.ExecuteScalarAsync());
+
+                    return (true, "Data Inserted", newUserID);
+                }
+                return (false, "No Data Inserted", -1);
+            }
+        }
+
+        catch (MySqlException ex)
+        {
+            await Console.Error.WriteLineAsync($"Database error: {ex.Message}");
+            return (false, ex.Message, -1);
+        }
+        catch (Exception ex)
+        {
+            await Console.Error.WriteLineAsync($"Unexpected error: {ex.Message}");
+            return (false, ex.Message, -1);
+        }
+    }
+
+    /// <summary>
+    /// Het aangemaakte account wordt gekoppeld aan de particuliere tabel, doormiddel van alle meegegeven persoondata.
+    /// Deze persoondata zal vervolgens in de query geïmplementeerd worden en vervolgens worden uitgevoerd.
+    /// </summary>
+    /// <param name="personalData"></param>
+    /// <returns></returns>
+    public async Task<(bool status, string message)> addPersonalCustomerAsync(Object[] personalData)
+    {
+        try
+        {
+            string query = "INSERT INTO UserPersonal (ID, BirthDate) values (@I, @B)";
+
+            // Er wordt een connectie aangemaakt met de DataBase met bovenstaande query 
+            using (var connection = _connector.CreateDbConnection())
+            using (var command = new MySqlCommand(query, (MySqlConnection)connection))
+            {
+                // De parameters worden ingevuld met de persoonlijke gegevens
+                command.Parameters.AddWithValue("@I", personalData[0]);
+                command.Parameters.AddWithValue("@B", personalData[1]);
+
+                if (await command.ExecuteNonQueryAsync() > 0)
+                {
+                    // Er wordt gekeken of de gegevens zijn ingevoert in de DataBase
+                    return (true, "Data Inserted");
+                }
+                return (false, "No Data Inserted");
+            }
+        }
+
+        catch (MySqlException ex)
+        {
+            await Console.Error.WriteLineAsync($"Database error: {ex.Message}");
+            return (false, ex.Message);
+        }
+        catch (Exception ex)
+        {
+            await Console.Error.WriteLineAsync($"Unexpected error: {ex.Message}");
+            return (false, ex.Message);
+        }
+    }
+
+    /// <summary>
+    /// Het aangemaakte account wordt gekoppeld aan de medewerkers tabel, doormiddel van alle meegegeven persoondata.
+    /// Deze persoondata zal vervolgens in de query geïmplementeerd worden en vervolgens worden uitgevoerd.
+    /// </summary>
+    /// <param name="employeeData"></param>
+    /// <returns></returns>
+    public async Task<(bool status, string message)> addEmployeeCustomerAsync(Object[] employeeData)
+    {
+        try
+        {
+            string query = "INSERT INTO UserEmployee (ID, Business) values (@I, @B)";
+
+            // Er wordt een connectie aangemaakt met de DataBase met bovenstaande query 
+            using (var connection = _connector.CreateDbConnection())
+            using (var command = new MySqlCommand(query, (MySqlConnection)connection))
+            {
+                // Alle parameters worden ingevuld
+                command.Parameters.AddWithValue("@I", employeeData[0]);
+                command.Parameters.AddWithValue("@B", employeeData[1]);
+
+                if (await command.ExecuteNonQueryAsync() > 0)
+                {
+                    // Er wordt gekeken of de gegevens zijn ingevoerd in de DataBase
+                    return (true, "Data Inserted");
+                }
+                return (false, "No Data Inserted");
+            }
+        }
+
+        catch (MySqlException ex)
+        {
+            await Console.Error.WriteLineAsync($"Database error: {ex.Message}");
+            return (false, ex.Message);
+        }
+        catch (Exception ex)
+        {
+            await Console.Error.WriteLineAsync($"Unexpected error: {ex.Message}");
+            return (false, ex.Message);
+        }
+    }
+
+    public async Task<string> GetUserIdAsync(string email, string table)
+    {
+        try
+        {
+            string query = $"SELECT ID FROM {table} WHERE Email = @E";
+
+            // Er wordt een connectie aangemaakt met de DataBase met bovenstaande query 
+            using (var connection = _connector.CreateDbConnection())
+            using (var command = new MySqlCommand(query, (MySqlConnection)connection))
+            {
+                // De parameter wordt ingevuld
+                command.Parameters.AddWithValue("@E", email);
+
+                var result = await command.ExecuteScalarAsync();
+
+                if (result != null)
+                {
+                    // De user id wordt meegegeven
+                    return result.ToString();
+                }
+
+                return "No user found";
+            }
+        }
+        catch (Exception ex)
+        {
+            await Console.Error.WriteLineAsync($"Unexpected error: {ex.Message}");
+            return "No user found";
+        }
+    }
+
+    public async Task<string> GetUserNameAsync(string userId)
+    {
+        try
+        {
+            string query = "SELECT FirstName FROM UserCustomer WHERE ID = @I";
+
+            // Er wordt een connectie aangemaakt met de DataBase met bovenstaande query 
+            using (var connection = _connector.CreateDbConnection())
+            using (var command = new MySqlCommand(query, (MySqlConnection)connection))
+            {
+                // De paramater wordt ingevuld
+                command.Parameters.AddWithValue("@I", Convert.ToInt32(userId));
+
+                var result = await command.ExecuteScalarAsync();
+
+                // De gebruikersnaam wordt meegegeven
+                return result.ToString();
+            }
+        }
+        catch (Exception ex)
+        {
+            await Console.Error.WriteLineAsync($"Unexpected error: {ex.Message}");
+            return ex.ToString();
+        }
+    }
+
+    public async Task<(bool status, string message)> EditUserInfoAsync(List<object[]> data)
+    {
+        try
+        {
+            // Er wordt een custom query aangemaakt
+            var query = await CreateUserInfoQuery(data);
+
+            if (query.goodQuery)
+            {
+                // Er wordt een connectie aangemaakt met de DataBase met bovenstaande query 
+                using (var connection = _connector.CreateDbConnection())
+                using (var command = new MySqlCommand(query.message, (MySqlConnection)connection))
+                {
+                    var result = await command.ExecuteNonQueryAsync();
+
+                    if (await command.ExecuteNonQueryAsync() > 0)
+                    {
+                        // Er wordt gecontrolleerd of de gegeven in de DataBase zijn ingevoerd
+                        return (true, "Data inserted");
+                    }
+                    
+                    return (false, "Data not inserted");
+                }
+            }
+            else
+            {
+                return (false, query.message);
+            }
+        }
+        catch (Exception ex)
+            {
+                Console.WriteLine($"Error: {ex}");
+                return (false, ex.ToString());
+            }
+    }
+
+    public async Task<bool> IsKvkNumberAsync(int kvkNumber)
+    {
+        try
+        {
+            string query = "SELECT COUNT(1) FROM Business WHERE KVK = @kvkNumber";
+
+            using (var connection = _connector.CreateDbConnection())
+            using (var command = new MySqlCommand(query, (MySqlConnection) connection))
+            {
+                command.Parameters.AddWithValue("@kvkNumber", kvkNumber);
+                var result = Convert.ToInt32(await command.ExecuteScalarAsync());
+                return result > 0;
+            }
+        }
+        catch (MySqlException ex)
+        {
+            await Console.Error.WriteLineAsync($"Database error: {ex.Message}");
+            return false;
+        }
+        catch (Exception ex)
+        {
+            await Console.Error.WriteLineAsync($"Unexpected error: {ex.Message}");
+            return false;
+        }
+    }
+
+    public async Task<(bool status, string message)> DeleteUserAsync(string userId)
+    {
+        Console.WriteLine("Deleting user");
+        try
+        {
+            string queryCustomer = "DELETE FROM UserCustomer WHERE ID = @ID";
+            string queryEmployee = "DELETE FROM UserEmployee WHERE ID = @ID";
+            string queryPersonal = "DELETE FROM UserPersonal WHERE ID = @ID";
+            string queryAbonnement = "DELETE FROM Abonnement WHERE Customer = @ID";
+
+            using (var connection = _connector.CreateDbConnection())
+            using (var customerCommand = new MySqlCommand(queryCustomer, (MySqlConnection)connection))
+            using (var employeeCommand = new MySqlCommand(queryEmployee, (MySqlConnection)connection))
+            using (var personalCommand = new MySqlCommand(queryPersonal, (MySqlConnection)connection))
+            using (var abonnementCommand = new MySqlCommand(queryAbonnement, (MySqlConnection)connection))
+            {
+                Console.WriteLine(userId);
+                int userIdInt = Convert.ToInt32(userId);
+                Console.WriteLine(userIdInt);
+
+                customerCommand.Parameters.AddWithValue("@ID", userIdInt);
+                employeeCommand.Parameters.AddWithValue("@ID", userIdInt);
+                personalCommand.Parameters.AddWithValue("@ID", userIdInt);
+                abonnementCommand.Parameters.AddWithValue("@ID", userIdInt);
+
+                await employeeCommand.ExecuteNonQueryAsync();
+                await personalCommand.ExecuteNonQueryAsync();
+                await abonnementCommand.ExecuteNonQueryAsync();
+                
+                int rowsAffected = await customerCommand.ExecuteNonQueryAsync();
+
+                if (rowsAffected > 0)
+                {
+                    return (true, "User deleted");
+                }
+                else
+                {
+                    return (false, "User could not be deleted");
+                }
+            }
+        }
+        catch (MySqlException ex)
+        {
+            // Handle database errors
+            await Console.Error.WriteLineAsync($"Database error: {ex.Message}");
+            return (false, "Database error: " + ex.Message);
+        }
+        catch (Exception ex)
+        {
+            // Handle other errors
+            await Console.Error.WriteLineAsync($"Unexpected error: {ex.Message}");
+            return (false, "Unexpected error: " + ex.Message);
+        }
+    }
+
+    /// <summary>
+    /// Er wordt een query aangemaakt, met daarin de meegeven gegevens die veranderd moeten worden in het account van de gebruiker.
+    /// </summary>
+    /// <param name="data"></param>
+    /// <returns></returns>
+    private async Task<(bool goodQuery, string message)> CreateUserInfoQuery(List<object[]> data)
+    {
+        int lengthList = data.Count(); // De lengte voor de loopt wordt vastgesteld
+        string query = "UPDATE UserCustomer SET "; // Het begin van de query wordt aangemaakt
+
+        for (int i = 1; i < lengthList; i++)
+        {
+            // Item[0] = Colom naam
+            // Item[1] = Colom data
+            // Item[2] = Type colom data
+            object[] item = data[i];
+
+            // Als de 3e item in de list een integer is, worden er geen verdere checks gedaan
+            if (item[2].Equals("System.Int32"))
+            {
+                query += $"{item[0]} = {item[1]}";
+            }
+            else
+            {
+                // Als de naam van de colomn gelijks is aan "Email" wordt er een email check gedaan
+                if (item[0].ToString().Equals("Email"))
+                {
+                    var emailCheck = await checkUsageEmailAsync(item[1].ToString());
+
+                    if (emailCheck.status)
+                    {
+                        return (false, emailCheck.message);
+                    }
+                }
+                query += $"{item[0]} = '{item[1]}'";
+            }
+
+            if (i + 1 != lengthList)
+            {
+                // De query kan worden uitgebreid
+                query += ",";
+            }
+
+            query += " ";
+        }
+
+        // De query wordt afgesloten
+        return (true, query += $"WHERE ID = {data[0][1]}");
+    }
+
+    /// <summary>
+    /// Er wordt door de query, doormiddel van de user id, vastgesteld tot wat voor soort office de medewerker van Car and All behoort
+    /// </summary>
+    /// <param name="userId"></param>
+    /// <returns></returns>
+    public async Task<(bool status, string message)> GetKindEmployeeAsync(string userId)
+    {
+        try
+        {
+            string query = "SELECT Office FROM Staff WHERE ID = @I";
+
+            // Er wordt een connectie aangemaakt met de DataBase met bovenstaande query 
+            using (var connection = _connector.CreateDbConnection())
+            using (var command = new MySqlCommand(query, (MySqlConnection)connection))
+            {
+                // De parameter wordt ingevuld
+                command.Parameters.AddWithValue("@I", userId);
+
+                var result = await command.ExecuteScalarAsync();
+
+                // De office wordt meegegeven
+                return (true, result.ToString());
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex);
+            return (false, ex.ToString());
+        }
+
+    }
+
+    /// <summary>
+    /// Er kunnen medewewerkers van Car and All toegevoegd worden aan de database, door middel van hun gegevens.
+    /// De database voorziet de gegevens van een automatische id
+    /// </summary>
+    /// <param name="personData"></param>
+    /// <returns></returns>
+    public async Task<(bool status, string message)> AddStaff(Object[] personData)
+    {
+        try
+        {
+            string query = "INSERT INTO STAFF (FirstName, LastName, Password, Email, Office) VALUES (@F, @L, @P, @E, @O)";
+
+            // Er wordt een connectie aangemaakt met de DataBase met bovenstaande query 
+            using (var connection = _connector.CreateDbConnection())
+            using (var command = new MySqlCommand(query, (MySqlConnection)connection))
+            {
+                // Alle parameters worden ingevuld
+                command.Parameters.AddWithValue("@F", personData[0]);
+                command.Parameters.AddWithValue("@L", personData[1]);
+                command.Parameters.AddWithValue("@P", _hash.createHash(personData[2].ToString()));
+                command.Parameters.AddWithValue("@E", personData[3]);
+                command.Parameters.AddWithValue("@O", personData[4]);
+
+                if (await command.ExecuteNonQueryAsync() > 0)
+                    {
+                        // Er wordt gekeken of de gegevens zijn ingevoerd in de DataBase
+                        return (true, "Data inserted");
+                    }
+                    
+                    return (false, "Data not inserted");
+            }
+        }
+        catch(MySqlException ex)
+        {
+            return (false, ex.ToString());
+        }
+    }
+    
+    /// <summary>
+    /// Er wordt gekeken door middel van het id of de gebruiker een geldig medewerkers id heeft
+    /// </summary>
+    /// <param name="id"></param>
+    /// <returns></returns>
+    public async Task<bool> IsUserEmployee(int id)
+    {
+        try
+        {
+            string query = "SELECT ID FROM UserEmployee WHERE ID = @id";
+
+            // Er wordt een connectie aangemaakt met de DataBase met bovenstaande query 
+            using (var connection = _connector.CreateDbConnection())
+            using (var command = new MySqlCommand(query, (MySqlConnection)connection))
+            {
+                // De parameter wordt ingevuld
+                command.Parameters.AddWithValue("@id", id);
+
+                var result = await command.ExecuteScalarAsync();
+
+                if (result != null && result.ToString() == id.ToString())
+                {
+                    // Er wordt gekeken of de gebruiker bestaat
+                    return true;
+                }
+
+                return false;
+            }
+        }
+        catch (Exception ex)
+        {
+            await Console.Error.WriteLineAsync($"Unexpected error: {ex.Message}");
+            return false;
+        }
+    }
+}

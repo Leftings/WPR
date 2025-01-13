@@ -1,0 +1,300 @@
+
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes title-animation {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+.filter-bar {
+    position: fixed;
+    left: -300px;
+    top: 0;
+    height: 100%;
+    width: 250px;
+    background-color: #333;
+    color: white;
+    padding: 20px;
+    transition: left 0.3s ease-in-out;
+    z-index: 5;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.filter-spacer {
+    flex-grow: 1;
+}
+
+.filter-bar.open {
+    left: 0;
+}
+
+.filter-section {
+    margin-bottom: 20px;
+}
+
+.filter-types {
+    max-height: 0;
+    pointer-events: none;
+    opacity: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    transition: max-height 0.3s ease, opacity 0.3s ease
+}
+
+.filter-types.show {
+    max-height: 500px;
+    opacity: 1;
+    pointer-events: all;
+}
+
+.checkbox-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.checkbox-item input[type="checkbox"] {
+    cursor: pointer;
+    width: auto;
+}
+
+.filter-section p {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    justify-content: space-between;
+    user-select: none;
+}
+
+.filter-bar-exit {
+    user-select: none;
+    cursor: pointer;
+}
+
+.toggle-icon {
+    display: inline-block;
+    font-size: 20px;
+    transition: transform 0.3s ease;
+    margin-left: 8px;
+    user-select: none;
+}
+
+.toggle-icon.rotated {
+    transform: rotate(45deg); 
+}
+
+.checkbox-item label {
+    font-size: 1.1em;
+    cursor: pointer;
+}
+
+.checkbox-item label:hover {
+    text-decoration: underline;
+}
+
+.filter-bar h2 {
+    font-size: 1.5em;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 0;
+}
+
+.filter-bar p {
+    cursor: pointer;
+    font-size: 1em;
+    color: white;
+    padding: 0px;
+}
+
+.filter-bar hr {
+    border: none;
+    border-top: 1px solid;
+    margin: 0px;
+}
+
+
+.filter-button {
+    background-color: #1d7874;
+    color: white;
+    margin-left: 20px;
+}
+
+.container {
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 22px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 4;
+}
+
+.filter-section label {
+    font-size: 1.2em;
+    margin-right: 10px;
+}
+
+.filter-section select {
+    padding: 10px;
+    font-size: 1em;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.car-sale-section {
+    padding: 20px;
+    margin-top: 60px; 
+}
+
+.title-text {
+    font-size: 2.5em;
+    color: #000000;
+    margin-bottom: 20px;
+    animation: fadeInUp 0.5s ease-in-out forwards;
+}
+
+.car-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    justify-content: center;
+    padding: 20px;
+}
+
+@media (max-width: 1024px) {
+    .car-grid { 
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    }
+}
+
+.car-card {
+    background: #fff;
+    border-radius: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s;
+    animation: fadeInUp 0.2s ease-in-out forwards;
+    opacity: 0;
+}
+
+.car-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
+}
+
+.car-blob {
+    width: 100%;
+    height: 180px;
+    background: #1d7874ff;
+    display: flex;
+    margin: 15px auto;
+    border-radius: 25px;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.car-info {
+    padding: 20px;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.car-name {
+    font-size: 1.5em;
+    margin: 0 0 10px;
+    color: #333;
+    width: auto;
+}
+
+.car-price {
+    font-size: 1.2em;
+    font-weight: bold;
+    margin: 0 0 10px;
+    color: #27ae60;
+}
+
+.car-description {
+    font-size: 0.9em;
+    color: #555;
+    line-height: 1.5;
+}
+
+.huur-link {
+    background-color: #1D7874;
+    color: white;
+    padding: 10px 20px;
+    display: block;
+    margin: 10px;
+    margin-top: 30px;
+    border: none;
+    border-radius: 20px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.huur-link:hover {
+    color: white;
+    background-color: #7C6C77;
+}
+
+.loading-spinner {
+    border: 8px solid rgba(0, 0, 0, 0.1);
+    border-top: 8px solid #1D7874;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite;
+    margin: 50px auto;
+    display: block;
+}
+
+@keyframes spin {
+     from {
+         transform: rotate(0deg);
+     }
+     to {
+         transform: rotate(360deg);
+     }
+ }

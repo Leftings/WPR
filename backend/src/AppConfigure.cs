@@ -1,9 +1,24 @@
+using System.Security.Policy;
 using System.Text.Json.Serialization;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.Extensions.Options;
+using Microsoft.VisualBasic;
+using Org.BouncyCastle.Crypto.Prng;
+using WPR.Controllers.Cookie;
+using WPR.Cryption;
 using WPR.Data;
 using WPR.Database;
+using WPR.Repository;
+using WPR.Hashing;
+using System.Net;
+using WPR.Services;
 
 namespace WPR;
 
+/// <summary>
+/// Deze class is responsible voor het configureren van de application services en database connectie
+/// Het heeft methodes om de database te initializeren en het configureren van de web applicatie.
+/// </summary>
 public class AppConfigure
 {
     public static void InitDatabase(IServiceProvider services)
@@ -25,37 +40,136 @@ public class AppConfigure
         }
         
     }
-    
+    /// <summary>
+    /// Configureer de web applicatie, zoals middleware, services, authentication en CORS settings.
+    /// </summary>
+    /// <param name="args">De command line arguments passed to the application at startup.</param>
+    /// <returns>De geconfigureerde WebApplication instantie.</returns>
     public static WebApplication ConfigureApplication(string[] args)
     {
-        var builder = WebApplication.CreateBuilder(args);
+    var builder = WebApplication.CreateBuilder(args);
 
-        builder.Services.AddCors(options =>
+    var environment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") ?? "development";
+    builder.Configuration.AddEnvironmentVariables();
+
+    if (environment == "development")
+    {
+        builder.Configuration.AddJsonFile(".env", optional: true, reloadOnChange: true);
+    }
+    else if (environment == "Production")
+    {
+        builder.Configuration.AddJsonFile(".env.deployment", optional: true, reloadOnChange: true);
+    }
+
+    var cookiePolicyOptions = new CookiePolicyOptions
+    {
+        MinimumSameSitePolicy = SameSiteMode.Strict
+    };
+
+
+    builder.Services.AddCors(options =>
+    {
+        /*options.AddPolicy("AllowLocalhost", policy =>
         {
-            options.AddPolicy("AllowLocalhost", policy =>
-            {
-                policy.WithOrigins("http://localhost:5173")
-                    .AllowAnyHeader()
-                    .AllowCredentials()
-                    .AllowAnyMethod();
-            });
+            policy.WithOrigins("http://localhost:5173", "http://95.99.30.110:8080")  // Development URL
+                .AllowAnyHeader()
+                .AllowCredentials()
+                .AllowAnyMethod();
         });
 
+        options.AddPolicy("AllowProduction", policy =>
+        {
+            policy.WithOrigins("http://carandall.nl", "https://carandall.nl, http://localhost:5173", "http://95.99.30.110:8080") // Production URL
+                .AllowAnyHeader()
+                .AllowCredentials()
+                .AllowAnyMethod();
+        });
+        */
 
-        builder.Services.AddSingleton<EnvConfig>();
-        builder.Services.AddTransient<Connector>();
-        builder.Services.AddControllers()
-            .AddJsonOptions(options =>
+        options.AddPolicy("AllowSpecificOrigins", policy =>
+            policy.WithOrigins("http://95.99.30.110:8080", "http://localhost:5173", "http://www.carandall.nl:8080")
+                .AllowAnyHeader()
+                .AllowAnyMethod()
+                .AllowCredentials()
+        );
+    });
+
+    var urls = Environment.GetEnvironmentVariable("ASPNETCORE_URLS") ?? "http://0.0.0.0:80"; // Default to port 80 if not set
+
+    Uri uri;
+    try
+    {
+        uri = new Uri(urls);
+    }
+    catch (UriFormatException ex)
+    {
+        Console.WriteLine($"Invalid ASPNETCORE_URLS format: {urls}. Using default URL http://0.0.0.0:80");
+        uri = new Uri("http://0.0.0.0:80");
+    }
+
+    builder.WebHost.ConfigureKestrel(options =>
+    {
+        // Ensure IP address is valid before binding
+        if (uri.Host == "0.0.0.0" )
+        {
+            options.Listen(IPAddress.Any, 5000);  
+        }
+        else
+        {
+            try
             {
-                options.JsonSerializerOptions.ReferenceHandler =
-                    ReferenceHandler.IgnoreCycles;
-            });
-        
-        builder.Services.AddEndpointsApiExplorer();
-        builder.Services.AddSwaggerGen();
-        
-        var app = builder.Build();
+                options.Listen(IPAddress.Parse(uri.Host), uri.Port); 
+            }
+            catch (FormatException ex)
+            {
+                Console.WriteLine($"Invalid IP address specified: {uri.Host}. Using default binding to all IPs.");
+                options.Listen(IPAddress.Any, uri.Port);  
+            }
+        }
+    });
+    
+    // Register services for Dependency Injection
+    builder.Services.AddSingleton<EnvConfig>(); // Singleton for environment configuration
+    builder.Services.AddTransient<Connector>(); // Transient for database connection.
+    builder.Services.AddScoped<VehicleRepository>();
+    builder.Services.AddScoped<IUserRepository, UserRepository>(); // Scoped for user repository
+    builder.Services.AddScoped<IVehicleRepository, VehicleRepository>(); // Scoped for Vehicle Repository
+    builder.Services.AddScoped<SessionHandler>(); // Scoped session handler
+    builder.Services.AddScoped<Crypt>();
+    builder.Services.AddScoped<Hashing.Hash>();
+    builder.Services.AddScoped<EmailService>();
+    builder.Services.AddScoped<IEmployeeRepository, EmployeeRepository>();
+    builder.Services.AddScoped<IBackOfficeRepository, BackOfficeRepository>();
+    
 
+    // Configure authentication with cookie-based authentication schema.
+    builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+        .AddCookie(options =>
+        {
+            options.ExpireTimeSpan = TimeSpan.FromMinutes(5);
+            options.SlidingExpiration = true;
+            options.AccessDeniedPath = "/Forbidden/";
+        });
+
+    builder.Services.AddControllers()
+        .AddJsonOptions(options =>
+        {
+            options.JsonSerializerOptions.ReferenceHandler =
+                ReferenceHandler.IgnoreCycles;
+        });
+
+    // Services for Swagger API
+    builder.Services.AddEndpointsApiExplorer();
+    builder.Services.AddSwaggerGen();
+
+    var app = builder.Build();
+
+    if (app.Environment.IsProduction())
+    {
+        app.UseCors("AllowProduction");
+    }
+    else
+    {
         if (app.Environment.IsDevelopment())
         {
             app.UseSwagger();
@@ -65,37 +179,22 @@ public class AppConfigure
                 c.RoutePrefix = string.Empty;
             });
         }
-        
         app.UseCors("AllowLocalhost");
-        app.UseHttpsRedirection();
-        app.MapControllers();
-        app.UseAuthorization();
-
-        return app;
     }
-    
-    public void ConfigureServices(IServiceCollection services)
-    {
-        services.AddCors(options =>
-        {
-            options.AddPolicy("AllowAllOrigins", builder =>
-                builder.AllowAnyOrigin()
-                    .AllowAnyMethod()
-                    .AllowAnyHeader());
-        });
 
-        services.AddControllers();
+    app.UseCors("AllowSpecificOrigins");
+    /* app.UseHttpsRedirection(); */
+    app.MapControllers();
+    app.UseAuthorization();
+    app.UseAuthentication();
+    app.UseCookiePolicy(cookiePolicyOptions);
+
+    //app.MapRazorPages();
+    app.MapDefaultControllerRoute();
+
+    return app;
     }
-    
-    public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
-    {
-        app.UseCors("AllowLocalhost");
 
-        app.UseRouting();
 
-        app.UseEndpoints(endpoints =>
-        {
-            endpoints.MapControllers();
-        });
-    }
+
 }

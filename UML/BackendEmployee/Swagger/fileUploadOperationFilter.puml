@@ -1,0 +1,6 @@
+@startuml
+class FileUploadOperationFilter {
+    + Apply(operation:OpenApiOperation, context:OperationFilterContext) : void
+}
+IOperationFilter <|-- FileUploadOperationFilter
+@enduml
