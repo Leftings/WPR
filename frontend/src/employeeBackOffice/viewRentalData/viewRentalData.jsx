@@ -24,7 +24,6 @@ function ViewRentalData() {
   const [, updateState] = useState();
   const forceUpdate = useCallback(() => updateState({}), []);
 
-
   useEffect(() => {
     // Authoristatie check
     const validateCookie = async () => {
@@ -215,7 +214,7 @@ function ViewRentalData() {
           {rentalData.length > 0 ? (
             <div className="requests-grid">
               {rentalData.map((data, index) => {
-                const isLoading = loadingRequests[rentalData.ID];
+                const isLoading = loadingRequests[data.ID];
 
                 return (
                   <div key={index} className="request-card" role="Button" tabIndex={0} onClick={async () => {setSelectedCard(data); await collectSpecificData(data.OrderId)}} onKeyDown={async (e) => { if (e.key === "Enter" || e.key === " "){setSelectedCard(data); await collectSpecificData(data.OrderId)}}}>
