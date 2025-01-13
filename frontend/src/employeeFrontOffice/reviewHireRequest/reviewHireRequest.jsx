@@ -5,7 +5,7 @@ import GeneralHeader from '../../GeneralBlocks/header/header';
 import GeneralFooter from '../../GeneralBlocks/footer/footer';
 import { loadList, loadSingle } from '../../utils/backendLoader';
 
-const BACKEND_URL = import.meta.env.VITE_REACT_APP_BACKEND_URL_EMPLOYEE ?? 'http://localhost:5276';
+const BACKEND_URL = import.meta.env.VITE_REACT_APP_BACKEND_URL ?? 'http://localhost:5165';
 
 function GetReview(id) {
   // Data wordt opgehaald van een specifieke review

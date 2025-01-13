@@ -1,4 +1,4 @@
-namespace Employee.Controllers.signUpStaff;
+namespace WPR.Controllers.signUpStaff;
 
 /// <summary>
 /// Body voor het aanmaken van een nieuw account

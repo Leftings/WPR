@@ -1,7 +1,7 @@
-using Employee.Repository;
+using WPR.Repository;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Employee.Controllers.viewRentalData; 
+namespace WPR.Controllers.viewRentalData; 
 
 [ApiController]
 [Route("api/[controller]")]

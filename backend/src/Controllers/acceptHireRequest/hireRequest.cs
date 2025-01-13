@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace Employee.Controllers.acceptHireRequest;
+namespace WPR.Controllers.acceptHireRequest;
 
 /// <summary>
 /// Body voor de HireRequest

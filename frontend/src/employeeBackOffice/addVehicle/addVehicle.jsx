@@ -7,7 +7,7 @@ import { SyntaxLicensePlate } from '../../utils/stringFieldChecker.js'
 import { NumberCheck } from '../../utils/numberFieldChecker.js';
 import { EmptyFieldChecker } from '../../utils/errorChecker.js';
 
-const BACKEND_URL = import.meta.env.VITE_REACT_APP_BACKEND_URL_EMPLOYEE ?? 'http://localhost:5276';
+const BACKEND_URL = import.meta.env.VITE_REACT_APP_BACKEND_URL ?? 'http://localhost:5165';
 
 function AddVehicle() {
     const navigate = useNavigate();

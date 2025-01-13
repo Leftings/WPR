@@ -1,6 +1,6 @@
-using Employee.Controllers.viewRentalData;
+using WPR.Controllers.viewRentalData;
 
-namespace Employee.Repository;
+namespace WPR.Repository;
 
 public interface IBackOfficeRepository
 {

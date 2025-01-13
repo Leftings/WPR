@@ -1,22 +1,22 @@
-﻿using Employee.Database;
-using Employee.Hashing;
+﻿using WPR.Database;
+using WPR.Hashing;
 using Microsoft.VisualBasic;
 using MySql.Data.MySqlClient;
 using MySqlX.XDevAPI.Relational;
-using Employee.Controllers.AddBusiness;
+using WPR.Controllers.AddBusiness;
 
-namespace Employee.Repository;
+namespace WPR.Repository;
 
 /// <summary>
 /// De UserRepository class geeft de methodes voor de interactie met de database voor gebruiker gerelateerde operaties.
 /// Het implementeert de IUserRepository interface.
 /// </summary>
-public class UserRepository : IUserRepository
+public class EmployeeRepository : IEmployeeRepository
 {
     private readonly Connector _connector;
     private readonly Hash _hash;
 
-    public UserRepository(Connector connector, Hash hash)
+    public EmployeeRepository(Connector connector, Hash hash)
     {
         _connector = connector ?? throw new ArgumentNullException(nameof(connector));
         _hash = hash ?? throw new ArgumentNullException(nameof (hash));

@@ -1,4 +1,4 @@
-namespace Employee.Controllers.AddVehicle;
+namespace WPR.Controllers.AddVehicle;
 
 /// <summary>
 /// Body voor het toevoegen van een voertuig

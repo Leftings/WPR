@@ -7,7 +7,7 @@ import { sorter, specific } from '../../utils/sorter.js'
 import { loadList, loadSingle } from '../../utils/backendLoader.js';
 
 
-const BACKEND_URL = import.meta.env.VITE_REACT_APP_BACKEND_URL_EMPLOYEE ?? 'http://localhost:5276';
+const BACKEND_URL = import.meta.env.VITE_REACT_APP_BACKEND_URL ?? 'http://localhost:5165';
 
 function ViewRentalData() {
   const navigate = useNavigate();

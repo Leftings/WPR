@@ -7,7 +7,7 @@ import { NumberCheck, KvKChecker } from '../../utils/numberFieldChecker.js';
 import { NoSpecialCharacters } from '../../utils/stringFieldChecker.js';
 import { EmptyFieldChecker } from '../../utils/errorChecker.js';
 
-const BACKEND_URL = import.meta.env.VITE_REACT_APP_BACKEND_URL_EMPLOYEE ?? 'http://localhost:5276';
+const BACKEND_URL = import.meta.env.VITE_REACT_APP_BACKEND_URL ?? 'http://localhost:5165';
 
 function AddBusiness() {
     const [name, SetName] = useState('');
