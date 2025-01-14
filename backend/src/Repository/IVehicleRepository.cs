@@ -1,4 +1,5 @@
 ﻿namespace WPR.Repository;
+using WPR.Controllers.Rental;
 
 public interface IVehicleRepository
 {
@@ -8,4 +9,5 @@ public interface IVehicleRepository
     public Task<List<string>> GetFrameNumbersAsync();
     public Task<List<Dictionary<object, string>>> GetVehicleDataAsync(string frameNr);
     public Task<List<string>> GetFrameNumberSpecifiekTypeAsync(string type);
+    public Task<(bool Status, string Message)> HireVehicle(RentalRequest requset, string userId);
 }

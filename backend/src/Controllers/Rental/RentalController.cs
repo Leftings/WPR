@@ -8,6 +8,7 @@ using WPR.Database;
 using WPR.Cryption;
 using WPR.Repository;
 using WPR.Services;
+using Microsoft.AspNetCore.Http.HttpResults;
 
 namespace WPR.Controllers
 {
@@ -29,177 +30,6 @@ namespace WPR.Controllers
             _vehicleRepo = vehicleRepo ?? throw new ArgumentNullException(nameof(vehicleRepo));
         }
 
-        [HttpPost("CreateRental")]
-        public async Task<IActionResult> CreateRental([FromBody] RentalRequest rentalRequest)
-        {
-            // Log de binnenkomende aanvraag
-            Console.WriteLine("CreateRental called with request: " +
-                              $"FrameNrCar: {rentalRequest.FrameNrCar}, " +
-                              $"StartDate: {rentalRequest.StartDate}, " +
-                              $"EndDate: {rentalRequest.EndDate}, " +
-                              $"Price: {rentalRequest.Price}");
-
-            // Valideer de invoer
-            if (rentalRequest == null)
-            {
-                return BadRequest(new { message = "Huurverzoek kan niet null zijn." });
-            }
-
-            if (string.IsNullOrWhiteSpace(rentalRequest.FrameNrCar) ||
-                rentalRequest.StartDate == default ||
-                rentalRequest.EndDate == default ||
-                rentalRequest.Price <= 0)
-            {
-                return BadRequest(new { message = "Ongeldige invoergegevens." });
-            }
-
-            if (rentalRequest.StartDate >= rentalRequest.EndDate)
-            {
-                return BadRequest(new { message = "Startdatum moet voor einddatum zijn." });
-            }
-
-            // Haal CustomerID uit de cookie
-            string loginCookie = HttpContext.Request.Cookies["LoginSession"];
-            if (string.IsNullOrEmpty(loginCookie))
-            {
-                Console.WriteLine("Geen login sessie cookie gevonden");
-                return Unauthorized(new { message = "Geen actieve sessie." });
-            }
-
-            int userId;
-            try
-            {
-                userId = int.Parse(_crypt.Decrypt(loginCookie));
-                Console.WriteLine($"Gedecodeerde Gebruiker ID: {userId}");
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Fout bij het decoderen van cookie: {ex.Message}");
-                return Unauthorized(new { message = "Ongeldige sessie." });
-            }
-
-            try
-            {
-                using (var connection = _connector.CreateDbConnection())
-                {
-                    if (connection.State != ConnectionState.Open)
-                    {
-                        connection.Open();
-                        Console.WriteLine("Databaseverbinding geopend.");
-                    }
-
-                    using (var transaction = connection.BeginTransaction())
-                    {
-                        try
-                        {
-                            string insertAbbonementQuery = @"
-INSERT INTO Abonnement (StartDate, EndDate, Price, FrameNrCar, Customer, Status, ReviewedBy) 
-VALUES (@StartDate, @EndDate, @Price, @FrameNrCar, @Customer, @Status, @ReviewedBy)";
-                            using (var command = connection.CreateCommand())
-                            {
-                                command.CommandText = insertAbbonementQuery;
-                                command.CommandType = CommandType.Text;
-
-                                var startDateParam = command.CreateParameter();
-                                startDateParam.ParameterName = "@StartDate";
-                                startDateParam.Value = rentalRequest.StartDate;
-
-                                var endDateParam = command.CreateParameter();
-                                endDateParam.ParameterName = "@EndDate";
-                                endDateParam.Value = rentalRequest.EndDate;
-
-                                var priceParam = command.CreateParameter();
-                                priceParam.ParameterName = "@Price";
-                                priceParam.Value = Convert.ToDecimal(rentalRequest.Price);
-
-                                var frameNrParam = command.CreateParameter();
-                                frameNrParam.ParameterName = "@FrameNrCar";
-                                frameNrParam.Value = rentalRequest.FrameNrCar;
-
-                                var customerParam = command.CreateParameter();
-                                customerParam.ParameterName = "@Customer";
-                                customerParam.Value = userId;
-
-                                var statusParam = command.CreateParameter();
-                                statusParam.ParameterName = "@Status";
-                                statusParam.Value = "requested";
-
-                                var reviewedByParam = command.CreateParameter();
-                                reviewedByParam.ParameterName = "@ReviewedBy";
-
-                                // Als de status 'requested' is, stellen we ReviewedBy in op NULL
-                                if (statusParam.Value.ToString() == "requested")
-                                {
-                                    reviewedByParam.Value = DBNull.Value;
-                                }
-                                else
-                                {
-                                    reviewedByParam.Value = DBNull.Value;
-                                }
-
-                                command.Parameters.Add(startDateParam);
-                                command.Parameters.Add(endDateParam);
-                                command.Parameters.Add(priceParam);
-                                command.Parameters.Add(frameNrParam);
-                                command.Parameters.Add(customerParam);
-                                command.Parameters.Add(statusParam);
-                                command.Parameters.Add(reviewedByParam);
-
-                                command.ExecuteNonQuery();
-                            }
-
-                            transaction.Commit();
-                            Console.WriteLine("Transactie succesvol gecommit.");
-
-                            string carName =
-                                await _vehicleRepo.GetVehicleNameAsync(int.Parse(rentalRequest.FrameNrCar));
-                            if (string.IsNullOrEmpty(carName))
-                            {
-                                return NotFound(new { message = "Car name not found for the frameNr" });
-                            }
-
-                            string carPlate =
-                                await _vehicleRepo.GetVehiclePlateAsync(int.Parse(rentalRequest.FrameNrCar));
-                            if (string.IsNullOrEmpty(carPlate))
-                            {
-                                return NotFound(new { message = "License plate not found for frameNr" });
-                            }
-
-                            string carColor =
-                                await _vehicleRepo.GetVehicleColorAsync(int.Parse(rentalRequest.FrameNrCar));
-                            if (string.IsNullOrEmpty(carColor))
-                            {
-                                return NotFound(new { message = "Color not found for frameNr" });
-                            }
-
-                            await _emailService.SendRentalConfirmMail(
-                                toEmail: rentalRequest.Email,
-                                carName: carName,
-                                carColor: carColor,
-                                carPlate: carPlate,
-                                startDate: rentalRequest.StartDate,
-                                endDate: rentalRequest.EndDate,
-                                price: rentalRequest.Price.ToString()
-                            );
-
-                            return Ok(new { message = "Huur succesvol aangemaakt." });
-                        }
-                        catch (Exception transEx)
-                        {
-                            transaction.Rollback();
-                            Console.WriteLine($"Transactie teruggedraaid: {transEx.Message}");
-                            throw;
-                        }
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Fout in CreateRental: {ex.Message}\n{ex.StackTrace}");
-                return StatusCode(500,
-                    new { message = $"Er is een fout opgetreden bij het aanmaken van de huur: {ex.Message}" });
-            }
-        }
 
         [HttpDelete("CancelRental")]
         public async Task<IActionResult> CancelRentalAsync(int rentalId, int frameNr)
@@ -395,6 +225,20 @@ VALUES (@StartDate, @EndDate, @Price, @FrameNrCar, @Customer, @Status, @Reviewed
                 Console.WriteLine($"Error: {ex.Message}");
                 return StatusCode(500, new { message = "An error occurred while processing the rental update" });
             }
+        }
+
+        [HttpPost("CreateRental")]
+        public async Task<IActionResult> CreateRental([FromBody] RentalRequest request)
+        {
+            string userId = Request.Cookies["LoginSession"];
+
+            (bool Status, string Message) result = await _vehicleRepo.HireVehicle(request, userId);
+            
+            if (result.Status)
+            {
+                return Ok( new { message = result.Message});
+            }
+            return BadRequest( new { message = result.Message });
         }
     }
 }

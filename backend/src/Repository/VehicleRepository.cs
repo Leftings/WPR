@@ -2,7 +2,10 @@
 using Microsoft.VisualBasic;
 using MySql.Data.MySqlClient;
 using Org.BouncyCastle.Asn1.Mozilla;
+using WPR.Controllers.Rental;
+using WPR.Cryption;
 using WPR.Database;
+using WPR.Services;
 
 namespace WPR.Repository;
 
@@ -13,10 +16,14 @@ namespace WPR.Repository;
 public class VehicleRepository : IVehicleRepository
 {
     private readonly Connector _connector;
+    private readonly Crypt _crypt;
+    private readonly EmailService _emailService;
 
-    public VehicleRepository(Connector connector)
+    public VehicleRepository(Connector connector, Crypt crypt, EmailService emailService)
     {
         _connector = connector ?? throw new ArgumentNullException(nameof(connector));
+        _crypt = crypt ?? throw new ArgumentNullException(nameof(crypt));
+        _emailService = emailService ?? throw new ArgumentNullException(nameof(emailService));
     }
     
     public async Task<string> GetVehiclePlateAsync(int frameNr)
@@ -246,5 +253,111 @@ public class VehicleRepository : IVehicleRepository
             Console.WriteLine(ex.Message);
             return null;
         }
+    }
+
+    private async Task<(bool Status, object Message)> DecryptCookie(string userId)
+    {
+        try
+        {
+            return(true, Convert.ToInt32(_crypt.Decrypt(userId)));
+        }
+        catch (OverflowException ex)
+        {
+            return (false, ex.Message);
+        }
+        catch (Exception ex)
+        {
+            return (false, ex.Message);
+        }
+    }
+
+    private async Task<(bool Status, string Message)> InsertRequest(RentalRequest request, object userId)
+    {
+        try
+        {
+            string query = "INSERT INTO Abonnement (StartDate, EndDate, Price, FrameNrCar, Customer) VALUES (@S, @E, @P, @F, @C)";
+            using (var connection = _connector.CreateDbConnection())
+            using (var command = new MySqlCommand(query, (MySqlConnection)connection))
+            {
+                command.Parameters.AddWithValue("@S", request.StartDate);
+                command.Parameters.AddWithValue("@E", request.EndDate);
+                command.Parameters.AddWithValue("@P", request.Price);
+                command.Parameters.AddWithValue("@F", request.FrameNrCar);
+                command.Parameters.AddWithValue("@C", userId);
+
+                if (command.ExecuteNonQuery() > 0)
+                {
+                    return (true, "Inserted");
+                }
+                return (false, "Data Not Inserted");
+            }
+        }
+        catch (MySqlException ex)
+        {
+            return (false, ex.Message);
+        }
+        catch (Exception ex)
+        {
+            return (false, ex.Message);
+        }
+    }
+
+    private async Task<(bool Status, string Message)> SendEmail(RentalRequest request)
+    {
+        try
+        {
+            int frameNr = Convert.ToInt32(request.FrameNrCar);
+            var vehicleName = GetVehicleNameAsync(frameNr);
+            var vehiclePlate = GetVehiclePlateAsync(frameNr);
+            var vehicleColor = GetVehicleColorAsync(frameNr);
+
+            await _emailService.SendRentalConfirmMail(
+                toEmail: request.Email,
+                carName: await vehicleName,
+                carColor: await vehicleColor,
+                carPlate: await vehiclePlate,
+                startDate: request.StartDate,
+                endDate: request.EndDate,
+                price: request.Price.ToString()
+            );
+
+            return (true, "Huur succesvol aangemaakt.");
+            
+        }
+        catch (OverflowException ex)
+        {
+            return (false, ex.Message);
+        }
+        catch (Exception ex)
+        {
+            return (false, ex.Message);
+        }
+    }
+
+    public async Task<(bool Status, string Message)> HireVehicle(RentalRequest request, string userId)
+    {
+        var idUser = await DecryptCookie(userId);
+
+        if (!idUser.Status)
+        {
+            return (false, (string)idUser.Message);
+        }
+
+        var insertData = InsertRequest(request, idUser.Message);
+        var emailService = SendEmail(request);
+
+        (bool Status, string Message) insertDataReponse = await insertData;
+        if (!insertDataReponse.Status)
+        {
+            return (false, insertDataReponse.Message);
+        }
+
+        (bool Status, string Message) emailServiceResponse = await emailService;
+        if (!emailServiceResponse.Status)
+        {
+            return (false, emailServiceResponse.Message);
+        }
+
+        return (true, emailServiceResponse.Message);
     }
 }
