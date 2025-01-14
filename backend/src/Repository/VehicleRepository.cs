@@ -1,4 +1,5 @@
 ﻿using System.Data;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.VisualBasic;
 using MySql.Data.MySqlClient;
 using Org.BouncyCastle.Asn1.Mozilla;
@@ -359,5 +360,169 @@ public class VehicleRepository : IVehicleRepository
         }
 
         return (true, emailServiceResponse.Message);
+    }
+
+    public (bool Status, int StatusCode, string Message) CancelRental(int rentalId, string userCookie)
+    {
+        try
+        {
+            int userId = Convert.ToInt32(_crypt.Decrypt(userCookie));
+            string query = "DELETE FROM Abonnement WHERE OrderId = @Id AND Customer = @Customer";
+
+            using (var connection = _connector.CreateDbConnection())
+            {
+                using (var abonnementCommand = new MySqlCommand(query, (MySqlConnection)connection))
+                {
+                    abonnementCommand.Parameters.AddWithValue("@Id", rentalId);
+                    abonnementCommand.Parameters.AddWithValue("@Customer", userId);
+                    
+                    if (abonnementCommand.ExecuteNonQuery() > 0)
+                    {
+                        return (true, 200, "Rental cancelled successfully");
+                    }
+                    else
+                    {
+                        return (false, 405, "Rental not found or you do not have permission to cancel this rental");
+                    }
+                }
+            }
+        }
+        catch (OverflowException ex)
+        {
+            return (false, 500, ex.Message);
+        }
+        catch (Exception ex)
+        {
+            return (false, 500, ex.Message);
+        }
+    }
+
+    public async Task<(bool Status, int StatusCode, string Message, IList<object> UserRentals)> GetAllUserRentals(string userCookie)
+    {
+        try
+        {
+            int userId = Convert.ToInt32(_crypt.Decrypt(userCookie));
+            string query = "SELECT OrderId, FrameNrCar, StartDate, EndDate, Price, Status FROM Abonnement WHERE Customer = @Customer";
+
+            // (Dictionary geen betere oplossing?)
+            var rentals = new List<object>();
+
+            using (var connection = _connector.CreateDbConnection())
+            {
+                using (var command = new MySqlCommand(query, (MySqlConnection)connection))
+                {
+                    // Ensure userId is added to the query correctly
+                    command.Parameters.AddWithValue("@Customer", userId);
+
+                    using (var reader = await command.ExecuteReaderAsync())
+                    {
+                        while (reader.Read())
+                        {
+                            string carName = await GetVehicleNameAsync(reader.GetInt32(1));
+                            string licensePlate = await GetVehiclePlateAsync(reader.GetInt32(1));
+
+                            rentals.Add(new
+                            {
+                                Id = reader.IsDBNull(0) ? (int?)null : reader.GetInt32(0),
+                                FrameNrCar = reader.IsDBNull(1) ? (int?)null : reader.GetInt32(1),
+                                CarName = carName,
+                                LicensePlate = licensePlate,
+                                StartDate = reader.IsDBNull(2) ? (DateTime?)null : reader.GetDateTime(2),
+                                EndDate = reader.IsDBNull(3) ? (DateTime?)null : reader.GetDateTime(3),
+                                Price = reader.IsDBNull(4) ? (decimal?)null : reader.GetDecimal(4),
+                                Status = reader.IsDBNull(5) ? null : reader.GetString(5),
+                            });
+                        }
+                    }
+                }
+            }
+
+            return (true, 200, "Data Collected", rentals);
+        }
+        catch (MySqlException ex)
+        {
+            return (false, 500, ex.Message, new List<object>());
+        }
+        catch (OverflowException ex)
+        {
+            return (false, 500, ex.Message, new List<object>());
+        }
+        catch (Exception ex)
+        {
+            return (false, 500, ex.Message, new List<object>());
+        }
+    }
+
+    public (bool Status, int StatusCode, string Message, IList<object> UserRentals) GetAllUserRentalsDetailed()
+    {
+        try
+            {
+            // KvK staat niet in Abonnement
+            string query = "SELECT OrderId, StartDate, EndDate, Price, FrameNrCar, Customer, Status, ReviewedBy, VMStatus FROM Abonnement";
+
+            var rentals = new List<object>();
+
+            using (var connection = _connector.CreateDbConnection())
+            using (var command = new MySqlCommand(query, (MySqlConnection)connection))
+            using (var reader = command.ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    rentals.Add(new
+                    {
+                        ID = reader.IsDBNull(0) ? (int?)null : reader.GetInt32(0),
+                        StartDate = reader.IsDBNull(1) ? (DateTime?)null : reader.GetDateTime(1),
+                        EndDate = reader.IsDBNull(2) ? (DateTime?)null : reader.GetDateTime(2),
+                        Price = reader.IsDBNull(3) ? (decimal?)null : reader.GetDecimal(3),
+                        FrameNrCar = reader.IsDBNull(4) ? (int?)null : reader.GetInt32(4),
+                        Customer = reader.IsDBNull(5) ? (int?)null : reader.GetInt32(5),
+                        Status = reader.IsDBNull(6) ? null : reader.GetString(6),
+                        ReviewedBy = reader.IsDBNull(7) ? (int?)null : reader.GetInt32(7),
+                        VMStatus = reader.IsDBNull(8) ? null : reader.GetString(8),
+                        //Kvk = reader.IsDBNull(9) ? (int?)null : reader.GetInt32(9),
+                    });
+                }
+                return (true, 200, "Succesfully Collected Data", rentals);
+            }
+        }
+        catch (MySqlException ex)
+        {
+            return (false, 500, ex.Message, new List<object>());
+        }
+        catch (Exception ex)
+        {
+            return (false, 500, ex.Message, new List<object>());
+        }
+    }
+
+    public (bool Status, int StatusCode, string Message) ChangeRental(UpdateRentalRequest request)
+    {
+        try
+        {
+            string query = "UPDATE Abonnement SET StartDate = @StartDate, EndDate = @EndDate, Price = @Price WHERE OrderId = @Id";
+            using (var connection = _connector.CreateDbConnection())
+            using (var command = new MySqlCommand(query, (MySqlConnection)connection))
+            {
+                command.Parameters.AddWithValue("@StartDate", request.StartDate);
+                command.Parameters.AddWithValue("@EndDate", request.EndDate);
+                command.Parameters.AddWithValue("@Price", request.Price);
+                command.Parameters.AddWithValue("@Id", request.Id);
+
+                if (command.ExecuteNonQuery() > 0)
+                {
+                    return (true, 200, "Rental Updated Successfully");
+                }
+
+                return (false, 501,  "Rental wasn't updated");
+            }
+        }
+        catch (MySqlException ex)
+        {
+            return (false, 500, ex.Message);
+        }
+        catch (Exception ex)
+        {
+            return (false, 500, ex.Message);
+        }
     }
 }
