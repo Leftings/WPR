@@ -1,4 +1,5 @@
 ﻿namespace WPR.Repository;
+using WPR.Controllers.Rental;
 
 using System.Security.Policy;
 using Microsoft.AspNetCore.Mvc;

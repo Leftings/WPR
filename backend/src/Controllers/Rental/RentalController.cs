@@ -70,5 +70,19 @@ namespace WPR.Controllers
             }
             return BadRequest( new { message = result.Message });
         }
+
+        [HttpPost("CreateRental")]
+        public async Task<IActionResult> CreateRental([FromBody] RentalRequest request)
+        {
+            string userId = Request.Cookies["LoginSession"];
+
+            (bool Status, string Message) result = await _vehicleRepo.HireVehicle(request, userId);
+            
+            if (result.Status)
+            {
+                return Ok( new { message = result.Message});
+            }
+            return BadRequest( new { message = result.Message });
+        }
     }
 }
