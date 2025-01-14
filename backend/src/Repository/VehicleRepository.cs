@@ -1,8 +1,10 @@
 ﻿using System.Data;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.VisualBasic;
 using MySql.Data.MySqlClient;
 using Org.BouncyCastle.Asn1.Mozilla;
+using Org.BouncyCastle.Bcpg;
 using WPR.Controllers.Rental;
 using WPR.Cryption;
 using WPR.Database;
@@ -256,19 +258,19 @@ public class VehicleRepository : IVehicleRepository
         }
     }
 
-    private async Task<(bool Status, object Message)> DecryptCookie(string userId)
+    private async Task<(bool Status, int StatusCode, object Message)> DecryptCookie(string userId)
     {
         try
         {
-            return(true, Convert.ToInt32(_crypt.Decrypt(userId)));
+            return(true, 200, Convert.ToInt32(_crypt.Decrypt(userId)));
         }
         catch (OverflowException ex)
         {
-            return (false, ex.Message);
+            return (false, 500, ex.Message);
         }
         catch (Exception ex)
         {
-            return (false, ex.Message);
+            return (false, 500, ex.Message);
         }
     }
 
@@ -362,19 +364,22 @@ public class VehicleRepository : IVehicleRepository
         return (true, emailServiceResponse.Message);
     }
 
-    public (bool Status, int StatusCode, string Message) CancelRental(int rentalId, string userCookie)
+    public async Task<(bool Status, int StatusCode, string Message)> CancelRental(int rentalId, string userCookie)
     {
         try
         {
-            int userId = Convert.ToInt32(_crypt.Decrypt(userCookie));
+            var userId = DecryptCookie(userCookie);
             string query = "DELETE FROM Abonnement WHERE OrderId = @Id AND Customer = @Customer";
 
             using (var connection = _connector.CreateDbConnection())
+            using (var abonnementCommand = new MySqlCommand(query, (MySqlConnection)connection))
             {
-                using (var abonnementCommand = new MySqlCommand(query, (MySqlConnection)connection))
+                (bool Status, int StatusCode, object Message) userIdResponse = await userId;
+
+                if (userIdResponse.Status)
                 {
                     abonnementCommand.Parameters.AddWithValue("@Id", rentalId);
-                    abonnementCommand.Parameters.AddWithValue("@Customer", userId);
+                    abonnementCommand.Parameters.AddWithValue("@Customer", Convert.ToInt32(userIdResponse.Message));
                     
                     if (abonnementCommand.ExecuteNonQuery() > 0)
                     {
@@ -385,6 +390,7 @@ public class VehicleRepository : IVehicleRepository
                         return (false, 405, "Rental not found or you do not have permission to cancel this rental");
                     }
                 }
+                return (false, userIdResponse.StatusCode, (string)userIdResponse.Message);
             }
         }
         catch (OverflowException ex)
@@ -401,18 +407,20 @@ public class VehicleRepository : IVehicleRepository
     {
         try
         {
-            int userId = Convert.ToInt32(_crypt.Decrypt(userCookie));
+            var userId = DecryptCookie(userCookie);
             string query = "SELECT OrderId, FrameNrCar, StartDate, EndDate, Price, Status FROM Abonnement WHERE Customer = @Customer";
 
             // (Dictionary geen betere oplossing?)
             var rentals = new List<object>();
 
             using (var connection = _connector.CreateDbConnection())
+            using (var command = new MySqlCommand(query, (MySqlConnection)connection))
             {
-                using (var command = new MySqlCommand(query, (MySqlConnection)connection))
+                (bool Status, int StatusCode, object Message) userIdResponse = await userId;
+
+                if (userIdResponse.Status)
                 {
-                    // Ensure userId is added to the query correctly
-                    command.Parameters.AddWithValue("@Customer", userId);
+                    command.Parameters.AddWithValue("@Customer", Convert.ToInt32(userIdResponse.Message));
 
                     using (var reader = await command.ExecuteReaderAsync())
                     {
@@ -434,10 +442,10 @@ public class VehicleRepository : IVehicleRepository
                             });
                         }
                     }
+                    return (true, 200, "Data Collected", rentals);
                 }
+                return (false, userIdResponse.StatusCode, (string)userIdResponse.Message, new List<object>());
             }
-
-            return (true, 200, "Data Collected", rentals);
         }
         catch (MySqlException ex)
         {

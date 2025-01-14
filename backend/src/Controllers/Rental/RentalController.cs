@@ -19,7 +19,7 @@ namespace WPR.Controllers
         public async Task<IActionResult> CancelRentalAsync(int rentalId)
         {
             string loginCookie = HttpContext.Request.Cookies["LoginSession"];
-            (bool Status, int StatusCode, string Message) response = _vehicleRepo.CancelRental(rentalId, loginCookie);
+            (bool Status, int StatusCode, string Message) response = await _vehicleRepo.CancelRental(rentalId, loginCookie);
 
             return StatusCode(response.StatusCode, new { message = response.Message });
         }
