@@ -5,16 +5,15 @@
   background-color: #f9f9f9; 
   border-radius: 8px;
   box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
-  width: auto; /* Set the container to 80% width */
-  margin-left: auto; /* Center the container */
+  margin-left: auto;
   margin-right: auto;
 }
 
 .requests-grid {
   display: grid;
   gap: 20px;
-  grid-auto-rows: auto; /* Ensure cards are evenly spaced */
-  justify-content: center; /* Center-align the grid */
+  grid-auto-rows: auto; 
+  justify-content: center;
 }
 
 .request-card {
@@ -22,75 +21,26 @@
   padding: 15px;
   border-radius: 8px; 
   box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
-  width: 350px; /* Fixed card width */
-  height: auto; /* Allow content to dictate height */
+  width: 350px; 
+  height: auto;
   text-align: center;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
 }
 
 .request-card:hover {
-  transform: scale(1.03); /* Slight zoom on hover */
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2); /* Deeper shadow on hover */
+  transform: scale(1.03);
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
 }
 
 .request-card p {
   margin: 5px 0;
 }
 
-.accept {
-  background-color: #1D7874;
-  color: #fff;
-  padding: 10px 20px;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.accept:hover {
-  background-color: #14615c; /* Darker shade on hover */
-}
-
-.deny {
-  background-color: red;
-  color: #fff;
-  padding: 10px 20px;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.deny:hover {
-  background-color: #b30000; /* Darker red on hover */
-}
-
-#buttons {
-  display: inline-flex;
-  justify-content: space-between;
-  gap: 25px;
-  margin-top: 10px;
-}
-
 .request-card strong {
   font-weight: bold;
 }
 
-@media (max-width: 1200px) {
-  .requests-grid {
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); /* Adjust grid dynamically */
-  }
-}
-
-@media (max-width: 900px) {
-  .requests-grid {
-    grid-template-columns: repeat(2, 1fr); /* Two columns for smaller screens */
-  }
-}
-
-@media (max-width: 600px) {
-  .requests-grid {
-    grid-template-columns: 1fr; /* One column for very small screens */
-  }
-}
 
 .loading-screen {
   display: flex;
@@ -137,7 +87,7 @@
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   max-width: 90%;
   max-height: 90%;
-  overflow-y: auto; /* Scrollable content */
+  overflow-y: auto;
   position: relative;
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -159,7 +109,7 @@
 }
 
 .close-btn:hover {
-  color: #000; /* Hover effect for close button */
+  color: #000;
 }
 
 .fullscreen-card h1 {
@@ -178,30 +128,7 @@
   height: 300px;
 }
 
-.person {
-  grid-column: 1;
-}
 
-.vehicle {
-  grid-column: 2;
-}
-
-.rental {
-  grid-column: 1;
-}
-
-.business {
-  grid-column: 2;
-}
-
-.blob {
-  grid-column: 1 / span 2;
-  margin-top: 0;
-}
-
-.blob-right {
-  grid-column: 2;
-}
 
 .blob img {
   width: 100%;

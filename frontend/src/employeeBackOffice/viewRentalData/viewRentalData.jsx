@@ -29,7 +29,7 @@ function ViewRentalData() {
   useEffect(() => {
     const handleResize = () => 
     {
-      placingItems(gridRef.current, 350);
+      placingItems(gridRef, 350, 350/2);
     }
 
     window.addEventListener('resize', handleResize);
@@ -222,9 +222,9 @@ function ViewRentalData() {
               )}
             </select>
         </div>
-        <div className="requests-box">
+        <div ref={gridRef} className="requests-box">
           {rentalData.length > 0 ? (
-            <div ref={gridRef} className="requests-grid">
+            <div className="requests-grid">
               {rentalData.map((data, index) => {
                 const isLoading = loadingRequests[data.ID];
 

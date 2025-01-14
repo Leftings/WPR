@@ -1,13 +1,16 @@
-export const placingItems = (grid, cardWidth) =>
-{
-    if (!grid)
-    {
-        return;
+export const placingItems = (grid, cardWidth, spaceBetween) => {
+    if (grid === null) {
+      return grid;
     }
-    
-    const containerWidth = grid.offsetWidth;
-    const columns = Math.floor(containerWidth / cardWidth) + 350;
-    console.log(containerWidth, cardWidth, columns);
-    grid.style.gridTemplateColumns = `repeat(${columns > 0 ? columns : 1}, 1fr)`;
+    if(grid.current == null)
+    {
+      return grid;
+    }
+
+    const gridWith = grid.current.offsetWidth;
+    const columns = Math.floor((gridWith - cardWidth) / cardWidth);
+    grid.current.style.gridTemplateColumns = `repeat(${columns}, ${cardWidth}px)`;
+    console.log(grid.current.style.gridTemplateColumns);
     return grid;
 }
+  
