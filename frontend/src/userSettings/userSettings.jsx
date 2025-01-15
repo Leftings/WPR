@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import {Await, Link, Navigate, useNavigate} from 'react-router-dom';
 
-import './userSettings.css';
+//import './userSettings.css';
+import '../index.css';
 
 function GetUser(setUser)
 {

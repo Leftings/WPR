@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { getErrorMessage } from '../utils/errorHandler.jsx'
-import "./signUp.css"
+//import "./signUp.css"
+import '../index.css';
 import GeneralHeader from "../GeneralBlocks/header/header.jsx";
 import GeneralFooter from "../GeneralBlocks/footer/footer.jsx";
 import {KvKChecker, NumberCheck} from "../utils/numberFieldChecker.js";

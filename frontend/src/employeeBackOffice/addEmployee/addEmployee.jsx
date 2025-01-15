@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import './addEmployee.css';
+//import './addEmployee.css';'
+import '../../index.css';
 import GeneralHeader from '../../GeneralBlocks/header/header';
 import GeneralFooter from '../../GeneralBlocks/footer/footer';
 import { useNavigate } from 'react-router-dom';
