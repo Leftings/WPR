@@ -566,6 +566,8 @@ margin-right: 20px;
   justify-content: space-between;
   padding-top: 30px;
   padding-bottom: 50px;
+  margin: 0; 
+  box-sizing: border-box; 
 }
 
 .car-detail-header {
@@ -583,7 +585,7 @@ margin-right: 20px;
   justify-content: center;
   gap: 150px;
   margin-top: 30px;
-  padding-left: 200px;
+  padding-left: 800px;
 }
 
 .car-detail-image {
@@ -1258,7 +1260,7 @@ body {
   color: white;
   padding: 20px;
 }
-*/
+
 
 /* AbonnementInfo */
 footer {
@@ -1266,8 +1268,10 @@ footer {
   color: white;
   text-align: center;
   padding: 20px;
-  margin-top: auto; 
+  bottom: 0;
+  width: 100%;
 }
+
 
 .footer-links a {
   color: #BBC2E2;
@@ -1581,15 +1585,6 @@ button {
 }
 
 /* Car-info: ChangeRental, PayPage */
-/* ChangeRental */
-.car-info {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  width: 40%; 
-  min-width: 300px;
-  text-align: center;
-}
 
 .car-info h2, .user-info h3 {
   margin-bottom: 20px;
