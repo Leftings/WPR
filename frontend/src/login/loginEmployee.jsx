@@ -164,7 +164,7 @@ function Login() {
             <br />
             <input type="password" id="password" value={password} onChange={(e) => setPassword(e.target.value)} />
             <br />
-            <button id="button" type="button" onClick={onSubmit}>Login</button>
+            <button className="cta-button" type="button" onClick={onSubmit}>Login</button>
             {userType === "Customer" && (
                 <>
                   <br />

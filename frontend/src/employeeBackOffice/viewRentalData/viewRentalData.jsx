@@ -27,7 +27,7 @@ function ViewRentalData() {
   const forceUpdate = useCallback(() => updateState({}), []);
   const gridRef = useRef(null);
 
-  useEffect(() => {
+  /*useEffect(() => {
     const handleResize = () => 
     {
       placingItems(gridRef, 350, 350/2);
@@ -35,7 +35,7 @@ function ViewRentalData() {
 
     window.addEventListener('resize', handleResize);
     handleResize();
-  }, []);
+  }, []); */
 
   useEffect(() => {
     // Authoristatie check

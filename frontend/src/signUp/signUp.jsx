@@ -108,70 +108,55 @@ function SignUp() {
             <div>
                 <div id="aanmelden">
                     <h1>Aanmelden</h1>
-                </div>
 
-                <div id="input">
+                    <div id='account'>
                     <label htmlFor="button">Soort Account:</label>
                     <br></br>
-                    <button
-                        onClick={() => choice(1)}
-                        id={chosenType === 1 ? 'typeButton-active' : 'typeButton'}
-                        type="button"
-                    >
-                        Particulier
-                    </button>
-                    <button
-                        onClick={() => choice(2)}
-                        id={chosenType === 2 ? 'typeButton-active' : 'typeButton'}
-                        type="button"
-                    >
-                        Zakelijk
-                    </button>
+                        <button
+                            onClick={() => choice(1)}
+                            id={chosenType === 1 ? 'typeButton-active' : 'typeButton'}
+                            type="button"
+                        >
+                            Particulier
+                        </button>
+                        <button
+                            onClick={() => choice(2)}
+                            id={chosenType === 2 ? 'typeButton-active' : 'typeButton'}
+                            type="button"
+                        >
+                            Zakelijk
+                        </button>
+                    </div>
+                </div>
 
+                <div className="registrateFormat">
                     {chosenType === 1 && (
                         <>
-                            <br></br>
                             <label htmlFor="firstName">Voornaam</label>
-                            <br></br>
                             <input type="text" id="firstName" value={firstName}
                                    onChange={(e) => setFirstName(e.target.value)}></input>
-                            <br></br>
                             <label htmlFor="lastName">Achternaam</label>
-                            <br></br>
                             <input type="text" id="lastName" value={lastName}
                                    onChange={(e) => setLastName(e.target.value)}></input>
-                            <br></br>
                             <label htmlFor="email">E-mail</label>
-                            <br></br>
                             <input type="text" id="email" value={email}
                                    onChange={(e) => setEmail(e.target.value)}></input>
-                            <br></br>
                             <label htmlFor="adres">Adres</label>
-                            <br></br>
                             <input type="text" id="adres" value={adres}
                                    onChange={(e) => setAdres(e.target.value)}></input>
-                            <br></br>
                             <label htmlFor="phonenumber">Telefoonnummer</label>
-                            <br></br>
                             <input type="tel" id="phonenumber" value={phonenumber}
                                    onChange={(e) => setPhonenumber(e.target.value)}></input>
-                            <br></br>
                             <label htmlFor="dateOfBirth">Geboortedatum</label>
-                            <br></br>
                             <input type="date" id="dateOfBirth" value={dateOfBirth}
                                    onChange={(e) => setDateOfBirth(e.target.value)}></input>
-                            <br></br>
                             <label htmlFor="password">Wachtwoord</label>
-                            <br></br>
                             <input type="password" id="password" value={password1}
                                    onChange={(e) => setPassword1(e.target.value)}></input>
-                            <br></br>
                             <label htmlFor="passwordConfirm">Herhaal wachtwoord</label>
-                            <br></br>
                             <input type="password" id="passwordConfirm" value={password2}
                                    onChange={(e) => setPassword2(e.target.value)}></input>
-                            <br></br>
-                            <button id="button" type="button" onClick={onSubmit}>Maak Account</button>
+                            
                         </>
                     )}
 
@@ -218,16 +203,25 @@ function SignUp() {
                             <input type="password" id="passwordConfirm" value={password2}
                                    onChange={(e) => setPassword2(e.target.value)}></input>
                             <br></br>
-                            <button id="button" type="button" onClick={onSubmit}>Maak Account</button>
+
+                            <div className='registrateFromatFooter'>
+                                <button id="button" type="button" onClick={onSubmit}>Maak Account</button>
+
+                                <label htmlFor="heeftAccount">Heeft u al een account? <Link id="redirect" to="/login">Log
+                                in!</Link></label>
+                            </div>
                         </>
                     )}
-                    <br></br>
-                    <label htmlFor="heeftAccount">Heeft u al een account? <Link id="redirect" to="/login">Log
-                        in!</Link></label>
-                    {error && <p style={{color: 'red'}}>{error}</p>}
+
+                    <div className='registrateFormatFooter'>
+                        {error && <p style={{color: 'red'}}>{error}</p>}
+                        <button className="cta-button" type="button" onClick={onSubmit}>Maak Account</button>
+                        <label htmlFor="heeftAccount">Heeft u al een account? <Link id="redirect" to="/login">Log in!</Link></label>
+                    </div>
                 </div>
             </div>
             
+            <GeneralFooter></GeneralFooter>
         </>
     );
 }

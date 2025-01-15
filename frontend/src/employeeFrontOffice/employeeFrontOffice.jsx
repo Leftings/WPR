@@ -34,12 +34,15 @@ function EmployeeFrontOffice() {
     <>
       <GeneralHeader>
       </GeneralHeader>
-
-      <body>
+      
+      <div className='body'>
         <h1>Front Office</h1>
-        <Link to="./reviewHireRequest">Huur aanvragen beheren</Link>
-        <Link to="./addBusiness">Bedrijf toevoegen</Link>
-      </body>
+        
+        <div className = "officeLinks">
+          <Link to="./reviewHireRequest">Huur aanvragen beheren</Link>
+          <Link to="./addBusiness">Bedrijf toevoegen</Link>
+        </div>
+      </div>
 
       <GeneralFooter>
       </GeneralFooter>
