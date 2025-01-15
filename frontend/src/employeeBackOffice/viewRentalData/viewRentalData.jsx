@@ -1,10 +1,12 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
-import './viewRentalData.css';
+//import './viewRentalData.css';
+import '../../index.css'; 
 import GeneralHeader from '../../GeneralBlocks/header/header';
 import GeneralFooter from '../../GeneralBlocks/footer/footer';
 import { sorter, specific } from '../../utils/sorter.js'
 import { loadList, loadSingle } from '../../utils/backendLoader.js';
+import { placingItems } from '../../utils/gridPlacement.js';
 
 
 const BACKEND_URL = import.meta.env.VITE_REACT_APP_BACKEND_URL ?? 'http://localhost:5165';
@@ -23,6 +25,17 @@ function ViewRentalData() {
   const [specificDataLoading, setSpecificDataLoading] = useState(false);
   const [, updateState] = useState();
   const forceUpdate = useCallback(() => updateState({}), []);
+  const gridRef = useRef(null);
+
+  useEffect(() => {
+    const handleResize = () => 
+    {
+      placingItems(gridRef, 350, 350/2);
+    }
+
+    window.addEventListener('resize', handleResize);
+    handleResize();
+  }, []);
 
   useEffect(() => {
     // Authoristatie check
@@ -210,7 +223,7 @@ function ViewRentalData() {
               )}
             </select>
         </div>
-        <div className="requests-box">
+        <div ref={gridRef} className="requests-box">
           {rentalData.length > 0 ? (
             <div className="requests-grid">
               {rentalData.map((data, index) => {
