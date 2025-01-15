@@ -14,6 +14,10 @@ public class EmailService
         _envConfig = envConfig ?? throw new ArgumentNullException(nameof(envConfig));
     }
 
+    /// <summary>
+    /// Maak SMTP Client voor versturen emails
+    /// </summary>
+    /// <returns>SMTP Client</returns>
     private SmtpClient CreateSmtpClient()
     {
         return new SmtpClient(_envConfig.Get("SMTP_HOST"))
