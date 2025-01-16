@@ -263,15 +263,19 @@ footer {
 .requests-box {
   border: 2px solid #ccc; 
   padding: 20px;
-  margin-top: 20px;
   background-color: #f9f9f9; 
   border-radius: 8px;
   box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  align-self: center;
+  margin: 0 auto;
 }
 
 .requests-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(1, 1fr);
   gap: 20px;
 }
 
@@ -280,7 +284,7 @@ footer {
   padding: 15px;
   border-radius: 8px; 
   box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
-  max-width: 350;
+  max-width: 350px;
   min-width: 350px;
   text-align: center;
 }
@@ -316,21 +320,42 @@ margin-top: 10px;
   font-weight: bold;
 }
 
-@media (max-width: 1200px) {
+@media (min-width: 1600px) {
+  .requests-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .requests-box {
+    width: 1600px;
+  }
+}
+@media (min-width: 1200px) and (max-width: 1599px) {
   .requests-grid {
     grid-template-columns: repeat(3, 1fr);
   }
-}
 
-@media (max-width: 900px) {
-  .requests-grid {
-    grid-template-columns: repeat(2, 1fr);
+  .requests-box {
+    width: 1150px;
   }
 }
 
-@media (max-width: 600px) {
+@media (min-width: 851px) and (max-width: 1199px) {
+  .requests-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .requests-box {
+    width: 800px;
+  }
+}
+
+@media (max-width: 850px) {
   .requests-grid {
     grid-template-columns: 1fr;
+  }
+
+  .requests-box {
+    width: 350px;
   }
 }
 
@@ -961,6 +986,146 @@ li {
   }
 }
 
+/* Offices Main Pages */
+.officeLinks {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 20px 0;
+  gap: 15px;
+}
+
+.officeLinks a {
+  color: #002fff;
+  padding: 10px 20 px;
+  border-radius: 5px;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+/* Add Employee */
+.registrateFormat {
+  display: grid;
+  grid-template-columns: 1fr; /* Default: Single column */
+  margin: 0 auto;
+  background-color: #f8f8f8; 
+  border: 1px solid #ddd;
+  border-radius: 8px; 
+  padding: 20px; 
+  margin-bottom: 20px; 
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+  gap: 20px; /* Space between rows and columns */
+  width: 300px; /* Adjust for smaller screens */
+  position: relative;
+}
+
+.registrateFormat label {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.registrateFormatHeader {
+  grid-column: span 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+  text-align: center;
+  width: 100%;
+}
+
+.registrateFormatFooter {
+  grid-column: span 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+  text-align: center;
+  width: 100%;
+}
+
+.registrateFormatErrors {
+  position: absolute;
+  top: 20px; 
+  right: -350px; 
+  width: 250px; 
+  background-color: #f8d7da; 
+  color: #721c24; 
+  padding: 10px;
+  border: 1px solid #f5c6cb;
+  border-radius: 5px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+@media (max-width: 600px)
+{
+  .registrateFormat input {
+    width: 150px;
+  }
+  
+  .registrateFormat select {
+    width: 150px;
+  }
+
+  .registrateFormatErrors {
+    position: static;
+    width: 100%;
+    margin-top: 20px;
+  }
+}
+
+@media (min-width: 601px) {
+  .registrateFormat {
+    grid-template-columns: repeat(2, 1fr);
+    width: 500px; 
+  }
+  .registrateFormatFooter {
+    width: 400px;
+  }
+
+  .registrateFormat input {
+    width: 250px;
+  }
+  
+  .registrateFormat select {
+    width: 250px;
+  }
+
+  .registrateFormatErrors {
+    position: absolute;
+    top: 40px;
+    right: -350px; 
+    width: 250px;
+  }
+}
+
+@media (min-width: 1025px) {
+  .registrateFormat {
+    width: 675px;
+  }
+  .registrateFormatFooter {
+    width: 675px;
+  }
+
+  .registrateFormat input {
+    width: 300px;
+  }
+  
+  .registrateFormat select {
+    width: 300px;
+  }
+
+  .registrateFormatErrors {
+    position: absolute;
+    top: 200px;
+    right: -300px;
+    width: 250px;
+  }
+}
+
+/* Add business */
+
 /* Error-message: WagenparkBeheerderOverzicht, ChangeRental, PayPage, ConfirmationPage */
 
 /* WagenparkBeheerderOverzicht */
@@ -1119,7 +1284,6 @@ body {
   width: auto;
   height: auto;
   max-width: 300px;
-  max-height: 200px;
   overflow: auto;
   white-space: pre-line;
   margin-top: 1rem;
@@ -1156,12 +1320,13 @@ body {
   align-items: center;
 }
 
-/* GeneralHeader */
+/* GeneralHeader
 .hero {
   text-align: center;
   color: black;
   padding: 80px 20px;
 }
+*/
 
 /* Home */
 .hero p {

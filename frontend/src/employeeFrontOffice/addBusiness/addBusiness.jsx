@@ -68,22 +68,33 @@ function AddBusiness() {
     return (
         <>
             <GeneralHeader></GeneralHeader>
-            <h1>Bedrijf Toevoegen</h1>
-            <div className="body">
-                <p>Bedrijfsnaam</p>
-                <input value={name} onChange={(e) => SetName(e.target.value)}></input>
-                <p>KvK</p>
-                <input value={kvk} onChange={(e) => SetKvk(KvKChecker(NumberCheck(e.target.value)))}></input>
-                <p>Straatnaam</p>
-                <input value={street} onChange={(e) => SetStreet(e.target.value)}></input>
-                <p>Nummer</p>
-                <input value={number} onChange={(e) => SetNumber(NumberCheck(e.target.value))}></input>
-                <p>Toevoeging (niet verplicht)</p>
-                <input value={add} onChange={(e) => SetAdd(NoSpecialCharacters(e.target.value.toUpperCase()))}></input>
-                <button onClick={Push}>Bevestig</button>
+            <div id='addBusinessBody'>
+                <h1>Bedrijf Aanmelden</h1>
+                <div className='registrateFormat'>
+                    <label htmlFor='inputBusinessName'>Bedrijfsnaam</label>
+                    <br></br>
+                    <input id='inputBusinessName' value={name} onChange={(e) => SetName(e.target.value)}></input>
+                    <br></br>
+                    <label htmlFor='inputKvK'>KvK</label>
+                    <br></br>
+                    <input id='inputKvK'value={kvk} onChange={(e) => SetKvk(KvKChecker(NumberCheck(e.target.value)))}></input>
+                    <br></br>
+                    <label htmlFor='inputStreet'>Straatnaam</label>
+                    <br></br>
+                    <input id='inputStreet' value={street} onChange={(e) => SetStreet(e.target.value)}></input>
+                    <br></br>
+                    <label htmlFor='inputNumber'>Nummer</label>
+                    <br></br>
+                    <input id='inputNumber' value={number} onChange={(e) => SetNumber(NumberCheck(e.target.value))}></input>
+                    <br></br>
+                    <label htmlFor='inputExtra'>Toevoeging (niet verplicht)</label>
+                    <br></br>
+                    <input id='inputExtra' value={add} onChange={(e) => SetAdd(NoSpecialCharacters(e.target.value.toUpperCase()))}></input>
+                    <br></br>
+                    <button className='cta-button' onClick={Push}>Bevestig</button>
 
-                {error.length > 0 && (
-                    <div id="errors">
+                    {error.length > 0 && (
+                    <div className="error-message">
                         <ul>
                             {error.map((errorMessage, index) => (
                                 <li key={index}>{errorMessage}</li>
@@ -91,6 +102,7 @@ function AddBusiness() {
                         </ul>
                     </div>
                 )}
+                </div>
             </div>
             <GeneralFooter></GeneralFooter>
         </>
