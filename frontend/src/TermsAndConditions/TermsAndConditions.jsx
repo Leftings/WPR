@@ -8,7 +8,7 @@ function TermsAndConditions() {
     return (
         <>
             <GeneralHeader />
-            <div className="container">
+            <div className="container-termsandconditions">
                 <section className="section">
                     <h1 className="title-primary">CarandAll - Algemene Voorwaarden</h1>
                     <p className="last-updated">Laatst bijgewerkt: 26 november 2024</p>

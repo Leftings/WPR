@@ -265,7 +265,7 @@ footer {
   padding: 20px;
   background-color: #f9f9f9; 
   border-radius: 8px;
-  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -283,7 +283,7 @@ footer {
   background-color: #fff;
   padding: 15px;
   border-radius: 8px; 
-  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   max-width: 350px;
   min-width: 350px;
   text-align: center;
@@ -440,7 +440,7 @@ margin-right: 20px;
   background-color: #fff;
   padding: 15px;
   border-radius: 8px;
-  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   text-align: center;
   width: 350px;
   height: 300px;
@@ -492,10 +492,6 @@ margin-right: 20px;
 
   .logo-container:hover .logo {
       color: #1D7874;
-  }
-
-  .logo-container:hover .logo-image {
-      content: url('../../assets/logo-green.svg');
   }
 
 .logo-image {
@@ -598,11 +594,6 @@ margin-right: 20px;
 .car-detail-header {
   text-align: center;
   margin-bottom: 20px;
-}
-
-.car-name {
-  font-size: 2.5em;
-  color: #333;
 }
 
 .car-detail-content {
@@ -771,7 +762,7 @@ h3 {
   font-size: 1.2em;
   font-weight: bold;
   color: #333;
-  margin-left: 5%;
+  margin-left: 23%;
 }
 
 .total-cost p {
@@ -807,7 +798,7 @@ h3 {
   border-radius: 4px;
   z-index: 99;
   width: 100%;
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   margin-top: 4px;
 }
 
@@ -836,6 +827,7 @@ h3 {
       flex-direction: column;
       align-items: center;
       gap: 20px;
+      
   }
 
   .car-info, .user-info {
@@ -881,7 +873,6 @@ header Link {
   background-color: red;
   color: white;
   font-weight: bold;
-  transition: color 0.3s;
   transition: background-color 0.3s;
 }
 #buttonDelete:hover {
@@ -998,7 +989,7 @@ li {
 
 .officeLinks a {
   color: #002fff;
-  padding: 10px 20 px;
+  padding: 10px 20px;
   border-radius: 5px;
   font-size: 16px;
   font-weight: bold;
@@ -1123,11 +1114,6 @@ li {
     width: 250px;
   }
 }
-
-/* Add business */
-
-/* Error-message: WagenparkBeheerderOverzicht, ChangeRental, PayPage, ConfirmationPage */
-
 /* WagenparkBeheerderOverzicht */
 .error-message {
   color: #d9534f;
@@ -1139,39 +1125,6 @@ li {
   opacity: 0;
 }
 
-/* PayPage
-.error-message {
-  color: red;
-  margin-top: 10px;
-}
-
-ConfirmationPage
-.error-message {
-  color: red;
-  margin: 20px;
-  text-align: center;
-}
-
-ChangeRental
-.error-message {
-  color: red;
-  margin-top: 10px;
-}
-  */
-
-/* Body: Index, CarRentalOverview, Home, AddBusiness, AddVehicle, GeneralHeader, IndividualSalesPage, Login,
-Signup, UserSettings
-
-/* Index 
-body
-{
-  margin: 0;
-  padding: 0;
-  height: 100%;
-  width: 100%;
-}
-*/
-
 /* Index */
 body {
   margin: 0;
@@ -1181,83 +1134,13 @@ body {
   min-height: 100vh;
 }
 
-/* CarRentalOverview & Home 
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-}
-*/
-
-/* AddVehicle
-.body{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-}
-*/
-
-/* AddBusiness 
-.body{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-}
-*/
-
-/* GeneralHeader
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  
-}
-*/
-
-/* IndividualSalesPage & Login
-body {
-  height: 100%;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-}
-*/
-
-/* SignUp
-body {
-  background-color: #F4E8C1;
-  margin: 0;
-  height: 100%;
-  font-family: Arial, sans-serif;
-}
-*/
-
-/* UserSettings
-body {
-  background-color: #F4E8C1;
-  margin: 0;
-  overflow-x: hidden;
-  font-family: Arial, sans-serif;
-}
-*/
 
 /* Content: ChangeRental, PayPage */
 /* ChangeRental & PayPage */
 .content {
-  flex: 1;
+  flex: .5;
   padding: 20px;
 }
-
-/* ConfirmationPage
-.content {
-  flex: 1;
-  padding: 20px;
-  text-align: center;
-}
-*/
 
 /* Errors ul: AddVehicle, AddBusiness */
 /* AddVehicle & AddBusiness */
@@ -1294,13 +1177,6 @@ body {
   /*align-items: center; AddBusiness */
 }
 
-/* Logo: CarRentalOverview, GeneralHeader, Home, SignUp, UserSettings */
-/* CarRentalOverview & Home & SignUp & UserSettings
-.logo {
-  font-size: 1.5rem;
-}
-*/
-
 /* GeneralHeader */
 .logo {
   color: white;
@@ -1320,14 +1196,6 @@ body {
   align-items: center;
 }
 
-/* GeneralHeader
-.hero {
-  text-align: center;
-  color: black;
-  padding: 80px 20px;
-}
-*/
-
 /* Home */
 .hero p {
   font-size: 1.2rem;
@@ -1335,57 +1203,12 @@ body {
   animation: fadeInUp 1s ease-in-out forwards;
 }
 
-/* CarRentalOverview 
-.hero p {
-  font-size: 1.2rem;
-  margin-bottom: 50px;
-}
-*/
-
-/* GeneralHeader
-.hero p {
-  font-size: 1.2rem;
-  margin-bottom: 50px;
-}
-*/
-
 /* Home */
 .hero h1 {
   font-size: 2.5rem;
   margin-bottom: 10px;
   animation: fadeInUp 1s ease-in-out forwards;
 }
-
-/* CarRentalOverview
-.hero h1 {
-  font-size: 2.5rem;
-  margin-bottom: 10px;
-}
-*/
-
-/* GeneralHeader 
-.hero h1 {
-  font-size: 2.5rem;
-  margin-bottom: 10px;
-}
-*/
-
-/* Container: CarRentalOverview, GeneralHeader, Home, TermsAndConditions, WagenparkBeheerderOverzicht */
-/* CarRentalOverview
-.container {
-  padding: 20px;
-}
-*/
-
-/* GeneralHeader
-.container {
-  display: flex;
-  justify-content: space-between;
-  align-items: stretch;
-  gap: 20px;
-  margin-left: 30px
-}
-*/
 
 /* Home */
 .container {
@@ -1399,32 +1222,17 @@ body {
   box-sizing: border-box;  
 }
 
-/* TermsAndConditions
-.container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin: 0 20px;
-  padding-left: 15%;
+.container-termsandconditions {
+  justify-content: center;
+  align-items: stretch;
+  gap: 20px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0;
+  box-sizing: border-box;
+  margin-left: 33%;
 }
-*/
 
-/* WagenparkBeheerderOverzicht
-.container {
-  margin: 20px auto;
-  padding: 20px;
-  max-width: 1200px;
-}
-*/
-
-/* Footer: GeneralHeader, GeneralFooter, AbonnementInfo */
-/* GeneralHeader & GeneralFooter
-.footer {
-  text-align: center;
-  background: #333;
-  color: white;
-  padding: 20px;
-}
 
 
 /* AbonnementInfo */
@@ -1470,17 +1278,6 @@ main {
   transition: background-color 0.3s;
 }
 
-/* Features: GeneralHeader, Home */
-
-/* GeneralHeader
-.features {
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-  padding: 40px 20px;
-}
-*/
-
 /* Home */
 .features {
   display: flex;
@@ -1489,20 +1286,6 @@ main {
   padding: 40px 20px;
   align-items: center;
 }
-
-/* Feature-card: GeneralHeader, Home */
-/* GeneralHeader
-.feature-card {
-  background: #f9f9f9;
-  padding: 20px;
-  border-radius: 10px;
-  text-align: center;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-}
-*/
 
 /* Home */
 .feature-card {
@@ -1521,7 +1304,7 @@ main {
 /* GeneralHead & Home */
 .feature-card h3 {
   font-size: 1.5rem;
-  margin-bottom: 0px;
+  margin-bottom: 0;
   color: black;
 }
 
@@ -1542,42 +1325,6 @@ html {
   font-family: Arial, sans-serif;
 }
 
-/* Index
-html
-{
-  margin: 0;
-  padding: 0;
-  height: 100%;
-  width: 100%;
-}
-*/
-
-/* SignUp
-html {
-  background-color: #F4E8C1;
-  margin: 0;
-  height: 100%;
-  font-family: Arial, sans-serif;
-}
-*/
-
-/* Car-price: ChangeRental, PayPage, IndividualSalesPage*/
-/* ChangeRental & PayPage */
-.car-price {
-  font-size: 1.5em;
-  color: #27ae60;
-  margin-bottom: 20px;
-  font-weight: bold;
-}
-
-/* IndividualSalesPage
-.car-price {
-  font-size: 1.5em;
-  font-weight: bold;
-  color: #27ae60;
-}
-*/
-
 /* Car-image-container: ChangeRental, IndividualSalesPage*/
 /* ChangeRental & PayPage */
 .car-image-container {
@@ -1593,22 +1340,6 @@ html {
   max-height: 500px;
 }
 
-
-/* IndividualSalesPage
-.car-image-container {
-  width: 500px;
-  height: 500px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden;
-  border: 8px solid #1d7874ff;
-  border-radius: 20px;
-  max-width: 500px;
-  max-height: 500px;
-}
-*/
-
 /* BUy-button: ChangeRental, PayPage, IndiviudalSalesPage */
 /* ChangeRental & PayPage */
 .buy-button {
@@ -1623,19 +1354,6 @@ html {
   width: 100%;
   max-width: 300px;
 }
-
-/* IndividualSalesPage
-.buy-button {
-  background-color: #27ae60;
-  color: white;
-  padding: 15px 30px;
-  font-size: 1.2em;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-*/
 
 /* ChangeRental & PayPage & IndividualSalesPage */
 .buy-button:hover {
@@ -1653,40 +1371,6 @@ header {
   color: white;
   position: relative;
 }
-
-/* Login
-header {
-  width: 100%;
-  height: 7.5%;
-  background-color: #1D7874; 
-  display: flex;
-  justify-content: space-between;  
-  align-items: center;  
-  padding: 10px;
-}
-*/
-
-/* SignUp & UserSetings
-header {
-  width: 100%;
-  height: 7.5%;
-  background-color: #333;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px 20px;
-  color: white;
-  
-}
-*/
-
-/* H1: Index, Login, UserSettings, SignUp */
-/* Index
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-*/
 
 /* Login, UserSettings, SignUp */
 h1 {
@@ -1716,28 +1400,6 @@ button {
   cursor: pointer;
   transition: border-color 0.25s;
 }
-
-/* CarRentalOverview, SignUp, UserSettings
-#button
-{
-  margin: 20px;
-  background-color: #1D7874;
-  color: white;
-  font-weight: bold;
-  transition: color 0.3s;
-  transition: background-color 0.3s;
-}
-*/
-
-/* Login
-#button
-{
-  margin: 20px;
-  background-color: #1D7874;
-  color: black;
-}
-*/
-
 /* Buy-details: ChangeRentals, PayPage */
 /* ChangeRentals, PayPage */
 .buy-details {
@@ -1746,7 +1408,8 @@ button {
   align-items: flex-start;
   margin-top: 20px;
   gap: 40px;
-  flex-wrap: wrap; 
+  flex-wrap: wrap;
+  margin-left: 10%;
 }
 
 /* Car-info: ChangeRental, PayPage */
@@ -1824,7 +1487,6 @@ input
   color: black;
   outline: none;
   border-radius: 8px;
-  transition: border 0.3s;
   transition: color 0.3s;
   text-align: center;
 }
@@ -2008,13 +1670,13 @@ input::selection {
   cursor: pointer;
   font-size: 1em;
   color: white;
-  padding: 0px;
+  padding: 0;
 }
 
 .filter-bar hr {
   border: none;
   border-top: 1px solid;
-  margin: 0px;
+  margin: 0;
 }
 
 
