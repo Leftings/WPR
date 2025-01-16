@@ -15,10 +15,10 @@ using Employee.Cryption;
 public class CookieController : ControllerBase
 {
     private readonly Connector _connector;
-    private readonly IUserRepository _userRepository;
+    private readonly IEmployeeRepository _userRepository;
     private readonly Crypt _crypt;
 
-    public CookieController(Connector connector, IUserRepository userRepository, Crypt crypt)
+    public CookieController(Connector connector, IEmployeeRepository userRepository, Crypt crypt)
     {
         _connector = connector ?? throw new ArgumentNullException(nameof(connector));
         _userRepository = userRepository ?? throw new ArgumentNullException(nameof(userRepository));

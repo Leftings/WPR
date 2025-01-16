@@ -1,21 +1,22 @@
-﻿using Employee.Database;
-using Employee.Hashing;
+﻿using WPR.Database;
+using WPR.Hashing;
 using Microsoft.VisualBasic;
 using MySql.Data.MySqlClient;
 using MySqlX.XDevAPI.Relational;
+using WPR.Controllers.AddBusiness;
 
-namespace Employee.Repository;
+namespace WPR.Repository;
 
 /// <summary>
 /// De UserRepository class geeft de methodes voor de interactie met de database voor gebruiker gerelateerde operaties.
 /// Het implementeert de IUserRepository interface.
 /// </summary>
-public class UserRepository : IUserRepository
+public class EmployeeRepository : IEmployeeRepository
 {
     private readonly Connector _connector;
     private readonly Hash _hash;
 
-    public UserRepository(Connector connector, Hash hash)
+    public EmployeeRepository(Connector connector, Hash hash)
     {
         _connector = connector ?? throw new ArgumentNullException(nameof(connector));
         _hash = hash ?? throw new ArgumentNullException(nameof (hash));
@@ -37,11 +38,11 @@ public class UserRepository : IUserRepository
     /// <param name="vehicleBlob"></param>
     /// <returns></returns>
     // vehicleBlob is het pad naar de afbeelding
-    public async Task<(bool status, string message)> AddVehicleAsync(int yop, string brand, string type, string licensePlate, string color, string sort, double price, string description, byte[] vehicleBlob)
+    public async Task<(bool status, string message)> AddVehicleAsync(int yop, string brand, string type, string licensePlate, string color, string sort, double price, string description, byte[] vehicleBlob, int places)
     {
         try
         {
-            string query = "INSERT INTO Vehicle (YoP, Brand, Type, LicensePlate, Color, Sort, Price, Description, Vehicleblob) VALUES (@Y, @B, @T, @L, @C, @S, @P, @D, @V)";
+            string query = "INSERT INTO Vehicle (YoP, Brand, Type, LicensePlate, Color, Sort, Price, Description, Vehicleblob, Seats) VALUES (@Y, @B, @T, @L, @C, @S, @P, @D, @V, @SE)";
 
             // Er wordt een connectie met de DataBase gemaakt met de bovenstaande query
             using (var connection = _connector.CreateDbConnection())
@@ -57,6 +58,7 @@ public class UserRepository : IUserRepository
                 command.Parameters.AddWithValue("@P", price);
                 command.Parameters.AddWithValue("@D", description);
                 command.Parameters.AddWithValue("@V", vehicleBlob);
+                command.Parameters.AddWithValue("@SE", places);
 
                 if (await command.ExecuteNonQueryAsync() > 0)
                 {
@@ -498,6 +500,46 @@ public class UserRepository : IUserRepository
             return (false, ex.Message);
         }
         catch (Exception ex)
+        {
+            return (false, ex.Message);
+        }
+    }
+
+    /// <summary>
+    /// Maakt een connectie met de database door middel van de connector en de query.
+    /// De gegevens worden uit de AddBusinessRequest getrokken en verwerkt in de query.
+    /// De query wordt uitgevoerd en checkt of deze ook succesvol is uitgevoerd
+    /// </summary>
+    /// <param name="request"></param>
+    /// <returns></returns>
+    public (bool status, string message) AddBusiness(AddBusinessRequest request)
+    {
+        try
+        {
+            string query = "INSERT INTO Business (KvK, BusinessName, Adres) VALUES (@K, @B, @A)";
+
+            // Er wordt een connectie met de database gemaakt
+            using (var connection = _connector.CreateDbConnection())
+            using (var command = new MySqlCommand(query, (MySqlConnection)connection))
+            {
+                // Parameters van de query worden ingevuld
+                command.Parameters.AddWithValue("@K", request.KvK);
+                command.Parameters.AddWithValue("@B", request.Name);
+                command.Parameters.AddWithValue("@A", request.Adress);
+
+                // Er wordt gekeken of de query succesvol is uitgevoerd
+                if (command.ExecuteNonQuery() > 0)
+                {
+                    return (true, "Succesfull added business");
+                }
+                return (false, "Error occured adding business");
+            }
+        }
+        catch(MySqlException ex)
+        {
+            return (false, ex.Message);
+        }
+        catch(Exception ex)
         {
             return (false, ex.Message);
         }

@@ -1,7 +1,10 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client';
-import { BrowserRouter as Router, Route, Routes, BrowserRouter } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import './index.css';
+
 import Login from './login/loginEmployee.jsx';
 import Home from './home/home.jsx';
 import SignUp from './signUp/signUp.jsx';
@@ -21,11 +24,22 @@ import ConfirmationPage from './confirmationPage/ConfirmationPage.jsx';
 import ChangeRental from './changeRental/ChangeRental.jsx';
 import VehicleManager from './vehicleManager/vehicleManager.jsx';
 import ReviewHireRequestVehicleManager from './vehicleManager/reviewHireRequest/reviewHireRequest.jsx';
-import WagenparkBeheerderOverzichtPage from './wagenparkBeheerderOverzichtPage/wagenparkBeheerderOverzichtPage.jsx'
-
+import WagenparkBeheerderOverzichtPage from './wagenparkBeheerderOverzichtPage/wagenparkBeheerderOverzichtPage.jsx';
+import AddBusiness from './employeeFrontOffice/addBusiness/addBusiness.jsx';
+import ViewRentalData from './employeeBackOffice/viewRentalData/viewRentalData.jsx';
 
 createRoot(document.getElementById('root')).render(
     <Router>
+        {}
+        <ToastContainer
+            position="top-right"
+            autoClose={3000}
+            hideProgressBar={false}
+            newestOnTop={true}
+            closeOnClick
+            pauseOnHover
+            draggable
+        />
         <Routes>
             <Route path="/" element={<Home />}></Route>
             <Route path="/login" element={<Login />}></Route>
@@ -47,6 +61,8 @@ createRoot(document.getElementById('root')).render(
             <Route path="/wagenparkBeheerderOverzichtPage" element={<WagenparkBeheerderOverzichtPage />} />
             <Route path="/vehicleManager" element={<VehicleManager />}></Route>
             <Route path="/vehicleManager/reviewHireRequest" element={<ReviewHireRequestVehicleManager />}></Route>
+            <Route path="/frontOfficeEmployee/addBusiness" element={<AddBusiness />}></Route>
+            <Route path="/backOfficeEmployee/viewRentalData" element={<ViewRentalData />}></Route>
         </Routes>
     </Router>
 );

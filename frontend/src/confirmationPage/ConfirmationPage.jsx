@@ -2,7 +2,8 @@
 import { useLocation, useNavigate } from 'react-router-dom';
 import GeneralHeader from "../GeneralBlocks/header/header.jsx";
 import GeneralFooter from "../GeneralBlocks/footer/footer.jsx";
-import './ConfirmationPage.css';
+//import './ConfirmationPage.css';
+import '../index.css';
 
 function ConfirmationPage() {
     const location = useLocation();

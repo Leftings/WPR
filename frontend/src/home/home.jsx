@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import GeneralHeader from "../GeneralBlocks/header/header.jsx";
 import GeneralFooter from "../GeneralBlocks/footer/footer.jsx";
-import './home.css';
+//import './home.css';
+import '../index.css';
 
 function Home() {
     const [isEmployee, setIsEmployee] = useState(false);

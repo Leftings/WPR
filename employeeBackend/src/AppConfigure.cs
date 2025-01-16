@@ -134,6 +134,7 @@ public class AppConfigure
     //builder.Services.AddScoped<SessionHandler>(); // Scoped session handler
     builder.Services.AddScoped<Crypt>();
     builder.Services.AddScoped<Hashing.Hash>();
+    builder.Services.AddScoped<IBackOfficeRepository, BackOfficeRepository>();
 
     // Configure authentication with cookie-based authentication schema.
     builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)

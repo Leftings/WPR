@@ -1,4 +1,4 @@
-namespace Employee.Controllers.acceptHireRequest;
+namespace WPR.Controllers.acceptHireRequest;
 
 /// <summary>
 /// Body voor het accepteren / weigeren van een huuraanvraag

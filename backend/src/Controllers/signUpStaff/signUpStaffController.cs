@@ -1,9 +1,9 @@
-using Employee.Repository;
-using Employee.Utils;
+using WPR.Repository;
+using WPR.Utils;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.VisualBasic;
 
-namespace Employee.Controllers.signUpStaff;
+namespace WPR.Controllers.signUpStaff;
 
 /// <summary>
 /// SignUpStaffController zorgt ervoor dat er front-, backoffice en wagenparkbeheerders toegevoegd kunnen worden aan het systeem
@@ -12,9 +12,9 @@ namespace Employee.Controllers.signUpStaff;
 [ApiController]
 public class SignUpStaffController : ControllerBase
 {
-    private readonly IUserRepository _userRepository;
+    private readonly IEmployeeRepository _userRepository;
 
-    public SignUpStaffController(IUserRepository userRepository)
+    public SignUpStaffController(IEmployeeRepository userRepository)
     {
         _userRepository = userRepository ?? throw new ArgumentNullException(nameof(userRepository));
     }
@@ -27,7 +27,7 @@ public class SignUpStaffController : ControllerBase
     /// <param name="signUpRequest"></param>
     /// <returns></returns>
     [HttpPost("signUpStaff")]
-    public async Task<IActionResult> SignUpStaff([FromBody] SignUpRequest signUpRequest)
+    public async Task<IActionResult> SignUpStaff([FromBody] SignUpStaffRequest signUpRequest)
     {
         Object[] personData = new Object[] {signUpRequest.FirstName, signUpRequest.LastName, signUpRequest.Password, signUpRequest.Email, signUpRequest.Job, signUpRequest.KvK};
         

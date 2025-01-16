@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import './addEmployee.css';
+//import './addEmployee.css';'
+import '../../index.css';
 import GeneralHeader from '../../GeneralBlocks/header/header';
 import GeneralFooter from '../../GeneralBlocks/footer/footer';
 import { useNavigate } from 'react-router-dom';
 
-const BACKEND_URL = import.meta.env.VITE_REACT_APP_BACKEND_URL_EMPLOYEE ?? 'http://localhost:5276';
+const BACKEND_URL = import.meta.env.VITE_REACT_APP_BACKEND_URL ?? 'http://localhost:5165';
 
 function AddEmployee() {
     const navigate = useNavigate();
@@ -123,56 +124,53 @@ function AddEmployee() {
 
     return (
         <>
-        <GeneralHeader />
+        <GeneralHeader>
+            <p>Tekst</p>
+        </GeneralHeader>
         <div className='body'>
             <h1>Registreren Werknemer</h1>
-            <br></br>
-            <div id='registrate'>
+            <div className='registrateFormat'>
                 <label htmlFor='employee'>Soort Medewerker</label>
-                <br></br>
-                <select id='employee'name='office' onChange={(e) => SetKind(e.target.value)} value={KindEmployee}>
+                <select id='employee' name='office' onChange={(e) => SetKind(e.target.value)} value={KindEmployee}>
                     <option value='Front'>Front Office</option>
                     <option value='Back'>Back Office</option>
                     <option value='Wagen'>Wagenpark Beheerder</option>
                 </select>
                 {KindEmployee == 'Wagen' && (
                     <>
-                        <br></br>
                         <label htmlFor='KvK'>KvK nummer</label>
-                        <br></br>
                         <input id='KvK' type='number' onChange={(e) => SetKvK(e.target.value)} value={KvK}></input>
                     </>
                 )}
-                <br></br>
                 <label htmlFor='firstName'>Voornaam</label>
-                <br></br>
                 <input id='firstName' onChange={(e) => SetFirstName(e.target.value)}value={FirstName}></input>
-                <br></br>
-                <label htmlFor='lastName'>Achternaam</label>
-                <br></br>
-                <input id='lastName' onChange={(e) => SetLastName(e.target.value)} value={LastName}></input>
-                <br></br>
-                <label htmlFor='Password'>Wachtwoord</label>
-                <br></br>
-                <input id='Password' type='password' onChange={(e) => SetPassword(e.target.value)} value={Password}></input>
-                <br></br>
-                <label htmlFor='Email'>Email address</label>
-                <br></br>
-                <input id='Email' type='email' onChange={(e) => SetEmail(e.target.value)} value={Email}></input>
-            </div>
 
-            <button onClick={Check}>Registreren</button>
-            
-            {/*Errors worden netjes onder elkaar uitgezet*/}
-            {ErrorMessage.length > 0 && (
-                <div id="errors">
-                    <ul>
-                        {ErrorMessage.map((errorMessage, index) => (
-                            <li key={index}>{errorMessage}</li>
-                        ))}
-                    </ul>
+                <label htmlFor='lastName'>Achternaam</label>
+                <input id='lastName' onChange={(e) => SetLastName(e.target.value)} value={LastName}></input>
+
+                <label htmlFor='Password'>Wachtwoord</label>
+                <input id='Password' type='password' onChange={(e) => SetPassword(e.target.value)} value={Password}></input>
+
+                <label htmlFor='Email'>Email address</label>
+                <input id='Email' type='email' onChange={(e) => SetEmail(e.target.value)} value={Email}></input>
+
+                <div className='registrateFormatFooter'>
+                    <button className='cta-button' onClick={Check}>Registreren</button>
                 </div>
-            )}
+
+                <div className='registrateFromatErrors'>
+                    {/*Errors worden netjes onder elkaar uitgezet*/}
+                    {ErrorMessage.length > 0 && (
+                        <div id="errors">
+                            <ul>
+                                {ErrorMessage.map((errorMessage, index) => (
+                                    <li key={index}>{errorMessage}</li>
+                                ))}
+                            </ul>
+                        </div>
+                    )}
+                </div>
+            </div>
         </div>
 
         <GeneralFooter />

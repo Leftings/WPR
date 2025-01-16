@@ -1,4 +1,4 @@
-namespace Employee.Controllers.AddVehicle;
+namespace WPR.Controllers.AddVehicle;
 
 /// <summary>
 /// Body voor het toevoegen van een voertuig
@@ -13,5 +13,6 @@ public class AddVehicleRequest
     public string? Sort { get; set; }
     public double Price { get; set; }
     public string? Description { get; set; }
+    public int Places { get; set; }
 
 }

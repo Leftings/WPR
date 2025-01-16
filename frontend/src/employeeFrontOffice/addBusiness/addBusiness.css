@@ -1,0 +1,36 @@
+.body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+#errors {
+    background-color: #ffe0e0; 
+    padding: 1rem; 
+    border: 1px solid #ff0000; 
+    border-radius: 5px; 
+    width: auto;
+    height: auto;
+    max-width: 300px;
+    max-height: 200px;
+    overflow: auto;
+    white-space: pre-line;
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    align-items: center; 
+}
+
+#errors ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+#errors li {
+    color: #ff0000;
+    margin-bottom: 0.5rem;
+}

@@ -1,9 +1,9 @@
-namespace Employee.Controllers.signUpStaff;
+namespace WPR.Controllers.signUpStaff;
 
 /// <summary>
 /// Body voor het aanmaken van een nieuw account
 /// </summary>
-public class SignUpRequest
+public class SignUpStaffRequest
 {
     public string? Email { get; set; }
     public string? Password { get; set; }

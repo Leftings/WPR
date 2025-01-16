@@ -1,10 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import './addVehicle.css';
+//import './addVehicle.css';
+import '../../index.css';
 import GeneralHeader from '../../GeneralBlocks/header/header';
 import GeneralFooter from '../../GeneralBlocks/footer/footer';
+import { SyntaxLicensePlate } from '../../utils/stringFieldChecker.js'
+import { NumberCheck } from '../../utils/numberFieldChecker.js';
+import { EmptyFieldChecker } from '../../utils/errorChecker.js';
 
-const BACKEND_URL = import.meta.env.VITE_REACT_APP_BACKEND_URL_EMPLOYEE ?? 'http://localhost:5276';
+const BACKEND_URL = import.meta.env.VITE_REACT_APP_BACKEND_URL ?? 'http://localhost:5165';
 
 function AddVehicle() {
     const navigate = useNavigate();
@@ -16,8 +20,10 @@ function AddVehicle() {
     const [YoP, SetYoP] = useState('');
     const [price, SetPrice] = useState('');
     const [description, SetDescription] = useState('');
+    const [places, SetPlaces] = useState('');
     const [vehicleBlob, SetVehicleBlob] = useState(null);
     const [error, SetError] = useState([]);
+    const reference = useRef(null);
 
     
     const SetVehicle = () => {
@@ -32,6 +38,7 @@ function AddVehicle() {
         formData.append('Sort', kind);
         formData.append('Price', price);
         formData.append('Description', description);
+        formData.append('Places', places);
     
         if (vehicleBlob && vehicleBlob[0]) {
             formData.append('vehicleBlob', vehicleBlob[0]); // vehicleBlob wordt omgezet naar binary
@@ -59,8 +66,11 @@ function AddVehicle() {
             SetYoP('');
             SetPrice('');
             SetDescription('');
-            SetVehicleBlob('');
+            SetVehicleBlob(null);
+            SetPlaces('');
             SetError([]);
+
+            reference.current.value = '';
         })
         .catch(error => {
             console.error("Error adding vehicle:", error.message);
@@ -79,18 +89,15 @@ function AddVehicle() {
             YoP,
             price,
             description,
-            vehicleBlob
+            vehicleBlob,
+            places
         };
 
-        // Errors worden automatisch aangemaakt, doormiddel van de keys
-        let errors = [];
-        for (let key in vehicleData)
+        let errors = EmptyFieldChecker(vehicleData);
+
+        if (licensePlate.length !== 10)
         {
-            if (vehicleData[key] === '')
-            {
-                errors.push(`${key} is niet ingevuld\n`);
-            }
-            console.log(`${key}: ${vehicleData[key]}`);
+            errors.push('licenseplate heeft geen geldige lengte');
         }
 
         if (errors.length === 0)
@@ -128,70 +135,59 @@ function AddVehicle() {
         <GeneralHeader>
         </GeneralHeader>
 
-        <div className="body">
+        <div className='body'>
             <h1>Toevoegen voertuig</h1>
-            <div id="kind" value={kind} onChange={(e) => SetKind(e.target.value)}>
-                <p>Soort voertuig</p>
-                <select name="vehicle">
+
+            <div className='registrateFormat'>
+                <label htmlFor='selectVehicle'>Soort voertuig</label>
+                <select id='selectVehicle' name="vehicle" value={kind} onChange={(e) => SetKind(e.target.value)}>
                     <option value="Car">Auto</option>
                     <option value="Camper">Camper</option>
                     <option value="Caravan">Caravan</option>
                 </select>
-                <br></br>
-            </div>
-            <div id="brand">
-                <p>Merk voertuig</p>
-                <input value={brand} onChange={(e) => SetBrand(e.target.value)}></input>
-                <br></br>
-            </div>
-            <div id="type">
-                <p>Type voertuig</p>
-                <input value={type} onChange={(e) => SetType(e.target.value)}></input>
-            </div>
-            <div id="color">
-                <p>Kleur voertuig</p>
-                <input value={color} onChange={(e) => SetColor(e.target.value)}></input>
-            </div>
-            <div id="licensePlate">
-                <p>Nummerbord voertuig</p>
-                <input value={licensePlate} onChange={(e) => SetLicensePlate(e.target.value)}></input>
-                <br></br>
-            </div>
-            <div id="YoP">
-                <p>Bouwjaar voertuig</p>
-                <input type="number" value={YoP} onChange={(e) => SetYoP(e.target.value)}></input>
-                <br></br>
-            </div>
-            <div id="price">
-                <p>Prijs per dag</p>
-                <input type="number" value={price} onChange={(e) => SetPrice(e.target.value)}></input>
-                <br></br>
-            </div>
-            <div id="description">
-                <p>Omschrijving voertuig</p>
-                <input value={description} onChange={(e) => SetDescription(e.target.value)}></input>
-                <br></br>
-            </div>
-            <div id="vehicleBlob">
-                <p>Afbeelding voertuig (verplict)</p>
-                <input type="file" onChange={(e) => SetVehicleBlob(e.target.files)}></input>
-                <br></br>
-            </div>
-            <div id="confirm">
-                <button onClick={Check}>Voertuig toevoegen</button>
-                <br></br>
-            </div>
-            
-            {/*Errors worden netjes onder elkaar uitgelijnt*/}
-            {error.length > 0 && (
-                <div id="errors">
-                    <ul>
-                        {error.map((errorMessage, index) => (
-                            <li key={index}>{errorMessage}</li>
-                        ))}
-                    </ul>
+
+                <label htmlFor='brand'>Merk voertuig</label>
+                <input id = 'brand' value={brand} onChange={(e) => SetBrand(e.target.value)}></input>
+
+                <label htmlFor='type'>Type voertuig</label>
+                <input id='type' value={type} onChange={(e) => SetType(e.target.value)}></input>
+
+                <label htmlFor='color'>Kleur voertuig</label>
+                <input id='color' value={color} onChange={(e) => SetColor(e.target.value)}></input>
+
+                <label htmlFor='places'>Aantal zitplaatsen</label>
+                <input id='places' value={places} onChange={(e) => SetPlaces(NumberCheck(e.target.value))}></input>
+
+                <label htmlFor='licensePlate'>Nummerbord voertuig</label>
+                <input id='licensePlate' value={licensePlate} onChange={(e) => SetLicensePlate(SyntaxLicensePlate(e.target.value, licensePlate))}></input>
+
+                <label htmlFor='YoP'>Bouwjaar voertuig</label>
+                <input id='YoP' value={YoP} onChange={(e) => SetYoP(NumberCheck(e.target.value))}></input>
+
+                <label htmlFor='price'>Prijs per dag</label>
+                <input id='price' value={price} onChange={(e) => SetPrice(NumberCheck(e.target.value))}></input>
+
+                <label htmlFor='description'>Omschrijving voertuig</label>
+                <input id='description' value={description} onChange={(e) => SetDescription(e.target.value)}></input>
+                
+                <label htmlFor='vehicleBlob'>Afbeelding voertuig</label>
+                <input id='vehicleBlob' type="file" ref={reference} onChange={(e) => SetVehicleBlob(e.target.files)}></input>
+
+                <div className='registrateFormatFooter'>
+                    {/*Errors worden netjes onder elkaar uitgelijnt*/}
+                    {error.length > 0 && (
+                        <div id="errors">
+                            <ul>
+                                {error.map((errorMessage, index) => (
+                                    <li key={index}>{errorMessage}</li>
+                                ))}
+                            </ul>
+                        </div>
+                    )}
+
+                    <button className='cta-button' onClick={Check}>Voertuig toevoegen</button>
                 </div>
-            )}
+            </div>
         </div>
 
         <GeneralFooter>
