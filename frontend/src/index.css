@@ -1023,6 +1023,16 @@ li {
   margin-bottom: 5px;
 }
 
+.registrateFormatHeader {
+  grid-column: span 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+  text-align: center;
+  width: 100%;
+}
+
 .registrateFormatFooter {
   grid-column: span 2;
   display: flex;

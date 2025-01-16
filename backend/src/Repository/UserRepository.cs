@@ -8,6 +8,8 @@ using WPR.Utils;
 using WPR.Hashing;
 using Org.BouncyCastle.Crypto.Prng;
 using WPR.Cryption;
+using WPR.Controllers.SignUp;
+using System.Threading.Tasks;
 
 namespace WPR.Repository;
 
@@ -616,6 +618,64 @@ public class UserRepository : IUserRepository
         {
             await Console.Error.WriteLineAsync($"Unexpected error: {ex.Message}");
             return false;
+        }
+    }
+
+    public async Task<(bool Status, string Message)> AddPersonalCustomer(SignUpRequest request)
+    {
+        var emailCheck = checkUsageEmailAsync(request.Email);
+        bool validEmail = EmailChecker.IsValidEmail(request.Email);
+        bool validBirthday = BirthdayChecker.IsValidBirthday(request.BirthDate);
+        bool validPhoneNumber = TelChecker.IsValidPhoneNumber(request.TelNumber);
+        (bool isValidPassword, string passwordError) validPassword = PasswordChecker.IsValidPassword(request.Password);
+        var emailStatus = await emailCheck;
+
+        Console.WriteLine(validBirthday);
+
+        if (validEmail && validBirthday && validPhoneNumber && validPassword.isValidPassword && !emailStatus.status)
+        {
+            var customer = await addCustomerAsync(new object[]
+            {
+                request.Adres,
+                request.TelNumber,
+                _hash.createHash(request.Password),
+                request.Email,
+                request.FirstName,
+                request.LastName
+            });
+
+            if (!customer.status)
+            {
+                return (false, customer.message);
+            }
+
+            await addPersonalCustomerAsync(new object[]
+            {
+                customer.newUserID,
+                request.BirthDate
+            });
+
+            return (true, "Customer added");
+        }
+        else if (!validEmail)
+        {
+            return (false, "Email allready in use");
+        }
+        else if (!validBirthday)
+        {
+            return (false, "Invalid birthday");
+        }
+        else if (!validPassword.isValidPassword)
+        {
+            return (false, validPassword.passwordError);
+        }
+        else if (emailStatus.status)
+        {
+            return (false, emailStatus.message);
+        }
+        else
+        {
+            return (false, "An unexpected error occured");
         }
     }
 }
