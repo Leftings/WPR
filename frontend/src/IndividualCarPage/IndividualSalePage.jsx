@@ -2,7 +2,8 @@
 import { useLocation, useNavigate } from 'react-router-dom';
 import GeneralHeader from "../GeneralBlocks/header/header.jsx";
 import GeneralFooter from "../GeneralBlocks/footer/footer.jsx";
-import './IndividualSalePage.css';
+//import './IndividualSalePage.css';
+import '../index.css';
 
 function CarDetailPage() {
     const location = useLocation();

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { isRouteErrorResponse, Link, useNavigate } from 'react-router-dom';
-import './login.css';
+//import './login.css';
+import '../index.css';
 import logo from '../assets/logo.svg';
 import logoHover from '../assets/logo-green.svg';
 import GeneralFooter from "../GeneralBlocks/footer/footer.jsx";
@@ -163,7 +164,7 @@ function Login() {
             <br />
             <input type="password" id="password" value={password} onChange={(e) => setPassword(e.target.value)} />
             <br />
-            <button id="button" type="button" onClick={onSubmit}>Login</button>
+            <button className="cta-button" type="button" onClick={onSubmit}>Login</button>
             {userType === "Customer" && (
                 <>
                   <br />

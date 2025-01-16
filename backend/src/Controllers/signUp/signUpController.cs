@@ -55,7 +55,7 @@ public class SignUpController : ControllerBase
     /// <param name="signUpRequest"></param>
     /// <returns></returns>
     // Wijzigingen die gemaakt worden in signUpPersonal moeten ook gemaakt worden in signUpEmployee
-    [HttpPost("signUpPersonal")]
+    /*[HttpPost("signUpPersonal")]
     public async Task<IActionResult> signUpPersonalAsync([FromBody] SignUpRequest signUpRequest)
     {
         // Het emailadres wordt gecontrolleerd of het emailadres al bestaat
@@ -65,6 +65,7 @@ public class SignUpController : ControllerBase
         using (var connection = _connector.CreateDbConnection())
         using (var transaction = connection.BeginTransaction())
         {
+            Console.WriteLine("X");
             Console.WriteLine($"Received BirthDate: {signUpRequest.BirthDate}");
             Console.WriteLine($"{signUpRequest.Email} | {signUpRequest.Password} | {signUpRequest.FirstName} | {signUpRequest.LastName} | {signUpRequest.TelNumber} {signUpRequest.Adres} | {signUpRequest.BirthDate}");
             try
@@ -173,13 +174,27 @@ public class SignUpController : ControllerBase
             }
         }
     }
+    */
+
+    [HttpPost("signUpPersonal")]
+    public async Task<IActionResult> signUpPersonalAsync([FromForm] SignUpRequest signUpRequest)
+    {
+        Console.WriteLine(signUpRequest);
+        (bool Status, string Message) response = await _userRepository.AddPersonalCustomer(signUpRequest);
+
+        if (response.Status)
+        {
+            return Ok( new { message = response.Message });
+        }
+        return BadRequest( new { message = response.Message });
+    }
 
     /// <summary>
     /// Een account voor zakelijke gebruikers kan aangemaakt worden (onderscheiden door KvK-nummer)
     /// </summary>
     /// <param name="signUpRequest"></param>
     /// <returns></returns>
-    [HttpPost("signUpEmployee")]
+    /*[HttpPost("signUpEmployee")]
     public async Task<IActionResult> signUpEmployeeAsync([FromBody] SignUpRequest signUpRequest)
     {
         var connection = _connector.CreateDbConnection();
@@ -292,4 +307,5 @@ public class SignUpController : ControllerBase
             }
         }    
     }
+    */
 }

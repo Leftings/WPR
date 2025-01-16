@@ -27,7 +27,7 @@ public class SignUpStaffController : ControllerBase
     /// <param name="signUpRequest"></param>
     /// <returns></returns>
     [HttpPost("signUpStaff")]
-    public async Task<IActionResult> SignUpStaff([FromBody] SignUpRequest signUpRequest)
+    public async Task<IActionResult> SignUpStaff([FromBody] SignUpStaffRequest signUpRequest)
     {
         Object[] personData = new Object[] {signUpRequest.FirstName, signUpRequest.LastName, signUpRequest.Password, signUpRequest.Email, signUpRequest.Job, signUpRequest.KvK};
         

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import './employeeBackOffice.css';
+//import './employeeBackOffice.css';
+import '../index.css';
 import GeneralHeader from '../GeneralBlocks/header/header';
 import GeneralFooter from '../GeneralBlocks/footer/footer';
 
@@ -38,7 +39,7 @@ function EmployeeBackOffice() {
       <div className='body'>
         <h1>Back Office</h1>
 
-        <div id='backOfficeLinks'>
+        <div className='officeLinks'>
           <Link to="./addEmployee">Werknemer toevoegen</Link>
           <Link to="./addVehicle">Voertuig toevoegen</Link>
           <Link to="./viewRentalData">Verhuur inzicht</Link>

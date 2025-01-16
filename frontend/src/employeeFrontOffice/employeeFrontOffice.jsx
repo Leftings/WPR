@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import './employeeFrontOffice.css';
+//import './employeeFrontOffice.css';
+import '../index.css';
 import GeneralHeader from '../GeneralBlocks/header/header';
 import GeneralFooter from '../GeneralBlocks/footer/footer';
 
@@ -33,12 +34,15 @@ function EmployeeFrontOffice() {
     <>
       <GeneralHeader>
       </GeneralHeader>
-
-      <body>
+      
+      <div className='body'>
         <h1>Front Office</h1>
-        <Link to="./reviewHireRequest">Huur aanvragen beheren</Link>
-        <Link to="./addBusiness">Bedrijf toevoegen</Link>
-      </body>
+        
+        <div className = "officeLinks">
+          <Link to="./reviewHireRequest">Huur aanvragen beheren</Link>
+          <Link to="./addBusiness">Bedrijf toevoegen</Link>
+        </div>
+      </div>
 
       <GeneralFooter>
       </GeneralFooter>
