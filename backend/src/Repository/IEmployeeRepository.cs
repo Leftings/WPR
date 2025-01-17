@@ -20,4 +20,9 @@ public interface IEmployeeRepository
     Task<(bool status, List<Dictionary<string, object>> data)> GetReviewAsync(string id);
     Task<(bool status, string message)> SetStatusAsync(string id, string status, string employee, string userType);
     Task<(bool status, string message)> AddBusiness(AddBusinessRequest request);
+    public (int StatusCode, string Message, IList<int> KvK) ViewBusinessRequests();
+    Task<(int StatusCode, string Message, Dictionary<string, object> data)> ViewBusinessRequestDetailed(int kvk);
+    public (int StatusCode, string Message) BusinessAccepted(int kvk);
+    public (int StatusCode, string Message) BusinessDenied(int kvk);
+    public (bool Status, string Message, Dictionary<string, object> Data) GetBusinessInfo(int kvk);
 }

@@ -539,7 +539,6 @@ public class EmployeeRepository : IEmployeeRepository
                 while (await reader.ReadAsync())
                 {
                     string[] split = reader.GetValue(0).ToString().Split("@");
-                    Console.WriteLine($"{split[1].ToLower()} | {domain[1..]}");
                     if (split[1].ToLower().Equals(domain[1..]))
                     {
                         domainFound = true;
@@ -614,5 +613,166 @@ public class EmployeeRepository : IEmployeeRepository
         }
 
         return (false, $"Domain Detected");
+    }
+
+    public (int StatusCode, string Message, IList<int> KvK) ViewBusinessRequests()
+    {
+        try
+        {
+            string query = "SELECT KvK FROM Business WHERE Activated = 'Deactive'";
+
+            using (var connection = _connector.CreateDbConnection())
+            using (var command = new MySqlCommand(query, (MySqlConnection)connection))
+            using (var reader = command.ExecuteReader())
+            {
+                IList<int> kvk = new List<int>();
+
+                while (reader.Read())
+                {
+                    kvk.Add(Convert.ToInt32(reader.GetValue(0)));
+                }
+
+                return (200, "Succes", kvk);
+            }
+        }
+        catch (MySqlException ex)
+        {
+            return (500, ex.Message, new List<int>());
+        }
+        catch (OverflowException ex)
+        {
+            return (500, ex.Message, new List<int>());
+        }
+        catch (Exception ex)
+        {
+            return (500, ex.Message, new List<int>());
+        }
+    }
+
+    public async Task<(int StatusCode, string Message, Dictionary<string, object> data)> ViewBusinessRequestDetailed(int kvk)
+    {
+        try
+        {
+            string query = "SELECT KvK, BusinessName, Adres, Domain, ContactEmail FROM Business WHERE KvK = @K";
+
+            using (var connection = _connector.CreateDbConnection())
+            using (var command = new MySqlCommand(query, (MySqlConnection)connection))
+            {
+                command.Parameters.AddWithValue("@K", kvk);
+
+                using (var reader = await command.ExecuteReaderAsync())
+                {
+                    Dictionary<string, object> data = new Dictionary<string, object>();
+                    while (await reader.ReadAsync())
+                    {
+                        for (int i = 0; i < reader.FieldCount; i++)
+                        {
+                            data[reader.GetName(i)] = reader.GetValue(i);
+                        }
+                    }
+                    return (200, "Succes", data);
+                }
+            }
+        }
+        catch (MySqlException ex)
+        {
+            return (500, ex.Message, new Dictionary<string, object>());
+        }
+        catch (Exception ex)
+        {
+            return (500, ex.Message, new Dictionary<string, object>());
+        }
+    }
+
+    public (int StatusCode, string Message) BusinessAccepted(int kvk)
+    {
+        try
+        {
+            string query = "UPDATE Business SET Activated = 'Active' WHERE KvK = @K";
+
+            using (var connection = _connector.CreateDbConnection())
+            using (var command = new MySqlCommand(query, (MySqlConnection)connection))
+            {
+                command.Parameters.AddWithValue("@K", kvk);
+
+                if (command.ExecuteNonQuery() > 0)
+                {
+                    return (200, "Succes");
+                }
+                return (500, "Error Occured");
+            }
+        }
+        catch (MySqlException ex)
+        {
+            return (500, ex.Message);
+        }
+        catch (Exception ex)
+        {
+            return (500, ex.Message);
+        }
+    }
+
+    public (int StatusCode, string Message) BusinessDenied(int kvk)
+    {
+        try
+        {
+            string query = "DELETE FROM Business WHERE KvK = @K";
+
+            using (var connection = _connector.CreateDbConnection())
+            using (var command = new MySqlCommand(query, (MySqlConnection)connection))
+            {
+                command.Parameters.AddWithValue("@K", kvk);
+
+                if (command.ExecuteNonQuery() > 0)
+                {
+                    return (200, "Succes");
+                }
+                return (500, "Error Occured");
+            }
+        }
+        catch (MySqlException ex)
+        {
+            return (500, ex.Message);
+        }
+        catch (Exception ex)
+        {
+            return (500, ex.Message);
+        }
+    }
+
+    public (bool Status, string Message, Dictionary<string, object> Data) GetBusinessInfo(int kvk)
+    {
+        try
+        {
+            string query = "SELECT * FROM Business WHERE KvK = @K";
+
+            using (var connection = _connector.CreateDbConnection())
+            using (var command = new MySqlCommand(query, (MySqlConnection)connection))
+            {
+                command.Parameters.AddWithValue("@K", kvk);
+
+                using (var reader = command.ExecuteReader())
+                {
+                    Dictionary<string, object> data = new Dictionary<string, object>();
+                    while (reader.Read())
+                    {
+                        for (int i = 0; i < reader.FieldCount; i++)
+                        {
+                            Console.WriteLine(reader.GetName(i));
+                            data[reader.GetName(i)] = reader.GetValue(i);
+                        }
+                    }
+                    return (true, "Succes", data);
+                }
+            }
+        }
+        catch (MySqlException ex)
+        {
+            return (false, ex.Message, new Dictionary<string, object>());
+        }
+        catch (Exception ex)
+        {
+            return (false, ex.Message, new Dictionary<string, object>());
+        }
     }
 }
