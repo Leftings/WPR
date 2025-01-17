@@ -176,6 +176,17 @@ public class SignUpController : ControllerBase
     }
     */
 
+    [HttpPost("signUp")]
+    public async Task<IActionResult> SignUp([FromForm] CombinedSignUpRequest signUpRequest)
+    {
+        SignUpRequestCustomer signUpRequestCustomer = signUpRequest.SignUpRequestCustomer;
+        SignUpRequestCustomerPrivate signUpRequestCustomerPrivate = signUpRequest.SignUpRequestCustomerPrivate;
+
+        (int StatusCode, string Message) response = await _userRepository.AddCustomer(signUpRequestCustomer, signUpRequestCustomerPrivate);
+
+        return StatusCode(response.StatusCode, new { message = response.Message });
+    }
+
     [HttpPost("signUpPersonal")]
     public async Task<IActionResult> signUpPersonalAsync([FromForm] SignUpRequest signUpRequest)
     {

@@ -1,5 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 using System.Security.Policy;
+using System.Security.Principal;
 
 namespace WPR.Controllers.SignUp;
 
@@ -10,6 +11,9 @@ public class SignUpRequest()
 {
     [Required]
     public string Email { get; set; }
+    [Required]
+    public string AccountType { get; set; }
+    public int KvK { get; set; }
     [Required]
     public string Password { get; set; }
     [Required]
@@ -22,4 +26,29 @@ public class SignUpRequest()
     public string Adres { get; set; }
     [Required]
     public DateTime BirthDate { get; set; }
+}
+
+public class CombinedSignUpRequest()
+{
+    public SignUpRequestCustomer SignUpRequestCustomer { get; set; }
+    public SignUpRequestCustomerPrivate? SignUpRequestCustomerPrivate { get; set; }
+}
+
+public class SignUpRequestCustomer()
+{
+    [Required]
+    public string Email { get; set; }
+    [Required]
+    public string AccountType { get; set; }
+    public int? KvK { get; set; }
+}
+
+public class SignUpRequestCustomerPrivate()
+{
+    public string? Password { get; set; }
+    public string? FirstName { get; set; }
+    public string? LastName { get; set; }
+    public string? TelNumber { get; set; }
+    public string? Adres { get; set; }
+    public DateTime? BirthDate { get; set; }
 }
