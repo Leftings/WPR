@@ -99,7 +99,6 @@ function GeneralSalePage() {
         const startDate = filters.startDate ? new Date(filters.startDate) : null;
         const endDate = filters.endDate ? new Date(filters.endDate) : null;
 
-        // Filter rentals for the current vehicle only (type coercion applied)
         const vehicleRentals = rentals.filter(rental => String(rental.frameNrCar) === String(vehicle.FrameNr));
         console.log(`Vehicle ${vehicle.FrameNr} Rentals:`, vehicleRentals);
 
