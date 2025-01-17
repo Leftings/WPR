@@ -48,6 +48,7 @@ function GeneralSalePage() {
     const [loading, setLoading] = useState(false);
     const [loadingRequests, SetLoadingRequests] = useState({});
     const [isFiltersOpen, setIsFiltersOpen] = useState(false);
+    const [filterOptions, setFilterOptions] = useState({});
 
     const [showColorFilters, setShowColorFilters] = useState(false);
     const [showBrandFilters, setShowBrandFilters] = useState(false);
@@ -64,6 +65,20 @@ function GeneralSalePage() {
         brand: [],
         seat: []
     });
+    
+    const getUniqueFilterOptions = (vehicles) => {
+        const uniqueSort = [...new Set(vehicles.map(vehicle => vehicle.Sort))];
+        const uniqueBrand = [...new Set(vehicles.map(vehicle => vehicle.Brand))];
+        const uniqueColor = [...new Set(vehicles.map(vehicle => vehicle.Color))];
+        const uniqueSeats = [...new Set(vehicles.map(vehicle => vehicle.Seats))];
+        
+        setFilterOptions({
+           Sort: uniqueSort,
+           Brand: uniqueBrand,
+           Color: uniqueColor,
+           Seats: uniqueSeats, 
+        });
+    }
     
     const handleFilterChange = (category, value) => {
         setFilters(prevFilters => {
@@ -84,6 +99,12 @@ function GeneralSalePage() {
         
         return matchesVehicleTypes && matchesBrand && matchesColor && matchesSeat;
     })
+
+    useEffect(() => {
+        if (vehicles.length > 0) {
+            getUniqueFilterOptions(vehicles);
+        }
+    }, [vehicles]);
 
     useEffect(() => {
         const checkIfEmployee = async () => {
@@ -239,21 +260,23 @@ function GeneralSalePage() {
                         <p onClick={() => setShowTypesFilters(!showTypesFilters)}>Soort voertuig 
                             <span className={`toggle-icon ${showTypesFilters ? 'rotated' : ''}`}>+</span>
                         </p>
-                        <div className={`filter-types ${showTypesFilters ? 'show' : ''}`}>
-                        {['Car', 'Camper', 'Caravan'].map((vehicleType) => (
-                                <div key={vehicleType} className="checkbox-item">
-                                    <input
-                                        type="checkbox"
-                                        id={vehicleType}
-                                        value={vehicleType}
-                                        name={vehicleType}
-                                        checked={filters.vehicleTypes.includes(vehicleType)}
-                                        onChange={() => handleFilterChange("vehicleTypes", vehicleType)}
-                                    />
-                                    <label htmlFor={vehicleType}>{vehicleType}</label>
-                                </div>
-                            ))}
-                        </div>
+                        {filterOptions.Sort && filterOptions.Sort.length > 0 && (
+                            <div className={`filter-types ${showTypesFilters ? 'show' : ''}`}>
+                            {filterOptions.Sort.map((vehicleType) => (
+                                    <div key={vehicleType} className="checkbox-item">
+                                        <input
+                                            type="checkbox"
+                                            id={vehicleType}
+                                            value={vehicleType}
+                                            name={vehicleType}
+                                            checked={filters.vehicleTypes.includes(vehicleType)}
+                                            onChange={() => handleFilterChange("vehicleTypes", vehicleType)}
+                                        />
+                                        <label htmlFor={vehicleType}>{vehicleType}</label>
+                                    </div>
+                                ))}
+                            </div>
+                        )}
                     </div>
                     <hr/>
                     </>
@@ -263,21 +286,23 @@ function GeneralSalePage() {
                     <p onClick={() => setShowColorFilters(!showColorFilters)}>Kleur
                         <span className={`toggle-icon ${showColorFilters ? 'rotated' : ''}`}>+</span>
                     </p>
-                    <div className={`filter-types ${showColorFilters ? 'show' : ''}`}>
-                        {['Rood', 'Blauw', 'Groen', 'Zwart', 'Wit', 'Grijs'].map((color) => (
-                            <div key={color} className="checkbox-item">
-                                <input
-                                    type="checkbox"
-                                    id={color}
-                                    value={color}
-                                    checked={filters.color.includes(color)}
-                                    name={color}
-                                    onChange={() => handleFilterChange("color", color)}
-                                />
-                                <label htmlFor={color}>{color}</label>
-                            </div>
-                        ))}
-                    </div>
+                    {filterOptions.Color && filterOptions.Color.length > 0 && (
+                        <div className={`filter-types ${showColorFilters ? 'show' : ''}`}>
+                            {filterOptions.Color.map((color) => (
+                                <div key={color} className="checkbox-item">
+                                    <input
+                                        type="checkbox"
+                                        id={color}
+                                        value={color}
+                                        checked={filters.color.includes(color)}
+                                        name={color}
+                                        onChange={() => handleFilterChange("color", color)}
+                                    />
+                                    <label htmlFor={color}>{color}</label>
+                                </div>
+                            ))}
+                        </div>
+                    )}
                 </div>
                 <hr/>
 
@@ -285,21 +310,23 @@ function GeneralSalePage() {
                     <p onClick={() => setShowBrandFilters(!showBrandFilters)}>Merk
                         <span className={`toggle-icon ${showBrandFilters ? 'rotated' : ''}`}>+</span>
                     </p>
-                    <div className={`filter-types ${showBrandFilters ? 'show' : ''}`}>
-                        {['Volkswagen', 'Mercedes', 'Ford', 'Fiat', 'Citroën', 'Peugeot', 'Renault', 'Nissan', 'Opel', 'Iveco'].map((brand) => (
-                            <div key={brand} className="checkbox-item">
-                                <input
-                                    type="checkbox"
-                                    id={brand}
-                                    value={brand}
-                                    checked={filters.brand.includes(brand)}
-                                    name={brand}
-                                    onChange={() => handleFilterChange("brand", brand)}
-                                />
-                                <label htmlFor={brand}>{brand}</label>
-                            </div>
-                        ))}
-                    </div>
+                    {filterOptions.Brand && filterOptions.Brand.length > 0 && (
+                        <div className={`filter-types ${showBrandFilters ? 'show' : ''}`}>
+                            {filterOptions.Brand.map((brand) => (
+                                <div key={brand} className="checkbox-item">
+                                    <input
+                                        type="checkbox"
+                                        id={brand}
+                                        value={brand}
+                                        checked={filters.brand.includes(brand)}
+                                        name={brand}
+                                        onChange={() => handleFilterChange("brand", brand)}
+                                    />
+                                    <label htmlFor={brand}>{brand}</label>
+                                </div>
+                            ))}
+                        </div>
+                    )}
                 </div>
 
                 <hr/>
@@ -307,24 +334,26 @@ function GeneralSalePage() {
                     <p onClick={() => setShowSeatsFilters(!showSeatsFilters)}>Aantal passagiers
                         <span className={`toggle-icon ${showSeatsFilters ? 'rotated' : ''}`}>+</span>
                     </p>
-                    <div className={`filter-types ${showSeatsFilters ? 'show' : ''}`}>
-                        {['4', '5', '6'].map((seat) => (
-                            <div key={seat} className="checkbox-item">
-                                <input
-                                    type="checkbox"
-                                    id={seat}
-                                    value={seat}
-                                    checked={filters.seat.includes(seat)}
-                                    name={seat}
-                                    onChange={() => handleFilterChange("seat", seat)}
-                                />
-                                <label htmlFor={seat}>{seat}</label>
-                            </div>
-                        ))}
-                    </div>
+                    {filterOptions.Seats && filterOptions.Seats.length > 0 && (
+                        <div className={`filter-types ${showSeatsFilters ? 'show' : ''}`}>
+                            {filterOptions.Seats.map((seat) => (
+                                <div key={seat} className="checkbox-item">
+                                    <input
+                                        type="checkbox"
+                                        id={seat}
+                                        value={seat}
+                                        checked={filters.seat.includes(seat)}
+                                        name={seat}
+                                        onChange={() => handleFilterChange("seat", seat)}
+                                    />
+                                    <label htmlFor={seat}>{seat}</label>
+                                </div>
+                            ))}
+                        </div>
+                    )}
                 </div>
                 <div className="filter-section">
-                    <div classname="filter-spacer"></div>
+                    <div className="filter-spacer"></div>
                 </div>
             </div>
 
