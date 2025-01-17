@@ -8,6 +8,9 @@ using WPR.Utils;
 using WPR.Hashing;
 using Org.BouncyCastle.Crypto.Prng;
 using WPR.Cryption;
+using WPR.Controllers.SignUp;
+using System.Threading.Tasks;
+using System.Transactions;
 
 namespace WPR.Repository;
 
@@ -617,5 +620,249 @@ public class UserRepository : IUserRepository
             await Console.Error.WriteLineAsync($"Unexpected error: {ex.Message}");
             return false;
         }
+    }
+
+    public async Task<(bool Status, string Message)> AddPersonalCustomer(SignUpRequest request)
+    {
+        var emailCheck = checkUsageEmailAsync(request.Email);
+        bool validEmail = EmailChecker.IsValidEmail(request.Email);
+        bool validBirthday = BirthdayChecker.IsValidBirthday(request.BirthDate);
+        bool validPhoneNumber = TelChecker.IsValidPhoneNumber(request.TelNumber);
+        (bool isValidPassword, string passwordError) validPassword = PasswordChecker.IsValidPassword(request.Password);
+        var emailStatus = await emailCheck;
+
+        Console.WriteLine(validBirthday);
+
+        if (validEmail && validBirthday && validPhoneNumber && validPassword.isValidPassword && !emailStatus.status)
+        {
+            var customer = await addCustomerAsync(new object[]
+            {
+                request.Adres,
+                request.TelNumber,
+                _hash.createHash(request.Password),
+                request.Email,
+                request.FirstName,
+                request.LastName
+            });
+
+            if (!customer.status)
+            {
+                return (false, customer.message);
+            }
+
+            await addPersonalCustomerAsync(new object[]
+            {
+                customer.newUserID,
+                request.BirthDate
+            });
+
+            return (true, "Customer added");
+        }
+        else if (!validEmail)
+        {
+            return (false, "Email allready in use");
+        }
+        else if (!validBirthday)
+        {
+            return (false, "Invalid birthday");
+        }
+        else if (!validPassword.isValidPassword)
+        {
+            return (false, validPassword.passwordError);
+        }
+        else if (emailStatus.status)
+        {
+            return (false, emailStatus.message);
+        }
+        else
+        {
+            return (false, "An unexpected error occured");
+        }
+    }
+
+    /// <summary>
+    /// AddCustomerChecks kijkt of alle ingevoerde velden geldig zijn. Als een check faalt falen alle checks
+    /// </summary>
+    /// <param name="isPrivate"></param>
+    /// <param name="customer"></param>
+    /// <param name="detailed"></param>
+    /// <returns></returns>
+    private async Task<(bool Status, string Message)> AddCustomerChecks(bool isPrivate, SignUpRequestCustomer? customer, SignUpRequestCustomerPrivate detailed)
+    {
+        if (isPrivate)
+        {
+            (bool isValidPassword, string passwordError) validPassword = PasswordChecker.IsValidPassword(detailed.Password);
+            if (!BirthdayChecker.IsValidBirthday(detailed.BirthDate))
+            {
+                return (false, "No Valid Birthday");
+            }
+            else if (!TelChecker.IsValidPhoneNumber(detailed.TelNumber))
+            {
+                return (false, "No valid Phonenumber");
+            }
+            else if (!validPassword.isValidPassword)
+            {
+                return (false, validPassword.passwordError);
+            }
+            else
+            {
+                return (true, "Valid Details");
+            }
+        }
+        
+        var emailCheck = checkUsageEmailAsync(customer.Email);
+        if (!EmailChecker.IsValidEmail(customer.Email))
+        {
+            return (false, "No Valid Email Format");
+        }
+        (bool Status, string Message) emailStatus = await emailCheck;
+        return (!emailStatus.Status, emailStatus.Message);
+    }
+
+    /// <summary>
+    /// AddPrivateCustomerDetails zorgt ervoor dat alle extra details van particuliere huurders toegevoegd worden in de Private tabel.
+    /// </summary>
+    /// <param name="request"></param>
+    /// <param name="userId"></param>
+    /// <param name="connections"></param>
+    /// <returns></returns>
+    private async Task<(int StatusCode, string Message)> AddPrivateCustomerDetails(SignUpRequestCustomerPrivate request, int userId, MySqlConnection connections)
+    {
+        (bool Status, string Message) checks = await AddCustomerChecks(true, null, request);
+
+        if (checks.Status)
+        {
+            try
+            {
+                string query = "INSERT INTO Private (ID, FirstName, LastName, TelNum, Adres, Password, BirthDate) VALUES (@I, @F, @L, @T, @A, @P, @B)";
+                using (var command = new MySqlCommand(query, connections))
+                {
+                    command.Parameters.AddWithValue("@I", userId);
+                    command.Parameters.AddWithValue("@F", request.FirstName);
+                    command.Parameters.AddWithValue("@L", request.LastName);
+                    command.Parameters.AddWithValue("@T", request.TelNumber);
+                    command.Parameters.AddWithValue("@A", request.Adres);
+                    command.Parameters.AddWithValue("@P", _hash.createHash(request.Password));
+                    command.Parameters.AddWithValue("@B", request.BirthDate);
+
+                    if (await command.ExecuteNonQueryAsync() > 0)
+                    {
+                        return (200, "Account Succesfully Added");
+                    }
+
+                    return (500, "Unexpected Error Occured");
+                }
+            }
+            catch (MySqlException ex)
+            {
+                return (500, ex.Message);
+            }
+            catch (Exception ex)
+            {
+                return (500, ex.Message);
+            }
+        }
+
+        return (412, checks.Message);
+    }
+
+    /// <summary>
+    /// AddCustomer krijgt SignUpRequestCustomer binnen en SignUpRequestCustomerPrivate.
+    /// Elk account heeft als algemene registratie een email en accounttype.
+    /// 
+    /// Bij een particulier (Private) account geeft de gebruiker alleen een email en een accounttype door.
+    /// Bij een zakelijk (Business) account geeft de gebruiker een email, accounttype en KvK nummer door
+    /// (ID's worden ingevuld door de database)
+    /// 
+    /// Bij een particulier account wordt nog een tweede query uitgevoerd (zie AddPrivateCustomerDetails).
+    /// Als deze query mocht falen wordt de gehele transactie gerolledbacked.
+    /// 
+    /// </summary>
+    /// <param name="request"></param>
+    /// <param name="privateRequest"></param>
+    /// <returns></returns>
+    public async Task<(int StatusCode, string Message)> AddCustomer(SignUpRequestCustomer request, SignUpRequestCustomerPrivate privateRequest)
+    {
+        (bool Status, string Message) checks = await AddCustomerChecks(false, request, privateRequest);
+
+        if (checks.Status)
+        {
+            try
+            {
+                string query;
+
+                if (request.AccountType.Equals("Private"))
+                {
+                    query = "INSERT INTO Customer (Email, AccountType) VALUES (@E, @A)";
+                }
+                else
+                {
+                    query = "INSERT INTO Customer (Email, KvK, AccountType) VALUES (@E, @K, @A)";
+                }
+
+                using (var connection = _connector.CreateDbConnection())
+                using (var command = new MySqlCommand(query, (MySqlConnection)connection))
+                using (var transaction = connection.BeginTransaction())
+                {
+                    command.Parameters.AddWithValue("@E", request.Email);
+                    command.Parameters.AddWithValue("@A", request.AccountType);
+
+                    if (request.AccountType.Equals("Business"))
+                    {
+                        command.Parameters.AddWithValue("@K", request.KvK);
+                    }
+
+                    try
+                    {
+                        if (await command.ExecuteNonQueryAsync() > 0)
+                        {
+
+                            if (request.AccountType.Equals("Private"))
+                            {
+                                // UserId van het account verkrijgen
+                                command.CommandText = "SELECT LAST_INSERT_ID();";
+                                int userId = Convert.ToInt32(await command.ExecuteScalarAsync());
+
+                                (int StatusCode, string Message) response = await AddPrivateCustomerDetails(privateRequest, userId, (MySqlConnection)connection);
+
+                                // Bij falen van query van toevoegen particulier account wordt een rollback van de transactie uitgevoerd
+                                if (response.StatusCode == 500 || response.StatusCode == 412)
+                                {
+                                    string deleteCustomerQuery = "DELETE FROM Customer WHERE ID = @I";
+                                    using (var deleteCommand = new MySqlCommand(deleteCustomerQuery, (MySqlConnection)connection))
+                                    {
+                                        deleteCommand.Parameters.AddWithValue("@I", userId);
+                                        await deleteCommand.ExecuteNonQueryAsync();
+                                    }
+
+                                    transaction.Rollback();
+                                    return response; 
+                                }
+                            }
+
+                            transaction.Commit();
+                            return (200, "Customer Account Added Successfully");
+                        }
+
+                        return (500, "Unexpected Error Occurred");
+                    }
+                    catch (Exception ex)
+                    {
+                        transaction.Rollback();
+                        return (500, ex.Message);
+                    }
+                }
+            }
+            catch (MySqlException ex)
+            {
+                return (500, ex.Message);
+            }
+            catch (Exception ex)
+            {
+                return (500, ex.Message);
+            }
+        }
+        
+        return (412, checks.Message);
     }
 }

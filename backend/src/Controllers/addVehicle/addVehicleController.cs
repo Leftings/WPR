@@ -1,10 +1,10 @@
-namespace Employee.Controllers.AddVehicle;
+namespace WPR.Controllers.AddVehicle;
 
 using Microsoft.AspNetCore.Mvc;
-using Employee.Database;
+using WPR.Database;
 using System;
 using MySqlX.XDevAPI.Common;
-using Employee.Repository;
+using WPR.Repository;
 using MySql.Data.MySqlClient;
 
 /// <summary>
@@ -15,9 +15,9 @@ using MySql.Data.MySqlClient;
 public class AddVehicleController : ControllerBase
 {
     private readonly Connector _connector;
-    private readonly IUserRepository _userRepository;
+    private readonly IEmployeeRepository _userRepository;
 
-    public AddVehicleController(Connector connector, IUserRepository userRepository)
+    public AddVehicleController(Connector connector, IEmployeeRepository userRepository)
     {
         _connector = connector ?? throw new ArgumentNullException(nameof(connector));
         _userRepository = userRepository ?? throw new ArgumentNullException(nameof(userRepository));

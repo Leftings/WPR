@@ -1,6 +1,6 @@
 export const EmptyFieldChecker = (inputFields) =>
 {
-    let errors = [];
+    const errors = [];
     for (let key in inputFields)
     {
         if (inputFields[key] === '' || inputFields[key] === null)

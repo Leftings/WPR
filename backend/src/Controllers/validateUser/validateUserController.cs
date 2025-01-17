@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 
-namespace Employee.Controllers.validateUser;
+namespace WPR.Controllers.validateUser;
 
 /// <summary>
 /// In validateUserController wordt gekeken of er een gelidge medewerkers sessie aanwezig is.

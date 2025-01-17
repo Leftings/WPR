@@ -1,7 +1,7 @@
-namespace Employee.Controllers.AddBusiness;
+namespace WPR.Controllers.AddBusiness;
 
 using Microsoft.AspNetCore.Mvc;
-using Employee.Repository;
+using WPR.Repository;
 
 /// <summary>
 /// Controller voor het verbinden van het aanmaken van bedrijven op basis van het KVK nummer
@@ -10,9 +10,9 @@ using Employee.Repository;
 [ApiController]
 public class AddBusinessController : ControllerBase
 {
-    private readonly IUserRepository _userRepository;
+    private readonly IEmployeeRepository _userRepository;
 
-    public AddBusinessController (IUserRepository userRepository)
+    public AddBusinessController (IEmployeeRepository userRepository)
     {
         _userRepository = userRepository ?? throw new ArgumentNullException(nameof(userRepository));
     }
@@ -25,7 +25,7 @@ public class AddBusinessController : ControllerBase
     [HttpPost("addBusiness")]
     public async Task<IActionResult> AddBusiness([FromForm] AddBusinessRequest request)
     {
-        var output = _userRepository.AddBusiness(request);
+        var output = await _userRepository.AddBusiness(request);
         if (output.status)
         {
             return Ok(new { output.message });

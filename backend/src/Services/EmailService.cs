@@ -14,6 +14,10 @@ public class EmailService
         _envConfig = envConfig ?? throw new ArgumentNullException(nameof(envConfig));
     }
 
+    /// <summary>
+    /// Maak SMTP Client voor versturen emails
+    /// </summary>
+    /// <returns>SMTP Client</returns>
     private SmtpClient CreateSmtpClient()
     {
         return new SmtpClient(_envConfig.Get("SMTP_HOST"))
@@ -82,6 +86,37 @@ public class EmailService
             throw;
         }
     }
+
+    public async Task SendConfirmationEmailBusiness(string toEmail, string businessName, int kvk, string domain, string adres)
+    {
+        if (string.IsNullOrEmpty(toEmail))
+        {
+            throw new ArgumentNullException("Email can not be null");
+        }
+
+        try
+        {
+            using (var smtpClient = CreateSmtpClient())
+            using (var emailMessage = new MailMessage
+                {
+                    From = new MailAddress(_envConfig.Get("SMTP_FROM_EMAIL")),
+                    Subject = "Aanvraag Bedrijfs Account",
+                    Body = BuildConfirmationEmailBusinessBody(businessName, kvk, domain, adres),
+                    IsBodyHtml = true
+
+                })
+            {
+                emailMessage.To.Add(toEmail);
+                
+                await smtpClient.SendMailAsync(emailMessage);
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.Message);
+            throw;
+        }
+    }
     
     private string BuildRentalConfirmationBody(string carName, string carColor, string carPlate, DateTime startDate, DateTime endDate, string price)
     {
@@ -102,5 +137,23 @@ public class EmailService
             </ul>
             <p><strong>Totale huur prijs:</strong> €{WebUtility.HtmlEncode(price)}</p>
         ";
+    }
+
+    private string BuildConfirmationEmailBusinessBody(string businessName, int kvk, string domain, string adres)
+    {
+        return $@"
+            <h1>Welkom, {businessName}</h1>
+            <br></br>
+            <p>Bedankt voor het aanmelden als bedrijf bij CarAndAll.</p>
+            <p>Ons personeel zal binnen 48 uw aanvraag voor een bedrijfsaccount bekijken en verwerken met de volgende gegevens:</p>
+            <ul>
+                <li>Bedrijfsnaam: {businessName}</li>
+                <li>Kamer van koophandel: {kvk}</li>
+                <li>Domeinnaam: {domain}
+                <li>Adres Hoofdkantoor: {adres}</li>
+            </ul>
+            
+            <p>Dit is een automatisch gegeneerd bericht van CarAndAll.</p>
+            <p>Reacties op dit bericht worden niet gezien.</p>";
     }
 }

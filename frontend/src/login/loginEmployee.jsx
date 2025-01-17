@@ -1,67 +1,39 @@
 import React, { useState } from 'react';
 import { isRouteErrorResponse, Link, useNavigate } from 'react-router-dom';
-import './login.css';
+//import './login.css';
+import '../index.css';
 import logo from '../assets/logo.svg';
 import logoHover from '../assets/logo-green.svg';
 import GeneralFooter from "../GeneralBlocks/footer/footer.jsx";
 
 const BACKEND_URL = import.meta.env.VITE_REACT_APP_BACKEND_URL ?? 'http://localhost:5165';
 
-function CheckCookie() {
-  return fetch(`${BACKEND_URL}/api/Login/CheckSession`, { credentials: 'include' })
-    .then(response => {
-      if (!response.ok) {
-        throw new Error('Session check failed');
-      }
-      return response.json();
-    })
-    .then(data => {
-      console.log('Session Active: ', data);
-      return data;
-    })
-    .catch(error => {
-      console.error('Error: ', error.message);
-      return null;
-    });
+// Functie om te controleren of de gebruiker geblokkeerd is
+function isUserBlocked() {
+  const lastFailedAttempt = localStorage.getItem('lastFailedAttempt');
+  const failedAttempts = parseInt(localStorage.getItem('failedAttempts') || '0', 10);
+  const blockTime = 5 * 60 * 1000; // 5 minuten in milliseconden
+
+  if (failedAttempts >= 10 && lastFailedAttempt) {
+    const timeSinceLastAttempt = Date.now() - parseInt(lastFailedAttempt, 10);
+    if (timeSinceLastAttempt < blockTime) {
+      return true; 
+    }
+  }
+  return false; 
 }
 
-function CheckCookieEmployee()
-{
-  return fetch(`${BACKEND_URL}/api/Login/CheckSessionStaff`, { credentials: 'include' })
-    .then(response => {
-      if (!response.ok) {
-        throw new Error('Session check failed');
-      }
-      return response.json();
-    })
-    .then(data => {
-      console.log('Session Active: ', data);
-      return data;
-    })
-    .catch(error => {
-      console.error('Error: ', error.message);
-      return null;
-    });
+// Functie om de mislukte poging bij te werken
+function updateFailedLoginAttempt() {
+  const failedAttempts = parseInt(localStorage.getItem('failedAttempts') || '0', 10) + 1;
+  localStorage.setItem('failedAttempts', failedAttempts);
+  localStorage.setItem('lastFailedAttempt', Date.now().toString());
 }
 
-function GetOffice() {
-  console.log('Backend URL:', BACKEND_URL);
-  console.log('Sending request to GetKindEmployee');
-  return fetch(`${BACKEND_URL}/api/Cookie/GetKindEmployee`, { credentials: 'include' })
-    .then(response => {
-      if (!response.ok) {
-        throw new Error('Getting kind of office failed');
-      }
-      return response.json();
-    })
-    .then(data => {
-      console.log('Kind office: ', data);
-      return data; // The office type (e.g., "Front" or "Back")
-    })
-    .catch(error => {
-      console.error('Error: ', error.message);
-      return null;
-    });
+// Functie om het aantal mislukte pogingen te resetten
+function resetFailedLoginAttempts() {
+  localStorage.removeItem('failedAttempts');
+  localStorage.removeItem('lastFailedAttempt');
 }
 
 function Login() {
@@ -79,6 +51,11 @@ function Login() {
   const onSubmit = async (event) => {
     event.preventDefault();
 
+    if (isUserBlocked()) {
+      setError('Teveel mislukte inlogpogingen. Probeer het over 5 minuten opnieuw.');
+      return;
+    }
+
     if (!email || !password) {
       if (!email && !password) {
         setError('Vul een emailadres en wachtwoord in');
@@ -90,62 +67,48 @@ function Login() {
       return;
     }
 
-    try
-    {
+    try {
       const response = await fetch(`${BACKEND_URL}/api/Login/login`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({email, password, userType}),
+        body: JSON.stringify({ email, password, userType }),
         credentials: 'include',
       });
 
-      if (!response.ok)
-      {
+      if (!response.ok) {
+        // Verhoog de mislukte poging en update de tijd
+        updateFailedLoginAttempt();
         setError(`${email} is geen geldig account of het wachtwoord klopt niet`);
         throw new Error('Login failed');
-      }
-      else
-      {
-        if (userType === 'Customer')
-        {
-          // klant wordt ingelogd terug naar de homepage gestuurd
+      } else {
+        // Reset de mislukte inlogpogingen bij een succesvolle login
+        resetFailedLoginAttempts();
+
+        if (userType === 'Customer') {
           await fetch(`${BACKEND_URL}/api/Login/CheckSession`, { credentials: 'include' });
           navigate('/');
-        }
-        else if (userType === 'Employee')
-        {
-          // Soort medewerker wordt vastgesteld
+        } else if (userType === 'Employee') {
           const officeResponse = await fetch(`${BACKEND_URL}/api/Cookie/GetKindEmployee`, { credentials: 'include' });
           if (!officeResponse.ok) {
-              throw new Error('Failed to fetch the kind of office');
+            throw new Error('Failed to fetch the kind of office');
           }
           const office = await officeResponse.json();
-          
-          if (office?.message === 'Front')
-          {
-            // Medewerker wordt naar de frontoffice gestuurd
+
+          if (office?.message === 'Front') {
             await fetch(`${BACKEND_URL}/api/Login/CheckSessionStaff`, { credentials: 'include' });
             navigate('/FrontOfficeEmployee');
-          }
-          else
-          {
-            // Medewerker wordt naar de backoffice gestuurd
+          } else {
             await fetch(`${BACKEND_URL}/api/Login/CheckSessionStaff`, { credentials: 'include' });
             navigate('/BackOfficeEmployee');
           }
-        }
-        else
-        {
-          // Vehicle Manager wordt naar Vehicle Manager gestuurd
+        } else {
           await fetch(`${BACKEND_URL}/api/Login/CheckSessionVehicleManager`, { credentials: 'include' });
           navigate('/VehicleManager');
         }
       }
-    }
-    catch (error)
-    {
+    } catch (error) {
       console.error('Error: ', error);
     }
   };
@@ -160,11 +123,11 @@ function Login() {
         <header className="header">
           <Link to="/">
             <div id="left" className="logo-container">
-              <img src={logo} alt="Car And All Logo" className="logo-image"/>
+              <img src={logo} alt="Car And All Logo" className="logo-image" />
               <h1 className="logo">Car And All</h1>
             </div>
           </Link>
-          <button id = "right" className="hamburger-menu" onClick={toggleMenu}>
+          <button id="right" className="hamburger-menu" onClick={toggleMenu}>
             &#9776; {/* Unicode for hamburger icon */}
           </button>
         </header>
@@ -194,29 +157,29 @@ function Login() {
 
           <div id="input">
             <label htmlFor="user">Email</label>
-            <br/>
-            <input type="text" id="user" value={email} onChange={(e) => setEmail(e.target.value)}/>
-            <br/>
+            <br />
+            <input type="text" id="user" value={email} onChange={(e) => setEmail(e.target.value)} />
+            <br />
             <label htmlFor="password">Wachtwoord</label>
-            <br/>
-            <input type="password" id="password" value={password} onChange={(e) => setPassword(e.target.value)}/>
-            <br/>
-            <button id="button" type="button" onClick={onSubmit}>Login</button>
+            <br />
+            <input type="password" id="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+            <br />
+            <button className="cta-button" type="button" onClick={onSubmit}>Login</button>
             {userType === "Customer" && (
                 <>
-                  <br/>
+                  <br />
                   <label htmlFor="noAccount">
                     Nog geen account bij ons? <Link to="/signUp">Meld nu aan!</Link>
                   </label>
                 </>
             )}
-            {error && <p style={{color: 'red'}}>{error}</p>}
+            {error && <p style={{ color: 'red' }}>{error}</p>}
           </div>
         </main>
 
-        <GeneralFooter/>
+        <GeneralFooter />
       </>
   );
 }
 
-  export default Login;
+export default Login;
