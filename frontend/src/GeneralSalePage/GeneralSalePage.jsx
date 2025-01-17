@@ -178,6 +178,38 @@ function GeneralSalePage() {
         }
     }, [isEmployee]);
 
+    async function fetchAndLogRentals() {
+        try {
+            const response = await fetch(`${BACKEND_URL}/api/Rental/GetAllUserRentalsWithDetails`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                credentials: 'include',
+            });
+
+            if (!response.ok) {
+                throw new Error('Failed to fetch rentals');
+            }
+
+            const data = await response.json();
+
+            // Log the OrderID, StartDate, and EndDate
+            console.log('Rental Details:');
+            data.forEach(rental => {
+                console.log(`OrderID: ${rental.ID}, StartDate: ${rental.StartDate}, EndDate: ${rental.EndDate}`);
+            });
+
+            return data;
+        } catch (error) {
+            console.error('Error fetching rentals:', error);
+            return [];
+        }
+    }
+    useEffect(() => {
+        fetchAndLogRentals();
+    }, []);
+
     useEffect(() => {
         if (isFiltersOpen) {
             document.body.style.overflow = 'hidden';

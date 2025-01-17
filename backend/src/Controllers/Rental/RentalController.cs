@@ -1,7 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using System;
 using System.Data;
-using System.Threading.Tasks;
 using MySql.Data.MySqlClient;
 using WPR.Controllers.Rental;
 using WPR.Database;
@@ -385,8 +383,7 @@ VALUES (@StartDate, @EndDate, @Price, @FrameNrCar, @Customer, @Status, @Reviewed
                 Customer, 
                 Status, 
                 ReviewedBy, 
-                VMStatus, 
-                Kvk
+                VMStatus
             FROM Abonnement";
 
                 var rentals = new List<object>();
