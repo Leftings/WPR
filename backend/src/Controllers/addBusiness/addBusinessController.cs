@@ -32,6 +32,7 @@ public class AddBusinessController : ControllerBase
     public async Task<IActionResult> AddBusiness([FromForm] AddBusinessRequest request)
     {
         var output = await _employeeRepository.AddBusiness(request);
+        
         if (output.status)
         {
             return Ok(new { output.message });

@@ -569,7 +569,8 @@ public class EmployeeRepository : IEmployeeRepository
     /// De gegevens worden uit de AddBusinessRequest getrokken en verwerkt in de query.
     /// De query wordt uitgevoerd en checkt of deze ook succesvol is uitgevoerd
     /// </summary>
-    /// <param name="request"></param>
+    /// <param name="table"></param>
+    /// <param name="domain"></param>
     /// <returns></returns>
     public async Task<(bool status, string message)> AddBusiness(AddBusinessRequest request)
     {
@@ -693,6 +694,7 @@ public class EmployeeRepository : IEmployeeRepository
 
             using (var connection = _connector.CreateDbConnection())
             using (var command = new MySqlCommand(query, (MySqlConnection)connection))
+            using (var reader = await command.ExecuteReaderAsync())
             {
                 command.Parameters.AddWithValue("@K", kvk);
 
@@ -775,5 +777,57 @@ public class EmployeeRepository : IEmployeeRepository
         {
             return (false, ex.Message, new Dictionary<string, object>());
         }
+    }
+
+    /// <summary>
+    /// Maakt een connectie met de database door middel van de connector en de query.
+    /// De gegevens worden uit de AddBusinessRequest getrokken en verwerkt in de query.
+    /// De query wordt uitgevoerd en checkt of deze ook succesvol is uitgevoerd
+    /// </summary>
+    /// <param name="request"></param>
+    /// <returns></returns>
+    public async Task<(bool status, string message)> AddBusiness(AddBusinessRequest request)
+    {
+        var customer = CheckDomain("Customer", request.Domain);
+        var business = CheckDomain("Business", request.Domain);
+
+        await Task.WhenAll(customer, business);
+        if (customer.Result.Status && business.Result.Status)
+        {
+            try
+            {
+                string query = "INSERT INTO Business (KvK, BusinessName, Adres, Domain, ContactEmail) VALUES (@K, @B, @A, @D, @C)";
+
+                // Er wordt een connectie met de database gemaakt
+                using (var connection = _connector.CreateDbConnection())
+                using (var command = new MySqlCommand(query, (MySqlConnection)connection))
+                {
+                    // Parameters van de query worden ingevuld
+                    command.Parameters.AddWithValue("@K", request.KvK);
+                    command.Parameters.AddWithValue("@B", request.Name);
+                    command.Parameters.AddWithValue("@A", request.Adress);
+                    command.Parameters.AddWithValue("@D", request.Domain);
+                    command.Parameters.AddWithValue("@C", request.ContactEmail);
+
+                    // Er wordt gekeken of de query succesvol is uitgevoerd
+                    if (command.ExecuteNonQuery() > 0)
+                    {
+                        await _emailService.SendConfirmationEmailBusiness(request.ContactEmail, request.Name, request.KvK, request.Domain, request.Adress);
+                        return (true, "Succesfull added business");
+                    }
+                    return (false, "Error occured adding business");
+                }
+            }
+            catch(MySqlException ex)
+            {
+                return (false, ex.Message);
+            }
+            catch(Exception ex)
+            {
+                return (false, ex.Message);
+            }
+        }
+
+        return (false, $"Domain Detected");
     }
 }
