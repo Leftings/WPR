@@ -13,7 +13,7 @@ import { NoSpecialCharacters } from '../utils/stringFieldChecker.js';
 const BACKEND_URL = import.meta.env.VITE_REACT_APP_BACKEND_URL ?? 'http://localhost:5165';
 
 function SignUp() {
-    const [chosenType, setChosenType] = useState('private');
+    const [chosenType, setChosenType] = useState('Private');
     const [email, setEmail] = useState('');
     const [phonenumber, setPhonenumber] = useState('');
     const [dateOfBirth, setDateOfBirth] = useState('');
@@ -39,7 +39,7 @@ function SignUp() {
     {
         let validationErrors = [];
         console.log(chosenType);
-        if (chosenType === 'private')
+        if (chosenType === 'Private')
         {
             validationErrors = EmptyFieldChecker({ firstName, lastName, email, password1, password2, street, number, phonenumber, dateOfBirth });
         }
@@ -62,28 +62,18 @@ function SignUp() {
             try
             {
                 const formData = new FormData();
-                let response;
-
-                if (chosenType === 'private')
+                if (chosenType === 'Private')
                 {
-                    const data = {
-                        Email: email,
-                        Password: password1,
-                        FirstName: firstName,
-                        LastName: lastName,
-                        TelNumber: phonenumber,
-                        Adres: `${street} ${number}${add}`,
-                        BirthDate: new Date(dateOfBirth).toISOString().split('T')[0]
-                    };
-                    formData.append('Email', email);
-                    formData.append('Password', password1);
-                    formData.append('FirstName', firstName);
-                    formData.append('LastName', lastName);
-                    formData.append('TelNumber', phonenumber);
-                    formData.append('Adres', `${street} ${number}${add}`);
-                    formData.append('BirthDate', new Date(dateOfBirth).toISOString().split('T')[0]);
+                    formData.append('SignUpRequestCustomer.Email', email);
+                    formData.append('SignUpRequestCustomer.AccountType', chosenType);
+                    formData.append('SignUpRequestCustomerPrivate.Password', password1);
+                    formData.append('SignUpRequestCustomerPrivate.FirstName', firstName);
+                    formData.append('SignUpRequestCustomerPrivate.LastName', lastName);
+                    formData.append('SignUpRequestCustomerPrivate.TelNumber', phonenumber);
+                    formData.append('SignUpRequestCustomerPrivate.Adres', `${street} ${number}${add}`);
+                    formData.append('SignUpRequestCustomerPrivate.BirthDate', new Date(dateOfBirth).toISOString().split('T')[0]);
 
-                    const response = await pushWithBody(`${BACKEND_URL}/api/SignUp/signUpPersonal`, formData);
+                    const response = await pushWithBody(`${BACKEND_URL}/api/SignUp/signUp`, formData);
                     redirect(response);
                 }
                 else
@@ -112,7 +102,7 @@ function SignUp() {
             }
             else
             {
-                if (chosenType === 'private')
+                if (chosenType === 'Private')
                 {
                     navigate('/login');
                 }
@@ -132,7 +122,7 @@ function SignUp() {
         <>
             <GeneralHeader />
             <div className='registrateFormatHeader'>
-                {chosenType === 'private' ? (
+                {chosenType === 'Private' ? (
                     <h1>Aanmelden Particulier</h1>
                 ) : (<h1>Aanmelden Bedrijf</h1>
                 )}
@@ -140,12 +130,12 @@ function SignUp() {
                 <div id='account'>
                     <label htmlFor='button'>Soort account:</label>
                     <br></br>
-                    <button className='cta-button'onClick={() => choice('private')} id={chosenType === 'private' ? 'typeButton-active' : 'typeButton'} type='button'>Particulier</button>
-                    <button className='cta-button'onClick={() => choice('business')} id={chosenType === 'business' ? 'typeButton-active' : 'typeButton'} type='button'>Zakelijk</button>
+                    <button className='cta-button'onClick={() => choice('Private')} id={chosenType === 'Private' ? 'typeButton-active' : 'typeButton'} type='button'>Particulier</button>
+                    <button className='cta-button'onClick={() => choice('Business')} id={chosenType === 'Business' ? 'typeButton-active' : 'typeButton'} type='button'>Zakelijk</button>
                 </div>
             </div>
             <div className='registrateFormat'>
-                {chosenType === 'private' && (
+                {chosenType === 'Private' && (
                     <>
                         <label htmlFor="firstName">Voornaam</label>
                         <input type="text" id="firstName" value={firstName}onChange={(e) => setFirstName(e.target.value)}></input>
@@ -179,7 +169,7 @@ function SignUp() {
                     </>
                 )}
 
-                {chosenType === 'business' && (
+                {chosenType === 'Business' && (
                     <>
                         <label htmlFor='inputBusinessName'>Bedrijfsnaam</label>
                         <input id='inputBusinessName' value={name} onChange={(e) => SetName(e.target.value)}></input>
