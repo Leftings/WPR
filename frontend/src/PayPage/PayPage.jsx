@@ -1,17 +1,12 @@
-﻿// PayPage.js
-import React, { useState, useEffect } from 'react';
+﻿﻿﻿import React, { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import GeneralHeader from "../GeneralBlocks/header/header.jsx";
 import GeneralFooter from "../GeneralBlocks/footer/footer.jsx";
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
-//import './PayPage.css';
-import '../index.css';
+import './PayPage.css';
 
 const BACKEND_URL = import.meta.env.VITE_REACT_APP_BACKEND_URL ?? 'http://localhost:5165';
 
-// Functie om te controleren of de sessie actief is
 async function checkSession() {
     try {
         const response = await fetch(`${BACKEND_URL}/api/Login/CheckSession`, {
@@ -31,80 +26,66 @@ async function checkSession() {
     }
 }
 
-// Component voor de betaalpagina
 function PayPage() {
-    const location = useLocation(); // Verkrijg locatie-object voor state
-    const navigate = useNavigate(); // Voor navigatie na succesvolle acties
-    const vehicle = location.state?.vehicle; // Voertuigdetails doorgegeven via state
+    const location = useLocation();
+    const navigate = useNavigate();
+    const vehicle = location.state?.vehicle;
+    const rentalDates = location.state?.rentalDates || [null, null]; // Dates passed from GeneralSalePage
 
     console.log('Voertuiggegevens:', vehicle);
+    console.log('Geselecteerde datums:', rentalDates);
 
-    // State voor gebruikersgegevens, foutmeldingen, totaal kosten en huurperiode
     const [userDetails, setUserDetails] = useState({
         email: "",
         address: "",
-        rentalDates: [null, null],
     });
 
-    const [errorMessage, setErrorMessage] = useState(""); // Foutmelding als state
-    const [totalCost, setTotalCost] = useState(0); // Totale kosten
-    const [rentalDays, setRentalDays] = useState(0); // Aantal huurdagen
+    const [errorMessage, setErrorMessage] = useState("");
+    const [totalCost, setTotalCost] = useState(0);
+    const [rentalDays, setRentalDays] = useState(0);
 
-    // Behandel datumwijziging en bereken huurperiode en totale kosten
-    const handleDateChange = (dates) => {
-        const [start, end] = dates;
-        setUserDetails((prevDetails) => ({ ...prevDetails, rentalDates: [start, end] }));
-
-        if (start && end) {
-            const days = Math.ceil((end - start) / (1000 * 60 * 60 * 24)); // Bereken dagen
-            const pricePerDay = parseFloat(vehicle?.Price.replace(',', '.') || "0"); // Prijs per dag
+    useEffect(() => {
+        if (rentalDates[0] && rentalDates[1]) {
+            const start = new Date(rentalDates[0]);
+            const end = new Date(rentalDates[1]);
+            const days = Math.ceil((end - start) / (1000 * 60 * 60 * 24));
+            const pricePerDay = parseFloat(vehicle?.Price.replace(',', '.') || "0");
 
             if (!isNaN(pricePerDay) && days > 0) {
-                setRentalDays(days); // Stel huurperiode in
-                setTotalCost(days * pricePerDay); // Bereken totale kosten
+                setRentalDays(days);
+                setTotalCost(days * pricePerDay);
             } else {
                 setRentalDays(0);
                 setTotalCost(0);
             }
-        } else {
-            setRentalDays(0);
-            setTotalCost(0);
         }
-    };
+    }, [rentalDates, vehicle]);
 
-    // Behandel huurkoop (controleer sessie en valideer formulier)
     const handlePurchase = async () => {
-        // Controleer of de sessie actief is voordat we verdergaan
         const session = await checkSession();
 
         if (!session) {
-            // Toon foutmelding als de sessie niet actief is
             toast.error("Log in om verder te gaan.");
             return;
         }
 
-        // Valideer of alle vereiste velden ingevuld zijn
-        if (!userDetails.email || !userDetails.address || !userDetails.rentalDates[0] || !userDetails.rentalDates[1]) {
-            // Toon waarschuwing als vereiste velden ontbreken
+        if (!userDetails.email || !userDetails.address || !rentalDates[0] || !rentalDates[1]) {
             toast.warn("Vul alle verplichte velden in.");
             return;
         }
 
-        // Zorg ervoor dat het voertuig een framenummer heeft
         if (!vehicle?.FrameNr) {
-            // Toon foutmelding als het voertuig geen framenummer heeft
             toast.error("Voertuig heeft geen framenummer. Kies een geldig voertuig.");
             return;
         }
 
-        // Bereid huurgegevens voor de API-aanroep voor
         const rentalData = {
-            FrameNrCar: String(vehicle.FrameNr), // Framenummer
-            StartDate: userDetails.rentalDates[0].toISOString(), // Startdatum
-            EndDate: userDetails.rentalDates[1].toISOString(), // Einddatum
-            Price: totalCost, // Totale kosten
-            Email: userDetails.email, // E-mail
-            Address: userDetails.address, // Adres
+            FrameNrCar: String(vehicle.FrameNr),
+            StartDate: new Date(rentalDates[0]).toISOString(),
+            EndDate: new Date(rentalDates[1]).toISOString(),
+            Price: totalCost,
+            Email: userDetails.email,
+            Address: userDetails.address,
         };
 
         console.log("Huurgegevens verzonden:", rentalData);
@@ -115,21 +96,19 @@ function PayPage() {
                 headers: {
                     "Content-Type": "application/json",
                 },
-                body: JSON.stringify(rentalData), // Verstuur huurgegevens
+                body: JSON.stringify(rentalData),
                 credentials: "include",
             });
 
             if (!response.ok) {
                 const data = await response.json();
                 console.error("Fout in reactie:", data);
-                // Toon foutmelding als de transactie mislukt
                 toast.error(`Fout: ${data.message}`);
                 return;
             }
 
             const data = await response.json();
             console.log("Huur aangemaakt:", data.message);
-            // Toon succesmelding als de transactie succesvol is
             toast.success("Huur succesvol verwerkt!");
 
             navigate("/confirmationPage", {
@@ -137,8 +116,8 @@ function PayPage() {
                     rental: {
                         vehicleBrand: vehicle.Brand,
                         vehicleType: vehicle.Type,
-                        startDate: userDetails.rentalDates[0],
-                        endDate: userDetails.rentalDates[1],
+                        startDate: rentalDates[0],
+                        endDate: rentalDates[1],
                         totalCost: totalCost.toFixed(2),
                     },
                     vehicle,
@@ -147,12 +126,10 @@ function PayPage() {
 
         } catch (error) {
             console.error("Fout bij het aanmaken van de huur:", error);
-            // Toon foutmelding voor netwerk-/serverproblemen
             toast.error("Er is een fout opgetreden bij het verwerken van je huur. Probeer het opnieuw.");
         }
     };
 
-    // Als er geen voertuig is geselecteerd, toon foutmelding
     if (!vehicle) {
         return (
             <div className="buy-page">
@@ -210,16 +187,10 @@ function PayPage() {
                         />
 
                         <h3>Huurperiode</h3>
-                        <DatePicker
-                            selected={userDetails.rentalDates[0]}
-                            onChange={handleDateChange}
-                            startDate={userDetails.rentalDates[0]}
-                            endDate={userDetails.rentalDates[1]}
-                            selectsRange
-                            inline
-                            dateFormat="yyyy/MM/dd"
-                            placeholderText="Selecteer start- en einddatum"
-                        />
+                        <p>
+                            Startdatum: {new Date(rentalDates[0]).toLocaleDateString()} <br />
+                            Einddatum: {new Date(rentalDates[1]).toLocaleDateString()}
+                        </p>
 
                         <button
                             className="buy-button"
