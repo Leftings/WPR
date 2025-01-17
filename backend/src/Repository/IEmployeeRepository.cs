@@ -1,6 +1,7 @@
 ﻿using System.Data;
 using System.Diagnostics;
 using WPR.Controllers.AddBusiness;
+using WPR.Controllers.signUpStaff;
 namespace WPR.Repository;
 
 /// <summary>
@@ -14,7 +15,7 @@ namespace WPR.Repository;
 public interface IEmployeeRepository
 {
     Task<(bool status, string message)> AddVehicleAsync(int yop, string brand, string type, string licensPlate, string color, string sort, double price, string description, byte[] vehicleBlob, int places);
-    Task<(bool status, string message)> AddStaff(Object[] personData);
+    Task<(bool status, string message)> AddStaff(SignUpStaffRequest request);
     Task<(bool status, string message)> checkUsageEmailAsync(string email);
     Task<(bool status, List<string> ids)> GetReviewIdsAsync(string user, string userId);
     Task<(bool status, List<Dictionary<string, object>> data)> GetReviewAsync(string id);

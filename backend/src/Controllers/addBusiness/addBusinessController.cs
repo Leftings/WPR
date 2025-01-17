@@ -2,6 +2,7 @@ namespace WPR.Controllers.AddBusiness;
 
 using System.ComponentModel;
 using Microsoft.AspNetCore.Mvc;
+using WPR.Controllers.signUpStaff;
 using WPR.Repository;
 using WPR.Services;
 using WPR.Utils;
@@ -75,7 +76,9 @@ public class AddBusinessController : ControllerBase
             if (info.Status)
             {
                 string password = StrongPasswordMaker.CreatePassword();
-                await _employeeRepository.AddStaff(new object[] {"Vehicle", "Manager", password, $"wagenparkbeheerder{info.Data["Domain"]}", "Wagen", info.Data["KvK"]});
+                await _employeeRepository.AddStaff(new SignUpStaffRequest()
+                    {FirstName = "Vehicle", LastName = "Manager", Password = password, Job = "Wagen", KvK = Convert.ToInt32(info.Data["KvK"]), Email = $"wagenparkbeheerder{info.Data["Domain"]}"
+                });
                 _emailService.SendBusinessReviewEmail((string)info.Data["ContactEmail"], (string)info.Data["BusinessName"], (string)info.Data["Domain"], password, true);
                 emailSend = "Email Send";
             }

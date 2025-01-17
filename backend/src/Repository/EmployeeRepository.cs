@@ -7,6 +7,7 @@ using WPR.Controllers.AddBusiness;
 using System.Reflection.Metadata.Ecma335;
 using System.Threading.Tasks;
 using WPR.Services;
+using WPR.Controllers.signUpStaff;
 
 namespace WPR.Repository;
 
@@ -88,14 +89,14 @@ public class EmployeeRepository : IEmployeeRepository
     /// </summary>
     /// <param name="personData"></param>
     /// <returns></returns>
-    public async Task<(bool status, string message)> AddStaff(Object[] personData)
+    public async Task<(bool status, string message)> AddStaff(SignUpStaffRequest request)
     {
         try
         {
             // Er wordt een specifieke query aangewezen tussen VehicleManagers en Offices
             string query;
 
-            if (personData[4].Equals("Wagen"))
+            if (request.Job.Equals("Wagen"))
             {
                 query = "INSERT INTO VehicleManager (FirstName, LastName, Password, Email, Business) VALUES (@F, @L, @P, @E, @B)";
             }
@@ -109,18 +110,18 @@ public class EmployeeRepository : IEmployeeRepository
             using (var command = new MySqlCommand(query, (MySqlConnection)connection))
             {
                 // Alle parameters worden ingevuld
-                command.Parameters.AddWithValue("@F", personData[0]);
-                command.Parameters.AddWithValue("@L", personData[1]);
-                command.Parameters.AddWithValue("@P", _hash.createHash(personData[2].ToString()));
-                command.Parameters.AddWithValue("@E", personData[3]);
+                command.Parameters.AddWithValue("@F", request.FirstName);
+                command.Parameters.AddWithValue("@L", request.LastName);
+                command.Parameters.AddWithValue("@P", _hash.createHash(request.Password));
+                command.Parameters.AddWithValue("@E", request.Email);
 
-                if (personData[4].Equals("Wagen"))
+                if (request.Job.Equals("Wagen"))
                 {
-                    command.Parameters.AddWithValue("@B", personData[5]);
+                    command.Parameters.AddWithValue("@B", request.KvK);
                 }
                 else
                 {
-                    command.Parameters.AddWithValue("@O", personData[4]);
+                    command.Parameters.AddWithValue("@O", request.Job);
                 }
 
                 if (await command.ExecuteNonQueryAsync() > 0)

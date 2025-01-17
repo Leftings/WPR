@@ -198,7 +198,7 @@ public class EmailService
         <p>De inlog voor uw wagenparkbeheerder is: 
         <ul>
             <li>Gebruikersnaam: wagenparkbeheerder{domain}</li>
-            <li>Wachtwoord: {password}
+            <li>Wachtwoord: {password}</li>
         </ul>
         <p>Dit is een automatisch gegeneerd bericht van CarAndAll.</p>
         <p>Reacties op dit bericht worden niet gezien.</p>"
