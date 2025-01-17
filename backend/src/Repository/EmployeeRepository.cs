@@ -510,6 +510,12 @@ public class EmployeeRepository : IEmployeeRepository
         }
     }
 
+    /// <summary>
+    /// CheckDomain bekijkt of het domain niet al in gebruik ik in de tabel Customer en in de tabel Business
+    /// </summary>
+    /// <param name="table"></param>
+    /// <param name="domain"></param>
+    /// <returns></returns>
     private async Task<(bool Status, string Message)> CheckDomain(string table, string domain)
     {
         try
