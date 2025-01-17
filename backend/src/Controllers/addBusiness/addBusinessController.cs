@@ -4,6 +4,7 @@ using System.ComponentModel;
 using Microsoft.AspNetCore.Mvc;
 using WPR.Repository;
 using WPR.Services;
+using WPR.Utils;
 
 /// <summary>
 /// Controller voor het verbinden van het aanmaken van bedrijven op basis van het KVK nummer
@@ -73,7 +74,9 @@ public class AddBusinessController : ControllerBase
 
             if (info.Status)
             {
-                _emailService.SendBusinessReviewEmail((string)info.Data["ContactEmail"], (string)info.Data["BusinessName"], (string)info.Data["Domain"], "NOG NIET GEIMPLEMENTEERD", true);
+                string password = StrongPasswordMaker.CreatePassword();
+                await _employeeRepository.AddStaff(new object[] {"Vehicle", "Manager", password, $"wagenparkbeheerder{info.Data["Domain"]}", "Wagen", info.Data["KvK"]});
+                _emailService.SendBusinessReviewEmail((string)info.Data["ContactEmail"], (string)info.Data["BusinessName"], (string)info.Data["Domain"], password, true);
                 emailSend = "Email Send";
             }
         }
