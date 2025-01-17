@@ -29,6 +29,7 @@ function SignUp() {
     const [add, SetAdd] = useState('');
     const [error, SetErrors] = useState([]);
     const [domain, SetDomain] = useState('');
+    const [contactEmail, SetContactEmail] = useState('');
         
 
     const choice = (buttonId) => {
@@ -45,7 +46,7 @@ function SignUp() {
         }
         else
         {
-            validationErrors = EmptyFieldChecker({ name, kvk, street, number, domain });
+            validationErrors = EmptyFieldChecker({ name, kvk, street, number, domain, contactEmail });
 
             if (kvk.length < 8)
             {
@@ -82,6 +83,7 @@ function SignUp() {
                     formData.append('Name', name);
                     formData.append('Adress', `${street} ${number}${add}`);
                     formData.append('Domain', domain);
+                    formData.append('ContactEmail', contactEmail);
 
                     const response = await pushWithBody(`${BACKEND_URL}/api/AddBusiness/addBusiness`, formData);
                     redirect(response);
@@ -108,7 +110,7 @@ function SignUp() {
                 }
                 else
                 {
-                    navigate('/vehicles');
+                    //navigate('/vehicles');
                 }
             }
         }
@@ -178,7 +180,7 @@ function SignUp() {
                         <input id='inputKvK'value={kvk} onChange={(e) => SetKvk(KvKChecker(NumberCheck(e.target.value)))}></input>
 
                         <label htmlFor='inputDomain'>Domein naam</label>
-                        <input id='inputDomain' value={domain} onChange={(e) => SetDomain(e.target.value)} placeholder='@example.nl'></input>
+                        <input id='inputDomain' value={domain} onChange={(e) => SetDomain(e.target.value.toLowerCase())} placeholder='@example.nl'></input>
 
                         <label htmlFor='inputStreet'>Straatnaam</label>
                         <input id='inputStreet' value={street} onChange={(e) => SetStreet(e.target.value)}></input>
@@ -188,6 +190,9 @@ function SignUp() {
 
                         <label htmlFor='inputExtra'>Toevoeging (niet verplicht)</label>
                         <input id='inputExtra' value={add} onChange={(e) => SetAdd(NoSpecialCharacters(e.target.value.toUpperCase()))}></input>
+
+                        <label htmlFor='inputContactEmail'>Concact Email</label>
+                        <input id='inputContactEmail' value={contactEmail} onChange={(e) => SetContactEmail(e.target.value.toLowerCase())}></input>
                     </>
                 )}
 

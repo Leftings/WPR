@@ -19,5 +19,5 @@ public interface IEmployeeRepository
     Task<(bool status, List<string> ids)> GetReviewIdsAsync(string user, string userId);
     Task<(bool status, List<Dictionary<string, object>> data)> GetReviewAsync(string id);
     Task<(bool status, string message)> SetStatusAsync(string id, string status, string employee, string userType);
-    (bool status, string message) AddBusiness(AddBusinessRequest request);
+    Task<(bool status, string message)> AddBusiness(AddBusinessRequest request);
 }

@@ -4,6 +4,9 @@ using Microsoft.VisualBasic;
 using MySql.Data.MySqlClient;
 using MySqlX.XDevAPI.Relational;
 using WPR.Controllers.AddBusiness;
+using System.Reflection.Metadata.Ecma335;
+using System.Threading.Tasks;
+using WPR.Services;
 
 namespace WPR.Repository;
 
@@ -15,11 +18,13 @@ public class EmployeeRepository : IEmployeeRepository
 {
     private readonly Connector _connector;
     private readonly Hash _hash;
+    private readonly EmailService _emailService;
 
-    public EmployeeRepository(Connector connector, Hash hash)
+    public EmployeeRepository(Connector connector, Hash hash, EmailService emailService)
     {
         _connector = connector ?? throw new ArgumentNullException(nameof(connector));
         _hash = hash ?? throw new ArgumentNullException(nameof (hash));
+        _emailService = emailService ?? throw new ArgumentNullException(nameof (emailService));
     }
     
     /// <summary>
@@ -506,42 +511,108 @@ public class EmployeeRepository : IEmployeeRepository
     }
 
     /// <summary>
+    /// CheckDomain bekijkt of het domain niet al in gebruik ik in de tabel Customer en in de tabel Business
+    /// </summary>
+    /// <param name="table"></param>
+    /// <param name="domain"></param>
+    /// <returns></returns>
+    private async Task<(bool Status, string Message)> CheckDomain(string table, string domain)
+    {
+        try
+        {
+            string query;
+
+            if (table.Equals("Customer"))
+            {
+                query = "SELECT Email FROM Customer";
+            }
+            else
+            {
+                query = "SELECT Domain FROM Business";
+            }   
+
+            using (var connection = _connector.CreateDbConnection())
+            using (var command = new MySqlCommand(query, (MySqlConnection)connection))
+            using (var reader = await command.ExecuteReaderAsync())
+            {
+                bool domainFound = false;
+                while (await reader.ReadAsync())
+                {
+                    string[] split = reader.GetValue(0).ToString().Split("@");
+                    Console.WriteLine($"{split[1].ToLower()} | {domain[1..]}");
+                    if (split[1].ToLower().Equals(domain[1..]))
+                    {
+                        domainFound = true;
+                        break;
+                    }
+                }
+                
+                if (domainFound)
+                {
+                    return (false, "Domain Detected");
+                }
+                return (true, "Unique Domain");
+            }
+        }
+        catch (MySqlException ex)
+        {
+            return (false, ex.Message);
+        }
+        catch (Exception ex)
+        {
+            return (false, ex.Message);
+        }
+    }
+
+    /// <summary>
     /// Maakt een connectie met de database door middel van de connector en de query.
     /// De gegevens worden uit de AddBusinessRequest getrokken en verwerkt in de query.
     /// De query wordt uitgevoerd en checkt of deze ook succesvol is uitgevoerd
     /// </summary>
     /// <param name="request"></param>
     /// <returns></returns>
-    public (bool status, string message) AddBusiness(AddBusinessRequest request)
+    public async Task<(bool status, string message)> AddBusiness(AddBusinessRequest request)
     {
-        try
+        var customer = CheckDomain("Customer", request.Domain);
+        var business = CheckDomain("Business", request.Domain);
+
+        await Task.WhenAll(customer, business);
+        if (customer.Result.Status && business.Result.Status)
         {
-            string query = "INSERT INTO Business (KvK, BusinessName, Adres) VALUES (@K, @B, @A)";
-
-            // Er wordt een connectie met de database gemaakt
-            using (var connection = _connector.CreateDbConnection())
-            using (var command = new MySqlCommand(query, (MySqlConnection)connection))
+            try
             {
-                // Parameters van de query worden ingevuld
-                command.Parameters.AddWithValue("@K", request.KvK);
-                command.Parameters.AddWithValue("@B", request.Name);
-                command.Parameters.AddWithValue("@A", request.Adress);
+                string query = "INSERT INTO Business (KvK, BusinessName, Adres, Domain, ContactEmail) VALUES (@K, @B, @A, @D, @C)";
 
-                // Er wordt gekeken of de query succesvol is uitgevoerd
-                if (command.ExecuteNonQuery() > 0)
+                // Er wordt een connectie met de database gemaakt
+                using (var connection = _connector.CreateDbConnection())
+                using (var command = new MySqlCommand(query, (MySqlConnection)connection))
                 {
-                    return (true, "Succesfull added business");
+                    // Parameters van de query worden ingevuld
+                    command.Parameters.AddWithValue("@K", request.KvK);
+                    command.Parameters.AddWithValue("@B", request.Name);
+                    command.Parameters.AddWithValue("@A", request.Adress);
+                    command.Parameters.AddWithValue("@D", request.Domain);
+                    command.Parameters.AddWithValue("@C", request.ContactEmail);
+
+                    // Er wordt gekeken of de query succesvol is uitgevoerd
+                    if (command.ExecuteNonQuery() > 0)
+                    {
+                        await _emailService.SendConfirmationEmailBusiness(request.ContactEmail, request.Name, request.KvK, request.Domain, request.Adress);
+                        return (true, "Succesfull added business");
+                    }
+                    return (false, "Error occured adding business");
                 }
-                return (false, "Error occured adding business");
+            }
+            catch(MySqlException ex)
+            {
+                return (false, ex.Message);
+            }
+            catch(Exception ex)
+            {
+                return (false, ex.Message);
             }
         }
-        catch(MySqlException ex)
-        {
-            return (false, ex.Message);
-        }
-        catch(Exception ex)
-        {
-            return (false, ex.Message);
-        }
+
+        return (false, $"Domain Detected");
     }
 }
