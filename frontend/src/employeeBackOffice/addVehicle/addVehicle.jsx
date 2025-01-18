@@ -95,7 +95,7 @@ function AddVehicle() {
 
         let errors = EmptyFieldChecker(vehicleData);
 
-        if (licensePlate.length !== 10)
+        if (licensePlate.length !== 9)
         {
             errors.push('licenseplate heeft geen geldige lengte');
         }
