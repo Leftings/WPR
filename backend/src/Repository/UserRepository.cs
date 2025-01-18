@@ -93,7 +93,7 @@ public class UserRepository : IUserRepository
         }
         else if (userType.Equals("Customer"))
         {
-            table = "UserCustomer";
+            table = "Customer";
         }
         else
         {
@@ -135,7 +135,7 @@ public class UserRepository : IUserRepository
         // Er wordt gekeken of het emailadress al ingebruik is
         try
         {
-            string query = "SELECT COUNT(*) FROM UserCustomer WHERE LOWER(Email) = LOWER(@E)";
+            string query = "SELECT COUNT(*) FROM Customer WHERE LOWER(Email) = LOWER(@E)";
 
             // Er wordt een connectie aangemaakt met de DataBase met bovenstaande query
             using (var connection = _connector.CreateDbConnection())
@@ -172,7 +172,7 @@ public class UserRepository : IUserRepository
     {
         try
         {
-            string query = "INSERT INTO UserCustomer (Adres, Telnum, Password, Email, FirstName, LastName) values (@A, @T, @P, @E, @F, @L)";
+            string query = "INSERT INTO Customer (Adres, Telnum, Password, Email, FirstName, LastName) values (@A, @T, @P, @E, @F, @L)";
 
             // Er wordt een connectie aangemaakt met de DataBase met bovenstaande query 
             using (var connection = _connector.CreateDbConnection())
@@ -220,7 +220,7 @@ public class UserRepository : IUserRepository
     {
         try
         {
-            string query = "INSERT INTO UserPersonal (ID, BirthDate) values (@I, @B)";
+            string query = "INSERT INTO Private (ID, BirthDate) values (@I, @B)";
 
             // Er wordt een connectie aangemaakt met de DataBase met bovenstaande query 
             using (var connection = _connector.CreateDbConnection())
@@ -261,7 +261,7 @@ public class UserRepository : IUserRepository
     {
         try
         {
-            string query = "INSERT INTO UserEmployee (ID, Business) values (@I, @B)";
+            string query = "INSERT INTO Customer (ID, Business) values (@I, @B)";
 
             // Er wordt een connectie aangemaakt met de DataBase met bovenstaande query 
             using (var connection = _connector.CreateDbConnection())
@@ -327,7 +327,7 @@ public class UserRepository : IUserRepository
     {
         try
         {
-            string query = "SELECT FirstName FROM UserCustomer WHERE ID = @I";
+            string query = "SELECT FirstName FROM Customer WHERE ID = @I";
 
             // Er wordt een connectie aangemaakt met de DataBase met bovenstaande query 
             using (var connection = _connector.CreateDbConnection())
@@ -416,9 +416,9 @@ public class UserRepository : IUserRepository
         Console.WriteLine("Deleting user");
         try
         {
-            string queryCustomer = "DELETE FROM UserCustomer WHERE ID = @ID";
-            string queryEmployee = "DELETE FROM UserEmployee WHERE ID = @ID";
-            string queryPersonal = "DELETE FROM UserPersonal WHERE ID = @ID";
+            string queryCustomer = "DELETE FROM Customer WHERE ID = @ID";
+            string queryEmployee = "DELETE FROM Staff WHERE ID = @ID";
+            string queryPersonal = "DELETE FROM Private WHERE ID = @ID";
             string queryContract = "DELETE FROM Contract WHERE Customer = @ID";
 
             using (var connection = _connector.CreateDbConnection())
@@ -474,7 +474,7 @@ public class UserRepository : IUserRepository
     private async Task<(bool goodQuery, string message)> CreateUserInfoQuery(List<object[]> data)
     {
         int lengthList = data.Count(); // De lengte voor de loopt wordt vastgesteld
-        string query = "UPDATE UserCustomer SET "; // Het begin van de query wordt aangemaakt
+        string query = "UPDATE Customer SET "; // Het begin van de query wordt aangemaakt
 
         for (int i = 1; i < lengthList; i++)
         {
@@ -591,11 +591,11 @@ public class UserRepository : IUserRepository
     /// </summary>
     /// <param name="id"></param>
     /// <returns></returns>
-    public async Task<bool> IsUserEmployee(int id)
+    public async Task<bool> IsCustomer(int id)
     {
         try
         {
-            string query = "SELECT ID FROM UserEmployee WHERE ID = @id";
+            string query = "SELECT ID FROM Customer WHERE ID = @id";
 
             // Er wordt een connectie aangemaakt met de DataBase met bovenstaande query 
             using (var connection = _connector.CreateDbConnection())

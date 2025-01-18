@@ -61,7 +61,7 @@ public class BackOfficeRepository(Connector connector) : IBackOfficeRepository
                                 }
                                 else
                                 {
-                                    row["NameCustomer"] = GetName(columnData, "UserCustomer");
+                                    row["NameCustomer"] = GetName(columnData, "Customer");
                                 }
                             }
                             else if (columnName.Equals("ReviewedBy"))
@@ -154,7 +154,7 @@ public class BackOfficeRepository(Connector connector) : IBackOfficeRepository
     {
         try
         {
-            string query = $"SELECT Business From UserEmployee WHERE ID = @I";
+            string query = $"SELECT Business From Customer WHERE ID = @I";
             object business = "";
 
             using (var connection = _connector.CreateDbConnection())
@@ -219,7 +219,7 @@ public class BackOfficeRepository(Connector connector) : IBackOfficeRepository
     {
         try
         {
-            string query = $"SELECT * From UserCustomer WHERE ID = @I";
+            string query = $"SELECT * From Customer WHERE ID = @I";
 
             using (var connection = _connector.CreateDbConnection())
             using (var command = new MySqlCommand(query, (MySqlConnection)connection))

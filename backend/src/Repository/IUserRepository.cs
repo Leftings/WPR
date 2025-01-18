@@ -23,7 +23,7 @@ public interface IUserRepository
     Task<string> GetUserNameAsync(string userId);
     Task<(bool status, string message)> EditUserInfoAsync(List<object[]> data);
     Task<bool> IsKvkNumberAsync(int kvkNumber);
-    Task<bool> IsUserEmployee(int id);
+    Task<bool> IsCustomer(int id);
     Task<(bool status, string message)> DeleteUserAsync(string userId);
     Task<(bool status, string message)> GetKindEmployeeAsync(string userId);
     Task<(bool Status, string Message)> AddPersonalCustomer(SignUpRequest request);

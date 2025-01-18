@@ -272,7 +272,7 @@ public class SignUpController : ControllerBase
                         signUpRequest.LastName
                     });
 
-                    // Er wordt aan de nieuw aangemaakt customer het opgegeven KvK nummer gekoppeld in de tabel UserEmployee
+                    // Er wordt aan de nieuw aangemaakt customer het opgegeven KvK nummer gekoppeld in de tabel Customer
                     var employee = await _userRepository.addEmployeeCustomerAsync(new object[] 
                     {
                         customer.newUserID,

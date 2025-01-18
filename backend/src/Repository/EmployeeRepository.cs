@@ -185,7 +185,7 @@ public class EmployeeRepository : IEmployeeRepository
     {
         try
         {
-            string query = "SELECT FirstName, LastName, Adres, Email, TelNum FROM UserCustomer WHERE ID = @I";
+            string query = "SELECT FirstName, LastName, Adres, Email, TelNum FROM Customer WHERE ID = @I";
 
             // Er wordt een connectie met de DataBase gemaakt met de bovenstaande query
             using (var connection = _connector.CreateDbConnection())

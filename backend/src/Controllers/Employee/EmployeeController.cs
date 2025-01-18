@@ -30,21 +30,21 @@ public class EmployeeController : ControllerBase
     /// Er wordt gekeken of de user een medewerker is
     /// </summary>
     /// <returns></returns>
-    [HttpGet("IsUserEmployee")]
-    public Task<bool> IsUserEmployee()
+    [HttpGet("IsCustomer")]
+    public Task<bool> IsCustomer()
     {
         string loginCookie = HttpContext.Request.Cookies["LoginSession"];
         int id;
         
         if (string.IsNullOrEmpty(loginCookie))
         {
-            return _userRepository.IsUserEmployee(-1);
+            return _userRepository.IsCustomer(-1);
         }
 
         try
         {
             id = Convert.ToInt32(_crypt.Decrypt(loginCookie));
-            return _userRepository.IsUserEmployee(id);
+            return _userRepository.IsCustomer(id);
         }
         catch
         {
@@ -55,7 +55,7 @@ public class EmployeeController : ControllerBase
                 Expires = DateTimeOffset.UtcNow.AddDays(-1)
             });
 
-            return _userRepository.IsUserEmployee(-1);
+            return _userRepository.IsCustomer(-1);
         }
     }
 }
