@@ -416,29 +416,16 @@ public class UserRepository : IUserRepository
         Console.WriteLine("Deleting user");
         try
         {
-            string queryCustomer = "DELETE FROM UserCustomer WHERE ID = @ID";
-            string queryEmployee = "DELETE FROM UserEmployee WHERE ID = @ID";
-            string queryPersonal = "DELETE FROM UserPersonal WHERE ID = @ID";
-            string queryAbonnement = "DELETE FROM Abonnement WHERE Customer = @ID";
+            string queryCustomer = "DELETE FROM Customer WHERE ID = @ID";
 
             using (var connection = _connector.CreateDbConnection())
             using (var customerCommand = new MySqlCommand(queryCustomer, (MySqlConnection)connection))
-            using (var employeeCommand = new MySqlCommand(queryEmployee, (MySqlConnection)connection))
-            using (var personalCommand = new MySqlCommand(queryPersonal, (MySqlConnection)connection))
-            using (var abonnementCommand = new MySqlCommand(queryAbonnement, (MySqlConnection)connection))
             {
                 Console.WriteLine(userId);
                 int userIdInt = Convert.ToInt32(userId);
                 Console.WriteLine(userIdInt);
 
                 customerCommand.Parameters.AddWithValue("@ID", userIdInt);
-                employeeCommand.Parameters.AddWithValue("@ID", userIdInt);
-                personalCommand.Parameters.AddWithValue("@ID", userIdInt);
-                abonnementCommand.Parameters.AddWithValue("@ID", userIdInt);
-
-                await employeeCommand.ExecuteNonQueryAsync();
-                await personalCommand.ExecuteNonQueryAsync();
-                await abonnementCommand.ExecuteNonQueryAsync();
                 
                 int rowsAffected = await customerCommand.ExecuteNonQueryAsync();
 
@@ -595,7 +582,7 @@ public class UserRepository : IUserRepository
     {
         try
         {
-            string query = "SELECT ID FROM UserEmployee WHERE ID = @id";
+            string query = "SELECT ID FROM Customer WHERE ID = @id";
 
             // Er wordt een connectie aangemaakt met de DataBase met bovenstaande query 
             using (var connection = _connector.CreateDbConnection())

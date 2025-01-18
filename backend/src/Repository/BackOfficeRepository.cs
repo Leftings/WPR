@@ -154,7 +154,7 @@ public class BackOfficeRepository(Connector connector) : IBackOfficeRepository
     {
         try
         {
-            string query = $"SELECT Business From UserEmployee WHERE ID = @I";
+            string query = $"SELECT Business From Customer WHERE ID = @I";
             object business = "";
 
             using (var connection = _connector.CreateDbConnection())
