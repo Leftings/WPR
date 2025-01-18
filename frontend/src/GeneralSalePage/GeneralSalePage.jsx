@@ -50,9 +50,6 @@ function GeneralSalePage() {
     const [loadingRequests, SetLoadingRequests] = useState({});
     const [isFiltersOpen, setIsFiltersOpen] = useState(false);
     const [filterOptions, setFilterOptions] = useState({});
-    const [cars, setCars] = useState([]);
-    const [campers, setCampers] = useState([]);
-    const [caravans, setCaravans] = useState([]);
     const [isStaff, setIsStaff] = useState(false);
 
     const [showColorFilters, setShowColorFilters] = useState(false);
@@ -106,26 +103,41 @@ function GeneralSalePage() {
 
     
 
+    useEffect(() => {
+        const updatedAvailableBrands = sorterOneItem([
+            ...new Set(
+                vehicles
+                    .filter(vehicle => filters.vehicleTypes.length === 0 || filters.vehicleTypes.includes(vehicle.Sort))
+                    .map(vehicle => vehicle.Brand)
+            )
+        ], 'Low');
+        setFilterOptions(prev => ({
+            ...prev,
+            Brand: updatedAvailableBrands
+        }));
+    }, [filters.vehicleTypes, vehicles]);
+    
     const handleFilterChange = (category, value) => {
         setFilters((prevFilters) => {
+            let updatedCategory;
             if (category === "vehicleTypes") {
-                // For vehicleTypes, allow toggling off the selected type
-                return {
-                    ...prevFilters,
-                    vehicleTypes: prevFilters.vehicleTypes.includes(value)
-                        ? [] // If already selected, deselect it
-                        : [value] // Otherwise, select it
-                };
+                updatedCategory = prevFilters.vehicleTypes.includes(value)
+                    ? []
+                    : [value];
             } else {
-                // For other categories, toggle the filter
-                const updatedCategory = prevFilters[category].includes(value)
-                    ? prevFilters[category].filter((v) => v !== value) // Remove the value
-                    : [...prevFilters[category], value]; // Add the value
-                
-                return { ...prevFilters, [category]: updatedCategory };
+                updatedCategory = prevFilters[category].includes(value)
+                    ? prevFilters[category].filter((v) => v !== value)
+                    : [...prevFilters[category], value];
             }
+    
+            if (category === "vehicleTypes") {
+                return { ...prevFilters, vehicleTypes: updatedCategory, brand: [] };
+            }
+    
+            return { ...prevFilters, [category]: updatedCategory };
         });
-    };    
+    };
+        
 
     useEffect(() => {
         getUniqueFilterOptions(vehicles);
