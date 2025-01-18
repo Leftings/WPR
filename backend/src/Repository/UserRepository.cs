@@ -67,41 +67,26 @@ public class UserRepository : IUserRepository
     /// <returns></returns>
     public async Task<bool> ValidateUserAsync(string username, string password, string userType)
     {
-        /*string query = $@"SELECT 1 FROM {table} WHERE LOWER(email) = LOWER(@Email) AND BINARY password = @Password";
-
-        using (var connection = _connector.CreateDbConnection())
-        {
-            using (var command = new MySqlCommand(query, (MySqlConnection)connection))
-            {
-                command.Parameters.AddWithValue("@Email", username);
-                command.Parameters.AddWithValue("@Password", password);
-
-                using (var reader = await command.ExecuteReaderAsync())
-                {
-                    return reader.HasRows;
-                }
-            }
-        }
-        */
-
-        // De table voor de DataBase wordt vastgesteld
-        string table; 
+        string table;
+        string query;
         
         if (userType.Equals("Employee"))
         {
             table = "Staff";
+            query = $@"SELECT password FROM {table} WHERE LOWER(email) = LOWER(@Email)";
         }
         else if (userType.Equals("Customer"))
-        {
-            table = "UserCustomer";
+        {   
+            table = "Customer";
+            query = $@"SELECT Private.password FROM {table} INNER JOIN Private ON Private.ID = Customer.ID WHERE LOWER(email) = LOWER(@Email)";
+
         }
         else
         {
             table = "VehicleManager";
+            query = $@"SELECT password FROM {table} WHERE LOWER(email) = LOWER(@Email)";
         }
-
-        string query = $@"SELECT password FROM {table} WHERE LOWER(email) = LOWER(@Email)";
-
+        
         // Er wordt een connectie met de Database aangemaakt met de bovenstaande query
         using (var connection = _connector.CreateDbConnection())
         using (var command = new MySqlCommand(query, (MySqlConnection)connection))
