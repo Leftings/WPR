@@ -56,3 +56,33 @@ export const pushWithoutBody = async (url) => {
         return { errors: [error.message], errorDetected: true };
     }
 }
+
+export const pushWithoutBodyKind = async (url, kind) => {
+    let errorData; 
+
+    try
+    {
+        const response =  await fetch (url, {
+            method: kind,
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            credentials: 'include',
+        });
+
+        if (!response.ok)
+        {
+            errorData = await response.json();
+            throw new Error(errorData);
+        }
+        else
+        {
+            return { message: 'succes', errorDetected: false}
+        }
+    }
+    catch (error)
+    {
+        console.error(errorData);
+        return { errors: [error.message], errorDetected: true };
+    }
+}

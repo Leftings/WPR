@@ -29,8 +29,6 @@ public class SignUpStaffController : ControllerBase
     [HttpPost("signUpStaff")]
     public async Task<IActionResult> SignUpStaff([FromBody] SignUpStaffRequest signUpRequest)
     {
-        Object[] personData = new Object[] {signUpRequest.FirstName, signUpRequest.LastName, signUpRequest.Password, signUpRequest.Email, signUpRequest.Job, signUpRequest.KvK};
-        
         // Check of het emailadres al in gebruik is
         var emailCheckTask = _userRepository.checkUsageEmailAsync(signUpRequest.Email);
         //var addStaffTask = _userRepository.AddStaff(personData);
@@ -55,7 +53,7 @@ public class SignUpStaffController : ControllerBase
         }
 
         //var addStaff = await addStaffTask;
-        var addStaff = await _userRepository.AddStaff(personData);
+        var addStaff = await _userRepository.AddStaff(signUpRequest);
         if (addStaff.status)
         {
             return Ok( new { message = "Data inserted"});

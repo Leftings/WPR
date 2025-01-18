@@ -7,6 +7,7 @@ using WPR.Controllers.AddBusiness;
 using System.Reflection.Metadata.Ecma335;
 using System.Threading.Tasks;
 using WPR.Services;
+using WPR.Controllers.signUpStaff;
 
 namespace WPR.Repository;
 
@@ -88,14 +89,14 @@ public class EmployeeRepository : IEmployeeRepository
     /// </summary>
     /// <param name="personData"></param>
     /// <returns></returns>
-    public async Task<(bool status, string message)> AddStaff(Object[] personData)
+    public async Task<(bool status, string message)> AddStaff(SignUpStaffRequest request)
     {
         try
         {
             // Er wordt een specifieke query aangewezen tussen VehicleManagers en Offices
             string query;
 
-            if (personData[4].Equals("Wagen"))
+            if (request.Job.Equals("Wagen"))
             {
                 query = "INSERT INTO VehicleManager (FirstName, LastName, Password, Email, Business) VALUES (@F, @L, @P, @E, @B)";
             }
@@ -109,18 +110,18 @@ public class EmployeeRepository : IEmployeeRepository
             using (var command = new MySqlCommand(query, (MySqlConnection)connection))
             {
                 // Alle parameters worden ingevuld
-                command.Parameters.AddWithValue("@F", personData[0]);
-                command.Parameters.AddWithValue("@L", personData[1]);
-                command.Parameters.AddWithValue("@P", _hash.createHash(personData[2].ToString()));
-                command.Parameters.AddWithValue("@E", personData[3]);
+                command.Parameters.AddWithValue("@F", request.FirstName);
+                command.Parameters.AddWithValue("@L", request.LastName);
+                command.Parameters.AddWithValue("@P", _hash.createHash(request.Password));
+                command.Parameters.AddWithValue("@E", request.Email);
 
-                if (personData[4].Equals("Wagen"))
+                if (request.Job.Equals("Wagen"))
                 {
-                    command.Parameters.AddWithValue("@B", personData[5]);
+                    command.Parameters.AddWithValue("@B", request.KvK);
                 }
                 else
                 {
-                    command.Parameters.AddWithValue("@O", personData[4]);
+                    command.Parameters.AddWithValue("@O", request.Job);
                 }
 
                 if (await command.ExecuteNonQueryAsync() > 0)
@@ -289,12 +290,12 @@ public class EmployeeRepository : IEmployeeRepository
 
             if (isVehicleManager)
             {
-                query = "SELECT OrderId FROM Abonnement WHERE Status = 'requested' AND VMStatus = 'requested' AND KvK = @K";
+                query = "SELECT OrderId FROM Contract WHERE Status = 'requested' AND VMStatus = 'requested' AND KvK = @K";
 
             }
             else if (user.Equals("frontOffice"))
             {
-                query = "SELECT OrderId FROM Abonnement WHERE Status = 'requested' AND (VMStatus = 'X' OR VMStatus = 'accepted')";
+                query = "SELECT OrderId FROM Contract WHERE Status = 'requested' AND (VMStatus = 'X' OR VMStatus = 'accepted')";
             }
 
             // Er wordt een connectie met de DataBase gemaakt met de bovenstaande query
@@ -337,7 +338,7 @@ public class EmployeeRepository : IEmployeeRepository
     }
 
     /// <summary>
-    /// Er wordt een specifieke id opgevraagd en deze wordt uit de tabel Abonnement opgevraagd met alle data in de juiste rij.
+    /// Er wordt een specifieke id opgevraagd en deze wordt uit de tabel Contract opgevraagd met alle data in de juiste rij.
     /// 
     /// Vervogelens worden de gegevens huurder en het voertuig async opgevraagd.
     /// Daarna worden door alle kolomen heen gegegaan om de gegevens in een dictonary te stoppen.
@@ -352,7 +353,7 @@ public class EmployeeRepository : IEmployeeRepository
     {
         try
         {
-            string query = "SELECT * FROM Abonnement WHERE OrderId = @I";
+            string query = "SELECT * FROM Contract WHERE OrderId = @I";
 
             // Er wordt een connectie met de DataBase gemaakt met de bovenstaande query
             using (var connection = _connector.CreateDbConnection())
@@ -471,11 +472,11 @@ public class EmployeeRepository : IEmployeeRepository
 
             if (isOfficeType)
             {
-                query = "UPDATE Abonnement SET Status = @S, ReviewedBy = @E WHERE OrderId = @I";
+                query = "UPDATE Contract SET Status = @S, ReviewedBy = @E WHERE OrderId = @I";
             }
             else if (userType.Equals("vehicleManager"))
             {
-                query = "UPDATE Abonnement SET VMStatus = @S WHERE OrderId = @I";
+                query = "UPDATE Contract SET VMStatus = @S WHERE OrderId = @I";
             }
 
             // Er wordt een connectie met de DataBase gemaakt met de bovenstaande query
@@ -539,7 +540,6 @@ public class EmployeeRepository : IEmployeeRepository
                 while (await reader.ReadAsync())
                 {
                     string[] split = reader.GetValue(0).ToString().Split("@");
-                    Console.WriteLine($"{split[1].ToLower()} | {domain[1..]}");
                     if (split[1].ToLower().Equals(domain[1..]))
                     {
                         domainFound = true;
@@ -569,7 +569,8 @@ public class EmployeeRepository : IEmployeeRepository
     /// De gegevens worden uit de AddBusinessRequest getrokken en verwerkt in de query.
     /// De query wordt uitgevoerd en checkt of deze ook succesvol is uitgevoerd
     /// </summary>
-    /// <param name="request"></param>
+    /// <param name="table"></param>
+    /// <param name="domain"></param>
     /// <returns></returns>
     public async Task<(bool status, string message)> AddBusiness(AddBusinessRequest request)
     {
@@ -614,5 +615,166 @@ public class EmployeeRepository : IEmployeeRepository
         }
 
         return (false, $"Domain Detected");
+    }
+
+    public (int StatusCode, string Message, IList<int> KvK) ViewBusinessRequests()
+    {
+        try
+        {
+            string query = "SELECT KvK FROM Business WHERE Activated = 'Deactive'";
+
+            using (var connection = _connector.CreateDbConnection())
+            using (var command = new MySqlCommand(query, (MySqlConnection)connection))
+            using (var reader = command.ExecuteReader())
+            {
+                IList<int> kvk = new List<int>();
+
+                while (reader.Read())
+                {
+                    kvk.Add(Convert.ToInt32(reader.GetValue(0)));
+                }
+
+                return (200, "Succes", kvk);
+            }
+        }
+        catch (MySqlException ex)
+        {
+            return (500, ex.Message, new List<int>());
+        }
+        catch (OverflowException ex)
+        {
+            return (500, ex.Message, new List<int>());
+        }
+        catch (Exception ex)
+        {
+            return (500, ex.Message, new List<int>());
+        }
+    }
+
+    public async Task<(int StatusCode, string Message, Dictionary<string, object> data)> ViewBusinessRequestDetailed(int kvk)
+    {
+        try
+        {
+            string query = "SELECT KvK, BusinessName, Adres, Domain, ContactEmail FROM Business WHERE KvK = @K";
+
+            using (var connection = _connector.CreateDbConnection())
+            using (var command = new MySqlCommand(query, (MySqlConnection)connection))
+            {
+                command.Parameters.AddWithValue("@K", kvk);
+
+                using (var reader = await command.ExecuteReaderAsync())
+                {
+                    Dictionary<string, object> data = new Dictionary<string, object>();
+                    while (await reader.ReadAsync())
+                    {
+                        for (int i = 0; i < reader.FieldCount; i++)
+                        {
+                            data[reader.GetName(i)] = reader.GetValue(i);
+                        }
+                    }
+                    return (200, "Succes", data);
+                }
+            }
+        }
+        catch (MySqlException ex)
+        {
+            return (500, ex.Message, new Dictionary<string, object>());
+        }
+        catch (Exception ex)
+        {
+            return (500, ex.Message, new Dictionary<string, object>());
+        }
+    }
+
+    public (int StatusCode, string Message) BusinessAccepted(int kvk)
+    {
+        try
+        {
+            string query = "UPDATE Business SET Activated = 'Active' WHERE KvK = @K";
+
+            using (var connection = _connector.CreateDbConnection())
+            using (var command = new MySqlCommand(query, (MySqlConnection)connection))
+            {
+                command.Parameters.AddWithValue("@K", kvk);
+
+                if (command.ExecuteNonQuery() > 0)
+                {
+                    return (200, "Succes");
+                }
+                return (500, "Error Occured");
+            }
+        }
+        catch (MySqlException ex)
+        {
+            return (500, ex.Message);
+        }
+        catch (Exception ex)
+        {
+            return (500, ex.Message);
+        }
+    }
+
+    public (int StatusCode, string Message) BusinessDenied(int kvk)
+    {
+        try
+        {
+            string query = "DELETE FROM Business WHERE KvK = @K";
+
+            using (var connection = _connector.CreateDbConnection())
+            using (var command = new MySqlCommand(query, (MySqlConnection)connection))
+            {
+                command.Parameters.AddWithValue("@K", kvk);
+
+                if (command.ExecuteNonQuery() > 0)
+                {
+                    return (200, "Succes");
+                }
+                return (500, "Error Occured");
+            }
+        }
+        catch (MySqlException ex)
+        {
+            return (500, ex.Message);
+        }
+        catch (Exception ex)
+        {
+            return (500, ex.Message);
+        }
+    }
+
+    public (bool Status, string Message, Dictionary<string, object> Data) GetBusinessInfo(int kvk)
+    {
+        try
+        {
+            string query = "SELECT * FROM Business WHERE KvK = @K";
+
+            using (var connection = _connector.CreateDbConnection())
+            using (var command = new MySqlCommand(query, (MySqlConnection)connection))
+            {
+                command.Parameters.AddWithValue("@K", kvk);
+
+                using (var reader = command.ExecuteReader())
+                {
+                    Dictionary<string, object> data = new Dictionary<string, object>();
+                    while (reader.Read())
+                    {
+                        for (int i = 0; i < reader.FieldCount; i++)
+                        {
+                            Console.WriteLine(reader.GetName(i));
+                            data[reader.GetName(i)] = reader.GetValue(i);
+                        }
+                    }
+                    return (true, "Succes", data);
+                }
+            }
+        }
+        catch (MySqlException ex)
+        {
+            return (false, ex.Message, new Dictionary<string, object>());
+        }
+        catch (Exception ex)
+        {
+            return (false, ex.Message, new Dictionary<string, object>());
+        }
     }
 }
