@@ -278,14 +278,14 @@ public class VehicleRepository : IVehicleRepository
     {
         try
         {
-            string query = "INSERT INTO Abonnement (StartDate, EndDate, Price, FrameNrCar, Customer) VALUES (@S, @E, @P, @F, @C)";
+            string query = "INSERT INTO Contract (StartDate, EndDate, Price, FrameNrVehicle, Customer) VALUES (@S, @E, @P, @F, @C)";
             using (var connection = _connector.CreateDbConnection())
             using (var command = new MySqlCommand(query, (MySqlConnection)connection))
             {
                 command.Parameters.AddWithValue("@S", request.StartDate);
                 command.Parameters.AddWithValue("@E", request.EndDate);
                 command.Parameters.AddWithValue("@P", request.Price);
-                command.Parameters.AddWithValue("@F", request.FrameNrCar);
+                command.Parameters.AddWithValue("@F", request.FrameNrVehicle);
                 command.Parameters.AddWithValue("@C", userId);
 
                 if (command.ExecuteNonQuery() > 0)
@@ -309,7 +309,7 @@ public class VehicleRepository : IVehicleRepository
     {
         try
         {
-            int frameNr = Convert.ToInt32(request.FrameNrCar);
+            int frameNr = Convert.ToInt32(request.FrameNrVehicle);
             var vehicleName = GetVehicleNameAsync(frameNr);
             var vehiclePlate = GetVehiclePlateAsync(frameNr);
             var vehicleColor = GetVehicleColorAsync(frameNr);
@@ -369,19 +369,19 @@ public class VehicleRepository : IVehicleRepository
         try
         {
             var userId = DecryptCookie(userCookie);
-            string query = "DELETE FROM Abonnement WHERE OrderId = @Id AND Customer = @Customer";
+            string query = "DELETE FROM Contract WHERE OrderId = @Id AND Customer = @Customer";
 
             using (var connection = _connector.CreateDbConnection())
-            using (var abonnementCommand = new MySqlCommand(query, (MySqlConnection)connection))
+            using (var contractCommand = new MySqlCommand(query, (MySqlConnection)connection))
             {
                 (bool Status, int StatusCode, object Message) userIdResponse = await userId;
 
                 if (userIdResponse.Status)
                 {
-                    abonnementCommand.Parameters.AddWithValue("@Id", rentalId);
-                    abonnementCommand.Parameters.AddWithValue("@Customer", Convert.ToInt32(userIdResponse.Message));
+                    contractCommand.Parameters.AddWithValue("@Id", rentalId);
+                    contractCommand.Parameters.AddWithValue("@Customer", Convert.ToInt32(userIdResponse.Message));
                     
-                    if (abonnementCommand.ExecuteNonQuery() > 0)
+                    if (contractCommand.ExecuteNonQuery() > 0)
                     {
                         return (true, 200, "Rental cancelled successfully");
                     }
@@ -408,7 +408,7 @@ public class VehicleRepository : IVehicleRepository
         try
         {
             var userId = DecryptCookie(userCookie);
-            string query = "SELECT OrderId, FrameNrCar, StartDate, EndDate, Price, Status FROM Abonnement WHERE Customer = @Customer";
+            string query = "SELECT OrderId, FrameNrVehicle, StartDate, EndDate, Price, Status FROM Contract WHERE Customer = @Customer";
 
             // (Dictionary geen betere oplossing?)
             var rentals = new List<object>();
@@ -432,7 +432,7 @@ public class VehicleRepository : IVehicleRepository
                             rentals.Add(new
                             {
                                 Id = reader.IsDBNull(0) ? (int?)null : reader.GetInt32(0),
-                                FrameNrCar = reader.IsDBNull(1) ? (int?)null : reader.GetInt32(1),
+                                FrameNrVehicle = reader.IsDBNull(1) ? (int?)null : reader.GetInt32(1),
                                 CarName = carName,
                                 LicensePlate = licensePlate,
                                 StartDate = reader.IsDBNull(2) ? (DateTime?)null : reader.GetDateTime(2),
@@ -465,8 +465,8 @@ public class VehicleRepository : IVehicleRepository
     {
         try
             {
-            // KvK staat niet in Abonnement
-            string query = "SELECT OrderId, StartDate, EndDate, Price, FrameNrCar, Customer, Status, ReviewedBy, VMStatus FROM Abonnement";
+            // KvK staat niet in Contract
+            string query = "SELECT OrderId, StartDate, EndDate, Price, FrameNrVehicle, Customer, Status, ReviewedBy, VMStatus FROM Contract";
 
             var rentals = new List<object>();
 
@@ -482,7 +482,7 @@ public class VehicleRepository : IVehicleRepository
                         StartDate = reader.IsDBNull(1) ? (DateTime?)null : reader.GetDateTime(1),
                         EndDate = reader.IsDBNull(2) ? (DateTime?)null : reader.GetDateTime(2),
                         Price = reader.IsDBNull(3) ? (decimal?)null : reader.GetDecimal(3),
-                        FrameNrCar = reader.IsDBNull(4) ? (int?)null : reader.GetInt32(4),
+                        FrameNrVehicle = reader.IsDBNull(4) ? (int?)null : reader.GetInt32(4),
                         Customer = reader.IsDBNull(5) ? (int?)null : reader.GetInt32(5),
                         Status = reader.IsDBNull(6) ? null : reader.GetString(6),
                         ReviewedBy = reader.IsDBNull(7) ? (int?)null : reader.GetInt32(7),
@@ -507,7 +507,7 @@ public class VehicleRepository : IVehicleRepository
     {
         try
         {
-            string query = "UPDATE Abonnement SET StartDate = @StartDate, EndDate = @EndDate, Price = @Price WHERE OrderId = @Id";
+            string query = "UPDATE Contract SET StartDate = @StartDate, EndDate = @EndDate, Price = @Price WHERE OrderId = @Id";
             using (var connection = _connector.CreateDbConnection())
             using (var command = new MySqlCommand(query, (MySqlConnection)connection))
             {
