@@ -73,6 +73,7 @@ public class AddBusinessController : ControllerBase
         if (response.StatusCode == 200)
         {
             (bool Status, string Message, Dictionary<string, object> Data) info = _employeeRepository.GetBusinessInfo(kvk);
+            Console.WriteLine(info.Message);
 
             if (info.Status)
             {
