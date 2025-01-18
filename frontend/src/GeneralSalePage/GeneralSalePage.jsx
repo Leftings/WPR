@@ -4,6 +4,7 @@ import GeneralHeader from "../GeneralBlocks/header/header.jsx";
 import GeneralFooter from "../GeneralBlocks/footer/footer.jsx";
 //import './GeneralSalePage.css';
 import '../index.css';
+import { sorter, sorterArray } from '../utils/sorter.js';
 
 const BACKEND_URL = import.meta.env.VITE_REACT_APP_BACKEND_URL ?? 'http://localhost:5165';
 
@@ -49,6 +50,9 @@ function GeneralSalePage() {
     const [loadingRequests, SetLoadingRequests] = useState({});
     const [isFiltersOpen, setIsFiltersOpen] = useState(false);
     const [filterOptions, setFilterOptions] = useState({});
+    const [cars, setCars] = useState([]);
+    const [campers, setCampers] = useState([]);
+    const [caravans, setCaravans] = useState([]);
 
     const [showColorFilters, setShowColorFilters] = useState(false);
     const [showBrandFilters, setShowBrandFilters] = useState(false);
@@ -131,52 +135,6 @@ function GeneralSalePage() {
         checkIfEmployee();
     }, []);
 
-    /*
-    useEffect(() => {
-        const fetchData = async () => {
-            setLoading(true);
-            try {
-                let url;
-
-                if (isEmployee) {
-                    // Employees always fetch cars
-                    url = `${BACKEND_URL}/api/vehicle/GetTypeOfVehicles?vehicleType=Car`;
-                } else if (!filter || filter === 'All') {
-                    // Non-employees fetch all vehicles if no filter is applied
-                    url = `${BACKEND_URL}/api/vehicle/GetAllVehicles`;
-                } else {
-                    // Non-employees fetch filtered vehicles
-                    url = `${BACKEND_URL}/api/vehicle/GetTypeOfVehicles?vehicleType=${encodeURIComponent(filter)}`;
-                }
-
-                const response = await fetch(url);
-                if (!response.ok) {
-                    throw new Error(`Error fetching vehicles: ${response.statusText}`);
-                }
-
-                const data = await response.json();
-
-                // Display vehicles one by one with a delay
-                setVehicles([]); // Clear previous vehicles
-                for (let vehicle of data) {
-                    setVehicles((prev) => [...prev, vehicle]);
-                    await new Promise((resolve) => setTimeout(resolve, 25));
-                }
-            } catch (error) {
-                console.error('Failed to fetch vehicles:', error);
-                setError('Failed to load vehicles');
-            } finally {
-                setLoading(false);
-            }
-        };
-
-        if (isEmployee !== null) {
-            fetchData();
-        }
-    }, [isEmployee, filter]); // Trigger fetching when `isEmployee` or `filter` changes
-    */
-    
-
     useEffect(() => {
         if (isEmployee === null) return; 
         const fetchVehicles = async () => {
@@ -211,8 +169,11 @@ function GeneralSalePage() {
                         const vehicle = await GetVehicle(id);
                 
                         if (vehicle?.message) {
+
                             // Voertuig wordt toegevoegd aan voertuigen
-                            setVehicles((prevRequest) => [...prevRequest, vehicle.message]);
+                            setVehicles((prevVehicles) => {
+                                const updatedVehicles = [...prevVehicles, vehicle.message];
+                                return sorterArray(updatedVehicles, 'Sort');});
                             // Laden voor voertuig wordt uitgezet
                             SetLoadingRequests((prevState) => ({ ...prevState, [id]: false }));
                             // Algemene laadpagina wordt uigezet
@@ -226,6 +187,7 @@ function GeneralSalePage() {
                 setError(error.message || 'An unexpected error occurred');
             } finally {
                 setLoading(false);
+                setVehicles(sorter(vehicles, 'Sort', 'Low'));
             }
         };
 

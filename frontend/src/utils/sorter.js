@@ -2,6 +2,8 @@ export const sorter = (dataList, orderBy, orderHow) =>
 {
     for (let data = 1; data < dataList.length; data++)
     {
+        console.log(dataList);
+        console.log(dataList[data][orderBy]);
         let key = dataList[data];
         let j = data - 1;
 
@@ -19,6 +21,22 @@ export const sorter = (dataList, orderBy, orderHow) =>
 
     return dataList;
 }
+
+export function sorterArray(dataList, orderBy) {
+    const orderMap = {
+        Car: 1,
+        Camper: 2,
+        Caravan: 3,
+    };
+
+    return dataList.sort((a, b) => {
+        const aOrder = orderMap[a[orderBy]] ?? Number.MAX_VALUE;
+        const bOrder = orderMap[b[orderBy]] ?? Number.MAX_VALUE;
+
+        return aOrder - bOrder;
+    });
+}
+    
 
 export const specific = (dataList, orderBy, orderHow, prefix) =>
 {

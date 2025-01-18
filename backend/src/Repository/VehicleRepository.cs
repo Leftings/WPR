@@ -125,7 +125,7 @@ public class VehicleRepository : IVehicleRepository
     {
         try
         {
-            string query = "SELECT FrameNr FROM Vehicle";
+            string query = "SELECT FrameNr FROM Vehicle ORDER BY FIELD(Sort, 'Car', 'Camper', 'Caravan'), FrameNr DESC";
 
             // Er wordt een connectie aangemaakt met de DataBase met bovenstaande query 
             using (var connection = _connector.CreateDbConnection())
