@@ -289,12 +289,12 @@ public class EmployeeRepository : IEmployeeRepository
 
             if (isVehicleManager)
             {
-                query = "SELECT OrderId FROM Abonnement WHERE Status = 'requested' AND VMStatus = 'requested' AND KvK = @K";
+                query = "SELECT OrderId FROM Contract WHERE Status = 'requested' AND VMStatus = 'requested' AND KvK = @K";
 
             }
             else if (user.Equals("frontOffice"))
             {
-                query = "SELECT OrderId FROM Abonnement WHERE Status = 'requested' AND (VMStatus = 'X' OR VMStatus = 'accepted')";
+                query = "SELECT OrderId FROM Contract WHERE Status = 'requested' AND (VMStatus = 'X' OR VMStatus = 'accepted')";
             }
 
             // Er wordt een connectie met de DataBase gemaakt met de bovenstaande query
@@ -337,7 +337,7 @@ public class EmployeeRepository : IEmployeeRepository
     }
 
     /// <summary>
-    /// Er wordt een specifieke id opgevraagd en deze wordt uit de tabel Abonnement opgevraagd met alle data in de juiste rij.
+    /// Er wordt een specifieke id opgevraagd en deze wordt uit de tabel Contract opgevraagd met alle data in de juiste rij.
     /// 
     /// Vervogelens worden de gegevens huurder en het voertuig async opgevraagd.
     /// Daarna worden door alle kolomen heen gegegaan om de gegevens in een dictonary te stoppen.
@@ -352,7 +352,7 @@ public class EmployeeRepository : IEmployeeRepository
     {
         try
         {
-            string query = "SELECT * FROM Abonnement WHERE OrderId = @I";
+            string query = "SELECT * FROM Contract WHERE OrderId = @I";
 
             // Er wordt een connectie met de DataBase gemaakt met de bovenstaande query
             using (var connection = _connector.CreateDbConnection())
@@ -471,11 +471,11 @@ public class EmployeeRepository : IEmployeeRepository
 
             if (isOfficeType)
             {
-                query = "UPDATE Abonnement SET Status = @S, ReviewedBy = @E WHERE OrderId = @I";
+                query = "UPDATE Contract SET Status = @S, ReviewedBy = @E WHERE OrderId = @I";
             }
             else if (userType.Equals("vehicleManager"))
             {
-                query = "UPDATE Abonnement SET VMStatus = @S WHERE OrderId = @I";
+                query = "UPDATE Contract SET VMStatus = @S WHERE OrderId = @I";
             }
 
             // Er wordt een connectie met de DataBase gemaakt met de bovenstaande query

@@ -14,7 +14,7 @@ public class BackOfficeRepository(Connector connector) : IBackOfficeRepository
     private Exception? _exception;
 
     /// <summary>
-    /// Alle benodigde gegevens van Abonnements tabel worden opgehaald
+    /// Alle benodigde gegevens van Contract tabel worden opgehaald
     /// (Dit kan in 1 keer gedaan worden, omdat er geen grote gegevens verstuurd worden)
     /// </summary>
     /// <returns></returns>
@@ -24,7 +24,7 @@ public class BackOfficeRepository(Connector connector) : IBackOfficeRepository
         {
             Dictionary<string, object> row = new Dictionary<string, object>();
 
-            string query = "SELECT * FROM Abonnement WHERE OrderId = @I";
+            string query = "SELECT * FROM Contract WHERE OrderId = @I";
 
             using (var connection = _connector.CreateDbConnection())
             using (var command = new MySqlCommand(query, (MySqlConnection)connection))         
@@ -68,7 +68,7 @@ public class BackOfficeRepository(Connector connector) : IBackOfficeRepository
                             {
                                 row["NameEmployee"] = GetName(columnData, "Staff");
                             }
-                            else if (columnName.Equals("FrameNrCar"))
+                            else if (columnName.Equals("FrameNrVehicle"))
                             {
                                 if (fullInfo)
                                 {
@@ -380,7 +380,7 @@ public class BackOfficeRepository(Connector connector) : IBackOfficeRepository
     {
         try
         {
-            string size = "SELECT COUNT(*) FROM Abonnement";
+            string size = "SELECT COUNT(*) FROM Contract";
             int rows = 0;
             using(var connection = _connector.CreateDbConnection())
             using(var rowsCommand = new MySqlCommand(size, (MySqlConnection)connection))
@@ -390,7 +390,7 @@ public class BackOfficeRepository(Connector connector) : IBackOfficeRepository
                 rows = Convert.ToInt32(rowsReader.GetValue(0));
             }
 
-            string query = "SELECT OrderId FROM Abonnement";
+            string query = "SELECT OrderId FROM Contract";
 
             using(var connection = _connector.CreateDbConnection())
             using(var command = new MySqlCommand(query, (MySqlConnection)connection))

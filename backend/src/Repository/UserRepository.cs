@@ -419,13 +419,13 @@ public class UserRepository : IUserRepository
             string queryCustomer = "DELETE FROM UserCustomer WHERE ID = @ID";
             string queryEmployee = "DELETE FROM UserEmployee WHERE ID = @ID";
             string queryPersonal = "DELETE FROM UserPersonal WHERE ID = @ID";
-            string queryAbonnement = "DELETE FROM Abonnement WHERE Customer = @ID";
+            string queryContract = "DELETE FROM Contract WHERE Customer = @ID";
 
             using (var connection = _connector.CreateDbConnection())
             using (var customerCommand = new MySqlCommand(queryCustomer, (MySqlConnection)connection))
             using (var employeeCommand = new MySqlCommand(queryEmployee, (MySqlConnection)connection))
             using (var personalCommand = new MySqlCommand(queryPersonal, (MySqlConnection)connection))
-            using (var abonnementCommand = new MySqlCommand(queryAbonnement, (MySqlConnection)connection))
+            using (var ContractCommand = new MySqlCommand(queryContract, (MySqlConnection)connection))
             {
                 Console.WriteLine(userId);
                 int userIdInt = Convert.ToInt32(userId);
@@ -434,11 +434,11 @@ public class UserRepository : IUserRepository
                 customerCommand.Parameters.AddWithValue("@ID", userIdInt);
                 employeeCommand.Parameters.AddWithValue("@ID", userIdInt);
                 personalCommand.Parameters.AddWithValue("@ID", userIdInt);
-                abonnementCommand.Parameters.AddWithValue("@ID", userIdInt);
+                ContractCommand.Parameters.AddWithValue("@ID", userIdInt);
 
                 await employeeCommand.ExecuteNonQueryAsync();
                 await personalCommand.ExecuteNonQueryAsync();
-                await abonnementCommand.ExecuteNonQueryAsync();
+                await ContractCommand.ExecuteNonQueryAsync();
                 
                 int rowsAffected = await customerCommand.ExecuteNonQueryAsync();
 
