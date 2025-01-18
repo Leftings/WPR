@@ -694,7 +694,7 @@ public class EmployeeRepository : IEmployeeRepository
 
             using (var connection = _connector.CreateDbConnection())
             using (var command = new MySqlCommand(query, (MySqlConnection)connection))
-            using (var reader = await command.ExecuteReader())
+            using (var reader = command.ExecuteReader())
             {
                 command.Parameters.AddWithValue("@K", kvk);
 
