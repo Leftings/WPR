@@ -4,6 +4,7 @@ import GeneralHeader from "../GeneralBlocks/header/header.jsx";
 import GeneralFooter from "../GeneralBlocks/footer/footer.jsx";
 //import './GeneralSalePage.css';
 import '../index.css';
+import { sorter, sorterArray, sorterOneItem, sorterOneItemNumber } from '../utils/sorter.js';
 
 const BACKEND_URL = import.meta.env.VITE_REACT_APP_BACKEND_URL ?? 'http://localhost:5165';
 
@@ -49,6 +50,9 @@ function GeneralSalePage() {
     const [loadingRequests, SetLoadingRequests] = useState({});
     const [isFiltersOpen, setIsFiltersOpen] = useState(false);
     const [filterOptions, setFilterOptions] = useState({});
+    const [cars, setCars] = useState([]);
+    const [campers, setCampers] = useState([]);
+    const [caravans, setCaravans] = useState([]);
     const [isStaff, setIsStaff] = useState(false);
 
     const [showColorFilters, setShowColorFilters] = useState(false);
@@ -66,12 +70,12 @@ function GeneralSalePage() {
         brand: [],
         seat: []
     });
-    
+
     const getUniqueFilterOptions = (vehicles) => {
         const uniqueSort = [...new Set(vehicles.map(vehicle => vehicle.Sort))];
-        const uniqueBrand = [...new Set(vehicles.map(vehicle => vehicle.Brand))];
-        const uniqueColor = [...new Set(vehicles.map(vehicle => vehicle.Color))];
-        const uniqueSeats = [...new Set(vehicles.map(vehicle => vehicle.Seats))];
+        const uniqueBrand = sorterOneItem([...new Set(vehicles.map(vehicle => vehicle.Brand))], 'Low');
+        const uniqueColor = sorterOneItem([...new Set(vehicles.map(vehicle => vehicle.Color))], 'Low');
+        const uniqueSeats = sorterOneItemNumber([...new Set(vehicles.map(vehicle => vehicle.Seats))], 'Low');
         
         setFilterOptions({
            Sort: uniqueSort,
@@ -81,31 +85,52 @@ function GeneralSalePage() {
         });
     }
     
-    const handleFilterChange = (category, value) => {
-        setFilters(prevFilters => {
-            const updatedCategory = prevFilters[category].includes(value)
-                ? prevFilters[category].filter(v => v !== value)
-                : [...prevFilters[category], value];
-            
-            return { ...prevFilters, [category]: updatedCategory };
-        });
-    };
+    const filteredVehicles = vehicles.filter((vehicle) => {
+        const matchesVehicleTypes =
+            filters.vehicleTypes.length === 0 || filters.vehicleTypes.includes(vehicle.Sort);
+        const matchesColor =
+            filters.color.length === 0 || filters.color.includes(vehicle.Color);
+        const matchesBrand =
+            filters.brand.length === 0 || filters.brand.includes(vehicle.Brand);
+        const matchesSeat =
+            filters.seat.length === 0 || filters.seat.includes(vehicle.Seats);
     
-    const filteredVehicles = vehicles.filter(vehicle => {
-        
-        const matchesVehicleTypes = filters.vehicleTypes.length === 0 || filters.vehicleTypes.includes(vehicle.Sort);
-        const matchesColor = filters.color.length === 0 || filters.color.includes(vehicle.Color);
-        const matchesBrand = filters.brand.length === 0 || filters.brand.includes(vehicle.Brand);
-        const matchesSeat = filters.seat.length === 0 || filters.seat.includes(vehicle.Seats);
-        
         return matchesVehicleTypes && matchesBrand && matchesColor && matchesSeat;
-    })
+    });
+    
+    const availableBrands = sorterOneItem([...new Set(vehicles
+        .filter(vehicle => filters.vehicleTypes.length === 0 || filters.vehicleTypes.includes(vehicle.Sort))
+        .map(vehicle => vehicle.Brand)
+    )], 'Low');
+    
+
+    
+
+    const handleFilterChange = (category, value) => {
+        setFilters((prevFilters) => {
+            if (category === "vehicleTypes") {
+                // For vehicleTypes, allow toggling off the selected type
+                return {
+                    ...prevFilters,
+                    vehicleTypes: prevFilters.vehicleTypes.includes(value)
+                        ? [] // If already selected, deselect it
+                        : [value] // Otherwise, select it
+                };
+            } else {
+                // For other categories, toggle the filter
+                const updatedCategory = prevFilters[category].includes(value)
+                    ? prevFilters[category].filter((v) => v !== value) // Remove the value
+                    : [...prevFilters[category], value]; // Add the value
+                
+                return { ...prevFilters, [category]: updatedCategory };
+            }
+        });
+    };    
 
     useEffect(() => {
-        if (vehicles.length > 0) {
-            getUniqueFilterOptions(vehicles);
-        }
-    }, [vehicles]);
+        getUniqueFilterOptions(vehicles);
+    }, [filters.vehicleTypes, vehicles]);
+    
 
     useEffect(() => {
         const checkIfEmployee = async () => {
@@ -132,50 +157,6 @@ function GeneralSalePage() {
         checkIfEmployee();
     }, []);
 
-    /*
-    useEffect(() => {
-        const fetchData = async () => {
-            setLoading(true);
-            try {
-                let url;
-
-                if (isEmployee) {
-                    // Employees always fetch cars
-                    url = `${BACKEND_URL}/api/vehicle/GetTypeOfVehicles?vehicleType=Car`;
-                } else if (!filter || filter === 'All') {
-                    // Non-employees fetch all vehicles if no filter is applied
-                    url = `${BACKEND_URL}/api/vehicle/GetAllVehicles`;
-                } else {
-                    // Non-employees fetch filtered vehicles
-                    url = `${BACKEND_URL}/api/vehicle/GetTypeOfVehicles?vehicleType=${encodeURIComponent(filter)}`;
-                }
-
-                const response = await fetch(url);
-                if (!response.ok) {
-                    throw new Error(`Error fetching vehicles: ${response.statusText}`);
-                }
-
-                const data = await response.json();
-
-                // Display vehicles one by one with a delay
-                setVehicles([]); // Clear previous vehicles
-                for (let vehicle of data) {
-                    setVehicles((prev) => [...prev, vehicle]);
-                    await new Promise((resolve) => setTimeout(resolve, 25));
-                }
-            } catch (error) {
-                console.error('Failed to fetch vehicles:', error);
-                setError('Failed to load vehicles');
-            } finally {
-                setLoading(false);
-            }
-        };
-
-        if (isEmployee !== null) {
-            fetchData();
-        }
-    }, [isEmployee, filter]); // Trigger fetching when `isEmployee` or `filter` changes
-    */
     useEffect(() => {
         fetch('http://localhost:5165/api/Login/CheckSessionStaff', { credentials: 'include' })
             .then(response => {
@@ -213,7 +194,6 @@ function GeneralSalePage() {
         }
     };
 
-
     useEffect(() => {
         if (isEmployee === null) return; 
         const fetchVehicles = async () => {
@@ -248,8 +228,11 @@ function GeneralSalePage() {
                         const vehicle = await GetVehicle(id);
                 
                         if (vehicle?.message) {
+
                             // Voertuig wordt toegevoegd aan voertuigen
-                            setVehicles((prevRequest) => [...prevRequest, vehicle.message]);
+                            setVehicles((prevVehicles) => {
+                                const updatedVehicles = [...prevVehicles, vehicle.message];
+                                return sorterArray(updatedVehicles, 'Sort');});
                             // Laden voor voertuig wordt uitgezet
                             SetLoadingRequests((prevState) => ({ ...prevState, [id]: false }));
                             // Algemene laadpagina wordt uigezet
@@ -263,6 +246,7 @@ function GeneralSalePage() {
                 setError(error.message || 'An unexpected error occurred');
             } finally {
                 setLoading(false);
+                setVehicles(sorter(vehicles, 'Sort', 'Low'));
             }
         };
 
@@ -319,6 +303,37 @@ function GeneralSalePage() {
                     </>
                 )}
 
+                {filters.vehicleTypes.length > 0 && availableBrands.length > 0 && (
+                    <div className="filter-section">
+                        <div className="filter-section">
+                            <p onClick={() => setShowBrandFilters(!showBrandFilters)}>
+                                Merk
+                                <span className={`toggle-icon ${showBrandFilters ? 'rotated' : ''}`}>+</span>
+                            </p>
+                            {showBrandFilters && (
+                                <div className={`filter-types show`}>
+                                    {availableBrands.map((brand) => (
+                                        <div key={brand} className="checkbox-item">
+                                            <input
+                                                type="checkbox"
+                                                id={brand}
+                                                value={brand}
+                                                checked={filters.brand.includes(brand)}
+                                                name={brand}
+                                                onChange={() => handleFilterChange("brand", brand)}
+                                            />
+                                            <label htmlFor={brand}>{brand}</label>
+                                        </div>
+                                    ))}
+                                </div>
+                            )}
+                        </div>
+                        <hr/>
+                    </div> 
+                )}
+
+
+
                 <div className="filter-section">
                     <p onClick={() => setShowColorFilters(!showColorFilters)}>Kleur
                         <span className={`toggle-icon ${showColorFilters ? 'rotated' : ''}`}>+</span>
@@ -343,30 +358,6 @@ function GeneralSalePage() {
                 </div>
                 <hr/>
 
-                <div className="filter-section">
-                    <p onClick={() => setShowBrandFilters(!showBrandFilters)}>Merk
-                        <span className={`toggle-icon ${showBrandFilters ? 'rotated' : ''}`}>+</span>
-                    </p>
-                    {filterOptions.Brand && filterOptions.Brand.length > 0 && (
-                        <div className={`filter-types ${showBrandFilters ? 'show' : ''}`}>
-                            {filterOptions.Brand.map((brand) => (
-                                <div key={brand} className="checkbox-item">
-                                    <input
-                                        type="checkbox"
-                                        id={brand}
-                                        value={brand}
-                                        checked={filters.brand.includes(brand)}
-                                        name={brand}
-                                        onChange={() => handleFilterChange("brand", brand)}
-                                    />
-                                    <label htmlFor={brand}>{brand}</label>
-                                </div>
-                            ))}
-                        </div>
-                    )}
-                </div>
-
-                <hr/>
                 <div className="filter-section">
                     <p onClick={() => setShowSeatsFilters(!showSeatsFilters)}>Aantal passagiers
                         <span className={`toggle-icon ${showSeatsFilters ? 'rotated' : ''}`}>+</span>
