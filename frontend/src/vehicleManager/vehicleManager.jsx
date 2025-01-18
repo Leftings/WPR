@@ -37,10 +37,13 @@ function VehicleManager() {
       <GeneralHeader>
       </GeneralHeader>
 
-      <body>
+      <div className='body'>
         <h1>Wagenpark Beheerder</h1>
-        <Link to="./reviewHireRequest">Huur aanvragen beheren</Link>
-      </body>
+        
+        <div className='officeLinks'>
+          <Link to="./reviewHireRequest">Huur aanvragen beheren</Link>
+        </div>
+      </div>
 
       <GeneralFooter>
       </GeneralFooter>
