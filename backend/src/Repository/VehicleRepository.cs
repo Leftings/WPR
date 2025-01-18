@@ -280,7 +280,7 @@ public class VehicleRepository : IVehicleRepository
         {
             string query = "INSERT INTO Abonnement (StartDate, EndDate, Price, FrameNrCar, Customer) VALUES (@S, @E, @P, @F, @C)";
             using (var connection = _connector.CreateDbConnection())
-            using (var command = new MySqlCommand(query, (MySqlConnection)connection))
+            using (var command = new MySqlCommand(query, (MySqlConnection)connection))//lol
             {
                 command.Parameters.AddWithValue("@S", request.StartDate);
                 command.Parameters.AddWithValue("@E", request.EndDate);
