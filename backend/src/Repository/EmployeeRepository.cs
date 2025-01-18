@@ -720,7 +720,6 @@ public class EmployeeRepository : IEmployeeRepository
         {
             string query = "DELETE FROM Business WHERE KvK = @K";
 
-            Console.WriteLine(1);
             using (var connection = _connector.CreateDbConnection())
             using (var command = new MySqlCommand(query, (MySqlConnection)connection))
             {
@@ -728,10 +727,8 @@ public class EmployeeRepository : IEmployeeRepository
 
                 if (command.ExecuteNonQuery() > 0)
                 {
-                    Console.WriteLine(2);
                     return (200, "Succes");
                 }
-                Console.WriteLine(3);
                 return (500, "Error Occured");
             }
         }
