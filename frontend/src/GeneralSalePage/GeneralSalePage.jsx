@@ -50,6 +50,9 @@ function GeneralSalePage() {
     const [loadingRequests, SetLoadingRequests] = useState({});
     const [isFiltersOpen, setIsFiltersOpen] = useState(false);
     const [filterOptions, setFilterOptions] = useState({});
+    const [cars, setCars] = useState([]);
+    const [campers, setCampers] = useState([]);
+    const [caravans, setCaravans] = useState([]);
     const [isStaff, setIsStaff] = useState(false);
 
     const [showColorFilters, setShowColorFilters] = useState(false);
@@ -101,8 +104,6 @@ function GeneralSalePage() {
     )], 'Low');
     
 
-    
-
     useEffect(() => {
         const updatedAvailableBrands = sorterOneItem([
             ...new Set(
@@ -137,7 +138,6 @@ function GeneralSalePage() {
             return { ...prevFilters, [category]: updatedCategory };
         });
     };
-        
 
     useEffect(() => {
         getUniqueFilterOptions(vehicles);
