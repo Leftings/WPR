@@ -8,7 +8,7 @@ using System.Reflection.Metadata.Ecma335;
 using System.Threading.Tasks;
 using WPR.Services;
 
-namespace WPR.Repository;
+namespace WPR.Repository;//
 
 /// <summary>
 /// De UserRepository class geeft de methodes voor de interactie met de database voor gebruiker gerelateerde operaties.
