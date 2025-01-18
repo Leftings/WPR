@@ -1,4 +1,4 @@
-﻿﻿﻿import React, { useState, useEffect } from 'react';
+﻿import React, { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import GeneralHeader from "../GeneralBlocks/header/header.jsx";
@@ -30,17 +30,9 @@ function PayPage() {
     const location = useLocation();
     const navigate = useNavigate();
     const vehicle = location.state?.vehicle;
-    const rentalDates = location.state?.rentalDates || [null, null]; // Dates passed from GeneralSalePage
+    const rentalDates = location.state?.rentalDates || [null, null];
 
-    console.log('Voertuiggegevens:', vehicle);
-    console.log('Geselecteerde datums:', rentalDates);
-
-    const [userDetails, setUserDetails] = useState({
-        email: "",
-        address: "",
-    });
-
-    const [errorMessage, setErrorMessage] = useState("");
+    const [userDetails, setUserDetails] = useState({ email: "", address: "" });
     const [totalCost, setTotalCost] = useState(0);
     const [rentalDays, setRentalDays] = useState(0);
 
@@ -54,9 +46,6 @@ function PayPage() {
             if (!isNaN(pricePerDay) && days > 0) {
                 setRentalDays(days);
                 setTotalCost(days * pricePerDay);
-            } else {
-                setRentalDays(0);
-                setTotalCost(0);
             }
         }
     }, [rentalDates, vehicle]);
@@ -88,8 +77,6 @@ function PayPage() {
             Address: userDetails.address,
         };
 
-        console.log("Huurgegevens verzonden:", rentalData);
-
         try {
             const response = await fetch(`${BACKEND_URL}/api/Rental/CreateRental`, {
                 method: "POST",
@@ -102,15 +89,12 @@ function PayPage() {
 
             if (!response.ok) {
                 const data = await response.json();
-                console.error("Fout in reactie:", data);
                 toast.error(`Fout: ${data.message}`);
                 return;
             }
 
             const data = await response.json();
-            console.log("Huur aangemaakt:", data.message);
             toast.success("Huur succesvol verwerkt!");
-
             navigate("/confirmationPage", {
                 state: {
                     rental: {
@@ -123,9 +107,7 @@ function PayPage() {
                     vehicle,
                 },
             });
-
         } catch (error) {
-            console.error("Fout bij het aanmaken van de huur:", error);
             toast.error("Er is een fout opgetreden bij het verwerken van je huur. Probeer het opnieuw.");
         }
     };
@@ -152,7 +134,6 @@ function PayPage() {
                     <div className="car-info">
                         <h2 className="car-title">{`${vehicle.Brand || "Onbekend"} ${vehicle.Type || "Model"}`}</h2>
                         <p className="car-price">{`Prijs: €${vehicle.Price} per dag`}</p>
-
                         <div className="car-image-container">
                             {vehicle.VehicleBlob ? (
                                 <img
@@ -167,42 +148,30 @@ function PayPage() {
                     </div>
                     <div className="user-info">
                         <h3 className="user-info-title">Factuuradres en Huurperiode</h3>
-
                         <input
                             type="email"
-                            name="email"
                             placeholder="E-mailadres"
                             value={userDetails.email}
                             onChange={(e) => setUserDetails({ ...userDetails, email: e.target.value })}
                             className="input-field"
                         />
-
                         <input
                             type="text"
-                            name="address"
                             placeholder="Voer afleveradres in"
                             value={userDetails.address}
                             onChange={(e) => setUserDetails({ ...userDetails, address: e.target.value })}
                             className="input-field"
                         />
-
                         <h3>Huurperiode</h3>
                         <p>
                             Startdatum: {new Date(rentalDates[0]).toLocaleDateString()} <br />
                             Einddatum: {new Date(rentalDates[1]).toLocaleDateString()}
                         </p>
-
-                        <button
-                            className="buy-button"
-                            onClick={handlePurchase}
-                        >
+                        <button className="buy-button" onClick={handlePurchase}>
                             Bevestig Huur
                         </button>
-
-                        {errorMessage && <p className="error-message">{errorMessage}</p>}
                     </div>
                 </div>
-
                 {totalCost > 0 && (
                     <div className="total-cost">
                         <h3>Totaalbedrag:</h3>

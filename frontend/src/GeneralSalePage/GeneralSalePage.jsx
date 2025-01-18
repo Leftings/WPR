@@ -67,7 +67,6 @@ function GeneralSalePage() {
         setFilters(prevFilters => {
             const updatedFilters = {...prevFilters};
 
-            // Toggle filter value for checkbox inputs
             if (updatedFilters[filterType].includes(value)) {
                 updatedFilters[filterType] = updatedFilters[filterType].filter(item => item !== value);
             } else {
@@ -115,9 +114,9 @@ function GeneralSalePage() {
             console.log(`Selected Start: ${startDate}, Selected End: ${endDate}`);
 
             return (
-                (startDate && endDate && startDate <= rentalEnd && endDate >= rentalStart) || // Full overlap
-                (startDate && !endDate && startDate < rentalEnd) || // Start date overlap
-                (!startDate && endDate && endDate > rentalStart) // End date overlap
+                (startDate && endDate && startDate <= rentalEnd && endDate >= rentalStart) || 
+                (startDate && !endDate && startDate < rentalEnd) || 
+                (!startDate && endDate && endDate > rentalStart)
             );
         });
 
@@ -379,10 +378,13 @@ function GeneralSalePage() {
                                         </div>
                                         <Link
                                             to={`/vehicle/${vehicle.FrameNr}`}
-                                            state={{vehicle}}
+                                            state={{
+                                                vehicle,
+                                                rentalDates: [filters.startDate, filters.endDate],
+                                            }}
                                             className="huur-link"
                                         >
-                                            View Details
+                                            Rent Now
                                         </Link>
                                     </div>
                                 ))
