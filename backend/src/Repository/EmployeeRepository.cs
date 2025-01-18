@@ -176,7 +176,7 @@ public class EmployeeRepository : IEmployeeRepository
     }
 
     /// <summary>
-    /// De voornaam, achternaam, adres, emailadres en telefoonnummer wordt uit de UserCustomer tabel gehaald, om deze te laten tonen bij de huuraanvragen.
+    /// De voornaam, achternaam, adres, emailadres en telefoonnummer wordt uit de Customer tabel gehaald, om deze te laten tonen bij de huuraanvragen.
     /// De gegevens van de klant worden verzameld doormiddel van hun id.
     /// </summary>
     /// <param name="userid"></param>

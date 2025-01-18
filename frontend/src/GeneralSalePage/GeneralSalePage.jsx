@@ -109,7 +109,7 @@ function GeneralSalePage() {
     useEffect(() => {
         const checkIfEmployee = async () => {
             try {
-                const response = await fetch(`${BACKEND_URL}/api/Employee/IsUserEmployee`, { credentials: 'include' });
+                const response = await fetch(`${BACKEND_URL}/api/Employee/IsCustomer`, { credentials: 'include' });
                 if (!response.ok) {
                     throw new Error('Error validating user type');
                 }

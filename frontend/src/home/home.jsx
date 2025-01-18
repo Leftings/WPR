@@ -38,7 +38,7 @@ function Home() {
     }, []);
 
     useEffect(() => {
-        fetch(`http://localhost:5165/api/Employee/IsUserEmployee`, { credentials: 'include' })
+        fetch(`http://localhost:5165/api/Customer/IsCustomer`, { credentials: 'include' })
             .then(response => {
                 if (!response.ok) {
                     throw new Error('Error validating user type');
@@ -46,8 +46,8 @@ function Home() {
                 return response.text();
             })
             .then(data => {
-                const isUserEmployee = data === 'true';
-                setIsEmployee(isUserEmployee);
+                const isCustomer = data === 'true';
+                setIsEmployee(isCustomer);
             })
             .catch(error => {
                 console.error(error.message);
