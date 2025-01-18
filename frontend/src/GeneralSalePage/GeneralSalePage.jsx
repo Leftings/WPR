@@ -49,6 +49,7 @@ function GeneralSalePage() {
     const [loadingRequests, SetLoadingRequests] = useState({});
     const [isFiltersOpen, setIsFiltersOpen] = useState(false);
     const [filterOptions, setFilterOptions] = useState({});
+    const [isStaff, setIsStaff] = useState(false);
 
     const [showColorFilters, setShowColorFilters] = useState(false);
     const [showBrandFilters, setShowBrandFilters] = useState(false);
@@ -175,7 +176,43 @@ function GeneralSalePage() {
         }
     }, [isEmployee, filter]); // Trigger fetching when `isEmployee` or `filter` changes
     */
+    useEffect(() => {
+        fetch('http://localhost:5165/api/Login/CheckSessionStaff', { credentials: 'include' })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Not a staff member');
+                }
+                return response.json();
+            })
+            .then(() => setIsStaff(true))
+            .catch(() => setIsStaff(false));
+    }, []);
     
+    const handleDelete = async (frameNr) => {
+        try {
+            const response = await fetch(`${BACKEND_URL}/api/vehicle/DeleteVehicle?frameNr=${frameNr}`, {
+                method: 'DELETE',
+                credentials: 'include'
+            });
+
+            if (!response.ok) {
+                throw new Error('Failed to delete vehicle');
+            }
+
+            const data = await response.json()
+
+            if (data.Status) {
+            setVehicles(vehicles.filter(vehicle => vehicle.FrameNr !== frameNr));
+            alert('Vehicle deleted successfully');
+        } else {
+            alert(data.message)
+        }
+        } catch (error) {
+            console.error(error.message);
+            alert('Error deleting vehicle');
+        }
+    };
+
 
     useEffect(() => {
         if (isEmployee === null) return; 
@@ -397,6 +434,14 @@ function GeneralSalePage() {
                                         >
                                             View Details
                                         </Link>
+                                        {isStaff && (
+                                            <button
+                                                onClick={() => handleDelete(vehicle.FrameNr)}
+                                                className="delete-button-vehicle"
+                                            >
+                                                Delete
+                                            </button>
+                                        )}
                                     </div>
                                 ))
                             ) : (

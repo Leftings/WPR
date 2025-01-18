@@ -19,4 +19,5 @@ public interface IVehicleRepository
     public Task<(bool Status, int StatusCode, string Message, IList<object> UserRentals)> GetAllUserRentals(string userCookie);
     public (bool Status, int StatusCode, string Message, IList<object> UserRentals) GetAllUserRentalsDetailed();
     public (bool Status, int StatusCode, string Message) ChangeRental(UpdateRentalRequest request);
+    public Task<(bool Status, string Message)> DeleteVehicleAsync(string frameNr);
 }

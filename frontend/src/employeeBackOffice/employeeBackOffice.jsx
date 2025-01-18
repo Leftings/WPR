@@ -43,6 +43,7 @@ function EmployeeBackOffice() {
           <Link to="./addEmployee">Werknemer toevoegen</Link>
           <Link to="./addVehicle">Voertuig toevoegen</Link>
           <Link to="./viewRentalData">Verhuur inzicht</Link>
+          <Link to="/vehicles">Overzicht auto's</Link>
         </div>
       </div>
 
