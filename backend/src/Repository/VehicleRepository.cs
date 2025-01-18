@@ -533,4 +533,43 @@ public class VehicleRepository : IVehicleRepository
             return (false, 500, ex.Message);
         }
     }
+
+    public async Task<(bool Status, string Message)> DeleteVehicleAsync(string frameNr)
+    {
+        Console.WriteLine("Deleting vehicle");
+        try
+        {
+            string queryCustomer = "DELETE FROM Vehicle WHERE frameNr = @FrameNr";
+
+            using (var connection = _connector.CreateDbConnection())
+            using (var customerCommand = new MySqlCommand(queryCustomer, (MySqlConnection)connection))
+            {
+                customerCommand.Parameters.AddWithValue("@FrameNr", frameNr);
+                
+                int rowsAffected = await customerCommand.ExecuteNonQueryAsync();
+
+                if (rowsAffected > 0)
+                {
+                    return (true, "Vehicle deleted");
+                }
+                else
+                {
+                    return (false, "Vehicle could not be deleted");
+                }
+            }
+        }
+        catch (MySqlException ex)
+        {
+            // Handle database errors
+            await Console.Error.WriteLineAsync($"Database error: {ex.Message}");
+            return (false, "Database error: " + ex.Message);
+        }
+        catch (Exception ex)
+        {
+            // Handle other errors
+            await Console.Error.WriteLineAsync($"Unexpected error: {ex.Message}");
+            return (false, "Unexpected error: " + ex.Message);
+        }
+    }
+
 }

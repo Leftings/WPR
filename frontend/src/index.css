@@ -2192,3 +2192,18 @@ input::selection {
   }
 }
 
+.delete-button-vehicle {
+  margin-left: 250px;
+  margin-bottom: 10px;
+  background-color: red;
+  color: white;
+  font-weight: bold;
+  transition: color 0.3s;
+  transition: background-color 0.3s;
+}
+.delete-button-vehicle:hover {
+  color:red;
+  background-color: white;
+}
+
+
