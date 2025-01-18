@@ -437,7 +437,7 @@ function GeneralSalePage() {
                                         {isStaff && (
                                             <button
                                                 onClick={() => handleDelete(vehicle.FrameNr)}
-                                                className="delete-button"
+                                                className="delete-button-vehicle"
                                             >
                                                 Delete
                                             </button>
