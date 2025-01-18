@@ -187,6 +187,31 @@ function GeneralSalePage() {
             .then(() => setIsStaff(true))
             .catch(() => setIsStaff(false));
     }, []);
+    
+    const handleDelete = async (frameNr) => {
+        try {
+            const response = await fetch(`${BACKEND_URL}/api/vehicle/DeleteVehicle?frameNr=${frameNr}`, {
+                method: 'DELETE',
+                credentials: 'include'
+            });
+
+            if (!response.ok) {
+                throw new Error('Failed to delete vehicle');
+            }
+
+            const data = await response.json()
+
+            if (data.Status) {
+            setVehicles(vehicles.filter(vehicle => vehicle.FrameNr !== frameNr));
+            alert('Vehicle deleted successfully');
+        } else {
+            alert(data.message)
+        }
+        } catch (error) {
+            console.error(error.message);
+            alert('Error deleting vehicle');
+        }
+    };
 
 
     useEffect(() => {
