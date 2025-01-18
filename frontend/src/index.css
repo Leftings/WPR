@@ -495,7 +495,7 @@ margin-right: 20px;
   }
 
   .logo-container:hover .logo-image {
-      content: url('../../assets/logo-green.svg');
+      content: url('assets/logo-green.svg'); /*On hover verandert logo kleur naar groen!*/
   }
 
 .logo-image {
