@@ -67,41 +67,26 @@ public class UserRepository : IUserRepository
     /// <returns></returns>
     public async Task<bool> ValidateUserAsync(string username, string password, string userType)
     {
-        /*string query = $@"SELECT 1 FROM {table} WHERE LOWER(email) = LOWER(@Email) AND BINARY password = @Password";
-
-        using (var connection = _connector.CreateDbConnection())
-        {
-            using (var command = new MySqlCommand(query, (MySqlConnection)connection))
-            {
-                command.Parameters.AddWithValue("@Email", username);
-                command.Parameters.AddWithValue("@Password", password);
-
-                using (var reader = await command.ExecuteReaderAsync())
-                {
-                    return reader.HasRows;
-                }
-            }
-        }
-        */
-
-        // De table voor de DataBase wordt vastgesteld
-        string table; 
+        string table;
+        string query;
         
         if (userType.Equals("Employee"))
         {
             table = "Staff";
+            query = $@"SELECT password FROM {table} WHERE LOWER(email) = LOWER(@Email)";
         }
         else if (userType.Equals("Customer"))
-        {
-            table = "UserCustomer";
+        {   
+            table = "Customer";
+            query = $@"SELECT Private.password FROM {table} INNER JOIN Private ON Private.ID = Customer.ID WHERE LOWER(email) = LOWER(@Email)";
+
         }
         else
         {
             table = "VehicleManager";
+            query = $@"SELECT password FROM {table} WHERE LOWER(email) = LOWER(@Email)";
         }
-
-        string query = $@"SELECT password FROM {table} WHERE LOWER(email) = LOWER(@Email)";
-
+        
         // Er wordt een connectie met de Database aangemaakt met de bovenstaande query
         using (var connection = _connector.CreateDbConnection())
         using (var command = new MySqlCommand(query, (MySqlConnection)connection))
@@ -416,29 +401,16 @@ public class UserRepository : IUserRepository
         Console.WriteLine("Deleting user");
         try
         {
-            string queryCustomer = "DELETE FROM UserCustomer WHERE ID = @ID";
-            string queryEmployee = "DELETE FROM UserEmployee WHERE ID = @ID";
-            string queryPersonal = "DELETE FROM UserPersonal WHERE ID = @ID";
-            string queryAbonnement = "DELETE FROM Abonnement WHERE Customer = @ID";
+            string queryCustomer = "DELETE FROM Customer WHERE ID = @ID";
 
             using (var connection = _connector.CreateDbConnection())
             using (var customerCommand = new MySqlCommand(queryCustomer, (MySqlConnection)connection))
-            using (var employeeCommand = new MySqlCommand(queryEmployee, (MySqlConnection)connection))
-            using (var personalCommand = new MySqlCommand(queryPersonal, (MySqlConnection)connection))
-            using (var abonnementCommand = new MySqlCommand(queryAbonnement, (MySqlConnection)connection))
             {
                 Console.WriteLine(userId);
                 int userIdInt = Convert.ToInt32(userId);
                 Console.WriteLine(userIdInt);
 
                 customerCommand.Parameters.AddWithValue("@ID", userIdInt);
-                employeeCommand.Parameters.AddWithValue("@ID", userIdInt);
-                personalCommand.Parameters.AddWithValue("@ID", userIdInt);
-                abonnementCommand.Parameters.AddWithValue("@ID", userIdInt);
-
-                await employeeCommand.ExecuteNonQueryAsync();
-                await personalCommand.ExecuteNonQueryAsync();
-                await abonnementCommand.ExecuteNonQueryAsync();
                 
                 int rowsAffected = await customerCommand.ExecuteNonQueryAsync();
 
@@ -595,7 +567,7 @@ public class UserRepository : IUserRepository
     {
         try
         {
-            string query = "SELECT ID FROM UserEmployee WHERE ID = @id";
+            string query = "SELECT ID FROM Customer WHERE ID = @id";
 
             // Er wordt een connectie aangemaakt met de DataBase met bovenstaande query 
             using (var connection = _connector.CreateDbConnection())

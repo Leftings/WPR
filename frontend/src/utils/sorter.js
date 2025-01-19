@@ -2,6 +2,8 @@ export const sorter = (dataList, orderBy, orderHow) =>
 {
     for (let data = 1; data < dataList.length; data++)
     {
+        console.log(dataList);
+        console.log(dataList[data][orderBy]);
         let key = dataList[data];
         let j = data - 1;
 
@@ -19,6 +21,22 @@ export const sorter = (dataList, orderBy, orderHow) =>
 
     return dataList;
 }
+
+export function sorterArray(dataList, orderBy) {
+    const orderMap = {
+        Car: 1,
+        Camper: 2,
+        Caravan: 3,
+    };
+
+    return dataList.sort((a, b) => {
+        const aOrder = orderMap[a[orderBy]] ?? Number.MAX_VALUE;
+        const bOrder = orderMap[b[orderBy]] ?? Number.MAX_VALUE;
+
+        return aOrder - bOrder;
+    });
+}
+    
 
 export const specific = (dataList, orderBy, orderHow, prefix) =>
 {
@@ -38,3 +56,47 @@ export const specific = (dataList, orderBy, orderHow, prefix) =>
     sorter(dataList, orderBy, orderHow);
     return dataList;
 }
+
+export const sorterOneItem = (dataList, orderHow) =>
+{
+    for (let data = 1; data < dataList.length; data++)
+    {
+        let key = dataList[data];
+        let j = data - 1;
+
+        while (j >= 0 && (
+            orderHow.toString().toLowerCase() === "low"
+            ? key <= dataList[j]
+            : key > dataList[j])
+        )
+        {
+            dataList[j + 1] = dataList[j];
+            j = j - 1;
+        }
+        dataList[j + 1] = key;
+    }
+
+    return dataList;
+}
+
+export const sorterOneItemNumber = (dataList, orderHow) =>
+    {
+        for (let data = 1; data < dataList.length; data++)
+        {
+            let key = dataList[data];
+            let j = data - 1;
+    
+            while (j >= 0 && (
+                orderHow.toString().toLowerCase() === "low"
+                ? Number(key) <= Number(dataList[j])
+                : Number(key) > Number(dataList[j]))
+            )
+            {
+                dataList[j + 1] = dataList[j];
+                j = j - 1;
+            }
+            dataList[j + 1] = key;
+        }
+    
+        return dataList;
+    }

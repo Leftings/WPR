@@ -75,7 +75,7 @@ public class LoginController : ControllerBase
             }
             else if (loginRequest.UserType.Equals("Customer"))
             {
-                table = "UserCustomer";
+                table = "Customer";
             }
             else
             {

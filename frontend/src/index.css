@@ -1945,15 +1945,17 @@ input::selection {
 }
 
 .filter-types.show {
-  max-height: 500px;
+  max-height: 100%;
   opacity: 1;
   pointer-events: all;
+  display: block;
 }
 
 .checkbox-item {
   display: flex;
   align-items: center;
   gap: 10px;
+  height: 35px;
 }
 
 .checkbox-item input[type="checkbox"] {
@@ -2189,4 +2191,19 @@ input::selection {
     transform: rotate(360deg);
   }
 }
+
+.delete-button-vehicle {
+  margin-left: 250px;
+  margin-bottom: 10px;
+  background-color: red;
+  color: white;
+  font-weight: bold;
+  transition: color 0.3s;
+  transition: background-color 0.3s;
+}
+.delete-button-vehicle:hover {
+  color:red;
+  background-color: white;
+}
+
 

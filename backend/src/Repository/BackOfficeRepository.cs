@@ -24,7 +24,7 @@ public class BackOfficeRepository(Connector connector) : IBackOfficeRepository
         {
             Dictionary<string, object> row = new Dictionary<string, object>();
 
-            string query = "SELECT * FROM Abonnement WHERE OrderId = @I";
+            string query = "SELECT * FROM Contract WHERE OrderId = @I";
 
             using (var connection = _connector.CreateDbConnection())
             using (var command = new MySqlCommand(query, (MySqlConnection)connection))         
@@ -154,7 +154,7 @@ public class BackOfficeRepository(Connector connector) : IBackOfficeRepository
     {
         try
         {
-            string query = $"SELECT Business From UserEmployee WHERE ID = @I";
+            string query = $"SELECT Business From Customer WHERE ID = @I";
             object business = "";
 
             using (var connection = _connector.CreateDbConnection())

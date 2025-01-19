@@ -286,4 +286,29 @@ public class VehicleController : ControllerBase
         var data = await _vehicleRepository.GetVehicleDataAsync(frameNr);
         return Ok(new { message = data });
     }
+
+    [HttpDelete("DeleteVehicle")]
+    public async Task<IActionResult> DeleteVehicleAsync(string frameNr)
+    {
+        try
+        {
+            var result = await _vehicleRepository.DeleteVehicleAsync(frameNr);
+
+            if (result.Status)
+            {
+                return Ok(new { Status = true, Message = result.Message });
+            }
+            else
+            {
+                return BadRequest(new { Status = false, Message = result.Message });
+            }
+            
+            
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
+    }
 }
