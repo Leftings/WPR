@@ -2096,6 +2096,9 @@ input::selection {
   transition: transform 0.3s, box-shadow 0.3s;
   animation: fadeInUp 0.2s ease-in-out forwards;
   opacity: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .car-card:hover {
@@ -2148,10 +2151,14 @@ input::selection {
 }
 
 .car-description {
-  font-size: 0.9em;
+  font-size: clamp(0.7em, 2vw, 0.9em);
   color: #555;
   line-height: 1.5;
+  text-align: left;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
+
 
 .huur-link {
   background-color: #1D7874;
