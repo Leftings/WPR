@@ -11,10 +11,9 @@ function CarDetailPage() {
     const vehicle = location.state?.vehicle;
 
     const handleBuyNow = () => {
-        const rentalDates = location.state?.rentalDates || [null, null]; 
-        navigate("/buy", { state: { vehicle, rentalDates } });
+        navigate("/buy", { state: { vehicle } });
     };
-    
+
     if (!vehicle) {
         return (
             <>

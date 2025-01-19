@@ -4,8 +4,5 @@
     "axios": "^1.7.7",
     "react-router-dom": "^7.0.1",
     "react-toastify": "^11.0.2"
-  },
-  "devDependencies": {
-    "stylelint": "^16.13.2"
   }
 }
