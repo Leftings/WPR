@@ -51,7 +51,7 @@ function PayPage() {
     }, [rentalDates, vehicle]);
 
     const handlePurchase = async () => {
-        console.log('Rental Dates:', rentalDates); // Check if dates are correctly passed
+        console.log('Rental Dates:', rentalDates);
 
         const session = await checkSession();
 
@@ -60,7 +60,7 @@ function PayPage() {
             return;
         }
 
-        if (!userDetails.email || !userDetails.address || !rentalDates[0] || !rentalDates[1]) {
+        if (!userDetails.email || !userDetails.address || !rentalDates[0] || !rentalDates[1] || !(rentalDates[0] instanceof Date) || !(rentalDates[1] instanceof Date)) {
             toast.warn("Vul alle verplichte velden in.");
             return;
         }
