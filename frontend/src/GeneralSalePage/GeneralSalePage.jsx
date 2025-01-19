@@ -4,6 +4,7 @@ import GeneralHeader from "../GeneralBlocks/header/header.jsx";
 import GeneralFooter from "../GeneralBlocks/footer/footer.jsx";
 import DatePicker from "react-datepicker";
 import { ToastContainer, toast } from 'react-toastify';
+import { sorter, sorterArray, sorterOneItem, sorterOneItemNumber } from '../utils/sorter.js';
 import 'react-toastify/dist/ReactToastify.css';
 import "react-datepicker/dist/react-datepicker.css";
 import './GeneralSalePage.css';
@@ -71,6 +72,19 @@ function GeneralSalePage() {
         seat: []
     });
 
+    useEffect(() => {
+        getUniqueFilterOptions(vehicles);
+    }, [filters.vehicleTypes, vehicles]);
+
+
+    const handleDateFilterChange = (dates) => {
+        const [start, end] = dates;
+        setFilters(prevFilters => ({
+            ...prevFilters,
+            startDate: start,
+            endDate: end
+        }));
+    };
 
     const getUniqueFilterOptions = (vehicles) => {
         const uniqueSort = [...new Set(vehicles.map(vehicle => vehicle.Sort))];
@@ -85,30 +99,6 @@ function GeneralSalePage() {
             Seats: uniqueSeats,
         });
     }
-
-    const handleFilterChange = (filterType, value) => {
-        setFilters(prevFilters => {
-            const updatedFilters = {...prevFilters};
-
-            if (updatedFilters[filterType].includes(value)) {
-                updatedFilters[filterType] = updatedFilters[filterType].filter(item => item !== value);
-            } else {
-                updatedFilters[filterType].push(value);
-            }
-
-            return updatedFilters;
-        });
-    };
-
-
-    const handleDateFilterChange = (dates) => {
-        const [start, end] = dates;
-        setFilters(prevFilters => ({
-            ...prevFilters,
-            startDate: start,
-            endDate: end
-        }));
-    };
 
     const filteredVehicles = vehicles.filter(vehicle => {
         console.log(`Evaluating Vehicle ${vehicle.FrameNr}`);
@@ -139,7 +129,8 @@ function GeneralSalePage() {
             return (
                 (startDate && endDate && startDate <= rentalEnd && endDate >= rentalStart) || 
                 (startDate && !endDate && startDate < rentalEnd) || 
-                (!startDate && endDate && endDate > rentalStart)
+                (!startDate && endDate && endDate > rentalStart) || 
+                (matchesVehicleTypes && matchesBrand && matchesColor && matchesSeat)
             );
         });
 
@@ -148,10 +139,56 @@ function GeneralSalePage() {
         return matchesVehicleTypes && matchesBrand && matchesColor && matchesSeat && !isRentedDuringSelectedDates;
     });
 
+    const availableBrands = sorterOneItem([...new Set(vehicles
+        .filter(vehicle => filters.vehicleTypes.length === 0 || filters.vehicleTypes.includes(vehicle.Sort))
+        .map(vehicle => vehicle.Brand)
+    )], 'Low');
+
+    useEffect(() => {
+        const updatedAvailableBrands = sorterOneItem([
+            ...new Set(
+                vehicles
+                    .filter(vehicle => filters.vehicleTypes.length === 0 || filters.vehicleTypes.includes(vehicle.Sort))
+                    .map(vehicle => vehicle.Brand)
+            )
+        ], 'Low');
+        setFilterOptions(prev => ({
+            ...prev,
+            Brand: updatedAvailableBrands
+        }));
+    }, [filters.vehicleTypes, vehicles]);
+
+    const display = {
+        Car: 'Auto',
+        Camper: 'Camper',
+        Caravan: 'Caravan'
+    };
+
+    const handleFilterChange = (category, value) => {
+        setFilters((prevFilters) => {
+            let updatedCategory;
+            if (category === "vehicleTypes") {
+                updatedCategory = prevFilters.vehicleTypes.includes(value)
+                    ? []
+                    : [value];
+            } else {
+                updatedCategory = prevFilters[category].includes(value)
+                    ? prevFilters[category].filter((v) => v !== value)
+                    : [...prevFilters[category], value];
+            }
+
+            if (category === "vehicleTypes") {
+                return { ...prevFilters, vehicleTypes: updatedCategory, brand: [] };
+            }
+
+            return { ...prevFilters, [category]: updatedCategory };
+        });
+    };
+
     useEffect(() => {
         const checkIfEmployee = async () => {
             try {
-                const response = await fetch(`${BACKEND_URL}/api/Employee/IsUserEmployee`, {credentials: 'include'});
+                const response = await fetch(`${BACKEND_URL}/api/Employee/IsUserEmployee`, { credentials: 'include' });
                 if (!response.ok) {
                     throw new Error('Error validating user type');
                 }
@@ -172,6 +209,43 @@ function GeneralSalePage() {
 
         checkIfEmployee();
     }, []);
+    
+    useEffect(() => {
+        fetch('http://localhost:5165/api/Login/CheckSessionStaff', { credentials: 'include' })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Not a staff member');
+                }
+                return response.json();
+            })
+            .then(() => setIsStaff(true))
+            .catch(() => setIsStaff(false));
+    }, []);
+
+    const handleDelete = async (frameNr) => {
+        try {
+            const response = await fetch(`${BACKEND_URL}/api/vehicle/DeleteVehicle?frameNr=${frameNr}`, {
+                method: 'DELETE',
+                credentials: 'include'
+            });
+
+            if (!response.ok) {
+                throw new Error('Failed to delete vehicle');
+            }
+
+            const data = await response.json()
+
+            if (data.Status) {
+                setVehicles(vehicles.filter(vehicle => vehicle.FrameNr !== frameNr));
+                alert('Vehicle deleted successfully');
+            } else {
+                alert(data.message)
+            }
+        } catch (error) {
+            console.error(error.message);
+            alert('Error deleting vehicle');
+        }
+    };
 
     useEffect(() => {
         if (isEmployee === null) return;
