@@ -167,6 +167,7 @@ function GeneralSalePage() {
     const handleFilterChange = (category, value) => {
         setFilters((prevFilters) => {
             let updatedCategory;
+
             if (category === "vehicleTypes") {
                 updatedCategory = prevFilters.vehicleTypes.includes(value)
                     ? []
