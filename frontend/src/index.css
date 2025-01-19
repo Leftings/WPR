@@ -1938,17 +1938,17 @@ input::selection {
   max-height: 0;
   pointer-events: none;
   opacity: 0;
+  overflow: hidden; 
   display: flex;
   flex-direction: column;
   gap: 10px;
-  transition: max-height 0.3s ease, opacity 0.3s ease
+  transition: opacity 0.3s ease; 
 }
 
 .filter-types.show {
-  max-height: 100%;
+  max-height: none;
   opacity: 1;
   pointer-events: all;
-  display: block;
 }
 
 .checkbox-item {

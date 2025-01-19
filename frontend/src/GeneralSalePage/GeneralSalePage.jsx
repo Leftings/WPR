@@ -373,35 +373,13 @@ function GeneralSalePage() {
                             </div>
                         )}
                     </div>
-                    <hr/>
-                        <div className="filter-section">
-                            <p onClick={() => setShowTypesFilters(!showTypesFilters)}>Soort voertuig
-                                <span className={`toggle-icon ${showTypesFilters ? 'rotated' : ''}`}>+</span>
-                            </p>
-                            {filterOptions.Sort && filterOptions.Sort.length > 0 && (
-                                <div className={`filter-types ${showTypesFilters ? 'show' : ''}`}>
-                                    {filterOptions.Sort.map((vehicleType) => (
-                                        <div key={vehicleType} className="checkbox-item">
-                                            <input
-                                                type="checkbox"
-                                                id={vehicleType}
-                                                value={vehicleType}
-                                                name={vehicleType}
-                                                checked={filters.vehicleTypes.includes(vehicleType)}
-                                                onChange={() => handleFilterChange("vehicleTypes", vehicleType)}
-                                            />
-                                            <label htmlFor={vehicleType}>{display[vehicleType]}</label>
-                                        </div>
-                                    ))}
-                                </div>
-                            )}
-                        </div>
-                        <hr/>
                     </>
-                )}
+                    )}
+                <hr/>
+
 
                 {filters.vehicleTypes.length > 0 && availableBrands.length > 0 && (
-                    <div className="filter-section">
+                    <>
                         <div className="filter-section">
                             <p onClick={() => setShowBrandFilters(!showBrandFilters)}>
                                 Merk
@@ -425,33 +403,16 @@ function GeneralSalePage() {
                                 </div>
                             )}
                         </div>
-                        <hr/>
-                    </div>
+                        <hr /> {/* Always render this <hr /> when "Merk" filter section is visible */}
+                    </>
                 )}
 
 
                 <div className="filter-section">
-                    <p onClick={() => handleFilterChange('vehicleTypes', 'Car')}>Soort voertuig</p>
-                    <div>
-                        {['Car', 'Camper', 'Caravan'].map((vehicleType) => (
-                            <div key={vehicleType} className="checkbox-item">
-                                <input
-                                    type="checkbox"
-                                    id={vehicleType}
-                                    value={vehicleType}
-                                    checked={filters.vehicleTypes.includes(vehicleType)}
-                                    onChange={() => handleFilterChange('vehicleTypes', vehicleType)}
-                                />
-                                <label htmlFor={vehicleType}>{vehicleType}</label>
-                            </div>
-                        ))}
-                    </div>
-                </div>
-                <hr/>
-
-                <div className="filter-section">
-                    <p>Kleur</p>
-                    <div>
+                    <p onClick={() => setShowColorFilters(!showColorFilters)}>Kleur
+                        <span className={`toggle-icon ${showColorFilters ? 'rotated' : ''}`}>+</span>
+                    </p>
+                    <div className={`filter-types ${showColorFilters ? 'show' : ''}`}>
                         {['Rood', 'Blauw', 'Groen', 'Zwart', 'Wit', 'Grijs'].map((color) => (
                             <div key={color} className="checkbox-item">
                                 <input
@@ -466,6 +427,7 @@ function GeneralSalePage() {
                         ))}
                     </div>
                 </div>
+
                 <hr/>
 
                 <div className="filter-section">
@@ -480,29 +442,6 @@ function GeneralSalePage() {
                         dateFormat="yyyy/MM/dd"
                         placeholderText="Selecteer start- en einddatum"
                     />
-                </div>
-                <hr/>
-
-                {/* Merk Filter */}
-                <div className="filter-section">
-                    <p onClick={() => setShowBrandFilters(!showBrandFilters)}>Merk
-                        <span className={`toggle-icon ${showBrandFilters ? 'rotated' : ''}`}>+</span>
-                    </p>
-                    <div className={`filter-types ${showBrandFilters ? 'show' : ''}`}>
-                        {['Volkswagen', 'Mercedes', 'Ford', 'Fiat', 'Citroën', 'Peugeot', 'Renault', 'Nissan', 'Opel', 'Iveco'].map((brand) => (
-                            <div key={brand} className="checkbox-item">
-                                <input
-                                    type="checkbox"
-                                    id={brand}
-                                    value={brand}
-                                    checked={filters.brand.includes(brand)}
-                                    name={brand}
-                                    onChange={() => handleFilterChange("brand", brand)}
-                                />
-                                <label htmlFor={brand}>{brand}</label>
-                            </div>
-                        ))}
-                    </div>
                 </div>
                 <hr/>
 
