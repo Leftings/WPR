@@ -46,10 +46,21 @@ function GeneralSalePage() {
     const [loading, setLoading] = useState(false);
     const [loadingRequests, SetLoadingRequests] = useState({});
     const [isFiltersOpen, setIsFiltersOpen] = useState(false);
-    const [showBrandFilters, setShowBrandFilters] = useState(false);
-    const [showSeatsFilters, setShowSeatsFilters] = useState(false);
+    const [filterOptions, setFilterOptions] = useState({});
+    const [cars, setCars] = useState([]);
     const [rentals, setRentals] = useState([]);
+    const [campers, setCampers] = useState([]);
+    const [caravans, setCaravans] = useState([]);
+    const [isStaff, setIsStaff] = useState(false);
 
+    const [showColorFilters, setShowColorFilters] = useState(false);
+    const [showBrandFilters, setShowBrandFilters] = useState(false);
+    const [showTypesFilters, setShowTypesFilters] = useState(false);
+    const [showSeatsFilters, setShowSeatsFilters] = useState(false);
+
+    const toggleFilters = () => {
+        setIsFiltersOpen(!isFiltersOpen);
+    };
 
     const [filters, setFilters] = useState({
         vehicleTypes: [],
@@ -61,9 +72,19 @@ function GeneralSalePage() {
     });
 
 
-    const toggleFilters = () => {
-        setIsFiltersOpen(!isFiltersOpen);
-    };
+    const getUniqueFilterOptions = (vehicles) => {
+        const uniqueSort = [...new Set(vehicles.map(vehicle => vehicle.Sort))];
+        const uniqueBrand = sorterOneItem([...new Set(vehicles.map(vehicle => vehicle.Brand))], 'Low');
+        const uniqueColor = sorterOneItem([...new Set(vehicles.map(vehicle => vehicle.Color))], 'Low');
+        const uniqueSeats = sorterOneItemNumber([...new Set(vehicles.map(vehicle => vehicle.Seats))], 'Low');
+
+        setFilterOptions({
+            Sort: uniqueSort,
+            Brand: uniqueBrand,
+            Color: uniqueColor,
+            Seats: uniqueSeats,
+        });
+    }
 
     const handleFilterChange = (filterType, value) => {
         setFilters(prevFilters => {
