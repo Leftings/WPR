@@ -123,7 +123,7 @@ function GeneralSalePage() {
             return (
                 (startDate && endDate && startDate <= rentalEnd && endDate >= rentalStart) ||
                 (startDate && !endDate && startDate < rentalEnd) ||
-                (!startDate && endDate && endDate > rentalStart) 
+                (!startDate && endDate && endDate > rentalStart)
             );
         });
 
@@ -374,6 +374,29 @@ function GeneralSalePage() {
                             )}
                         </div>
                         <hr/>
+                        <div className="filter-section">
+                            <p onClick={() => setShowTypesFilters(!showTypesFilters)}>Soort voertuig
+                                <span className={`toggle-icon ${showTypesFilters ? 'rotated' : ''}`}>+</span>
+                            </p>
+                            {filterOptions.Sort && filterOptions.Sort.length > 0 && (
+                                <div className={`filter-types ${showTypesFilters ? 'show' : ''}`}>
+                                    {filterOptions.Sort.map((vehicleType) => (
+                                        <div key={vehicleType} className="checkbox-item">
+                                            <input
+                                                type="checkbox"
+                                                id={vehicleType}
+                                                value={vehicleType}
+                                                name={vehicleType}
+                                                checked={filters.vehicleTypes.includes(vehicleType)}
+                                                onChange={() => handleFilterChange("vehicleTypes", vehicleType)}
+                                            />
+                                            <label htmlFor={vehicleType}>{display[vehicleType]}</label>
+                                        </div>
+                                    ))}
+                                </div>
+                            )}
+                        </div>
+                        <hr/>
                     </>
                 )}
 
@@ -504,76 +527,76 @@ function GeneralSalePage() {
                         ))}
                     </div>
                 </div>
-            </div>
 
-            {isFiltersOpen && <div className="overlay" onClick={toggleFilters}></div>}
+                {isFiltersOpen && <div className="overlay" onClick={toggleFilters}></div>}
 
-            <GeneralHeader/>
-            <div className="general-sale-page">
-                <div className="car-sale-section">
-                    <h1 className="title-text">Voertuigen</h1>
-                    <button htmlFor="filter" onClick={toggleFilters} className="filter-button"><i
-                        className="fas fa-filter"></i> Filter
-                    </button>
+                <GeneralHeader/>
+                <div className="general-sale-page">
+                    <div className="car-sale-section">
+                        <h1 className="title-text">Voertuigen</h1>
+                        <button htmlFor="filter" onClick={toggleFilters} className="filter-button"><i
+                            className="fas fa-filter"></i> Filter
+                        </button>
 
-                    {loading ? (
-                        <div className="loading-spinner"></div>
-                    ) : (
-                        <div className="car-grid">
-                            {filteredVehicles.length > 0 ? (
-                                filteredVehicles.map(vehicle => (
-                                    <div key={vehicle.FrameNr} className="car-card">
-                                        <div className="car-blob">
-                                            {vehicle.VehicleBlob ? (
-                                                <img
-                                                    className="car-blob"
-                                                    src={`data:image/jpeg;base64,${vehicle.VehicleBlob}`}
-                                                    alt={`${vehicle.Brand || 'Unknown'} ${vehicle.Type || ''}`}
-                                                />
-                                            ) : (
-                                                <p>Image not available</p>
-                                            )}
+                        {loading ? (
+                            <div className="loading-spinner"></div>
+                        ) : (
+                            <div className="car-grid">
+                                {filteredVehicles.length > 0 ? (
+                                    filteredVehicles.map(vehicle => (
+                                        <div key={vehicle.FrameNr} className="car-card">
+                                            <div className="car-blob">
+                                                {vehicle.VehicleBlob ? (
+                                                    <img
+                                                        className="car-blob"
+                                                        src={`data:image/jpeg;base64,${vehicle.VehicleBlob}`}
+                                                        alt={`${vehicle.Brand || 'Unknown'} ${vehicle.Type || ''}`}
+                                                    />
+                                                ) : (
+                                                    <p>Image not available</p>
+                                                )}
+                                            </div>
+                                            <div className="car-info">
+                                                <h2 className="car-name">{`${vehicle.Brand || 'Unknown'} ${vehicle.Type || ''}`}</h2>
+                                                <p className="car-price">{`$${vehicle.Price}`}</p>
+                                                <p className="car-description">{vehicle.Description || 'No description available'}</p>
+                                            </div>
+                                            <Link
+                                                to={`/vehicle/${vehicle.FrameNr}`}
+                                                state={{
+                                                    vehicle,
+                                                    rentalDates: [filters.startDate, filters.endDate],
+                                                }}
+                                                className={`huur-link`}
+                                                onClick={(e) => {
+                                                    if (!filters.startDate || !filters.endDate) {
+                                                        e.preventDefault();
+                                                        toast.error('Selecteer alstublieft een begin- en einddatum voordat u een voertuig huurt.', {
+                                                            position: "top-center",
+                                                            autoClose: 3000,
+                                                            hideProgressBar: false,
+                                                            closeOnClick: true,
+                                                            pauseOnHover: true,
+                                                            draggable: true,
+                                                            progress: undefined,
+                                                        });
+                                                    }
+                                                }}
+                                            >
+                                                Rent Now
+                                            </Link>
+
                                         </div>
-                                        <div className="car-info">
-                                            <h2 className="car-name">{`${vehicle.Brand || 'Unknown'} ${vehicle.Type || ''}`}</h2>
-                                            <p className="car-price">{`$${vehicle.Price}`}</p>
-                                            <p className="car-description">{vehicle.Description || 'No description available'}</p>
-                                        </div>
-                                        <Link
-                                            to={`/vehicle/${vehicle.FrameNr}`}
-                                            state={{
-                                                vehicle,
-                                                rentalDates: [filters.startDate, filters.endDate],
-                                            }}
-                                            className={`huur-link`}
-                                            onClick={(e) => {
-                                                if (!filters.startDate || !filters.endDate) {
-                                                    e.preventDefault();
-                                                    toast.error('Selecteer alstublieft een begin- en einddatum voordat u een voertuig huurt.', {
-                                                        position: "top-center",
-                                                        autoClose: 3000,
-                                                        hideProgressBar: false,
-                                                        closeOnClick: true,
-                                                        pauseOnHover: true,
-                                                        draggable: true,
-                                                        progress: undefined,
-                                                    });
-                                                }
-                                            }}
-                                        >
-                                            Rent Now
-                                        </Link>
-
-                                    </div>
-                                ))
-                            ) : (
-                                <p>No vehicles found for the selected filter.</p>
-                            )}
-                        </div>
-                    )}
+                                    ))
+                                ) : (
+                                    <p>No vehicles found for the selected filter.</p>
+                                )}
+                            </div>
+                        )}
+                    </div>
                 </div>
+                <GeneralFooter/>
             </div>
-            <GeneralFooter/>
         </>
     );
 }
