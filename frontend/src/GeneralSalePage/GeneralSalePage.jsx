@@ -117,6 +117,12 @@ function GeneralSalePage() {
             Brand: updatedAvailableBrands
         }));
     }, [filters.vehicleTypes, vehicles]);
+
+    const display = {
+        Car: 'Auto',
+        Camper: 'Camper',
+        Caravan: 'Caravan'
+    };
     
     const handleFilterChange = (category, value) => {
         setFilters((prevFilters) => {
@@ -305,7 +311,7 @@ function GeneralSalePage() {
                                             checked={filters.vehicleTypes.includes(vehicleType)}
                                             onChange={() => handleFilterChange("vehicleTypes", vehicleType)}
                                         />
-                                        <label htmlFor={vehicleType}>{vehicleType}</label>
+                                        <label htmlFor={vehicleType}>{display[vehicleType]}</label>
                                     </div>
                                 ))}
                             </div>
