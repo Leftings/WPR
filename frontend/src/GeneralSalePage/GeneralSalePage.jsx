@@ -388,7 +388,7 @@ function GeneralSalePage() {
                                             onClick={(e) => {
                                                 if (!filters.startDate || !filters.endDate) {
                                                     e.preventDefault();
-                                                    toast.error('Please select a start and end date before renting a vehicle.', {
+                                                    toast.error('Selecteer alstublieft een begin- en einddatum voordat u een voertuig huurt.', {
                                                         position: "top-center",
                                                         autoClose: 3000,
                                                         hideProgressBar: false,
