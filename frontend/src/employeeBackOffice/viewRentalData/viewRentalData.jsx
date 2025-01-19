@@ -5,7 +5,7 @@ import '../../index.css';
 import GeneralHeader from '../../GeneralBlocks/header/header';
 import GeneralFooter from '../../GeneralBlocks/footer/footer';
 import { sorter, specific } from '../../utils/sorter.js'
-import { loadList, loadSingle } from '../../utils/backendLoader.js';
+import { loadArray, loadList, loadSingle } from '../../utils/backendLoader.js';
 import { placingItems } from '../../utils/gridPlacement.js';
 
 
@@ -70,7 +70,6 @@ function ViewRentalData() {
         setRentalData([]);
         setLoading(true);
 
-        const tempData = [];
         try
         {
             // Alle ids worden opgehaald
@@ -91,7 +90,7 @@ function ViewRentalData() {
 
               try
               {
-                const review = await loadList(`${BACKEND_URL}/api/viewRentalData/GetReviewData?id=${id}`);
+                const review = await loadArray(`${BACKEND_URL}/api/viewRentalData/GetReviewData?id=${id}`);
                 
                 if (review?.message)
                 {
@@ -271,7 +270,7 @@ function ViewRentalData() {
                     <h2>Persoons gegevens</h2>
                     <p><strong>Naam:</strong> {data.LastName}, {data.FirstName}</p>
                     <p><strong>Email:</strong> {data.Email}</p>
-                    <p><strong>Telefoon Nummer:</strong> {data.Telnum}</p>
+                    <p><strong>Telefoon Nummer:</strong> {data.TelNum}</p>
                     <p><strong>Adres:</strong> {data.Adres}</p>
                   </div>
                   <div className="vehicle">
