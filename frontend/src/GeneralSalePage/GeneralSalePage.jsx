@@ -72,11 +72,6 @@ function GeneralSalePage() {
         seat: []
     });
 
-    useEffect(() => {
-        getUniqueFilterOptions(vehicles);
-    }, [filters.vehicleTypes, vehicles]);
-
-
     const handleDateFilterChange = (dates) => {
         const [start, end] = dates;
         setFilters(prevFilters => ({
@@ -125,12 +120,10 @@ function GeneralSalePage() {
 
             console.log(`Rental Start: ${rentalStart}, Rental End: ${rentalEnd}`);
             console.log(`Selected Start: ${startDate}, Selected End: ${endDate}`);
-
             return (
                 (startDate && endDate && startDate <= rentalEnd && endDate >= rentalStart) ||
                 (startDate && !endDate && startDate < rentalEnd) ||
-                (!startDate && endDate && endDate > rentalStart) ||
-                (matchesVehicleTypes && matchesBrand && matchesColor && matchesSeat)
+                (!startDate && endDate && endDate > rentalStart) 
             );
         });
 
@@ -185,6 +178,10 @@ function GeneralSalePage() {
             return {...prevFilters, [category]: updatedCategory};
         });
     };
+
+    useEffect(() => {
+        getUniqueFilterOptions(vehicles);
+    }, [filters.vehicleTypes, vehicles]);
 
     useEffect(() => {
         const checkIfEmployee = async () => {
@@ -251,10 +248,13 @@ function GeneralSalePage() {
     useEffect(() => {
         if (isEmployee === null) return;
         const fetchVehicles = async () => {
-            try {
-                setLoading(true);
+            try
+            {
+                setLoading(true)
+                console.log(isEmployee);
                 setVehicles([]);
                 let url;
+
                 url = `${BACKEND_URL}/api/vehicle/GetFrameNumbers`;
 
                 const response = await fetch(url, {
@@ -262,22 +262,31 @@ function GeneralSalePage() {
                     credentials: 'include'
                 });
 
-                if (!response.ok) {
+                if (!response.ok)
+                {
                     throw new Error('Failed to fetch new request');
                 }
 
                 const data = await response.json();
                 const requestsToLoad = data?.message || [];
 
-                requestsToLoad.forEach(async (id) => {
-                    SetLoadingRequests((prevState) => ({...prevState, [id]: true}));
+                // Er wordt door elk voertuig id heen gegaan
+                requestsToLoad.forEach(async (id, index) => {
+                    // Laden voor voertuig wordt aangezet
+                    SetLoadingRequests((prevState) => ({ ...prevState, [id]: true }));
 
                     try {
                         const vehicle = await GetVehicle(id);
 
                         if (vehicle?.message) {
-                            setVehicles((prevRequest) => [...prevRequest, vehicle.message]);
-                            SetLoadingRequests((prevState) => ({...prevState, [id]: false}));
+
+                            // Voertuig wordt toegevoegd aan voertuigen
+                            setVehicles((prevVehicles) => {
+                                const updatedVehicles = [...prevVehicles, vehicle.message];
+                                return sorterArray(updatedVehicles, 'Sort');});
+                            // Laden voor voertuig wordt uitgezet
+                            SetLoadingRequests((prevState) => ({ ...prevState, [id]: false }));
+                            // Algemene laadpagina wordt uigezet
                             setLoading(false);
                         }
                     } catch (err) {
@@ -288,13 +297,14 @@ function GeneralSalePage() {
                 setError(error.message || 'An unexpected error occurred');
             } finally {
                 setLoading(false);
+                setVehicles(sorter(vehicles, 'Sort', 'Low'));
             }
         };
 
         if (isEmployee !== null) {
             fetchVehicles();
         }
-    }, [isEmployee]);
+    }, [isEmployee])
 
     async function fetchAndLogRentals() {
         try {
