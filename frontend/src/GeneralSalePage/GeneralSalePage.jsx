@@ -60,22 +60,77 @@ function GeneralSalePage() {
         seat: []
     });
 
+    const getUniqueFilterOptions = (vehicles) => {
+        const uniqueSort = [...new Set(vehicles.map(vehicle => vehicle.Sort))];
+        const uniqueBrand = sorterOneItem([...new Set(vehicles.map(vehicle => vehicle.Brand))], 'Low');
+        const uniqueColor = sorterOneItem([...new Set(vehicles.map(vehicle => vehicle.Color))], 'Low');
+        const uniqueSeats = sorterOneItemNumber([...new Set(vehicles.map(vehicle => vehicle.Seats))], 'Low');
+        
+        setFilterOptions({
+           Sort: uniqueSort,
+           Brand: uniqueBrand,
+           Color: uniqueColor,
+           Seats: uniqueSeats, 
+        });
+    }
+    
+    const filteredVehicles = vehicles.filter((vehicle) => {
+        const matchesVehicleTypes =
+            filters.vehicleTypes.length === 0 || filters.vehicleTypes.includes(vehicle.Sort);
+        const matchesColor =
+            filters.color.length === 0 || filters.color.includes(vehicle.Color);
+        const matchesBrand =
+            filters.brand.length === 0 || filters.brand.includes(vehicle.Brand);
+        const matchesSeat =
+            filters.seat.length === 0 || filters.seat.includes(vehicle.Seats);
+    
+        return matchesVehicleTypes && matchesBrand && matchesColor && matchesSeat;
+    });
+    
+    const availableBrands = sorterOneItem([...new Set(vehicles
+        .filter(vehicle => filters.vehicleTypes.length === 0 || filters.vehicleTypes.includes(vehicle.Sort))
+        .map(vehicle => vehicle.Brand)
+    )], 'Low');
 
-    const toggleFilters = () => {
-        setIsFiltersOpen(!isFiltersOpen);
+    const display = {
+        Car: 'Auto',
+        Camper: 'Camper',
+        Caravan: 'Caravan',
     };
+    
 
-    const handleFilterChange = (filterType, value) => {
-        setFilters(prevFilters => {
-            const updatedFilters = {...prevFilters};
-
-            if (updatedFilters[filterType].includes(value)) {
-                updatedFilters[filterType] = updatedFilters[filterType].filter(item => item !== value);
+    useEffect(() => {
+        const updatedAvailableBrands = sorterOneItem([
+            ...new Set(
+                vehicles
+                    .filter(vehicle => filters.vehicleTypes.length === 0 || filters.vehicleTypes.includes(vehicle.Sort))
+                    .map(vehicle => vehicle.Brand)
+            )
+        ], 'Low');
+        setFilterOptions(prev => ({
+            ...prev,
+            Brand: updatedAvailableBrands
+        }));
+    }, [filters.vehicleTypes, vehicles]);
+    
+    const handleFilterChange = (category, value) => {
+        setFilters((prevFilters) => {
+            let updatedCategory;
+            if (category === "vehicleTypes") {
+                updatedCategory = prevFilters.vehicleTypes.includes(value)
+                    ? []
+                    : [value];
             } else {
-                updatedFilters[filterType].push(value);
+                updatedCategory = prevFilters[category].includes(value)
+                    ? prevFilters[category].filter((v) => v !== value)
+                    : [...prevFilters[category], value];
             }
-
-            return updatedFilters;
+    
+            if (category === "vehicleTypes") {
+                return { ...prevFilters, vehicleTypes: updatedCategory, brand: [] };
+            }
+    
+            return { ...prevFilters, [category]: updatedCategory };
         });
     };
 
@@ -245,20 +300,28 @@ function GeneralSalePage() {
                 </h2>
                 <hr/>
 
-                {/* Original filter sections */}
-                <div className="filter-section">
-                    <p onClick={() => handleFilterChange('vehicleTypes', 'Car')}>Soort voertuig</p>
-                    <div>
-                        {['Car', 'Camper', 'Caravan'].map((vehicleType) => (
-                            <div key={vehicleType} className="checkbox-item">
-                                <input
-                                    type="checkbox"
-                                    id={vehicleType}
-                                    value={vehicleType}
-                                    checked={filters.vehicleTypes.includes(vehicleType)}
-                                    onChange={() => handleFilterChange('vehicleTypes', vehicleType)}
-                                />
-                                <label htmlFor={vehicleType}>{vehicleType}</label>
+                {!isEmployee && (
+                    <>
+                    <div className="filter-section">
+                        <p onClick={() => setShowTypesFilters(!showTypesFilters)}>Soort voertuig 
+                            <span className={`toggle-icon ${showTypesFilters ? 'rotated' : ''}`}>+</span>
+                        </p>
+                        {filterOptions.Sort && filterOptions.Sort.length > 0 && (
+                            <div className={`filter-types ${showTypesFilters ? 'show' : ''}`}>
+                            {filterOptions.Sort.map((vehicleType) => (
+                                    <div key={vehicleType} className="checkbox-item">
+                                        <input
+                                            type="checkbox"
+                                            id={vehicleType}
+                                            value={vehicleType}
+                                            name={vehicleType}
+                                            checked={filters.vehicleTypes.includes(vehicleType)}
+                                            onChange={() => handleFilterChange("vehicleTypes", vehicleType)}
+                                        />
+                                        <label htmlFor={vehicleType}>{display[vehicleType]}</label>
+                                    </div>
+                                ))}
+
                             </div>
                         ))}
                     </div>
