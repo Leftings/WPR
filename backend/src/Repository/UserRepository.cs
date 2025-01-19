@@ -567,7 +567,8 @@ public class UserRepository : IUserRepository
     {
         try
         {
-            string query = "SELECT ID FROM Customer WHERE ID = @id";
+            string query = "SELECT ID FROM Customer WHERE ID = @id AND AccountType != 'Private'";
+
 
             // Er wordt een connectie aangemaakt met de DataBase met bovenstaande query 
             using (var connection = _connector.CreateDbConnection())
