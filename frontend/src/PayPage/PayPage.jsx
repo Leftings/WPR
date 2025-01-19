@@ -60,7 +60,7 @@ function PayPage() {
             return;
         }
 
-        if (!userDetails.email || !userDetails.address || !rentalDates[0] || !rentalDates[1] || !(rentalDates[0] instanceof Date) || !(rentalDates[1] instanceof Date)) {
+        if (!userDetails.email || !userDetails.address || !rentalDates[0] || !rentalDates[1]) {
             toast.warn("Vul alle verplichte velden in.");
             return;
         }
@@ -71,7 +71,7 @@ function PayPage() {
         }
 
         const rentalData = {
-            FrameNrCar: String(vehicle.FrameNr),
+            FrameNrVehicle: String(vehicle.FrameNr),
             StartDate: new Date(rentalDates[0]).toISOString(),
             EndDate: new Date(rentalDates[1]).toISOString(),
             Price: totalCost,

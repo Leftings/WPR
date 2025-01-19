@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import GeneralHeader from "../GeneralBlocks/header/header.jsx";
 import GeneralFooter from "../GeneralBlocks/footer/footer.jsx";
 import DatePicker from "react-datepicker";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import "react-datepicker/dist/react-datepicker.css";
 import './GeneralSalePage.css';
 
@@ -382,10 +384,25 @@ function GeneralSalePage() {
                                                 vehicle,
                                                 rentalDates: [filters.startDate, filters.endDate],
                                             }}
-                                            className="huur-link"
+                                            className={`huur-link`}
+                                            onClick={(e) => {
+                                                if (!filters.startDate || !filters.endDate) {
+                                                    e.preventDefault();
+                                                    toast.error('Please select a start and end date before renting a vehicle.', {
+                                                        position: "top-center",
+                                                        autoClose: 3000,
+                                                        hideProgressBar: false,
+                                                        closeOnClick: true,
+                                                        pauseOnHover: true,
+                                                        draggable: true,
+                                                        progress: undefined,
+                                                    });
+                                                }
+                                            }}
                                         >
                                             Rent Now
                                         </Link>
+
                                     </div>
                                 ))
                             ) : (
