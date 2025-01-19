@@ -1938,24 +1938,23 @@ input::selection {
   max-height: 0;
   pointer-events: none;
   opacity: 0;
-  overflow: hidden; 
   display: flex;
   flex-direction: column;
   gap: 10px;
-  transition: opacity 0.3s ease; 
+  transition: max-height 0.3s ease, opacity 0.3s ease
 }
 
 .filter-types.show {
   max-height: none;
   opacity: 1;
   pointer-events: all;
+  display: block;
 }
 
 .checkbox-item {
   display: flex;
   align-items: center;
   gap: 10px;
-  height: 35px;
 }
 
 .checkbox-item input[type="checkbox"] {
