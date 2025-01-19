@@ -351,6 +351,29 @@ function GeneralSalePage() {
                 <hr/>
                 {!isEmployee && (
                     <>
+                    <div className="filter-section">
+                        <p onClick={() => setShowTypesFilters(!showTypesFilters)}>Soort voertuig 
+                            <span className={`toggle-icon ${showTypesFilters ? 'rotated' : ''}`}>+</span>
+                        </p>
+                        {filterOptions.Sort && filterOptions.Sort.length > 0 && (
+                            <div className={`filter-types ${showTypesFilters ? 'show' : ''}`}>
+                            {filterOptions.Sort.map((vehicleType) => (
+                                    <div key={vehicleType} className="checkbox-item">
+                                        <input
+                                            type="checkbox"
+                                            id={vehicleType}
+                                            value={vehicleType}
+                                            name={vehicleType}
+                                            checked={filters.vehicleTypes.includes(vehicleType)}
+                                            onChange={() => handleFilterChange("vehicleTypes", vehicleType)}
+                                        />
+                                        <label htmlFor={vehicleType}>{display[vehicleType]}</label>
+                                    </div>
+                                ))}
+                            </div>
+                        )}
+                    </div>
+                    <hr/>
                         <div className="filter-section">
                             <p onClick={() => setShowTypesFilters(!showTypesFilters)}>Soort voertuig
                                 <span className={`toggle-icon ${showTypesFilters ? 'rotated' : ''}`}>+</span>
