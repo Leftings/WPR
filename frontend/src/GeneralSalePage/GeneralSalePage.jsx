@@ -127,9 +127,9 @@ function GeneralSalePage() {
             console.log(`Selected Start: ${startDate}, Selected End: ${endDate}`);
 
             return (
-                (startDate && endDate && startDate <= rentalEnd && endDate >= rentalStart) || 
-                (startDate && !endDate && startDate < rentalEnd) || 
-                (!startDate && endDate && endDate > rentalStart) || 
+                (startDate && endDate && startDate <= rentalEnd && endDate >= rentalStart) ||
+                (startDate && !endDate && startDate < rentalEnd) ||
+                (!startDate && endDate && endDate > rentalStart) ||
                 (matchesVehicleTypes && matchesBrand && matchesColor && matchesSeat)
             );
         });
@@ -179,17 +179,17 @@ function GeneralSalePage() {
             }
 
             if (category === "vehicleTypes") {
-                return { ...prevFilters, vehicleTypes: updatedCategory, brand: [] };
+                return {...prevFilters, vehicleTypes: updatedCategory, brand: []};
             }
 
-            return { ...prevFilters, [category]: updatedCategory };
+            return {...prevFilters, [category]: updatedCategory};
         });
     };
 
     useEffect(() => {
         const checkIfEmployee = async () => {
             try {
-                const response = await fetch(`${BACKEND_URL}/api/Employee/IsUserEmployee`, { credentials: 'include' });
+                const response = await fetch(`${BACKEND_URL}/api/Employee/IsUserEmployee`, {credentials: 'include'});
                 if (!response.ok) {
                     throw new Error('Error validating user type');
                 }
@@ -210,9 +210,9 @@ function GeneralSalePage() {
 
         checkIfEmployee();
     }, []);
-    
+
     useEffect(() => {
-        fetch('http://localhost:5165/api/Login/CheckSessionStaff', { credentials: 'include' })
+        fetch('http://localhost:5165/api/Login/CheckSessionStaff', {credentials: 'include'})
             .then(response => {
                 if (!response.ok) {
                     throw new Error('Not a staff member');
@@ -300,7 +300,7 @@ function GeneralSalePage() {
         try {
             const response = await fetch(`${BACKEND_URL}/api/Rental/GetAllUserRentalsWithDetails`, {
                 method: 'GET',
-                headers: { 'Content-Type': 'application/json' },
+                headers: {'Content-Type': 'application/json'},
                 credentials: 'include',
             });
 
@@ -337,11 +337,66 @@ function GeneralSalePage() {
             <div className={`filter-bar ${isFiltersOpen ? 'open' : ''}`}>
                 <h2 className="filter-bar-title">
                     Filters
-                    <span className="filter-bar-exit" onClick={toggleFilters}><i className="fas fa-times"/></span>
-                </h2>
+                    <span className="filter-bar-exit" onClick={toggleFilters}><i className="fas fa-times"/></span></h2>
                 <hr/>
+                {!isEmployee && (
+                    <>
+                        <div className="filter-section">
+                            <p onClick={() => setShowTypesFilters(!showTypesFilters)}>Soort voertuig
+                                <span className={`toggle-icon ${showTypesFilters ? 'rotated' : ''}`}>+</span>
+                            </p>
+                            {filterOptions.Sort && filterOptions.Sort.length > 0 && (
+                                <div className={`filter-types ${showTypesFilters ? 'show' : ''}`}>
+                                    {filterOptions.Sort.map((vehicleType) => (
+                                        <div key={vehicleType} className="checkbox-item">
+                                            <input
+                                                type="checkbox"
+                                                id={vehicleType}
+                                                value={vehicleType}
+                                                name={vehicleType}
+                                                checked={filters.vehicleTypes.includes(vehicleType)}
+                                                onChange={() => handleFilterChange("vehicleTypes", vehicleType)}
+                                            />
+                                            <label htmlFor={vehicleType}>{display[vehicleType]}</label>
+                                        </div>
+                                    ))}
+                                </div>
+                            )}
+                        </div>
+                        <hr/>
+                    </>
+                )}
 
-                {/* Original filter sections */}
+                {filters.vehicleTypes.length > 0 && availableBrands.length > 0 && (
+                    <div className="filter-section">
+                        <div className="filter-section">
+                            <p onClick={() => setShowBrandFilters(!showBrandFilters)}>
+                                Merk
+                                <span className={`toggle-icon ${showBrandFilters ? 'rotated' : ''}`}>+</span>
+                            </p>
+                            {showBrandFilters && (
+                                <div className={`filter-types show`}>
+                                    {availableBrands.map((brand) => (
+                                        <div key={brand} className="checkbox-item">
+                                            <input
+                                                type="checkbox"
+                                                id={brand}
+                                                value={brand}
+                                                checked={filters.brand.includes(brand)}
+                                                name={brand}
+                                                onChange={() => handleFilterChange("brand", brand)}
+                                            />
+                                            <label htmlFor={brand}>{brand}</label>
+                                        </div>
+                                    ))}
+                                </div>
+                            )}
+                        </div>
+                        <hr/>
+                    </div>
+                )}
+
+
                 <div className="filter-section">
                     <p onClick={() => handleFilterChange('vehicleTypes', 'Car')}>Soort voertuig</p>
                     <div>
@@ -512,5 +567,4 @@ function GeneralSalePage() {
         </>
     );
 }
-
 export default GeneralSalePage;
