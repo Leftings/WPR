@@ -102,6 +102,12 @@ function GeneralSalePage() {
         .filter(vehicle => filters.vehicleTypes.length === 0 || filters.vehicleTypes.includes(vehicle.Sort))
         .map(vehicle => vehicle.Brand)
     )], 'Low');
+
+    const display = {
+        Car: 'Auto',
+        Camper: 'Camper',
+        Caravan: 'Caravan',
+    };
     
 
     useEffect(() => {
@@ -305,7 +311,7 @@ function GeneralSalePage() {
                                             checked={filters.vehicleTypes.includes(vehicleType)}
                                             onChange={() => handleFilterChange("vehicleTypes", vehicleType)}
                                         />
-                                        <label htmlFor={vehicleType}>{vehicleType}</label>
+                                        <label htmlFor={vehicleType}>{display[vehicleType]}</label>
                                     </div>
                                 ))}
                             </div>
