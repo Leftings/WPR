@@ -110,7 +110,7 @@ function SignUp() {
                 }
                 else
                 {
-                    //navigate('/vehicles');
+                    navigate('/');
                 }
             }
         }
