@@ -1542,6 +1542,10 @@ html {
   font-family: Arial, sans-serif;
 }
 
+html, body {
+  overflow-x: hidden;
+}
+
 /* Index
 html
 {
