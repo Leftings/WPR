@@ -416,7 +416,7 @@ function GeneralSalePage() {
                                 </div>
                             )}
                         </div>
-                        <hr /> {/* Always render this <hr /> when "Merk" filter section is visible */}
+                        <hr /> 
                     </>
                 )}
 
