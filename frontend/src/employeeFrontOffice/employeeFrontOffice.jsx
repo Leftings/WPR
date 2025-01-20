@@ -41,6 +41,7 @@ function EmployeeFrontOffice() {
         <div className = "officeLinks">
           <Link to="./reviewHireRequest">Huur aanvragen beheren</Link>
           <Link to="./reviewBusiness">Bedrijf aanvragen beheren</Link>
+            <Link to="./intakeForm">Innameformulier invullen</Link>
         </div>
       </div>
 
