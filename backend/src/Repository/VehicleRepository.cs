@@ -465,7 +465,6 @@ public class VehicleRepository : IVehicleRepository
     {
         try
             {
-            // KvK staat niet in Contract
             string query = "SELECT OrderId, StartDate, EndDate, Price, FrameNrVehicle, Customer, Status, ReviewedBy, VMStatus FROM Contract";
 
             var rentals = new List<object>();
@@ -485,9 +484,8 @@ public class VehicleRepository : IVehicleRepository
                         FrameNrVehicle = reader.IsDBNull(4) ? (int?)null : reader.GetInt32(4),
                         Customer = reader.IsDBNull(5) ? (int?)null : reader.GetInt32(5),
                         Status = reader.IsDBNull(6) ? null : reader.GetString(6),
-                        ReviewedBy = reader.IsDBNull(7) ? (int?)null : reader.GetInt32(7),
+                        ReviewedBy = reader.IsDBNull(7) ? null : reader.GetString(7),
                         VMStatus = reader.IsDBNull(8) ? null : reader.GetString(8),
-                        //Kvk = reader.IsDBNull(9) ? (int?)null : reader.GetInt32(9),
                     });
                 }
                 return (true, 200, "Succesfully Collected Data", rentals);
