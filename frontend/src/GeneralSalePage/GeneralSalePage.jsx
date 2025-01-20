@@ -474,28 +474,30 @@ function GeneralSalePage() {
             <div className="general-sale-page">
                 <div className="car-sale-section">
                     <h1 className="title-text">Voertuigen</h1>
-
-                    <div className="date-picker-container">
-                        <p className="date-picker-label">Selecteer datumbereik:</p>
-                        <DatePicker
-                            selected={filters.startDate}
-                            onChange={(dates) => {
-                                const [start, end] = dates || [];
-                                setFilters((prevFilters) => ({
-                                    ...prevFilters,
-                                    startDate: start || null,
-                                    endDate: end || null,
-                                }));
-                            }}
-                            startDate={filters.startDate}
-                            endDate={filters.endDate}
-                            selectsRange
-                            inline
-                            dateFormat="yyyy/MM/dd"
-                            placeholderText="Selecteer start- en einddatum"
-                            minDate={new Date()} 
-                        />
-                    </div>
+                    
+                    {!isStaff && (
+                        <div className="date-picker-container">
+                            <p className="date-picker-label">Selecteer datumbereik:</p>
+                            <DatePicker
+                                selected={filters.startDate}
+                                onChange={(dates) => {
+                                    const [start, end] = dates || [];
+                                    setFilters((prevFilters) => ({
+                                        ...prevFilters,
+                                        startDate: start || null,
+                                        endDate: end || null,
+                                    }));
+                                }}
+                                startDate={filters.startDate}
+                                endDate={filters.endDate}
+                                selectsRange
+                                inline
+                                dateFormat="yyyy/MM/dd"
+                                placeholderText="Selecteer start- en einddatum"
+                                minDate={new Date()} 
+                            />
+                        </div>
+                    )}
 
                     <button htmlFor="filter" onClick={toggleFilters} className="filter-button">
                         <i className="fas fa-filter"></i> Filter
@@ -524,13 +526,22 @@ function GeneralSalePage() {
                                             <p className="car-price">{`$${vehicle.Price}`}</p>
                                             <p className="car-description">{vehicle.Description || 'No description available'}</p>
                                         </div>
-                                        <Link
+
+                                        {isStaff ? (
+                                            <button
+                                                onClick={() => handleDelete(vehicle.FrameNr)}
+                                                className="cta-button"
+                                            >
+                                                Verwijder
+                                            </button>
+                                        ) : (
+                                            <Link
                                             to={`/vehicle/${vehicle.FrameNr}`}
                                             state={{
                                                 vehicle,
                                                 rentalDates: [filters.startDate, filters.endDate],
                                             }}
-                                            className={`huur-link`}
+                                            className={`cta-button`}
                                             onClick={(e) => {
                                                 if (!filters.startDate || !filters.endDate) {
                                                     e.preventDefault();
@@ -548,15 +559,7 @@ function GeneralSalePage() {
                                         >
                                             Huur
                                         </Link>
-                                        {isStaff && (
-                                            <button
-                                                onClick={() => handleDelete(vehicle.FrameNr)}
-                                                className="delete-button-vehicle"
-                                            >
-                                                Verwijder
-                                            </button>
                                         )}
-
                                     </div>
                                 ))
                             ) : (
