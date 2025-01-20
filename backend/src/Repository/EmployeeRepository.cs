@@ -300,7 +300,9 @@ public class EmployeeRepository : IEmployeeRepository
 
             if (isVehicleManager)
             {
-                query = "SELECT OrderId FROM Contract WHERE Status = 'requested' AND VMStatus = 'requested' AND KvK = @K";
+                query = @"SELECT OrderId FROM Contract 
+                        JOIN Customer C on C.ID = Contract.Customer
+                        WHERE Status = 'requested' AND VMStatus = 'requested' AND C.KvK = @K";
 
             }
             else if (user.Equals("frontOffice"))
