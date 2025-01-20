@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Navigate, useNavigate } from 'react-router-dom';
 import GeneralHeader from "../GeneralBlocks/header/header.jsx";
 import GeneralFooter from "../GeneralBlocks/footer/footer.jsx";
 //import './GeneralSalePage.css';
@@ -50,6 +50,8 @@ function GeneralSalePage() {
     const [isFiltersOpen, setIsFiltersOpen] = useState(false);
     const [filterOptions, setFilterOptions] = useState({});
     const [isStaff, setIsStaff] = useState(false);
+    const navigate = useNavigate();
+
 
     const [showColorFilters, setShowColorFilters] = useState(false);
     const [showBrandFilters, setShowBrandFilters] = useState(false);
@@ -189,6 +191,9 @@ function GeneralSalePage() {
     }, []);
     
     const handleDelete = async (frameNr) => {
+        const confirmDelete = window.confirm('Are you sure you want to delete this vehicle?');
+        if (!confirmDelete) return;
+        
         try {
             const response = await fetch(`${BACKEND_URL}/api/vehicle/DeleteVehicle?frameNr=${frameNr}`, {
                 method: 'DELETE',
@@ -203,7 +208,8 @@ function GeneralSalePage() {
 
             if (data.Status) {
             setVehicles(vehicles.filter(vehicle => vehicle.FrameNr !== frameNr));
-            alert('Vehicle deleted successfully');
+            alert('Voertuig is verwijderd.');
+            navigate('/vehicles');
         } else {
             alert(data.message)
         }

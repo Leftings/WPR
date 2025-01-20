@@ -2196,6 +2196,8 @@ input::selection {
   background-color: red;
   color: white;
   font-weight: bold;
+  display: block;
+  flex-direction: column;
   transition: color 0.3s;
   transition: background-color 0.3s;
 }
