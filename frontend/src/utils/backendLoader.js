@@ -62,14 +62,14 @@ export const loadList = async (backendUrl) =>
 
     const data = await response.json();
     console.log('Parsed Data:', data);
-    if (data?.data && typeof data.data === 'object')
+    if (data?.data && typeof data.data === 'Object')
     {
       return { message: data.message, data: data.data };
     }
     else
     {
       console.error("Expected 'message' to be an List / Dictionairy but got:", data?.message);
-      return { message: data?.message };
+      return { message: data?.message};
     }
 
   } catch (error) {
@@ -99,7 +99,7 @@ export const loadSingle = async (backendUrl) =>
     return response;
   }
   catch (err) {
-    console.error(error);
+    console.error(err);
     return null;
   }
 }

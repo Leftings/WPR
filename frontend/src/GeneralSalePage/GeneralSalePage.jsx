@@ -2,14 +2,15 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { Link, Navigate, useNavigate } from 'react-router-dom';
 import GeneralHeader from "../GeneralBlocks/header/header.jsx";
 import GeneralFooter from "../GeneralBlocks/footer/footer.jsx";
-//import './GeneralSalePage.css';
-import '../index.css';
+import DatePicker from "react-datepicker";
+import { ToastContainer, toast } from 'react-toastify';
+import { sorter, sorterArray, sorterOneItem, sorterOneItemNumber } from '../utils/sorter.js';
+import 'react-toastify/dist/ReactToastify.css';
+import "react-datepicker/dist/react-datepicker.css";
+import './GeneralSalePage.css';
 
 const BACKEND_URL = import.meta.env.VITE_REACT_APP_BACKEND_URL ?? 'http://localhost:5165';
-
-function GetVehicle(id)
-{
-    // Individueel voertuig laden
+function GetVehicle(id) {
     return fetch(`${BACKEND_URL}/api/Vehicle/GetVehicelData?frameNr=${id}`, {
         method: 'GET',
         headers: {
@@ -17,28 +18,26 @@ function GetVehicle(id)
         },
         credentials: 'include'
     })
-    .then((response) => {
-        if (!response.ok) {
-          return response.json().then(data => {
-            throw new Error(data?.message); 
-          });
-        }
-        return response.json();
-      })
-      .then((data) => {
-        // Voertuig data omzetten naar een list
-        const combinedData = data?.message?.reduce((acc, item) => {
-            const [key, value] = Object.entries(item)[0];
-            acc[key] = value;
-            return acc;
-        }, {});
-
-        return { message: combinedData };
-    })
-    .catch((error) => {
-        console.error(error);
-        return null;
-      });
+        .then((response) => {
+            if (!response.ok) {
+                return response.json().then(data => {
+                    throw new Error(data?.message);
+                });
+            }
+            return response.json();
+        })
+        .then((data) => {
+            const combinedData = data?.message?.reduce((acc, item) => {
+                const [key, value] = Object.entries(item)[0];
+                acc[key] = value;
+                return acc;
+            }, {});
+            return { message: combinedData };
+        })
+        .catch((error) => {
+            console.error(error);
+            return null;
+        });
 }
 
 function GeneralSalePage() {
@@ -51,7 +50,10 @@ function GeneralSalePage() {
     const [filterOptions, setFilterOptions] = useState({});
     const [isStaff, setIsStaff] = useState(false);
     const navigate = useNavigate();
-
+    const [cars, setCars] = useState([]);
+    const [rentals, setRentals] = useState([]);
+    const [campers, setCampers] = useState([]);
+    const [caravans, setCaravans] = useState([]);
 
     const [showColorFilters, setShowColorFilters] = useState(false);
     const [showBrandFilters, setShowBrandFilters] = useState(false);
@@ -61,58 +63,131 @@ function GeneralSalePage() {
     const toggleFilters = () => {
         setIsFiltersOpen(!isFiltersOpen);
     };
-    
+
     const [filters, setFilters] = useState({
         vehicleTypes: [],
         color: [],
+        startDate: null,
+        endDate: null,
         brand: [],
         seat: []
     });
-    
+
+    const handleDateFilterChange = (dates) => {
+        const [start, end] = dates;
+        setFilters(prevFilters => ({
+            ...prevFilters,
+            startDate: start,
+            endDate: end
+        }));
+    };
+
     const getUniqueFilterOptions = (vehicles) => {
         const uniqueSort = [...new Set(vehicles.map(vehicle => vehicle.Sort))];
-        const uniqueBrand = [...new Set(vehicles.map(vehicle => vehicle.Brand))];
-        const uniqueColor = [...new Set(vehicles.map(vehicle => vehicle.Color))];
-        const uniqueSeats = [...new Set(vehicles.map(vehicle => vehicle.Seats))];
-        
+        const uniqueBrand = sorterOneItem([...new Set(vehicles.map(vehicle => vehicle.Brand))], 'Low');
+        const uniqueColor = sorterOneItem([...new Set(vehicles.map(vehicle => vehicle.Color))], 'Low');
+        const uniqueSeats = sorterOneItemNumber([...new Set(vehicles.map(vehicle => vehicle.Seats))], 'Low');
+
         setFilterOptions({
-           Sort: uniqueSort,
-           Brand: uniqueBrand,
-           Color: uniqueColor,
-           Seats: uniqueSeats, 
+            Sort: uniqueSort,
+            Brand: uniqueBrand,
+            Color: uniqueColor,
+            Seats: uniqueSeats,
         });
     }
-    
-    const handleFilterChange = (category, value) => {
-        setFilters(prevFilters => {
-            const updatedCategory = prevFilters[category].includes(value)
-                ? prevFilters[category].filter(v => v !== value)
-                : [...prevFilters[category], value];
-            
-            return { ...prevFilters, [category]: updatedCategory };
-        });
-    };
-    
+
     const filteredVehicles = vehicles.filter(vehicle => {
-        
+        console.log(`Evaluating Vehicle ${vehicle.FrameNr}`);
+
         const matchesVehicleTypes = filters.vehicleTypes.length === 0 || filters.vehicleTypes.includes(vehicle.Sort);
         const matchesColor = filters.color.length === 0 || filters.color.includes(vehicle.Color);
         const matchesBrand = filters.brand.length === 0 || filters.brand.includes(vehicle.Brand);
         const matchesSeat = filters.seat.length === 0 || filters.seat.includes(vehicle.Seats);
-        
-        return matchesVehicleTypes && matchesBrand && matchesColor && matchesSeat;
-    })
+
+        const startDate = filters.startDate ? new Date(filters.startDate) : null;
+        const endDate = filters.endDate ? new Date(filters.endDate) : null;
+
+        const vehicleRentals = rentals.filter(rental => String(rental.frameNrVehicle) === String(vehicle.FrameNr));
+        console.log(`Vehicle ${vehicle.FrameNr} Rentals:`, vehicleRentals);
+
+        const isRentedDuringSelectedDates = vehicleRentals.some(rental => {
+            if (!rental.startDate || !rental.endDate) {
+                console.log(`Rental for Vehicle ${vehicle.FrameNr} has invalid dates`);
+                return false;
+            }
+
+            const rentalStart = new Date(rental.startDate);
+            const rentalEnd = new Date(rental.endDate);
+
+            console.log(`Rental Start: ${rentalStart}, Rental End: ${rentalEnd}`);
+            console.log(`Selected Start: ${startDate}, Selected End: ${endDate}`);
+            return (
+                (startDate && endDate && startDate <= rentalEnd && endDate >= rentalStart) ||
+                (startDate && !endDate && startDate < rentalEnd) ||
+                (!startDate && endDate && endDate > rentalStart) 
+            );
+        });
+
+        console.log(`Vehicle ${vehicle.FrameNr} ${isRentedDuringSelectedDates ? 'is' : 'is not'} rented during selected dates`);
+
+        return matchesVehicleTypes && matchesBrand && matchesColor && matchesSeat && !isRentedDuringSelectedDates;
+    });
+
+    const availableBrands = sorterOneItem([...new Set(vehicles
+        .filter(vehicle => filters.vehicleTypes.length === 0 || filters.vehicleTypes.includes(vehicle.Sort))
+        .map(vehicle => vehicle.Brand)
+    )], 'Low');
 
     useEffect(() => {
-        if (vehicles.length > 0) {
-            getUniqueFilterOptions(vehicles);
-        }
-    }, [vehicles]);
+        const updatedAvailableBrands = sorterOneItem([
+            ...new Set(
+                vehicles
+                    .filter(vehicle => filters.vehicleTypes.length === 0 || filters.vehicleTypes.includes(vehicle.Sort))
+                    .map(vehicle => vehicle.Brand)
+            )
+        ], 'Low');
+        setFilterOptions(prev => ({
+            ...prev,
+            Brand: updatedAvailableBrands
+        }));
+    }, [filters.vehicleTypes, vehicles]);
+
+    const display = {
+        Car: 'Auto',
+        Camper: 'Camper',
+        Caravan: 'Caravan'
+    };
+
+    const handleFilterChange = (category, value) => {
+        setFilters((prevFilters) => {
+            let updatedCategory;
+
+            if (category === "vehicleTypes") {
+                updatedCategory = prevFilters.vehicleTypes.includes(value)
+                    ? []
+                    : [value];
+            } else {
+                updatedCategory = prevFilters[category].includes(value)
+                    ? prevFilters[category].filter((v) => v !== value)
+                    : [...prevFilters[category], value];
+            }
+
+            if (category === "vehicleTypes") {
+                return {...prevFilters, vehicleTypes: updatedCategory, brand: []};
+            }
+
+            return {...prevFilters, [category]: updatedCategory};
+        });
+    };
+
+    useEffect(() => {
+        getUniqueFilterOptions(vehicles);
+    }, [filters.vehicleTypes, vehicles]);
 
     useEffect(() => {
         const checkIfEmployee = async () => {
             try {
-                const response = await fetch(`${BACKEND_URL}/api/Employee/IsUserEmployee`, { credentials: 'include' });
+                const response = await fetch(`${BACKEND_URL}/api/Employee/IsUserEmployee`, {credentials: 'include'});
                 if (!response.ok) {
                     throw new Error('Error validating user type');
                 }
@@ -134,47 +209,40 @@ function GeneralSalePage() {
         checkIfEmployee();
     }, []);
 
-    /*
     useEffect(() => {
-        const fetchData = async () => {
-            setLoading(true);
-            try {
-                let url;
-
-                if (isEmployee) {
-                    // Employees always fetch cars
-                    url = `${BACKEND_URL}/api/vehicle/GetTypeOfVehicles?vehicleType=Car`;
-                } else if (!filter || filter === 'All') {
-                    // Non-employees fetch all vehicles if no filter is applied
-                    url = `${BACKEND_URL}/api/vehicle/GetAllVehicles`;
-                } else {
-                    // Non-employees fetch filtered vehicles
-                    url = `${BACKEND_URL}/api/vehicle/GetTypeOfVehicles?vehicleType=${encodeURIComponent(filter)}`;
-                }
-
-                const response = await fetch(url);
+        fetch('http://localhost:5165/api/Login/CheckSessionStaff', {credentials: 'include'})
+            .then(response => {
                 if (!response.ok) {
-                    throw new Error(`Error fetching vehicles: ${response.statusText}`);
+                    throw new Error('Not a staff member');
                 }
+                return response.json();
+            })
+            .then(() => setIsStaff(true))
+            .catch(() => setIsStaff(false));
+    }, []);
 
-                const data = await response.json();
+    const handleDelete = async (frameNr) => {
+        try {
+            const response = await fetch(`${BACKEND_URL}/api/vehicle/DeleteVehicle?frameNr=${frameNr}`, {
+                method: 'DELETE',
+                credentials: 'include'
+            });
 
-                // Display vehicles one by one with a delay
-                setVehicles([]); // Clear previous vehicles
-                for (let vehicle of data) {
-                    setVehicles((prev) => [...prev, vehicle]);
-                    await new Promise((resolve) => setTimeout(resolve, 25));
-                }
-            } catch (error) {
-                console.error('Failed to fetch vehicles:', error);
-                setError('Failed to load vehicles');
-            } finally {
-                setLoading(false);
+            if (!response.ok) {
+                throw new Error('Failed to delete vehicle');
             }
-        };
 
-        if (isEmployee !== null) {
-            fetchData();
+            const data = await response.json()
+
+            if (data.Status) {
+                setVehicles(vehicles.filter(vehicle => vehicle.FrameNr !== frameNr));
+                alert('Vehicle deleted successfully');
+            } else {
+                alert(data.message)
+            }
+        } catch (error) {
+            console.error(error.message);
+            alert('Error deleting vehicle');
         }
     }, [isEmployee, filter]); // Trigger fetching when `isEmployee` or `filter` changes
     */
@@ -219,9 +287,8 @@ function GeneralSalePage() {
         }
     };
 
-
     useEffect(() => {
-        if (isEmployee === null) return; 
+        if (isEmployee === null) return;
         const fetchVehicles = async () => {
             try
             {
@@ -229,7 +296,7 @@ function GeneralSalePage() {
                 console.log(isEmployee);
                 setVehicles([]);
                 let url;
-                
+
                 url = `${BACKEND_URL}/api/vehicle/GetFrameNumbers`;
 
                 const response = await fetch(url, {
@@ -244,18 +311,21 @@ function GeneralSalePage() {
 
                 const data = await response.json();
                 const requestsToLoad = data?.message || [];
-                
+
                 // Er wordt door elk voertuig id heen gegaan
                 requestsToLoad.forEach(async (id, index) => {
                     // Laden voor voertuig wordt aangezet
                     SetLoadingRequests((prevState) => ({ ...prevState, [id]: true }));
-                
+
                     try {
                         const vehicle = await GetVehicle(id);
-                
+
                         if (vehicle?.message) {
+
                             // Voertuig wordt toegevoegd aan voertuigen
-                            setVehicles((prevRequest) => [...prevRequest, vehicle.message]);
+                            setVehicles((prevVehicles) => {
+                                const updatedVehicles = [...prevVehicles, vehicle.message];
+                                return sorterArray(updatedVehicles, 'Sort');});
                             // Laden voor voertuig wordt uitgezet
                             SetLoadingRequests((prevState) => ({ ...prevState, [id]: false }));
                             // Algemene laadpagina wordt uigezet
@@ -269,6 +339,7 @@ function GeneralSalePage() {
                 setError(error.message || 'An unexpected error occurred');
             } finally {
                 setLoading(false);
+                setVehicles(sorter(vehicles, 'Sort', 'Low'));
             }
         };
 
@@ -276,6 +347,30 @@ function GeneralSalePage() {
             fetchVehicles();
         }
     }, [isEmployee])
+
+    async function fetchAndLogRentals() {
+        try {
+            const response = await fetch(`${BACKEND_URL}/api/Rental/GetAllUserRentalsWithDetails`, {
+                method: 'GET',
+                headers: {'Content-Type': 'application/json'},
+                credentials: 'include',
+            });
+
+            if (!response.ok) {
+                throw new Error('Failed to fetch rentals');
+            }
+
+            const data = await response.json();
+            setRentals(data); // Save rentals data in state
+        } catch (error) {
+            console.error('Error fetching rentals:', error);
+        }
+    }
+
+
+    useEffect(() => {
+        fetchAndLogRentals();
+    }, []);
 
     useEffect(() => {
         if (isFiltersOpen) {
@@ -293,10 +388,9 @@ function GeneralSalePage() {
         <>
             <div className={`filter-bar ${isFiltersOpen ? 'open' : ''}`}>
                 <h2 className="filter-bar-title">
-                    Filters 
-                    <span className="filter-bar-exit" onClick={toggleFilters}><i className="fas fa-times" /></span></h2>
+                    Filters
+                    <span className="filter-bar-exit" onClick={toggleFilters}><i className="fas fa-times"/></span></h2>
                 <hr/>
-
                 {!isEmployee && (
                     <>
                     <div className="filter-section">
@@ -315,88 +409,104 @@ function GeneralSalePage() {
                                             checked={filters.vehicleTypes.includes(vehicleType)}
                                             onChange={() => handleFilterChange("vehicleTypes", vehicleType)}
                                         />
-                                        <label htmlFor={vehicleType}>{vehicleType}</label>
+                                        <label htmlFor={vehicleType}>{display[vehicleType]}</label>
                                     </div>
                                 ))}
                             </div>
                         )}
                     </div>
-                    <hr/>
+                    </>
+                    )}
+                <hr/>
+
+
+                {filters.vehicleTypes.length > 0 && availableBrands.length > 0 && (
+                    <>
+                        <div className="filter-section">
+                            <p onClick={() => setShowBrandFilters(!showBrandFilters)}>
+                                Merk
+                                <span className={`toggle-icon ${showBrandFilters ? 'rotated' : ''}`}>+</span>
+                            </p>
+                            {showBrandFilters && (
+                                <div className={`filter-types show`}>
+                                    {availableBrands.map((brand) => (
+                                        <div key={brand} className="checkbox-item">
+                                            <input
+                                                type="checkbox"
+                                                id={brand}
+                                                value={brand}
+                                                checked={filters.brand.includes(brand)}
+                                                name={brand}
+                                                onChange={() => handleFilterChange("brand", brand)}
+                                            />
+                                            <label htmlFor={brand}>{brand}</label>
+                                        </div>
+                                    ))}
+                                </div>
+                            )}
+                        </div>
+                        <hr /> {/* Always render this <hr /> when "Merk" filter section is visible */}
                     </>
                 )}
+
 
                 <div className="filter-section">
                     <p onClick={() => setShowColorFilters(!showColorFilters)}>Kleur
                         <span className={`toggle-icon ${showColorFilters ? 'rotated' : ''}`}>+</span>
                     </p>
-                    {filterOptions.Color && filterOptions.Color.length > 0 && (
-                        <div className={`filter-types ${showColorFilters ? 'show' : ''}`}>
-                            {filterOptions.Color.map((color) => (
-                                <div key={color} className="checkbox-item">
-                                    <input
-                                        type="checkbox"
-                                        id={color}
-                                        value={color}
-                                        checked={filters.color.includes(color)}
-                                        name={color}
-                                        onChange={() => handleFilterChange("color", color)}
-                                    />
-                                    <label htmlFor={color}>{color}</label>
-                                </div>
-                            ))}
-                        </div>
-                    )}
+                    <div className={`filter-types ${showColorFilters ? 'show' : ''}`}>
+                        {['Rood', 'Blauw', 'Groen', 'Zwart', 'Wit', 'Grijs'].map((color) => (
+                            <div key={color} className="checkbox-item">
+                                <input
+                                    type="checkbox"
+                                    id={color}
+                                    value={color}
+                                    checked={filters.color.includes(color)}
+                                    onChange={() => handleFilterChange('color', color)}
+                                />
+                                <label htmlFor={color}>{color}</label>
+                            </div>
+                        ))}
+                    </div>
                 </div>
+
                 <hr/>
 
                 <div className="filter-section">
-                    <p onClick={() => setShowBrandFilters(!showBrandFilters)}>Merk
-                        <span className={`toggle-icon ${showBrandFilters ? 'rotated' : ''}`}>+</span>
-                    </p>
-                    {filterOptions.Brand && filterOptions.Brand.length > 0 && (
-                        <div className={`filter-types ${showBrandFilters ? 'show' : ''}`}>
-                            {filterOptions.Brand.map((brand) => (
-                                <div key={brand} className="checkbox-item">
-                                    <input
-                                        type="checkbox"
-                                        id={brand}
-                                        value={brand}
-                                        checked={filters.brand.includes(brand)}
-                                        name={brand}
-                                        onChange={() => handleFilterChange("brand", brand)}
-                                    />
-                                    <label htmlFor={brand}>{brand}</label>
-                                </div>
-                            ))}
-                        </div>
-                    )}
+                    <p>Selecteer datumbereik:</p>
+                    <DatePicker
+                        selected={filters.startDate}
+                        onChange={handleDateFilterChange}
+                        startDate={filters.startDate}
+                        endDate={filters.endDate}
+                        selectsRange
+                        inline
+                        dateFormat="yyyy/MM/dd"
+                        placeholderText="Selecteer start- en einddatum"
+                    />
                 </div>
-
                 <hr/>
+
+                {/* Aantal passagiers Filter */}
                 <div className="filter-section">
                     <p onClick={() => setShowSeatsFilters(!showSeatsFilters)}>Aantal passagiers
                         <span className={`toggle-icon ${showSeatsFilters ? 'rotated' : ''}`}>+</span>
                     </p>
-                    {filterOptions.Seats && filterOptions.Seats.length > 0 && (
-                        <div className={`filter-types ${showSeatsFilters ? 'show' : ''}`}>
-                            {filterOptions.Seats.map((seat) => (
-                                <div key={seat} className="checkbox-item">
-                                    <input
-                                        type="checkbox"
-                                        id={seat}
-                                        value={seat}
-                                        checked={filters.seat.includes(seat)}
-                                        name={seat}
-                                        onChange={() => handleFilterChange("seat", seat)}
-                                    />
-                                    <label htmlFor={seat}>{seat}</label>
-                                </div>
-                            ))}
-                        </div>
-                    )}
-                </div>
-                <div className="filter-section">
-                    <div className="filter-spacer"></div>
+                    <div className={`filter-types ${showSeatsFilters ? 'show' : ''}`}>
+                        {['4', '5', '6'].map((seat) => (
+                            <div key={seat} className="checkbox-item">
+                                <input
+                                    type="checkbox"
+                                    id={seat}
+                                    value={seat}
+                                    checked={filters.seat.includes(seat)}
+                                    name={seat}
+                                    onChange={() => handleFilterChange("seat", seat)}
+                                />
+                                <label htmlFor={seat}>{seat}</label>
+                            </div>
+                        ))}
+                    </div>
                 </div>
             </div>
 
@@ -404,12 +514,12 @@ function GeneralSalePage() {
 
             <GeneralHeader/>
             <div className="general-sale-page">
-
                 <div className="car-sale-section">
                     <h1 className="title-text">Voertuigen</h1>
                     <button htmlFor="filter" onClick={toggleFilters} className="filter-button"><i
                         className="fas fa-filter"></i> Filter
                     </button>
+
                     {loading ? (
                         <div className="loading-spinner"></div>
                     ) : (
@@ -435,10 +545,27 @@ function GeneralSalePage() {
                                         </div>
                                         <Link
                                             to={`/vehicle/${vehicle.FrameNr}`}
-                                            state={{vehicle}}
-                                            className="huur-link"
+                                            state={{
+                                                vehicle,
+                                                rentalDates: [filters.startDate, filters.endDate],
+                                            }}
+                                            className={`huur-link`}
+                                            onClick={(e) => {
+                                                if (!filters.startDate || !filters.endDate) {
+                                                    e.preventDefault();
+                                                    toast.error('Selecteer alstublieft een begin- en einddatum voordat u een voertuig huurt.', {
+                                                        position: "top-center",
+                                                        autoClose: 3000,
+                                                        hideProgressBar: false,
+                                                        closeOnClick: true,
+                                                        pauseOnHover: true,
+                                                        draggable: true,
+                                                        progress: undefined,
+                                                    });
+                                                }
+                                            }}
                                         >
-                                            View Details
+                                            Rent Now
                                         </Link>
                                         {isStaff && (
                                             <button
@@ -448,6 +575,7 @@ function GeneralSalePage() {
                                                 Delete
                                             </button>
                                         )}
+
                                     </div>
                                 ))
                             ) : (
@@ -460,7 +588,5 @@ function GeneralSalePage() {
             <GeneralFooter/>
         </>
     );
-
 }
-
 export default GeneralSalePage;
