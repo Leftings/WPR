@@ -546,14 +546,14 @@ function GeneralSalePage() {
                                                 }
                                             }}
                                         >
-                                            Rent Now
+                                            Huur
                                         </Link>
                                         {isStaff && (
                                             <button
                                                 onClick={() => handleDelete(vehicle.FrameNr)}
                                                 className="delete-button-vehicle"
                                             >
-                                                Delete
+                                                Verwijder
                                             </button>
                                         )}
 

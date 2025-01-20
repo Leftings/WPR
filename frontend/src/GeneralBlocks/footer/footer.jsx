@@ -8,7 +8,7 @@ function GeneralFooter() {
     return (
         <>
             <footer className="footer">
-                <p>&copy; 2024 CarAndAll. All rights reserved.</p>
+                <p>&copy; 2024 CarAndAll. Alle rechten voorbehouden.</p>
                 <div className="footer-links">
                     <Link to="/TermsAndConditions">Algemene Voorwaarde</Link>
                     <Link to="/Policy">Privacyverklaring</Link>
