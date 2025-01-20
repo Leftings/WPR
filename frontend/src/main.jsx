@@ -63,6 +63,7 @@ createRoot(document.getElementById('root')).render(
             <Route path="/vehicleManager/reviewHireRequest" element={<ReviewHireRequestVehicleManager />}></Route>
             <Route path="/frontOfficeEmployee/reviewBusiness" element={<ReviewBusiness />}></Route>
             <Route path="/backOfficeEmployee/viewRentalData" element={<ViewRentalData />}></Route>
+            <Route path="*" element={<Home />}></Route>
         </Routes>
     </Router>
 );

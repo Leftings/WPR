@@ -161,7 +161,7 @@ function ReviewHireRequest() {
   if (loading) {
     return (
       <div className="loading-screen">
-        <p>Loading new requests...</p>
+        <p>Laden van nieuwe verzoeken...</p>
       </div>
     );
   }
@@ -178,7 +178,7 @@ function ReviewHireRequest() {
     <>
       <GeneralHeader />
       <div className="body">
-        <h1>New Requests</h1>
+        <h1>Nieuwe verzoeken</h1>
         <div className="requests-box">
           {newRequests.length > 0 ? (
             <div className="requests-grid">
@@ -189,7 +189,7 @@ function ReviewHireRequest() {
                   <div key={index} className="request-card">
                     {isLoading ? (
                       <div className="loading-screen">
-                        <p>Loading...</p>
+                        <p>Laden...</p>
                       </div>
                     ) : (
                       <>
@@ -213,7 +213,7 @@ function ReviewHireRequest() {
               })}
             </div>
           ) : (
-            <p>No new requests found.</p>
+            <p>Geen nieuwe verzoeken gevonden.</p>
           )}
         </div>
       </div>
