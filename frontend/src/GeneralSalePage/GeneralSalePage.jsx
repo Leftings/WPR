@@ -65,13 +65,14 @@ function GeneralSalePage() {
     };
 
     const [filters, setFilters] = useState({
+        startDate: new Date(new Date().setDate(new Date().getDate() + 1)), // Tomorrow
+        endDate: null, // No end date initially
         vehicleTypes: [],
-        color: [],
-        startDate: null,
-        endDate: null,
         brand: [],
-        seat: []
+        color: [],
+        seat: [],
     });
+
 
     const handleDateFilterChange = (dates) => {
         const [start, end] = dates;
@@ -99,17 +100,21 @@ function GeneralSalePage() {
     const filteredVehicles = vehicles.filter(vehicle => {
         console.log(`Evaluating Vehicle ${vehicle.FrameNr}`);
 
+        // Filter based on vehicle types, colors, brands, and seats
         const matchesVehicleTypes = filters.vehicleTypes.length === 0 || filters.vehicleTypes.includes(vehicle.Sort);
         const matchesColor = filters.color.length === 0 || filters.color.includes(vehicle.Color);
         const matchesBrand = filters.brand.length === 0 || filters.brand.includes(vehicle.Brand);
         const matchesSeat = filters.seat.length === 0 || filters.seat.includes(vehicle.Seats);
 
+        // Handle date range selection
         const startDate = filters.startDate ? new Date(filters.startDate) : null;
         const endDate = filters.endDate ? new Date(filters.endDate) : null;
 
+        // Get the rentals related to the current vehicle
         const vehicleRentals = rentals.filter(rental => String(rental.frameNrVehicle) === String(vehicle.FrameNr));
         console.log(`Vehicle ${vehicle.FrameNr} Rentals:`, vehicleRentals);
 
+        // Check if the vehicle is rented during the selected date range
         const isRentedDuringSelectedDates = vehicleRentals.some(rental => {
             if (!rental.startDate || !rental.endDate) {
                 console.log(`Rental for Vehicle ${vehicle.FrameNr} has invalid dates`);
@@ -121,17 +126,20 @@ function GeneralSalePage() {
 
             console.log(`Rental Start: ${rentalStart}, Rental End: ${rentalEnd}`);
             console.log(`Selected Start: ${startDate}, Selected End: ${endDate}`);
+
             return (
-                (startDate && endDate && startDate <= rentalEnd && endDate >= rentalStart) ||
-                (startDate && !endDate && startDate < rentalEnd) ||
-                (!startDate && endDate && endDate > rentalStart)
+                (startDate && endDate && startDate <= rentalEnd && endDate >= rentalStart) ||  // Full overlap
+                (startDate && !endDate && startDate < rentalEnd) ||  // Start date overlap
+                (!startDate && endDate && endDate > rentalStart) // End date overlap
             );
         });
 
         console.log(`Vehicle ${vehicle.FrameNr} ${isRentedDuringSelectedDates ? 'is' : 'is not'} rented during selected dates`);
 
+        // Return the filtered result based on all conditions
         return matchesVehicleTypes && matchesBrand && matchesColor && matchesSeat && !isRentedDuringSelectedDates;
     });
+
 
     const availableBrands = sorterOneItem([...new Set(vehicles
         .filter(vehicle => filters.vehicleTypes.length === 0 || filters.vehicleTypes.includes(vehicle.Sort))
@@ -324,7 +332,7 @@ function GeneralSalePage() {
             }
 
             const data = await response.json();
-            setRentals(data); // Save rentals data in state
+            setRentals(data); 
         } catch (error) {
             console.error('Error fetching rentals:', error);
         }
@@ -408,7 +416,8 @@ function GeneralSalePage() {
                                 </div>
                             )}
                         </div>
-                        <hr /> {/* Always render this <hr /> when "Merk" filter section is visible */}
+                        <hr/>
+                        {/* Always render this <hr /> when "Merk" filter section is visible */}
                     </>
                 )}
 
@@ -431,22 +440,6 @@ function GeneralSalePage() {
                             </div>
                         ))}
                     </div>
-                </div>
-
-                <hr/>
-
-                <div className="filter-section">
-                    <p>Selecteer datumbereik:</p>
-                    <DatePicker
-                        selected={filters.startDate}
-                        onChange={handleDateFilterChange}
-                        startDate={filters.startDate}
-                        endDate={filters.endDate}
-                        selectsRange
-                        inline
-                        dateFormat="yyyy/MM/dd"
-                        placeholderText="Selecteer start- en einddatum"
-                    />
                 </div>
                 <hr/>
 
@@ -479,8 +472,31 @@ function GeneralSalePage() {
             <div className="general-sale-page">
                 <div className="car-sale-section">
                     <h1 className="title-text">Voertuigen</h1>
-                    <button htmlFor="filter" onClick={toggleFilters} className="filter-button"><i
-                        className="fas fa-filter"></i> Filter
+
+                    <div className="date-picker-container">
+                        <p className="date-picker-label">Selecteer datumbereik:</p>
+                        <DatePicker
+                            selected={filters.startDate}
+                            onChange={(dates) => {
+                                const [start, end] = dates || [];
+                                setFilters((prevFilters) => ({
+                                    ...prevFilters,
+                                    startDate: start || null,
+                                    endDate: end || null,
+                                }));
+                            }}
+                            startDate={filters.startDate}
+                            endDate={filters.endDate}
+                            selectsRange
+                            inline
+                            dateFormat="yyyy/MM/dd"
+                            placeholderText="Selecteer start- en einddatum"
+                            minDate={new Date()} 
+                        />
+                    </div>
+
+                    <button htmlFor="filter" onClick={toggleFilters} className="filter-button">
+                        <i className="fas fa-filter"></i> Filter
                     </button>
 
                     {loading ? (
@@ -538,7 +554,6 @@ function GeneralSalePage() {
                                                 Delete
                                             </button>
                                         )}
-
                                     </div>
                                 ))
                             ) : (
@@ -552,4 +567,5 @@ function GeneralSalePage() {
         </>
     );
 }
+
 export default GeneralSalePage;

@@ -779,6 +779,18 @@ h3 {
   color: #e74c3c; 
 }
 
+.date-picker-container {
+  text-align: center; 
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+
+
+.date-picker-container .react-datepicker-wrapper {
+  display: inline-block;
+}
+
 .custom-select {
   position: relative;
   width: 200px;
