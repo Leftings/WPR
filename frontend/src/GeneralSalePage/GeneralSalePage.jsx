@@ -442,24 +442,7 @@ function GeneralSalePage() {
                     </div>
                     )}
                 </div>
-
                 <hr/>
-
-                <div className="filter-section">
-                    <p>Selecteer datumbereik:</p>
-                    <DatePicker
-                        selected={filters.startDate}
-                        onChange={handleDateFilterChange}
-                        startDate={filters.startDate}
-                        endDate={filters.endDate}
-                        selectsRange
-                        inline
-                        dateFormat="yyyy/MM/dd"
-                        placeholderText="Selecteer start- en einddatum"
-                    />
-                </div>
-                <hr/>
-
                 {/* Aantal passagiers Filter */}
                 <div className="filter-section">
                     <p onClick={() => setShowSeatsFilters(!showSeatsFilters)}>Aantal passagiers
