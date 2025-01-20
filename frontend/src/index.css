@@ -781,6 +781,18 @@ h3 {
   color: #e74c3c; 
 }
 
+.date-picker-container {
+  text-align: center; 
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+
+
+.date-picker-container .react-datepicker-wrapper {
+  display: inline-block;
+}
+
 .custom-select {
   position: relative;
   width: 200px;
@@ -1542,6 +1554,10 @@ html {
   flex-direction: column;
   background-color: #F4E8C1;
   font-family: Arial, sans-serif;
+}
+
+html, body {
+  overflow-x: hidden;
 }
 
 /* Index
