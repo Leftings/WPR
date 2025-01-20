@@ -417,8 +417,9 @@ function GeneralSalePage() {
                     <p onClick={() => setShowColorFilters(!showColorFilters)}>Kleur
                         <span className={`toggle-icon ${showColorFilters ? 'rotated' : ''}`}>+</span>
                     </p>
-                    <div className={`filter-types ${showColorFilters ? 'show' : ''}`}>
-                        {['Rood', 'Blauw', 'Groen', 'Zwart', 'Wit', 'Grijs'].map((color) => (
+                    {filterOptions.Sort && filterOptions.Sort.length > 0 && (
+                        <div className={`filter-types ${showColorFilters ? 'show' : ''}`}>
+                        {filterOptions.Color.map((color) => (
                             <div key={color} className="checkbox-item">
                                 <input
                                     type="checkbox"
@@ -431,6 +432,7 @@ function GeneralSalePage() {
                             </div>
                         ))}
                     </div>
+                    )}
                 </div>
 
                 <hr/>
@@ -455,8 +457,9 @@ function GeneralSalePage() {
                     <p onClick={() => setShowSeatsFilters(!showSeatsFilters)}>Aantal passagiers
                         <span className={`toggle-icon ${showSeatsFilters ? 'rotated' : ''}`}>+</span>
                     </p>
-                    <div className={`filter-types ${showSeatsFilters ? 'show' : ''}`}>
-                        {['4', '5', '6'].map((seat) => (
+                    {filterOptions.Sort && filterOptions.Sort.length > 0 && (
+                        <div className={`filter-types ${showSeatsFilters ? 'show' : ''}`}>
+                        {filterOptions.Seats.map((seat)=> (
                             <div key={seat} className="checkbox-item">
                                 <input
                                     type="checkbox"
@@ -470,6 +473,7 @@ function GeneralSalePage() {
                             </div>
                         ))}
                     </div>
+                    )}
                 </div>
             </div>
 
