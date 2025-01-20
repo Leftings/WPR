@@ -14,7 +14,7 @@ public class viewRentalDataController : ControllerBase
     }
 
     [HttpGet("GetReviewData")]
-    public async Task<IActionResult> GetReviews(int id)
+    public async Task<IActionResult> GetReview(int id)
     {
         (bool Status, string Message, Dictionary<string, object> Data) response = _backOfficeRepository.GetDataReview(id);
 

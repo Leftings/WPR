@@ -218,7 +218,7 @@ function GeneralSalePage() {
     }, []);
 
     useEffect(() => {
-        fetch('http://localhost:5165/api/Login/CheckSessionStaff', { credentials: 'include' })
+        fetch('http://localhost:5165/api/Login/CheckSessionStaff', {credentials: 'include'})
             .then(response => {
                 if (!response.ok) {
                     throw new Error('Not a staff member');
@@ -232,7 +232,7 @@ function GeneralSalePage() {
     const handleDelete = async (frameNr) => {
         const confirmDelete = window.confirm('Are you sure you want to delete this vehicle?');
         if (!confirmDelete) return;
-
+        
         try {
             const response = await fetch(`${BACKEND_URL}/api/vehicle/DeleteVehicle?frameNr=${frameNr}`, {
                 method: 'DELETE',
@@ -246,12 +246,12 @@ function GeneralSalePage() {
             const data = await response.json()
 
             if (data.Status) {
-                setVehicles(vehicles.filter(vehicle => vehicle.FrameNr !== frameNr));
-                alert('Voertuig is verwijderd.');
-                navigate('/vehicles');
-            } else {
-                alert(data.message)
-            }
+            setVehicles(vehicles.filter(vehicle => vehicle.FrameNr !== frameNr));
+            alert('Voertuig is verwijderd.');
+            navigate('/vehicles');
+        } else {
+            alert(data.message)
+        }
         } catch (error) {
             console.error(error.message);
             alert('Error deleting vehicle');
@@ -364,30 +364,30 @@ function GeneralSalePage() {
                 <hr/>
                 {!isEmployee && (
                     <>
-                        <div className="filter-section">
-                            <p onClick={() => setShowTypesFilters(!showTypesFilters)}>Soort voertuig
-                                <span className={`toggle-icon ${showTypesFilters ? 'rotated' : ''}`}>+</span>
-                            </p>
-                            {filterOptions.Sort && filterOptions.Sort.length > 0 && (
-                                <div className={`filter-types ${showTypesFilters ? 'show' : ''}`}>
-                                    {filterOptions.Sort.map((vehicleType) => (
-                                        <div key={vehicleType} className="checkbox-item">
-                                            <input
-                                                type="checkbox"
-                                                id={vehicleType}
-                                                value={vehicleType}
-                                                name={vehicleType}
-                                                checked={filters.vehicleTypes.includes(vehicleType)}
-                                                onChange={() => handleFilterChange("vehicleTypes", vehicleType)}
-                                            />
-                                            <label htmlFor={vehicleType}>{display[vehicleType]}</label>
-                                        </div>
-                                    ))}
-                                </div>
-                            )}
-                        </div>
+                    <div className="filter-section">
+                        <p onClick={() => setShowTypesFilters(!showTypesFilters)}>Soort voertuig 
+                            <span className={`toggle-icon ${showTypesFilters ? 'rotated' : ''}`}>+</span>
+                        </p>
+                        {filterOptions.Sort && filterOptions.Sort.length > 0 && (
+                            <div className={`filter-types ${showTypesFilters ? 'show' : ''}`}>
+                            {filterOptions.Sort.map((vehicleType) => (
+                                    <div key={vehicleType} className="checkbox-item">
+                                        <input
+                                            type="checkbox"
+                                            id={vehicleType}
+                                            value={vehicleType}
+                                            name={vehicleType}
+                                            checked={filters.vehicleTypes.includes(vehicleType)}
+                                            onChange={() => handleFilterChange("vehicleTypes", vehicleType)}
+                                        />
+                                        <label htmlFor={vehicleType}>{display[vehicleType]}</label>
+                                    </div>
+                                ))}
+                            </div>
+                        )}
+                    </div>
                     </>
-                )}
+                    )}
                 <hr/>
 
 
@@ -416,8 +416,7 @@ function GeneralSalePage() {
                                 </div>
                             )}
                         </div>
-                        <hr/>
-                        {/* Always render this <hr /> when "Merk" filter section is visible */}
+                        <hr /> {/* Always render this <hr /> when "Merk" filter section is visible */}
                     </>
                 )}
 
@@ -426,8 +425,9 @@ function GeneralSalePage() {
                     <p onClick={() => setShowColorFilters(!showColorFilters)}>Kleur
                         <span className={`toggle-icon ${showColorFilters ? 'rotated' : ''}`}>+</span>
                     </p>
-                    <div className={`filter-types ${showColorFilters ? 'show' : ''}`}>
-                        {['Rood', 'Blauw', 'Groen', 'Zwart', 'Wit', 'Grijs'].map((color) => (
+                    {filterOptions.Sort && filterOptions.Sort.length > 0 && (
+                        <div className={`filter-types ${showColorFilters ? 'show' : ''}`}>
+                        {filterOptions.Color.map((color) => (
                             <div key={color} className="checkbox-item">
                                 <input
                                     type="checkbox"
@@ -440,6 +440,23 @@ function GeneralSalePage() {
                             </div>
                         ))}
                     </div>
+                    )}
+                </div>
+
+                <hr/>
+
+                <div className="filter-section">
+                    <p>Selecteer datumbereik:</p>
+                    <DatePicker
+                        selected={filters.startDate}
+                        onChange={handleDateFilterChange}
+                        startDate={filters.startDate}
+                        endDate={filters.endDate}
+                        selectsRange
+                        inline
+                        dateFormat="yyyy/MM/dd"
+                        placeholderText="Selecteer start- en einddatum"
+                    />
                 </div>
                 <hr/>
 
@@ -448,8 +465,9 @@ function GeneralSalePage() {
                     <p onClick={() => setShowSeatsFilters(!showSeatsFilters)}>Aantal passagiers
                         <span className={`toggle-icon ${showSeatsFilters ? 'rotated' : ''}`}>+</span>
                     </p>
-                    <div className={`filter-types ${showSeatsFilters ? 'show' : ''}`}>
-                        {['4', '5', '6'].map((seat) => (
+                    {filterOptions.Sort && filterOptions.Sort.length > 0 && (
+                        <div className={`filter-types ${showSeatsFilters ? 'show' : ''}`}>
+                        {filterOptions.Seats.map((seat)=> (
                             <div key={seat} className="checkbox-item">
                                 <input
                                     type="checkbox"
@@ -463,6 +481,7 @@ function GeneralSalePage() {
                             </div>
                         ))}
                     </div>
+                    )}
                 </div>
             </div>
 
@@ -554,6 +573,7 @@ function GeneralSalePage() {
                                                 Delete
                                             </button>
                                         )}
+
                                     </div>
                                 ))
                             ) : (
