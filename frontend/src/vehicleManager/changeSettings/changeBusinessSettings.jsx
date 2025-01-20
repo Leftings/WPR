@@ -1,0 +1,268 @@
+import React, { useState, useEffect } from 'react';
+import {Await, Link, Navigate, useNavigate} from 'react-router-dom';
+import GeneralHeader from "../../GeneralBlocks/header/header.jsx";
+import GeneralFooter from "../../GeneralBlocks/footer/footer.jsx";
+
+//import './userSettings.css';
+import '../../index.css';
+
+function GetUser(setUser)
+{
+  fetch('http://localhost:5165/api/Cookie/GetUserName', {
+    method: 'GET',
+    headers: {
+        'Content-Type': 'application/json', 
+    },
+    credentials: 'include', // Cookies of authenticatie wordt meegegeven
+    })
+    .then(response => {
+        console.log(response);
+        if (!response.ok) {
+            throw new Error('No Cookie');
+        }
+        return response.json();
+    })
+    .then(data => {
+      setUser(`${data.message}`);
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
+}
+
+function GetUserId() {
+  return new Promise((resolve, reject) => {
+    fetch('http://localhost:5165/api/Cookie/GetUserId', {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json', 
+    },
+    credentials: 'include',  // Cookies of authenticatie wordt meegegeven
+    })
+    .then(response => {
+      console.log(response);
+      if (!response.ok) {
+        reject('No Cookie');
+      }
+      return response.json();
+    })
+    .then(data => {
+      resolve(data.message);
+    })
+    .catch(error => {
+      console.error('Error:', error);
+      reject(error); 
+    });
+  });
+}
+
+
+function ChangeUserInfo(userData) {
+  return fetch('http://localhost:5165/api/ChangeUserSettings/ChangeUserInfo', {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(userData),
+    credentials: 'include',
+  })
+    .then(async (response) => {
+      const data = await response.json(); 
+      if (!response.ok)
+      {
+        if (data.message !== 'Email detected')
+        {
+          throw new Error("Unknown error");
+        }
+      }
+
+      return data.message;
+    })
+    .catch((error) => {
+      console.error(error);
+      throw error;
+    });
+}
+
+function DeleteUser(userId) {
+    const encryptedUserId = encrypt(userId)
+    return fetch(`http://localhost:5165/api/ChangeUserSettings/DeleteUser/${encryptedUserId}`, {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json'},
+        credentials: 'include',
+    })
+        .then(async (response) => {
+            const data = await response.json();
+            if (!response.ok) {
+                throw new Error(data.message || 'Error');
+            }
+            return data;
+        })
+        .catch((error) => {
+            console.error('Error deleting user:', error.message);
+            throw error;
+        })
+}
+
+function ChangeBusinessSettings() {
+  const navigate = useNavigate();
+  const [user, setUser] = useState('');
+  const [email, setEmail] = useState('');
+  const [adres, setAdres] = useState('');
+  const [phonenumber, setPhonenumber] = useState('');
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [password1, setPassword1] = useState('');
+  const [password2, setPassword2] = useState('');
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+      fetch('http://localhost:5165/api/Cookie/IsVehicleManager', {
+          method: 'GET',
+          headers: {
+              'Content-Type': 'application/json',
+          },
+          credentials: 'include',
+      })
+          .then(response => {
+              if (!response.ok) {
+                  throw new Error('No Cookie');
+              }
+              return response.json();
+          })
+          .then(() => {
+              GetUser(setUser);
+          })
+          .catch(() => {
+              navigate('/');
+          })
+  }, [navigate]);
+
+  const onSubmit = async (event) => {
+    event.preventDefault();
+    try
+    {
+      if (password1 === password2)
+      {
+        const userId = await GetUserId();
+
+        const userData = {
+          ID: userId,
+          Email: email,
+          Password: password1,
+          FirstName: firstName,
+          LastName: lastName,
+          TelNum: phonenumber,
+          Adres: adres,
+        };
+
+        const message = await ChangeUserInfo(userData);
+
+        if (firstName !== '')
+        {
+          GetUser(setUser);
+        }
+
+        if (message === 'Data Updated')
+        {
+          navigate('/home');
+        }
+        else
+        {
+          setError(message);
+        }
+      }
+    }
+    catch (error)
+    {
+      setError("Er zijn geen velden ingevoerd");
+    }
+  }
+  
+  useEffect(() => {
+      GetUserId()
+          .then((id) => {
+              setUser(id);
+              GetUser(setUser);
+          })
+          .catch(() => {
+              navigate('/');
+          });
+  }, [navigate]);
+
+  const handleDelete = async () => {
+      const confirmDelete = window.confirm('Are you sure you want to delete your account?');
+      if (!confirmDelete) return;
+
+      try {
+          const response = await fetch('http://localhost:5165/api/ChangeUserSettings/DeleteUser', {
+              method: 'DELETE',
+              credentials: 'include', // Include the cookie
+          });
+          
+          const data = await response.json();
+          if (response.ok) {
+              alert('Your account has been deleted successfully');
+              navigate('/'); // Redirect after deletion
+          } else {
+              setError(data.message);
+          }
+      } catch (error) {
+          setError('Failed to delete account');
+      }
+  };
+
+  return (
+    <>
+    <GeneralHeader />
+    <main>
+      <div className='Body'>
+        <div className='registrateFormatHeader'>
+            <h1>Wijzigen bedrijfsgegevens</h1>
+        </div>
+
+        <div className='registrateFormat'>
+            <label htmlFor="firstName">Voornaam</label>
+            <input type="text" id="firstName" value={firstName}
+                onChange={(e) => setFirstName(e.target.value)}></input>
+
+            <label htmlFor="lastName">Achternaam</label>
+            <input type="text" id="lastName" value={lastName}
+                onChange={(e) => setLastName(e.target.value)}></input>
+
+            <label htmlFor="email">E-mail</label>
+            <input type="text" id="email" value={email}
+                    onChange={(e) => setEmail(e.target.value)}></input>
+
+            <label htmlFor="adres">Adres</label>
+            <input type="text" id="adres" value={adres}
+                    onChange={(e) => setAdres(e.target.value)}></input>
+
+            <label htmlFor="phonenumber">Telefoonnummer</label>
+            <input type="tel" id="phonenumber" value={phonenumber}
+                    onChange={(e) => setPhonenumber(e.target.value)}></input>
+
+            <label htmlFor="password">Wachtwoord</label>
+            <input type="password" id="password" value={password1}
+                    onChange={(e) => setPassword1(e.target.value)}></input>
+
+            <label htmlFor="passwordConfirm">Herhaal wachtwoord</label>
+            <input type="password" id="passwordConfirm" value={password2}
+                    onChange={(e) => setPassword2(e.target.value)}></input>
+
+            <div className='registrateFormatFooter'>
+                {error && <p style={{color: 'red'}}>{error}</p>}
+                <button className='cta-button' type="button" onClick={onSubmit}>Opslaan</button>
+                <button id="buttonDelete" type="button" onClick={handleDelete}>Delete account</button>
+            </div>
+        </div>
+      </div>
+
+        </main>
+        <GeneralFooter />
+    </>
+  );
+}
+
+export default ChangeBusinessSettings;

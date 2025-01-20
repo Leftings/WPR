@@ -184,7 +184,7 @@ public class CookieController : ControllerBase
         {
             if (!string.IsNullOrEmpty(loginCookie2))
             {
-                return Ok(true);
+                return Ok(new {data = decryptedCookie});
             }
 
             return BadRequest(new { message = "No Cookie" });
