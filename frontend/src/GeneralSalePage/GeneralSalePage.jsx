@@ -518,39 +518,40 @@ function GeneralSalePage() {
                                             <p className="car-price">{`$${vehicle.Price}`}</p>
                                             <p className="car-description">{vehicle.Description || 'No description available'}</p>
                                         </div>
-                                        <Link
-                                            to={`/vehicle/${vehicle.FrameNr}`}
-                                            state={{
-                                                vehicle,
-                                                rentalDates: [filters.startDate, filters.endDate],
-                                            }}
-                                            className={`huur-link`}
-                                            onClick={(e) => {
-                                                if (!filters.startDate || !filters.endDate) {
-                                                    e.preventDefault();
-                                                    toast.error('Selecteer alstublieft een begin- en einddatum voordat u een voertuig huurt.', {
-                                                        position: "top-center",
-                                                        autoClose: 3000,
-                                                        hideProgressBar: false,
-                                                        closeOnClick: true,
-                                                        pauseOnHover: true,
-                                                        draggable: true,
-                                                        progress: undefined,
-                                                    });
-                                                }
-                                            }}
-                                        >
-                                            Rent Now
-                                        </Link>
-                                        {isStaff && (
-                                            <button
-                                                onClick={() => handleDelete(vehicle.FrameNr)}
-                                                className="delete-button-vehicle"
-                                            >
-                                                Delete
-                                            </button>
-                                        )}
 
+                                        {isStaff ? (
+                                            <button
+                                            onClick={() => handleDelete(vehicle.FrameNr)}
+                                            className="cta-button"
+                                            >
+                                            Verwijder
+                                            </button>
+                                        ) : (
+                                            <Link
+                                                to={`/vehicle/${vehicle.FrameNr}`}
+                                                state={{
+                                                    vehicle,
+                                                    rentalDates: [filters.startDate, filters.endDate],
+                                                }}
+                                                className={`cta-button`}
+                                                onClick={(e) => {
+                                                    if (!filters.startDate || !filters.endDate) {
+                                                        e.preventDefault();
+                                                        toast.error('Selecteer alstublieft een begin- en einddatum voordat u een voertuig huurt.', {
+                                                            position: "top-center",
+                                                            autoClose: 3000,
+                                                            hideProgressBar: false,
+                                                            closeOnClick: true,
+                                                            pauseOnHover: true,
+                                                            draggable: true,
+                                                            progress: undefined,
+                                                        });
+                                                    }
+                                                }}
+                                            >
+                                                Huur nu
+                                            </Link>
+                                        )}
                                     </div>
                                 ))
                             ) : (
