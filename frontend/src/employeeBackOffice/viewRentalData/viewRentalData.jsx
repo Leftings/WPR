@@ -172,7 +172,7 @@ function ViewRentalData() {
     if (loading) {
       return (
         <div className="loading-screen">
-          <p>Loading requests...</p>
+          <p>Laden van verzoeken...</p>
         </div>
       );
     }
