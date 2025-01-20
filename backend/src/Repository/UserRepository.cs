@@ -78,7 +78,7 @@ public class UserRepository : IUserRepository
         else if (userType.Equals("Customer"))
         {   
             table = "Customer";
-            query = $@"SELECT Private.password FROM {table} INNER JOIN Private ON Private.ID = Customer.ID WHERE LOWER(email) = LOWER(@Email)";
+            query = $@"SELECT Password FROM {table} WHERE LOWER(email) = LOWER(@Email)";
 
         }
         else
@@ -664,7 +664,6 @@ public class UserRepository : IUserRepository
     {
         if (isPrivate)
         {
-            (bool isValidPassword, string passwordError) validPassword = PasswordChecker.IsValidPassword(detailed.Password);
             if (!BirthdayChecker.IsValidBirthday(detailed.BirthDate))
             {
                 return (false, "No Valid Birthday");
@@ -673,10 +672,6 @@ public class UserRepository : IUserRepository
             {
                 return (false, "No valid Phonenumber");
             }
-            else if (!validPassword.isValidPassword)
-            {
-                return (false, validPassword.passwordError);
-            }
             else
             {
                 return (true, "Valid Details");
@@ -684,9 +679,14 @@ public class UserRepository : IUserRepository
         }
         
         var emailCheck = checkUsageEmailAsync(customer.Email);
+        (bool isValidPassword, string passwordError) validPassword = PasswordChecker.IsValidPassword(customer.Password);
         if (!EmailChecker.IsValidEmail(customer.Email))
         {
             return (false, "No Valid Email Format");
+        }
+        else if (!validPassword.isValidPassword)
+        {
+            return (false, validPassword.passwordError);
         }
         (bool Status, string Message) emailStatus = await emailCheck;
         return (!emailStatus.Status, emailStatus.Message);
@@ -707,7 +707,7 @@ public class UserRepository : IUserRepository
         {
             try
             {
-                string query = "INSERT INTO Private (ID, FirstName, LastName, TelNum, Adres, Password, BirthDate) VALUES (@I, @F, @L, @T, @A, @P, @B)";
+                string query = "INSERT INTO Private (ID, FirstName, LastName, TelNum, Adres, BirthDate) VALUES (@I, @F, @L, @T, @A, @B)";
                 using (var command = new MySqlCommand(query, connections))
                 {
                     command.Parameters.AddWithValue("@I", userId);
@@ -715,7 +715,6 @@ public class UserRepository : IUserRepository
                     command.Parameters.AddWithValue("@L", request.LastName);
                     command.Parameters.AddWithValue("@T", request.TelNumber);
                     command.Parameters.AddWithValue("@A", request.Adres);
-                    command.Parameters.AddWithValue("@P", _hash.createHash(request.Password));
                     command.Parameters.AddWithValue("@B", request.BirthDate);
 
                     if (await command.ExecuteNonQueryAsync() > 0)
@@ -728,6 +727,7 @@ public class UserRepository : IUserRepository
             }
             catch (MySqlException ex)
             {
+                Console.WriteLine("Z");
                 return (500, ex.Message);
             }
             catch (Exception ex)
@@ -766,11 +766,11 @@ public class UserRepository : IUserRepository
 
                 if (request.AccountType.Equals("Private"))
                 {
-                    query = "INSERT INTO Customer (Email, AccountType) VALUES (@E, @A)";
+                    query = "INSERT INTO Customer (Email, AccountType, Password) VALUES (@E, @A, @P)";
                 }
                 else
                 {
-                    query = "INSERT INTO Customer (Email, KvK, AccountType) VALUES (@E, @K, @A)";
+                    query = "INSERT INTO Customer (Email, KvK, AccountType, Password) VALUES (@E, @K, @A, @P)";
                 }
 
                 using (var connection = _connector.CreateDbConnection())
@@ -779,6 +779,7 @@ public class UserRepository : IUserRepository
                 {
                     command.Parameters.AddWithValue("@E", request.Email);
                     command.Parameters.AddWithValue("@A", request.AccountType);
+                    command.Parameters.AddWithValue("@P", _hash.createHash(request.Password));
 
                     if (request.AccountType.Equals("Business"))
                     {
@@ -821,6 +822,7 @@ public class UserRepository : IUserRepository
                     }
                     catch (Exception ex)
                     {
+                        Console.WriteLine("X");
                         transaction.Rollback();
                         return (500, ex.Message);
                     }
@@ -828,6 +830,7 @@ public class UserRepository : IUserRepository
             }
             catch (MySqlException ex)
             {
+                Console.WriteLine("Y");
                 return (500, ex.Message);
             }
             catch (Exception ex)

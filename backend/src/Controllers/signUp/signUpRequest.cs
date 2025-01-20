@@ -41,11 +41,12 @@ public class SignUpRequestCustomer()
     [Required]
     public string AccountType { get; set; }
     public int? KvK { get; set; }
+    [Required]
+    public string Password { get; set; }
 }
 
 public class SignUpRequestCustomerPrivate()
 {
-    public string? Password { get; set; }
     public string? FirstName { get; set; }
     public string? LastName { get; set; }
     public string? TelNumber { get; set; }
