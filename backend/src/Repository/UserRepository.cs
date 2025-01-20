@@ -677,6 +677,20 @@ public class UserRepository : IUserRepository
                 return (true, "Valid Details");
             }
         }
+        else
+        {
+            DomainEmailChecker domainEmailChecker = new DomainEmailChecker(_connector);
+            (bool Found, int KvK) checkDomain = await domainEmailChecker.DomainExists(customer.Email);
+
+            if (!checkDomain.Found)
+            {
+                return (false, "Domain does not exists");
+            }
+            else
+            {
+                customer.KvK = checkDomain.KvK;
+            }
+        }
         
         var emailCheck = checkUsageEmailAsync(customer.Email);
         (bool isValidPassword, string passwordError) validPassword = PasswordChecker.IsValidPassword(customer.Password);

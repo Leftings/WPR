@@ -30,6 +30,7 @@ function SignUp() {
     const [error, SetErrors] = useState([]);
     const [domain, SetDomain] = useState('');
     const [contactEmail, SetContactEmail] = useState('');
+    const [isBusinessAccount, setIsBusinessAccount] = useState('Employee');
         
 
     const choice = (buttonId) => {
@@ -46,11 +47,18 @@ function SignUp() {
         }
         else
         {
-            validationErrors = EmptyFieldChecker({ name, kvk, street, number, domain, contactEmail });
-
-            if (kvk.length < 8)
+            if (isBusinessAccount === 'Business')
             {
-                validationErrors.push("Te kort KvK nummer");
+                validationErrors = EmptyFieldChecker({ name, kvk, street, number, domain, contactEmail });
+
+                if (kvk.length < 8)
+                {
+                    validationErrors.push("Te kort KvK nummer");
+                }
+            }
+            else
+            {
+                validationErrors = EmptyFieldChecker({ email, password1, password2 });
             }
         }
 
@@ -79,14 +87,26 @@ function SignUp() {
                 }
                 else
                 {
-                    formData.append('KvK', kvk);
-                    formData.append('Name', name);
-                    formData.append('Adress', `${street} ${number}${add}`);
-                    formData.append('Domain', domain);
-                    formData.append('ContactEmail', contactEmail);
+                    if (isBusinessAccount === 'Business')
+                    {
+                        formData.append('KvK', kvk);
+                        formData.append('Name', name);
+                        formData.append('Adress', `${street} ${number}${add}`);
+                        formData.append('Domain', domain);
+                        formData.append('ContactEmail', contactEmail);
 
-                    const response = await pushWithBody(`${BACKEND_URL}/api/AddBusiness/addBusiness`, formData);
-                    redirect(response);
+                        const response = await pushWithBody(`${BACKEND_URL}/api/AddBusiness/addBusiness`, formData);
+                        redirect(response);
+                    }
+                    else
+                    {
+                        formData.append('SignUpRequestCustomer.Email', email);
+                        formData.append('SignUpRequestCustomer.Password', password1);
+                        formData.append('SignUpRequestCustomer.AccountType', chosenType);
+
+                        const response = await pushWithBody(`${BACKEND_URL}/api/SignUp/signUp`, formData);
+                        redirect(response);
+                    }
                 }
             } catch (error)
             {
@@ -104,13 +124,13 @@ function SignUp() {
             }
             else
             {
-                if (chosenType === 'Private')
+                if (chosenType === 'Private' || isBusinessAccount === 'Employee')
                 {
                     navigate('/login');
                 }
                 else
                 {
-                    //navigate('/vehicles');
+                    navigate('/');
                 }
             }
         }
@@ -171,8 +191,32 @@ function SignUp() {
                     </>
                 )}
 
-                {chosenType === 'Business' && (
+                {chosenType === 'Business' && isBusinessAccount === 'Employee' ? (
                     <>
+                    {chosenType === 'Business' && (
+                        <>
+                            <button className='cta-button'onClick={() => setIsBusinessAccount('Employee')} id={isBusinessAccount === 'Employee' ? 'typeButton-active' : 'typeButton'} type='button'>Medewerker</button>
+                            <button className='cta-button'onClick={() => setIsBusinessAccount('Business')} id={isBusinessAccount === 'Business' ? 'typeButton-active' : 'typeButton'} type='button'>Bedrijf</button>
+                        </>
+                    )}
+                    <label htmlFor='inputEmailBusiness'>Zakelijk email adress</label>
+                    <input id = 'inputEmailBusiness' value={email} onChange={(e) => setEmail(e.target.value.toLowerCase())}></input>
+
+                    <label htmlFor='inputPasswordBusiness1'>Wachtwoord</label>
+                    <input id = 'inputPasswordBusiness1' value={password1} onChange={(e) => setPassword1(e.target.value)}></input>
+
+                    <label htmlFor='inputPasswordBusiness2'>Herhaal Wachtwoord</label>
+                    <input id = 'inputPasswordBusiness2' value={password2} onChange={(e) => setPassword2(e.target.value)}></input>
+                    </>
+                ) :
+                (
+                    <>
+                        {chosenType === 'Business' && (
+                            <>
+                                <button className='cta-button'onClick={() => setIsBusinessAccount('Employee')} id={isBusinessAccount === 'Employee' ? 'typeButton-active' : 'typeButton'} type='button'>Medewerker</button>
+                                <button className='cta-button'onClick={() => setIsBusinessAccount('Business')} id={isBusinessAccount === 'Business' ? 'typeButton-active' : 'typeButton'} type='button'>Bedrijf</button>
+                            </>
+                        )}
                         <label htmlFor='inputBusinessName'>Bedrijfsnaam</label>
                         <input id='inputBusinessName' value={name} onChange={(e) => SetName(e.target.value)}></input>
 
@@ -208,6 +252,7 @@ function SignUp() {
                     )}
 
                     <button className='cta-button' onClick={Push}>Bevestig</button>
+                    <p></p>
                     <label htmlFor="heeftAccount">Heeft u al een account? <Link id="redirect" to="/login">Log in!</Link></label>
                 </div>
             </div>
