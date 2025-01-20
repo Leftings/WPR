@@ -24,8 +24,16 @@ export const loadArray = async (backendUrl) =>
       {
         return { ...acc, ...item };
       }, {})
-      return { message: combinedData };
+      return { message: combinedData, data: combinedData };
     } 
+    if (Array.isArray(data?.data))
+      {
+        const combinedData = data.data.reduce((acc, item) => 
+        {
+          return { ...acc, ...item };
+        }, {})
+        return { message: combinedData, data: combinedData };
+      } 
     else
     {
       console.error("Expected 'message' to be an Array but got:", data?.message);
@@ -62,9 +70,14 @@ export const loadList = async (backendUrl) =>
 
     const data = await response.json();
     console.log('Parsed Data:', data);
-    if (data?.data && typeof data.data === 'Object')
+    console.log(typeof data);
+    if (data?.data && typeof data.data === 'object')
     {
       return { message: data.message, data: data.data };
+    }
+    else if (data?.message && typeof data.message === 'object')
+    {
+      return { message: data.message, data: data.message };
     }
     else
     {

@@ -75,6 +75,7 @@ function ReviewBusiness() {
                 const review = await loadList(`${BACKEND_URL}/api/AddBusiness/getNewBusiness?kvk=${id}`);
                 
                 if (review?.data) {
+                  console.log(review.data);
                   // Request toevoegen aan requests
                   setNewRequests((prevRequests) => [...prevRequests, review.data]);
                   // Laden uitzetten requests
@@ -104,7 +105,7 @@ function ReviewBusiness() {
       if (loading) {
         return (
           <div className="loading-screen">
-            <p>Loading new requests...</p>
+            <p>Laden van niewe verzoeken...</p>
           </div>
         );
       }
@@ -121,7 +122,7 @@ function ReviewBusiness() {
         <>
             <GeneralHeader />
             <div className="body">
-            <h1>New Requests</h1>
+            <h1>Nieuwe verzoeken</h1>
             <div className="requests-box">
                 {newRequests.length > 0 ? (
                 <div className="requests-grid">
@@ -151,7 +152,7 @@ function ReviewBusiness() {
                     })}
                 </div>
                 ) : (
-                <p>No new requests found.</p>
+                <p>Geen nieuwe verzoeken gevonden.</p>
                 )}
             </div>
             </div>
