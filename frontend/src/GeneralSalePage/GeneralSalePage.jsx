@@ -244,8 +244,8 @@ function GeneralSalePage() {
             console.error(error.message);
             alert('Error deleting vehicle');
         }
-    }, [isEmployee, filter]); // Trigger fetching when `isEmployee` or `filter` changes
-*/
+    }
+
     useEffect(() => {
         fetch('http://localhost:5165/api/Login/CheckSessionStaff', { credentials: 'include' })
             .then(response => {
