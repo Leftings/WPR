@@ -493,6 +493,7 @@ public class EmployeeRepository : IEmployeeRepository
             using (var connection = _connector.CreateDbConnection())
             using (var command = new MySqlCommand(query, (MySqlConnection)connection))
             {
+                Console.WriteLine(id);
                 // De parameters worden ingevuld
                 command.Parameters.AddWithValue("@S", status);
                 command.Parameters.AddWithValue("@I", id);

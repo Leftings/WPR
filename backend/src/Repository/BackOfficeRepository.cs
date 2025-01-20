@@ -58,6 +58,14 @@ public class BackOfficeRepository(Connector connector) : IBackOfficeRepository
                                             row.Add(item.Key, item.Value);
                                         }
                                     }
+
+                                    foreach (var item in GetBusinessInfo(columnData))
+                                    {
+                                        if (!row.ContainsKey(item.Key))
+                                        {
+                                            row.Add(item.Key, item.Value);
+                                        }
+                                    }
                                 }
                                 else
                                 {
