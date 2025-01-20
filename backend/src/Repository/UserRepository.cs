@@ -567,7 +567,7 @@ public class UserRepository : IUserRepository
     {
         try
         {
-            string query = "SELECT ID FROM Customer WHERE ID = @id AND AccountType != 'Private'"; //Geef customer met gegeven id als hij NIET een particulier is.
+            string query = "SELECT ID FROM Customer WHERE ID = @id AND AccountType = 'Business'"; //Geef customer met gegeven id als hij NIET een particulier is.
 
 
             // Er wordt een connectie aangemaakt met de DataBase met bovenstaande query 
@@ -675,6 +675,20 @@ public class UserRepository : IUserRepository
             else
             {
                 return (true, "Valid Details");
+            }
+        }
+        else
+        {
+            DomainEmailChecker domainEmailChecker = new DomainEmailChecker(_connector);
+            (bool Found, int KvK) checkDomain = await domainEmailChecker.DomainExists(customer.Email);
+
+            if (!checkDomain.Found)
+            {
+                return (false, "Domain does not exists");
+            }
+            else
+            {
+                customer.KvK = checkDomain.KvK;
             }
         }
         

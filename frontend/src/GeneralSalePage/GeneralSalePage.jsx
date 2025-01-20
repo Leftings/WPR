@@ -361,7 +361,7 @@ function GeneralSalePage() {
                 <h2 className="filter-bar-title">
                     Filters
                     <span className="filter-bar-exit" onClick={toggleFilters}><i className="fas fa-times"/></span></h2>
-                <hr/>
+                    <hr/>
                 {!isEmployee && (
                     <>
                     <div className="filter-section">
@@ -386,9 +386,9 @@ function GeneralSalePage() {
                             </div>
                         )}
                     </div>
+                    <hr/>
                     </>
                     )}
-                <hr/>
 
 
                 {filters.vehicleTypes.length > 0 && availableBrands.length > 0 && (
