@@ -208,6 +208,18 @@ function GeneralSalePage() {
 
         checkIfEmployee();
     }, []);
+
+    useEffect(() => {
+        fetch('http://localhost:5165/api/Login/CheckSessionStaff', {credentials: 'include'})
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Not a staff member');
+                }
+                return response.json();
+            })
+            .then(() => setIsStaff(true))
+            .catch(() => setIsStaff(false));
+    }, []);
     
     useEffect(() => {
         fetch('http://localhost:5165/api/Login/CheckSessionStaff', { credentials: 'include' })
