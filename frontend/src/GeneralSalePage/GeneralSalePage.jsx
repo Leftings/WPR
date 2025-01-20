@@ -7,7 +7,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import { sorter, sorterArray, sorterOneItem, sorterOneItemNumber } from '../utils/sorter.js';
 import 'react-toastify/dist/ReactToastify.css';
 import "react-datepicker/dist/react-datepicker.css";
-import "../index.css";
+import './GeneralSalePage.css';
 
 const BACKEND_URL = import.meta.env.VITE_REACT_APP_BACKEND_URL ?? 'http://localhost:5165';
 function GetVehicle(id) {
@@ -546,7 +546,7 @@ function GeneralSalePage() {
                                                 }
                                             }}
                                         >
-                                            Huur
+                                            Rent Now
                                         </Link>
                                         {isStaff && (
                                             <button

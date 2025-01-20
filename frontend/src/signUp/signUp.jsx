@@ -67,7 +67,7 @@ function SignUp() {
                 {
                     formData.append('SignUpRequestCustomer.Email', email);
                     formData.append('SignUpRequestCustomer.AccountType', chosenType);
-                    formData.append('SignUpRequestCustomerPrivate.Password', password1);
+                    formData.append('SignUpRequestCustomer.Password', password1);
                     formData.append('SignUpRequestCustomerPrivate.FirstName', firstName);
                     formData.append('SignUpRequestCustomerPrivate.LastName', lastName);
                     formData.append('SignUpRequestCustomerPrivate.TelNumber', phonenumber);

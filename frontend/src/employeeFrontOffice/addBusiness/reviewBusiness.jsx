@@ -75,6 +75,7 @@ function ReviewBusiness() {
                 const review = await loadList(`${BACKEND_URL}/api/AddBusiness/getNewBusiness?kvk=${id}`);
                 
                 if (review?.data) {
+                  console.log(review.data);
                   // Request toevoegen aan requests
                   setNewRequests((prevRequests) => [...prevRequests, review.data]);
                   // Laden uitzetten requests

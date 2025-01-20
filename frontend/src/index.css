@@ -571,6 +571,8 @@ margin-right: 20px;
   text-decoration: none;
   border-radius: 5px;
   transition: background-color 0.3s;
+  text-align: center;
+  display: block;
 }
 
 .abonnementen-info .cta-button:hover {
