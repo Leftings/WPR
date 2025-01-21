@@ -38,6 +38,7 @@ function GetReview(id) {
 }
 
 function SetStatus(id, status, setNewRequests) {
+  console.log(id);
   // Status zetten op accepteren of weigeren
   return fetch(`${BACKEND_URL}/api/AcceptHireRequest/answerHireRequest`, {
     method: 'PATCH',
@@ -58,7 +59,7 @@ function SetStatus(id, status, setNewRequests) {
       return response.json();
     })
   .then(() => {
-      setNewRequests((prevRequests) => prevRequests.filter((request) => request.ID !== id));
+      setNewRequests((prevRequests) => prevRequests.filter((request) => request.OrderId !== id));
     })  
   .catch((error) => {
     console.error(error);
@@ -184,18 +185,15 @@ function ReviewHireRequest() {
                       </div>
                     ) : (
                       <>
-                        <p><strong>Naam:</strong> {request.FirstName} {request.LastName}</p>
-                        <p><strong>Adres:</strong> {request.Adres}</p>
                         <p><strong>Email:</strong> {request.Email}</p>
-                        <p><strong>Tel Num:</strong> {request.TelNum}</p>
                         <p><strong>Voertuig:</strong> {request.Brand} {request.Type}</p>
                         <p><strong>Nr Plaat:</strong> {typeof request.LicensePlate === 'string' && request.LicensePlate !== '' ? request.LicensePlate : 'N/A'}</p>
                         <p><strong>Start Datum:</strong> {new Date(request.StartDate).toLocaleDateString()}</p>
                         <p><strong>Eind Datum:</strong> {new Date(request.EndDate).toLocaleDateString()}</p>
                         <p><strong>Totaal Prijs:</strong> €{request.Price}</p>
                         <div id="buttons">
-                          <button className="accept" onClick={() => SetStatus(request.ID, 'accepted', setNewRequests)}>Accepteren</button>
-                          <button className="deny" onClick={() => SetStatus(request.ID, 'denied', setNewRequests)}>Weigeren</button>
+                          <button className="accept" onClick={() => {SetStatus(request.OrderId, 'accepted', setNewRequests); console.log(request)}}>Accepteren</button>
+                          <button className="deny" onClick={() => SetStatus(request.OrderId, 'denied', setNewRequests)}>Weigeren</button>
                         </div>
                       </>
                     )}

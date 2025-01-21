@@ -42,6 +42,7 @@ function VehicleManager() {
         
         <div className='officeLinks'>
           <Link to="./reviewHireRequest">Huur aanvragen beheren</Link>
+          <Link to="./changeBusinessSettings">Aanpassen Bedrijfsaccounts</Link>
         </div>
       </div>
 

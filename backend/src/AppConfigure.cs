@@ -164,26 +164,13 @@ public class AppConfigure
 
     var app = builder.Build();
 
-    if (app.Environment.IsProduction())
-    {
-        app.UseCors("AllowProduction");
-    }
-    else
-    {
-        if (app.Environment.IsDevelopment())
-        {
-            app.UseSwagger();
-            app.UseSwaggerUI(c =>
-            {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
-                c.RoutePrefix = string.Empty;
-            });
-        }
-        app.UseCors("AllowLocalhost");
-    }
-
+    app.UseSwagger();
+    app.UseSwaggerUI(c => {
+        c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+        c.RoutePrefix = string.Empty;
+    });
     app.UseCors("AllowSpecificOrigins");
-    /* app.UseHttpsRedirection(); */
+    app.UseHttpsRedirection();
     app.MapControllers();
     app.UseAuthorization();
     app.UseAuthentication();

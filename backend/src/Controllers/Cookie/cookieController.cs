@@ -177,14 +177,14 @@ public class CookieController : ControllerBase
     {
         string? loginCookie2 = HttpContext.Request.Cookies["LoginVehicleManagerSession"];
 
-        string decryptedCookie = _crypt.Decrypt(loginCookie2);
+        Console.WriteLine(_crypt.Decrypt(loginCookie2));
 
 
         try
         {
             if (!string.IsNullOrEmpty(loginCookie2))
             {
-                return Ok(true);
+                return Ok(new {data = _crypt.Decrypt(loginCookie2)});
             }
 
             return BadRequest(new { message = "No Cookie" });
