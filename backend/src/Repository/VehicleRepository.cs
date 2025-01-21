@@ -5,7 +5,7 @@ using Microsoft.VisualBasic;
 using MySql.Data.MySqlClient;
 using Org.BouncyCastle.Asn1.Mozilla;
 using Org.BouncyCastle.Bcpg;
-using WPR.Controllers.Rental;
+using WPR.Controllers.Customer.Rental;
 using WPR.Cryption;
 using WPR.Database;
 using WPR.Services;
@@ -614,5 +614,4 @@ public class VehicleRepository : IVehicleRepository
             return (false, "Unexpected error: " + ex.Message);
         }
     }
-
 }

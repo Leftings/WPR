@@ -3,11 +3,11 @@ using WPR.Hashing;
 using Microsoft.VisualBasic;
 using MySql.Data.MySqlClient;
 using MySqlX.XDevAPI.Relational;
-using WPR.Controllers.AddBusiness;
 using System.Reflection.Metadata.Ecma335;
 using System.Threading.Tasks;
 using WPR.Services;
-using WPR.Controllers.signUpStaff;
+using WPR.Controllers.Employee.BackOffice.signUpStaff;
+using WPR.Controllers.Customer.AddBusiness;
 
 namespace WPR.Repository;
 

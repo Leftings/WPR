@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.Extensions.Options;
 using Microsoft.VisualBasic;
 using Org.BouncyCastle.Crypto.Prng;
-using WPR.Controllers.Cookie;
 using WPR.Cryption;
 using WPR.Data;
 using WPR.Database;
@@ -12,6 +11,7 @@ using WPR.Repository;
 using WPR.Hashing;
 using System.Net;
 using WPR.Services;
+using WPR.Controllers.General.Cookie;
 
 namespace WPR;
 
