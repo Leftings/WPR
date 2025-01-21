@@ -1,4 +1,5 @@
 ﻿using System.Data;
+using WPR.Controllers.ChangeBusinessSettings;
 using WPR.Controllers.SignUp;
 
 namespace WPR.Repository;
@@ -28,4 +29,5 @@ public interface IUserRepository
     Task<(bool status, string message)> GetKindEmployeeAsync(string userId);
     Task<(bool Status, string Message)> AddPersonalCustomer(SignUpRequest request);
     Task<(int StatusCode, string Message)> AddCustomer(SignUpRequestCustomer request, SignUpRequestCustomerPrivate privateRequest);
+    Task<(int StatusCode, string Message)> ChangeBusinessInfo(ChangeBusinessRequest request);
 }

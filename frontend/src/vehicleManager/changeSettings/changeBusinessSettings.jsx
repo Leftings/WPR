@@ -2,13 +2,16 @@ import React, { useState, useEffect } from 'react';
 import {Await, Link, Navigate, useNavigate} from 'react-router-dom';
 import GeneralHeader from "../../GeneralBlocks/header/header.jsx";
 import GeneralFooter from "../../GeneralBlocks/footer/footer.jsx";
+import { pushWithBodyKind } from '../../utils/backendPusher.js';
 
 //import './userSettings.css';
 import '../../index.css';
 
+const BACKEND_URL = import.meta.env.VITE_REACT_APP_BACKEND_URL ?? 'http://localhost:5165';
+
 function GetUser(setUser)
 {
-  fetch('http://localhost:5165/api/Cookie/GetUserName', {
+  fetch(`${BACKEND_URL}/api/Cookie/GetUserName`, {
     method: 'GET',
     headers: {
         'Content-Type': 'application/json', 
@@ -56,37 +59,9 @@ function GetUserId() {
   });
 }
 
-
-function ChangeUserInfo(userData) {
-  return fetch('http://localhost:5165/api/ChangeUserSettings/ChangeUserInfo', {
-    method: 'PUT',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(userData),
-    credentials: 'include',
-  })
-    .then(async (response) => {
-      const data = await response.json(); 
-      if (!response.ok)
-      {
-        if (data.message !== 'Email detected')
-        {
-          throw new Error("Unknown error");
-        }
-      }
-
-      return data.message;
-    })
-    .catch((error) => {
-      console.error(error);
-      throw error;
-    });
-}
-
 function DeleteUser(userId) {
     const encryptedUserId = encrypt(userId)
-    return fetch(`http://localhost:5165/api/ChangeUserSettings/DeleteUser/${encryptedUserId}`, {
+    return fetch(`${BACKEND_URL}/api/ChangeUserSettings/DeleteUser/${encryptedUserId}`, {
         method: 'DELETE',
         headers: {
             'Content-Type': 'application/json'},
@@ -107,18 +82,15 @@ function DeleteUser(userId) {
 
 function ChangeBusinessSettings() {
   const navigate = useNavigate();
-  const [user, setUser] = useState('');
-  const [email, setEmail] = useState('');
-  const [adres, setAdres] = useState('');
-  const [phonenumber, setPhonenumber] = useState('');
-  const [firstName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('');
   const [password1, setPassword1] = useState('');
   const [password2, setPassword2] = useState('');
   const [error, setError] = useState(null);
+  const [businessName, setBusinessName] = useState('');
+  const [abonnement, setAbonnement] = useState('');
+  const [businessInfo, setBusinessInfo] = useState([]);
 
   useEffect(() => {
-      fetch('http://localhost:5165/api/Cookie/IsVehicleManager', {
+      fetch(`${BACKEND_URL}/api/Cookie/GetUserId`, {
           method: 'GET',
           headers: {
               'Content-Type': 'application/json',
@@ -130,9 +102,6 @@ function ChangeBusinessSettings() {
                   throw new Error('No Cookie');
               }
               return response.json();
-          })
-          .then(() => {
-              GetUser(setUser);
           })
           .catch(() => {
               navigate('/');
@@ -147,26 +116,22 @@ function ChangeBusinessSettings() {
       {
         const userId = await GetUserId();
 
-        const userData = {
-          ID: userId,
-          Email: email,
-          Password: password1,
-          FirstName: firstName,
-          LastName: lastName,
-          TelNum: phonenumber,
-          Adres: adres,
+        const data = {
+          VehicleManagerInfo: {
+            ID: Number(userId),
+            Password: password1,
+          },
+          BusinessInfo: {
+            KvK: 0,
+            Abonnement: Number(abonnement),
+          },
         };
 
-        const message = await ChangeUserInfo(userData);
+        const message = await pushWithBodyKind(`${BACKEND_URL}/api/ChangeBusinessSettings/ChangeBusinessInfo`, data, 'PUT').message;
 
-        if (firstName !== '')
+        if (message === 'succes')
         {
-          GetUser(setUser);
-        }
-
-        if (message === 'Data Updated')
-        {
-          navigate('/home');
+          navigate('/VehicleManager');
         }
         else
         {
@@ -176,27 +141,17 @@ function ChangeBusinessSettings() {
     }
     catch (error)
     {
-      setError("Er zijn geen velden ingevoerd");
+      console.log(error.message);
+      setError("Er is een fout opgetreden bij het wijzigen van de gegevens");
     }
   }
-  
-  useEffect(() => {
-      GetUserId()
-          .then((id) => {
-              setUser(id);
-              GetUser(setUser);
-          })
-          .catch(() => {
-              navigate('/');
-          });
-  }, [navigate]);
 
   const handleDelete = async () => {
       const confirmDelete = window.confirm('Are you sure you want to delete your account?');
       if (!confirmDelete) return;
 
       try {
-          const response = await fetch('http://localhost:5165/api/ChangeUserSettings/DeleteUser', {
+          const response = await fetch(`${BACKEND_URL}/api/ChangeUserSettings/DeleteUser`, {
               method: 'DELETE',
               credentials: 'include', // Include the cookie
           });
@@ -213,6 +168,13 @@ function ChangeBusinessSettings() {
       }
   };
 
+  /*useEffect(() => {
+    try
+    {
+      const response = await (fetch)
+    }
+  }, [])*/
+
   return (
     <>
     <GeneralHeader />
@@ -223,38 +185,27 @@ function ChangeBusinessSettings() {
         </div>
 
         <div className='registrateFormat'>
-            <label htmlFor="firstName">Voornaam</label>
-            <input type="text" id="firstName" value={firstName}
-                onChange={(e) => setFirstName(e.target.value)}></input>
+            <label htmlFor='inputBusinessName'>Wijzigen Bedrijfsnaam</label>
+            <input type='text' id='inputBusinessName' value={businessName} onChange={(e) => setBusinessName(e.target.value)}></input>
 
-            <label htmlFor="lastName">Achternaam</label>
-            <input type="text" id="lastName" value={lastName}
-                onChange={(e) => setLastName(e.target.value)}></input>
+            <label htmlFor='inputAbonnement'>Abonnement wijzigen</label>
+            <select id='inputAbonnement' value={abonnement} onChange={(e) => setAbonnement(e.target.value)}>
+              <option value=''>Kies een abonnement</option>
+              <option value={1}>Pay As You Go</option>
+              <option value={2}>Standaard Abonnement</option>
+            </select>
 
-            <label htmlFor="email">E-mail</label>
-            <input type="text" id="email" value={email}
-                    onChange={(e) => setEmail(e.target.value)}></input>
+            <label htmlFor='inputChangePassword'>Wachtwoord</label>
+            <input type='password' id='inputChangePassword' value={password1} onChange={(e) => setPassword1(e.target.value)}></input>
 
-            <label htmlFor="adres">Adres</label>
-            <input type="text" id="adres" value={adres}
-                    onChange={(e) => setAdres(e.target.value)}></input>
-
-            <label htmlFor="phonenumber">Telefoonnummer</label>
-            <input type="tel" id="phonenumber" value={phonenumber}
-                    onChange={(e) => setPhonenumber(e.target.value)}></input>
-
-            <label htmlFor="password">Wachtwoord</label>
-            <input type="password" id="password" value={password1}
-                    onChange={(e) => setPassword1(e.target.value)}></input>
-
-            <label htmlFor="passwordConfirm">Herhaal wachtwoord</label>
-            <input type="password" id="passwordConfirm" value={password2}
-                    onChange={(e) => setPassword2(e.target.value)}></input>
+            <label htmlFor='inputPasswordConfirm'>Herhaal wachtwoord</label>
+            <input type='password' id='inputPasswordConfirm' value={password2} onChange={(e) => setPassword2(e.target.value)}></input>
+          
 
             <div className='registrateFormatFooter'>
                 {error && <p style={{color: 'red'}}>{error}</p>}
-                <button className='cta-button' type="button" onClick={onSubmit}>Opslaan</button>
-                <button id="buttonDelete" type="button" onClick={handleDelete}>Delete account</button>
+                <button className='cta-button' type="button" onClick={onSubmit}>Opslaan wijzigingen</button>
+                <button id="buttonDelete" type="button" onClick={handleDelete}>Verwijderen Bedrijfs Account</button>
             </div>
         </div>
       </div>
