@@ -1023,7 +1023,7 @@ public class UserRepository : IUserRepository
         }
     }
 
-    private string CreateUpdateQuery (string tabel, IList<object[]> data)
+    /*private string CreateUpdateQuery (string tabel, IList<object[]> data)
     {
         string query = $"UPDATE {tabel}";
 
@@ -1188,4 +1188,5 @@ public class UserRepository : IUserRepository
             return (500, ex.Message);
         }
     }
+    */
 }
