@@ -1,18 +1,17 @@
 ﻿using System.Data;
 using Microsoft.AspNetCore.Mvc;
 using MySql.Data.MySqlClient;
-using WPR.Controllers.Cookie;
 using WPR.Database;
 using Microsoft.AspNetCore.Http.HttpResults;
 using WPR.Utils;
 using WPR.Hashing;
 using Org.BouncyCastle.Crypto.Prng;
 using WPR.Cryption;
-using WPR.Controllers.SignUp;
 using System.Threading.Tasks;
 using System.Transactions;
-using WPR.Controllers.ChangeBusinessSettings;
 using Microsoft.VisualBasic;
+using WPR.Controllers.General.SignUp;
+using WPR.Controllers.Employee.VehicleManager.ChangeBusinessSettings;
 
 namespace WPR.Repository;
 

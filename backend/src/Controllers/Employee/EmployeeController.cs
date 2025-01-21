@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using WPR.Controllers.Cookie;
+using WPR.Controllers.General.Cookie;
 using WPR.Cryption;
 using WPR.Database;
 using WPR.Repository;

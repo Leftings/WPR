@@ -1,6 +1,6 @@
 ﻿using System.Data;
-using WPR.Controllers.ChangeBusinessSettings;
-using WPR.Controllers.SignUp;
+using WPR.Controllers.Employee.VehicleManager.ChangeBusinessSettings;
+using WPR.Controllers.General.SignUp;
 
 namespace WPR.Repository;
 
