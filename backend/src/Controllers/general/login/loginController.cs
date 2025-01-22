@@ -140,11 +140,36 @@ public class LoginController : ControllerBase
     public async Task<IActionResult> CheckSessionStaff()
     {
         string sessionValue = Request.Cookies["LoginEmployeeSession"];
-        
+    
         if (!string.IsNullOrEmpty(sessionValue))
         {
-            return Ok( new {message = "session active ", sessionValue});
+            try
+            {
+                // Decrypt sessionValue to get the userId
+                string userId = _crypt.Decrypt(sessionValue);
+
+                // Retrieve the office type from the database
+                (bool status, string message, string officeType) employeeInfo = await _userRepository.GetKindEmployeeAsync(userId);
+
+                if (employeeInfo.status)
+                {
+                    // Return officeType along with the session status
+                    return Ok(new 
+                    {
+                        message = "Session active",
+                        sessionValue,
+                        officeType = employeeInfo.officeType
+                    });
+                }
+
+                return Unauthorized(new { message = "Session active but office type not found" });
+            }
+            catch
+            {
+                return Unauthorized(new { message = "Session is invalid or cannot be decrypted" });
+            }
         }
+
         return Unauthorized(new { message = "Session expired or is not found" });
     }
 
