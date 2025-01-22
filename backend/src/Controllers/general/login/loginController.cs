@@ -145,15 +145,12 @@ public class LoginController : ControllerBase
         {
             try
             {
-                // Decrypt sessionValue to get the userId
                 string userId = _crypt.Decrypt(sessionValue);
 
-                // Retrieve the office type from the database
                 (bool status, string message, string officeType) employeeInfo = await _userRepository.GetKindEmployeeAsync(userId);
 
                 if (employeeInfo.status)
                 {
-                    // Return officeType along with the session status
                     return Ok(new 
                     {
                         message = "Session active",

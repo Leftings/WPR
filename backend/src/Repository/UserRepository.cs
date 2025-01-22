@@ -501,18 +501,17 @@ public class UserRepository : IUserRepository
     {
         string query = "SELECT Office FROM Staff WHERE ID = @I";
 
-        // Connect to the database
+        // Connect met de database
         using (var connection = _connector.CreateDbConnection())
         using (var command = new MySqlCommand(query, (MySqlConnection)connection))
         {
             command.Parameters.AddWithValue("@I", userId);
 
-            // Execute the query
             var result = await command.ExecuteScalarAsync();
 
             if (result != null)
             {
-                // Get the office type (Front or Back)
+                // krijg het office type binnen
                 string officeType = result.ToString();
                 string message = $"Employee is assigned to {officeType}";
 
