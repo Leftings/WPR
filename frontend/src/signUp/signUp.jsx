@@ -22,7 +22,8 @@ function SignUp() {
     const [password1, setPassword1] = useState('');
     const [password2, setPassword2] = useState('');
     const navigate = useNavigate();
-    const [subscription, SetSubscription] = useState('');
+    const [subscriptions, SetSubscriptions] = useState([]);
+    const [selectedSubscription, SetSelectedSubscription] = useState('');
     const [name, SetName] = useState('');
     const [kvk, SetKvk] = useState('');
     const [street, SetStreet] = useState('');
@@ -38,6 +39,25 @@ function SignUp() {
         setChosenType(buttonId);
     };
     
+    useEffect(() => {
+        async function fetchSubscriptions() {
+            try {
+                const response = await  fetch(`${BACKEND_URL}/api/Subscription/GetSubscriptions`)
+                if (!response.ok) {
+                    throw new Error('Failed to fetch subcriptions')
+                }
+                const responseData = await response.json();
+                console.log(responseData)
+                SetSubscriptions(responseData.data);
+            } catch (error) {
+                console.log(error);
+            }
+        }
+        
+        fetchSubscriptions();
+    }, []);
+    
+    
     async function Push()
     {
         let validationErrors = [];
@@ -50,7 +70,7 @@ function SignUp() {
         {
             if (isBusinessAccount === 'Business')
             {
-                validationErrors = EmptyFieldChecker({ subscription, name, kvk, street, number, domain, contactEmail });
+                validationErrors = EmptyFieldChecker({ subscription: selectedSubscription, name, kvk, street, number, domain, contactEmail });
 
                 if (kvk.length < 8)
                 {
@@ -90,7 +110,7 @@ function SignUp() {
                 {
                     if (isBusinessAccount === 'Business')
                     {
-                        formData.append('Subscription', subscription)
+                        formData.append('Subscription', selectedSubscription)
                         formData.append('KvK', kvk);
                         formData.append('Name', name);
                         formData.append('Adress', `${street} ${number}${add}`);
@@ -219,13 +239,23 @@ function SignUp() {
                                 </>
                             )}
                             <label htmlFor='inputSubscriptionType'>Abonnement</label>
-                            <input id='inputSubscriptionType' value={subscription} onChange={(e) = > SetSubscription(e.traget.value)}></input>
-                            
+                            <select id='inputSubscriptionType' value={selectedSubscription}
+                                    onChange={(e) => SetSelectedSubscription(e.target.value)}>
+                                <option value="">Selecteer een abonnement</option>
+                                {subscriptions.map((sub, index) => (
+                                    <option key={index} value={sub}>
+                                        {sub}
+                                    </option>
+                                ))}
+                            </select>
+
                             <label htmlFor='inputBusinessName'>Bedrijfsnaam</label>
-                            <input id='inputBusinessName' value={name} onChange={(e) => SetName(e.target.value)}></input>
-    
+                            <input id='inputBusinessName' value={name}
+                                   onChange={(e) => SetName(e.target.value)}></input>
+
                             <label htmlFor='inputKvK'>KvK</label>
-                            <input id='inputKvK'value={kvk} onChange={(e) => SetKvk(KvKChecker(NumberCheck(e.target.value)))}></input>
+                            <input id='inputKvK' value={kvk}
+                                   onChange={(e) => SetKvk(KvKChecker(NumberCheck(e.target.value)))}></input>
     
                             <label htmlFor='inputDomain'>Domein naam</label>
                             <input id='inputDomain' value={domain} onChange={(e) => SetDomain(e.target.value.toLowerCase())} placeholder='@example.nl'></input>

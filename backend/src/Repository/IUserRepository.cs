@@ -30,4 +30,5 @@ public interface IUserRepository
     Task<(bool Status, string Message)> AddPersonalCustomer(SignUpRequest request);
     Task<(int StatusCode, string Message)> AddCustomer(SignUpRequestCustomer request, SignUpRequestCustomerPrivate privateRequest);
     Task<(int StatusCode, string Message)> ChangeBusinessInfo(ChangeBusinessRequest request);
+    Task<List<string>> GetAllSubscriptionsAsync();
 }
