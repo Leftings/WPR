@@ -444,6 +444,7 @@ public class UserRepository : IUserRepository
     /// </summary>
     /// <param name="data"></param>
     /// <returns></returns>
+
     private async Task<(bool goodQuery, string message)> CreateUserInfoQuery(List<object[]> data)
     {
         int lengthList = data.Count(); // De lengte voor de loopt wordt vastgesteld
