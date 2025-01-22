@@ -1043,6 +1043,41 @@ public class UserRepository : IUserRepository
         }
     }
 
+    public async Task<List<string>> GetAllSubscriptionsAsync()
+    {
+        try
+        {
+            string query = "SELECT Type FROM Abonnement";
+
+            using (var connection = _connector.CreateDbConnection())
+            using (var command = new MySqlCommand(query, (MySqlConnection)_connector.CreateDbConnection()))
+            using (var reader = await command.ExecuteReaderAsync())
+            {
+                var subscriptions = new List<string>();
+                
+                while (await reader.ReadAsync())
+                {
+                    subscriptions.Add((string)reader.GetValue(0));
+                }
+
+                return subscriptions;
+            }
+        }
+        catch (MySqlException e)
+        {
+            Console.WriteLine(e.Message);
+            return null;
+        }
+        
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            return null;
+        }
+    }
+    
+    
+    
     
 
     /*private string CreateUpdateQuery (string tabel, IList<object[]> data)

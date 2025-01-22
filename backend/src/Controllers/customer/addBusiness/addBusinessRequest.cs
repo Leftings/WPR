@@ -7,6 +7,7 @@ namespace WPR.Controllers.Customer.AddBusiness;
 /// </summary>
 public class AddBusinessRequest()
 {
+    [Required] public string? Subscription { get; set; }
     [Required]
     public int KvK { get; set; }
     [Required]
