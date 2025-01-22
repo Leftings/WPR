@@ -1,4 +1,6 @@
 ﻿using System.Data;
+using WPR.Controllers.Employee.VehicleManager.ChangeBusinessSettings;
+using WPR.Controllers.General.SignUp;
 
 namespace WPR.Repository;
 
@@ -13,14 +15,19 @@ namespace WPR.Repository;
 public interface IUserRepository
 {
 
-    Task<bool> ValidateUserAsync(string username, string password, bool isEmployee);
+    Task<bool> ValidateUserAsync(string username, string password, string userType);
     Task<(bool status, string message)> checkUsageEmailAsync(string email);
     Task<(bool status, string message, int newUserID)> addCustomerAsync(Object[] personData);
     Task<(bool status, string message)> addPersonalCustomerAsync(Object[] personalData);
     Task<(bool status, string message)> addEmployeeCustomerAsync(Object[] employeeData);
-    Task<int> GetUserIdAsync(string email);
+    Task<string> GetUserIdAsync(string email, string table);
     Task<string> GetUserNameAsync(string userId);
     Task<(bool status, string message)> EditUserInfoAsync(List<object[]> data);
     Task<bool> IsKvkNumberAsync(int kvkNumber);
-    Task<(bool status, string message)> DeleteUserAsync(int userId);
+    Task<bool> IsUserEmployee(int id);
+    Task<(bool status, string message)> DeleteUserAsync(string userId);
+    Task<(bool status, string message)> GetKindEmployeeAsync(string userId);
+    Task<(bool Status, string Message)> AddPersonalCustomer(SignUpRequest request);
+    Task<(int StatusCode, string Message)> AddCustomer(SignUpRequestCustomer request, SignUpRequestCustomerPrivate privateRequest);
+    Task<(int StatusCode, string Message)> ChangeBusinessInfo(ChangeBusinessRequest request);
 }

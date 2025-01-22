@@ -1,11 +1,4 @@
-html, body
-{
-  margin: 0;
-  padding: 0;
-  height: 100%;
-  width: 100%;
-}
-
+/* Index */
 #root
 {
   width: 100%; 
@@ -25,30 +18,6 @@ a:hover {
   color: #535bf2;
 }
 
-body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
-}
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
 button:hover {
   border-color: #646cff;
 }
@@ -69,3 +38,2199 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+
+/* AbonnementUitlegPage */
+.abonnementen-features {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  padding: 40px 20px;
+}
+
+.abonnementen-card {
+  background: #f9f9f9;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  flex: 1;
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.abonnementen-card h3 {
+  font-size: 1.5rem;
+  color: #1D7874;
+  margin-bottom: 10px;
+}
+
+.abonnementen-card p {
+  font-size: 1rem;
+  color: #555;
+  margin-bottom: 20px;
+  line-height: 1.6;
+}
+
+/* CarRentalOverview */
+#button:hover {
+  color:#1D7874;
+  background-color: white;
+}
+
+.heads,
+.rows {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  padding: 10px;
+  background-color: #f4f4f4;
+  border-bottom: 2px solid #ddd;
+}
+
+.heads div,
+.rows div {
+  padding: 10px;
+  gap: 0;
+  text-align: center;
+  position: relative;
+}
+
+.heads div:not(:last-child) {
+  border-right: 1px solid #000;
+}
+
+.rows div:not(:last-child) {
+  border-right: 1px solid #000;
+}
+
+.rows {
+  background-color: #f4f4f4;
+  transition: color, 0.3s;
+}
+
+.rows:hover {
+  background-color: #dbdbdb;
+}
+
+.heads {
+  background-color: #c4c4c4;
+}
+
+footer {
+  background-color: #333;
+  color: white;
+  text-align: center;
+  padding: 20px;
+  margin-top: auto;
+}
+
+@media (max-width: 768px) {
+  .features {
+      flex-direction: column;
+  }
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgb(0,0,0);
+  background-color: rgba(0,0,0,0.4);
+}
+
+.modal-content {
+  position: relative;
+  background-color: #fefefe;
+  margin: 15% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+  animation-name: animatetop;
+  animation-duration: 0.4s
+}
+
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+@keyframes animatetop {
+  from {top: -300px; opacity: 0}
+  to {top: 0; opacity: 1}
+}
+
+/* ConfirmationPage */
+.confirmation-page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: #f9f9f9;
+  color: #333;
+  font-family: Arial, sans-serif;
+}
+
+.title {
+  font-size: 2em;
+  color: #27ae60;
+  margin-bottom: 20px;
+}
+
+.confirmation-details {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin: 0 auto 20px;
+  max-width: 600px;
+  text-align: left;
+}
+
+.confirmation-details h3 {
+  font-size: 1.5em;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.confirmation-details p {
+  margin: 5px 0;
+  font-size: 1.1em;
+}
+
+.payment-section {
+  margin: 20px auto;
+  max-width: 600px;
+  text-align: center;
+}
+
+.qr-code-container {
+  margin: 20px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.qr-code {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+}
+
+.payment-note {
+  font-size: 0.9em;
+  color: #999;
+  margin-top: 10px;
+}
+
+.back-button {
+  padding: 10px 20px;
+  font-size: 1.2em;
+  color: #fff;
+  background-color: #27ae60;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 20px;
+  transition: background-color 0.3s ease;
+}
+
+.back-button:hover {
+  background-color: #2ecc71;
+}
+
+/* ReviewHireRequest & ReviewHireRequest & ViewRentalData */
+.requests-box {
+  border: 2px solid #ccc; 
+  padding: 20px;
+  background-color: #f9f9f9; 
+  border-radius: 8px;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  align-self: center;
+  margin: 0 auto;
+}
+
+.requests-grid {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 20px;
+}
+
+.request-card {
+  background-color: #fff;
+  padding: 15px;
+  border-radius: 8px; 
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+  max-width: 350px;
+  min-width: 350px;
+  text-align: center;
+}
+
+.request-card p {
+  margin: 5px 0;
+}
+
+.accept {
+  background-color: #1D7874;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.deny {
+  background-color: red;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#buttons {
+display: inline-flex;
+justify-content: space-between;
+gap: 25px;
+margin-top: 10px;
+}
+
+.request-card strong {
+  font-weight: bold;
+}
+
+@media (min-width: 1600px) {
+  .requests-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .requests-box {
+    width: 1600px;
+  }
+}
+@media (min-width: 1200px) and (max-width: 1599px) {
+  .requests-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .requests-box {
+    width: 1150px;
+  }
+}
+
+@media (min-width: 851px) and (max-width: 1199px) {
+  .requests-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .requests-box {
+    width: 800px;
+  }
+}
+
+@media (max-width: 850px) {
+  .requests-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .requests-box {
+    width: 350px;
+  }
+}
+
+
+.loading-screen {
+display: flex;
+justify-content: center;
+align-items: center;
+height: 100vh;
+font-size: 1.5em;
+}
+
+.loading-screen::before {
+content: '';
+border: 4px solid transparent;
+border-top: 4px solid #3498db;
+border-radius: 50%;
+width: 40px;
+height: 40px;
+animation: spin 1s linear infinite;
+margin-right: 20px;
+}
+
+@keyframes spin {
+0% { transform: rotate(0deg); }
+100% { transform: rotate(360deg); }
+}
+
+/* ViewRentalData (Extra) */
+.fullscreen-card-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.fullscreen-card {
+  background-color: #f0f0f0;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  max-width: 90%;
+  max-height: 90%;
+  overflow-y: auto;
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto auto auto;
+  grid-gap: 20px;
+  min-width: 350px;
+}
+
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #ff0000;
+  transition: color 0.3s ease;
+}
+
+.close-btn:hover {
+  color: #000;
+}
+
+.fullscreen-card h1 {
+  grid-column: 1 / span 2;
+  text-align: center;
+  margin: 0 0 20px;
+}
+
+.person, .vehicle, .rental, .business, .blob {
+  background-color: #fff;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  width: 350px;
+  height: 300px;
+}
+
+
+
+.blob img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+@media (max-width: 768px) {
+  .fullscreen-card {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto auto auto;
+  }
+
+  .fullscreen-card h1 {
+    grid-column: 1;
+  }
+
+  .blob {
+    grid-column: 1;
+  }
+}
+
+/* GeneralHeader */
+.hamburger-menu {
+  background: none;
+  position: relative;
+  border: none;
+  color: white;
+  font-size: 2.5rem;
+  cursor: pointer;
+  transition: color, 0.3s;
+  margin-right: 10px;
+}
+
+.hamburger-menu:hover {
+  color: #1D7874;
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+}
+
+  .logo-container:hover .logo {
+      color: #1D7874;
+  }
+
+  .logo-container:hover .logo-image {
+      content: url('assets/logo-green.svg'); /*On hover verandert logo kleur naar groen!*/
+  }
+
+.logo-image {
+  width: 50px;
+  height: 50px;
+  margin-right: 10px;
+}
+
+.cta-button:hover {
+  color: white;
+  background-color: #7C6C77;
+}
+
+@media (max-width: 768px) {
+  .nav-links {
+      margin: 0;
+      padding: 20px;
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      background-color: #555;
+      width: 100%;
+      color: white;
+      position: absolute;
+      left: 0;
+      z-index: 10;
+  }
+}
+
+/* Home */
+@keyframes fadeInUp {
+  0% {
+      opacity: 0;
+      transform: translateY(20px);
+  }
+  100% {
+      opacity: 1;
+      transform: translateY(0);
+  }
+}
+
+/* Abonnementen section */
+.abonnementen-info {
+  text-align: center;
+  margin-top: 40px;
+  padding: 40px 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.abonnementen-info h2 {
+  font-size: 2rem;
+  margin-bottom: 10px;
+  color: #1D7874;
+}
+
+.abonnementen-info p {
+  font-size: 1.2rem;
+  color: #555;
+  margin-bottom: 20px;
+}
+
+.abonnementen-info .cta-button {
+  background-color: #1D7874;
+  color: white;
+  padding: 10px 20px;
+  font-weight: bold;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+  text-align: center;
+  display: block;
+}
+
+.abonnementen-info .cta-button:hover {
+  background-color: #7C6C77;
+}
+
+@media (max-width: 768px) {
+  .features {
+      flex-direction: column;
+  }
+}
+
+/* IndividualSalePage */
+.car-detail-page {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding-top: 30px;
+  padding-bottom: 50px;
+  margin: 0; 
+  box-sizing: border-box; 
+}
+
+.car-detail-header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.car-name {
+  font-size: 2.5em;
+  color: #333;
+}
+
+.car-detail-content {
+  display: flex;
+  justify-content: center;
+  gap: 150px;
+  margin-top: 30px;
+  padding-left: 200px;
+}
+
+.car-detail-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.car-detail-info {
+  flex: 1;
+  text-align: left;
+}
+
+.car-detail-info h3 {
+  font-size: 1.8em;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.car-detail-info p {
+  font-size: 1.2em;
+  line-height: 1.5;
+  color: #555;
+}
+
+.car-actions {
+  display: flex;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.add-to-cart-button {
+  background-color: #f39c12;
+  color: white;
+  padding: 15px 30px;
+  font-size: 1.2em;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.add-to-cart-button:hover {
+  background-color: #f1c40f;
+}
+
+/* Login */
+header a {
+  color: #FFFF;  
+  text-decoration: none;  
+  font-weight: bold;
+  font-size: 18px; 
+  transition: color 0.3s;
+}
+
+header a:hover {
+  color: #1D7874; 
+}
+
+#carLink {
+  position: absolute;
+  top: 30px;
+  left: 20px;
+}
+
+#logo
+{
+  height: 7.5%;
+  width: auto;
+}
+
+#input
+{
+ text-align: center;
+ color: black;
+}
+
+input
+{
+  background-color: gray;
+}
+
+#inlog {
+  margin-top: 50px;
+  text-align: center;
+}
+
+select {
+  width: auto;
+  padding: 8px 12px;
+  margin: 10px 0;
+  border: 1px solid #1D7874;
+  border-radius: 8px;
+  background-color: #1D7874;
+  color: #FFFFFF;
+  font-size: 16px;
+  font-weight: normal;
+  text-align: center;
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+select:hover {
+  border-color: #16A085;
+  background-color: #16A085;
+  color: #FFFFFF;
+}
+
+select:focus {
+  outline: none;
+  border-color: #16A085;
+}
+
+option {
+  padding: 8px;
+  background-color: #FFFFFF;
+  color: #1D7874;
+  text-align: left;
+}
+
+/* PayPage */
+.car-image {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  max-height: 1000px;
+  transition: transform 0.3s ease-in-out;
+}
+
+.user-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 50%;
+  min-width: 300px;
+}
+
+.input-field {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1em;
+  box-sizing: border-box;
+}
+
+h3 {
+  color: #333;
+  font-size: 1.2em;
+}
+
+.total-cost {
+  margin-top: 20px;
+  font-size: 1.2em;
+  font-weight: bold;
+  color: #333;
+  margin-left: 5%;
+}
+
+.total-cost p {
+  font-size: 1.5em;
+  color: #e74c3c; 
+}
+
+.date-picker-container {
+  text-align: center; 
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+
+
+.date-picker-container .react-datepicker-wrapper {
+  display: inline-block;
+}
+
+.custom-select {
+  position: relative;
+  width: 200px;
+  font-family: Arial, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 3%;
+}
+
+.select-selected {
+  background-color: #f1f1f1;
+  color: #333;
+  padding: 10px;
+  border: 1px solid #ccc;
+  cursor: pointer;
+  border-radius: 4px;
+  font-size: 1em;
+  width: 100%;
+}
+
+.select-items {
+  position: absolute;
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  z-index: 99;
+  width: 100%;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  margin-top: 4px;
+}
+
+.select-items .select-option {
+  padding: 10px;
+  color: #333;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.select-items .select-option:hover {
+  background-color: #f0f0f0;
+}
+
+.same-as-selected {
+  font-weight: bold;
+  background-color: #e6e6e6;
+}
+
+.select-arrow-active {
+  border-color: transparent transparent #333 transparent;
+}
+
+@media (max-width: 768px) {
+  .buy-details {
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+  }
+
+  .car-info, .user-info {
+      width: 80%;
+      text-align: center;
+  }
+
+  .buy-button {
+      width: 100%;
+      max-width: 90%;
+  }
+}
+
+/* SignUp , UserSettings*/
+header Link {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+
+#aanmelden {
+  margin-top: 50px;
+  text-align: center;
+}
+
+#redirect {
+  color: #1D7874;
+  font-weight: bold;
+}
+
+/*
+#signUpInfo {
+
+}
+*/
+
+/* UserSettings (extra)*/
+#buttonDelete
+{
+  margin: 20px;
+  background-color: red;
+  color: white;
+  font-weight: bold;
+  transition: color 0.3s;
+  transition: background-color 0.3s;
+}
+#buttonDelete:hover {
+  color:red;
+  background-color: white;
+}
+
+/* TermsAndConditions */
+.title-primary {
+  font-size: 2rem;
+  font-weight: bold;
+  color: black;
+}
+
+.last-updated {
+  font-size: 1rem;
+  color: gray;
+  padding-left: 300px;
+}
+
+.section {
+  width: 100%;
+  max-width: 900px;
+  margin-bottom: 20px;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+li {
+  margin-bottom: 10px;
+}
+
+/*
+#signUpInfo {
+
+}
+*/
+/* ReviewHireRequest */
+@media (max-width: 1200px) {
+  .requests-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 900px) {
+  .requests-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .requests-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@keyframes spin {
+0% { transform: rotate(0deg); }
+100% { transform: rotate(360deg); }
+}
+
+/* WagenparkBeheerderOverzicht */
+@keyframes fadeInUp {
+  0% {
+      opacity: 0;
+      transform: translateY(20px);
+  }
+  100% {
+      opacity: 1;
+      transform: translateY(0);
+  }
+}
+
+.head, .row {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  gap: 10px;
+  padding: 15px;
+  margin-bottom: 10px;
+  border-radius: 15px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  animation: fadeInUp 0.2s ease-in-out forwards;
+  opacity: 0;
+}
+
+
+.row {
+  background-color: #fff;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+@media (max-width: 1024px) {
+  .head, .row {
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  }
+}
+
+/* Offices Main Pages */
+.officeLinks {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 20px 0;
+  gap: 15px;
+}
+
+.officeLinks a {
+  color: #002fff;
+  padding: 10px 20 px;
+  border-radius: 5px;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+/* Add Employee */
+.registrateFormat {
+  display: grid;
+  grid-template-columns: 1fr; /* Default: Single column */
+  margin: 0 auto;
+  background-color: #f8f8f8; 
+  border: 1px solid #ddd;
+  border-radius: 8px; 
+  padding: 20px; 
+  margin-bottom: 20px; 
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+  gap: 20px; /* Space between rows and columns */
+  width: 300px; /* Adjust for smaller screens */
+  position: relative;
+}
+
+.registrateFormat label {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.registrateFormatHeader {
+  grid-column: span 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+  text-align: center;
+  width: 100%;
+}
+
+.registrateFormatFooter {
+  grid-column: span 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+  text-align: center;
+  width: 100%;
+}
+
+.registrateFormatErrors {
+  position: absolute;
+  top: 20px; 
+  right: -350px; 
+  width: 250px; 
+  background-color: #f8d7da; 
+  color: #721c24; 
+  padding: 10px;
+  border: 1px solid #f5c6cb;
+  border-radius: 5px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+@media (max-width: 600px)
+{
+  .registrateFormat input {
+    width: 150px;
+  }
+  
+  .registrateFormat select {
+    width: 150px;
+  }
+
+  .registrateFormatErrors {
+    position: static;
+    width: 100%;
+    margin-top: 20px;
+  }
+}
+
+@media (min-width: 601px) {
+  .registrateFormat {
+    grid-template-columns: repeat(2, 1fr);
+    width: 500px; 
+  }
+  .registrateFormatFooter {
+    width: 400px;
+  }
+
+  .registrateFormat input {
+    width: 250px;
+  }
+  
+  .registrateFormat select {
+    width: 250px;
+  }
+
+  .registrateFormatErrors {
+    position: absolute;
+    top: 40px;
+    right: -350px; 
+    width: 250px;
+  }
+}
+
+@media (min-width: 1025px) {
+  .registrateFormat {
+    width: 675px;
+  }
+  .registrateFormatFooter {
+    width: 675px;
+  }
+
+  .registrateFormat input {
+    width: 300px;
+  }
+  
+  .registrateFormat select {
+    width: 300px;
+  }
+
+  .registrateFormatErrors {
+    position: absolute;
+    top: 200px;
+    right: -300px;
+    width: 250px;
+  }
+}
+
+/* Add business */
+
+/* Error-message: WagenparkBeheerderOverzicht, ChangeRental, PayPage, ConfirmationPage */
+
+/* WagenparkBeheerderOverzicht */
+.error-message {
+  color: #d9534f;
+  text-align: center;
+  font-size: 1.2em;
+  margin: 20px 0;
+  margin-top: 10px;
+  animation: fadeInUp 0.3s ease-in-out forwards;
+  opacity: 0;
+}
+
+/* PayPage
+.error-message {
+  color: red;
+  margin-top: 10px;
+}
+
+ConfirmationPage
+.error-message {
+  color: red;
+  margin: 20px;
+  text-align: center;
+}
+
+ChangeRental
+.error-message {
+  color: red;
+  margin-top: 10px;
+}
+  */
+
+/* Body: Index, CarRentalOverview, Home, AddBusiness, AddVehicle, GeneralHeader, IndividualSalesPage, Login,
+Signup, UserSettings
+
+/* Index 
+body
+{
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+}
+*/
+
+/* Index */
+body {
+  margin: 0;
+  display: flex;
+  place-items: center;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+/* CarRentalOverview & Home 
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+*/
+
+/* AddVehicle
+.body{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+*/
+
+/* AddBusiness 
+.body{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+*/
+
+/* GeneralHeader
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  
+}
+*/
+
+/* IndividualSalesPage & Login
+body {
+  height: 100%;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+*/
+
+/* SignUp
+body {
+  background-color: #F4E8C1;
+  margin: 0;
+  height: 100%;
+  font-family: Arial, sans-serif;
+}
+*/
+
+/* UserSettings
+body {
+  background-color: #F4E8C1;
+  margin: 0;
+  overflow-x: hidden;
+  font-family: Arial, sans-serif;
+}
+*/
+
+/* Content: ChangeRental, PayPage */
+/* ChangeRental & PayPage */
+.content {
+  flex: 1;
+  padding: 20px;
+}
+
+/* ConfirmationPage
+.content {
+  flex: 1;
+  padding: 20px;
+  text-align: center;
+}
+*/
+
+/* Errors ul: AddVehicle, AddBusiness */
+/* AddVehicle & AddBusiness */
+#errors ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* Errors li: AddVehicle, AddBusiness */
+/* AddVehicle, AddBusiness */
+#errors li {
+  color: #ff0000; 
+  margin-bottom: 0.5rem;
+}
+
+/* Errors: AddVehicle, AddBusiness */
+/* AddVehicle & AddBusiness */
+#errors {
+  background-color: #ffe0e0; 
+  padding: 1rem; 
+  border: 1px solid #ff0000; 
+  border-radius: 5px; 
+  width: auto;
+  height: auto;
+  max-width: 300px;
+  overflow: auto;
+  white-space: pre-line;
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  /*align-items: center; AddBusiness */
+}
+
+/* Logo: CarRentalOverview, GeneralHeader, Home, SignUp, UserSettings */
+/* CarRentalOverview & Home & SignUp & UserSettings
+.logo {
+  font-size: 1.5rem;
+}
+*/
+
+/* GeneralHeader */
+.logo {
+  color: white;
+  font-size: 1.5rem;
+  font-family: 'Abril Fatface', serif;
+}
+
+/* Hero: CarRentalOverview, Home, GeneralHeader */
+/* CarRentalOverview & Home */
+.hero {
+  text-align: center;
+  color: black;
+  padding: 80px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* GeneralHeader
+.hero {
+  text-align: center;
+  color: black;
+  padding: 80px 20px;
+}
+*/
+
+/* Home */
+.hero p {
+  font-size: 1.2rem;
+  margin-bottom: 50px;
+  animation: fadeInUp 1s ease-in-out forwards;
+}
+
+/* CarRentalOverview 
+.hero p {
+  font-size: 1.2rem;
+  margin-bottom: 50px;
+}
+*/
+
+/* GeneralHeader
+.hero p {
+  font-size: 1.2rem;
+  margin-bottom: 50px;
+}
+*/
+
+/* Home */
+.hero h1 {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+  animation: fadeInUp 1s ease-in-out forwards;
+}
+
+/* CarRentalOverview
+.hero h1 {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+}
+*/
+
+/* GeneralHeader 
+.hero h1 {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+}
+*/
+
+/* Container: CarRentalOverview, GeneralHeader, Home, TermsAndConditions, WagenparkBeheerderOverzicht */
+/* CarRentalOverview
+.container {
+  padding: 20px;
+}
+*/
+
+/* GeneralHeader
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  gap: 20px;
+  margin-left: 30px
+}
+*/
+
+/* Home */
+.container {
+  display: flex;
+  justify-content: center;  
+  align-items: stretch;     
+  gap: 20px;
+  width: 100%;              
+  margin: 0 auto;           
+  padding: 0;               
+  box-sizing: border-box;  
+}
+
+/* TermsAndConditions
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 20px;
+  padding-left: 15%;
+}
+*/
+
+/* WagenparkBeheerderOverzicht
+.container {
+  margin: 20px auto;
+  padding: 20px;
+  max-width: 1200px;
+}
+*/
+
+/* Footer: GeneralHeader, GeneralFooter, AbonnementInfo */
+/* GeneralHeader & GeneralFooter
+.footer {
+  text-align: center;
+  background: #333;
+  color: white;
+  padding: 20px;
+}
+
+
+/* AbonnementInfo */
+footer {
+  background-color: #333;
+  color: white;
+  text-align: center;
+  padding: 20px;
+  bottom: 0;
+  width: 100%;
+}
+
+
+.footer-links a {
+  color: #BBC2E2;
+  text-decoration: none;
+  margin: 0 10px;
+  transition: color 0.3s;
+}
+
+  .footer-links a:hover {
+      color: white;
+  }
+
+/* Main: CarRentalOverview, Home, AbonnementInfo */
+/* CarRentalOverview & Home */
+main {
+  flex: 1; 
+  min-height: 100vh;
+}
+
+/* Cta-button: Home, GeneralHeader */
+/* Home & GeneralHeader */
+.cta-button {
+  background-color: #1D7874;
+  color: white;
+  padding: 10px 20px;
+  margin-top: 30px;
+  border: none;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background-color 0.3s;
+}
+
+/* Features: GeneralHeader, Home */
+
+/* GeneralHeader
+.features {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  padding: 40px 20px;
+}
+*/
+
+/* Home */
+.features {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  padding: 40px 20px;
+  align-items: center;
+}
+
+/* Feature-card: GeneralHeader, Home */
+/* GeneralHeader
+.feature-card {
+  background: #f9f9f9;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+*/
+
+/* Home */
+.feature-card {
+  background: #f9f9f9;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* GeneralHead & Home */
+.feature-card h3 {
+  font-size: 1.5rem;
+  margin-bottom: 0px;
+  color: black;
+}
+
+/* GeneralHeader & Home */
+.feature-card p {
+  font-size: 1rem;
+  color: #555;
+}
+
+/* Html: IndividualSalePage, Login, Index, SignUp */
+/* IndividualSalePage & Login */
+html {
+  height: 100%;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  background-color: #F4E8C1;
+  font-family: Arial, sans-serif;
+}
+
+html, body {
+  overflow-x: hidden;
+}
+
+/* Index
+html
+{
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+}
+*/
+
+/* SignUp
+html {
+  background-color: #F4E8C1;
+  margin: 0;
+  height: 100%;
+  font-family: Arial, sans-serif;
+}
+*/
+
+/* Car-price: ChangeRental, PayPage, IndividualSalesPage*/
+/* ChangeRental & PayPage */
+.car-price {
+  font-size: 1.5em;
+  color: #27ae60;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+/* IndividualSalesPage
+.car-price {
+  font-size: 1.5em;
+  font-weight: bold;
+  color: #27ae60;
+}
+*/
+
+/* Car-image-container: ChangeRental, IndividualSalesPage*/
+/* ChangeRental & PayPage */
+.car-image-container {
+  width: 500px;
+  height: 500px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  border: 8px solid #1d7874ff;
+  border-radius: 20px;
+  max-width: 500px;
+  max-height: 500px;
+}
+
+
+/* IndividualSalesPage
+.car-image-container {
+  width: 500px;
+  height: 500px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  border: 8px solid #1d7874ff;
+  border-radius: 20px;
+  max-width: 500px;
+  max-height: 500px;
+}
+*/
+
+/* BUy-button: ChangeRental, PayPage, IndiviudalSalesPage */
+/* ChangeRental & PayPage */
+.buy-button {
+  padding: 10px 20px;
+  font-size: 1.2em;
+  color: #fff;
+  background-color: #27ae60;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 20px;
+  width: 100%;
+  max-width: 300px;
+}
+
+/* IndividualSalesPage
+.buy-button {
+  background-color: #27ae60;
+  color: white;
+  padding: 15px 30px;
+  font-size: 1.2em;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+*/
+
+/* ChangeRental & PayPage & IndividualSalesPage */
+.buy-button:hover {
+  background-color: #2ecc71;
+}
+
+/* Header: GeneralHeader, Login, SignUp, UserSettings */
+/* GeneralHeader */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: #333;
+  color: white;
+  position: relative;
+}
+
+/* Login
+header {
+  width: 100%;
+  height: 7.5%;
+  background-color: #1D7874; 
+  display: flex;
+  justify-content: space-between;  
+  align-items: center;  
+  padding: 10px;
+}
+*/
+
+/* SignUp & UserSetings
+header {
+  width: 100%;
+  height: 7.5%;
+  background-color: #333;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  color: white;
+  
+}
+*/
+
+/* H1: Index, Login, UserSettings, SignUp */
+/* Index
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+}
+*/
+
+/* Login, UserSettings, SignUp */
+h1 {
+  text-align: center;
+  color: black;
+  font-size: 2.5rem; 
+}
+
+/* Buy-page: Changerental,  PayPage*/
+/* ChangeRental, PayPage*/
+.buy-page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Button: Index, CarRentalOverview, SignUp, UserSettings */
+/* Index */
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #1a1a1a;
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+
+/* CarRentalOverview, SignUp, UserSettings
+#button
+{
+  margin: 20px;
+  background-color: #1D7874;
+  color: white;
+  font-weight: bold;
+  transition: color 0.3s;
+  transition: background-color 0.3s;
+}
+*/
+
+/* Login
+#button
+{
+  margin: 20px;
+  background-color: #1D7874;
+  color: black;
+}
+*/
+
+/* Buy-details: ChangeRentals, PayPage */
+/* ChangeRentals, PayPage */
+.buy-details {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  margin-top: 20px;
+  gap: 40px;
+  flex-wrap: wrap; 
+}
+
+/* Car-info: ChangeRental, PayPage */
+
+.car-info h2, .user-info h3 {
+  margin-bottom: 20px;
+  color: #333;
+  font-size: 1.5em;
+}
+
+/* GeneralHeader */
+.nav-links {
+  margin: 0;
+  padding: 10px;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background-color: #555;
+  color: white;
+  position: absolute;
+  right: 0;
+  z-index: 10;
+}
+
+nav {
+  position: relative;
+}
+
+.nav-links li a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+.nav-links li a:hover {
+    color: #1D7874;
+}
+
+/* SignUp, UserSettings*/
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+  padding-right: 10px;
+}
+.nav-links li a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s;
+}
+  .nav-links li a:hover {
+      color: #1D7874;
+  }
+
+#left {
+  text-align: left;
+}
+
+#right {
+  text-align: right;
+  padding-right: 20px;
+}
+
+input
+{
+  width: 100%;
+  max-width: 275px;
+  padding: 10px 15px;
+  font-size: 1rem;
+  background-color: white;
+  border: 1.5px solid #ccc;
+  color: black;
+  outline: none;
+  border-radius: 8px;
+  transition: border 0.3s;
+  transition: color 0.3s;
+  text-align: center;
+}
+input:focus {
+    border:1.5px solid #1D7874;
+    color: #1D7874
+}
+
+input::selection {
+    background-color: #A5E1E0;
+    color: #1D7874;
+}
+
+#button:hover {
+    color:#1D7874;
+    background-color: white;
+}
+
+input:focus {
+  border:1.5px solid #1D7874;
+  color: #1D7874
+}
+
+input::selection {
+  background-color: #A5E1E0;
+  color: #1D7874;
+}
+
+#typeButton
+{
+  margin: 10px;
+  background-color: #1D7874;
+  color: white;
+  font-weight: bold;
+  border: 1px solid transparent;
+  transition: border-color 0.3s ease;
+}
+  #typeButton:hover{
+      border: 1px solid #FFFFFF
+  }
+
+#typeButton-active
+{
+  margin: 10px;
+  background-color: white;
+  color: #1D7874;
+  font-weight: bold;
+  border: 1px solid transparent;
+  transition: border-color 0.3s ease;
+}
+
+#typeButton-active:hover {
+    border: 1px solid #1D7874;
+}
+
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes title-animation {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+.filter-bar {
+  position: fixed;
+  left: -300px;
+  top: 0;
+  height: 100%;
+  width: 250px;
+  background-color: #333;
+  color: white;
+  padding: 20px;
+  transition: left 0.3s ease-in-out;
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.filter-spacer {
+  flex-grow: 1;
+}
+
+.filter-bar.open {
+  left: 0;
+}
+
+.filter-section {
+  margin-bottom: 20px;
+}
+
+.filter-types {
+  max-height: 0;
+  pointer-events: none;
+  opacity: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  transition: max-height 0.3s ease, opacity 0.3s ease
+}
+
+.filter-types.show {
+  max-height: none;
+  opacity: 1;
+  pointer-events: all;
+  display: block;
+}
+
+.checkbox-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.checkbox-item input[type="checkbox"] {
+  cursor: pointer;
+  width: auto;
+}
+
+.filter-section p {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  justify-content: space-between;
+  user-select: none;
+}
+
+.filter-bar-exit {
+  user-select: none;
+  cursor: pointer;
+}
+
+.toggle-icon {
+  display: inline-block;
+  font-size: 20px;
+  transition: transform 0.3s ease;
+  margin-left: 8px;
+  user-select: none;
+}
+
+.toggle-icon.rotated {
+  transform: rotate(45deg);
+}
+
+.checkbox-item label {
+  font-size: 1.1em;
+  cursor: pointer;
+}
+
+.checkbox-item label:hover {
+  text-decoration: underline;
+}
+
+.filter-bar h2 {
+  font-size: 1.5em;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px 0;
+}
+
+.filter-bar p {
+  cursor: pointer;
+  font-size: 1em;
+  color: white;
+  padding: 0px;
+}
+
+.filter-bar hr {
+  border: none;
+  border-top: 1px solid;
+  margin: 0px;
+}
+
+
+.filter-button {
+  background-color: #1d7874;
+  color: white;
+  margin-left: 20px;
+}
+
+.container {
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 22px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 4;
+}
+
+.filter-section label {
+  font-size: 1.2em;
+  margin-right: 10px;
+}
+
+.filter-section select {
+  padding: 10px;
+  font-size: 1em;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.car-sale-section {
+  padding: 20px;
+  margin-top: 60px;
+}
+
+.title-text {
+  font-size: 2.5em;
+  color: #000000;
+  margin-bottom: 20px;
+  animation: fadeInUp 0.5s ease-in-out forwards;
+}
+
+.car-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  justify-content: center;
+  padding: 20px;
+}
+
+@media (max-width: 1024px) {
+  .car-grid {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  }
+}
+
+.car-card {
+  background: #fff;
+  border-radius: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: transform 0.3s, box-shadow 0.3s;
+  animation: fadeInUp 0.2s ease-in-out forwards;
+  opacity: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.car-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
+}
+
+.car-blob {
+  width: 100%;
+  height: 380px;
+  background: #1d7874ff;
+  display: flex;
+  margin: 15px auto;
+  border-radius: 25px;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.car-blob img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain; 
+  object-position: center; 
+}
+
+
+.car-info {
+  padding: 20px;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.car-name {
+  font-size: 1.5em;
+  margin: 0 0 10px;
+  color: #333;
+  width: auto;
+}
+
+.car-price {
+  font-size: 1.2em;
+  font-weight: bold;
+  margin: 0 0 10px;
+  color: #27ae60;
+}
+
+.car-description {
+  font-size: clamp(0.7em, 2vw, 0.9em);
+  color: #555;
+  line-height: 1.5;
+  text-align: left;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+
+.huur-link {
+  background-color: #1D7874;
+  color: white;
+  padding: 10px 20px;
+  display: block;
+  margin: 10px;
+  margin-top: 30px;
+  border: none;
+  border-radius: 20px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background-color 0.3s;
+}
+
+.huur-link:hover {
+  color: white;
+  background-color: #7C6C77;
+}
+
+.loading-spinner {
+  border: 8px solid rgba(0, 0, 0, 0.1);
+  border-top: 8px solid #1D7874;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  animation: spin 1s linear infinite;
+  margin: 50px auto;
+  display: block;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.delete-button-vehicle {
+  margin-left: 250px;
+  margin-bottom: 10px;
+  background-color: red;
+  color: white;
+  font-weight: bold;
+  display: block;
+  flex-direction: column;
+
+  transition: color 0.3s;
+  transition: background-color 0.3s;
+}
+.delete-button-vehicle:hover {
+  color:red;
+  background-color: white;
+}
+
+

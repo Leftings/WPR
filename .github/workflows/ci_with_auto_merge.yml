@@ -1,12 +1,12 @@
-name: Continuous Integration with Merge Blocker and Auto-Merge
+name: Continuous Integration and Auto-Merge
 
 on:
   push:
     branches:
-      - '*' 
+      - '*'
   pull_request:
     branches:
-      - '*' 
+      - '*'
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
@@ -15,7 +15,7 @@ concurrency:
 permissions:
   pull-requests: write
   contents: write
-      
+
 jobs:
   build:
     name: Build and Test (${ matrix.os }, ${ matrix.configuration })
@@ -41,7 +41,7 @@ jobs:
 
       - name: Run tests
         run: dotnet test Tests.Unit/Tests.Unit.csproj --configuration ${{ matrix.configuration }} --no-restore --logger "trx;LogFileName=test-results-${{ matrix.os }}-${{ matrix.configuration }}.trx"
-        
+
       - name: Upload Test Results
         if: always()
         uses: actions/upload-artifact@v3
@@ -62,14 +62,26 @@ jobs:
           echo "Repository: ${{ github.repository }}"
           echo "Event: ${{ github.event_name }}"
 
+      - name: Get commit message
+        id: commit_message
+        run: |
+          PR_COMMIT_SHA=$(curl -s "https://api.github.com/repos/${{ github.repository }}/pulls/${{ github.event.pull_request.number }}" | jq -r '.head.sha')
+          COMMIT_MESSAGE=$(curl -s "https://api.github.com/repos/${{ github.repository }}/commits/${PR_COMMIT_SHA}" | jq -r '.commit.message')
+          # Ensure commit message is safe for use
+          SANITIZED_COMMIT_MESSAGE=$(echo "$COMMIT_MESSAGE" | sed 's/[+&#]/_/g')
+          echo "Commit message: $SANITIZED_COMMIT_MESSAGE"
+          echo "commit_message=$SANITIZED_COMMIT_MESSAGE" >> $GITHUB_ENV
+
       - name: Check if tests passed and block/allow merge
         run: |
+
           if [[ "${{ needs.build.result }}" == "success" ]]; then
             echo "Tests passed successfully. Merge is allowed."
             curl -X PUT \
               -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
               -H "Accept: application/vnd.github.v3+json" \
-              -d '{"commit_title":"Auto merge by GitHub Actions","commit_message":"Tests passed successfully.","merge_method":"squash"}' \
+              -d '{"commit_title":"${{ env.commit_message }}","commit_message":"${{ env.commit_message }}","merge_method":"squash"}' \
+
               "https://api.github.com/repos/${{ github.repository }}/pulls/${{ github.event.pull_request.number }}/merge" || {
                 echo "Failed to auto-merge. Check for conflicts or branch protection rules."
                 exit 1
@@ -78,3 +90,17 @@ jobs:
             echo "Tests failed. Merge blocked."
             exit 1
           fi
+
+  trigger_generate_uml:
+    name: Trigger UML Generation Workflow
+    runs-on: ubuntu-latest
+    needs: merge_blocker
+    if: needs.merge_blocker.result == 'success'
+
+    steps:
+      - name: Trigger UML Generation Workflow
+        run: |
+          curl -X POST \
+          -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+          -d '{"ref": "main"}' \
+          https://api.github.com/repos/${{ github.repository }}/actions/workflows/generate-uml.yml/dispatches

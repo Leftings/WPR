@@ -4,13 +4,14 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.Extensions.Options;
 using Microsoft.VisualBasic;
 using Org.BouncyCastle.Crypto.Prng;
-using WPR.Controllers.Cookie;
 using WPR.Cryption;
 using WPR.Data;
 using WPR.Database;
 using WPR.Repository;
 using WPR.Hashing;
 using System.Net;
+using WPR.Services;
+using WPR.Controllers.General.Cookie;
 
 namespace WPR;
 
@@ -126,14 +127,20 @@ public class AppConfigure
             }
         }
     });
-
+    
     // Register services for Dependency Injection
     builder.Services.AddSingleton<EnvConfig>(); // Singleton for environment configuration
     builder.Services.AddTransient<Connector>(); // Transient for database connection.
+    builder.Services.AddScoped<VehicleRepository>();
     builder.Services.AddScoped<IUserRepository, UserRepository>(); // Scoped for user repository
+    builder.Services.AddScoped<IVehicleRepository, VehicleRepository>(); // Scoped for Vehicle Repository
     builder.Services.AddScoped<SessionHandler>(); // Scoped session handler
     builder.Services.AddScoped<Crypt>();
     builder.Services.AddScoped<Hashing.Hash>();
+    builder.Services.AddScoped<EmailService>();
+    builder.Services.AddScoped<IEmployeeRepository, EmployeeRepository>();
+    builder.Services.AddScoped<IBackOfficeRepository, BackOfficeRepository>();
+    
 
     // Configure authentication with cookie-based authentication schema.
     builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
@@ -157,24 +164,11 @@ public class AppConfigure
 
     var app = builder.Build();
 
-    if (app.Environment.IsProduction())
-    {
-        app.UseCors("AllowProduction");
-    }
-    else
-    {
-        if (app.Environment.IsDevelopment())
-        {
-            app.UseSwagger();
-            app.UseSwaggerUI(c =>
-            {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
-                c.RoutePrefix = string.Empty;
-            });
-        }
-        app.UseCors("AllowLocalhost");
-    }
-
+    app.UseSwagger();
+    app.UseSwaggerUI(c => {
+        c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+        c.RoutePrefix = string.Empty;
+    });
     app.UseCors("AllowSpecificOrigins");
     app.UseHttpsRedirection();
     app.MapControllers();

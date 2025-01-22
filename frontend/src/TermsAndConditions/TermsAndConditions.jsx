@@ -1,7 +1,8 @@
 import React from 'react';
 import GeneralHeader from "../GeneralBlocks/header/header.jsx";
 import GeneralFooter from "../GeneralBlocks/footer/footer.jsx";
-import './TermsAndConditions.css';
+//import './TermsAndConditions.css';
+import '../index.css';
 
 function TermsAndConditions() {
     return (

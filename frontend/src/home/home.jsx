@@ -2,41 +2,67 @@ import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import GeneralHeader from "../GeneralBlocks/header/header.jsx";
 import GeneralFooter from "../GeneralBlocks/footer/footer.jsx";
-import './home.css';
+//import './home.css';
+import '../index.css';
 
 function Home() {
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const [isEmployee, setIsEmployee] = useState(false);
+    const [isVehicleManager, setIsVehicleManager] = useState(false);
+    const [error, setError] = useState(null);
     const navigate = useNavigate();
 
     useEffect(() => {
-        fetch('http://localhost:5165/api/Login/CheckSession', { credentials: 'include' })
-            .then(response => {
+        const checkVehicleManager = async () => {
+            try {
+                const response = await fetch('http://localhost:5276/api/Cookie/IsVehicleManager', {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    credentials: 'include',
+                });
+
                 if (!response.ok) {
-                    throw new Error('Not logged in');
+                    throw new Error('Error fetching Vehicle Manager info...');
                 }
-                return response.json();
-            })
-            .then(() => setIsLoggedIn(true))
-            .catch(() => setIsLoggedIn(false));
+                
+                const data = await response.json();
+                setIsVehicleManager(data === true);
+                console.log(isVehicleManager);
+            } catch (error) {
+                console.error(error.message);
+                setIsVehicleManager(false);
+            }
+        };
+        checkVehicleManager();
     }, []);
 
-    const handleLogout = () => {
-        fetch('http://localhost:5165/api/Cookie/Logout', { method: 'POST', credentials: 'include' })
-            .then(() => {
-                setIsLoggedIn(false);
-                navigate('/login');
+    useEffect(() => {
+        fetch(`http://localhost:5165/api/Employee/IsUserEmployee`, { credentials: 'include' })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Error validating user type');
+                }
+                return response.text();
             })
-            .catch(error => console.error('Logout error', error));
-    };
+            .then(data => {
+                const isUserEmployee = data === 'true';
+                setIsEmployee(isUserEmployee);
+            })
+            .catch(error => {
+                console.error(error.message);
+                setIsEmployee(false);
+            });
+    }, []);
 
     return (
         <>
-            <GeneralHeader isLoggedIn={isLoggedIn} handleLogout={handleLogout} />
+            <GeneralHeader />
             <main>
                 <section className="hero">
                     <h1>Vind de perfecte auto voor jouw avontuur</h1>
                     <p>Betaalbare prijzen, flexibele verhuur en een breed aanbod aan voertuigen om uit te kiezen.</p>
-                    <Link to="/GeneralSalePage" className="cta-button">Verken onze Auto's</Link>
+                    <Link to="/vehicles" className="cta-button">Verken onze Auto's</Link>
                 </section>
 
                 <div className="container">
@@ -55,14 +81,27 @@ function Home() {
                         </div>
                     </section>
 
+
+                    {isEmployee && (
+                        <section className="abonnementen-info">
+                            <h2>Bekijk onze Abonnementen</h2>
+                            <p>We bieden verschillende abonnementsopties aan die passen bij jouw huurbehoeften. Bekijk
+                                ze en kies de beste optie voor jou!</p>
+                            <Link to="/AbonementUitlegPage" className="cta-button">Ontdek Abonnementen</Link>
+                        </section>
+                    )}
+
+                    {isVehicleManager && (
                     <section className="abonnementen-info">
-                        <h2>Bekijk onze Abonnementen</h2>
-                        <p>We bieden verschillende abonnementsopties aan die passen bij jouw huurbehoeften. Bekijk ze en kies de beste optie voor jou!</p>
-                        <Link to="/AbonementUitlegPage" className="cta-button">Ontdek Abonnementen</Link>
+                        <h2>Bekijk het overzicht van alle Rentals</h2>
+                        <p>Op de volgende pagina zult u een uitgebreide pagina vinden waarin alle verhuurde auto's te
+                            vinden zijn</p>
+                        <Link to="/wagenparkBeheerderOverzichtPage" className="cta-button">Bekijk Rentals</Link>
                     </section>
+                    )}
                 </div>
             </main>
-            <GeneralFooter />
+            <GeneralFooter/>
         </>
     );
 }

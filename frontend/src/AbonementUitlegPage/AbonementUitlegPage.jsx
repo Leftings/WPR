@@ -1,7 +1,8 @@
 ﻿import React, { useState, useEffect } from 'react';
 import GeneralHeader from "../GeneralBlocks/header/header.jsx";
 import GeneralFooter from "../GeneralBlocks/footer/footer.jsx";
-import './AbonementUitlegPage.css';
+//import './AbonementUitlegPage.css';
+import '../index.css';
 
 function AbonementUitlegPage() { // Corrected component name
     const [isLoggedIn, setIsLoggedIn] = useState(false);

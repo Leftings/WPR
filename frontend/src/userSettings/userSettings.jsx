@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import {Link, Navigate, useNavigate} from 'react-router-dom';
+import {Await, Link, Navigate, useNavigate} from 'react-router-dom';
+import GeneralHeader from "../GeneralBlocks/header/header.jsx";
+import GeneralFooter from "../GeneralBlocks/footer/footer.jsx";
 
-import './userSettings.css';
+//import './userSettings.css';
+import '../index.css';
 
 function GetUser(setUser)
 {
@@ -82,26 +85,22 @@ function ChangeUserInfo(userData) {
 }
 
 function DeleteUser(userId) {
-    return fetch(`/api/ChangeUserSettings/DeleteUser/${userId}`, {
+    const encryptedUserId = encrypt(userId)
+    return fetch(`http://localhost:5165/api/ChangeUserSettings/DeleteUser/${encryptedUserId}`, {
         method: 'DELETE',
         headers: {
-            'Content-Type': 'application/json',
-        },
+            'Content-Type': 'application/json'},
+        credentials: 'include',
     })
-        .then(response => {
+        .then(async (response) => {
+            const data = await response.json();
             if (!response.ok) {
-                return response.json().then(data => {
-                    throw new Error(data.message || 'Error');
-                });
+                throw new Error(data.message || 'Error');
             }
-            return response.json();
-        })
-        .then(data => {
-            console.log('User deleted succesfully:', data.message);
             return data;
         })
-        .catch(error => {
-            console.error('Error deleting user:', error);
+        .catch((error) => {
+            console.error('Error deleting user:', error.message);
             throw error;
         })
 }
@@ -180,18 +179,44 @@ function UserSettings() {
       setError("Er zijn geen velden ingevoerd");
     }
   }
+  
+  useEffect(() => {
+      GetUserId()
+          .then((id) => {
+              setUser(id);
+              GetUser(setUser);
+          })
+          .catch(() => {
+              navigate('/');
+          });
+  }, [navigate]);
+
+  const handleDelete = async () => {
+      const confirmDelete = window.confirm('Are you sure you want to delete your account?');
+      if (!confirmDelete) return;
+
+      try {
+          const response = await fetch('http://localhost:5165/api/ChangeUserSettings/DeleteUser', {
+              method: 'DELETE',
+              credentials: 'include', // Include the cookie
+          });
+          
+          const data = await response.json();
+          if (response.ok) {
+              alert('Your account has been deleted successfully');
+              navigate('/'); // Redirect after deletion
+          } else {
+              setError(data.message);
+          }
+      } catch (error) {
+          setError('Failed to delete account');
+      }
+  };
 
   return (
     <>
-      <header>
-        <div id="left">
-            <p id="user">{user}</p>
-        </div>
-
-        <div id="right">
-        </div>
-      </header>
-
+    <GeneralHeader />
+    <main>
       <body>
         <div>
             <h1>Gebruikers Instellingen: {user}</h1>
@@ -237,12 +262,15 @@ function UserSettings() {
             <br></br>
             <button id="button" type="button" onClick={onSubmit}>Opslaan</button>
             
-            <button id="buttonDelete" type="button" onClick={DeleteUser}>Delete account</button>
+
+            <button id="buttonDelete" type="button" onClick={handleDelete}>Delete account</button>
+
             {error && <p style={{color: 'red'}}>{error}</p>}
         </div>
       </body>
 
-      <footer></footer>
+        </main>
+        <GeneralFooter />
     </>
   );
 }

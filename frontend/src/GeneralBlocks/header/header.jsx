@@ -1,14 +1,39 @@
-import React, {useState} from 'react';
-import { Link } from 'react-router-dom';
+import React, {useEffect, useState} from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import TermsAndConditions from "../../GeneralSalePage/GeneralSalePage.jsx";
 import logo from '../../assets/logo.svg';
 import logoHover from '../../assets/logo-green.svg';
+import '@fortawesome/fontawesome-free/css/all.css';
 
-import './header.css';
+//import './header.css';
+import '../../index.css';
 
 
-function GeneralHeader({ isLoggedIn, handleLogout}) {
+function GeneralHeader() {
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        fetch('http://localhost:5165/api/Login/CheckSession', { credentials: 'include' })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Not logged in');
+                }
+                return response.json();
+            })
+            .then(() => setIsLoggedIn(true))
+            .catch(() => setIsLoggedIn(false));
+    }, []);
+
+    const handleLogout = () => {
+        fetch('http://localhost:5165/api/Cookie/Logout', { method: 'POST', credentials: 'include' })
+            .then(() => {
+                setIsLoggedIn(false);
+                navigate('/login');
+            })
+            .catch(error => console.error('Logout error', error));
+    };
 
     const toggleMenu = () => {
         setIsMenuOpen(!isMenuOpen);
@@ -32,18 +57,19 @@ function GeneralHeader({ isLoggedIn, handleLogout}) {
                 <nav>
                     <ul className="nav-links">
                         {isLoggedIn ? (
-                            <li>
-                                <Link onClick={handleLogout} className="logout-button">Logout</Link>
-                            </li>
+                            <>
+                            <li><Link onClick={handleLogout} className="logout-button">Logout</Link></li>
+                            <li><Link to="/overviewRental">Mijn auto's</Link></li>
+                            <li><Link to="/userSettings">Instellingen</Link></li>
+                            </>
                         ) : (
                             <li>
                                 <Link to="/login">Login</Link>
                             </li>
                         )}
-                        <li><Link to="/GeneralSalePage">Zoek Auto's</Link></li>
+                        <li><Link to="/vehicles">Zoek Auto's</Link></li>
                         <li><Link to="/about">Over ons</Link></li>
                         <li><Link to="/contact">Contact</Link></li>
-                        <li><Link to="/userSettings">Instellingen</Link></li>
                     </ul>
                 </nav>
             ) : null}

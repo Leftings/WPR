@@ -1,0 +1,7 @@
+@startuml
+interface IVehicleRepository {
+    GetVehiclePlateAsync(frameNr:int) : Task<string>
+    GetVehicleNameAsync(frameNr:int) : Task<string>
+    GetVehicleColorAsync(frameNr:int) : Task<string>
+}
+@enduml

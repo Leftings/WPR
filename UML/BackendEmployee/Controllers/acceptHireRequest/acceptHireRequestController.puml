@@ -1,0 +1,13 @@
+@startuml
+class AcceptHireRequestController {
+    + AcceptHireRequestController(connector:Connector, userRepository:IUserRepository, crypt:Crypt)
+    + <<async>> GetReviewsIdsAsync(user:string) : Task<IActionResult>
+    + <<async>> GetReviewAsync(id:string) : Task<IActionResult>
+    + <<async>> AnswerHireRequestAsync(request:HireRequest) : Task<IActionResult>
+    - GetCurrentUserId() : string
+}
+ControllerBase <|-- AcceptHireRequestController
+AcceptHireRequestController --> "_connector" Connector
+AcceptHireRequestController --> "_userRepository" IUserRepository
+AcceptHireRequestController --> "_crypt" Crypt
+@enduml

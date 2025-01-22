@@ -1,0 +1,10 @@
+@startuml
+class SignUpRequest {
+    + Email : string? <<get>> <<set>>
+    + Password : string? <<get>> <<set>>
+    + FirstName : string? <<get>> <<set>>
+    + LastName : string? <<get>> <<set>>
+    + Job : string? <<get>> <<set>>
+    + KvK : int? <<get>> <<set>>
+}
+@enduml
