@@ -29,4 +29,5 @@ public interface IEmployeeRepository
     public (int StatusCode, string Message, int KvK) GetKvK(int vehicleManagerId);
     public (int StatusCode, string Message, Dictionary<string, object> Data) GetAbonnementType(int abonnementId);
     public (int StatusCode, string Message, Dictionary<string, object> Data) GetVehicleManagerInfo(int id);
+    Task<(bool status, string message)> checkUsageEmaiVehicleManagerlAsync(string email);
 }

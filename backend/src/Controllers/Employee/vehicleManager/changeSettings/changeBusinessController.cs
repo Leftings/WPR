@@ -7,13 +7,13 @@ namespace WPR.Controllers.Employee.VehicleManager.ChangeBusinessSettings;
 
 [Route("api/[controller]")]
 [ApiController]
-public class ChangeBusinessSettings : ControllerBase
+public class ChangeBusinessSettingsController : ControllerBase
 {
     private readonly IUserRepository _userRepository;
     private readonly IEmployeeRepository _employeeRepository;
     private readonly Crypt _crypt;
 
-    public ChangeBusinessSettings(IUserRepository userRepository, Crypt crypt, IEmployeeRepository employeeRepository)
+    public ChangeBusinessSettingsController(IUserRepository userRepository, Crypt crypt, IEmployeeRepository employeeRepository)
     {
         _userRepository = userRepository ?? throw new ArgumentNullException(nameof(userRepository));
         _crypt = crypt ?? throw new ArgumentNullException(nameof(crypt));
@@ -122,6 +122,18 @@ public class ChangeBusinessSettings : ControllerBase
             throw;
         }
         
+    }
+
+    [HttpGet("CheckNewEmail")]
+    public async Task<IActionResult> CheckNewEmailAsync(string email)
+    {
+        var emailCheck = await _employeeRepository.checkUsageEmaiVehicleManagerlAsync(email);
+
+        if (!emailCheck.status)
+        {
+            return StatusCode(200, new { message = "Geldige email" });
+        }
+        return StatusCode(400, new { message = "Email is al ingebruik"} );
     }
 }
 

@@ -172,6 +172,35 @@ public class EmployeeRepository : IEmployeeRepository
         }
     }
 
+    public async Task<(bool status, string message)> checkUsageEmaiVehicleManagerlAsync(string email)
+    {
+        try
+        {
+            string query = "SELECT COUNT(*) FROM VehicleManager WHERE LOWER(Email) = LOWER(@E)";
+
+            // Er wordt een connectie met de DataBase gemaakt met de bovenstaande query
+            using (var connection = _connector.CreateDbConnection())
+            using (var command = new MySqlCommand(query, (MySqlConnection)connection))
+            {
+                // De paramater wordt ingevuld
+                command.Parameters.AddWithValue("@E", email);
+                bool inUse = Convert.ToInt32(await command.ExecuteScalarAsync()) > 0;
+
+                // Als de uitvoer van de query > 0, dan inUse = true, "Email detected", anders inUse = false, "No email detected"
+                return (inUse, inUse ? "Email detected" : "No email detected");
+            }
+        }
+
+        catch (MySqlException ex)
+        {
+            return (false, ex.Message);
+        }
+        catch (Exception ex)
+        {
+            return (false, ex.Message);
+        }
+    }
+
     /// <summary>
     /// De voornaam, achternaam, adres, emailadres en telefoonnummer wordt uit de UserCustomer tabel gehaald, om deze te laten tonen bij de huuraanvragen.
     /// De gegevens van de klant worden verzameld doormiddel van hun id.

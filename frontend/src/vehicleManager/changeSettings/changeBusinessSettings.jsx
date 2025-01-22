@@ -3,7 +3,7 @@ import {Await, Link, Navigate, useNavigate} from 'react-router-dom';
 import GeneralHeader from "../../GeneralBlocks/header/header.jsx";
 import GeneralFooter from "../../GeneralBlocks/footer/footer.jsx";
 import { pushWithBodyKind, pushWithoutBodyKind } from '../../utils/backendPusher.js';
-import { loadList } from '../../utils/backendLoader.js';
+import { loadList, loadSingle } from '../../utils/backendLoader.js';
 
 //import './userSettings.css';
 import '../../index.css';
@@ -69,7 +69,9 @@ function ChangeBusinessSettings() {
   const [adres, setAdres] = useState('');
   const [contactEmail, setContactEmail] = useState('');
   const [vehicleManagerInfo, setVehicleManagerInfo] = useState({});
-  const [newEmail = setNewEmail] = useState('');
+  const [newEmail, setNewEmail] = useState('');
+  const [subscriptions, SetSubscriptions] = useState([]);
+  const [selectedSubscription, SetSelectedSubscription] = useState('');
 
   useEffect(() => {
       fetch(`${BACKEND_URL}/api/Cookie/GetUserId`, {
@@ -90,22 +92,42 @@ function ChangeBusinessSettings() {
           })
   }, [navigate]);
 
-  useEffect(async () => {
-    try
-    {
-      const userId = await GetUserId();
-      const vehicleManagerInfoResponse = await loadList(`${BACKEND_URL}/api/GetInfoVehicleManager/GetAllInfo?id=${userId}`);
-      const response = await loadList(`${BACKEND_URL}/api/ChangeBusinessSettings/GetBusinessInfo?id=${userId}`);
+  useEffect(() => {
+    async function fetchSubscriptions() {
+        try {
+            const response = await  fetch(`${BACKEND_URL}/api/Subscription/GetSubscriptions`)
+            if (!response.ok) {
+                throw new Error('Failed to fetch subcriptions')
+            }
+            const responseData = await response.json();
+            console.log(responseData)
+            SetSubscriptions(responseData.data);
+        } catch (error) {
+            console.log(error);
+        }
+    }
+    
+    fetchSubscriptions();
+  }, []);
 
-      setVehicleManagerInfo(vehicleManagerInfoResponse.data);
-      setBusinessInfo(response.data);
-      console.log(businessInfo);
+  useEffect(() => {
+    async function fetchBusinessData() {
+      try {
+          const userId = await GetUserId();
+          const vehicleManagerInfoResponse = await loadList(`${BACKEND_URL}/api/GetInfoVehicleManager/GetAllInfo?id=${userId}`);
+          const response = await loadList(`${BACKEND_URL}/api/ChangeBusinessSettings/GetBusinessInfo?id=${userId}`);
+
+          setVehicleManagerInfo(vehicleManagerInfoResponse.data);
+          setBusinessInfo(response.data);
+          console.log(response.data);
+      } catch (error) {
+          console.error(error);
+      }
     }
-    catch (error)
-    {
-      console.error(error);
-    }
-  }, [])
+
+    fetchBusinessData();
+  }, []);
+
 
   const onSubmit = async (event) => {
     event.preventDefault();
@@ -114,6 +136,11 @@ function ChangeBusinessSettings() {
       if (password1 === password2)
       {
         const userId = await GetUserId();
+
+        if (abonnement == 0)
+        {
+          setAbonnement(businessInfo.Abonnement);
+        }
 
         const data = {
           VehicleManagerInfo: {
@@ -132,15 +159,15 @@ function ChangeBusinessSettings() {
 
         console.log(data);
 
-        const message = await pushWithBodyKind(`${BACKEND_URL}/api/ChangeBusinessSettings/ChangeBusinessInfo`, data, 'PUT').message;
-
-        if (message === 'succes')
+        const message = await pushWithBodyKind(`${BACKEND_URL}/api/ChangeBusinessSettings/ChangeBusinessInfo`, data, 'PUT');
+        
+        if (message.message === 'succes')
         {
           navigate('/VehicleManager');
         }
         else
         {
-          setError(message);
+          setError(message.message);
         }
       }
       else
@@ -177,6 +204,32 @@ function ChangeBusinessSettings() {
       }
   };
 
+  async function checkNewEmail(email)
+  {
+    const filledInDomain = '@' + email.split("@").pop();
+
+    if (filledInDomain === businessInfo.Domain)
+    {
+      const response = await loadSingle(`${BACKEND_URL}/api/ChangeBusinessSettings/CheckNewEmail?email=email`);
+      console.log(response);
+
+      if (response.ok)
+      {
+        return true;
+      }
+      else
+      {
+        setError(response.message);
+        return false;
+      }
+    }
+    else
+    {
+      setError(`Domein is niet hetzelfde als het opgegeven domain (${businessInfo.Domain})`);
+      return false;
+    }
+  }
+
   return (
     <>
     <GeneralHeader />
@@ -190,11 +243,15 @@ function ChangeBusinessSettings() {
             <label htmlFor='inputBusinessName'>Wijzigen Bedrijfsnaam</label>
             <input type='text' id='inputBusinessName' value={businessName} onChange={(e) => setBusinessName(e.target.value)} placeholder={businessInfo.BusinessName}></input>
 
-            <label htmlFor='inputAbonnement'>Abonnement wijzigen</label>
-            <select id='inputAbonnement' value={abonnement} onChange={(e) => setAbonnement(e.target.value)}>
-              <option value={businessInfo.Abonnement}>Huidig: {businessInfo.Type} </option>
-              <option value={1}>Pay As You Go</option>
-              <option value={2}>Standaard Abonnement</option>
+            <label htmlFor='inputSubscriptionType'>Abonnement</label>
+            <select id='inputSubscriptionType' value={selectedSubscription}
+                    onChange={(e) => SetSelectedSubscription(e.target.value)}>
+                <option value={businessInfo.Abonnement}>Huidig: {businessInfo.Type}</option>
+                {subscriptions.map((sub, index) => (
+                    <option key={index} value={index +1}>
+                        {sub}
+                    </option>
+                ))}
             </select>
 
             <label htmlFor='inputAdres'>Adres Wijzigen</label>
@@ -229,7 +286,7 @@ function ChangeBusinessSettings() {
 
             <div className='registrateFormatFooter'>
                 {error && <p style={{color: 'red'}}>{error}</p>}
-                <button className='cta-button' type="button" onClick={onSubmit}>Opslaan wijzigingen</button>
+                <button className='cta-button' type="button" onClick={async () => {if (await checkNewEmail(newEmail)){await onSubmit(new Event('submit'));}}}>Opslaan wijzigingen</button>
                 <button id="buttonDelete" type="button" onClick={handleDelete}>Verwijderen Bedrijfs Account</button>
             </div>
         </div>
