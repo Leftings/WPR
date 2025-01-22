@@ -1,4 +1,5 @@
 ﻿using System.Data;
+using WPR.Controllers.customer.Subscription;
 using WPR.Controllers.Employee.VehicleManager.ChangeBusinessSettings;
 using WPR.Controllers.General.SignUp;
 
@@ -30,4 +31,9 @@ public interface IUserRepository
     Task<(bool Status, string Message)> AddPersonalCustomer(SignUpRequest request);
     Task<(int StatusCode, string Message)> AddCustomer(SignUpRequestCustomer request, SignUpRequestCustomerPrivate privateRequest);
     Task<(int StatusCode, string Message)> ChangeBusinessInfo(ChangeBusinessRequest request);
+    Task<List<string>> GetAllSubscriptionsAsync();
+    Task<Subscription>GetSubscriptionDataAsync(int id);
+    Task<List<int>> GetSubscriptionIdsAsync();
+
+
 }

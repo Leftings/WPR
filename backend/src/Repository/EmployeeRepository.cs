@@ -593,7 +593,7 @@ public class EmployeeRepository : IEmployeeRepository
         {
             try
             {
-                string query = "INSERT INTO Business (KvK, BusinessName, Adres, Domain, ContactEmail) VALUES (@K, @B, @A, @D, @C)";
+                string query = "INSERT INTO Business (KvK, BusinessName, Adres, Domain, ContactEmail, Abonnement) VALUES (@K, @B, @A, @D, @C,@Ab)";
 
                 // Er wordt een connectie met de database gemaakt
                 using (var connection = _connector.CreateDbConnection())
@@ -605,11 +605,13 @@ public class EmployeeRepository : IEmployeeRepository
                     command.Parameters.AddWithValue("@A", request.Adress);
                     command.Parameters.AddWithValue("@D", request.Domain);
                     command.Parameters.AddWithValue("@C", request.ContactEmail);
+                    command.Parameters.AddWithValue("@Ab", request.Subscription);
+
 
                     // Er wordt gekeken of de query succesvol is uitgevoerd
                     if (command.ExecuteNonQuery() > 0)
                     {
-                        await _emailService.SendConfirmationEmailBusiness(request.ContactEmail, request.Name, request.KvK, request.Domain, request.Adress);
+                        await _emailService.SendConfirmationEmailBusiness(request.ContactEmail, request.Subscription, request.Name, request.KvK, request.Domain, request.Adress);
                         return (true, "Succesfull added business");
                     }
                     return (false, "Error occured adding business");
@@ -787,4 +789,8 @@ public class EmployeeRepository : IEmployeeRepository
             return (false, ex.Message, new Dictionary<string, object>());
         }
     }
+    
+    
+    
+    
 }
