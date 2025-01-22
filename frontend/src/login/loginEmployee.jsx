@@ -96,7 +96,7 @@ function Login() {
           }
           const office = await officeResponse.json();
 
-          if (office?.message === 'Front') {
+          if (office?.officeType === 'Front') {
             await fetch(`${BACKEND_URL}/api/Login/CheckSessionStaff`, { credentials: 'include' });
             navigate('/FrontOfficeEmployee');
           } else {

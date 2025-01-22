@@ -936,4 +936,46 @@ public class EmployeeRepository : IEmployeeRepository
             return (500, ex.Message, new Dictionary<string, object>());
         }
     }
+    
+    /// <summary>
+    /// Er wordt een query aangemaakt met de meegegeven gegevens voor de inname.
+    /// Nadat de query volledig is, wordt deze uitgevoerd.
+    /// IDs wordt automatisch toegepast op de inname.
+    /// </summary>
+    /// <param name="damage"></param>
+    /// <param name="frameNrVehicle"></param>
+    /// <param name="reviewedBy"></param>
+    /// <param name="date"></param>
+    /// <param name="contract"></param>
+    /// <returns></returns>
+    public async Task<(bool status, string message)> AddIntakeAsync(string damage, int frameNrVehicle, string reviewedBy, DateTime date, int contract)
+    {
+        try
+        {
+            string query = "INSERT INTO Intake (Damage, FrameNrVehicle, ReviewedBy, Date, Contract) VALUES (@D, @F, @R, @DT, @C)";
+
+            // Er wordt een connectie met de DataBase gemaakt met de bovenstaande query
+            using (var connection = _connector.CreateDbConnection())
+            using (var command = new MySqlCommand(query, (MySqlConnection)connection))
+            {
+                // Alle parameters worden ingevuld
+                command.Parameters.AddWithValue("@D", damage);
+                command.Parameters.AddWithValue("@F", frameNrVehicle);
+                command.Parameters.AddWithValue("@R", reviewedBy);
+                command.Parameters.AddWithValue("@DT", date);
+                command.Parameters.AddWithValue("@C", contract);
+
+                if (await command.ExecuteNonQueryAsync() > 0)
+                {
+                    // Er wordt gekeken of de gegevens zijn ingevoerd in de DataBase
+                    return (true, "Intake inserted");
+                }
+                return (false, "Something went wrong while inserting the intake");
+            }
+        }
+        catch (MySqlException ex)
+        {
+            return (false, ex.Message);
+        }
+    }
 }
