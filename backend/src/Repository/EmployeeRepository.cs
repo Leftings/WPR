@@ -3,11 +3,11 @@ using WPR.Hashing;
 using Microsoft.VisualBasic;
 using MySql.Data.MySqlClient;
 using MySqlX.XDevAPI.Relational;
-using WPR.Controllers.AddBusiness;
 using System.Reflection.Metadata.Ecma335;
 using System.Threading.Tasks;
 using WPR.Services;
-using WPR.Controllers.signUpStaff;
+using WPR.Controllers.Employee.BackOffice.signUpStaff;
+using WPR.Controllers.Customer.AddBusiness;
 
 namespace WPR.Repository;
 
@@ -76,7 +76,6 @@ public class EmployeeRepository : IEmployeeRepository
         }
         catch (MySqlException ex)
         {
-            Console.WriteLine(ex.Message);
             return (false, ex.Message);
         }
     }
@@ -135,7 +134,6 @@ public class EmployeeRepository : IEmployeeRepository
         }
         catch(MySqlException ex)
         {
-            Console.WriteLine(ex.Message);
             return (false, ex.Message);
         }
     }
@@ -166,12 +164,10 @@ public class EmployeeRepository : IEmployeeRepository
 
         catch (MySqlException ex)
         {
-            await Console.Error.WriteLineAsync($"Database error: {ex.Message} Email");
             return (false, ex.Message);
         }
         catch (Exception ex)
         {
-            await Console.Error.WriteLineAsync($"Unexpected error: {ex.Message}");
             return (false, ex.Message);
         }
     }
@@ -186,25 +182,39 @@ public class EmployeeRepository : IEmployeeRepository
     {
         try
         {
-            string query = "SELECT FirstName, LastName, Adres, Email, TelNum FROM UserCustomer WHERE ID = @I";
+            var row = new Dictionary<string, object>();
+            string queryCustomer = "SELECT Email FROM Customer WHERE ID = @I";
+            string queryPrivate = "SELECT FirstName, LastName, Adres, TelNum FROM Private WHERE ID = @I";
 
             // Er wordt een connectie met de DataBase gemaakt met de bovenstaande query
             using (var connection = _connector.CreateDbConnection())
-            using (var command = new MySqlCommand(query, (MySqlConnection)connection))
+            using (var commandCustomer = new MySqlCommand(queryCustomer, (MySqlConnection)connection))
+            using (var commandPrivate = new MySqlCommand(queryPrivate, (MySqlConnection)connection))
             {
                 // De parameter wordt ingevuld
-                command.Parameters.AddWithValue("@I", userid);
+                commandCustomer.Parameters.AddWithValue("@I", userid);
+                commandPrivate.Parameters.AddWithValue("@I", userid);
 
-                using (var reader = await command.ExecuteReaderAsync())
+                using (var readerCustomer = await commandCustomer.ExecuteReaderAsync())
                 {
                     // Alle gegevens in de row worden verzameld <Kolom naam : Kolom data>
-                    await reader.ReadAsync();
-                    
-                    var row = new Dictionary<string, object>();
+                    await readerCustomer.ReadAsync();
 
-                    for (int i = 0; i < reader.FieldCount; i++)
+                    for (int i = 0; i < readerCustomer.FieldCount; i++)
                     {
-                        row[reader.GetName(i)] = reader.GetValue(i);
+                        row[readerCustomer.GetName(i)] = readerCustomer.GetValue(i);
+                    }
+
+                    await readerCustomer.CloseAsync();
+                }
+
+                using (var readerPrivate = await commandPrivate.ExecuteReaderAsync())
+                {
+                    await readerPrivate.ReadAsync();
+
+                    for (int j = 0; j < readerPrivate.FieldCount; j++)
+                    {
+                        row[readerPrivate.GetName(j)] = readerPrivate.GetValue(j);
                     }
 
                     return (true, row);
@@ -214,12 +224,12 @@ public class EmployeeRepository : IEmployeeRepository
         catch (MySqlException ex)
         {
             await Console.Error.WriteLineAsync($"Database error: {ex.Message} User");
-            return (false, null);
+            return (false, new Dictionary<string, object>());
         }
         catch (Exception ex)
         {
             await Console.Error.WriteLineAsync($"Unexpected error: {ex.Message}");
-            return (false, null);
+            return (false, new Dictionary<string, object>());
         }
     }
 
@@ -260,12 +270,12 @@ public class EmployeeRepository : IEmployeeRepository
         catch (MySqlException ex)
         {
             await Console.Error.WriteLineAsync($"Database error: {ex.Message} Vehicle");
-            return (false, null);
+            return (false, new Dictionary<string, object>());
         }
         catch (Exception ex)
         {
             await Console.Error.WriteLineAsync($"Unexpected error: {ex.Message}");
-            return (false, null);
+            return (false, new Dictionary<string, object>());
         }
     }
 
@@ -290,7 +300,9 @@ public class EmployeeRepository : IEmployeeRepository
 
             if (isVehicleManager)
             {
-                query = "SELECT OrderId FROM Contract WHERE Status = 'requested' AND VMStatus = 'requested' AND KvK = @K";
+                query = @"SELECT OrderId FROM Contract 
+                        JOIN Customer C on C.ID = Contract.Customer
+                        WHERE Status = 'requested' AND VMStatus = 'requested' AND C.KvK = @K";
 
             }
             else if (user.Equals("frontOffice"))
@@ -328,12 +340,12 @@ public class EmployeeRepository : IEmployeeRepository
         catch (MySqlException ex)
         {
             await Console.Error.WriteLineAsync(ex.Message);
-            return (false, null);
+            return (false, new List<string>());
         }
         catch (Exception ex)
         {
             await Console.Error.WriteLineAsync(ex.Message);
-            return (false, null);
+            return (false, new List<string>());
         }
     }
 
@@ -413,12 +425,12 @@ public class EmployeeRepository : IEmployeeRepository
         catch (MySqlException ex)
         {
             await Console.Error.WriteLineAsync($"Database error: {ex.Message} Review");
-            return (false, null);
+            return (false, new List<Dictionary<string, object>>());
         }
         catch (Exception ex)
         {
             await Console.Error.WriteLineAsync($"Unexpected error: {ex.Message}");
-            return (false, null);
+            return (false, new List<Dictionary<string, object>>());
         }
     }
 
@@ -445,13 +457,11 @@ public class EmployeeRepository : IEmployeeRepository
         }
         catch (MySqlException ex)
         {
-            Console.WriteLine(ex.Message);
-            return null;
+            return ex.Message;
         }
         catch (Exception ex)
         {
-            Console.WriteLine(ex.Message);
-            return null;
+            return ex.Message;
         }
     }
 
@@ -483,6 +493,7 @@ public class EmployeeRepository : IEmployeeRepository
             using (var connection = _connector.CreateDbConnection())
             using (var command = new MySqlCommand(query, (MySqlConnection)connection))
             {
+                Console.WriteLine(id);
                 // De parameters worden ingevuld
                 command.Parameters.AddWithValue("@S", status);
                 command.Parameters.AddWithValue("@I", id);
@@ -760,7 +771,6 @@ public class EmployeeRepository : IEmployeeRepository
                     {
                         for (int i = 0; i < reader.FieldCount; i++)
                         {
-                            Console.WriteLine(reader.GetName(i));
                             data[reader.GetName(i)] = reader.GetValue(i);
                         }
                     }

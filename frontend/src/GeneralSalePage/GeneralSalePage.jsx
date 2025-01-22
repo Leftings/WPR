@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect, useCallback } from 'react';
+import { Link, Navigate, useNavigate } from 'react-router-dom';
 import GeneralHeader from "../GeneralBlocks/header/header.jsx";
 import GeneralFooter from "../GeneralBlocks/footer/footer.jsx";
 import DatePicker from "react-datepicker";
@@ -48,11 +48,14 @@ function GeneralSalePage() {
     const [loadingRequests, SetLoadingRequests] = useState({});
     const [isFiltersOpen, setIsFiltersOpen] = useState(false);
     const [filterOptions, setFilterOptions] = useState({});
+    const [isStaff, setIsStaff] = useState(false);
+    const [officeType, setOfficeType] = useState(null);
+    const [isFrontOffice, setIsFrontOffice] = useState(false);
+    const navigate = useNavigate();
     const [cars, setCars] = useState([]);
     const [rentals, setRentals] = useState([]);
     const [campers, setCampers] = useState([]);
     const [caravans, setCaravans] = useState([]);
-    const [isStaff, setIsStaff] = useState(false);
 
     const [showColorFilters, setShowColorFilters] = useState(false);
     const [showBrandFilters, setShowBrandFilters] = useState(false);
@@ -64,13 +67,14 @@ function GeneralSalePage() {
     };
 
     const [filters, setFilters] = useState({
+        startDate: new Date(new Date().setDate(new Date().getDate() + 1)), // Tomorrow
+        endDate: null, // No end date initially
         vehicleTypes: [],
-        color: [],
-        startDate: null,
-        endDate: null,
         brand: [],
-        seat: []
+        color: [],
+        seat: [],
     });
+
 
     const handleDateFilterChange = (dates) => {
         const [start, end] = dates;
@@ -98,17 +102,21 @@ function GeneralSalePage() {
     const filteredVehicles = vehicles.filter(vehicle => {
         console.log(`Evaluating Vehicle ${vehicle.FrameNr}`);
 
+        // Filter based on vehicle types, colors, brands, and seats
         const matchesVehicleTypes = filters.vehicleTypes.length === 0 || filters.vehicleTypes.includes(vehicle.Sort);
         const matchesColor = filters.color.length === 0 || filters.color.includes(vehicle.Color);
         const matchesBrand = filters.brand.length === 0 || filters.brand.includes(vehicle.Brand);
         const matchesSeat = filters.seat.length === 0 || filters.seat.includes(vehicle.Seats);
 
+        // Handle date range selection
         const startDate = filters.startDate ? new Date(filters.startDate) : null;
         const endDate = filters.endDate ? new Date(filters.endDate) : null;
 
+        // Get the rentals related to the current vehicle
         const vehicleRentals = rentals.filter(rental => String(rental.frameNrVehicle) === String(vehicle.FrameNr));
         console.log(`Vehicle ${vehicle.FrameNr} Rentals:`, vehicleRentals);
 
+        // Check if the vehicle is rented during the selected date range
         const isRentedDuringSelectedDates = vehicleRentals.some(rental => {
             if (!rental.startDate || !rental.endDate) {
                 console.log(`Rental for Vehicle ${vehicle.FrameNr} has invalid dates`);
@@ -120,17 +128,20 @@ function GeneralSalePage() {
 
             console.log(`Rental Start: ${rentalStart}, Rental End: ${rentalEnd}`);
             console.log(`Selected Start: ${startDate}, Selected End: ${endDate}`);
+
             return (
-                (startDate && endDate && startDate <= rentalEnd && endDate >= rentalStart) ||
-                (startDate && !endDate && startDate < rentalEnd) ||
-                (!startDate && endDate && endDate > rentalStart) 
+                (startDate && endDate && startDate <= rentalEnd && endDate >= rentalStart) ||  // Full overlap
+                (startDate && !endDate && startDate < rentalEnd) ||  // Start date overlap
+                (!startDate && endDate && endDate > rentalStart) // End date overlap
             );
         });
 
         console.log(`Vehicle ${vehicle.FrameNr} ${isRentedDuringSelectedDates ? 'is' : 'is not'} rented during selected dates`);
 
+        // Return the filtered result based on all conditions
         return matchesVehicleTypes && matchesBrand && matchesColor && matchesSeat && !isRentedDuringSelectedDates;
     });
+
 
     const availableBrands = sorterOneItem([...new Set(vehicles
         .filter(vehicle => filters.vehicleTypes.length === 0 || filters.vehicleTypes.includes(vehicle.Sort))
@@ -209,18 +220,40 @@ function GeneralSalePage() {
     }, []);
 
     useEffect(() => {
-        fetch('http://localhost:5165/api/Login/CheckSessionStaff', {credentials: 'include'})
-            .then(response => {
+        fetch('http://localhost:5165/api/Login/CheckSessionStaff', {
+            credentials: 'include',
+            method: 'GET',
+        })
+            .then((response) => {
                 if (!response.ok) {
-                    throw new Error('Not a staff member');
+                    throw new Error('Not a staff member or session expired');
                 }
                 return response.json();
             })
-            .then(() => setIsStaff(true))
-            .catch(() => setIsStaff(false));
+            .then((data) => {
+                console.log('Backend Response:', data);
+
+                if (data.officeType === 'Front') {
+                    setIsStaff(true);
+                    setIsFrontOffice(true); // Mark as Front Office
+                } else if (data.officeType === 'Back') {
+                    setIsStaff(true);
+                    setIsFrontOffice(false); // Mark as Back Office
+                } else {
+                    setIsStaff(false); // Unexpected case
+                }
+            })
+            .catch((error) => {
+                console.error('Error fetching session info:', error);
+                setIsStaff(false);
+                setIsFrontOffice(false);
+            });
     }, []);
 
     const handleDelete = async (frameNr) => {
+        const confirmDelete = window.confirm('Are you sure you want to delete this vehicle?');
+        if (!confirmDelete) return;
+        
         try {
             const response = await fetch(`${BACKEND_URL}/api/vehicle/DeleteVehicle?frameNr=${frameNr}`, {
                 method: 'DELETE',
@@ -234,11 +267,12 @@ function GeneralSalePage() {
             const data = await response.json()
 
             if (data.Status) {
-                setVehicles(vehicles.filter(vehicle => vehicle.FrameNr !== frameNr));
-                alert('Vehicle deleted successfully');
-            } else {
-                alert(data.message)
-            }
+            setVehicles(vehicles.filter(vehicle => vehicle.FrameNr !== frameNr));
+            alert('Voertuig is verwijderd.');
+            navigate('/vehicles');
+        } else {
+            alert(data.message)
+        }
         } catch (error) {
             console.error(error.message);
             alert('Error deleting vehicle');
@@ -319,7 +353,7 @@ function GeneralSalePage() {
             }
 
             const data = await response.json();
-            setRentals(data); // Save rentals data in state
+            setRentals(data); 
         } catch (error) {
             console.error('Error fetching rentals:', error);
         }
@@ -348,7 +382,7 @@ function GeneralSalePage() {
                 <h2 className="filter-bar-title">
                     Filters
                     <span className="filter-bar-exit" onClick={toggleFilters}><i className="fas fa-times"/></span></h2>
-                <hr/>
+                    <hr/>
                 {!isEmployee && (
                     <>
                     <div className="filter-section">
@@ -373,9 +407,9 @@ function GeneralSalePage() {
                             </div>
                         )}
                     </div>
+                    <hr/>
                     </>
                     )}
-                <hr/>
 
 
                 {filters.vehicleTypes.length > 0 && availableBrands.length > 0 && (
@@ -403,7 +437,7 @@ function GeneralSalePage() {
                                 </div>
                             )}
                         </div>
-                        <hr /> {/* Always render this <hr /> when "Merk" filter section is visible */}
+                        <hr /> 
                     </>
                 )}
 
@@ -412,8 +446,9 @@ function GeneralSalePage() {
                     <p onClick={() => setShowColorFilters(!showColorFilters)}>Kleur
                         <span className={`toggle-icon ${showColorFilters ? 'rotated' : ''}`}>+</span>
                     </p>
-                    <div className={`filter-types ${showColorFilters ? 'show' : ''}`}>
-                        {['Rood', 'Blauw', 'Groen', 'Zwart', 'Wit', 'Grijs'].map((color) => (
+                    {filterOptions.Sort && filterOptions.Sort.length > 0 && (
+                        <div className={`filter-types ${showColorFilters ? 'show' : ''}`}>
+                        {filterOptions.Color.map((color) => (
                             <div key={color} className="checkbox-item">
                                 <input
                                     type="checkbox"
@@ -426,32 +461,17 @@ function GeneralSalePage() {
                             </div>
                         ))}
                     </div>
-                </div>
-
-                <hr/>
-
-                <div className="filter-section">
-                    <p>Selecteer datumbereik:</p>
-                    <DatePicker
-                        selected={filters.startDate}
-                        onChange={handleDateFilterChange}
-                        startDate={filters.startDate}
-                        endDate={filters.endDate}
-                        selectsRange
-                        inline
-                        dateFormat="yyyy/MM/dd"
-                        placeholderText="Selecteer start- en einddatum"
-                    />
+                    )}
                 </div>
                 <hr/>
-
                 {/* Aantal passagiers Filter */}
                 <div className="filter-section">
                     <p onClick={() => setShowSeatsFilters(!showSeatsFilters)}>Aantal passagiers
                         <span className={`toggle-icon ${showSeatsFilters ? 'rotated' : ''}`}>+</span>
                     </p>
-                    <div className={`filter-types ${showSeatsFilters ? 'show' : ''}`}>
-                        {['4', '5', '6'].map((seat) => (
+                    {filterOptions.Sort && filterOptions.Sort.length > 0 && (
+                        <div className={`filter-types ${showSeatsFilters ? 'show' : ''}`}>
+                        {filterOptions.Seats.map((seat)=> (
                             <div key={seat} className="checkbox-item">
                                 <input
                                     type="checkbox"
@@ -465,6 +485,7 @@ function GeneralSalePage() {
                             </div>
                         ))}
                     </div>
+                    )}
                 </div>
             </div>
 
@@ -474,8 +495,33 @@ function GeneralSalePage() {
             <div className="general-sale-page">
                 <div className="car-sale-section">
                     <h1 className="title-text">Voertuigen</h1>
-                    <button htmlFor="filter" onClick={toggleFilters} className="filter-button"><i
-                        className="fas fa-filter"></i> Filter
+                    
+                    {!isStaff && (
+                        <div className="date-picker-container">
+                            <p className="date-picker-label">Selecteer datumbereik:</p>
+                            <DatePicker
+                                selected={filters.startDate}
+                                onChange={(dates) => {
+                                    const [start, end] = dates || [];
+                                    setFilters((prevFilters) => ({
+                                        ...prevFilters,
+                                        startDate: start || null,
+                                        endDate: end || null,
+                                    }));
+                                }}
+                                startDate={filters.startDate}
+                                endDate={filters.endDate}
+                                selectsRange
+                                inline
+                                dateFormat="yyyy/MM/dd"
+                                placeholderText="Selecteer start- en einddatum"
+                                minDate={new Date()} 
+                            />
+                        </div>
+                    )}
+
+                    <button htmlFor="filter" onClick={toggleFilters} className="filter-button">
+                        <i className="fas fa-filter"></i> Filter
                     </button>
 
                     {loading ? (
@@ -501,31 +547,40 @@ function GeneralSalePage() {
                                             <p className="car-price">{`$${vehicle.Price}`}</p>
                                             <p className="car-description">{vehicle.Description || 'No description available'}</p>
                                         </div>
-                                        <Link
-                                            to={`/vehicle/${vehicle.FrameNr}`}
-                                            state={{
-                                                vehicle,
-                                                rentalDates: [filters.startDate, filters.endDate],
-                                            }}
-                                            className={`huur-link`}
-                                            onClick={(e) => {
-                                                if (!filters.startDate || !filters.endDate) {
-                                                    e.preventDefault();
-                                                    toast.error('Selecteer alstublieft een begin- en einddatum voordat u een voertuig huurt.', {
-                                                        position: "top-center",
-                                                        autoClose: 3000,
-                                                        hideProgressBar: false,
-                                                        closeOnClick: true,
-                                                        pauseOnHover: true,
-                                                        draggable: true,
-                                                        progress: undefined,
-                                                    });
-                                                }
-                                            }}
-                                        >
-                                            Rent Now
-                                        </Link>
 
+                                        {isStaff && !isFrontOffice ? (
+                                            <button
+                                                onClick={() => handleDelete(vehicle.FrameNr)}
+                                                className="cta-button"
+                                            >
+                                                Verwijder
+                                            </button>
+                                        ) : !isStaff ? (
+                                            <Link
+                                                to={`/vehicle/${vehicle.FrameNr}`}
+                                                state={{
+                                                    vehicle,
+                                                    rentalDates: [filters.startDate, filters.endDate],
+                                                }}
+                                                className={`cta-button`}
+                                                onClick={(e) => {
+                                                    if (!filters.startDate || !filters.endDate) {
+                                                        e.preventDefault();
+                                                        toast.error('Selecteer alstublieft een begin- en einddatum voordat u een voertuig huurt.', {
+                                                            position: "top-center",
+                                                            autoClose: 3000,
+                                                            hideProgressBar: false,
+                                                            closeOnClick: true,
+                                                            pauseOnHover: true,
+                                                            draggable: true,
+                                                            progress: undefined,
+                                                        });
+                                                    }
+                                                }}
+                                            >
+                                                Huur
+                                            </Link>
+                                        ) : null}
                                     </div>
                                 ))
                             ) : (
@@ -539,4 +594,5 @@ function GeneralSalePage() {
         </>
     );
 }
+
 export default GeneralSalePage;

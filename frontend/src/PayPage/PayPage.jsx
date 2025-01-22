@@ -40,7 +40,7 @@ function PayPage() {
         if (rentalDates[0] && rentalDates[1]) {
             const start = new Date(rentalDates[0]);
             const end = new Date(rentalDates[1]);
-            const days = Math.ceil((end - start) / (1000 * 60 * 60 * 24));
+            const days = Math.ceil((end - start) / (1000 * 60 * 60 * 24)) + 1;
             const pricePerDay = parseFloat(vehicle?.Price.replace(',', '.') || "0");
 
             if (!isNaN(pricePerDay) && days > 0) {

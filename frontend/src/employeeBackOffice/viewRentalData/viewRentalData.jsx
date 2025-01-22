@@ -5,7 +5,7 @@ import '../../index.css';
 import GeneralHeader from '../../GeneralBlocks/header/header';
 import GeneralFooter from '../../GeneralBlocks/footer/footer';
 import { sorter, specific } from '../../utils/sorter.js'
-import { loadList, loadSingle } from '../../utils/backendLoader.js';
+import { loadArray, loadList, loadSingle } from '../../utils/backendLoader.js';
 import { placingItems } from '../../utils/gridPlacement.js';
 
 
@@ -70,7 +70,6 @@ function ViewRentalData() {
         setRentalData([]);
         setLoading(true);
 
-        const tempData = [];
         try
         {
             // Alle ids worden opgehaald
@@ -91,7 +90,7 @@ function ViewRentalData() {
 
               try
               {
-                const review = await loadList(`${BACKEND_URL}/api/viewRentalData/GetReviewData?id=${id}`);
+                const review = await loadArray(`${BACKEND_URL}/api/viewRentalData/GetReviewData?id=${id}`);
                 
                 if (review?.message)
                 {
@@ -173,7 +172,7 @@ function ViewRentalData() {
     if (loading) {
       return (
         <div className="loading-screen">
-          <p>Loading requests...</p>
+          <p>Laden van verzoeken...</p>
         </div>
       );
     }
@@ -237,14 +236,14 @@ function ViewRentalData() {
                       </div>
                       ) : (
                       <>
-                        <p><strong>Naam:</strong> {data.NameCustomer}</p>
+                        {data.VMStatus === 'X' ? null : <p><strong>Oordeel Wagenpark Beheerder: </strong>{data.VMStatus}</p>}
+                        {data.NameCustomer === null ? null : <p><strong>Naam:</strong> {data.NameCustomer}</p>}
                         <p><strong>Voertuig:</strong> {data.Vehicle}</p>
                         <p><strong>Start Datum:</strong> {new Date(data.StartDate).toLocaleDateString()}</p>
                         <p><strong>Eind Datum:</strong> {new Date(data.EndDate).toLocaleDateString()}</p>
                         <p><strong>Totaal Prijs:</strong> €{data.Price}</p>
                         <p><strong>Status: </strong>{data.Status}</p>
                         {data.Status === 'requested' ? null : (<p><strong>Beoordeeld Door: </strong>{data.NameEmployee}</p>)}
-                        {data.VMStatus === 'X' ? null : (<p><strong>Oordeel Wagenpark Beheerder: </strong>{data.VMStatus}</p>)}
                       </>)
                     }
                   </div>
@@ -269,10 +268,10 @@ function ViewRentalData() {
 
                   <div className="person">
                     <h2>Persoons gegevens</h2>
-                    <p><strong>Naam:</strong> {data.LastName}, {data.FirstName}</p>
+                    {data.AccountType === 'Business' ? null : <p><strong>Naam:</strong> {data.LastName}, {data.FirstName}</p>}
                     <p><strong>Email:</strong> {data.Email}</p>
-                    <p><strong>Telefoon Nummer:</strong> {data.Telnum}</p>
-                    <p><strong>Adres:</strong> {data.Adres}</p>
+                    {data.AccountType === 'Business' ? null : <p><strong>Telefoon Nummer:</strong> {data.TelNum}</p>}
+                    {data.AccountType === 'Business' ? null: <p><strong>Adres:</strong> {data.Adres}</p>}
                   </div>
                   <div className="vehicle">
                     <h2>Voertuig gegevens</h2>

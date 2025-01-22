@@ -30,6 +30,7 @@ function SignUp() {
     const [error, SetErrors] = useState([]);
     const [domain, SetDomain] = useState('');
     const [contactEmail, SetContactEmail] = useState('');
+    const [isBusinessAccount, setIsBusinessAccount] = useState('Employee');
         
 
     const choice = (buttonId) => {
@@ -46,11 +47,18 @@ function SignUp() {
         }
         else
         {
-            validationErrors = EmptyFieldChecker({ name, kvk, street, number, domain, contactEmail });
-
-            if (kvk.length < 8)
+            if (isBusinessAccount === 'Business')
             {
-                validationErrors.push("Te kort KvK nummer");
+                validationErrors = EmptyFieldChecker({ name, kvk, street, number, domain, contactEmail });
+
+                if (kvk.length < 8)
+                {
+                    validationErrors.push("Te kort KvK nummer");
+                }
+            }
+            else
+            {
+                validationErrors = EmptyFieldChecker({ email, password1, password2 });
             }
         }
 
@@ -67,7 +75,7 @@ function SignUp() {
                 {
                     formData.append('SignUpRequestCustomer.Email', email);
                     formData.append('SignUpRequestCustomer.AccountType', chosenType);
-                    formData.append('SignUpRequestCustomerPrivate.Password', password1);
+                    formData.append('SignUpRequestCustomer.Password', password1);
                     formData.append('SignUpRequestCustomerPrivate.FirstName', firstName);
                     formData.append('SignUpRequestCustomerPrivate.LastName', lastName);
                     formData.append('SignUpRequestCustomerPrivate.TelNumber', phonenumber);
@@ -79,14 +87,26 @@ function SignUp() {
                 }
                 else
                 {
-                    formData.append('KvK', kvk);
-                    formData.append('Name', name);
-                    formData.append('Adress', `${street} ${number}${add}`);
-                    formData.append('Domain', domain);
-                    formData.append('ContactEmail', contactEmail);
+                    if (isBusinessAccount === 'Business')
+                    {
+                        formData.append('KvK', kvk);
+                        formData.append('Name', name);
+                        formData.append('Adress', `${street} ${number}${add}`);
+                        formData.append('Domain', domain);
+                        formData.append('ContactEmail', contactEmail);
 
-                    const response = await pushWithBody(`${BACKEND_URL}/api/AddBusiness/addBusiness`, formData);
-                    redirect(response);
+                        const response = await pushWithBody(`${BACKEND_URL}/api/AddBusiness/addBusiness`, formData);
+                        redirect(response);
+                    }
+                    else
+                    {
+                        formData.append('SignUpRequestCustomer.Email', email);
+                        formData.append('SignUpRequestCustomer.Password', password1);
+                        formData.append('SignUpRequestCustomer.AccountType', chosenType);
+
+                        const response = await pushWithBody(`${BACKEND_URL}/api/SignUp/signUp`, formData);
+                        redirect(response);
+                    }
                 }
             } catch (error)
             {
@@ -104,13 +124,13 @@ function SignUp() {
             }
             else
             {
-                if (chosenType === 'Private')
+                if (chosenType === 'Private' || isBusinessAccount === 'Employee')
                 {
                     navigate('/login');
                 }
                 else
                 {
-                    //navigate('/vehicles');
+                    navigate('/');
                 }
             }
         }
@@ -137,7 +157,7 @@ function SignUp() {
                 </div>
             </div>
             <div className='registrateFormat'>
-                {chosenType === 'Private' && (
+                {chosenType === 'Private' ? (
                     <>
                         <label htmlFor="firstName">Voornaam</label>
                         <input type="text" id="firstName" value={firstName}onChange={(e) => setFirstName(e.target.value)}></input>
@@ -169,32 +189,57 @@ function SignUp() {
                         <label htmlFor="dateOfBirth">Geboortedatum</label>
                         <input type="date" id="dateOfBirth" value={dateOfBirth}onChange={(e) => setDateOfBirth(e.target.value)}></input>    
                     </>
-                )}
+                ) : (<>
+                    {chosenType === 'Business' && isBusinessAccount === 'Employee' ? (
+                        <>
+                        {chosenType === 'Business' && (
+                            <>
+                                <button className='cta-button'onClick={() => setIsBusinessAccount('Employee')} id={isBusinessAccount === 'Employee' ? 'typeButton-active' : 'typeButton'} type='button'>Medewerker</button>
+                                <button className='cta-button'onClick={() => setIsBusinessAccount('Business')} id={isBusinessAccount === 'Business' ? 'typeButton-active' : 'typeButton'} type='button'>Bedrijf</button>
+                            </>
+                        )}
+                        <label htmlFor='inputEmailBusiness'>Zakelijk email adress</label>
+                        <input id = 'inputEmailBusiness' value={email} onChange={(e) => setEmail(e.target.value.toLowerCase())}></input>
+    
+                        <label htmlFor='inputPasswordBusiness1'>Wachtwoord</label>
+                        <input id = 'inputPasswordBusiness1' value={password1} onChange={(e) => setPassword1(e.target.value)}></input>
+    
+                        <label htmlFor='inputPasswordBusiness2'>Herhaal Wachtwoord</label>
+                        <input id = 'inputPasswordBusiness2' value={password2} onChange={(e) => setPassword2(e.target.value)}></input>
+                        </>
+                    ) :
+                    (
+                        <>
+                            {chosenType === 'Business' && (
+                                <>
+                                    <button className='cta-button'onClick={() => setIsBusinessAccount('Employee')} id={isBusinessAccount === 'Employee' ? 'typeButton-active' : 'typeButton'} type='button'>Medewerker</button>
+                                    <button className='cta-button'onClick={() => setIsBusinessAccount('Business')} id={isBusinessAccount === 'Business' ? 'typeButton-active' : 'typeButton'} type='button'>Bedrijf</button>
+                                </>
+                            )}
+                            <label htmlFor='inputBusinessName'>Bedrijfsnaam</label>
+                            <input id='inputBusinessName' value={name} onChange={(e) => SetName(e.target.value)}></input>
+    
+                            <label htmlFor='inputKvK'>KvK</label>
+                            <input id='inputKvK'value={kvk} onChange={(e) => SetKvk(KvKChecker(NumberCheck(e.target.value)))}></input>
+    
+                            <label htmlFor='inputDomain'>Domein naam</label>
+                            <input id='inputDomain' value={domain} onChange={(e) => SetDomain(e.target.value.toLowerCase())} placeholder='@example.nl'></input>
+    
+                            <label htmlFor='inputStreet'>Straatnaam</label>
+                            <input id='inputStreet' value={street} onChange={(e) => SetStreet(e.target.value)}></input>
+    
+                            <label htmlFor='inputNumber'>Nummer</label>
+                            <input id='inputNumber' value={number} onChange={(e) => SetNumber(NumberCheck(e.target.value))}></input>
+    
+                            <label htmlFor='inputExtra'>Toevoeging (niet verplicht)</label>
+                            <input id='inputExtra' value={add} onChange={(e) => SetAdd(NoSpecialCharacters(e.target.value.toUpperCase()))}></input>
+    
+                            <label htmlFor='inputContactEmail'>Concact Email</label>
+                            <input id='inputContactEmail' value={contactEmail} onChange={(e) => SetContactEmail(e.target.value.toLowerCase())}></input>
+                        </>
+                    )}
+                </>)}
 
-                {chosenType === 'Business' && (
-                    <>
-                        <label htmlFor='inputBusinessName'>Bedrijfsnaam</label>
-                        <input id='inputBusinessName' value={name} onChange={(e) => SetName(e.target.value)}></input>
-
-                        <label htmlFor='inputKvK'>KvK</label>
-                        <input id='inputKvK'value={kvk} onChange={(e) => SetKvk(KvKChecker(NumberCheck(e.target.value)))}></input>
-
-                        <label htmlFor='inputDomain'>Domein naam</label>
-                        <input id='inputDomain' value={domain} onChange={(e) => SetDomain(e.target.value.toLowerCase())} placeholder='@example.nl'></input>
-
-                        <label htmlFor='inputStreet'>Straatnaam</label>
-                        <input id='inputStreet' value={street} onChange={(e) => SetStreet(e.target.value)}></input>
-
-                        <label htmlFor='inputNumber'>Nummer</label>
-                        <input id='inputNumber' value={number} onChange={(e) => SetNumber(NumberCheck(e.target.value))}></input>
-
-                        <label htmlFor='inputExtra'>Toevoeging (niet verplicht)</label>
-                        <input id='inputExtra' value={add} onChange={(e) => SetAdd(NoSpecialCharacters(e.target.value.toUpperCase()))}></input>
-
-                        <label htmlFor='inputContactEmail'>Concact Email</label>
-                        <input id='inputContactEmail' value={contactEmail} onChange={(e) => SetContactEmail(e.target.value.toLowerCase())}></input>
-                    </>
-                )}
 
                 <div className='registrateFormatFooter'>
                     {error.length > 0 && (
@@ -208,6 +253,7 @@ function SignUp() {
                     )}
 
                     <button className='cta-button' onClick={Push}>Bevestig</button>
+                    <p></p>
                     <label htmlFor="heeftAccount">Heeft u al een account? <Link id="redirect" to="/login">Log in!</Link></label>
                 </div>
             </div>

@@ -571,6 +571,8 @@ margin-right: 20px;
   text-decoration: none;
   border-radius: 5px;
   transition: background-color 0.3s;
+  text-align: center;
+  display: block;
 }
 
 .abonnementen-info .cta-button:hover {
@@ -610,7 +612,7 @@ margin-right: 20px;
   justify-content: center;
   gap: 150px;
   margin-top: 30px;
-  padding-left: 800px;
+  padding-left: 200px;
 }
 
 .car-detail-image {
@@ -777,6 +779,18 @@ h3 {
 .total-cost p {
   font-size: 1.5em;
   color: #e74c3c; 
+}
+
+.date-picker-container {
+  text-align: center; 
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+
+
+.date-picker-container .react-datepicker-wrapper {
+  display: inline-block;
 }
 
 .custom-select {
@@ -1542,6 +1556,10 @@ html {
   font-family: Arial, sans-serif;
 }
 
+html, body {
+  overflow-x: hidden;
+}
+
 /* Index
 html
 {
@@ -1938,24 +1956,23 @@ input::selection {
   max-height: 0;
   pointer-events: none;
   opacity: 0;
-  overflow: hidden; 
   display: flex;
   flex-direction: column;
   gap: 10px;
-  transition: opacity 0.3s ease; 
+  transition: max-height 0.3s ease, opacity 0.3s ease
 }
 
 .filter-types.show {
   max-height: none;
   opacity: 1;
   pointer-events: all;
+  display: block;
 }
 
 .checkbox-item {
   display: flex;
   align-items: center;
   gap: 10px;
-  height: 35px;
 }
 
 .checkbox-item input[type="checkbox"] {
@@ -2205,6 +2222,9 @@ input::selection {
   background-color: red;
   color: white;
   font-weight: bold;
+  display: block;
+  flex-direction: column;
+
   transition: color 0.3s;
   transition: background-color 0.3s;
 }

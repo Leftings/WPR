@@ -86,12 +86,13 @@ h3 {
 }
 
 .total-cost {
-    margin-top: 20px;
-    font-size: 1.2em;
-    font-weight: bold;
-    color: #333;
-    margin-left: 5%;
+    margin-top: 20px;  
+    padding: 10px;
+    background-color: #f4f4f4;  
+    text-align: right; 
+    font-size: 18px;
 }
+
 
 .total-cost p {
     font-size: 1.5em;

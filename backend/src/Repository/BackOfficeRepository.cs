@@ -1,6 +1,5 @@
 using System.Data;
 using System.Runtime.CompilerServices;
-using WPR.Controllers.viewRentalData;
 using WPR.Database;
 using MySql.Data.MySqlClient;
 using Org.BouncyCastle.Asn1.X509.SigI;
@@ -58,17 +57,25 @@ public class BackOfficeRepository(Connector connector) : IBackOfficeRepository
                                             row.Add(item.Key, item.Value);
                                         }
                                     }
+
+                                    foreach (var item in GetBusinessInfo(columnData))
+                                    {
+                                        if (!row.ContainsKey(item.Key))
+                                        {
+                                            row.Add(item.Key, item.Value);
+                                        }
+                                    }
                                 }
                                 else
                                 {
-                                    row["NameCustomer"] = GetName(columnData, "UserCustomer");
+                                    row["NameCustomer"] = GetName(columnData, "Private");
                                 }
                             }
                             else if (columnName.Equals("ReviewedBy"))
                             {
                                 row["NameEmployee"] = GetName(columnData, "Staff");
                             }
-                            else if (columnName.Equals("FrameNrCar"))
+                            else if (columnName.Equals("FrameNrVehicle"))
                             {
                                 if (fullInfo)
                                 {
@@ -139,7 +146,6 @@ public class BackOfficeRepository(Connector connector) : IBackOfficeRepository
         }
         catch (MySqlException ex)
         {
-            Console.WriteLine(ex);
             _exception = ex;
             return null;
         }
@@ -154,7 +160,7 @@ public class BackOfficeRepository(Connector connector) : IBackOfficeRepository
     {
         try
         {
-            string query = $"SELECT Business From Customer WHERE ID = @I";
+            string query = $"SELECT KvK From Customer WHERE ID = @I";
             object business = "";
 
             using (var connection = _connector.CreateDbConnection())
@@ -163,7 +169,6 @@ public class BackOfficeRepository(Connector connector) : IBackOfficeRepository
                 command.Parameters.AddWithValue("@I", employee);
                 using (var reader = command.ExecuteReader())
                 {
-                    Console.WriteLine("Y");
                     while (reader.Read())
                     {
                         business = reader.GetValue(0).ToString();
@@ -184,7 +189,6 @@ public class BackOfficeRepository(Connector connector) : IBackOfficeRepository
                     {
                         for (int i = 0; i < reader.FieldCount; i++)
                         {
-                            Console.WriteLine(reader.GetName(i));
                             if (reader.GetName(i).Equals("Adres"))
                             {
                                 data["AdresBusiness"] = reader.GetValue(i);
@@ -203,15 +207,13 @@ public class BackOfficeRepository(Connector connector) : IBackOfficeRepository
         }
         catch (MySqlException ex)
         {
-            Console.WriteLine(ex);
             _exception = ex;
-            return null;
+            return new Dictionary<string, object>();;
         }
         catch (Exception ex)
         {
             _exception = ex;
-            Console.WriteLine(ex);
-            return null;
+            return new Dictionary<string, object>();;
         }
     }
 
@@ -219,15 +221,18 @@ public class BackOfficeRepository(Connector connector) : IBackOfficeRepository
     {
         try
         {
-            string query = $"SELECT * From UserCustomer WHERE ID = @I";
+            Dictionary<string, object> person = new Dictionary<string, object>();
+            string queryPrivate = $"SELECT * From Private WHERE ID = @I";
+            string queryCustomer = $"SELECT * FROM Customer WHERE ID = @I";
 
             using (var connection = _connector.CreateDbConnection())
-            using (var command = new MySqlCommand(query, (MySqlConnection)connection))
+            using (var commandPrivate = new MySqlCommand(queryPrivate, (MySqlConnection)connection))
+            using (var commandCustomer = new MySqlCommand(queryCustomer, (MySqlConnection)connection))
             {
-                command.Parameters.AddWithValue("@I", id);
-                using (var reader = command.ExecuteReader())
+                commandPrivate.Parameters.AddWithValue("@I", id);
+                commandCustomer.Parameters.AddWithValue("@I", id);
+                using (var reader = commandPrivate.ExecuteReader())
                 {
-                    Dictionary<string, object> person = new Dictionary<string, object>();
                     // Als de id niet is ingevuld, wordt er niks verzonden
                     if (reader.Read())
                     {
@@ -236,15 +241,12 @@ public class BackOfficeRepository(Connector connector) : IBackOfficeRepository
                             string columnName = reader.GetName(i);
                             object columnData = reader.GetValue(i);
 
-                            person[reader.GetName(i)] = reader.GetValue(i);
-
-                            Console.WriteLine(columnName);
+                            person[columnName] = columnData;
 
                             if (columnName.Equals("ID"))
                             {
                                 foreach (var item in GetBusinessInfo(columnData))
                                 {
-                                    Console.WriteLine(item.Key);
                                     if (!person.ContainsKey(item.Key))
                                     {
                                         person[item.Key] = item.Value;
@@ -253,13 +255,23 @@ public class BackOfficeRepository(Connector connector) : IBackOfficeRepository
                             }
                         }
                     }
+                }
+
+                using (var reader = commandCustomer.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+                        for (int j = 0; j < reader.FieldCount; j++)
+                        {
+                            person[reader.GetName(j)] = reader.GetValue(j);
+                        }
+                    }
                     return person;
                 }
             }
         }
         catch (MySqlException ex)
         {
-            Console.WriteLine(ex);
             _exception = ex;
             return null;
         }
@@ -274,7 +286,7 @@ public class BackOfficeRepository(Connector connector) : IBackOfficeRepository
     {
         try
         {
-            string query = "SELECT * FROM Vehicle WHERE FrameNR = @F";
+            string query = "SELECT * FROM Vehicle WHERE FrameNr = @F";
 
             // Er wordt een connectie aangemaakt met de DataBase met bovenstaande query 
             using (var connection = _connector.CreateDbConnection())
@@ -309,13 +321,13 @@ public class BackOfficeRepository(Connector connector) : IBackOfficeRepository
         }
         catch (MySqlException ex)
         {
-            Console.WriteLine(ex.Message);
-            return null;
+            _exception = ex;
+            return new Dictionary<string, object>();
         }
         catch (Exception ex)
         {
-            Console.WriteLine(ex.Message);
-            return null;
+            _exception = ex;
+            return new Dictionary<string, object>();
         }
     }
 
@@ -343,14 +355,13 @@ public class BackOfficeRepository(Connector connector) : IBackOfficeRepository
         }
         catch (MySqlException ex)
         {
-            Console.WriteLine(ex);
             _exception = ex;
-            return null;
+            return ex.Message;
         }
         catch (Exception ex)
         {
             _exception = ex;
-            return null;
+            return ex.Message;
         }
     }
 
@@ -360,9 +371,9 @@ public class BackOfficeRepository(Connector connector) : IBackOfficeRepository
         
         if (!data.Status)
         {
-            return (false, _exception.Message, null);
+            return (false, _exception.Message, new Dictionary<string, object>());
         }
-        return (true, null, data.row);
+        return (true, "Succes", data.row);
     }
 
     public (bool Status, string Message, Dictionary<string, object> Data) GetDataReview(int id)
@@ -371,16 +382,16 @@ public class BackOfficeRepository(Connector connector) : IBackOfficeRepository
 
         if (!data.Status)
         {
-            return (false, _exception.Message, null);
+            return (false, _exception.Message, new Dictionary<string, object>());
         }
-        return (true, null, data.row);
+        return (true, "Succes", data.row);
     }
 
     public (bool Status, string Message, int[] Ids) GetDataReviewIds()
     {
         try
         {
-            string size = "SELECT COUNT(*) FROM Abonnement";
+            string size = "SELECT COUNT(*) FROM Contract";
             int rows = 0;
             using(var connection = _connector.CreateDbConnection())
             using(var rowsCommand = new MySqlCommand(size, (MySqlConnection)connection))
@@ -390,7 +401,7 @@ public class BackOfficeRepository(Connector connector) : IBackOfficeRepository
                 rows = Convert.ToInt32(rowsReader.GetValue(0));
             }
 
-            string query = "SELECT OrderId FROM Abonnement";
+            string query = "SELECT OrderId FROM Contract";
 
             using(var connection = _connector.CreateDbConnection())
             using(var command = new MySqlCommand(query, (MySqlConnection)connection))
@@ -409,11 +420,11 @@ public class BackOfficeRepository(Connector connector) : IBackOfficeRepository
         }
         catch (MySqlException ex)
         {
-            return (false, ex.Message, null);
+            return (false, ex.Message, new int[0]);
         }
         catch (Exception ex)
         {
-            return (false, ex.Message, null);
+            return (false, ex.Message, new int[0]);
 
         }
     }
