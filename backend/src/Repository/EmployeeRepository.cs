@@ -172,6 +172,35 @@ public class EmployeeRepository : IEmployeeRepository
         }
     }
 
+    public async Task<(bool status, string message)> checkUsageEmaiVehicleManagerlAsync(string email)
+    {
+        try
+        {
+            string query = "SELECT COUNT(*) FROM VehicleManager WHERE LOWER(Email) = LOWER(@E)";
+
+            // Er wordt een connectie met de DataBase gemaakt met de bovenstaande query
+            using (var connection = _connector.CreateDbConnection())
+            using (var command = new MySqlCommand(query, (MySqlConnection)connection))
+            {
+                // De paramater wordt ingevuld
+                command.Parameters.AddWithValue("@E", email);
+                bool inUse = Convert.ToInt32(await command.ExecuteScalarAsync()) > 0;
+
+                // Als de uitvoer van de query > 0, dan inUse = true, "Email detected", anders inUse = false, "No email detected"
+                return (inUse, inUse ? "Email detected" : "No email detected");
+            }
+        }
+
+        catch (MySqlException ex)
+        {
+            return (false, ex.Message);
+        }
+        catch (Exception ex)
+        {
+            return (false, ex.Message);
+        }
+    }
+
     /// <summary>
     /// De voornaam, achternaam, adres, emailadres en telefoonnummer wordt uit de UserCustomer tabel gehaald, om deze te laten tonen bij de huuraanvragen.
     /// De gegevens van de klant worden verzameld doormiddel van hun id.
@@ -789,8 +818,122 @@ public class EmployeeRepository : IEmployeeRepository
             return (false, ex.Message, new Dictionary<string, object>());
         }
     }
-    
-    
-    
-    
+
+    public (int StatusCode, string Message, int KvK) GetKvK(int vehicleManagerId)
+    {
+        try
+        {
+            string query = $"SELECT Business FROM VehicleManager WHERE ID = @I";
+
+            using (var connection = _connector.CreateDbConnection())
+            using (var command = new MySqlCommand(query, (MySqlConnection)connection))
+            {
+                command.Parameters.AddWithValue("@I", vehicleManagerId);
+
+                using (var reader = command.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+                        int kvk = Convert.ToInt32(reader.GetValue(0));
+
+                        return (200, "Succes", kvk);
+                    }
+                    return (404, "KvK Number Not Found", -1);
+                }
+            }
+        }
+        catch (MySqlException ex)
+        {
+            return (500, ex.Message, -1);
+        }
+        catch (OverflowException ex)
+        {
+            return (500, ex.Message, -1);
+        }
+        catch (Exception ex)
+        {
+            return (500, ex.Message, -1);
+        }
+    }
+
+    public (int StatusCode, string Message, Dictionary<string, object> Data) GetAbonnementType(int abonnementId)
+    {
+        try
+        {
+            string query = $"SELECT * FROM Abonnement WHERE ID = @I";
+            using (var connection = _connector.CreateDbConnection())
+            using (var command = new MySqlCommand(query, (MySqlConnection)connection))
+            {
+                command.Parameters.AddWithValue("@I", abonnementId);
+
+                using (var reader = command.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+                        Dictionary<string, object> data = new Dictionary<string, object>();
+
+                        for (int i = 0; i < reader.FieldCount; i++)
+                        {
+                            if (!data.ContainsKey(reader.GetName(i)))
+                            {
+                                data[reader.GetName(i)] = reader.GetValue(i);
+                            }
+                        }
+
+                        return (200, "Succes", data);
+                    }
+
+                    return (404, "Abonnement Not Found", new Dictionary<string, object>());
+                }
+            }
+        }
+        catch (MySqlException ex)
+        {
+            return (500, ex.Message, new Dictionary<string, object>());
+        }
+        catch (Exception ex)
+        {
+            return (500, ex.Message, new Dictionary<string, object>());
+        }
+    }
+
+    public (int StatusCode, string Message, Dictionary<string, object> Data) GetVehicleManagerInfo(int id)
+    {
+        try
+        {
+            string query = $"SELECT * FROM VehicleManager WHERE ID = @I";
+
+            using (var connection = _connector.CreateDbConnection())
+            using (var command = new MySqlCommand(query, (MySqlConnection)connection))
+            {
+                command.Parameters.AddWithValue("@I", id);
+
+                using (var reader = command.ExecuteReader())
+                {
+                    Dictionary<string, object> data = new Dictionary<string, object>();
+                    if (reader.Read())
+                    {
+                        for (int i = 0; i < reader.FieldCount; i++)
+                        {
+                            if (!data.ContainsKey(reader.GetName(i)))
+                            {
+                                data[reader.GetName(i)] = reader.GetValue(i);
+                            }
+                        }
+
+                        return (200, "Succes", data);
+                    }
+                    return (404, "Vehicle Manager Not Found", data);
+                }
+            }
+        }
+        catch (MySqlException ex)
+        {
+            return (500, ex.Message, new Dictionary<string, object>());
+        }
+        catch (Exception ex)
+        {
+            return (500, ex.Message, new Dictionary<string, object>());
+        }
+    }
 }

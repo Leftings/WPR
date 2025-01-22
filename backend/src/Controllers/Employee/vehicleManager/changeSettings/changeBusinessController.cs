@@ -7,26 +7,71 @@ namespace WPR.Controllers.Employee.VehicleManager.ChangeBusinessSettings;
 
 [Route("api/[controller]")]
 [ApiController]
-public class ChangeBusinessSettings : ControllerBase
+public class ChangeBusinessSettingsController : ControllerBase
 {
     private readonly IUserRepository _userRepository;
+    private readonly IEmployeeRepository _employeeRepository;
     private readonly Crypt _crypt;
 
-    public ChangeBusinessSettings(IUserRepository userRepository, Crypt crypt)
+    public ChangeBusinessSettingsController(IUserRepository userRepository, Crypt crypt, IEmployeeRepository employeeRepository)
     {
         _userRepository = userRepository ?? throw new ArgumentNullException(nameof(userRepository));
         _crypt = crypt ?? throw new ArgumentNullException(nameof(crypt));
+        _employeeRepository = employeeRepository ?? throw new ArgumentNullException(nameof(employeeRepository));
+    }
+
+    [HttpGet("GetBusinessInfo")]
+    public async Task<IActionResult> GetBusinessInfoAsync(int id)
+    {
+        try
+        {
+            (int StatusCode, string Message, int KvK) kvkResponse = _employeeRepository.GetKvK(id);
+
+            if (kvkResponse.StatusCode == 200)
+            {
+                (bool Status, string Message, Dictionary<string, object> Data) businessInfo = _employeeRepository.GetBusinessInfo(kvkResponse.KvK);
+
+                if (businessInfo.Status)
+                {
+                    (int StatusCode, string Message, Dictionary<string, object> Data) abonnementInfo = _employeeRepository.GetAbonnementType(Convert.ToInt32(businessInfo.Data["Abonnement"]));
+
+                    if (abonnementInfo.StatusCode == 200)
+                    {
+                        Dictionary<string, object> data = businessInfo.Data;
+
+                        foreach (var element in abonnementInfo.Data)
+                        {
+                            if (!data.ContainsKey(element.Key))
+                            {
+                                data[element.Key] = element.Value;
+                            }
+                        }
+
+                        return StatusCode(200, new { data });
+                    }
+                    return StatusCode(abonnementInfo.StatusCode, new { message = abonnementInfo.Message });
+                }
+                return BadRequest(new { message = businessInfo.Message });
+            }
+            return StatusCode(kvkResponse.StatusCode, kvkResponse.Message);
+        }
+        catch (OverflowException ex)
+        {
+            return StatusCode(500, new { message = ex.Message });
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, new { message = ex.Message });
+        }
     }
 
     [HttpPut("ChangeBusinessInfo")]
     public async Task<IActionResult> ChangeBusinessInfoAsync([FromBody] ChangeBusinessRequest request)
     {
-        Console.WriteLine("X");
         if (request == null)
         {
-            return BadRequest("Body can not be null");
+            return BadRequest("Body can not be null"); 
         }
-
         if (!string.IsNullOrEmpty(request.VehicleManagerInfo.Password))
         {
             (bool Valid, string Message) result = PasswordChecker.IsValidPassword(request.VehicleManagerInfo.Password);
@@ -57,8 +102,6 @@ public class ChangeBusinessSettings : ControllerBase
             Console.WriteLine("No cookie");
             return BadRequest(new { message = "No Cookie"});
         }
-        
-        Console.WriteLine(loginCookie);
 
         try
         {
@@ -79,6 +122,18 @@ public class ChangeBusinessSettings : ControllerBase
             throw;
         }
         
+    }
+
+    [HttpGet("CheckNewEmail")]
+    public async Task<IActionResult> CheckNewEmailAsync(string email)
+    {
+        var emailCheck = await _employeeRepository.checkUsageEmaiVehicleManagerlAsync(email);
+
+        if (!emailCheck.status)
+        {
+            return StatusCode(200, new { message = "Geldige email" });
+        }
+        return StatusCode(400, new { message = "Email is al ingebruik"} );
     }
 }
 
