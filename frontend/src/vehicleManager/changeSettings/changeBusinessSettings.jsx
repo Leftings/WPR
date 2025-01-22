@@ -2,40 +2,16 @@ import React, { useState, useEffect } from 'react';
 import {Await, Link, Navigate, useNavigate} from 'react-router-dom';
 import GeneralHeader from "../../GeneralBlocks/header/header.jsx";
 import GeneralFooter from "../../GeneralBlocks/footer/footer.jsx";
-import { pushWithBodyKind } from '../../utils/backendPusher.js';
+import { pushWithBodyKind, pushWithoutBodyKind } from '../../utils/backendPusher.js';
 
 //import './userSettings.css';
 import '../../index.css';
 
 const BACKEND_URL = import.meta.env.VITE_REACT_APP_BACKEND_URL ?? 'http://localhost:5165';
 
-function GetUser(setUser)
-{
-  fetch(`${BACKEND_URL}/api/Cookie/GetUserName`, {
-    method: 'GET',
-    headers: {
-        'Content-Type': 'application/json', 
-    },
-    credentials: 'include', // Cookies of authenticatie wordt meegegeven
-    })
-    .then(response => {
-        console.log(response);
-        if (!response.ok) {
-            throw new Error('No Cookie');
-        }
-        return response.json();
-    })
-    .then(data => {
-      setUser(`${data.message}`);
-    })
-    .catch(error => {
-        console.error('Error:', error);
-    });
-}
-
 function GetUserId() {
   return new Promise((resolve, reject) => {
-    fetch('http://localhost:5165/api/Cookie/GetUserId', {
+    fetch(`${BACKEND_URL}/api/Cookie/GetUserId`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json', 
@@ -107,6 +83,14 @@ function ChangeBusinessSettings() {
               navigate('/');
           })
   }, [navigate]);
+
+  useEffect(() => {
+    const userId = GetUserId();
+
+    const data = {ID: Number(userId)};
+
+    const message = pushWithoutBodyKind(`${BACKEND_URL}`)
+  })
 
   const onSubmit = async (event) => {
     event.preventDefault();

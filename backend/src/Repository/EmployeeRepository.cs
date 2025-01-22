@@ -787,4 +787,12 @@ public class EmployeeRepository : IEmployeeRepository
             return (false, ex.Message, new Dictionary<string, object>());
         }
     }
+
+    public (int StatusCode, string Message) GetKvK(int VehicleManagerId)
+    {
+        try
+        {
+            string query = $""
+        }
+    }
 }

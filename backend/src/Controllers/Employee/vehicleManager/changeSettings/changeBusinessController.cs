@@ -18,10 +18,18 @@ public class ChangeBusinessSettings : ControllerBase
         _crypt = crypt ?? throw new ArgumentNullException(nameof(crypt));
     }
 
+    [HttpGet("GetBusinessInfo")]
+    public async Task<IActionResult> GetBusinessInfoAsync(int id)
+    {
+        try
+        {
+            
+        }
+    }
+
     [HttpPut("ChangeBusinessInfo")]
     public async Task<IActionResult> ChangeBusinessInfoAsync([FromBody] ChangeBusinessRequest request)
     {
-        Console.WriteLine("X");
         if (request == null)
         {
             return BadRequest("Body can not be null");
@@ -57,8 +65,6 @@ public class ChangeBusinessSettings : ControllerBase
             Console.WriteLine("No cookie");
             return BadRequest(new { message = "No Cookie"});
         }
-        
-        Console.WriteLine(loginCookie);
 
         try
         {
