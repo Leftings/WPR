@@ -10,6 +10,10 @@ using WPR.Cryption;
 using System.Threading.Tasks;
 using System.Transactions;
 using Microsoft.VisualBasic;
+using Mysqlx.Resultset;
+using WPR.Controllers.customer.Subscription;
+using WPR.Controllers.General.SignUp;
+using WPR.Controllers.Employee.VehicleManager.ChangeBusinessSettings;
 using WPR.Controllers.General.SignUp;
 using WPR.Controllers.Employee.VehicleManager.ChangeBusinessSettings;
 
@@ -870,25 +874,32 @@ public class UserRepository : IUserRepository
 
     private string CreateUpdateQuery (string tabel, IList<object[]> data)
     {
-        string query = $"UPDATE {tabel}";
+        string query = $"UPDATE {tabel} SET";
 
         for (int i = 1; i < data.Count; i++)
         {
             if (((string)data[i][0]).Equals("Password"))
             {
-                query += $" SET Password = '{_hash.createHash((string)data[i][1])}'";
+                query += $" Password = '{_hash.createHash((string)data[i][1])}'";
             }
             else if (data[i][2].Equals("System.Int32"))
             {
-                query += $" SET {data[i][0]} = {data[i][1]}";
+                query += $" {data[i][0]} = {data[i][1]}";
             }
             else
             {
-                query += $" SET {data[i][0]} = '{data[i][1]}'";
+                query += $" {data[i][0]} = '{data[i][1]}'";
+            }
+
+            if (i != data.Count - 1)
+            {
+                query += ",";
             }
         }
 
         query += $" WHERE {data[0][0]} = {data[0][1]}";
+
+        Console.WriteLine(query);
 
         return query;
     }
@@ -1033,6 +1044,111 @@ public class UserRepository : IUserRepository
             return (500, ex.Message);
         }
     }
+
+    public async Task<List<string>> GetAllSubscriptionsAsync()
+    {
+        try
+        {
+            string query = "SELECT Type FROM Abonnement";
+
+            using (var connection = _connector.CreateDbConnection())
+            using (var command = new MySqlCommand(query, (MySqlConnection)_connector.CreateDbConnection()))
+            using (var reader = await command.ExecuteReaderAsync())
+            {
+                var subscriptions = new List<string>();
+                
+                while (await reader.ReadAsync())
+                {
+                    subscriptions.Add((string)reader.GetValue(0));
+                }
+
+                return subscriptions;
+            }
+        }
+        catch (MySqlException e)
+        {
+            Console.WriteLine(e.Message);
+            return null;
+        }
+        
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            return null;
+        }
+    }
+
+    public async Task<Subscription> GetSubscriptionDataAsync(int id)
+    {
+        try
+        {
+            string query = "SELECT Type, Description FROM Abonnement WHERE ID = @Id";
+
+            using (var connection = _connector.CreateDbConnection())
+            using (var command = new MySqlCommand(query, (MySqlConnection)connection))
+            {
+                command.Parameters.AddWithValue("@Id", id);
+                using (var reader = await command.ExecuteReaderAsync())
+                {
+                    if (await reader.ReadAsync())
+                    {
+                        var type = reader["Type"].ToString();
+                        var description = reader["Description"].ToString();
+
+                        Console.WriteLine($"Type: {type}, Description: {description}");
+
+                        return new Subscription
+                        {
+                            Type = type,
+                            Description = description
+                        };
+                    }
+                }
+            }
+
+            return null;
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.Message);
+            return null;
+        }
+    }
+
+    
+    
+    public async Task<List<int>> GetSubscriptionIdsAsync() {
+        try
+        {
+            string query = "SELECT ID FROM Abonnement";
+
+            using (var connection = _connector.CreateDbConnection())
+            using (var command = new MySqlCommand(query, (MySqlConnection)connection))
+            using (var reader = await command.ExecuteReaderAsync())
+            {
+                var ids = new List<int>();
+                while (await reader.ReadAsync())
+                {
+                    ids.Add(Convert.ToInt32(reader.GetValue(0)));
+                }
+
+                return ids;
+            }
+        }
+        catch (MySqlException ex)
+        {
+            Console.WriteLine(ex.Message);
+            return null;
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.Message);
+            return null;
+        }
+    }
+    
+    
+    
 
     /*private string CreateUpdateQuery (string tabel, IList<object[]> data)
     {

@@ -88,7 +88,7 @@ public class EmailService
         }
     }
 
-    public async Task SendConfirmationEmailBusiness(string toEmail, string businessName, int kvk, string domain, string adres)
+    public async Task SendConfirmationEmailBusiness(string toEmail, string subscription ,string businessName, int kvk, string domain, string adres)
     {
         if (string.IsNullOrEmpty(toEmail))
         {
@@ -102,7 +102,7 @@ public class EmailService
                 {
                     From = new MailAddress(_envConfig.Get("SMTP_FROM_EMAIL")),
                     Subject = "Aanvraag Bedrijfs Account",
-                    Body = BuildConfirmationEmailBusinessBody(businessName, kvk, domain, adres),
+                    Body = BuildConfirmationEmailBusinessBody(subscription, businessName, kvk, domain, adres),
                     IsBodyHtml = true
 
                 })
@@ -170,14 +170,16 @@ public class EmailService
         ";
     }
 
-    private string BuildConfirmationEmailBusinessBody(string businessName, int kvk, string domain, string adres)
+    private string BuildConfirmationEmailBusinessBody(string subscription ,string businessName, int kvk, string domain, string adres)
     {
+        
         return $@"
             <h1>Welkom, {businessName}</h1>
 
             <p>Bedankt voor het aanmelden als bedrijf bij CarAndAll.</p>
             <p>Ons personeel zal binnen 48 uw aanvraag voor een bedrijfsaccount bekijken en verwerken met de volgende gegevens:</p>
             <ul>
+                <li>Abonnement: {subscription}</li>
                 <li>Bedrijfsnaam: {businessName}</li>
                 <li>Kamer van koophandel: {kvk}</li>
                 <li>Domeinnaam: {domain}
