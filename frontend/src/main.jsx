@@ -12,7 +12,7 @@ import UserSettings from './userSettings/userSettings.jsx';
 import GeneralSalePage from './GeneralSalePage/GeneralSalePage.jsx';
 import TermsAndConditions from './TermsAndConditions/TermsAndConditions.jsx';
 import CarDetailPage from './IndividualCarPage/IndividualSalePage.jsx';
-import AbonementUitlegPage from './AbonementUitlegPage/AbonementUitlegPage.jsx';
+import Abonnement from './Abonnement/Abonnement.jsx';
 import EmployeeBackOffice from './employeeBackOffice/employeeBackOffice.jsx';
 import AddVehicle from './employeeBackOffice/addVehicle/addVehicle.jsx';
 import EmployeeFrontOffice from './employeeFrontOffice/employeeFrontOffice.jsx';
@@ -48,7 +48,7 @@ createRoot(document.getElementById('root')).render(
             <Route path="/userSettings" element={<UserSettings />}></Route>
             <Route path="/vehicles" element={<GeneralSalePage />}></Route>
             <Route path="/TermsAndConditions" element={<TermsAndConditions />}></Route>
-            <Route path="/AbonementUitlegPage" element={<AbonementUitlegPage />} />
+            <Route path="/abonnement" element={<Abonnement />} />
             <Route path="/vehicle/:frameNr" element={<CarDetailPage />} />
             <Route path="/backOfficeEmployee" element={<EmployeeBackOffice />}></Route>
             <Route path="/backOfficeEmployee/addVehicle" element={<AddVehicle />}></Route>
