@@ -3,11 +3,11 @@ using WPR.Hashing;
 using Microsoft.VisualBasic;
 using MySql.Data.MySqlClient;
 using MySqlX.XDevAPI.Relational;
-using WPR.Controllers.AddBusiness;
 using System.Reflection.Metadata.Ecma335;
 using System.Threading.Tasks;
 using WPR.Services;
-using WPR.Controllers.signUpStaff;
+using WPR.Controllers.Employee.BackOffice.signUpStaff;
+using WPR.Controllers.Customer.AddBusiness;
 
 namespace WPR.Repository;
 
@@ -300,7 +300,9 @@ public class EmployeeRepository : IEmployeeRepository
 
             if (isVehicleManager)
             {
-                query = "SELECT OrderId FROM Contract WHERE Status = 'requested' AND VMStatus = 'requested' AND KvK = @K";
+                query = @"SELECT OrderId FROM Contract 
+                        JOIN Customer C on C.ID = Contract.Customer
+                        WHERE Status = 'requested' AND VMStatus = 'requested' AND C.KvK = @K";
 
             }
             else if (user.Equals("frontOffice"))
@@ -491,6 +493,7 @@ public class EmployeeRepository : IEmployeeRepository
             using (var connection = _connector.CreateDbConnection())
             using (var command = new MySqlCommand(query, (MySqlConnection)connection))
             {
+                Console.WriteLine(id);
                 // De parameters worden ingevuld
                 command.Parameters.AddWithValue("@S", status);
                 command.Parameters.AddWithValue("@I", id);

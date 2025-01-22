@@ -1,5 +1,3 @@
-using WPR.Controllers.viewRentalData;
-
 namespace WPR.Repository;
 
 public interface IBackOfficeRepository

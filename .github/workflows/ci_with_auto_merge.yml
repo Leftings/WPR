@@ -74,12 +74,14 @@ jobs:
 
       - name: Check if tests passed and block/allow merge
         run: |
+
           if [[ "${{ needs.build.result }}" == "success" ]]; then
             echo "Tests passed successfully. Merge is allowed."
             curl -X PUT \
               -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
               -H "Accept: application/vnd.github.v3+json" \
               -d '{"commit_title":"${{ env.commit_message }}","commit_message":"${{ env.commit_message }}","merge_method":"squash"}' \
+
               "https://api.github.com/repos/${{ github.repository }}/pulls/${{ github.event.pull_request.number }}/merge" || {
                 echo "Failed to auto-merge. Check for conflicts or branch protection rules."
                 exit 1

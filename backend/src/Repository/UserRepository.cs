@@ -1,16 +1,17 @@
 ﻿using System.Data;
 using Microsoft.AspNetCore.Mvc;
 using MySql.Data.MySqlClient;
-using WPR.Controllers.Cookie;
 using WPR.Database;
 using Microsoft.AspNetCore.Http.HttpResults;
 using WPR.Utils;
 using WPR.Hashing;
 using Org.BouncyCastle.Crypto.Prng;
 using WPR.Cryption;
-using WPR.Controllers.SignUp;
 using System.Threading.Tasks;
 using System.Transactions;
+using Microsoft.VisualBasic;
+using WPR.Controllers.General.SignUp;
+using WPR.Controllers.Employee.VehicleManager.ChangeBusinessSettings;
 
 namespace WPR.Repository;
 
@@ -443,6 +444,7 @@ public class UserRepository : IUserRepository
     /// </summary>
     /// <param name="data"></param>
     /// <returns></returns>
+
     private async Task<(bool goodQuery, string message)> CreateUserInfoQuery(List<object[]> data)
     {
         int lengthList = data.Count(); // De lengte voor de loopt wordt vastgesteld
@@ -493,32 +495,42 @@ public class UserRepository : IUserRepository
     /// </summary>
     /// <param name="userId"></param>
     /// <returns></returns>
-    public async Task<(bool status, string message)> GetKindEmployeeAsync(string userId)
+    public async Task<(bool status, string message, string officeType)> GetKindEmployeeAsync(string userId)
+{
+    try
     {
-        try
+        string query = "SELECT Office FROM Staff WHERE ID = @I";
+
+        // Connect met de database
+        using (var connection = _connector.CreateDbConnection())
+        using (var command = new MySqlCommand(query, (MySqlConnection)connection))
         {
-            string query = "SELECT Office FROM Staff WHERE ID = @I";
+            command.Parameters.AddWithValue("@I", userId);
 
-            // Er wordt een connectie aangemaakt met de DataBase met bovenstaande query 
-            using (var connection = _connector.CreateDbConnection())
-            using (var command = new MySqlCommand(query, (MySqlConnection)connection))
+            var result = await command.ExecuteScalarAsync();
+
+            if (result != null)
             {
-                // De parameter wordt ingevuld
-                command.Parameters.AddWithValue("@I", userId);
+                // krijg het office type binnen
+                string officeType = result.ToString();
+                string message = $"Employee is assigned to {officeType}";
 
-                var result = await command.ExecuteScalarAsync();
-
-                // De office wordt meegegeven
-                return (true, result.ToString());
+                return (true, message, officeType);
+            }
+            else
+            {
+                return (false, "No office assigned to this employee", null);
             }
         }
-        catch (Exception ex)
-        {
-            Console.WriteLine(ex);
-            return (false, ex.ToString());
-        }
-
     }
+    catch (Exception ex)
+    {
+        Console.WriteLine(ex);
+        return (false, "An error occurred while retrieving the employee's office", null);
+    }
+}
+
+
 
     /// <summary>
     /// Er kunnen medewewerkers van Car and All toegevoegd worden aan de database, door middel van hun gegevens.
@@ -567,7 +579,7 @@ public class UserRepository : IUserRepository
     {
         try
         {
-            string query = "SELECT ID FROM Customer WHERE ID = @id AND AccountType != 'Private'"; //Geef customer met gegeven id als hij NIET een particulier is.
+            string query = "SELECT ID FROM Customer WHERE ID = @id AND AccountType = 'Business'"; //Geef customer met gegeven id als hij NIET een particulier is.
 
 
             // Er wordt een connectie aangemaakt met de DataBase met bovenstaande query 
@@ -675,6 +687,20 @@ public class UserRepository : IUserRepository
             else
             {
                 return (true, "Valid Details");
+            }
+        }
+        else
+        {
+            DomainEmailChecker domainEmailChecker = new DomainEmailChecker(_connector);
+            (bool Found, int KvK) checkDomain = await domainEmailChecker.DomainExists(customer.Email);
+
+            if (!checkDomain.Found)
+            {
+                return (false, "Domain does not exists");
+            }
+            else
+            {
+                customer.KvK = checkDomain.KvK;
             }
         }
         
@@ -841,4 +867,337 @@ public class UserRepository : IUserRepository
         
         return (412, checks.Message);
     }
+
+    private string CreateUpdateQuery (string tabel, IList<object[]> data)
+    {
+        string query = $"UPDATE {tabel}";
+
+        for (int i = 1; i < data.Count; i++)
+        {
+            if (((string)data[i][0]).Equals("Password"))
+            {
+                query += $" SET Password = '{_hash.createHash((string)data[i][1])}'";
+            }
+            else if (data[i][2].Equals("System.Int32"))
+            {
+                query += $" SET {data[i][0]} = {data[i][1]}";
+            }
+            else
+            {
+                query += $" SET {data[i][0]} = '{data[i][1]}'";
+            }
+        }
+
+        query += $" WHERE {data[0][0]} = {data[0][1]}";
+
+        return query;
+    }
+
+    private async Task<(int StatusCode, string Message)> ChangeVehicleManagerInfo(ChangeVehicleManagerInfo request, MySqlConnection connection)
+    {
+        try
+        {
+            List<object[]> data = new List<object[]>();
+
+            // gegevens worden uit de lijst gehaald (naam van de collom, de nieuwe waarde, soort waarde)
+            foreach (var propertyInfo in typeof(ChangeVehicleManagerInfo).GetProperties())
+            {
+                var propertyName = propertyInfo.Name;
+                var propertyValue = propertyInfo.GetValue(request);
+                var propertyType = propertyInfo.PropertyType;
+
+                if (!propertyValue.Equals(""))
+                {
+                    data.Add(new object[] {propertyName, propertyValue, propertyType});
+                }
+            }    
+            
+            if (data.Count > 1)
+            {
+                using (var command = new MySqlCommand(CreateUpdateQuery("VehicleManager", data), connection))
+                {
+                    if (await command.ExecuteNonQueryAsync() > 0)
+                    {
+                        return (200, "VehicleManager Updated");
+                    }
+                    return (417, "VehicleManager Not Updated");
+                }
+            }
+
+            return (200, "No Data To Update");
+        }
+        catch (MySqlException ex)
+        {
+            return (500, ex.Message);
+        }
+        catch (Exception ex)
+        {
+            return (500, ex.Message);
+        }
+    }
+
+    private async Task<(int StatusCode, string Message)> ChangeBusinessInfo(ChangeBusinessInfo request, MySqlConnection connection)
+    {
+        try
+        {
+            List<object[]> data = new List<object[]>();
+
+            // gegevens worden uit de lijst gehaald (naam van de collom, de nieuwe waarde, soort waarde)
+            foreach (var propertyInfo in typeof(ChangeBusinessInfo).GetProperties())
+            {
+                var propertyName = propertyInfo.Name;
+                var propertyValue = propertyInfo.GetValue(request);
+                var propertyType = propertyInfo.PropertyType;
+
+                if (!propertyValue.Equals(""))
+                {
+                    data.Add(new object[] {propertyName, propertyValue, propertyType});
+                }
+            }
+
+            if (data.Count > 1)
+            {
+                using (var command = new MySqlCommand(CreateUpdateQuery("Business", data), connection))
+                {
+                    if (await command.ExecuteNonQueryAsync() > 0)
+                    {
+                        return (200, "Business Updated");
+                    }
+                    return (417, "Business Not Updated");
+                }
+            }
+            
+            return (200, "No Data To Update");
+        }
+        catch (MySqlException ex)
+        {
+            return (500, ex.Message);
+        }
+        catch (Exception ex)
+        {
+            return (500, ex.Message);
+        }
+    }
+
+    public async Task<(int StatusCode, string Message)> ChangeBusinessInfo(ChangeBusinessRequest request)
+    {
+        try
+        {
+            string query = "SELECT Business FROM VehicleManager WHERE ID = @I";
+            using (var connection = _connector.CreateDbConnection())
+            using (var command = new MySqlCommand(query, (MySqlConnection)connection))
+            using (var transaction = connection.BeginTransaction())
+            {
+                command.Parameters.AddWithValue("@I", request.VehicleManagerInfo.ID);
+
+                using (var reader = await command.ExecuteReaderAsync())
+                {
+                    if (await reader.ReadAsync())
+                    {
+                        request.BusinessInfo.KvK = Convert.ToInt32(reader.GetValue(0));
+                        await reader.CloseAsync();
+                        var changeVehicleManager = ChangeVehicleManagerInfo(request.VehicleManagerInfo, (MySqlConnection)_connector.CreateDbConnection());
+                        var changeBusiness = ChangeBusinessInfo(request.BusinessInfo, (MySqlConnection)_connector.CreateDbConnection());
+
+                        Task.WaitAll(changeVehicleManager, changeBusiness);
+
+                        if (changeVehicleManager.Result.StatusCode != 200)
+                        {
+                            return (changeVehicleManager.Result.StatusCode, changeVehicleManager.Result.Message);
+                        }
+                        else if (changeBusiness.Result.StatusCode != 200)
+                        {
+                            return (changeBusiness.Result.StatusCode, changeBusiness.Result.Message);
+                        }
+                        else
+                        {
+                            return (200, "Update Succesfull");
+                        }
+                    }
+                    
+                    transaction.Rollback();
+                    return (500, "Unexpected Error Detected");
+                }
+            }
+        }
+        catch (MySqlException ex)
+        {
+            return (500, ex.Message);
+        }
+        catch (OverflowException ex)
+        {
+            return (500, ex.Message);
+        }
+        catch (Exception ex)
+        {
+            return (500, ex.Message);
+        }
+    }
+
+    /*private string CreateUpdateQuery (string tabel, IList<object[]> data)
+    {
+        string query = $"UPDATE {tabel}";
+
+        for (int i = 1; i < data.Count; i++)
+        {
+            if (((string)data[i][0]).Equals("Password"))
+            {
+                query += $" SET Password = '{_hash.createHash((string)data[i][1])}'";
+            }
+            else if (data[i][2].Equals("System.Int32"))
+            {
+                query += $" SET {data[i][0]} = {data[i][1]}";
+            }
+            else
+            {
+                query += $" SET {data[i][0]} = '{data[i][1]}'";
+            }
+        }
+
+        query += $" WHERE {data[0][0]} = {data[0][1]}";
+
+        return query;
+    }
+
+    private async Task<(int StatusCode, string Message)> ChangeVehicleManagerInfo(ChangeVehicleManagerInfo request, MySqlConnection connection)
+    {
+        try
+        {
+            List<object[]> data = new List<object[]>();
+
+            // gegevens worden uit de lijst gehaald (naam van de collom, de nieuwe waarde, soort waarde)
+            foreach (var propertyInfo in typeof(ChangeVehicleManagerInfo).GetProperties())
+            {
+                var propertyName = propertyInfo.Name;
+                var propertyValue = propertyInfo.GetValue(request);
+                var propertyType = propertyInfo.PropertyType;
+
+                if (!propertyValue.Equals(""))
+                {
+                    data.Add(new object[] {propertyName, propertyValue, propertyType});
+                }
+            }    
+            
+            if (data.Count > 1)
+            {
+                using (var command = new MySqlCommand(CreateUpdateQuery("VehicleManager", data), connection))
+                {
+                    if (await command.ExecuteNonQueryAsync() > 0)
+                    {
+                        return (200, "VehicleManager Updated");
+                    }
+                    return (417, "VehicleManager Not Updated");
+                }
+            }
+
+            return (200, "No Data To Update");
+        }
+        catch (MySqlException ex)
+        {
+            return (500, ex.Message);
+        }
+        catch (Exception ex)
+        {
+            return (500, ex.Message);
+        }
+    }
+
+    private async Task<(int StatusCode, string Message)> ChangeBusinessInfo(ChangeBusinessInfo request, MySqlConnection connection)
+    {
+        try
+        {
+            List<object[]> data = new List<object[]>();
+
+            // gegevens worden uit de lijst gehaald (naam van de collom, de nieuwe waarde, soort waarde)
+            foreach (var propertyInfo in typeof(ChangeBusinessInfo).GetProperties())
+            {
+                var propertyName = propertyInfo.Name;
+                var propertyValue = propertyInfo.GetValue(request);
+                var propertyType = propertyInfo.PropertyType;
+
+                if (!propertyValue.Equals(""))
+                {
+                    data.Add(new object[] {propertyName, propertyValue, propertyType});
+                }
+            }
+
+            if (data.Count > 1)
+            {
+                using (var command = new MySqlCommand(CreateUpdateQuery("Business", data), connection))
+                {
+                    if (await command.ExecuteNonQueryAsync() > 0)
+                    {
+                        return (200, "Business Updated");
+                    }
+                    return (417, "Business Not Updated");
+                }
+            }
+            
+            return (200, "No Data To Update");
+        }
+        catch (MySqlException ex)
+        {
+            return (500, ex.Message);
+        }
+        catch (Exception ex)
+        {
+            return (500, ex.Message);
+        }
+    }
+
+    public async Task<(int StatusCode, string Message)> ChangeBusinessInfo(ChangeBusinessRequest request)
+    {
+        try
+        {
+            string query = "SELECT Business FROM VehicleManager WHERE ID = @I";
+            using (var connection = _connector.CreateDbConnection())
+            using (var command = new MySqlCommand(query, (MySqlConnection)connection))
+            using (var transaction = connection.BeginTransaction())
+            {
+                command.Parameters.AddWithValue("@I", request.VehicleManagerInfo.ID);
+
+                using (var reader = await command.ExecuteReaderAsync())
+                {
+                    if (await reader.ReadAsync())
+                    {
+                        request.BusinessInfo.KvK = Convert.ToInt32(reader.GetValue(0));
+                        await reader.CloseAsync();
+                        var changeVehicleManager = ChangeVehicleManagerInfo(request.VehicleManagerInfo, (MySqlConnection)_connector.CreateDbConnection());
+                        var changeBusiness = ChangeBusinessInfo(request.BusinessInfo, (MySqlConnection)_connector.CreateDbConnection());
+
+                        Task.WaitAll(changeVehicleManager, changeBusiness);
+
+                        if (changeVehicleManager.Result.StatusCode != 200)
+                        {
+                            return (changeVehicleManager.Result.StatusCode, changeVehicleManager.Result.Message);
+                        }
+                        else if (changeBusiness.Result.StatusCode != 200)
+                        {
+                            return (changeBusiness.Result.StatusCode, changeBusiness.Result.Message);
+                        }
+                        else
+                        {
+                            return (200, "Update Succesfull");
+                        }
+                    }
+                    
+                    transaction.Rollback();
+                    return (500, "Unexpected Error Detected");
+                }
+            }
+        }
+        catch (MySqlException ex)
+        {
+            return (500, ex.Message);
+        }
+        catch (OverflowException ex)
+        {
+            return (500, ex.Message);
+        }
+        catch (Exception ex)
+        {
+            return (500, ex.Message);
+        }
+    }
+    */
 }

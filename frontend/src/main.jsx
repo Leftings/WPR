@@ -28,6 +28,8 @@ import WagenparkBeheerderOverzichtPage from './wagenparkBeheerderOverzichtPage/w
 import ViewRentalData from './employeeBackOffice/viewRentalData/viewRentalData.jsx';
 import ReviewBusiness from './employeeFrontOffice/addBusiness/reviewBusiness.jsx';
 import IntakeForm from './employeeFrontOffice/intakeForm/intakeForm.jsx'
+import ChangeBusinessSettings from './vehicleManager/changeSettings/changeBusinessSettings.jsx';
+
 
 createRoot(document.getElementById('root')).render(
     <Router>
@@ -64,6 +66,7 @@ createRoot(document.getElementById('root')).render(
             <Route path="/vehicleManager/reviewHireRequest" element={<ReviewHireRequestVehicleManager />}></Route>
             <Route path="/frontOfficeEmployee/reviewBusiness" element={<ReviewBusiness />}></Route>
             <Route path="/backOfficeEmployee/viewRentalData" element={<ViewRentalData />}></Route>
+            <Route path="/vehicleManager/changeBusinessSettings" element={<ChangeBusinessSettings />}></Route>
             <Route path="*" element={<Home />}></Route>
             <Route path="/frontOfficeEmployee/intakeForm" element={<IntakeForm />}></Route>
         </Routes>

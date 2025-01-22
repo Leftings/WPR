@@ -5,7 +5,7 @@ using Microsoft.VisualBasic;
 using MySql.Data.MySqlClient;
 using Org.BouncyCastle.Asn1.Mozilla;
 using Org.BouncyCastle.Bcpg;
-using WPR.Controllers.Rental;
+using WPR.Controllers.Customer.Rental;
 using WPR.Cryption;
 using WPR.Database;
 using WPR.Services;
@@ -274,25 +274,70 @@ public class VehicleRepository : IVehicleRepository
         }
     }
 
+    private async Task<bool> IsBusinessUser(object userId)
+    {
+        try
+        {
+            string queryBusiness = "SELECT AccountType FROM Customer WHERE ID = @I";
+            using (var connection = _connector.CreateDbConnection())
+            using (var commandBusiness = new MySqlCommand(queryBusiness, (MySqlConnection)connection))
+            {
+                commandBusiness.Parameters.AddWithValue("@I", userId);
+                using (var reader = await commandBusiness.ExecuteReaderAsync())
+                {
+                    if (await reader.ReadAsync() && ((string)reader.GetValue(0)).Equals("Business"))
+                    {
+                        return true;
+                    }
+                    return false;
+                }
+            }
+        }
+        catch (MySqlException ex)
+        {
+            Console.WriteLine(ex.Message);
+            throw;
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.Message);
+            throw;
+        }
+    }
+
     private async Task<(bool Status, string Message)> InsertRequest(RentalRequest request, object userId)
     {
         try
         {
-            string query = "INSERT INTO Contract (StartDate, EndDate, Price, FrameNrVehicle, Customer) VALUES (@S, @E, @P, @F, @C)";
-            using (var connection = _connector.CreateDbConnection())
-            using (var command = new MySqlCommand(query, (MySqlConnection)connection))
-            {
-                command.Parameters.AddWithValue("@S", request.StartDate);
-                command.Parameters.AddWithValue("@E", request.EndDate);
-                command.Parameters.AddWithValue("@P", request.Price);
-                command.Parameters.AddWithValue("@F", request.FrameNrVehicle);
-                command.Parameters.AddWithValue("@C", userId);
+            var isBusinessUser = IsBusinessUser(userId);
 
-                if (command.ExecuteNonQuery() > 0)
+            using (var connection = _connector.CreateDbConnection())
+            {
+                bool resultIsBusinessUser = await isBusinessUser;
+
+                string query = resultIsBusinessUser ? 
+                "INSERT INTO Contract (StartDate, EndDate, Price, FrameNrVehicle, Customer, VMStatus) VALUES (@S, @E, @P, @F, @C, @V)"
+                :
+                "INSERT INTO Contract (StartDate, EndDate, Price, FrameNrVehicle, Customer) VALUES (@S, @E, @P, @F, @C)";
+                using (var command = new MySqlCommand(query, (MySqlConnection)connection))
                 {
-                    return (true, "Inserted");
+                    command.Parameters.AddWithValue("@S", request.StartDate);
+                    command.Parameters.AddWithValue("@E", request.EndDate);
+                    command.Parameters.AddWithValue("@P", request.Price);
+                    command.Parameters.AddWithValue("@F", request.FrameNrVehicle);
+                    command.Parameters.AddWithValue("@C", userId);
+
+                    if (resultIsBusinessUser)
+                    {
+                        command.Parameters.AddWithValue("@V", "requested");
+                    }
+
+                    if (await command.ExecuteNonQueryAsync() > 0)
+                    {
+                        return (true, "Inserted");
+                    }
+                    return (false, "Data Not Inserted");
                 }
-                return (false, "Data Not Inserted");
             }
         }
         catch (MySqlException ex)
@@ -569,5 +614,4 @@ public class VehicleRepository : IVehicleRepository
             return (false, "Unexpected error: " + ex.Message);
         }
     }
-
 }

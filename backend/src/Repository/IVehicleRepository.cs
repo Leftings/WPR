@@ -1,10 +1,5 @@
 ﻿namespace WPR.Repository;
-using WPR.Controllers.Rental;
-
-using System.Security.Policy;
-using Microsoft.AspNetCore.Mvc;
-using Mysqlx.Crud;
-using WPR.Controllers.Rental;
+using WPR.Controllers.Customer.Rental;
 
 public interface IVehicleRepository
 {

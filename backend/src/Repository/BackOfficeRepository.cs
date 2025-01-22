@@ -1,6 +1,5 @@
 using System.Data;
 using System.Runtime.CompilerServices;
-using WPR.Controllers.viewRentalData;
 using WPR.Database;
 using MySql.Data.MySqlClient;
 using Org.BouncyCastle.Asn1.X509.SigI;
@@ -52,6 +51,14 @@ public class BackOfficeRepository(Connector connector) : IBackOfficeRepository
                                 if (fullInfo)
                                 {
                                     foreach (var item in GetFullPerson(columnData))
+                                    {
+                                        if (!row.ContainsKey(item.Key))
+                                        {
+                                            row.Add(item.Key, item.Value);
+                                        }
+                                    }
+
+                                    foreach (var item in GetBusinessInfo(columnData))
                                     {
                                         if (!row.ContainsKey(item.Key))
                                         {

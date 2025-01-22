@@ -129,12 +129,11 @@ function AddVehicle() {
     }, [navigate]);
   
 
-
+  
     return (
         <>
         <GeneralHeader>
         </GeneralHeader>
-
         <div className='body'>
             <h1>Toevoegen voertuig</h1>
 

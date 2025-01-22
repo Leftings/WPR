@@ -49,6 +49,8 @@ function GeneralSalePage() {
     const [isFiltersOpen, setIsFiltersOpen] = useState(false);
     const [filterOptions, setFilterOptions] = useState({});
     const [isStaff, setIsStaff] = useState(false);
+    const [officeType, setOfficeType] = useState(null);
+    const [isFrontOffice, setIsFrontOffice] = useState(false);
     const navigate = useNavigate();
     const [cars, setCars] = useState([]);
     const [rentals, setRentals] = useState([]);
@@ -218,15 +220,34 @@ function GeneralSalePage() {
     }, []);
 
     useEffect(() => {
-        fetch('http://localhost:5165/api/Login/CheckSessionStaff', {credentials: 'include'})
-            .then(response => {
+        fetch('http://localhost:5165/api/Login/CheckSessionStaff', {
+            credentials: 'include',
+            method: 'GET',
+        })
+            .then((response) => {
                 if (!response.ok) {
-                    throw new Error('Not a staff member');
+                    throw new Error('Not a staff member or session expired');
                 }
                 return response.json();
             })
-            .then(() => setIsStaff(true))
-            .catch(() => setIsStaff(false));
+            .then((data) => {
+                console.log('Backend Response:', data);
+
+                if (data.officeType === 'Front') {
+                    setIsStaff(true);
+                    setIsFrontOffice(true); // Mark as Front Office
+                } else if (data.officeType === 'Back') {
+                    setIsStaff(true);
+                    setIsFrontOffice(false); // Mark as Back Office
+                } else {
+                    setIsStaff(false); // Unexpected case
+                }
+            })
+            .catch((error) => {
+                console.error('Error fetching session info:', error);
+                setIsStaff(false);
+                setIsFrontOffice(false);
+            });
     }, []);
 
     const handleDelete = async (frameNr) => {
@@ -361,7 +382,7 @@ function GeneralSalePage() {
                 <h2 className="filter-bar-title">
                     Filters
                     <span className="filter-bar-exit" onClick={toggleFilters}><i className="fas fa-times"/></span></h2>
-                <hr/>
+                    <hr/>
                 {!isEmployee && (
                     <>
                     <div className="filter-section">
@@ -386,9 +407,9 @@ function GeneralSalePage() {
                             </div>
                         )}
                     </div>
+                    <hr/>
                     </>
                     )}
-                <hr/>
 
 
                 {filters.vehicleTypes.length > 0 && availableBrands.length > 0 && (
@@ -474,28 +495,30 @@ function GeneralSalePage() {
             <div className="general-sale-page">
                 <div className="car-sale-section">
                     <h1 className="title-text">Voertuigen</h1>
-
-                    <div className="date-picker-container">
-                        <p className="date-picker-label">Selecteer datumbereik:</p>
-                        <DatePicker
-                            selected={filters.startDate}
-                            onChange={(dates) => {
-                                const [start, end] = dates || [];
-                                setFilters((prevFilters) => ({
-                                    ...prevFilters,
-                                    startDate: start || null,
-                                    endDate: end || null,
-                                }));
-                            }}
-                            startDate={filters.startDate}
-                            endDate={filters.endDate}
-                            selectsRange
-                            inline
-                            dateFormat="yyyy/MM/dd"
-                            placeholderText="Selecteer start- en einddatum"
-                            minDate={new Date()} 
-                        />
-                    </div>
+                    
+                    {!isStaff && (
+                        <div className="date-picker-container">
+                            <p className="date-picker-label">Selecteer datumbereik:</p>
+                            <DatePicker
+                                selected={filters.startDate}
+                                onChange={(dates) => {
+                                    const [start, end] = dates || [];
+                                    setFilters((prevFilters) => ({
+                                        ...prevFilters,
+                                        startDate: start || null,
+                                        endDate: end || null,
+                                    }));
+                                }}
+                                startDate={filters.startDate}
+                                endDate={filters.endDate}
+                                selectsRange
+                                inline
+                                dateFormat="yyyy/MM/dd"
+                                placeholderText="Selecteer start- en einddatum"
+                                minDate={new Date()} 
+                            />
+                        </div>
+                    )}
 
                     <button htmlFor="filter" onClick={toggleFilters} className="filter-button">
                         <i className="fas fa-filter"></i> Filter
@@ -524,39 +547,40 @@ function GeneralSalePage() {
                                             <p className="car-price">{`$${vehicle.Price}`}</p>
                                             <p className="car-description">{vehicle.Description || 'No description available'}</p>
                                         </div>
-                                        <Link
-                                            to={`/vehicle/${vehicle.FrameNr}`}
-                                            state={{
-                                                vehicle,
-                                                rentalDates: [filters.startDate, filters.endDate],
-                                            }}
-                                            className={`huur-link`}
-                                            onClick={(e) => {
-                                                if (!filters.startDate || !filters.endDate) {
-                                                    e.preventDefault();
-                                                    toast.error('Selecteer alstublieft een begin- en einddatum voordat u een voertuig huurt.', {
-                                                        position: "top-center",
-                                                        autoClose: 3000,
-                                                        hideProgressBar: false,
-                                                        closeOnClick: true,
-                                                        pauseOnHover: true,
-                                                        draggable: true,
-                                                        progress: undefined,
-                                                    });
-                                                }
-                                            }}
-                                        >
-                                            Huur
-                                        </Link>
-                                        {isStaff && (
+
+                                        {isStaff && !isFrontOffice ? (
                                             <button
                                                 onClick={() => handleDelete(vehicle.FrameNr)}
-                                                className="delete-button-vehicle"
+                                                className="cta-button"
                                             >
                                                 Verwijder
                                             </button>
-                                        )}
-
+                                        ) : !isStaff ? (
+                                            <Link
+                                                to={`/vehicle/${vehicle.FrameNr}`}
+                                                state={{
+                                                    vehicle,
+                                                    rentalDates: [filters.startDate, filters.endDate],
+                                                }}
+                                                className={`cta-button`}
+                                                onClick={(e) => {
+                                                    if (!filters.startDate || !filters.endDate) {
+                                                        e.preventDefault();
+                                                        toast.error('Selecteer alstublieft een begin- en einddatum voordat u een voertuig huurt.', {
+                                                            position: "top-center",
+                                                            autoClose: 3000,
+                                                            hideProgressBar: false,
+                                                            closeOnClick: true,
+                                                            pauseOnHover: true,
+                                                            draggable: true,
+                                                            progress: undefined,
+                                                        });
+                                                    }
+                                                }}
+                                            >
+                                                Huur
+                                            </Link>
+                                        ) : null}
                                     </div>
                                 ))
                             ) : (
