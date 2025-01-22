@@ -593,19 +593,20 @@ public class EmployeeRepository : IEmployeeRepository
         {
             try
             {
-                string query = "INSERT INTO Business (Subscription, KvK, BusinessName, Adres, Domain, ContactEmail) VALUES (@S, @K, @B, @A, @D, @C)";
+                string query = "INSERT INTO Business (KvK, BusinessName, Adres, Domain, ContactEmail, Abonnement) VALUES (@K, @B, @A, @D, @C,@Ab)";
 
                 // Er wordt een connectie met de database gemaakt
                 using (var connection = _connector.CreateDbConnection())
                 using (var command = new MySqlCommand(query, (MySqlConnection)connection))
                 {
                     // Parameters van de query worden ingevuld
-                    command.Parameters.AddWithValue("@S", request.Subscription);
                     command.Parameters.AddWithValue("@K", request.KvK);
                     command.Parameters.AddWithValue("@B", request.Name);
                     command.Parameters.AddWithValue("@A", request.Adress);
                     command.Parameters.AddWithValue("@D", request.Domain);
                     command.Parameters.AddWithValue("@C", request.ContactEmail);
+                    command.Parameters.AddWithValue("@Ab", request.Subscription);
+
 
                     // Er wordt gekeken of de query succesvol is uitgevoerd
                     if (command.ExecuteNonQuery() > 0)

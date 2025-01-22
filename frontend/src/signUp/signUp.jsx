@@ -70,7 +70,7 @@ function SignUp() {
         {
             if (isBusinessAccount === 'Business')
             {
-                validationErrors = EmptyFieldChecker({ subscription: selectedSubscription, name, kvk, street, number, domain, contactEmail });
+                validationErrors = EmptyFieldChecker({ selectedSubscription, name, kvk, street, number, domain, contactEmail });
 
                 if (kvk.length < 8)
                 {
@@ -243,7 +243,7 @@ function SignUp() {
                                     onChange={(e) => SetSelectedSubscription(e.target.value)}>
                                 <option value="">Selecteer een abonnement</option>
                                 {subscriptions.map((sub, index) => (
-                                    <option key={index} value={sub}>
+                                    <option key={index} value={index +1}>
                                         {sub}
                                     </option>
                                 ))}
