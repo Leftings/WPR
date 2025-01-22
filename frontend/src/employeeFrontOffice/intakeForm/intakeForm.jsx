@@ -18,10 +18,15 @@ function IntakeForm() {
     const [vehicleName, setVehicleName] = useState(null);
     const [contract, setContract] = useState(null);
     const [orderId, setOrderId] = useState(null);
+    const [tooLate, setTooLate] = useState(false);
     const currDate = new Date();
 
     const handleDamageCheck = (e) => {
         setDamagePresent(e.target.checked);
+    };
+
+    const handleTooLate = (e) => {
+        setTooLate(e.target.checked);
     };
     
     const fetchContract = async (orderId) => {
@@ -118,7 +123,7 @@ function IntakeForm() {
                     {contract && (
                         <>
                             <label
-                                htmlFor="vehicleName">Voertuig: {contract.Brand} {contract.Type} ({contract.LicensePlate})</label>
+                                htmlFor="vehicleName">{`${contract.Brand || "Ongeldig contract"} ${contract.Type || ""} (${contract.LicensePlate || "Probeer een ander ID"})`}</label>
                             <div className="checkbox-item">
                                 <label htmlFor="damageCheck">Schade aanwezig:</label>
                                 <input
@@ -140,7 +145,23 @@ function IntakeForm() {
                                     />
                                 </>
                             )}
-                            {(currDate > new Date(contract.EndDate) || contract.AccountType === 'Business') && (
+
+                            {contract.AccountType === 'Private' && (
+                                <>
+                                    <label htmlFor="tooLateCheck">Oorspronkelijke einddatum: {new Date(contract.EndDate).toLocaleDateString()}</label>
+                                    <div className="checkbox-item">
+                                        <label htmlFor="tooLateCheck">Te laat:</label>
+                                        <input
+                                            type="checkbox"
+                                            id="checkbox-item"
+                                            checked={tooLate}
+                                            onChange={handleTooLate}
+                                        />
+                                    </div>
+                                </>
+                            )}
+
+                            {(tooLate || contract.AccountType === 'Business') && (
                                 <>
                                     <label htmlFor="endDate">Einddatum</label>
                                     <input type="date" onChange={(e) => setEndDate(e.target.value)}/>
