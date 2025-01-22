@@ -53,43 +53,26 @@ jobs:
     name: Block Merge if Tests Fail or Auto-Merge if Pass
     runs-on: ubuntu-latest
     needs: build
-    if: always()
+    if: needs.build.result == 'success'
 
     steps:
-      - name: Debug Pull Request Event Context
-        run: |
-          echo "Pull request number: ${{ github.event.pull_request.number }}"
-          echo "Repository: ${{ github.repository }}"
-          echo "Event: ${{ github.event_name }}"
-
       - name: Get commit message
         id: commit_message
         run: |
           PR_COMMIT_SHA=$(curl -s "https://api.github.com/repos/${{ github.repository }}/pulls/${{ github.event.pull_request.number }}" | jq -r '.head.sha')
           COMMIT_MESSAGE=$(curl -s "https://api.github.com/repos/${{ github.repository }}/commits/${PR_COMMIT_SHA}" | jq -r '.commit.message')
-          # Ensure commit message is safe for use
-          SANITIZED_COMMIT_MESSAGE=$(echo "$COMMIT_MESSAGE" | sed 's/[+&#]/_/g')
-          echo "Commit message: $SANITIZED_COMMIT_MESSAGE"
-          echo "commit_message=$SANITIZED_COMMIT_MESSAGE" >> $GITHUB_ENV
+          echo "::set-output name=message::$COMMIT_MESSAGE"
 
-      - name: Check if tests passed and block/allow merge
+      - name: Auto-merge pull request
         run: |
-
-          if [[ "${{ needs.build.result }}" == "success" ]]; then
-            echo "Tests passed successfully. Merge is allowed."
-            curl -X PUT \
-              -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
-              -H "Accept: application/vnd.github.v3+json" \
-              -d '{"commit_title":"${{ env.commit_message }}","commit_message":"${{ env.commit_message }}","merge_method":"squash"}' \
-
-              "https://api.github.com/repos/${{ github.repository }}/pulls/${{ github.event.pull_request.number }}/merge" || {
-                echo "Failed to auto-merge. Check for conflicts or branch protection rules."
-                exit 1
-              }
-          else
-            echo "Tests failed. Merge blocked."
-            exit 1
-          fi
+          curl -X PUT \
+            -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+            -H "Accept: application/vnd.github.v3+json" \
+            -d '{"commit_title":"${{ steps.commit_message.outputs.message }}","commit_message":"${{ steps.commit_message.outputs.message }}","merge_method":"squash"}' \
+            "https://api.github.com/repos/${{ github.repository }}/pulls/${{ github.event.pull_request.number }}/merge" || {
+              echo "Failed to auto-merge. Check for conflicts or branch protection rules."
+              exit 1
+            }
 
   trigger_generate_uml:
     name: Trigger UML Generation Workflow
