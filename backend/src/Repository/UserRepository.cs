@@ -12,6 +12,8 @@ using System.Transactions;
 using Microsoft.VisualBasic;
 using WPR.Controllers.General.SignUp;
 using WPR.Controllers.Employee.VehicleManager.ChangeBusinessSettings;
+using WPR.Controllers.General.SignUp;
+using WPR.Controllers.Employee.VehicleManager.ChangeBusinessSettings;
 
 namespace WPR.Repository;
 
@@ -444,6 +446,7 @@ public class UserRepository : IUserRepository
     /// </summary>
     /// <param name="data"></param>
     /// <returns></returns>
+
     private async Task<(bool goodQuery, string message)> CreateUserInfoQuery(List<object[]> data)
     {
         int lengthList = data.Count(); // De lengte voor de loopt wordt vastgesteld
@@ -494,32 +497,42 @@ public class UserRepository : IUserRepository
     /// </summary>
     /// <param name="userId"></param>
     /// <returns></returns>
-    public async Task<(bool status, string message)> GetKindEmployeeAsync(string userId)
+    public async Task<(bool status, string message, string officeType)> GetKindEmployeeAsync(string userId)
+{
+    try
     {
-        try
+        string query = "SELECT Office FROM Staff WHERE ID = @I";
+
+        // Connect met de database
+        using (var connection = _connector.CreateDbConnection())
+        using (var command = new MySqlCommand(query, (MySqlConnection)connection))
         {
-            string query = "SELECT Office FROM Staff WHERE ID = @I";
+            command.Parameters.AddWithValue("@I", userId);
 
-            // Er wordt een connectie aangemaakt met de DataBase met bovenstaande query 
-            using (var connection = _connector.CreateDbConnection())
-            using (var command = new MySqlCommand(query, (MySqlConnection)connection))
+            var result = await command.ExecuteScalarAsync();
+
+            if (result != null)
             {
-                // De parameter wordt ingevuld
-                command.Parameters.AddWithValue("@I", userId);
+                // krijg het office type binnen
+                string officeType = result.ToString();
+                string message = $"Employee is assigned to {officeType}";
 
-                var result = await command.ExecuteScalarAsync();
-
-                // De office wordt meegegeven
-                return (true, result.ToString());
+                return (true, message, officeType);
+            }
+            else
+            {
+                return (false, "No office assigned to this employee", null);
             }
         }
-        catch (Exception ex)
-        {
-            Console.WriteLine(ex);
-            return (false, ex.ToString());
-        }
-
     }
+    catch (Exception ex)
+    {
+        Console.WriteLine(ex);
+        return (false, "An error occurred while retrieving the employee's office", null);
+    }
+}
+
+
 
     /// <summary>
     /// Er kunnen medewewerkers van Car and All toegevoegd worden aan de database, door middel van hun gegevens.

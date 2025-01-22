@@ -9,6 +9,7 @@ using Employee.Data;
 /// Class Crypt zorgt voor een veilig encryptie en decryptie van strings.
 /// De Crptie wordt gedaan door het Advanced Encryption Standard (AES)
 /// </summary>
+
 public class Crypt
 {
     private readonly EnvConfig _envConfig;
@@ -60,6 +61,7 @@ public class Crypt
     /// </summary>
     /// <param name="encrypted"></param>
     /// <returns></returns>
+
     public string Decrypt(string encrypted)
     {
         if (string.IsNullOrEmpty(encrypted))
@@ -77,6 +79,7 @@ public class Crypt
 
             // De Crypto Stream zorgt ervoor dat er gedecrypt kan worden
             // De Stream Write zorgt ervoor dat de de tekst naar de Crypto Stream wordt geschreven
+
             using (MemoryStream ms = new MemoryStream(buffer))
             using (CryptoStream cs = new CryptoStream(ms, aes.CreateDecryptor(), CryptoStreamMode.Read))
             using (StreamReader sr = new StreamReader(cs))

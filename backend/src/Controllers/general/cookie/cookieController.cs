@@ -143,26 +143,32 @@ public class CookieController : ControllerBase
 
         try
         {
-            (bool status, string message) kindEmployee = await _userRepository.GetKindEmployeeAsync(_crypt.Decrypt(employeeCookie));
+            // Updated to match the new tuple
+            (bool status, string message, string officeType) kindEmployee = 
+                await _userRepository.GetKindEmployeeAsync(_crypt.Decrypt(employeeCookie));
 
             if (kindEmployee.status)
             {
                 Console.WriteLine(kindEmployee.message);
-                return Ok(new { kindEmployee.message });
+                return Ok(new 
+                { 
+                    message = kindEmployee.message, 
+                    officeType = kindEmployee.officeType 
+                });
             }
-            
-            return BadRequest(new { message = "No office found" });
+        
+            return BadRequest(new { message = "No office found for this employee" });
         } 
         catch
         {
-            // Als er geen geldig cookie is, wordt deze verwijderd
+            // Remove invalid cookie and return a response
             Response.Cookies.Append("LoginSessionEmployee", "Invalid cookie", new CookieOptions
             {
                 HttpOnly = true,
                 Secure = true,
                 Expires = DateTimeOffset.UtcNow.AddDays(-1)
             });
-            
+        
             return BadRequest(new { message = "Invalid Cookie, new cookie set" });
         }
     }

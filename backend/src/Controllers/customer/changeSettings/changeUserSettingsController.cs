@@ -1,3 +1,4 @@
+<<<<<<<< HEAD:backend/src/Controllers/customer/changeSettings/changeUserSettingsController.cs
 using WPR.Cryption;
 
 namespace WPR.Controllers.Customer.ChangeUserSettings;
@@ -101,3 +102,5 @@ public class ChangeUserSettingsController : ControllerBase
         
     }
 }
+========
+>>>>>>>> dac20cd9d3ed25f95e8a45330a187dfe91e3cce8:backend/src/Controllers/ChangeSettings/changeUserSettingsController.cs

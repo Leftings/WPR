@@ -262,7 +262,9 @@ function UserSettings() {
             <br></br>
             <button id="button" type="button" onClick={onSubmit}>Opslaan</button>
             
+
             <button id="buttonDelete" type="button" onClick={handleDelete}>Delete account</button>
+
             {error && <p style={{color: 'red'}}>{error}</p>}
         </div>
       </body>
