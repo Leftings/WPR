@@ -7,27 +7,6 @@
         <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
     </PropertyGroup>
 
-
-    <!--<ItemGroup>
-      <PackageReference Include="dotenv.net" Version="3.2.1" />
-      <PackageReference Include="Microsoft.Extensions.Configuration" Version="9.0.0" />
-      <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="9.0.0" />
-      <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.11.1" />
-      <PackageReference Include="MySql.Data" Version="9.1.0" />
-      <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
-      <PackageReference Include="Swashbuckle.AspNetCore" Version="7.0.0" />
-      <PackageReference Include="xunit.runner.visualstudio" Version="2.4.3">
-        <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-        <PrivateAssets>all</PrivateAssets>
-      </PackageReference>
-    </ItemGroup>
-
-    <ItemGroup>
-      <PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" Version="7.0.0" /> 
-      <PackageReference Include="xunit" Version="2.4.1" /> 
-
-    </ItemGroup>
-    -->
     <ItemGroup>
       <PackageReference Include="Dapper" Version="2.1.35" />
       <PackageReference Include="dotenv.net" Version="3.2.1" />
@@ -39,15 +18,5 @@
     <ItemGroup>
       <Folder Include="src\Controllers\Employee\frontOffice\" />
     </ItemGroup>
-
-
-<!--    <ItemGroup>
-      <EditorConfigFiles Include="obj\Debug\net8.0\WPR.GeneratedMSBuildEditorConfig.editorconfig" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <None Remove="Properties\launchSettings.json" />
-      <None Include="Properties\launchSettings.json" />
-    </ItemGroup>-->
 
 </Project>

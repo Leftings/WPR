@@ -2233,6 +2233,43 @@ input::selection {
   background-color: white;
 }
 
+.subscription-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    justify-content: center;
+    padding: 20px;
+}
+
+.subscription-card {
+  background: #fff;
+  border-radius: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: transform 0.3s, box-shadow 0.3s;
+  animation: fadeInUp 0.2s ease-in-out forwards;
+  opacity: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.subscription-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
+}
+
+.subscription-description {
+  font-size: clamp(0.7em, 2vw, 0.9em);
+  color: #555;
+  line-height: 1.5;
+  text-align: left;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+
+
 /*IntakeForm*/
 .intakeFormFormat {
   display: grid;
