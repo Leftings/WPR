@@ -26,5 +26,7 @@ public interface IEmployeeRepository
     public (int StatusCode, string Message) BusinessAccepted(int kvk);
     public (int StatusCode, string Message) BusinessDenied(int kvk);
     public (bool Status, string Message, Dictionary<string, object> Data) GetBusinessInfo(int kvk);
-    public (int StatusCode, string Message) GetKvK(int vehicleManagerId);
+    public (int StatusCode, string Message, int KvK) GetKvK(int vehicleManagerId);
+    public (int StatusCode, string Message, Dictionary<string, object> Data) GetAbonnementType(int abonnementId);
+    public (int StatusCode, string Message, Dictionary<string, object> Data) GetVehicleManagerInfo(int id);
 }

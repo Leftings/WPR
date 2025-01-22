@@ -859,25 +859,32 @@ public class UserRepository : IUserRepository
 
     private string CreateUpdateQuery (string tabel, IList<object[]> data)
     {
-        string query = $"UPDATE {tabel}";
+        string query = $"UPDATE {tabel} SET";
 
         for (int i = 1; i < data.Count; i++)
         {
             if (((string)data[i][0]).Equals("Password"))
             {
-                query += $" SET Password = '{_hash.createHash((string)data[i][1])}'";
+                query += $" Password = '{_hash.createHash((string)data[i][1])}'";
             }
             else if (data[i][2].Equals("System.Int32"))
             {
-                query += $" SET {data[i][0]} = {data[i][1]}";
+                query += $" {data[i][0]} = {data[i][1]}";
             }
             else
             {
-                query += $" SET {data[i][0]} = '{data[i][1]}'";
+                query += $" {data[i][0]} = '{data[i][1]}'";
+            }
+
+            if (i != data.Count - 1)
+            {
+                query += ",";
             }
         }
 
         query += $" WHERE {data[0][0]} = {data[0][1]}";
+
+        Console.WriteLine(query);
 
         return query;
     }
@@ -1022,6 +1029,8 @@ public class UserRepository : IUserRepository
             return (500, ex.Message);
         }
     }
+
+    
 
     /*private string CreateUpdateQuery (string tabel, IList<object[]> data)
     {

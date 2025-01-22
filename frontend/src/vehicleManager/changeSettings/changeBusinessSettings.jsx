@@ -3,6 +3,7 @@ import {Await, Link, Navigate, useNavigate} from 'react-router-dom';
 import GeneralHeader from "../../GeneralBlocks/header/header.jsx";
 import GeneralFooter from "../../GeneralBlocks/footer/footer.jsx";
 import { pushWithBodyKind, pushWithoutBodyKind } from '../../utils/backendPusher.js';
+import { loadList } from '../../utils/backendLoader.js';
 
 //import './userSettings.css';
 import '../../index.css';
@@ -63,7 +64,12 @@ function ChangeBusinessSettings() {
   const [error, setError] = useState(null);
   const [businessName, setBusinessName] = useState('');
   const [abonnement, setAbonnement] = useState('');
-  const [businessInfo, setBusinessInfo] = useState([]);
+  const [businessInfo, setBusinessInfo] = useState({});
+  const [domain, setDomain] = useState('');
+  const [adres, setAdres] = useState('');
+  const [contactEmail, setContactEmail] = useState('');
+  const [vehicleManagerInfo, setVehicleManagerInfo] = useState({});
+  const [newEmail = setNewEmail] = useState('');
 
   useEffect(() => {
       fetch(`${BACKEND_URL}/api/Cookie/GetUserId`, {
@@ -84,13 +90,22 @@ function ChangeBusinessSettings() {
           })
   }, [navigate]);
 
-  useEffect(() => {
-    const userId = GetUserId();
+  useEffect(async () => {
+    try
+    {
+      const userId = await GetUserId();
+      const vehicleManagerInfoResponse = await loadList(`${BACKEND_URL}/api/GetInfoVehicleManager/GetAllInfo?id=${userId}`);
+      const response = await loadList(`${BACKEND_URL}/api/ChangeBusinessSettings/GetBusinessInfo?id=${userId}`);
 
-    const data = {ID: Number(userId)};
-
-    const message = pushWithoutBodyKind(`${BACKEND_URL}`)
-  })
+      setVehicleManagerInfo(vehicleManagerInfoResponse.data);
+      setBusinessInfo(response.data);
+      console.log(businessInfo);
+    }
+    catch (error)
+    {
+      console.error(error);
+    }
+  }, [])
 
   const onSubmit = async (event) => {
     event.preventDefault();
@@ -104,12 +119,18 @@ function ChangeBusinessSettings() {
           VehicleManagerInfo: {
             ID: Number(userId),
             Password: password1,
+            Email: newEmail,
           },
           BusinessInfo: {
             KvK: 0,
             Abonnement: Number(abonnement),
+            Adres: adres,
+            BusinessName: businessName,
+            ContactEmail: contactEmail,
           },
         };
+
+        console.log(data);
 
         const message = await pushWithBodyKind(`${BACKEND_URL}/api/ChangeBusinessSettings/ChangeBusinessInfo`, data, 'PUT').message;
 
@@ -121,6 +142,10 @@ function ChangeBusinessSettings() {
         {
           setError(message);
         }
+      }
+      else
+      {
+        setError("Wachtwoorden komen niet overeen");
       }
     }
     catch (error)
@@ -152,37 +177,53 @@ function ChangeBusinessSettings() {
       }
   };
 
-  /*useEffect(() => {
-    try
-    {
-      const response = await (fetch)
-    }
-  }, [])*/
-
   return (
     <>
     <GeneralHeader />
     <main>
       <div className='Body'>
         <div className='registrateFormatHeader'>
-            <h1>Wijzigen bedrijfsgegevens</h1>
+            <h1>Wijzigen Bedrijfsgegevens</h1>
         </div>
 
         <div className='registrateFormat'>
             <label htmlFor='inputBusinessName'>Wijzigen Bedrijfsnaam</label>
-            <input type='text' id='inputBusinessName' value={businessName} onChange={(e) => setBusinessName(e.target.value)}></input>
+            <input type='text' id='inputBusinessName' value={businessName} onChange={(e) => setBusinessName(e.target.value)} placeholder={businessInfo.BusinessName}></input>
 
             <label htmlFor='inputAbonnement'>Abonnement wijzigen</label>
             <select id='inputAbonnement' value={abonnement} onChange={(e) => setAbonnement(e.target.value)}>
-              <option value=''>Kies een abonnement</option>
+              <option value={businessInfo.Abonnement}>Huidig: {businessInfo.Type} </option>
               <option value={1}>Pay As You Go</option>
               <option value={2}>Standaard Abonnement</option>
             </select>
 
-            <label htmlFor='inputChangePassword'>Wachtwoord</label>
+            <label htmlFor='inputAdres'>Adres Wijzigen</label>
+            <input type='text' id='inputAdres' value={adres} onChange={(e) => setAdres(e.target.value)} placeholder={businessInfo.Adres}></input>
+
+            <label htmlFor='inputContactEmail'>Wijzigen Contact Email</label>
+            <input type='text' id='inputContactEmail' value={contactEmail} onChange={(e) => setContactEmail(e.target.value)} placeholder={businessInfo.ContactEmail}></input>
+
+            {/*<label htmlFor='inputDomain'>Wijzigen Domein</label>
+            <input type='text' id='inputDomain' value={domain} onChange={(e) => setDomain(e.target.value)} placeholder={`Huidiig: ${businessInfo.Domain}`}></input>*/}
+
+            <div className='registrateFormatFooter'>
+              {error && <p style={{color: 'red'}}>{error}</p>}
+              <button className='cta-button' type="button" onClick={onSubmit}>Opslaan wijzigingen</button>
+            </div>
+
+          </div>
+
+          <div className='registrateFormatHeader'>
+            <h1>Wijzigen WagenparkBeheerder Gegevens</h1>
+          </div>
+          <div className='registrateFormat'>
+            <label htmlFor='inputNewEmail'>Nieuw Email</label>
+            <input type='text' id='inputNewEmail' value={newEmail} onChange={(e) => setNewEmail(e.target.value)} placeholder={vehicleManagerInfo.Email}></input>
+
+            <label htmlFor='inputChangePassword'>Nieuw Wachtwoord</label>
             <input type='password' id='inputChangePassword' value={password1} onChange={(e) => setPassword1(e.target.value)}></input>
 
-            <label htmlFor='inputPasswordConfirm'>Herhaal wachtwoord</label>
+            <label htmlFor='inputPasswordConfirm'>Herhaal Wachtwoord</label>
             <input type='password' id='inputPasswordConfirm' value={password2} onChange={(e) => setPassword2(e.target.value)}></input>
           
 

@@ -71,6 +71,7 @@ export const loadList = async (backendUrl) =>
     const data = await response.json();
     console.log('Parsed Data:', data);
     console.log(typeof data);
+    console.log(data.data);
     if (data?.data && typeof data.data === 'object')
     {
       return { message: data.message, data: data.data };

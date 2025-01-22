@@ -19,7 +19,7 @@ public class Hash
     /// Het creëren van een salt
     /// </summary>
     /// <returns></returns>
-    public byte[] createSalt()
+    public byte[] CreateSalt()
     {
         byte[] salt = RandomNumberGenerator.GetBytes(128 / 8); // de bites worden naar bytes omgezet
         return salt;
