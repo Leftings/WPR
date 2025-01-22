@@ -26,4 +26,6 @@ public interface IEmployeeRepository
     public (int StatusCode, string Message) BusinessAccepted(int kvk);
     public (int StatusCode, string Message) BusinessDenied(int kvk);
     public (bool Status, string Message, Dictionary<string, object> Data) GetBusinessInfo(int kvk);
+    Task<(bool status, string message)> AddIntakeAsync(string damage, int frameNrVehicle, string reviewedBy,
+        DateTime date, int contract);
 }

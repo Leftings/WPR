@@ -2254,6 +2254,16 @@ input::selection {
   margin-bottom: 5px;
 }
 
+.intakeFormFormatFooter {
+  grid-column: span 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+  text-align: center;
+  width: 100%;
+}
+
 .contractFind {
   display: flex;
   align-items: center;

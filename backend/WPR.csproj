@@ -36,6 +36,9 @@
       <PackageReference Include="MySql.Data" Version="9.1.0" />
       <PackageReference Include="Swashbuckle.AspNetCore" Version="7.0.0" />
     </ItemGroup>
+    <ItemGroup>
+      <Folder Include="src\Controllers\Employee\frontOffice\" />
+    </ItemGroup>
 
 
 <!--    <ItemGroup>

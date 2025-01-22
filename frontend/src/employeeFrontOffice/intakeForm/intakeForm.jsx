@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { NumberCheck } from '../../utils/numberFieldChecker.js'
+import { Form, Link, useNavigate } from 'react-router-dom';
+import { NumberCheck } from '../../utils/numberFieldChecker.js';
 import '../../index.css';
 import GeneralHeader from '../../GeneralBlocks/header/header';
 import GeneralFooter from '../../GeneralBlocks/footer/footer';
-
+import { EmptyFieldChecker } from "../../utils/errorChecker.js";
+import {toast} from "react-toastify";
 
 const BACKEND_URL = import.meta.env.VITE_REACT_APP_BACKEND_URL ?? 'http://localhost:5165';
 
@@ -13,61 +14,118 @@ function IntakeForm() {
     const [damagePresent, setDamagePresent] = useState(false);
     const [isValidContract, setIsValidContract] = useState(false);
     const [contractNumber, setContactNumber] = useState(null);
-    const [damageExplanation, setDamageExplanation] = useState("No damage present.");
+    const [damageExplanation, setDamageExplanation] = useState('');
     const [endDate, setEndDate] = useState(null);
     const [vehicleName, setVehicleName] = useState(null);
     const [contract, setContract] = useState(null);
     const [orderId, setOrderId] = useState(null);
     const [tooLate, setTooLate] = useState(false);
+    const [staffId, setStaffId] = useState(null);
+    const [error, setError] = useState([]);
     const currDate = new Date();
 
     const handleDamageCheck = (e) => {
         setDamagePresent(e.target.checked);
+        
+        if (damagePresent) {
+            setDamageExplanation(null);
+        }
     };
 
     const handleTooLate = (e) => {
         setTooLate(e.target.checked);
     };
-    
+
     const fetchContract = async (orderId) => {
         try {
             const response = await fetch(`${BACKEND_URL}/api/viewRentalData/GetFullReviewData?id=${orderId}`);
-            
+
             if (!response.ok) {
                 throw new Error ("Contract vinden mislukt");
             }
             const data = await response.json();
-            
+
             const contractData = data.message;
             
-            setContract(contractData);
-            
-            if (contractData.Vehicle) {
-                setVehicleName(contractData.Vehicle);
+            if (!(Object.keys(contractData).length === 0)) {
+                setContract(contractData);
+                setError([]);
             } else {
-                setVehicleName("Voertuig naam kan niet worden gevonden...")
+                setContract(null);
+                setError(["Geen overeenkomend contract"])
             }
-            
-            setError("");
         } catch (err) {
-            setError(err.message);
+            setError([err.message]);
             setContract(null);
             setVehicleName("");
         }
-    }
-    
+    };
+
     const handleSearchClick = () => {
-        
         if (orderId) {
             fetchContract(orderId);
         } else {
-            setError("Please enter a valid Order ID");
+            setError(["Please enter a valid Order ID"]);
         }
     };
 
+    const setIntake = () => {
+        const formData = new FormData();
+
+        if (!damagePresent) {
+            formData.append('Damage', "Geen schade aanwezig.");
+        } else { 
+            formData.append('Damage', damageExplanation); 
+        }
+        formData.append('FrameNrVehicle', contract.FrameNrVehicle);
+        formData.append('ReviewedBy', staffId);
+        formData.append('Date', endDate);
+        formData.append('Contract', contract.OrderId);
+
+        fetch(`${BACKEND_URL}/api/AddIntake/addIntake`, {
+            method: 'POST',
+            credentials: 'include',
+            body: formData,
+        })
+            .then(response => {
+                if (!response.ok) {
+                    return response.json().then(err => {
+                        throw new Error(err.message);
+                    });
+                }
+                toast.success("Inname succesvol verwerkt!");
+                navigate("/FrontOfficeEmployee");
+                return response.json();
+            })
+            .catch(error => {
+                console.error("Error adding intake:", error.message);
+                setError([error.message]);
+            });
+    };
+
+    function Check() {
+        let intakeData = {
+            frameNrVehicle: contract.FrameNrVehicle,
+            reviewedBy: staffId,
+            Einddatum: endDate,
+            contract
+        };
+
+        let errors = EmptyFieldChecker(intakeData);
+        
+        if (damagePresent && (damageExplanation === "" || damageExplanation === null)) {
+            errors.push("Schadetoelichting niet ingevuld")
+        }
+
+        if (errors.length === 0) {
+            setIntake();
+        }
+
+        setError(errors);
+    }
+
     useEffect(() => {
-        // Authorisatie check
-        fetch(`${BACKEND_URL}/api/Cookie/GetUserId` , {
+        fetch(`${BACKEND_URL}/api/Cookie/GetUserId`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -78,23 +136,27 @@ function IntakeForm() {
                 if (!response.ok) {
                     throw new Error('No Cookie');
                 }
-                return response.json();
+                return response.json(); // Parse JSON response
+            })
+            .then(data => {
+                const id = data?.message; // Ensure proper extraction
+                setStaffId(id);
             })
             .catch(() => {
                 alert("Cookie was niet geldig");
                 navigate('/');
-            })
+            });
     }, [navigate]);
 
     useEffect(() => {
-        if (contract && (currDate <= new Date(contract.EndDate) && contract.AccountType === 'Private')) {
+        if (contract && !tooLate && contract.AccountType === 'Private') {
             setEndDate(contract.EndDate);
         }
-        if (contract && (currDate > new Date(contract.EndDate) || contract.AccountType === 'Business')) {
+        if ((contract && tooLate) || (contract && contract.AccountType) === 'Business') {
             setEndDate(null);
         }
-    }, [contract, currDate]);
-    
+    }, [contract, tooLate]);
+
     return (
         <>
             <GeneralHeader>
@@ -106,14 +168,14 @@ function IntakeForm() {
                 <div className="intakeFormFormat">
                     <label htmlFor="contract">Contract</label>
                     <div className="contractFind">
-                        <input 
+                        <input
                             id="contract"
                             value={orderId}
                             onChange={(e) => setOrderId(NumberCheck(e.target.value))}
                             placeholder="Order ID van contract..."
                         />
-                        <button 
-                            id="contract" 
+                        <button
+                            id="contract"
                             className="contractFindButton"
                             onClick={handleSearchClick}
                         >
@@ -168,8 +230,21 @@ function IntakeForm() {
                                 </>
                             )}
 
-                            <button className="cta-button">Stuur</button>
+                            <button className="cta-button" onClick={Check}>Stuur</button>
                         </>
+                    )}
+                </div>
+
+                <div className="intakeFormFormatFooter">
+                    {/* Error display */}
+                    {error.length > 0 && (
+                        <div id="errors">
+                            <ul>
+                                {error.map((errorMessage, index) => (
+                                    <li key={index}>{errorMessage}</li>
+                                ))}
+                            </ul>
+                        </div>
                     )}
                 </div>
             </div>
