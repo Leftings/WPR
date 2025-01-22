@@ -22,6 +22,7 @@ function SignUp() {
     const [password1, setPassword1] = useState('');
     const [password2, setPassword2] = useState('');
     const navigate = useNavigate();
+    const [subscription, SetSubscription] = useState('');
     const [name, SetName] = useState('');
     const [kvk, SetKvk] = useState('');
     const [street, SetStreet] = useState('');
@@ -49,7 +50,7 @@ function SignUp() {
         {
             if (isBusinessAccount === 'Business')
             {
-                validationErrors = EmptyFieldChecker({ name, kvk, street, number, domain, contactEmail });
+                validationErrors = EmptyFieldChecker({ subscription, name, kvk, street, number, domain, contactEmail });
 
                 if (kvk.length < 8)
                 {
@@ -89,6 +90,7 @@ function SignUp() {
                 {
                     if (isBusinessAccount === 'Business')
                     {
+                        formData.append('Subscription', subscription)
                         formData.append('KvK', kvk);
                         formData.append('Name', name);
                         formData.append('Adress', `${street} ${number}${add}`);
@@ -216,6 +218,9 @@ function SignUp() {
                                     <button className='cta-button'onClick={() => setIsBusinessAccount('Business')} id={isBusinessAccount === 'Business' ? 'typeButton-active' : 'typeButton'} type='button'>Bedrijf</button>
                                 </>
                             )}
+                            <label htmlFor='inputSubscriptionType'>Abonnement</label>
+                            <input id='inputSubscriptionType' value={subscription} onChange={(e) = > SetSubscription(e.traget.value)}></input>
+                            
                             <label htmlFor='inputBusinessName'>Bedrijfsnaam</label>
                             <input id='inputBusinessName' value={name} onChange={(e) => SetName(e.target.value)}></input>
     
