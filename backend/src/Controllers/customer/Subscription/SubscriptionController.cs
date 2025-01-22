@@ -36,4 +36,46 @@ public class SubscriptionController : ControllerBase
             throw;
         }
     }
+
+    [HttpGet("GetSubscriptionData")]
+    public async Task<IActionResult> GetSubscriptionData(int id)
+    {
+        try
+        {
+            var data = await _userRepository.GetSubscriptionDataAsync(id);
+
+            if (data == null)
+            {
+                NotFound("No subscription data found");
+            }
+            
+            return Ok(new { message = data });
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
+    }
+
+    [HttpGet("GetSubscriptionIds")]
+    public async Task<IActionResult> GetSubscriptionIdsAsync()
+    {
+        try
+        {
+            var ids = await _userRepository.GetSubscriptionIdsAsync();
+
+            if (ids == null)
+            {
+                NotFound("Could not find subscription ids");
+            }
+
+            return Ok(new {message = ids});
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
+    }
 }

@@ -172,6 +172,7 @@ public class EmailService
 
     private string BuildConfirmationEmailBusinessBody(string subscription ,string businessName, int kvk, string domain, string adres)
     {
+        
         return $@"
             <h1>Welkom, {businessName}</h1>
 

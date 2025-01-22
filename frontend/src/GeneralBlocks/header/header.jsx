@@ -67,6 +67,7 @@ function GeneralHeader() {
                                 <Link to="/login">Login</Link>
                             </li>
                         )}
+                        <li><Link to="/abonnement">Abonnement</Link> </li>
                         <li><Link to="/vehicles">Zoek Auto's</Link></li>
                         <li><Link to="/about">Over ons</Link></li>
                         <li><Link to="/contact">Contact</Link></li>
