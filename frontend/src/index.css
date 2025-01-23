@@ -921,11 +921,6 @@ li {
   margin-bottom: 10px;
 }
 
-/*
-#signUpInfo {
-
-}
-*/
 /* ReviewHireRequest */
 @media (max-width: 1200px) {
   .requests-grid {
@@ -998,7 +993,7 @@ li {
 
 .officeLinks a {
   color: #002fff;
-  padding: 10px 20 px;
+  padding: 10px 20px;
   border-radius: 5px;
   font-size: 16px;
   font-weight: bold;
@@ -1007,7 +1002,7 @@ li {
 /* Add Employee */
 .registrateFormat {
   display: grid;
-  grid-template-columns: 1fr; /* Default: Single column */
+  grid-template-columns: 1fr; 
   margin: 0 auto;
   background-color: #f8f8f8; 
   border: 1px solid #ddd;
@@ -1015,8 +1010,8 @@ li {
   padding: 20px; 
   margin-bottom: 20px; 
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
-  gap: 20px; /* Space between rows and columns */
-  width: 300px; /* Adjust for smaller screens */
+  gap: 20px; 
+  width: 300px; 
   position: relative;
 }
 
@@ -1133,8 +1128,7 @@ li {
   color: #d9534f;
   text-align: center;
   font-size: 1.2em;
-  margin: 20px 0;
-  margin-top: 10px;
+  margin: 10px 0 20px;
   animation: fadeInUp 0.3s ease-in-out forwards;
   opacity: 0;
 }
@@ -1178,7 +1172,6 @@ li {
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
-  /*align-items: center; AddBusiness */
 }
 
 /* GeneralHeader */
@@ -1215,16 +1208,18 @@ li {
 }
 
 .container {
-  flex: 1; /* Allow content to grow */
+  flex: 1; 
   display: flex;
-  justify-content: center;
-  align-items: stretch;
+  flex-direction: column;
+  justify-content: center; 
+  align-items: center;
   gap: 20px;
   width: 100%;
   margin: 0 auto;
   padding: 0;
   box-sizing: border-box;
 }
+
 
 /* AbonnementInfo */
 footer {
@@ -1308,12 +1303,18 @@ main {
 /* Html: IndividualSalePage, Login, Index, SignUp */
 /* IndividualSalePage & Login */
 html, body {
-  height: 100vh;
+  height: 100%;
+  width: 100%;
   margin: 0;
+  padding: 0;
+  overflow-x: hidden;
   display: flex;
   flex-direction: column;
+  justify-content: flex-start; 
+  align-items: center;
   background-color: #F4E8C1;
   font-family: Arial, sans-serif;
+  box-sizing: border-box;
 }
 
 /* Car-price: ChangeRental, PayPage, IndividualSalesPage*/
@@ -1906,12 +1907,11 @@ input::selection {
 .intakeFormFormat {
   display: grid;
   grid-template-columns: 1fr;
-  margin: 0 auto;
   background-color: #f8f8f8;
   border: 1px solid #ddd;
   border-radius: 8px;
   padding: 20px;
-  margin-bottom: 20px;
+  margin: 0 auto 20px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   gap: 20px;
   width: 300px;
