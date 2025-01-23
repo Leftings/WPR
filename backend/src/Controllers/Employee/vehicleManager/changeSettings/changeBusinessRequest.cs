@@ -24,3 +24,14 @@ public class ChangeBusinessInfo
     public string? Adres { get; set; }
     public string? BusinessName { get; set; }
 }
+
+public class DeleteBusinessRequest
+{
+    public int KvK { get; set; }
+}
+
+public class DeleteVehicleManagerRequest
+{
+    public int ID { get; set; }
+    public int KvK { get; set; }
+}

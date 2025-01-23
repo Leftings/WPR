@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
-using WPR.Cryption;
 using WPR.Repository;
+using WPR.Repository.DatabaseCheckRepository;
 using WPR.Utils;
 
 namespace WPR.Controllers.Employee.VehicleManager.ChangeBusinessSettings;
@@ -11,13 +11,13 @@ public class ChangeBusinessSettingsController : ControllerBase
 {
     private readonly IUserRepository _userRepository;
     private readonly IEmployeeRepository _employeeRepository;
-    private readonly Crypt _crypt;
+    private readonly IDatabaseCheckRepository _databaseCheckRepository;
 
-    public ChangeBusinessSettingsController(IUserRepository userRepository, Crypt crypt, IEmployeeRepository employeeRepository)
+    public ChangeBusinessSettingsController(IUserRepository userRepository, IEmployeeRepository employeeRepository, IDatabaseCheckRepository databaseCheckRepository)
     {
         _userRepository = userRepository ?? throw new ArgumentNullException(nameof(userRepository));
-        _crypt = crypt ?? throw new ArgumentNullException(nameof(crypt));
         _employeeRepository = employeeRepository ?? throw new ArgumentNullException(nameof(employeeRepository));
+        _databaseCheckRepository = databaseCheckRepository ?? throw new ArgumentNullException(nameof(databaseCheckRepository));
     }
 
     [HttpGet("GetBusinessInfo")]
@@ -93,35 +93,37 @@ public class ChangeBusinessSettingsController : ControllerBase
     /// </summary>
     /// <returns></returns>
     [HttpDelete("DeleteBusiness")]
-    public async Task<IActionResult> DeleteUserAsync() {
-        
-        string loginCookie = HttpContext.Request.Cookies["LoginSession"];
-        
-        if(string.IsNullOrEmpty(loginCookie))
+    public async Task<IActionResult> DeleteUserAsync([FromBody] DeleteBusinessRequest request) {
+        var deleteResponse = _databaseCheckRepository.DeleteBusiness(request.KvK);
+
+        if (deleteResponse.StatusCode == 200)
         {
-            Console.WriteLine("No cookie");
-            return BadRequest(new { message = "No Cookie"});
+            Response.Cookies.Append("LoginVehicleManagerSession", "Invalid cookie", new CookieOptions
+            {
+                HttpOnly = true,
+                Secure = true,
+                Expires = DateTimeOffset.UtcNow.AddDays(-1)
+            });
         }
 
-        try
+        return StatusCode(deleteResponse.StatusCode, new { message = deleteResponse.Message });
+    }
+
+    [HttpDelete("DeleteVehicleManager")]
+    public async Task<IActionResult> DeleteVehicleAsync([FromBody] DeleteVehicleManagerRequest request) {
+        var deleteResponse = _databaseCheckRepository.DeleteVehicleManager(request.ID, request.KvK);
+
+        if (deleteResponse.StatusCode == 200)
         {
-            string decryptedLoginCookie = _crypt.Decrypt(loginCookie);
-            Console.WriteLine(decryptedLoginCookie);
-            var result = await _userRepository.DeleteUserAsync(decryptedLoginCookie);
-                if (result.status)
-                {
-                    Response.Cookies.Append("LoginSession", "", new CookieOptions { Expires = DateTimeOffset.Now.AddDays(-1) });
-                    Console.WriteLine("Cookie cleared");
-                    return Ok(new {message = result.message});
-                }
-                return BadRequest(new {message = result.message});
-        }
-        catch (Exception e)
-        {
-            Console.WriteLine(e);
-            throw;
+            Response.Cookies.Append("LoginVehicleManagerSession", "Invalid cookie", new CookieOptions
+            {
+                HttpOnly = true,
+                Secure = true,
+                Expires = DateTimeOffset.UtcNow.AddDays(-1)
+            });
         }
         
+        return StatusCode(deleteResponse.StatusCode, new { message = deleteResponse.Message });
     }
 
     [HttpGet("CheckNewEmail")]

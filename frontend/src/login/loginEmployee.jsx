@@ -95,6 +95,7 @@ function Login() {
             throw new Error('Failed to fetch the kind of office');
           }
           const office = await officeResponse.json();
+          console.log(office);
 
           if (office?.officeType === 'Front') {
             await fetch(`${BACKEND_URL}/api/Login/CheckSessionStaff`, { credentials: 'include' });

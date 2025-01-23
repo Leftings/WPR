@@ -92,11 +92,13 @@ function SignUp() {
             try
             {
                 const formData = new FormData();
+                console.log(chosenType);
                 if (chosenType === 'Private')
                 {
                     formData.append('SignUpRequestCustomer.Email', email);
                     formData.append('SignUpRequestCustomer.AccountType', chosenType);
                     formData.append('SignUpRequestCustomer.Password', password1);
+                    formData.append('SignUpRequestCustomer.IsPrivate', true);
                     formData.append('SignUpRequestCustomerPrivate.FirstName', firstName);
                     formData.append('SignUpRequestCustomerPrivate.LastName', lastName);
                     formData.append('SignUpRequestCustomerPrivate.TelNumber', phonenumber);
@@ -125,6 +127,7 @@ function SignUp() {
                         formData.append('SignUpRequestCustomer.Email', email);
                         formData.append('SignUpRequestCustomer.Password', password1);
                         formData.append('SignUpRequestCustomer.AccountType', chosenType);
+                        formData.append('SignUpRequestCustomer.IsPrivate', false);
 
                         const response = await pushWithBody(`${BACKEND_URL}/api/SignUp/signUp`, formData);
                         redirect(response);
