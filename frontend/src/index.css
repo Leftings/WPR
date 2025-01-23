@@ -1119,10 +1119,6 @@ li {
   }
 }
 
-/* Add business */
-
-/* Error-message: WagenparkBeheerderOverzicht, ChangeRental, PayPage, ConfirmationPage */
-
 /* WagenparkBeheerderOverzicht */
 .error-message {
   color: #d9534f;
@@ -1247,7 +1243,7 @@ footer {
 /* CarRentalOverview & Home */
 main {
   flex: 1; 
-  min-height: 80vh;
+  min-height: 85vh;
 }
 
 /* Cta-button: Home, GeneralHeader */
