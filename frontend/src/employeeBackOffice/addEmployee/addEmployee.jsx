@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-//import './addEmployee.css';'
 import '../../index.css';
 import GeneralHeader from '../../GeneralBlocks/header/header';
 import GeneralFooter from '../../GeneralBlocks/footer/footer';
@@ -127,7 +126,7 @@ function AddEmployee() {
         <GeneralHeader>
             <p>Tekst</p>
         </GeneralHeader>
-        <div className='body'>
+        <main>
             <h1>Registreren Werknemer</h1>
             <div className='registrateFormat'>
                 <label htmlFor='employee'>Soort Medewerker</label>
@@ -171,7 +170,7 @@ function AddEmployee() {
                     )}
                 </div>
             </div>
-        </div>
+        </main>
 
         <GeneralFooter />
         </>

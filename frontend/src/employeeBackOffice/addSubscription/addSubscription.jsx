@@ -99,7 +99,7 @@ function AddSubscription() {
     return (
         <>
             <GeneralHeader />
-            <div className='body'>
+            <main>
                 <h1>Toevoegen Abonnement</h1>
 
                 <div className='registrateFormat'>
@@ -128,7 +128,7 @@ function AddSubscription() {
                         <button className='cta-button' onClick={Check}>Abonnement toevoegen</button>
                     </div>
                 </div>
-            </div>
+            </main>
             <GeneralFooter />
         </>
     );

@@ -1,7 +1,6 @@
 ﻿import React, { useState, useEffect } from 'react';
 import GeneralHeader from "../GeneralBlocks/header/header.jsx";
 import GeneralFooter from "../GeneralBlocks/footer/footer.jsx";
-//import './wagenparkBeheerderOverzichtPage.css';
 import '../index.css';
 
 const BACKEND_URL = import.meta.env.VITE_REACT_APP_BACKEND_URL ?? 'http://localhost:5165';
