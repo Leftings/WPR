@@ -786,7 +786,7 @@ public class UserRepository : IUserRepository
     /// <returns></returns>
     public async Task<(int StatusCode, string Message)> AddCustomer(SignUpRequestCustomer request, SignUpRequestCustomerPrivate privateRequest)
     {
-        (bool Status, string Message) checks = await AddCustomerChecks(false, request, privateRequest);
+        (bool Status, string Message) checks = await AddCustomerChecks(request.IsPrivate, request, privateRequest);
 
         if (checks.Status)
         {

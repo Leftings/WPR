@@ -12,6 +12,7 @@ using WPR.Hashing;
 using System.Net;
 using WPR.Services;
 using WPR.Controllers.General.Cookie;
+using WPR.Repository.DatabaseCheckRepository;
 
 namespace WPR;
 
@@ -140,6 +141,7 @@ public class AppConfigure
     builder.Services.AddScoped<EmailService>();
     builder.Services.AddScoped<IEmployeeRepository, EmployeeRepository>();
     builder.Services.AddScoped<IBackOfficeRepository, BackOfficeRepository>();
+    builder.Services.AddScoped<IDatabaseCheckRepository, DatabaseCheckRepository>();
     
 
     // Configure authentication with cookie-based authentication schema.

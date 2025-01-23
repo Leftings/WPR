@@ -7,6 +7,7 @@ using WPR.Database;
 using System;
 using WPR.Repository;
 using MySqlX.XDevAPI.Common;
+using WPR.Repository.DatabaseCheckRepository;
 
 /// <summary>
 /// ChangeUserSettingsController is de controller die aanvragen van buitenaf ontvangt en vervolgens gegevens uit de backend ophaald een terug geeft 
@@ -18,12 +19,14 @@ public class ChangeUserSettingsController : ControllerBase
     private readonly Connector _connector;
     private readonly IUserRepository _userRepository;
     private readonly Crypt _crypt;
+    private readonly IDatabaseCheckRepository _databaseCheckRepository;
 
-    public ChangeUserSettingsController(Connector connector, IUserRepository userRepository, Crypt crypt)
+    public ChangeUserSettingsController(Connector connector, IUserRepository userRepository, Crypt crypt, IDatabaseCheckRepository databaseCheckRepository)
     {
         _connector = connector ?? throw new ArgumentNullException(nameof(connector));
         _userRepository = userRepository ?? throw new ArgumentNullException(nameof(userRepository));
         _crypt = crypt ?? throw new ArgumentNullException(nameof(crypt));
+        _databaseCheckRepository = databaseCheckRepository ?? throw new ArgumentNullException(nameof(databaseCheckRepository));
     }
 
     /// <summary>
@@ -84,7 +87,7 @@ public class ChangeUserSettingsController : ControllerBase
         {
             string decryptedLoginCookie = _crypt.Decrypt(loginCookie);
             Console.WriteLine(decryptedLoginCookie);
-            var result = await _userRepository.DeleteUserAsync(decryptedLoginCookie);
+            /*var result = await _userRepository.DeleteUserAsync(decryptedLoginCookie);
                 if (result.status)
                 {
                     Response.Cookies.Append("LoginSession", "", new CookieOptions { Expires = DateTimeOffset.Now.AddDays(-1) });
@@ -92,12 +95,20 @@ public class ChangeUserSettingsController : ControllerBase
                     return Ok(new {message = result.message});
                 }
                 return BadRequest(new {message = result.message});
+            */
+
+            var deleteUser = _databaseCheckRepository.DeleteUser(Convert.ToInt32(decryptedLoginCookie));
+            return StatusCode(deleteUser.StatusCode, new { message = deleteUser.Message });
+        }
+        catch (OverflowException ex)
+        {
+            Console.WriteLine(ex.Message);
+            throw;
         }
         catch (Exception e)
         {
             Console.WriteLine(e);
             throw;
         }
-        
     }
 }
