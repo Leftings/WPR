@@ -36,32 +36,11 @@ function GetUserId() {
   });
 }
 
-function DeleteUser(userId) {
-    const encryptedUserId = encrypt(userId)
-    return fetch(`${BACKEND_URL}/api/ChangeUserSettings/DeleteUser/${encryptedUserId}`, {
-        method: 'DELETE',
-        headers: {
-            'Content-Type': 'application/json'},
-        credentials: 'include',
-    })
-        .then(async (response) => {
-            const data = await response.json();
-            if (!response.ok) {
-                throw new Error(data.message || 'Error');
-            }
-            return data;
-        })
-        .catch((error) => {
-            console.error('Error deleting user:', error.message);
-            throw error;
-        })
-}
-
 function ChangeBusinessSettings() {
   const navigate = useNavigate();
   const [password1, setPassword1] = useState('');
   const [password2, setPassword2] = useState('');
-  const [error, setError] = useState(null);
+  const [error, setError] = useState([]);
   const [businessName, setBusinessName] = useState('');
   const [abonnement, setAbonnement] = useState('');
   const [businessInfo, setBusinessInfo] = useState({});
@@ -74,7 +53,7 @@ function ChangeBusinessSettings() {
   const [selectedSubscription, SetSelectedSubscription] = useState('');
 
   useEffect(() => {
-      fetch(`${BACKEND_URL}/api/Cookie/GetUserId`, {
+      fetch(`${BACKEND_URL}/api/Cookie/IsVehicleManager` , {
           method: 'GET',
           headers: {
               'Content-Type': 'application/json',
@@ -83,14 +62,18 @@ function ChangeBusinessSettings() {
       })
           .then(response => {
               if (!response.ok) {
-                  throw new Error('No Cookie');
-              }
+                  return response.json().then(data => {
+                    console.log(data);
+                    throw new Error(data?.message || 'No Cookie'); 
+                  });
+                }
               return response.json();
           })
           .catch(() => {
+              alert("Cookie was niet geldig");
               navigate('/');
           })
-  }, [navigate]);
+      }, [navigate]);
 
   useEffect(() => {
     async function fetchSubscriptions() {
@@ -115,6 +98,7 @@ function ChangeBusinessSettings() {
       try {
           const userId = await GetUserId();
           const vehicleManagerInfoResponse = await loadList(`${BACKEND_URL}/api/GetInfoVehicleManager/GetAllInfo?id=${userId}`);
+          console.log(vehicleManagerInfoResponse);
           const response = await loadList(`${BACKEND_URL}/api/ChangeBusinessSettings/GetBusinessInfo?id=${userId}`);
 
           setVehicleManagerInfo(vehicleManagerInfoResponse.data);
@@ -140,6 +124,7 @@ function ChangeBusinessSettings() {
         if (abonnement == 0)
         {
           setAbonnement(businessInfo.Abonnement);
+          console.log('abonnement set');
         }
 
         const data = {
@@ -167,45 +152,69 @@ function ChangeBusinessSettings() {
         }
         else
         {
-          setError(message.message);
+          setError([message.message]);
         }
       }
       else
       {
-        setError("Wachtwoorden komen niet overeen");
+        setError(["Wachtwoorden komen niet overeen"]);
       }
     }
     catch (error)
     {
       console.log(error.message);
-      setError("Er is een fout opgetreden bij het wijzigen van de gegevens");
+      setError(["Er is een fout opgetreden bij het wijzigen van de gegevens"]);
     }
   }
 
-  const handleDelete = async () => {
-      const confirmDelete = window.confirm('Are you sure you want to delete your account?');
+  const handleDelete = async (type) => {
+      const confirmDelete = window.confirm(`Weet je zeker dat je het ${type}account wilt verwijderen?\nVerwijderde account kunnen niet meer terug gebracht worden.`);
       if (!confirmDelete) return;
+      console.log('VM info: ', vehicleManagerInfo);
 
-      try {
-          const response = await fetch(`${BACKEND_URL}/api/ChangeUserSettings/DeleteUser`, {
-              method: 'DELETE',
-              credentials: 'include', // Include the cookie
-          });
-          
-          const data = await response.json();
-          if (response.ok) {
-              alert('Your account has been deleted successfully');
-              navigate('/'); // Redirect after deletion
-          } else {
-              setError(data.message);
-          }
-      } catch (error) {
-          setError('Failed to delete account');
+      let data;
+      if (type === 'Business')
+      {
+        data = {
+            KvK: businessInfo.KvK,
+        };
+      }
+      else
+      {
+        data = {
+            ID: vehicleManagerInfo.ID,
+            KvK: vehicleManagerInfo.Business,
+        }
+      }
+
+      console.log(data);
+      try
+      {
+        const response = await pushWithBodyKind(`${BACKEND_URL}/api/ChangeBusinessSettings/Delete${type}`, data, 'DELETE');
+        console.log(response);
+
+        if (response.errorDetected)
+        {
+          const errorMessage = response.errors.join(', ');
+          setError(`Account verwijderen is mislukt: \n${errorMessage}`);
+        }
+        else
+        {
+          navigate('/VehicleManager');
+        }
+      }
+      catch (error) {
+          const errorMessage = response.errors.join(', ');
+          setError(`Account verwijderen is mislukt: \n${errorMessage}`);
       }
   };
 
   async function checkNewEmail(email)
   {
+    if (email === '')
+    {
+      return true;
+    }
     const filledInDomain = '@' + email.split("@").pop();
 
     if (filledInDomain === businessInfo.Domain)
@@ -219,13 +228,13 @@ function ChangeBusinessSettings() {
       }
       else
       {
-        setError(response.message);
+        setError([response.message]);
         return false;
       }
     }
     else
     {
-      setError(`Domein is niet hetzelfde als het opgegeven domain (${businessInfo.Domain})`);
+      setError([`Domein is niet hetzelfde als het opgegeven domain (${businessInfo.Domain})`]);
       return false;
     }
   }
@@ -266,6 +275,7 @@ function ChangeBusinessSettings() {
             <div className='registrateFormatFooter'>
               {error && <p style={{color: 'red'}}>{error}</p>}
               <button className='cta-button' type="button" onClick={onSubmit}>Opslaan wijzigingen</button>
+              <button id="buttonDelete" type="button" onClick={() => {handleDelete('Business');}}>Verwijderen Bedrijfs Account</button>
             </div>
 
           </div>
@@ -287,7 +297,7 @@ function ChangeBusinessSettings() {
             <div className='registrateFormatFooter'>
                 {error && <p style={{color: 'red'}}>{error}</p>}
                 <button className='cta-button' type="button" onClick={async () => {if (await checkNewEmail(newEmail)){await onSubmit(new Event('submit'));}}}>Opslaan wijzigingen</button>
-                <button id="buttonDelete" type="button" onClick={handleDelete}>Verwijderen Bedrijfs Account</button>
+                <button id="buttonDelete" type="button" onClick={() => {handleDelete('VehicleManager');}}>Verwijderen Wagenparkbeheerder Account</button>
             </div>
         </div>
       </div>

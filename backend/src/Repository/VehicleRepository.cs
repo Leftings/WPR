@@ -579,7 +579,6 @@ public class VehicleRepository : IVehicleRepository
 
     public async Task<(bool Status, string Message)> DeleteVehicleAsync(string frameNr)
     {
-        Console.WriteLine("Deleting vehicle");
         try
         {
             string queryCustomer = "DELETE FROM Vehicle WHERE frameNr = @FrameNr";

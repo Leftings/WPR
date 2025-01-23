@@ -27,7 +27,9 @@ import ReviewHireRequestVehicleManager from './vehicleManager/reviewHireRequest/
 import WagenparkBeheerderOverzichtPage from './wagenparkBeheerderOverzichtPage/wagenparkBeheerderOverzichtPage.jsx';
 import ViewRentalData from './employeeBackOffice/viewRentalData/viewRentalData.jsx';
 import ReviewBusiness from './employeeFrontOffice/addBusiness/reviewBusiness.jsx';
+import IntakeForm from './employeeFrontOffice/intakeForm/intakeForm.jsx'
 import ChangeBusinessSettings from './vehicleManager/changeSettings/changeBusinessSettings.jsx';
+import AddSubscription from './employeeBackOffice/addSubscription/addSubscription.jsx'
 
 
 createRoot(document.getElementById('root')).render(
@@ -54,6 +56,7 @@ createRoot(document.getElementById('root')).render(
             <Route path="/backOfficeEmployee" element={<EmployeeBackOffice />}></Route>
             <Route path="/backOfficeEmployee/addVehicle" element={<AddVehicle />}></Route>
             <Route path="/backOfficeEmployee/addEmployee" element={<AddEmployee />}></Route>
+            <Route path="/backOfficeEmployee/addSubscription" element={<AddSubscription />}></Route>
             <Route path="/frontOfficeEmployee" element={<EmployeeFrontOffice />}></Route>
             <Route path="/frontOfficeEmployee/reviewHireRequest" element={<ReviewHireRequest />}></Route>
             <Route path="/buy" element={<PayPage />} />
@@ -67,6 +70,7 @@ createRoot(document.getElementById('root')).render(
             <Route path="/backOfficeEmployee/viewRentalData" element={<ViewRentalData />}></Route>
             <Route path="/vehicleManager/changeBusinessSettings" element={<ChangeBusinessSettings />}></Route>
             <Route path="*" element={<Home />}></Route>
+            <Route path="/frontOfficeEmployee/intakeForm" element={<IntakeForm />}></Route>
         </Routes>
     </Router>
 );

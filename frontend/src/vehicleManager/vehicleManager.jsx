@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-//import './vehicleManager.css';
 import '../index.css';
 import GeneralHeader from '../GeneralBlocks/header/header';
 import GeneralFooter from '../GeneralBlocks/footer/footer';
@@ -11,7 +10,7 @@ function VehicleManager() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch(`${BACKEND_URL}/api/Cookie/GetUserId` , {
+    fetch(`${BACKEND_URL}/api/Cookie/IsVehicleManager` , {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',

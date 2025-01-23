@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import TermsAndConditions from "../../TermsAndConditions/TermsAndConditions.jsx";
-//import './footer.css'; 
 import '../../index.css';
 
 function GeneralFooter() {

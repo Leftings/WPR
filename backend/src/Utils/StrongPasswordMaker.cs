@@ -2,10 +2,11 @@ namespace WPR.Utils;
 
 public class StrongPasswordMaker()
 {
-    const string lower = "abcdefghijklmnopqrstuvwxyz";
-    const string upper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-    const string digits = "1234567890";
-    const string special = "!@#$%^&*()<>?/.,-=+_{}[]|`~";
+    private static string lower = "abcdefghijklmnopqrstuvwxyz";
+    private static string upper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    private static string digits = "1234567890";
+    private static string special = "!@#$%^&*()<>?/.,-=+_{}[]|`~";
+    private static readonly string allChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!@#$%^&*()<>?/.,-=+_{}[]|~";
 
     public static string CreatePassword()
     {
@@ -16,8 +17,6 @@ public class StrongPasswordMaker()
         password[1] = upper[random.Next(upper.Length)];
         password[2] = digits[random.Next(digits.Length)];
         password[3] = special[random.Next(special.Length)];
-
-        string allChars = lower + upper + digits + special;
 
         for (int i = 4; i < 12; i++)
         {

@@ -786,7 +786,7 @@ public class UserRepository : IUserRepository
     /// <returns></returns>
     public async Task<(int StatusCode, string Message)> AddCustomer(SignUpRequestCustomer request, SignUpRequestCustomerPrivate privateRequest)
     {
-        (bool Status, string Message) checks = await AddCustomerChecks(false, request, privateRequest);
+        (bool Status, string Message) checks = await AddCustomerChecks(request.IsPrivate, request, privateRequest);
 
         if (checks.Status)
         {
@@ -1082,7 +1082,7 @@ public class UserRepository : IUserRepository
     {
         try
         {
-            string query = "SELECT Type, Description FROM Abonnement WHERE ID = @Id";
+            string query = "SELECT ID, Type, Description FROM Abonnement WHERE ID = @Id";
 
             using (var connection = _connector.CreateDbConnection())
             using (var command = new MySqlCommand(query, (MySqlConnection)connection))
@@ -1094,11 +1094,10 @@ public class UserRepository : IUserRepository
                     {
                         var type = reader["Type"].ToString();
                         var description = reader["Description"].ToString();
-
-                        Console.WriteLine($"Type: {type}, Description: {description}");
-
+                        
                         return new Subscription
                         {
+                            Id = id,
                             Type = type,
                             Description = description
                         };

@@ -2,7 +2,6 @@
 import {useLocation, useNavigate} from 'react-router-dom';
 import GeneralHeader from "../GeneralBlocks/header/header.jsx";
 import GeneralFooter from "../GeneralBlocks/footer/footer.jsx";
-//import './ChangeRental.css';
 import '../index.css';
 import CarRentalOverview from "../CarRentalOverview/CarRentalOverview.jsx";
 import DatePicker from "react-datepicker";

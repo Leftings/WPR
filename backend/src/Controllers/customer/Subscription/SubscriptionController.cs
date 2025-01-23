@@ -9,10 +9,12 @@ namespace WPR.Controllers.customer.Subscription;
 public class SubscriptionController : ControllerBase
 {
     private readonly IUserRepository _userRepository;
+    private readonly IBackOfficeRepository _backOfficeRepository;
 
-    public SubscriptionController(IUserRepository userRepository)
+    public SubscriptionController(IUserRepository userRepository, IBackOfficeRepository backOfficeRepository)
     {
         _userRepository = userRepository ?? throw new ArgumentNullException(nameof(userRepository));
+        _backOfficeRepository = backOfficeRepository ?? throw new ArgumentNullException(nameof(backOfficeRepository));
     }
 
     [HttpGet("GetSubscriptions")]
@@ -71,6 +73,59 @@ public class SubscriptionController : ControllerBase
             }
 
             return Ok(new {message = ids});
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
+    }
+
+    [HttpPost("AddSubscription")]
+    public async Task<IActionResult> AddSubscription([FromBody] Subscription subscription)
+    {
+        try
+        {
+            var status = await _backOfficeRepository.AddSubscriptionAsync(
+                subscription.Type,
+                subscription.Description,
+                subscription.Discount);
+
+            if (status.status)
+            {
+                return Ok( new { status.message });
+            }
+            
+            return BadRequest( new { status.message });
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
+    }
+    
+    
+    
+
+    [HttpDelete("DeleteSubscription")]
+    public async Task<IActionResult> DeleteSubscriptionAsync(int id)
+    {
+        if (id <= 0)
+        {
+            return BadRequest(new { status = false, message = "Invalid subscription ID"});
+        }
+        
+        try
+        {
+            var result = await _backOfficeRepository.DeleteSubscriptionAsync(id);
+
+            if (result.status)
+            {
+                return Ok(new { status = true, result.message });
+            }
+            return BadRequest(new { status = false, result.message });
+            
         }
         catch (Exception e)
         {
