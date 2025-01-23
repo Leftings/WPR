@@ -81,13 +81,27 @@ button:focus-visible {
   background-color: white;
 }
 
+.cta-button-unavailable {
+  background-color: #7C6C77;
+  color: white;
+  padding: 10px 20px;
+  margin-top: 30px;
+  border: none;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background-color 0.3s;
+}
+
 .heads,
 .rows {
   display: grid;
-  grid-template-columns: repeat(7, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
   padding: 10px;
   background-color: #f4f4f4;
   border-bottom: 2px solid #ddd;
+  width: 100%; /* Ensure full-width alignment */
+  box-sizing: border-box; /* Include padding and borders in the width calculation */
 }
 
 .heads div,
@@ -96,19 +110,17 @@ button:focus-visible {
   gap: 0;
   text-align: center;
   position: relative;
+  word-wrap: break-word; /* Handle long content gracefully */
 }
 
-.heads div:not(:last-child) {
-  border-right: 1px solid #000;
-}
-
+.heads div:not(:last-child),
 .rows div:not(:last-child) {
   border-right: 1px solid #000;
 }
 
 .rows {
   background-color: #f4f4f4;
-  transition: color, 0.3s;
+  transition: background-color 0.3s ease; /* Smooth background transition */
 }
 
 .rows:hover {
@@ -117,13 +129,20 @@ button:focus-visible {
 
 .heads {
   background-color: #c4c4c4;
+  border-bottom: 2px solid #000; /* Better separation */
 }
 
 @media (max-width: 768px) {
   .features {
-      flex-direction: column;
+    flex-direction: column;
+  }
+
+  .heads,
+  .rows {
+    grid-template-columns: 1fr; /* Stack columns on small screens */
   }
 }
+
 
 .modal {
   display: none;
