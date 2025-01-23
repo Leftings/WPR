@@ -3,7 +3,6 @@ import {Await, Link, Navigate, useNavigate} from 'react-router-dom';
 import GeneralHeader from "../GeneralBlocks/header/header.jsx";
 import GeneralFooter from "../GeneralBlocks/footer/footer.jsx";
 
-//import './userSettings.css';
 import '../index.css';
 
 function GetUser(setUser)

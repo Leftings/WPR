@@ -2,7 +2,6 @@
 import { useLocation, useNavigate } from 'react-router-dom';
 import GeneralHeader from "../GeneralBlocks/header/header.jsx";
 import GeneralFooter from "../GeneralBlocks/footer/footer.jsx";
-//import './IndividualSalePage.css';
 import '../index.css';
 
 function CarDetailPage() {
@@ -32,6 +31,7 @@ function CarDetailPage() {
         <>
             <GeneralHeader />
 
+            <main>
             <div className="car-detail-page">
                 <div className="car-detail-header">
                     <h1 className="car-name">{`${vehicle.Brand || "Onbekend"} ${vehicle.Type || ""}`}</h1>
@@ -55,7 +55,7 @@ function CarDetailPage() {
                     </div>
                 </div>
             </div>
-
+            </main>
             <GeneralFooter />
         </>
     );

@@ -162,7 +162,7 @@ function IntakeForm() {
             <GeneralHeader>
             </GeneralHeader>
 
-            <div className="body">
+            <main>
                 <h1 className="title-text">Innameformulier</h1>
 
                 <div className="intakeFormFormat">
@@ -247,7 +247,7 @@ function IntakeForm() {
                         </div>
                     )}
                 </div>
-            </div>
+            </main>
 
             <GeneralFooter>
             </GeneralFooter>

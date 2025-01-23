@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, redirectDocument, useNavigate } from 'react-router-dom';
 import { getErrorMessage } from '../utils/errorHandler.jsx'
-//import "./signUp.css"
 import '../index.css';
 import GeneralHeader from "../GeneralBlocks/header/header.jsx";
 import GeneralFooter from "../GeneralBlocks/footer/footer.jsx";
