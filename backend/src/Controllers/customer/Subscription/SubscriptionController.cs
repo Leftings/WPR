@@ -9,10 +9,12 @@ namespace WPR.Controllers.customer.Subscription;
 public class SubscriptionController : ControllerBase
 {
     private readonly IUserRepository _userRepository;
+    private readonly IBackOfficeRepository _backOfficeRepository;
 
-    public SubscriptionController(IUserRepository userRepository)
+    public SubscriptionController(IUserRepository userRepository, IBackOfficeRepository backOfficeRepository)
     {
         _userRepository = userRepository ?? throw new ArgumentNullException(nameof(userRepository));
+        _backOfficeRepository = backOfficeRepository ?? throw new ArgumentNullException(nameof(backOfficeRepository));
     }
 
     [HttpGet("GetSubscriptions")]
@@ -77,5 +79,39 @@ public class SubscriptionController : ControllerBase
             Console.WriteLine(e);
             throw;
         }
+    }
+
+    [HttpPost("AddSubscription")]
+    public async Task<IActionResult> AddSubscription([FromBody] Subscription subscription)
+    {
+        try
+        {
+            var status = await _backOfficeRepository.AddSubscriptionAsync(
+                subscription.Type,
+                subscription.Description,
+                subscription.Discount);
+            Console.WriteLine(status.ToString());
+
+            if (status.status)
+            {
+                return Ok( new { status.message });
+            }
+            
+            return BadRequest( new { status.message });
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
+    }
+    
+    
+    
+
+    [HttpDelete("DeleteSubscription")]
+    public async Task<IActionResult> DeleteSubscription(int id)
+    {
+        return Ok(new { message = "Subscription deleted." });
     }
 }

@@ -428,4 +428,31 @@ public class BackOfficeRepository(Connector connector) : IBackOfficeRepository
 
         }
     }
+    
+    public async Task<(bool status, string message)> AddSubscriptionAsync(string type, string description, double discount)
+    {
+        try
+        {
+            string query = "INSERT INTO Abonnement (Type, Description, Discount) VALUES (@Type, @Description, @Discount)";
+
+            using (var connection = _connector.CreateDbConnection())
+            using (var command = new MySqlCommand(query, (MySqlConnection)connection))
+            {
+                command.Parameters.AddWithValue("@Type", type);
+                command.Parameters.AddWithValue("@Description", description);
+                command.Parameters.AddWithValue("@Discount", discount);
+
+                if (await command.ExecuteNonQueryAsync() > 0)
+                {
+                    return (true, "Subscription added");
+                }
+                return (false, "Error during adding of subscription");
+            }
+        }
+        catch (MySqlException ex)
+        {
+            return (false, ex.Message);
+        }
+    }
+    
 }
