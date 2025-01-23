@@ -11,7 +11,7 @@ function VehicleManager() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch(`${BACKEND_URL}/api/Cookie/GetUserId` , {
+    fetch(`${BACKEND_URL}/api/Cookie/IsVehicleManager` , {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
