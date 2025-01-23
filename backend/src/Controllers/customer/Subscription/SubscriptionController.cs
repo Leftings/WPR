@@ -90,7 +90,6 @@ public class SubscriptionController : ControllerBase
                 subscription.Type,
                 subscription.Description,
                 subscription.Discount);
-            Console.WriteLine(status.ToString());
 
             if (status.status)
             {
@@ -110,8 +109,28 @@ public class SubscriptionController : ControllerBase
     
 
     [HttpDelete("DeleteSubscription")]
-    public async Task<IActionResult> DeleteSubscription(int id)
+    public async Task<IActionResult> DeleteSubscriptionAsync(int id)
     {
-        return Ok(new { message = "Subscription deleted." });
+        if (id <= 0)
+        {
+            return BadRequest(new { status = false, message = "Invalid subscription ID"});
+        }
+        
+        try
+        {
+            var result = await _backOfficeRepository.DeleteSubscriptionAsync(id);
+
+            if (result.status)
+            {
+                return Ok(new { status = true, result.message });
+            }
+            return BadRequest(new { status = false, result.message });
+            
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
     }
 }

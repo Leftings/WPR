@@ -454,5 +454,40 @@ public class BackOfficeRepository(Connector connector) : IBackOfficeRepository
             return (false, ex.Message);
         }
     }
+
+    public async Task<(bool status, string message)> DeleteSubscriptionAsync(int id)
+    {
+        try
+        {
+            string query = "DELETE FROM Abonnement WHERE ID = @ID";
+
+            using (var connection = _connector.CreateDbConnection())
+            using (var customerCommand = new MySqlCommand(query, (MySqlConnection)connection))
+            {
+                customerCommand.Parameters.AddWithValue("@ID", id);
+                
+                int rowsAffected = await customerCommand.ExecuteNonQueryAsync();
+
+                if (rowsAffected > 0)
+                {
+                    return (true, "Subscription deleted");
+                }
+                return (false, "Subscription could not be deleted");
+
+            }
+        }
+        catch (MySqlException ex)
+        {
+            // Handle database errors
+            await Console.Error.WriteLineAsync($"Database error: {ex.Message}");
+            return (false, "Database error: " + ex.Message);
+        }
+        catch (Exception ex)
+        {
+            // Handle other errors
+            await Console.Error.WriteLineAsync($"Unexpected error: {ex.Message}");
+            return (false, "Unexpected error: " + ex.Message);
+        }
+    }
     
 }
