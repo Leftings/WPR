@@ -50,4 +50,4 @@ services:
 
 networks:
   app-network:
-    driver: brigde
+    driver: bridge
