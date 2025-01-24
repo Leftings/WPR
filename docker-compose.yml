@@ -10,8 +10,6 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       # Any other environment variables that the backend requires
-    depends_on:
-      - backend
 
   frontend:
     build:
