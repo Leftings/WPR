@@ -13,6 +13,7 @@ using System.Net;
 using WPR.Services;
 using WPR.Controllers.General.Cookie;
 using WPR.Repository.DatabaseCheckRepository;
+using WPR.Email;
 
 namespace WPR;
 
@@ -41,6 +42,7 @@ public class AppConfigure
         }
         
     }
+
     /// <summary>
     /// Configureer de web applicatie, zoals middleware, services, authentication en CORS settings.
     /// </summary>
@@ -142,6 +144,22 @@ public class AppConfigure
     builder.Services.AddScoped<IEmployeeRepository, EmployeeRepository>();
     builder.Services.AddScoped<IBackOfficeRepository, BackOfficeRepository>();
     builder.Services.AddScoped<IDatabaseCheckRepository, DatabaseCheckRepository>();
+    builder.Services.AddScoped<IContractRepository, ContractRepository>();
+
+    builder.Services.AddSingleton<IHostedService, Reminders>(); // Register Reminders as a singleton hosted service
+
+    // Scoped dependencies
+    builder.Services.AddScoped<EmailService>();
+    builder.Services.AddScoped<IDetails, Customer>();
+    builder.Services.AddScoped<IDetails, Vehicle>();
+    builder.Services.AddScoped<IDetails, Contract>();
+    builder.Services.AddScoped<Customer>();
+    builder.Services.AddScoped<Vehicle>();
+    builder.Services.AddScoped<Contract>();
+
+
+    builder.Services.AddHostedService<Reminders>();
+
     
 
     // Configure authentication with cookie-based authentication schema.

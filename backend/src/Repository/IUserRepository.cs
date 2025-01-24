@@ -34,4 +34,5 @@ public interface IUserRepository
     Task<List<string>> GetAllSubscriptionsAsync();
     Task<Subscription>GetSubscriptionDataAsync(int id);
     Task<List<int>> GetSubscriptionIdsAsync();
+    Task<Dictionary<string, object>> GetCustomerDetails(int id);
 }
