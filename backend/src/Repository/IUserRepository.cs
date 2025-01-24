@@ -36,5 +36,5 @@ public interface IUserRepository
     Task<List<int>> GetSubscriptionIdsAsync();
     Task<UserRepository.VehicleManager> GetVehicleManagerInfoAsync(int id);
     Task<List<UserRepository.Customer>> GetCustomersByBusinessNumberAsync(string Business);
-    Task<bool> UpdateVehicleManagerAsync(int id, string email, string encryptedPassword);
+    Task<bool> UpdateCustomerAsync(int id, string email, string encryptedPassword);
 }

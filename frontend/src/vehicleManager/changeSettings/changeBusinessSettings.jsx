@@ -102,9 +102,15 @@ function ChangeBusinessSettings() {
 
     const handleEmailChange = (index, newEmail) => {
         const updatedList = [...updatedCustomers];
+
+        if (!updatedList[index]) {
+            updatedList[index] = {}; 
+        }
+
         updatedList[index].email = newEmail;
         setUpdatedCustomers(updatedList);
     };
+
 
     const handlePasswordChange = (index, newPassword) => {
         const updatedList = [...updatedCustomers];
@@ -306,18 +312,15 @@ function ChangeBusinessSettings() {
   };
     const handleCustomerUpdate = async (customerId, index) => {
         const customerData = {
-            id: customerId,
             email: updatedCustomers[index]?.email || customers[index].email,
             password: updatedCustomers[index]?.password || "",
         };
 
         try {
-            // Send the update request for the individual customer
-            const response = await fetch(`/api/update-customer/${customerId}`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
+            // Send the update request for the individual customer with the query parameter
+            const response = await fetch(`/api/UpdateCustomer?id=${customerId}`, {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(customerData),
             });
 
@@ -331,7 +334,6 @@ function ChangeBusinessSettings() {
             console.error("Error while updating customer:", error);
         }
     };
-
 
     async function checkNewEmail(email)
   {

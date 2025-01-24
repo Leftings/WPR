@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using WPR.Repository;
+using WPR.Cryption;
 
 namespace WPR.Controllers.Employee.VehicleManager.GetInfoVehicleManager;
 
@@ -7,11 +8,13 @@ namespace WPR.Controllers.Employee.VehicleManager.GetInfoVehicleManager;
 [ApiController]
 public class GetInfoVehicleManagerController : ControllerBase
 {
-    private readonly IUserRepository _userRepository; // Updated repository
+    private readonly IUserRepository _userRepository;
+    private readonly Crypt _crypt;
 
-    public GetInfoVehicleManagerController(IUserRepository userRepository)
+    public GetInfoVehicleManagerController(IUserRepository userRepository, Crypt crypt)
     {
         _userRepository = userRepository ?? throw new ArgumentNullException(nameof(userRepository));
+        _crypt = crypt ?? throw new ArgumentNullException(nameof(crypt));
     }
 
     /// <summary>
@@ -24,7 +27,11 @@ public class GetInfoVehicleManagerController : ControllerBase
     {
         try
         {
-            // Fetch vehicle manager info
+            if (id <= 0)
+            {
+                return BadRequest(new { message = "Invalid vehicle manager ID" });
+            }
+
             var vehicleManagerInfo = await _userRepository.GetVehicleManagerInfoAsync(id);
 
             if (vehicleManagerInfo == null)
@@ -32,26 +39,13 @@ public class GetInfoVehicleManagerController : ControllerBase
                 return NotFound(new { message = "Vehicle manager not found" });
             }
 
-            // Extract business number from the vehicle manager info
             var businessNumber = vehicleManagerInfo.Business;
             if (string.IsNullOrEmpty(businessNumber))
             {
-                return BadRequest(new { message = "Invalid or missing business number" });
+                return BadRequest(new { message = "Vehicle manager does not have a valid business number" });
             }
 
-            Console.WriteLine($"Vehicle Manager Business Number: {businessNumber}");
-
-            // Fetch customers linked to the same business number
             var customers = await _userRepository.GetCustomersByBusinessNumberAsync(businessNumber);
-
-            if (customers == null || customers.Count == 0)
-            {
-                Console.WriteLine("No customers found for this business number.");
-            }
-            else
-            {
-                Console.WriteLine($"Found {customers.Count} customer(s) for business number {businessNumber}.");
-            }
 
             return Ok(new
             {
@@ -62,66 +56,90 @@ public class GetInfoVehicleManagerController : ControllerBase
                     vehicleManagerInfo.Email,
                     vehicleManagerInfo.Business
                 },
-                customers = customers.Select(c => new { c.Id, c.Email, c.Kvk }) // Return email and Kvk
+                customers = customers?.Select(c => new { c.Id, c.Email, c.Kvk }) ?? Enumerable.Empty<object>()
             });
         }
         catch (Exception ex)
         {
-            Console.WriteLine($"Error: {ex.Message}");
+            Console.WriteLine($"Error in GetAllInfo: {ex.Message}");
             return StatusCode(500, new { message = "Internal server error", error = ex.Message });
         }
     }
-
-
 
     /// <summary>
     /// Updates the vehicle manager's email and password.
     /// </summary>
-    [HttpPut("UpdateVehicleManager")]
-    public async Task<IActionResult> UpdateVehicleManager(int id, [FromBody] Dictionary<string, string> updates)
+    [HttpPut("UpdateCustomer")]
+    public async Task<IActionResult> UpdateCustomer([FromQuery] int id, [FromBody] CustomerUpdateRequest updates)
+
+    
+{
+    try
     {
-        try
+        if (id <= 0)
         {
-            // Validate input
-            if (!updates.ContainsKey("Email") || !updates.ContainsKey("Password"))
-            {
-                return BadRequest(new { message = "Missing required fields" });
-            }
-
-            var email = updates["Email"];
-            var password = updates["Password"];
-
-            // Directly update the password without hashing or encryption
-            var updateResult = await _userRepository.UpdateVehicleManagerAsync(id, email, password);
-
-            if (!updateResult)
-            {
-                return StatusCode(500, new { message = "Failed to update vehicle manager information" });
-            }
-
-            return Ok(new { message = "Vehicle manager info updated successfully" });
+            return BadRequest(new { message = "Invalid vehicle manager ID" });
         }
-        catch (Exception ex)
+
+        if (updates == null || string.IsNullOrEmpty(updates.Email) || string.IsNullOrEmpty(updates.Password))
         {
-            return StatusCode(500, new { message = "Internal server error", error = ex.Message });
+            return BadRequest(new { message = "Email and Password cannot be empty" });
         }
+
+        var encryptedPassword = _crypt.Encrypt(updates.Password);
+
+        var updateResult = await _userRepository.UpdateCustomerAsync(id, updates.Email, encryptedPassword);
+
+        if (!updateResult)
+        {
+            return StatusCode(500, new { message = "Failed to update vehicle manager information" });
+        }
+
+        return Ok(new { message = "Vehicle manager info updated successfully" });
     }
+    catch (Exception ex)
+    {
+        Console.WriteLine($"Error in Customer: {ex.Message}");
+        return StatusCode(500, new { message = "Internal server error", error = ex.Message });
+    }
+}
+
+    /// <summary>
+    /// Get customers associated with a specific business number.
+    /// </summary>
     [HttpGet("GetCustomersByBusinessNumber")]
     public async Task<IActionResult> GetCustomersByBusinessNumber(string businessNumber)
     {
         try
         {
+            if (string.IsNullOrEmpty(businessNumber))
+            {
+                return BadRequest(new { message = "Business number cannot be empty" });
+            }
+
             var customers = await _userRepository.GetCustomersByBusinessNumberAsync(businessNumber);
+
             if (customers == null || !customers.Any())
             {
                 return NotFound(new { message = "No customers found for this business" });
             }
-            return Ok(new { data = customers });
+
+            return Ok(new
+            {
+                message = "Success",
+                customers = customers.Select(c => new { c.Id, c.Email, c.Kvk })
+            });
         }
         catch (Exception ex)
         {
+            Console.WriteLine($"Error in GetCustomersByBusinessNumber: {ex.Message}");
             return StatusCode(500, new { message = "Internal server error", error = ex.Message });
         }
+    }
+    public class CustomerUpdateRequest
+    {
+        public string Email { get; set; }
+        public string Password { get; set; }
     }
 
 }

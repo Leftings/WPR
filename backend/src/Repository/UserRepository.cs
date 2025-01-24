@@ -1375,7 +1375,6 @@ public class UserRepository : IUserRepository
     {
         try
         {
-            // Query to include Email (if available in the database)
             string query = "SELECT ID, Email, Kvk FROM Customer WHERE Kvk = @Kvk";
 
             using (var connection = _connector.CreateDbConnection())
@@ -1409,29 +1408,81 @@ public class UserRepository : IUserRepository
     }
 
 
-    public async Task<bool> UpdateVehicleManagerAsync(int id, string email, string encryptedPassword)
+    public async Task<bool> UpdateCustomerAsync(int id, string email, string encryptedPassword)
+{
+    try
     {
-        try
+        if (id <= 0)
         {
-            string query = "UPDATE VehicleManagers SET Email = @Email, Password = @Password WHERE ID = @Id";
+            Console.WriteLine("Invalid ID for UpdateCustomsterAsync.");
+            return false;
+        }
 
-            using (var connection = _connector.CreateDbConnection())
+        if (string.IsNullOrEmpty(email) || string.IsNullOrEmpty(encryptedPassword))
+        {
+            Console.WriteLine("Email or Password cannot be null or empty in UpdateCustomsterAsync.");
+            return false;
+        }
+
+        Console.WriteLine($"ID: {id}");
+        Console.WriteLine($"Email: {email}");
+        Console.WriteLine($"Encrypted Password: {encryptedPassword}");
+
+        string query = "UPDATE Customer SET Email = @Email, Password = @Password WHERE ID = @Id";
+
+        using (var connection = _connector.CreateDbConnection())
+        {
+            if (connection == null)
+            {
+                Console.WriteLine("Database connection is null.");
+                return false;
+            }
+
+            if (connection.State != System.Data.ConnectionState.Open)
+            {
+                Console.WriteLine("Opening database connection...");
+                connection.Open();
+                Console.WriteLine("Connection opened successfully.");
+            }
+
             using (var command = new MySqlCommand(query, (MySqlConnection)connection))
             {
                 command.Parameters.AddWithValue("@Id", id);
                 command.Parameters.AddWithValue("@Email", email);
                 command.Parameters.AddWithValue("@Password", encryptedPassword);
 
+                Console.WriteLine("Executing query...");
+
                 var rowsAffected = await command.ExecuteNonQueryAsync();
-                return rowsAffected > 0;
+                Console.WriteLine($"Rows affected: {rowsAffected}");
+
+                if (rowsAffected > 0)
+                {
+                    Console.WriteLine($"Successfully updated Customster with ID: {id}");
+                    return true;
+                }
+                else
+                {
+                    Console.WriteLine($"No rows were updated for Customster with ID: {id}.");
+                    return false;
+                }
             }
         }
-        catch (Exception ex)
-        {
-            Console.WriteLine(ex.Message);
-            return false;
-        }
     }
+    catch (MySqlException sqlEx)
+    {
+        Console.WriteLine($"MySQL Error Code: {sqlEx.Number}");
+        Console.WriteLine($"MySQL Error Message: {sqlEx.Message}");
+        return false;
+    }
+    catch (Exception ex)
+    {
+        Console.WriteLine($"Error in UpdateCustomsterAsync: {ex.Message}");
+        Console.WriteLine($"StackTrace: {ex.StackTrace}");
+        return false;
+    }
+}
+
     public class VehicleManager
     {
         public int Id { get; set; }
