@@ -1,7 +1,7 @@
-﻿FROM microsoft/aspnetcore:1.1
+﻿FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
  
-WORKDIR /app
-COPY bin/Debug/netcoreapp1.1/publish .
+WORKDIR /src
+COPY bin/Debug/net8.0/publish .
  
 ENV ASPNETCORE_URLS http://+:5000
 EXPOSE 5000
