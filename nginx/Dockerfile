@@ -2,7 +2,7 @@
 #COPY nginx.conf /etc/nginx/nginx.conf
 
 
-FROM nginx:alpine
+FROM nginx:latest
 
 # Copy the wait-for-it.sh script into the container
 #COPY .nginx/scripts/wait-for-it.sh /wait-for-it.sh
