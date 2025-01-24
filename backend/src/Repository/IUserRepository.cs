@@ -34,5 +34,5 @@ public interface IUserRepository
     Task<List<string>> GetAllSubscriptionsAsync();
     Task<Subscription>GetSubscriptionDataAsync(int id);
     Task<List<int>> GetSubscriptionIdsAsync();
-    Task<(int StatusCode, string Message)> UpdateUserEmailAndPasswordAsync(int userId, string newEmail, string newPassword, string businessCode);
-}
+    Task<(int StatusCode, string Message)> UpdateUserEmailAndPasswordAsync(int userId, string newEmail,
+        string newPassword, string businessCode);}

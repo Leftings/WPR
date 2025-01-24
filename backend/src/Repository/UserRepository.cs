@@ -1344,9 +1344,9 @@ public class UserRepository : IUserRepository
         try
         {
             const string query = @"
-                UPDATE Customer 
-                SET Email = @NewEmail, Password = @NewPassword 
-                WHERE ID = @UserId AND BusinessCode = @BusinessCode";
+            UPDATE Customer 
+            SET Email = @NewEmail, Password = @NewPassword 
+            WHERE ID = @UserId AND BusinessCode = @BusinessCode";
 
             using (var connection = _connector.CreateDbConnection())
             using (var command = new MySqlCommand(query, (MySqlConnection)connection))
@@ -1355,7 +1355,7 @@ public class UserRepository : IUserRepository
 
                 command.Parameters.AddWithValue("@UserId", userId);
                 command.Parameters.AddWithValue("@NewEmail", newEmail);
-                command.Parameters.AddWithValue("@NewPassword", _hash.createHash(newPassword));
+                command.Parameters.AddWithValue("@NewPassword", newPassword); // Storing plain text password
                 command.Parameters.AddWithValue("@BusinessCode", businessCode);
 
                 int affectedRows = await command.ExecuteNonQueryAsync();
@@ -1376,57 +1376,4 @@ public class UserRepository : IUserRepository
             return (500, $"Unexpected error: {ex.Message}");
         }
     }
-
-    public async Task<List<Customer>> GetCustomersByBusinessCodeAsync(string businessCode)
-    {
-        try
-        {
-            const string query = @"
-                SELECT ID, Email, Password, BusinessCode 
-                FROM Customer 
-                WHERE BusinessCode = @BusinessCode";
-
-            using (var connection = _connector.CreateDbConnection())
-            using (var command = new MySqlCommand(query, (MySqlConnection)connection))
-            {
-                connection.Open();
-
-                command.Parameters.AddWithValue("@BusinessCode", businessCode);
-
-                using (var reader = await command.ExecuteReaderAsync())
-                {
-                    var customers = new List<Customer>();
-
-                    while (await reader.ReadAsync())
-                    {
-                        customers.Add(new Customer
-                        {
-                            ID = reader.GetInt32("ID"),
-                            Email = reader.GetString("Email"),
-                            Password = reader.GetString("Password"),
-                            BusinessCode = reader.GetString("BusinessCode")
-                        });
-                    }
-
-                    return customers;
-                }
-            }
-        }
-        catch (MySqlException ex)
-        {
-            throw new Exception($"Database error: {ex.Message}");
-        }
-        catch (Exception ex)
-        {
-            throw new Exception($"Unexpected error: {ex.Message}");
-        }
-    }
-    public class Customer
-    {
-        public int ID { get; set; }
-        public string Email { get; set; }
-        public string Password { get; set; } // Ideally, store only hashed passwords
-        public string BusinessCode { get; set; }
-    }
-
 }
