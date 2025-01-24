@@ -9,7 +9,17 @@ services:
       - "5000:5000"
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
-      # Any other environment variables that the backend requires
+      - DB_SERVER=${DB_HOST}
+      - DB_DATABASE=${DB_DATABASE}
+      - DB_USERNAME=${DB_USERNAME}
+      - DB_PASSWORD=${DB_PASSWORD}
+      - CRYPTION_KEY=${CRYPTION_KEY}
+      - CRYPTION_IV=${CRYPTION_IV}
+      - SALT={SALT}
+      - SMTP_HOST={SMTP_HOST}
+      - SMTP_PORT={SMTP_PORT}
+      - SMTP_FROM_EMAIL={SMTP_FROM_EMAIL}
+      - SMTP_FROM_PASSWORD={SMTP_FROM_PASSWORD}
 
   frontend:
     build:
