@@ -41,7 +41,7 @@ function VehicleManager() {
                 <div className='officeLinks'>
                     <Link to='./reviewHireRequest'>Huur aanvragen beheren</Link>
                     <Link to='./changeBusinessSettings'>Aanpassen Bedrijfsaccounts</Link>
-                    <Link to='/vehicleManager/addVehicleManager'>Voeg een Wagenpark Beheerder toe</Link>
+                    <Link to='/vehicleManager/addVehicleManager'>Voeg een Wagenpark Beheerder toe</Link>//
                 </div>
             </main>
             <GeneralFooter />
