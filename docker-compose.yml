@@ -44,6 +44,20 @@ services:
       - app-network
     volumes:
       - ./nginx.conf:/etc/nginx/nginx.conf
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - DB_SERVER=${DB_SERVER}
+      - DB_DATABASE=${DB_DATABASE}
+      - DB_USERNAME=${DB_USERNAME}
+      - DB_PASSWORD=${DB_PASSWORD}
+      - CRYPTION_KEY=${CRYPTION_KEY}
+      - CRYPTION_IV=${CRYPTION_IV}
+      - SALT=${SALT}
+      - SMTP_HOST=${SMTP_HOST}
+      - SMTP_PORT=${SMTP_PORT}
+      - SMTP_FROM_EMAIL=${SMTP_FROM_EMAIL}
+      - SMTP_FROM_PASSWORD=${SMTP_FROM_PASSWORD}
+      - VITE_REACT_APP_BACKEND_URL=${VITE_REACT_APP_BACKEND_URL}
 
 networks:
   app-network:
