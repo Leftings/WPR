@@ -1,11 +1,9 @@
-﻿FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
+﻿FROM microsoft/aspnetcore:1.1
+ 
 WORKDIR /app
-COPY . .
-RUN dotnet restore
-RUN dotnet publish -c Release -o /app/out
-
-FROM mcr.microsoft.com/dotnet/aspnet:8.0
-WORKDIR /app
-COPY --from=build /app/out .
+COPY bin/Debug/netcoreapp1.1/publish .
+ 
+ENV ASPNETCORE_URLS http://+:5000
 EXPOSE 5000
-CMD ["dotnet", "WPR.dll"]
+ 
+ENTRYPOINT ["dotnet", "app.dll"]

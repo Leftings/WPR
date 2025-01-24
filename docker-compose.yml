@@ -1,46 +1,18 @@
-version: "3.9"
-
+version: '2'
+ 
 services:
-  # Backend Service
-  backend:
+  app:
     build:
-      context: ./backend
-    ports:
-      - "5000:5000" # Expose port for both dev and production
-    env_file:
-      - ./backend/.env # Default for development
-    environment:
-      - NODE_ENV=${NODE_ENV:-development} # Development by default
-    networks:
-      - app-network
-
-  # Frontend Service
-  frontend:
+      context:  ./app
+      dockerfile: Dockerfile
+    expose:
+      - "5000"
+ 
+  proxy:
     build:
-      context: ./frontend
+      context:  ./nginx
+      dockerfile: Dockerfile
     ports:
-      - "3000:3000" # Development port
-      - "8080:80"   # Production port
-    environment:
-      - REACT_APP_BACKEND_URL=${REACT_APP_BACKEND_URL:-http://localhost:5000}
-    networks:
-      - app-network
-
-  # NGINX Reverse Proxy (Only for Deployment)
-  nginx:
-    build:
-      context: ./nginx
-    ports:
-      - "8080:8080"
-      - "8443:8443"
-    depends_on:
-      - frontend
-      - backend
-    networks:
-      - app-network
-    profiles:
-      - production # Only included when `--profile production` is used
-
-networks:
-  app-network:
-    driver: bridge
+      - "8084:80"
+    links:
+      - app
