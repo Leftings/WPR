@@ -3,9 +3,9 @@ FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 
 WORKDIR /src
 
-COPY backend/WPR.csproj ./WPR/
+COPY WPR.csproj ./WPR/
 
-RUN dotnet restore ./WPR/WPR.csproj
+RUN dotnet restore ./WPR.csproj
 
 COPY backend/. .
 
