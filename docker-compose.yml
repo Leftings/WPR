@@ -31,6 +31,7 @@ services:
       - backend
     
   nginx:
+    image: nginx:latest
     build:
       context: .  
     ports:
