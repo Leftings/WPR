@@ -429,11 +429,11 @@ public class BackOfficeRepository(Connector connector) : IBackOfficeRepository
         }
     }
     
-    public async Task<(bool status, string message)> AddSubscriptionAsync(string type, string description, double discount)
+    public async Task<(bool status, string message)> AddSubscriptionAsync(string type, string description, double discount, double price)
     {
         try
         {
-            string query = "INSERT INTO Abonnement (Type, Description, Discount) VALUES (@Type, @Description, @Discount)";
+            string query = "INSERT INTO Abonnement (Type, Description, Discount, Price) VALUES (@Type, @Description, @Discount, @Price)";
 
             using (var connection = _connector.CreateDbConnection())
             using (var command = new MySqlCommand(query, (MySqlConnection)connection))
@@ -441,6 +441,7 @@ public class BackOfficeRepository(Connector connector) : IBackOfficeRepository
                 command.Parameters.AddWithValue("@Type", type);
                 command.Parameters.AddWithValue("@Description", description);
                 command.Parameters.AddWithValue("@Discount", discount);
+                command.Parameters.AddWithValue("@Price", price);
 
                 if (await command.ExecuteNonQueryAsync() > 0)
                 {

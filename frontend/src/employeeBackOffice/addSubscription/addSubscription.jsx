@@ -13,6 +13,7 @@ function AddSubscription() {
     const [type, SetType] = useState('');
     const [description, SetDescription] = useState('');
     const [discount, SetDiscount] = useState('');
+    const [price, SetPrice] = useState('');
     const [error, SetError] = useState([]);
 
     const SetSubscription = () => {
@@ -21,6 +22,7 @@ function AddSubscription() {
             type,
             description,
             discount,
+            price,
         };
         
         fetch(`${BACKEND_URL}/api/Subscription/AddSubscription`, {
@@ -44,6 +46,7 @@ function AddSubscription() {
                 SetType('');
                 SetDescription('');
                 SetDiscount('');
+                SetPrice('');
                 SetError([]);
             })
             .catch(error => {
@@ -58,6 +61,7 @@ function AddSubscription() {
             type,
             description,
             discount,
+            price,
         };
 
         let errors = EmptyFieldChecker(subscriptionData);
@@ -112,6 +116,9 @@ function AddSubscription() {
 
                     <label htmlFor='discount'>Korting van abonnement</label>
                     <input id='discount' type="number" step="0.01" value={discount} onChange={(e) => SetDiscount(e.target.value)}></input>
+                    
+                    <label htmlFor='price'>Prijs abonnement</label>
+                    <input id='price' type="number" step="1.00" value={price} onChange={(e) => SetPrice(e.target.value)}></input>
                     
                     <div className='registrateFormatFooter'>
                         {/*Errors worden netjes onder elkaar uitgelijnt*/}
