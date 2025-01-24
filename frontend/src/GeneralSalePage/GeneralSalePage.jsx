@@ -137,8 +137,10 @@ function GeneralSalePage() {
 
         console.log(`Vehicle ${vehicle.FrameNr} ${isRentedDuringSelectedDates ? 'is' : 'is not'} rented during selected dates`);
 
+        const isNotInRepair = vehicle.InRepair === "False";
+
         // Return the filtered result based on all conditions
-        return matchesVehicleTypes && matchesBrand && matchesColor && matchesSeat && !isRentedDuringSelectedDates;
+        return matchesVehicleTypes && matchesBrand && matchesColor && matchesSeat && !isRentedDuringSelectedDates && isNotInRepair;
     });
 
 
