@@ -3,20 +3,11 @@
   "builds": [
     {
       "src": "frontend/package.json",
-      "use": "@vercel/vite",
-      "config": {
-        "distDir": "frontend/dist"
-      }
+      "use": "@vercel/vite"
     },
     {
       "src": "backend/package.json",
       "use": "@vercel/node"
-    }
-  ],
-  "routes": [
-    {
-      "src": "/(.*)",
-      "dest": "/frontend/dist/$1"
     }
   ]
 }
