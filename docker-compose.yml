@@ -33,7 +33,7 @@ services:
   nginx:
     image: nginx:latest
     build:
-      context: .  
+      context: ./nginx  
     ports:
       - "8080:80"
       - "8443:8443"
