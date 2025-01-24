@@ -149,10 +149,10 @@ function IntakeForm() {
     }, [navigate]);
 
     useEffect(() => {
-        if (contract && !tooLate && contract.AccountType === 'Private') {
+        if (contract && !tooLate) {
             setEndDate(contract.EndDate);
         }
-        if ((contract && tooLate) || (contract && contract.AccountType) === 'Business') {
+        if ((contract && tooLate)) {
             setEndDate(null);
         }
     }, [contract, tooLate]);
@@ -208,28 +208,25 @@ function IntakeForm() {
                                 </>
                             )}
 
-                            {contract.AccountType === 'Private' && (
-                                <>
-                                    <label htmlFor="tooLateCheck">Oorspronkelijke einddatum: {new Date(contract.EndDate).toLocaleDateString()}</label>
-                                    <div className="checkbox-item">
-                                        <label htmlFor="tooLateCheck">Te laat:</label>
-                                        <input
-                                            type="checkbox"
-                                            id="checkbox-item"
-                                            checked={tooLate}
-                                            onChange={handleTooLate}
-                                        />
-                                    </div>
-                                </>
-                            )}
+                            <label htmlFor="tooLateCheck">Oorspronkelijke einddatum: {new Date(contract.EndDate).toLocaleDateString()}</label>
+                            <div className="checkbox-item">
+                                <label htmlFor="tooLateCheck">Te laat:</label>
+                                <input
+                                    type="checkbox"
+                                    id="checkbox-item"
+                                    checked={tooLate}
+                                    onChange={handleTooLate}
+                                />
+                            </div>
 
-                            {(tooLate || contract.AccountType === 'Business') && (
+                            {tooLate && (
                                 <>
                                     <label htmlFor="endDate">Einddatum</label>
                                     <input type="date" onChange={(e) => setEndDate(e.target.value)}/>
                                 </>
                             )}
 
+                            <p>{endDate}</p>
                             <button className="cta-button" onClick={Check}>Stuur</button>
                         </>
                     )}
