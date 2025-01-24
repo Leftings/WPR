@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
 import GeneralHeader from "../GeneralBlocks/header/header.jsx";
 import GeneralFooter from "../GeneralBlocks/footer/footer.jsx";
-//import './CarRentalOverview.css';
 import '../index.css';
 
 const BACKEND_URL = import.meta.env.VITE_REACT_APP_BACKEND_URL ?? 'http://localhost:5165';
@@ -19,6 +19,7 @@ function CarRentalOverview() {
     const [rentals, setRentals] = useState([]);
     const [error, setError] = useState(null);
     const [chosenRental, setChosenRental] = useState(null);
+    const currDate = new Date();
     const navigate = useNavigate();
     var modal = document.getElementById("myModal");
 
@@ -34,6 +35,15 @@ function CarRentalOverview() {
 
         setChosenRental(rental);
     };
+    
+    const settingsError = (type) => {
+        if (type === "cancel") {
+            toast.error("Huurcontract is al van toepassing, annuleren is niet beschikbaar.");
+        }
+        if (type === "change") {
+            toast.error("Huurcontract is al van toepassing, wijzigingen zijn niet beschikbaar.");
+        }
+    }
     
     /**
      * Functie voor het sluiten van de annuleermodus.
@@ -107,6 +117,29 @@ function CarRentalOverview() {
         fetchData();
     }, []);
 
+    useEffect(() => {
+        fetch(`${BACKEND_URL}/api/Cookie/GetUserId`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            credentials: 'include',
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('No Cookie');
+                }
+                return response.json();
+            })
+            .then(data => {
+                const id = data?.message;
+            })
+            .catch(() => {
+                alert("Cookie was niet geldig");
+                navigate('/');
+            });
+    }, [navigate]);
+
     /**
      * Functie voor het annuleren van de huur van een voertuig.
      * 
@@ -132,7 +165,7 @@ function CarRentalOverview() {
                         ) : (
                             <p>Geen keuze gemaakt</p>
                         )}
-                        <button id="button" onClick={handleCancellation}>Annuleer</button>
+                        <button className="cta-button" onClick={handleCancellation}>Annuleer</button>
                     </div>
                 </div>
 
@@ -146,7 +179,7 @@ function CarRentalOverview() {
                         <div>Eindatum</div>
                         <div>Prijs</div>
                         <div>Status</div>
-                        <div>Settings</div>
+                        <div>Instellingen</div>
                     </div>
 
                     {rentals.length > 0 ? (
@@ -158,14 +191,21 @@ function CarRentalOverview() {
                                 <div>{rental.endDate}</div>
                                 <div>{`€${rental.price}`}</div>
                                 <div>{rental.status}</div>
-                                <div className="rental-config">
-                                    <button id="button" onClick={() => cancellation(index)}>Annuleer</button>
-                                    <button id="button" onClick={() => handleWijziging(rental)}>Wijzig</button>
-                                </div>
+                                {currDate < new Date(rental.startDate) ? (
+                                    <div className="rental-config">
+                                        <button className="cta-button" onClick={() => cancellation(index)}>Annuleer</button>
+                                        <button className="cta-button" onClick={() => handleWijziging(rental)}>Wijzig</button>
+                                    </div>
+                                ) : (
+                                    <div className="rental-config">
+                                        <button className="cta-button-unavailable" onClick={() => settingsError("cancel")}>Annuleer</button>
+                                        <button className="cta-button-unavailable" onClick={() => settingsError("change")}>Wijzig</button>
+                                    </div>
+                                )}
                             </div>
                         ))
                     ) : (
-                        <div>No rentals found.</div>
+                        <div>Geen huur informatie gevonden</div>
                     )}
                 </div>
             </main>

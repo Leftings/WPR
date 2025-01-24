@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-//import './reviewHireRequest.css';
 import '../../index.css';
 import GeneralHeader from '../../GeneralBlocks/header/header';
 import GeneralFooter from '../../GeneralBlocks/footer/footer';
@@ -177,7 +176,7 @@ function ReviewHireRequest() {
   return (
     <>
       <GeneralHeader />
-      <div className="body">
+      <main>
         <h1>Nieuwe verzoeken</h1>
         <div className="requests-box">
           {newRequests.length > 0 ? (
@@ -216,7 +215,7 @@ function ReviewHireRequest() {
             <p>Geen nieuwe verzoeken gevonden.</p>
           )}
         </div>
-      </div>
+      </main>
       <GeneralFooter />
     </>
   );

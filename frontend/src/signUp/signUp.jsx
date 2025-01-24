@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, redirectDocument, useNavigate } from 'react-router-dom';
 import { getErrorMessage } from '../utils/errorHandler.jsx'
-//import "./signUp.css"
 import '../index.css';
 import GeneralHeader from "../GeneralBlocks/header/header.jsx";
 import GeneralFooter from "../GeneralBlocks/footer/footer.jsx";
@@ -22,6 +21,8 @@ function SignUp() {
     const [password1, setPassword1] = useState('');
     const [password2, setPassword2] = useState('');
     const navigate = useNavigate();
+    const [subscriptions, SetSubscriptions] = useState([]);
+    const [selectedSubscription, SetSelectedSubscription] = useState('');
     const [name, SetName] = useState('');
     const [kvk, SetKvk] = useState('');
     const [street, SetStreet] = useState('');
@@ -37,6 +38,25 @@ function SignUp() {
         setChosenType(buttonId);
     };
     
+    useEffect(() => {
+        async function fetchSubscriptions() {
+            try {
+                const response = await  fetch(`${BACKEND_URL}/api/Subscription/GetSubscriptions`)
+                if (!response.ok) {
+                    throw new Error('Failed to fetch subcriptions')
+                }
+                const responseData = await response.json();
+                console.log(responseData)
+                SetSubscriptions(responseData.data);
+            } catch (error) {
+                console.log(error);
+            }
+        }
+        
+        fetchSubscriptions();
+    }, []);
+    
+    
     async function Push()
     {
         let validationErrors = [];
@@ -49,7 +69,7 @@ function SignUp() {
         {
             if (isBusinessAccount === 'Business')
             {
-                validationErrors = EmptyFieldChecker({ name, kvk, street, number, domain, contactEmail });
+                validationErrors = EmptyFieldChecker({ selectedSubscription, name, kvk, street, number, domain, contactEmail });
 
                 if (kvk.length < 8)
                 {
@@ -71,11 +91,13 @@ function SignUp() {
             try
             {
                 const formData = new FormData();
+                console.log(chosenType);
                 if (chosenType === 'Private')
                 {
                     formData.append('SignUpRequestCustomer.Email', email);
                     formData.append('SignUpRequestCustomer.AccountType', chosenType);
                     formData.append('SignUpRequestCustomer.Password', password1);
+                    formData.append('SignUpRequestCustomer.IsPrivate', true);
                     formData.append('SignUpRequestCustomerPrivate.FirstName', firstName);
                     formData.append('SignUpRequestCustomerPrivate.LastName', lastName);
                     formData.append('SignUpRequestCustomerPrivate.TelNumber', phonenumber);
@@ -89,6 +111,7 @@ function SignUp() {
                 {
                     if (isBusinessAccount === 'Business')
                     {
+                        formData.append('Subscription', selectedSubscription)
                         formData.append('KvK', kvk);
                         formData.append('Name', name);
                         formData.append('Adress', `${street} ${number}${add}`);
@@ -103,6 +126,7 @@ function SignUp() {
                         formData.append('SignUpRequestCustomer.Email', email);
                         formData.append('SignUpRequestCustomer.Password', password1);
                         formData.append('SignUpRequestCustomer.AccountType', chosenType);
+                        formData.append('SignUpRequestCustomer.IsPrivate', false);
 
                         const response = await pushWithBody(`${BACKEND_URL}/api/SignUp/signUp`, formData);
                         redirect(response);
@@ -216,11 +240,24 @@ function SignUp() {
                                     <button className='cta-button'onClick={() => setIsBusinessAccount('Business')} id={isBusinessAccount === 'Business' ? 'typeButton-active' : 'typeButton'} type='button'>Bedrijf</button>
                                 </>
                             )}
+                            <label htmlFor='inputSubscriptionType'>Abonnement</label>
+                            <select id='inputSubscriptionType' value={selectedSubscription}
+                                    onChange={(e) => SetSelectedSubscription(e.target.value)}>
+                                <option value="">Selecteer een abonnement</option>
+                                {subscriptions.map((sub, index) => (
+                                    <option key={index} value={index +1}>
+                                        {sub}
+                                    </option>
+                                ))}
+                            </select>
+
                             <label htmlFor='inputBusinessName'>Bedrijfsnaam</label>
-                            <input id='inputBusinessName' value={name} onChange={(e) => SetName(e.target.value)}></input>
-    
+                            <input id='inputBusinessName' value={name}
+                                   onChange={(e) => SetName(e.target.value)}></input>
+
                             <label htmlFor='inputKvK'>KvK</label>
-                            <input id='inputKvK'value={kvk} onChange={(e) => SetKvk(KvKChecker(NumberCheck(e.target.value)))}></input>
+                            <input id='inputKvK' value={kvk}
+                                   onChange={(e) => SetKvk(KvKChecker(NumberCheck(e.target.value)))}></input>
     
                             <label htmlFor='inputDomain'>Domein naam</label>
                             <input id='inputDomain' value={domain} onChange={(e) => SetDomain(e.target.value.toLowerCase())} placeholder='@example.nl'></input>

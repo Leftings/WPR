@@ -7,7 +7,6 @@ import { ToastContainer, toast } from 'react-toastify';
 import { sorter, sorterArray, sorterOneItem, sorterOneItemNumber } from '../utils/sorter.js';
 import 'react-toastify/dist/ReactToastify.css';
 import "react-datepicker/dist/react-datepicker.css";
-import './GeneralSalePage.css';
 
 const BACKEND_URL = import.meta.env.VITE_REACT_APP_BACKEND_URL ?? 'http://localhost:5165';
 function GetVehicle(id) {
@@ -49,6 +48,8 @@ function GeneralSalePage() {
     const [isFiltersOpen, setIsFiltersOpen] = useState(false);
     const [filterOptions, setFilterOptions] = useState({});
     const [isStaff, setIsStaff] = useState(false);
+    const [officeType, setOfficeType] = useState(null);
+    const [isFrontOffice, setIsFrontOffice] = useState(false);
     const navigate = useNavigate();
     const [cars, setCars] = useState([]);
     const [rentals, setRentals] = useState([]);
@@ -218,15 +219,34 @@ function GeneralSalePage() {
     }, []);
 
     useEffect(() => {
-        fetch('http://localhost:5165/api/Login/CheckSessionStaff', {credentials: 'include'})
-            .then(response => {
+        fetch('http://localhost:5165/api/Login/CheckSessionStaff', {
+            credentials: 'include',
+            method: 'GET',
+        })
+            .then((response) => {
                 if (!response.ok) {
-                    throw new Error('Not a staff member');
+                    throw new Error('Not a staff member or session expired');
                 }
                 return response.json();
             })
-            .then(() => setIsStaff(true))
-            .catch(() => setIsStaff(false));
+            .then((data) => {
+                console.log('Backend Response:', data);
+
+                if (data.officeType === 'Front') {
+                    setIsStaff(true);
+                    setIsFrontOffice(true); // Mark as Front Office
+                } else if (data.officeType === 'Back') {
+                    setIsStaff(true);
+                    setIsFrontOffice(false); // Mark as Back Office
+                } else {
+                    setIsStaff(false); // Unexpected case
+                }
+            })
+            .catch((error) => {
+                console.error('Error fetching session info:', error);
+                setIsStaff(false);
+                setIsFrontOffice(false);
+            });
     }, []);
 
     const handleDelete = async (frameNr) => {
@@ -527,39 +547,39 @@ function GeneralSalePage() {
                                             <p className="car-description">{vehicle.Description || 'No description available'}</p>
                                         </div>
 
-                                        {isStaff ? (
+                                        {isStaff && !isFrontOffice ? (
                                             <button
                                                 onClick={() => handleDelete(vehicle.FrameNr)}
                                                 className="cta-button"
                                             >
                                                 Verwijder
                                             </button>
-                                        ) : (
+                                        ) : !isStaff ? (
                                             <Link
-                                            to={`/vehicle/${vehicle.FrameNr}`}
-                                            state={{
-                                                vehicle,
-                                                rentalDates: [filters.startDate, filters.endDate],
-                                            }}
-                                            className={`cta-button`}
-                                            onClick={(e) => {
-                                                if (!filters.startDate || !filters.endDate) {
-                                                    e.preventDefault();
-                                                    toast.error('Selecteer alstublieft een begin- en einddatum voordat u een voertuig huurt.', {
-                                                        position: "top-center",
-                                                        autoClose: 3000,
-                                                        hideProgressBar: false,
-                                                        closeOnClick: true,
-                                                        pauseOnHover: true,
-                                                        draggable: true,
-                                                        progress: undefined,
-                                                    });
-                                                }
-                                            }}
-                                        >
-                                            Huur
-                                        </Link>
-                                        )}
+                                                to={`/vehicle/${vehicle.FrameNr}`}
+                                                state={{
+                                                    vehicle,
+                                                    rentalDates: [filters.startDate, filters.endDate],
+                                                }}
+                                                className={`cta-button`}
+                                                onClick={(e) => {
+                                                    if (!filters.startDate || !filters.endDate) {
+                                                        e.preventDefault();
+                                                        toast.error('Selecteer alstublieft een begin- en einddatum voordat u een voertuig huurt.', {
+                                                            position: "top-center",
+                                                            autoClose: 3000,
+                                                            hideProgressBar: false,
+                                                            closeOnClick: true,
+                                                            pauseOnHover: true,
+                                                            draggable: true,
+                                                            progress: undefined,
+                                                        });
+                                                    }
+                                                }}
+                                            >
+                                                Huur
+                                            </Link>
+                                        ) : null}
                                     </div>
                                 ))
                             ) : (

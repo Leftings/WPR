@@ -43,6 +43,8 @@ public class SignUpRequestCustomer()
     public int? KvK { get; set; }
     [Required]
     public string Password { get; set; }
+    [Required]
+    public bool IsPrivate { get; set; }
 }
 
 public class SignUpRequestCustomerPrivate()

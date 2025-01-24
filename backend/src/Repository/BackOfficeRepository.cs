@@ -428,4 +428,67 @@ public class BackOfficeRepository(Connector connector) : IBackOfficeRepository
 
         }
     }
+    
+    public async Task<(bool status, string message)> AddSubscriptionAsync(string type, string description, double discount, double price)
+    {
+        try
+        {
+            string query = "INSERT INTO Abonnement (Type, Description, Discount, Price) VALUES (@Type, @Description, @Discount, @Price)";
+
+            using (var connection = _connector.CreateDbConnection())
+            using (var command = new MySqlCommand(query, (MySqlConnection)connection))
+            {
+                command.Parameters.AddWithValue("@Type", type);
+                command.Parameters.AddWithValue("@Description", description);
+                command.Parameters.AddWithValue("@Discount", discount);
+                command.Parameters.AddWithValue("@Price", price);
+
+                if (await command.ExecuteNonQueryAsync() > 0)
+                {
+                    return (true, "Subscription added");
+                }
+                return (false, "Error during adding of subscription");
+            }
+        }
+        catch (MySqlException ex)
+        {
+            return (false, ex.Message);
+        }
+    }
+
+    public async Task<(bool status, string message)> DeleteSubscriptionAsync(int id)
+    {
+        try
+        {
+            string query = "DELETE FROM Abonnement WHERE ID = @ID";
+
+            using (var connection = _connector.CreateDbConnection())
+            using (var customerCommand = new MySqlCommand(query, (MySqlConnection)connection))
+            {
+                customerCommand.Parameters.AddWithValue("@ID", id);
+                
+                int rowsAffected = await customerCommand.ExecuteNonQueryAsync();
+
+                if (rowsAffected > 0)
+                {
+                    return (true, "Subscription deleted");
+                }
+                return (false, "Subscription could not be deleted");
+
+            }
+        }
+        catch (MySqlException ex)
+        {
+            // Handle database errors
+            await Console.Error.WriteLineAsync($"Database error: {ex.Message}");
+            return (false, "Database error: " + ex.Message);
+        }
+        catch (Exception ex)
+        {
+            // Handle other errors
+            await Console.Error.WriteLineAsync($"Unexpected error: {ex.Message}");
+            return (false, "Unexpected error: " + ex.Message);
+        }
+    }
+    
 }

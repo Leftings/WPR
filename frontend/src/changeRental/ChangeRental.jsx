@@ -2,7 +2,6 @@
 import {useLocation, useNavigate} from 'react-router-dom';
 import GeneralHeader from "../GeneralBlocks/header/header.jsx";
 import GeneralFooter from "../GeneralBlocks/footer/footer.jsx";
-//import './ChangeRental.css';
 import '../index.css';
 import CarRentalOverview from "../CarRentalOverview/CarRentalOverview.jsx";
 import DatePicker from "react-datepicker";
@@ -79,7 +78,7 @@ function ChangeRental() {
     useEffect(() => {
         const fetchBasePrice = async () => {
             try {
-                const response = await fetch(`${BACKEND_URL}/api/Vehicle/GetVehiclePriceAsync?frameNr=${rental.frameNrCar}`);
+                const response = await fetch(`${BACKEND_URL}/api/Vehicle/GetVehiclePriceAsync?frameNr=${rental.frameNrVehicle}`);
                 const data = await response.text();
                 if (response.ok) {
                     setBasePrice(data);
@@ -94,7 +93,28 @@ function ChangeRental() {
         fetchBasePrice();
     }, []);
 
-    console.log(`GIVEN RENTAL IS: ${rental.carName}`)
+    useEffect(() => {
+        fetch(`${BACKEND_URL}/api/Cookie/GetUserId`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            credentials: 'include',
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('No Cookie');
+                }
+                return response.json();
+            })
+            .then(data => {
+                const id = data?.message;
+            })
+            .catch(() => {
+                alert("Cookie was niet geldig");
+                navigate('/');
+            });
+    }, [navigate]);
     
     return (
 
@@ -107,30 +127,35 @@ function ChangeRental() {
                 </div>
                 <div className="user-info">
                     <h3 className="user-info-title">Huurperiode</h3>
-        
+
                     <h3>Huurperiode</h3>
-                    <DatePicker
-                        selectsRange
-                        startDate={dates[0]}
-                        endDate={dates[1]}
-                        onChange={handleDateChange}
-                        inline
-                        dateFormat="yyyy/MM/dd"
-                        placeholderText="Selecteer start- en einddatum"
-                    />
-        
+                    <div className="date-picker-container">
+                        <p className="date-picker-label">Selecteer datumbereik:</p>
+                        <DatePicker
+                            selected={new Date()}
+                            onChange={handleDateChange}
+                            startDate={dates[0]}
+                            endDate={dates[1]}
+                            selectsRange
+                            inline
+                            dateFormat="yyyy/MM/dd"
+                            placeholderText="Selecteer start- en einddatum"
+                            minDate={new Date()}
+                        />
+                    </div>
+
                     <button
                         className="buy-button"
                         onClick={handleWijziging}
                     >
                         Bevestig wijziging
                     </button>
-        
+
                     {errorMessage && <p className="error-message">{errorMessage}</p>}
                 </div>
                 {totalCost > 0 && (
                     <div className="total-cost">
-                        <h3>Totaal Kosten:</h3>
+                        <h3>Totaalbedrag:</h3>
                         <p>€{totalCost.toFixed(2)}</p>
                     </div>
                 )}

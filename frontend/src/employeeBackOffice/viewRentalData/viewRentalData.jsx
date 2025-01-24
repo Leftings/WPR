@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
-//import './viewRentalData.css';
 import '../../index.css'; 
 import GeneralHeader from '../../GeneralBlocks/header/header';
 import GeneralFooter from '../../GeneralBlocks/footer/footer';
@@ -189,7 +188,7 @@ function ViewRentalData() {
   return (
     <>
       <GeneralHeader />
-      <div className="body">
+      <main>
         <h1>Overzicht Huur Aanvragen</h1>
         <div className="filters">
             <select name="Colums" id="filter" onChange={(e) => {const newFilterType = e.target.value; setFilterType(newFilterType); setFilterHow("Low");}}>
@@ -309,7 +308,7 @@ function ViewRentalData() {
             )}
           </div>
         )}
-      </div>
+      </main>
       <GeneralFooter />
     </>
   );
