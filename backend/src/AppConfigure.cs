@@ -88,11 +88,18 @@ public class AppConfigure
         */
 
         options.AddPolicy("AllowSpecificOrigins", policy =>
-            policy.WithOrigins("http://95.99.30.110:8080", "http://localhost:5173", "http://www.carandall.nl:8080")
+            policy.WithOrigins(
+                    "http://95.99.30.110:8080", 
+                    "http://localhost:5173", 
+                    "http://www.carandall.nl:8080", 
+                    "https://car-and-all.vercel.app", 
+                    "https://www.carandall.nl", 
+                    "https://carandall.nl")
                 .AllowAnyHeader()
                 .AllowAnyMethod()
                 .AllowCredentials()
         );
+
     });
 
     var urls = Environment.GetEnvironmentVariable("ASPNETCORE_URLS") ?? "http://0.0.0.0:80"; // Default to port 80 if not set
@@ -168,7 +175,7 @@ public class AppConfigure
 
     app.UseSwagger();
     app.UseSwaggerUI(c => {
-        c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+        c.SwaggerEndpoint("https://carandallbackend-bte4eufygabycyfe.westeurope-01.azurewebsites.net/swagger/v1/swagger.json", "My API V1");
         c.RoutePrefix = string.Empty;
     });
     app.UseCors("AllowSpecificOrigins");
