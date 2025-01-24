@@ -1,18 +1,23 @@
-version: '2'
- 
+version: '3.8'
+
 services:
-  app:
+  backend:
     build:
-      context:  ./backend
-      dockerfile: Dockerfile
-    expose:
-      - "5000"
- 
-  proxy:
-    build:
-      context:  ./nginx
+      context: ./backend
       dockerfile: Dockerfile
     ports:
-      - "8084:80"
-    links:
-      - app
+      - "5000:5000"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      # Any other environment variables that the backend requires
+    depends_on:
+      - backend
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
