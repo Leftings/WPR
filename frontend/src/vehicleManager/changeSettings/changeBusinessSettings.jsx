@@ -93,27 +93,58 @@ function ChangeBusinessSettings() {
     fetchSubscriptions();
   }, []);
 
-  useEffect(() => {
-    async function fetchBusinessData() {
-      try {
-          const userId = await GetUserId();
-          const vehicleManagerInfoResponse = await loadList(`${BACKEND_URL}/api/GetInfoVehicleManager/GetAllInfo?id=${userId}`);
-          console.log(vehicleManagerInfoResponse);
-          const response = await loadList(`${BACKEND_URL}/api/ChangeBusinessSettings/GetBusinessInfo?id=${userId}`);
+    useEffect(() => {
+        async function fetchBusinessData() {
+            try {
+                console.log("Fetching vehicle manager info...");
 
-          setVehicleManagerInfo(vehicleManagerInfoResponse.data);
-          setBusinessInfo(response.data);
-          console.log(response.data);
-      } catch (error) {
-          console.error(error);
-      }
-    }
+                const userId = await GetUserId(); // Retrieve user ID
+                console.log("User ID:", userId);
 
-    fetchBusinessData();
-  }, []);
+                // Fetch vehicle manager info
+                const vehicleManagerInfoResponse = await loadList(`${BACKEND_URL}/api/GetInfoVehicleManager/GetAllInfo?id=${userId}`);
+                console.log("Vehicle Manager Info Response:", vehicleManagerInfoResponse);
+
+                // Check if the response has the expected structure and contains vehicleManagerInfo
+                if (vehicleManagerInfoResponse?.message === 'Success' && vehicleManagerInfoResponse?.vehicleManagerInfo) {
+                    setVehicleManagerInfo(vehicleManagerInfoResponse.vehicleManagerInfo);
+
+                    // Get the business number from the vehicle manager info
+                    const businessNumber = vehicleManagerInfoResponse.vehicleManagerInfo?.Business;
+                    console.log("Business Number:", businessNumber);
+
+                    if (businessNumber) {
+                        // Fetch customers associated with the business number
+                        console.log(`Fetching customers for Business Number: ${businessNumber}`);
+                        const customersResponse = await loadList(`${BACKEND_URL}/api/User/GetCustomersByBusinessNumber?businessNumber=${businessNumber}`);
+                        console.log("Customers API Response:", customersResponse);
+
+                        if (customersResponse?.data) {
+                            console.log("Fetched Customers:", customersResponse.data);
+                            setCustomers(customersResponse.data); // Assuming you have a setCustomers state
+                        } else {
+                            console.warn("No customers found for this business number.");
+                            setError(["No customers found for this business number"]);
+                        }
+                    } else {
+                        console.error("Business number is missing in vehicle manager info.");
+                        setError(["Business number is missing"]);
+                    }
+                } else {
+                    console.error("Error: Failed to fetch vehicle manager info.");
+                    setError(["Error fetching vehicle manager info."]);
+                }
+            } catch (error) {
+                console.error("Error fetching data:", error);
+                setError(["Error fetching vehicle manager or customers data."]);
+            }
+        }
+        fetchBusinessData();
+    }, []);
 
 
-  const onSubmit = async (event) => {
+
+    const onSubmit = async (event) => {
     event.preventDefault();
     try
     {
