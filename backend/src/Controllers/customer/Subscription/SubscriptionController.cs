@@ -89,8 +89,9 @@ public class SubscriptionController : ControllerBase
             var status = await _backOfficeRepository.AddSubscriptionAsync(
                 subscription.Type,
                 subscription.Description,
-                subscription.Discount);
-
+                subscription.Discount,
+                subscription.Price);
+            
             if (status.status)
             {
                 return Ok( new { status.message });

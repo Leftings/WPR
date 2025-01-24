@@ -1082,7 +1082,7 @@ public class UserRepository : IUserRepository
     {
         try
         {
-            string query = "SELECT ID, Type, Description FROM Abonnement WHERE ID = @Id";
+            string query = "SELECT ID, Type, Description, Price FROM Abonnement WHERE ID = @Id";
 
             using (var connection = _connector.CreateDbConnection())
             using (var command = new MySqlCommand(query, (MySqlConnection)connection))
@@ -1094,12 +1094,14 @@ public class UserRepository : IUserRepository
                     {
                         var type = reader["Type"].ToString();
                         var description = reader["Description"].ToString();
+                        var price = reader["Price"].ToString().Equals("") ? 0 : Convert.ToDouble(reader["Price"]);
                         
                         return new Subscription
                         {
                             Id = id,
                             Type = type,
-                            Description = description
+                            Description = description,
+                            Price = price
                         };
                     }
                 }
