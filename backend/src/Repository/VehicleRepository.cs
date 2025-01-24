@@ -205,7 +205,7 @@ public class VehicleRepository : IVehicleRepository
     /// </summary>
     /// <param name="frameNr"></param>
     /// <returns></returns>
-    public async Task<List<Dictionary<object, string>>> GetVehicleDataAsync(string frameNr)
+    public async Task<List<Dictionary<object, string>>> GetVehicleDataAsync(object frameNr)
     {
         try
         {
