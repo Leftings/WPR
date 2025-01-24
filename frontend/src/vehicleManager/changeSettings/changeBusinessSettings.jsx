@@ -1,133 +1,311 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import {Await, Link, Navigate, useNavigate} from 'react-router-dom';
 import GeneralHeader from "../../GeneralBlocks/header/header.jsx";
 import GeneralFooter from "../../GeneralBlocks/footer/footer.jsx";
-import { pushWithBodyKind, loadList } from '../../utils/backendPusher.js';
+import { pushWithBodyKind, pushWithoutBodyKind } from '../../utils/backendPusher.js';
+import { loadList, loadSingle } from '../../utils/backendLoader.js';
+
+//import './userSettings.css';
 import '../../index.css';
 
 const BACKEND_URL = import.meta.env.VITE_REACT_APP_BACKEND_URL ?? 'http://localhost:5165';
 
+function GetUserId() {
+  return new Promise((resolve, reject) => {
+    fetch(`${BACKEND_URL}/api/Cookie/GetUserId`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json', 
+    },
+    credentials: 'include',  // Cookies of authenticatie wordt meegegeven
+    })
+    .then(response => {
+      console.log(response);
+      if (!response.ok) {
+        reject('No Cookie');
+      }
+      return response.json();
+    })
+    .then(data => {
+      resolve(data.message);
+    })
+    .catch(error => {
+      console.error('Error:', error);
+      reject(error); 
+    });
+  });
+}
+
 function ChangeBusinessSettings() {
-    const navigate = useNavigate();
-    const [customers, setCustomers] = useState([]); // List of customers
-    const [selectedCustomer, setSelectedCustomer] = useState(null); // Customer to update
-    const [newEmail, setNewEmail] = useState('');
-    const [newPassword, setNewPassword] = useState('');
-    const [error, setError] = useState('');
+  const navigate = useNavigate();
+  const [password1, setPassword1] = useState('');
+  const [password2, setPassword2] = useState('');
+  const [error, setError] = useState([]);
+  const [businessName, setBusinessName] = useState('');
+  const [abonnement, setAbonnement] = useState('');
+  const [businessInfo, setBusinessInfo] = useState({});
+  const [domain, setDomain] = useState('');
+  const [adres, setAdres] = useState('');
+  const [contactEmail, setContactEmail] = useState('');
+  const [vehicleManagerInfo, setVehicleManagerInfo] = useState({});
+  const [newEmail, setNewEmail] = useState('');
+  const [subscriptions, SetSubscriptions] = useState([]);
+  const [selectedSubscription, SetSelectedSubscription] = useState('');
 
-    useEffect(() => {
-        async function fetchCustomers() {
-            try {
-                const response = await loadList(`${BACKEND_URL}/api/ChangeBusinessSettings/GetNonPrivateCustomers`);
-                if (response.data && Array.isArray(response.data)) {
-                    setCustomers(response.data);
-                } else {
-                    console.error('Unexpected data format:', response);
-                    setError('Failed to load customers.');
+  useEffect(() => {
+      fetch(`${BACKEND_URL}/api/Cookie/IsVehicleManager` , {
+          method: 'GET',
+          headers: {
+              'Content-Type': 'application/json',
+          },
+          credentials: 'include',
+      })
+          .then(response => {
+              if (!response.ok) {
+                  return response.json().then(data => {
+                    console.log(data);
+                    throw new Error(data?.message || 'No Cookie'); 
+                  });
                 }
-            } catch (err) {
-                console.error('Error fetching customers:', err);
-                setError('Failed to load customers.');
+              return response.json();
+          })
+          .catch(() => {
+              alert("Cookie was niet geldig");
+              navigate('/');
+          })
+      }, [navigate]);
+
+  useEffect(() => {
+    async function fetchSubscriptions() {
+        try {
+            const response = await  fetch(`${BACKEND_URL}/api/Subscription/GetSubscriptions`)
+            if (!response.ok) {
+                throw new Error('Failed to fetch subcriptions')
             }
+            const responseData = await response.json();
+            console.log(responseData)
+            SetSubscriptions(responseData.data);
+        } catch (error) {
+            console.log(error);
+        }
+    }
+    
+    fetchSubscriptions();
+  }, []);
+
+  useEffect(() => {
+    async function fetchBusinessData() {
+      try {
+          const userId = await GetUserId();
+          const vehicleManagerInfoResponse = await loadList(`${BACKEND_URL}/api/GetInfoVehicleManager/GetAllInfo?id=${userId}`);
+          console.log(vehicleManagerInfoResponse);
+          const response = await loadList(`${BACKEND_URL}/api/ChangeBusinessSettings/GetBusinessInfo?id=${userId}`);
+
+          setVehicleManagerInfo(vehicleManagerInfoResponse.data);
+          setBusinessInfo(response.data);
+          console.log(response.data);
+      } catch (error) {
+          console.error(error);
+      }
+    }
+
+    fetchBusinessData();
+  }, []);
+
+
+  const onSubmit = async (event) => {
+    event.preventDefault();
+    try
+    {
+      if (password1 === password2)
+      {
+        const userId = await GetUserId();
+
+        if (abonnement == 0)
+        {
+          setAbonnement(businessInfo.Abonnement);
+          console.log('abonnement set');
         }
 
-        fetchCustomers();
-    }, []);
-
-    const updateCredentials = async () => {
-        if (!selectedCustomer || !newEmail || !newPassword) {
-            setError('All fields are required.');
-            return;
-        }
-
-        const requestData = {
-            UserId: selectedCustomer.id,
-            NewEmail: newEmail,
-            NewPassword: newPassword,
-            BusinessCode: selectedCustomer.businessCode,
+        const data = {
+          VehicleManagerInfo: {
+            ID: Number(userId),
+            Password: password1,
+            Email: newEmail,
+          },
+          BusinessInfo: {
+            KvK: 0,
+            Abonnement: Number(abonnement),
+            Adres: adres,
+            BusinessName: businessName,
+            ContactEmail: contactEmail,
+          },
         };
 
-        try {
-            const response = await pushWithBodyKind(
-                `${BACKEND_URL}/api/ChangeUserEmailAndPassword/updateUserCredentials`,
-                requestData,
-                'POST'
-            );
+        console.log(data);
 
-            if (response.success) {
-                alert('Credentials updated successfully!');
-                setNewEmail('');
-                setNewPassword('');
-                setSelectedCustomer(null);
-            } else {
-                setError(response.message || 'Failed to update credentials.');
-            }
-        } catch (err) {
-            console.error('Error updating credentials:', err);
-            setError('Failed to update credentials.');
+        const message = await pushWithBodyKind(`${BACKEND_URL}/api/ChangeBusinessSettings/ChangeBusinessInfo`, data, 'PUT');
+        
+        if (message.message === 'succes')
+        {
+          navigate('/VehicleManager');
         }
-    };
+        else
+        {
+          setError([message.message]);
+        }
+      }
+      else
+      {
+        setError(["Wachtwoorden komen niet overeen"]);
+      }
+    }
+    catch (error)
+    {
+      console.log(error.message);
+      setError(["Er is een fout opgetreden bij het wijzigen van de gegevens"]);
+    }
+  }
 
-    return (
-        <>
-            <GeneralHeader />
-            <main>
-                <div className="Body">
-                    <div className="registrateFormatHeader">
-                        <h1>Update Customer Credentials</h1>
-                    </div>
-                    <div className="registrateFormat">
-                        <label htmlFor="customerSelect">Select Customer</label>
-                        <select
-                            id="customerSelect"
-                            value={selectedCustomer ? selectedCustomer.id : ''}
-                            onChange={(e) =>
-                                setSelectedCustomer(customers.find((c) => c.id === Number(e.target.value)))
-                            }
-                        >
-                            <option value="">--Select a Customer--</option>
-                            {customers.map((customer) => (
-                                <option key={customer.id} value={customer.id}>
-                                    {customer.email} (ID: {customer.id})
-                                </option>
-                            ))}
-                        </select>
+  const handleDelete = async (type) => {
+      const confirmDelete = window.confirm(`Weet je zeker dat je het ${type}account wilt verwijderen?\nVerwijderde account kunnen niet meer terug gebracht worden.`);
+      if (!confirmDelete) return;
+      console.log('VM info: ', vehicleManagerInfo);
 
-                        {selectedCustomer && (
-                            <>
-                                <label htmlFor="inputNewEmail">New Email</label>
-                                <input
-                                    type="email"
-                                    id="inputNewEmail"
-                                    value={newEmail}
-                                    onChange={(e) => setNewEmail(e.target.value)}
-                                />
+      let data;
+      if (type === 'Business')
+      {
+        data = {
+            KvK: businessInfo.KvK,
+        };
+      }
+      else
+      {
+        data = {
+            ID: vehicleManagerInfo.ID,
+            KvK: vehicleManagerInfo.Business,
+        }
+      }
 
-                                <label htmlFor="inputNewPassword">New Password</label>
-                                <input
-                                    type="password"
-                                    id="inputNewPassword"
-                                    value={newPassword}
-                                    onChange={(e) => setNewPassword(e.target.value)}
-                                />
+      console.log(data);
+      try
+      {
+        const response = await pushWithBodyKind(`${BACKEND_URL}/api/ChangeBusinessSettings/Delete${type}`, data, 'DELETE');
+        console.log(response);
 
-                                <button
-                                    className="cta-button"
-                                    type="button"
-                                    onClick={updateCredentials}
-                                >
-                                    Update Credentials
-                                </button>
-                            </>
-                        )}
+        if (response.errorDetected)
+        {
+          const errorMessage = response.errors.join(', ');
+          setError(`Account verwijderen is mislukt: \n${errorMessage}`);
+        }
+        else
+        {
+          navigate('/VehicleManager');
+        }
+      }
+      catch (error) {
+          const errorMessage = response.errors.join(', ');
+          setError(`Account verwijderen is mislukt: \n${errorMessage}`);
+      }
+  };
 
-                        {error && <p style={{ color: 'red' }}>{error}</p>}
-                    </div>
-                </div>
-            </main>
-            <GeneralFooter />
-        </>
-    );
+  async function checkNewEmail(email)
+  {
+    if (email === '')
+    {
+      return true;
+    }
+    const filledInDomain = '@' + email.split("@").pop();
+
+    if (filledInDomain === businessInfo.Domain)
+    {
+      const response = await loadSingle(`${BACKEND_URL}/api/ChangeBusinessSettings/CheckNewEmail?email=email`);
+      console.log(response);
+
+      if (response.ok)
+      {
+        return true;
+      }
+      else
+      {
+        setError([response.message]);
+        return false;
+      }
+    }
+    else
+    {
+      setError([`Domein is niet hetzelfde als het opgegeven domain (${businessInfo.Domain})`]);
+      return false;
+    }
+  }
+
+  return (
+    <>
+    <GeneralHeader />
+    <main>
+      <div className='Body'>
+        <div className='registrateFormatHeader'>
+            <h1>Wijzigen Bedrijfsgegevens</h1>
+        </div>
+
+        <div className='registrateFormat'>
+            <label htmlFor='inputBusinessName'>Wijzigen Bedrijfsnaam</label>
+            <input type='text' id='inputBusinessName' value={businessName} onChange={(e) => setBusinessName(e.target.value)} placeholder={businessInfo.BusinessName}></input>
+
+            <label htmlFor='inputSubscriptionType'>Abonnement</label>
+            <select id='inputSubscriptionType' value={selectedSubscription}
+                    onChange={(e) => SetSelectedSubscription(e.target.value)}>
+                <option value={businessInfo.Abonnement}>Huidig: {businessInfo.Type}</option>
+                {subscriptions.map((sub, index) => (
+                    <option key={index} value={index +1}>
+                        {sub}
+                    </option>
+                ))}
+            </select>
+
+            <label htmlFor='inputAdres'>Adres Wijzigen</label>
+            <input type='text' id='inputAdres' value={adres} onChange={(e) => setAdres(e.target.value)} placeholder={businessInfo.Adres}></input>
+
+            <label htmlFor='inputContactEmail'>Wijzigen Contact Email</label>
+            <input type='text' id='inputContactEmail' value={contactEmail} onChange={(e) => setContactEmail(e.target.value)} placeholder={businessInfo.ContactEmail}></input>
+
+            {/*<label htmlFor='inputDomain'>Wijzigen Domein</label>
+            <input type='text' id='inputDomain' value={domain} onChange={(e) => setDomain(e.target.value)} placeholder={`Huidiig: ${businessInfo.Domain}`}></input>*/}
+
+            <div className='registrateFormatFooter'>
+              {error && <p style={{color: 'red'}}>{error}</p>}
+              <button className='cta-button' type="button" onClick={onSubmit}>Opslaan wijzigingen</button>
+              <button id="buttonDelete" type="button" onClick={() => {handleDelete('Business');}}>Verwijderen Bedrijfs Account</button>
+            </div>
+
+          </div>
+
+          <div className='registrateFormatHeader'>
+            <h1>Wijzigen WagenparkBeheerder Gegevens</h1>
+          </div>
+          <div className='registrateFormat'>
+            <label htmlFor='inputNewEmail'>Nieuw Email</label>
+            <input type='text' id='inputNewEmail' value={newEmail} onChange={(e) => setNewEmail(e.target.value)} placeholder={vehicleManagerInfo.Email}></input>
+
+            <label htmlFor='inputChangePassword'>Nieuw Wachtwoord</label>
+            <input type='password' id='inputChangePassword' value={password1} onChange={(e) => setPassword1(e.target.value)}></input>
+
+            <label htmlFor='inputPasswordConfirm'>Herhaal Wachtwoord</label>
+            <input type='password' id='inputPasswordConfirm' value={password2} onChange={(e) => setPassword2(e.target.value)}></input>
+          
+
+            <div className='registrateFormatFooter'>
+                {error && <p style={{color: 'red'}}>{error}</p>}
+                <button className='cta-button' type="button" onClick={async () => {if (await checkNewEmail(newEmail)){await onSubmit(new Event('submit'));}}}>Opslaan wijzigingen</button>
+                <button id="buttonDelete" type="button" onClick={() => {handleDelete('VehicleManager');}}>Verwijderen Wagenparkbeheerder Account</button>
+            </div>
+        </div>
+      </div>
+
+        </main>
+        <GeneralFooter />
+    </>
+  );
 }
 
 export default ChangeBusinessSettings;
