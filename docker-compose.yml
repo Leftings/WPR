@@ -3,7 +3,7 @@ version: '2'
 services:
   app:
     build:
-      context:  ./app
+      context:  ./backend
       dockerfile: Dockerfile
     expose:
       - "5000"
