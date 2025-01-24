@@ -17,7 +17,7 @@ function GetUserId() {
     headers: {
       'Content-Type': 'application/json', 
     },
-    credentials: 'include',  // Cookies of authenticatie wordt meegegeven
+    credentials: 'include',  
     })
     .then(response => {
       console.log(response);
@@ -51,8 +51,13 @@ function ChangeBusinessSettings() {
   const [newEmail, setNewEmail] = useState('');
   const [subscriptions, SetSubscriptions] = useState([]);
   const [selectedSubscription, SetSelectedSubscription] = useState('');
+  const [updatedCustomers, setUpdatedCustomers] = useState([]); 
+  const [customers, setCustomers] = useState([]); 
 
-  useEffect(() => {
+
+
+
+    useEffect(() => {
       fetch(`${BACKEND_URL}/api/Cookie/IsVehicleManager` , {
           method: 'GET',
           headers: {
@@ -93,56 +98,133 @@ function ChangeBusinessSettings() {
     fetchSubscriptions();
   }, []);
 
-    useEffect(() => {
-        async function fetchBusinessData() {
-            try {
-                console.log("Fetching vehicle manager info...");
 
-                const userId = await GetUserId(); // Retrieve user ID
+
+    const handleEmailChange = (index, newEmail) => {
+        const updatedList = [...updatedCustomers];
+        updatedList[index].email = newEmail;
+        setUpdatedCustomers(updatedList);
+    };
+
+    const handlePasswordChange = (index, newPassword) => {
+        const updatedList = [...updatedCustomers];
+
+        if (!updatedList[index]) {
+            updatedList[index] = {};  
+        }
+
+        updatedList[index].password = newPassword;
+
+        setUpdatedCustomers(updatedList);
+    };
+
+
+    const handleUpdate = () => {
+        // Maak een array van de gewijzigde klanten om naar de backend te sturen
+        const updatedData = customers.map((customer, index) => ({
+            id: customer.id,
+            email: updatedCustomers[index]?.email || customer.email,
+            password: updatedCustomers[index]?.password || "",
+        }));
+
+        // Stuur de gegevens naar de backend voor update
+        updateCustomerData(updatedData);
+    };
+
+// Een functie om de klantgegevens bij te werken (hier een voorbeeld, afhankelijk van hoe je de API hebt ingesteld)
+    const updateCustomerData = async (updatedData) => {
+        try {
+            const response = await fetch('/api/update-customers', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(updatedData),
+            });
+
+            if (response.ok) {
+                console.log("Customers updated successfully!");
+            } else {
+                console.error("Failed to update customers.");
+            }
+        } catch (error) {
+            console.error("Error while updating customers:", error);
+        }
+    };
+
+
+    useEffect(() => {
+        const fetchBusinessData = async () => {
+            try {
+                console.log("Starting fetch for vehicle manager info...");
+
+                const userId = await GetUserId();
                 console.log("User ID:", userId);
 
-                // Fetch vehicle manager info
-                const vehicleManagerInfoResponse = await loadList(`${BACKEND_URL}/api/GetInfoVehicleManager/GetAllInfo?id=${userId}`);
-                console.log("Vehicle Manager Info Response:", vehicleManagerInfoResponse);
+                if (!userId) {
+                    throw new Error("User ID is undefined or not found!");
+                }
 
-                // Check if the response has the expected structure and contains vehicleManagerInfo
-                if (vehicleManagerInfoResponse?.message === 'Success' && vehicleManagerInfoResponse?.vehicleManagerInfo) {
-                    setVehicleManagerInfo(vehicleManagerInfoResponse.vehicleManagerInfo);
+                const url = `${BACKEND_URL}/api/GetInfoVehicleManager/GetAllInfo?id=${userId}`;
+                const response = await fetch(url);
+                console.log("Raw API Response from fetch:", response);
 
-                    // Get the business number from the vehicle manager info
-                    const businessNumber = vehicleManagerInfoResponse.vehicleManagerInfo?.Business;
-                    console.log("Business Number:", businessNumber);
+                if (!response.ok) {
+                    throw new Error(`API request failed with status: ${response.status}`);
+                }
 
-                    if (businessNumber) {
-                        // Fetch customers associated with the business number
-                        console.log(`Fetching customers for Business Number: ${businessNumber}`);
-                        const customersResponse = await loadList(`${BACKEND_URL}/api/User/GetCustomersByBusinessNumber?businessNumber=${businessNumber}`);
-                        console.log("Customers API Response:", customersResponse);
+                const data = await response.json();
+                console.log("Parsed API Response:", data);
 
-                        if (customersResponse?.data) {
-                            console.log("Fetched Customers:", customersResponse.data);
-                            setCustomers(customersResponse.data); // Assuming you have a setCustomers state
-                        } else {
-                            console.warn("No customers found for this business number.");
-                            setError(["No customers found for this business number"]);
-                        }
-                    } else {
-                        console.error("Business number is missing in vehicle manager info.");
-                        setError(["Business number is missing"]);
-                    }
+                const { message, vehicleManagerInfo, customers } = data;
+                console.log("Parsed vehicleManagerInfo:", vehicleManagerInfo);
+                console.log("Parsed Customers:", customers);
+
+                if (message !== 'Success' || !vehicleManagerInfo) {
+                    console.error("Response message is not 'Success' or vehicleManagerInfo is missing.");
+                    setError(["Error: Vehicle manager info is missing or response message is not 'Success'."]);
+                    return;
+                }
+
+                const businessNumber = vehicleManagerInfo?.business;
+                console.log("Business Number from vehicleManagerInfo:", businessNumber);
+
+                if (!businessNumber) {
+                    console.error("Business number is missing in vehicle manager info.");
+                    setError(["Business number is missing in vehicle manager info."]);
+                    return;
+                }
+
+                if (customers && customers.length > 0) {
+                    setCustomers(customers);
+                    console.log("Using existing customers:", customers);
                 } else {
-                    console.error("Error: Failed to fetch vehicle manager info.");
-                    setError(["Error fetching vehicle manager info."]);
+                    console.log(`Fetching customers for business number: ${businessNumber}`);
+                    const customerUrl = `${BACKEND_URL}/api/User/GetCustomersByBusinessNumber?businessNumber=${businessNumber}`;
+                    const customerResponse = await fetch(customerUrl);
+
+                    if (!customerResponse.ok) {
+                        throw new Error(`Failed to fetch customers. Status: ${customerResponse.status}`);
+                    }
+
+                    const customerData = await customerResponse.json();
+                    console.log("Fetched Customers Data:", customerData);
+
+                    if (customerData?.data) {
+                        setCustomers(customerData.data);
+                        console.log("Fetched Customers:", customerData.data);
+                    } else {
+                        setError(["No customers found for the provided business number."]);
+                    }
                 }
             } catch (error) {
-                console.error("Error fetching data:", error);
-                setError(["Error fetching vehicle manager or customers data."]);
+                console.error("Error during fetchBusinessData:", error.message);
+                setError([error.message || "An unknown error occurred."]);
             }
-        }
+        };
+
         fetchBusinessData();
     }, []);
-
-
 
     const onSubmit = async (event) => {
     event.preventDefault();
@@ -157,23 +239,6 @@ function ChangeBusinessSettings() {
           setAbonnement(businessInfo.Abonnement);
           console.log('abonnement set');
         }
-
-        const data = {
-          VehicleManagerInfo: {
-            ID: Number(userId),
-            Password: password1,
-            Email: newEmail,
-          },
-          BusinessInfo: {
-            KvK: 0,
-            Abonnement: Number(abonnement),
-            Adres: adres,
-            BusinessName: businessName,
-            ContactEmail: contactEmail,
-          },
-        };
-
-        console.log(data);
 
         const message = await pushWithBodyKind(`${BACKEND_URL}/api/ChangeBusinessSettings/ChangeBusinessInfo`, data, 'PUT');
         
@@ -239,8 +304,36 @@ function ChangeBusinessSettings() {
           setError(`Account verwijderen is mislukt: \n${errorMessage}`);
       }
   };
+    const handleCustomerUpdate = async (customerId, index) => {
+        const customerData = {
+            id: customerId,
+            email: updatedCustomers[index]?.email || customers[index].email,
+            password: updatedCustomers[index]?.password || "",
+        };
 
-  async function checkNewEmail(email)
+        try {
+            // Send the update request for the individual customer
+            const response = await fetch(`/api/update-customer/${customerId}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(customerData),
+            });
+
+            if (response.ok) {
+                console.log("Customer updated successfully!");
+                // Optionally show a success message or update UI
+            } else {
+                console.error("Failed to update customer.");
+            }
+        } catch (error) {
+            console.error("Error while updating customer:", error);
+        }
+    };
+
+
+    async function checkNewEmail(email)
   {
     if (email === '')
     {
@@ -310,7 +403,47 @@ function ChangeBusinessSettings() {
             </div>
 
           </div>
+          <div className='customer-update-container'>
+              {error && <div className="error">{error}</div>}
 
+              <h1>Update Customer gegevens</h1>
+              {customers && customers.length > 0 ? (
+                  <div className="customer-list">
+                      {customers.map((customer, index) => (
+                          <div key={customer.id} className="registrateFormat">
+                              <label htmlFor={`inputCustomerEmail${index}`}>Customer Email</label>
+                              <input
+                                  type="email"
+                                  id={`inputCustomerEmail${index}`}
+                                  value={updatedCustomers[index]?.email || customer.email}
+                                  onChange={(e) => handleEmailChange(index, e.target.value)}
+                                  placeholder="Enter new email"
+                              />
+
+                              <label htmlFor={`inputCustomerPassword${index}`}>Customer Password</label>
+                              <input
+                                  type="password"
+                                  id={`inputCustomerPassword${index}`}
+                                  value={updatedCustomers[index]?.password || ""}
+                                  onChange={(e) => handlePasswordChange(index, e.target.value)}
+                                  placeholder="Enter new password"
+                              />
+
+                              {/* Add individual update button for each customer */}
+                              <div className="update-button-container">
+                                  <button
+                                      onClick={() => handleCustomerUpdate(customer.id, index)}
+                                      className="cta-button">
+                                      Update Customer
+                                  </button>
+                              </div>
+                          </div>
+                      ))}
+                  </div>
+              ) : (
+                  <div>No customers to update</div>
+              )}
+          </div>
           <div className='registrateFormatHeader'>
             <h1>Wijzigen WagenparkBeheerder Gegevens</h1>
           </div>
