@@ -31,16 +31,23 @@ services:
       - backend
     
   nginx:
-    image: nginx:alpine
-    volumes:
-      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf  
-      - "80:80" 
+    build:
+      context: .  
+    ports:
+      - "8080:80"
+      - "8443:8443"
     depends_on:
       - frontend
-      - backend
+      - backend  
     networks:
       - app-network
+    volumes:
+      - ./nginx.conf:/nginx/nginx.conf
+      - ./nginx/certbot/conf:/etc/letsencrypt
+      - ./nginx/certbot/www:/var/www/certbot
+      
+    entrypoint: ["nginx", "-g", "daemon off;"]
 
 networks:
   app-network:
-    driver: local
+    driver: brigde
