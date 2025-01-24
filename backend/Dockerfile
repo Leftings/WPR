@@ -7,7 +7,7 @@ COPY WPR.csproj ./WPR/
 
 RUN dotnet restore ./WPR.csproj
 
-COPY backend/. .
+COPY src/. .
 
 RUN dotnet publish ./WPR/WPR.csproj -c Release -o /app/publish
 
