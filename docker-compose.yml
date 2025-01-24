@@ -29,3 +29,18 @@ services:
       - "3000:80"
     depends_on:
       - backend
+    
+  nginx:
+    image: nginx:alpine
+    volumes:
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf  
+      - "80:80" 
+    depends_on:
+      - frontend
+      - backend
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
