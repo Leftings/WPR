@@ -492,8 +492,8 @@ function GeneralSalePage() {
 
             {isFiltersOpen && <div className="overlay" onClick={toggleFilters}></div>}
 
-            <GeneralHeader/>
             <div className="general-sale-page">
+                <GeneralHeader/>
                 <div className="car-sale-section">
                     <h1 className="title-text">Voertuigen</h1>
                     
