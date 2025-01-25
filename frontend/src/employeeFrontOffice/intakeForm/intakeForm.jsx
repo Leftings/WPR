@@ -73,7 +73,7 @@ function IntakeForm() {
         const formData = new FormData();
 
         if (!damagePresent) {
-            formData.append('Damage', "Geen schade aanwezig.");
+            formData.append('Damage', null);
         } else { 
             formData.append('Damage', damageExplanation); 
         }
@@ -81,6 +81,7 @@ function IntakeForm() {
         formData.append('ReviewedBy', staffId);
         formData.append('Date', endDate);
         formData.append('Contract', contract.OrderId);
+        formData.append('IsDamaged', damagePresent);
 
         fetch(`${BACKEND_URL}/api/AddIntake/addIntake`, {
             method: 'POST',
