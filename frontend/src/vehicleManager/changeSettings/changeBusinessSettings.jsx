@@ -319,11 +319,11 @@ function ChangeBusinessSettings() {
         event.preventDefault();
 
         try {
-            // Log the values before sending
-            console.log("New Email: ", contactEmail);
+            // Log the values before sending to ensure the checked contactEmail and password1 are correct
+            console.log("Checking email:", contactEmail); // Ensure this is the new, validated email
             console.log("New Password: ", password1);
 
-            // Step 1: Fetch the vehicle manager info again
+            // Step 1: Fetch the vehicle manager info again to ensure we have the latest data
             const userId = await GetUserId();
             if (!userId) {
                 throw new Error("User ID is undefined or not found!");
@@ -342,16 +342,17 @@ function ChangeBusinessSettings() {
                 throw new Error("Vehicle Manager Info is missing or undefined.");
             }
 
-            // Step 2: Construct the updated vehicle manager info
+            // Step 2: Construct the updated vehicle manager info object
             const updatedVehicleManagerInfo = {
                 ID: vehicleManagerInfo?.id,
                 Password: password1 || vehicleManagerInfo?.password,
-                Email: contactEmail || vehicleManagerInfo?.email,
+                Email: newEmail, 
             };
+            
+            // Log the updated vehicle manager info to verify correctness
+            console.log("Updated vehicle manager info being sent to backend:", updatedVehicleManagerInfo);
 
-            console.log("Updated vehicle manager info:", updatedVehicleManagerInfo);
-
-            // Step 3: Send the request to the backend API for updating the vehicle manager info
+            // Step 3: Send the update request to the backend API
             const updateResponse = await fetch(`${BACKEND_URL}/api/ChangeBusinessSettings/ChangeVehicleManagerInfo`, {
                 method: 'PUT',
                 headers: {
@@ -361,18 +362,24 @@ function ChangeBusinessSettings() {
             });
 
             const updateData = await updateResponse.json();
+
+            // Handle the backend response
             if (updateResponse.ok) {
                 // Successfully updated the vehicle manager info
+                console.log("Vehicle manager updated successfully.");
                 navigate('/VehicleManager');
             } else {
+                // Log and set the error message if there was an issue with the backend response
                 console.error("Error from backend:", updateData.message || "Unknown error");
                 setError([updateData.message || "Unknown error"]);
             }
         } catch (error) {
+            // Catch any errors that occurred during the process
             console.error("Error during form submission:", error);
             setError([error.message || "Unknown error"]);
         }
     };
+
 
     const handleDelete = async (type) => {
       const confirmDelete = window.confirm(`Weet je zeker dat je het ${type}account wilt verwijderen?\nVerwijderde account kunnen niet meer terug gebracht worden.`);

@@ -924,8 +924,17 @@ public class UserRepository : IUserRepository
     try
     {
         Console.WriteLine($"Received request to update Vehicle Manager with ID: {request.ID}");
-        Console.WriteLine($"New Email: {request.Email}");
-        Console.WriteLine($"New Password: {request.Password}");
+        Console.WriteLine($"New Email: {request.Email}");  // This is where we check if the correct email is passed
+
+        if (string.IsNullOrEmpty(request.Email))
+        {
+            Console.WriteLine("Error: The provided email is empty.");
+            return (400, "Email cannot be empty.");
+        }
+
+        // Encrypt the password before saving
+        string encryptedPassword = _crypt.Encrypt(request.Password);
+        Console.WriteLine($"Encrypted Password: {encryptedPassword}");
 
         string updateQuery = @"
             UPDATE VehicleManager
@@ -944,19 +953,15 @@ public class UserRepository : IUserRepository
             if (connection.State != System.Data.ConnectionState.Open)
             {
                 Console.WriteLine("Opening database connection...");
-                connection.Open(); // Open the connection asynchronously
+                connection.Open();
                 Console.WriteLine("Connection opened successfully.");
             }
 
             using (var command = new MySqlCommand(updateQuery, (MySqlConnection)connection))
             {
-                // Log the parameters to make sure the values are being passed correctly
                 command.Parameters.AddWithValue("@ID", request.ID);
                 command.Parameters.AddWithValue("@Email", request.Email);
-                command.Parameters.AddWithValue("@Password", request.Password);
-
-                Console.WriteLine($"Executing query: {updateQuery}");
-                Console.WriteLine($"Parameters: ID = {request.ID}, Email = {request.Email}, Password = {request.Password}");
+                command.Parameters.AddWithValue("@Password", encryptedPassword);
 
                 try
                 {
