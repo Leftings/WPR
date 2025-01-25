@@ -61,7 +61,7 @@ public class AddIntakeController : ControllerBase
         }
         catch (Exception ex)
         {
-            return StatusCode(500, new { status = false, message = ex.Message });
+            return StatusCode(500, new AddIntakeErrorResponse() { Status = false, Message = ex.Message });
         }
     }
 

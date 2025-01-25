@@ -1,4 +1,5 @@
-﻿using Test.Unit.Mocks;
+﻿using System.Dynamic;
+using Test.Unit.Mocks;
 
 namespace Tests.Unit.AddIntakeControllerTests;
 
@@ -37,7 +38,7 @@ public class AddIntakeControllerTests
         //Arrange
         var request = new AddIntakeRequest
         {
-            Damage = "No damage present.",
+            Damage = "Geen schade aanwezig.",
             FrameNrVehicle = 99,
             ReviewedBy = "caa-1",
             Date = DateTime.Now,
@@ -59,6 +60,107 @@ public class AddIntakeControllerTests
         var okResult = Assert.IsType<OkObjectResult>(result);
         var response = Assert.IsType<AddIntakeResponse>(okResult.Value);
 
+        Assert.Equal("Success", response.Message);
+    }
+
+    [Fact]
+    public async Task AddIntakeAsync_ReturnsBadRequest_WhenAddIntakeFails()
+    {
+        //Arrange
+        var request = new AddIntakeRequest
+        {
+            Damage = "Geen schade aanwezig.",
+            FrameNrVehicle = 99,
+            ReviewedBy = "caa-1",
+            Date = DateTime.Now,
+            Contract = 100
+        };
+
+        _mockEmployeeRepository
+            .Setup(repo => repo.AddIntakeAsync(It.IsAny<string>(), 
+                It.IsAny<int>(), 
+                It.IsAny<string>(), 
+                It.IsAny<DateTime>(), 
+                It.IsAny<int>()))
+            .ReturnsAsync((false, "Failure"));
+        
+        //Act
+        var result = await _controller.AddIntakeAsync(request);
+        
+        //Assert
+        var badRequestResult = Assert.IsType<BadRequestObjectResult>(result);
+        var response = Assert.IsType<AddIntakeErrorResponse>(badRequestResult.Value);
+
+        Assert.False(response.Status);
+        Assert.Equal("Failure", response.Message);
+    }
+    
+    [Fact]
+    public async Task AddIntakeAsync_ReturnsInternalServerError_WhenExceptionOccurs()
+    {
+        // Arrange
+        var request = new AddIntakeRequest
+        {
+            Damage = "Whole car is flat",
+            FrameNrVehicle = 12345,
+            ReviewedBy = "caa-1",
+            Date = DateTime.Now,
+            Contract = 69420
+        };
+        
+        _mockEmployeeRepository
+            .Setup(repo => repo.AddIntakeAsync(It.IsAny<string>(), It.IsAny<int>(), It.IsAny<string>(), It.IsAny<DateTime>(), It.IsAny<int>()))
+            .ThrowsAsync(new Exception("Database connection failed"));
+
+        // Act
+        var result = await _controller.AddIntakeAsync(request);
+
+        // Assert
+        var statusCodeResult = Assert.IsType<ObjectResult>(result);
+        Assert.Equal(500, statusCodeResult.StatusCode);
+        
+        var response = Assert.IsType<AddIntakeErrorResponse>(statusCodeResult.Value);
+        Assert.False(response.Status);
+        Assert.Equal("Database connection failed", response.Message);
+    }
+
+
+
+    
+    [Fact]
+    public async Task AddIntakeAsync_UpdatesRepairStatus_WhenDamageIsReported()
+    {
+        //Arrange
+        var request = new AddIntakeRequest
+        {
+            Damage = "Half the car is gone",
+            FrameNrVehicle = 108,
+            ReviewedBy = "caa-1",
+            Date = DateTime.Now,
+            Contract = 107
+        };
+
+        _mockEmployeeRepository
+            .Setup(repo => repo.AddIntakeAsync(It.IsAny<string>(), 
+                It.IsAny<int>(), 
+                It.IsAny<string>(), 
+                It.IsAny<DateTime>(), 
+                It.IsAny<int>()))
+            .ReturnsAsync((true, "Success"));
+        
+        _mockVehicleRepository
+            .Setup(repo => repo.ChangeRepairStatus(It.IsAny<int>(), It.IsAny<bool>()))
+            .Verifiable();
+        
+        //Act
+        var result = await _controller.AddIntakeAsync(request);
+        
+        //Assert
+        _mockVehicleRepository.Verify(repo => repo.ChangeRepairStatus(request.FrameNrVehicle, true), Times.Once);
+        
+        var okResult = Assert.IsType<OkObjectResult>(result);
+        var response = Assert.IsType<AddIntakeResponse>(okResult.Value);
+        
         Assert.Equal("Success", response.Message);
     }
 }
