@@ -145,10 +145,8 @@ public class ChangeBusinessSettingsController : ControllerBase
 
         try
         {
-            // Call the repository method and destructure the result
             (int statusCode, string message) = await _userRepository.ChangeVehicleManagerInfo(request);
 
-            // Return the appropriate status code and message
             return StatusCode(statusCode, new { message });
         }
         catch (Exception ex)

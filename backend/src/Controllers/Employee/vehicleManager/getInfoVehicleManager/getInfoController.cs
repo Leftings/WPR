@@ -85,8 +85,9 @@ public class GetInfoVehicleManagerController : ControllerBase
                 return BadRequest(new { message = "Email and Password cannot be empty" });
             }
 
-            var encryptedPassword = _crypt.Encrypt(updates.Password);
-            var updateResult = await _userRepository.UpdateCustomerAsync(id, updates.Email, encryptedPassword);
+            var password = updates.Password;
+
+            var updateResult = await _userRepository.UpdateCustomerAsync(id, updates.Email, password);
 
             if (!updateResult)
             {
@@ -100,6 +101,7 @@ public class GetInfoVehicleManagerController : ControllerBase
             return StatusCode(500, new { message = "Internal server error", error = ex.Message });
         }
     }
+
 
 
     /// <summary>
