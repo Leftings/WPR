@@ -14,8 +14,6 @@ using Mysqlx.Resultset;
 using WPR.Controllers.customer.Subscription;
 using WPR.Controllers.General.SignUp;
 using WPR.Controllers.Employee.VehicleManager.ChangeBusinessSettings;
-using WPR.Controllers.General.SignUp;
-using WPR.Controllers.Employee.VehicleManager.ChangeBusinessSettings;
 
 namespace WPR.Repository;
 
@@ -795,100 +793,101 @@ public class UserRepository : IUserRepository
     /// <param name="request"></param>
     /// <param name="privateRequest"></param>
     /// <returns></returns>
-    public async Task<(int StatusCode, string Message)> AddCustomer(SignUpRequestCustomer request, SignUpRequestCustomerPrivate privateRequest)
-{
-    (bool Status, string Message) checks = await AddCustomerChecks(request.IsPrivate, request, privateRequest);
-
-    if (checks.Status)
+    public async Task<(int StatusCode, string Message)> AddCustomer(SignUpRequestCustomer request,
+        SignUpRequestCustomerPrivate privateRequest)
     {
-        try
+        (bool Status, string Message) checks = await AddCustomerChecks(request.IsPrivate, request, privateRequest);
+
+        if (checks.Status)
         {
-            string query;
-
-            if (request.AccountType.Equals("Private"))
+            try
             {
-                query = "INSERT INTO Customer (Email, AccountType, Password) VALUES (@E, @A, @P)";
-            }
-            else
-            {
-                query = "INSERT INTO Customer (Email, KvK, AccountType, Password) VALUES (@E, @K, @A, @P)";
-            }
+                string query;
 
-            using (var connection = _connector.CreateDbConnection())
-            using (var command = new MySqlCommand(query, (MySqlConnection)connection))
-            using (var transaction = connection.BeginTransaction())
-            {
-                command.Parameters.AddWithValue("@E", request.Email);
-                command.Parameters.AddWithValue("@A", request.AccountType);
-
-                // Hash the password using the createHash method from the Hash class
-                string hashedPassword = _hash.createHash(request.Password);
-                command.Parameters.AddWithValue("@P", hashedPassword);
-
-                if (request.AccountType.Equals("Business"))
+                if (request.AccountType.Equals("Private"))
                 {
-                    command.Parameters.AddWithValue("@K", request.KvK);
+                    query = "INSERT INTO Customer (Email, AccountType, Password) VALUES (@E, @A, @P)";
+                }
+                else
+                {
+                    query = "INSERT INTO Customer (Email, KvK, AccountType, Password) VALUES (@E, @K, @A, @P)";
                 }
 
-                try
+                using (var connection = _connector.CreateDbConnection())
+                using (var command = new MySqlCommand(query, (MySqlConnection)connection))
+                using (var transaction = connection.BeginTransaction())
                 {
-                    if (await command.ExecuteNonQueryAsync() > 0)
+                    command.Parameters.AddWithValue("@E", request.Email);
+                    command.Parameters.AddWithValue("@A", request.AccountType);
+
+                    // Hash the password using the createHash method from the Hash class
+                    string hashedPassword = _hash.createHash(request.Password);
+                    command.Parameters.AddWithValue("@P", hashedPassword);
+
+                    if (request.AccountType.Equals("Business"))
                     {
-                        if (request.AccountType.Equals("Private"))
-                        {
-                            // Get the UserId of the newly inserted account
-                            command.CommandText = "SELECT LAST_INSERT_ID();";
-                            int userId = Convert.ToInt32(await command.ExecuteScalarAsync());
-
-                            // Add private customer details
-                            (int StatusCode, string Message) response =
-                                await AddPrivateCustomerDetails(privateRequest, userId,
-                                    (MySqlConnection)connection);
-
-                            // If adding private details fails, rollback transaction
-                            if (response.StatusCode == 500 || response.StatusCode == 412)
-                            {
-                                string deleteCustomerQuery = "DELETE FROM Customer WHERE ID = @I";
-                                using (var deleteCommand = new MySqlCommand(deleteCustomerQuery,
-                                           (MySqlConnection)connection))
-                                {
-                                    deleteCommand.Parameters.AddWithValue("@I", userId);
-                                    await deleteCommand.ExecuteNonQueryAsync();
-                                }
-
-                                transaction.Rollback();
-                                return response;
-                            }
-                        }
-
-                        transaction.Commit();
-                        return (200, "Customer Account Added Successfully");
+                        command.Parameters.AddWithValue("@K", request.KvK);
                     }
 
-                    return (500, "Unexpected Error Occurred");
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine("Error: " + ex.Message);
-                    transaction.Rollback();
-                    return (500, ex.Message);
+                    try
+                    {
+                        if (await command.ExecuteNonQueryAsync() > 0)
+                        {
+                            if (request.AccountType.Equals("Private"))
+                            {
+                                // Get the UserId of the newly inserted account
+                                command.CommandText = "SELECT LAST_INSERT_ID();";
+                                int userId = Convert.ToInt32(await command.ExecuteScalarAsync());
+
+                                // Add private customer details
+                                (int StatusCode, string Message) response =
+                                    await AddPrivateCustomerDetails(privateRequest, userId,
+                                        (MySqlConnection)connection);
+
+                                // If adding private details fails, rollback transaction
+                                if (response.StatusCode == 500 || response.StatusCode == 412)
+                                {
+                                    string deleteCustomerQuery = "DELETE FROM Customer WHERE ID = @I";
+                                    using (var deleteCommand = new MySqlCommand(deleteCustomerQuery,
+                                               (MySqlConnection)connection))
+                                    {
+                                        deleteCommand.Parameters.AddWithValue("@I", userId);
+                                        await deleteCommand.ExecuteNonQueryAsync();
+                                    }
+
+                                    transaction.Rollback();
+                                    return response;
+                                }
+                            }
+
+                            transaction.Commit();
+                            return (200, "Customer Account Added Successfully");
+                        }
+
+                        return (500, "Unexpected Error Occurred");
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine("Error: " + ex.Message);
+                        transaction.Rollback();
+                        return (500, ex.Message);
+                    }
                 }
             }
+            catch (MySqlException ex)
+            {
+                Console.WriteLine("Error: " + ex.Message);
+                return (500, ex.Message);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error: " + ex.Message);
+                return (500, ex.Message);
+            }
         }
-        catch (MySqlException ex)
-        {
-            Console.WriteLine("Error: " + ex.Message);
-            return (500, ex.Message);
-        }
-        catch (Exception ex)
-        {
-            Console.WriteLine("Error: " + ex.Message);
-            return (500, ex.Message);
-        }
-    }
 
-    return (412, checks.Message);
-}
+        return (412, checks.Message);
+    }
 
 
     private string CreateUpdateQuery(string tabel, IList<object[]> data)
@@ -923,191 +922,225 @@ public class UserRepository : IUserRepository
         return query;
     }
 
-  public async Task<(int StatusCode, string Message)> ChangeVehicleManagerInfo(ChangeVehicleManagerInfo request)
-{
-    try
+    public async Task<(int StatusCode, string Message)> ChangeVehicleManagerInfo(ChangeVehicleManagerInfo request)
     {
-        Console.WriteLine($"Received request to update Vehicle Manager with ID: {request.ID}");
-        Console.WriteLine($"New Email: {request.Email}");
-
-        if (string.IsNullOrEmpty(request.Email))
+        try
         {
-            Console.WriteLine("Error: The provided email is empty.");
-            return (400, "Email cannot be empty.");
-        }
+            Console.WriteLine($"Received request to update Vehicle Manager with ID: {request.ID}");
+            Console.WriteLine($"New Email: {request.Email}");
 
-        // Hash the new password (before updating)
-        string hashedPassword = _hash.createHash(request.Password);
-        Console.WriteLine($"Hashed Password: {hashedPassword}");
+            if (string.IsNullOrEmpty(request.Email))
+            {
+                Console.WriteLine("Error: The provided email is empty.");
+                return (400, "Email cannot be empty.");
+            }
 
-        // Validate if the new password follows the required format
-        var (isValid, errorMessage) = PasswordChecker.IsValidPassword(request.Password);
-        if (!isValid)
-        {
-            Console.WriteLine($"Error: {errorMessage}");
-            return (400, errorMessage);
-        }
+            // Hash the new password (before updating)
+            string hashedPassword = _hash.createHash(request.Password);
+            Console.WriteLine($"Hashed Password: {hashedPassword}");
 
-        // Check if the email needs to be updated (only proceed with update if the email has changed)
-        string validateQuery = @"
+            // Validate if the new password follows the required format
+            var (isValid, errorMessage) = PasswordChecker.IsValidPassword(request.Password);
+            if (!isValid)
+            {
+                Console.WriteLine($"Error: {errorMessage}");
+                return (400, errorMessage);
+            }
+
+            // Check if the email needs to be updated (only proceed with update if the email has changed)
+            string validateQuery = @"
             SELECT Email FROM VehicleManager
             WHERE ID = @ID";
 
-        using (var connection = _connector.CreateDbConnection())
-        {
-            if (connection == null)
+            using (var connection = _connector.CreateDbConnection())
             {
-                Console.WriteLine("Database connection is null.");
-                return (500, "Database connection failed.");
-            }
-
-            if (connection.State != System.Data.ConnectionState.Open)
-            {
-                Console.WriteLine("Opening database connection...");
-                connection.Open();
-                Console.WriteLine("Connection opened successfully.");
-            }
-
-            using (var command = new MySqlCommand(validateQuery, (MySqlConnection)connection))
-            {
-                command.Parameters.AddWithValue("@ID", request.ID);
-
-                using (var reader = await command.ExecuteReaderAsync())
+                if (connection == null)
                 {
-                    if (await reader.ReadAsync())
-                    {
-                        string existingEmail = reader.GetString("Email");
+                    Console.WriteLine("Database connection is null.");
+                    return (500, "Database connection failed.");
+                }
 
-                        if (existingEmail == request.Email)
-                        {
-                            // If the email hasn't changed, return early with a response
-                            Console.WriteLine("Email is the same. No update needed.");
-                            return (200, "No changes to the email address.");
-                        }
-                    }
-                    else
+                if (connection.State != System.Data.ConnectionState.Open)
+                {
+                    Console.WriteLine("Opening database connection...");
+                    connection.Open();
+                    Console.WriteLine("Connection opened successfully.");
+                }
+
+                using (var command = new MySqlCommand(validateQuery, (MySqlConnection)connection))
+                {
+                    command.Parameters.AddWithValue("@ID", request.ID);
+
+                    using (var reader = await command.ExecuteReaderAsync())
                     {
-                        Console.WriteLine("Error: Vehicle Manager not found.");
-                        return (404, "Vehicle Manager not found.");
+                        if (await reader.ReadAsync())
+                        {
+                            string existingEmail = reader.GetString("Email");
+
+                            if (existingEmail == request.Email)
+                            {
+                                // If the email hasn't changed, return early with a response
+                                Console.WriteLine("Email is the same. No update needed.");
+                                return (200, "No changes to the email address.");
+                            }
+                        }
+                        else
+                        {
+                            Console.WriteLine("Error: Vehicle Manager not found.");
+                            return (404, "Vehicle Manager not found.");
+                        }
                     }
                 }
             }
-        }
 
-        // Proceed with updating the email and password (now hashed)
-        string updateQuery = @"
+            // Proceed with updating the email and password (now hashed)
+            string updateQuery = @"
             UPDATE VehicleManager
             SET Email = @Email,
                 Password = @Password
             WHERE ID = @ID";
 
-        using (var connection = _connector.CreateDbConnection())
-        {
-            if (connection == null)
+            using (var connection = _connector.CreateDbConnection())
             {
-                Console.WriteLine("Database connection is null.");
-                return (500, "Database connection failed.");
-            }
-
-            if (connection.State != System.Data.ConnectionState.Open)
-            {
-                Console.WriteLine("Opening database connection...");
-                connection.Open();
-                Console.WriteLine("Connection opened successfully.");
-            }
-
-            using (var command = new MySqlCommand(updateQuery, (MySqlConnection)connection))
-            {
-                command.Parameters.AddWithValue("@ID", request.ID);
-                command.Parameters.AddWithValue("@Email", request.Email);
-                command.Parameters.AddWithValue("@Password", hashedPassword);
-
-                try
+                if (connection == null)
                 {
-                    int rowsAffected = await command.ExecuteNonQueryAsync();
-
-                    if (rowsAffected > 0)
-                    {
-                        // Successfully updated the vehicle manager info
-                        Console.WriteLine("Vehicle Manager updated successfully.");
-                        return (200, "Vehicle Manager updated successfully.");
-                    }
-                    else
-                    {
-                        // No rows affected, meaning no update occurred
-                        Console.WriteLine("Error: Vehicle Manager not found.");
-                        return (404, "Vehicle Manager not found.");
-                    }
+                    Console.WriteLine("Database connection is null.");
+                    return (500, "Database connection failed.");
                 }
-                catch (Exception ex)
+
+                if (connection.State != System.Data.ConnectionState.Open)
                 {
-                    Console.WriteLine($"Error executing query: {ex.Message}");
-                    return (500, $"Error executing query: {ex.Message}");
+                    Console.WriteLine("Opening database connection...");
+                    connection.Open();
+                    Console.WriteLine("Connection opened successfully.");
+                }
+
+                using (var command = new MySqlCommand(updateQuery, (MySqlConnection)connection))
+                {
+                    command.Parameters.AddWithValue("@ID", request.ID);
+                    command.Parameters.AddWithValue("@Email", request.Email);
+                    command.Parameters.AddWithValue("@Password", hashedPassword);
+
+                    try
+                    {
+                        int rowsAffected = await command.ExecuteNonQueryAsync();
+
+                        if (rowsAffected > 0)
+                        {
+                            // Successfully updated the vehicle manager info
+                            Console.WriteLine("Vehicle Manager updated successfully.");
+                            return (200, "Vehicle Manager updated successfully.");
+                        }
+                        else
+                        {
+                            // No rows affected, meaning no update occurred
+                            Console.WriteLine("Error: Vehicle Manager not found.");
+                            return (404, "Vehicle Manager not found.");
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine($"Error executing query: {ex.Message}");
+                        return (500, $"Error executing query: {ex.Message}");
+                    }
                 }
             }
         }
-    }
-    catch (Exception ex)
-    {
-        Console.WriteLine($"Error: {ex.Message}");
-        return (500, $"Error: {ex.Message}");
-    }
-}
-
-
-
-public async Task<(int StatusCode, string Message)> ChangeBusinessInfo(ChangeBusinessRequest request)
-{
-    try
-    {
-        string query = "SELECT Business FROM VehicleManager WHERE ID = @I";
-
-        using (var connection = (MySqlConnection)_connector.CreateDbConnection()) 
-        using (var transaction = connection.BeginTransaction())
-        using (var command = new MySqlCommand(query, connection))  
+        catch (Exception ex)
         {
-            command.Parameters.AddWithValue("@I", request.VehicleManagerInfo?.ID);
-
-            using (var reader = await command.ExecuteReaderAsync())
-            {
-                if (await reader.ReadAsync())
-                {
-                    request.BusinessInfo.KvK = Convert.ToInt32(reader.GetValue(0));
-
-                    await reader.CloseAsync();
-
-                    var changeBusiness = await ChangeBusinessData(request.BusinessInfo, connection);
-
-                    if (changeBusiness.StatusCode != 200)
-                    {
-                        transaction.Rollback();  
-                        return (changeBusiness.StatusCode, changeBusiness.Message);
-                    }
-                    else
-                    {
-                        transaction.Commit();
-                        return (200, "Update Successful");
-                    }
-                }
-
-                transaction.Rollback();
-                return (404, "VehicleManager not found or KvK is missing");
-            }
+            Console.WriteLine($"Error: {ex.Message}");
+            return (500, $"Error: {ex.Message}");
         }
     }
-    catch (MySqlException ex)
+
+
+
+    public async Task<(int StatusCode, string Message)> ChangeBusinessInfo(ChangeBusinessRequest request)
     {
-        return (500, ex.Message);  
+        try
+        {
+            string query = "SELECT Business FROM VehicleManager WHERE ID = @I";
+
+            using (var connection = (MySqlConnection)_connector.CreateDbConnection())
+            using (var transaction = connection.BeginTransaction())
+            using (var command = new MySqlCommand(query, connection))
+            {
+                command.Parameters.AddWithValue("@I", request.VehicleManagerInfo?.ID);
+
+                using (var reader = await command.ExecuteReaderAsync())
+                {
+                    if (await reader.ReadAsync())
+                    {
+                        request.BusinessInfo.KvK = Convert.ToInt32(reader.GetValue(0));
+
+                        await reader.CloseAsync();
+
+                        var changeBusiness = await ChangeBusinessData(request.BusinessInfo, connection);
+
+                        if (changeBusiness.StatusCode != 200)
+                        {
+                            transaction.Rollback();
+                            return (changeBusiness.StatusCode, changeBusiness.Message);
+                        }
+                        else
+                        {
+                            transaction.Commit();
+                            return (200, "Update Successful");
+                        }
+                    }
+
+                    transaction.Rollback();
+                    return (404, "VehicleManager not found or KvK is missing");
+                }
+            }
+        }
+        catch (MySqlException ex)
+        {
+            return (500, ex.Message);
+        }
+        catch (OverflowException ex)
+        {
+            return (500, ex.Message);
+        }
+        catch (Exception ex)
+        {
+            return (500, ex.Message);
+        }
     }
-    catch (OverflowException ex)
+
+    [HttpGet("GetBusinessDomainByKvK")]
+    public async Task<(int StatusCode, string Domain)> GetBusinessDomainByKvK(int KvK)
     {
-        return (500, ex.Message); 
+        try
+        {
+            string query = "SELECT Domain FROM Business WHERE KvK = @KvK";
+
+            using (var connection = (MySqlConnection)_connector.CreateDbConnection())
+            using (var command = new MySqlCommand(query, connection))
+            {
+                command.Parameters.AddWithValue("@KvK", KvK);
+
+                using (var reader = await command.ExecuteReaderAsync())
+                {
+                    if (await reader.ReadAsync())
+                    {
+                        string domain = reader.GetString("Domain");
+                        return (200, domain);
+                    }
+
+                    return (404, "Business with the specified KvK not found.");
+                }
+            }
+        }
+        catch (MySqlException ex)
+        {
+            return (500, ex.Message);
+        }
+        catch (Exception ex)
+        {
+            return (500, ex.Message);
+        }
     }
-    catch (Exception ex)
-    {
-        return (500, ex.Message);  
-    }
-}
 
 private async Task<(int StatusCode, string Message)> ChangeBusinessData(ChangeBusinessInfo businessInfo, MySqlConnection connection)
 {

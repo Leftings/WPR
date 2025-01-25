@@ -5,7 +5,6 @@ import GeneralFooter from "../../GeneralBlocks/footer/footer.jsx";
 import { pushWithBodyKind, pushWithoutBodyKind } from '../../utils/backendPusher.js';
 import { loadList, loadSingle } from '../../utils/backendLoader.js';
 
-//import './userSettings.css';
 import '../../index.css';
 
 const BACKEND_URL = import.meta.env.VITE_REACT_APP_BACKEND_URL ?? 'http://localhost:5165';
@@ -357,11 +356,9 @@ function ChangeBusinessSettings() {
         }
     };
 
-    const onSubmitVehicleManager = async (event) => {
-        event.preventDefault();
-
+    const onSubmitVehicleManager = async () => {
+        console.log("onSubmitVehicleManager is being called!");
         try {
-
             const userId = await GetUserId();
             if (!userId) {
                 throw new Error("User ID is undefined or not found!");
@@ -383,9 +380,9 @@ function ChangeBusinessSettings() {
             const updatedVehicleManagerInfo = {
                 ID: vehicleManagerInfo?.id,
                 Password: password1 || vehicleManagerInfo?.password,
-                Email: newEmail, 
+                Email: newEmail,
             };
-            
+
             console.log("Updated vehicle manager info being sent to backend:", updatedVehicleManagerInfo);
 
             const updateResponse = await fetch(`${BACKEND_URL}/api/ChangeBusinessSettings/ChangeVehicleManagerInfo`, {
@@ -397,6 +394,9 @@ function ChangeBusinessSettings() {
             });
 
             const updateData = await updateResponse.json();
+
+            // Log the full response for debugging
+            console.log("Update response:", updateData);
 
             if (updateResponse.ok) {
                 console.log("Vehicle manager updated successfully.");
@@ -410,7 +410,6 @@ function ChangeBusinessSettings() {
             setError([error.message || "Unknown error"]);
         }
     };
-
 
     const handleDelete = async (type) => {
         console.log("Attempting to delete account with KvK:", vehicleManagerInfo?.business);
@@ -483,7 +482,6 @@ function ChangeBusinessSettings() {
         }
     };
 
-    // Instead of just returning false, set the appropriate error state
     const checkNewEmail = async (email) => {
         console.log("Checking email:", email);
 
@@ -492,45 +490,107 @@ function ChangeBusinessSettings() {
             return false;
         }
 
-        const filledInDomain = email.split('@').pop();
-        const businessDomain = businessInfo?.Domain || 'wagenparkbeheerder.nl';
+        const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+        if (!emailRegex.test(email)) {
+            setError("Invalid email format.");
+            return false;
+        }
 
-        if (filledInDomain === businessDomain) {
-            try {
-                const response = await loadSingle(`${BACKEND_URL}/api/ChangeBusinessSettings/CheckNewEmail?email=${email}`);
+        const filledInDomain = email.split('@')[1];
+        console.log("Extracted domain:", filledInDomain);
 
-                if (!response.ok) {
-                    const responseData = await response.json();
-                    setError(responseData.message || "Unknown error");
-                    return false;
+        if (!filledInDomain) {
+            setError("Invalid email format, missing domain.");
+            return false;
+        }
+
+        try {
+            const userId = await GetUserId();
+            if (!userId) {
+                throw new Error("User ID is undefined or not found!");
+            }
+
+            const url = `${BACKEND_URL}/api/GetInfoVehicleManager/GetAllInfo?id=${userId}`;
+            const response = await fetch(url);
+            if (!response.ok) {
+                throw new Error(`API request failed with status: ${response.status}`);
+            }
+
+            const data = await response.json();
+            const { vehicleManagerInfo } = data;
+
+            if (!vehicleManagerInfo) {
+                throw new Error("Vehicle Manager Info is missing or undefined.");
+            }
+
+            const businessKvK = vehicleManagerInfo.business;
+            if (!businessKvK) {
+                throw new Error("Business KvK is missing or undefined in vehicleManagerInfo.");
+            }
+
+            const domainUrl = `${BACKEND_URL}/api/GetInfoVehicleManager/GetBusinessDomainByKvK?kvk=${businessKvK}`;
+            const domainResponse = await fetch(domainUrl);
+            if (!domainResponse.ok) {
+                throw new Error(`API request for business domain failed with status: ${domainResponse.status}`);
+            }
+
+            const domainData = await domainResponse.json();
+            let businessDomain = domainData?.domain;
+
+            if (!businessDomain) {
+                throw new Error("Domain not found for the specified KvK.");
+            }
+
+            console.log("Fetched business domain:", businessDomain);
+
+            if (!businessDomain.startsWith('@')) {
+                businessDomain = '@' + businessDomain;
+            }
+
+            if (`@${filledInDomain}` === businessDomain) {
+                if (email !== vehicleManagerInfo.email) {
+                    const checkEmailUrl = `${BACKEND_URL}/api/ChangeBusinessSettings/CheckNewEmail?email=${email}`;
+                    const checkEmailResponse = await fetch(checkEmailUrl);
+                    if (!checkEmailResponse.ok) {
+                        const responseData = await checkEmailResponse.json();
+                        console.log("Error response from checkEmailUrl:", responseData);
+                        setError(responseData.message || "Unknown error");
+                        return false;
+                    }
+
+                    const checkEmailData = await checkEmailResponse.json();
+                    console.log("checkEmailData:", checkEmailData);
+
+                    if (checkEmailData.message && checkEmailData.message === 'Geldige email') {
+                        console.log("Email is valid.");
+                        return true;
+                    } else {
+                        console.log("Error during email check:", checkEmailData.message);
+                        setError(checkEmailData.message || "Unknown error");
+                        return false;
+                    }
                 }
 
-                const responseData = await response.json();
-                if (response.ok) {
-                    return true; // Email is valid
-                } else {
-                    setError(responseData.message || "Unknown error");
-                    return false;
-                }
-            } catch (error) {
-                console.error("Error during email check:", error);
-                setError("Email is already in use.");
+                console.log("Email is the same as the current one, valid.");
+                return true;
+            } else {
+                console.log("Domain mismatch detected");
+                setError(`Domain is not the same as the specified domain (${businessDomain})`);
                 return false;
             }
-        } else {
-            setError(`Domain is not the same as the specified domain (${businessDomain})`);
+
+        } catch (error) {
+            console.error("Error during email check:", error);
+            setError("Error checking email. Please try again later.");
             return false;
         }
     };
-
-
 
     return (
         <>
             <GeneralHeader />
 
             <main>
-                {/* Company Details Section */}
                 <div className='registrateFormatHeader'>
                     <h1>Wijzigen Bedrijfsgegevens</h1>
                 </div>
@@ -599,7 +659,6 @@ function ChangeBusinessSettings() {
                     </div>
                 </div>
 
-                {/* Vehicle Manager Details Section */}
                 <div className='registrateFormatHeader'>
                     <h1>Wijzigen WagenparkBeheerder Gegevens</h1>
                 </div>
@@ -635,18 +694,22 @@ function ChangeBusinessSettings() {
                         <button
                             className='cta-button'
                             type='button'
-                            onClick={async () => {
-                                if (await checkNewEmail(newEmail)) {
-                                    if (password1 !== password2) {
-                                        setCustomerError('Wachtwoorden komen niet overeen.');
-                                    } else {
-                                        await onSubmitVehicleManager(new Event('submit'));
+                            onClick={() => {
+                                checkNewEmail(newEmail).then((isValidEmail) => {
+                                    console.log("Email check passed:", isValidEmail);
+                                    if (isValidEmail) {
+                                        if (password1 !== password2) {
+                                            setCustomerError('Wachtwoorden komen niet overeen.');
+                                        } else {
+                                            onSubmitVehicleManager(); 
+                                        }
                                     }
-                                }
+                                });
                             }}
                         >
                             Opslaan wijzigingen
                         </button>
+
                         <button
                             id='buttonDelete'
                             type='button'
@@ -658,8 +721,10 @@ function ChangeBusinessSettings() {
                         </button>
                     </div>
                 </div>
+                    
 
-                {/* Customer Update Section */}
+
+
                 <div className='customer-update-container'>
                     <h1 className={`expandable-header ${showCustomers ? 'active' : ''}`}>Update Customer gegevens</h1>
 
@@ -673,7 +738,6 @@ function ChangeBusinessSettings() {
                         </button>
                     </div>
 
-                    {/* Only show customer list when showCustomers is true */}
                     {showCustomers && (
                         customers && customers.length > 0 ? (
                             <div className='customer-list'>
@@ -718,5 +782,4 @@ function ChangeBusinessSettings() {
         </>
     );
 }
-
 export default ChangeBusinessSettings;

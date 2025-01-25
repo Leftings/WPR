@@ -55,7 +55,7 @@ public class GetInfoVehicleManagerController : ControllerBase
                     vehicleManagerInfo.Id,
                     vehicleManagerInfo.Email,
                     vehicleManagerInfo.Business,
-                    vehicleManagerInfo.Password  
+                    vehicleManagerInfo.Password
                 },
                 customers = customers?.Select(c => new { c.Id, c.Email, c.Kvk }) ?? Enumerable.Empty<object>()
             });
@@ -136,10 +136,51 @@ public class GetInfoVehicleManagerController : ControllerBase
             return StatusCode(500, new { message = "Internal server error", error = ex.Message });
         }
     }
+
     public class CustomerUpdateRequest
     {
         public string Email { get; set; }
         public string Password { get; set; }
     }
+    
+    /// <summary>
+    /// Get the domain associated with a business by KvK.
+    /// </summary>
+    /// <param name="kvk">The KvK of the business</param>
+    /// <returns>The business domain</returns>
+    [HttpGet("GetBusinessDomainByKvK")]
+    public async Task<IActionResult> GetBusinessDomainByKvK(int kvk)
+    {
+        try
+        {
+            if (kvk <= 0)
+            {
+                return BadRequest(new { message = "Invalid KvK" });
+            }
+
+            var (statusCode, domain) = await _userRepository.GetBusinessDomainByKvK(kvk);
+
+            if (statusCode == 404)
+            {
+                return NotFound(new { message = "Business domain not found for the given KvK" });
+            }
+            else if (statusCode == 500)
+            {
+                return StatusCode(500, new { message = "Internal server error", error = domain });
+            }
+
+            return Ok(new
+            {
+                message = "Success",
+                domain = domain
+            });
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error in GetBusinessDomainByKvK: {ex.Message}");
+            return StatusCode(500, new { message = "Internal server error", error = ex.Message });
+        }
+    }
 
 }
+
