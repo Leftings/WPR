@@ -32,17 +32,18 @@ public class AddIntakeControllerTests
     }
 
     [Fact]
-    public async Task AddIntakeAsync_ReturnsOk_WhenAddIntakeIsSuccessful()
+    public async Task AddIntakeAsync_ReturnsOk_WhenAddIntakeIsSuccessfulWithNoDamage()
     {
 
         //Arrange
         var request = new AddIntakeRequest
         {
-            Damage = "Geen schade aanwezig.",
+            Damage = null,
             FrameNrVehicle = 99,
             ReviewedBy = "caa-1",
             Date = DateTime.Now,
-            Contract = 100
+            Contract = 100,
+            IsDamaged = false
         };
 
         _mockEmployeeRepository
@@ -50,17 +51,24 @@ public class AddIntakeControllerTests
                 It.IsAny<int>(), 
                 It.IsAny<string>(), 
                 It.IsAny<DateTime>(), 
-                It.IsAny<int>()))
-            .ReturnsAsync((true, "Success"));
+                It.IsAny<int>(),
+                It.IsAny<bool>()))
+            .ReturnsAsync((true, "Intake added successfully"));
+        
+        _mockVehicleRepository
+            .Setup(repo => repo.ChangeRepairStatus(It.IsAny<int>(), It.IsAny<bool>()))
+            .Verifiable();
         
         //Act
         var result = await _controller.AddIntakeAsync(request);
         
         //Assert
+        _mockVehicleRepository.Verify(repo => repo.ChangeRepairStatus(It.IsAny<int>(), It.IsAny<bool>()), Times.Never);
+        
         var okResult = Assert.IsType<OkObjectResult>(result);
         var response = Assert.IsType<AddIntakeResponse>(okResult.Value);
 
-        Assert.Equal("Success", response.Message);
+        Assert.Equal("Intake added successfully", response.Message);
     }
 
     [Fact]
@@ -69,11 +77,12 @@ public class AddIntakeControllerTests
         //Arrange
         var request = new AddIntakeRequest
         {
-            Damage = "Geen schade aanwezig.",
+            Damage = null,
             FrameNrVehicle = 99,
             ReviewedBy = "caa-1",
             Date = DateTime.Now,
-            Contract = 100
+            Contract = 100,
+            IsDamaged = false
         };
 
         _mockEmployeeRepository
@@ -81,7 +90,8 @@ public class AddIntakeControllerTests
                 It.IsAny<int>(), 
                 It.IsAny<string>(), 
                 It.IsAny<DateTime>(), 
-                It.IsAny<int>()))
+                It.IsAny<int>(),
+                It.IsAny<bool>()))
             .ReturnsAsync((false, "Failure"));
         
         //Act
@@ -105,11 +115,17 @@ public class AddIntakeControllerTests
             FrameNrVehicle = 12345,
             ReviewedBy = "caa-1",
             Date = DateTime.Now,
-            Contract = 69420
+            Contract = 69420,
+            IsDamaged = false
         };
         
         _mockEmployeeRepository
-            .Setup(repo => repo.AddIntakeAsync(It.IsAny<string>(), It.IsAny<int>(), It.IsAny<string>(), It.IsAny<DateTime>(), It.IsAny<int>()))
+            .Setup(repo => repo.AddIntakeAsync(It.IsAny<string>(), 
+                It.IsAny<int>(), 
+                It.IsAny<string>(), 
+                It.IsAny<DateTime>(), 
+                It.IsAny<int>(), 
+                It.IsAny<bool>()))
             .ThrowsAsync(new Exception("Database connection failed"));
 
         // Act
@@ -137,7 +153,8 @@ public class AddIntakeControllerTests
             FrameNrVehicle = 108,
             ReviewedBy = "caa-1",
             Date = DateTime.Now,
-            Contract = 107
+            Contract = 107,
+            IsDamaged = true
         };
 
         _mockEmployeeRepository
@@ -145,7 +162,8 @@ public class AddIntakeControllerTests
                 It.IsAny<int>(), 
                 It.IsAny<string>(), 
                 It.IsAny<DateTime>(), 
-                It.IsAny<int>()))
+                It.IsAny<int>(),
+                It.IsAny<bool>()))
             .ReturnsAsync((true, "Success"));
         
         _mockVehicleRepository
