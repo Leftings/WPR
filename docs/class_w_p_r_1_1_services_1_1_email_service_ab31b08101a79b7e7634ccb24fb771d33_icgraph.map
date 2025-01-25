@@ -1,0 +1,13 @@
+<map id="WPR.Services.EmailService.CreateSmtpClient" name="WPR.Services.EmailService.CreateSmtpClient">
+<area shape="rect" id="Node000001" title="Maak SMTP Client voor versturen emails." alt="" coords="277,123,470,165"/>
+<area shape="rect" id="Node000002" href="$class_w_p_r_1_1_services_1_1_email_service.html#a7da62c5a38ba1aa9eaa38767c022c42a" title=" " alt="" coords="5,5,229,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="334,115,285,79,228,46,195,35,197,30,230,42,288,74,337,111"/>
+<area shape="rect" id="Node000003" href="$class_w_p_r_1_1_services_1_1_email_service.html#a2921ddfbad60ba40018a722be5a0c0c6" title=" " alt="" coords="20,56,214,99"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="273,121,201,102,202,97,275,116"/>
+<area shape="rect" id="Node000004" href="$class_w_p_r_1_1_services_1_1_email_service.html#ab96c557f8a51cc79d18b99b891238d07" title=" " alt="" coords="11,123,223,165"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="261,147,224,147,224,141,261,141"/>
+<area shape="rect" id="Node000005" href="$class_w_p_r_1_1_services_1_1_email_service.html#a23aed78b7ecd45ab31ca9acb6ce78b5e" title=" " alt="" coords="20,189,214,232"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="275,172,202,191,201,186,273,167"/>
+<area shape="rect" id="Node000006" href="$class_w_p_r_1_1_services_1_1_email_service.html#a00a227fa3bbc1b22634908be5be363ef" title=" " alt="" coords="20,256,214,299"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="336,178,287,213,230,246,202,258,200,253,227,242,284,209,333,173"/>
+</map>

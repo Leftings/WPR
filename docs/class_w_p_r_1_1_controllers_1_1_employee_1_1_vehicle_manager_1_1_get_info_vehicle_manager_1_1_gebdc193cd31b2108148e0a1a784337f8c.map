@@ -1,0 +1,7 @@
+<map id="WPR.Controllers.Employee.VehicleManager.GetInfoVehicleManager.GetInfoVehicleManagerController" name="WPR.Controllers.Employee.VehicleManager.GetInfoVehicleManager.GetInfoVehicleManagerController">
+<area shape="rect" id="Node000001" title=" " alt="" coords="16,112,272,171"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,13,113,40"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="80,51,125,110,121,113,75,54"/>
+<area shape="rect" id="Node000003" href="$interface_w_p_r_1_1_repository_1_1_i_employee_repository.html" title="Interface defining methods voor user gerelateerde database operaties, validatie, user management,..." alt="" coords="137,5,322,48"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="207,62,168,113,164,110,203,59"/>
+</map>

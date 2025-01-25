@@ -1,0 +1,22 @@
+var interface_w_p_r_1_1_repository_1_1_i_user_repository =
+[
+    [ "AddCustomer", "interface_w_p_r_1_1_repository_1_1_i_user_repository.html#a103bbaff883cb3af9e3d4c98a2100d5b", null ],
+    [ "addCustomerAsync", "interface_w_p_r_1_1_repository_1_1_i_user_repository.html#a0e52cd72018fad6b2fe68da104f5a971", null ],
+    [ "addEmployeeCustomerAsync", "interface_w_p_r_1_1_repository_1_1_i_user_repository.html#afe0de5259233749214ee4eb6a4069e70", null ],
+    [ "AddPersonalCustomer", "interface_w_p_r_1_1_repository_1_1_i_user_repository.html#aeb4dfef402022a44079b7043d8602210", null ],
+    [ "addPersonalCustomerAsync", "interface_w_p_r_1_1_repository_1_1_i_user_repository.html#a8302234bdf3953c8329a4487c03992e8", null ],
+    [ "ChangeBusinessInfo", "interface_w_p_r_1_1_repository_1_1_i_user_repository.html#a254b26f8141a387db4ffa2264e5078fb", null ],
+    [ "checkUsageEmailAsync", "interface_w_p_r_1_1_repository_1_1_i_user_repository.html#a9c716662bd52a8dec74a868954dee50e", null ],
+    [ "DeleteUserAsync", "interface_w_p_r_1_1_repository_1_1_i_user_repository.html#ab8bc076a0fa5153144ae7a810515bf5a", null ],
+    [ "EditUserInfoAsync", "interface_w_p_r_1_1_repository_1_1_i_user_repository.html#a69bf2dfc071328b914d0dd2b0e28036c", null ],
+    [ "GetAllSubscriptionsAsync", "interface_w_p_r_1_1_repository_1_1_i_user_repository.html#af1f89b241f484997d869c6f1fbd54bbe", null ],
+    [ "GetCustomerDetails", "interface_w_p_r_1_1_repository_1_1_i_user_repository.html#a4054e72c9ea0d5b50c4227c38d296a6d", null ],
+    [ "GetKindEmployeeAsync", "interface_w_p_r_1_1_repository_1_1_i_user_repository.html#a639e9a13c1b234198f293d1a9cdfac94", null ],
+    [ "GetSubscriptionDataAsync", "interface_w_p_r_1_1_repository_1_1_i_user_repository.html#adb2c8305eabf583fb88c0c5a3324df81", null ],
+    [ "GetSubscriptionIdsAsync", "interface_w_p_r_1_1_repository_1_1_i_user_repository.html#a173b6a5127b0b845d3cfeec6b270d93a", null ],
+    [ "GetUserIdAsync", "interface_w_p_r_1_1_repository_1_1_i_user_repository.html#a4c1e54015ce6e7f4e3f71a22db6c6de3", null ],
+    [ "GetUserNameAsync", "interface_w_p_r_1_1_repository_1_1_i_user_repository.html#adea3e199f30f2118d56fbb649c6d9b85", null ],
+    [ "IsKvkNumberAsync", "interface_w_p_r_1_1_repository_1_1_i_user_repository.html#a670f6c2c74f0ecdf1386af0f6069c9fd", null ],
+    [ "IsUserEmployee", "interface_w_p_r_1_1_repository_1_1_i_user_repository.html#aab80cef291c4192ce799937ca1e08312", null ],
+    [ "ValidateUserAsync", "interface_w_p_r_1_1_repository_1_1_i_user_repository.html#a7dd4b3be17516ffd565fec621cbd7452", null ]
+];

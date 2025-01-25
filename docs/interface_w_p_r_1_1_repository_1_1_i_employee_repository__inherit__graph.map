@@ -1,0 +1,5 @@
+<map id="WPR.Repository.IEmployeeRepository" name="WPR.Repository.IEmployeeRepository">
+<area shape="rect" id="Node000001" title="Interface defining methods voor user gerelateerde database operaties, validatie, user management,..." alt="" coords="35,5,220,48"/>
+<area shape="rect" id="Node000002" href="$class_w_p_r_1_1_repository_1_1_employee_repository.html" title="De UserRepository class geeft de methodes voor de interactie met de database voor gebruiker gerelatee..." alt="" coords="5,96,250,123"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="130,64,130,95,125,95,125,64"/>
+</map>

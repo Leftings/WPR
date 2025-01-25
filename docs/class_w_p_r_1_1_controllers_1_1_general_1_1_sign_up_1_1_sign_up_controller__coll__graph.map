@@ -1,0 +1,19 @@
+<map id="WPR.Controllers.General.SignUp.SignUpController" name="WPR.Controllers.General.SignUp.SignUpController">
+<area shape="rect" id="Node000001" title="SignUpController zorgt ervoor dat persoonlijke en zakelijke accounts aangemaakt kunnen worden." alt="" coords="639,120,812,163"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="329,5,436,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="452,22,532,35,575,47,616,62,663,88,702,117,698,122,660,93,614,66,573,52,531,41,451,27"/>
+<area shape="rect" id="Node000003" href="$class_w_p_r_1_1_database_1_1_connector.html" title=" " alt="" coords="294,56,472,83"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="488,78,616,101,667,117,666,122,614,107,487,83"/>
+<area shape="rect" id="Node000004" href="$interface_w_p_r_1_1_database_1_1_i_connector.html" title="Connector class om verbinding te maken met de database, maakt gebruik van de connectie strings die zi..." alt="" coords="38,29,123,56"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="138,45,294,59,294,64,138,50"/>
+<area shape="rect" id="Node000005" href="$class_w_p_r_1_1_data_1_1_env_config.html" title="Leez het .env bestand uit waarin de connectie strings staan naar de database. Deze staan in een apart..." alt="" coords="5,109,156,136"/>
+<area shape="poly" id="edge6_Node000001_Node000005" title=" " alt="" coords="172,123,639,136,638,142,171,128"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="171,104,303,81,304,86,172,109"/>
+<area shape="rect" id="Node000008" href="$class_w_p_r_1_1_services_1_1_email_service.html" title=" " alt="" coords="288,171,478,197"/>
+<area shape="poly" id="edge9_Node000008_Node000005" title=" " alt="" coords="131,139,180,155,288,173,287,178,179,160,129,145"/>
+<area shape="rect" id="Node000006" href="$interface_w_p_r_1_1_repository_1_1_i_user_repository.html" title="Interface defining methods voor user gerelateerde database operaties, validatie, user management,..." alt="" coords="274,221,492,248"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="500,215,557,204,614,188,681,161,683,166,616,193,559,209,501,221"/>
+<area shape="rect" id="Node000007" href="$class_w_p_r_1_1_hashing_1_1_hash.html" title="Class Hash zorgt ervoor dat wachtwoorden op een veilige manier worden gehashed doormiddel van het HMA..." alt="" coords="313,272,453,299"/>
+<area shape="poly" id="edge7_Node000001_Node000007" title=" " alt="" coords="468,275,541,260,578,249,614,234,640,218,664,199,703,161,707,165,668,203,643,222,616,238,580,254,542,265,469,280"/>
+<area shape="poly" id="edge8_Node000001_Node000008" title=" " alt="" coords="493,169,615,155,638,152,639,157,615,160,493,175"/>
+</map>

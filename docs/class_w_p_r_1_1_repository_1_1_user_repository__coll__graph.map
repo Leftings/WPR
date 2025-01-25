@@ -1,0 +1,16 @@
+<map id="WPR.Repository.UserRepository" name="WPR.Repository.UserRepository">
+<area shape="rect" id="Node000001" title="De UserRepository class geeft de methodes voor de interactie met de database voor gebruiker gerelatee..." alt="" coords="219,187,433,213"/>
+<area shape="rect" id="Node000002" href="$interface_w_p_r_1_1_repository_1_1_i_user_repository.html" title="Interface defining methods voor user gerelateerde database operaties, validatie, user management,..." alt="" coords="5,96,122,123"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="116,126,289,184,288,189,115,131"/>
+<area shape="rect" id="Node000003" href="$class_w_p_r_1_1_database_1_1_connector.html" title=" " alt="" coords="146,96,323,123"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="254,133,280,161,309,184,306,188,276,165,250,136"/>
+<area shape="rect" id="Node000004" href="$interface_w_p_r_1_1_database_1_1_i_connector.html" title="Connector class om verbinding te maken met de database, maakt gebruik van de connectie strings die zi..." alt="" coords="192,5,277,32"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="237,48,237,95,232,95,232,48"/>
+<area shape="rect" id="Node000005" href="$class_w_p_r_1_1_data_1_1_env_config.html" title="Leez het .env bestand uit waarin de connectie strings staan naar de database. Deze staan in een apart..." alt="" coords="302,5,452,32"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="345,43,256,98,253,93,342,38"/>
+<area shape="rect" id="Node000007" href="$class_w_p_r_1_1_cryption_1_1_crypt.html" title="Class Crypt zorgt voor een veilig encryptie en decryptie van strings. De Crptie wordt gedaan door het..." alt="" coords="347,96,489,123"/>
+<area shape="poly" id="edge7_Node000007_Node000005" title=" " alt="" coords="392,45,415,94,410,97,387,47"/>
+<area shape="rect" id="Node000006" href="$class_w_p_r_1_1_hashing_1_1_hash.html" title="Class Hash zorgt ervoor dat wachtwoorden op een veilige manier worden gehashed doormiddel van het HMA..." alt="" coords="513,96,654,123"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="533,131,364,189,362,184,532,126"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="396,136,341,188,337,184,392,132"/>
+</map>

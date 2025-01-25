@@ -1,0 +1,21 @@
+<map id="WPR.Controllers.Customer.Rental.RentalController" name="WPR.Controllers.Customer.Rental.RentalController">
+<area shape="rect" id="Node000001" title=" " alt="" coords="956,48,1142,91"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="658,31,765,57"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="780,46,956,60,956,65,780,52"/>
+<area shape="rect" id="Node000003" href="$class_w_p_r_1_1_repository_1_1_vehicle_repository.html" title="De VehicleRepository class geeft de methodes voor de interactie met de database voor gebruiker gerela..." alt="" coords="597,81,825,108"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="840,85,932,79,956,77,956,82,933,84,841,90"/>
+<area shape="rect" id="Node000004" href="$interface_w_p_r_1_1_repository_1_1_i_vehicle_repository.html" title=" " alt="" coords="303,5,434,32"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="449,26,511,38,574,55,598,67,636,78,635,83,596,72,572,60,510,43,448,31"/>
+<area shape="rect" id="Node000005" href="$class_w_p_r_1_1_database_1_1_connector.html" title=" " alt="" coords="280,56,457,83"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="473,74,597,84,597,89,472,80"/>
+<area shape="rect" id="Node000006" href="$interface_w_p_r_1_1_database_1_1_i_connector.html" title="Connector class om verbinding te maken met de database, maakt gebruik van de connectie strings die zi..." alt="" coords="38,25,123,52"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="139,42,280,57,279,63,138,47"/>
+<area shape="rect" id="Node000007" href="$class_w_p_r_1_1_data_1_1_env_config.html" title="Leez het .env bestand uit waarin de connectie strings staan naar de database. Deze staan in een apart..." alt="" coords="5,108,156,135"/>
+<area shape="poly" id="edge6_Node000005_Node000007" title=" " alt="" coords="170,102,290,81,291,86,171,108"/>
+<area shape="rect" id="Node000008" href="$class_w_p_r_1_1_cryption_1_1_crypt.html" title="Class Crypt zorgt voor een veilig encryptie en decryptie van strings. De Crptie wordt gedaan door het..." alt="" coords="297,107,440,133"/>
+<area shape="poly" id="edge8_Node000008_Node000007" title=" " alt="" coords="171,118,297,118,297,123,171,124"/>
+<area shape="rect" id="Node000009" href="$class_w_p_r_1_1_services_1_1_email_service.html" title=" " alt="" coords="274,157,463,184"/>
+<area shape="poly" id="edge10_Node000009_Node000007" title=" " alt="" coords="158,136,180,140,274,155,273,161,179,145,157,141"/>
+<area shape="poly" id="edge7_Node000003_Node000008" title=" " alt="" coords="455,111,573,103,596,101,597,106,573,108,455,117"/>
+<area shape="poly" id="edge9_Node000003_Node000009" title=" " alt="" coords="470,151,572,131,664,106,665,111,574,136,471,157"/>
+</map>

@@ -1,0 +1,5 @@
+var class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_change_business_settings_1_1_change_business_request =
+[
+    [ "BusinessInfo", "class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_change_business_settings_1_1_change_business_request.html#a50ecc167d159a0061c487b0d93f5bf73", null ],
+    [ "VehicleManagerInfo", "class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_change_business_settings_1_1_change_business_request.html#a526be9abbf02bbb2089aac5e4af2ca0f", null ]
+];

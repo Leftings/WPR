@@ -1,0 +1,7 @@
+<map id="WPR.Database.Connector" name="WPR.Database.Connector">
+<area shape="rect" id="Node000001" title=" " alt="" coords="30,96,207,123"/>
+<area shape="rect" id="Node000002" href="$interface_w_p_r_1_1_database_1_1_i_connector.html" title="Connector class om verbinding te maken met de database, maakt gebruik van de connectie strings die zi..." alt="" coords="5,5,91,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="69,42,111,94,106,97,65,46"/>
+<area shape="rect" id="Node000003" href="$class_w_p_r_1_1_data_1_1_env_config.html" title="Leez het .env bestand uit waarin de connectie strings staan naar de database. Deze staan in een apart..." alt="" coords="114,5,264,32"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="172,46,131,97,127,94,168,42"/>
+</map>

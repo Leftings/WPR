@@ -1,0 +1,11 @@
+<map id="WPR.Controllers.Customer.AddBusiness.AddBusinessController" name="WPR.Controllers.Customer.AddBusiness.AddBusinessController">
+<area shape="rect" id="Node000001" title="Controller voor het verbinden van het aanmaken van bedrijven op basis van het KVK nummer." alt="" coords="112,203,347,245"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,104,113,131"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="94,137,197,200,195,204,91,141"/>
+<area shape="rect" id="Node000003" href="$interface_w_p_r_1_1_repository_1_1_i_employee_repository.html" title="Interface defining methods voor user gerelateerde database operaties, validatie, user management,..." alt="" coords="137,96,322,139"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="232,154,232,202,227,202,227,154"/>
+<area shape="rect" id="Node000004" href="$class_w_p_r_1_1_services_1_1_email_service.html" title=" " alt="" coords="347,104,536,131"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="419,143,395,163,367,181,311,204,309,200,364,176,392,159,416,139"/>
+<area shape="rect" id="Node000005" href="$class_w_p_r_1_1_data_1_1_env_config.html" title="Leez het .env bestand uit waarin de connectie strings staan naar de database. Deze staan in een apart..." alt="" coords="366,5,517,32"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="444,48,444,104,439,104,439,48"/>
+</map>

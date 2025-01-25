@@ -1,0 +1,5 @@
+<map id="WPR.Database.IConnector" name="WPR.Database.IConnector">
+<area shape="rect" id="Node000001" title="Connector class om verbinding te maken met de database, maakt gebruik van de connectie strings die zi..." alt="" coords="5,5,187,32"/>
+<area shape="rect" id="Node000002" href="$class_w_p_r_1_1_database_1_1_connector.html" title=" " alt="" coords="7,80,185,107"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="99,48,99,80,93,80,93,48"/>
+</map>

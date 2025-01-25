@@ -1,0 +1,6 @@
+var searchData=
+[
+  ['kvk_0',['KvK',['../class_w_p_r_1_1_controllers_1_1_employee_1_1_back_office_1_1sign_up_staff_1_1_sign_up_staff_request.html#ad6be0568bb000689ef903a67de3f5390',1,'WPR.Controllers.Employee.BackOffice.signUpStaff.SignUpStaffRequest.KvK'],['../class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_change_business_settings_1_1_change_business_info.html#a5b95ff5d5f7a20e64250aafa37a3f25a',1,'WPR.Controllers.Employee.VehicleManager.ChangeBusinessSettings.ChangeBusinessInfo.KvK'],['../class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_change_business_settings_1_1_delete_business_request.html#a33496159076d9e503961866c8f68901f',1,'WPR.Controllers.Employee.VehicleManager.ChangeBusinessSettings.DeleteBusinessRequest.KvK'],['../class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_change_business_settings_1_1_delete_vehicle_manager_request.html#acd094741b7d3a708451ff4e6e236edbb',1,'WPR.Controllers.Employee.VehicleManager.ChangeBusinessSettings.DeleteVehicleManagerRequest.KvK']]],
+  ['kvkchecker_1',['KvkChecker',['../class_w_p_r_1_1_utils_1_1_kvk_checker.html',1,'WPR.Utils.KvkChecker'],['../class_w_p_r_1_1_utils_1_1_kvk_checker.html#a615f7bc3551a179f7650703d613504fc',1,'WPR.Utils.KvkChecker.KvkChecker()']]],
+  ['kvkchecker_2ecs_2',['KvkChecker.cs',['../_kvk_checker_8cs.html',1,'']]]
+];

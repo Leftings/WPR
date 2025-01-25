@@ -1,0 +1,16 @@
+<map id="WPR.Repository.DatabaseCheckRepository.DatabaseCheckRepository.DeleteBusiness" name="WPR.Repository.DatabaseCheckRepository.DatabaseCheckRepository.DeleteBusiness">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,88,253,147"/>
+<area shape="rect" id="Node000002" href="$class_w_p_r_1_1_repository_1_1_database_check_repository_1_1_database_check_repository.html#a5fd15b3ae862921144363bb1407c18b0" title=" " alt="" coords="301,5,548,64"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="236,85,302,66,303,71,237,90"/>
+<area shape="rect" id="Node000003" href="$class_w_p_r_1_1_repository_1_1_database_check_repository_1_1_database_check_repository.html#ae2e26046eef328d9b24ced25cad3b2a5" title=" " alt="" coords="301,88,548,147"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="253,115,285,115,285,120,253,120"/>
+<area shape="rect" id="Node000005" href="$class_w_p_r_1_1_repository_1_1_database_check_repository_1_1_database_check_repository.html#a5ef386a9041a706a2db64267c1689bc7" title=" " alt="" coords="891,155,1139,213"/>
+<area shape="poly" id="edge7_Node000001_Node000005" title=" " alt="" coords="240,145,301,156,454,172,609,181,876,185,876,190,609,187,454,178,300,161,239,150"/>
+<area shape="rect" id="Node000004" href="$class_w_p_r_1_1_repository_1_1_database_check_repository_1_1_database_check_repository.html#aeeb328ca72466c0added5450b0af72cd" title=" " alt="" coords="596,88,843,147"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="549,115,580,115,580,120,549,120"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="844,143,877,150,875,155,843,148"/>
+<area shape="rect" id="Node000006" href="$class_w_p_r_1_1_repository_1_1_database_check_repository_1_1_database_check_repository.html#a13ae0d3f4211da655fc83812019febf6" title=" " alt="" coords="891,72,1139,131"/>
+<area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="844,108,876,106,876,112,844,113"/>
+<area shape="rect" id="Node000007" href="$class_w_p_r_1_1_repository_1_1_database_check_repository_1_1_database_check_repository.html#a02f0d55f292e91e17da9fb5fef08f4a8" title=" " alt="" coords="1187,72,1434,131"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="1139,99,1171,99,1171,104,1139,104"/>
+</map>

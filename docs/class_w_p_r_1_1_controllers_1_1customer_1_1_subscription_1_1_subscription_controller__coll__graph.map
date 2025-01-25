@@ -1,0 +1,9 @@
+<map id="WPR.Controllers.customer.Subscription.SubscriptionController" name="WPR.Controllers.customer.Subscription.SubscriptionController">
+<area shape="rect" id="Node000001" title=" " alt="" coords="133,112,358,155"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,13,113,40"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="96,46,210,109,207,114,94,50"/>
+<area shape="rect" id="Node000003" href="$interface_w_p_r_1_1_repository_1_1_i_user_repository.html" title="Interface defining methods voor user gerelateerde database operaties, validatie, user management,..." alt="" coords="136,13,355,40"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="248,55,248,111,243,111,243,55"/>
+<area shape="rect" id="Node000004" href="$interface_w_p_r_1_1_repository_1_1_i_back_office_repository.html" title=" " alt="" coords="379,5,571,48"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="421,58,351,90,297,114,295,109,349,86,419,53"/>
+</map>
