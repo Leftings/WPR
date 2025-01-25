@@ -1,0 +1,5 @@
+<map id="WPR.Data.EnvConfig.Get" name="WPR.Data.EnvConfig.Get">
+<area shape="rect" id="Node000001" title="Haalt de value van de specifieke environement variabelen." alt="" coords="282,5,457,32"/>
+<area shape="rect" id="Node000002" href="$class_w_p_r_1_1_data_1_1_env_config.html#ae47188947dca2b84bcfdbcb3a9ce472e" title="Check om te kijken of alle environment variabelen geconfigureerd zijn." alt="" coords="5,5,234,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="266,21,234,21,234,16,266,16"/>
+</map>
