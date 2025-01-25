@@ -72,5 +72,52 @@ public class AddVehicleControllerTests
 
         Assert.Equal("Vehicle added successfully", response.Message);
     }
+    
+    [Fact]
+    public async Task AddVehicleAsync_InvalidRepositoryResponse_ReturnsBadRequest()
+    {
+        // Arrange
+        
+        _mockEmployeeRepository.Setup(repo => repo.AddVehicleAsync(
+            It.IsAny<int>(),
+            It.IsAny<string>(),
+            It.IsAny<string>(),
+            It.IsAny<string>(),
+            It.IsAny<string>(),
+            It.IsAny<string>(),
+            It.IsAny<double>(),
+            It.IsAny<string>(),
+            It.IsAny<byte[]>(),
+            It.IsAny<int>()
+        )).ReturnsAsync((false, "Failed to add vehicle"));
+
+        var request = new AddVehicleRequest
+        {
+            YoP = 2023,
+            Brand = "Toyota",
+            Type = "Sedan",
+            LicensePlate = "AB-123-CD",
+            Color = "Red",
+            Sort = "Passenger",
+            Price = 50,
+            Description = "A reliable car",
+            Places = 5
+        };
+
+        var vehicleImage = new FormFile(new MemoryStream(new byte[] { 1, 2, 3, 4 }), 0, 4, "vehicleBlob", "image.png")
+        {
+            Headers = new HeaderDictionary(),
+            ContentType = "image/png"
+        };
+
+        // Act
+        var result = await _controller.AddVehicleAsync(request, vehicleImage);
+
+        // Assert
+        var badRequestResult = Assert.IsType<BadRequestObjectResult>(result);
+        var response = Assert.IsType<AddVehicleResponse>(badRequestResult.Value);
+        
+        Assert.Equal("Failed to add vehicle", response.Message);
+    }
 
 }
