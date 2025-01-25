@@ -8,7 +8,7 @@ using WPR.Utils;
 
 namespace Tests.Unit.Register;
 
-public class RegisterTest
+public class RegisterTests
 {
 
     [Fact]
