@@ -797,25 +797,35 @@ public class EmployeeRepository : IEmployeeRepository
 
                 using (var reader = command.ExecuteReader())
                 {
+                    // Check if any record is found
+                    if (!reader.HasRows)
+                    {
+                        return (false, "No data found for the given KvK", new Dictionary<string, object>());
+                    }
+
                     Dictionary<string, object> data = new Dictionary<string, object>();
+
                     while (reader.Read())
                     {
                         for (int i = 0; i < reader.FieldCount; i++)
                         {
-                            data[reader.GetName(i)] = reader.GetValue(i);
+                            // If value is DBNull, replace with a default value (e.g., null or empty string)
+                            object value = reader.IsDBNull(i) ? null : reader.GetValue(i);
+                            data[reader.GetName(i)] = value;
                         }
                     }
-                    return (true, "Succes", data);
+
+                    return (true, "Success", data);
                 }
             }
         }
         catch (MySqlException ex)
         {
-            return (false, ex.Message, new Dictionary<string, object>());
+            return (false, $"MySQL Error: {ex.Message}", new Dictionary<string, object>());
         }
         catch (Exception ex)
         {
-            return (false, ex.Message, new Dictionary<string, object>());
+            return (false, $"General Error: {ex.Message}", new Dictionary<string, object>());
         }
     }
 

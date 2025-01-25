@@ -184,8 +184,9 @@ function ChangeBusinessSettings() {
                 console.log("Parsed vehicleManagerInfo:", vehicleManagerInfo);
                 console.log("Parsed Customers:", customers);
 
-                if (message !== 'Success' || !vehicleManagerInfo) {
-                    console.error("Response message is not 'Success' or vehicleManagerInfo is missing.");
+                // Debugging point
+                if (!vehicleManagerInfo) {
+                    console.error("vehicleManagerInfo is missing or undefined:", vehicleManagerInfo);
                     setError(["Error: Vehicle manager info is missing or response message is not 'Success'."]);
                     return;
                 }
@@ -198,6 +199,9 @@ function ChangeBusinessSettings() {
                     setError(["Business number is missing in vehicle manager info."]);
                     return;
                 }
+
+                // Set the business info here
+                setBusinessInfo(vehicleManagerInfo);  // <-- Ensure that this line is working
 
                 if (customers && customers.length > 0) {
                     setCustomers(customers);
@@ -231,43 +235,39 @@ function ChangeBusinessSettings() {
     }, []);
 
     const onSubmit = async (event) => {
-    event.preventDefault();
-    try
-    {
-      if (password1 === password2)
-      {
-        const userId = await GetUserId();
+        event.preventDefault();
 
-        if (abonnement == 0)
-        {
-          setAbonnement(businessInfo.Abonnement);
-          console.log('abonnement set');
-        }
+        // Step 1: Check if the passwords match
+        if (password1 === password2) {
+            const userId = await GetUserId();
 
-        const message = await pushWithBodyKind(`${BACKEND_URL}/api/ChangeBusinessSettings/ChangeBusinessInfo`, data, 'PUT');
-        
-        if (message.message === 'succes')
-        {
-          navigate('/VehicleManager');
+            if (abonnement == 0) {
+                setAbonnement(businessInfo.Abonnement);
+                console.log('abonnement set');
+            }
+
+            // Step 2: Send the updated vehicle manager info
+            const updatedInfo = {
+                businessName: businessName || vehicleManagerInfo.BusinessName,
+                domain: domain || vehicleManagerInfo.Domain,
+                contactEmail: newEmail || vehicleManagerInfo.Email, // Use the new email
+                password: password1, // Use new password
+                abonnement: selectedSubscription || businessInfo.Abonnement
+            };
+
+            const message = await pushWithBodyKind(`${BACKEND_URL}/api/ChangeBusinessSettings/ChangeBusinessInfo`, updatedInfo, 'PUT');
+
+            if (message.message === 'succes') {
+                navigate('/VehicleManager');
+            } else {
+                setError([message.message]);
+            }
+        } else {
+            setError(["Wachtwoorden komen niet overeen"]);
         }
-        else
-        {
-          setError([message.message]);
-        }
-      }
-      else
-      {
-        setError(["Wachtwoorden komen niet overeen"]);
-      }
     }
-    catch (error)
-    {
-      console.log(error.message);
-      setError(["Er is een fout opgetreden bij het wijzigen van de gegevens"]);
-    }
-  }
 
-  const handleDelete = async (type) => {
+    const handleDelete = async (type) => {
       const confirmDelete = window.confirm(`Weet je zeker dat je het ${type}account wilt verwijderen?\nVerwijderde account kunnen niet meer terug gebracht worden.`);
       if (!confirmDelete) return;
       console.log('VM info: ', vehicleManagerInfo);
@@ -350,6 +350,7 @@ function ChangeBusinessSettings() {
         const filledInDomain = '@' + email.split("@").pop();
         console.log("Extracted domain from email:", filledInDomain);
 
+        // Ensure businessInfo and its domain exist before proceeding
         if (!businessInfo || !businessInfo.Domain) {
             console.log("Business domain is undefined or not available:", businessInfo);
             setError(["Business domain is not available"]);
@@ -475,7 +476,18 @@ function ChangeBusinessSettings() {
 
             <div className='registrateFormatFooter'>
                 {error && <p style={{color: 'red'}}>{error}</p>}
-                <button className='cta-button' type="button" onClick={async () => {if (await checkNewEmail(newEmail)){await onSubmit(new Event('submit'));}}}>Opslaan wijzigingen</button>
+                <button
+                    className='cta-button'
+                    type="button"
+                    onClick={async () => {
+                        if (await checkNewEmail(newEmail)) {
+                            await onSubmit(new Event('submit'));
+                        }
+                    }}
+                >
+                    Opslaan wijzigingen
+                </button>
+
                 <button id="buttonDelete" type="button" onClick={() => {handleDelete('VehicleManager');}}>Verwijderen Wagenparkbeheerder Account</button>
             </div>
         </div>

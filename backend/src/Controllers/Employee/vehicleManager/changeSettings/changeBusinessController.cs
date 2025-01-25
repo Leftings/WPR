@@ -25,42 +25,29 @@ public class ChangeBusinessSettingsController : ControllerBase
     {
         try
         {
+            Console.WriteLine($"Fetching KvK for VehicleManager ID: {id}");
             (int StatusCode, string Message, int KvK) kvkResponse = _employeeRepository.GetKvK(id);
 
             if (kvkResponse.StatusCode == 200)
             {
+                Console.WriteLine($"KvK retrieved: {kvkResponse.KvK}");
                 (bool Status, string Message, Dictionary<string, object> Data) businessInfo = _employeeRepository.GetBusinessInfo(kvkResponse.KvK);
 
                 if (businessInfo.Status)
                 {
-                    (int StatusCode, string Message, Dictionary<string, object> Data) abonnementInfo = _employeeRepository.GetAbonnementType(Convert.ToInt32(businessInfo.Data["Abonnement"]));
-
-                    if (abonnementInfo.StatusCode == 200)
-                    {
-                        Dictionary<string, object> data = businessInfo.Data;
-
-                        foreach (var element in abonnementInfo.Data)
-                        {
-                            if (!data.ContainsKey(element.Key))
-                            {
-                                data[element.Key] = element.Value;
-                            }
-                        }
-
-                        return StatusCode(200, new { data });
-                    }
-                    return StatusCode(abonnementInfo.StatusCode, new { message = abonnementInfo.Message });
+                    return StatusCode(200, new { data = businessInfo.Data });
                 }
-                return BadRequest(new { message = businessInfo.Message });
+                else
+                {
+                    return BadRequest(new { message = businessInfo.Message });
+                }
             }
+
             return StatusCode(kvkResponse.StatusCode, kvkResponse.Message);
-        }
-        catch (OverflowException ex)
-        {
-            return StatusCode(500, new { message = ex.Message });
         }
         catch (Exception ex)
         {
+            Console.WriteLine($"Error: {ex.Message}");
             return StatusCode(500, new { message = ex.Message });
         }
     }
