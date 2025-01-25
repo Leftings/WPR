@@ -1,5 +1,0 @@
-var namespace_w_p_r_1_1_controllers_1_1_employee_1_1_front_office_1_1_add_intake =
-[
-    [ "AddIntakeController", "class_w_p_r_1_1_controllers_1_1_employee_1_1_front_office_1_1_add_intake_1_1_add_intake_controller.html", "class_w_p_r_1_1_controllers_1_1_employee_1_1_front_office_1_1_add_intake_1_1_add_intake_controller" ],
-    [ "AddIntakeRequest", "class_w_p_r_1_1_controllers_1_1_employee_1_1_front_office_1_1_add_intake_1_1_add_intake_request.html", null ]
-];

@@ -1,6 +1,0 @@
-<map id="WPR.Repository.EmployeeRepository.AddBusiness" name="WPR.Repository.EmployeeRepository.AddBusiness">
-<area shape="rect" id="Node000001" title="Maakt een connectie met de database door middel van de connector en de query. De gegevens worden uit ..." alt="" coords="5,29,253,72"/>
-<area shape="rect" id="Node000002" href="$namespace_w_p_r_1_1_controllers_1_1_customer_1_1_add_business.html#af184e38969a148e23ef1fe5429a74898" title="Body voor het toevoegen van een bedrijf." alt="" coords="301,29,529,72"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="253,48,285,48,285,53,253,53"/>
-<area shape="poly" id="edge2_Node000002_Node000002" title=" " alt="" coords="361,29,359,19,368,10,387,5,415,3,445,5,464,11,462,16,444,10,415,8,388,10,371,15,364,21,366,28"/>
-</map>

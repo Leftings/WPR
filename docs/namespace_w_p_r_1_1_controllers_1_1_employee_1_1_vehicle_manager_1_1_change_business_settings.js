@@ -1,9 +1,0 @@
-var namespace_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_change_business_settings =
-[
-    [ "ChangeBusinessInfo", "class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_change_business_settings_1_1_change_business_info.html", null ],
-    [ "ChangeBusinessRequest", "class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_change_business_settings_1_1_change_business_request.html", null ],
-    [ "ChangeBusinessSettingsController", "class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_change_business_settings_1_1_ch7c94b582bf64dbc7511ca4ef6a96e8e5.html", "class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_change_business_settings_1_1_ch7c94b582bf64dbc7511ca4ef6a96e8e5" ],
-    [ "ChangeVehicleManagerInfo", "class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_change_business_settings_1_1_change_vehicle_manager_info.html", null ],
-    [ "DeleteBusinessRequest", "class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_change_business_settings_1_1_delete_business_request.html", null ],
-    [ "DeleteVehicleManagerRequest", "class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_change_business_settings_1_1_delete_vehicle_manager_request.html", null ]
-];

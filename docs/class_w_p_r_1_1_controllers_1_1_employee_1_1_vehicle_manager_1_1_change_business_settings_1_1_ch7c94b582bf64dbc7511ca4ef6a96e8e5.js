@@ -1,4 +1,0 @@
-var class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_change_business_settings_1_1_ch7c94b582bf64dbc7511ca4ef6a96e8e5 =
-[
-    [ "DeleteUserAsync", "class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_change_business_settings_1_1_ch7c94b582bf64dbc7511ca4ef6a96e8e5.html#a8efb639fc03dd7378e26e26d37840bf8", null ]
-];
