@@ -32,7 +32,7 @@ public class AddIntakeControllerTests
     }
 
     [Fact]
-    public async Task AddIntakeAsync_ReturnsOk_WhenAddIntakeIsSuccessfulWithNoDamage()
+    public async Task AddIntakeAsyncWithoutDamage_ReturnsOk_WhenAddIntakeIsSuccessful()
     {
 
         //Arrange

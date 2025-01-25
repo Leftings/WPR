@@ -63,9 +63,9 @@ public class AddVehicleController : ControllerBase
 
             if (status.status)
             {
-                return Ok(new { status.message });
+                return Ok(new AddVehicleResponse{ Message = status.message });
             }
-            return BadRequest(new { status.message });
+            return BadRequest(new AddVehicleResponse{ Message = status.message });
         }
         catch (Exception ex)
         {
