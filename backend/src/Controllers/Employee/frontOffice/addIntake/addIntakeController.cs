@@ -51,9 +51,13 @@ public class AddIntakeController : ControllerBase
 
             if (status.status)
             {
-                return Ok(new { status.message });
+                return Ok(new AddIntakeResponse { Message = status.message });
             }
-            return BadRequest(new { status.message });
+            return BadRequest(new AddIntakeErrorResponse
+            {
+                Status = false,
+                Message = status.message
+            });
         }
         catch (Exception ex)
         {
