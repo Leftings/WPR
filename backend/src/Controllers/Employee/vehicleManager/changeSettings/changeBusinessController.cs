@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using MySql.Data.MySqlClient;
 using WPR.Repository;
 using WPR.Repository.DatabaseCheckRepository;
 using WPR.Utils;
@@ -57,7 +58,7 @@ public class ChangeBusinessSettingsController : ControllerBase
     {
         if (request == null)
         {
-            return BadRequest("Body can not be null"); 
+            return BadRequest("Body cannot be null"); 
         }
         if (!string.IsNullOrEmpty(request.VehicleManagerInfo.Password))
         {
@@ -67,12 +68,11 @@ public class ChangeBusinessSettingsController : ControllerBase
             {
                 return StatusCode(412, new { message = result.Message });
             }
-
         }
 
         (int StatusCode, string Message) updated = await _userRepository.ChangeBusinessInfo(request);
-        
-        return StatusCode(updated.StatusCode, new { message = updated.Message} );
+    
+        return StatusCode(updated.StatusCode, new { message = updated.Message });
     }
 
     /// <summary>

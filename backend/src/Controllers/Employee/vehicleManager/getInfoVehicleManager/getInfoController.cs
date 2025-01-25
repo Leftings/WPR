@@ -54,7 +54,8 @@ public class GetInfoVehicleManagerController : ControllerBase
                 {
                     vehicleManagerInfo.Id,
                     vehicleManagerInfo.Email,
-                    vehicleManagerInfo.Business
+                    vehicleManagerInfo.Business,
+                    vehicleManagerInfo.Password  
                 },
                 customers = customers?.Select(c => new { c.Id, c.Email, c.Kvk }) ?? Enumerable.Empty<object>()
             });

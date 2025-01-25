@@ -964,107 +964,97 @@ public class UserRepository : IUserRepository
         }
     }
 
-    private async Task<(int StatusCode, string Message)> ChangeBusinessInfo(ChangeBusinessInfo request,
-        MySqlConnection connection)
+   public async Task<(int StatusCode, string Message)> ChangeBusinessInfo(ChangeBusinessRequest request)
+{
+    try
     {
-        try
+        // Step 1: Fetch the KvK from the VehicleManager table using the VehicleManagerInfo ID
+        string query = "SELECT Business FROM VehicleManager WHERE ID = @I";
+
+        using (var connection = (MySqlConnection)_connector.CreateDbConnection())  // Cast to MySqlConnection
+        using (var transaction = connection.BeginTransaction())
+        using (var command = new MySqlCommand(query, connection))  // No cast needed here
         {
-            List<object[]> data = new List<object[]>();
+            command.Parameters.AddWithValue("@I", request.VehicleManagerInfo?.ID);
 
-            // gegevens worden uit de lijst gehaald (naam van de collom, de nieuwe waarde, soort waarde)
-            foreach (var propertyInfo in typeof(ChangeBusinessInfo).GetProperties())
+            // Execute the reader to fetch the KvK
+            using (var reader = await command.ExecuteReaderAsync())
             {
-                var propertyName = propertyInfo.Name;
-                var propertyValue = propertyInfo.GetValue(request);
-                var propertyType = propertyInfo.PropertyType;
-
-                if (!propertyValue.Equals(""))
+                if (await reader.ReadAsync())
                 {
-                    data.Add(new object[] { propertyName, propertyValue, propertyType });
-                }
-            }
+                    // Fetch KvK value from the result
+                    request.BusinessInfo.KvK = Convert.ToInt32(reader.GetValue(0));
 
-            if (data.Count > 1)
-            {
-                using (var command = new MySqlCommand(CreateUpdateQuery("Business", data), connection))
-                {
-                    if (await command.ExecuteNonQueryAsync() > 0)
+                    // Close the reader once KvK is fetched
+                    await reader.CloseAsync();
+
+                    // Step 2: Call the method to update business data using KvK
+                    var changeBusiness = await ChangeBusinessData(request.BusinessInfo, connection);
+
+                    // Step 3: Check the result of the business update
+                    if (changeBusiness.StatusCode != 200)
                     {
-                        return (200, "Business Updated");
+                        transaction.Rollback();  // Rollback if business update fails
+                        return (changeBusiness.StatusCode, changeBusiness.Message);
                     }
-
-                    return (417, "Business Not Updated");
+                    else
+                    {
+                        // Commit transaction if update is successful
+                        transaction.Commit();
+                        return (200, "Update Successful");
+                    }
                 }
-            }
 
-            return (200, "No Data To Update");
-        }
-        catch (MySqlException ex)
-        {
-            return (500, ex.Message);
-        }
-        catch (Exception ex)
-        {
-            return (500, ex.Message);
+                // Rollback transaction if KvK isn't found
+                transaction.Rollback();
+                return (404, "VehicleManager not found or KvK is missing");
+            }
         }
     }
-
-    public async Task<(int StatusCode, string Message)> ChangeBusinessInfo(ChangeBusinessRequest request)
+    catch (MySqlException ex)
     {
+        return (500, ex.Message);  // Catch database-related exceptions
+    }
+    catch (OverflowException ex)
+    {
+        return (500, ex.Message);  // Catch overflow exceptions
+    }
+    catch (Exception ex)
+    {
+        return (500, ex.Message);  // Catch all other exceptions
+    }
+}
+
+private async Task<(int StatusCode, string Message)> ChangeBusinessData(ChangeBusinessInfo businessInfo, MySqlConnection connection)
+{
+    string updateQuery = "UPDATE Business SET BusinessName = @BusinessName, Adres = @Adres, ContactEmail = @ContactEmail, Abonnement = @Abonnement WHERE KvK = @KvK";
+
+    using (var command = new MySqlCommand(updateQuery, connection))
+    {
+        command.Parameters.AddWithValue("@KvK", businessInfo.KvK);
+        command.Parameters.AddWithValue("@BusinessName", businessInfo.BusinessName);
+        command.Parameters.AddWithValue("@Adres", businessInfo.Adres);
+        command.Parameters.AddWithValue("@ContactEmail", businessInfo.ContactEmail);
+        command.Parameters.AddWithValue("@Abonnement", businessInfo.Abonnement);
+
         try
         {
-            string query = "SELECT Business FROM VehicleManager WHERE ID = @I";
-            using (var connection = _connector.CreateDbConnection())
-            using (var command = new MySqlCommand(query, (MySqlConnection)connection))
-            using (var transaction = connection.BeginTransaction())
+            int rowsAffected = await command.ExecuteNonQueryAsync();
+            if (rowsAffected > 0)
             {
-                command.Parameters.AddWithValue("@I", request.VehicleManagerInfo.ID);
-
-                using (var reader = await command.ExecuteReaderAsync())
-                {
-                    if (await reader.ReadAsync())
-                    {
-                        request.BusinessInfo.KvK = Convert.ToInt32(reader.GetValue(0));
-                        await reader.CloseAsync();
-                        var changeVehicleManager = ChangeVehicleManagerInfo(request.VehicleManagerInfo,
-                            (MySqlConnection)_connector.CreateDbConnection());
-                        var changeBusiness = ChangeBusinessInfo(request.BusinessInfo,
-                            (MySqlConnection)_connector.CreateDbConnection());
-
-                        Task.WaitAll(changeVehicleManager, changeBusiness);
-
-                        if (changeVehicleManager.Result.StatusCode != 200)
-                        {
-                            return (changeVehicleManager.Result.StatusCode, changeVehicleManager.Result.Message);
-                        }
-                        else if (changeBusiness.Result.StatusCode != 200)
-                        {
-                            return (changeBusiness.Result.StatusCode, changeBusiness.Result.Message);
-                        }
-                        else
-                        {
-                            return (200, "Update Succesfull");
-                        }
-                    }
-
-                    transaction.Rollback();
-                    return (500, "Unexpected Error Detected");
-                }
+                return (200, "Business information updated successfully");
+            }
+            else
+            {
+                return (404, "Business not found with the specified KvK");
             }
         }
         catch (MySqlException ex)
         {
-            return (500, ex.Message);
-        }
-        catch (OverflowException ex)
-        {
-            return (500, ex.Message);
-        }
-        catch (Exception ex)
-        {
-            return (500, ex.Message);
+            return (500, $"Database error: {ex.Message}");
         }
     }
+}
 
     public async Task<List<string>> GetAllSubscriptionsAsync()
     {

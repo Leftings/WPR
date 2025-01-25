@@ -37,74 +37,71 @@ function GetUserId() {
 }
 
 function ChangeBusinessSettings() {
-  const navigate = useNavigate();
-  const [password1, setPassword1] = useState('');
-  const [password2, setPassword2] = useState('');
-  const [error, setError] = useState([]);
-  const [businessName, setBusinessName] = useState('');
-  const [abonnement, setAbonnement] = useState('');
-  const [businessInfo, setBusinessInfo] = useState({});
-  const [domain, setDomain] = useState('');
-  const [adres, setAdres] = useState('');
-  const [contactEmail, setContactEmail] = useState('');
-  const [vehicleManagerInfo, setVehicleManagerInfo] = useState({});
-  const [newEmail, setNewEmail] = useState('');
-  const [subscriptions, SetSubscriptions] = useState([]);
-  const [selectedSubscription, SetSelectedSubscription] = useState('');
-  const [updatedCustomers, setUpdatedCustomers] = useState([]); 
-  const [customers, setCustomers] = useState([]); 
-
-
+    const navigate = useNavigate();
+    const [password1, setPassword1] = useState('');
+    const [password2, setPassword2] = useState('');
+    const [error, setError] = useState([]);
+    const [businessName, setBusinessName] = useState('');
+    const [abonnement, setAbonnement] = useState('');
+    const [businessInfo, setBusinessInfo] = useState({});
+    const [domain, setDomain] = useState('');
+    const [adres, setAdres] = useState('');
+    const [contactEmail, setContactEmail] = useState('');
+    const [vehicleManagerInfo, setVehicleManagerInfo] = useState({});
+    const [newEmail, setNewEmail] = useState('');
+    const [subscriptions, SetSubscriptions] = useState([]);
+    const [selectedSubscription, SetSelectedSubscription] = useState('');
+    const [updatedCustomers, setUpdatedCustomers] = useState([]);
+    const [customers, setCustomers] = useState([]);
 
 
     useEffect(() => {
-      fetch(`${BACKEND_URL}/api/Cookie/IsVehicleManager` , {
-          method: 'GET',
-          headers: {
-              'Content-Type': 'application/json',
-          },
-          credentials: 'include',
-      })
-          .then(response => {
-              if (!response.ok) {
-                  return response.json().then(data => {
-                    console.log(data);
-                    throw new Error(data?.message || 'No Cookie'); 
-                  });
+        fetch(`${BACKEND_URL}/api/Cookie/IsVehicleManager`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            credentials: 'include',
+        })
+            .then(response => {
+                if (!response.ok) {
+                    return response.json().then(data => {
+                        console.log(data);
+                        throw new Error(data?.message || 'No Cookie');
+                    });
                 }
-              return response.json();
-          })
-          .catch(() => {
-              alert("Cookie was niet geldig");
-              navigate('/');
-          })
-      }, [navigate]);
+                return response.json();
+            })
+            .catch(() => {
+                alert("Cookie was niet geldig");
+                navigate('/');
+            })
+    }, [navigate]);
 
-  useEffect(() => {
-    async function fetchSubscriptions() {
-        try {
-            const response = await  fetch(`${BACKEND_URL}/api/Subscription/GetSubscriptions`)
-            if (!response.ok) {
-                throw new Error('Failed to fetch subcriptions')
+    useEffect(() => {
+        async function fetchSubscriptions() {
+            try {
+                const response = await fetch(`${BACKEND_URL}/api/Subscription/GetSubscriptions`)
+                if (!response.ok) {
+                    throw new Error('Failed to fetch subcriptions')
+                }
+                const responseData = await response.json();
+                console.log(responseData)
+                SetSubscriptions(responseData.data);
+            } catch (error) {
+                console.log(error);
             }
-            const responseData = await response.json();
-            console.log(responseData)
-            SetSubscriptions(responseData.data);
-        } catch (error) {
-            console.log(error);
         }
-    }
-    
-    fetchSubscriptions();
-  }, []);
 
+        fetchSubscriptions();
+    }, []);
 
 
     const handleEmailChange = (index, newEmail) => {
         const updatedList = [...updatedCustomers];
 
         if (!updatedList[index]) {
-            updatedList[index] = {}; 
+            updatedList[index] = {};
         }
 
         updatedList[index].email = newEmail;
@@ -116,7 +113,7 @@ function ChangeBusinessSettings() {
         const updatedList = [...updatedCustomers];
 
         if (!updatedList[index]) {
-            updatedList[index] = {};  
+            updatedList[index] = {};
         }
 
         updatedList[index].password = newPassword;
@@ -180,11 +177,10 @@ function ChangeBusinessSettings() {
                 const data = await response.json();
                 console.log("Parsed API Response:", data);
 
-                const { message, vehicleManagerInfo, customers } = data;
+                const {message, vehicleManagerInfo, customers} = data;
                 console.log("Parsed vehicleManagerInfo:", vehicleManagerInfo);
                 console.log("Parsed Customers:", customers);
 
-                // Debugging point
                 if (!vehicleManagerInfo) {
                     console.error("vehicleManagerInfo is missing or undefined:", vehicleManagerInfo);
                     setError(["Error: Vehicle manager info is missing or response message is not 'Success'."]);
@@ -200,8 +196,7 @@ function ChangeBusinessSettings() {
                     return;
                 }
 
-                // Set the business info here
-                setBusinessInfo(vehicleManagerInfo);  // <-- Ensure that this line is working
+                setBusinessInfo(vehicleManagerInfo);
 
                 if (customers && customers.length > 0) {
                     setCustomers(customers);
@@ -234,80 +229,111 @@ function ChangeBusinessSettings() {
         fetchBusinessData();
     }, []);
 
+
     const onSubmit = async (event) => {
         event.preventDefault();
 
-        // Step 1: Check if the passwords match
-        if (password1 === password2) {
-            const userId = await GetUserId();
+        if (password1 !== password2) {
+            setError(["Passwords do not match"]);
+            return;
+        }
 
-            if (abonnement == 0) {
-                setAbonnement(businessInfo.Abonnement);
-                console.log('abonnement set');
+        try {
+            // Step 1: Fetch the vehicle manager info again
+            const userId = await GetUserId();
+            if (!userId) {
+                throw new Error("User ID is undefined or not found!");
             }
 
-            // Step 2: Send the updated vehicle manager info
+            const url = `${BACKEND_URL}/api/GetInfoVehicleManager/GetAllInfo?id=${userId}`;
+            const response = await fetch(url);
+            if (!response.ok) {
+                throw new Error(`API request failed with status: ${response.status}`);
+            }
+
+            const data = await response.json();
+            const {vehicleManagerInfo} = data;
+
+            if (!vehicleManagerInfo) {
+                throw new Error("Vehicle Manager Info is missing or undefined.");
+            }
+
+            console.log("Fetched vehicleManagerInfo:", vehicleManagerInfo);
+
+            // Step 2: Construct updated info in the required format
             const updatedInfo = {
-                businessName: businessName || vehicleManagerInfo.BusinessName,
-                domain: domain || vehicleManagerInfo.Domain,
-                contactEmail: newEmail || vehicleManagerInfo.Email, // Use the new email
-                password: password1, // Use new password
-                abonnement: selectedSubscription || businessInfo.Abonnement
+                VehicleManagerInfo: {
+                    ID: vehicleManagerInfo?.id, // Correct field name: ID
+                    Password: password1 || vehicleManagerInfo?.password, // New password or existing one
+                    Email: contactEmail || vehicleManagerInfo?.email, // Updated email or existing one
+                },
+                BusinessInfo: {
+                    KvK: vehicleManagerInfo?.business || 'Default Value', // Default if missing
+                    Abonnement: selectedSubscription || businessInfo?.Abonnement, // Selected or existing subscription
+                    ContactEmail: contactEmail || businessInfo?.ContactEmail, // Updated contact email or existing one
+                    Adres: adres || businessInfo?.Adres, // Updated address or existing one
+                    BusinessName: businessName || businessInfo?.BusinessName, // New or existing business name
+                }
             };
 
-            const message = await pushWithBodyKind(`${BACKEND_URL}/api/ChangeBusinessSettings/ChangeBusinessInfo`, updatedInfo, 'PUT');
+            // Log the updated info before sending
+            console.log("Updated Info JSON to be sent:", updatedInfo);
 
-            if (message.message === 'succes') {
+            // Step 3: Send the data to the correct API route (ChangeBusinessInfo)
+            const updateResponse = await fetch(`${BACKEND_URL}/api/ChangeBusinessSettings/ChangeBusinessInfo
+`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(updatedInfo),
+            });
+
+            if (updateResponse.ok) {
                 navigate('/VehicleManager');
             } else {
-                setError([message.message]);
+                const errorData = await updateResponse.json();
+                setError([errorData.message]);
             }
-        } else {
-            setError(["Wachtwoorden komen niet overeen"]);
+
+        } catch (error) {
+            setError([error.message]);
         }
-    }
+    };
 
     const handleDelete = async (type) => {
-      const confirmDelete = window.confirm(`Weet je zeker dat je het ${type}account wilt verwijderen?\nVerwijderde account kunnen niet meer terug gebracht worden.`);
-      if (!confirmDelete) return;
-      console.log('VM info: ', vehicleManagerInfo);
+        const confirmDelete = window.confirm(`Weet je zeker dat je het ${type}account wilt verwijderen?\nVerwijderde account kunnen niet meer terug gebracht worden.`);
+        if (!confirmDelete) return;
+        console.log('VM info: ', vehicleManagerInfo);
 
-      let data;
-      if (type === 'Business')
-      {
-        data = {
-            KvK: businessInfo.KvK,
-        };
-      }
-      else
-      {
-        data = {
-            ID: vehicleManagerInfo.ID,
-            KvK: vehicleManagerInfo.Business,
+        let data;
+        if (type === 'Business') {
+            data = {
+                KvK: businessInfo.KvK,
+            };
+        } else {
+            data = {
+                ID: vehicleManagerInfo.ID,
+                KvK: vehicleManagerInfo.Business,
+            }
         }
-      }
 
-      console.log(data);
-      try
-      {
-        const response = await pushWithBodyKind(`${BACKEND_URL}/api/ChangeBusinessSettings/Delete${type}`, data, 'DELETE');
-        console.log(response);
+        console.log(data);
+        try {
+            const response = await pushWithBodyKind(`${BACKEND_URL}/api/ChangeBusinessSettings/Delete${type}`, data, 'DELETE');
+            console.log(response);
 
-        if (response.errorDetected)
-        {
-          const errorMessage = response.errors.join(', ');
-          setError(`Account verwijderen is mislukt: \n${errorMessage}`);
+            if (response.errorDetected) {
+                const errorMessage = response.errors.join(', ');
+                setError(`Account verwijderen is mislukt: \n${errorMessage}`);
+            } else {
+                navigate('/VehicleManager');
+            }
+        } catch (error) {
+            const errorMessage = response.errors.join(', ');
+            setError(`Account verwijderen is mislukt: \n${errorMessage}`);
         }
-        else
-        {
-          navigate('/VehicleManager');
-        }
-      }
-      catch (error) {
-          const errorMessage = response.errors.join(', ');
-          setError(`Account verwijderen is mislukt: \n${errorMessage}`);
-      }
-  };
+    };
     const handleCustomerUpdate = async (customerId, index) => {
         const customerData = {
             Email: updatedCustomers[index]?.email || customers[index].email,
@@ -317,7 +343,7 @@ function ChangeBusinessSettings() {
         try {
             const response = await fetch(`${BACKEND_URL}/api/GetInfoVehicleManager/UpdateCustomer?id=${encodeURIComponent(customerId)}`, {
                 method: 'PUT',
-                headers: { 'Content-Type': 'application/json' },
+                headers: {'Content-Type': 'application/json'},
                 body: JSON.stringify(customerData),
             });
 
@@ -380,123 +406,139 @@ function ChangeBusinessSettings() {
 
 
     return (
-    <>
-    <GeneralHeader />
-    <main>
-      <div className='Body'>
-        <div className='registrateFormatHeader'>
-            <h1>Wijzigen Bedrijfsgegevens</h1>
-        </div>
+        <>
+            <GeneralHeader/>
+            <main>
+                <div className='Body'>
+                    <div className='registrateFormatHeader'>
+                        <h1>Wijzigen Bedrijfsgegevens</h1>
+                    </div>
 
-        <div className='registrateFormat'>
-            <label htmlFor='inputBusinessName'>Wijzigen Bedrijfsnaam</label>
-            <input type='text' id='inputBusinessName' value={businessName} onChange={(e) => setBusinessName(e.target.value)} placeholder={businessInfo.BusinessName}></input>
+                    <div className='registrateFormat'>
+                        <label htmlFor='inputBusinessName'>Wijzigen Bedrijfsnaam</label>
+                        <input type='text' id='inputBusinessName' value={businessName}
+                               onChange={(e) => setBusinessName(e.target.value)}
+                               placeholder={businessInfo.BusinessName}></input>
 
-            <label htmlFor='inputSubscriptionType'>Abonnement</label>
-            <select id='inputSubscriptionType' value={selectedSubscription}
-                    onChange={(e) => SetSelectedSubscription(e.target.value)}>
-                <option value={businessInfo.Abonnement}>Huidig: {businessInfo.Type}</option>
-                {subscriptions.map((sub, index) => (
-                    <option key={index} value={index +1}>
-                        {sub}
-                    </option>
-                ))}
-            </select>
+                        <label htmlFor='inputSubscriptionType'>Abonnement</label>
+                        <select id='inputSubscriptionType' value={selectedSubscription}
+                                onChange={(e) => SetSelectedSubscription(e.target.value)}>
+                            <option value={businessInfo.Abonnement}>Huidig: {businessInfo.Type}</option>
+                            {subscriptions.map((sub, index) => (
+                                <option key={index} value={index + 1}>
+                                    {sub}
+                                </option>
+                            ))}
+                        </select>
 
-            <label htmlFor='inputAdres'>Adres Wijzigen</label>
-            <input type='text' id='inputAdres' value={adres} onChange={(e) => setAdres(e.target.value)} placeholder={businessInfo.Adres}></input>
+                        <label htmlFor='inputAdres'>Adres Wijzigen</label>
+                        <input type='text' id='inputAdres' value={adres} onChange={(e) => setAdres(e.target.value)}
+                               placeholder={businessInfo.Adres}></input>
 
-            <label htmlFor='inputContactEmail'>Wijzigen Contact Email</label>
-            <input type='text' id='inputContactEmail' value={contactEmail} onChange={(e) => setContactEmail(e.target.value)} placeholder={businessInfo.ContactEmail}></input>
+                        <label htmlFor='inputContactEmail'>Wijzigen Contact Email</label>
+                        <input type='text' id='inputContactEmail' value={contactEmail}
+                               onChange={(e) => setContactEmail(e.target.value)}
+                               placeholder={businessInfo.ContactEmail}></input>
 
-            {/*<label htmlFor='inputDomain'>Wijzigen Domein</label>
+                        {/*<label htmlFor='inputDomain'>Wijzigen Domein</label>
             <input type='text' id='inputDomain' value={domain} onChange={(e) => setDomain(e.target.value)} placeholder={`Huidiig: ${businessInfo.Domain}`}></input>*/}
 
-            <div className='registrateFormatFooter'>
-              {error && <p style={{color: 'red'}}>{error}</p>}
-              <button className='cta-button' type="button" onClick={onSubmit}>Opslaan wijzigingen</button>
-              <button id="buttonDelete" type="button" onClick={() => {handleDelete('Business');}}>Verwijderen Bedrijfs Account</button>
-            </div>
+                        <div className='registrateFormatFooter'>
+                            {error && <p style={{color: 'red'}}>{error}</p>}
+                            <button className='cta-button' type="button" onClick={onSubmit}>Opslaan wijzigingen</button>
+                            <button id="buttonDelete" type="button" onClick={() => {
+                                handleDelete('Business');
+                            }}>Verwijderen Bedrijfs Account
+                            </button>
+                        </div>
 
-          </div>
-          <div className='customer-update-container'>
-              {error && <div className="error">{error}</div>}
+                    </div>
+                    <div className='customer-update-container'>
+                        {error && <div className="error">{error}</div>}
 
-              <h1>Update Customer gegevens</h1>
-              {customers && customers.length > 0 ? (
-                  <div className="customer-list">
-                      {customers.map((customer, index) => (
-                          <div key={customer.id} className="registrateFormat">
-                              <label htmlFor={`inputCustomerEmail${index}`}>Customer Email</label>
-                              <input
-                                  type="email"
-                                  id={`inputCustomerEmail${index}`}
-                                  value={updatedCustomers[index]?.email || customer.email}
-                                  onChange={(e) => handleEmailChange(index, e.target.value)}
-                                  placeholder="Enter new email"
-                              />
+                        <h1>Update Customer gegevens</h1>
+                        {customers && customers.length > 0 ? (
+                            <div className="customer-list">
+                                {customers.map((customer, index) => (
+                                    <div key={customer.id} className="registrateFormat">
+                                        <label htmlFor={`inputCustomerEmail${index}`}>Customer Email</label>
+                                        <input
+                                            type="email"
+                                            id={`inputCustomerEmail${index}`}
+                                            value={updatedCustomers[index]?.email || customer.email}
+                                            onChange={(e) => handleEmailChange(index, e.target.value)}
+                                            placeholder="Enter new email"
+                                        />
 
-                              <label htmlFor={`inputCustomerPassword${index}`}>Customer Password</label>
-                              <input
-                                  type="password"
-                                  id={`inputCustomerPassword${index}`}
-                                  value={updatedCustomers[index]?.password || ""}
-                                  onChange={(e) => handlePasswordChange(index, e.target.value)}
-                                  placeholder="Enter new password"
-                              />
+                                        <label htmlFor={`inputCustomerPassword${index}`}>Customer Password</label>
+                                        <input
+                                            type="password"
+                                            id={`inputCustomerPassword${index}`}
+                                            value={updatedCustomers[index]?.password || ""}
+                                            onChange={(e) => handlePasswordChange(index, e.target.value)}
+                                            placeholder="Enter new password"
+                                        />
 
-                              {/* Add individual update button for each customer */}
-                              <div className="update-button-container">
-                                  <button
-                                      onClick={() => handleCustomerUpdate(customer.id, index)}
-                                      className="cta-button">
-                                      Update Customer
-                                  </button>
-                              </div>
-                          </div>
-                      ))}
-                  </div>
-              ) : (
-                  <div>No customers to update</div>
-              )}
-          </div>
-          <div className='registrateFormatHeader'>
-            <h1>Wijzigen WagenparkBeheerder Gegevens</h1>
-          </div>
-          <div className='registrateFormat'>
-            <label htmlFor='inputNewEmail'>Nieuw Email</label>
-            <input type='text' id='inputNewEmail' value={newEmail} onChange={(e) => setNewEmail(e.target.value)} placeholder={vehicleManagerInfo.Email}></input>
+                                        {/* Add individual update button for each customer */}
+                                        <div className="update-button-container">
+                                            <button
+                                                onClick={() => handleCustomerUpdate(customer.id, index)}
+                                                className="cta-button">
+                                                Update Customer
+                                            </button>
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        ) : (
+                            <div>No customers to update</div>
+                        )}
+                    </div>
+                    <div className='registrateFormatHeader'>
+                        <h1>Wijzigen WagenparkBeheerder Gegevens</h1>
+                    </div>
+                    <div className='registrateFormat'>
+                        <label htmlFor='inputNewEmail'>Nieuw Email</label>
+                        <input type='text' id='inputNewEmail' value={newEmail}
+                               onChange={(e) => setNewEmail(e.target.value)}
+                               placeholder={vehicleManagerInfo.Email}></input>
 
-            <label htmlFor='inputChangePassword'>Nieuw Wachtwoord</label>
-            <input type='password' id='inputChangePassword' value={password1} onChange={(e) => setPassword1(e.target.value)}></input>
+                        <label htmlFor='inputChangePassword'>Nieuw Wachtwoord</label>
+                        <input type='password' id='inputChangePassword' value={password1}
+                               onChange={(e) => setPassword1(e.target.value)}></input>
 
-            <label htmlFor='inputPasswordConfirm'>Herhaal Wachtwoord</label>
-            <input type='password' id='inputPasswordConfirm' value={password2} onChange={(e) => setPassword2(e.target.value)}></input>
-          
+                        <label htmlFor='inputPasswordConfirm'>Herhaal Wachtwoord</label>
+                        <input type='password' id='inputPasswordConfirm' value={password2}
+                               onChange={(e) => setPassword2(e.target.value)}></input>
 
-            <div className='registrateFormatFooter'>
-                {error && <p style={{color: 'red'}}>{error}</p>}
-                <button
-                    className='cta-button'
-                    type="button"
-                    onClick={async () => {
-                        if (await checkNewEmail(newEmail)) {
-                            await onSubmit(new Event('submit'));
-                        }
-                    }}
-                >
-                    Opslaan wijzigingen
-                </button>
 
-                <button id="buttonDelete" type="button" onClick={() => {handleDelete('VehicleManager');}}>Verwijderen Wagenparkbeheerder Account</button>
-            </div>
-        </div>
-      </div>
+                        <div className='registrateFormatFooter'>
+                            {error && <p style={{color: 'red'}}>{error}</p>}
+                            <button
+                                className='cta-button'
+                                type="button"
+                                onClick={async () => {
+                                    if (await checkNewEmail(newEmail)) {
+                                        await onSubmit(new Event('submit'));
+                                    }
+                                }}
+                            >
+                                Opslaan wijzigingen
+                            </button>
 
-        </main>
-        <GeneralFooter />
-    </>
-  );
+                            <button id="buttonDelete" type="button" onClick={() => {
+                                handleDelete('VehicleManager');
+                            }}>Verwijderen Wagenparkbeheerder Account
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+            </main>
+            <GeneralFooter/>
+        </>
+    );
 }
+
 
 export default ChangeBusinessSettings;
