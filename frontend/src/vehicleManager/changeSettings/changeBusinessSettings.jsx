@@ -319,6 +319,10 @@ function ChangeBusinessSettings() {
         event.preventDefault();
 
         try {
+            // Log the values before sending
+            console.log("New Email: ", contactEmail);
+            console.log("New Password: ", password1);
+
             // Step 1: Fetch the vehicle manager info again
             const userId = await GetUserId();
             if (!userId) {
@@ -338,39 +342,35 @@ function ChangeBusinessSettings() {
                 throw new Error("Vehicle Manager Info is missing or undefined.");
             }
 
-            // Step 2: Log the values
-            console.log("Existing Email:", vehicleManagerInfo?.email);
-            console.log("New Email (from form state):", contactEmail); // Log the contact email value from form
-
-            // Step 3: Explicitly force the email field to the updated value
+            // Step 2: Construct the updated vehicle manager info
             const updatedVehicleManagerInfo = {
-                ID: vehicleManagerInfo?.id, // Correct field name: ID
-                Password: password1 || vehicleManagerInfo?.password, // New password or existing one
-                Email: contactEmail || vehicleManagerInfo?.email, // Use the contactEmail from form state directly
+                ID: vehicleManagerInfo?.id,
+                Password: password1 || vehicleManagerInfo?.password,
+                Email: contactEmail || vehicleManagerInfo?.email,
             };
 
-            // Log the updated email value to confirm
-            console.log("Final Email being sent:", updatedVehicleManagerInfo.Email);
+            console.log("Updated vehicle manager info:", updatedVehicleManagerInfo);
 
-            // Step 4: Send the request to the backend API for updating the vehicle manager info
+            // Step 3: Send the request to the backend API for updating the vehicle manager info
             const updateResponse = await fetch(`${BACKEND_URL}/api/ChangeBusinessSettings/ChangeVehicleManagerInfo`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify(updatedVehicleManagerInfo), // Sending the object directly
+                body: JSON.stringify(updatedVehicleManagerInfo),
             });
 
+            const updateData = await updateResponse.json();
             if (updateResponse.ok) {
                 // Successfully updated the vehicle manager info
-                console.log("Vehicle Manager info updated successfully.");
                 navigate('/VehicleManager');
             } else {
-                const errorData = await updateResponse.json();
-                setError([errorData.message]);
+                console.error("Error from backend:", updateData.message || "Unknown error");
+                setError([updateData.message || "Unknown error"]);
             }
         } catch (error) {
-            setError([error.message]);
+            console.error("Error during form submission:", error);
+            setError([error.message || "Unknown error"]);
         }
     };
 
@@ -447,37 +447,40 @@ function ChangeBusinessSettings() {
     };
 
     async function checkNewEmail(email) {
-        console.log("Checking new email:", email);
+        console.log("Checking email:", email);
 
         if (email === '') {
             console.log("Email is empty, returning true");
-            return true;  // Allow if email is empty (although not likely in your case)
+            return true;
         }
 
         // Extract domain from the email
-        const filledInDomain = email.split('@').pop().toLowerCase().trim();  // Ensure it's lowercase and trimmed
+        const filledInDomain = email.split('@').pop();
         console.log("Extracted domain from email:", filledInDomain);
 
-        const businessDomain = businessInfo?.Domain?.toLowerCase() || 'wagenparkbeheerder.nl';  // Ensure it's lowercase
+        const businessDomain = businessInfo?.Domain || 'wagenparkbeheerder.nl';
         console.log("Business domain:", businessDomain);
 
         if (filledInDomain === businessDomain) {
-            console.log("Email domain matches, checking the email validity with backend...");
+            try {
+                const response = await loadSingle(`${BACKEND_URL}/api/ChangeBusinessSettings/CheckNewEmail?email=${email}`);
+                const responseData = await response.json();
+                console.log("API Response:", responseData);
 
-            // Perform the email validation API request (to check if this email can be used)
-            const response = await loadSingle(`${BACKEND_URL}/api/ChangeBusinessSettings/CheckNewEmail?email=${email}`);
-            console.log("API Response:", response);
-
-            if (response.ok) {
-                console.log("Email is valid and can be used for the update.");
-                return true;  // Email is valid and ready to use
-            } else {
-                console.log("Error from API:", response.message);
-                setError([response.message]);  // Show error from the backend
+                if (response.ok) {
+                    console.log("Email is valid and response is OK");
+                    return true;
+                } else {
+                    console.log("Error from API:", responseData.message || "Unknown error");
+                    setError([responseData.message || "Unknown error"]);
+                    return false;
+                }
+            } catch (error) {
+                console.error("Error during email check:", error);
+                setError([error.message || "Unknown error"]);
                 return false;
             }
         } else {
-            // If the domain doesn't match, display an error
             console.log(`Error: Domain does not match the business domain (${businessDomain})`);
             setError([`Domein is niet hetzelfde als het opgegeven domain (${businessDomain})`]);
             return false;

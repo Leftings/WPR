@@ -919,42 +919,70 @@ public class UserRepository : IUserRepository
         return query;
     }
 
-   public async Task<(int StatusCode, string Message)> ChangeVehicleManagerInfo(ChangeVehicleManagerInfo request)
+    public async Task<(int StatusCode, string Message)> ChangeVehicleManagerInfo(ChangeVehicleManagerInfo request)
 {
-    // Log the values to ensure they are correct
-    Console.WriteLine($"Received request to update VehicleManager with ID: {request.ID}");
-    Console.WriteLine($"New Email: {request.Email}");
-    Console.WriteLine($"New Password: {request.Password}");
-
-    string updateQuery = @"
-        UPDATE VehicleManager
-        SET Email = @Email,
-            Password = @Password
-        WHERE ID = @ID";
-
-    using (var connection = _connector.CreateDbConnection())
-    using (var command = new MySqlCommand(updateQuery, (MySqlConnection)connection))
+    try
     {
-        command.Parameters.AddWithValue("@ID", request.ID);
-        command.Parameters.AddWithValue("@Email", request.Email);
-        command.Parameters.AddWithValue("@Password", request.Password);
+        Console.WriteLine($"Received request to update Vehicle Manager with ID: {request.ID}");
+        Console.WriteLine($"New Email: {request.Email}");
+        Console.WriteLine($"New Password: {request.Password}");
 
-        try
+        string updateQuery = @"
+            UPDATE VehicleManager
+            SET Email = @Email,
+                Password = @Password
+            WHERE ID = @ID";
+
+        using (var connection = _connector.CreateDbConnection())
         {
-            int rowsAffected = await command.ExecuteNonQueryAsync();
-            if (rowsAffected > 0)
+            if (connection == null)
             {
-                return (200, "Vehicle Manager updated successfully.");
+                Console.WriteLine("Database connection is null.");
+                return (500, "Database connection failed.");
             }
-            else
+
+            if (connection.State != System.Data.ConnectionState.Open)
             {
-                return (404, "Vehicle Manager not found.");
+                Console.WriteLine("Opening database connection...");
+                connection.Open(); // Open the connection asynchronously
+                Console.WriteLine("Connection opened successfully.");
+            }
+
+            using (var command = new MySqlCommand(updateQuery, (MySqlConnection)connection))
+            {
+                // Log the parameters to make sure the values are being passed correctly
+                command.Parameters.AddWithValue("@ID", request.ID);
+                command.Parameters.AddWithValue("@Email", request.Email);
+                command.Parameters.AddWithValue("@Password", request.Password);
+
+                Console.WriteLine($"Executing query: {updateQuery}");
+                Console.WriteLine($"Parameters: ID = {request.ID}, Email = {request.Email}, Password = {request.Password}");
+
+                try
+                {
+                    int rowsAffected = await command.ExecuteNonQueryAsync();
+
+                    if (rowsAffected > 0)
+                    {
+                        return (200, "Vehicle Manager updated successfully.");
+                    }
+                    else
+                    {
+                        return (404, "Vehicle Manager not found.");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Error executing query: {ex.Message}");
+                    return (500, $"Error executing query: {ex.Message}");
+                }
             }
         }
-        catch (Exception ex)
-        {
-            return (500, $"Error: {ex.Message}");
-        }
+    }
+    catch (Exception ex)
+    {
+        Console.WriteLine($"Error: {ex.Message}");
+        return (500, $"Error: {ex.Message}");
     }
 }
 
