@@ -42,9 +42,10 @@ public class AddIntakeController : ControllerBase
                 request.FrameNrVehicle,
                 request.ReviewedBy,
                 request.Date,
-                request.Contract);
+                request.Contract,
+                request.IsDamaged);
 
-            if (!request.Damage.Equals("Geen schade aanwezig."))
+            if (request.IsDamaged)
             {
                 var status2 = _vehicleRepository.ChangeRepairStatus(request.FrameNrVehicle, true);
             }

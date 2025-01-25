@@ -31,5 +31,5 @@ public interface IEmployeeRepository
     public (int StatusCode, string Message, Dictionary<string, object> Data) GetVehicleManagerInfo(int id);
     Task<(bool status, string message)> checkUsageEmaiVehicleManagerlAsync(string email);
     Task<(bool status, string message)> AddIntakeAsync(string damage, int frameNrVehicle, string reviewedBy,
-        DateTime date, int contract);
+        DateTime date, int contract, bool isDamaged);
 }
