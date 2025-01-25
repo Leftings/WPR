@@ -1,0 +1,158 @@
+\doxysection{WPR.\+Repository.\+IUser\+Repository Interface Reference}
+\hypertarget{interface_w_p_r_1_1_repository_1_1_i_user_repository}{}\label{interface_w_p_r_1_1_repository_1_1_i_user_repository}\index{WPR.Repository.IUserRepository@{WPR.Repository.IUserRepository}}
+
+
+Interface defining methods voor user gerelateerde database operaties, validatie, user management, data retrieval.  
+
+
+Inheritance diagram for WPR.\+Repository.\+IUser\+Repository\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{interface_w_p_r_1_1_repository_1_1_i_user_repository}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+Task$<$ bool $>$ \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_user_repository_a7dd4b3be17516ffd565fec621cbd7452}{Validate\+User\+Async}} (string username, string password, string user\+Type)
+\item 
+Task$<$(bool status, string message)$>$ \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_user_repository_a9c716662bd52a8dec74a868954dee50e}{check\+Usage\+Email\+Async}} (string email)
+\item 
+Task$<$(bool status, string message, int new\+User\+ID)$>$ \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_user_repository_a0e52cd72018fad6b2fe68da104f5a971}{add\+Customer\+Async}} (Object\mbox{[}$\,$\mbox{]} person\+Data)
+\item 
+Task$<$(bool status, string message)$>$ \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_user_repository_a8302234bdf3953c8329a4487c03992e8}{add\+Personal\+Customer\+Async}} (Object\mbox{[}$\,$\mbox{]} personal\+Data)
+\item 
+Task$<$(bool status, string message)$>$ \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_user_repository_afe0de5259233749214ee4eb6a4069e70}{add\+Employee\+Customer\+Async}} (Object\mbox{[}$\,$\mbox{]} employee\+Data)
+\item 
+\Hypertarget{interface_w_p_r_1_1_repository_1_1_i_user_repository_a4c1e54015ce6e7f4e3f71a22db6c6de3}\label{interface_w_p_r_1_1_repository_1_1_i_user_repository_a4c1e54015ce6e7f4e3f71a22db6c6de3} 
+Task$<$ string $>$ {\bfseries Get\+User\+Id\+Async} (string email, string table)
+\item 
+\Hypertarget{interface_w_p_r_1_1_repository_1_1_i_user_repository_adea3e199f30f2118d56fbb649c6d9b85}\label{interface_w_p_r_1_1_repository_1_1_i_user_repository_adea3e199f30f2118d56fbb649c6d9b85} 
+Task$<$ string $>$ {\bfseries Get\+User\+Name\+Async} (string user\+Id)
+\item 
+\Hypertarget{interface_w_p_r_1_1_repository_1_1_i_user_repository_a69bf2dfc071328b914d0dd2b0e28036c}\label{interface_w_p_r_1_1_repository_1_1_i_user_repository_a69bf2dfc071328b914d0dd2b0e28036c} 
+Task$<$(bool status, string message)$>$ {\bfseries Edit\+User\+Info\+Async} (List$<$ object\mbox{[}$\,$\mbox{]}$>$ data)
+\item 
+\Hypertarget{interface_w_p_r_1_1_repository_1_1_i_user_repository_a670f6c2c74f0ecdf1386af0f6069c9fd}\label{interface_w_p_r_1_1_repository_1_1_i_user_repository_a670f6c2c74f0ecdf1386af0f6069c9fd} 
+Task$<$ bool $>$ {\bfseries Is\+Kvk\+Number\+Async} (int kvk\+Number)
+\item 
+Task$<$ bool $>$ \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_user_repository_aab80cef291c4192ce799937ca1e08312}{Is\+User\+Employee}} (int id)
+\item 
+\Hypertarget{interface_w_p_r_1_1_repository_1_1_i_user_repository_ab8bc076a0fa5153144ae7a810515bf5a}\label{interface_w_p_r_1_1_repository_1_1_i_user_repository_ab8bc076a0fa5153144ae7a810515bf5a} 
+Task$<$(bool status, string message)$>$ {\bfseries Delete\+User\+Async} (string user\+Id)
+\item 
+Task$<$(bool status, string message, string office\+Type)$>$ \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_user_repository_a639e9a13c1b234198f293d1a9cdfac94}{Get\+Kind\+Employee\+Async}} (string user\+Id)
+\item 
+\Hypertarget{interface_w_p_r_1_1_repository_1_1_i_user_repository_aeb4dfef402022a44079b7043d8602210}\label{interface_w_p_r_1_1_repository_1_1_i_user_repository_aeb4dfef402022a44079b7043d8602210} 
+Task$<$(bool Status, string Message)$>$ {\bfseries Add\+Personal\+Customer} (Sign\+Up\+Request request)
+\item 
+Task$<$(int Status\+Code, string Message)$>$ \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_user_repository_a103bbaff883cb3af9e3d4c98a2100d5b}{Add\+Customer}} (Sign\+Up\+Request\+Customer request, Sign\+Up\+Request\+Customer\+Private private\+Request)
+\item 
+\Hypertarget{interface_w_p_r_1_1_repository_1_1_i_user_repository_a254b26f8141a387db4ffa2264e5078fb}\label{interface_w_p_r_1_1_repository_1_1_i_user_repository_a254b26f8141a387db4ffa2264e5078fb} 
+Task$<$(int Status\+Code, string Message)$>$ {\bfseries Change\+Business\+Info} (\mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_change_business_settings_1_1_change_business_request}{Change\+Business\+Request}} request)
+\item 
+\Hypertarget{interface_w_p_r_1_1_repository_1_1_i_user_repository_af1f89b241f484997d869c6f1fbd54bbe}\label{interface_w_p_r_1_1_repository_1_1_i_user_repository_af1f89b241f484997d869c6f1fbd54bbe} 
+Task$<$ List$<$ string $>$ $>$ {\bfseries Get\+All\+Subscriptions\+Async} ()
+\item 
+\Hypertarget{interface_w_p_r_1_1_repository_1_1_i_user_repository_adb2c8305eabf583fb88c0c5a3324df81}\label{interface_w_p_r_1_1_repository_1_1_i_user_repository_adb2c8305eabf583fb88c0c5a3324df81} 
+Task$<$ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1customer_1_1_subscription_1_1_subscription}{Subscription}} $>$ {\bfseries Get\+Subscription\+Data\+Async} (int id)
+\item 
+\Hypertarget{interface_w_p_r_1_1_repository_1_1_i_user_repository_a173b6a5127b0b845d3cfeec6b270d93a}\label{interface_w_p_r_1_1_repository_1_1_i_user_repository_a173b6a5127b0b845d3cfeec6b270d93a} 
+Task$<$ List$<$ int $>$ $>$ {\bfseries Get\+Subscription\+Ids\+Async} ()
+\item 
+\Hypertarget{interface_w_p_r_1_1_repository_1_1_i_user_repository_a4054e72c9ea0d5b50c4227c38d296a6d}\label{interface_w_p_r_1_1_repository_1_1_i_user_repository_a4054e72c9ea0d5b50c4227c38d296a6d} 
+Task$<$ Dictionary$<$ string, object $>$ $>$ {\bfseries Get\+Customer\+Details} (int id)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Interface defining methods voor user gerelateerde database operaties, validatie, user management, data retrieval. 
+
+Het \doxylink{namespace_w_p_r_1_1_repository}{Repository} Pattern abstraheert de logica voor data toegang en zorgt voor gecentraliseerde en consitente interface voor interactie met de database. Dit is goed voor\+: testbaarheid, onderhoudbaarheid en scheiding van verantwoordelijkheden binnen de applicatie. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{interface_w_p_r_1_1_repository_1_1_i_user_repository_a103bbaff883cb3af9e3d4c98a2100d5b}\index{WPR.Repository.IUserRepository@{WPR.Repository.IUserRepository}!AddCustomer@{AddCustomer}}
+\index{AddCustomer@{AddCustomer}!WPR.Repository.IUserRepository@{WPR.Repository.IUserRepository}}
+\doxysubsubsection{\texorpdfstring{AddCustomer()}{AddCustomer()}}
+{\footnotesize\ttfamily \label{interface_w_p_r_1_1_repository_1_1_i_user_repository_a103bbaff883cb3af9e3d4c98a2100d5b} 
+Task$<$(int Status\+Code, string Message)$>$ WPR.\+Repository.\+IUser\+Repository.\+Add\+Customer (\begin{DoxyParamCaption}\item[{Sign\+Up\+Request\+Customer}]{request}{, }\item[{Sign\+Up\+Request\+Customer\+Private}]{private\+Request}{}\end{DoxyParamCaption})}
+
+
+
+Implemented in \mbox{\hyperlink{class_w_p_r_1_1_repository_1_1_user_repository_a688723c1fb3385274f13ba0e3ba78da8}{WPR.\+Repository.\+User\+Repository}}.
+
+\Hypertarget{interface_w_p_r_1_1_repository_1_1_i_user_repository_a0e52cd72018fad6b2fe68da104f5a971}\index{WPR.Repository.IUserRepository@{WPR.Repository.IUserRepository}!addCustomerAsync@{addCustomerAsync}}
+\index{addCustomerAsync@{addCustomerAsync}!WPR.Repository.IUserRepository@{WPR.Repository.IUserRepository}}
+\doxysubsubsection{\texorpdfstring{addCustomerAsync()}{addCustomerAsync()}}
+{\footnotesize\ttfamily \label{interface_w_p_r_1_1_repository_1_1_i_user_repository_a0e52cd72018fad6b2fe68da104f5a971} 
+Task$<$(bool status, string message, int new\+User\+ID)$>$ WPR.\+Repository.\+IUser\+Repository.\+add\+Customer\+Async (\begin{DoxyParamCaption}\item[{Object\mbox{[}$\,$\mbox{]}}]{person\+Data}{}\end{DoxyParamCaption})}
+
+
+
+Implemented in \mbox{\hyperlink{class_w_p_r_1_1_repository_1_1_user_repository_a42ef5421fcb8544d4aab8ed834325a74}{WPR.\+Repository.\+User\+Repository}}.
+
+\Hypertarget{interface_w_p_r_1_1_repository_1_1_i_user_repository_afe0de5259233749214ee4eb6a4069e70}\index{WPR.Repository.IUserRepository@{WPR.Repository.IUserRepository}!addEmployeeCustomerAsync@{addEmployeeCustomerAsync}}
+\index{addEmployeeCustomerAsync@{addEmployeeCustomerAsync}!WPR.Repository.IUserRepository@{WPR.Repository.IUserRepository}}
+\doxysubsubsection{\texorpdfstring{addEmployeeCustomerAsync()}{addEmployeeCustomerAsync()}}
+{\footnotesize\ttfamily \label{interface_w_p_r_1_1_repository_1_1_i_user_repository_afe0de5259233749214ee4eb6a4069e70} 
+Task$<$(bool status, string message)$>$ WPR.\+Repository.\+IUser\+Repository.\+add\+Employee\+Customer\+Async (\begin{DoxyParamCaption}\item[{Object\mbox{[}$\,$\mbox{]}}]{employee\+Data}{}\end{DoxyParamCaption})}
+
+
+
+Implemented in \mbox{\hyperlink{class_w_p_r_1_1_repository_1_1_user_repository_a281b2d169ce34a240a18b3f106e2f95d}{WPR.\+Repository.\+User\+Repository}}.
+
+\Hypertarget{interface_w_p_r_1_1_repository_1_1_i_user_repository_a8302234bdf3953c8329a4487c03992e8}\index{WPR.Repository.IUserRepository@{WPR.Repository.IUserRepository}!addPersonalCustomerAsync@{addPersonalCustomerAsync}}
+\index{addPersonalCustomerAsync@{addPersonalCustomerAsync}!WPR.Repository.IUserRepository@{WPR.Repository.IUserRepository}}
+\doxysubsubsection{\texorpdfstring{addPersonalCustomerAsync()}{addPersonalCustomerAsync()}}
+{\footnotesize\ttfamily \label{interface_w_p_r_1_1_repository_1_1_i_user_repository_a8302234bdf3953c8329a4487c03992e8} 
+Task$<$(bool status, string message)$>$ WPR.\+Repository.\+IUser\+Repository.\+add\+Personal\+Customer\+Async (\begin{DoxyParamCaption}\item[{Object\mbox{[}$\,$\mbox{]}}]{personal\+Data}{}\end{DoxyParamCaption})}
+
+
+
+Implemented in \mbox{\hyperlink{class_w_p_r_1_1_repository_1_1_user_repository_a25a2f860883fcc39ea7fa8a932fde475}{WPR.\+Repository.\+User\+Repository}}.
+
+\Hypertarget{interface_w_p_r_1_1_repository_1_1_i_user_repository_a9c716662bd52a8dec74a868954dee50e}\index{WPR.Repository.IUserRepository@{WPR.Repository.IUserRepository}!checkUsageEmailAsync@{checkUsageEmailAsync}}
+\index{checkUsageEmailAsync@{checkUsageEmailAsync}!WPR.Repository.IUserRepository@{WPR.Repository.IUserRepository}}
+\doxysubsubsection{\texorpdfstring{checkUsageEmailAsync()}{checkUsageEmailAsync()}}
+{\footnotesize\ttfamily \label{interface_w_p_r_1_1_repository_1_1_i_user_repository_a9c716662bd52a8dec74a868954dee50e} 
+Task$<$(bool status, string message)$>$ WPR.\+Repository.\+IUser\+Repository.\+check\+Usage\+Email\+Async (\begin{DoxyParamCaption}\item[{string}]{email}{}\end{DoxyParamCaption})}
+
+
+
+Implemented in \mbox{\hyperlink{class_w_p_r_1_1_repository_1_1_user_repository_a7903e03bfe7076a6ee7b352636cb854d}{WPR.\+Repository.\+User\+Repository}}.
+
+\Hypertarget{interface_w_p_r_1_1_repository_1_1_i_user_repository_a639e9a13c1b234198f293d1a9cdfac94}\index{WPR.Repository.IUserRepository@{WPR.Repository.IUserRepository}!GetKindEmployeeAsync@{GetKindEmployeeAsync}}
+\index{GetKindEmployeeAsync@{GetKindEmployeeAsync}!WPR.Repository.IUserRepository@{WPR.Repository.IUserRepository}}
+\doxysubsubsection{\texorpdfstring{GetKindEmployeeAsync()}{GetKindEmployeeAsync()}}
+{\footnotesize\ttfamily \label{interface_w_p_r_1_1_repository_1_1_i_user_repository_a639e9a13c1b234198f293d1a9cdfac94} 
+Task$<$(bool status, string message, string office\+Type)$>$ WPR.\+Repository.\+IUser\+Repository.\+Get\+Kind\+Employee\+Async (\begin{DoxyParamCaption}\item[{string}]{user\+Id}{}\end{DoxyParamCaption})}
+
+
+
+Implemented in \mbox{\hyperlink{class_w_p_r_1_1_repository_1_1_user_repository_ad69d7ed5e941ab05fe1eb4ae9bb3ff1f}{WPR.\+Repository.\+User\+Repository}}.
+
+\Hypertarget{interface_w_p_r_1_1_repository_1_1_i_user_repository_aab80cef291c4192ce799937ca1e08312}\index{WPR.Repository.IUserRepository@{WPR.Repository.IUserRepository}!IsUserEmployee@{IsUserEmployee}}
+\index{IsUserEmployee@{IsUserEmployee}!WPR.Repository.IUserRepository@{WPR.Repository.IUserRepository}}
+\doxysubsubsection{\texorpdfstring{IsUserEmployee()}{IsUserEmployee()}}
+{\footnotesize\ttfamily \label{interface_w_p_r_1_1_repository_1_1_i_user_repository_aab80cef291c4192ce799937ca1e08312} 
+Task$<$ bool $>$ WPR.\+Repository.\+IUser\+Repository.\+Is\+User\+Employee (\begin{DoxyParamCaption}\item[{int}]{id}{}\end{DoxyParamCaption})}
+
+
+
+Implemented in \mbox{\hyperlink{class_w_p_r_1_1_repository_1_1_user_repository_a9897bc253b72e7422cca16f676d4e53c}{WPR.\+Repository.\+User\+Repository}}.
+
+\Hypertarget{interface_w_p_r_1_1_repository_1_1_i_user_repository_a7dd4b3be17516ffd565fec621cbd7452}\index{WPR.Repository.IUserRepository@{WPR.Repository.IUserRepository}!ValidateUserAsync@{ValidateUserAsync}}
+\index{ValidateUserAsync@{ValidateUserAsync}!WPR.Repository.IUserRepository@{WPR.Repository.IUserRepository}}
+\doxysubsubsection{\texorpdfstring{ValidateUserAsync()}{ValidateUserAsync()}}
+{\footnotesize\ttfamily \label{interface_w_p_r_1_1_repository_1_1_i_user_repository_a7dd4b3be17516ffd565fec621cbd7452} 
+Task$<$ bool $>$ WPR.\+Repository.\+IUser\+Repository.\+Validate\+User\+Async (\begin{DoxyParamCaption}\item[{string}]{username}{, }\item[{string}]{password}{, }\item[{string}]{user\+Type}{}\end{DoxyParamCaption})}
+
+
+
+Implemented in \mbox{\hyperlink{class_w_p_r_1_1_repository_1_1_user_repository_adb512c98ffbaeb97a9b9f2fdc8994549}{WPR.\+Repository.\+User\+Repository}}.
+
+
+
+The documentation for this interface was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+backend/src/\+Repository/IUser\+Repository.\+cs\end{DoxyCompactItemize}

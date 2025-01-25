@@ -1,0 +1,105 @@
+\doxysection{WPR.\+Controllers.\+General.\+Cookie.\+Cookie\+Controller Class Reference}
+\hypertarget{class_w_p_r_1_1_controllers_1_1_general_1_1_cookie_1_1_cookie_controller}{}\label{class_w_p_r_1_1_controllers_1_1_general_1_1_cookie_1_1_cookie_controller}\index{WPR.Controllers.General.Cookie.CookieController@{WPR.Controllers.General.Cookie.CookieController}}
+
+
+\doxylink{class_w_p_r_1_1_controllers_1_1_general_1_1_cookie_1_1_cookie_controller}{Cookie\+Controller} is de controller voor het aanmaken, verwijderen en ondervragen van cookies.  
+
+
+Inheritance diagram for WPR.\+Controllers.\+General.\+Cookie.\+Cookie\+Controller\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_w_p_r_1_1_controllers_1_1_general_1_1_cookie_1_1_cookie_controller}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_w_p_r_1_1_controllers_1_1_general_1_1_cookie_1_1_cookie_controller_a51e8c179de4b704d95d13cf3395f389a}\label{class_w_p_r_1_1_controllers_1_1_general_1_1_cookie_1_1_cookie_controller_a51e8c179de4b704d95d13cf3395f389a} 
+{\bfseries Cookie\+Controller} (\mbox{\hyperlink{class_w_p_r_1_1_database_1_1_connector}{Connector}} connector, \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_user_repository}{IUser\+Repository}} user\+Repository, \mbox{\hyperlink{class_w_p_r_1_1_cryption_1_1_crypt}{Crypt}} crypt)
+\item 
+async Task$<$ IAction\+Result $>$ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_general_1_1_cookie_1_1_cookie_controller_a26b96d5223da90a03a63cfb813f1afd2}{Get\+User\+Id}} ()
+\begin{DoxyCompactList}\small\item\em De geencrypted user id wordt uit de cookie gepakt en wordt vervolgens gedecrypt doorgestuurd. \end{DoxyCompactList}\item 
+async Task$<$ IAction\+Result $>$ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_general_1_1_cookie_1_1_cookie_controller_af40d427ac5a8ca1167690ca50b404d58}{Get\+User\+Name}} ()
+\begin{DoxyCompactList}\small\item\em De gebruikersnaam wordt via de user id opgehaald via de backend. \end{DoxyCompactList}\item 
+IAction\+Result \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_general_1_1_cookie_1_1_cookie_controller_a3613f82147fc694f6a2e214ee93595af}{Logout}} ()
+\begin{DoxyCompactList}\small\item\em De loginsession cookie wordt veranderd naar een cookie met een negatieve tijd, zodat de cookie expires. \end{DoxyCompactList}\item 
+async Task$<$ IAction\+Result $>$ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_general_1_1_cookie_1_1_cookie_controller_a893dae88524c51e709ea2a3e8ecdeec0}{Get\+Kind\+Employee\+Async}} ()
+\begin{DoxyCompactList}\small\item\em Het soort medewerker wordt uit de cookie opgehaald, door middel van de user id, zodat de juiste soort medewerker naar de frontend verstuurd wordt. \end{DoxyCompactList}\item 
+async Task$<$ IAction\+Result $>$ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_general_1_1_cookie_1_1_cookie_controller_af1496ea210a142f46c8cf9f706eed50f}{Is\+Vehicle\+Manager\+Async}} ()
+\begin{DoxyCompactList}\small\item\em Er wordt gekeken of de \doxylink{namespace_w_p_r_1_1_controllers_1_1_general_1_1_vehicle}{Vehicle} Manager bestaat. Ongeldige cookies worden verwijderd. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\doxylink{class_w_p_r_1_1_controllers_1_1_general_1_1_cookie_1_1_cookie_controller}{Cookie\+Controller} is de controller voor het aanmaken, verwijderen en ondervragen van cookies. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_w_p_r_1_1_controllers_1_1_general_1_1_cookie_1_1_cookie_controller_a893dae88524c51e709ea2a3e8ecdeec0}\index{WPR.Controllers.General.Cookie.CookieController@{WPR.Controllers.General.Cookie.CookieController}!GetKindEmployeeAsync@{GetKindEmployeeAsync}}
+\index{GetKindEmployeeAsync@{GetKindEmployeeAsync}!WPR.Controllers.General.Cookie.CookieController@{WPR.Controllers.General.Cookie.CookieController}}
+\doxysubsubsection{\texorpdfstring{GetKindEmployeeAsync()}{GetKindEmployeeAsync()}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_controllers_1_1_general_1_1_cookie_1_1_cookie_controller_a893dae88524c51e709ea2a3e8ecdeec0} 
+async Task$<$ IAction\+Result $>$ WPR.\+Controllers.\+General.\+Cookie.\+Cookie\+Controller.\+Get\+Kind\+Employee\+Async (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Het soort medewerker wordt uit de cookie opgehaald, door middel van de user id, zodat de juiste soort medewerker naar de frontend verstuurd wordt. 
+
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\Hypertarget{class_w_p_r_1_1_controllers_1_1_general_1_1_cookie_1_1_cookie_controller_a26b96d5223da90a03a63cfb813f1afd2}\index{WPR.Controllers.General.Cookie.CookieController@{WPR.Controllers.General.Cookie.CookieController}!GetUserId@{GetUserId}}
+\index{GetUserId@{GetUserId}!WPR.Controllers.General.Cookie.CookieController@{WPR.Controllers.General.Cookie.CookieController}}
+\doxysubsubsection{\texorpdfstring{GetUserId()}{GetUserId()}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_controllers_1_1_general_1_1_cookie_1_1_cookie_controller_a26b96d5223da90a03a63cfb813f1afd2} 
+async Task$<$ IAction\+Result $>$ WPR.\+Controllers.\+General.\+Cookie.\+Cookie\+Controller.\+Get\+User\+Id (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+De geencrypted user id wordt uit de cookie gepakt en wordt vervolgens gedecrypt doorgestuurd. 
+
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\Hypertarget{class_w_p_r_1_1_controllers_1_1_general_1_1_cookie_1_1_cookie_controller_af40d427ac5a8ca1167690ca50b404d58}\index{WPR.Controllers.General.Cookie.CookieController@{WPR.Controllers.General.Cookie.CookieController}!GetUserName@{GetUserName}}
+\index{GetUserName@{GetUserName}!WPR.Controllers.General.Cookie.CookieController@{WPR.Controllers.General.Cookie.CookieController}}
+\doxysubsubsection{\texorpdfstring{GetUserName()}{GetUserName()}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_controllers_1_1_general_1_1_cookie_1_1_cookie_controller_af40d427ac5a8ca1167690ca50b404d58} 
+async Task$<$ IAction\+Result $>$ WPR.\+Controllers.\+General.\+Cookie.\+Cookie\+Controller.\+Get\+User\+Name (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+De gebruikersnaam wordt via de user id opgehaald via de backend. 
+
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\Hypertarget{class_w_p_r_1_1_controllers_1_1_general_1_1_cookie_1_1_cookie_controller_af1496ea210a142f46c8cf9f706eed50f}\index{WPR.Controllers.General.Cookie.CookieController@{WPR.Controllers.General.Cookie.CookieController}!IsVehicleManagerAsync@{IsVehicleManagerAsync}}
+\index{IsVehicleManagerAsync@{IsVehicleManagerAsync}!WPR.Controllers.General.Cookie.CookieController@{WPR.Controllers.General.Cookie.CookieController}}
+\doxysubsubsection{\texorpdfstring{IsVehicleManagerAsync()}{IsVehicleManagerAsync()}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_controllers_1_1_general_1_1_cookie_1_1_cookie_controller_af1496ea210a142f46c8cf9f706eed50f} 
+async Task$<$ IAction\+Result $>$ WPR.\+Controllers.\+General.\+Cookie.\+Cookie\+Controller.\+Is\+Vehicle\+Manager\+Async (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Er wordt gekeken of de \doxylink{namespace_w_p_r_1_1_controllers_1_1_general_1_1_vehicle}{Vehicle} Manager bestaat. Ongeldige cookies worden verwijderd. 
+
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\Hypertarget{class_w_p_r_1_1_controllers_1_1_general_1_1_cookie_1_1_cookie_controller_a3613f82147fc694f6a2e214ee93595af}\index{WPR.Controllers.General.Cookie.CookieController@{WPR.Controllers.General.Cookie.CookieController}!Logout@{Logout}}
+\index{Logout@{Logout}!WPR.Controllers.General.Cookie.CookieController@{WPR.Controllers.General.Cookie.CookieController}}
+\doxysubsubsection{\texorpdfstring{Logout()}{Logout()}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_controllers_1_1_general_1_1_cookie_1_1_cookie_controller_a3613f82147fc694f6a2e214ee93595af} 
+IAction\+Result WPR.\+Controllers.\+General.\+Cookie.\+Cookie\+Controller.\+Logout (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+De loginsession cookie wordt veranderd naar een cookie met een negatieve tijd, zodat de cookie expires. 
+
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+backend/src/\+Controllers/general/cookie/cookie\+Controller.\+cs\end{DoxyCompactItemize}

@@ -1,0 +1,90 @@
+\doxysection{WPR.\+Controllers.\+Employee.\+Shared.\+accept\+Hire\+Request.\+Accept\+Hire\+Request\+Controller Class Reference}
+\hypertarget{class_w_p_r_1_1_controllers_1_1_employee_1_1_shared_1_1accept_hire_request_1_1_accept_hire_request_controller}{}\label{class_w_p_r_1_1_controllers_1_1_employee_1_1_shared_1_1accept_hire_request_1_1_accept_hire_request_controller}\index{WPR.Controllers.Employee.Shared.acceptHireRequest.AcceptHireRequestController@{WPR.Controllers.Employee.Shared.acceptHireRequest.AcceptHireRequestController}}
+
+
+\doxylink{class_w_p_r_1_1_controllers_1_1_employee_1_1_shared_1_1accept_hire_request_1_1_accept_hire_request_controller}{Accept\+Hire\+Request\+Controller} zorgt ervoor dat alle huuraanvragen verzameld worden en bestempelt kunnen worden als geacepteerd of geweigerd.  
+
+
+Inheritance diagram for WPR.\+Controllers.\+Employee.\+Shared.\+accept\+Hire\+Request.\+Accept\+Hire\+Request\+Controller\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_w_p_r_1_1_controllers_1_1_employee_1_1_shared_1_1accept_hire_request_1_1_accept_hire_request_controller}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_w_p_r_1_1_controllers_1_1_employee_1_1_shared_1_1accept_hire_request_1_1_accept_hire_request_controller_a9f41a0e881d27d5ab964c44c514f3079}\label{class_w_p_r_1_1_controllers_1_1_employee_1_1_shared_1_1accept_hire_request_1_1_accept_hire_request_controller_a9f41a0e881d27d5ab964c44c514f3079} 
+{\bfseries Accept\+Hire\+Request\+Controller} (\mbox{\hyperlink{class_w_p_r_1_1_database_1_1_connector}{Connector}} connector, \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_employee_repository}{IEmployee\+Repository}} user\+Repository, \mbox{\hyperlink{class_w_p_r_1_1_cryption_1_1_crypt}{Crypt}} crypt)
+\item 
+async Task$<$ IAction\+Result $>$ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_employee_1_1_shared_1_1accept_hire_request_1_1_accept_hire_request_controller_a53071f794abb7d5b057fd44675e2cc19}{Get\+Reviews\+Ids\+Async}} (string user)
+\begin{DoxyCompactList}\small\item\em Alle ids van de aanvragen worden opgehaald. \end{DoxyCompactList}\item 
+async Task$<$ IAction\+Result $>$ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_employee_1_1_shared_1_1accept_hire_request_1_1_accept_hire_request_controller_a0016834aa98a99bcb0eb1ccdbff98693}{Get\+Review\+Async}} (string id)
+\begin{DoxyCompactList}\small\item\em De gegevens van een specifieke aanvraag worden opgehaald. \end{DoxyCompactList}\item 
+async Task$<$ IAction\+Result $>$ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_employee_1_1_shared_1_1accept_hire_request_1_1_accept_hire_request_controller_ad4312863bd2f9b15d7bf571c0dc1447e}{Answer\+Hire\+Request\+Async}} (\mbox{[}From\+Body\mbox{]} \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_employee_1_1_shared_1_1accept_hire_request_1_1_hire_request}{Hire\+Request}} request)
+\begin{DoxyCompactList}\small\item\em Een aanvraag kan beantwoord worden. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\doxylink{class_w_p_r_1_1_controllers_1_1_employee_1_1_shared_1_1accept_hire_request_1_1_accept_hire_request_controller}{Accept\+Hire\+Request\+Controller} zorgt ervoor dat alle huuraanvragen verzameld worden en bestempelt kunnen worden als geacepteerd of geweigerd. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_w_p_r_1_1_controllers_1_1_employee_1_1_shared_1_1accept_hire_request_1_1_accept_hire_request_controller_ad4312863bd2f9b15d7bf571c0dc1447e}\index{WPR.Controllers.Employee.Shared.acceptHireRequest.AcceptHireRequestController@{WPR.Controllers.Employee.Shared.acceptHireRequest.AcceptHireRequestController}!AnswerHireRequestAsync@{AnswerHireRequestAsync}}
+\index{AnswerHireRequestAsync@{AnswerHireRequestAsync}!WPR.Controllers.Employee.Shared.acceptHireRequest.AcceptHireRequestController@{WPR.Controllers.Employee.Shared.acceptHireRequest.AcceptHireRequestController}}
+\doxysubsubsection{\texorpdfstring{AnswerHireRequestAsync()}{AnswerHireRequestAsync()}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_controllers_1_1_employee_1_1_shared_1_1accept_hire_request_1_1_accept_hire_request_controller_ad4312863bd2f9b15d7bf571c0dc1447e} 
+async Task$<$ IAction\+Result $>$ WPR.\+Controllers.\+Employee.\+Shared.\+accept\+Hire\+Request.\+Accept\+Hire\+Request\+Controller.\+Answer\+Hire\+Request\+Async (\begin{DoxyParamCaption}\item[{\mbox{[}\+From\+Body\mbox{]} \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_employee_1_1_shared_1_1accept_hire_request_1_1_hire_request}{Hire\+Request}}}]{request}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Een aanvraag kan beantwoord worden. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em request} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\Hypertarget{class_w_p_r_1_1_controllers_1_1_employee_1_1_shared_1_1accept_hire_request_1_1_accept_hire_request_controller_a0016834aa98a99bcb0eb1ccdbff98693}\index{WPR.Controllers.Employee.Shared.acceptHireRequest.AcceptHireRequestController@{WPR.Controllers.Employee.Shared.acceptHireRequest.AcceptHireRequestController}!GetReviewAsync@{GetReviewAsync}}
+\index{GetReviewAsync@{GetReviewAsync}!WPR.Controllers.Employee.Shared.acceptHireRequest.AcceptHireRequestController@{WPR.Controllers.Employee.Shared.acceptHireRequest.AcceptHireRequestController}}
+\doxysubsubsection{\texorpdfstring{GetReviewAsync()}{GetReviewAsync()}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_controllers_1_1_employee_1_1_shared_1_1accept_hire_request_1_1_accept_hire_request_controller_a0016834aa98a99bcb0eb1ccdbff98693} 
+async Task$<$ IAction\+Result $>$ WPR.\+Controllers.\+Employee.\+Shared.\+accept\+Hire\+Request.\+Accept\+Hire\+Request\+Controller.\+Get\+Review\+Async (\begin{DoxyParamCaption}\item[{string}]{id}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+De gegevens van een specifieke aanvraag worden opgehaald. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\Hypertarget{class_w_p_r_1_1_controllers_1_1_employee_1_1_shared_1_1accept_hire_request_1_1_accept_hire_request_controller_a53071f794abb7d5b057fd44675e2cc19}\index{WPR.Controllers.Employee.Shared.acceptHireRequest.AcceptHireRequestController@{WPR.Controllers.Employee.Shared.acceptHireRequest.AcceptHireRequestController}!GetReviewsIdsAsync@{GetReviewsIdsAsync}}
+\index{GetReviewsIdsAsync@{GetReviewsIdsAsync}!WPR.Controllers.Employee.Shared.acceptHireRequest.AcceptHireRequestController@{WPR.Controllers.Employee.Shared.acceptHireRequest.AcceptHireRequestController}}
+\doxysubsubsection{\texorpdfstring{GetReviewsIdsAsync()}{GetReviewsIdsAsync()}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_controllers_1_1_employee_1_1_shared_1_1accept_hire_request_1_1_accept_hire_request_controller_a53071f794abb7d5b057fd44675e2cc19} 
+async Task$<$ IAction\+Result $>$ WPR.\+Controllers.\+Employee.\+Shared.\+accept\+Hire\+Request.\+Accept\+Hire\+Request\+Controller.\+Get\+Reviews\+Ids\+Async (\begin{DoxyParamCaption}\item[{string}]{user}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Alle ids van de aanvragen worden opgehaald. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em user} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+backend/src/\+Controllers/\+Employee/shared/accept\+Hire\+Request/accept\+Hire\+Request\+Controller.\+cs\end{DoxyCompactItemize}

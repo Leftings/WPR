@@ -1,0 +1,4 @@
+var class_w_p_r_1_1_controllers_1_1_employee_1_1_front_office_1_1_add_intake_1_1_add_intake_controller =
+[
+    [ "AddIntakeAsync", "class_w_p_r_1_1_controllers_1_1_employee_1_1_front_office_1_1_add_intake_1_1_add_intake_controller.html#ad03b0dd2e83bcf5627e6389de3a43197", null ]
+];

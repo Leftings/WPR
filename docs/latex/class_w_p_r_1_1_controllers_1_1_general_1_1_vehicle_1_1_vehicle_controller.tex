@@ -1,0 +1,103 @@
+\doxysection{WPR.\+Controllers.\+General.\+Vehicle.\+Vehicle\+Controller Class Reference}
+\hypertarget{class_w_p_r_1_1_controllers_1_1_general_1_1_vehicle_1_1_vehicle_controller}{}\label{class_w_p_r_1_1_controllers_1_1_general_1_1_vehicle_1_1_vehicle_controller}\index{WPR.Controllers.General.Vehicle.VehicleController@{WPR.Controllers.General.Vehicle.VehicleController}}
+
+
+\doxylink{class_w_p_r_1_1_controllers_1_1_general_1_1_vehicle_1_1_vehicle_controller}{Vehicle\+Controller} zorgt ervoor dat voertuiggegevens uit de backend gehaald kunnen worden.  
+
+
+Inheritance diagram for WPR.\+Controllers.\+General.\+Vehicle.\+Vehicle\+Controller\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_w_p_r_1_1_controllers_1_1_general_1_1_vehicle_1_1_vehicle_controller}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_w_p_r_1_1_controllers_1_1_general_1_1_vehicle_1_1_vehicle_controller_a3ef8266c5b1646cbf735bdaaeee02657}\label{class_w_p_r_1_1_controllers_1_1_general_1_1_vehicle_1_1_vehicle_controller_a3ef8266c5b1646cbf735bdaaeee02657} 
+{\bfseries Vehicle\+Controller} (\mbox{\hyperlink{class_w_p_r_1_1_database_1_1_connector}{Connector}} connector, \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_vehicle_repository}{IVehicle\+Repository}} vehicle\+Repository)
+\item 
+\Hypertarget{class_w_p_r_1_1_controllers_1_1_general_1_1_vehicle_1_1_vehicle_controller_a6513983e0e6319857b7114b3d4e4bfe0}\label{class_w_p_r_1_1_controllers_1_1_general_1_1_vehicle_1_1_vehicle_controller_a6513983e0e6319857b7114b3d4e4bfe0} 
+async Task$<$ IAction\+Result $>$ {\bfseries Get\+Vehicle\+Name} (int frame\+Nr)
+\item 
+\Hypertarget{class_w_p_r_1_1_controllers_1_1_general_1_1_vehicle_1_1_vehicle_controller_a47c5226006711ccc6d74971eb8abf032}\label{class_w_p_r_1_1_controllers_1_1_general_1_1_vehicle_1_1_vehicle_controller_a47c5226006711ccc6d74971eb8abf032} 
+async Task$<$ IAction\+Result $>$ {\bfseries Get\+Vehicle\+Image\+Async} (int frame\+Nr)
+\item 
+\Hypertarget{class_w_p_r_1_1_controllers_1_1_general_1_1_vehicle_1_1_vehicle_controller_a45b3f02d868b52ccc5afddb3c0267560}\label{class_w_p_r_1_1_controllers_1_1_general_1_1_vehicle_1_1_vehicle_controller_a45b3f02d868b52ccc5afddb3c0267560} 
+async Task$<$ IAction\+Result $>$ {\bfseries Get\+Vehicle\+Price\+Async} (int frame\+Nr)
+\item 
+\Hypertarget{class_w_p_r_1_1_controllers_1_1_general_1_1_vehicle_1_1_vehicle_controller_a373f3a7c3064fc053ad388cc2e1a350d}\label{class_w_p_r_1_1_controllers_1_1_general_1_1_vehicle_1_1_vehicle_controller_a373f3a7c3064fc053ad388cc2e1a350d} 
+async Task$<$ IAction\+Result $>$ {\bfseries Get\+All\+Vehicles\+Async} ()
+\item 
+\Hypertarget{class_w_p_r_1_1_controllers_1_1_general_1_1_vehicle_1_1_vehicle_controller_aaa615b835b9a71811327f22805bce715}\label{class_w_p_r_1_1_controllers_1_1_general_1_1_vehicle_1_1_vehicle_controller_aaa615b835b9a71811327f22805bce715} 
+async Task$<$ IAction\+Result $>$ {\bfseries Get\+Type\+Of\+Vehicles\+Async} (string vehicle\+Type)
+\item 
+async Task$<$ IAction\+Result $>$ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_general_1_1_vehicle_1_1_vehicle_controller_a4a6d616a3e9390af3dca1cb084d39d7d}{Get\+Frame\+Numbers\+Async}} ()
+\begin{DoxyCompactList}\small\item\em Alle framenummers van de voertuigen worden verzameld. \end{DoxyCompactList}\item 
+async Task$<$ IAction\+Result $>$ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_general_1_1_vehicle_1_1_vehicle_controller_afb66085e0df384b247c238e58ec36029}{Get\+Frame\+Numbers\+Specific\+Type\+Async}} (string type)
+\begin{DoxyCompactList}\small\item\em Alle framenummers van een specifieke voertuig soort wordt verzameld. \end{DoxyCompactList}\item 
+async Task$<$ IAction\+Result $>$ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_general_1_1_vehicle_1_1_vehicle_controller_a286d4c9a73d21612fcde092dd1aa979e}{Get\+Vehicle\+Data}} (string frame\+Nr)
+\begin{DoxyCompactList}\small\item\em Alle gegevens van 1 specifiek voertuig wordt opgehaald. \end{DoxyCompactList}\item 
+\Hypertarget{class_w_p_r_1_1_controllers_1_1_general_1_1_vehicle_1_1_vehicle_controller_ae37bdd9c92abdac45d22bf147b28c230}\label{class_w_p_r_1_1_controllers_1_1_general_1_1_vehicle_1_1_vehicle_controller_ae37bdd9c92abdac45d22bf147b28c230} 
+async Task$<$ IAction\+Result $>$ {\bfseries Delete\+Vehicle\+Async} (string frame\+Nr)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\doxylink{class_w_p_r_1_1_controllers_1_1_general_1_1_vehicle_1_1_vehicle_controller}{Vehicle\+Controller} zorgt ervoor dat voertuiggegevens uit de backend gehaald kunnen worden. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_w_p_r_1_1_controllers_1_1_general_1_1_vehicle_1_1_vehicle_controller_a4a6d616a3e9390af3dca1cb084d39d7d}\index{WPR.Controllers.General.Vehicle.VehicleController@{WPR.Controllers.General.Vehicle.VehicleController}!GetFrameNumbersAsync@{GetFrameNumbersAsync}}
+\index{GetFrameNumbersAsync@{GetFrameNumbersAsync}!WPR.Controllers.General.Vehicle.VehicleController@{WPR.Controllers.General.Vehicle.VehicleController}}
+\doxysubsubsection{\texorpdfstring{GetFrameNumbersAsync()}{GetFrameNumbersAsync()}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_controllers_1_1_general_1_1_vehicle_1_1_vehicle_controller_a4a6d616a3e9390af3dca1cb084d39d7d} 
+async Task$<$ IAction\+Result $>$ WPR.\+Controllers.\+General.\+Vehicle.\+Vehicle\+Controller.\+Get\+Frame\+Numbers\+Async (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Alle framenummers van de voertuigen worden verzameld. 
+
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\Hypertarget{class_w_p_r_1_1_controllers_1_1_general_1_1_vehicle_1_1_vehicle_controller_afb66085e0df384b247c238e58ec36029}\index{WPR.Controllers.General.Vehicle.VehicleController@{WPR.Controllers.General.Vehicle.VehicleController}!GetFrameNumbersSpecificTypeAsync@{GetFrameNumbersSpecificTypeAsync}}
+\index{GetFrameNumbersSpecificTypeAsync@{GetFrameNumbersSpecificTypeAsync}!WPR.Controllers.General.Vehicle.VehicleController@{WPR.Controllers.General.Vehicle.VehicleController}}
+\doxysubsubsection{\texorpdfstring{GetFrameNumbersSpecificTypeAsync()}{GetFrameNumbersSpecificTypeAsync()}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_controllers_1_1_general_1_1_vehicle_1_1_vehicle_controller_afb66085e0df384b247c238e58ec36029} 
+async Task$<$ IAction\+Result $>$ WPR.\+Controllers.\+General.\+Vehicle.\+Vehicle\+Controller.\+Get\+Frame\+Numbers\+Specific\+Type\+Async (\begin{DoxyParamCaption}\item[{string}]{type}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Alle framenummers van een specifieke voertuig soort wordt verzameld. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em type} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\Hypertarget{class_w_p_r_1_1_controllers_1_1_general_1_1_vehicle_1_1_vehicle_controller_a286d4c9a73d21612fcde092dd1aa979e}\index{WPR.Controllers.General.Vehicle.VehicleController@{WPR.Controllers.General.Vehicle.VehicleController}!GetVehicleData@{GetVehicleData}}
+\index{GetVehicleData@{GetVehicleData}!WPR.Controllers.General.Vehicle.VehicleController@{WPR.Controllers.General.Vehicle.VehicleController}}
+\doxysubsubsection{\texorpdfstring{GetVehicleData()}{GetVehicleData()}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_controllers_1_1_general_1_1_vehicle_1_1_vehicle_controller_a286d4c9a73d21612fcde092dd1aa979e} 
+async Task$<$ IAction\+Result $>$ WPR.\+Controllers.\+General.\+Vehicle.\+Vehicle\+Controller.\+Get\+Vehicle\+Data (\begin{DoxyParamCaption}\item[{string}]{frame\+Nr}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Alle gegevens van 1 specifiek voertuig wordt opgehaald. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em frame\+Nr} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+backend/src/\+Controllers/general/vehicle/Vehicle\+Controller.\+cs\end{DoxyCompactItemize}

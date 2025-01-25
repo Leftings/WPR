@@ -1,0 +1,44 @@
+\doxysection{WPR.\+App\+Configure Class Reference}
+\hypertarget{class_w_p_r_1_1_app_configure}{}\label{class_w_p_r_1_1_app_configure}\index{WPR.AppConfigure@{WPR.AppConfigure}}
+
+
+Deze class is responsible voor het configureren van de application services en database connectie Het heeft methodes om de database te initializeren en het configureren van de web applicatie.  
+
+
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_w_p_r_1_1_app_configure_a03bdad8277429c64d59c0b6781b17329}\label{class_w_p_r_1_1_app_configure_a03bdad8277429c64d59c0b6781b17329} 
+static void {\bfseries Init\+Database} (IService\+Provider services)
+\item 
+static Web\+Application \mbox{\hyperlink{class_w_p_r_1_1_app_configure_a77a92db2b597250930168694b79931d7}{Configure\+Application}} (string\mbox{[}$\,$\mbox{]} args)
+\begin{DoxyCompactList}\small\item\em Configureer de web applicatie, zoals middleware, services, authentication en CORS settings. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Deze class is responsible voor het configureren van de application services en database connectie Het heeft methodes om de database te initializeren en het configureren van de web applicatie. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_w_p_r_1_1_app_configure_a77a92db2b597250930168694b79931d7}\index{WPR.AppConfigure@{WPR.AppConfigure}!ConfigureApplication@{ConfigureApplication}}
+\index{ConfigureApplication@{ConfigureApplication}!WPR.AppConfigure@{WPR.AppConfigure}}
+\doxysubsubsection{\texorpdfstring{ConfigureApplication()}{ConfigureApplication()}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_app_configure_a77a92db2b597250930168694b79931d7} 
+static Web\+Application WPR.\+App\+Configure.\+Configure\+Application (\begin{DoxyParamCaption}\item[{string\mbox{[}$\,$\mbox{]}}]{args}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Configureer de web applicatie, zoals middleware, services, authentication en CORS settings. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em args} & De command line arguments passed to the application at startup.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+De geconfigureerde Web\+Application instantie.
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+backend/src/App\+Configure.\+cs\end{DoxyCompactItemize}

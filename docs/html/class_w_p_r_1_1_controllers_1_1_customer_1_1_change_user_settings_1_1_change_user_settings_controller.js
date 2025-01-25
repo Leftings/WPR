@@ -1,0 +1,5 @@
+var class_w_p_r_1_1_controllers_1_1_customer_1_1_change_user_settings_1_1_change_user_settings_controller =
+[
+    [ "ChangeUserInfoAsync", "class_w_p_r_1_1_controllers_1_1_customer_1_1_change_user_settings_1_1_change_user_settings_controller.html#ad0c06d0e87c3f161bea7b181d4b6640c", null ],
+    [ "DeleteUserAsync", "class_w_p_r_1_1_controllers_1_1_customer_1_1_change_user_settings_1_1_change_user_settings_controller.html#a6e3a640c5986bf99186311838136be4e", null ]
+];

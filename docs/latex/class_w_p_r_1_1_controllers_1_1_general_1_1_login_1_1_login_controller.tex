@@ -1,0 +1,95 @@
+\doxysection{WPR.\+Controllers.\+General.\+Login.\+Login\+Controller Class Reference}
+\hypertarget{class_w_p_r_1_1_controllers_1_1_general_1_1_login_1_1_login_controller}{}\label{class_w_p_r_1_1_controllers_1_1_general_1_1_login_1_1_login_controller}\index{WPR.Controllers.General.Login.LoginController@{WPR.Controllers.General.Login.LoginController}}
+
+
+\doxylink{class_w_p_r_1_1_controllers_1_1_general_1_1_login_1_1_login_controller}{Login\+Controller} zorgt ervoor dat een gebruiker kan inloggen, daarnaast wordt er ook gekeken of de gebruiker een geldige cookie heeft.  
+
+
+Inheritance diagram for WPR.\+Controllers.\+General.\+Login.\+Login\+Controller\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_w_p_r_1_1_controllers_1_1_general_1_1_login_1_1_login_controller}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_w_p_r_1_1_controllers_1_1_general_1_1_login_1_1_login_controller_a7856bec9b2942fef98f218dd51b8d5f3}\label{class_w_p_r_1_1_controllers_1_1_general_1_1_login_1_1_login_controller_a7856bec9b2942fef98f218dd51b8d5f3} 
+{\bfseries Login\+Controller} (\mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_user_repository}{IUser\+Repository}} user\+Repository, \mbox{\hyperlink{class_w_p_r_1_1_database_1_1_connector}{Connector}} connector, \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_general_1_1_cookie_1_1_session_handler}{Session\+Handler}} session\+Handler, \mbox{\hyperlink{class_w_p_r_1_1_cryption_1_1_crypt}{Crypt}} crypt)
+\item 
+IAction\+Result \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_general_1_1_login_1_1_login_controller_ad58e9bebd75ae37f38d04c9c522c5417}{Check\+Session}} ()
+\begin{DoxyCompactList}\small\item\em De session voor de customer wordt gecheckt. \end{DoxyCompactList}\item 
+async Task$<$ IAction\+Result $>$ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_general_1_1_login_1_1_login_controller_ab403677b4b684c2f5d4cf22ecff86d62}{Check\+Session\+Staff}} ()
+\begin{DoxyCompactList}\small\item\em De session voor de Car and All medewerker wordt gecheckt. \end{DoxyCompactList}\item 
+async Task$<$ IAction\+Result $>$ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_general_1_1_login_1_1_login_controller_aa6b1a3f5c9c1f1262ff4262b9867e1e1}{Check\+Session\+Vehicle\+Manager}} ()
+\begin{DoxyCompactList}\small\item\em De session voor de \doxylink{namespace_w_p_r_1_1_controllers_1_1_general_1_1_vehicle}{Vehicle} Manager wordt gecheckt. \end{DoxyCompactList}\item 
+async Task$<$ IAction\+Result $>$ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_general_1_1_login_1_1_login_controller_aadfcab0236ffc34b7301d055a578df40}{Login\+Async}} (\mbox{[}From\+Body\mbox{]} \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_general_1_1_login_1_1_login_request}{Login\+Request}} login\+Request)
+\begin{DoxyCompactList}\small\item\em Een gebruiker wordt ingelogt. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\doxylink{class_w_p_r_1_1_controllers_1_1_general_1_1_login_1_1_login_controller}{Login\+Controller} zorgt ervoor dat een gebruiker kan inloggen, daarnaast wordt er ook gekeken of de gebruiker een geldige cookie heeft. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_w_p_r_1_1_controllers_1_1_general_1_1_login_1_1_login_controller_ad58e9bebd75ae37f38d04c9c522c5417}\index{WPR.Controllers.General.Login.LoginController@{WPR.Controllers.General.Login.LoginController}!CheckSession@{CheckSession}}
+\index{CheckSession@{CheckSession}!WPR.Controllers.General.Login.LoginController@{WPR.Controllers.General.Login.LoginController}}
+\doxysubsubsection{\texorpdfstring{CheckSession()}{CheckSession()}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_controllers_1_1_general_1_1_login_1_1_login_controller_ad58e9bebd75ae37f38d04c9c522c5417} 
+IAction\+Result WPR.\+Controllers.\+General.\+Login.\+Login\+Controller.\+Check\+Session (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+De session voor de customer wordt gecheckt. 
+
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\Hypertarget{class_w_p_r_1_1_controllers_1_1_general_1_1_login_1_1_login_controller_ab403677b4b684c2f5d4cf22ecff86d62}\index{WPR.Controllers.General.Login.LoginController@{WPR.Controllers.General.Login.LoginController}!CheckSessionStaff@{CheckSessionStaff}}
+\index{CheckSessionStaff@{CheckSessionStaff}!WPR.Controllers.General.Login.LoginController@{WPR.Controllers.General.Login.LoginController}}
+\doxysubsubsection{\texorpdfstring{CheckSessionStaff()}{CheckSessionStaff()}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_controllers_1_1_general_1_1_login_1_1_login_controller_ab403677b4b684c2f5d4cf22ecff86d62} 
+async Task$<$ IAction\+Result $>$ WPR.\+Controllers.\+General.\+Login.\+Login\+Controller.\+Check\+Session\+Staff (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+De session voor de Car and All medewerker wordt gecheckt. 
+
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\Hypertarget{class_w_p_r_1_1_controllers_1_1_general_1_1_login_1_1_login_controller_aa6b1a3f5c9c1f1262ff4262b9867e1e1}\index{WPR.Controllers.General.Login.LoginController@{WPR.Controllers.General.Login.LoginController}!CheckSessionVehicleManager@{CheckSessionVehicleManager}}
+\index{CheckSessionVehicleManager@{CheckSessionVehicleManager}!WPR.Controllers.General.Login.LoginController@{WPR.Controllers.General.Login.LoginController}}
+\doxysubsubsection{\texorpdfstring{CheckSessionVehicleManager()}{CheckSessionVehicleManager()}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_controllers_1_1_general_1_1_login_1_1_login_controller_aa6b1a3f5c9c1f1262ff4262b9867e1e1} 
+async Task$<$ IAction\+Result $>$ WPR.\+Controllers.\+General.\+Login.\+Login\+Controller.\+Check\+Session\+Vehicle\+Manager (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+De session voor de \doxylink{namespace_w_p_r_1_1_controllers_1_1_general_1_1_vehicle}{Vehicle} Manager wordt gecheckt. 
+
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\Hypertarget{class_w_p_r_1_1_controllers_1_1_general_1_1_login_1_1_login_controller_aadfcab0236ffc34b7301d055a578df40}\index{WPR.Controllers.General.Login.LoginController@{WPR.Controllers.General.Login.LoginController}!LoginAsync@{LoginAsync}}
+\index{LoginAsync@{LoginAsync}!WPR.Controllers.General.Login.LoginController@{WPR.Controllers.General.Login.LoginController}}
+\doxysubsubsection{\texorpdfstring{LoginAsync()}{LoginAsync()}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_controllers_1_1_general_1_1_login_1_1_login_controller_aadfcab0236ffc34b7301d055a578df40} 
+async Task$<$ IAction\+Result $>$ WPR.\+Controllers.\+General.\+Login.\+Login\+Controller.\+Login\+Async (\begin{DoxyParamCaption}\item[{\mbox{[}\+From\+Body\mbox{]} \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_general_1_1_login_1_1_login_request}{Login\+Request}}}]{login\+Request}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Een gebruiker wordt ingelogt. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em login\+Request} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+backend/src/\+Controllers/general/login/login\+Controller.\+cs\end{DoxyCompactItemize}
