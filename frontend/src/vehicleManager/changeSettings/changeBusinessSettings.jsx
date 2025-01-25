@@ -137,27 +137,25 @@ function ChangeBusinessSettings() {
         updateCustomerData(updatedData);
     };
 
-// Een functie om de klantgegevens bij te werken (hier een voorbeeld, afhankelijk van hoe je de API hebt ingesteld)
-    const updateCustomerData = async (updatedData) => {
+    const updateCustomerData = async (customerId, updates) => {
         try {
-            const response = await fetch('/api/update-customers', {
-                method: 'POST',
+            const response = await fetch(`${BACKEND_URL}/api/UpdateCustomer?id=${customerId}`, {
+                method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify(updatedData),
+                body: JSON.stringify(updates),
             });
 
             if (response.ok) {
-                console.log("Customers updated successfully!");
+                console.log("Customer updated successfully!");
             } else {
-                console.error("Failed to update customers.");
+                console.error("Failed to update customer:", await response.json());
             }
         } catch (error) {
-            console.error("Error while updating customers:", error);
+            console.error("Error while updating customer:", error);
         }
     };
-
 
     useEffect(() => {
         const fetchBusinessData = async () => {
@@ -312,13 +310,12 @@ function ChangeBusinessSettings() {
   };
     const handleCustomerUpdate = async (customerId, index) => {
         const customerData = {
-            email: updatedCustomers[index]?.email || customers[index].email,
-            password: updatedCustomers[index]?.password || "",
+            Email: updatedCustomers[index]?.email || customers[index].email,
+            Password: updatedCustomers[index]?.password || "",
         };
 
         try {
-            // Send the update request for the individual customer with the query parameter
-            const response = await fetch(`/api/UpdateCustomer?id=${customerId}`, {
+            const response = await fetch(`${BACKEND_URL}/api/GetInfoVehicleManager/UpdateCustomer?id=${encodeURIComponent(customerId)}`, {
                 method: 'PUT',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(customerData),
@@ -326,46 +323,62 @@ function ChangeBusinessSettings() {
 
             if (response.ok) {
                 console.log("Customer updated successfully!");
-                // Optionally show a success message or update UI
             } else {
-                console.error("Failed to update customer.");
+                const errorText = await response.text();
+                console.error("Failed to update customer:", errorText);
+
+                try {
+                    const errorData = JSON.parse(errorText);
+                    console.error("Parsed error data:", errorData);
+                } catch (e) {
+                    console.error("Response is not valid JSON:", e);
+                }
             }
         } catch (error) {
-            console.error("Error while updating customer:", error);
+            console.error("Error while updating customer:", error.message);
         }
     };
 
-    async function checkNewEmail(email)
-  {
-    if (email === '')
-    {
-      return true;
-    }
-    const filledInDomain = '@' + email.split("@").pop();
+    async function checkNewEmail(email) {
+        console.log("Checking email:", email);
 
-    if (filledInDomain === businessInfo.Domain)
-    {
-      const response = await loadSingle(`${BACKEND_URL}/api/ChangeBusinessSettings/CheckNewEmail?email=email`);
-      console.log(response);
+        if (email === '') {
+            console.log("Email is empty, returning true");
+            return true;
+        }
 
-      if (response.ok)
-      {
-        return true;
-      }
-      else
-      {
-        setError([response.message]);
-        return false;
-      }
-    }
-    else
-    {
-      setError([`Domein is niet hetzelfde als het opgegeven domain (${businessInfo.Domain})`]);
-      return false;
-    }
-  }
+        const filledInDomain = '@' + email.split("@").pop();
+        console.log("Extracted domain from email:", filledInDomain);
 
-  return (
+        if (!businessInfo || !businessInfo.Domain) {
+            console.log("Business domain is undefined or not available:", businessInfo);
+            setError(["Business domain is not available"]);
+            return false;
+        }
+
+        console.log("Business domain:", businessInfo.Domain);
+
+        if (filledInDomain === businessInfo.Domain) {
+            const response = await loadSingle(`${BACKEND_URL}/api/ChangeBusinessSettings/CheckNewEmail?email=${email}`);
+            console.log("API Response:", response);
+
+            if (response.ok) {
+                console.log("Email is valid and response is OK");
+                return true;
+            } else {
+                console.log("Error from API:", response.message);
+                setError([response.message]);
+                return false;
+            }
+        } else {
+            console.log(`Error: Domain does not match the business domain (${businessInfo.Domain})`);
+            setError([`Domein is niet hetzelfde als het opgegeven domain (${businessInfo.Domain})`]);
+            return false;
+        }
+    }
+
+
+    return (
     <>
     <GeneralHeader />
     <main>

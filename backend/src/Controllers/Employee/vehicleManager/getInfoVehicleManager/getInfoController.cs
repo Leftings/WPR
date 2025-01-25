@@ -71,38 +71,35 @@ public class GetInfoVehicleManagerController : ControllerBase
     /// </summary>
     [HttpPut("UpdateCustomer")]
     public async Task<IActionResult> UpdateCustomer([FromQuery] int id, [FromBody] CustomerUpdateRequest updates)
-
-    
-{
-    try
     {
-        if (id <= 0)
+        try
         {
-            return BadRequest(new { message = "Invalid vehicle manager ID" });
-        }
+            if (id <= 0)
+            {
+                return BadRequest(new { message = "Invalid customer ID" });
+            }
 
-        if (updates == null || string.IsNullOrEmpty(updates.Email) || string.IsNullOrEmpty(updates.Password))
+            if (updates == null || string.IsNullOrEmpty(updates.Email) || string.IsNullOrEmpty(updates.Password))
+            {
+                return BadRequest(new { message = "Email and Password cannot be empty" });
+            }
+
+            var encryptedPassword = _crypt.Encrypt(updates.Password);
+            var updateResult = await _userRepository.UpdateCustomerAsync(id, updates.Email, encryptedPassword);
+
+            if (!updateResult)
+            {
+                return StatusCode(500, new { message = "Failed to update customer information" });
+            }
+
+            return Ok(new { message = "Customer info updated successfully" });
+        }
+        catch (Exception ex)
         {
-            return BadRequest(new { message = "Email and Password cannot be empty" });
+            return StatusCode(500, new { message = "Internal server error", error = ex.Message });
         }
-
-        var encryptedPassword = _crypt.Encrypt(updates.Password);
-
-        var updateResult = await _userRepository.UpdateCustomerAsync(id, updates.Email, encryptedPassword);
-
-        if (!updateResult)
-        {
-            return StatusCode(500, new { message = "Failed to update vehicle manager information" });
-        }
-
-        return Ok(new { message = "Vehicle manager info updated successfully" });
     }
-    catch (Exception ex)
-    {
-        Console.WriteLine($"Error in Customer: {ex.Message}");
-        return StatusCode(500, new { message = "Internal server error", error = ex.Message });
-    }
-}
+
 
     /// <summary>
     /// Get customers associated with a specific business number.
