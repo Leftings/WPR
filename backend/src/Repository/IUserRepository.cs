@@ -37,4 +37,6 @@ public interface IUserRepository
     Task<UserRepository.VehicleManager> GetVehicleManagerInfoAsync(int id);
     Task<List<UserRepository.Customer>> GetCustomersByBusinessNumberAsync(string Business);
     Task<bool> UpdateCustomerAsync(int id, string email, string encryptedPassword);
+    Task<(int StatusCode, string Message)> ChangeVehicleManagerInfo(ChangeVehicleManagerInfo request);
+
 }

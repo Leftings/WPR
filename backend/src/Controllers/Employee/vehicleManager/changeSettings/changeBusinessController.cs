@@ -14,11 +14,13 @@ public class ChangeBusinessSettingsController : ControllerBase
     private readonly IEmployeeRepository _employeeRepository;
     private readonly IDatabaseCheckRepository _databaseCheckRepository;
 
-    public ChangeBusinessSettingsController(IUserRepository userRepository, IEmployeeRepository employeeRepository, IDatabaseCheckRepository databaseCheckRepository)
+    public ChangeBusinessSettingsController(IUserRepository userRepository, IEmployeeRepository employeeRepository,
+        IDatabaseCheckRepository databaseCheckRepository)
     {
         _userRepository = userRepository ?? throw new ArgumentNullException(nameof(userRepository));
         _employeeRepository = employeeRepository ?? throw new ArgumentNullException(nameof(employeeRepository));
-        _databaseCheckRepository = databaseCheckRepository ?? throw new ArgumentNullException(nameof(databaseCheckRepository));
+        _databaseCheckRepository =
+            databaseCheckRepository ?? throw new ArgumentNullException(nameof(databaseCheckRepository));
     }
 
     [HttpGet("GetBusinessInfo")]
@@ -32,7 +34,8 @@ public class ChangeBusinessSettingsController : ControllerBase
             if (kvkResponse.StatusCode == 200)
             {
                 Console.WriteLine($"KvK retrieved: {kvkResponse.KvK}");
-                (bool Status, string Message, Dictionary<string, object> Data) businessInfo = _employeeRepository.GetBusinessInfo(kvkResponse.KvK);
+                (bool Status, string Message, Dictionary<string, object> Data) businessInfo =
+                    _employeeRepository.GetBusinessInfo(kvkResponse.KvK);
 
                 if (businessInfo.Status)
                 {
@@ -58,8 +61,9 @@ public class ChangeBusinessSettingsController : ControllerBase
     {
         if (request == null)
         {
-            return BadRequest("Body cannot be null"); 
+            return BadRequest("Body cannot be null");
         }
+
         if (!string.IsNullOrEmpty(request.VehicleManagerInfo.Password))
         {
             (bool Valid, string Message) result = PasswordChecker.IsValidPassword(request.VehicleManagerInfo.Password);
@@ -71,7 +75,7 @@ public class ChangeBusinessSettingsController : ControllerBase
         }
 
         (int StatusCode, string Message) updated = await _userRepository.ChangeBusinessInfo(request);
-    
+
         return StatusCode(updated.StatusCode, new { message = updated.Message });
     }
 
@@ -80,7 +84,8 @@ public class ChangeBusinessSettingsController : ControllerBase
     /// </summary>
     /// <returns></returns>
     [HttpDelete("DeleteBusiness")]
-    public async Task<IActionResult> DeleteUserAsync([FromBody] DeleteBusinessRequest request) {
+    public async Task<IActionResult> DeleteUserAsync([FromBody] DeleteBusinessRequest request)
+    {
         var deleteResponse = _databaseCheckRepository.DeleteBusiness(request.KvK);
 
         if (deleteResponse.StatusCode == 200)
@@ -97,7 +102,8 @@ public class ChangeBusinessSettingsController : ControllerBase
     }
 
     [HttpDelete("DeleteVehicleManager")]
-    public async Task<IActionResult> DeleteVehicleAsync([FromBody] DeleteVehicleManagerRequest request) {
+    public async Task<IActionResult> DeleteVehicleAsync([FromBody] DeleteVehicleManagerRequest request)
+    {
         var deleteResponse = _databaseCheckRepository.DeleteVehicleManager(request.ID, request.KvK);
 
         if (deleteResponse.StatusCode == 200)
@@ -109,7 +115,7 @@ public class ChangeBusinessSettingsController : ControllerBase
                 Expires = DateTimeOffset.UtcNow.AddDays(-1)
             });
         }
-        
+
         return StatusCode(deleteResponse.StatusCode, new { message = deleteResponse.Message });
     }
 
@@ -122,7 +128,33 @@ public class ChangeBusinessSettingsController : ControllerBase
         {
             return StatusCode(200, new { message = "Geldige email" });
         }
-        return StatusCode(400, new { message = "Email is al ingebruik"} );
+
+        return StatusCode(400, new { message = "Email is al ingebruik" });
+    }
+
+    [HttpPut("ChangeVehicleManagerInfo")]
+    public async Task<IActionResult> ChangeVehicleManagerInfoAsync([FromBody] ChangeVehicleManagerInfo request)
+
+    {
+        if (request == null)
+        {
+            return BadRequest("Request body cannot be null.");
+        }
+
+        Console.WriteLine("ChangeVehicleManagerInfo endpoint hit.");
+
+        try
+        {
+            // Call the repository method and destructure the result
+            (int statusCode, string message) = await _userRepository.ChangeVehicleManagerInfo(request);
+
+            // Return the appropriate status code and message
+            return StatusCode(statusCode, new { message });
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, new { message = ex.Message });
+        }
     }
 }
 

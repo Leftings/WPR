@@ -919,52 +919,46 @@ public class UserRepository : IUserRepository
         return query;
     }
 
-    private async Task<(int StatusCode, string Message)> ChangeVehicleManagerInfo(ChangeVehicleManagerInfo request,
-        MySqlConnection connection)
+   public async Task<(int StatusCode, string Message)> ChangeVehicleManagerInfo(ChangeVehicleManagerInfo request)
+{
+    // Log the values to ensure they are correct
+    Console.WriteLine($"Received request to update VehicleManager with ID: {request.ID}");
+    Console.WriteLine($"New Email: {request.Email}");
+    Console.WriteLine($"New Password: {request.Password}");
+
+    string updateQuery = @"
+        UPDATE VehicleManager
+        SET Email = @Email,
+            Password = @Password
+        WHERE ID = @ID";
+
+    using (var connection = _connector.CreateDbConnection())
+    using (var command = new MySqlCommand(updateQuery, (MySqlConnection)connection))
     {
+        command.Parameters.AddWithValue("@ID", request.ID);
+        command.Parameters.AddWithValue("@Email", request.Email);
+        command.Parameters.AddWithValue("@Password", request.Password);
+
         try
         {
-            List<object[]> data = new List<object[]>();
-
-            // gegevens worden uit de lijst gehaald (naam van de collom, de nieuwe waarde, soort waarde)
-            foreach (var propertyInfo in typeof(ChangeVehicleManagerInfo).GetProperties())
+            int rowsAffected = await command.ExecuteNonQueryAsync();
+            if (rowsAffected > 0)
             {
-                var propertyName = propertyInfo.Name;
-                var propertyValue = propertyInfo.GetValue(request);
-                var propertyType = propertyInfo.PropertyType;
-
-                if (!propertyValue.Equals(""))
-                {
-                    data.Add(new object[] { propertyName, propertyValue, propertyType });
-                }
+                return (200, "Vehicle Manager updated successfully.");
             }
-
-            if (data.Count > 1)
+            else
             {
-                using (var command = new MySqlCommand(CreateUpdateQuery("VehicleManager", data), connection))
-                {
-                    if (await command.ExecuteNonQueryAsync() > 0)
-                    {
-                        return (200, "VehicleManager Updated");
-                    }
-
-                    return (417, "VehicleManager Not Updated");
-                }
+                return (404, "Vehicle Manager not found.");
             }
-
-            return (200, "No Data To Update");
-        }
-        catch (MySqlException ex)
-        {
-            return (500, ex.Message);
         }
         catch (Exception ex)
         {
-            return (500, ex.Message);
+            return (500, $"Error: {ex.Message}");
         }
     }
+}
 
-   public async Task<(int StatusCode, string Message)> ChangeBusinessInfo(ChangeBusinessRequest request)
+public async Task<(int StatusCode, string Message)> ChangeBusinessInfo(ChangeBusinessRequest request)
 {
     try
     {
@@ -1488,5 +1482,3 @@ private async Task<(int StatusCode, string Message)> ChangeBusinessData(ChangeBu
     }
 
 }
-
-
