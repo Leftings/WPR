@@ -1,10 +1,5 @@
 ﻿using System.Data;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.VisualBasic;
 using MySql.Data.MySqlClient;
-using Org.BouncyCastle.Asn1.Mozilla;
-using Org.BouncyCastle.Bcpg;
 using WPR.Controllers.Customer.Rental;
 using WPR.Cryption;
 using WPR.Database;
@@ -28,40 +23,58 @@ public class VehicleRepository : IVehicleRepository
         _crypt = crypt ?? throw new ArgumentNullException(nameof(crypt));
         _emailService = emailService ?? throw new ArgumentNullException(nameof(emailService));
     }
-    
+
+    /// <summary>
+    /// Haalt het kenteken van een voertuig op basis van het opgegeven frameNr.
+    /// </summary>
+    /// <param name="frameNr">Het frameNummer van het voertuig waarvan het kenteken opgehaald moet worden.</param>
+    /// <returns>Het kenteken van het voertuig, of een lege string als het niet gevonden wordt.</returns>
     public async Task<string> GetVehiclePlateAsync(int frameNr)
     {
         try
         {
+            // SQL query om het kenteken op te halen voor het opgegeven frameNr
             string query = "SELECT LicensePlate FROM Vehicle WHERE FrameNr = @FrameNr";
 
+            // Open een databaseverbinding en voer de query uit
             using (var connection = _connector.CreateDbConnection())
             using (var command = new MySqlCommand(query, (MySqlConnection)connection))
             {
                 command.Parameters.AddWithValue("@FrameNr", frameNr);
 
+                // Leest het resultaat van de query (verwacht één rij)
                 using (var reader = await command.ExecuteReaderAsync(CommandBehavior.SingleRow))
                 {
                     if (reader.Read())
                     {
-                        string plate = reader.IsDBNull(0) ? null : reader.GetString(0);
-                        return $"{plate}";
+                        // Als kenteken niet null is, geef het terug, anders een lege string
+                        return reader.IsDBNull(0) ? string.Empty : reader.GetString(0);
                     }
                 }
             }
-            return String.Empty;
+
+            // Als er geen resultaat is, geef lege string terug
+            return string.Empty;
         }
         catch (Exception e)
         {
+            // Log de fout en gooi deze opnieuw
             Console.WriteLine($"Error getting vehicle plate {e.Message}");
             throw;
         }
     }
 
+
+    /// <summary>
+    /// Haalt de merk en type van een voertuig op basis van het opgegeven frameNr.
+    /// </summary>
+    /// <param name="frameNr">Het frameNummer van het voertuig waarvan merk en type opgehaald moeten worden.</param>
+    /// <returns>De combinatie van merk en type van het voertuig, of een lege string als de gegevens niet gevonden worden.</returns>
     public async Task<string> GetVehicleNameAsync(int frameNr)
     {
         try
         {
+            // SQL query om merk en type van voertuig op te halen
             string query = "SELECT Brand, Type FROM Vehicle WHERE FrameNr = @FrameNr";
 
             using (var connection = _connector.CreateDbConnection())
@@ -69,29 +82,41 @@ public class VehicleRepository : IVehicleRepository
             {
                 command.Parameters.AddWithValue("@FrameNr", frameNr);
 
+                // Leest de resultaten van de query
                 using (var reader = await command.ExecuteReaderAsync(CommandBehavior.SingleRow))
                 {
                     if (reader.Read())
                     {
+                        // Als merk of type null is, zet het op null
                         string brand = reader.IsDBNull(0) ? null : reader.GetString(0);
                         string type = reader.IsDBNull(1) ? null : reader.GetString(1);
+                        // Combineer merk en type en geef het resultaat terug
                         return $"{brand} {type}".Trim();
                     }
                 }
             }
+
+            // Als er geen resultaat is, geef een lege string terug
             return String.Empty;
         }
         catch (Exception e)
         {
+            // Foutmelding loggen
             Console.WriteLine($"Error getting vehicle name {e.Message}");
             throw;
         }
     }
 
+    /// <summary>
+    /// Haalt de kleur van een voertuig op basis van het opgegeven frameNr.
+    /// </summary>
+    /// <param name="frameNr">Het frameNummer van het voertuig waarvan de kleur opgehaald moet worden.</param>
+    /// <returns>De kleur van het voertuig, of een lege string als de kleur niet gevonden wordt.</returns>
     public async Task<string> GetVehicleColorAsync(int frameNr)
     {
         try
         {
+            // SQL query om de kleur van het voertuig op te halen
             string query = "SELECT Color FROM Vehicle WHERE FrameNr = @FrameNr";
 
             using (var connection = _connector.CreateDbConnection())
@@ -99,40 +124,45 @@ public class VehicleRepository : IVehicleRepository
             {
                 command.Parameters.AddWithValue("@FrameNr", frameNr);
 
+                // Leest de resultaten van de query
                 using (var reader = await command.ExecuteReaderAsync(CommandBehavior.SingleRow))
                 {
                     if (reader.Read())
                     {
+                        // Als kleur null is, zet het op null
                         string color = reader.IsDBNull(0) ? null : reader.GetString(0);
                         return $"{color}";
                     }
                 }
             }
+
+            // Als er geen kleur is, geef een lege string terug
             return String.Empty;
         }
         catch (Exception e)
         {
+            // Foutmelding loggen
             Console.WriteLine($"Error getting vehicle color {e.Message}");
             throw;
         }
     }
 
     /// <summary>
-    /// Alle framenummers van de voertuigen worden verzameld en in een list gestopt
+    /// Haalt een lijst op van alle frameNummers van voertuigen, gesorteerd op soort voertuig en frameNr.
     /// </summary>
-    /// <returns></returns>
+    /// <returns>Een lijst van frameNummers van voertuigen.</returns>
     public async Task<List<string>> GetFrameNumbersAsync()
     {
         try
         {
+            // SQL query om alle frameNrs op te halen, gesorteerd op soort voertuig
             string query = "SELECT FrameNr FROM Vehicle ORDER BY FIELD(Sort, 'Car', 'Camper', 'Caravan'), FrameNr DESC";
 
-            // Er wordt een connectie aangemaakt met de DataBase met bovenstaande query 
             using (var connection = _connector.CreateDbConnection())
             using (var command = new MySqlCommand(query, (MySqlConnection)connection))
             using (var reader = await command.ExecuteReaderAsync())
             {
-                // Er wordt een lijst met alle frameNrs
+                // Lijst om alle frame nummers op te slaan
                 var ids = new List<string>();
                 while (await reader.ReadAsync())
                 {
@@ -144,11 +174,13 @@ public class VehicleRepository : IVehicleRepository
         }
         catch (MySqlException ex)
         {
+            // Log MySQL gerelateerde fouten
             Console.WriteLine(ex.Message);
             return null;
         }
         catch (Exception ex)
         {
+            // Log andere fouten
             Console.WriteLine(ex.Message);
             return null;
         }
@@ -258,26 +290,40 @@ public class VehicleRepository : IVehicleRepository
         }
     }
 
+    /// <summary>
+    /// Probeert de gebruiker ID te decrypteren vanuit de cookie en retourneert het gedecodeerde resultaat.
+    /// </summary>
+    /// <param name="userId">De versleutelde gebruikers-ID als string.</param>
+    /// <returns>Een tuple bestaande uit een status (true/false), een statuscode en een bericht (bijvoorbeeld de gedecodeerde waarde of foutmelding).</returns>
     private async Task<(bool Status, int StatusCode, object Message)> DecryptCookie(string userId)
     {
         try
         {
-            return(true, 200, Convert.ToInt32(_crypt.Decrypt(userId)));
+            // Decrypt de userId en retourneer de gedecodeerde waarde
+            return (true, 200, Convert.ToInt32(_crypt.Decrypt(userId)));
         }
         catch (OverflowException ex)
         {
+            // Fout bij decoderen, retourneer error
             return (false, 500, ex.Message);
         }
         catch (Exception ex)
         {
+            // Algemeen foutafhandelingsmechanisme
             return (false, 500, ex.Message);
         }
     }
 
+    /// <summary>
+    /// Controleert of de gebruiker een business account heeft op basis van het opgegeven userId.
+    /// </summary>
+    /// <param name="userId">Het ID van de gebruiker dat gecontroleerd moet worden.</param>
+    /// <returns>Een boolean die aangeeft of de gebruiker een business account heeft.</returns>
     private async Task<bool> IsBusinessUser(object userId)
     {
         try
         {
+            // SQL query om de accounttype van de klant te controleren
             string queryBusiness = "SELECT AccountType FROM Customer WHERE ID = @I";
             using (var connection = _connector.CreateDbConnection())
             using (var commandBusiness = new MySqlCommand(queryBusiness, (MySqlConnection)connection))
@@ -285,40 +331,52 @@ public class VehicleRepository : IVehicleRepository
                 commandBusiness.Parameters.AddWithValue("@I", userId);
                 using (var reader = await commandBusiness.ExecuteReaderAsync())
                 {
+                    // Als de gebruiker een business account heeft, retourneer true
                     if (await reader.ReadAsync() && ((string)reader.GetValue(0)).Equals("Business"))
                     {
                         return true;
                     }
+
                     return false;
                 }
             }
         }
         catch (MySqlException ex)
         {
+            // Log MySQL fout
             Console.WriteLine(ex.Message);
             throw;
         }
         catch (Exception ex)
         {
+            // Log andere fout
             Console.WriteLine(ex.Message);
             throw;
         }
     }
 
+    /// <summary>
+    /// Voegt een huurverzoek toe aan de database afhankelijk van het accounttype van de gebruiker (business of niet).
+    /// </summary>
+    /// <param name="request">Het huurverzoek object dat toegevoegd moet worden.</param>
+    /// <param name="userId">Het ID van de gebruiker die de huur aanvraag doet.</param>
+    /// <returns>Een tuple bestaande uit een status (true/false) en een bericht (bijvoorbeeld succes of mislukking).</returns>
     private async Task<(bool Status, string Message)> InsertRequest(RentalRequest request, object userId)
     {
         try
         {
+            // Controleer of de gebruiker een business user is
             var isBusinessUser = IsBusinessUser(userId);
 
             using (var connection = _connector.CreateDbConnection())
             {
                 bool resultIsBusinessUser = await isBusinessUser;
 
-                string query = resultIsBusinessUser ? 
-                "INSERT INTO Contract (StartDate, EndDate, Price, FrameNrVehicle, Customer, VMStatus) VALUES (@S, @E, @P, @F, @C, @V)"
-                :
-                "INSERT INTO Contract (StartDate, EndDate, Price, FrameNrVehicle, Customer) VALUES (@S, @E, @P, @F, @C)";
+                // Kies de juiste query afhankelijk van het accounttype van de gebruiker
+                string query = resultIsBusinessUser
+                    ? "INSERT INTO Contract (StartDate, EndDate, Price, FrameNrVehicle, Customer, VMStatus) VALUES (@S, @E, @P, @F, @C, @V)"
+                    : "INSERT INTO Contract (StartDate, EndDate, Price, FrameNrVehicle, Customer) VALUES (@S, @E, @P, @F, @C)";
+
                 using (var command = new MySqlCommand(query, (MySqlConnection)connection))
                 {
                     command.Parameters.AddWithValue("@S", request.StartDate);
@@ -329,36 +387,48 @@ public class VehicleRepository : IVehicleRepository
 
                     if (resultIsBusinessUser)
                     {
+                        // Als het een business user is, voeg VMStatus toe
                         command.Parameters.AddWithValue("@V", "requested");
                     }
 
+                    // Voer de query uit en retourneer resultaat
                     if (await command.ExecuteNonQueryAsync() > 0)
                     {
                         return (true, "Inserted");
                     }
+
                     return (false, "Data Not Inserted");
                 }
             }
         }
         catch (MySqlException ex)
         {
+            // Log MySQL fout
             return (false, ex.Message);
         }
         catch (Exception ex)
         {
+            // Log andere fout
             return (false, ex.Message);
         }
     }
 
+    /// <summary>
+    /// Verstuurt een bevestigingsmail naar de gebruiker na het succesvol aanmaken van een huurverzoek.
+    /// </summary>
+    /// <param name="request">Het huurverzoek object met gegevens die in de e-mail moeten worden opgenomen.</param>
+    /// <returns>Een tuple bestaande uit een status (true/false) en een bericht (bijvoorbeeld succes of mislukking).</returns>
     private async Task<(bool Status, string Message)> SendEmail(RentalRequest request)
     {
         try
         {
+            // Verkrijg de voertuiginformatie voor de bevestigingsmail
             int frameNr = Convert.ToInt32(request.FrameNrVehicle);
             var vehicleName = GetVehicleNameAsync(frameNr);
             var vehiclePlate = GetVehiclePlateAsync(frameNr);
             var vehicleColor = GetVehicleColorAsync(frameNr);
 
+            // Verstuur de huurbevestigingsmail
             await _emailService.SendRentalConfirmMail(
                 toEmail: request.Email,
                 carName: await vehicleName,
@@ -370,22 +440,30 @@ public class VehicleRepository : IVehicleRepository
             );
 
             return (true, "Huur succesvol aangemaakt.");
-            
         }
         catch (OverflowException ex)
         {
+            // Fout bij het versturen van de email
             return (false, ex.Message);
         }
         catch (Exception ex)
         {
+            // Algemeen foutafhandelingsmechanisme
             return (false, ex.Message);
         }
     }
-
+    
+    /// <summary>
+    /// Verwerkt het huurverzoek door de gebruiker te valideren, het verzoek toe te voegen aan de database en een bevestigingsmail te sturen.
+    /// </summary>
+    /// <param name="request">Het huurverzoek object dat moet worden verwerkt.</param>
+    /// <param name="userId">Het gebruikers-ID van degene die de aanvraag doet.</param>
+    /// <returns>Een tuple bestaande uit een status (true/false) en een bericht (bijvoorbeeld succes of mislukking).</returns>
     public async Task<(bool Status, string Message)> HireVehicle(RentalRequest request, string userId)
     {
         var idUser = await DecryptCookie(userId);
 
+        // Controleer of de gebruiker correct is gedecodeerd
         if (!idUser.Status)
         {
             return (false, (string)idUser.Message);
@@ -394,6 +472,7 @@ public class VehicleRepository : IVehicleRepository
         var insertData = InsertRequest(request, idUser.Message);
         var emailService = SendEmail(request);
 
+        // Wacht op het resultaat van de database-insert en de e-mailservice
         (bool Status, string Message) insertDataReponse = await insertData;
         if (!insertDataReponse.Status)
         {
@@ -406,9 +485,16 @@ public class VehicleRepository : IVehicleRepository
             return (false, emailServiceResponse.Message);
         }
 
+        // Beide acties zijn succesvol uitgevoerd
         return (true, emailServiceResponse.Message);
     }
 
+    /// <summary>
+    /// Annuleert een bestaande huur op basis van de opgegeven rentalId en userCookie.
+    /// </summary>
+    /// <param name="rentalId">Het ID van de huur die geannuleerd moet worden.</param>
+    /// <param name="userCookie">De cookie die het gebruikers-ID bevat.</param>
+    /// <returns>Een tuple bestaande uit een status (true/false), een statuscode en een bericht (bijvoorbeeld succes of mislukking).</returns>
     public async Task<(bool Status, int StatusCode, string Message)> CancelRental(int rentalId, string userCookie)
     {
         try
@@ -419,13 +505,16 @@ public class VehicleRepository : IVehicleRepository
             using (var connection = _connector.CreateDbConnection())
             using (var contractCommand = new MySqlCommand(query, (MySqlConnection)connection))
             {
+                // Verkrijg het userId van de cookie
                 (bool Status, int StatusCode, object Message) userIdResponse = await userId;
 
                 if (userIdResponse.Status)
                 {
+                    // Parameters toevoegen voor de query
                     contractCommand.Parameters.AddWithValue("@Id", rentalId);
                     contractCommand.Parameters.AddWithValue("@Customer", Convert.ToInt32(userIdResponse.Message));
-                    
+
+                    // Voer de delete query uit
                     if (contractCommand.ExecuteNonQuery() > 0)
                     {
                         return (true, 200, "Rental cancelled successfully");
@@ -435,6 +524,7 @@ public class VehicleRepository : IVehicleRepository
                         return (false, 405, "Rental not found or you do not have permission to cancel this rental");
                     }
                 }
+
                 return (false, userIdResponse.StatusCode, (string)userIdResponse.Message);
             }
         }
@@ -448,32 +538,43 @@ public class VehicleRepository : IVehicleRepository
         }
     }
 
-    public async Task<(bool Status, int StatusCode, string Message, IList<object> UserRentals)> GetAllUserRentals(string userCookie)
+    /// <summary>
+    /// Verkrijgt alle huuraanvragen van een gebruiker, op basis van hun gedecodeerde userId vanuit de cookie.
+    /// </summary>
+    /// <param name="userCookie">De cookie van de gebruiker, die het gedecodeerde ID zal bevatten.</param>
+    /// <returns>A tuple containing the status, status code, message, and the list of user's rentals.</returns>
+    public async Task<(bool Status, int StatusCode, string Message, IList<object> UserRentals)> GetAllUserRentals(
+        string userCookie)
     {
         try
         {
             var userId = DecryptCookie(userCookie);
-            string query = "SELECT OrderId, FrameNrVehicle, StartDate, EndDate, Price, Status FROM Contract WHERE Customer = @Customer";
+            string query =
+                "SELECT OrderId, FrameNrVehicle, StartDate, EndDate, Price, Status FROM Contract WHERE Customer = @Customer";
 
-            // (Dictionary geen betere oplossing?)
             var rentals = new List<object>();
 
             using (var connection = _connector.CreateDbConnection())
             using (var command = new MySqlCommand(query, (MySqlConnection)connection))
             {
+                // Verkrijg het userId van de cookie
                 (bool Status, int StatusCode, object Message) userIdResponse = await userId;
 
                 if (userIdResponse.Status)
                 {
+                    // Voeg het customer-id toe aan de query
                     command.Parameters.AddWithValue("@Customer", Convert.ToInt32(userIdResponse.Message));
 
+                    // Voer de query uit
                     using (var reader = await command.ExecuteReaderAsync())
                     {
                         while (reader.Read())
                         {
+                            // Haal voertuiggegevens op voor elke huur
                             string carName = await GetVehicleNameAsync(reader.GetInt32(1));
                             string licensePlate = await GetVehiclePlateAsync(reader.GetInt32(1));
 
+                            // Voeg elke huurdata toe aan de lijst
                             rentals.Add(new
                             {
                                 Id = reader.IsDBNull(0) ? (int?)null : reader.GetInt32(0),
@@ -487,8 +588,10 @@ public class VehicleRepository : IVehicleRepository
                             });
                         }
                     }
+
                     return (true, 200, "Data Collected", rentals);
                 }
+
                 return (false, userIdResponse.StatusCode, (string)userIdResponse.Message, new List<object>());
             }
         }
@@ -506,33 +609,43 @@ public class VehicleRepository : IVehicleRepository
         }
     }
 
+    /// <summary>
+    /// Verkrijgt gedetailleerde huuraanvragen van alle contracten in de database.
+    /// </summary>
+    /// <returns>A tuple containing the status, status code, message, and the list of all rentals.</returns>
     public (bool Status, int StatusCode, string Message, IList<object> UserRentals) GetAllUserRentalsDetailed()
     {
         try
-            {
-            string query = "SELECT OrderId, StartDate, EndDate, Price, FrameNrVehicle, Customer, Status, ReviewedBy, VMStatus FROM Contract";
+        {
+            string query =
+                "SELECT OrderId, StartDate, EndDate, Price, FrameNrVehicle, Customer, Status, ReviewedBy, VMStatus FROM Contract";
 
             var rentals = new List<object>();
 
+            // Verbindt met de database en voert de query uit
             using (var connection = _connector.CreateDbConnection())
             using (var command = new MySqlCommand(query, (MySqlConnection)connection))
             using (var reader = command.ExecuteReader())
             {
+                // Leest de gegevens van de database
                 while (reader.Read())
                 {
                     rentals.Add(new
                     {
-                        ID = reader.IsDBNull(0) ? (int?)null : reader.GetInt32(0),
-                        StartDate = reader.IsDBNull(1) ? (DateTime?)null : reader.GetDateTime(1),
-                        EndDate = reader.IsDBNull(2) ? (DateTime?)null : reader.GetDateTime(2),
-                        Price = reader.IsDBNull(3) ? (decimal?)null : reader.GetDecimal(3),
-                        FrameNrVehicle = reader.IsDBNull(4) ? (int?)null : reader.GetInt32(4),
-                        Customer = reader.IsDBNull(5) ? (int?)null : reader.GetInt32(5),
-                        Status = reader.IsDBNull(6) ? null : reader.GetString(6),
-                        ReviewedBy = reader.IsDBNull(7) ? null : reader.GetString(7),
-                        VMStatus = reader.IsDBNull(8) ? null : reader.GetString(8),
+                        ID = reader.IsDBNull(0) ? (int?)null : reader.GetInt32(0), // OrderId
+                        StartDate = reader.IsDBNull(1) ? (DateTime?)null : reader.GetDateTime(1), // Startdatum
+                        EndDate = reader.IsDBNull(2) ? (DateTime?)null : reader.GetDateTime(2), // Einddatum
+                        Price = reader.IsDBNull(3) ? (decimal?)null : reader.GetDecimal(3), // Prijs
+                        FrameNrVehicle =
+                            reader.IsDBNull(4) ? (int?)null : reader.GetInt32(4), // FrameNummer van het voertuig
+                        Customer = reader.IsDBNull(5) ? (int?)null : reader.GetInt32(5), // Klant
+                        Status = reader.IsDBNull(6) ? null : reader.GetString(6), // Status van het contract
+                        ReviewedBy = reader.IsDBNull(7) ? null : reader.GetString(7), // Wie het beoordeeld heeft
+                        VMStatus = reader.IsDBNull(8) ? null : reader.GetString(8), // VM-status
                     });
                 }
+
+                // Retourneer de verzamelde gegevens als succes
                 return (true, 200, "Succesfully Collected Data", rentals);
             }
         }
@@ -546,25 +659,36 @@ public class VehicleRepository : IVehicleRepository
         }
     }
 
+    /// <summary>
+    /// Wijzigt de gegevens van een huuraanvraag (startdatum, einddatum, prijs) voor een specifiek contract.
+    /// </summary>
+    /// <param name="request">Het verzoek met de bijgewerkte gegevens van de huur.</param>
+    /// <returns>A tuple containing the status, status code, and a message about the success or failure of the update.</returns>
     public (bool Status, int StatusCode, string Message) ChangeRental(UpdateRentalRequest request)
     {
         try
         {
-            string query = "UPDATE Contract SET StartDate = @StartDate, EndDate = @EndDate, Price = @Price WHERE OrderId = @Id";
+            string query =
+                "UPDATE Contract SET StartDate = @StartDate, EndDate = @EndDate, Price = @Price WHERE OrderId = @Id";
+
+            // Verbindt met de database om de huurdata te updaten
             using (var connection = _connector.CreateDbConnection())
             using (var command = new MySqlCommand(query, (MySqlConnection)connection))
             {
+                // Voegt de parameters toe aan de SQL-query
                 command.Parameters.AddWithValue("@StartDate", request.StartDate);
                 command.Parameters.AddWithValue("@EndDate", request.EndDate);
                 command.Parameters.AddWithValue("@Price", request.Price);
                 command.Parameters.AddWithValue("@Id", request.Id);
 
+                // Voert de update uit en controleert of het succesvol was
                 if (command.ExecuteNonQuery() > 0)
                 {
                     return (true, 200, "Rental Updated Successfully");
                 }
 
-                return (false, 501,  "Rental wasn't updated");
+                // Foutmelding als de update niet is uitgevoerd
+                return (false, 501, "Rental wasn't updated");
             }
         }
         catch (MySqlException ex)
@@ -576,20 +700,28 @@ public class VehicleRepository : IVehicleRepository
             return (false, 500, ex.Message);
         }
     }
-
+    
+    /// <summary>
+    /// Verwijdert een voertuig uit de database op basis van het frame nummer.
+    /// </summary>
+    /// <param name="frameNr">Het frame nummer van het voertuig dat verwijderd moet worden.</param>
+    /// <returns>A tuple containing the status and message about the success or failure of the deletion.</returns>
     public async Task<(bool Status, string Message)> DeleteVehicleAsync(string frameNr)
     {
         try
         {
             string queryCustomer = "DELETE FROM Vehicle WHERE frameNr = @FrameNr";
 
+            // Verbindt met de database om het voertuig te verwijderen
             using (var connection = _connector.CreateDbConnection())
             using (var customerCommand = new MySqlCommand(queryCustomer, (MySqlConnection)connection))
             {
+                // Voegt het frame nummer toe aan de query
                 customerCommand.Parameters.AddWithValue("@FrameNr", frameNr);
-                
+
                 int rowsAffected = await customerCommand.ExecuteNonQueryAsync();
 
+                // Retourneert succes als het voertuig is verwijderd
                 if (rowsAffected > 0)
                 {
                     return (true, "Vehicle deleted");
@@ -602,23 +734,30 @@ public class VehicleRepository : IVehicleRepository
         }
         catch (MySqlException ex)
         {
-            // Handle database errors
+            // Fout bij databaseoperaties
             await Console.Error.WriteLineAsync($"Database error: {ex.Message}");
             return (false, "Database error: " + ex.Message);
         }
         catch (Exception ex)
         {
-            // Handle other errors
+            // Algemene fout
             await Console.Error.WriteLineAsync($"Unexpected error: {ex.Message}");
             return (false, "Unexpected error: " + ex.Message);
         }
     }
 
+    /// <summary>
+    /// Wijzigt de reparatiestatus van een voertuig, bijvoorbeeld voor reparatie of niet.
+    /// </summary>
+    /// <param name="id">Het frame nummer van het voertuig.</param>
+    /// <param name="broken">Een boolean die aangeeft of het voertuig kapot is (true) of niet (false).</param>
+    /// <returns>A tuple containing the status, status code, and a message about the success or failure of the repair status update.</returns>
     public (bool Status, int StatusCode, string Message) ChangeRepairStatus(int id, bool broken)
     {
         try
         {
             int repairValue;
+            // Bepaalt de waarde van de reparatiestatus (1 voor 'broken', 0 voor 'not broken')
             if (broken)
             {
                 repairValue = 1;
@@ -627,19 +766,25 @@ public class VehicleRepository : IVehicleRepository
             {
                 repairValue = 0;
             }
+
+            // SQL-query om de reparatiestatus bij te werken
             string query = "UPDATE Vehicle SET InRepair = @Repair WHERE FrameNr = @FrameNr";
 
             using (var connection = _connector.CreateDbConnection())
             using (var command = new MySqlCommand(query, (MySqlConnection)connection))
             {
+                // Voegt de parameters voor FrameNr en Repair toe aan de query
                 command.Parameters.AddWithValue("@FrameNr", id);
                 command.Parameters.AddWithValue("@Repair", repairValue);
 
+                // Voert de update uit en controleert of het succesvol was
                 if (command.ExecuteNonQuery() > 0)
                 {
                     return (true, 200, $"Vehicle with FrameNr {id} has been put in repair.");
                 }
-                return (false, 501,  $"Vehicle with FrameNr {id} hasn't been put under repair.");
+
+                // Foutmelding als de reparatiestatus niet werd bijgewerkt
+                return (false, 501, $"Vehicle with FrameNr {id} hasn't been put under repair.");
             }
         }
         catch (MySqlException ex)

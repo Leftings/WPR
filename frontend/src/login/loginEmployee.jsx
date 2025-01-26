@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { isRouteErrorResponse, Link, useNavigate } from 'react-router-dom';
-//import './login.css';
 import '../index.css';
 import logo from '../assets/logo.svg';
 import logoHover from '../assets/logo-green.svg';
@@ -12,7 +11,7 @@ const BACKEND_URL = import.meta.env.VITE_REACT_APP_BACKEND_URL ?? 'http://localh
 function isUserBlocked() {
   const lastFailedAttempt = localStorage.getItem('lastFailedAttempt');
   const failedAttempts = parseInt(localStorage.getItem('failedAttempts') || '0', 10);
-  const blockTime = 5 * 60 * 1000; // 5 minuten in milliseconden
+  const blockTime = .005 * 60 * 1000; // 5 minuten in milliseconden
 
   if (failedAttempts >= 10 && lastFailedAttempt) {
     const timeSinceLastAttempt = Date.now() - parseInt(lastFailedAttempt, 10);

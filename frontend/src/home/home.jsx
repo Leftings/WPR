@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import GeneralHeader from "../GeneralBlocks/header/header.jsx";
 import GeneralFooter from "../GeneralBlocks/footer/footer.jsx";
-//import './home.css';
 import '../index.css';
 
 function Home() {
@@ -11,49 +10,60 @@ function Home() {
     const [error, setError] = useState(null);
     const navigate = useNavigate();
 
+    // Effect om te controleren of de gebruiker een voertuigbeheerder is
     useEffect(() => {
         const checkVehicleManager = async () => {
             try {
+                // API-aanroep om te controleren of de gebruiker een voertuigbeheerder is
                 const response = await fetch('http://localhost:5276/api/Cookie/IsVehicleManager', {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json',
                     },
-                    credentials: 'include',
+                    credentials: 'include', // Zorgt ervoor dat cookies worden meegezonden
                 });
 
+                // Controleer of de respons succesvol was
                 if (!response.ok) {
                     throw new Error('Error fetching Vehicle Manager info...');
                 }
-                
+
+                // Respons omzetten naar JSON en controleren of gebruiker een voertuigbeheerder is
                 const data = await response.json();
                 setIsVehicleManager(data === true);
                 console.log(isVehicleManager);
             } catch (error) {
+                // Log de fout en zet `isVehicleManager` naar false
                 console.error(error.message);
                 setIsVehicleManager(false);
             }
         };
+
+        // Roep de functie aan om de voertuigbeheerderstatus te controleren
         checkVehicleManager();
     }, []);
 
+    // Effect om te controleren of de gebruiker een werknemer is
     useEffect(() => {
         fetch(`http://localhost:5165/api/Employee/IsUserEmployee`, { credentials: 'include' })
             .then(response => {
+                // Controleer of de respons succesvol was
                 if (!response.ok) {
                     throw new Error('Error validating user type');
                 }
-                return response.text();
+                return response.text(); // Converteer de respons naar tekst
             })
             .then(data => {
+                // Controleer of de gebruiker een werknemer is (op basis van de backend-respons)
                 const isUserEmployee = data === 'true';
                 setIsEmployee(isUserEmployee);
             })
             .catch(error => {
+                // Log de fout en zet `isEmployee` naar false
                 console.error(error.message);
                 setIsEmployee(false);
             });
-    }, []);
+    }, []); 
 
     return (
         <>

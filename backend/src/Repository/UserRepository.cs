@@ -282,6 +282,14 @@ public class UserRepository : IUserRepository
         }
     }
 
+    /// <summary>
+    /// Haalt de gebruikers-ID op op basis van het e-mailadres en de opgegeven tabel.
+    /// </summary>
+    /// <param name="email">Het e-mailadres van de gebruiker.</param>
+    /// <param name="table">De naam van de tabel waarin de gebruiker zich bevindt.</param>
+    /// <returns>
+    /// Een taak die een string retourneert met de gebruikers-ID of een foutmelding als de gebruiker niet gevonden wordt.
+    /// </returns>
     public async Task<string> GetUserIdAsync(string email, string table)
     {
         try
@@ -313,6 +321,13 @@ public class UserRepository : IUserRepository
         }
     }
 
+    /// <summary>
+    /// Haalt de voornaam van een gebruiker op op basis van het gebruikers-ID.
+    /// </summary>
+    /// <param name="userId">Het gebruikers-ID waarvoor de voornaam moet worden opgehaald.</param>
+    /// <returns>
+    /// Een taak die de voornaam van de gebruiker retourneert, of een foutmelding als het niet gevonden wordt.
+    /// </returns>
     public async Task<string> GetUserNameAsync(string userId)
     {
         try
@@ -339,6 +354,13 @@ public class UserRepository : IUserRepository
         }
     }
 
+    /// <summary>
+    /// Wijzigt de gebruikersinformatie op basis van de verstrekte gegevens.
+    /// </summary>
+    /// <param name="data">Een lijst van objecten die de gegevens bevatten die moeten worden gewijzigd.</param>
+    /// <returns>
+    /// Een taak die een tuple retourneert met een booleaanse status en een bericht over het resultaat van de bewerking.
+    /// </returns>
     public async Task<(bool status, string message)> EditUserInfoAsync(List<object[]> data)
     {
         try
@@ -359,7 +381,7 @@ public class UserRepository : IUserRepository
                         // Er wordt gecontrolleerd of de gegeven in de DataBase zijn ingevoerd
                         return (true, "Data inserted");
                     }
-                    
+
                     return (false, "Data not inserted");
                 }
             }
@@ -374,7 +396,14 @@ public class UserRepository : IUserRepository
                 return (false, ex.ToString());
             }
     }
-
+    
+    /// <summary>
+    /// Controleert of een specifiek KvK-nummer bestaat in de database.
+    /// </summary>
+    /// <param name="kvkNumber">Het KvK-nummer om te controleren.</param>
+    /// <returns>
+    /// Een taak die een booleaanse waarde retourneert die aangeeft of het KvK-nummer bestaat (true) of niet (false).
+    /// </returns>
     public async Task<bool> IsKvkNumberAsync(int kvkNumber)
     {
         try
@@ -401,6 +430,13 @@ public class UserRepository : IUserRepository
         }
     }
 
+    /// <summary>
+    /// Verwijdert een gebruiker op basis van het gebruikers-ID.
+    /// </summary>
+    /// <param name="userId">Het ID van de gebruiker die verwijderd moet worden.</param>
+    /// <returns>
+    /// Een taak die een tuple retourneert met een booleaanse status en een bericht over het resultaat van de bewerking.
+    /// </returns>
     public async Task<(bool status, string message)> DeleteUserAsync(string userId)
     {
         Console.WriteLine("Deleting user");
@@ -611,6 +647,14 @@ public class UserRepository : IUserRepository
         }
     }
 
+    /// <summary>
+    /// Voegt een persoonlijke klant toe aan de database na validatie van de verstrekte gegevens.
+    /// </summary>
+    /// <param name="request">Het verzoek dat de gegevens van de klant bevat, zoals e-mailadres, naam, telefoonnummer, geboortedatum en wachtwoord.</param>
+    /// <returns>
+    /// Een taak die een tuple retourneert met een booleaanse status en een bericht. De status is true als de klant succesvol is toegevoegd,
+    /// anders false met een foutmelding die de reden aangeeft (bijv. al bestaand e-mailadres, ongeldige geboortedatum, enz.). 
+    /// </returns>
     public async Task<(bool Status, string Message)> AddPersonalCustomer(SignUpRequest request)
     {
         var emailCheck = checkUsageEmailAsync(request.Email);
@@ -872,7 +916,13 @@ public class UserRepository : IUserRepository
         return (412, checks.Message);
     }
 
-    private string CreateUpdateQuery (string tabel, IList<object[]> data)
+    /// <summary>
+    /// Genereert een UPDATE query string voor de opgegeven tabel en gegevens.
+    /// </summary>
+    /// <param name="tabel">De tabel die geüpdatet moet worden.</param>
+    /// <param name="data">Een lijst van gegevensobjecten waarin elk item de veldnamen en hun nieuwe waarden bevat.</param>
+    /// <returns>De SQL UPDATE query string.</returns>
+    private string CreateUpdateQuery(string tabel, IList<object[]> data)
     {
         string query = $"UPDATE {tabel} SET";
 
@@ -904,7 +954,12 @@ public class UserRepository : IUserRepository
         return query;
     }
 
-    private async Task<(int StatusCode, string Message)> ChangeVehicleManagerInfo(ChangeVehicleManagerInfo request, MySqlConnection connection)
+    /// <summary>
+    /// Wijzigt de gegevens van een voertuigbeheerder in de database, inclusief e-mail en wachtwoord.
+    /// </summary>
+    /// <param name="request">Het verzoekobject met de gegevens van de voertuigbeheerder die geüpdatet moeten worden.</param>
+    /// <returns>Een tuple met de statuscode en een bericht dat aangeeft of de update succesvol was of niet.</returns>
+    public async Task<(int StatusCode, string Message)> ChangeVehicleManagerInfo(ChangeVehicleManagerInfo request)
     {
         try
         {
@@ -990,6 +1045,12 @@ public class UserRepository : IUserRepository
         }
     }
 
+
+    /// <summary>
+    /// Wijzigt de bedrijfsgegevens voor een bedrijf dat gekoppeld is aan een voertuigbeheerder.
+    /// </summary>
+    /// <param name="request">Het verzoekobject met de bedrijfsgegevens die geüpdatet moeten worden.</param>
+    /// <returns>Een tuple met de statuscode en een bericht dat aangeeft of de update succesvol was of niet.</returns>
     public async Task<(int StatusCode, string Message)> ChangeBusinessInfo(ChangeBusinessRequest request)
     {
         try
@@ -1045,6 +1106,85 @@ public class UserRepository : IUserRepository
         }
     }
 
+    /// <summary>
+    /// Haalt de domeinnaam op van een bedrijf op basis van het KvK-nummer.
+    /// </summary>
+    /// <param name="KvK">Het KvK-nummer van het bedrijf.</param>
+    /// <returns>Een tuple met de statuscode en de domeinnaam van het bedrijf.</returns>
+    public async Task<(int StatusCode, string Domain)> GetBusinessDomainByKvK(int KvK)
+    {
+        try
+        {
+            string query = "SELECT Domain FROM Business WHERE KvK = @KvK";
+
+            using (var connection = (MySqlConnection)_connector.CreateDbConnection())
+            using (var command = new MySqlCommand(query, connection))
+            {
+                command.Parameters.AddWithValue("@KvK", KvK);
+
+                using (var reader = await command.ExecuteReaderAsync())
+                {
+                    if (await reader.ReadAsync())
+                    {
+                        string domain = reader.GetString("Domain");
+                        return (200, domain);
+                    }
+
+                    return (404, "Business with the specified KvK not found.");
+                }
+            }
+        }
+        catch (MySqlException ex)
+        {
+            return (500, ex.Message);
+        }
+        catch (Exception ex)
+        {
+            return (500, ex.Message);
+        }
+    }
+
+    /// <summary>
+    /// Wijzigt de bedrijfsinformatie in de database.
+    /// </summary>
+    /// <param name="businessInfo">Het object met de nieuwe bedrijfsinformatie die geüpdatet moet worden.</param>
+    /// <param name="connection">De actieve MySQL-verbinding die wordt gebruikt voor de transactie.</param>
+    /// <returns>Een tuple met de statuscode en een bericht dat aangeeft of de update succesvol was of niet.</returns>
+private async Task<(int StatusCode, string Message)> ChangeBusinessData(ChangeBusinessInfo businessInfo, MySqlConnection connection)
+{
+    string updateQuery = "UPDATE Business SET BusinessName = @BusinessName, Adres = @Adres, ContactEmail = @ContactEmail, Abonnement = @Abonnement WHERE KvK = @KvK";
+
+    using (var command = new MySqlCommand(updateQuery, connection))
+    {
+        command.Parameters.AddWithValue("@KvK", businessInfo.KvK);
+        command.Parameters.AddWithValue("@BusinessName", businessInfo.BusinessName);
+        command.Parameters.AddWithValue("@Adres", businessInfo.Adres);
+        command.Parameters.AddWithValue("@ContactEmail", businessInfo.ContactEmail);
+        command.Parameters.AddWithValue("@Abonnement", businessInfo.Abonnement);
+
+        try
+        {
+            int rowsAffected = await command.ExecuteNonQueryAsync();
+            if (rowsAffected > 0)
+            {
+                return (200, "Business information updated successfully");
+            }
+            else
+            {
+                return (404, "Business not found with the specified KvK");
+            }
+        }
+        catch (MySqlException ex)
+        {
+            return (500, $"Database error: {ex.Message}");
+        }
+    }
+}
+
+    /// <summary>
+    /// Haalt alle abonnementstypes op uit de database.
+    /// </summary>
+    /// <returns>Een lijst met abonnementstypes.</returns>
     public async Task<List<string>> GetAllSubscriptionsAsync()
     {
         try
@@ -1116,9 +1256,14 @@ public class UserRepository : IUserRepository
         }
     }
 
-    
-    
-    public async Task<List<int>> GetSubscriptionIdsAsync() {
+
+
+    /// <summary>
+    /// Haalt alle abonnement-ID's op uit de database.
+    /// </summary>
+    /// <returns>Een lijst van abonnement-ID's.</returns>
+    public async Task<List<int>> GetSubscriptionIdsAsync()
+    {
         try
         {
             string query = "SELECT ID FROM Abonnement";
@@ -1147,7 +1292,12 @@ public class UserRepository : IUserRepository
             return null;
         }
     }
-
+    
+    /// <summary>
+    /// Haalt de klantgegevens op uit de database voor een specifieke klant op basis van ID.
+    /// </summary>
+    /// <param name="id">Het ID van de klant.</param>
+    /// <returns>Een dictionary met de klantgegevens, waarbij de sleutel de kolomnaam is en de waarde de bijbehorende waarde.</returns>
     public async Task<Dictionary<string, object>> GetCustomerDetails(int id)
     {
         string query = $"SELECT * FROM Customer WHERE ID = {id}";
@@ -1180,6 +1330,197 @@ public class UserRepository : IUserRepository
             Console.WriteLine(ex.Message);
             throw;
         }
+    }
+
+    /// <summary>
+    /// Haalt de informatie op van een voertuigbeheerder op basis van het opgegeven ID.
+    /// </summary>
+    /// <param name="id">Het ID van de voertuigbeheerder waarvan de gegevens opgehaald moeten worden.</param>
+    /// <returns>Een object van type VehicleManager met de gegevens van de voertuigbeheerder, of null als de voertuigbeheerder niet gevonden werd.</returns>
+    public async Task<VehicleManager> GetVehicleManagerInfoAsync(int id)
+    {
+        try
+        {
+            string query = "SELECT ID, Email, Password, Business FROM VehicleManager WHERE ID = @Id";
+
+            using (var connection = _connector.CreateDbConnection())
+            using (var command = new MySqlCommand(query, (MySqlConnection)connection))
+            {
+                command.Parameters.AddWithValue("@Id", id);
+                using (var reader = await command.ExecuteReaderAsync())
+                {
+                    if (await reader.ReadAsync())
+                    {
+                        return new VehicleManager
+                        {
+                            Id = reader.GetInt32("ID"),
+                            Email = reader["Email"].ToString(),
+                            Password = reader["Password"].ToString(),
+                            Business = reader["Business"].ToString()
+                        };
+                    }
+                }
+            }
+
+            return null;
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.Message);
+            return null;
+        }
+    }
+    
+    // <summary>
+    /// Haalt alle klanten op die behoren tot een bedrijf op basis van het KvK-nummer.
+    /// </summary>
+    /// <param name="Kvk">Het KvK-nummer van het bedrijf waar klanten aan gekoppeld zijn.</param>
+    /// <returns>Een lijst van Customer-objecten met de klantgegevens of null bij een fout.</returns>
+    public async Task<List<Customer>> GetCustomersByBusinessNumberAsync(string Kvk)
+    {
+        try
+        {
+            string query = "SELECT ID, Email, Kvk FROM Customer WHERE Kvk = @Kvk";
+
+            using (var connection = _connector.CreateDbConnection())
+            using (var command = new MySqlCommand(query, (MySqlConnection)connection))
+            {
+                command.Parameters.AddWithValue("@Kvk", Kvk.Trim()); // Ensure no leading/trailing spaces
+
+                using (var reader = await command.ExecuteReaderAsync())
+                {
+                    var customers = new List<Customer>();
+
+                    while (await reader.ReadAsync())
+                    {
+                        customers.Add(new Customer
+                        {
+                            Id = reader.GetInt32("ID"),
+                            Email = reader["Email"].ToString(),
+                            Kvk = reader["Kvk"].ToString()
+                        });
+                    }
+
+                    return customers;
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error in GetCustomersByBusinessNumberAsync: {ex.Message}");
+            return null;
+        }
+    }
+
+
+    /// <summary>
+    /// Werk de gegevens van een klant bij, inclusief e-mail en wachtwoord.
+    /// </summary>
+    /// <param name="id">Het ID van de klant die geüpdatet moet worden.</param>
+    /// <param name="email">Het nieuwe e-mailadres van de klant.</param>
+    /// <param name="password">Het nieuwe wachtwoord van de klant (wachtwoord wordt gehashed voordat het wordt opgeslagen).</param>
+    /// <returns>Een boolean die aangeeft of de update succesvol was.</returns>
+    public async Task<bool> UpdateCustomerAsync(int id, string email, string password)
+{
+    try
+    {
+        Console.WriteLine($"Received request to update Customer with ID: {id}");
+        Console.WriteLine($"New Email: {email}");
+
+        if (id <= 0)
+        {
+            Console.WriteLine("Error: Invalid ID.");
+            return false;
+        }
+
+        if (string.IsNullOrEmpty(email) || string.IsNullOrEmpty(password))
+        {
+            Console.WriteLine("Error: Email or Password cannot be empty.");
+            return false;
+        }
+
+        // Hash the new password (before updating)
+        string hashedPassword = _hash.createHash(password);
+        Console.WriteLine($"Hashed Password: {hashedPassword}");
+
+        // Validate the password format if needed (if you have a password checker class like in the previous example)
+        var (isValid, errorMessage) = PasswordChecker.IsValidPassword(password);
+        if (!isValid)
+        {
+            Console.WriteLine($"Error: {errorMessage}");
+            return false;
+        }
+
+        // No need to check for email change, we proceed with updating
+        // Proceed with updating the email and hashed password in the database
+        string updateQuery = "UPDATE Customer SET Email = @Email, Password = @Password WHERE ID = @ID";
+
+        using (var connection = _connector.CreateDbConnection())
+        {
+            if (connection == null)
+            {
+                Console.WriteLine("Database connection is null.");
+                return false;
+            }
+
+            if (connection.State != System.Data.ConnectionState.Open)
+            {
+                Console.WriteLine("Opening database connection...");
+                connection.Open();
+                Console.WriteLine("Connection opened successfully.");
+            }
+
+            using (var command = new MySqlCommand(updateQuery, (MySqlConnection)connection))
+            {
+                command.Parameters.AddWithValue("@ID", id);
+                command.Parameters.AddWithValue("@Email", email);
+                command.Parameters.AddWithValue("@Password", hashedPassword);
+
+                try
+                {
+                    int rowsAffected = await command.ExecuteNonQueryAsync();
+
+                    if (rowsAffected > 0)
+                    {
+                        // Successfully updated the customer info
+                        Console.WriteLine("Customer updated successfully.");
+                        return true;
+                    }
+                    else
+                    {
+                        // No rows affected, meaning no update occurred
+                        Console.WriteLine("Error: Customer not found.");
+                        return false;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Error executing query: {ex.Message}");
+                    return false;
+                }
+            }
+        }
+    }
+    catch (Exception ex)
+    {
+        Console.WriteLine($"Error: {ex.Message}");
+        return false;
+    }
+}
+
+
+    public class VehicleManager
+    {
+        public int Id { get; set; }
+        public string Email { get; set; }
+        public string Password { get; set; }
+        public string Business { get; set; }
+    }
+    public class Customer
+    {
+        public int Id { get; set; }
+        public string Email { get; set; }
+        public string Kvk { get; set; }
     }
 
 }

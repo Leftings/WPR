@@ -32,68 +32,70 @@ function SignUp() {
     const [domain, SetDomain] = useState('');
     const [contactEmail, SetContactEmail] = useState('');
     const [isBusinessAccount, setIsBusinessAccount] = useState('Employee');
-        
+
 
     const choice = (buttonId) => {
+        // Functie om de gekozen accounttype bij te houden
         setChosenType(buttonId);
     };
-    
+
     useEffect(() => {
+        // Gebruik useEffect om abonnementsopties op te halen van de backend
         async function fetchSubscriptions() {
             try {
-                const response = await  fetch(`${BACKEND_URL}/api/Subscription/GetSubscriptions`)
+                const response = await fetch(`${BACKEND_URL}/api/Subscription/GetSubscriptions`);
                 if (!response.ok) {
-                    throw new Error('Failed to fetch subcriptions')
+                    throw new Error('Failed to fetch subscriptions');
                 }
                 const responseData = await response.json();
-                console.log(responseData)
-                SetSubscriptions(responseData.data);
+                console.log(responseData);
+                SetSubscriptions(responseData.data); // Zet de abonnementsdata in de state
             } catch (error) {
-                console.log(error);
+                console.log(error); // Log eventuele fouten bij het ophalen van abonnementen
             }
         }
-        
-        fetchSubscriptions();
-    }, []);
-    
-    
-    async function Push()
-    {
-        let validationErrors = [];
-        console.log(chosenType);
-        if (chosenType === 'Private')
-        {
-            validationErrors = EmptyFieldChecker({ firstName, lastName, email, password1, password2, street, number, phonenumber, dateOfBirth });
-        }
-        else
-        {
-            if (isBusinessAccount === 'Business')
-            {
-                validationErrors = EmptyFieldChecker({ selectedSubscription, name, kvk, street, number, domain, contactEmail });
 
-                if (kvk.length < 8)
-                {
+        fetchSubscriptions();
+    }, []); // Het effect wordt alleen uitgevoerd wanneer de component wordt geladen
+
+    async function Push() {
+        let validationErrors = []; // Array om foutmeldingen bij de validatie op te slaan
+
+        console.log(chosenType);
+
+        // Controleer of alle velden correct zijn ingevuld op basis van het accounttype
+        if (chosenType === 'Private') {
+            validationErrors = EmptyFieldChecker({
+                firstName, lastName, email, password1, password2, street, number, phonenumber, dateOfBirth
+            });
+        } else {
+            if (isBusinessAccount === 'Business') {
+                validationErrors = EmptyFieldChecker({
+                    selectedSubscription, name, kvk, street, number, domain, contactEmail
+                });
+
+                // Specifieke controle voor het KvK-nummer
+                if (kvk.length < 8) {
                     validationErrors.push("Te kort KvK nummer");
                 }
-            }
-            else
-            {
+            } else {
                 validationErrors = EmptyFieldChecker({ email, password1, password2 });
             }
         }
 
-        SetErrors(validationErrors);
+        SetErrors(validationErrors); 
 
         console.log(validationErrors);
 
-        if (validationErrors.length === 0)
-        {
-            try
-            {
-                const formData = new FormData();
+        // Als er geen fouten zijn, verstuur het formulier
+        if (validationErrors.length === 0) {
+            try {
+                const formData = new FormData(); // Maak een nieuw FormData-object aan
+
                 console.log(chosenType);
-                if (chosenType === 'Private')
-                {
+
+                if (chosenType === 'Private') {
+                    // Voeg velden toe aan FormData voor een privéaccount
                     formData.append('SignUpRequestCustomer.Email', email);
                     formData.append('SignUpRequestCustomer.AccountType', chosenType);
                     formData.append('SignUpRequestCustomer.Password', password1);
@@ -104,70 +106,66 @@ function SignUp() {
                     formData.append('SignUpRequestCustomerPrivate.Adres', `${street} ${number}${add}`);
                     formData.append('SignUpRequestCustomerPrivate.BirthDate', new Date(dateOfBirth).toISOString().split('T')[0]);
 
+                    // Verstuur het formulier naar de API voor registratie
                     const response = await pushWithBody(`${BACKEND_URL}/api/SignUp/signUp`, formData);
-                    redirect(response);
-                }
-                else
-                {
-                    if (isBusinessAccount === 'Business')
-                    {
-                        formData.append('Subscription', selectedSubscription)
+                    redirect(response); // Verwerk de respons na succesvolle registratie
+                } else {
+                    // Voor een zakelijk account of een werknemer
+                    if (isBusinessAccount === 'Business') {
+                        formData.append('Subscription', selectedSubscription);
                         formData.append('KvK', kvk);
                         formData.append('Name', name);
                         formData.append('Adress', `${street} ${number}${add}`);
                         formData.append('Domain', domain);
                         formData.append('ContactEmail', contactEmail);
 
+                        // Verstuur het formulier naar de API voor zakelijke registratie
                         const response = await pushWithBody(`${BACKEND_URL}/api/AddBusiness/addBusiness`, formData);
                         redirect(response);
-                    }
-                    else
-                    {
+                    } else {
+                        // Het geval voor een standaard bedrijfsaccount (geen zakelijk account)
                         formData.append('SignUpRequestCustomer.Email', email);
                         formData.append('SignUpRequestCustomer.Password', password1);
                         formData.append('SignUpRequestCustomer.AccountType', chosenType);
                         formData.append('SignUpRequestCustomer.IsPrivate', false);
 
+                        // Verstuur het formulier naar de API voor registratie
                         const response = await pushWithBody(`${BACKEND_URL}/api/SignUp/signUp`, formData);
                         redirect(response);
                     }
                 }
-            } catch (error)
-            {
-                console.log(error);
-                SetErrors([error]);
+            } catch (error) {
+                console.log(error); 
+                SetErrors([error]); 
             }
         }
 
-        function redirect(errors)
-        {
+        // Functie om de gebruiker door te sturen naar de juiste pagina op basis van de foutstatus
+        function redirect(errors) {
             console.log(errors);
-            if (errors.errorDetected)
-            {
-                SetErrors(errors.errors);
-            }
-            else
-            {
-                if (chosenType === 'Private' || isBusinessAccount === 'Employee')
-                {
-                    navigate('/login');
-                }
-                else
-                {
-                    navigate('/');
+            if (errors.errorDetected) {
+                SetErrors(errors.errors); // Zet eventuele foutmeldingen
+            } else {
+                // Succesvolle registratie - navigeer naar de juiste pagina
+                if (chosenType === 'Private' || isBusinessAccount === 'Employee') {
+                    navigate('/login'); // Voor privégebruikers of werknemers
+                } else {
+                    navigate('/'); // Voor zakelijke accounts
                 }
             }
         }
     }
 
+// Reset errors wanneer het accounttype verandert
     useEffect(() => {
-        SetErrors([]);
-    }, [chosenType])
+        SetErrors([]); 
+    }, [chosenType]); 
 
     return (
         <>
-            <GeneralHeader />
-            <div className='registrateFormatHeader'>
+          <GeneralHeader />
+            <main>
+               <div className='registrateFormatHeader'>
                 {chosenType === 'Private' ? (
                     <h1>Aanmelden Particulier</h1>
                 ) : (<h1>Aanmelden Bedrijf</h1>
@@ -176,24 +174,24 @@ function SignUp() {
                 <div id='account'>
                     <label htmlFor='button'>Soort account:</label>
                     <br></br>
-                    <button className='cta-button'onClick={() => choice('Private')} id={chosenType === 'Private' ? 'typeButton-active' : 'typeButton'} type='button'>Particulier</button>
-                    <button className='cta-button'onClick={() => choice('Business')} id={chosenType === 'Business' ? 'typeButton-active' : 'typeButton'} type='button'>Zakelijk</button>
+                    <button className='cta-button' onClick={() => choice('Private')} id={chosenType === 'Private' ? 'typeButton-active' : 'typeButton'} type='button'>Particulier</button>
+                    <button className='cta-button' onClick={() => choice('Business')} id={chosenType === 'Business' ? 'typeButton-active' : 'typeButton'} type='button'>Zakelijk</button>
                 </div>
-            </div>
-            <div className='registrateFormat'>
+             </div>
+             <div className='registrateFormat'>
                 {chosenType === 'Private' ? (
                     <>
                         <label htmlFor="firstName">Voornaam</label>
-                        <input type="text" id="firstName" value={firstName}onChange={(e) => setFirstName(e.target.value)}></input>
+                        <input type="text" id="firstName" value={firstName} onChange={(e) => setFirstName(e.target.value)}></input>
 
                         <label htmlFor="lastName">Achternaam</label>
-                        <input type="text" id="lastName" value={lastName}onChange={(e) => setLastName(e.target.value)}></input>
+                        <input type="text" id="lastName" value={lastName} onChange={(e) => setLastName(e.target.value)}></input>
 
                         <label htmlFor="email">E-mail</label>
-                        <input type="text" id="email" value={email}onChange={(e) => setEmail(e.target.value)}></input>
+                        <input type="text" id="email" value={email} onChange={(e) => setEmail(e.target.value)}></input>
 
                         <label htmlFor="password">Wachtwoord</label>
-                        <input type="password" id="password" value={password1}onChange={(e) => setPassword1(e.target.value)}></input>
+                        <input type="password" id="password" value={password1} onChange={(e) => setPassword1(e.target.value)}></input>
 
                         <label htmlFor="passwordConfirm">Herhaal wachtwoord</label>
                         <input type="password" id="passwordConfirm" value={password2} onChange={(e) => setPassword2(e.target.value)}></input>
@@ -208,18 +206,18 @@ function SignUp() {
                         <input id='inputExtra' value={add} onChange={(e) => SetAdd(NoSpecialCharacters(e.target.value.toUpperCase()))}></input>
 
                         <label htmlFor="phonenumber">Telefoonnummer</label>
-                        <input type="tel" id="phonenumber" value={phonenumber}onChange={(e) => setPhonenumber(e.target.value)}></input>
+                        <input type="tel" id="phonenumber" value={phonenumber} onChange={(e) => setPhonenumber(e.target.value)}></input>
 
                         <label htmlFor="dateOfBirth">Geboortedatum</label>
-                        <input type="date" id="dateOfBirth" value={dateOfBirth}onChange={(e) => setDateOfBirth(e.target.value)}></input>    
+                        <input type="date" id="dateOfBirth" value={dateOfBirth} onChange={(e) => setDateOfBirth(e.target.value)}></input>    
                     </>
                 ) : (<>
                     {chosenType === 'Business' && isBusinessAccount === 'Employee' ? (
                         <>
                         {chosenType === 'Business' && (
                             <>
-                                <button className='cta-button'onClick={() => setIsBusinessAccount('Employee')} id={isBusinessAccount === 'Employee' ? 'typeButton-active' : 'typeButton'} type='button'>Medewerker</button>
-                                <button className='cta-button'onClick={() => setIsBusinessAccount('Business')} id={isBusinessAccount === 'Business' ? 'typeButton-active' : 'typeButton'} type='button'>Bedrijf</button>
+                                <button className='cta-button' onClick={() => setIsBusinessAccount('Employee')} id={isBusinessAccount === 'Employee' ? 'typeButton-active' : 'typeButton'} type='button'>Medewerker</button>
+                                <button className='cta-button' onClick={() => setIsBusinessAccount('Business')} id={isBusinessAccount === 'Business' ? 'typeButton-active' : 'typeButton'} type='button'>Bedrijf</button>
                             </>
                         )}
                         <label htmlFor='inputEmailBusiness'>Zakelijk email adress</label>
@@ -236,8 +234,8 @@ function SignUp() {
                         <>
                             {chosenType === 'Business' && (
                                 <>
-                                    <button className='cta-button'onClick={() => setIsBusinessAccount('Employee')} id={isBusinessAccount === 'Employee' ? 'typeButton-active' : 'typeButton'} type='button'>Medewerker</button>
-                                    <button className='cta-button'onClick={() => setIsBusinessAccount('Business')} id={isBusinessAccount === 'Business' ? 'typeButton-active' : 'typeButton'} type='button'>Bedrijf</button>
+                                    <button className='cta-button'  onClick={() => setIsBusinessAccount('Employee')} id={isBusinessAccount === 'Employee' ? 'typeButton-active' : 'typeButton'} type='button'>Medewerker</button>
+                                    <button className='cta-button'  onClick={() => setIsBusinessAccount('Business')} id={isBusinessAccount === 'Business' ? 'typeButton-active' : 'typeButton'} type='button'>Bedrijf</button>
                                 </>
                             )}
                             <label htmlFor='inputSubscriptionType'>Abonnement</label>
@@ -294,6 +292,7 @@ function SignUp() {
                     <label htmlFor="heeftAccount">Heeft u al een account? <Link id="redirect" to="/login">Log in!</Link></label>
                 </div>
             </div>
+            </main>
             
             <GeneralFooter></GeneralFooter>
         </>

@@ -1,14 +1,9 @@
-using System.Security.Policy;
 using System.Text.Json.Serialization;
 using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.Extensions.Options;
-using Microsoft.VisualBasic;
-using Org.BouncyCastle.Crypto.Prng;
 using WPR.Cryption;
 using WPR.Data;
 using WPR.Database;
 using WPR.Repository;
-using WPR.Hashing;
 using System.Net;
 using WPR.Services;
 using WPR.Controllers.General.Cookie;
@@ -72,23 +67,6 @@ public class AppConfigure
 
     builder.Services.AddCors(options =>
     {
-        /*options.AddPolicy("AllowLocalhost", policy =>
-        {
-            policy.WithOrigins("http://localhost:5173", "http://95.99.30.110:8080")  // Development URL
-                .AllowAnyHeader()
-                .AllowCredentials()
-                .AllowAnyMethod();
-        });
-
-        options.AddPolicy("AllowProduction", policy =>
-        {
-            policy.WithOrigins("http://carandall.nl", "https://carandall.nl, http://localhost:5173", "http://95.99.30.110:8080") // Production URL
-                .AllowAnyHeader()
-                .AllowCredentials()
-                .AllowAnyMethod();
-        });
-        */
-
         options.AddPolicy("AllowSpecificOrigins", policy =>
             policy.WithOrigins("http://95.99.30.110:8080", "http://localhost:5173", "http://www.carandall.nl:8080")
                 .AllowAnyHeader()
@@ -196,6 +174,7 @@ public class AppConfigure
     app.UseAuthorization();
     app.UseAuthentication();
     app.UseCookiePolicy(cookiePolicyOptions);
+    app.MapFallbackToFile("../wwwroot/index.html");
 
     //app.MapRazorPages();
     app.MapDefaultControllerRoute();

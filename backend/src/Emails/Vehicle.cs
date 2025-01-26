@@ -1,5 +1,3 @@
-using System.Security.Cryptography.X509Certificates;
-using System.Threading.Tasks;
 using WPR.Repository;
 
 namespace WPR.Email;
@@ -10,11 +8,21 @@ public class Vehicle : IVehicleDetails
     private Dictionary<string, object> _details { get; set; }
     private readonly IVehicleRepository _vehicleRepository;
 
+    /// <summary>
+    /// In de constructor worden alle benodigde klasses geset.
+    /// </summary>
+    /// <param name="vehicleRepository"></param>
+    /// <exception cref="ArgumentNullException"></exception>
     public Vehicle(IVehicleRepository vehicleRepository)
     {
         _vehicleRepository = vehicleRepository ?? throw new ArgumentNullException(nameof(vehicleRepository));
     }
     
+    /// <summary>
+    /// Alle gegevens worden in de dictionary van het voertuig geset.
+    /// </summary>
+    /// <param name="frameNr"></param>
+    /// <returns></returns>
     public async Task SetDetailsAsync(object frameNr)
     {
         var result = await _vehicleRepository.GetVehicleDataAsync(frameNr);
@@ -30,6 +38,11 @@ public class Vehicle : IVehicleDetails
             }
         }
     }
+
+    /// <summary>
+    /// Alle gegevens van de klant worden via deze methode opgehaald.
+    /// </summary>
+    /// <returns></returns>
     public async Task<Dictionary<string, object>> GetDetailsAsync()
     {
         return _details;

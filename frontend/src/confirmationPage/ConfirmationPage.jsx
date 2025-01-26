@@ -5,12 +5,13 @@ import GeneralFooter from "../GeneralBlocks/footer/footer.jsx";
 import '../index.css';
 
 function ConfirmationPage() {
-    const location = useLocation();
-    const navigate = useNavigate();
-    const rentalDetails = location.state?.rental;
+    const location = useLocation();  // Verkrijg de locatiegegevens (met name huurgegevens) die zijn doorgegeven
+    const navigate = useNavigate();  // Gebruik de navigate-functie om naar een andere pagina te navigeren
+    const rentalDetails = location.state?.rental;  // Verkrijg de huurgegevens uit de locatie state
 
+    // Functie om terug te gaan naar de homepage
     const handleGoBack = () => {
-        navigate('/');
+        navigate('/');  
     };
 
     if (!rentalDetails) {

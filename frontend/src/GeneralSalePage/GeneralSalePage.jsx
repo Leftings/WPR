@@ -9,6 +9,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import "react-datepicker/dist/react-datepicker.css";
 
 const BACKEND_URL = import.meta.env.VITE_REACT_APP_BACKEND_URL ?? 'http://localhost:5165';
+console.log(BACKEND_URL);
 function GetVehicle(id) {
     return fetch(`${BACKEND_URL}/api/Vehicle/GetVehicelData?frameNr=${id}`, {
         method: 'GET',
@@ -26,6 +27,7 @@ function GetVehicle(id) {
             return response.json();
         })
         .then((data) => {
+            // Combineer sleutel-waarde paren voor eenvoudiger toegang
             const combinedData = data?.message?.reduce((acc, item) => {
                 const [key, value] = Object.entries(item)[0];
                 acc[key] = value;
@@ -40,41 +42,44 @@ function GetVehicle(id) {
 }
 
 function GeneralSalePage() {
-    const [vehicles, setVehicles] = useState([]);
-    const [isEmployee, setIsEmployee] = useState(null);
+    // State variabelen voor het beheren van voertuigen en gebruikersgerelateerde gegevens
+    const [vehicles, setVehicles] = useState([]); 
+    const [isEmployee, setIsEmployee] = useState(null); 
     const [error, setError] = useState(null);
-    const [loading, setLoading] = useState(false);
-    const [loadingRequests, SetLoadingRequests] = useState({});
-    const [isFiltersOpen, setIsFiltersOpen] = useState(false);
+    const [loading, setLoading] = useState(false); 
+    const [loadingRequests, SetLoadingRequests] = useState({}); 
+    const [isFiltersOpen, setIsFiltersOpen] = useState(false); 
     const [filterOptions, setFilterOptions] = useState({});
-    const [isStaff, setIsStaff] = useState(false);
+    const [isStaff, setIsStaff] = useState(false); 
     const [officeType, setOfficeType] = useState(null);
-    const [isFrontOffice, setIsFrontOffice] = useState(false);
-    const navigate = useNavigate();
-    const [cars, setCars] = useState([]);
-    const [rentals, setRentals] = useState([]);
+    const [isFrontOffice, setIsFrontOffice] = useState(false); 
+    const navigate = useNavigate(); 
+    const [cars, setCars] = useState([]); 
+    const [rentals, setRentals] = useState([]); 
     const [campers, setCampers] = useState([]);
-    const [caravans, setCaravans] = useState([]);
+    const [caravans, setCaravans] = useState([]); 
 
+    // State variabelen voor het beheren van individuele filter-dropdowns
     const [showColorFilters, setShowColorFilters] = useState(false);
     const [showBrandFilters, setShowBrandFilters] = useState(false);
     const [showTypesFilters, setShowTypesFilters] = useState(false);
     const [showSeatsFilters, setShowSeatsFilters] = useState(false);
 
+    // Wisselt de zichtbaarheid van de gehele filtersectie
     const toggleFilters = () => {
         setIsFiltersOpen(!isFiltersOpen);
     };
 
+    // State voor actieve filters
     const [filters, setFilters] = useState({
-        startDate: new Date(new Date().setDate(new Date().getDate() + 1)), // Tomorrow
-        endDate: null, // No end date initially
+        startDate: new Date(new Date().setDate(new Date().getDate() + 1)), // Standaard naar morgen
+        endDate: null,
         vehicleTypes: [],
-        brand: [],
-        color: [],
-        seat: [],
+        brand: [], 
+        color: [], 
+        seat: [], 
     });
-
-
+    
     const handleDateFilterChange = (dates) => {
         const [start, end] = dates;
         setFilters(prevFilters => ({
@@ -83,7 +88,7 @@ function GeneralSalePage() {
             endDate: end
         }));
     };
-
+    
     const getUniqueFilterOptions = (vehicles) => {
         const uniqueSort = [...new Set(vehicles.map(vehicle => vehicle.Sort))];
         const uniqueBrand = sorterOneItem([...new Set(vehicles.map(vehicle => vehicle.Brand))], 'Low');
@@ -96,116 +101,139 @@ function GeneralSalePage() {
             Color: uniqueColor,
             Seats: uniqueSeats,
         });
-    }
-
+    };
+    
     const filteredVehicles = vehicles.filter(vehicle => {
-        console.log(`Evaluating Vehicle ${vehicle.FrameNr}`);
+        console.log(`Beoordelen voertuig ${vehicle.FrameNr}`);
 
-        // Filter based on vehicle types, colors, brands, and seats
+        // Controleer of het voertuig overeenkomt met de actieve filters
         const matchesVehicleTypes = filters.vehicleTypes.length === 0 || filters.vehicleTypes.includes(vehicle.Sort);
         const matchesColor = filters.color.length === 0 || filters.color.includes(vehicle.Color);
         const matchesBrand = filters.brand.length === 0 || filters.brand.includes(vehicle.Brand);
         const matchesSeat = filters.seat.length === 0 || filters.seat.includes(vehicle.Seats);
 
-        // Handle date range selection
+        // Verwerk de datumfilters
         const startDate = filters.startDate ? new Date(filters.startDate) : null;
         const endDate = filters.endDate ? new Date(filters.endDate) : null;
 
-        // Get the rentals related to the current vehicle
+        // Controleer de verhuurbeschikbaarheid voor het huidige voertuig
         const vehicleRentals = rentals.filter(rental => String(rental.frameNrVehicle) === String(vehicle.FrameNr));
-        console.log(`Vehicle ${vehicle.FrameNr} Rentals:`, vehicleRentals);
+        console.log(`Verhuur van voertuig ${vehicle.FrameNr}:`, vehicleRentals);
 
-        // Check if the vehicle is rented during the selected date range
         const isRentedDuringSelectedDates = vehicleRentals.some(rental => {
             if (!rental.startDate || !rental.endDate) {
-                console.log(`Rental for Vehicle ${vehicle.FrameNr} has invalid dates`);
+                console.log(`Verhuur voor voertuig ${vehicle.FrameNr} heeft ongeldige datums`);
                 return false;
             }
 
             const rentalStart = new Date(rental.startDate);
             const rentalEnd = new Date(rental.endDate);
 
-            console.log(`Rental Start: ${rentalStart}, Rental End: ${rentalEnd}`);
-            console.log(`Selected Start: ${startDate}, Selected End: ${endDate}`);
+            console.log(`Verhuur Start: ${rentalStart}, Verhuur Eind: ${rentalEnd}`);
+            console.log(`Geselecteerde Start: ${startDate}, Geselecteerde Eind: ${endDate}`);
 
             return (
-                (startDate && endDate && startDate <= rentalEnd && endDate >= rentalStart) ||  // Full overlap
-                (startDate && !endDate && startDate < rentalEnd) ||  // Start date overlap
-                (!startDate && endDate && endDate > rentalStart) // End date overlap
+                (startDate && endDate && startDate <= rentalEnd && endDate >= rentalStart) ||  // Volledige overlap
+                (startDate && !endDate && startDate < rentalEnd) ||  // Startdatum overlap
+                (!startDate && endDate && endDate > rentalStart) // Einddatum overlap
             );
         });
 
-        console.log(`Vehicle ${vehicle.FrameNr} ${isRentedDuringSelectedDates ? 'is' : 'is not'} rented during selected dates`);
+        console.log(`Voertuig ${vehicle.FrameNr} ${isRentedDuringSelectedDates ? 'is' : 'is niet'} verhuurd tijdens de geselecteerde datums`);
 
+        // Zorg ervoor dat het voertuig niet in reparatie is
         const isNotInRepair = vehicle.InRepair === "False";
 
-        // Return the filtered result based on all conditions
+        // Geef true terug als het voertuig voldoet aan alle filters
         return matchesVehicleTypes && matchesBrand && matchesColor && matchesSeat && !isRentedDuringSelectedDates && isNotInRepair;
     });
 
 
-    const availableBrands = sorterOneItem([...new Set(vehicles
-        .filter(vehicle => filters.vehicleTypes.length === 0 || filters.vehicleTypes.includes(vehicle.Sort))
-        .map(vehicle => vehicle.Brand)
-    )], 'Low');
-
-    useEffect(() => {
-        const updatedAvailableBrands = sorterOneItem([
+// Haal de lijst van beschikbare merken op op basis van de geselecteerde voertuigtypefilters
+    const availableBrands = sorterOneItem(
+        [
             ...new Set(
                 vehicles
-                    .filter(vehicle => filters.vehicleTypes.length === 0 || filters.vehicleTypes.includes(vehicle.Sort))
+                    .filter(
+                        vehicle => filters.vehicleTypes.length === 0 || filters.vehicleTypes.includes(vehicle.Sort)
+                    )
                     .map(vehicle => vehicle.Brand)
             )
-        ], 'Low');
+        ],
+        'Low' // Sorteer in oplopende volgorde
+    );
+
+// Werk de merkfilteropties dynamisch bij wanneer de voertuigtypefilters of voertuiglijst wijzigen
+    useEffect(() => {
+        const updatedAvailableBrands = sorterOneItem(
+            [
+                ...new Set(
+                    vehicles
+                        .filter(
+                            vehicle => filters.vehicleTypes.length === 0 || filters.vehicleTypes.includes(vehicle.Sort)
+                        )
+                        .map(vehicle => vehicle.Brand)
+                )
+            ],
+            'Low' // Sorteer in oplopende volgorde
+        );
+
         setFilterOptions(prev => ({
             ...prev,
-            Brand: updatedAvailableBrands
+            Brand: updatedAvailableBrands // Werk filteropties bij met de nieuwe lijst van merken
         }));
-    }, [filters.vehicleTypes, vehicles]);
+    }, [filters.vehicleTypes, vehicles]); // Afhankelijkheden: voertuigtypefilters en voertuigenlijst
 
+// Weergave voor voertuigtypes in een meer gebruiksvriendelijk formaat
     const display = {
-        Car: 'Auto',
-        Camper: 'Camper',
-        Caravan: 'Caravan'
+        Car: 'Auto', // Car wordt weergegeven als "Auto"
+        Camper: 'Camper', // Camper wordt weergegeven als "Camper"
+        Caravan: 'Caravan' // Caravan wordt weergegeven als "Caravan"
     };
 
+// Verwerk wijzigingen in een filtercategorie (bijv. voertuigtypes, merken, kleuren)
     const handleFilterChange = (category, value) => {
-        setFilters((prevFilters) => {
+        setFilters(prevFilters => {
             let updatedCategory;
 
             if (category === "vehicleTypes") {
-                updatedCategory = prevFilters.vehicleTypes.includes(value)
-                    ? []
-                    : [value];
+                // Als een voertuigtype wordt geschakeld, reset of stel de categorie in
+                updatedCategory = prevFilters.vehicleTypes.includes(value) ? [] : [value];
             } else {
+                // Schakel de geselecteerde waarde in de filtercategorie
                 updatedCategory = prevFilters[category].includes(value)
-                    ? prevFilters[category].filter((v) => v !== value)
+                    ? prevFilters[category].filter(v => v !== value)
                     : [...prevFilters[category], value];
             }
 
+            // Als de categorie "vehicleTypes" is, reset de merkfilter
             if (category === "vehicleTypes") {
-                return {...prevFilters, vehicleTypes: updatedCategory, brand: []};
+                return { ...prevFilters, vehicleTypes: updatedCategory, brand: [] };
             }
 
-            return {...prevFilters, [category]: updatedCategory};
+            // Werk de specifieke categorie filter bij
+            return { ...prevFilters, [category]: updatedCategory };
         });
     };
 
+// Zorg ervoor dat filteropties uniek en bijgewerkt blijven wanneer de voertuiglijst of voertuigtypefilters wijzigen
     useEffect(() => {
         getUniqueFilterOptions(vehicles);
-    }, [filters.vehicleTypes, vehicles]);
+    }, [filters.vehicleTypes, vehicles]); // Afhankelijkheden: voertuigtypefilters en voertuigenlijst
 
+// Controleer of de gebruiker een werknemer is en stel hun toegang dienovereenkomstig in
     useEffect(() => {
         const checkIfEmployee = async () => {
             try {
-                const response = await fetch(`${BACKEND_URL}/api/Employee/IsUserEmployee`, {credentials: 'include'});
+                const response = await fetch(`${BACKEND_URL}/api/Employee/IsUserEmployee`, { credentials: 'include' });
                 if (!response.ok) {
-                    throw new Error('Error validating user type');
+                    throw new Error('Fout bij het valideren van gebruikerstype');
                 }
                 const data = await response.text();
                 setIsEmployee(data === 'true');
 
                 if (data === 'true') {
+                    // Standaard "Auto"-type voor werknemers
                     setFilters(prevFilters => ({
                         ...prevFilters,
                         vehicleTypes: ['Car']
@@ -218,43 +246,45 @@ function GeneralSalePage() {
         };
 
         checkIfEmployee();
-    }, []);
+    }, []); // Voert uit bij component mount
 
+// Controleer of de huidige gebruikerssessie toebehoort aan een medewerker (Front of Back Office)
     useEffect(() => {
         fetch('http://localhost:5165/api/Login/CheckSessionStaff', {
             credentials: 'include',
             method: 'GET',
         })
-            .then((response) => {
+            .then(response => {
                 if (!response.ok) {
-                    throw new Error('Not a staff member or session expired');
+                    throw new Error('Niet een medewerker of sessie verlopen');
                 }
                 return response.json();
             })
-            .then((data) => {
+            .then(data => {
                 console.log('Backend Response:', data);
 
                 if (data.officeType === 'Front') {
-                    setIsStaff(true);
-                    setIsFrontOffice(true); // Mark as Front Office
+                    setIsStaff(true); // Markeer als medewerker
+                    setIsFrontOffice(true); // Markeer als Front Office
                 } else if (data.officeType === 'Back') {
-                    setIsStaff(true);
-                    setIsFrontOffice(false); // Mark as Back Office
+                    setIsStaff(true); // Markeer als medewerker
+                    setIsFrontOffice(false); // Markeer als Back Office
                 } else {
-                    setIsStaff(false); // Unexpected case
+                    setIsStaff(false); // Onverwacht geval
                 }
             })
-            .catch((error) => {
-                console.error('Error fetching session info:', error);
+            .catch(error => {
+                console.error('Fout bij het ophalen van sessie-informatie:', error);
                 setIsStaff(false);
-                setIsFrontOffice(false);
+                setIsFrontOffice(false); // Standaard naar geen medewerker
             });
-    }, []);
+    }, []); // Voert uit bij component mount
 
-    const handleDelete = async (frameNr) => {
-        const confirmDelete = window.confirm('Are you sure you want to delete this vehicle?');
+// Verwerk het verwijderen van een voertuig
+    const handleDelete = async frameNr => {
+        const confirmDelete = window.confirm('Weet je zeker dat je dit voertuig wilt verwijderen?');
         if (!confirmDelete) return;
-        
+
         try {
             const response = await fetch(`${BACKEND_URL}/api/vehicle/DeleteVehicle?frameNr=${frameNr}`, {
                 method: 'DELETE',
@@ -262,84 +292,78 @@ function GeneralSalePage() {
             });
 
             if (!response.ok) {
-                throw new Error('Failed to delete vehicle');
+                throw new Error('Fout bij het verwijderen van voertuig');
             }
 
-            const data = await response.json()
+            const data = await response.json();
 
             if (data.Status) {
-            setVehicles(vehicles.filter(vehicle => vehicle.FrameNr !== frameNr));
-            alert('Voertuig is verwijderd.');
-            navigate('/vehicles');
-        } else {
-            alert(data.message)
-        }
+                // Verwijder het voertuig uit de lokale state
+                setVehicles(vehicles.filter(vehicle => vehicle.FrameNr !== frameNr));
+                alert('Voertuig is verwijderd.'); // Geef succesmelding
+                navigate('/vehicles'); // Redirect naar voertuigenpagina
+            } else {
+                alert(data.message); // Toon backend foutmelding
+            }
         } catch (error) {
             console.error(error.message);
-            alert('Error deleting vehicle');
+            alert('Fout bij het verwijderen van voertuig'); // Geef foutmelding
         }
     };
 
+// Haal alle voertuigen op en vul de state op basis van gebruikerstype
     useEffect(() => {
-        if (isEmployee === null) return;
-        const fetchVehicles = async () => {
-            try
-            {
-                setLoading(true)
-                console.log(isEmployee);
-                setVehicles([]);
-                let url;
+        if (isEmployee === null) return; // Wacht tot de werknemersstatus is bepaald
 
-                url = `${BACKEND_URL}/api/vehicle/GetFrameNumbers`;
+        const fetchVehicles = async () => {
+            try {
+                setLoading(true); // Toon laadstatus
+                console.log(isEmployee);
+                setVehicles([]); // Wis voertuigenlijst
+                let url = `${BACKEND_URL}/api/vehicle/GetFrameNumbers`;
 
                 const response = await fetch(url, {
                     method: 'GET',
                     credentials: 'include'
                 });
 
-                if (!response.ok)
-                {
-                    throw new Error('Failed to fetch new request');
+                if (!response.ok) {
+                    throw new Error('Fout bij het ophalen van nieuw verzoek');
                 }
 
                 const data = await response.json();
                 const requestsToLoad = data?.message || [];
 
-                // Er wordt door elk voertuig id heen gegaan
-                requestsToLoad.forEach(async (id, index) => {
-                    // Laden voor voertuig wordt aangezet
-                    SetLoadingRequests((prevState) => ({ ...prevState, [id]: true }));
+                // Loop door elk voertuig-ID en haal de details op
+                requestsToLoad.forEach(async id => {
+                    SetLoadingRequests(prevState => ({ ...prevState, [id]: true })); // Start laden voor dit ID
 
                     try {
                         const vehicle = await GetVehicle(id);
 
                         if (vehicle?.message) {
-
-                            // Voertuig wordt toegevoegd aan voertuigen
-                            setVehicles((prevVehicles) => {
+                            // Voeg het voertuig toe aan de state en sorteer ze
+                            setVehicles(prevVehicles => {
                                 const updatedVehicles = [...prevVehicles, vehicle.message];
-                                return sorterArray(updatedVehicles, 'Sort');});
-                            // Laden voor voertuig wordt uitgezet
-                            SetLoadingRequests((prevState) => ({ ...prevState, [id]: false }));
-                            // Algemene laadpagina wordt uigezet
-                            setLoading(false);
+                                return sorterArray(updatedVehicles, 'Sort'); // Sorteer voertuigen
+                            });
+                            SetLoadingRequests(prevState => ({ ...prevState, [id]: false })); // Stop laden
+                            setLoading(false); // Algemeen laden voltooid
                         }
                     } catch (err) {
-                        console.error(`Failed to fetch vehicle for ID ${id}:`, err);
+                        console.error(`Fout bij het ophalen van voertuig voor ID ${id}:`, err);
                     }
                 });
             } catch (error) {
-                setError(error.message || 'An unexpected error occurred');
+                setError(error.message || 'Er is een onverwachte fout opgetreden'); // Geef foutmelding
             } finally {
-                setLoading(false);
-                setVehicles(sorter(vehicles, 'Sort', 'Low'));
+                setLoading(false); // Laadstatus uit
+                setVehicles(sorter(vehicles, 'Sort', 'Low')); // Sorteer voertuigen na voltooiing
             }
         };
 
-        if (isEmployee !== null) {
-            fetchVehicles();
-        }
-    }, [isEmployee])
+        fetchVehicles();
+    }, [isEmployee]); // Afhankelijkheid: werknemersstatus
 
     async function fetchAndLogRentals() {
         try {
@@ -585,7 +609,7 @@ function GeneralSalePage() {
                                     </div>
                                 ))
                             ) : (
-                                <p>No vehicles found for the selected filter.</p>
+                                <p>Geen voertuigen gevonden...</p>
                             )}
                         </div>
                     )}

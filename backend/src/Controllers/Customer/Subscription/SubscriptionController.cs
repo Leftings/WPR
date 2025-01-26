@@ -17,6 +17,10 @@ public class SubscriptionController : ControllerBase
         _backOfficeRepository = backOfficeRepository ?? throw new ArgumentNullException(nameof(backOfficeRepository));
     }
 
+    /// <summary>
+    /// Haalt alle abonnementen op.
+    /// </summary>
+    /// <returns>Een lijst van alle abonnementen.</returns>
     [HttpGet("GetSubscriptions")]
     public async Task<IActionResult> GetSubscriptions()
     {
@@ -42,6 +46,11 @@ public class SubscriptionController : ControllerBase
         }
     }
 
+    /// <summary>
+    /// Haalt specifieke gegevens van een abonnement op.
+    /// </summary>
+    /// <param name="id">Het ID van het abonnement.</param>
+    /// <returns>De gegevens van het abonnement met het opgegeven ID.</returns>
     [HttpGet("GetSubscriptionData")]
     public async Task<IActionResult> GetSubscriptionData(int id)
     {
@@ -70,6 +79,10 @@ public class SubscriptionController : ControllerBase
         }
     }
 
+    /// <summary>
+    /// Haalt alle abonnement-IDs op.
+    /// </summary>
+    /// <returns>Een lijst van alle abonnement-IDs.</returns>
     [HttpGet("GetSubscriptionIds")]
     public async Task<IActionResult> GetSubscriptionIdsAsync()
     {
@@ -98,6 +111,11 @@ public class SubscriptionController : ControllerBase
         }
     }
 
+    /// <summary>
+    /// Voegt een nieuw abonnement toe.
+    /// </summary>
+    /// <param name="subscriptionRequest">De gegevens van het abonnement dat toegevoegd moet worden.</param>
+    /// <returns>Een succes- of foutmelding met betrekking tot de toevoeging van het abonnement.</returns>
     [HttpPost("AddSubscription")]
     public async Task<IActionResult> AddSubscription([FromBody] SubscriptionRequest subscriptionRequest)
     {
@@ -133,6 +151,11 @@ public class SubscriptionController : ControllerBase
     
     
 
+    /// <summary>
+    /// Verwijdert een specifiek abonnement op basis van het ID.
+    /// </summary>
+    /// <param name="id">Het ID van het abonnement dat verwijderd moet worden.</param>
+    /// <returns>Een succes- of foutmelding met betrekking tot de verwijdering van het abonnement.</returns>
     [HttpDelete("DeleteSubscription")]
     public async Task<IActionResult> DeleteSubscriptionAsync(int id)
     {

@@ -1,6 +1,4 @@
-using System.Linq.Expressions;
 using MySql.Data.MySqlClient;
-using WPR.Controllers.Employee.Shared.viewRentalData;
 using WPR.Database;
 
 namespace WPR.Repository;
@@ -12,9 +10,17 @@ public class ContractRepository : IContractRepository
     {
         _connector = connector ?? throw new ArgumentNullException(nameof(connector));
     }
+
+    /// <summary>
+    /// Haalt een lijst van OrderId's op voor contracten die morgen geen e-mail moeten verzenden.
+    /// </summary>
+    /// <returns>
+    /// Een lijst van <see cref="int"/> die de OrderId's bevat waarvoor de e-mail niet is verzonden.
+    /// </returns>
     public async Task<IList<int>> GetContractsSendEmailAsync()
     {
         string query = $"SELECT OrderId FROM Contract WHERE (SendEmail = 'No' AND StartDate = '{DateTime.Today.AddDays(1):yyyy-MM-dd}')";
+
         try
         {
             using (var connection = _connector.CreateDbConnection())
@@ -49,6 +55,13 @@ public class ContractRepository : IContractRepository
         }
     }
 
+    /// <summary>
+    /// Haalt gedetailleerde informatie op voor een contract op basis van het opgegeven OrderId.
+    /// </summary>
+    /// <param name="orderId">Het OrderId van het contract waarvan de gegevens opgehaald moeten worden.</param>
+    /// <returns>
+    /// Een <see cref="Dictionary{string, object}"/> die de kolomnamen en hun bijbehorende waarden bevat voor het opgegeven contract.
+    /// </returns>
     public async Task<Dictionary<string, object>> GetContractInfoAsync(int orderId)
     {
         string query = $"SELECT * FROM Contract WHERE OrderId = {orderId}";

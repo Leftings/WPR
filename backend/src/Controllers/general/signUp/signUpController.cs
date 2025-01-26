@@ -1,18 +1,12 @@
-using WPR.Services;
-using WPR.Utils;
-
 namespace WPR.Controllers.General.SignUp;
 
 using Microsoft.AspNetCore.Mvc;
-using WPR.Database;
 using System;
 using WPR.Repository;
-using WPR.Hashing;
-using WPR.Data;
-using Microsoft.VisualBasic;
 
 /// <summary>
-/// SignUpController zorgt ervoor dat persoonlijke en zakelijke accounts aangemaakt kunnen worden
+/// De SignUpController beheert het aanmaken van zowel persoonlijke als zakelijke accounts.
+/// Deze controller ontvangt verzoeken voor registratie en verwerkt ze via de repository.
 /// </summary>
 [Route("api/[controller]")]
 [ApiController]
@@ -37,6 +31,11 @@ public class SignUpController : ControllerBase
         return StatusCode(response.StatusCode, new { message = response.Message });
     }
 
+    /// <summary>
+    /// Registreert een persoonlijke klant zonder zakelijke gegevens.
+    /// </summary>
+    /// <param name="signUpRequest">De registratiegegevens voor een persoonlijke klant.</param>
+    /// <returns>Een HTTP-resultaat met een statuscode en een bericht over het succes of falen van de registratie.</returns>
     [HttpPost("signUpPersonal")]
     public async Task<IActionResult> signUpPersonalAsync([FromForm] SignUpRequest signUpRequest)
     {

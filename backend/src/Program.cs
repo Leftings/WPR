@@ -1,5 +1,3 @@
-using System.Security.Permissions;
-
 namespace WPR;
 
 public class Program

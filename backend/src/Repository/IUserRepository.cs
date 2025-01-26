@@ -1,5 +1,4 @@
-﻿using System.Data;
-using WPR.Controllers.customer.Subscription;
+﻿using WPR.Controllers.customer.Subscription;
 using WPR.Controllers.Employee.VehicleManager.ChangeBusinessSettings;
 using WPR.Controllers.General.SignUp;
 
@@ -34,5 +33,10 @@ public interface IUserRepository
     Task<List<string>> GetAllSubscriptionsAsync();
     Task<SubscriptionRequest>GetSubscriptionDataAsync(int id);
     Task<List<int>> GetSubscriptionIdsAsync();
+    Task<UserRepository.VehicleManager> GetVehicleManagerInfoAsync(int id);
+    Task<List<UserRepository.Customer>> GetCustomersByBusinessNumberAsync(string Business);
+    Task<bool> UpdateCustomerAsync(int id, string email, string encryptedPassword);
+    Task<(int StatusCode, string Message)> ChangeVehicleManagerInfo(ChangeVehicleManagerInfo request);
+    Task<(int StatusCode, string Domain)> GetBusinessDomainByKvK(int kvk);
     Task<Dictionary<string, object>> GetCustomerDetails(int id);
 }

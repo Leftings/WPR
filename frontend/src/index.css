@@ -100,8 +100,8 @@ button:focus-visible {
   padding: 10px;
   background-color: #f4f4f4;
   border-bottom: 2px solid #ddd;
-  width: 100%; /* Ensure full-width alignment */
-  box-sizing: border-box; /* Include padding and borders in the width calculation */
+  width: 100%;
+  box-sizing: border-box; 
 }
 
 .heads div,
@@ -110,7 +110,7 @@ button:focus-visible {
   gap: 0;
   text-align: center;
   position: relative;
-  word-wrap: break-word; /* Handle long content gracefully */
+  word-wrap: break-word; 
 }
 
 .heads div:not(:last-child),
@@ -120,7 +120,7 @@ button:focus-visible {
 
 .rows {
   background-color: #f4f4f4;
-  transition: background-color 0.3s ease; /* Smooth background transition */
+  transition: background-color 0.3s ease; 
 }
 
 .rows:hover {
@@ -129,7 +129,7 @@ button:focus-visible {
 
 .heads {
   background-color: #c4c4c4;
-  border-bottom: 2px solid #000; /* Better separation */
+  border-bottom: 2px solid #000; 
 }
 
 @media (max-width: 768px) {
@@ -139,7 +139,7 @@ button:focus-visible {
 
   .heads,
   .rows {
-    grid-template-columns: 1fr; /* Stack columns on small screens */
+    grid-template-columns: 1fr; 
   }
 }
 
@@ -506,7 +506,7 @@ margin-right: 20px;
   }
 
   .logo-container:hover .logo-image {
-      content: url('assets/logo-green.svg'); /*On hover verandert logo kleur naar groen!*/
+      content: url('assets/logo-green.svg');
   }
 
 .logo-image {
@@ -1030,7 +1030,7 @@ li {
   margin-bottom: 20px; 
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
   gap: 20px; 
-  width: 300px; 
+  width: 400px; 
   position: relative;
 }
 
@@ -1116,7 +1116,7 @@ li {
 
 @media (min-width: 1025px) {
   .registrateFormat {
-    width: 675px;
+    width: 700px;
   }
   .registrateFormatFooter {
     width: 675px;
@@ -1263,7 +1263,7 @@ li {
 /* CarRentalOverview & Home */
 main {
   flex: 1; 
-  min-height: 85vh;
+  min-height: 87vh;
   width: 100vw;
 }
 
@@ -1989,4 +1989,70 @@ input::selection {
 
 .resizable-textarea {
   resize: vertical;
+}
+.expandable-header {
+  font-size: 1.5rem;
+  margin: 20px 0;
+  transition: color 0.3s ease-in-out;
+}
+
+.expandable-header {
+  font-size: 1.5rem;
+  margin: 20px 0;
+  text-align: center; 
+  transition: color 0.3s ease-in-out;
+}
+
+.expandable-header.active {
+  color: #1D7874; 
+}
+
+.button-center-container {
+  display: flex;
+  justify-content: center; 
+  margin: 10px 0;
+}
+
+.expand-button {
+  background-color: #1D7874;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 1rem;
+  transition: background-color 0.3s ease, transform 0.2s;
+}
+
+.expand-button:hover {
+  background-color: #0056b3;
+  transform: scale(1.05);
+}
+
+.customer-list {
+  margin-top: 20px;
+  padding: 20px;
+  background-color: #1D7874;
+  border-radius:40px;
+  transition: max-height 0.5s ease-out;
+}
+
+.customer-list div {
+  margin-bottom: 10px;
+}
+
+.customer-list input {
+  margin-bottom: 10px;
+  width: 100%;
+}
+
+.update-button-container {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.customer-update-container {
+  margin-top: 20px;
+  padding: 0 20px;
+  text-align: center; 
 }

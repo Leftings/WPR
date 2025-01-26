@@ -1,5 +1,0 @@
-<map id="Employee.Repository.UserRepository" name="Employee.Repository.UserRepository">
-<area shape="rect" id="Node000001" title="De UserRepository class geeft de methodes voor de interactie met de database voor gebruiker gerelatee..." alt="" coords="5,229,180,528"/>
-<area shape="rect" id="Node000002" href="$interface_employee_1_1_repository_1_1_i_user_repository.html" title="Interface defining methods voor user gerelateerde database operaties, validatie, user management,..." alt="" coords="5,5,180,181"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="96,196,96,229,90,229,90,196"/>
-</map>
