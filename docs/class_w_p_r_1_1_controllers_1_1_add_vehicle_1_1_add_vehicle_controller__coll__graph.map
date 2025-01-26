@@ -1,0 +1,13 @@
+<map id="WPR.Controllers.AddVehicle.AddVehicleController" name="WPR.Controllers.AddVehicle.AddVehicleController">
+<area shape="rect" id="Node000001" title="AddVehicleController zorgt ervoor dat voertuigen toegevoegd kunnen worden aan de database." alt="" coords="129,203,322,245"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,104,113,131"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="93,137,194,200,191,204,90,141"/>
+<area shape="rect" id="Node000003" href="$class_w_p_r_1_1_database_1_1_connector.html" title=" " alt="" coords="137,104,314,131"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="228,146,228,202,223,202,223,146"/>
+<area shape="rect" id="Node000004" href="$interface_w_p_r_1_1_database_1_1_i_connector.html" title="Connector class om verbinding te maken met de database, maakt gebruik van de connectie strings die zi..." alt="" coords="112,5,198,32"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="175,43,219,102,215,105,171,46"/>
+<area shape="rect" id="Node000005" href="$class_w_p_r_1_1_data_1_1_env_config.html" title="Leez het .env bestand uit waarin de connectie strings staan naar de database. Deze staan in een apart..." alt="" coords="221,5,372,32"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="281,46,237,105,233,102,276,43"/>
+<area shape="rect" id="Node000006" href="$interface_w_p_r_1_1_repository_1_1_i_employee_repository.html" title="Interface defining methods voor user gerelateerde database operaties, validatie, user management,..." alt="" coords="338,96,524,139"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="378,148,267,205,265,200,376,144"/>
+</map>

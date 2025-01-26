@@ -1,0 +1,5 @@
+var class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_change_business_settings_1_1_delete_vehicle_manager_request =
+[
+    [ "ID", "d2/d12/class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_change_business_settings_1_1_delete_vehicle_manager_request.html#ac9ef855c0fecfdc92a4a14564c1b2e83", null ],
+    [ "KvK", "d2/d12/class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_change_business_settings_1_1_delete_vehicle_manager_request.html#acd094741b7d3a708451ff4e6e236edbb", null ]
+];

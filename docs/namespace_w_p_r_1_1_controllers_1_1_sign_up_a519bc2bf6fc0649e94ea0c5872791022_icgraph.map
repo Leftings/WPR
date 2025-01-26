@@ -1,0 +1,21 @@
+<map id="WPR.Controllers.SignUp.SignUpRequestCustomerPrivate" name="WPR.Controllers.SignUp.SignUpRequestCustomerPrivate">
+<area shape="rect" id="Node000001" title=" " alt="" coords="814,152,1012,195"/>
+<area shape="poly" id="edge12_Node000001_Node000001" title=" " alt="" coords="956,139,940,133,913,131,888,133,873,137,867,143,869,151,864,152,862,142,870,133,887,127,913,125,941,128,958,134"/>
+<area shape="rect" id="Node000002" href="$interface_w_p_r_1_1_repository_1_1_i_user_repository.html#a103bbaff883cb3af9e3d4c98a2100d5b" title=" " alt="" coords="540,5,762,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="874,144,824,106,765,69,724,51,726,46,768,64,827,101,877,140"/>
+<area shape="rect" id="Node000003" href="$class_w_p_r_1_1_repository_1_1_user_repository.html#a688723c1fb3385274f13ba0e3ba78da8" title="AddCustomer krijgt SignUpRequestCustomer binnen en SignUpRequestCustomerPrivate. Elk account heeft al..." alt="" coords="5,119,223,161"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="859,147,814,128,766,113,694,102,620,95,473,95,337,106,224,122,223,116,336,100,473,90,621,90,695,96,767,108,816,123,861,142"/>
+<area shape="rect" id="Node000004" href="$class_w_p_r_1_1_repository_1_1_user_repository.html#ae8b7a3c517ffe6cb1b85eee60e5b2292" title="AddCustomerChecks kijkt of alle ingevoerde velden geldig zijn. Als een check faalt falen alle checks." alt="" coords="542,123,760,165"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="798,163,760,159,760,154,799,158"/>
+<area shape="rect" id="Node000005" href="$class_w_p_r_1_1_repository_1_1_user_repository.html#a4fe2a09bb575fb8d9510828ef5ad9813" title="AddPrivateCustomerDetails zorgt ervoor dat alle extra details van particuliere huurders toegevoegd wo..." alt="" coords="271,177,488,220"/>
+<area shape="poly" id="edge7_Node000001_Node000005" title=" " alt="" coords="799,181,489,196,488,191,799,176"/>
+<area shape="rect" id="Node000006" href="$namespace_w_p_r_1_1_controllers_1_1_sign_up.html#aaea6dedc76634a8612e6b7d263182795" title=" " alt="" coords="536,264,766,307"/>
+<area shape="poly" id="edge8_Node000001_Node000006" title=" " alt="" coords="848,204,704,266,702,261,846,199"/>
+<area shape="rect" id="Node000007" href="$class_w_p_r_1_1_controllers_1_1_sign_up_1_1_sign_up_controller.html#a3aac2f5d192646493880f9402a4f764e" title="Een account voor particuliere gebruikers kan aangemaakt worden (onderscheiden door geboortedatum)" alt="" coords="281,293,478,336"/>
+<area shape="poly" id="edge11_Node000001_Node000007" title=" " alt="" coords="892,209,870,238,841,270,806,299,767,321,732,333,694,342,618,349,544,347,478,339,479,334,545,342,618,344,693,337,730,328,765,316,803,295,837,266,866,235,888,206"/>
+<area shape="poly" id="edge4_Node000004_Node000003" title=" " alt="" coords="527,146,223,143,223,138,527,140"/>
+<area shape="poly" id="edge5_Node000004_Node000005" title=" " alt="" coords="528,172,489,179,488,174,526,166"/>
+<area shape="poly" id="edge6_Node000005_Node000003" title=" " alt="" coords="264,176,213,165,214,159,266,171"/>
+<area shape="poly" id="edge9_Node000006_Node000006" title=" " alt="" coords="694,251,678,245,651,243,626,245,611,249,605,255,607,263,602,264,600,254,608,245,625,239,651,237,679,240,696,246"/>
+<area shape="poly" id="edge10_Node000006_Node000007" title=" " alt="" coords="521,302,479,307,478,301,521,297"/>
+</map>

@@ -1,0 +1,16 @@
+<map id="WPR.Controllers.acceptHireRequest.AcceptHireRequestController" name="WPR.Controllers.acceptHireRequest.AcceptHireRequestController">
+<area shape="rect" id="Node000001" title="AcceptHireRequestController zorgt ervoor dat alle huuraanvragen verzameld worden en bestempelt kunnen..." alt="" coords="606,75,850,117"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="313,5,420,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="436,26,583,53,653,71,652,77,581,59,435,31"/>
+<area shape="rect" id="Node000003" href="$class_w_p_r_1_1_database_1_1_connector.html" title=" " alt="" coords="278,56,455,83"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="471,74,606,84,605,90,471,80"/>
+<area shape="rect" id="Node000004" href="$interface_w_p_r_1_1_database_1_1_i_connector.html" title="Connector class om verbinding te maken met de database, maakt gebruik van de connectie strings die zi..." alt="" coords="38,24,123,51"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="139,41,250,53,278,57,277,62,249,59,138,46"/>
+<area shape="rect" id="Node000005" href="$class_w_p_r_1_1_data_1_1_env_config.html" title="Leez het .env bestand uit waarin de connectie strings staan naar de database. Deze staan in een apart..." alt="" coords="5,91,156,117"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="171,90,277,77,277,83,172,96"/>
+<area shape="rect" id="Node000007" href="$class_w_p_r_1_1_cryption_1_1_crypt.html" title="Class Crypt zorgt voor een veilig encryptie en decryptie van strings. De Crptie wordt gedaan door het..." alt="" coords="295,107,438,133"/>
+<area shape="poly" id="edge7_Node000007_Node000005" title=" " alt="" coords="171,115,180,116,295,119,295,124,180,121,171,121"/>
+<area shape="rect" id="Node000006" href="$interface_w_p_r_1_1_repository_1_1_i_employee_repository.html" title="Interface defining methods voor user gerelateerde database operaties, validatie, user management,..." alt="" coords="274,157,459,200"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="474,160,581,139,662,115,664,120,583,144,475,165"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="453,118,582,113,605,111,606,116,582,119,453,123"/>
+</map>

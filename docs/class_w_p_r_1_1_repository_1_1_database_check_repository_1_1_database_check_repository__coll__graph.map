@@ -1,11 +1,7 @@
 <map id="WPR.Repository.DatabaseCheckRepository.DatabaseCheckRepository" name="WPR.Repository.DatabaseCheckRepository.DatabaseCheckRepository">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,187,250,229"/>
-<area shape="rect" id="Node000002" href="$interface_w_p_r_1_1_repository_1_1_database_check_repository_1_1_i_database_check_repository.html" title=" " alt="" coords="15,96,197,123"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="115,137,126,185,120,187,110,139"/>
-<area shape="rect" id="Node000003" href="$class_w_p_r_1_1_database_1_1_connector.html" title=" " alt="" coords="222,96,399,123"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="274,133,168,188,166,184,272,128"/>
-<area shape="rect" id="Node000004" href="$interface_w_p_r_1_1_database_1_1_i_connector.html" title="Connector class om verbinding te maken met de database, maakt gebruik van de connectie strings die zi..." alt="" coords="197,5,282,32"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="261,42,302,94,298,97,257,46"/>
-<area shape="rect" id="Node000005" href="$class_w_p_r_1_1_data_1_1_env_config.html" title="Leez het .env bestand uit waarin de connectie strings staan naar de database. Deze staan in een apart..." alt="" coords="306,5,456,32"/>
-<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="364,46,322,97,318,94,359,42"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="90,245,324,816"/>
+<area shape="rect" id="Node000002" href="$interface_w_p_r_1_1_repository_1_1_database_check_repository_1_1_i_database_check_repository.html" title=" " alt="" coords="5,5,177,181"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="121,195,134,245,129,246,116,196"/>
+<area shape="rect" id="Node000003" href="$interface_w_p_r_1_1_database_1_1_i_connector.html" title="Connector class om verbinding te maken met de database, maakt gebruik van de connectie strings die zi..." alt="" coords="201,59,446,128"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="317,128,290,230,285,229,312,127"/>
 </map>

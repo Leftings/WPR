@@ -1,0 +1,14 @@
+<map id="WPR.Controllers.SignUp.SignUpController.SignUp" name="WPR.Controllers.SignUp.SignUpController.SignUp">
+<area shape="rect" id="Node000001" title="Een account voor particuliere gebruikers kan aangemaakt worden (onderscheiden door geboortedatum)" alt="" coords="5,99,203,141"/>
+<area shape="rect" id="Node000002" href="$namespace_w_p_r_1_1_controllers_1_1_sign_up.html#aaea6dedc76634a8612e6b7d263182795" title=" " alt="" coords="251,99,481,141"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="203,117,235,117,235,123,203,123"/>
+<area shape="rect" id="Node000003" href="$namespace_w_p_r_1_1_controllers_1_1_sign_up.html#acd25470ee7003b63e0d1385749d463e8" title=" " alt="" coords="529,29,726,72"/>
+<area shape="poly" id="edge7_Node000001_Node000003" title=" " alt="" coords="148,96,196,76,250,60,317,49,386,43,513,42,513,47,386,49,318,55,251,65,198,81,150,101"/>
+<area shape="rect" id="Node000004" href="$namespace_w_p_r_1_1_controllers_1_1_sign_up.html#a519bc2bf6fc0649e94ea0c5872791022" title=" " alt="" coords="529,132,726,175"/>
+<area shape="poly" id="edge8_Node000001_Node000004" title=" " alt="" coords="187,139,251,151,387,159,514,157,514,163,387,164,250,156,186,145"/>
+<area shape="poly" id="edge2_Node000002_Node000002" title=" " alt="" coords="316,99,315,89,323,80,340,74,366,72,394,74,410,81,409,86,393,80,366,77,341,79,326,84,320,90,322,97"/>
+<area shape="poly" id="edge3_Node000002_Node000003" title=" " alt="" coords="448,95,529,74,531,79,450,101"/>
+<area shape="poly" id="edge5_Node000002_Node000004" title=" " alt="" coords="482,132,513,136,513,141,481,137"/>
+<area shape="poly" id="edge4_Node000003_Node000003" title=" " alt="" coords="578,29,576,19,585,10,602,5,628,3,656,5,672,11,670,16,654,10,628,8,603,10,587,15,582,21,584,28"/>
+<area shape="poly" id="edge6_Node000004_Node000004" title=" " alt="" coords="578,132,576,122,585,113,602,107,628,105,656,108,672,114,670,119,654,113,628,111,603,113,587,117,582,123,584,131"/>
+</map>

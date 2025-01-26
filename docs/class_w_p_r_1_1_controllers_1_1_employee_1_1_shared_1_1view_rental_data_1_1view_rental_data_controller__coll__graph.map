@@ -1,7 +1,7 @@
 <map id="WPR.Controllers.Employee.Shared.viewRentalData.viewRentalDataController" name="WPR.Controllers.Employee.Shared.viewRentalData.viewRentalDataController">
-<area shape="rect" id="Node000001" title=" " alt="" coords="32,112,260,171"/>
-<area shape="rect" id="Node000002" title=" " alt="" coords="5,13,113,40"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="80,51,126,110,122,113,76,54"/>
-<area shape="rect" id="Node000003" href="$interface_w_p_r_1_1_repository_1_1_i_back_office_repository.html" title=" " alt="" coords="137,5,328,48"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="209,62,170,113,166,110,205,59"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="41,421,258,667"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,147,102,216"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="69,230,120,421,115,422,64,231"/>
+<area shape="rect" id="Node000003" href="$interface_w_p_r_1_1_repository_1_1_i_back_office_repository.html" title=" " alt="" coords="126,5,368,357"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="202,358,189,406,184,405,197,356"/>
 </map>

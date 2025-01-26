@@ -1,0 +1,7 @@
+<map id="WPR.Controllers.General.Login.LoginController.LoginAsync" name="WPR.Controllers.General.Login.LoginController.LoginAsync">
+<area shape="rect" id="Node000001" title="Een gebruiker wordt ingelogt." alt="" coords="5,13,221,56"/>
+<area shape="rect" id="Node000002" href="$d0/d8d/class_w_p_r_1_1_controllers_1_1_general_1_1_login_1_1_login_controller.html#a4b565b6c9267c62377a9baaa4badb302" title="Een nieuw cookie wordt gezet, met de juiste cookie naa men waarders." alt="" coords="269,13,514,56"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="221,32,253,32,253,37,221,37"/>
+<area shape="rect" id="Node000003" href="$d0/d8d/class_w_p_r_1_1_controllers_1_1_general_1_1_login_1_1_login_controller.html#a47adb2aa231e07bc7bae6788e08be40a" title="Op het moment van inloggen worden alle cookies van mogelijke gebruikers verwijderd." alt="" coords="562,5,758,64"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="514,32,546,32,546,37,514,37"/>
+</map>

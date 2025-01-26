@@ -1,3 +1,5 @@
-<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="Node000000" href="$class_w_p_r_1_1_utils_1_1_tel_checker.html" title="Checked om te kijken of het een correct telefoon nummer is." alt="" coords="5,5,160,32"/>
+<map id="Grafische Klasse Hiërarchie" name="Grafische Klasse Hiërarchie">
+<area shape="rect" id="Node000000" href="$d4/d6f/interface_w_p_r_1_1_repository_1_1_i_vehicle_repository.html" title=" " alt="" coords="5,5,238,32"/>
+<area shape="rect" id="Node000001" href="$db/d11/class_w_p_r_1_1_repository_1_1_vehicle_repository.html" title="De VehicleRepository class geeft de methodes voor de interactie met de database voor gebruiker gerela..." alt="" coords="286,5,514,32"/>
+<area shape="poly" id="edge31_Node000000_Node000001" title=" " alt="" coords="253,16,285,16,285,21,253,21"/>
 </map>

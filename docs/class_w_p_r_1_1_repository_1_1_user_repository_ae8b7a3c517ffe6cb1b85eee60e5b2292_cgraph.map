@@ -2,7 +2,7 @@
 <area shape="rect" id="Node000001" title="AddCustomerChecks kijkt of alle ingevoerde velden geldig zijn. Als een check faalt falen alle checks." alt="" coords="5,239,223,281"/>
 <area shape="rect" id="Node000002" href="$class_w_p_r_1_1_repository_1_1_user_repository.html#a7903e03bfe7076a6ee7b352636cb854d" title="Er wordt gekeken of het emailadres al bestaat in de databse." alt="" coords="271,5,523,48"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="124,237,146,198,178,150,219,100,269,58,277,53,280,58,272,62,223,104,182,153,150,201,128,239"/>
-<area shape="rect" id="Node000003" href="$class_w_p_r_1_1_utils_1_1_domain_email_checker.html#afa04ff19177d661adf1bd0b4fb78b317" title=" " alt="" coords="287,72,506,115"/>
+<area shape="rect" id="Node000003" href="$class_w_p_r_1_1_utils_1_1_domain_email_checker.html#af6430abcc6b17909ff568158e9e05172" title=" " alt="" coords="287,72,506,115"/>
 <area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="133,236,190,180,228,150,269,124,281,119,284,123,272,129,231,154,194,184,137,240"/>
 <area shape="rect" id="Node000004" href="$class_w_p_r_1_1_utils_1_1_birthday_checker.html#a4c7d3943364075179b3f1ca2e0f05c46" title="Check om te kijken of het een correcte verjaardag is Leeftijd mag niet onder de 18 zijn en niet boven..." alt="" coords="302,139,492,181"/>
 <area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="161,236,270,191,292,184,293,189,272,196,163,241"/>
