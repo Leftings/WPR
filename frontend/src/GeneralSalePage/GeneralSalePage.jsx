@@ -585,7 +585,7 @@ function GeneralSalePage() {
                                     </div>
                                 ))
                             ) : (
-                                <p>No vehicles found for the selected filter.</p>
+                                <p>Geen voertuigen gevonden...</p>
                             )}
                         </div>
                     )}
