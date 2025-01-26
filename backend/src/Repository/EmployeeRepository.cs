@@ -17,11 +17,11 @@ namespace WPR.Repository;
 /// </summary>
 public class EmployeeRepository : IEmployeeRepository
 {
-    private readonly Connector _connector;
+    private readonly IConnector _connector;
     private readonly Hash _hash;
     private readonly EmailService _emailService;
 
-    public EmployeeRepository(Connector connector, Hash hash, EmailService emailService)
+    public EmployeeRepository(IConnector connector, Hash hash, EmailService emailService)
     {
         _connector = connector ?? throw new ArgumentNullException(nameof(connector));
         _hash = hash ?? throw new ArgumentNullException(nameof (hash));
@@ -797,25 +797,35 @@ public class EmployeeRepository : IEmployeeRepository
 
                 using (var reader = command.ExecuteReader())
                 {
+                    // Check if any record is found
+                    if (!reader.HasRows)
+                    {
+                        return (false, "No data found for the given KvK", new Dictionary<string, object>());
+                    }
+
                     Dictionary<string, object> data = new Dictionary<string, object>();
+
                     while (reader.Read())
                     {
                         for (int i = 0; i < reader.FieldCount; i++)
                         {
-                            data[reader.GetName(i)] = reader.GetValue(i);
+                            // If value is DBNull, replace with a default value (e.g., null or empty string)
+                            object value = reader.IsDBNull(i) ? null : reader.GetValue(i);
+                            data[reader.GetName(i)] = value;
                         }
                     }
-                    return (true, "Succes", data);
+
+                    return (true, "Success", data);
                 }
             }
         }
         catch (MySqlException ex)
         {
-            return (false, ex.Message, new Dictionary<string, object>());
+            return (false, $"MySQL Error: {ex.Message}", new Dictionary<string, object>());
         }
         catch (Exception ex)
         {
-            return (false, ex.Message, new Dictionary<string, object>());
+            return (false, $"General Error: {ex.Message}", new Dictionary<string, object>());
         }
     }
 
@@ -901,7 +911,8 @@ public class EmployeeRepository : IEmployeeRepository
     {
         try
         {
-            string query = $"SELECT * FROM VehicleManager WHERE ID = @I";
+            // Adjust the query to explicitly select the Password field
+            string query = $"SELECT ID, Email, Password, Business FROM VehicleManager WHERE ID = @I";
 
             using (var connection = _connector.CreateDbConnection())
             using (var command = new MySqlCommand(query, (MySqlConnection)connection))
@@ -913,15 +924,13 @@ public class EmployeeRepository : IEmployeeRepository
                     Dictionary<string, object> data = new Dictionary<string, object>();
                     if (reader.Read())
                     {
-                        for (int i = 0; i < reader.FieldCount; i++)
-                        {
-                            if (!data.ContainsKey(reader.GetName(i)))
-                            {
-                                data[reader.GetName(i)] = reader.GetValue(i);
-                            }
-                        }
-
-                        return (200, "Succes", data);
+                        // Ensure the password is being captured correctly
+                        data["ID"] = reader.GetInt32(reader.GetOrdinal("ID"));
+                        data["Email"] = reader.GetString(reader.GetOrdinal("Email"));
+                        data["Password"] = reader.IsDBNull(reader.GetOrdinal("Password")) ? null : reader.GetString(reader.GetOrdinal("Password")); 
+                        data["Business"] = reader.GetInt32(reader.GetOrdinal("Business"));
+                    
+                        return (200, "Success", data);
                     }
                     return (404, "Vehicle Manager Not Found", data);
                 }
@@ -936,6 +945,7 @@ public class EmployeeRepository : IEmployeeRepository
             return (500, ex.Message, new Dictionary<string, object>());
         }
     }
+
     
     /// <summary>
     /// Er wordt een query aangemaakt met de meegegeven gegevens voor de inname.
@@ -948,11 +958,11 @@ public class EmployeeRepository : IEmployeeRepository
     /// <param name="date"></param>
     /// <param name="contract"></param>
     /// <returns></returns>
-    public async Task<(bool status, string message)> AddIntakeAsync(string damage, int frameNrVehicle, string reviewedBy, DateTime date, int contract)
+    public async Task<(bool status, string message)> AddIntakeAsync(string damage, int frameNrVehicle, string reviewedBy, DateTime date, int contract, bool isDamaged)
     {
         try
         {
-            string query = "INSERT INTO Intake (Damage, FrameNrVehicle, ReviewedBy, Date, Contract) VALUES (@D, @F, @R, @DT, @C)";
+            string query = "INSERT INTO Intake (Damage, FrameNrVehicle, ReviewedBy, Date, Contract, IsDamaged) VALUES (@D, @F, @R, @DT, @C, @isD)";
 
             // Er wordt een connectie met de DataBase gemaakt met de bovenstaande query
             using (var connection = _connector.CreateDbConnection())
@@ -964,6 +974,7 @@ public class EmployeeRepository : IEmployeeRepository
                 command.Parameters.AddWithValue("@R", reviewedBy);
                 command.Parameters.AddWithValue("@DT", date);
                 command.Parameters.AddWithValue("@C", contract);
+                command.Parameters.AddWithValue("@isD", isDamaged);
 
                 if (await command.ExecuteNonQueryAsync() > 0)
                 {

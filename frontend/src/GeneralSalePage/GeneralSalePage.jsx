@@ -137,8 +137,10 @@ function GeneralSalePage() {
 
         console.log(`Vehicle ${vehicle.FrameNr} ${isRentedDuringSelectedDates ? 'is' : 'is not'} rented during selected dates`);
 
+        const isNotInRepair = vehicle.InRepair === "False";
+
         // Return the filtered result based on all conditions
-        return matchesVehicleTypes && matchesBrand && matchesColor && matchesSeat && !isRentedDuringSelectedDates;
+        return matchesVehicleTypes && matchesBrand && matchesColor && matchesSeat && !isRentedDuringSelectedDates && isNotInRepair;
     });
 
 
@@ -490,8 +492,8 @@ function GeneralSalePage() {
 
             {isFiltersOpen && <div className="overlay" onClick={toggleFilters}></div>}
 
-            <GeneralHeader/>
             <div className="general-sale-page">
+                <GeneralHeader/>
                 <div className="car-sale-section">
                     <h1 className="title-text">Voertuigen</h1>
                     

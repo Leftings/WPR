@@ -32,6 +32,12 @@ public interface IUserRepository
     Task<(int StatusCode, string Message)> AddCustomer(SignUpRequestCustomer request, SignUpRequestCustomerPrivate privateRequest);
     Task<(int StatusCode, string Message)> ChangeBusinessInfo(ChangeBusinessRequest request);
     Task<List<string>> GetAllSubscriptionsAsync();
-    Task<Subscription>GetSubscriptionDataAsync(int id);
+    Task<SubscriptionRequest>GetSubscriptionDataAsync(int id);
     Task<List<int>> GetSubscriptionIdsAsync();
+    Task<UserRepository.VehicleManager> GetVehicleManagerInfoAsync(int id);
+    Task<List<UserRepository.Customer>> GetCustomersByBusinessNumberAsync(string Business);
+    Task<bool> UpdateCustomerAsync(int id, string email, string encryptedPassword);
+    Task<(int StatusCode, string Message)> ChangeVehicleManagerInfo(ChangeVehicleManagerInfo request);
+    Task<(int StatusCode, string Domain)> GetBusinessDomainByKvK(int kvk);
+    Task<Dictionary<string, object>> GetCustomerDetails(int id);
 }

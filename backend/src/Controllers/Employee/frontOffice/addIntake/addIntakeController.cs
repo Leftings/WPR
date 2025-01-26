@@ -14,13 +14,15 @@ using MySql.Data.MySqlClient;
 [ApiController]
 public class AddIntakeController : ControllerBase
 {
-    private readonly Connector _connector;
+    private readonly IConnector _connector;
     private readonly IEmployeeRepository _employeeRepository;
+    private readonly IVehicleRepository _vehicleRepository;
 
-    public AddIntakeController(Connector connector, IEmployeeRepository employeeRepository)
+    public AddIntakeController(IConnector connector, IEmployeeRepository employeeRepository, IVehicleRepository vehicleRepository)
     {
         _connector = connector ?? throw new ArgumentNullException(nameof(connector));
         _employeeRepository = employeeRepository ?? throw new ArgumentNullException(nameof(employeeRepository));
+        _vehicleRepository = vehicleRepository ?? throw new ArgumentNullException(nameof(vehicleRepository));
     }
 
     /// <summary>
@@ -40,17 +42,27 @@ public class AddIntakeController : ControllerBase
                 request.FrameNrVehicle,
                 request.ReviewedBy,
                 request.Date,
-                request.Contract);
+                request.Contract,
+                request.IsDamaged);
+
+            if (request.IsDamaged)
+            {
+                var status2 = _vehicleRepository.ChangeRepairStatus(request.FrameNrVehicle, true);
+            }
 
             if (status.status)
             {
-                return Ok(new { status.message });
+                return Ok(new AddIntakeResponse { Message = status.message });
             }
-            return BadRequest(new { status.message });
+            return BadRequest(new AddIntakeErrorResponse
+            {
+                Status = false,
+                Message = status.message
+            });
         }
         catch (Exception ex)
         {
-            return StatusCode(500, new { status = false, message = ex.Message });
+            return StatusCode(500, new AddIntakeErrorResponse() { Status = false, Message = ex.Message });
         }
     }
 

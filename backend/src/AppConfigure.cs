@@ -13,6 +13,7 @@ using System.Net;
 using WPR.Services;
 using WPR.Controllers.General.Cookie;
 using WPR.Repository.DatabaseCheckRepository;
+using WPR.Email;
 
 namespace WPR;
 
@@ -24,7 +25,7 @@ public class AppConfigure
 {
     public static void InitDatabase(IServiceProvider services)
     {
-        var dbConnector = services.GetRequiredService<Connector>();
+        var dbConnector = services.GetRequiredService<IConnector>();
         
         try
         {
@@ -41,6 +42,7 @@ public class AppConfigure
         }
         
     }
+
     /// <summary>
     /// Configureer de web applicatie, zoals middleware, services, authentication en CORS settings.
     /// </summary>
@@ -138,7 +140,7 @@ public class AppConfigure
     
     // Register services for Dependency Injection
     builder.Services.AddSingleton<EnvConfig>(); // Singleton for environment configuration
-    builder.Services.AddTransient<Connector>(); // Transient for database connection.
+    builder.Services.AddTransient<IConnector, Connector>(); // Transient for database connection.
     builder.Services.AddScoped<VehicleRepository>();
     builder.Services.AddScoped<IUserRepository, UserRepository>(); // Scoped for user repository
     builder.Services.AddScoped<IVehicleRepository, VehicleRepository>(); // Scoped for Vehicle Repository
@@ -146,9 +148,26 @@ public class AppConfigure
     builder.Services.AddScoped<Crypt>();
     builder.Services.AddScoped<Hashing.Hash>();
     builder.Services.AddScoped<EmailService>();
+    builder.Services.AddScoped<IEmailService, EmailService>();
     builder.Services.AddScoped<IEmployeeRepository, EmployeeRepository>();
     builder.Services.AddScoped<IBackOfficeRepository, BackOfficeRepository>();
     builder.Services.AddScoped<IDatabaseCheckRepository, DatabaseCheckRepository>();
+    builder.Services.AddScoped<IContractRepository, ContractRepository>();
+
+    builder.Services.AddSingleton<IHostedService, Reminders>(); // Register Reminders as a singleton hosted service
+
+    // Scoped dependencies
+    builder.Services.AddScoped<EmailService>();
+    builder.Services.AddScoped<Customer>();
+    builder.Services.AddScoped<Vehicle>();
+    builder.Services.AddScoped<Contract>();
+    builder.Services.AddScoped<ICustomerDetails, Customer>();
+    builder.Services.AddScoped<IVehicleDetails, Vehicle>();
+    builder.Services.AddScoped<IContractDetails, Contract>();
+
+
+    builder.Services.AddHostedService<Reminders>();
+
     
 
     // Configure authentication with cookie-based authentication schema.

@@ -14,10 +14,10 @@ using MySql.Data.MySqlClient;
 [ApiController]
 public class AddVehicleController : ControllerBase
 {
-    private readonly Connector _connector;
+    private readonly IConnector _connector;
     private readonly IEmployeeRepository _userRepository;
 
-    public AddVehicleController(Connector connector, IEmployeeRepository userRepository)
+    public AddVehicleController(IConnector connector, IEmployeeRepository userRepository)
     {
         _connector = connector ?? throw new ArgumentNullException(nameof(connector));
         _userRepository = userRepository ?? throw new ArgumentNullException(nameof(userRepository));
@@ -63,9 +63,9 @@ public class AddVehicleController : ControllerBase
 
             if (status.status)
             {
-                return Ok(new { status.message });
+                return Ok(new AddVehicleResponse{ Message = status.message });
             }
-            return BadRequest(new { status.message });
+            return BadRequest(new AddVehicleResponse{ Message = status.message });
         }
         catch (Exception ex)
         {

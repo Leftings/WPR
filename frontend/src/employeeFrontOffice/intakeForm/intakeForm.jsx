@@ -73,7 +73,7 @@ function IntakeForm() {
         const formData = new FormData();
 
         if (!damagePresent) {
-            formData.append('Damage', "Geen schade aanwezig.");
+            formData.append('Damage', null);
         } else { 
             formData.append('Damage', damageExplanation); 
         }
@@ -81,6 +81,7 @@ function IntakeForm() {
         formData.append('ReviewedBy', staffId);
         formData.append('Date', endDate);
         formData.append('Contract', contract.OrderId);
+        formData.append('IsDamaged', damagePresent);
 
         fetch(`${BACKEND_URL}/api/AddIntake/addIntake`, {
             method: 'POST',
@@ -114,7 +115,14 @@ function IntakeForm() {
         let errors = EmptyFieldChecker(intakeData);
         
         if (damagePresent && (damageExplanation === "" || damageExplanation === null)) {
-            errors.push("Schadetoelichting niet ingevuld")
+            errors.push("Schadetoelichting niet ingevuld");
+        }
+
+        const currentDate = new Date(); // Get current date
+        const parsedEndDate = new Date(endDate); // Parse endDate
+
+        if (currentDate < parsedEndDate) {
+            errors.push("Huurcontract is nog van toepassing, kan inname niet verzenden.");
         }
 
         if (errors.length === 0) {
@@ -149,10 +157,10 @@ function IntakeForm() {
     }, [navigate]);
 
     useEffect(() => {
-        if (contract && !tooLate && contract.AccountType === 'Private') {
+        if (contract && !tooLate) {
             setEndDate(contract.EndDate);
         }
-        if ((contract && tooLate) || (contract && contract.AccountType) === 'Business') {
+        if ((contract && tooLate)) {
             setEndDate(null);
         }
     }, [contract, tooLate]);
@@ -208,28 +216,25 @@ function IntakeForm() {
                                 </>
                             )}
 
-                            {contract.AccountType === 'Private' && (
-                                <>
-                                    <label htmlFor="tooLateCheck">Oorspronkelijke einddatum: {new Date(contract.EndDate).toLocaleDateString()}</label>
-                                    <div className="checkbox-item">
-                                        <label htmlFor="tooLateCheck">Te laat:</label>
-                                        <input
-                                            type="checkbox"
-                                            id="checkbox-item"
-                                            checked={tooLate}
-                                            onChange={handleTooLate}
-                                        />
-                                    </div>
-                                </>
-                            )}
+                            <label htmlFor="tooLateCheck">Oorspronkelijke einddatum: {new Date(contract.EndDate).toLocaleDateString()}</label>
+                            <div className="checkbox-item">
+                                <label htmlFor="tooLateCheck">Te laat:</label>
+                                <input
+                                    type="checkbox"
+                                    id="checkbox-item"
+                                    checked={tooLate}
+                                    onChange={handleTooLate}
+                                />
+                            </div>
 
-                            {(tooLate || contract.AccountType === 'Business') && (
+                            {tooLate && (
                                 <>
                                     <label htmlFor="endDate">Einddatum</label>
                                     <input type="date" onChange={(e) => setEndDate(e.target.value)}/>
                                 </>
                             )}
 
+                            <p>{endDate}</p>
                             <button className="cta-button" onClick={Check}>Stuur</button>
                         </>
                     )}

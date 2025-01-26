@@ -6,7 +6,7 @@ using WPR.Data;
 
 namespace WPR.Services;
 
-public class EmailService
+public class EmailService : IEmailService
 {
     private readonly EnvConfig _envConfig; // Instantie van EnConfig om environment variabelen op te halen.
 
@@ -30,6 +30,31 @@ public class EmailService
                 ),
             EnableSsl = true
         };
+    }
+
+    public async Task Send(string toEmail, string subject, string body)
+    {
+        try
+        {
+            using (var smtpClient = CreateSmtpClient())
+            using (var mailMessage = new MailMessage
+            {
+                From = new MailAddress(_envConfig.Get("SMTP_FROM_EMAIL")),
+                Subject = subject,
+                Body = body,
+                IsBodyHtml = true
+            })
+            {
+
+                mailMessage.To.Add(toEmail);
+                await smtpClient.SendMailAsync(mailMessage);
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.Message);
+            throw;
+        }
     }
     
     public async Task SendWelcomeEmail(string toEmail)

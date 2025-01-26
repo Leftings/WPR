@@ -168,7 +168,7 @@ function ReviewHireRequest() {
   return (
     <>
       <GeneralHeader />
-      <div className="body">
+      <main>
         <h1>Nieuwe verzoeken</h1>
         <div className="requests-box">
           {newRequests.length > 0 ? (
@@ -204,7 +204,7 @@ function ReviewHireRequest() {
             <p>Geen nieuwe verzoeken gevonden.</p>
           )}
         </div>
-      </div>
+      </main>
       <GeneralFooter />
     </>
   );

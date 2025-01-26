@@ -1206,6 +1206,7 @@ li {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  width: 100vw;
 }
 
 /* Home */
@@ -1237,13 +1238,13 @@ li {
 
 
 /* AbonnementInfo */
-footer {
+.footer {
   background-color: #333;
   color: white;
   text-align: center;
   padding: 20px;
   bottom: 0;
-  width: 100%;
+  width: 100vw;
 }
 
 
@@ -1263,6 +1264,7 @@ footer {
 main {
   flex: 1; 
   min-height: 85vh;
+  width: 100vw;
 }
 
 /* Cta-button: Home, GeneralHeader */
@@ -1318,8 +1320,7 @@ main {
 /* Html: IndividualSalePage, Login, Index, SignUp */
 /* IndividualSalePage & Login */
 html, body {
-  height: auto;
-  width: 100%;
+  max-width: 100vw;
   margin: 0;
   padding: 0;
   display: flex;
@@ -1329,7 +1330,10 @@ html, body {
   background-color: #F4E8C1;
   font-family: Arial, sans-serif;
   box-sizing: border-box;
-  overflow-x: hidden;
+}
+
+* {
+  box-sizing: border-box;
 }
 
 /* Car-price: ChangeRental, PayPage, IndividualSalesPage*/
@@ -1386,7 +1390,12 @@ header {
   padding: 10px 20px;
   background-color: #333;
   color: white;
-  position: relative;
+}
+
+.header-container {
+  position: sticky;
+  z-index: 999;
+  top: 0;
 }
 
 /* Login, UserSettings, SignUp */
@@ -1980,4 +1989,70 @@ input::selection {
 
 .resizable-textarea {
   resize: vertical;
+}
+.expandable-header {
+  font-size: 1.5rem;
+  margin: 20px 0;
+  transition: color 0.3s ease-in-out;
+}
+
+.expandable-header {
+  font-size: 1.5rem;
+  margin: 20px 0;
+  text-align: center; 
+  transition: color 0.3s ease-in-out;
+}
+
+.expandable-header.active {
+  color: #1D7874; 
+}
+
+.button-center-container {
+  display: flex;
+  justify-content: center; 
+  margin: 10px 0;
+}
+
+.expand-button {
+  background-color: #1D7874;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 1rem;
+  transition: background-color 0.3s ease, transform 0.2s;
+}
+
+.expand-button:hover {
+  background-color: #0056b3;
+  transform: scale(1.05);
+}
+
+.customer-list {
+  margin-top: 20px;
+  padding: 20px;
+  background-color: #1D7874;
+  border-radius:40px;
+  transition: max-height 0.5s ease-out;
+}
+
+.customer-list div {
+  margin-bottom: 10px;
+}
+
+.customer-list input {
+  margin-bottom: 10px;
+  width: 100%;
+}
+
+.update-button-container {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.customer-update-container {
+  margin-top: 20px;
+  padding: 0 20px;
+  text-align: center; 
 }
