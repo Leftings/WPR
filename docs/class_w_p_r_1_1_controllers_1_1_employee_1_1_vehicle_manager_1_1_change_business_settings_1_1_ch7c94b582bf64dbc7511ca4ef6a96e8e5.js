@@ -2,6 +2,7 @@ var class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_change_busi
 [
     [ "ChangeBusinessSettingsController", "class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_change_business_settings_1_1_ch7c94b582bf64dbc7511ca4ef6a96e8e5.html#a506a13c91683e6389cf9486f15b7a4e9", null ],
     [ "ChangeBusinessInfoAsync", "class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_change_business_settings_1_1_ch7c94b582bf64dbc7511ca4ef6a96e8e5.html#ad1f53b919617eec6d3786fc2e06c2ff2", null ],
+    [ "ChangeVehicleManagerInfoAsync", "class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_change_business_settings_1_1_ch7c94b582bf64dbc7511ca4ef6a96e8e5.html#a3a700126d9ad8e6cae986da45d65d6f8", null ],
     [ "CheckNewEmailAsync", "class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_change_business_settings_1_1_ch7c94b582bf64dbc7511ca4ef6a96e8e5.html#a943c431c998eee8144e3c436155bcf5c", null ],
     [ "DeleteUserAsync", "class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_change_business_settings_1_1_ch7c94b582bf64dbc7511ca4ef6a96e8e5.html#a8efb639fc03dd7378e26e26d37840bf8", null ],
     [ "DeleteVehicleAsync", "class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_change_business_settings_1_1_ch7c94b582bf64dbc7511ca4ef6a96e8e5.html#a00ba93c983d4275b1948b02049cace37", null ],

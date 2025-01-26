@@ -1,6 +1,6 @@
 var class_w_p_r_1_1_controllers_1_1_general_1_1_vehicle_1_1_vehicle_controller =
 [
-    [ "VehicleController", "class_w_p_r_1_1_controllers_1_1_general_1_1_vehicle_1_1_vehicle_controller.html#a3ef8266c5b1646cbf735bdaaeee02657", null ],
+    [ "VehicleController", "class_w_p_r_1_1_controllers_1_1_general_1_1_vehicle_1_1_vehicle_controller.html#abd5fa0b8ca8adb2173c4c955fd11ed28", null ],
     [ "DeleteVehicleAsync", "class_w_p_r_1_1_controllers_1_1_general_1_1_vehicle_1_1_vehicle_controller.html#ae37bdd9c92abdac45d22bf147b28c230", null ],
     [ "GetAllVehiclesAsync", "class_w_p_r_1_1_controllers_1_1_general_1_1_vehicle_1_1_vehicle_controller.html#a373f3a7c3064fc053ad388cc2e1a350d", null ],
     [ "GetFrameNumbersAsync", "class_w_p_r_1_1_controllers_1_1_general_1_1_vehicle_1_1_vehicle_controller.html#a4a6d616a3e9390af3dca1cb084d39d7d", null ],
@@ -10,6 +10,6 @@ var class_w_p_r_1_1_controllers_1_1_general_1_1_vehicle_1_1_vehicle_controller =
     [ "GetVehicleImageAsync", "class_w_p_r_1_1_controllers_1_1_general_1_1_vehicle_1_1_vehicle_controller.html#a47c5226006711ccc6d74971eb8abf032", null ],
     [ "GetVehicleName", "class_w_p_r_1_1_controllers_1_1_general_1_1_vehicle_1_1_vehicle_controller.html#a6513983e0e6319857b7114b3d4e4bfe0", null ],
     [ "GetVehiclePriceAsync", "class_w_p_r_1_1_controllers_1_1_general_1_1_vehicle_1_1_vehicle_controller.html#a45b3f02d868b52ccc5afddb3c0267560", null ],
-    [ "_connector", "class_w_p_r_1_1_controllers_1_1_general_1_1_vehicle_1_1_vehicle_controller.html#a8f20243e0f854ffe069fc94f55e985b8", null ],
+    [ "_connector", "class_w_p_r_1_1_controllers_1_1_general_1_1_vehicle_1_1_vehicle_controller.html#aef5ce5be36c1415893325a24f5783f92", null ],
     [ "_vehicleRepository", "class_w_p_r_1_1_controllers_1_1_general_1_1_vehicle_1_1_vehicle_controller.html#aee814694ef7a060dc4f35f78ff19e281", null ]
 ];

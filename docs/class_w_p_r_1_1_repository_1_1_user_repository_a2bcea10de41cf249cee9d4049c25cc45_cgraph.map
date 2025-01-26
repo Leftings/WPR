@@ -1,12 +1,6 @@
 <map id="WPR.Repository.UserRepository.ChangeBusinessInfo" name="WPR.Repository.UserRepository.ChangeBusinessInfo">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,75,223,117"/>
-<area shape="rect" id="Node000002" href="$class_w_p_r_1_1_repository_1_1_user_repository.html#aba8688e8d8507200f51def21a2b8744c" title=" " alt="" coords="271,29,488,72"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="223,75,255,69,256,75,224,80"/>
-<area shape="rect" id="Node000004" href="$class_w_p_r_1_1_repository_1_1_user_repository.html#a97d6e7a2668d407e8a72c591aa25cc22" title=" " alt="" coords="271,120,488,163"/>
-<area shape="poly" id="edge4_Node000001_Node000004" title=" " alt="" coords="224,112,256,117,255,123,223,117"/>
-<area shape="poly" id="edge2_Node000002_Node000002" title=" " alt="" coords="329,29,327,19,336,10,353,5,379,3,408,5,424,11,423,16,406,10,379,8,354,10,339,15,333,21,335,28"/>
-<area shape="rect" id="Node000003" href="$class_w_p_r_1_1_repository_1_1_user_repository.html#af67e3842ab505dde8a9b4986eec3d470" title=" " alt="" coords="536,75,753,117"/>
-<area shape="poly" id="edge3_Node000002_Node000003" title=" " alt="" coords="489,67,521,72,520,77,488,72"/>
-<area shape="poly" id="edge6_Node000004_Node000003" title=" " alt="" coords="488,120,520,115,521,120,489,125"/>
-<area shape="poly" id="edge5_Node000004_Node000004" title=" " alt="" coords="329,120,327,110,336,101,353,95,379,93,408,96,424,102,423,107,406,101,379,99,354,101,339,105,333,111,335,119"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,5,223,48"/>
+<area shape="rect" id="Node000002" href="$class_w_p_r_1_1_repository_1_1_user_repository.html#adce1c47fd8ee12e83c5b918614e20bbc" title=" " alt="" coords="271,5,488,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="223,33,255,33,255,38,223,38"/>
+<area shape="poly" id="edge2_Node000002_Node000001" title=" " alt="" coords="270,20,239,20,239,15,270,15"/>
 </map>

@@ -1,0 +1,7 @@
+<map id="WPR.Email.Reminders" name="WPR.Email.Reminders">
+<area shape="rect" id="Node000001" title=" " alt="" coords="50,139,293,677"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,5,129,75"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="83,88,97,138,92,140,78,90"/>
+<area shape="rect" id="Node000003" href="$d1/dbb/interface_w_p_r_1_1_database_1_1_i_connector.html" title="Connector class om verbinding te maken met de database, maakt gebruik van de connectie strings die zi..." alt="" coords="153,5,398,75"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="268,75,255,123,250,121,263,74"/>
+</map>

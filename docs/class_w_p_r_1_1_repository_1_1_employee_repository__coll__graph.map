@@ -1,16 +1,15 @@
 <map id="WPR.Repository.EmployeeRepository" name="WPR.Repository.EmployeeRepository">
-<area shape="rect" id="Node000001" title="De UserRepository class geeft de methodes voor de interactie met de database voor gebruiker gerelatee..." alt="" coords="597,83,841,109"/>
-<area shape="rect" id="Node000002" href="$interface_w_p_r_1_1_repository_1_1_i_employee_repository.html" title="Interface defining methods voor user gerelateerde database operaties, validatie, user management,..." alt="" coords="295,5,442,32"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="457,31,574,55,670,79,668,85,572,60,456,36"/>
-<area shape="rect" id="Node000003" href="$class_w_p_r_1_1_database_1_1_connector.html" title=" " alt="" coords="280,56,457,83"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="473,75,597,84,596,89,472,80"/>
-<area shape="rect" id="Node000004" href="$interface_w_p_r_1_1_database_1_1_i_connector.html" title="Connector class om verbinding te maken met de database, maakt gebruik van de connectie strings die zi..." alt="" coords="38,24,123,51"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="139,41,250,53,280,57,279,62,249,59,138,46"/>
-<area shape="rect" id="Node000005" href="$class_w_p_r_1_1_data_1_1_env_config.html" title="Leez het .env bestand uit waarin de connectie strings staan naar de database. Deze staan in een apart..." alt="" coords="5,91,156,117"/>
-<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="171,91,279,77,280,83,171,96"/>
-<area shape="rect" id="Node000007" href="$class_w_p_r_1_1_services_1_1_email_service.html" title=" " alt="" coords="274,107,463,133"/>
-<area shape="poly" id="edge7_Node000007_Node000005" title=" " alt="" coords="171,115,180,116,273,119,273,125,180,121,171,121"/>
-<area shape="rect" id="Node000006" href="$class_w_p_r_1_1_hashing_1_1_hash.html" title="Class Hash zorgt ervoor dat wachtwoorden op een veilige manier worden gehashed doormiddel van het HMA..." alt="" coords="298,157,438,184"/>
-<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="453,159,572,139,679,107,680,112,574,144,454,164"/>
-<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="479,118,573,113,628,107,629,113,573,119,479,123"/>
+<area shape="rect" id="Node000001" title="De UserRepository class geeft de methodes voor de interactie met de database voor gebruiker gerelatee..." alt="" coords="376,1307,637,2283"/>
+<area shape="rect" id="Node000002" href="$interface_w_p_r_1_1_repository_1_1_i_employee_repository.html" title="Interface defining methods voor user gerelateerde database operaties, validatie, user management,..." alt="" coords="5,448,239,1243"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="247,1224,254,1242,314,1386,378,1527,373,1529,310,1388,249,1244,242,1226"/>
+<area shape="rect" id="Node000003" href="$interface_w_p_r_1_1_database_1_1_i_connector.html" title="Connector class om verbinding te maken met de database, maakt gebruik van de connectie strings die zi..." alt="" coords="264,811,509,880"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="393,879,445,1290,440,1290,388,880"/>
+<area shape="rect" id="Node000004" href="$class_w_p_r_1_1_hashing_1_1_hash.html" title="Class Hash zorgt ervoor dat wachtwoorden op een veilige manier worden gehashed doormiddel van het HMA..." alt="" coords="533,781,720,909"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="621,909,573,1290,568,1289,616,909"/>
+<area shape="rect" id="Node000005" href="$class_w_p_r_1_1_services_1_1_email_service.html" title=" " alt="" coords="744,515,983,1176"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="758,1177,734,1244,646,1470,641,1468,729,1242,753,1175"/>
+<area shape="rect" id="Node000006" href="$interface_w_p_r_1_1_services_1_1_i_email_service.html" title=" " alt="" coords="620,5,870,384"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="785,398,806,515,801,516,779,399"/>
+<area shape="rect" id="Node000007" href="$class_w_p_r_1_1_data_1_1_env_config.html" title="Leez het .env bestand uit waarin de connectie strings staan naar de database. Deze staan in een apart..." alt="" coords="894,80,1071,309"/>
+<area shape="poly" id="edge6_Node000005_Node000007" title=" " alt="" coords="964,310,930,498,924,497,959,309"/>
 </map>

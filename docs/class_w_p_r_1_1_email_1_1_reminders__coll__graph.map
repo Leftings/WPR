@@ -1,11 +1,7 @@
 <map id="WPR.Email.Reminders" name="WPR.Email.Reminders">
-<area shape="rect" id="Node000001" title=" " alt="" coords="15,187,172,213"/>
-<area shape="rect" id="Node000002" title=" " alt="" coords="5,96,140,123"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="82,137,93,185,88,187,76,138"/>
-<area shape="rect" id="Node000003" href="$class_w_p_r_1_1_database_1_1_connector.html" title=" " alt="" coords="164,96,341,123"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="218,133,118,188,115,184,215,128"/>
-<area shape="rect" id="Node000004" href="$interface_w_p_r_1_1_database_1_1_i_connector.html" title="Connector class om verbinding te maken met de database, maakt gebruik van de connectie strings die zi..." alt="" coords="139,5,224,32"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="203,42,244,94,240,97,199,46"/>
-<area shape="rect" id="Node000005" href="$class_w_p_r_1_1_data_1_1_env_config.html" title="Leez het .env bestand uit waarin de connectie strings staan naar de database. Deze staan in een apart..." alt="" coords="248,5,398,32"/>
-<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="306,46,265,97,261,94,302,42"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="50,139,293,677"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,5,129,75"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="83,88,97,138,92,140,78,90"/>
+<area shape="rect" id="Node000003" href="$interface_w_p_r_1_1_database_1_1_i_connector.html" title="Connector class om verbinding te maken met de database, maakt gebruik van de connectie strings die zi..." alt="" coords="153,5,398,75"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="268,75,255,123,250,121,263,74"/>
 </map>

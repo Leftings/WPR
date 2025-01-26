@@ -1,0 +1,11 @@
+<map id="WPR.Controllers.Employee.VehicleManager.ChangeBusinessSettings.ChangeBusinessSettingsController" name="WPR.Controllers.Employee.VehicleManager.ChangeBusinessSettings.ChangeBusinessSettingsController">
+<area shape="rect" id="Node000001" title=" " alt="" coords="216,880,566,1365"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,376,102,445"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="55,460,56,532,64,623,83,721,97,769,116,815,137,854,161,892,218,962,214,965,157,895,132,857,111,817,92,771,78,722,59,623,51,532,49,460"/>
+<area shape="rect" id="Node000003" href="$df/d31/interface_w_p_r_1_1_repository_1_1_i_user_repository.html" title="Interface defining methods voor user gerelateerde database operaties, validatie, user management,..." alt="" coords="126,109,386,712"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="316,711,345,863,339,864,311,712"/>
+<area shape="rect" id="Node000004" href="$d2/d4c/interface_w_p_r_1_1_repository_1_1_i_employee_repository.html" title="Interface defining methods voor user gerelateerde database operaties, validatie, user management,..." alt="" coords="410,5,644,816"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="459,816,451,857,449,864,444,863,446,855,454,815"/>
+<area shape="rect" id="Node000005" href="$d5/d77/interface_w_p_r_1_1_repository_1_1_database_check_repository_1_1_i_database_check_repository.html" title=" " alt="" coords="668,315,906,507"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="770,507,752,578,728,657,697,739,659,817,622,876,579,932,575,929,617,873,654,815,692,737,723,655,747,576,765,506"/>
+</map>

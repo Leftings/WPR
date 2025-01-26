@@ -1,0 +1,12 @@
+<map id="WPR.Controllers.SignUp.SignUpRequest" name="WPR.Controllers.SignUp.SignUpRequest">
+<area shape="rect" id="Node000001" title="Body voor SignUpRequest." alt="" coords="281,105,478,148"/>
+<area shape="poly" id="edge5_Node000001_Node000001" title=" " alt="" coords="422,92,406,86,379,84,355,86,339,91,333,97,335,104,330,105,328,95,337,86,354,81,379,79,407,81,424,87"/>
+<area shape="rect" id="Node000002" href="$interface_w_p_r_1_1_repository_1_1_i_user_repository.html#aeb4dfef402022a44079b7043d8602210" title=" " alt="" coords="8,5,230,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="320,101,232,62,198,51,200,46,234,58,322,96"/>
+<area shape="rect" id="Node000003" href="$class_w_p_r_1_1_repository_1_1_user_repository.html#a188ce6aab8b95ea246623cc80b520714" title=" " alt="" coords="10,72,228,115"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="265,115,228,110,228,105,266,109"/>
+<area shape="rect" id="Node000004" href="$class_w_p_r_1_1_controllers_1_1_sign_up_1_1_sign_up_controller.html#a26f172ac90a38512ee5b1863f405649a" title="Er wordt gekeken of alle noodzakelijke velden voor het aanmaken van een account ingevuld zijn." alt="" coords="20,139,218,181"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="266,144,218,150,218,145,265,139"/>
+<area shape="rect" id="Node000005" href="$class_w_p_r_1_1_controllers_1_1_sign_up_1_1_sign_up_controller.html#aa6dfca10b3a37c02dd8ef4b2fdd69927" title=" " alt="" coords="5,205,233,248"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="322,157,234,196,200,207,198,202,232,191,320,153"/>
+</map>

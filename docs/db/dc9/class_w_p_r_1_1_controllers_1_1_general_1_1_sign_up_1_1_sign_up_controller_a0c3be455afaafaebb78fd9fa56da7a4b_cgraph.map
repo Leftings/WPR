@@ -1,0 +1,14 @@
+<map id="WPR.Controllers.General.SignUp.SignUpController.SignUp" name="WPR.Controllers.General.SignUp.SignUpController.SignUp">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,101,220,144"/>
+<area shape="rect" id="Node000002" href="$d3/db5/namespace_w_p_r_1_1_controllers_1_1_general_1_1_sign_up.html#aa900677400c93afffd84ac3aba306774" title=" " alt="" coords="268,101,487,144"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="220,120,252,120,252,125,220,125"/>
+<area shape="rect" id="Node000003" href="$d3/db5/namespace_w_p_r_1_1_controllers_1_1_general_1_1_sign_up.html#abf09877e4843c0b4ff2791cc32242102" title=" " alt="" coords="535,29,752,72"/>
+<area shape="poly" id="edge7_Node000001_Node000003" title=" " alt="" coords="160,98,211,78,267,63,331,53,397,46,520,43,520,48,397,52,332,58,268,68,212,84,162,103"/>
+<area shape="rect" id="Node000004" href="$d3/db5/namespace_w_p_r_1_1_controllers_1_1_general_1_1_sign_up.html#ab012081435b4392bd8e6e4525e336d68" title=" " alt="" coords="535,131,752,189"/>
+<area shape="poly" id="edge8_Node000001_Node000004" title=" " alt="" coords="201,142,268,153,397,162,519,162,519,168,397,167,267,159,200,147"/>
+<area shape="poly" id="edge2_Node000002_Node000002" title=" " alt="" coords="327,101,325,91,334,82,351,77,377,75,405,77,422,83,421,88,404,82,377,80,352,82,337,87,331,93,333,100"/>
+<area shape="poly" id="edge3_Node000002_Node000003" title=" " alt="" coords="459,98,546,74,548,79,460,103"/>
+<area shape="poly" id="edge5_Node000002_Node000004" title=" " alt="" coords="488,135,520,140,519,145,487,141"/>
+<area shape="poly" id="edge4_Node000003_Node000003" title=" " alt="" coords="594,29,592,19,600,10,617,5,644,3,672,5,689,11,687,16,671,10,644,8,618,10,603,15,597,21,599,28"/>
+<area shape="poly" id="edge6_Node000004_Node000004" title=" " alt="" coords="592,130,593,120,602,111,619,106,644,104,672,107,689,114,687,119,670,112,644,109,620,111,605,116,598,122,597,131"/>
+</map>

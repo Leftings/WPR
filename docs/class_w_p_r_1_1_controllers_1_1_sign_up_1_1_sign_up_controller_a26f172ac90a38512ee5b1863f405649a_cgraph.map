@@ -1,0 +1,6 @@
+<map id="WPR.Controllers.SignUp.SignUpController.IsFilledIn" name="WPR.Controllers.SignUp.SignUpController.IsFilledIn">
+<area shape="rect" id="Node000001" title="Er wordt gekeken of alle noodzakelijke velden voor het aanmaken van een account ingevuld zijn." alt="" coords="5,29,203,72"/>
+<area shape="rect" id="Node000002" href="$namespace_w_p_r_1_1_controllers_1_1_sign_up.html#adb37d8a738b03a2c2a457a32a3706566" title="Body voor SignUpRequest." alt="" coords="251,29,448,72"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="203,48,235,48,235,53,203,53"/>
+<area shape="poly" id="edge2_Node000002_Node000002" title=" " alt="" coords="303,29,301,19,309,10,325,5,349,3,376,5,391,11,389,16,374,10,349,8,326,10,312,15,306,21,308,28"/>
+</map>

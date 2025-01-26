@@ -1,5 +1,5 @@
 var class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_change_business_settings_1_1_change_business_request =
 [
-    [ "BusinessInfo", "class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_change_business_settings_1_1_change_business_request.html#a50ecc167d159a0061c487b0d93f5bf73", null ],
-    [ "VehicleManagerInfo", "class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_change_business_settings_1_1_change_business_request.html#a526be9abbf02bbb2089aac5e4af2ca0f", null ]
+    [ "BusinessInfo", "class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_change_business_settings_1_1_change_business_request.html#aa5ca84f0a2ac6103957d53a672ad6b40", null ],
+    [ "VehicleManagerInfo", "class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_change_business_settings_1_1_change_business_request.html#abe9e3d9dd5b7ea508f66e61084437938", null ]
 ];

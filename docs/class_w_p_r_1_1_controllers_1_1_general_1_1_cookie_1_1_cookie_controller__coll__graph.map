@@ -1,16 +1,13 @@
 <map id="WPR.Controllers.General.Cookie.CookieController" name="WPR.Controllers.General.Cookie.CookieController">
-<area shape="rect" id="Node000001" title="CookieController is de controller voor het aanmaken, verwijderen en ondervragen van cookies." alt="" coords="639,75,812,117"/>
-<area shape="rect" id="Node000002" title=" " alt="" coords="329,5,436,32"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="452,25,531,38,616,56,667,72,665,77,614,61,530,43,452,30"/>
-<area shape="rect" id="Node000003" href="$class_w_p_r_1_1_database_1_1_connector.html" title=" " alt="" coords="294,56,472,83"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="487,75,639,87,639,92,486,80"/>
-<area shape="rect" id="Node000004" href="$interface_w_p_r_1_1_database_1_1_i_connector.html" title="Connector class om verbinding te maken met de database, maakt gebruik van de connectie strings die zi..." alt="" coords="38,24,123,51"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="139,41,294,57,294,63,138,46"/>
-<area shape="rect" id="Node000005" href="$class_w_p_r_1_1_data_1_1_env_config.html" title="Leez het .env bestand uit waarin de connectie strings staan naar de database. Deze staan in een apart..." alt="" coords="5,91,156,117"/>
-<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="171,91,293,77,294,82,172,96"/>
-<area shape="rect" id="Node000007" href="$class_w_p_r_1_1_cryption_1_1_crypt.html" title="Class Crypt zorgt voor een veilig encryptie en decryptie van strings. De Crptie wordt gedaan door het..." alt="" coords="312,107,454,133"/>
-<area shape="poly" id="edge7_Node000007_Node000005" title=" " alt="" coords="171,115,180,116,311,119,311,125,180,121,171,121"/>
-<area shape="rect" id="Node000006" href="$interface_w_p_r_1_1_repository_1_1_i_user_repository.html" title="Interface defining methods voor user gerelateerde database operaties, validatie, user management,..." alt="" coords="274,157,492,184"/>
-<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="507,160,561,152,614,140,680,115,682,120,616,145,562,157,508,165"/>
-<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="469,119,541,118,615,113,638,110,639,116,615,119,541,123,470,125"/>
+<area shape="rect" id="Node000001" title="CookieController is de controller voor het aanmaken, verwijderen en ondervragen van cookies." alt="" coords="290,965,482,1253"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,565,102,635"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="56,649,59,704,68,769,86,837,99,869,116,900,153,948,197,990,245,1027,291,1057,289,1061,242,1031,194,994,149,951,111,903,95,872,81,839,63,770,54,704,50,650"/>
+<area shape="rect" id="Node000003" href="$interface_w_p_r_1_1_database_1_1_i_connector.html" title="Connector class om verbinding te maken met de database, maakt gebruik van de connectie strings die zi..." alt="" coords="126,565,371,635"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="260,634,345,948,340,950,255,635"/>
+<area shape="rect" id="Node000004" href="$interface_w_p_r_1_1_repository_1_1_i_user_repository.html" title="Interface defining methods voor user gerelateerde database operaties, validatie, user management,..." alt="" coords="394,299,654,901"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="445,902,432,950,427,948,440,900"/>
+<area shape="rect" id="Node000005" href="$class_w_p_r_1_1_cryption_1_1_crypt.html" title="Class Crypt zorgt voor een veilig encryptie en decryptie van strings. De Crptie wordt gedaan door het..." alt="" coords="678,517,866,683"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="760,683,747,735,728,792,702,850,669,903,631,947,588,986,543,1021,498,1051,495,1046,540,1017,585,982,628,943,665,900,697,847,723,790,742,733,755,681"/>
+<area shape="rect" id="Node000006" href="$class_w_p_r_1_1_data_1_1_env_config.html" title="Leez het .env bestand uit waarin de connectie strings staan naar de database. Deze staan in een apart..." alt="" coords="684,5,861,235"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="775,234,775,500,770,500,770,234"/>
 </map>

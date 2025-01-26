@@ -1,3 +1,5 @@
-<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="Node000000" href="$class_w_p_r_1_1_utils_1_1_kvk_checker.html" title=" " alt="" coords="5,5,166,32"/>
+<map id="Grafische Klasse Hiërarchie" name="Grafische Klasse Hiërarchie">
+<area shape="rect" id="Node000000" href="$d2/d4c/interface_w_p_r_1_1_repository_1_1_i_employee_repository.html" title="Interface defining methods voor user gerelateerde database operaties, validatie, user management,..." alt="" coords="5,5,191,48"/>
+<area shape="rect" id="Node000001" href="$d9/de0/class_w_p_r_1_1_repository_1_1_employee_repository.html" title="De UserRepository class geeft de methodes voor de interactie met de database voor gebruiker gerelatee..." alt="" coords="239,13,483,40"/>
+<area shape="poly" id="edge29_Node000000_Node000001" title=" " alt="" coords="206,24,238,24,238,29,206,29"/>
 </map>

@@ -1,0 +1,13 @@
+<map id="WPR.Repository.UserRepository" name="WPR.Repository.UserRepository">
+<area shape="rect" id="Node000001" title="De UserRepository class geeft de methodes voor de interactie met de database voor gebruiker gerelatee..." alt="" coords="333,965,730,1915"/>
+<area shape="rect" id="Node000002" href="$df/d31/interface_w_p_r_1_1_repository_1_1_i_user_repository.html" title="Interface defining methods voor user gerelateerde database operaties, validatie, user management,..." alt="" coords="5,299,265,901"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="274,890,279,900,335,1019,331,1021,274,902,269,892"/>
+<area shape="rect" id="Node000003" href="$d1/dbb/interface_w_p_r_1_1_database_1_1_i_connector.html" title="Connector class om verbinding te maken met de database, maakt gebruik van de connectie strings die zi..." alt="" coords="289,565,534,635"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="419,634,464,948,458,949,413,635"/>
+<area shape="rect" id="Node000004" href="$df/dd4/class_w_p_r_1_1_hashing_1_1_hash.html" title="Class Hash zorgt ervoor dat wachtwoorden op een veilige manier worden gehashed doormiddel van het HMA..." alt="" coords="558,536,745,664"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="645,664,604,949,599,948,640,664"/>
+<area shape="rect" id="Node000005" href="$de/dab/class_w_p_r_1_1_cryption_1_1_crypt.html" title="Class Crypt zorgt voor een veilig encryptie en decryptie van strings. De Crptie wordt gedaan door het..." alt="" coords="769,517,957,683"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="838,684,759,902,738,955,734,953,754,900,833,682"/>
+<area shape="rect" id="Node000006" href="$dd/dfb/class_w_p_r_1_1_data_1_1_env_config.html" title="Leez het .env bestand uit waarin de connectie strings staan naar de database. Deze staan in een apart..." alt="" coords="775,5,952,235"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="866,234,866,500,861,500,861,234"/>
+</map>

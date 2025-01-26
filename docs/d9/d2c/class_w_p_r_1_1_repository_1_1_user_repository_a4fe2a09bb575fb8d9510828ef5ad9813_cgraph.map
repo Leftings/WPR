@@ -1,0 +1,24 @@
+<map id="WPR.Repository.UserRepository.AddPrivateCustomerDetails" name="WPR.Repository.UserRepository.AddPrivateCustomerDetails">
+<area shape="rect" id="Node000001" title="AddPrivateCustomerDetails zorgt ervoor dat alle extra details van particuliere huurders toegevoegd wo..." alt="" coords="5,400,223,443"/>
+<area shape="rect" id="Node000002" href="$d9/d2c/class_w_p_r_1_1_repository_1_1_user_repository.html#ae8b7a3c517ffe6cb1b85eee60e5b2292" title="AddCustomerChecks kijkt of alle ingevoerde velden geldig zijn. Als een check faalt falen alle checks." alt="" coords="271,272,488,315"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="159,397,318,319,321,324,161,402"/>
+<area shape="rect" id="Node000010" href="$d3/db5/namespace_w_p_r_1_1_controllers_1_1_general_1_1_sign_up.html#ab012081435b4392bd8e6e4525e336d68" title=" " alt="" coords="554,520,771,579"/>
+<area shape="poly" id="edge12_Node000001_Node000010" title=" " alt="" coords="209,441,539,518,538,523,208,446"/>
+<area shape="rect" id="Node000003" href="$d9/d2c/class_w_p_r_1_1_repository_1_1_user_repository.html#a7903e03bfe7076a6ee7b352636cb854d" title="Er wordt gekeken of het emailadres al bestaat in de databse." alt="" coords="536,5,788,48"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="386,270,406,226,438,168,481,109,506,81,534,58,541,54,544,58,538,62,510,85,485,112,442,171,411,228,391,273"/>
+<area shape="rect" id="Node000004" href="$d4/d40/class_w_p_r_1_1_utils_1_1_domain_email_checker.html#af6430abcc6b17909ff568158e9e05172" title=" " alt="" coords="552,72,772,115"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="393,270,449,198,489,158,535,124,544,119,547,124,537,129,492,162,453,202,397,273"/>
+<area shape="rect" id="Node000005" href="$d2/d3a/class_w_p_r_1_1_utils_1_1_birthday_checker.html#a4c7d3943364075179b3f1ca2e0f05c46" title="Check om te kijken of het een correcte verjaardag is Leeftijd mag niet onder de 18 zijn en niet boven..." alt="" coords="568,139,757,181"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="407,270,464,230,535,191,552,184,554,189,537,196,467,234,410,274"/>
+<area shape="rect" id="Node000006" href="$d5/d04/class_w_p_r_1_1_utils_1_1_email_checker.html#ab97bf7cde61a138766de208bad9d5c7c" title=" " alt="" coords="570,205,755,248"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="472,269,554,249,555,255,473,274"/>
+<area shape="rect" id="Node000007" href="$d6/d41/class_w_p_r_1_1_utils_1_1_password_checker.html#a3874adc7b516a8fb893ed18cd0a29a94" title=" " alt="" coords="562,272,762,315"/>
+<area shape="poly" id="edge6_Node000002_Node000007" title=" " alt="" coords="489,291,547,291,547,296,489,296"/>
+<area shape="rect" id="Node000008" href="$d8/d43/class_w_p_r_1_1_utils_1_1_tel_checker.html#aa8036be39d90b4bd0482cc25b9bbfc5a" title=" " alt="" coords="564,339,761,381"/>
+<area shape="poly" id="edge7_Node000002_Node000008" title=" " alt="" coords="473,313,555,332,553,337,472,318"/>
+<area shape="rect" id="Node000009" href="$d3/db5/namespace_w_p_r_1_1_controllers_1_1_general_1_1_sign_up.html#abf09877e4843c0b4ff2791cc32242102" title=" " alt="" coords="554,429,771,472"/>
+<area shape="poly" id="edge8_Node000002_Node000009" title=" " alt="" coords="413,313,470,351,537,391,596,420,594,425,535,396,467,355,410,317"/>
+<area shape="poly" id="edge10_Node000002_Node000010" title=" " alt="" coords="400,313,476,410,538,482,580,510,577,514,534,486,472,414,396,317"/>
+<area shape="poly" id="edge9_Node000009_Node000009" title=" " alt="" coords="609,429,607,419,616,410,634,405,662,403,693,405,711,411,709,416,691,410,662,408,635,410,619,415,612,421,614,428"/>
+<area shape="poly" id="edge11_Node000010_Node000010" title=" " alt="" coords="607,519,608,509,618,501,636,495,662,493,692,496,710,503,708,508,691,501,662,499,637,501,621,505,613,512,612,520"/>
+</map>

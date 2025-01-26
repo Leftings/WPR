@@ -1,0 +1,9 @@
+<map id="WPR.Controllers.General.Vehicle.VehicleController" name="WPR.Controllers.General.Vehicle.VehicleController">
+<area shape="rect" id="Node000001" title="VehicleController zorgt ervoor dat voertuiggegevens uit de backend gehaald kunnen worden." alt="" coords="124,853,373,1403"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,363,102,432"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="60,446,78,600,95,695,116,789,136,853,131,854,111,790,89,696,73,601,55,447"/>
+<area shape="rect" id="Node000003" href="$d1/dbb/interface_w_p_r_1_1_database_1_1_i_connector.html" title="Connector class om verbinding te maken met de database, maakt gebruik van de connectie strings die zi..." alt="" coords="126,363,371,432"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="251,432,251,836,246,836,246,432"/>
+<area shape="rect" id="Node000004" href="$d4/d6f/interface_w_p_r_1_1_repository_1_1_i_vehicle_repository.html" title=" " alt="" coords="395,5,641,789"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="397,759,385,790,367,839,362,837,381,788,392,757"/>
+</map>

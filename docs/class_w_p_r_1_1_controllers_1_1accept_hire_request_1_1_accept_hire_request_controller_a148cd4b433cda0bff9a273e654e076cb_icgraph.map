@@ -1,0 +1,7 @@
+<map id="WPR.Controllers.acceptHireRequest.AcceptHireRequestController.GetCurrentUserId" name="WPR.Controllers.acceptHireRequest.AcceptHireRequestController.GetCurrentUserId">
+<area shape="rect" id="Node000001" title="Huidige user id wordt opgehaald, voor validatie en logging." alt="" coords="302,47,550,105"/>
+<area shape="rect" id="Node000002" href="$class_w_p_r_1_1_controllers_1_1accept_hire_request_1_1_accept_hire_request_controller.html#a9f12748d3147cf85451cf65798bdfff6" title="Een aanvraag kan beantwoord worden." alt="" coords="5,5,254,64"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="286,59,254,55,255,49,287,54"/>
+<area shape="rect" id="Node000003" href="$class_w_p_r_1_1_controllers_1_1accept_hire_request_1_1_accept_hire_request_controller.html#ac22a08edd1d96792b22b1d55787626ac" title="Alle ids van de aanvragen worden opgehaald." alt="" coords="5,88,254,147"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="287,98,255,103,254,97,286,93"/>
+</map>

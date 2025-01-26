@@ -1,0 +1,704 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="nl">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.13.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Car And All WPR: WPR.Controllers.General.Vehicle.VehicleController Class Referentie</title>
+<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../dynsections.js"></script>
+<script type="text/javascript" src="../../clipboard.js"></script>
+<link href="../../navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../navtreedata.js"></script>
+<script type="text/javascript" src="../../navtree.js"></script>
+<script type="text/javascript" src="../../resize.js"></script>
+<script type="text/javascript" src="../../cookie.js"></script>
+<link href="../../search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../search/searchdata.js"></script>
+<script type="text/javascript" src="../../search/search.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+  $(function() { init_search(); });
+/* @license-end */
+</script>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Car And All WPR
+   </div>
+  </td>
+    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect"                onmouseover="return searchBox.OnSearchSelectShow()"                onmouseout="return searchBox.OnSearchSelectHide()">&#160;</span>
+          <input type="text" id="MSearchField" value="" placeholder="Zoeken" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="../../search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Gegenereerd door Doxygen 1.13.0 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "../../search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(1); });
+/* @license-end */
+</script>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){initNavTree('d5/d28/class_w_p_r_1_1_controllers_1_1_general_1_1_vehicle_1_1_vehicle_controller.html','../../'); initResizable(true); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Laden...</div>
+<div class="SRStatus" id="Searching">Zoeken...</div>
+<div class="SRStatus" id="NoMatches">Niets gevonden</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public Members</a> &#124;
+<a href="#pri-attribs">Private Attributen</a> &#124;
+<a href="../../de/d10/class_w_p_r_1_1_controllers_1_1_general_1_1_vehicle_1_1_vehicle_controller-members.html">Lijst van alle members</a>  </div>
+  <div class="headertitle"><div class="title">WPR.Controllers.General.Vehicle.VehicleController Class Referentie</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p><a class="el" href="../../d5/d28/class_w_p_r_1_1_controllers_1_1_general_1_1_vehicle_1_1_vehicle_controller.html" title="VehicleController zorgt ervoor dat voertuiggegevens uit de backend gehaald kunnen worden.">VehicleController</a> zorgt ervoor dat voertuiggegevens uit de backend gehaald kunnen worden.  
+ <a href="#details">Meer...</a></p>
+<div class="dynheader">
+Klasse diagram voor WPR.Controllers.General.Vehicle.VehicleController</div>
+<div class="dyncontent">
+<div class="center"><img src="../../d2/d4e/class_w_p_r_1_1_controllers_1_1_general_1_1_vehicle_1_1_vehicle_controller__inherit__graph.png" border="0" usemap="#a_w_p_r_8_controllers_8_general_8_vehicle_8_vehicle_controller_inherit__map" alt="Inheritance graph"/></div>
+<map name="a_w_p_r_8_controllers_8_general_8_vehicle_8_vehicle_controller_inherit__map" id="a_w_p_r_8_controllers_8_general_8_vehicle_8_vehicle_controller_inherit__map">
+<area shape="rect" title="VehicleController zorgt ervoor dat voertuiggegevens uit de backend gehaald kunnen worden." alt="" coords="5,123,254,725"/>
+<area shape="rect" title=" " alt="" coords="82,5,178,75"/>
+<area shape="poly" title=" " alt="" coords="132,90,132,123,127,123,127,90"/>
+</map>
+</div>
+<div class="dynheader">
+Collaboratie diagram voor WPR.Controllers.General.Vehicle.VehicleController:</div>
+<div class="dyncontent">
+<div class="center"><img src="../../db/d7b/class_w_p_r_1_1_controllers_1_1_general_1_1_vehicle_1_1_vehicle_controller__coll__graph.png" border="0" usemap="#a_w_p_r_8_controllers_8_general_8_vehicle_8_vehicle_controller_coll__map" alt="Collaboration graph"/></div>
+<map name="a_w_p_r_8_controllers_8_general_8_vehicle_8_vehicle_controller_coll__map" id="a_w_p_r_8_controllers_8_general_8_vehicle_8_vehicle_controller_coll__map">
+<area shape="rect" title="VehicleController zorgt ervoor dat voertuiggegevens uit de backend gehaald kunnen worden." alt="" coords="124,853,373,1403"/>
+<area shape="rect" title=" " alt="" coords="5,363,102,432"/>
+<area shape="poly" title=" " alt="" coords="60,446,78,600,95,695,116,789,136,853,131,854,111,790,89,696,73,601,55,447"/>
+<area shape="rect" href="../../d1/dbb/interface_w_p_r_1_1_database_1_1_i_connector.html" title="Connector class om verbinding te maken met de database, maakt gebruik van de connectie strings die zi..." alt="" coords="126,363,371,432"/>
+<area shape="poly" title=" " alt="" coords="251,432,251,836,246,836,246,432"/>
+<area shape="rect" href="../../d4/d6f/interface_w_p_r_1_1_repository_1_1_i_vehicle_repository.html" title=" " alt="" coords="395,5,641,789"/>
+<area shape="poly" title=" " alt="" coords="397,759,385,790,367,839,362,837,381,788,392,757"/>
+</map>
+</div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public Members</h2></td></tr>
+<tr class="memitem:abd5fa0b8ca8adb2173c4c955fd11ed28" id="r_abd5fa0b8ca8adb2173c4c955fd11ed28"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abd5fa0b8ca8adb2173c4c955fd11ed28">VehicleController</a> (<a class="el" href="../../d1/dbb/interface_w_p_r_1_1_database_1_1_i_connector.html">IConnector</a> connector, <a class="el" href="../../d4/d6f/interface_w_p_r_1_1_repository_1_1_i_vehicle_repository.html">IVehicleRepository</a> vehicleRepository)</td></tr>
+<tr class="separator:abd5fa0b8ca8adb2173c4c955fd11ed28"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6513983e0e6319857b7114b3d4e4bfe0" id="r_a6513983e0e6319857b7114b3d4e4bfe0"><td class="memItemLeft" align="right" valign="top">async Task&lt; IActionResult &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6513983e0e6319857b7114b3d4e4bfe0">GetVehicleName</a> (int frameNr)</td></tr>
+<tr class="separator:a6513983e0e6319857b7114b3d4e4bfe0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a47c5226006711ccc6d74971eb8abf032" id="r_a47c5226006711ccc6d74971eb8abf032"><td class="memItemLeft" align="right" valign="top">async Task&lt; IActionResult &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a47c5226006711ccc6d74971eb8abf032">GetVehicleImageAsync</a> (int frameNr)</td></tr>
+<tr class="separator:a47c5226006711ccc6d74971eb8abf032"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a45b3f02d868b52ccc5afddb3c0267560" id="r_a45b3f02d868b52ccc5afddb3c0267560"><td class="memItemLeft" align="right" valign="top">async Task&lt; IActionResult &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a45b3f02d868b52ccc5afddb3c0267560">GetVehiclePriceAsync</a> (int frameNr)</td></tr>
+<tr class="separator:a45b3f02d868b52ccc5afddb3c0267560"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a373f3a7c3064fc053ad388cc2e1a350d" id="r_a373f3a7c3064fc053ad388cc2e1a350d"><td class="memItemLeft" align="right" valign="top">async Task&lt; IActionResult &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a373f3a7c3064fc053ad388cc2e1a350d">GetAllVehiclesAsync</a> ()</td></tr>
+<tr class="separator:a373f3a7c3064fc053ad388cc2e1a350d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaa615b835b9a71811327f22805bce715" id="r_aaa615b835b9a71811327f22805bce715"><td class="memItemLeft" align="right" valign="top">async Task&lt; IActionResult &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aaa615b835b9a71811327f22805bce715">GetTypeOfVehiclesAsync</a> (string vehicleType)</td></tr>
+<tr class="separator:aaa615b835b9a71811327f22805bce715"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4a6d616a3e9390af3dca1cb084d39d7d" id="r_a4a6d616a3e9390af3dca1cb084d39d7d"><td class="memItemLeft" align="right" valign="top">async Task&lt; IActionResult &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4a6d616a3e9390af3dca1cb084d39d7d">GetFrameNumbersAsync</a> ()</td></tr>
+<tr class="memdesc:a4a6d616a3e9390af3dca1cb084d39d7d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Alle framenummers van de voertuigen worden verzameld.  <br /></td></tr>
+<tr class="separator:a4a6d616a3e9390af3dca1cb084d39d7d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afb66085e0df384b247c238e58ec36029" id="r_afb66085e0df384b247c238e58ec36029"><td class="memItemLeft" align="right" valign="top">async Task&lt; IActionResult &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afb66085e0df384b247c238e58ec36029">GetFrameNumbersSpecificTypeAsync</a> (string type)</td></tr>
+<tr class="memdesc:afb66085e0df384b247c238e58ec36029"><td class="mdescLeft">&#160;</td><td class="mdescRight">Alle framenummers van een specifieke voertuig soort wordt verzameld.  <br /></td></tr>
+<tr class="separator:afb66085e0df384b247c238e58ec36029"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a286d4c9a73d21612fcde092dd1aa979e" id="r_a286d4c9a73d21612fcde092dd1aa979e"><td class="memItemLeft" align="right" valign="top">async Task&lt; IActionResult &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a286d4c9a73d21612fcde092dd1aa979e">GetVehicleData</a> (string frameNr)</td></tr>
+<tr class="memdesc:a286d4c9a73d21612fcde092dd1aa979e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Alle gegevens van 1 specifiek voertuig wordt opgehaald.  <br /></td></tr>
+<tr class="separator:a286d4c9a73d21612fcde092dd1aa979e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae37bdd9c92abdac45d22bf147b28c230" id="r_ae37bdd9c92abdac45d22bf147b28c230"><td class="memItemLeft" align="right" valign="top">async Task&lt; IActionResult &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae37bdd9c92abdac45d22bf147b28c230">DeleteVehicleAsync</a> (string frameNr)</td></tr>
+<tr class="separator:ae37bdd9c92abdac45d22bf147b28c230"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private Attributen</h2></td></tr>
+<tr class="memitem:aef5ce5be36c1415893325a24f5783f92" id="r_aef5ce5be36c1415893325a24f5783f92"><td class="memItemLeft" align="right" valign="top">readonly <a class="el" href="../../d1/dbb/interface_w_p_r_1_1_database_1_1_i_connector.html">IConnector</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aef5ce5be36c1415893325a24f5783f92">_connector</a></td></tr>
+<tr class="separator:aef5ce5be36c1415893325a24f5783f92"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aee814694ef7a060dc4f35f78ff19e281" id="r_aee814694ef7a060dc4f35f78ff19e281"><td class="memItemLeft" align="right" valign="top">readonly <a class="el" href="../../d4/d6f/interface_w_p_r_1_1_repository_1_1_i_vehicle_repository.html">IVehicleRepository</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aee814694ef7a060dc4f35f78ff19e281">_vehicleRepository</a></td></tr>
+<tr class="separator:aee814694ef7a060dc4f35f78ff19e281"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Gedetailleerde Beschrijving</h2>
+<div class="textblock"><p><a class="el" href="../../d5/d28/class_w_p_r_1_1_controllers_1_1_general_1_1_vehicle_1_1_vehicle_controller.html" title="VehicleController zorgt ervoor dat voertuiggegevens uit de backend gehaald kunnen worden.">VehicleController</a> zorgt ervoor dat voertuiggegevens uit de backend gehaald kunnen worden. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentatie</h2>
+<a id="abd5fa0b8ca8adb2173c4c955fd11ed28" name="abd5fa0b8ca8adb2173c4c955fd11ed28"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abd5fa0b8ca8adb2173c4c955fd11ed28">&#9670;&#160;</a></span>VehicleController()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">WPR.Controllers.General.Vehicle.VehicleController.VehicleController </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../d1/dbb/interface_w_p_r_1_1_database_1_1_i_connector.html">IConnector</a></td>          <td class="paramname"><span class="paramname"><em>connector</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../d4/d6f/interface_w_p_r_1_1_repository_1_1_i_vehicle_repository.html">IVehicleRepository</a></td>          <td class="paramname"><span class="paramname"><em>vehicleRepository</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="fragment"><div class="line"><span class="lineno">   23</span>    {</div>
+<div class="line"><span class="lineno">   24</span>        _connector = connector ?? <span class="keywordflow">throw</span> <span class="keyword">new</span> ArgumentNullException(nameof(connector));</div>
+<div class="line"><span class="lineno">   25</span>        _vehicleRepository = vehicleRepository ?? <span class="keywordflow">throw</span> <span class="keyword">new</span> ArgumentNullException(nameof(vehicleRepository));</div>
+<div class="line"><span class="lineno">   26</span>    }</div>
+</div><!-- fragment -->
+<p class="reference">Gebruikt <a class="el" href="#l00019">_connector</a> en <a class="el" href="#l00020">_vehicleRepository</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Documentatie van functie members</h2>
+<a id="ae37bdd9c92abdac45d22bf147b28c230" name="ae37bdd9c92abdac45d22bf147b28c230"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae37bdd9c92abdac45d22bf147b28c230">&#9670;&#160;</a></span>DeleteVehicleAsync()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">async Task&lt; IActionResult &gt; WPR.Controllers.General.Vehicle.VehicleController.DeleteVehicleAsync </td>
+          <td>(</td>
+          <td class="paramtype">string</td>          <td class="paramname"><span class="paramname"><em>frameNr</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="fragment"><div class="line"><span class="lineno">  292</span>    {</div>
+<div class="line"><span class="lineno">  293</span>        <span class="keywordflow">try</span></div>
+<div class="line"><span class="lineno">  294</span>        {</div>
+<div class="line"><span class="lineno">  295</span>            var result = await _vehicleRepository.DeleteVehicleAsync(frameNr);</div>
+<div class="line"><span class="lineno">  296</span> </div>
+<div class="line"><span class="lineno">  297</span>            <span class="keywordflow">if</span> (result.Status)</div>
+<div class="line"><span class="lineno">  298</span>            {</div>
+<div class="line"><span class="lineno">  299</span>                <span class="keywordflow">return</span> Ok(<span class="keyword">new</span> { Status = <span class="keyword">true</span>, Message = result.Message });</div>
+<div class="line"><span class="lineno">  300</span>            }</div>
+<div class="line"><span class="lineno">  301</span>            <span class="keywordflow">else</span></div>
+<div class="line"><span class="lineno">  302</span>            {</div>
+<div class="line"><span class="lineno">  303</span>                <span class="keywordflow">return</span> BadRequest(<span class="keyword">new</span> { Status = <span class="keyword">false</span>, Message = result.Message });</div>
+<div class="line"><span class="lineno">  304</span>            }</div>
+<div class="line"><span class="lineno">  305</span>            </div>
+<div class="line"><span class="lineno">  306</span>            </div>
+<div class="line"><span class="lineno">  307</span>        }</div>
+<div class="line"><span class="lineno">  308</span>        <span class="keywordflow">catch</span> (Exception e)</div>
+<div class="line"><span class="lineno">  309</span>        {</div>
+<div class="line"><span class="lineno">  310</span>            Console.WriteLine(e);</div>
+<div class="line"><span class="lineno">  311</span>            <span class="keywordflow">throw</span>;</div>
+<div class="line"><span class="lineno">  312</span>        }</div>
+<div class="line"><span class="lineno">  313</span>    }</div>
+</div><!-- fragment -->
+<p class="reference">Gebruikt <a class="el" href="#l00020">_vehicleRepository</a>.</p>
+
+</div>
+</div>
+<a id="a373f3a7c3064fc053ad388cc2e1a350d" name="a373f3a7c3064fc053ad388cc2e1a350d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a373f3a7c3064fc053ad388cc2e1a350d">&#9670;&#160;</a></span>GetAllVehiclesAsync()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">async Task&lt; IActionResult &gt; WPR.Controllers.General.Vehicle.VehicleController.GetAllVehiclesAsync </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="fragment"><div class="line"><span class="lineno">  159</span>    {</div>
+<div class="line"><span class="lineno">  160</span>        <span class="keywordflow">try</span></div>
+<div class="line"><span class="lineno">  161</span>        {</div>
+<div class="line"><span class="lineno">  162</span>            <span class="keywordtype">string</span> query = <span class="stringliteral">@&quot;</span></div>
+<div class="line"><span class="lineno">  163</span><span class="stringliteral">            SELECT FrameNr, YoP, Brand, Type, LicensePlate, Color, Sort, Price, VehicleBlob, Description, Seats</span></div>
+<div class="line"><span class="lineno">  164</span><span class="stringliteral">            FROM Vehicle&quot;</span>;</div>
+<div class="line"><span class="lineno">  165</span>            var vehicles = <span class="keyword">new</span> List&lt;object&gt;();</div>
+<div class="line"><span class="lineno">  166</span> </div>
+<div class="line"><span class="lineno">  167</span>            <span class="keyword">using</span> (var connection = _connector.CreateDbConnection())</div>
+<div class="line"><span class="lineno">  168</span>            <span class="keyword">using</span> (var command = <span class="keyword">new</span> MySqlCommand(query, (MySqlConnection)connection))</div>
+<div class="line"><span class="lineno">  169</span>            {</div>
+<div class="line"><span class="lineno">  170</span>                <span class="keyword">using</span> (var reader = await command.ExecuteReaderAsync())</div>
+<div class="line"><span class="lineno">  171</span>                {</div>
+<div class="line"><span class="lineno">  172</span>                    <span class="keywordflow">while</span> (reader.Read())</div>
+<div class="line"><span class="lineno">  173</span>                    {</div>
+<div class="line"><span class="lineno">  174</span>                        vehicles.Add(<span class="keyword">new</span></div>
+<div class="line"><span class="lineno">  175</span>                        {</div>
+<div class="line"><span class="lineno">  176</span>                            FrameNr = reader.IsDBNull(0) ? 0 : reader.GetInt32(0),</div>
+<div class="line"><span class="lineno">  177</span>                            YoP = reader.IsDBNull(1) ? 0 : reader.GetInt32(1),    </div>
+<div class="line"><span class="lineno">  178</span>                            Brand = reader.IsDBNull(2) ? null : reader.GetString(2),</div>
+<div class="line"><span class="lineno">  179</span>                            Type = reader.IsDBNull(3) ? null : reader.GetString(3),</div>
+<div class="line"><span class="lineno">  180</span>                            LicensePlate = reader.IsDBNull(4) ? null : reader.GetString(4),</div>
+<div class="line"><span class="lineno">  181</span>                            Color = reader.IsDBNull(5) ? null : reader.GetString(5),</div>
+<div class="line"><span class="lineno">  182</span>                            Sort = reader.IsDBNull(6) ? null : reader.GetString(6),</div>
+<div class="line"><span class="lineno">  183</span>                            Price = reader.IsDBNull(7) ? <span class="stringliteral">&quot;0.00&quot;</span> : reader.GetDecimal(7).ToString(<span class="stringliteral">&quot;F2&quot;</span>),</div>
+<div class="line"><span class="lineno">  184</span>                            Image = reader.IsDBNull(8) ? null : Convert.ToBase64String((<span class="keywordtype">byte</span>[])reader[<span class="stringliteral">&quot;VehicleBlob&quot;</span>]),</div>
+<div class="line"><span class="lineno">  185</span>                            Description = reader.IsDBNull(9) ? null : reader.GetString(9),</div>
+<div class="line"><span class="lineno">  186</span>                            Seats = reader.GetInt32(10)</div>
+<div class="line"><span class="lineno">  187</span>                        });</div>
+<div class="line"><span class="lineno">  188</span>                    }</div>
+<div class="line"><span class="lineno">  189</span>                }</div>
+<div class="line"><span class="lineno">  190</span>            }</div>
+<div class="line"><span class="lineno">  191</span> </div>
+<div class="line"><span class="lineno">  192</span>            <span class="keywordflow">return</span> Ok(vehicles);</div>
+<div class="line"><span class="lineno">  193</span>        }</div>
+<div class="line"><span class="lineno">  194</span>        <span class="keywordflow">catch</span> (Exception ex)</div>
+<div class="line"><span class="lineno">  195</span>        {</div>
+<div class="line"><span class="lineno">  196</span>            Console.WriteLine(ex);</div>
+<div class="line"><span class="lineno">  197</span>            <span class="keywordflow">return</span> StatusCode(500, <span class="stringliteral">&quot;An error occurred while fetching vehicles.&quot;</span>);</div>
+<div class="line"><span class="lineno">  198</span>        }</div>
+<div class="line"><span class="lineno">  199</span>    }</div>
+</div><!-- fragment -->
+<p class="reference">Gebruikt <a class="el" href="#l00019">_connector</a>.</p>
+
+</div>
+</div>
+<a id="a4a6d616a3e9390af3dca1cb084d39d7d" name="a4a6d616a3e9390af3dca1cb084d39d7d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4a6d616a3e9390af3dca1cb084d39d7d">&#9670;&#160;</a></span>GetFrameNumbersAsync()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">async Task&lt; IActionResult &gt; WPR.Controllers.General.Vehicle.VehicleController.GetFrameNumbersAsync </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Alle framenummers van de voertuigen worden verzameld. </p>
+<dl class="section return"><dt>Retourneert</dt><dd></dd></dl>
+<div class="fragment"><div class="line"><span class="lineno">  261</span>    {</div>
+<div class="line"><span class="lineno">  262</span>        var ids = await _vehicleRepository.GetFrameNumbersAsync();</div>
+<div class="line"><span class="lineno">  263</span>        <span class="keywordflow">return</span> Ok(<span class="keyword">new</span> { message = ids });</div>
+<div class="line"><span class="lineno">  264</span>    }</div>
+</div><!-- fragment -->
+<p class="reference">Gebruikt <a class="el" href="#l00020">_vehicleRepository</a>.</p>
+
+</div>
+</div>
+<a id="afb66085e0df384b247c238e58ec36029" name="afb66085e0df384b247c238e58ec36029"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afb66085e0df384b247c238e58ec36029">&#9670;&#160;</a></span>GetFrameNumbersSpecificTypeAsync()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">async Task&lt; IActionResult &gt; WPR.Controllers.General.Vehicle.VehicleController.GetFrameNumbersSpecificTypeAsync </td>
+          <td>(</td>
+          <td class="paramtype">string</td>          <td class="paramname"><span class="paramname"><em>type</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Alle framenummers van een specifieke voertuig soort wordt verzameld. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">type</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Retourneert</dt><dd></dd></dl>
+<div class="fragment"><div class="line"><span class="lineno">  273</span>    {</div>
+<div class="line"><span class="lineno">  274</span>        var ids = await _vehicleRepository.GetFrameNumberSpecifiekTypeAsync(type);</div>
+<div class="line"><span class="lineno">  275</span>        <span class="keywordflow">return</span> Ok(<span class="keyword">new</span> { message = ids });</div>
+<div class="line"><span class="lineno">  276</span>    }</div>
+</div><!-- fragment -->
+<p class="reference">Gebruikt <a class="el" href="#l00020">_vehicleRepository</a>.</p>
+
+</div>
+</div>
+<a id="aaa615b835b9a71811327f22805bce715" name="aaa615b835b9a71811327f22805bce715"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaa615b835b9a71811327f22805bce715">&#9670;&#160;</a></span>GetTypeOfVehiclesAsync()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">async Task&lt; IActionResult &gt; WPR.Controllers.General.Vehicle.VehicleController.GetTypeOfVehiclesAsync </td>
+          <td>(</td>
+          <td class="paramtype">string</td>          <td class="paramname"><span class="paramname"><em>vehicleType</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="fragment"><div class="line"><span class="lineno">  203</span>    {</div>
+<div class="line"><span class="lineno">  204</span>        <span class="keywordflow">try</span></div>
+<div class="line"><span class="lineno">  205</span>        {</div>
+<div class="line"><span class="lineno">  206</span>            <span class="keywordtype">string</span> query = <span class="stringliteral">@&quot;</span></div>
+<div class="line"><span class="lineno">  207</span><span class="stringliteral">                SELECT FrameNr, YoP, Brand, Type, LicensePlate, Color, Sort, Price, VehicleBlob, Description, Seats </span></div>
+<div class="line"><span class="lineno">  208</span><span class="stringliteral">                FROM Vehicle </span></div>
+<div class="line"><span class="lineno">  209</span><span class="stringliteral">                WHERE LOWER(Sort) = LOWER(@Sort)&quot;</span>;</div>
+<div class="line"><span class="lineno">  210</span> </div>
+<div class="line"><span class="lineno">  211</span>            var vehicles = <span class="keyword">new</span> List&lt;object&gt;();</div>
+<div class="line"><span class="lineno">  212</span> </div>
+<div class="line"><span class="lineno">  213</span>            <span class="keyword">using</span> (var connection = _connector.CreateDbConnection())</div>
+<div class="line"><span class="lineno">  214</span>            {</div>
+<div class="line"><span class="lineno">  215</span>                <span class="keyword">using</span> (var command = <span class="keyword">new</span> MySqlCommand(query, (MySqlConnection)connection))</div>
+<div class="line"><span class="lineno">  216</span>                {</div>
+<div class="line"><span class="lineno">  217</span>                    <span class="keywordflow">if</span> (!<span class="keywordtype">string</span>.IsNullOrWhiteSpace(vehicleType) &amp;&amp;</div>
+<div class="line"><span class="lineno">  218</span>                        !vehicleType.Equals(<span class="stringliteral">&quot;ALL&quot;</span>, StringComparison.OrdinalIgnoreCase))</div>
+<div class="line"><span class="lineno">  219</span>                    {</div>
+<div class="line"><span class="lineno">  220</span>                        command.Parameters.AddWithValue(<span class="stringliteral">&quot;@Sort&quot;</span>, vehicleType);</div>
+<div class="line"><span class="lineno">  221</span>                    }</div>
+<div class="line"><span class="lineno">  222</span> </div>
+<div class="line"><span class="lineno">  223</span>                    <span class="keyword">using</span> (var reader = await command.ExecuteReaderAsync())</div>
+<div class="line"><span class="lineno">  224</span>                    {</div>
+<div class="line"><span class="lineno">  225</span>                        <span class="keywordflow">while</span> (reader.Read())</div>
+<div class="line"><span class="lineno">  226</span>                        {</div>
+<div class="line"><span class="lineno">  227</span>                            vehicles.Add(<span class="keyword">new</span></div>
+<div class="line"><span class="lineno">  228</span>                            {</div>
+<div class="line"><span class="lineno">  229</span>                                FrameNr = reader.GetInt32(0),          </div>
+<div class="line"><span class="lineno">  230</span>                                YoP = reader.GetInt32(1),              </div>
+<div class="line"><span class="lineno">  231</span>                                Brand = reader.IsDBNull(2) ? null : reader.GetString(2),</div>
+<div class="line"><span class="lineno">  232</span>                                Type = reader.IsDBNull(3) ? null : reader.GetString(3),</div>
+<div class="line"><span class="lineno">  233</span>                                LicensePlate = reader.IsDBNull(4) ? null : reader.GetString(4),</div>
+<div class="line"><span class="lineno">  234</span>                                Color = reader.IsDBNull(5) ? null : reader.GetString(5),</div>
+<div class="line"><span class="lineno">  235</span>                                Sort = reader.IsDBNull(6) ? null : reader.GetString(6),</div>
+<div class="line"><span class="lineno">  236</span>                                Price = reader.IsDBNull(7) ? null : reader.GetDecimal(7).ToString(<span class="stringliteral">&quot;F2&quot;</span>),</div>
+<div class="line"><span class="lineno">  237</span>                                Image = reader.IsDBNull(8) ? null : Convert.ToBase64String((<span class="keywordtype">byte</span>[])reader[<span class="stringliteral">&quot;VehicleBlob&quot;</span>]),</div>
+<div class="line"><span class="lineno">  238</span>                                Description = reader.IsDBNull(9) ? null : reader.GetString(9),</div>
+<div class="line"><span class="lineno">  239</span>                                Seats = reader.GetInt32(10)</div>
+<div class="line"><span class="lineno">  240</span>                            });</div>
+<div class="line"><span class="lineno">  241</span>                        }</div>
+<div class="line"><span class="lineno">  242</span>                    }</div>
+<div class="line"><span class="lineno">  243</span>                }</div>
+<div class="line"><span class="lineno">  244</span>            }</div>
+<div class="line"><span class="lineno">  245</span> </div>
+<div class="line"><span class="lineno">  246</span>            <span class="keywordflow">return</span> Ok(vehicles);</div>
+<div class="line"><span class="lineno">  247</span>        }</div>
+<div class="line"><span class="lineno">  248</span>        <span class="keywordflow">catch</span> (Exception ex)</div>
+<div class="line"><span class="lineno">  249</span>        {</div>
+<div class="line"><span class="lineno">  250</span>            Console.WriteLine($<span class="stringliteral">&quot;Error: {ex.Message}&quot;</span>);</div>
+<div class="line"><span class="lineno">  251</span>            <span class="keywordflow">return</span> StatusCode(500, <span class="stringliteral">&quot;An error occurred while fetching vehicles.&quot;</span>);</div>
+<div class="line"><span class="lineno">  252</span>        }</div>
+<div class="line"><span class="lineno">  253</span>    }</div>
+</div><!-- fragment -->
+<p class="reference">Gebruikt <a class="el" href="#l00019">_connector</a>.</p>
+
+</div>
+</div>
+<a id="a286d4c9a73d21612fcde092dd1aa979e" name="a286d4c9a73d21612fcde092dd1aa979e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a286d4c9a73d21612fcde092dd1aa979e">&#9670;&#160;</a></span>GetVehicleData()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">async Task&lt; IActionResult &gt; WPR.Controllers.General.Vehicle.VehicleController.GetVehicleData </td>
+          <td>(</td>
+          <td class="paramtype">string</td>          <td class="paramname"><span class="paramname"><em>frameNr</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Alle gegevens van 1 specifiek voertuig wordt opgehaald. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">frameNr</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Retourneert</dt><dd></dd></dl>
+<div class="fragment"><div class="line"><span class="lineno">  285</span>    {</div>
+<div class="line"><span class="lineno">  286</span>        var data = await _vehicleRepository.GetVehicleDataAsync(frameNr);</div>
+<div class="line"><span class="lineno">  287</span>        <span class="keywordflow">return</span> Ok(<span class="keyword">new</span> { message = data });</div>
+<div class="line"><span class="lineno">  288</span>    }</div>
+</div><!-- fragment -->
+<p class="reference">Gebruikt <a class="el" href="#l00020">_vehicleRepository</a>.</p>
+
+</div>
+</div>
+<a id="a47c5226006711ccc6d74971eb8abf032" name="a47c5226006711ccc6d74971eb8abf032"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a47c5226006711ccc6d74971eb8abf032">&#9670;&#160;</a></span>GetVehicleImageAsync()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">async Task&lt; IActionResult &gt; WPR.Controllers.General.Vehicle.VehicleController.GetVehicleImageAsync </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>frameNr</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="fragment"><div class="line"><span class="lineno">   85</span>    {</div>
+<div class="line"><span class="lineno">   86</span>        <span class="keywordflow">try</span></div>
+<div class="line"><span class="lineno">   87</span>        {</div>
+<div class="line"><span class="lineno">   88</span>            <span class="keywordtype">string</span> query = <span class="stringliteral">&quot;SELECT VehicleBlob FROM Vehicle WHERE FrameNr = @FrameNr&quot;</span>;</div>
+<div class="line"><span class="lineno">   89</span> </div>
+<div class="line"><span class="lineno">   90</span>            <span class="keyword">using</span> (var connection = _connector.CreateDbConnection())</div>
+<div class="line"><span class="lineno">   91</span>            <span class="keyword">using</span> (var command = <span class="keyword">new</span> MySqlCommand(query, (MySqlConnection)connection))</div>
+<div class="line"><span class="lineno">   92</span>            {</div>
+<div class="line"><span class="lineno">   93</span>                command.Parameters.AddWithValue(<span class="stringliteral">&quot;@FrameNr&quot;</span>, frameNr);</div>
+<div class="line"><span class="lineno">   94</span> </div>
+<div class="line"><span class="lineno">   95</span>                <span class="keyword">using</span> (MySqlDataReader reader = await command.ExecuteReaderAsync(CommandBehavior.SingleRow))</div>
+<div class="line"><span class="lineno">   96</span> </div>
+<div class="line"><span class="lineno">   97</span>                {</div>
+<div class="line"><span class="lineno">   98</span>                    <span class="keywordflow">if</span> (reader.Read() &amp;&amp; !reader.IsDBNull(0))</div>
+<div class="line"><span class="lineno">   99</span>                    {</div>
+<div class="line"><span class="lineno">  100</span>                        <span class="keywordtype">byte</span>[] imageBytes = (<span class="keywordtype">byte</span>[])reader[<span class="stringliteral">&quot;VehicleBlob&quot;</span>];</div>
+<div class="line"><span class="lineno">  101</span>                        <span class="keywordtype">string</span> base64Image = Convert.ToBase64String(imageBytes);</div>
+<div class="line"><span class="lineno">  102</span> </div>
+<div class="line"><span class="lineno">  103</span>                        <span class="keywordflow">return</span> Ok(base64Image);</div>
+<div class="line"><span class="lineno">  104</span>                    }</div>
+<div class="line"><span class="lineno">  105</span>                    <span class="keywordflow">else</span></div>
+<div class="line"><span class="lineno">  106</span>                    {</div>
+<div class="line"><span class="lineno">  107</span>                        <span class="keywordflow">return</span> NotFound($<span class="stringliteral">&quot;Image with frameNr {frameNr} not found.&quot;</span>);</div>
+<div class="line"><span class="lineno">  108</span>                    }</div>
+<div class="line"><span class="lineno">  109</span>                }</div>
+<div class="line"><span class="lineno">  110</span>            }</div>
+<div class="line"><span class="lineno">  111</span>        }</div>
+<div class="line"><span class="lineno">  112</span>        <span class="keywordflow">catch</span> (Exception ex)</div>
+<div class="line"><span class="lineno">  113</span>        {</div>
+<div class="line"><span class="lineno">  114</span>            Console.WriteLine(ex);</div>
+<div class="line"><span class="lineno">  115</span>            <span class="keywordflow">return</span> StatusCode(500, <span class="stringliteral">&quot;An error occurred while fetching the image.&quot;</span>);</div>
+<div class="line"><span class="lineno">  116</span>        }</div>
+<div class="line"><span class="lineno">  117</span> </div>
+<div class="line"><span class="lineno">  118</span>    }</div>
+</div><!-- fragment -->
+<p class="reference">Gebruikt <a class="el" href="#l00019">_connector</a>.</p>
+
+</div>
+</div>
+<a id="a6513983e0e6319857b7114b3d4e4bfe0" name="a6513983e0e6319857b7114b3d4e4bfe0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6513983e0e6319857b7114b3d4e4bfe0">&#9670;&#160;</a></span>GetVehicleName()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">async Task&lt; IActionResult &gt; WPR.Controllers.General.Vehicle.VehicleController.GetVehicleName </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>frameNr</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="fragment"><div class="line"><span class="lineno">   30</span>    {</div>
+<div class="line"><span class="lineno">   31</span>        <span class="keywordflow">try</span></div>
+<div class="line"><span class="lineno">   32</span>        {</div>
+<div class="line"><span class="lineno">   33</span>            <span class="keywordtype">string</span> query1 = <span class="stringliteral">&quot;SELECT Brand FROM Vehicle WHERE FrameNr = @FrameNr&quot;</span>;</div>
+<div class="line"><span class="lineno">   34</span>            <span class="keywordtype">string</span> query2 = <span class="stringliteral">&quot;SELECT Type from Vehicle WHERE FrameNr = @FrameNr&quot;</span>;</div>
+<div class="line"><span class="lineno">   35</span> </div>
+<div class="line"><span class="lineno">   36</span>            <span class="keyword">using</span> (var connection = _connector.CreateDbConnection())</div>
+<div class="line"><span class="lineno">   37</span>            {</div>
+<div class="line"><span class="lineno">   38</span>                <span class="keywordtype">string</span> brand = <span class="stringliteral">&quot;&quot;</span>;</div>
+<div class="line"><span class="lineno">   39</span>                <span class="keywordtype">string</span> type = <span class="stringliteral">&quot;&quot;</span>;</div>
+<div class="line"><span class="lineno">   40</span> </div>
+<div class="line"><span class="lineno">   41</span>                <span class="keyword">using</span> (var command = <span class="keyword">new</span> MySqlCommand(query1, (MySqlConnection)connection))</div>
+<div class="line"><span class="lineno">   42</span>                {</div>
+<div class="line"><span class="lineno">   43</span>                    command.Parameters.AddWithValue(<span class="stringliteral">&quot;@FrameNr&quot;</span>, frameNr);</div>
+<div class="line"><span class="lineno">   44</span> </div>
+<div class="line"><span class="lineno">   45</span>                    <span class="keyword">using</span> (MySqlDataReader reader1 = await command.ExecuteReaderAsync(CommandBehavior.SingleRow))</div>
+<div class="line"><span class="lineno">   46</span>                    {</div>
+<div class="line"><span class="lineno">   47</span> </div>
+<div class="line"><span class="lineno">   48</span>                        <span class="keywordflow">if</span> (reader1.Read() &amp;&amp; !reader1.IsDBNull(0))</div>
+<div class="line"><span class="lineno">   49</span>                        {</div>
+<div class="line"><span class="lineno">   50</span>                            brand = reader1.GetString(0);</div>
+<div class="line"><span class="lineno">   51</span>                        }</div>
+<div class="line"><span class="lineno">   52</span> </div>
+<div class="line"><span class="lineno">   53</span>                    }</div>
+<div class="line"><span class="lineno">   54</span>                }</div>
+<div class="line"><span class="lineno">   55</span> </div>
+<div class="line"><span class="lineno">   56</span>                <span class="keyword">using</span> (var command2 = <span class="keyword">new</span> MySqlCommand(query2, (MySqlConnection)connection))</div>
+<div class="line"><span class="lineno">   57</span>                {</div>
+<div class="line"><span class="lineno">   58</span>                    command2.Parameters.AddWithValue(<span class="stringliteral">&quot;@FrameNr&quot;</span>, frameNr);</div>
+<div class="line"><span class="lineno">   59</span> </div>
+<div class="line"><span class="lineno">   60</span>                    <span class="keyword">using</span> (MySqlDataReader reader2 = await command2.ExecuteReaderAsync(CommandBehavior.SingleRow))</div>
+<div class="line"><span class="lineno">   61</span>                    {</div>
+<div class="line"><span class="lineno">   62</span>                        <span class="keywordflow">if</span> (reader2.Read() &amp;&amp; !reader2.IsDBNull(0))</div>
+<div class="line"><span class="lineno">   63</span>                        {</div>
+<div class="line"><span class="lineno">   64</span>                            type = reader2.GetString(0);</div>
+<div class="line"><span class="lineno">   65</span>                            <span class="keywordflow">return</span> Ok($<span class="stringliteral">&quot;{brand} {type}&quot;</span>);</div>
+<div class="line"><span class="lineno">   66</span>                        }</div>
+<div class="line"><span class="lineno">   67</span> </div>
+<div class="line"><span class="lineno">   68</span>                        <span class="keywordflow">return</span> NotFound($<span class="stringliteral">&quot;Car with frameNr {frameNr} not found.&quot;</span>);</div>
+<div class="line"><span class="lineno">   69</span>                    }</div>
+<div class="line"><span class="lineno">   70</span>                }</div>
+<div class="line"><span class="lineno">   71</span> </div>
+<div class="line"><span class="lineno">   72</span> </div>
+<div class="line"><span class="lineno">   73</span>            }</div>
+<div class="line"><span class="lineno">   74</span>        }</div>
+<div class="line"><span class="lineno">   75</span>        <span class="keywordflow">catch</span> (Exception ex)</div>
+<div class="line"><span class="lineno">   76</span>        {</div>
+<div class="line"><span class="lineno">   77</span>            Console.WriteLine(ex);</div>
+<div class="line"><span class="lineno">   78</span>            <span class="keywordflow">return</span> StatusCode(500, <span class="stringliteral">&quot;An error occurred while fetching the name of the car.&quot;</span>);</div>
+<div class="line"><span class="lineno">   79</span>        }</div>
+<div class="line"><span class="lineno">   80</span> </div>
+<div class="line"><span class="lineno">   81</span>    }</div>
+</div><!-- fragment -->
+<p class="reference">Gebruikt <a class="el" href="#l00019">_connector</a>.</p>
+
+</div>
+</div>
+<a id="a45b3f02d868b52ccc5afddb3c0267560" name="a45b3f02d868b52ccc5afddb3c0267560"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a45b3f02d868b52ccc5afddb3c0267560">&#9670;&#160;</a></span>GetVehiclePriceAsync()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">async Task&lt; IActionResult &gt; WPR.Controllers.General.Vehicle.VehicleController.GetVehiclePriceAsync </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>frameNr</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="fragment"><div class="line"><span class="lineno">  122</span>    {</div>
+<div class="line"><span class="lineno">  123</span>        <span class="keywordflow">try</span></div>
+<div class="line"><span class="lineno">  124</span>        {</div>
+<div class="line"><span class="lineno">  125</span>            <span class="keywordtype">string</span> query = <span class="stringliteral">&quot;SELECT Price FROM Vehicle WHERE FrameNr = @FrameNr&quot;</span>;</div>
+<div class="line"><span class="lineno">  126</span> </div>
+<div class="line"><span class="lineno">  127</span>            <span class="keyword">using</span> (var connection = _connector.CreateDbConnection())</div>
+<div class="line"><span class="lineno">  128</span>            <span class="keyword">using</span> (var command = <span class="keyword">new</span> MySqlCommand(query, (MySqlConnection)connection))</div>
+<div class="line"><span class="lineno">  129</span>            {</div>
+<div class="line"><span class="lineno">  130</span>                command.Parameters.AddWithValue(<span class="stringliteral">&quot;@FrameNr&quot;</span>, frameNr);</div>
+<div class="line"><span class="lineno">  131</span> </div>
+<div class="line"><span class="lineno">  132</span>                <span class="keyword">using</span> (MySqlDataReader reader = await command.ExecuteReaderAsync(CommandBehavior.SingleRow))</div>
+<div class="line"><span class="lineno">  133</span> </div>
+<div class="line"><span class="lineno">  134</span>                {</div>
+<div class="line"><span class="lineno">  135</span>                    <span class="keywordflow">if</span> (reader.Read() &amp;&amp; !reader.IsDBNull(0))</div>
+<div class="line"><span class="lineno">  136</span>                    {</div>
+<div class="line"><span class="lineno">  137</span>                        decimal priceDec = reader.GetDecimal(0);</div>
+<div class="line"><span class="lineno">  138</span>                        </div>
+<div class="line"><span class="lineno">  139</span>                        <span class="keywordtype">string</span> price = priceDec.ToString(<span class="stringliteral">&quot;F2&quot;</span>);</div>
+<div class="line"><span class="lineno">  140</span>                        </div>
+<div class="line"><span class="lineno">  141</span>                        <span class="keywordflow">return</span> Ok(price);</div>
+<div class="line"><span class="lineno">  142</span>                    }</div>
+<div class="line"><span class="lineno">  143</span>                    <span class="keywordflow">else</span></div>
+<div class="line"><span class="lineno">  144</span>                    {</div>
+<div class="line"><span class="lineno">  145</span>                        <span class="keywordflow">return</span> NotFound($<span class="stringliteral">&quot;Price of car with frameNr {frameNr} not found.&quot;</span>);</div>
+<div class="line"><span class="lineno">  146</span>                    }</div>
+<div class="line"><span class="lineno">  147</span>                }</div>
+<div class="line"><span class="lineno">  148</span>            }</div>
+<div class="line"><span class="lineno">  149</span>        }</div>
+<div class="line"><span class="lineno">  150</span>        <span class="keywordflow">catch</span> (Exception ex)</div>
+<div class="line"><span class="lineno">  151</span>        {</div>
+<div class="line"><span class="lineno">  152</span>            Console.WriteLine(ex);</div>
+<div class="line"><span class="lineno">  153</span>            <span class="keywordflow">return</span> StatusCode(500, <span class="stringliteral">&quot;An error occurred while fetching the price.&quot;</span>);</div>
+<div class="line"><span class="lineno">  154</span>        }</div>
+<div class="line"><span class="lineno">  155</span>    }</div>
+</div><!-- fragment -->
+<p class="reference">Gebruikt <a class="el" href="#l00019">_connector</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Documentatie van data members</h2>
+<a id="aef5ce5be36c1415893325a24f5783f92" name="aef5ce5be36c1415893325a24f5783f92"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aef5ce5be36c1415893325a24f5783f92">&#9670;&#160;</a></span>_connector</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">readonly <a class="el" href="../../d1/dbb/interface_w_p_r_1_1_database_1_1_i_connector.html">IConnector</a> WPR.Controllers.General.Vehicle.VehicleController._connector</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="reference">Wordt aangeroepen door <a class="el" href="#l00158">GetAllVehiclesAsync()</a>, <a class="el" href="#l00202">GetTypeOfVehiclesAsync()</a>, <a class="el" href="#l00084">GetVehicleImageAsync()</a>, <a class="el" href="#l00029">GetVehicleName()</a>, <a class="el" href="#l00121">GetVehiclePriceAsync()</a> en <a class="el" href="#l00022">VehicleController()</a>.</p>
+
+</div>
+</div>
+<a id="aee814694ef7a060dc4f35f78ff19e281" name="aee814694ef7a060dc4f35f78ff19e281"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aee814694ef7a060dc4f35f78ff19e281">&#9670;&#160;</a></span>_vehicleRepository</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">readonly <a class="el" href="../../d4/d6f/interface_w_p_r_1_1_repository_1_1_i_vehicle_repository.html">IVehicleRepository</a> WPR.Controllers.General.Vehicle.VehicleController._vehicleRepository</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="reference">Wordt aangeroepen door <a class="el" href="#l00291">DeleteVehicleAsync()</a>, <a class="el" href="#l00260">GetFrameNumbersAsync()</a>, <a class="el" href="#l00272">GetFrameNumbersSpecificTypeAsync()</a>, <a class="el" href="#l00284">GetVehicleData()</a> en <a class="el" href="#l00022">VehicleController()</a>.</p>
+
+</div>
+</div>
+<hr/>De documentatie voor deze klasse is gegenereerd op basis van het volgende bestand:<ul>
+<li>D:/codes/WPR8/WPR/backend/src/Controllers/general/vehicle/<a class="el" href="">VehicleController.cs</a></li>
+</ul>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="../../dc/d8b/namespace_w_p_r.html">WPR</a></li><li class="navelem"><a class="el" href="../../d4/de7/namespace_w_p_r_1_1_controllers.html">Controllers</a></li><li class="navelem"><a class="el" href="../../db/d18/namespace_w_p_r_1_1_controllers_1_1_general.html">General</a></li><li class="navelem"><a class="el" href="../../db/d7a/namespace_w_p_r_1_1_controllers_1_1_general_1_1_vehicle.html">Vehicle</a></li><li class="navelem"><a class="el" href="../../d5/d28/class_w_p_r_1_1_controllers_1_1_general_1_1_vehicle_1_1_vehicle_controller.html">VehicleController</a></li>
+    <li class="footer">Gegenereerd door <a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.0 </li>
+  </ul>
+</div>
+</body>
+</html>

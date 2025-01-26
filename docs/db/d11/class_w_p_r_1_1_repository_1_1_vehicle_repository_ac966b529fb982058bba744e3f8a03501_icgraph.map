@@ -1,0 +1,9 @@
+<map id="WPR.Repository.VehicleRepository.GetVehicleNameAsync" name="WPR.Repository.VehicleRepository.GetVehicleNameAsync">
+<area shape="rect" id="Node000001" title=" " alt="" coords="564,39,795,81"/>
+<area shape="rect" id="Node000002" href="$db/d11/class_w_p_r_1_1_repository_1_1_vehicle_repository.html#a67db6526a03c26958ee2c78af449dc5d" title=" " alt="" coords="285,5,516,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="548,47,516,43,517,38,549,42"/>
+<area shape="rect" id="Node000003" href="$db/d11/class_w_p_r_1_1_repository_1_1_vehicle_repository.html#a2c371ee4ceecc0aed0aa772f6e8eee5a" title=" " alt="" coords="285,72,516,115"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="549,78,517,82,516,77,548,73"/>
+<area shape="rect" id="Node000004" href="$db/d11/class_w_p_r_1_1_repository_1_1_vehicle_repository.html#a35a796e7cf96268b3fe824913616c411" title=" " alt="" coords="5,72,237,115"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="269,96,237,96,237,91,269,91"/>
+</map>

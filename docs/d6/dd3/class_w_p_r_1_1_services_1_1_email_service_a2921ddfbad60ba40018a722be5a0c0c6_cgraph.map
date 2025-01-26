@@ -1,0 +1,7 @@
+<map id="WPR.Services.EmailService.SendBusinessReviewEmail" name="WPR.Services.EmailService.SendBusinessReviewEmail">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,39,199,81"/>
+<area shape="rect" id="Node000002" href="$d6/dd3/class_w_p_r_1_1_services_1_1_email_service.html#aeabcbafedfe612d2c217d314ebca6e67" title=" " alt="" coords="247,5,458,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="199,44,231,40,231,45,199,50"/>
+<area shape="rect" id="Node000003" href="$d6/dd3/class_w_p_r_1_1_services_1_1_email_service.html#ab31b08101a79b7e7634ccb24fb771d33" title="Maak SMTP Client voor versturen emails." alt="" coords="256,72,449,115"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="199,70,241,76,240,81,199,76"/>
+</map>

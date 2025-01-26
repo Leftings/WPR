@@ -1,0 +1,9 @@
+<map id="WPR.Repository.IUserRepository.AddCustomer" name="WPR.Repository.IUserRepository.AddCustomer">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,79,227,121"/>
+<area shape="rect" id="Node000002" href="$d3/db5/namespace_w_p_r_1_1_controllers_1_1_general_1_1_sign_up.html#abf09877e4843c0b4ff2791cc32242102" title=" " alt="" coords="275,29,492,72"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="227,77,259,71,260,76,228,82"/>
+<area shape="rect" id="Node000003" href="$d3/db5/namespace_w_p_r_1_1_controllers_1_1_general_1_1_sign_up.html#ab012081435b4392bd8e6e4525e336d68" title=" " alt="" coords="275,120,492,179"/>
+<area shape="poly" id="edge3_Node000001_Node000003" title=" " alt="" coords="228,118,260,124,259,129,227,123"/>
+<area shape="poly" id="edge2_Node000002_Node000002" title=" " alt="" coords="333,29,331,19,339,10,357,5,383,3,412,5,429,11,427,16,411,10,383,8,358,10,342,15,336,21,338,28"/>
+<area shape="poly" id="edge4_Node000003_Node000003" title=" " alt="" coords="331,119,332,109,342,101,359,95,383,93,412,96,429,103,427,108,410,101,383,99,360,101,344,105,337,112,336,120"/>
+</map>

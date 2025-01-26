@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['vehcileid_0',['VehcileId',['../class_w_p_r_1_1_controllers_1_1_employee_1_1_shared_1_1accept_hire_request_1_1accept_hire_request_request.html#aa6c6c792f3545b9f362dd699bd64a1ae',1,'WPR::Controllers::Employee::Shared::acceptHireRequest::acceptHireRequestRequest']]],
-  ['vehiclemanagerinfo_1',['VehicleManagerInfo',['../class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_change_business_settings_1_1_change_business_request.html#a526be9abbf02bbb2089aac5e4af2ca0f',1,'WPR::Controllers::Employee::VehicleManager::ChangeBusinessSettings::ChangeBusinessRequest']]]
+  ['usertype_0',['UserType',['../de/d4f/class_w_p_r_1_1_controllers_1_1_general_1_1_login_1_1_login_request.html#a6978cf13022e46358b3a2e04478ef93d',1,'WPR::Controllers::General::Login::LoginRequest']]],
+  ['usertype_1',['userType',['../d8/d96/class_w_p_r_1_1_controllers_1_1_employee_1_1_shared_1_1accept_hire_request_1_1_hire_request.html#ab79248db278ea97841bca6b8523bf528',1,'WPR::Controllers::Employee::Shared::acceptHireRequest::HireRequest']]]
 ];
