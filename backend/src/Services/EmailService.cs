@@ -1,7 +1,5 @@
 ﻿using System.Net;
 using System.Net.Mail;
-using System.Reflection.Metadata.Ecma335;
-using Microsoft.Extensions.Options;
 using WPR.Data;
 
 namespace WPR.Services;
@@ -32,148 +30,150 @@ public class EmailService
         };
     }
 
-    public async Task Send(string toEmail, string subject, string body)
+    // Methode om een e-mail te versturen
+public async Task Send(string toEmail, string subject, string body)
+{
+    try
     {
-        try
+        using (var smtpClient = CreateSmtpClient())
+        using (var mailMessage = new MailMessage
         {
-            using (var smtpClient = CreateSmtpClient())
-            using (var mailMessage = new MailMessage
-            {
-                From = new MailAddress(_envConfig.Get("SMTP_FROM_EMAIL")),
-                Subject = subject,
-                Body = body,
-                IsBodyHtml = true
-            })
-            {
+            From = new MailAddress(_envConfig.Get("SMTP_FROM_EMAIL")), // Afzender e-mail
+            Subject = subject, // Onderwerp van de e-mail
+            Body = body, // Inhoud van de e-mail
+            IsBodyHtml = true // Geef aan dat de inhoud HTML is
+        })
+        {
+            mailMessage.To.Add(toEmail); // Voeg de ontvanger toe
+            await smtpClient.SendMailAsync(mailMessage); // Verstuur de e-mail asynchroon
+        }
+    }
+    catch (Exception ex)
+    {
+        Console.WriteLine(ex.Message); // Log eventuele fouten
+        throw; // Gooi de uitzondering opnieuw
+    }
+}
 
-                mailMessage.To.Add(toEmail);
-                await smtpClient.SendMailAsync(mailMessage);
-            }
-        }
-        catch (Exception ex)
-        {
-            Console.WriteLine(ex.Message);
-            throw;
-        }
+// Methode om een welkomst e-mail te versturen
+public async Task SendWelcomeEmail(string toEmail)
+{     
+    if (string.IsNullOrEmpty(toEmail))
+    {
+        throw new ArgumentException("Email addresses cannot be null or empty"); // Controleer of het e-mailadres geldig is
     }
     
-    public async Task SendWelcomeEmail(string toEmail)
-    {     
-        if (string.IsNullOrEmpty(toEmail))
-        {
-            throw new ArgumentException("Email addresses cannot be null or empty");
-        }
-        
-        try
-        {
-            using var smtpClient = CreateSmtpClient();
-            using var mailMessage = new MailMessage
-            {
-                From = new MailAddress(_envConfig.Get("SMTP_FROM_EMAIL")),
-                Subject = "Welkom bij CarAndAll",
-                Body = $"Welkom bij CarAndAll",
-                IsBodyHtml = true
-            };
-            mailMessage.To.Add(toEmail);
-
-            await smtpClient.SendMailAsync(mailMessage);
-        }
-        catch (Exception e)
-        {
-            Console.WriteLine(e);
-            throw;
-        }
-    }
-    
-    public async Task SendRentalConfirmMail(string toEmail, string carName, string carColor, string carPlate , DateTime startDate, DateTime endDate, string price)
+    try
     {
-        if (string.IsNullOrEmpty(toEmail))
+        using var smtpClient = CreateSmtpClient();
+        using var mailMessage = new MailMessage
         {
-            throw new ArgumentException("Email addresses cannot be null or empty");
-        }
-        
-        try
-        {
-            using var smtpClient = CreateSmtpClient();
-            using var mailMessage = new MailMessage
-            {
-                From = new MailAddress(_envConfig.Get("SMTP_FROM_EMAIL")),
-                Subject = "Verificatie Voertuig Huren",
-                Body = BuildRentalConfirmationBody(carName, carColor, carPlate, startDate, endDate, price),
-                IsBodyHtml = true
-            };
-            mailMessage.To.Add(toEmail);
+            From = new MailAddress(_envConfig.Get("SMTP_FROM_EMAIL")), // Afzender e-mail
+            Subject = "Welkom bij CarAndAll", // Onderwerp van de e-mail
+            Body = $"Welkom bij CarAndAll", // Inhoud van de e-mail
+            IsBodyHtml = true // Geef aan dat de inhoud HTML is
+        };
+        mailMessage.To.Add(toEmail); // Voeg de ontvanger toe
 
-            await smtpClient.SendMailAsync(mailMessage);
-        }
-        catch (Exception e)
-        {
-            Console.WriteLine(e);
-            throw;
-        }
+        await smtpClient.SendMailAsync(mailMessage); // Verstuur de e-mail asynchroon
     }
-
-    public async Task SendConfirmationEmailBusiness(string toEmail, string subscription ,string businessName, int kvk, string domain, string adres)
+    catch (Exception e)
     {
-        if (string.IsNullOrEmpty(toEmail))
-        {
-            throw new ArgumentNullException("Email can not be null");
-        }
-
-        try
-        {
-            using (var smtpClient = CreateSmtpClient())
-            using (var emailMessage = new MailMessage
-                {
-                    From = new MailAddress(_envConfig.Get("SMTP_FROM_EMAIL")),
-                    Subject = "Aanvraag Bedrijfs Account",
-                    Body = BuildConfirmationEmailBusinessBody(subscription, businessName, kvk, domain, adres),
-                    IsBodyHtml = true
-
-                })
-            {
-                emailMessage.To.Add(toEmail);
-                
-                await smtpClient.SendMailAsync(emailMessage);
-            }
-        }
-        catch (Exception ex)
-        {
-            Console.WriteLine(ex.Message);
-            throw;
-        }
+        Console.WriteLine(e); // Log eventuele fouten
+        throw; // Gooi de uitzondering opnieuw
     }
-    
-    public async Task SendBusinessReviewEmail(string toEmail, string businessName, string domain, string password, bool accepted)
+}
+
+// Methode om een huurovereenkomst bevestigingsmail te versturen
+public async Task SendRentalConfirmMail(string toEmail, string carName, string carColor, string carPlate, DateTime startDate, DateTime endDate, string price)
+{
+    if (string.IsNullOrEmpty(toEmail))
     {
-        if (string.IsNullOrEmpty(toEmail))
-        {
-            throw new ArgumentNullException("Email can not be null");
-        }
+        throw new ArgumentException("Email addresses cannot be null or empty"); // Controleer of het e-mailadres geldig is
+    }
 
-        try
+    try
+    {
+        using var smtpClient = CreateSmtpClient();
+        using var mailMessage = new MailMessage
         {
-            using (var smtpClient = CreateSmtpClient())
-            using (var emailMessage = new MailMessage
-                {
-                    From = new MailAddress(_envConfig.Get("SMTP_FROM_EMAIL")),
-                    Subject = "Aanvraag Bedrijfs Account: Review",
-                    Body = BuildBusinessReviewEmailBody(businessName, domain, password, accepted),
-                    IsBodyHtml = true
+            From = new MailAddress(_envConfig.Get("SMTP_FROM_EMAIL")), // Afzender e-mail
+            Subject = "Verificatie Voertuig Huren", // Onderwerp van de e-mail
+            Body = BuildRentalConfirmationBody(carName, carColor, carPlate, startDate, endDate, price), // Bouw de inhoud van de bevestiging
+            IsBodyHtml = true // Geef aan dat de inhoud HTML is
+        };
+        mailMessage.To.Add(toEmail); // Voeg de ontvanger toe
 
-                })
-            {
-                emailMessage.To.Add(toEmail);
-                
-                await smtpClient.SendMailAsync(emailMessage);
-            }
-        }
-        catch (Exception ex)
+        await smtpClient.SendMailAsync(mailMessage); // Verstuur de e-mail asynchroon
+    }
+    catch (Exception e)
+    {
+        Console.WriteLine(e); // Log eventuele fouten
+        throw; // Gooi de uitzondering opnieuw
+    }
+}
+
+// Methode om een bevestigingsmail voor een bedrijfsaccount aanvraag te versturen
+public async Task SendConfirmationEmailBusiness(string toEmail, string subscription, string businessName, int kvk, string domain, string adres)
+{
+    if (string.IsNullOrEmpty(toEmail))
+    {
+        throw new ArgumentNullException("Email can not be null"); // Zorg ervoor dat het e-mailadres geldig is
+    }
+
+    try
+    {
+        using (var smtpClient = CreateSmtpClient())
+        using (var emailMessage = new MailMessage
         {
-            Console.WriteLine(ex.Message);
-            throw;
+            From = new MailAddress(_envConfig.Get("SMTP_FROM_EMAIL")), // Afzender e-mail
+            Subject = "Aanvraag Bedrijfs Account", // Onderwerp van de e-mail
+            Body = BuildConfirmationEmailBusinessBody(subscription, businessName, kvk, domain, adres), // Bouw de inhoud van de bevestiging
+            IsBodyHtml = true // Geef aan dat de inhoud HTML is
+        })
+        {
+            emailMessage.To.Add(toEmail); // Voeg de ontvanger toe
+
+            await smtpClient.SendMailAsync(emailMessage); // Verstuur de e-mail asynchroon
         }
     }
+    catch (Exception ex)
+    {
+        Console.WriteLine(ex.Message); // Log eventuele fouten
+        throw; // Gooi de uitzondering opnieuw
+    }
+}
+
+// Methode om een beoordelingsmail voor een bedrijfsaccount aanvraag te versturen
+public async Task SendBusinessReviewEmail(string toEmail, string businessName, string domain, string password, bool accepted)
+{
+    if (string.IsNullOrEmpty(toEmail))
+    {
+        throw new ArgumentNullException("Email can not be null"); // Zorg ervoor dat het e-mailadres geldig is
+    }
+
+    try
+    {
+        using (var smtpClient = CreateSmtpClient())
+        using (var emailMessage = new MailMessage
+        {
+            From = new MailAddress(_envConfig.Get("SMTP_FROM_EMAIL")), // Afzender e-mail
+            Subject = "Aanvraag Bedrijfs Account: Review", // Onderwerp van de e-mail
+            Body = BuildBusinessReviewEmailBody(businessName, domain, password, accepted), // Bouw de inhoud van de beoordelingsmail
+            IsBodyHtml = true // Geef aan dat de inhoud HTML is
+        })
+        {
+            emailMessage.To.Add(toEmail); // Voeg de ontvanger toe
+
+            await smtpClient.SendMailAsync(emailMessage); // Verstuur de e-mail asynchroon
+        }
+    }
+    catch (Exception ex)
+    {
+        Console.WriteLine(ex.Message); // Log eventuele fouten
+        throw; // Gooi de uitzondering opnieuw
+    }
+}
     private string BuildRentalConfirmationBody(string carName, string carColor, string carPlate, DateTime startDate, DateTime endDate, string price)
     {
         return $@"
