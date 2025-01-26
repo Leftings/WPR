@@ -1030,7 +1030,7 @@ li {
   margin-bottom: 20px; 
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
   gap: 20px; 
-  width: 300px; 
+  width: 400px; 
   position: relative;
 }
 
@@ -1116,7 +1116,7 @@ li {
 
 @media (min-width: 1025px) {
   .registrateFormat {
-    width: 675px;
+    width: 700px;
   }
   .registrateFormatFooter {
     width: 675px;
@@ -1263,7 +1263,7 @@ li {
 /* CarRentalOverview & Home */
 main {
   flex: 1; 
-  min-height: 85vh;
+  min-height: 87vh;
   width: 100vw;
 }
 

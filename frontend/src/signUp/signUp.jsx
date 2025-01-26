@@ -163,8 +163,9 @@ function SignUp() {
 
     return (
         <>
-            <GeneralHeader />
-            <div className='registrateFormatHeader'>
+          <GeneralHeader />
+            <main>
+               <div className='registrateFormatHeader'>
                 {chosenType === 'Private' ? (
                     <h1>Aanmelden Particulier</h1>
                 ) : (<h1>Aanmelden Bedrijf</h1>
@@ -176,8 +177,8 @@ function SignUp() {
                     <button className='cta-button' onClick={() => choice('Private')} id={chosenType === 'Private' ? 'typeButton-active' : 'typeButton'} type='button'>Particulier</button>
                     <button className='cta-button' onClick={() => choice('Business')} id={chosenType === 'Business' ? 'typeButton-active' : 'typeButton'} type='button'>Zakelijk</button>
                 </div>
-            </div>
-            <div className='registrateFormat'>
+             </div>
+             <div className='registrateFormat'>
                 {chosenType === 'Private' ? (
                     <>
                         <label htmlFor="firstName">Voornaam</label>
@@ -291,6 +292,7 @@ function SignUp() {
                     <label htmlFor="heeftAccount">Heeft u al een account? <Link id="redirect" to="/login">Log in!</Link></label>
                 </div>
             </div>
+            </main>
             
             <GeneralFooter></GeneralFooter>
         </>
