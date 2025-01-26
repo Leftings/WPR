@@ -980,7 +980,7 @@ public class UserRepository : IUserRepository
             
             if (data.Count > 1)
             {
-                using (var command = new MySqlCommand(CreateUpdateQuery("VehicleManager", data), connection))
+                using (var command = new MySqlCommand(CreateUpdateQuery("VehicleManager", data)))
                 {
                     if (await command.ExecuteNonQueryAsync() > 0)
                     {
@@ -1068,7 +1068,7 @@ public class UserRepository : IUserRepository
                     {
                         request.BusinessInfo.KvK = Convert.ToInt32(reader.GetValue(0));
                         await reader.CloseAsync();
-                        var changeVehicleManager = ChangeVehicleManagerInfo(request.VehicleManagerInfo, (MySqlConnection)_connector.CreateDbConnection());
+                        var changeVehicleManager = ChangeVehicleManagerInfo(request.VehicleManagerInfo);
                         var changeBusiness = ChangeBusinessInfo(request.BusinessInfo, (MySqlConnection)_connector.CreateDbConnection());
 
                         Task.WaitAll(changeVehicleManager, changeBusiness);
