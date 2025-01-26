@@ -10,59 +10,66 @@ import { EmptyFieldChecker } from '../../utils/errorChecker.js';
 const BACKEND_URL = import.meta.env.VITE_REACT_APP_BACKEND_URL ?? 'http://localhost:5165';
 
 function AddBusiness() {
-    const [name, SetName] = useState('');
-    const [kvk, SetKvk] = useState('');
-    const [street, SetStreet] = useState('');
-    const [number, SetNumber] = useState('');
-    const [add, SetAdd] = useState('');
-    const [error, SetErrors] = useState([]);
-    
+    // Initialiseer de state voor elk formulierveld
+    const [name, SetName] = useState('');  // Bedrijfsnaam
+    const [kvk, SetKvk] = useState('');    // KvK nummer
+    const [street, SetStreet] = useState('');  // Straatnaam
+    const [number, SetNumber] = useState('');  // Huisnummer
+    const [add, SetAdd] = useState('');    // Toevoeging (bijv. appartementnummer)
+    const [error, SetErrors] = useState([]);  // Lijst van foutmeldingen
 
-    function Push()
-    {
-        const validationErrors = EmptyFieldChecker({ name, kvk, street, number });
+    // Functie om het formulier te versturen
+    function Push() {
+        // Valideer de ingevulde gegevens
+        const validationErrors = EmptyFieldChecker({name, kvk, street, number});
 
-        if (kvk.length < 8)
-        {
+        // Als het KvK nummer te kort is, voeg dan een foutmelding toe
+        if (kvk.length < 8) {
             validationErrors.push("Te kort KvK nummer");
         }
+
+        // Zet de verzamelde foutmeldingen in de state
         SetErrors(validationErrors);
 
-        console.log(validationErrors);
+        console.log(validationErrors); // Log de foutmeldingen naar de console voor debugging
 
-        if (validationErrors.length === 0)
-        {
-            const formData = new FormData();
-            formData.append('KvK', kvk);
-            formData.append('Name', name);
-            formData.append('Adress', `${street} ${add}`);
+        // Als er geen foutmeldingen zijn, verstuur de gegevens naar de backend
+        if (validationErrors.length === 0) {
+            const formData = new FormData();  // Maak een nieuw FormData object aan
+            formData.append('KvK', kvk);      // Voeg KvK nummer toe aan het formulier
+            formData.append('Name', name);    // Voeg de bedrijfsnaam toe
+            formData.append('Adress', `${street} ${add}`);  // Voeg het adres toe, inclusief straat en toevoeging
 
+            // Verstuur het formulier naar de backend
             fetch(`${BACKEND_URL}/api/AddBusiness/addBusiness`, {
                 method: 'POST',
-                credentials: 'include',
-                body: formData,
+                credentials: 'include',  // Zorg ervoor dat cookies worden meegestuurd
+                body: formData,  // Verstuur de gegevens als FormData
             })
-            .then(response => {
-                if (!response.ok)
-                {
-                    return response.json().then(err => {
-                        throw new Error(err.message);
-                    });
-                }
-                return response.json();
-            })
-            .then(reset => {
-                SetName('');
-                SetKvk('');
-                SetStreet('');
-                SetNumber('');
-                SetAdd('');
-            })
-            .catch(error => {
-                SetErrors([error.message]);
-            })
+                .then(response => {
+                    // Als de response niet ok is, gooi dan een fout
+                    if (!response.ok) {
+                        return response.json().then(err => {
+                            throw new Error(err.message);
+                        });
+                    }
+                    return response.json();  // Als de response goed is, parse de JSON
+                })
+                .then(reset => {
+                    // Reset de formuliervelden na een succesvolle aanvraag
+                    SetName('');
+                    SetKvk('');
+                    SetStreet('');
+                    SetNumber('');
+                    SetAdd('');
+                })
+                .catch(error => {
+                    // Als er een fout optreedt, zet de foutmelding in de state
+                    SetErrors([error.message]);
+                })
         }
     }
+    
 
     return (
         <>

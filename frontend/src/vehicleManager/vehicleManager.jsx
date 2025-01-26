@@ -10,27 +10,30 @@ function VehicleManager() {
     const navigate = useNavigate();
 
     useEffect(() => {
+        // Controleer of de gebruiker een geldige Vehicle Manager cookie heeft
         fetch(`${BACKEND_URL}/api/Cookie/IsVehicleManager`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
             },
-            credentials: 'include',
+            credentials: 'include', 
         })
             .then((response) => {
+                // Als de response niet goed is, toon een foutmelding
                 if (!response.ok) {
                     return response.json().then((data) => {
-                        console.log(data);
                         throw new Error(data?.message || 'No Cookie');
                     });
                 }
                 return response.json();
             })
             .catch(() => {
+                // Als er een fout is, waarschuw de gebruiker en navigeer terug naar de startpagina
                 alert('Cookie was niet geldig');
-                navigate('/');
+                navigate('/'); 
             });
-    }, [navigate]);
+    }, [navigate]); // Effect wordt opnieuw uitgevoerd als de navigate verandert
+
 
     return (
         <>

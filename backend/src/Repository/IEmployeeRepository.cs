@@ -1,6 +1,4 @@
-﻿using System.Data;
-using System.Diagnostics;
-using WPR.Controllers.Customer.AddBusiness;
+﻿using WPR.Controllers.Customer.AddBusiness;
 using WPR.Controllers.Employee.BackOffice.signUpStaff;
 namespace WPR.Repository;
 

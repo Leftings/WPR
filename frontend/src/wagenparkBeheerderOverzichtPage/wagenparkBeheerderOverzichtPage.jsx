@@ -6,28 +6,30 @@ import '../index.css';
 const BACKEND_URL = import.meta.env.VITE_REACT_APP_BACKEND_URL ?? 'http://localhost:5165';
 
 function WagenparkBeheerderOverzichtPage() {
-    const [rentals, setRentals] = useState([]);
+    const [rentals, setRentals] = useState([]); 
     const [error, setError] = useState(null);
 
     useEffect(() => {
+        // Asynchrone functie om huurgegevens op te halen
         const fetchData = async () => {
             try {
+                // Verstuur een GET-aanroep om huurinformatie op te halen
                 const response = await fetch(`${BACKEND_URL}/api/Rental/GetAllUserRentalsWithDetails`, {
                     credentials: 'include',
                 });
+                // Controleer of de response succesvol is
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
                 }
                 const data = await response.json();
-                console.log('Fetched rentals:', data); 
-                setRentals(data);
+                setRentals(data); // Update de state met de opgehaalde gegevens
             } catch (err) {
                 console.error('Error fetching rentals:', err);
-                setError('Failed to load rental details.');
+                setError('Failed to load rental details.'); 
             }
         };
-        fetchData();
-    }, []);
+        fetchData(); // Roep de functie aan om de gegevens op te halen
+    }, []); 
 
     return (
         <>

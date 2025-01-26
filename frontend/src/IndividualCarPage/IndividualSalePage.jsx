@@ -9,11 +9,14 @@ function CarDetailPage() {
     const navigate = useNavigate();
     const vehicle = location.state?.vehicle;
 
+    // Functie die wordt aangeroepen bij klikken op "Buy Now"
     const handleBuyNow = () => {
-        const rentalDates = location.state?.rentalDates || [null, null]; 
+        // Haal de huurdatums op uit de state, of gebruik standaardwaarden als deze niet bestaan
+        const rentalDates = location.state?.rentalDates || [null, null];
         navigate("/buy", { state: { vehicle, rentalDates } });
     };
-    
+
+    // Als er geen voertuig beschikbaar is, toon een foutmelding
     if (!vehicle) {
         return (
             <>

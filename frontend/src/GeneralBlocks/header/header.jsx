@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import TermsAndConditions from "../../GeneralSalePage/GeneralSalePage.jsx";
 import logo from '../../assets/logo.svg';
@@ -7,35 +7,39 @@ import '@fortawesome/fontawesome-free/css/all.css';
 
 import '../../index.css';
 
-
 function GeneralHeader() {
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
-    const [isMenuOpen, setIsMenuOpen] = useState(false);
-    const navigate = useNavigate();
+    const [isLoggedIn, setIsLoggedIn] = useState(false); 
+    const [isMenuOpen, setIsMenuOpen] = useState(false); 
+    const navigate = useNavigate(); 
 
+    // useEffect wordt uitgevoerd bij het laden van de component
     useEffect(() => {
+        // Checkt of er een geldige sessie bestaat bij het laden van de pagina
         fetch('http://localhost:5165/api/Login/CheckSession', { credentials: 'include' })
             .then(response => {
                 if (!response.ok) {
-                    throw new Error('Not logged in');
+                    throw new Error('Not logged in'); // Foutmelding als de gebruiker niet is ingelogd
                 }
                 return response.json();
             })
-            .then(() => setIsLoggedIn(true))
-            .catch(() => setIsLoggedIn(false));
-    }, []);
+            .then(() => setIsLoggedIn(true)) // Zet de isLoggedIn state op true als de gebruiker is ingelogd
+            .catch(() => setIsLoggedIn(false)); // Zet de isLoggedIn state op false als er een fout is
+    }, []); // De useEffect wordt maar één keer uitgevoerd (bij het laden van de component)
 
+    // Functie voor het uitloggen van de gebruiker
     const handleLogout = () => {
+        // Verstuurt een POST-verzoek naar de backend om de sessie van de gebruiker te beëindigen
         fetch('http://localhost:5165/api/Cookie/Logout', { method: 'POST', credentials: 'include' })
             .then(() => {
-                setIsLoggedIn(false);
-                navigate('/login');
+                setIsLoggedIn(false); // Zet de isLoggedIn state op false
+                navigate('/login'); // Navigeer de gebruiker naar de loginpagina
             })
-            .catch(error => console.error('Logout error', error));
+            .catch(error => console.error('Logout error', error)); // Log eventuele fouten
     };
 
+    // Functie om het menu te openen of te sluiten
     const toggleMenu = () => {
-        setIsMenuOpen(!isMenuOpen);
+        setIsMenuOpen(!isMenuOpen); // Wijzig de waarde van isMenuOpen (true/false)
     };
 
     return (
