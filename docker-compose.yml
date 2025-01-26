@@ -7,7 +7,7 @@ services:
       context: .
       dockerfile: backend/Dockerfile
     volumes:
-      - ./backend/publish:/app # Mount the publish folder
+      - ./backend/public:/app # Mount the publish folder
     ports:
       - "5000:5000" # Expose backend on port 5000
 
