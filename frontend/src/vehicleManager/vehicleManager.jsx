@@ -33,7 +33,7 @@ function VehicleManager() {
                 navigate('/'); 
             });
     }, [navigate]); // Effect wordt opnieuw uitgevoerd als de navigate verandert
-}
+
 
     return (
         <>
