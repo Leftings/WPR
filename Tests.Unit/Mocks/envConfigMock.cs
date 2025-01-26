@@ -1,10 +1,8 @@
 namespace Test.Unit.Mocks
 {
     using System.Security.Cryptography;
-    using System.Security.Policy;
     using WPR.Data;
     
-    // Mock the EnvConfig class
     public class EnvConfigMock : EnvConfig
     {
         private string _base64Key;
@@ -21,8 +19,8 @@ namespace Test.Unit.Mocks
 
             return key switch
                 {
-                    "CRYPTION_KEY" => _base64Key, // "some_encryption_key" encoded in Base64
-                    "CRYPTION_IV"  => _base64IV, // "api_in_for_app" encoded in Base64
+                    "CRYPTION_KEY" => _base64Key,
+                    "CRYPTION_IV"  => _base64IV,
                     "SALT" => _salt,
                     _ => throw new ArgumentException("Invalid key", nameof(key)),
                 };

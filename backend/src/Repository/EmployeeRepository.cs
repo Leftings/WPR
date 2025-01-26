@@ -13,11 +13,11 @@ namespace WPR.Repository;
 /// </summary>
 public class EmployeeRepository : IEmployeeRepository
 {
-    private readonly Connector _connector;
+    private readonly IConnector _connector;
     private readonly Hash _hash;
     private readonly EmailService _emailService;
 
-    public EmployeeRepository(Connector connector, Hash hash, EmailService emailService)
+    public EmployeeRepository(IConnector connector, Hash hash, EmailService emailService)
     {
         _connector = connector ?? throw new ArgumentNullException(nameof(connector));
         _hash = hash ?? throw new ArgumentNullException(nameof (hash));

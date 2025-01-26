@@ -1,9 +1,14 @@
+using System.Security.Policy;
 using System.Text.Json.Serialization;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.Extensions.Options;
+using Microsoft.VisualBasic;
+using Org.BouncyCastle.Crypto.Prng;
 using WPR.Cryption;
 using WPR.Data;
 using WPR.Database;
 using WPR.Repository;
+using WPR.Hashing;
 using System.Net;
 using WPR.Services;
 using WPR.Controllers.General.Cookie;
@@ -12,169 +17,192 @@ using WPR.Email;
 
 namespace WPR;
 
+/// <summary>
+/// Deze class is responsible voor het configureren van de application services en database connectie
+/// Het heeft methodes om de database te initializeren en het configureren van de web applicatie.
+/// </summary>
 public class AppConfigure
 {
-    /// <summary>
-    /// Initialiseert de databaseverbinding en controleert of de verbinding succesvol tot stand is gekomen.
-    /// </summary>
     public static void InitDatabase(IServiceProvider services)
     {
-        var dbConnector = services.GetRequiredService<Connector>();
+        var dbConnector = services.GetRequiredService<IConnector>();
         
         try
         {
             using (var connection = dbConnector.CreateDbConnection())
             {
-                Console.WriteLine("Database connection established"); // Succesvolle verbinding
+                Console.WriteLine("Database connection established");
             }
+
         }
         catch (Exception e)
         {
-            Console.WriteLine("Failed to establish database connection"); // Foutmelding bij mislukte verbinding
-            Console.WriteLine(e.StackTrace); // Toon de stacktrace van de fout
+            Console.WriteLine("Failed to establish database connection");
+            Console.WriteLine(e.StackTrace);
         }
+        
     }
 
     /// <summary>
-    /// Configureert de web applicatie, inclusief middleware, services, authenticatie en CORS-instellingen.
+    /// Configureer de web applicatie, zoals middleware, services, authentication en CORS settings.
     /// </summary>
-    /// <param name="args">De command line argumenten bij het opstarten van de applicatie.</param>
+    /// <param name="args">De command line arguments passed to the application at startup.</param>
     /// <returns>De geconfigureerde WebApplication instantie.</returns>
     public static WebApplication ConfigureApplication(string[] args)
     {
-        var builder = WebApplication.CreateBuilder(args); // Maak een builder aan voor de webapplicatie
+    var builder = WebApplication.CreateBuilder(args);
 
-        var environment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") ?? "development"; // Verkrijg de omgeving (development of production)
-        builder.Configuration.AddEnvironmentVariables(); // Voeg omgevingsvariabelen toe aan de configuratie
+    var environment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") ?? "development";
+    builder.Configuration.AddEnvironmentVariables();
 
-        // Afhankelijk van de omgeving, laad het juiste configuratiebestand
-        if (environment == "development")
-        {
-            builder.Configuration.AddJsonFile(".env", optional: true, reloadOnChange: true); // Configuratie voor development
-        }
-        else if (environment == "Production")
-        {
-            builder.Configuration.AddJsonFile(".env.deployment", optional: true, reloadOnChange: true); // Configuratie voor productie
-        }
-
-        // CORS-instellingen om specifieke domeinen toe te staan
-        var cookiePolicyOptions = new CookiePolicyOptions
-        {
-            MinimumSameSitePolicy = SameSiteMode.Strict // Zorg ervoor dat cookies alleen met dezelfde site worden gedeeld
-        };
-
-        builder.Services.AddCors(options =>
-        {
-            options.AddPolicy("AllowSpecificOrigins", policy =>
-                policy.WithOrigins("http://95.99.30.110:8080", "http://localhost:5173", "http://www.carandall.nl:8080") // Voeg specifieke toegestane domeinen toe
-                    .AllowAnyHeader()
-                    .AllowAnyMethod()
-                    .AllowCredentials() // Sta cookies toe
-            );
-        });
-
-        // Configureer de URL waarop de applicatie wordt uitgevoerd
-        var urls = Environment.GetEnvironmentVariable("ASPNETCORE_URLS") ?? "http://0.0.0.0:80"; // Standaard poort 80
-        Uri uri;
-        try
-        {
-            uri = new Uri(urls); // Parse de URL
-        }
-        catch (UriFormatException ex)
-        {
-            Console.WriteLine($"Invalid ASPNETCORE_URLS format: {urls}. Using default URL http://0.0.0.0:80");
-            uri = new Uri("http://0.0.0.0:80"); // Foutafhandelingslogica voor ongeldige URL
-        }
-
-        // Configureer Kestrel om te luisteren naar de juiste host en poort
-        builder.WebHost.ConfigureKestrel(options =>
-        {
-            if (uri.Host == "0.0.0.0")
-            {
-                options.Listen(IPAddress.Any, 5000); // Luister naar elke IP voor poort 5000
-            }
-            else
-            {
-                try
-                {
-                    options.Listen(IPAddress.Parse(uri.Host), uri.Port); // Luister naar opgegeven host en poort
-                }
-                catch (FormatException ex)
-                {
-                    Console.WriteLine($"Invalid IP address specified: {uri.Host}. Using default binding to all IPs.");
-                    options.Listen(IPAddress.Any, uri.Port); // Foutafhandelingslogica voor ongeldige IP-adressen
-                }
-            }
-        });
-
-        // Registratie van services in Dependency Injection container
-        builder.Services.AddSingleton<EnvConfig>(); // Singleton voor omgevingsconfiguratie
-        builder.Services.AddTransient<Connector>(); // Transient voor databaseverbinding
-        builder.Services.AddScoped<VehicleRepository>(); // Scoped voor repository voor voertuigen
-        builder.Services.AddScoped<IUserRepository, UserRepository>(); // Scoped voor gebruikersrepository
-        builder.Services.AddScoped<IVehicleRepository, VehicleRepository>(); // Scoped voor voertuigrepository
-        builder.Services.AddScoped<SessionHandler>(); // Scoped voor sessiebeheer
-        builder.Services.AddScoped<Crypt>(); // Scoped voor cryptografie
-        builder.Services.AddScoped<Hashing.Hash>(); // Scoped voor hashing
-        builder.Services.AddScoped<EmailService>(); // Scoped voor emailservice
-        builder.Services.AddScoped<IEmployeeRepository, EmployeeRepository>(); // Scoped voor medewerkersrepository
-        builder.Services.AddScoped<IBackOfficeRepository, BackOfficeRepository>(); // Scoped voor backoffice repository
-        builder.Services.AddScoped<IDatabaseCheckRepository, DatabaseCheckRepository>(); // Scoped voor database check repository
-        builder.Services.AddScoped<IContractRepository, ContractRepository>(); // Scoped voor contractrepository
-
-        builder.Services.AddSingleton<IHostedService, Reminders>(); // Singleton voor Reminders service
-
-        // Scoped dependencies voor klant-, voertuig- en contractdetails
-        builder.Services.AddScoped<EmailService>();
-        builder.Services.AddScoped<IDetails, Customer>();
-        builder.Services.AddScoped<IDetails, Vehicle>();
-        builder.Services.AddScoped<IDetails, Contract>();
-        builder.Services.AddScoped<Customer>();
-        builder.Services.AddScoped<Vehicle>();
-        builder.Services.AddScoped<Contract>();
-
-        // Hosted service voor herinneringen
-        builder.Services.AddHostedService<Reminders>();
-
-        // Configuratie van cookie-gebaseerde authenticatie
-        builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
-            .AddCookie(options =>
-            {
-                options.ExpireTimeSpan = TimeSpan.FromMinutes(5); // Verlooptijd van cookies
-                options.SlidingExpiration = true; // Herstellen van de vervaldatum bij activiteit
-                options.AccessDeniedPath = "/Forbidden/"; // Pad voor toegang geweigerd
-            });
-
-        // Configuratie van controllers en JSON-instellingen
-        builder.Services.AddControllers()
-            .AddJsonOptions(options =>
-            {
-                options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles; // Cyclusverwijzingen negeren bij serialisatie
-            });
-
-        // Services voor Swagger API-documentatie
-        builder.Services.AddEndpointsApiExplorer();
-        builder.Services.AddSwaggerGen();
-
-        var app = builder.Build(); // Maak de WebApplication aan
-
-        // Configureer Swagger UI en CORS
-        app.UseSwagger();
-        app.UseSwaggerUI(c => {
-            c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
-            c.RoutePrefix = string.Empty; // Verwijder standaard pad voor Swagger UI
-        });
-
-        app.UseCors("AllowSpecificOrigins"); // Gebruik de eerder gedefinieerde CORS policy
-        app.UseHttpsRedirection(); // Forceer HTTPS
-        app.MapControllers(); // Map de controllers
-        app.UseAuthorization(); // Schakel autorisatie in
-        app.UseAuthentication(); // Schakel authenticatie in
-        app.UseCookiePolicy(cookiePolicyOptions); // Gebruik de cookie policy
-
-        // Standaard controller route
-        app.MapDefaultControllerRoute();
-
-        return app; // Retourneer de geconfigureerde WebApplication
+    if (environment == "development")
+    {
+        builder.Configuration.AddJsonFile(".env", optional: true, reloadOnChange: true);
     }
+    else if (environment == "Production")
+    {
+        builder.Configuration.AddJsonFile(".env.deployment", optional: true, reloadOnChange: true);
+    }
+
+    var cookiePolicyOptions = new CookiePolicyOptions
+    {
+        MinimumSameSitePolicy = SameSiteMode.Strict
+    };
+
+
+    builder.Services.AddCors(options =>
+    {
+        /*options.AddPolicy("AllowLocalhost", policy =>
+        {
+            policy.WithOrigins("http://localhost:5173", "http://95.99.30.110:8080")  // Development URL
+                .AllowAnyHeader()
+                .AllowCredentials()
+                .AllowAnyMethod();
+        });
+
+        options.AddPolicy("AllowProduction", policy =>
+        {
+            policy.WithOrigins("http://carandall.nl", "https://carandall.nl, http://localhost:5173", "http://95.99.30.110:8080") // Production URL
+                .AllowAnyHeader()
+                .AllowCredentials()
+                .AllowAnyMethod();
+        });
+        */
+
+        options.AddPolicy("AllowSpecificOrigins", policy =>
+            policy.WithOrigins("http://95.99.30.110:8080", "http://localhost:5173", "http://www.carandall.nl:8080")
+                .AllowAnyHeader()
+                .AllowAnyMethod()
+                .AllowCredentials()
+        );
+    });
+
+    var urls = Environment.GetEnvironmentVariable("ASPNETCORE_URLS") ?? "http://0.0.0.0:80"; // Default to port 80 if not set
+
+    Uri uri;
+    try
+    {
+        uri = new Uri(urls);
+    }
+    catch (UriFormatException ex)
+    {
+        Console.WriteLine($"Invalid ASPNETCORE_URLS format: {urls}. Using default URL http://0.0.0.0:80");
+        uri = new Uri("http://0.0.0.0:80");
+    }
+
+    builder.WebHost.ConfigureKestrel(options =>
+    {
+        // Ensure IP address is valid before binding
+        if (uri.Host == "0.0.0.0" )
+        {
+            options.Listen(IPAddress.Any, 5000);  
+        }
+        else
+        {
+            try
+            {
+                options.Listen(IPAddress.Parse(uri.Host), uri.Port); 
+            }
+            catch (FormatException ex)
+            {
+                Console.WriteLine($"Invalid IP address specified: {uri.Host}. Using default binding to all IPs.");
+                options.Listen(IPAddress.Any, uri.Port);  
+            }
+        }
+    });
+    
+    // Register services for Dependency Injection
+    builder.Services.AddSingleton<EnvConfig>(); // Singleton for environment configuration
+    builder.Services.AddTransient<IConnector, Connector>(); // Transient for database connection.
+    builder.Services.AddScoped<VehicleRepository>();
+    builder.Services.AddScoped<IUserRepository, UserRepository>(); // Scoped for user repository
+    builder.Services.AddScoped<IVehicleRepository, VehicleRepository>(); // Scoped for Vehicle Repository
+    builder.Services.AddScoped<SessionHandler>(); // Scoped session handler
+    builder.Services.AddScoped<Crypt>();
+    builder.Services.AddScoped<Hashing.Hash>();
+    builder.Services.AddScoped<EmailService>();
+    builder.Services.AddScoped<IEmailService, EmailService>();
+    builder.Services.AddScoped<IEmployeeRepository, EmployeeRepository>();
+    builder.Services.AddScoped<IBackOfficeRepository, BackOfficeRepository>();
+    builder.Services.AddScoped<IDatabaseCheckRepository, DatabaseCheckRepository>();
+    builder.Services.AddScoped<IContractRepository, ContractRepository>();
+
+    builder.Services.AddSingleton<IHostedService, Reminders>(); // Register Reminders as a singleton hosted service
+
+    // Scoped dependencies
+    builder.Services.AddScoped<EmailService>();
+    builder.Services.AddScoped<Customer>();
+    builder.Services.AddScoped<Vehicle>();
+    builder.Services.AddScoped<Contract>();
+    builder.Services.AddScoped<ICustomerDetails, Customer>();
+    builder.Services.AddScoped<IVehicleDetails, Vehicle>();
+    builder.Services.AddScoped<IContractDetails, Contract>();
+
+
+    builder.Services.AddHostedService<Reminders>();
+
+    
+
+    // Configure authentication with cookie-based authentication schema.
+    builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+        .AddCookie(options =>
+        {
+            options.ExpireTimeSpan = TimeSpan.FromMinutes(5);
+            options.SlidingExpiration = true;
+            options.AccessDeniedPath = "/Forbidden/";
+        });
+
+    builder.Services.AddControllers()
+        .AddJsonOptions(options =>
+        {
+            options.JsonSerializerOptions.ReferenceHandler =
+                ReferenceHandler.IgnoreCycles;
+        });
+
+    // Services for Swagger API
+    builder.Services.AddEndpointsApiExplorer();
+    builder.Services.AddSwaggerGen();
+
+    var app = builder.Build();
+
+    app.UseSwagger();
+    app.UseSwaggerUI(c => {
+        c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+        c.RoutePrefix = string.Empty;
+    });
+    app.UseCors("AllowSpecificOrigins");
+    app.UseHttpsRedirection();
+    app.MapControllers();
+    app.UseAuthorization();
+    app.UseAuthentication();
+    app.UseCookiePolicy(cookiePolicyOptions);
+
+    //app.MapRazorPages();
+    app.MapDefaultControllerRoute();
+
+    return app;
+    }
+
+
+
 }

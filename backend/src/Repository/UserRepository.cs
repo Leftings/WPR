@@ -1,9 +1,16 @@
 ﻿using System.Data;
+using Microsoft.AspNetCore.Mvc;
 using MySql.Data.MySqlClient;
 using WPR.Database;
+using Microsoft.AspNetCore.Http.HttpResults;
 using WPR.Utils;
 using WPR.Hashing;
+using Org.BouncyCastle.Crypto.Prng;
 using WPR.Cryption;
+using System.Threading.Tasks;
+using System.Transactions;
+using Microsoft.VisualBasic;
+using Mysqlx.Resultset;
 using WPR.Controllers.customer.Subscription;
 using WPR.Controllers.General.SignUp;
 using WPR.Controllers.Employee.VehicleManager.ChangeBusinessSettings;
@@ -16,16 +23,41 @@ namespace WPR.Repository;
 /// </summary>
 public class UserRepository : IUserRepository
 {
-    private readonly Connector _connector;
+    private readonly IConnector _connector;
     private readonly Hash _hash;
     private readonly Crypt _crypt;
 
-    public UserRepository(Connector connector, Hash hash, Crypt crypt)
+    public UserRepository(IConnector connector, Hash hash, Crypt crypt)
     {
         _connector = connector ?? throw new ArgumentNullException(nameof(connector));
         _hash = hash ?? throw new ArgumentNullException(nameof(hash));
         _crypt = crypt ?? throw new ArgumentNullException(nameof(crypt));
     }
+
+    /*private async Task<bool> CheckPassword(string username, string password, string table)
+    {
+        string query = $@"SELECT password FROM {table} WHERE LOWER(email) = LOWER(@Email)";
+
+        using (var connection = _connector.CreateDbConnection())
+        
+        using (var command = new MySqlCommand(query, (MySqlConnection)connection))
+        {
+            command.Parameters.AddWithValue("@Email", username);
+
+            using (var reader = await command.ExecuteReaderAsync())
+            {
+                if (reader.HasRows)
+                {
+                    string passwordUser = reader.GetString("Password");
+
+                    return _hash.(password, passwordUser);
+                }
+
+                return false;
+            }
+        }
+    }
+    */
 
     /// <summary>
     /// Er wordt door middel van de meegegeven userType een query aangemaakt, om de juiste gegevens uit de juiste tabel op te halen.
@@ -401,11 +433,13 @@ public class UserRepository : IUserRepository
         }
         catch (MySqlException ex)
         {
+            // Handle database errors
             await Console.Error.WriteLineAsync($"Database error: {ex.Message}");
             return (false, "Database error: " + ex.Message);
         }
         catch (Exception ex)
         {
+            // Handle other errors
             await Console.Error.WriteLineAsync($"Unexpected error: {ex.Message}");
             return (false, "Unexpected error: " + ex.Message);
         }
@@ -583,81 +617,62 @@ public class UserRepository : IUserRepository
     }
 
     public async Task<(bool Status, string Message)> AddPersonalCustomer(SignUpRequest request)
-{
-    // Checkt of het emailadres al in gebruik is
-    var emailCheck = checkUsageEmailAsync(request.Email);
-    
-    // Valideert het emailadres
-    bool validEmail = EmailChecker.IsValidEmail(request.Email);
-    
-    // Valideert de geboortedatum
-    bool validBirthday = BirthdayChecker.IsValidBirthday(request.BirthDate);
-    
-    // Valideert het telefoonnummer
-    bool validPhoneNumber = TelChecker.IsValidPhoneNumber(request.TelNumber);
-    
-    // Valideert het wachtwoord
-    (bool isValidPassword, string passwordError) validPassword = PasswordChecker.IsValidPassword(request.Password);
-    
-    // Wacht op het resultaat van de emailcheck
-    var emailStatus = await emailCheck;
-
-    // Als alles geldig is en het emailadres nog niet in gebruik is
-    if (validEmail && validBirthday && validPhoneNumber && validPassword.isValidPassword && !emailStatus.status)
     {
-        // Maakt een klant aan
-        var customer = await addCustomerAsync(new object[]
-        {
-            request.Adres,
-            request.TelNumber,
-            _hash.createHash(request.Password),
-            request.Email,
-            request.FirstName,
-            request.LastName
-        });
+        var emailCheck = checkUsageEmailAsync(request.Email);
+        bool validEmail = EmailChecker.IsValidEmail(request.Email);
+        bool validBirthday = BirthdayChecker.IsValidBirthday(request.BirthDate);
+        bool validPhoneNumber = TelChecker.IsValidPhoneNumber(request.TelNumber);
+        (bool isValidPassword, string passwordError) validPassword = PasswordChecker.IsValidPassword(request.Password);
+        var emailStatus = await emailCheck;
 
-        // Als het aanmaken van de klant mislukt, geef een foutmelding
-        if (!customer.status)
+        Console.WriteLine(validBirthday);
+
+        if (validEmail && validBirthday && validPhoneNumber && validPassword.isValidPassword && !emailStatus.status)
         {
-            return (false, customer.message);
+            var customer = await addCustomerAsync(new object[]
+            {
+                request.Adres,
+                request.TelNumber,
+                _hash.createHash(request.Password),
+                request.Email,
+                request.FirstName,
+                request.LastName
+            });
+
+            if (!customer.status)
+            {
+                return (false, customer.message);
+            }
+
+            await addPersonalCustomerAsync(new object[]
+            {
+                customer.newUserID,
+                request.BirthDate
+            });
+
+            return (true, "Customer added");
         }
-
-        // Voeg extra persoonlijke gegevens toe
-        await addPersonalCustomerAsync(new object[]
+        else if (!validEmail)
         {
-            customer.newUserID,
-            request.BirthDate
-        });
-
-        // Klant succesvol toegevoegd
-        return (true, "Customer added");
+            return (false, "Email allready in use");
+        }
+        else if (!validBirthday)
+        {
+            return (false, "Invalid birthday");
+        }
+        else if (!validPassword.isValidPassword)
+        {
+            return (false, validPassword.passwordError);
+        }
+        else if (emailStatus.status)
+        {
+            return (false, emailStatus.message);
+        }
+        else
+        {
+            return (false, "An unexpected error occured");
+        }
     }
-    // Als het emailadres al in gebruik is
-    else if (!validEmail)
-    {
-        return (false, "Email al in gebruik");
-    }
-    // Als de geboortedatum niet geldig is
-    else if (!validBirthday)
-    {
-        return (false, "Ongeldige geboortedatum");
-    }
-    // Als het wachtwoord niet geldig is
-    else if (!validPassword.isValidPassword)
-    {
-        return (false, validPassword.passwordError);
-    }
-    // Als het emailadres al in gebruik is (check via emailStatus)
-    else if (emailStatus.status)
-    {
-        return (false, emailStatus.message);
-    }
-    // Onverwachte fout
-    else
-    {
-        return (false, "Er is een onverwachte fout opgetreden");
-    }
-}
 
     /// <summary>
     /// AddCustomerChecks kijkt of alle ingevoerde velden geldig zijn. Als een check faalt falen alle checks
@@ -671,7 +686,6 @@ public class UserRepository : IUserRepository
     {
         if (isPrivate)
         {
-            // Validatie voor private klant: geboortedatum en telefoonnummer
             if (!BirthdayChecker.IsValidBirthday(detailed.BirthDate))
             {
                 return (false, "No Valid Birthday");
@@ -687,7 +701,6 @@ public class UserRepository : IUserRepository
         }
         else
         {
-            // Validatie voor niet-private klant: controleer of het domein van het emailadres bestaat
             DomainEmailChecker domainEmailChecker = new DomainEmailChecker(_connector);
             (bool Found, int KvK) checkDomain = await domainEmailChecker.DomainExists(customer.Email);
 
@@ -701,11 +714,8 @@ public class UserRepository : IUserRepository
             }
         }
 
-        // Controleer of het emailadres geldig is
         var emailCheck = checkUsageEmailAsync(customer.Email);
         (bool isValidPassword, string passwordError) validPassword = PasswordChecker.IsValidPassword(customer.Password);
-    
-        // Controleer of het wachtwoord geldig is
         if (!EmailChecker.IsValidEmail(customer.Email))
         {
             return (false, "No Valid Email Format");
@@ -715,7 +725,6 @@ public class UserRepository : IUserRepository
             return (false, validPassword.passwordError);
         }
 
-        // Controleer of het emailadres al in gebruik is
         (bool Status, string Message) emailStatus = await emailCheck;
         return (!emailStatus.Status, emailStatus.Message);
     }
@@ -730,14 +739,12 @@ public class UserRepository : IUserRepository
     private async Task<(int StatusCode, string Message)> AddPrivateCustomerDetails(SignUpRequestCustomerPrivate request,
         int userId, MySqlConnection connections)
     {
-        // Controleer de klantgegevens voordat je ze toevoegt
         (bool Status, string Message) checks = await AddCustomerChecks(true, null, request);
 
         if (checks.Status)
         {
             try
             {
-                // SQL-query om klantgegevens in de Private tabel in te voegen
                 string query =
                     "INSERT INTO Private (ID, FirstName, LastName, TelNum, Adres, BirthDate) VALUES (@I, @F, @L, @T, @A, @B)";
                 using (var command = new MySqlCommand(query, connections))
@@ -749,7 +756,6 @@ public class UserRepository : IUserRepository
                     command.Parameters.AddWithValue("@A", request.Adres);
                     command.Parameters.AddWithValue("@B", request.BirthDate);
 
-                    // Voer de query uit en check of het toevoegen gelukt is
                     if (await command.ExecuteNonQueryAsync() > 0)
                     {
                         return (200, "Account Succesfully Added");
@@ -769,10 +775,8 @@ public class UserRepository : IUserRepository
             }
         }
 
-        // Als de klantgegevens niet valide zijn, geef dan een foutmelding terug
         return (412, checks.Message);
     }
-
 
     /// <summary>
     /// AddCustomer krijgt SignUpRequestCustomer binnen en SignUpRequestCustomerPrivate.
@@ -790,144 +794,123 @@ public class UserRepository : IUserRepository
     /// <param name="privateRequest"></param>
     /// <returns></returns>
     public async Task<(int StatusCode, string Message)> AddCustomer(SignUpRequestCustomer request,
-    SignUpRequestCustomerPrivate privateRequest)
-{
-    // Controleer de klantgegevens voordat je ze toevoegt
-    (bool Status, string Message) checks = await AddCustomerChecks(request.IsPrivate, request, privateRequest);
-
-    if (checks.Status)
+        SignUpRequestCustomerPrivate privateRequest)
     {
-        try
+        (bool Status, string Message) checks = await AddCustomerChecks(request.IsPrivate, request, privateRequest);
+
+        if (checks.Status)
         {
-            string query;
-
-            // Als het een private klant is, maak dan een query zonder KvK
-            if (request.AccountType.Equals("Private"))
+            try
             {
-                query = "INSERT INTO Customer (Email, AccountType, Password) VALUES (@E, @A, @P)";
-            }
-            else
-            {
-                // Als het een business klant is, voeg KvK toe aan de query
-                query = "INSERT INTO Customer (Email, KvK, AccountType, Password) VALUES (@E, @K, @A, @P)";
-            }
+                string query;
 
-            // Maak verbinding met de database en start een transactie
-            using (var connection = _connector.CreateDbConnection())
-            using (var command = new MySqlCommand(query, (MySqlConnection)connection))
-            using (var transaction = connection.BeginTransaction())
-            {
-                // Voeg de klantgegevens toe aan de query
-                command.Parameters.AddWithValue("@E", request.Email);
-                command.Parameters.AddWithValue("@A", request.AccountType);
-
-                string hashedPassword = _hash.createHash(request.Password);
-                command.Parameters.AddWithValue("@P", hashedPassword);
-
-                // Voeg KvK toe voor business klanten
-                if (request.AccountType.Equals("Business"))
+                if (request.AccountType.Equals("Private"))
                 {
-                    command.Parameters.AddWithValue("@K", request.KvK);
+                    query = "INSERT INTO Customer (Email, AccountType, Password) VALUES (@E, @A, @P)";
+                }
+                else
+                {
+                    query = "INSERT INTO Customer (Email, KvK, AccountType, Password) VALUES (@E, @K, @A, @P)";
                 }
 
-                try
+                using (var connection = _connector.CreateDbConnection())
+                using (var command = new MySqlCommand(query, (MySqlConnection)connection))
+                using (var transaction = connection.BeginTransaction())
                 {
-                    // Voer de query uit en controleer of de klant is toegevoegd
-                    if (await command.ExecuteNonQueryAsync() > 0)
+                    command.Parameters.AddWithValue("@E", request.Email);
+                    command.Parameters.AddWithValue("@A", request.AccountType);
+
+                    string hashedPassword = _hash.createHash(request.Password);
+                    command.Parameters.AddWithValue("@P", hashedPassword);
+
+                    if (request.AccountType.Equals("Business"))
                     {
-                        if (request.AccountType.Equals("Private"))
-                        {
-                            // Verkrijg het laatst ingevoegde klant-ID
-                            command.CommandText = "SELECT LAST_INSERT_ID();";
-                            int userId = Convert.ToInt32(await command.ExecuteScalarAsync());
-
-                            // Voeg private klantdetails toe
-                            (int StatusCode, string Message) response =
-                                await AddPrivateCustomerDetails(privateRequest, userId,
-                                    (MySqlConnection)connection);
-
-                            // Als er een fout is, verwijder de klant en rolback de transactie
-                            if (response.StatusCode == 500 || response.StatusCode == 412)
-                            {
-                                string deleteCustomerQuery = "DELETE FROM Customer WHERE ID = @I";
-                                using (var deleteCommand = new MySqlCommand(deleteCustomerQuery,
-                                           (MySqlConnection)connection))
-                                {
-                                    deleteCommand.Parameters.AddWithValue("@I", userId);
-                                    await deleteCommand.ExecuteNonQueryAsync();
-                                }
-
-                                transaction.Rollback();
-                                return response;
-                            }
-                        }
-
-                        // Commit de transactie als alles succesvol is
-                        transaction.Commit();
-                        return (200, "Customer Account Added Successfully");
+                        command.Parameters.AddWithValue("@K", request.KvK);
                     }
 
-                    return (500, "Unexpected Error Occurred");
-                }
-                catch (Exception ex)
-                {
-                    // Als er een fout is, rollback de transactie en geef een foutmelding terug
-                    Console.WriteLine("Error: " + ex.Message);
-                    transaction.Rollback();
-                    return (500, ex.Message);
+                    try
+                    {
+                        if (await command.ExecuteNonQueryAsync() > 0)
+                        {
+                            if (request.AccountType.Equals("Private"))
+                            {
+                                command.CommandText = "SELECT LAST_INSERT_ID();";
+                                int userId = Convert.ToInt32(await command.ExecuteScalarAsync());
+
+                                (int StatusCode, string Message) response =
+                                    await AddPrivateCustomerDetails(privateRequest, userId,
+                                        (MySqlConnection)connection);
+
+                                if (response.StatusCode == 500 || response.StatusCode == 412)
+                                {
+                                    string deleteCustomerQuery = "DELETE FROM Customer WHERE ID = @I";
+                                    using (var deleteCommand = new MySqlCommand(deleteCustomerQuery,
+                                               (MySqlConnection)connection))
+                                    {
+                                        deleteCommand.Parameters.AddWithValue("@I", userId);
+                                        await deleteCommand.ExecuteNonQueryAsync();
+                                    }
+
+                                    transaction.Rollback();
+                                    return response;
+                                }
+                            }
+
+                            transaction.Commit();
+                            return (200, "Customer Account Added Successfully");
+                        }
+
+                        return (500, "Unexpected Error Occurred");
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine("Error: " + ex.Message);
+                        transaction.Rollback();
+                        return (500, ex.Message);
+                    }
                 }
             }
+            catch (MySqlException ex)
+            {
+                Console.WriteLine("Error: " + ex.Message);
+                return (500, ex.Message);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error: " + ex.Message);
+                return (500, ex.Message);
+            }
         }
-        catch (MySqlException ex)
-        {
-            // Fout bij databaseverbinding
-            Console.WriteLine("Error: " + ex.Message);
-            return (500, ex.Message);
-        }
-        catch (Exception ex)
-        {
-            // Algemene foutafhandeling
-            Console.WriteLine("Error: " + ex.Message);
-            return (500, ex.Message);
-        }
-    }
 
-    // Als de klantgegevens niet geldig zijn, geef dan een foutmelding terug
-    return (412, checks.Message);
-}
+        return (412, checks.Message);
+    }
 
 
     private string CreateUpdateQuery(string tabel, IList<object[]> data)
     {
-        // Begin van de update query
         string query = $"UPDATE {tabel} SET";
 
         for (int i = 1; i < data.Count; i++)
         {
-            // Als het veld een wachtwoord is, hash dan de waarde
             if (((string)data[i][0]).Equals("Password"))
             {
                 query += $" Password = '{_hash.createHash((string)data[i][1])}'";
             }
-            // Als het datatype van het veld een int is
             else if (data[i][2].Equals("System.Int32"))
             {
                 query += $" {data[i][0]} = {data[i][1]}";
             }
             else
             {
-                // Anders wordt de waarde als string ingevoegd
                 query += $" {data[i][0]} = '{data[i][1]}'";
             }
 
-            // Voeg komma toe als dit niet het laatste item is
             if (i != data.Count - 1)
             {
                 query += ",";
             }
         }
 
-        // Voeg de WHERE clausule toe
         query += $" WHERE {data[0][0]} = {data[0][1]}";
 
         Console.WriteLine(query);
@@ -936,97 +919,507 @@ public class UserRepository : IUserRepository
     }
 
     public async Task<(int StatusCode, string Message)> ChangeVehicleManagerInfo(ChangeVehicleManagerInfo request)
-{
-    try
     {
-        // Logging ontvangen verzoek om voertuigmanager bij te werken
-        Console.WriteLine($"Received request to update Vehicle Manager with ID: {request.ID}");
-        Console.WriteLine($"New Email: {request.Email}");
-
-        // Controleer of het opgegeven e-mailadres leeg is
-        if (string.IsNullOrEmpty(request.Email))
+        try
         {
-            Console.WriteLine("Error: The provided email is empty.");
-            return (400, "Email cannot be empty.");
-        }
+            Console.WriteLine($"Received request to update Vehicle Manager with ID: {request.ID}");
+            Console.WriteLine($"New Email: {request.Email}");
 
-        // Hash het nieuwe wachtwoord (voordat het wordt bijgewerkt)
-        string hashedPassword = _hash.createHash(request.Password);
-        Console.WriteLine($"Hashed Password: {hashedPassword}");
-
-        // Valideer of het nieuwe wachtwoord aan de vereiste indeling voldoet
-        var (isValid, errorMessage) = PasswordChecker.IsValidPassword(request.Password);
-        if (!isValid)
-        {
-            Console.WriteLine($"Error: {errorMessage}");
-            return (400, errorMessage);
-        }
-
-        // Controleer of het e-mailadres moet worden bijgewerkt (alleen doorvoeren van update als het e-mailadres is veranderd)
-        string validateQuery = @"
-        SELECT Email FROM VehicleManager
-        WHERE ID = @ID";
-
-        using (var connection = _connector.CreateDbConnection())
-        {
-            // Controleer of de databaseverbinding geldig is
-            if (connection == null)
+            if (string.IsNullOrEmpty(request.Email))
             {
-                Console.WriteLine("Database connection is null.");
-                return (500, "Database connection failed.");
+                Console.WriteLine("Error: The provided email is empty.");
+                return (400, "Email cannot be empty.");
             }
 
-            // Open de databaseverbinding als deze nog niet open is
-            if (connection.State != System.Data.ConnectionState.Open)
+            // Hash the new password (before updating)
+            string hashedPassword = _hash.createHash(request.Password);
+            Console.WriteLine($"Hashed Password: {hashedPassword}");
+
+            // Validate if the new password follows the required format
+            var (isValid, errorMessage) = PasswordChecker.IsValidPassword(request.Password);
+            if (!isValid)
             {
-                Console.WriteLine("Opening database connection...");
-                connection.Open();
-                Console.WriteLine("Connection opened successfully.");
+                Console.WriteLine($"Error: {errorMessage}");
+                return (400, errorMessage);
             }
 
-            using (var command = new MySqlCommand(validateQuery, (MySqlConnection)connection))
+            // Check if the email needs to be updated (only proceed with update if the email has changed)
+            string validateQuery = @"
+            SELECT Email FROM VehicleManager
+            WHERE ID = @ID";
+
+            using (var connection = _connector.CreateDbConnection())
             {
-                command.Parameters.AddWithValue("@ID", request.ID);
+                if (connection == null)
+                {
+                    Console.WriteLine("Database connection is null.");
+                    return (500, "Database connection failed.");
+                }
+
+                if (connection.State != System.Data.ConnectionState.Open)
+                {
+                    Console.WriteLine("Opening database connection...");
+                    connection.Open();
+                    Console.WriteLine("Connection opened successfully.");
+                }
+
+                using (var command = new MySqlCommand(validateQuery, (MySqlConnection)connection))
+                {
+                    command.Parameters.AddWithValue("@ID", request.ID);
+
+                    using (var reader = await command.ExecuteReaderAsync())
+                    {
+                        if (await reader.ReadAsync())
+                        {
+                            string existingEmail = reader.GetString("Email");
+
+                            if (existingEmail == request.Email)
+                            {
+                                // If the email hasn't changed, return early with a response
+                                Console.WriteLine("Email is the same. No update needed.");
+                                return (200, "No changes to the email address.");
+                            }
+                        }
+                        else
+                        {
+                            Console.WriteLine("Error: Vehicle Manager not found.");
+                            return (404, "Vehicle Manager not found.");
+                        }
+                    }
+                }
+            }
+
+            // Proceed with updating the email and password (now hashed)
+            string updateQuery = @"
+            UPDATE VehicleManager
+            SET Email = @Email,
+                Password = @Password
+            WHERE ID = @ID";
+
+            using (var connection = _connector.CreateDbConnection())
+            {
+                if (connection == null)
+                {
+                    Console.WriteLine("Database connection is null.");
+                    return (500, "Database connection failed.");
+                }
+
+                if (connection.State != System.Data.ConnectionState.Open)
+                {
+                    Console.WriteLine("Opening database connection...");
+                    connection.Open();
+                    Console.WriteLine("Connection opened successfully.");
+                }
+
+                using (var command = new MySqlCommand(updateQuery, (MySqlConnection)connection))
+                {
+                    command.Parameters.AddWithValue("@ID", request.ID);
+                    command.Parameters.AddWithValue("@Email", request.Email);
+                    command.Parameters.AddWithValue("@Password", hashedPassword);
+
+                    try
+                    {
+                        int rowsAffected = await command.ExecuteNonQueryAsync();
+
+                        if (rowsAffected > 0)
+                        {
+                            // Successfully updated the vehicle manager info
+                            Console.WriteLine("Vehicle Manager updated successfully.");
+                            return (200, "Vehicle Manager updated successfully.");
+                        }
+                        else
+                        {
+                            // No rows affected, meaning no update occurred
+                            Console.WriteLine("Error: Vehicle Manager not found.");
+                            return (404, "Vehicle Manager not found.");
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine($"Error executing query: {ex.Message}");
+                        return (500, $"Error executing query: {ex.Message}");
+                    }
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error: {ex.Message}");
+            return (500, $"Error: {ex.Message}");
+        }
+    }
+
+
+
+    public async Task<(int StatusCode, string Message)> ChangeBusinessInfo(ChangeBusinessRequest request)
+    {
+        try
+        {
+            string query = "SELECT Business FROM VehicleManager WHERE ID = @I";
+
+            using (var connection = (MySqlConnection)_connector.CreateDbConnection())
+            using (var transaction = connection.BeginTransaction())
+            using (var command = new MySqlCommand(query, connection))
+            {
+                command.Parameters.AddWithValue("@I", request.VehicleManagerInfo?.ID);
 
                 using (var reader = await command.ExecuteReaderAsync())
                 {
                     if (await reader.ReadAsync())
                     {
-                        string existingEmail = reader.GetString("Email");
+                        request.BusinessInfo.KvK = Convert.ToInt32(reader.GetValue(0));
 
-                        // Als het e-mailadres niet veranderd is, geen update uitvoeren
-                        if (existingEmail == request.Email)
+                        await reader.CloseAsync();
+
+                        var changeBusiness = await ChangeBusinessData(request.BusinessInfo, connection);
+
+                        if (changeBusiness.StatusCode != 200)
                         {
-                            Console.WriteLine("Email is the same. No update needed.");
-                            return (200, "No changes to the email address.");
+                            transaction.Rollback();
+                            return (changeBusiness.StatusCode, changeBusiness.Message);
+                        }
+                        else
+                        {
+                            transaction.Commit();
+                            return (200, "Update Successful");
                         }
                     }
-                    else
-                    {
-                        Console.WriteLine("Error: Vehicle Manager not found.");
-                        return (404, "Vehicle Manager not found.");
-                    }
+
+                    transaction.Rollback();
+                    return (404, "VehicleManager not found or KvK is missing");
                 }
             }
         }
+        catch (MySqlException ex)
+        {
+            return (500, ex.Message);
+        }
+        catch (OverflowException ex)
+        {
+            return (500, ex.Message);
+        }
+        catch (Exception ex)
+        {
+            return (500, ex.Message);
+        }
+    }
 
-        // Als het e-mailadres is veranderd, voer de update uit
-        string updateQuery = @"
-        UPDATE VehicleManager
-        SET Email = @Email,
-            Password = @Password
-        WHERE ID = @ID";
+    [HttpGet("GetBusinessDomainByKvK")]
+    public async Task<(int StatusCode, string Domain)> GetBusinessDomainByKvK(int KvK)
+    {
+        try
+        {
+            string query = "SELECT Domain FROM Business WHERE KvK = @KvK";
+
+            using (var connection = (MySqlConnection)_connector.CreateDbConnection())
+            using (var command = new MySqlCommand(query, connection))
+            {
+                command.Parameters.AddWithValue("@KvK", KvK);
+
+                using (var reader = await command.ExecuteReaderAsync())
+                {
+                    if (await reader.ReadAsync())
+                    {
+                        string domain = reader.GetString("Domain");
+                        return (200, domain);
+                    }
+
+                    return (404, "Business with the specified KvK not found.");
+                }
+            }
+        }
+        catch (MySqlException ex)
+        {
+            return (500, ex.Message);
+        }
+        catch (Exception ex)
+        {
+            return (500, ex.Message);
+        }
+    }
+
+private async Task<(int StatusCode, string Message)> ChangeBusinessData(ChangeBusinessInfo businessInfo, MySqlConnection connection)
+{
+    string updateQuery = "UPDATE Business SET BusinessName = @BusinessName, Adres = @Adres, ContactEmail = @ContactEmail, Abonnement = @Abonnement WHERE KvK = @KvK";
+
+    using (var command = new MySqlCommand(updateQuery, connection))
+    {
+        command.Parameters.AddWithValue("@KvK", businessInfo.KvK);
+        command.Parameters.AddWithValue("@BusinessName", businessInfo.BusinessName);
+        command.Parameters.AddWithValue("@Adres", businessInfo.Adres);
+        command.Parameters.AddWithValue("@ContactEmail", businessInfo.ContactEmail);
+        command.Parameters.AddWithValue("@Abonnement", businessInfo.Abonnement);
+
+        try
+        {
+            int rowsAffected = await command.ExecuteNonQueryAsync();
+            if (rowsAffected > 0)
+            {
+                return (200, "Business information updated successfully");
+            }
+            else
+            {
+                return (404, "Business not found with the specified KvK");
+            }
+        }
+        catch (MySqlException ex)
+        {
+            return (500, $"Database error: {ex.Message}");
+        }
+    }
+}
+
+    public async Task<List<string>> GetAllSubscriptionsAsync()
+    {
+        try
+        {
+            string query = "SELECT Type FROM Abonnement";
+
+            using (var connection = _connector.CreateDbConnection())
+            using (var command = new MySqlCommand(query, (MySqlConnection)_connector.CreateDbConnection()))
+            using (var reader = await command.ExecuteReaderAsync())
+            {
+                var subscriptions = new List<string>();
+
+                while (await reader.ReadAsync())
+                {
+                    subscriptions.Add((string)reader.GetValue(0));
+                }
+
+                return subscriptions;
+            }
+        }
+        catch (MySqlException e)
+        {
+            Console.WriteLine(e.Message);
+            return null;
+        }
+
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            return null;
+        }
+    }
+
+    public async Task<SubscriptionRequest> GetSubscriptionDataAsync(int id)
+    {
+        try
+        {
+            string query = "SELECT ID, Type, Description, Price FROM Abonnement WHERE ID = @Id";
+
+            using (var connection = _connector.CreateDbConnection())
+            using (var command = new MySqlCommand(query, (MySqlConnection)connection))
+            {
+                command.Parameters.AddWithValue("@Id", id);
+                using (var reader = await command.ExecuteReaderAsync())
+                {
+                    if (await reader.ReadAsync())
+                    {
+                        var type = reader["Type"].ToString();
+                        var description = reader["Description"].ToString();
+                        var price = reader["Price"].ToString().Equals("") ? 0 : Convert.ToDouble(reader["Price"]);
+                        
+                        return new SubscriptionRequest
+                        {
+                            Id = id,
+                            Type = type,
+                            Description = description,
+                            Price = price
+                        };
+                    }
+                }
+            }
+
+            return null;
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.Message);
+            return null;
+        }
+    }
+
+
+
+    public async Task<List<int>> GetSubscriptionIdsAsync()
+    {
+        try
+        {
+            string query = "SELECT ID FROM Abonnement";
+
+            using (var connection = _connector.CreateDbConnection())
+            using (var command = new MySqlCommand(query, (MySqlConnection)connection))
+            using (var reader = await command.ExecuteReaderAsync())
+            {
+                var ids = new List<int>();
+                while (await reader.ReadAsync())
+                {
+                    ids.Add(Convert.ToInt32(reader.GetValue(0)));
+                }
+
+                return ids;
+            }
+        }
+        catch (MySqlException ex)
+        {
+            Console.WriteLine(ex.Message);
+            return null;
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.Message);
+            return null;
+        }
+    }
+    
+    public async Task<Dictionary<string, object>> GetCustomerDetails(int id)
+    {
+        string query = $"SELECT * FROM Customer WHERE ID = {id}";
+        Dictionary<string, object> info = new Dictionary<string, object>();
+
+        try
+        {
+            using (var connection = _connector.CreateDbConnection())
+            using (var command = new MySqlCommand(query, (MySqlConnection)connection))
+            using (var reader = await command.ExecuteReaderAsync())
+            {
+                while (await reader.ReadAsync())
+                {
+                    for (int i = 0; i < reader.FieldCount; i++)
+                    {
+                        info[reader.GetName(i)] = reader.GetValue(i);
+                    }
+                }
+
+                return info;
+            }
+        }
+        catch (MySqlException ex)
+        {
+            Console.WriteLine(ex.Message);
+            throw;
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.Message);
+            throw;
+        }
+    }
+
+    public async Task<VehicleManager> GetVehicleManagerInfoAsync(int id)
+    {
+        try
+        {
+            string query = "SELECT ID, Email, Password, Business FROM VehicleManager WHERE ID = @Id";
+
+            using (var connection = _connector.CreateDbConnection())
+            using (var command = new MySqlCommand(query, (MySqlConnection)connection))
+            {
+                command.Parameters.AddWithValue("@Id", id);
+                using (var reader = await command.ExecuteReaderAsync())
+                {
+                    if (await reader.ReadAsync())
+                    {
+                        return new VehicleManager
+                        {
+                            Id = reader.GetInt32("ID"),
+                            Email = reader["Email"].ToString(),
+                            Password = reader["Password"].ToString(),
+                            Business = reader["Business"].ToString()
+                        };
+                    }
+                }
+            }
+
+            return null;
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.Message);
+            return null;
+        }
+    }
+    public async Task<List<Customer>> GetCustomersByBusinessNumberAsync(string Kvk)
+    {
+        try
+        {
+            string query = "SELECT ID, Email, Kvk FROM Customer WHERE Kvk = @Kvk";
+
+            using (var connection = _connector.CreateDbConnection())
+            using (var command = new MySqlCommand(query, (MySqlConnection)connection))
+            {
+                command.Parameters.AddWithValue("@Kvk", Kvk.Trim()); // Ensure no leading/trailing spaces
+
+                using (var reader = await command.ExecuteReaderAsync())
+                {
+                    var customers = new List<Customer>();
+
+                    while (await reader.ReadAsync())
+                    {
+                        customers.Add(new Customer
+                        {
+                            Id = reader.GetInt32("ID"),
+                            Email = reader["Email"].ToString(),
+                            Kvk = reader["Kvk"].ToString()
+                        });
+                    }
+
+                    return customers;
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error in GetCustomersByBusinessNumberAsync: {ex.Message}");
+            return null;
+        }
+    }
+
+
+    public async Task<bool> UpdateCustomerAsync(int id, string email, string password)
+{
+    try
+    {
+        Console.WriteLine($"Received request to update Customer with ID: {id}");
+        Console.WriteLine($"New Email: {email}");
+
+        if (id <= 0)
+        {
+            Console.WriteLine("Error: Invalid ID.");
+            return false;
+        }
+
+        if (string.IsNullOrEmpty(email) || string.IsNullOrEmpty(password))
+        {
+            Console.WriteLine("Error: Email or Password cannot be empty.");
+            return false;
+        }
+
+        // Hash the new password (before updating)
+        string hashedPassword = _hash.createHash(password);
+        Console.WriteLine($"Hashed Password: {hashedPassword}");
+
+        // Validate the password format if needed (if you have a password checker class like in the previous example)
+        var (isValid, errorMessage) = PasswordChecker.IsValidPassword(password);
+        if (!isValid)
+        {
+            Console.WriteLine($"Error: {errorMessage}");
+            return false;
+        }
+
+        // No need to check for email change, we proceed with updating
+        // Proceed with updating the email and hashed password in the database
+        string updateQuery = "UPDATE Customer SET Email = @Email, Password = @Password WHERE ID = @ID";
 
         using (var connection = _connector.CreateDbConnection())
         {
-            // Controleer of de databaseverbinding geldig is
             if (connection == null)
             {
                 Console.WriteLine("Database connection is null.");
-                return (500, "Database connection failed.");
+                return false;
             }
 
-            // Open de databaseverbinding als deze nog niet open is
             if (connection.State != System.Data.ConnectionState.Open)
             {
                 Console.WriteLine("Opening database connection...");
@@ -1036,500 +1429,42 @@ public class UserRepository : IUserRepository
 
             using (var command = new MySqlCommand(updateQuery, (MySqlConnection)connection))
             {
-                command.Parameters.AddWithValue("@ID", request.ID);
-                command.Parameters.AddWithValue("@Email", request.Email);
+                command.Parameters.AddWithValue("@ID", id);
+                command.Parameters.AddWithValue("@Email", email);
                 command.Parameters.AddWithValue("@Password", hashedPassword);
 
                 try
                 {
-                    // Voer de update uit en controleer of er rijen zijn bijgewerkt
                     int rowsAffected = await command.ExecuteNonQueryAsync();
 
                     if (rowsAffected > 0)
                     {
-                        // Bijgewerkte voertuigmanager
-                        Console.WriteLine("Vehicle Manager updated successfully.");
-                        return (200, "Vehicle Manager updated successfully.");
+                        // Successfully updated the customer info
+                        Console.WriteLine("Customer updated successfully.");
+                        return true;
                     }
                     else
                     {
-                        // Geen rijen bijgewerkt, mogelijk geen voertuigmanager gevonden
-                        Console.WriteLine("Error: Vehicle Manager not found.");
-                        return (404, "Vehicle Manager not found.");
-                    }
-                }
-                catch (Exception ex)
-                {
-                    // Fout tijdens query-executie
-                    Console.WriteLine($"Error executing query: {ex.Message}");
-                    return (500, $"Error executing query: {ex.Message}");
-                }
-            }
-        }
-    }
-    catch (Exception ex)
-    {
-        // Algemene foutafhandeling
-        Console.WriteLine($"Error: {ex.Message}");
-        return (500, $"Error: {ex.Message}");
-    }
-}
-
-   public async Task<(int StatusCode, string Message)> ChangeBusinessInfo(ChangeBusinessRequest request)
-{
-    try
-    {
-        // Query om de KvK op te halen voor de opgegeven VehicleManager ID
-        string query = "SELECT Business FROM VehicleManager WHERE ID = @I";
-
-        using (var connection = (MySqlConnection)_connector.CreateDbConnection())
-        using (var transaction = connection.BeginTransaction()) // Begin een transactie voor veiligheid
-        using (var command = new MySqlCommand(query, connection))
-        {
-            // Voeg de VehicleManager ID toe aan de query
-            command.Parameters.AddWithValue("@I", request.VehicleManagerInfo?.ID);
-
-            using (var reader = await command.ExecuteReaderAsync())
-            {
-                // Als de voertuigmanager wordt gevonden
-                if (await reader.ReadAsync())
-                {
-                    // Haal de KvK waarde op en zet deze in het request object
-                    request.BusinessInfo.KvK = Convert.ToInt32(reader.GetValue(0));
-
-                    await reader.CloseAsync(); // Sluit de reader
-
-                    // Voer de wijziging van de bedrijfsinformatie uit
-                    var changeBusiness = await ChangeBusinessData(request.BusinessInfo, connection);
-
-                    // Als er een fout optreedt bij het wijzigen van de bedrijfsinformatie
-                    if (changeBusiness.StatusCode != 200)
-                    {
-                        // Rolback de transactie bij fout
-                        transaction.Rollback();
-                        return (changeBusiness.StatusCode, changeBusiness.Message);
-                    }
-                    else
-                    {
-                        // Commit de transactie bij succes
-                        transaction.Commit();
-                        return (200, "Update Successful");
-                    }
-                }
-
-                // Als de voertuigmanager niet wordt gevonden of KvK ontbreekt
-                transaction.Rollback();
-                return (404, "VehicleManager not found or KvK is missing");
-            }
-        }
-    }
-    catch (MySqlException ex)
-    {
-        // Fout bij MySQL-query
-        return (500, ex.Message);
-    }
-    catch (OverflowException ex)
-    {
-        // Fout bij overloop van getal
-        return (500, ex.Message);
-    }
-    catch (Exception ex)
-    {
-        // Algemene foutafhandeling
-        return (500, ex.Message);
-    }
-}
-
-public async Task<(int StatusCode, string Domain)> GetBusinessDomainByKvK(int KvK)
-{
-    try
-    {
-        // SQL query om het domein op te halen voor het opgegeven KvK nummer
-        string query = "SELECT Domain FROM Business WHERE KvK = @KvK";
-
-        using (var connection = (MySqlConnection)_connector.CreateDbConnection())
-        using (var command = new MySqlCommand(query, connection))
-        {
-            // Voeg het KvK nummer toe aan de query
-            command.Parameters.AddWithValue("@KvK", KvK);
-
-            using (var reader = await command.ExecuteReaderAsync())
-            {
-                // Als er een resultaat is voor de opgegeven KvK
-                if (await reader.ReadAsync())
-                {
-                    // Haal het domein op en geef het terug
-                    string domain = reader.GetString("Domain");
-                    return (200, domain); // Succesvol resultaat, met het domein
-                }
-
-                // Als er geen bedrijfsinformatie gevonden is voor de opgegeven KvK
-                return (404, "Business with the specified KvK not found.");
-            }
-        }
-    }
-    catch (MySqlException ex)
-    {
-        // Fout bij MySQL-query
-        return (500, ex.Message);
-    }
-    catch (Exception ex)
-    {
-        // Algemene foutafhandeling voor andere uitzonderingen
-        return (500, ex.Message);
-    }
-}
-
-private async Task<(int StatusCode, string Message)> ChangeBusinessData(ChangeBusinessInfo businessInfo, MySqlConnection connection)
-{
-    // SQL-query voor het bijwerken van de bedrijfsgegevens
-    string updateQuery = "UPDATE Business SET BusinessName = @BusinessName, Adres = @Adres, ContactEmail = @ContactEmail, Abonnement = @Abonnement WHERE KvK = @KvK";
-
-    using (var command = new MySqlCommand(updateQuery, connection))
-    {
-        // Voeg de parameters toe aan de query
-        command.Parameters.AddWithValue("@KvK", businessInfo.KvK);
-        command.Parameters.AddWithValue("@BusinessName", businessInfo.BusinessName);
-        command.Parameters.AddWithValue("@Adres", businessInfo.Adres);
-        command.Parameters.AddWithValue("@ContactEmail", businessInfo.ContactEmail);
-        command.Parameters.AddWithValue("@Abonnement", businessInfo.Abonnement);
-
-        try
-        {
-            // Voer de query uit en krijg het aantal aangetaste rijen terug
-            int rowsAffected = await command.ExecuteNonQueryAsync();
-            
-            // Als er een rij is aangetast, was de update succesvol
-            if (rowsAffected > 0)
-            {
-                return (200, "Business information updated successfully");
-            }
-            else
-            {
-                // Geen rijen aangetast, dus de business met de opgegeven KvK is niet gevonden
-                return (404, "Business not found with the specified KvK");
-            }
-        }
-        catch (MySqlException ex)
-        {
-            // Als er een databasefout optreedt
-            return (500, $"Database error: {ex.Message}");
-        }
-    }
-}
-
-public async Task<List<string>> GetAllSubscriptionsAsync()
-{
-    try
-    {
-        string query = "SELECT Type FROM Abonnement";
-
-        // Open databaseverbinding en voer de query uit
-        using (var connection = _connector.CreateDbConnection())
-        using (var command = new MySqlCommand(query, (MySqlConnection)connection))
-        using (var reader = await command.ExecuteReaderAsync())
-        {
-            var subscriptions = new List<string>();
-
-            // Lees resultaten en voeg ze toe aan de lijst
-            while (await reader.ReadAsync())
-            {
-                subscriptions.Add((string)reader.GetValue(0));
-            }
-
-            return subscriptions;
-        }
-    }
-    catch (MySqlException e)
-    {
-        // Fout bij databaseverbinding of query
-        Console.WriteLine(e.Message);
-        return null;
-    }
-    catch (Exception e)
-    {
-        // Algemene foutafhandeling
-        Console.WriteLine(e);
-        return null;
-    }
-}
-public async Task<Subscription> GetSubscriptionDataAsync(int id)
-{
-    try
-    {
-        string query = "SELECT ID, Type, Description, Price FROM Abonnement WHERE ID = @Id";
-
-        // Open databaseverbinding en voer de query uit
-        using (var connection = _connector.CreateDbConnection())
-        using (var command = new MySqlCommand(query, (MySqlConnection)connection))
-        {
-            command.Parameters.AddWithValue("@Id", id);
-            using (var reader = await command.ExecuteReaderAsync())
-            {
-                if (await reader.ReadAsync())
-                {
-                    // Haal gegevens op uit de reader
-                    var type = reader["Type"].ToString();
-                    var description = reader["Description"].ToString();
-                    var price = reader["Price"].ToString().Equals("") ? 0 : Convert.ToDouble(reader["Price"]);
-                    
-                    return new Subscription
-                    {
-                        Id = id,
-                        Type = type,
-                        Description = description,
-                        Price = price
-                    };
-                }
-            }
-        }
-
-        // Als er geen resultaat is
-        return null;
-    }
-    catch (Exception ex)
-    {
-        // Foutafhandeling
-        Console.WriteLine(ex.Message);
-        return null;
-    }
-}
-
-public async Task<List<int>> GetSubscriptionIdsAsync()
-{
-    try
-    {
-        string query = "SELECT ID FROM Abonnement";
-
-        // Open databaseverbinding en voer de query uit
-        using (var connection = _connector.CreateDbConnection())
-        using (var command = new MySqlCommand(query, (MySqlConnection)connection))
-        using (var reader = await command.ExecuteReaderAsync())
-        {
-            var ids = new List<int>();
-            while (await reader.ReadAsync())
-            {
-                // Voeg ID toe aan de lijst
-                ids.Add(Convert.ToInt32(reader.GetValue(0)));
-            }
-
-            return ids;
-        }
-    }
-    catch (MySqlException ex)
-    {
-        // Fout bij databaseverbinding of query
-        Console.WriteLine(ex.Message);
-        return null;
-    }
-    catch (Exception ex)
-    {
-        // Algemene foutafhandeling
-        Console.WriteLine(ex.Message);
-        return null;
-    }
-}
-
-public async Task<Dictionary<string, object>> GetCustomerDetails(int id)
-{
-    string query = $"SELECT * FROM Customer WHERE ID = {id}";
-    Dictionary<string, object> info = new Dictionary<string, object>();
-
-    try
-    {
-        // Open databaseverbinding en voer de query uit
-        using (var connection = _connector.CreateDbConnection())
-        using (var command = new MySqlCommand(query, (MySqlConnection)connection))
-        using (var reader = await command.ExecuteReaderAsync())
-        {
-            while (await reader.ReadAsync())
-            {
-                // Voeg elk veld toe aan de dictionary
-                for (int i = 0; i < reader.FieldCount; i++)
-                {
-                    info[reader.GetName(i)] = reader.GetValue(i);
-                }
-            }
-
-            return info;
-        }
-    }
-    catch (MySqlException ex)
-    {
-        // Fout bij databaseverbinding of query
-        Console.WriteLine(ex.Message);
-        throw;
-    }
-    catch (Exception ex)
-    {
-        // Algemene foutafhandeling
-        Console.WriteLine(ex.Message);
-        throw;
-    }
-}
-
-public async Task<VehicleManager> GetVehicleManagerInfoAsync(int id)
-{
-    try
-    {
-        string query = "SELECT ID, Email, Password, Business FROM VehicleManager WHERE ID = @Id";
-
-        using (var connection = _connector.CreateDbConnection())
-        using (var command = new MySqlCommand(query, (MySqlConnection)connection))
-        {
-            command.Parameters.AddWithValue("@Id", id);
-
-            using (var reader = await command.ExecuteReaderAsync())
-            {
-                if (await reader.ReadAsync())
-                {
-                    // Gegevens uit de database lezen en teruggeven als een VehicleManager-object
-                    return new VehicleManager
-                    {
-                        Id = reader.GetInt32("ID"),
-                        Email = reader["Email"].ToString(),
-                        Password = reader["Password"].ToString(),
-                        Business = reader["Business"].ToString()
-                    };
-                }
-            }
-        }
-
-        return null;  // Geen gegevens gevonden
-    }
-    catch (Exception ex)
-    {
-        Console.WriteLine(ex.Message);
-        return null;  // Foutafhandeling bij uitzondering
-    }
-}
-
-public async Task<List<Customer>> GetCustomersByBusinessNumberAsync(string Kvk)
-{
-    try
-    {
-        string query = "SELECT ID, Email, Kvk FROM Customer WHERE Kvk = @Kvk";
-
-        using (var connection = _connector.CreateDbConnection())
-        using (var command = new MySqlCommand(query, (MySqlConnection)connection))
-        {
-            command.Parameters.AddWithValue("@Kvk", Kvk.Trim()); // Verwijder eventuele leidende of achterwaartse spaties
-
-            using (var reader = await command.ExecuteReaderAsync())
-            {
-                var customers = new List<Customer>();
-
-                while (await reader.ReadAsync())
-                {
-                    customers.Add(new Customer
-                    {
-                        Id = reader.GetInt32("ID"),
-                        Email = reader["Email"].ToString(),
-                        Kvk = reader["Kvk"].ToString()
-                    });
-                }
-
-                return customers; // Retourneer de lijst van klanten
-            }
-        }
-    }
-    catch (Exception ex)
-    {
-        Console.WriteLine($"Error in GetCustomersByBusinessNumberAsync: {ex.Message}"); // Foutmelding loggen
-        return null; // Retourneer null in geval van een fout
-    }
-}
-
-   public async Task<bool> UpdateCustomerAsync(int id, string email, string password)
-{
-    try
-    {
-        // Controleer of het ID geldig is
-        if (id <= 0)
-        {
-            Console.WriteLine("Error: Invalid ID.");
-            return false;
-        }
-
-        // Controleer of email en wachtwoord niet leeg zijn
-        if (string.IsNullOrEmpty(email) || string.IsNullOrEmpty(password))
-        {
-            Console.WriteLine("Error: Email or Password cannot be empty.");
-            return false;
-        }
-
-        // Hash het nieuwe wachtwoord (voor de update)
-        string hashedPassword = _hash.createHash(password);
-
-        // Controleer de validiteit van het wachtwoord
-        var (isValid, errorMessage) = PasswordChecker.IsValidPassword(password);
-        if (!isValid)
-        {
-            Console.WriteLine($"Error: {errorMessage}");
-            return false;
-        }
-
-        // SQL-query voor het bijwerken van klantgegevens
-        string updateQuery = "UPDATE Customer SET Email = @Email, Password = @Password WHERE ID = @ID";
-
-        using (var connection = _connector.CreateDbConnection())
-        {
-            try
-            {
-                // Open de verbinding indien nodig
-                if (connection?.State != System.Data.ConnectionState.Open)
-                {
-                    connection.Open();
-                }
-
-                using (var command = new MySqlCommand(updateQuery, (MySqlConnection)connection))
-                {
-                    // Voeg de parameters toe aan de query
-                    command.Parameters.AddWithValue("@ID", id);
-                    command.Parameters.AddWithValue("@Email", email);
-                    command.Parameters.AddWithValue("@Password", hashedPassword);
-
-                    // Voer de query uit
-                    int rowsAffected = await command.ExecuteNonQueryAsync();
-
-                    // Controleer of de klant is gevonden en bijgewerkt
-                    if (rowsAffected > 0)
-                    {
-                        return true;  // Succesvol bijgewerkt
-                    }
-                    else
-                    {
+                        // No rows affected, meaning no update occurred
                         Console.WriteLine("Error: Customer not found.");
                         return false;
                     }
                 }
-            }
-            catch (MySqlException ex)
-            {
-                Console.WriteLine($"Database error: {ex.Message}");
-                return false;
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Unexpected error: {ex.Message}");
-                return false;
-            }
-            finally
-            {
-                // Zorg ervoor dat de verbinding wordt gesloten
-                if (connection?.State == System.Data.ConnectionState.Open)
+                catch (Exception ex)
                 {
-                    connection.Close();
+                    Console.WriteLine($"Error executing query: {ex.Message}");
+                    return false;
                 }
             }
         }
     }
     catch (Exception ex)
     {
-        Console.WriteLine($"Unexpected error: {ex.Message}");
+        Console.WriteLine($"Error: {ex.Message}");
         return false;
     }
 }
+
 
     public class VehicleManager
     {

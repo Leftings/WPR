@@ -13,11 +13,11 @@ using WPR.Cryption;
 [Route("api/[controller]")]
 public class AcceptHireRequestController : ControllerBase
 {
-    private readonly Connector _connector;
+    private readonly IConnector _connector;
     private readonly IEmployeeRepository _userRepository;
     private readonly Crypt _crypt;
 
-    public AcceptHireRequestController(Connector connector, IEmployeeRepository userRepository, Crypt crypt)
+    public AcceptHireRequestController(IConnector connector, IEmployeeRepository userRepository, Crypt crypt)
     {
         _connector = connector ?? throw new ArgumentNullException(nameof(connector));
         _userRepository = userRepository ?? throw new ArgumentNullException(nameof(userRepository));

@@ -13,11 +13,11 @@ using WPR.Cryption;
 [ApiController]
 public class CookieController : ControllerBase
 {
-    private readonly Connector _connector;
+    private readonly IConnector _connector;
     private readonly IUserRepository _userRepository;
     private readonly Crypt _crypt;
 
-    public CookieController(Connector connector, IUserRepository userRepository, Crypt crypt)
+    public CookieController(IConnector connector, IUserRepository userRepository, Crypt crypt)
     {
         _connector = connector ?? throw new ArgumentNullException(nameof(connector));
         _userRepository = userRepository ?? throw new ArgumentNullException(nameof(userRepository));

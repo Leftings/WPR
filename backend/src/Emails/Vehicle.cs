@@ -2,7 +2,8 @@ using WPR.Repository;
 
 namespace WPR.Email;
 
-public class Vehicle : IDetails
+public interface IVehicleDetails : IDetails {}
+public class Vehicle : IVehicleDetails
 {
     // Dictionary om de voertuigdetails op te slaan
     private Dictionary<string, object> _details { get; set; }
