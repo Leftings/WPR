@@ -2,15 +2,9 @@
 using Microsoft.AspNetCore.Mvc;
 using MySql.Data.MySqlClient;
 using WPR.Database;
-using Microsoft.AspNetCore.Http.HttpResults;
 using WPR.Utils;
 using WPR.Hashing;
-using Org.BouncyCastle.Crypto.Prng;
 using WPR.Cryption;
-using System.Threading.Tasks;
-using System.Transactions;
-using Microsoft.VisualBasic;
-using Mysqlx.Resultset;
 using WPR.Controllers.customer.Subscription;
 using WPR.Controllers.General.SignUp;
 using WPR.Controllers.Employee.VehicleManager.ChangeBusinessSettings;
@@ -33,31 +27,6 @@ public class UserRepository : IUserRepository
         _hash = hash ?? throw new ArgumentNullException(nameof(hash));
         _crypt = crypt ?? throw new ArgumentNullException(nameof(crypt));
     }
-
-    /*private async Task<bool> CheckPassword(string username, string password, string table)
-    {
-        string query = $@"SELECT password FROM {table} WHERE LOWER(email) = LOWER(@Email)";
-
-        using (var connection = _connector.CreateDbConnection())
-        
-        using (var command = new MySqlCommand(query, (MySqlConnection)connection))
-        {
-            command.Parameters.AddWithValue("@Email", username);
-
-            using (var reader = await command.ExecuteReaderAsync())
-            {
-                if (reader.HasRows)
-                {
-                    string passwordUser = reader.GetString("Password");
-
-                    return _hash.(password, passwordUser);
-                }
-
-                return false;
-            }
-        }
-    }
-    */
 
     /// <summary>
     /// Er wordt door middel van de meegegeven userType een query aangemaakt, om de juiste gegevens uit de juiste tabel op te halen.
@@ -284,6 +253,14 @@ public class UserRepository : IUserRepository
         }
     }
 
+    /// <summary>
+    /// Haalt de gebruikers-ID op op basis van het e-mailadres en de opgegeven tabel.
+    /// </summary>
+    /// <param name="email">Het e-mailadres van de gebruiker.</param>
+    /// <param name="table">De naam van de tabel waarin de gebruiker zich bevindt.</param>
+    /// <returns>
+    /// Een taak die een string retourneert met de gebruikers-ID of een foutmelding als de gebruiker niet gevonden wordt.
+    /// </returns>
     public async Task<string> GetUserIdAsync(string email, string table)
     {
         try
@@ -315,6 +292,13 @@ public class UserRepository : IUserRepository
         }
     }
 
+    /// <summary>
+    /// Haalt de voornaam van een gebruiker op op basis van het gebruikers-ID.
+    /// </summary>
+    /// <param name="userId">Het gebruikers-ID waarvoor de voornaam moet worden opgehaald.</param>
+    /// <returns>
+    /// Een taak die de voornaam van de gebruiker retourneert, of een foutmelding als het niet gevonden wordt.
+    /// </returns>
     public async Task<string> GetUserNameAsync(string userId)
     {
         try
@@ -341,6 +325,13 @@ public class UserRepository : IUserRepository
         }
     }
 
+    /// <summary>
+    /// Wijzigt de gebruikersinformatie op basis van de verstrekte gegevens.
+    /// </summary>
+    /// <param name="data">Een lijst van objecten die de gegevens bevatten die moeten worden gewijzigd.</param>
+    /// <returns>
+    /// Een taak die een tuple retourneert met een booleaanse status en een bericht over het resultaat van de bewerking.
+    /// </returns>
     public async Task<(bool status, string message)> EditUserInfoAsync(List<object[]> data)
     {
         try

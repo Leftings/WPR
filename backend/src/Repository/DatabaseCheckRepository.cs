@@ -1,20 +1,31 @@
-using System.ComponentModel;
-using System.Reflection.Metadata;
-using System.Reflection.Metadata.Ecma335;
 using MySql.Data.MySqlClient;
 using WPR.Database;
+using WPR.Repository.DatabaseCheckRepository;
 
-namespace WPR.Repository.DatabaseCheckRepository;
-
+/// <summary>
+/// Behandelt verschillende databasebewerkingen zoals het verwijderen van gebruikers, contracten en bedrijfsgegevens.
+/// </summary>
 public class DatabaseCheckRepository : IDatabaseCheckRepository
 {
     private readonly IConnector _connector;
 
+    /// <summary>
+    /// Initialiseert een nieuw exemplaar van de <see cref="DatabaseCheckRepository"/> klasse.
+    /// </summary>
+    /// <param name="connector">De connector die gebruikt wordt om verbinding te maken met de database.</param>
+    /// <exception cref="ArgumentNullException">Wordt gegooid als de connector null is.</exception>
     public DatabaseCheckRepository(IConnector connector)
     {
         _connector = connector ?? throw new ArgumentNullException(nameof(connector));
     }
 
+    /// <summary>
+    /// Verwerkt een delete-operatie voor een opgegeven query.
+    /// </summary>
+    /// <param name="query">De SQL-query die moet worden uitgevoerd.</param>
+    /// <returns>
+    /// Een tuple met een statuscode en een bericht.
+    /// </returns>
     private (int StatusCode, string Message) HandleDelete(string query)
     {
         try
@@ -40,6 +51,13 @@ public class DatabaseCheckRepository : IDatabaseCheckRepository
         }
     }
 
+    /// <summary>
+    /// Verwijdert toekomstige contracten voor een opgegeven klant-ID.
+    /// </summary>
+    /// <param name="id">Het ID van de klant waarvan de toekomstige contracten moeten worden verwijderd.</param>
+    /// <returns>
+    /// Een tuple met een statuscode en een bericht.
+    /// </returns>
     private (int StatusCode, string Message) DeleteFutereContracts(int id)
     {
         string query = "DELETE FROM Contract WHERE (Customer = @C AND @D < EndDate)";
@@ -66,6 +84,13 @@ public class DatabaseCheckRepository : IDatabaseCheckRepository
         }
     }
 
+    /// <summary>
+    /// Controleert of een gebruiker een actief contract heeft.
+    /// </summary>
+    /// <param name="id">Het ID van de gebruiker die gecontroleerd moet worden.</param>
+    /// <returns>
+    /// Een tuple met een statuscode en een bericht.
+    /// </returns>
     private (int StatusCode, string Message) UserHasActiveContract(int id)
     {
         string query = "SELECT COUNT(*) FROM Contract WHERE (Customer = @C AND @D BETWEEN StartDate AND EndDate AND Status = 'accepted')";
@@ -104,6 +129,13 @@ public class DatabaseCheckRepository : IDatabaseCheckRepository
         }
     }
 
+    /// <summary>
+    /// Verwijdert een gebruiker op basis van het opgegeven ID.
+    /// </summary>
+    /// <param name="id">Het ID van de gebruiker die verwijderd moet worden.</param>
+    /// <returns>
+    /// Een tuple met een statuscode en een bericht.
+    /// </returns>
     public (int StatusCode, string Message) DeleteUser(int id)
     {
         var activeContract = UserHasActiveContract(id);
@@ -120,6 +152,13 @@ public class DatabaseCheckRepository : IDatabaseCheckRepository
         return (activeContract.StatusCode, activeContract.Message);
     }
 
+    /// <summary>
+    /// Verwijdert werknemers op basis van een KvK-nummer.
+    /// </summary>
+    /// <param name="kvk">Het KvK-nummer van het bedrijf waarvan de werknemers verwijderd moeten worden.</param>
+    /// <returns>
+    /// Een tuple met een statuscode, bericht en een dictionary van werknemer-ID's en de bijbehorende verwijderstatus.
+    /// </returns>
     private (int StatusCode, string Message, Dictionary<int, bool> employeeData) DeleteEmployees(int kvk)
     {
         string query = "SELECT ID From Customer WHERE KvK = @B";
@@ -172,6 +211,11 @@ public class DatabaseCheckRepository : IDatabaseCheckRepository
         }
     }
 
+    /// <summary>
+    /// Controleert of alle werknemers van een bedrijf succesvol zijn verwijderd.
+    /// </summary>
+    /// <param name="employees">Een dictionary van werknemer-ID's en hun verwijderstatus.</param>
+    /// <returns>True als alle werknemers succesvol zijn verwijderd, anders false.</returns>
     private bool DeleteBusinessAllowed(Dictionary<int, bool> employees)
     {
         foreach (var item in employees)
@@ -185,6 +229,13 @@ public class DatabaseCheckRepository : IDatabaseCheckRepository
         return true;
     }
 
+    /// <summary>
+    /// Verwijdert een bedrijf op basis van het KvK-nummer.
+    /// </summary>
+    /// <param name="kvk">Het KvK-nummer van het bedrijf dat verwijderd moet worden.</param>
+    /// <returns>
+    /// Een tuple met een statuscode en een bericht.
+    /// </returns>
     public (int StatusCode, string Message) DeleteBusiness(int kvk)
     {
         var employees = DeleteEmployees(kvk);
@@ -205,6 +256,13 @@ public class DatabaseCheckRepository : IDatabaseCheckRepository
         return (deleteBusiness.StatusCode, deleteBusiness.Message);
     }
 
+    /// <summary>
+    /// Controleert of er minimaal één voertuigmanager beschikbaar is voor een bepaald KvK-nummer.
+    /// </summary>
+    /// <param name="kvk">Het KvK-nummer van het bedrijf waarvoor de controle uitgevoerd moet worden.</param>
+    /// <returns>
+    /// Een tuple met een statuscode en een bericht.
+    /// </returns>
     private (int StatusCode, string Message) MinimumVehicleManagers(int kvk)
     {
         string query = "SELECT COUNT(*) FROM VehicleManager WHERE Business = @B";
@@ -238,9 +296,16 @@ public class DatabaseCheckRepository : IDatabaseCheckRepository
         {
             return (500, ex.Message);
         }
-
     }
 
+    /// <summary>
+    /// Verwijdert een voertuigmanager op basis van het opgegeven ID en KvK-nummer.
+    /// </summary>
+    /// <param name="id">Het ID van de voertuigmanager die verwijderd moet worden.</param>
+    /// <param name="kvk">Het KvK-nummer van het bedrijf waarvoor de voertuigmanager moet worden verwijderd.</param>
+    /// <returns>
+    /// Een tuple met een statuscode en een bericht.
+    /// </returns>
     public (int StatusCode, string Message) DeleteVehicleManager(int id, int kvk)
     {
         var allowed = MinimumVehicleManagers(kvk);

@@ -655,7 +655,12 @@ public class EmployeeRepository : IEmployeeRepository
         return (false, $"Domain Detected");
     }
 
-    // Haalt alle KvK-nummers op van bedrijven die in de 'Deactive' status staan
+    /// <summary>
+    /// Haalt KvK-nummers op van bedrijven die gedeactiveerd zijn.
+    /// </summary>
+    /// <returns>
+    /// Een tuple met de statuscode (200 voor succes, 500 voor mislukking), een bericht en een lijst met KvK-nummers.
+    /// </returns>
 public (int StatusCode, string Message, IList<int> KvK) ViewBusinessRequests()
 {
     try
@@ -692,7 +697,13 @@ public (int StatusCode, string Message, IList<int> KvK) ViewBusinessRequests()
     }
 }
 
-// Haalt gedetailleerde bedrijfsinformatie op voor een specifiek KvK-nummer
+    /// <summary>
+    /// Haalt gedetailleerde informatie op voor een specifiek bedrijf op basis van KvK-nummer.
+    /// </summary>
+    /// <param name="kvk">Het KvK-nummer van het bedrijf.</param>
+    /// <returns>
+    /// Een tuple met de statuscode (200 voor succes, 500 voor mislukking), een bericht en een woordenboek met bedrijfsgegevens.
+    /// </returns>
 public async Task<(int StatusCode, string Message, Dictionary<string, object> data)> ViewBusinessRequestDetailed(int kvk)
 {
     try
@@ -732,7 +743,13 @@ public async Task<(int StatusCode, string Message, Dictionary<string, object> da
     }
 }
 
-// Zet de status van een bedrijf naar 'Active'
+    /// <summary>
+    /// Zet de status van een bedrijf naar 'Actief'.
+    /// </summary>
+    /// <param name="kvk">Het KvK-nummer van het bedrijf dat geactiveerd moet worden.</param>
+    /// <returns>
+    /// Een tuple met de statuscode (200 voor succes, 500 voor mislukking) en een bericht dat het resultaat aangeeft.
+    /// </returns>
 public (int StatusCode, string Message) BusinessAccepted(int kvk)
 {
     try
@@ -762,7 +779,13 @@ public (int StatusCode, string Message) BusinessAccepted(int kvk)
     }
 }
 
-// Verwijdert een bedrijf op basis van KvK-nummer
+    /// <summary>
+    /// Verwijdert een bedrijf uit het systeem op basis van het KvK-nummer.
+    /// </summary>
+    /// <param name="kvk">Het KvK-nummer van het bedrijf dat verwijderd moet worden.</param>
+    /// <returns>
+    /// Een tuple met de statuscode (200 voor succes, 500 voor mislukking) en een bericht dat het resultaat aangeeft.
+    /// </returns>
 public (int StatusCode, string Message) BusinessDenied(int kvk)
 {
     try
@@ -792,7 +815,13 @@ public (int StatusCode, string Message) BusinessDenied(int kvk)
     }
 }
 
-// Haalt de informatie van een bedrijf op, op basis van KvK-nummer
+    /// <summary>
+    /// Haalt gedetailleerde informatie op van een bedrijf op basis van het KvK-nummer.
+    /// </summary>
+    /// <param name="kvk">Het KvK-nummer van het bedrijf om op te halen.</param>
+    /// <returns>
+    /// Een tuple met een boolean die aangeeft of het succesvol is, een bericht en een woordenboek met bedrijfsgegevens.
+    /// </returns>
 public (bool Status, string Message, Dictionary<string, object> Data) GetBusinessInfo(int kvk)
 {
     try
@@ -838,7 +867,13 @@ public (bool Status, string Message, Dictionary<string, object> Data) GetBusines
     }
 }
 
-// Haalt het KvK-nummer op voor een voertuigbeheerder
+    /// <summary>
+    /// Haalt het KvK-nummer op van een voertuigbeheerder op basis van hun ID.
+    /// </summary>
+    /// <param name="vehicleManagerId">Het ID van de voertuigbeheerder.</param>
+    /// <returns>
+    /// Een tuple met de statuscode (200 voor succes, 404 voor niet gevonden, 500 voor fout), een bericht en het KvK-nummer.
+    /// </returns>
 public (int StatusCode, string Message, int KvK) GetKvK(int vehicleManagerId)
 {
     try
@@ -876,7 +911,13 @@ public (int StatusCode, string Message, int KvK) GetKvK(int vehicleManagerId)
     }
 }
 
-// Haalt abonnementsinformatie op op basis van het abonnement-ID
+    /// <summary>
+    /// Haalt abonnementsinformatie op op basis van het abonnement-ID.
+    /// </summary>
+    /// <param name="abonnementId">Het ID van het abonnement.</param>
+    /// <returns>
+    /// Een tuple met de statuscode (200 voor succes, 404 voor niet gevonden, 500 voor fout), een bericht en een woordenboek met abonnementsgegevens.
+    /// </returns>
 public (int StatusCode, string Message, Dictionary<string, object> Data) GetAbonnementType(int abonnementId)
 {
     try
@@ -919,7 +960,13 @@ public (int StatusCode, string Message, Dictionary<string, object> Data) GetAbon
     }
 }
 
-// Haalt de informatie van een voertuigbeheerder op, inclusief het wachtwoord
+    /// <summary>
+    /// Haalt gedetailleerde informatie op van een voertuigbeheerder, inclusief het wachtwoord.
+    /// </summary>
+    /// <param name="id">Het ID van de voertuigbeheerder.</param>
+    /// <returns>
+    /// Een tuple met de statuscode (200 voor succes, 404 voor niet gevonden, 500 voor fout), een bericht en een woordenboek met voertuigbeheerdergegevens.
+    /// </returns>
 public (int StatusCode, string Message, Dictionary<string, object> Data) GetVehicleManagerInfo(int id)
 {
     try

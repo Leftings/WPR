@@ -140,6 +140,13 @@ public class BackOfficeRepository(IConnector connector) : IBackOfficeRepository
     }
 
 
+    /// <summary>
+    /// Haalt de bedrijfsinformatie op op basis van de medewerker-ID.
+    /// Eerst wordt het KvK-nummer opgehaald uit de Customer-tabel, 
+    /// daarna worden de bedrijfsgegevens opgehaald uit de Business-tabel op basis van het KvK-nummer.
+    /// </summary>
+    /// <param name="employee">De medewerker-ID waar de bedrijfsinformatie voor opgehaald moet worden.</param>
+    /// <returns>Een dictionary met bedrijfsinformatie, met de kolomnamen als sleutel en de bijbehorende waarde als waarde.</returns>
     private Dictionary<string, object> GetBusinessInfo(object employee)
     {
         try
@@ -193,7 +200,6 @@ public class BackOfficeRepository(IConnector connector) : IBackOfficeRepository
                     return data; // Retourneer de verzamelde bedrijfsgegevens
                 }
             }
-
         }
         catch (MySqlException ex) // Fout bij databaseverbinding of query
         {
@@ -207,6 +213,12 @@ public class BackOfficeRepository(IConnector connector) : IBackOfficeRepository
         }
     }
 
+    /// <summary>
+    /// Haalt alle persoonlijke en klantgegevens op voor de opgegeven ID.
+    /// De gegevens worden verzameld uit zowel de 'Private' als 'Customer' tabellen.
+    /// </summary>
+    /// <param name="id">Het ID van de klant voor wie de gegevens opgehaald moeten worden.</param>
+    /// <returns>Een dictionary met persoonlijke en klantgegevens, inclusief bedrijfsinformatie indien van toepassing.</returns>
     private Dictionary<string, object> GetFullPerson(object id)
     {
         try
@@ -226,7 +238,6 @@ public class BackOfficeRepository(IConnector connector) : IBackOfficeRepository
 
                 using (var reader = commandPrivate.ExecuteReader()) // Voer de 'Private' query uit
                 {
-                    // Als er gegevens zijn voor de opgegeven ID, voeg deze toe aan de dictionary
                     if (reader.Read())
                     {
                         for (int i = 0; i < reader.FieldCount; i++) // Loop door de kolommen
@@ -279,6 +290,12 @@ public class BackOfficeRepository(IConnector connector) : IBackOfficeRepository
         }
     }
 
+    /// <summary>
+    /// Haalt alle voertuiggegevens op op basis van het frame nummer.
+    /// De gegevens worden opgehaald uit de 'Vehicle' tabel.
+    /// </summary>
+    /// <param name="frameNr">Het frame nummer van het voertuig waarvoor de gegevens opgehaald moeten worden.</param>
+    /// <returns>Een dictionary met voertuiggegevens, met de kolomnamen als sleutel en de bijbehorende waarde als waarde.</returns>
     private Dictionary<string, object> GetFullVehicleData(object frameNr)
     {
         try
@@ -286,7 +303,6 @@ public class BackOfficeRepository(IConnector connector) : IBackOfficeRepository
             // SQL-query om gegevens op te halen uit de 'Vehicle' tabel op basis van het frameNummer
             string query = "SELECT * FROM Vehicle WHERE FrameNr = @F";
 
-            // Maak verbinding met de database en voer de query uit
             using (var connection = _connector.CreateDbConnection())
             using (var command = new MySqlCommand(query, (MySqlConnection)connection))
             {
@@ -299,7 +315,6 @@ public class BackOfficeRepository(IConnector connector) : IBackOfficeRepository
                 // Voer de query uit en verwerk de resultaten
                 using (var reader = command.ExecuteReader())
                 {
-                    // Loop door alle rijen van de resultaten
                     while (reader.Read())
                     {
                         for (int i = 0; i < reader.FieldCount; i++) // Loop door de kolommen van de rij
@@ -333,7 +348,6 @@ public class BackOfficeRepository(IConnector connector) : IBackOfficeRepository
             return new Dictionary<string, object>(); // Retourneer een lege dictionary bij fout
         }
     }
-
 
     /// <summary>
     /// De benodigde gegevens van het voertuig worden opgehaald
@@ -377,6 +391,14 @@ public class BackOfficeRepository(IConnector connector) : IBackOfficeRepository
         }
     }
 
+    /// <summary>
+    /// Haalt volledige gegevens op, inclusief extra informatie, voor de opgegeven ID.
+    /// Als er een fout optreedt, wordt een foutmelding geretourneerd.
+    /// </summary>
+    /// <param name="id">Het ID van de gegevens die opgehaald moeten worden.</param>
+    /// <returns>
+    /// Een tuple met de status van de operatie, een boodschap en de opgehaalde gegevens (in de vorm van een dictionary).
+    /// </returns>
     public (bool Status, string Message, Dictionary<string, object> Data) GetFullDataReview(int id)
     {
         // Haal alle gegevens op met fullInfo (true)
@@ -391,6 +413,14 @@ public class BackOfficeRepository(IConnector connector) : IBackOfficeRepository
         return (true, "Succes", data.row); // Gegevens zijn succesvol opgehaald
     }
 
+    /// <summary>
+    /// Haalt gegevens op zonder extra informatie voor de opgegeven ID.
+    /// Als er een fout optreedt, wordt een foutmelding geretourneerd.
+    /// </summary>
+    /// <param name="id">Het ID van de gegevens die opgehaald moeten worden.</param>
+    /// <returns>
+    /// Een tuple met de status van de operatie, een boodschap en de opgehaalde gegevens (in de vorm van een dictionary).
+    /// </returns>
     public (bool Status, string Message, Dictionary<string, object> Data) GetDataReview(int id)
     {
         // Haal de gegevens op zonder extra informatie (false)
@@ -405,6 +435,13 @@ public class BackOfficeRepository(IConnector connector) : IBackOfficeRepository
         return (true, "Succes", data.row); // Gegevens zijn succesvol opgehaald
     }
 
+    /// <summary>
+    /// Haalt de lijst van OrderId's op uit de Contract-tabel.
+    /// Bepaalt eerst het aantal rijen in de Contract tabel en haalt vervolgens de OrderId's op.
+    /// </summary>
+    /// <returns>
+    /// Een tuple met de status van de operatie, een boodschap en een array van OrderId's.
+    /// </returns>
     public (bool Status, string Message, int[] Ids) GetDataReviewIds()
     {
         try
@@ -450,6 +487,16 @@ public class BackOfficeRepository(IConnector connector) : IBackOfficeRepository
         }
     }
 
+    /// <summary>
+    /// Voegt een nieuw abonnement toe aan de Abonnement-tabel.
+    /// </summary>
+    /// <param name="type">Het type van het abonnement.</param>
+    /// <param name="description">De beschrijving van het abonnement.</param>
+    /// <param name="discount">De korting op het abonnement.</param>
+    /// <param name="price">De prijs van het abonnement.</param>
+    /// <returns>
+    /// Een tuple met de status van de operatie en een boodschap.
+    /// </returns>
     public async Task<(bool status, string message)> AddSubscriptionAsync(string type, string description,
         double discount, double price)
     {
@@ -484,6 +531,13 @@ public class BackOfficeRepository(IConnector connector) : IBackOfficeRepository
         }
     }
 
+    /// <summary>
+    /// Verwijdert een abonnement op basis van het opgegeven ID.
+    /// </summary>
+    /// <param name="id">Het ID van het abonnement dat verwijderd moet worden.</param>
+    /// <returns>
+    /// Een tuple met de status van de operatie en een boodschap.
+    /// </returns>
     public async Task<(bool status, string message)> DeleteSubscriptionAsync(int id)
     {
         try
