@@ -1,0 +1,45 @@
+\doxysection{Contract.\+cs}
+\hypertarget{_contract_8cs_source}{}\label{_contract_8cs_source}\index{D:/codes/WPR8/WPR/backend/src/Emails/Contract.cs@{D:/codes/WPR8/WPR/backend/src/Emails/Contract.cs}}
+\mbox{\hyperlink{_contract_8cs}{Ga naar de documentatie van dit bestand.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_contract_8cs_source_l00001}00001\ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespace_w_p_r_1_1_repository}{WPR.Repository}};}
+\DoxyCodeLine{\Hypertarget{_contract_8cs_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{_contract_8cs_source_l00003}\mbox{\hyperlink{namespace_w_p_r_1_1_email}{00003}}\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_w_p_r_1_1_email}{WPR.Email}};}
+\DoxyCodeLine{\Hypertarget{_contract_8cs_source_l00004}00004\ }
+\DoxyCodeLine{\Hypertarget{_contract_8cs_source_l00005}\mbox{\hyperlink{interface_w_p_r_1_1_email_1_1_i_contract_details}{00005}}\ \textcolor{keyword}{public}\ \textcolor{keyword}{interface\ }\mbox{\hyperlink{interface_w_p_r_1_1_email_1_1_i_contract_details}{IContractDetails}}\ :\ \mbox{\hyperlink{interface_w_p_r_1_1_email_1_1_i_details}{IDetails}}\ \{\}}
+\DoxyCodeLine{\Hypertarget{_contract_8cs_source_l00006}00006\ }
+\DoxyCodeLine{\Hypertarget{_contract_8cs_source_l00010}\mbox{\hyperlink{class_w_p_r_1_1_email_1_1_contract}{00010}}\ \textcolor{keyword}{public}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_w_p_r_1_1_email_1_1_contract_aa7e14cbac10d1eb062a3634838657191}{Contract}}\ :\ \mbox{\hyperlink{interface_w_p_r_1_1_email_1_1_i_contract_details}{IContractDetails}}}
+\DoxyCodeLine{\Hypertarget{_contract_8cs_source_l00011}00011\ \{}
+\DoxyCodeLine{\Hypertarget{_contract_8cs_source_l00012}\mbox{\hyperlink{class_w_p_r_1_1_email_1_1_contract_a326ac1caef20ed19ac4e6d213a9b864d}{00012}}\ \ \ \ \ \textcolor{keyword}{private}\ Dictionary<string,\ object>\ \mbox{\hyperlink{class_w_p_r_1_1_email_1_1_contract_a326ac1caef20ed19ac4e6d213a9b864d}{\_details}}\ \{\ \textcolor{keyword}{get};\ \textcolor{keyword}{set};\ \}}
+\DoxyCodeLine{\Hypertarget{_contract_8cs_source_l00013}\mbox{\hyperlink{class_w_p_r_1_1_email_1_1_contract_a9616c6cf7942ea319ecb41c6fafdacb0}{00013}}\ \ \ \ \ \textcolor{keyword}{private}\ readonly\ \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_contract_repository}{IContractRepository}}\ \mbox{\hyperlink{class_w_p_r_1_1_email_1_1_contract_a9616c6cf7942ea319ecb41c6fafdacb0}{\_contractRepository}};}
+\DoxyCodeLine{\Hypertarget{_contract_8cs_source_l00014}00014\ }
+\DoxyCodeLine{\Hypertarget{_contract_8cs_source_l00020}\mbox{\hyperlink{class_w_p_r_1_1_email_1_1_contract_aa7e14cbac10d1eb062a3634838657191}{00020}}\ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_w_p_r_1_1_email_1_1_contract_aa7e14cbac10d1eb062a3634838657191}{Contract}}(\mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_contract_repository}{IContractRepository}}\ contractRepository)}
+\DoxyCodeLine{\Hypertarget{_contract_8cs_source_l00021}00021\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_contract_8cs_source_l00022}00022\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_w_p_r_1_1_email_1_1_contract_a9616c6cf7942ea319ecb41c6fafdacb0}{\_contractRepository}}\ =\ contractRepository\ ??\ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ ArgumentNullException(nameof(contractRepository));}
+\DoxyCodeLine{\Hypertarget{_contract_8cs_source_l00023}00023\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_contract_8cs_source_l00024}00024\ }
+\DoxyCodeLine{\Hypertarget{_contract_8cs_source_l00030}\mbox{\hyperlink{class_w_p_r_1_1_email_1_1_contract_a1b580e77a7a6c3b866528ed83cc8d3b3}{00030}}\ \ \ \ \ \textcolor{keyword}{public}\ async\ Task\ \mbox{\hyperlink{class_w_p_r_1_1_email_1_1_contract_a1b580e77a7a6c3b866528ed83cc8d3b3}{SetDetailsAsync}}(\textcolor{keywordtype}{object}\ orderId)}
+\DoxyCodeLine{\Hypertarget{_contract_8cs_source_l00031}00031\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_contract_8cs_source_l00032}00032\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}}
+\DoxyCodeLine{\Hypertarget{_contract_8cs_source_l00033}00033\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_contract_8cs_source_l00034}00034\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_w_p_r_1_1_email_1_1_contract_a326ac1caef20ed19ac4e6d213a9b864d}{\_details}}\ =\ await\ \mbox{\hyperlink{class_w_p_r_1_1_email_1_1_contract_a9616c6cf7942ea319ecb41c6fafdacb0}{\_contractRepository}}.GetContractInfoAsync(Convert.ToInt32(orderId));}
+\DoxyCodeLine{\Hypertarget{_contract_8cs_source_l00035}00035\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_contract_8cs_source_l00036}00036\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (OverflowException\ ex)}
+\DoxyCodeLine{\Hypertarget{_contract_8cs_source_l00037}00037\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_contract_8cs_source_l00038}00038\ \ \ \ \ \ \ \ \ \ \ \ \ Console.WriteLine(ex.Message);}
+\DoxyCodeLine{\Hypertarget{_contract_8cs_source_l00039}00039\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw};}
+\DoxyCodeLine{\Hypertarget{_contract_8cs_source_l00040}00040\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_contract_8cs_source_l00041}00041\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (Exception\ ex)}
+\DoxyCodeLine{\Hypertarget{_contract_8cs_source_l00042}00042\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_contract_8cs_source_l00043}00043\ \ \ \ \ \ \ \ \ \ \ \ \ Console.WriteLine(ex.Message);}
+\DoxyCodeLine{\Hypertarget{_contract_8cs_source_l00044}00044\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw};}
+\DoxyCodeLine{\Hypertarget{_contract_8cs_source_l00045}00045\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_contract_8cs_source_l00046}00046\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_contract_8cs_source_l00047}00047\ }
+\DoxyCodeLine{\Hypertarget{_contract_8cs_source_l00052}\mbox{\hyperlink{class_w_p_r_1_1_email_1_1_contract_a25e4f89b72aa987779ad65ef1168e5c8}{00052}}\ \ \ \ \ \textcolor{keyword}{public}\ async\ Task<Dictionary<string,\ object>>\ \mbox{\hyperlink{class_w_p_r_1_1_email_1_1_contract_a25e4f89b72aa987779ad65ef1168e5c8}{GetDetailsAsync}}()}
+\DoxyCodeLine{\Hypertarget{_contract_8cs_source_l00053}00053\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_contract_8cs_source_l00054}00054\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_w_p_r_1_1_email_1_1_contract_a326ac1caef20ed19ac4e6d213a9b864d}{\_details}};}
+\DoxyCodeLine{\Hypertarget{_contract_8cs_source_l00055}00055\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_contract_8cs_source_l00056}00056\ \}}
+
+\end{DoxyCode}

@@ -1,0 +1,17 @@
+<map id="WPR.Repository.VehicleRepository.HireVehicle" name="WPR.Repository.VehicleRepository.HireVehicle">
+<area shape="rect" id="Node000001" title="Verwerkt het huurverzoek door de gebruiker te valideren, het verzoek toe te voegen aan de database en..." alt="" coords="5,72,237,115"/>
+<area shape="rect" id="Node000002" href="$class_w_p_r_1_1_repository_1_1_vehicle_repository.html#af4c31712aa266cf049a33a54697cdc60" title="Probeert de gebruiker ID te decrypteren vanuit de cookie en retourneert het gedecodeerde resultaat." alt="" coords="285,5,516,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="213,69,293,50,294,55,214,74"/>
+<area shape="rect" id="Node000003" href="$class_w_p_r_1_1_repository_1_1_vehicle_repository.html#af8c82079f31c3bbec4c7d0af846256d8" title="Voegt een huurverzoek toe aan de database afhankelijk van het accounttype van de gebruiker (business ..." alt="" coords="285,72,516,115"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="237,91,269,91,269,96,237,96"/>
+<area shape="rect" id="Node000005" href="$class_w_p_r_1_1_repository_1_1_vehicle_repository.html#a2c371ee4ceecc0aed0aa772f6e8eee5a" title="Verstuurt een bevestigingsmail naar de gebruiker na het succesvol aanmaken van een huurverzoek." alt="" coords="285,155,516,197"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="197,113,312,147,310,152,195,118"/>
+<area shape="rect" id="Node000004" href="$class_w_p_r_1_1_repository_1_1_vehicle_repository.html#a8f27557367909f3ab26b7f8ac80fa33a" title="Controleert of de gebruiker een business account heeft op basis van het opgegeven userId." alt="" coords="564,55,795,97"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="516,83,549,81,549,87,517,89"/>
+<area shape="rect" id="Node000006" href="$class_w_p_r_1_1_repository_1_1_vehicle_repository.html#a7d5690f15622f36a6c229b993a2a9ea9" title="Haalt de kleur van een voertuig op basis van het opgegeven frameNr." alt="" coords="564,121,795,164"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="516,160,548,156,549,161,517,165"/>
+<area shape="rect" id="Node000007" href="$class_w_p_r_1_1_repository_1_1_vehicle_repository.html#ac966b529fb982058bba744e3f8a03501" title="Haalt de merk en type van een voertuig op basis van het opgegeven frameNr." alt="" coords="564,188,795,231"/>
+<area shape="poly" id="edge6_Node000005_Node000007" title=" " alt="" coords="517,187,549,191,548,196,516,192"/>
+<area shape="rect" id="Node000008" href="$class_w_p_r_1_1_repository_1_1_vehicle_repository.html#a44c60ce7050a7813b4cfca5b8292ab4e" title="Haalt het kenteken van een voertuig op basis van het opgegeven frameNr." alt="" coords="564,255,795,297"/>
+<area shape="poly" id="edge7_Node000005_Node000008" title=" " alt="" coords="452,195,565,240,586,247,584,252,563,245,450,200"/>
+</map>

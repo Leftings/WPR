@@ -1,0 +1,1813 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="nl">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.13.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>WPR-Backend: WPR.Repository.VehicleRepository Class Referentie</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+  $(function() { init_search(); });
+/* @license-end */
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">WPR-Backend
+   </div>
+  </td>
+    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect"                onmouseover="return searchBox.OnSearchSelectShow()"                onmouseout="return searchBox.OnSearchSelectHide()">&#160;</span>
+          <input type="text" id="MSearchField" value="" placeholder="Zoeken" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Gegenereerd door Doxygen 1.13.0 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){initNavTree('class_w_p_r_1_1_repository_1_1_vehicle_repository.html',''); initResizable(true); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Laden...</div>
+<div class="SRStatus" id="Searching">Zoeken...</div>
+<div class="SRStatus" id="NoMatches">Niets gevonden</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public Members</a> &#124;
+<a href="#pub-attribs">Data Velden</a> &#124;
+<a href="#pri-methods">Private Members</a> &#124;
+<a href="#pri-attribs">Private Attributen</a>  </div>
+  <div class="headertitle"><div class="title">WPR.Repository.VehicleRepository Class Referentie</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>De <a class="el" href="class_w_p_r_1_1_repository_1_1_vehicle_repository.html" title="De VehicleRepository class geeft de methodes voor de interactie met de database voor gebruiker gerela...">VehicleRepository</a> class geeft de methodes voor de interactie met de database voor gebruiker gerelateerde operaties. Het implementeert de <a class="el" href="interface_w_p_r_1_1_repository_1_1_i_vehicle_repository.html">IVehicleRepository</a> interface.  
+ <a href="#details">Meer...</a></p>
+<div class="dynheader">
+Klasse diagram voor WPR.Repository.VehicleRepository</div>
+<div class="dyncontent">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="class_w_p_r_1_1_repository_1_1_vehicle_repository__inherit__graph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
+</div>
+<div class="dynheader">
+Collaboratie diagram voor WPR.Repository.VehicleRepository:</div>
+<div class="dyncontent">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="class_w_p_r_1_1_repository_1_1_vehicle_repository__coll__graph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
+</div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public Members</h2></td></tr>
+<tr class="memitem:a14a6babb6d19b54f9bdfe9dcd922ae6a" id="r_a14a6babb6d19b54f9bdfe9dcd922ae6a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a14a6babb6d19b54f9bdfe9dcd922ae6a">VehicleRepository</a> (<a class="el" href="interface_w_p_r_1_1_database_1_1_i_connector.html">IConnector</a> connector, <a class="el" href="class_w_p_r_1_1_cryption_1_1_crypt.html">Crypt</a> crypt, <a class="el" href="class_w_p_r_1_1_services_1_1_email_service.html">EmailService</a> emailService)</td></tr>
+<tr class="separator:a14a6babb6d19b54f9bdfe9dcd922ae6a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a44c60ce7050a7813b4cfca5b8292ab4e" id="r_a44c60ce7050a7813b4cfca5b8292ab4e"><td class="memItemLeft" align="right" valign="top">async Task&lt; string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a44c60ce7050a7813b4cfca5b8292ab4e">GetVehiclePlateAsync</a> (int frameNr)</td></tr>
+<tr class="memdesc:a44c60ce7050a7813b4cfca5b8292ab4e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Haalt het kenteken van een voertuig op basis van het opgegeven frameNr.  <br /></td></tr>
+<tr class="separator:a44c60ce7050a7813b4cfca5b8292ab4e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac966b529fb982058bba744e3f8a03501" id="r_ac966b529fb982058bba744e3f8a03501"><td class="memItemLeft" align="right" valign="top">async Task&lt; string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac966b529fb982058bba744e3f8a03501">GetVehicleNameAsync</a> (int frameNr)</td></tr>
+<tr class="memdesc:ac966b529fb982058bba744e3f8a03501"><td class="mdescLeft">&#160;</td><td class="mdescRight">Haalt de merk en type van een voertuig op basis van het opgegeven frameNr.  <br /></td></tr>
+<tr class="separator:ac966b529fb982058bba744e3f8a03501"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7d5690f15622f36a6c229b993a2a9ea9" id="r_a7d5690f15622f36a6c229b993a2a9ea9"><td class="memItemLeft" align="right" valign="top">async Task&lt; string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7d5690f15622f36a6c229b993a2a9ea9">GetVehicleColorAsync</a> (int frameNr)</td></tr>
+<tr class="memdesc:a7d5690f15622f36a6c229b993a2a9ea9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Haalt de kleur van een voertuig op basis van het opgegeven frameNr.  <br /></td></tr>
+<tr class="separator:a7d5690f15622f36a6c229b993a2a9ea9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af398d024d4a743ca23f56ee501c2e4bb" id="r_af398d024d4a743ca23f56ee501c2e4bb"><td class="memItemLeft" align="right" valign="top">async Task&lt; List&lt; string &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af398d024d4a743ca23f56ee501c2e4bb">GetFrameNumbersAsync</a> ()</td></tr>
+<tr class="memdesc:af398d024d4a743ca23f56ee501c2e4bb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Haalt een lijst op van alle frameNummers van voertuigen, gesorteerd op soort voertuig en frameNr.  <br /></td></tr>
+<tr class="separator:af398d024d4a743ca23f56ee501c2e4bb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5a3de64f60e537949c6cc0d741190e5c" id="r_a5a3de64f60e537949c6cc0d741190e5c"><td class="memItemLeft" align="right" valign="top">async Task&lt; List&lt; string &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5a3de64f60e537949c6cc0d741190e5c">GetFrameNumberSpecifiekTypeAsync</a> (string type)</td></tr>
+<tr class="memdesc:a5a3de64f60e537949c6cc0d741190e5c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Alle framenummers van een specifiek voertuigtype worden verzameld en in een list gestopt.  <br /></td></tr>
+<tr class="separator:a5a3de64f60e537949c6cc0d741190e5c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a239ad32f36c6d096bafe599bc79bb970" id="r_a239ad32f36c6d096bafe599bc79bb970"><td class="memItemLeft" align="right" valign="top">async Task&lt; List&lt; Dictionary&lt; object, string &gt; &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a239ad32f36c6d096bafe599bc79bb970">GetVehicleDataAsync</a> (object frameNr)</td></tr>
+<tr class="memdesc:a239ad32f36c6d096bafe599bc79bb970"><td class="mdescLeft">&#160;</td><td class="mdescRight">Er wordt doormiddel van een specifiek framenummer alle gegevens van dit voertuig verzameld. De gegevens worden in een list gestopt die bestaat uit dictonaries. In de dictonaries wordt als key de colomnaam gebruikt en als waarde de data van de colom.  <br /></td></tr>
+<tr class="separator:a239ad32f36c6d096bafe599bc79bb970"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a35a796e7cf96268b3fe824913616c411" id="r_a35a796e7cf96268b3fe824913616c411"><td class="memItemLeft" align="right" valign="top">async Task&lt;(bool <a class="el" href="#a757dec8cb7ee7a9edde9f9ae8716c8f5">Status</a>, string <a class="el" href="#a331f9d150d5870f1f3cc3215ff587924">Message</a>)&gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a35a796e7cf96268b3fe824913616c411">HireVehicle</a> (<a class="el" href="class_w_p_r_1_1_controllers_1_1_customer_1_1_rental_1_1_rental_request.html">RentalRequest</a> request, string userId)</td></tr>
+<tr class="memdesc:a35a796e7cf96268b3fe824913616c411"><td class="mdescLeft">&#160;</td><td class="mdescRight">Verwerkt het huurverzoek door de gebruiker te valideren, het verzoek toe te voegen aan de database en een bevestigingsmail te sturen.  <br /></td></tr>
+<tr class="separator:a35a796e7cf96268b3fe824913616c411"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a774953f45d278043f0b8ff79cdefa4df" id="r_a774953f45d278043f0b8ff79cdefa4df"><td class="memItemLeft" align="right" valign="top">async Task&lt;(bool <a class="el" href="#a757dec8cb7ee7a9edde9f9ae8716c8f5">Status</a>, int <a class="el" href="#a0abd0395724205d79472c5d97678c880">StatusCode</a>, string <a class="el" href="#a331f9d150d5870f1f3cc3215ff587924">Message</a>)&gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a774953f45d278043f0b8ff79cdefa4df">CancelRental</a> (int rentalId, string userCookie)</td></tr>
+<tr class="memdesc:a774953f45d278043f0b8ff79cdefa4df"><td class="mdescLeft">&#160;</td><td class="mdescRight">Annuleert een bestaande huur op basis van de opgegeven rentalId en userCookie.  <br /></td></tr>
+<tr class="separator:a774953f45d278043f0b8ff79cdefa4df"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a67db6526a03c26958ee2c78af449dc5d" id="r_a67db6526a03c26958ee2c78af449dc5d"><td class="memItemLeft" align="right" valign="top">async Task&lt;(bool <a class="el" href="#a757dec8cb7ee7a9edde9f9ae8716c8f5">Status</a>, int <a class="el" href="#a0abd0395724205d79472c5d97678c880">StatusCode</a>, string <a class="el" href="#a331f9d150d5870f1f3cc3215ff587924">Message</a>, IList&lt; object &gt; UserRentals)&gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a67db6526a03c26958ee2c78af449dc5d">GetAllUserRentals</a> (string userCookie)</td></tr>
+<tr class="memdesc:a67db6526a03c26958ee2c78af449dc5d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Verkrijgt alle huuraanvragen van een gebruiker, op basis van hun gedecodeerde userId vanuit de cookie.  <br /></td></tr>
+<tr class="separator:a67db6526a03c26958ee2c78af449dc5d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abd6f9915907cc3aebdc50caeaf2f9bd8" id="r_abd6f9915907cc3aebdc50caeaf2f9bd8"><td class="memItemLeft" align="right" valign="top">bool int string IList&lt; object &gt; UserRentals&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abd6f9915907cc3aebdc50caeaf2f9bd8">GetAllUserRentalsDetailed</a> ()</td></tr>
+<tr class="separator:abd6f9915907cc3aebdc50caeaf2f9bd8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a57416a2c12ab696bf29a9df2b3509d01" id="r_a57416a2c12ab696bf29a9df2b3509d01"><td class="memItemLeft" align="right" valign="top">bool int string <a class="el" href="#a331f9d150d5870f1f3cc3215ff587924">Message</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a57416a2c12ab696bf29a9df2b3509d01">ChangeRental</a> (<a class="el" href="class_w_p_r_1_1_controllers_1_1_customer_1_1_rental_1_1_update_rental_request.html">UpdateRentalRequest</a> request)</td></tr>
+<tr class="separator:a57416a2c12ab696bf29a9df2b3509d01"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a73e48f0a16549d09831208eb2b575beb" id="r_a73e48f0a16549d09831208eb2b575beb"><td class="memItemLeft" align="right" valign="top">async Task&lt;(bool <a class="el" href="#a757dec8cb7ee7a9edde9f9ae8716c8f5">Status</a>, string <a class="el" href="#a331f9d150d5870f1f3cc3215ff587924">Message</a>)&gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a73e48f0a16549d09831208eb2b575beb">DeleteVehicleAsync</a> (string frameNr)</td></tr>
+<tr class="memdesc:a73e48f0a16549d09831208eb2b575beb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Verwijdert een voertuig uit de database op basis van het frame nummer.  <br /></td></tr>
+<tr class="separator:a73e48f0a16549d09831208eb2b575beb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac3efc62914d63ea27fb7fa07d1294b35" id="r_ac3efc62914d63ea27fb7fa07d1294b35"><td class="memItemLeft" align="right" valign="top">bool int string <a class="el" href="#a331f9d150d5870f1f3cc3215ff587924">Message</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac3efc62914d63ea27fb7fa07d1294b35">ChangeRepairStatus</a> (int id, bool broken)</td></tr>
+<tr class="separator:ac3efc62914d63ea27fb7fa07d1294b35"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
+Data Velden</h2></td></tr>
+<tr class="memitem:a757dec8cb7ee7a9edde9f9ae8716c8f5" id="r_a757dec8cb7ee7a9edde9f9ae8716c8f5"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a757dec8cb7ee7a9edde9f9ae8716c8f5">Status</a></td></tr>
+<tr class="memdesc:a757dec8cb7ee7a9edde9f9ae8716c8f5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Verkrijgt gedetailleerde huuraanvragen van alle contracten in de database.  <br /></td></tr>
+<tr class="separator:a757dec8cb7ee7a9edde9f9ae8716c8f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0abd0395724205d79472c5d97678c880" id="r_a0abd0395724205d79472c5d97678c880"><td class="memItemLeft" align="right" valign="top">bool int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0abd0395724205d79472c5d97678c880">StatusCode</a></td></tr>
+<tr class="separator:a0abd0395724205d79472c5d97678c880"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a331f9d150d5870f1f3cc3215ff587924" id="r_a331f9d150d5870f1f3cc3215ff587924"><td class="memItemLeft" align="right" valign="top">bool int string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a331f9d150d5870f1f3cc3215ff587924">Message</a></td></tr>
+<tr class="separator:a331f9d150d5870f1f3cc3215ff587924"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_attribs_interface_w_p_r_1_1_repository_1_1_i_vehicle_repository"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_attribs_interface_w_p_r_1_1_repository_1_1_i_vehicle_repository')"><img src="closed.png" alt="-"/>&#160;Data Velden overgeërfd van <a class="el" href="interface_w_p_r_1_1_repository_1_1_i_vehicle_repository.html">WPR.Repository.IVehicleRepository</a></td></tr>
+<tr class="memitem:adb72a97c347ecd008bb8e5c710d2aff9 inherit pub_attribs_interface_w_p_r_1_1_repository_1_1_i_vehicle_repository" id="r_adb72a97c347ecd008bb8e5c710d2aff9"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_w_p_r_1_1_repository_1_1_i_vehicle_repository.html#adb72a97c347ecd008bb8e5c710d2aff9">Status</a></td></tr>
+<tr class="separator:adb72a97c347ecd008bb8e5c710d2aff9 inherit pub_attribs_interface_w_p_r_1_1_repository_1_1_i_vehicle_repository"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1ce2e69b07095fef3c77dae9a8fbe32c inherit pub_attribs_interface_w_p_r_1_1_repository_1_1_i_vehicle_repository" id="r_a1ce2e69b07095fef3c77dae9a8fbe32c"><td class="memItemLeft" align="right" valign="top">bool int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_w_p_r_1_1_repository_1_1_i_vehicle_repository.html#a1ce2e69b07095fef3c77dae9a8fbe32c">StatusCode</a></td></tr>
+<tr class="separator:a1ce2e69b07095fef3c77dae9a8fbe32c inherit pub_attribs_interface_w_p_r_1_1_repository_1_1_i_vehicle_repository"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9f7440af785bf047fe631d9ddc7ff0fe inherit pub_attribs_interface_w_p_r_1_1_repository_1_1_i_vehicle_repository" id="r_a9f7440af785bf047fe631d9ddc7ff0fe"><td class="memItemLeft" align="right" valign="top">bool int string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_w_p_r_1_1_repository_1_1_i_vehicle_repository.html#a9f7440af785bf047fe631d9ddc7ff0fe">Message</a></td></tr>
+<tr class="separator:a9f7440af785bf047fe631d9ddc7ff0fe inherit pub_attribs_interface_w_p_r_1_1_repository_1_1_i_vehicle_repository"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-methods" name="pri-methods"></a>
+Private Members</h2></td></tr>
+<tr class="memitem:af4c31712aa266cf049a33a54697cdc60" id="r_af4c31712aa266cf049a33a54697cdc60"><td class="memItemLeft" align="right" valign="top">async Task&lt;(bool <a class="el" href="#a757dec8cb7ee7a9edde9f9ae8716c8f5">Status</a>, int <a class="el" href="#a0abd0395724205d79472c5d97678c880">StatusCode</a>, object <a class="el" href="#a331f9d150d5870f1f3cc3215ff587924">Message</a>)&gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af4c31712aa266cf049a33a54697cdc60">DecryptCookie</a> (string userId)</td></tr>
+<tr class="memdesc:af4c31712aa266cf049a33a54697cdc60"><td class="mdescLeft">&#160;</td><td class="mdescRight">Probeert de gebruiker ID te decrypteren vanuit de cookie en retourneert het gedecodeerde resultaat.  <br /></td></tr>
+<tr class="separator:af4c31712aa266cf049a33a54697cdc60"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8f27557367909f3ab26b7f8ac80fa33a" id="r_a8f27557367909f3ab26b7f8ac80fa33a"><td class="memItemLeft" align="right" valign="top">async Task&lt; bool &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8f27557367909f3ab26b7f8ac80fa33a">IsBusinessUser</a> (object userId)</td></tr>
+<tr class="memdesc:a8f27557367909f3ab26b7f8ac80fa33a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Controleert of de gebruiker een business account heeft op basis van het opgegeven userId.  <br /></td></tr>
+<tr class="separator:a8f27557367909f3ab26b7f8ac80fa33a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af8c82079f31c3bbec4c7d0af846256d8" id="r_af8c82079f31c3bbec4c7d0af846256d8"><td class="memItemLeft" align="right" valign="top">async Task&lt;(bool <a class="el" href="#a757dec8cb7ee7a9edde9f9ae8716c8f5">Status</a>, string <a class="el" href="#a331f9d150d5870f1f3cc3215ff587924">Message</a>)&gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af8c82079f31c3bbec4c7d0af846256d8">InsertRequest</a> (<a class="el" href="class_w_p_r_1_1_controllers_1_1_customer_1_1_rental_1_1_rental_request.html">RentalRequest</a> request, object userId)</td></tr>
+<tr class="memdesc:af8c82079f31c3bbec4c7d0af846256d8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Voegt een huurverzoek toe aan de database afhankelijk van het accounttype van de gebruiker (business of niet).  <br /></td></tr>
+<tr class="separator:af8c82079f31c3bbec4c7d0af846256d8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2c371ee4ceecc0aed0aa772f6e8eee5a" id="r_a2c371ee4ceecc0aed0aa772f6e8eee5a"><td class="memItemLeft" align="right" valign="top">async Task&lt;(bool <a class="el" href="#a757dec8cb7ee7a9edde9f9ae8716c8f5">Status</a>, string <a class="el" href="#a331f9d150d5870f1f3cc3215ff587924">Message</a>)&gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2c371ee4ceecc0aed0aa772f6e8eee5a">SendEmail</a> (<a class="el" href="class_w_p_r_1_1_controllers_1_1_customer_1_1_rental_1_1_rental_request.html">RentalRequest</a> request)</td></tr>
+<tr class="memdesc:a2c371ee4ceecc0aed0aa772f6e8eee5a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Verstuurt een bevestigingsmail naar de gebruiker na het succesvol aanmaken van een huurverzoek.  <br /></td></tr>
+<tr class="separator:a2c371ee4ceecc0aed0aa772f6e8eee5a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private Attributen</h2></td></tr>
+<tr class="memitem:aee2f3da59ff3f7177ab5f962c16e2e7c" id="r_aee2f3da59ff3f7177ab5f962c16e2e7c"><td class="memItemLeft" align="right" valign="top">readonly <a class="el" href="interface_w_p_r_1_1_database_1_1_i_connector.html">IConnector</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aee2f3da59ff3f7177ab5f962c16e2e7c">_connector</a></td></tr>
+<tr class="separator:aee2f3da59ff3f7177ab5f962c16e2e7c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2e388ed4c58b74b5e0210445b262faf1" id="r_a2e388ed4c58b74b5e0210445b262faf1"><td class="memItemLeft" align="right" valign="top">readonly <a class="el" href="class_w_p_r_1_1_cryption_1_1_crypt.html">Crypt</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2e388ed4c58b74b5e0210445b262faf1">_crypt</a></td></tr>
+<tr class="separator:a2e388ed4c58b74b5e0210445b262faf1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae78b0e51a191e0fbfd3395e92158557a" id="r_ae78b0e51a191e0fbfd3395e92158557a"><td class="memItemLeft" align="right" valign="top">readonly <a class="el" href="class_w_p_r_1_1_services_1_1_email_service.html">EmailService</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae78b0e51a191e0fbfd3395e92158557a">_emailService</a></td></tr>
+<tr class="separator:ae78b0e51a191e0fbfd3395e92158557a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Gedetailleerde Beschrijving</h2>
+<div class="textblock"><p>De <a class="el" href="class_w_p_r_1_1_repository_1_1_vehicle_repository.html" title="De VehicleRepository class geeft de methodes voor de interactie met de database voor gebruiker gerela...">VehicleRepository</a> class geeft de methodes voor de interactie met de database voor gebruiker gerelateerde operaties. Het implementeert de <a class="el" href="interface_w_p_r_1_1_repository_1_1_i_vehicle_repository.html">IVehicleRepository</a> interface. </p>
+
+<p class="definition">De definitie bevindt zich op regel <a class="el" href="_vehicle_repository_8cs_source.html#l00014">14</a> in het bestand <a class="el" href="_vehicle_repository_8cs_source.html">VehicleRepository.cs</a>.</p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentatie</h2>
+<a id="a14a6babb6d19b54f9bdfe9dcd922ae6a" name="a14a6babb6d19b54f9bdfe9dcd922ae6a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a14a6babb6d19b54f9bdfe9dcd922ae6a">&#9670;&#160;</a></span>VehicleRepository()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">WPR.Repository.VehicleRepository.VehicleRepository </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="interface_w_p_r_1_1_database_1_1_i_connector.html">IConnector</a></td>          <td class="paramname"><span class="paramname"><em>connector</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="class_w_p_r_1_1_cryption_1_1_crypt.html">Crypt</a></td>          <td class="paramname"><span class="paramname"><em>crypt</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="class_w_p_r_1_1_services_1_1_email_service.html">EmailService</a></td>          <td class="paramname"><span class="paramname"><em>emailService</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">De definitie bevindt zich op regel <a class="el" href="_vehicle_repository_8cs_source.html#l00020">20</a> in het bestand <a class="el" href="_vehicle_repository_8cs_source.html">VehicleRepository.cs</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   21</span>    {</div>
+<div class="line"><span class="lineno">   22</span>        _connector = connector ?? <span class="keywordflow">throw</span> <span class="keyword">new</span> ArgumentNullException(nameof(connector));</div>
+<div class="line"><span class="lineno">   23</span>        _crypt = crypt ?? <span class="keywordflow">throw</span> <span class="keyword">new</span> ArgumentNullException(nameof(crypt));</div>
+<div class="line"><span class="lineno">   24</span>        _emailService = emailService ?? <span class="keywordflow">throw</span> <span class="keyword">new</span> ArgumentNullException(nameof(emailService));</div>
+<div class="line"><span class="lineno">   25</span>    }</div>
+</div><!-- fragment -->
+<p class="reference">Gebruikt <a class="el" href="_vehicle_repository_8cs_source.html#l00016">_connector</a>, <a class="el" href="_vehicle_repository_8cs_source.html#l00017">_crypt</a> en <a class="el" href="_vehicle_repository_8cs_source.html#l00018">_emailService</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Documentatie van functie members</h2>
+<a id="a774953f45d278043f0b8ff79cdefa4df" name="a774953f45d278043f0b8ff79cdefa4df"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a774953f45d278043f0b8ff79cdefa4df">&#9670;&#160;</a></span>CancelRental()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">async Task&lt;(bool <a class="el" href="#a757dec8cb7ee7a9edde9f9ae8716c8f5">Status</a>, int <a class="el" href="#a0abd0395724205d79472c5d97678c880">StatusCode</a>, string <a class="el" href="#a331f9d150d5870f1f3cc3215ff587924">Message</a>)&gt; WPR.Repository.VehicleRepository.CancelRental </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>rentalId</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string</td>          <td class="paramname"><span class="paramname"><em>userCookie</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Annuleert een bestaande huur op basis van de opgegeven rentalId en userCookie. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">rentalId</td><td>Het ID van de huur die geannuleerd moet worden.</td></tr>
+    <tr><td class="paramname">userCookie</td><td>De cookie die het gebruikers-ID bevat.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Retourneert</dt><dd>Een tuple bestaande uit een status (true/false), een statuscode en een bericht (bijvoorbeeld succes of mislukking).</dd></dl>
+
+<p>Implementeert <a class="el" href="interface_w_p_r_1_1_repository_1_1_i_vehicle_repository.html#af38a6076d5ec309bdf100102eec16a5b">WPR.Repository.IVehicleRepository</a>.</p>
+
+<p class="definition">De definitie bevindt zich op regel <a class="el" href="_vehicle_repository_8cs_source.html#l00498">498</a> in het bestand <a class="el" href="_vehicle_repository_8cs_source.html">VehicleRepository.cs</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  499</span>    {</div>
+<div class="line"><span class="lineno">  500</span>        <span class="keywordflow">try</span></div>
+<div class="line"><span class="lineno">  501</span>        {</div>
+<div class="line"><span class="lineno">  502</span>            var userId = DecryptCookie(userCookie);</div>
+<div class="line"><span class="lineno">  503</span>            <span class="keywordtype">string</span> query = <span class="stringliteral">&quot;DELETE FROM Contract WHERE OrderId = @Id AND Customer = @Customer&quot;</span>;</div>
+<div class="line"><span class="lineno">  504</span> </div>
+<div class="line"><span class="lineno">  505</span>            <span class="keyword">using</span> (var connection = _connector.CreateDbConnection())</div>
+<div class="line"><span class="lineno">  506</span>            <span class="keyword">using</span> (var contractCommand = <span class="keyword">new</span> MySqlCommand(query, (MySqlConnection)connection))</div>
+<div class="line"><span class="lineno">  507</span>            {</div>
+<div class="line"><span class="lineno">  508</span>                <span class="comment">// Verkrijg het userId van de cookie</span></div>
+<div class="line"><span class="lineno">  509</span>                (<span class="keywordtype">bool</span> Status, <span class="keywordtype">int</span> StatusCode, <span class="keywordtype">object</span> Message) userIdResponse = await userId;</div>
+<div class="line"><span class="lineno">  510</span> </div>
+<div class="line"><span class="lineno">  511</span>                <span class="keywordflow">if</span> (userIdResponse.Status)</div>
+<div class="line"><span class="lineno">  512</span>                {</div>
+<div class="line"><span class="lineno">  513</span>                    <span class="comment">// Parameters toevoegen voor de query</span></div>
+<div class="line"><span class="lineno">  514</span>                    contractCommand.Parameters.AddWithValue(<span class="stringliteral">&quot;@Id&quot;</span>, rentalId);</div>
+<div class="line"><span class="lineno">  515</span>                    contractCommand.Parameters.AddWithValue(<span class="stringliteral">&quot;@Customer&quot;</span>, Convert.ToInt32(userIdResponse.Message));</div>
+<div class="line"><span class="lineno">  516</span> </div>
+<div class="line"><span class="lineno">  517</span>                    <span class="comment">// Voer de delete query uit</span></div>
+<div class="line"><span class="lineno">  518</span>                    <span class="keywordflow">if</span> (contractCommand.ExecuteNonQuery() &gt; 0)</div>
+<div class="line"><span class="lineno">  519</span>                    {</div>
+<div class="line"><span class="lineno">  520</span>                        <span class="keywordflow">return</span> (<span class="keyword">true</span>, 200, <span class="stringliteral">&quot;Rental cancelled successfully&quot;</span>);</div>
+<div class="line"><span class="lineno">  521</span>                    }</div>
+<div class="line"><span class="lineno">  522</span>                    <span class="keywordflow">else</span></div>
+<div class="line"><span class="lineno">  523</span>                    {</div>
+<div class="line"><span class="lineno">  524</span>                        <span class="keywordflow">return</span> (<span class="keyword">false</span>, 405, <span class="stringliteral">&quot;Rental not found or you do not have permission to cancel this rental&quot;</span>);</div>
+<div class="line"><span class="lineno">  525</span>                    }</div>
+<div class="line"><span class="lineno">  526</span>                }</div>
+<div class="line"><span class="lineno">  527</span> </div>
+<div class="line"><span class="lineno">  528</span>                <span class="keywordflow">return</span> (<span class="keyword">false</span>, userIdResponse.StatusCode, (<span class="keywordtype">string</span>)userIdResponse.Message);</div>
+<div class="line"><span class="lineno">  529</span>            }</div>
+<div class="line"><span class="lineno">  530</span>        }</div>
+<div class="line"><span class="lineno">  531</span>        <span class="keywordflow">catch</span> (OverflowException ex)</div>
+<div class="line"><span class="lineno">  532</span>        {</div>
+<div class="line"><span class="lineno">  533</span>            <span class="keywordflow">return</span> (<span class="keyword">false</span>, 500, ex.Message);</div>
+<div class="line"><span class="lineno">  534</span>        }</div>
+<div class="line"><span class="lineno">  535</span>        <span class="keywordflow">catch</span> (Exception ex)</div>
+<div class="line"><span class="lineno">  536</span>        {</div>
+<div class="line"><span class="lineno">  537</span>            <span class="keywordflow">return</span> (<span class="keyword">false</span>, 500, ex.Message);</div>
+<div class="line"><span class="lineno">  538</span>        }</div>
+<div class="line"><span class="lineno">  539</span>    }</div>
+</div><!-- fragment -->
+<p class="reference">Gebruikt <a class="el" href="_vehicle_repository_8cs_source.html#l00016">_connector</a>, <a class="el" href="_vehicle_repository_8cs_source.html#l00298">DecryptCookie()</a>, <a class="el" href="_vehicle_repository_8cs_source.html#l00616">Message</a>, <a class="el" href="_vehicle_repository_8cs_source.html#l00616">Status</a> en <a class="el" href="_vehicle_repository_8cs_source.html#l00616">StatusCode</a>.</p>
+<div class="dynheader">
+Hier is de call graaf voor deze functie:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="class_w_p_r_1_1_repository_1_1_vehicle_repository_a774953f45d278043f0b8ff79cdefa4df_cgraph.svg" width="522" height="54"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+
+</div>
+</div>
+<a id="a57416a2c12ab696bf29a9df2b3509d01" name="a57416a2c12ab696bf29a9df2b3509d01"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a57416a2c12ab696bf29a9df2b3509d01">&#9670;&#160;</a></span>ChangeRental()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool int string <a class="el" href="#a331f9d150d5870f1f3cc3215ff587924">Message</a> WPR.Repository.VehicleRepository.ChangeRental </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_w_p_r_1_1_controllers_1_1_customer_1_1_rental_1_1_update_rental_request.html">UpdateRentalRequest</a></td>          <td class="paramname"><span class="paramname"><em>request</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implementeert <a class="el" href="interface_w_p_r_1_1_repository_1_1_i_vehicle_repository.html#a74159d9dc2bd4ca22d63c8fb8bdb6d66">WPR.Repository.IVehicleRepository</a>.</p>
+
+<p class="definition">De definitie bevindt zich op regel <a class="el" href="_vehicle_repository_8cs_source.html#l00667">667</a> in het bestand <a class="el" href="_vehicle_repository_8cs_source.html">VehicleRepository.cs</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  668</span>    {</div>
+<div class="line"><span class="lineno">  669</span>        <span class="keywordflow">try</span></div>
+<div class="line"><span class="lineno">  670</span>        {</div>
+<div class="line"><span class="lineno">  671</span>            <span class="keywordtype">string</span> query =</div>
+<div class="line"><span class="lineno">  672</span>                <span class="stringliteral">&quot;UPDATE Contract SET StartDate = @StartDate, EndDate = @EndDate, Price = @Price WHERE OrderId = @Id&quot;</span>;</div>
+<div class="line"><span class="lineno">  673</span> </div>
+<div class="line"><span class="lineno">  674</span>            <span class="comment">// Verbindt met de database om de huurdata te updaten</span></div>
+<div class="line"><span class="lineno">  675</span>            <span class="keyword">using</span> (var connection = _connector.CreateDbConnection())</div>
+<div class="line"><span class="lineno">  676</span>            <span class="keyword">using</span> (var command = <span class="keyword">new</span> MySqlCommand(query, (MySqlConnection)connection))</div>
+<div class="line"><span class="lineno">  677</span>            {</div>
+<div class="line"><span class="lineno">  678</span>                <span class="comment">// Voegt de parameters toe aan de SQL-query</span></div>
+<div class="line"><span class="lineno">  679</span>                command.Parameters.AddWithValue(<span class="stringliteral">&quot;@StartDate&quot;</span>, request.<a class="code hl_property" href="class_w_p_r_1_1_controllers_1_1_customer_1_1_rental_1_1_update_rental_request.html#a961d18b95ae5fb0641d174341634e979">StartDate</a>);</div>
+<div class="line"><span class="lineno">  680</span>                command.Parameters.AddWithValue(<span class="stringliteral">&quot;@EndDate&quot;</span>, request.<a class="code hl_property" href="class_w_p_r_1_1_controllers_1_1_customer_1_1_rental_1_1_update_rental_request.html#a3711257c2baa793d32f1535b2e6956ae">EndDate</a>);</div>
+<div class="line"><span class="lineno">  681</span>                command.Parameters.AddWithValue(<span class="stringliteral">&quot;@Price&quot;</span>, request.<a class="code hl_property" href="class_w_p_r_1_1_controllers_1_1_customer_1_1_rental_1_1_update_rental_request.html#a7ebd4027010e62dc4f719101b1022ef8">Price</a>);</div>
+<div class="line"><span class="lineno">  682</span>                command.Parameters.AddWithValue(<span class="stringliteral">&quot;@Id&quot;</span>, request.<a class="code hl_property" href="class_w_p_r_1_1_controllers_1_1_customer_1_1_rental_1_1_update_rental_request.html#abf294653d1a653b772ab60a8925c09b2">Id</a>);</div>
+<div class="line"><span class="lineno">  683</span> </div>
+<div class="line"><span class="lineno">  684</span>                <span class="comment">// Voert de update uit en controleert of het succesvol was</span></div>
+<div class="line"><span class="lineno">  685</span>                <span class="keywordflow">if</span> (command.ExecuteNonQuery() &gt; 0)</div>
+<div class="line"><span class="lineno">  686</span>                {</div>
+<div class="line"><span class="lineno">  687</span>                    <span class="keywordflow">return</span> (<span class="keyword">true</span>, 200, <span class="stringliteral">&quot;Rental Updated Successfully&quot;</span>);</div>
+<div class="line"><span class="lineno">  688</span>                }</div>
+<div class="line"><span class="lineno">  689</span> </div>
+<div class="line"><span class="lineno">  690</span>                <span class="comment">// Foutmelding als de update niet is uitgevoerd</span></div>
+<div class="line"><span class="lineno">  691</span>                <span class="keywordflow">return</span> (<span class="keyword">false</span>, 501, <span class="stringliteral">&quot;Rental wasn&#39;t updated&quot;</span>);</div>
+<div class="line"><span class="lineno">  692</span>            }</div>
+<div class="line"><span class="lineno">  693</span>        }</div>
+<div class="line"><span class="lineno">  694</span>        <span class="keywordflow">catch</span> (MySqlException ex)</div>
+<div class="line"><span class="lineno">  695</span>        {</div>
+<div class="line"><span class="lineno">  696</span>            <span class="keywordflow">return</span> (<span class="keyword">false</span>, 500, ex.Message);</div>
+<div class="line"><span class="lineno">  697</span>        }</div>
+<div class="line"><span class="lineno">  698</span>        <span class="keywordflow">catch</span> (Exception ex)</div>
+<div class="line"><span class="lineno">  699</span>        {</div>
+<div class="line"><span class="lineno">  700</span>            <span class="keywordflow">return</span> (<span class="keyword">false</span>, 500, ex.Message);</div>
+<div class="line"><span class="lineno">  701</span>        }</div>
+<div class="line"><span class="lineno">  702</span>    }</div>
+<div class="ttc" id="aclass_w_p_r_1_1_controllers_1_1_customer_1_1_rental_1_1_update_rental_request_html_a3711257c2baa793d32f1535b2e6956ae"><div class="ttname"><a href="class_w_p_r_1_1_controllers_1_1_customer_1_1_rental_1_1_update_rental_request.html#a3711257c2baa793d32f1535b2e6956ae">WPR.Controllers.Customer.Rental.UpdateRentalRequest.EndDate</a></div><div class="ttdeci">DateTime EndDate</div><div class="ttdef"><b>Definitie</b> <a href="_update_rental_request_8cs_source.html#l00007">UpdateRentalRequest.cs:7</a></div></div>
+<div class="ttc" id="aclass_w_p_r_1_1_controllers_1_1_customer_1_1_rental_1_1_update_rental_request_html_a7ebd4027010e62dc4f719101b1022ef8"><div class="ttname"><a href="class_w_p_r_1_1_controllers_1_1_customer_1_1_rental_1_1_update_rental_request.html#a7ebd4027010e62dc4f719101b1022ef8">WPR.Controllers.Customer.Rental.UpdateRentalRequest.Price</a></div><div class="ttdeci">decimal Price</div><div class="ttdef"><b>Definitie</b> <a href="_update_rental_request_8cs_source.html#l00008">UpdateRentalRequest.cs:8</a></div></div>
+<div class="ttc" id="aclass_w_p_r_1_1_controllers_1_1_customer_1_1_rental_1_1_update_rental_request_html_a961d18b95ae5fb0641d174341634e979"><div class="ttname"><a href="class_w_p_r_1_1_controllers_1_1_customer_1_1_rental_1_1_update_rental_request.html#a961d18b95ae5fb0641d174341634e979">WPR.Controllers.Customer.Rental.UpdateRentalRequest.StartDate</a></div><div class="ttdeci">DateTime StartDate</div><div class="ttdef"><b>Definitie</b> <a href="_update_rental_request_8cs_source.html#l00006">UpdateRentalRequest.cs:6</a></div></div>
+<div class="ttc" id="aclass_w_p_r_1_1_controllers_1_1_customer_1_1_rental_1_1_update_rental_request_html_abf294653d1a653b772ab60a8925c09b2"><div class="ttname"><a href="class_w_p_r_1_1_controllers_1_1_customer_1_1_rental_1_1_update_rental_request.html#abf294653d1a653b772ab60a8925c09b2">WPR.Controllers.Customer.Rental.UpdateRentalRequest.Id</a></div><div class="ttdeci">int Id</div><div class="ttdef"><b>Definitie</b> <a href="_update_rental_request_8cs_source.html#l00005">UpdateRentalRequest.cs:5</a></div></div>
+</div><!-- fragment -->
+<p class="reference">Gebruikt <a class="el" href="_vehicle_repository_8cs_source.html#l00016">_connector</a>, <a class="el" href="_update_rental_request_8cs_source.html#l00007">WPR.Controllers.Customer.Rental.UpdateRentalRequest.EndDate</a>, <a class="el" href="_update_rental_request_8cs_source.html#l00005">WPR.Controllers.Customer.Rental.UpdateRentalRequest.Id</a>, <a class="el" href="_vehicle_repository_8cs_source.html#l00616">Message</a>, <a class="el" href="_update_rental_request_8cs_source.html#l00008">WPR.Controllers.Customer.Rental.UpdateRentalRequest.Price</a>, <a class="el" href="_update_rental_request_8cs_source.html#l00006">WPR.Controllers.Customer.Rental.UpdateRentalRequest.StartDate</a>, <a class="el" href="_vehicle_repository_8cs_source.html#l00616">Status</a> en <a class="el" href="_vehicle_repository_8cs_source.html#l00616">StatusCode</a>.</p>
+
+</div>
+</div>
+<a id="ac3efc62914d63ea27fb7fa07d1294b35" name="ac3efc62914d63ea27fb7fa07d1294b35"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac3efc62914d63ea27fb7fa07d1294b35">&#9670;&#160;</a></span>ChangeRepairStatus()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool int string <a class="el" href="#a331f9d150d5870f1f3cc3215ff587924">Message</a> WPR.Repository.VehicleRepository.ChangeRepairStatus </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>id</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>broken</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implementeert <a class="el" href="interface_w_p_r_1_1_repository_1_1_i_vehicle_repository.html#a41e7410035ac05b4b21404a55b2d60d9">WPR.Repository.IVehicleRepository</a>.</p>
+
+<p class="definition">De definitie bevindt zich op regel <a class="el" href="_vehicle_repository_8cs_source.html#l00755">755</a> in het bestand <a class="el" href="_vehicle_repository_8cs_source.html">VehicleRepository.cs</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  756</span>    {</div>
+<div class="line"><span class="lineno">  757</span>        <span class="keywordflow">try</span></div>
+<div class="line"><span class="lineno">  758</span>        {</div>
+<div class="line"><span class="lineno">  759</span>            <span class="keywordtype">int</span> repairValue;</div>
+<div class="line"><span class="lineno">  760</span>            <span class="comment">// Bepaalt de waarde van de reparatiestatus (1 voor &#39;broken&#39;, 0 voor &#39;not broken&#39;)</span></div>
+<div class="line"><span class="lineno">  761</span>            <span class="keywordflow">if</span> (broken)</div>
+<div class="line"><span class="lineno">  762</span>            {</div>
+<div class="line"><span class="lineno">  763</span>                repairValue = 1;</div>
+<div class="line"><span class="lineno">  764</span>            }</div>
+<div class="line"><span class="lineno">  765</span>            <span class="keywordflow">else</span></div>
+<div class="line"><span class="lineno">  766</span>            {</div>
+<div class="line"><span class="lineno">  767</span>                repairValue = 0;</div>
+<div class="line"><span class="lineno">  768</span>            }</div>
+<div class="line"><span class="lineno">  769</span> </div>
+<div class="line"><span class="lineno">  770</span>            <span class="comment">// SQL-query om de reparatiestatus bij te werken</span></div>
+<div class="line"><span class="lineno">  771</span>            <span class="keywordtype">string</span> query = <span class="stringliteral">&quot;UPDATE Vehicle SET InRepair = @Repair WHERE FrameNr = @FrameNr&quot;</span>;</div>
+<div class="line"><span class="lineno">  772</span> </div>
+<div class="line"><span class="lineno">  773</span>            <span class="keyword">using</span> (var connection = _connector.CreateDbConnection())</div>
+<div class="line"><span class="lineno">  774</span>            <span class="keyword">using</span> (var command = <span class="keyword">new</span> MySqlCommand(query, (MySqlConnection)connection))</div>
+<div class="line"><span class="lineno">  775</span>            {</div>
+<div class="line"><span class="lineno">  776</span>                <span class="comment">// Voegt de parameters voor FrameNr en Repair toe aan de query</span></div>
+<div class="line"><span class="lineno">  777</span>                command.Parameters.AddWithValue(<span class="stringliteral">&quot;@FrameNr&quot;</span>, <span class="keywordtype">id</span>);</div>
+<div class="line"><span class="lineno">  778</span>                command.Parameters.AddWithValue(<span class="stringliteral">&quot;@Repair&quot;</span>, repairValue);</div>
+<div class="line"><span class="lineno">  779</span> </div>
+<div class="line"><span class="lineno">  780</span>                <span class="comment">// Voert de update uit en controleert of het succesvol was</span></div>
+<div class="line"><span class="lineno">  781</span>                <span class="keywordflow">if</span> (command.ExecuteNonQuery() &gt; 0)</div>
+<div class="line"><span class="lineno">  782</span>                {</div>
+<div class="line"><span class="lineno">  783</span>                    <span class="keywordflow">return</span> (<span class="keyword">true</span>, 200, $<span class="stringliteral">&quot;Vehicle with FrameNr {id} has been put in repair.&quot;</span>);</div>
+<div class="line"><span class="lineno">  784</span>                }</div>
+<div class="line"><span class="lineno">  785</span> </div>
+<div class="line"><span class="lineno">  786</span>                <span class="comment">// Foutmelding als de reparatiestatus niet werd bijgewerkt</span></div>
+<div class="line"><span class="lineno">  787</span>                <span class="keywordflow">return</span> (<span class="keyword">false</span>, 501, $<span class="stringliteral">&quot;Vehicle with FrameNr {id} hasn&#39;t been put under repair.&quot;</span>);</div>
+<div class="line"><span class="lineno">  788</span>            }</div>
+<div class="line"><span class="lineno">  789</span>        }</div>
+<div class="line"><span class="lineno">  790</span>        <span class="keywordflow">catch</span> (MySqlException ex)</div>
+<div class="line"><span class="lineno">  791</span>        {</div>
+<div class="line"><span class="lineno">  792</span>            <span class="keywordflow">return</span> (<span class="keyword">false</span>, 500, ex.Message);</div>
+<div class="line"><span class="lineno">  793</span>        }</div>
+<div class="line"><span class="lineno">  794</span>        <span class="keywordflow">catch</span> (Exception ex)</div>
+<div class="line"><span class="lineno">  795</span>        {</div>
+<div class="line"><span class="lineno">  796</span>            <span class="keywordflow">return</span> (<span class="keyword">false</span>, 500, ex.Message);</div>
+<div class="line"><span class="lineno">  797</span>        }</div>
+<div class="line"><span class="lineno">  798</span>    }</div>
+</div><!-- fragment -->
+<p class="reference">Gebruikt <a class="el" href="_vehicle_repository_8cs_source.html#l00016">_connector</a>, <a class="el" href="_vehicle_repository_8cs_source.html#l00616">Message</a>, <a class="el" href="_vehicle_repository_8cs_source.html#l00616">Status</a> en <a class="el" href="_vehicle_repository_8cs_source.html#l00616">StatusCode</a>.</p>
+
+</div>
+</div>
+<a id="af4c31712aa266cf049a33a54697cdc60" name="af4c31712aa266cf049a33a54697cdc60"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af4c31712aa266cf049a33a54697cdc60">&#9670;&#160;</a></span>DecryptCookie()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">async Task&lt;(bool <a class="el" href="#a757dec8cb7ee7a9edde9f9ae8716c8f5">Status</a>, int <a class="el" href="#a0abd0395724205d79472c5d97678c880">StatusCode</a>, object <a class="el" href="#a331f9d150d5870f1f3cc3215ff587924">Message</a>)&gt; WPR.Repository.VehicleRepository.DecryptCookie </td>
+          <td>(</td>
+          <td class="paramtype">string</td>          <td class="paramname"><span class="paramname"><em>userId</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Probeert de gebruiker ID te decrypteren vanuit de cookie en retourneert het gedecodeerde resultaat. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">userId</td><td>De versleutelde gebruikers-ID als string.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Retourneert</dt><dd>Een tuple bestaande uit een status (true/false), een statuscode en een bericht (bijvoorbeeld de gedecodeerde waarde of foutmelding).</dd></dl>
+
+<p class="definition">De definitie bevindt zich op regel <a class="el" href="_vehicle_repository_8cs_source.html#l00298">298</a> in het bestand <a class="el" href="_vehicle_repository_8cs_source.html">VehicleRepository.cs</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  299</span>    {</div>
+<div class="line"><span class="lineno">  300</span>        <span class="keywordflow">try</span></div>
+<div class="line"><span class="lineno">  301</span>        {</div>
+<div class="line"><span class="lineno">  302</span>            <span class="comment">// Decrypt de userId en retourneer de gedecodeerde waarde</span></div>
+<div class="line"><span class="lineno">  303</span>            <span class="keywordflow">return</span> (<span class="keyword">true</span>, 200, Convert.ToInt32(_crypt.Decrypt(userId)));</div>
+<div class="line"><span class="lineno">  304</span>        }</div>
+<div class="line"><span class="lineno">  305</span>        <span class="keywordflow">catch</span> (OverflowException ex)</div>
+<div class="line"><span class="lineno">  306</span>        {</div>
+<div class="line"><span class="lineno">  307</span>            <span class="comment">// Fout bij decoderen, retourneer error</span></div>
+<div class="line"><span class="lineno">  308</span>            <span class="keywordflow">return</span> (<span class="keyword">false</span>, 500, ex.Message);</div>
+<div class="line"><span class="lineno">  309</span>        }</div>
+<div class="line"><span class="lineno">  310</span>        <span class="keywordflow">catch</span> (Exception ex)</div>
+<div class="line"><span class="lineno">  311</span>        {</div>
+<div class="line"><span class="lineno">  312</span>            <span class="comment">// Algemeen foutafhandelingsmechanisme</span></div>
+<div class="line"><span class="lineno">  313</span>            <span class="keywordflow">return</span> (<span class="keyword">false</span>, 500, ex.Message);</div>
+<div class="line"><span class="lineno">  314</span>        }</div>
+<div class="line"><span class="lineno">  315</span>    }</div>
+</div><!-- fragment -->
+<p class="reference">Gebruikt <a class="el" href="_vehicle_repository_8cs_source.html#l00017">_crypt</a>, <a class="el" href="_vehicle_repository_8cs_source.html#l00616">Message</a>, <a class="el" href="_vehicle_repository_8cs_source.html#l00616">Status</a> en <a class="el" href="_vehicle_repository_8cs_source.html#l00616">StatusCode</a>.</p>
+
+<p class="reference">Wordt aangeroepen door <a class="el" href="_vehicle_repository_8cs_source.html#l00498">CancelRental()</a>, <a class="el" href="_vehicle_repository_8cs_source.html#l00546">GetAllUserRentals()</a> en <a class="el" href="_vehicle_repository_8cs_source.html#l00462">HireVehicle()</a>.</p>
+<div class="dynheader">
+Hier is de caller graaf voor deze functie:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="class_w_p_r_1_1_repository_1_1_vehicle_repository_af4c31712aa266cf049a33a54697cdc60_icgraph.svg" width="522" height="187"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+
+</div>
+</div>
+<a id="a73e48f0a16549d09831208eb2b575beb" name="a73e48f0a16549d09831208eb2b575beb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a73e48f0a16549d09831208eb2b575beb">&#9670;&#160;</a></span>DeleteVehicleAsync()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">async Task&lt;(bool <a class="el" href="#a757dec8cb7ee7a9edde9f9ae8716c8f5">Status</a>, string <a class="el" href="#a331f9d150d5870f1f3cc3215ff587924">Message</a>)&gt; WPR.Repository.VehicleRepository.DeleteVehicleAsync </td>
+          <td>(</td>
+          <td class="paramtype">string</td>          <td class="paramname"><span class="paramname"><em>frameNr</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Verwijdert een voertuig uit de database op basis van het frame nummer. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">frameNr</td><td>Het frame nummer van het voertuig dat verwijderd moet worden.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Retourneert</dt><dd>A tuple containing the status and message about the success or failure of the deletion.</dd></dl>
+
+<p>Implementeert <a class="el" href="interface_w_p_r_1_1_repository_1_1_i_vehicle_repository.html#afcd5830c8706b9b10ea3388fa17a39bb">WPR.Repository.IVehicleRepository</a>.</p>
+
+<p class="definition">De definitie bevindt zich op regel <a class="el" href="_vehicle_repository_8cs_source.html#l00709">709</a> in het bestand <a class="el" href="_vehicle_repository_8cs_source.html">VehicleRepository.cs</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  710</span>    {</div>
+<div class="line"><span class="lineno">  711</span>        <span class="keywordflow">try</span></div>
+<div class="line"><span class="lineno">  712</span>        {</div>
+<div class="line"><span class="lineno">  713</span>            <span class="keywordtype">string</span> queryCustomer = <span class="stringliteral">&quot;DELETE FROM Vehicle WHERE frameNr = @FrameNr&quot;</span>;</div>
+<div class="line"><span class="lineno">  714</span> </div>
+<div class="line"><span class="lineno">  715</span>            <span class="comment">// Verbindt met de database om het voertuig te verwijderen</span></div>
+<div class="line"><span class="lineno">  716</span>            <span class="keyword">using</span> (var connection = _connector.CreateDbConnection())</div>
+<div class="line"><span class="lineno">  717</span>            <span class="keyword">using</span> (var customerCommand = <span class="keyword">new</span> MySqlCommand(queryCustomer, (MySqlConnection)connection))</div>
+<div class="line"><span class="lineno">  718</span>            {</div>
+<div class="line"><span class="lineno">  719</span>                <span class="comment">// Voegt het frame nummer toe aan de query</span></div>
+<div class="line"><span class="lineno">  720</span>                customerCommand.Parameters.AddWithValue(<span class="stringliteral">&quot;@FrameNr&quot;</span>, frameNr);</div>
+<div class="line"><span class="lineno">  721</span> </div>
+<div class="line"><span class="lineno">  722</span>                <span class="keywordtype">int</span> rowsAffected = await customerCommand.ExecuteNonQueryAsync();</div>
+<div class="line"><span class="lineno">  723</span> </div>
+<div class="line"><span class="lineno">  724</span>                <span class="comment">// Retourneert succes als het voertuig is verwijderd</span></div>
+<div class="line"><span class="lineno">  725</span>                <span class="keywordflow">if</span> (rowsAffected &gt; 0)</div>
+<div class="line"><span class="lineno">  726</span>                {</div>
+<div class="line"><span class="lineno">  727</span>                    <span class="keywordflow">return</span> (<span class="keyword">true</span>, <span class="stringliteral">&quot;Vehicle deleted&quot;</span>);</div>
+<div class="line"><span class="lineno">  728</span>                }</div>
+<div class="line"><span class="lineno">  729</span>                <span class="keywordflow">else</span></div>
+<div class="line"><span class="lineno">  730</span>                {</div>
+<div class="line"><span class="lineno">  731</span>                    <span class="keywordflow">return</span> (<span class="keyword">false</span>, <span class="stringliteral">&quot;Vehicle could not be deleted&quot;</span>);</div>
+<div class="line"><span class="lineno">  732</span>                }</div>
+<div class="line"><span class="lineno">  733</span>            }</div>
+<div class="line"><span class="lineno">  734</span>        }</div>
+<div class="line"><span class="lineno">  735</span>        <span class="keywordflow">catch</span> (MySqlException ex)</div>
+<div class="line"><span class="lineno">  736</span>        {</div>
+<div class="line"><span class="lineno">  737</span>            <span class="comment">// Fout bij databaseoperaties</span></div>
+<div class="line"><span class="lineno">  738</span>            await Console.Error.WriteLineAsync($<span class="stringliteral">&quot;Database error: {ex.Message}&quot;</span>);</div>
+<div class="line"><span class="lineno">  739</span>            <span class="keywordflow">return</span> (<span class="keyword">false</span>, <span class="stringliteral">&quot;Database error: &quot;</span> + ex.Message);</div>
+<div class="line"><span class="lineno">  740</span>        }</div>
+<div class="line"><span class="lineno">  741</span>        <span class="keywordflow">catch</span> (Exception ex)</div>
+<div class="line"><span class="lineno">  742</span>        {</div>
+<div class="line"><span class="lineno">  743</span>            <span class="comment">// Algemene fout</span></div>
+<div class="line"><span class="lineno">  744</span>            await Console.Error.WriteLineAsync($<span class="stringliteral">&quot;Unexpected error: {ex.Message}&quot;</span>);</div>
+<div class="line"><span class="lineno">  745</span>            <span class="keywordflow">return</span> (<span class="keyword">false</span>, <span class="stringliteral">&quot;Unexpected error: &quot;</span> + ex.Message);</div>
+<div class="line"><span class="lineno">  746</span>        }</div>
+<div class="line"><span class="lineno">  747</span>    }</div>
+</div><!-- fragment -->
+<p class="reference">Gebruikt <a class="el" href="_vehicle_repository_8cs_source.html#l00016">_connector</a>, <a class="el" href="_vehicle_repository_8cs_source.html#l00616">Message</a> en <a class="el" href="_vehicle_repository_8cs_source.html#l00616">Status</a>.</p>
+
+</div>
+</div>
+<a id="a67db6526a03c26958ee2c78af449dc5d" name="a67db6526a03c26958ee2c78af449dc5d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a67db6526a03c26958ee2c78af449dc5d">&#9670;&#160;</a></span>GetAllUserRentals()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">async Task&lt;(bool <a class="el" href="#a757dec8cb7ee7a9edde9f9ae8716c8f5">Status</a>, int <a class="el" href="#a0abd0395724205d79472c5d97678c880">StatusCode</a>, string <a class="el" href="#a331f9d150d5870f1f3cc3215ff587924">Message</a>, IList&lt; object &gt; UserRentals)&gt; WPR.Repository.VehicleRepository.GetAllUserRentals </td>
+          <td>(</td>
+          <td class="paramtype">string</td>          <td class="paramname"><span class="paramname"><em>userCookie</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Verkrijgt alle huuraanvragen van een gebruiker, op basis van hun gedecodeerde userId vanuit de cookie. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">userCookie</td><td>De cookie van de gebruiker, die het gedecodeerde ID zal bevatten.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Retourneert</dt><dd>A tuple containing the status, status code, message, and the list of user's rentals.</dd></dl>
+
+<p>Implementeert <a class="el" href="interface_w_p_r_1_1_repository_1_1_i_vehicle_repository.html#affd8b2697b6204b57f4c6ec7bf670cb1">WPR.Repository.IVehicleRepository</a>.</p>
+
+<p class="definition">De definitie bevindt zich op regel <a class="el" href="_vehicle_repository_8cs_source.html#l00546">546</a> in het bestand <a class="el" href="_vehicle_repository_8cs_source.html">VehicleRepository.cs</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  548</span>    {</div>
+<div class="line"><span class="lineno">  549</span>        <span class="keywordflow">try</span></div>
+<div class="line"><span class="lineno">  550</span>        {</div>
+<div class="line"><span class="lineno">  551</span>            var userId = DecryptCookie(userCookie);</div>
+<div class="line"><span class="lineno">  552</span>            <span class="keywordtype">string</span> query =</div>
+<div class="line"><span class="lineno">  553</span>                <span class="stringliteral">&quot;SELECT OrderId, FrameNrVehicle, StartDate, EndDate, Price, Status FROM Contract WHERE Customer = @Customer&quot;</span>;</div>
+<div class="line"><span class="lineno">  554</span> </div>
+<div class="line"><span class="lineno">  555</span>            var rentals = <span class="keyword">new</span> List&lt;object&gt;();</div>
+<div class="line"><span class="lineno">  556</span> </div>
+<div class="line"><span class="lineno">  557</span>            <span class="keyword">using</span> (var connection = _connector.CreateDbConnection())</div>
+<div class="line"><span class="lineno">  558</span>            <span class="keyword">using</span> (var command = <span class="keyword">new</span> MySqlCommand(query, (MySqlConnection)connection))</div>
+<div class="line"><span class="lineno">  559</span>            {</div>
+<div class="line"><span class="lineno">  560</span>                <span class="comment">// Verkrijg het userId van de cookie</span></div>
+<div class="line"><span class="lineno">  561</span>                (<span class="keywordtype">bool</span> Status, <span class="keywordtype">int</span> StatusCode, <span class="keywordtype">object</span> Message) userIdResponse = await userId;</div>
+<div class="line"><span class="lineno">  562</span> </div>
+<div class="line"><span class="lineno">  563</span>                <span class="keywordflow">if</span> (userIdResponse.Status)</div>
+<div class="line"><span class="lineno">  564</span>                {</div>
+<div class="line"><span class="lineno">  565</span>                    <span class="comment">// Voeg het customer-id toe aan de query</span></div>
+<div class="line"><span class="lineno">  566</span>                    command.Parameters.AddWithValue(<span class="stringliteral">&quot;@Customer&quot;</span>, Convert.ToInt32(userIdResponse.Message));</div>
+<div class="line"><span class="lineno">  567</span> </div>
+<div class="line"><span class="lineno">  568</span>                    <span class="comment">// Voer de query uit</span></div>
+<div class="line"><span class="lineno">  569</span>                    <span class="keyword">using</span> (var reader = await command.ExecuteReaderAsync())</div>
+<div class="line"><span class="lineno">  570</span>                    {</div>
+<div class="line"><span class="lineno">  571</span>                        <span class="keywordflow">while</span> (reader.Read())</div>
+<div class="line"><span class="lineno">  572</span>                        {</div>
+<div class="line"><span class="lineno">  573</span>                            <span class="comment">// Haal voertuiggegevens op voor elke huur</span></div>
+<div class="line"><span class="lineno">  574</span>                            <span class="keywordtype">string</span> carName = await GetVehicleNameAsync(reader.GetInt32(1));</div>
+<div class="line"><span class="lineno">  575</span>                            <span class="keywordtype">string</span> licensePlate = await GetVehiclePlateAsync(reader.GetInt32(1));</div>
+<div class="line"><span class="lineno">  576</span> </div>
+<div class="line"><span class="lineno">  577</span>                            <span class="comment">// Voeg elke huurdata toe aan de lijst</span></div>
+<div class="line"><span class="lineno">  578</span>                            rentals.Add(<span class="keyword">new</span></div>
+<div class="line"><span class="lineno">  579</span>                            {</div>
+<div class="line"><span class="lineno">  580</span>                                Id = reader.IsDBNull(0) ? (<span class="keywordtype">int</span>?)<span class="keyword">null</span> : reader.GetInt32(0),</div>
+<div class="line"><span class="lineno">  581</span>                                FrameNrVehicle = reader.IsDBNull(1) ? (int?)null : reader.GetInt32(1),</div>
+<div class="line"><span class="lineno">  582</span>                                CarName = carName,</div>
+<div class="line"><span class="lineno">  583</span>                                LicensePlate = licensePlate,</div>
+<div class="line"><span class="lineno">  584</span>                                StartDate = reader.IsDBNull(2) ? (DateTime?)null : reader.GetDateTime(2),</div>
+<div class="line"><span class="lineno">  585</span>                                EndDate = reader.IsDBNull(3) ? (DateTime?)null : reader.GetDateTime(3),</div>
+<div class="line"><span class="lineno">  586</span>                                Price = reader.IsDBNull(4) ? (decimal?)null : reader.GetDecimal(4),</div>
+<div class="line"><span class="lineno">  587</span>                                Status = reader.IsDBNull(5) ? null : reader.GetString(5),</div>
+<div class="line"><span class="lineno">  588</span>                            });</div>
+<div class="line"><span class="lineno">  589</span>                        }</div>
+<div class="line"><span class="lineno">  590</span>                    }</div>
+<div class="line"><span class="lineno">  591</span> </div>
+<div class="line"><span class="lineno">  592</span>                    <span class="keywordflow">return</span> (<span class="keyword">true</span>, 200, <span class="stringliteral">&quot;Data Collected&quot;</span>, rentals);</div>
+<div class="line"><span class="lineno">  593</span>                }</div>
+<div class="line"><span class="lineno">  594</span> </div>
+<div class="line"><span class="lineno">  595</span>                <span class="keywordflow">return</span> (<span class="keyword">false</span>, userIdResponse.StatusCode, (<span class="keywordtype">string</span>)userIdResponse.Message, <span class="keyword">new</span> List&lt;object&gt;());</div>
+<div class="line"><span class="lineno">  596</span>            }</div>
+<div class="line"><span class="lineno">  597</span>        }</div>
+<div class="line"><span class="lineno">  598</span>        <span class="keywordflow">catch</span> (MySqlException ex)</div>
+<div class="line"><span class="lineno">  599</span>        {</div>
+<div class="line"><span class="lineno">  600</span>            <span class="keywordflow">return</span> (<span class="keyword">false</span>, 500, ex.Message, <span class="keyword">new</span> List&lt;object&gt;());</div>
+<div class="line"><span class="lineno">  601</span>        }</div>
+<div class="line"><span class="lineno">  602</span>        <span class="keywordflow">catch</span> (OverflowException ex)</div>
+<div class="line"><span class="lineno">  603</span>        {</div>
+<div class="line"><span class="lineno">  604</span>            <span class="keywordflow">return</span> (<span class="keyword">false</span>, 500, ex.Message, <span class="keyword">new</span> List&lt;object&gt;());</div>
+<div class="line"><span class="lineno">  605</span>        }</div>
+<div class="line"><span class="lineno">  606</span>        <span class="keywordflow">catch</span> (Exception ex)</div>
+<div class="line"><span class="lineno">  607</span>        {</div>
+<div class="line"><span class="lineno">  608</span>            <span class="keywordflow">return</span> (<span class="keyword">false</span>, 500, ex.Message, <span class="keyword">new</span> List&lt;object&gt;());</div>
+<div class="line"><span class="lineno">  609</span>        }</div>
+<div class="line"><span class="lineno">  610</span>    }</div>
+</div><!-- fragment -->
+<p class="reference">Gebruikt <a class="el" href="_vehicle_repository_8cs_source.html#l00016">_connector</a>, <a class="el" href="_vehicle_repository_8cs_source.html#l00298">DecryptCookie()</a>, <a class="el" href="_vehicle_repository_8cs_source.html#l00073">GetVehicleNameAsync()</a>, <a class="el" href="_vehicle_repository_8cs_source.html#l00032">GetVehiclePlateAsync()</a>, <a class="el" href="_vehicle_repository_8cs_source.html#l00616">Message</a>, <a class="el" href="_vehicle_repository_8cs_source.html#l00616">Status</a> en <a class="el" href="_vehicle_repository_8cs_source.html#l00616">StatusCode</a>.</p>
+<div class="dynheader">
+Hier is de call graaf voor deze functie:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="class_w_p_r_1_1_repository_1_1_vehicle_repository_a67db6526a03c26958ee2c78af449dc5d_cgraph.svg" width="522" height="187"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+
+</div>
+</div>
+<a id="abd6f9915907cc3aebdc50caeaf2f9bd8" name="abd6f9915907cc3aebdc50caeaf2f9bd8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abd6f9915907cc3aebdc50caeaf2f9bd8">&#9670;&#160;</a></span>GetAllUserRentalsDetailed()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool int string IList&lt; object &gt; UserRentals WPR.Repository.VehicleRepository.GetAllUserRentalsDetailed </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implementeert <a class="el" href="interface_w_p_r_1_1_repository_1_1_i_vehicle_repository.html#a5476e600a5ef1b1690e4c0348e1cdbf5">WPR.Repository.IVehicleRepository</a>.</p>
+
+<p class="definition">De definitie bevindt zich op regel <a class="el" href="_vehicle_repository_8cs_source.html#l00616">616</a> in het bestand <a class="el" href="_vehicle_repository_8cs_source.html">VehicleRepository.cs</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  617</span>    {</div>
+<div class="line"><span class="lineno">  618</span>        <span class="keywordflow">try</span></div>
+<div class="line"><span class="lineno">  619</span>        {</div>
+<div class="line"><span class="lineno">  620</span>            <span class="keywordtype">string</span> query =</div>
+<div class="line"><span class="lineno">  621</span>                <span class="stringliteral">&quot;SELECT OrderId, StartDate, EndDate, Price, FrameNrVehicle, Customer, Status, ReviewedBy, VMStatus FROM Contract&quot;</span>;</div>
+<div class="line"><span class="lineno">  622</span> </div>
+<div class="line"><span class="lineno">  623</span>            var rentals = <span class="keyword">new</span> List&lt;object&gt;();</div>
+<div class="line"><span class="lineno">  624</span> </div>
+<div class="line"><span class="lineno">  625</span>            <span class="comment">// Verbindt met de database en voert de query uit</span></div>
+<div class="line"><span class="lineno">  626</span>            <span class="keyword">using</span> (var connection = _connector.CreateDbConnection())</div>
+<div class="line"><span class="lineno">  627</span>            <span class="keyword">using</span> (var command = <span class="keyword">new</span> MySqlCommand(query, (MySqlConnection)connection))</div>
+<div class="line"><span class="lineno">  628</span>            <span class="keyword">using</span> (var reader = command.ExecuteReader())</div>
+<div class="line"><span class="lineno">  629</span>            {</div>
+<div class="line"><span class="lineno">  630</span>                <span class="comment">// Leest de gegevens van de database</span></div>
+<div class="line"><span class="lineno">  631</span>                <span class="keywordflow">while</span> (reader.Read())</div>
+<div class="line"><span class="lineno">  632</span>                {</div>
+<div class="line"><span class="lineno">  633</span>                    rentals.Add(<span class="keyword">new</span></div>
+<div class="line"><span class="lineno">  634</span>                    {</div>
+<div class="line"><span class="lineno">  635</span>                        ID = reader.IsDBNull(0) ? (<span class="keywordtype">int</span>?)<span class="keyword">null</span> : reader.GetInt32(0), <span class="comment">// OrderId</span></div>
+<div class="line"><span class="lineno">  636</span>                        StartDate = reader.IsDBNull(1) ? (DateTime?)null : reader.GetDateTime(1), <span class="comment">// Startdatum</span></div>
+<div class="line"><span class="lineno">  637</span>                        EndDate = reader.IsDBNull(2) ? (DateTime?)null : reader.GetDateTime(2), <span class="comment">// Einddatum</span></div>
+<div class="line"><span class="lineno">  638</span>                        Price = reader.IsDBNull(3) ? (decimal?)null : reader.GetDecimal(3), <span class="comment">// Prijs</span></div>
+<div class="line"><span class="lineno">  639</span>                        FrameNrVehicle =</div>
+<div class="line"><span class="lineno">  640</span>                            reader.IsDBNull(4) ? (int?)null : reader.GetInt32(4), <span class="comment">// FrameNummer van het voertuig</span></div>
+<div class="line"><span class="lineno">  641</span>                        Customer = reader.IsDBNull(5) ? (int?)null : reader.GetInt32(5), <span class="comment">// Klant</span></div>
+<div class="line"><span class="lineno">  642</span>                        Status = reader.IsDBNull(6) ? null : reader.GetString(6), <span class="comment">// Status van het contract</span></div>
+<div class="line"><span class="lineno">  643</span>                        ReviewedBy = reader.IsDBNull(7) ? null : reader.GetString(7), <span class="comment">// Wie het beoordeeld heeft</span></div>
+<div class="line"><span class="lineno">  644</span>                        VMStatus = reader.IsDBNull(8) ? null : reader.GetString(8), <span class="comment">// VM-status</span></div>
+<div class="line"><span class="lineno">  645</span>                    });</div>
+<div class="line"><span class="lineno">  646</span>                }</div>
+<div class="line"><span class="lineno">  647</span> </div>
+<div class="line"><span class="lineno">  648</span>                <span class="comment">// Retourneer de verzamelde gegevens als succes</span></div>
+<div class="line"><span class="lineno">  649</span>                <span class="keywordflow">return</span> (<span class="keyword">true</span>, 200, <span class="stringliteral">&quot;Succesfully Collected Data&quot;</span>, rentals);</div>
+<div class="line"><span class="lineno">  650</span>            }</div>
+<div class="line"><span class="lineno">  651</span>        }</div>
+<div class="line"><span class="lineno">  652</span>        <span class="keywordflow">catch</span> (MySqlException ex)</div>
+<div class="line"><span class="lineno">  653</span>        {</div>
+<div class="line"><span class="lineno">  654</span>            <span class="keywordflow">return</span> (<span class="keyword">false</span>, 500, ex.Message, <span class="keyword">new</span> List&lt;object&gt;());</div>
+<div class="line"><span class="lineno">  655</span>        }</div>
+<div class="line"><span class="lineno">  656</span>        <span class="keywordflow">catch</span> (Exception ex)</div>
+<div class="line"><span class="lineno">  657</span>        {</div>
+<div class="line"><span class="lineno">  658</span>            <span class="keywordflow">return</span> (<span class="keyword">false</span>, 500, ex.Message, <span class="keyword">new</span> List&lt;object&gt;());</div>
+<div class="line"><span class="lineno">  659</span>        }</div>
+<div class="line"><span class="lineno">  660</span>    }</div>
+</div><!-- fragment -->
+<p class="reference">Gebruikt <a class="el" href="_vehicle_repository_8cs_source.html#l00016">_connector</a>, <a class="el" href="_vehicle_repository_8cs_source.html#l00616">Message</a>, <a class="el" href="_vehicle_repository_8cs_source.html#l00616">Status</a> en <a class="el" href="_vehicle_repository_8cs_source.html#l00616">StatusCode</a>.</p>
+
+</div>
+</div>
+<a id="af398d024d4a743ca23f56ee501c2e4bb" name="af398d024d4a743ca23f56ee501c2e4bb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af398d024d4a743ca23f56ee501c2e4bb">&#9670;&#160;</a></span>GetFrameNumbersAsync()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">async Task&lt; List&lt; string &gt; &gt; WPR.Repository.VehicleRepository.GetFrameNumbersAsync </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Haalt een lijst op van alle frameNummers van voertuigen, gesorteerd op soort voertuig en frameNr. </p>
+<dl class="section return"><dt>Retourneert</dt><dd>Een lijst van frameNummers van voertuigen.</dd></dl>
+
+<p>Implementeert <a class="el" href="interface_w_p_r_1_1_repository_1_1_i_vehicle_repository.html#a68bebe46cee7e3344491f6deb30e093a">WPR.Repository.IVehicleRepository</a>.</p>
+
+<p class="definition">De definitie bevindt zich op regel <a class="el" href="_vehicle_repository_8cs_source.html#l00154">154</a> in het bestand <a class="el" href="_vehicle_repository_8cs_source.html">VehicleRepository.cs</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  155</span>    {</div>
+<div class="line"><span class="lineno">  156</span>        <span class="keywordflow">try</span></div>
+<div class="line"><span class="lineno">  157</span>        {</div>
+<div class="line"><span class="lineno">  158</span>            <span class="comment">// SQL query om alle frameNrs op te halen, gesorteerd op soort voertuig</span></div>
+<div class="line"><span class="lineno">  159</span>            <span class="keywordtype">string</span> query = <span class="stringliteral">&quot;SELECT FrameNr FROM Vehicle ORDER BY FIELD(Sort, &#39;Car&#39;, &#39;Camper&#39;, &#39;Caravan&#39;), FrameNr DESC&quot;</span>;</div>
+<div class="line"><span class="lineno">  160</span> </div>
+<div class="line"><span class="lineno">  161</span>            <span class="keyword">using</span> (var connection = _connector.CreateDbConnection())</div>
+<div class="line"><span class="lineno">  162</span>            <span class="keyword">using</span> (var command = <span class="keyword">new</span> MySqlCommand(query, (MySqlConnection)connection))</div>
+<div class="line"><span class="lineno">  163</span>            <span class="keyword">using</span> (var reader = await command.ExecuteReaderAsync())</div>
+<div class="line"><span class="lineno">  164</span>            {</div>
+<div class="line"><span class="lineno">  165</span>                <span class="comment">// Lijst om alle frame nummers op te slaan</span></div>
+<div class="line"><span class="lineno">  166</span>                var ids = <span class="keyword">new</span> List&lt;string&gt;();</div>
+<div class="line"><span class="lineno">  167</span>                <span class="keywordflow">while</span> (await reader.ReadAsync())</div>
+<div class="line"><span class="lineno">  168</span>                {</div>
+<div class="line"><span class="lineno">  169</span>                    ids.Add(reader.GetValue(0).ToString());</div>
+<div class="line"><span class="lineno">  170</span>                }</div>
+<div class="line"><span class="lineno">  171</span> </div>
+<div class="line"><span class="lineno">  172</span>                <span class="keywordflow">return</span> ids;</div>
+<div class="line"><span class="lineno">  173</span>            }</div>
+<div class="line"><span class="lineno">  174</span>        }</div>
+<div class="line"><span class="lineno">  175</span>        <span class="keywordflow">catch</span> (MySqlException ex)</div>
+<div class="line"><span class="lineno">  176</span>        {</div>
+<div class="line"><span class="lineno">  177</span>            <span class="comment">// Log MySQL gerelateerde fouten</span></div>
+<div class="line"><span class="lineno">  178</span>            Console.WriteLine(ex.Message);</div>
+<div class="line"><span class="lineno">  179</span>            <span class="keywordflow">return</span> <span class="keyword">null</span>;</div>
+<div class="line"><span class="lineno">  180</span>        }</div>
+<div class="line"><span class="lineno">  181</span>        <span class="keywordflow">catch</span> (Exception ex)</div>
+<div class="line"><span class="lineno">  182</span>        {</div>
+<div class="line"><span class="lineno">  183</span>            <span class="comment">// Log andere fouten</span></div>
+<div class="line"><span class="lineno">  184</span>            Console.WriteLine(ex.Message);</div>
+<div class="line"><span class="lineno">  185</span>            <span class="keywordflow">return</span> <span class="keyword">null</span>;</div>
+<div class="line"><span class="lineno">  186</span>        }</div>
+<div class="line"><span class="lineno">  187</span>    }</div>
+</div><!-- fragment -->
+<p class="reference">Gebruikt <a class="el" href="_vehicle_repository_8cs_source.html#l00016">_connector</a>.</p>
+
+</div>
+</div>
+<a id="a5a3de64f60e537949c6cc0d741190e5c" name="a5a3de64f60e537949c6cc0d741190e5c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5a3de64f60e537949c6cc0d741190e5c">&#9670;&#160;</a></span>GetFrameNumberSpecifiekTypeAsync()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">async Task&lt; List&lt; string &gt; &gt; WPR.Repository.VehicleRepository.GetFrameNumberSpecifiekTypeAsync </td>
+          <td>(</td>
+          <td class="paramtype">string</td>          <td class="paramname"><span class="paramname"><em>type</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Alle framenummers van een specifiek voertuigtype worden verzameld en in een list gestopt. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">type</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Retourneert</dt><dd></dd></dl>
+
+<p>Implementeert <a class="el" href="interface_w_p_r_1_1_repository_1_1_i_vehicle_repository.html#a49acf151954a86dc95392d7cf1c325eb">WPR.Repository.IVehicleRepository</a>.</p>
+
+<p class="definition">De definitie bevindt zich op regel <a class="el" href="_vehicle_repository_8cs_source.html#l00194">194</a> in het bestand <a class="el" href="_vehicle_repository_8cs_source.html">VehicleRepository.cs</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  195</span>    {</div>
+<div class="line"><span class="lineno">  196</span>        <span class="keywordflow">try</span></div>
+<div class="line"><span class="lineno">  197</span>        {</div>
+<div class="line"><span class="lineno">  198</span>            <span class="keywordtype">string</span> query = <span class="stringliteral">&quot;SELECT FrameNr FROM Vehicle WHERE Sort = @S&quot;</span>;</div>
+<div class="line"><span class="lineno">  199</span> </div>
+<div class="line"><span class="lineno">  200</span>            <span class="comment">// Er wordt een connectie aangemaakt met de DataBase met bovenstaande query </span></div>
+<div class="line"><span class="lineno">  201</span>            <span class="keyword">using</span> (var connection = _connector.CreateDbConnection())</div>
+<div class="line"><span class="lineno">  202</span>            <span class="keyword">using</span> (var command = <span class="keyword">new</span> MySqlCommand(query, (MySqlConnection)connection))</div>
+<div class="line"><span class="lineno">  203</span>            {</div>
+<div class="line"><span class="lineno">  204</span>                <span class="comment">// De parameter wordt ingevuld</span></div>
+<div class="line"><span class="lineno">  205</span>                command.Parameters.AddWithValue(<span class="stringliteral">&quot;@S&quot;</span>, type);</div>
+<div class="line"><span class="lineno">  206</span> </div>
+<div class="line"><span class="lineno">  207</span>                <span class="comment">//Er wordt een lijst gemaakt met alle FrameNrs van een specifieke voertuigsoort</span></div>
+<div class="line"><span class="lineno">  208</span>                var ids = <span class="keyword">new</span> List&lt;string&gt;();</div>
+<div class="line"><span class="lineno">  209</span> </div>
+<div class="line"><span class="lineno">  210</span>                <span class="keyword">using</span> (var reader = await command.ExecuteReaderAsync())</div>
+<div class="line"><span class="lineno">  211</span>                {</div>
+<div class="line"><span class="lineno">  212</span>                    <span class="keywordflow">while</span> (await reader.ReadAsync())</div>
+<div class="line"><span class="lineno">  213</span>                    {</div>
+<div class="line"><span class="lineno">  214</span>                        ids.Add(reader.GetValue(0).ToString());</div>
+<div class="line"><span class="lineno">  215</span>                    }</div>
+<div class="line"><span class="lineno">  216</span>                }</div>
+<div class="line"><span class="lineno">  217</span> </div>
+<div class="line"><span class="lineno">  218</span>                <span class="keywordflow">return</span> ids;</div>
+<div class="line"><span class="lineno">  219</span>            }</div>
+<div class="line"><span class="lineno">  220</span>        }</div>
+<div class="line"><span class="lineno">  221</span>        <span class="keywordflow">catch</span> (MySqlException ex)</div>
+<div class="line"><span class="lineno">  222</span>        {</div>
+<div class="line"><span class="lineno">  223</span>            Console.WriteLine(ex.Message);</div>
+<div class="line"><span class="lineno">  224</span>            <span class="keywordflow">return</span> <span class="keyword">null</span>;</div>
+<div class="line"><span class="lineno">  225</span>        }</div>
+<div class="line"><span class="lineno">  226</span>        <span class="keywordflow">catch</span> (Exception ex)</div>
+<div class="line"><span class="lineno">  227</span>        {</div>
+<div class="line"><span class="lineno">  228</span>            Console.WriteLine(ex.Message);</div>
+<div class="line"><span class="lineno">  229</span>            <span class="keywordflow">return</span> <span class="keyword">null</span>;</div>
+<div class="line"><span class="lineno">  230</span>        }</div>
+<div class="line"><span class="lineno">  231</span>    }</div>
+</div><!-- fragment -->
+<p class="reference">Gebruikt <a class="el" href="_vehicle_repository_8cs_source.html#l00016">_connector</a>.</p>
+
+</div>
+</div>
+<a id="a7d5690f15622f36a6c229b993a2a9ea9" name="a7d5690f15622f36a6c229b993a2a9ea9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7d5690f15622f36a6c229b993a2a9ea9">&#9670;&#160;</a></span>GetVehicleColorAsync()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">async Task&lt; string &gt; WPR.Repository.VehicleRepository.GetVehicleColorAsync </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>frameNr</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Haalt de kleur van een voertuig op basis van het opgegeven frameNr. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">frameNr</td><td>Het frameNummer van het voertuig waarvan de kleur opgehaald moet worden.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Retourneert</dt><dd>De kleur van het voertuig, of een lege string als de kleur niet gevonden wordt.</dd></dl>
+
+<p>Implementeert <a class="el" href="interface_w_p_r_1_1_repository_1_1_i_vehicle_repository.html#aa99a27bde54f5ae42d6c53d4de6f4897">WPR.Repository.IVehicleRepository</a>.</p>
+
+<p class="definition">De definitie bevindt zich op regel <a class="el" href="_vehicle_repository_8cs_source.html#l00115">115</a> in het bestand <a class="el" href="_vehicle_repository_8cs_source.html">VehicleRepository.cs</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  116</span>    {</div>
+<div class="line"><span class="lineno">  117</span>        <span class="keywordflow">try</span></div>
+<div class="line"><span class="lineno">  118</span>        {</div>
+<div class="line"><span class="lineno">  119</span>            <span class="comment">// SQL query om de kleur van het voertuig op te halen</span></div>
+<div class="line"><span class="lineno">  120</span>            <span class="keywordtype">string</span> query = <span class="stringliteral">&quot;SELECT Color FROM Vehicle WHERE FrameNr = @FrameNr&quot;</span>;</div>
+<div class="line"><span class="lineno">  121</span> </div>
+<div class="line"><span class="lineno">  122</span>            <span class="keyword">using</span> (var connection = _connector.CreateDbConnection())</div>
+<div class="line"><span class="lineno">  123</span>            <span class="keyword">using</span> (var command = <span class="keyword">new</span> MySqlCommand(query, (MySqlConnection)connection))</div>
+<div class="line"><span class="lineno">  124</span>            {</div>
+<div class="line"><span class="lineno">  125</span>                command.Parameters.AddWithValue(<span class="stringliteral">&quot;@FrameNr&quot;</span>, frameNr);</div>
+<div class="line"><span class="lineno">  126</span> </div>
+<div class="line"><span class="lineno">  127</span>                <span class="comment">// Leest de resultaten van de query</span></div>
+<div class="line"><span class="lineno">  128</span>                <span class="keyword">using</span> (var reader = await command.ExecuteReaderAsync(CommandBehavior.SingleRow))</div>
+<div class="line"><span class="lineno">  129</span>                {</div>
+<div class="line"><span class="lineno">  130</span>                    <span class="keywordflow">if</span> (reader.Read())</div>
+<div class="line"><span class="lineno">  131</span>                    {</div>
+<div class="line"><span class="lineno">  132</span>                        <span class="comment">// Als kleur null is, zet het op null</span></div>
+<div class="line"><span class="lineno">  133</span>                        <span class="keywordtype">string</span> color = reader.IsDBNull(0) ? null : reader.GetString(0);</div>
+<div class="line"><span class="lineno">  134</span>                        <span class="keywordflow">return</span> $<span class="stringliteral">&quot;{color}&quot;</span>;</div>
+<div class="line"><span class="lineno">  135</span>                    }</div>
+<div class="line"><span class="lineno">  136</span>                }</div>
+<div class="line"><span class="lineno">  137</span>            }</div>
+<div class="line"><span class="lineno">  138</span> </div>
+<div class="line"><span class="lineno">  139</span>            <span class="comment">// Als er geen kleur is, geef een lege string terug</span></div>
+<div class="line"><span class="lineno">  140</span>            <span class="keywordflow">return</span> String.Empty;</div>
+<div class="line"><span class="lineno">  141</span>        }</div>
+<div class="line"><span class="lineno">  142</span>        <span class="keywordflow">catch</span> (Exception e)</div>
+<div class="line"><span class="lineno">  143</span>        {</div>
+<div class="line"><span class="lineno">  144</span>            <span class="comment">// Foutmelding loggen</span></div>
+<div class="line"><span class="lineno">  145</span>            Console.WriteLine($<span class="stringliteral">&quot;Error getting vehicle color {e.Message}&quot;</span>);</div>
+<div class="line"><span class="lineno">  146</span>            <span class="keywordflow">throw</span>;</div>
+<div class="line"><span class="lineno">  147</span>        }</div>
+<div class="line"><span class="lineno">  148</span>    }</div>
+</div><!-- fragment -->
+<p class="reference">Gebruikt <a class="el" href="_vehicle_repository_8cs_source.html#l00016">_connector</a>.</p>
+
+<p class="reference">Wordt aangeroepen door <a class="el" href="_vehicle_repository_8cs_source.html#l00421">SendEmail()</a>.</p>
+<div class="dynheader">
+Hier is de caller graaf voor deze functie:</div>
+<div class="dyncontent">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="class_w_p_r_1_1_repository_1_1_vehicle_repository_a7d5690f15622f36a6c229b993a2a9ea9_icgraph.svg" width="100%" height="300"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
+</div>
+
+</div>
+</div>
+<a id="a239ad32f36c6d096bafe599bc79bb970" name="a239ad32f36c6d096bafe599bc79bb970"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a239ad32f36c6d096bafe599bc79bb970">&#9670;&#160;</a></span>GetVehicleDataAsync()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">async Task&lt; List&lt; Dictionary&lt; object, string &gt; &gt; &gt; WPR.Repository.VehicleRepository.GetVehicleDataAsync </td>
+          <td>(</td>
+          <td class="paramtype">object</td>          <td class="paramname"><span class="paramname"><em>frameNr</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Er wordt doormiddel van een specifiek framenummer alle gegevens van dit voertuig verzameld. De gegevens worden in een list gestopt die bestaat uit dictonaries. In de dictonaries wordt als key de colomnaam gebruikt en als waarde de data van de colom. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">frameNr</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Retourneert</dt><dd></dd></dl>
+
+<p>Implementeert <a class="el" href="interface_w_p_r_1_1_repository_1_1_i_vehicle_repository.html#a93c4838424b8ba0f7199947b01ebee14">WPR.Repository.IVehicleRepository</a>.</p>
+
+<p class="definition">De definitie bevindt zich op regel <a class="el" href="_vehicle_repository_8cs_source.html#l00240">240</a> in het bestand <a class="el" href="_vehicle_repository_8cs_source.html">VehicleRepository.cs</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  241</span>    {</div>
+<div class="line"><span class="lineno">  242</span>        <span class="keywordflow">try</span></div>
+<div class="line"><span class="lineno">  243</span>        {</div>
+<div class="line"><span class="lineno">  244</span>            <span class="keywordtype">string</span> query = <span class="stringliteral">&quot;SELECT * FROM Vehicle WHERE FrameNR = @F&quot;</span>;</div>
+<div class="line"><span class="lineno">  245</span> </div>
+<div class="line"><span class="lineno">  246</span>            <span class="comment">// Er wordt een connectie aangemaakt met de DataBase met bovenstaande query </span></div>
+<div class="line"><span class="lineno">  247</span>            <span class="keyword">using</span> (var connection = _connector.CreateDbConnection())</div>
+<div class="line"><span class="lineno">  248</span>            <span class="keyword">using</span> (var command = <span class="keyword">new</span> MySqlCommand(query, (MySqlConnection)connection))</div>
+<div class="line"><span class="lineno">  249</span>            {</div>
+<div class="line"><span class="lineno">  250</span>                <span class="comment">// De parameter wordt ingevuld</span></div>
+<div class="line"><span class="lineno">  251</span>                command.Parameters.AddWithValue(<span class="stringliteral">&quot;@F&quot;</span>, frameNr);</div>
+<div class="line"><span class="lineno">  252</span> </div>
+<div class="line"><span class="lineno">  253</span>                <span class="comment">// Er wordt een lijst aangemaakt met alle gegevens van het voertuig</span></div>
+<div class="line"><span class="lineno">  254</span>                var data = <span class="keyword">new</span> List&lt;Dictionary&lt;object, string&gt;&gt;();</div>
+<div class="line"><span class="lineno">  255</span>                <span class="keyword">using</span> (var reader = await command.ExecuteReaderAsync())</div>
+<div class="line"><span class="lineno">  256</span>                {</div>
+<div class="line"><span class="lineno">  257</span>                    <span class="keywordflow">while</span> (await reader.ReadAsync())</div>
+<div class="line"><span class="lineno">  258</span>                    {</div>
+<div class="line"><span class="lineno">  259</span>                        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; reader.FieldCount; i++)</div>
+<div class="line"><span class="lineno">  260</span>                        {</div>
+<div class="line"><span class="lineno">  261</span>                            <span class="comment">// Van elke row worden colom namen met gegevens vastgesteld </span></div>
+<div class="line"><span class="lineno">  262</span>                            var row = <span class="keyword">new</span> Dictionary&lt;object, string&gt;();</div>
+<div class="line"><span class="lineno">  263</span> </div>
+<div class="line"><span class="lineno">  264</span>                            <span class="keywordflow">if</span> (reader.GetName(i).ToString().Equals(<span class="stringliteral">&quot;VehicleBlob&quot;</span>))</div>
+<div class="line"><span class="lineno">  265</span>                            {</div>
+<div class="line"><span class="lineno">  266</span>                                row[reader.GetName(i)] = Convert.ToBase64String((<span class="keywordtype">byte</span>[])reader.GetValue(i));</div>
+<div class="line"><span class="lineno">  267</span>                            }</div>
+<div class="line"><span class="lineno">  268</span>                            <span class="keywordflow">else</span></div>
+<div class="line"><span class="lineno">  269</span>                            {</div>
+<div class="line"><span class="lineno">  270</span>                                row[reader.GetName(i)] = reader.GetValue(i).ToString();</div>
+<div class="line"><span class="lineno">  271</span>                            }</div>
+<div class="line"><span class="lineno">  272</span> </div>
+<div class="line"><span class="lineno">  273</span>                            data.Add(row);</div>
+<div class="line"><span class="lineno">  274</span>                        }</div>
+<div class="line"><span class="lineno">  275</span>                    }</div>
+<div class="line"><span class="lineno">  276</span>                }</div>
+<div class="line"><span class="lineno">  277</span> </div>
+<div class="line"><span class="lineno">  278</span>                <span class="keywordflow">return</span> data;</div>
+<div class="line"><span class="lineno">  279</span>            }</div>
+<div class="line"><span class="lineno">  280</span>        }</div>
+<div class="line"><span class="lineno">  281</span>        <span class="keywordflow">catch</span> (MySqlException ex)</div>
+<div class="line"><span class="lineno">  282</span>        {</div>
+<div class="line"><span class="lineno">  283</span>            Console.WriteLine(ex.Message);</div>
+<div class="line"><span class="lineno">  284</span>            <span class="keywordflow">return</span> <span class="keyword">null</span>;</div>
+<div class="line"><span class="lineno">  285</span>        }</div>
+<div class="line"><span class="lineno">  286</span>        <span class="keywordflow">catch</span> (Exception ex)</div>
+<div class="line"><span class="lineno">  287</span>        {</div>
+<div class="line"><span class="lineno">  288</span>            Console.WriteLine(ex.Message);</div>
+<div class="line"><span class="lineno">  289</span>            <span class="keywordflow">return</span> <span class="keyword">null</span>;</div>
+<div class="line"><span class="lineno">  290</span>        }</div>
+<div class="line"><span class="lineno">  291</span>    }</div>
+</div><!-- fragment -->
+<p class="reference">Gebruikt <a class="el" href="_vehicle_repository_8cs_source.html#l00016">_connector</a>.</p>
+
+</div>
+</div>
+<a id="ac966b529fb982058bba744e3f8a03501" name="ac966b529fb982058bba744e3f8a03501"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac966b529fb982058bba744e3f8a03501">&#9670;&#160;</a></span>GetVehicleNameAsync()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">async Task&lt; string &gt; WPR.Repository.VehicleRepository.GetVehicleNameAsync </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>frameNr</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Haalt de merk en type van een voertuig op basis van het opgegeven frameNr. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">frameNr</td><td>Het frameNummer van het voertuig waarvan merk en type opgehaald moeten worden.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Retourneert</dt><dd>De combinatie van merk en type van het voertuig, of een lege string als de gegevens niet gevonden worden.</dd></dl>
+
+<p>Implementeert <a class="el" href="interface_w_p_r_1_1_repository_1_1_i_vehicle_repository.html#a7a22b52289e51b76c9bc9ce28147be45">WPR.Repository.IVehicleRepository</a>.</p>
+
+<p class="definition">De definitie bevindt zich op regel <a class="el" href="_vehicle_repository_8cs_source.html#l00073">73</a> in het bestand <a class="el" href="_vehicle_repository_8cs_source.html">VehicleRepository.cs</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   74</span>    {</div>
+<div class="line"><span class="lineno">   75</span>        <span class="keywordflow">try</span></div>
+<div class="line"><span class="lineno">   76</span>        {</div>
+<div class="line"><span class="lineno">   77</span>            <span class="comment">// SQL query om merk en type van voertuig op te halen</span></div>
+<div class="line"><span class="lineno">   78</span>            <span class="keywordtype">string</span> query = <span class="stringliteral">&quot;SELECT Brand, Type FROM Vehicle WHERE FrameNr = @FrameNr&quot;</span>;</div>
+<div class="line"><span class="lineno">   79</span> </div>
+<div class="line"><span class="lineno">   80</span>            <span class="keyword">using</span> (var connection = _connector.CreateDbConnection())</div>
+<div class="line"><span class="lineno">   81</span>            <span class="keyword">using</span> (var command = <span class="keyword">new</span> MySqlCommand(query, (MySqlConnection)connection))</div>
+<div class="line"><span class="lineno">   82</span>            {</div>
+<div class="line"><span class="lineno">   83</span>                command.Parameters.AddWithValue(<span class="stringliteral">&quot;@FrameNr&quot;</span>, frameNr);</div>
+<div class="line"><span class="lineno">   84</span> </div>
+<div class="line"><span class="lineno">   85</span>                <span class="comment">// Leest de resultaten van de query</span></div>
+<div class="line"><span class="lineno">   86</span>                <span class="keyword">using</span> (var reader = await command.ExecuteReaderAsync(CommandBehavior.SingleRow))</div>
+<div class="line"><span class="lineno">   87</span>                {</div>
+<div class="line"><span class="lineno">   88</span>                    <span class="keywordflow">if</span> (reader.Read())</div>
+<div class="line"><span class="lineno">   89</span>                    {</div>
+<div class="line"><span class="lineno">   90</span>                        <span class="comment">// Als merk of type null is, zet het op null</span></div>
+<div class="line"><span class="lineno">   91</span>                        <span class="keywordtype">string</span> brand = reader.IsDBNull(0) ? null : reader.GetString(0);</div>
+<div class="line"><span class="lineno">   92</span>                        <span class="keywordtype">string</span> type = reader.IsDBNull(1) ? null : reader.GetString(1);</div>
+<div class="line"><span class="lineno">   93</span>                        <span class="comment">// Combineer merk en type en geef het resultaat terug</span></div>
+<div class="line"><span class="lineno">   94</span>                        <span class="keywordflow">return</span> $<span class="stringliteral">&quot;{brand} {type}&quot;</span>.Trim();</div>
+<div class="line"><span class="lineno">   95</span>                    }</div>
+<div class="line"><span class="lineno">   96</span>                }</div>
+<div class="line"><span class="lineno">   97</span>            }</div>
+<div class="line"><span class="lineno">   98</span> </div>
+<div class="line"><span class="lineno">   99</span>            <span class="comment">// Als er geen resultaat is, geef een lege string terug</span></div>
+<div class="line"><span class="lineno">  100</span>            <span class="keywordflow">return</span> String.Empty;</div>
+<div class="line"><span class="lineno">  101</span>        }</div>
+<div class="line"><span class="lineno">  102</span>        <span class="keywordflow">catch</span> (Exception e)</div>
+<div class="line"><span class="lineno">  103</span>        {</div>
+<div class="line"><span class="lineno">  104</span>            <span class="comment">// Foutmelding loggen</span></div>
+<div class="line"><span class="lineno">  105</span>            Console.WriteLine($<span class="stringliteral">&quot;Error getting vehicle name {e.Message}&quot;</span>);</div>
+<div class="line"><span class="lineno">  106</span>            <span class="keywordflow">throw</span>;</div>
+<div class="line"><span class="lineno">  107</span>        }</div>
+<div class="line"><span class="lineno">  108</span>    }</div>
+</div><!-- fragment -->
+<p class="reference">Gebruikt <a class="el" href="_vehicle_repository_8cs_source.html#l00016">_connector</a>.</p>
+
+<p class="reference">Wordt aangeroepen door <a class="el" href="_vehicle_repository_8cs_source.html#l00546">GetAllUserRentals()</a> en <a class="el" href="_vehicle_repository_8cs_source.html#l00421">SendEmail()</a>.</p>
+<div class="dynheader">
+Hier is de caller graaf voor deze functie:</div>
+<div class="dyncontent">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="class_w_p_r_1_1_repository_1_1_vehicle_repository_ac966b529fb982058bba744e3f8a03501_icgraph.svg" width="100%" height="390"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
+</div>
+
+</div>
+</div>
+<a id="a44c60ce7050a7813b4cfca5b8292ab4e" name="a44c60ce7050a7813b4cfca5b8292ab4e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a44c60ce7050a7813b4cfca5b8292ab4e">&#9670;&#160;</a></span>GetVehiclePlateAsync()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">async Task&lt; string &gt; WPR.Repository.VehicleRepository.GetVehiclePlateAsync </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>frameNr</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Haalt het kenteken van een voertuig op basis van het opgegeven frameNr. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">frameNr</td><td>Het frameNummer van het voertuig waarvan het kenteken opgehaald moet worden.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Retourneert</dt><dd>Het kenteken van het voertuig, of een lege string als het niet gevonden wordt.</dd></dl>
+
+<p>Implementeert <a class="el" href="interface_w_p_r_1_1_repository_1_1_i_vehicle_repository.html#a30f95945285d4b1828850c0dd1afdd50">WPR.Repository.IVehicleRepository</a>.</p>
+
+<p class="definition">De definitie bevindt zich op regel <a class="el" href="_vehicle_repository_8cs_source.html#l00032">32</a> in het bestand <a class="el" href="_vehicle_repository_8cs_source.html">VehicleRepository.cs</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   33</span>    {</div>
+<div class="line"><span class="lineno">   34</span>        <span class="keywordflow">try</span></div>
+<div class="line"><span class="lineno">   35</span>        {</div>
+<div class="line"><span class="lineno">   36</span>            <span class="comment">// SQL query om het kenteken op te halen voor het opgegeven frameNr</span></div>
+<div class="line"><span class="lineno">   37</span>            <span class="keywordtype">string</span> query = <span class="stringliteral">&quot;SELECT LicensePlate FROM Vehicle WHERE FrameNr = @FrameNr&quot;</span>;</div>
+<div class="line"><span class="lineno">   38</span> </div>
+<div class="line"><span class="lineno">   39</span>            <span class="comment">// Open een databaseverbinding en voer de query uit</span></div>
+<div class="line"><span class="lineno">   40</span>            <span class="keyword">using</span> (var connection = _connector.CreateDbConnection())</div>
+<div class="line"><span class="lineno">   41</span>            <span class="keyword">using</span> (var command = <span class="keyword">new</span> MySqlCommand(query, (MySqlConnection)connection))</div>
+<div class="line"><span class="lineno">   42</span>            {</div>
+<div class="line"><span class="lineno">   43</span>                command.Parameters.AddWithValue(<span class="stringliteral">&quot;@FrameNr&quot;</span>, frameNr);</div>
+<div class="line"><span class="lineno">   44</span> </div>
+<div class="line"><span class="lineno">   45</span>                <span class="comment">// Leest het resultaat van de query (verwacht één rij)</span></div>
+<div class="line"><span class="lineno">   46</span>                <span class="keyword">using</span> (var reader = await command.ExecuteReaderAsync(CommandBehavior.SingleRow))</div>
+<div class="line"><span class="lineno">   47</span>                {</div>
+<div class="line"><span class="lineno">   48</span>                    <span class="keywordflow">if</span> (reader.Read())</div>
+<div class="line"><span class="lineno">   49</span>                    {</div>
+<div class="line"><span class="lineno">   50</span>                        <span class="comment">// Als kenteken niet null is, geef het terug, anders een lege string</span></div>
+<div class="line"><span class="lineno">   51</span>                        <span class="keywordflow">return</span> reader.IsDBNull(0) ? string.Empty : reader.GetString(0);</div>
+<div class="line"><span class="lineno">   52</span>                    }</div>
+<div class="line"><span class="lineno">   53</span>                }</div>
+<div class="line"><span class="lineno">   54</span>            }</div>
+<div class="line"><span class="lineno">   55</span> </div>
+<div class="line"><span class="lineno">   56</span>            <span class="comment">// Als er geen resultaat is, geef lege string terug</span></div>
+<div class="line"><span class="lineno">   57</span>            <span class="keywordflow">return</span> <span class="keywordtype">string</span>.Empty;</div>
+<div class="line"><span class="lineno">   58</span>        }</div>
+<div class="line"><span class="lineno">   59</span>        <span class="keywordflow">catch</span> (Exception e)</div>
+<div class="line"><span class="lineno">   60</span>        {</div>
+<div class="line"><span class="lineno">   61</span>            <span class="comment">// Log de fout en gooi deze opnieuw</span></div>
+<div class="line"><span class="lineno">   62</span>            Console.WriteLine($<span class="stringliteral">&quot;Error getting vehicle plate {e.Message}&quot;</span>);</div>
+<div class="line"><span class="lineno">   63</span>            <span class="keywordflow">throw</span>;</div>
+<div class="line"><span class="lineno">   64</span>        }</div>
+<div class="line"><span class="lineno">   65</span>    }</div>
+</div><!-- fragment -->
+<p class="reference">Gebruikt <a class="el" href="_vehicle_repository_8cs_source.html#l00016">_connector</a>.</p>
+
+<p class="reference">Wordt aangeroepen door <a class="el" href="_vehicle_repository_8cs_source.html#l00546">GetAllUserRentals()</a> en <a class="el" href="_vehicle_repository_8cs_source.html#l00421">SendEmail()</a>.</p>
+<div class="dynheader">
+Hier is de caller graaf voor deze functie:</div>
+<div class="dyncontent">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="class_w_p_r_1_1_repository_1_1_vehicle_repository_a44c60ce7050a7813b4cfca5b8292ab4e_icgraph.svg" width="100%" height="390"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
+</div>
+
+</div>
+</div>
+<a id="a35a796e7cf96268b3fe824913616c411" name="a35a796e7cf96268b3fe824913616c411"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a35a796e7cf96268b3fe824913616c411">&#9670;&#160;</a></span>HireVehicle()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">async Task&lt;(bool <a class="el" href="#a757dec8cb7ee7a9edde9f9ae8716c8f5">Status</a>, string <a class="el" href="#a331f9d150d5870f1f3cc3215ff587924">Message</a>)&gt; WPR.Repository.VehicleRepository.HireVehicle </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_w_p_r_1_1_controllers_1_1_customer_1_1_rental_1_1_rental_request.html">RentalRequest</a></td>          <td class="paramname"><span class="paramname"><em>request</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string</td>          <td class="paramname"><span class="paramname"><em>userId</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Verwerkt het huurverzoek door de gebruiker te valideren, het verzoek toe te voegen aan de database en een bevestigingsmail te sturen. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">request</td><td>Het huurverzoek object dat moet worden verwerkt.</td></tr>
+    <tr><td class="paramname">userId</td><td>Het gebruikers-ID van degene die de aanvraag doet.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Retourneert</dt><dd>Een tuple bestaande uit een status (true/false) en een bericht (bijvoorbeeld succes of mislukking).</dd></dl>
+
+<p>Implementeert <a class="el" href="interface_w_p_r_1_1_repository_1_1_i_vehicle_repository.html#a0f1b01585f4b8d58fe06ad5e0bdf8866">WPR.Repository.IVehicleRepository</a>.</p>
+
+<p class="definition">De definitie bevindt zich op regel <a class="el" href="_vehicle_repository_8cs_source.html#l00462">462</a> in het bestand <a class="el" href="_vehicle_repository_8cs_source.html">VehicleRepository.cs</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  463</span>    {</div>
+<div class="line"><span class="lineno">  464</span>        var idUser = await DecryptCookie(userId);</div>
+<div class="line"><span class="lineno">  465</span> </div>
+<div class="line"><span class="lineno">  466</span>        <span class="comment">// Controleer of de gebruiker correct is gedecodeerd</span></div>
+<div class="line"><span class="lineno">  467</span>        <span class="keywordflow">if</span> (!idUser.Status)</div>
+<div class="line"><span class="lineno">  468</span>        {</div>
+<div class="line"><span class="lineno">  469</span>            <span class="keywordflow">return</span> (<span class="keyword">false</span>, (<span class="keywordtype">string</span>)idUser.Message);</div>
+<div class="line"><span class="lineno">  470</span>        }</div>
+<div class="line"><span class="lineno">  471</span> </div>
+<div class="line"><span class="lineno">  472</span>        var insertData = InsertRequest(request, idUser.Message);</div>
+<div class="line"><span class="lineno">  473</span>        var emailService = SendEmail(request);</div>
+<div class="line"><span class="lineno">  474</span> </div>
+<div class="line"><span class="lineno">  475</span>        <span class="comment">// Wacht op het resultaat van de database-insert en de e-mailservice</span></div>
+<div class="line"><span class="lineno">  476</span>        (<span class="keywordtype">bool</span> Status, <span class="keywordtype">string</span> Message) insertDataReponse = await insertData;</div>
+<div class="line"><span class="lineno">  477</span>        <span class="keywordflow">if</span> (!insertDataReponse.Status)</div>
+<div class="line"><span class="lineno">  478</span>        {</div>
+<div class="line"><span class="lineno">  479</span>            <span class="keywordflow">return</span> (<span class="keyword">false</span>, insertDataReponse.Message);</div>
+<div class="line"><span class="lineno">  480</span>        }</div>
+<div class="line"><span class="lineno">  481</span> </div>
+<div class="line"><span class="lineno">  482</span>        (<span class="keywordtype">bool</span> Status, <span class="keywordtype">string</span> Message) emailServiceResponse = await emailService;</div>
+<div class="line"><span class="lineno">  483</span>        <span class="keywordflow">if</span> (!emailServiceResponse.Status)</div>
+<div class="line"><span class="lineno">  484</span>        {</div>
+<div class="line"><span class="lineno">  485</span>            <span class="keywordflow">return</span> (<span class="keyword">false</span>, emailServiceResponse.Message);</div>
+<div class="line"><span class="lineno">  486</span>        }</div>
+<div class="line"><span class="lineno">  487</span> </div>
+<div class="line"><span class="lineno">  488</span>        <span class="comment">// Beide acties zijn succesvol uitgevoerd</span></div>
+<div class="line"><span class="lineno">  489</span>        <span class="keywordflow">return</span> (<span class="keyword">true</span>, emailServiceResponse.Message);</div>
+<div class="line"><span class="lineno">  490</span>    }</div>
+</div><!-- fragment -->
+<p class="reference">Gebruikt <a class="el" href="_vehicle_repository_8cs_source.html#l00298">DecryptCookie()</a>, <a class="el" href="_vehicle_repository_8cs_source.html#l00364">InsertRequest()</a>, <a class="el" href="_vehicle_repository_8cs_source.html#l00616">Message</a>, <a class="el" href="_vehicle_repository_8cs_source.html#l00421">SendEmail()</a> en <a class="el" href="_vehicle_repository_8cs_source.html#l00616">Status</a>.</p>
+<div class="dynheader">
+Hier is de call graaf voor deze functie:</div>
+<div class="dyncontent">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="class_w_p_r_1_1_repository_1_1_vehicle_repository_a35a796e7cf96268b3fe824913616c411_cgraph.svg" width="100%" height="527"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
+</div>
+
+</div>
+</div>
+<a id="af8c82079f31c3bbec4c7d0af846256d8" name="af8c82079f31c3bbec4c7d0af846256d8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af8c82079f31c3bbec4c7d0af846256d8">&#9670;&#160;</a></span>InsertRequest()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">async Task&lt;(bool <a class="el" href="#a757dec8cb7ee7a9edde9f9ae8716c8f5">Status</a>, string <a class="el" href="#a331f9d150d5870f1f3cc3215ff587924">Message</a>)&gt; WPR.Repository.VehicleRepository.InsertRequest </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_w_p_r_1_1_controllers_1_1_customer_1_1_rental_1_1_rental_request.html">RentalRequest</a></td>          <td class="paramname"><span class="paramname"><em>request</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">object</td>          <td class="paramname"><span class="paramname"><em>userId</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Voegt een huurverzoek toe aan de database afhankelijk van het accounttype van de gebruiker (business of niet). </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">request</td><td>Het huurverzoek object dat toegevoegd moet worden.</td></tr>
+    <tr><td class="paramname">userId</td><td>Het ID van de gebruiker die de huur aanvraag doet.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Retourneert</dt><dd>Een tuple bestaande uit een status (true/false) en een bericht (bijvoorbeeld succes of mislukking).</dd></dl>
+
+<p class="definition">De definitie bevindt zich op regel <a class="el" href="_vehicle_repository_8cs_source.html#l00364">364</a> in het bestand <a class="el" href="_vehicle_repository_8cs_source.html">VehicleRepository.cs</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  365</span>    {</div>
+<div class="line"><span class="lineno">  366</span>        <span class="keywordflow">try</span></div>
+<div class="line"><span class="lineno">  367</span>        {</div>
+<div class="line"><span class="lineno">  368</span>            <span class="comment">// Controleer of de gebruiker een business user is</span></div>
+<div class="line"><span class="lineno">  369</span>            var isBusinessUser = IsBusinessUser(userId);</div>
+<div class="line"><span class="lineno">  370</span> </div>
+<div class="line"><span class="lineno">  371</span>            <span class="keyword">using</span> (var connection = _connector.CreateDbConnection())</div>
+<div class="line"><span class="lineno">  372</span>            {</div>
+<div class="line"><span class="lineno">  373</span>                <span class="keywordtype">bool</span> resultIsBusinessUser = await isBusinessUser;</div>
+<div class="line"><span class="lineno">  374</span> </div>
+<div class="line"><span class="lineno">  375</span>                <span class="comment">// Kies de juiste query afhankelijk van het accounttype van de gebruiker</span></div>
+<div class="line"><span class="lineno">  376</span>                <span class="keywordtype">string</span> query = resultIsBusinessUser</div>
+<div class="line"><span class="lineno">  377</span>                    ? <span class="stringliteral">&quot;INSERT INTO Contract (StartDate, EndDate, Price, FrameNrVehicle, Customer, VMStatus) VALUES (@S, @E, @P, @F, @C, @V)&quot;</span></div>
+<div class="line"><span class="lineno">  378</span>                    : <span class="stringliteral">&quot;INSERT INTO Contract (StartDate, EndDate, Price, FrameNrVehicle, Customer) VALUES (@S, @E, @P, @F, @C)&quot;</span>;</div>
+<div class="line"><span class="lineno">  379</span> </div>
+<div class="line"><span class="lineno">  380</span>                <span class="keyword">using</span> (var command = <span class="keyword">new</span> MySqlCommand(query, (MySqlConnection)connection))</div>
+<div class="line"><span class="lineno">  381</span>                {</div>
+<div class="line"><span class="lineno">  382</span>                    command.Parameters.AddWithValue(<span class="stringliteral">&quot;@S&quot;</span>, request.<a class="code hl_property" href="class_w_p_r_1_1_controllers_1_1_customer_1_1_rental_1_1_rental_request.html#a9814f7dd71bbc93604a05e14748824b4">StartDate</a>);</div>
+<div class="line"><span class="lineno">  383</span>                    command.Parameters.AddWithValue(<span class="stringliteral">&quot;@E&quot;</span>, request.<a class="code hl_property" href="class_w_p_r_1_1_controllers_1_1_customer_1_1_rental_1_1_rental_request.html#ab8eef14d81097f7691f43105ab84beed">EndDate</a>);</div>
+<div class="line"><span class="lineno">  384</span>                    command.Parameters.AddWithValue(<span class="stringliteral">&quot;@P&quot;</span>, request.<a class="code hl_property" href="class_w_p_r_1_1_controllers_1_1_customer_1_1_rental_1_1_rental_request.html#adbc7f83a75795ad47d4e3002f5513569">Price</a>);</div>
+<div class="line"><span class="lineno">  385</span>                    command.Parameters.AddWithValue(<span class="stringliteral">&quot;@F&quot;</span>, request.<a class="code hl_property" href="class_w_p_r_1_1_controllers_1_1_customer_1_1_rental_1_1_rental_request.html#ada251866a5a8dee0aade8b913a8ff734">FrameNrVehicle</a>);</div>
+<div class="line"><span class="lineno">  386</span>                    command.Parameters.AddWithValue(<span class="stringliteral">&quot;@C&quot;</span>, userId);</div>
+<div class="line"><span class="lineno">  387</span> </div>
+<div class="line"><span class="lineno">  388</span>                    <span class="keywordflow">if</span> (resultIsBusinessUser)</div>
+<div class="line"><span class="lineno">  389</span>                    {</div>
+<div class="line"><span class="lineno">  390</span>                        <span class="comment">// Als het een business user is, voeg VMStatus toe</span></div>
+<div class="line"><span class="lineno">  391</span>                        command.Parameters.AddWithValue(<span class="stringliteral">&quot;@V&quot;</span>, <span class="stringliteral">&quot;requested&quot;</span>);</div>
+<div class="line"><span class="lineno">  392</span>                    }</div>
+<div class="line"><span class="lineno">  393</span> </div>
+<div class="line"><span class="lineno">  394</span>                    <span class="comment">// Voer de query uit en retourneer resultaat</span></div>
+<div class="line"><span class="lineno">  395</span>                    <span class="keywordflow">if</span> (await command.ExecuteNonQueryAsync() &gt; 0)</div>
+<div class="line"><span class="lineno">  396</span>                    {</div>
+<div class="line"><span class="lineno">  397</span>                        <span class="keywordflow">return</span> (<span class="keyword">true</span>, <span class="stringliteral">&quot;Inserted&quot;</span>);</div>
+<div class="line"><span class="lineno">  398</span>                    }</div>
+<div class="line"><span class="lineno">  399</span> </div>
+<div class="line"><span class="lineno">  400</span>                    <span class="keywordflow">return</span> (<span class="keyword">false</span>, <span class="stringliteral">&quot;Data Not Inserted&quot;</span>);</div>
+<div class="line"><span class="lineno">  401</span>                }</div>
+<div class="line"><span class="lineno">  402</span>            }</div>
+<div class="line"><span class="lineno">  403</span>        }</div>
+<div class="line"><span class="lineno">  404</span>        <span class="keywordflow">catch</span> (MySqlException ex)</div>
+<div class="line"><span class="lineno">  405</span>        {</div>
+<div class="line"><span class="lineno">  406</span>            <span class="comment">// Log MySQL fout</span></div>
+<div class="line"><span class="lineno">  407</span>            <span class="keywordflow">return</span> (<span class="keyword">false</span>, ex.Message);</div>
+<div class="line"><span class="lineno">  408</span>        }</div>
+<div class="line"><span class="lineno">  409</span>        <span class="keywordflow">catch</span> (Exception ex)</div>
+<div class="line"><span class="lineno">  410</span>        {</div>
+<div class="line"><span class="lineno">  411</span>            <span class="comment">// Log andere fout</span></div>
+<div class="line"><span class="lineno">  412</span>            <span class="keywordflow">return</span> (<span class="keyword">false</span>, ex.Message);</div>
+<div class="line"><span class="lineno">  413</span>        }</div>
+<div class="line"><span class="lineno">  414</span>    }</div>
+<div class="ttc" id="aclass_w_p_r_1_1_controllers_1_1_customer_1_1_rental_1_1_rental_request_html_a9814f7dd71bbc93604a05e14748824b4"><div class="ttname"><a href="class_w_p_r_1_1_controllers_1_1_customer_1_1_rental_1_1_rental_request.html#a9814f7dd71bbc93604a05e14748824b4">WPR.Controllers.Customer.Rental.RentalRequest.StartDate</a></div><div class="ttdeci">DateTime StartDate</div><div class="ttdef"><b>Definitie</b> <a href="_create_rental_request_8cs_source.html#l00010">CreateRentalRequest.cs:10</a></div></div>
+<div class="ttc" id="aclass_w_p_r_1_1_controllers_1_1_customer_1_1_rental_1_1_rental_request_html_ab8eef14d81097f7691f43105ab84beed"><div class="ttname"><a href="class_w_p_r_1_1_controllers_1_1_customer_1_1_rental_1_1_rental_request.html#ab8eef14d81097f7691f43105ab84beed">WPR.Controllers.Customer.Rental.RentalRequest.EndDate</a></div><div class="ttdeci">DateTime EndDate</div><div class="ttdef"><b>Definitie</b> <a href="_create_rental_request_8cs_source.html#l00011">CreateRentalRequest.cs:11</a></div></div>
+<div class="ttc" id="aclass_w_p_r_1_1_controllers_1_1_customer_1_1_rental_1_1_rental_request_html_ada251866a5a8dee0aade8b913a8ff734"><div class="ttname"><a href="class_w_p_r_1_1_controllers_1_1_customer_1_1_rental_1_1_rental_request.html#ada251866a5a8dee0aade8b913a8ff734">WPR.Controllers.Customer.Rental.RentalRequest.FrameNrVehicle</a></div><div class="ttdeci">string FrameNrVehicle</div><div class="ttdef"><b>Definitie</b> <a href="_create_rental_request_8cs_source.html#l00009">CreateRentalRequest.cs:9</a></div></div>
+<div class="ttc" id="aclass_w_p_r_1_1_controllers_1_1_customer_1_1_rental_1_1_rental_request_html_adbc7f83a75795ad47d4e3002f5513569"><div class="ttname"><a href="class_w_p_r_1_1_controllers_1_1_customer_1_1_rental_1_1_rental_request.html#adbc7f83a75795ad47d4e3002f5513569">WPR.Controllers.Customer.Rental.RentalRequest.Price</a></div><div class="ttdeci">decimal Price</div><div class="ttdef"><b>Definitie</b> <a href="_create_rental_request_8cs_source.html#l00012">CreateRentalRequest.cs:12</a></div></div>
+</div><!-- fragment -->
+<p class="reference">Gebruikt <a class="el" href="_vehicle_repository_8cs_source.html#l00016">_connector</a>, <a class="el" href="_create_rental_request_8cs_source.html#l00011">WPR.Controllers.Customer.Rental.RentalRequest.EndDate</a>, <a class="el" href="_create_rental_request_8cs_source.html#l00009">WPR.Controllers.Customer.Rental.RentalRequest.FrameNrVehicle</a>, <a class="el" href="_vehicle_repository_8cs_source.html#l00322">IsBusinessUser()</a>, <a class="el" href="_vehicle_repository_8cs_source.html#l00616">Message</a>, <a class="el" href="_create_rental_request_8cs_source.html#l00012">WPR.Controllers.Customer.Rental.RentalRequest.Price</a>, <a class="el" href="_create_rental_request_8cs_source.html#l00010">WPR.Controllers.Customer.Rental.RentalRequest.StartDate</a> en <a class="el" href="_vehicle_repository_8cs_source.html#l00616">Status</a>.</p>
+
+<p class="reference">Wordt aangeroepen door <a class="el" href="_vehicle_repository_8cs_source.html#l00462">HireVehicle()</a>.</p>
+<div class="dynheader">
+Hier is de call graaf voor deze functie:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="class_w_p_r_1_1_repository_1_1_vehicle_repository_af8c82079f31c3bbec4c7d0af846256d8_cgraph.svg" width="522" height="54"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+<div class="dynheader">
+Hier is de caller graaf voor deze functie:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="class_w_p_r_1_1_repository_1_1_vehicle_repository_af8c82079f31c3bbec4c7d0af846256d8_icgraph.svg" width="522" height="54"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+
+</div>
+</div>
+<a id="a8f27557367909f3ab26b7f8ac80fa33a" name="a8f27557367909f3ab26b7f8ac80fa33a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8f27557367909f3ab26b7f8ac80fa33a">&#9670;&#160;</a></span>IsBusinessUser()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">async Task&lt; bool &gt; WPR.Repository.VehicleRepository.IsBusinessUser </td>
+          <td>(</td>
+          <td class="paramtype">object</td>          <td class="paramname"><span class="paramname"><em>userId</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Controleert of de gebruiker een business account heeft op basis van het opgegeven userId. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">userId</td><td>Het ID van de gebruiker dat gecontroleerd moet worden.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Retourneert</dt><dd>Een boolean die aangeeft of de gebruiker een business account heeft.</dd></dl>
+
+<p class="definition">De definitie bevindt zich op regel <a class="el" href="_vehicle_repository_8cs_source.html#l00322">322</a> in het bestand <a class="el" href="_vehicle_repository_8cs_source.html">VehicleRepository.cs</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  323</span>    {</div>
+<div class="line"><span class="lineno">  324</span>        <span class="keywordflow">try</span></div>
+<div class="line"><span class="lineno">  325</span>        {</div>
+<div class="line"><span class="lineno">  326</span>            <span class="comment">// SQL query om de accounttype van de klant te controleren</span></div>
+<div class="line"><span class="lineno">  327</span>            <span class="keywordtype">string</span> queryBusiness = <span class="stringliteral">&quot;SELECT AccountType FROM Customer WHERE ID = @I&quot;</span>;</div>
+<div class="line"><span class="lineno">  328</span>            <span class="keyword">using</span> (var connection = _connector.CreateDbConnection())</div>
+<div class="line"><span class="lineno">  329</span>            <span class="keyword">using</span> (var commandBusiness = <span class="keyword">new</span> MySqlCommand(queryBusiness, (MySqlConnection)connection))</div>
+<div class="line"><span class="lineno">  330</span>            {</div>
+<div class="line"><span class="lineno">  331</span>                commandBusiness.Parameters.AddWithValue(<span class="stringliteral">&quot;@I&quot;</span>, userId);</div>
+<div class="line"><span class="lineno">  332</span>                <span class="keyword">using</span> (var reader = await commandBusiness.ExecuteReaderAsync())</div>
+<div class="line"><span class="lineno">  333</span>                {</div>
+<div class="line"><span class="lineno">  334</span>                    <span class="comment">// Als de gebruiker een business account heeft, retourneer true</span></div>
+<div class="line"><span class="lineno">  335</span>                    <span class="keywordflow">if</span> (await reader.ReadAsync() &amp;&amp; ((<span class="keywordtype">string</span>)reader.GetValue(0)).Equals(<span class="stringliteral">&quot;Business&quot;</span>))</div>
+<div class="line"><span class="lineno">  336</span>                    {</div>
+<div class="line"><span class="lineno">  337</span>                        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><span class="lineno">  338</span>                    }</div>
+<div class="line"><span class="lineno">  339</span> </div>
+<div class="line"><span class="lineno">  340</span>                    <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><span class="lineno">  341</span>                }</div>
+<div class="line"><span class="lineno">  342</span>            }</div>
+<div class="line"><span class="lineno">  343</span>        }</div>
+<div class="line"><span class="lineno">  344</span>        <span class="keywordflow">catch</span> (MySqlException ex)</div>
+<div class="line"><span class="lineno">  345</span>        {</div>
+<div class="line"><span class="lineno">  346</span>            <span class="comment">// Log MySQL fout</span></div>
+<div class="line"><span class="lineno">  347</span>            Console.WriteLine(ex.Message);</div>
+<div class="line"><span class="lineno">  348</span>            <span class="keywordflow">throw</span>;</div>
+<div class="line"><span class="lineno">  349</span>        }</div>
+<div class="line"><span class="lineno">  350</span>        <span class="keywordflow">catch</span> (Exception ex)</div>
+<div class="line"><span class="lineno">  351</span>        {</div>
+<div class="line"><span class="lineno">  352</span>            <span class="comment">// Log andere fout</span></div>
+<div class="line"><span class="lineno">  353</span>            Console.WriteLine(ex.Message);</div>
+<div class="line"><span class="lineno">  354</span>            <span class="keywordflow">throw</span>;</div>
+<div class="line"><span class="lineno">  355</span>        }</div>
+<div class="line"><span class="lineno">  356</span>    }</div>
+</div><!-- fragment -->
+<p class="reference">Gebruikt <a class="el" href="_vehicle_repository_8cs_source.html#l00016">_connector</a>.</p>
+
+<p class="reference">Wordt aangeroepen door <a class="el" href="_vehicle_repository_8cs_source.html#l00364">InsertRequest()</a>.</p>
+<div class="dynheader">
+Hier is de caller graaf voor deze functie:</div>
+<div class="dyncontent">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="class_w_p_r_1_1_repository_1_1_vehicle_repository_a8f27557367909f3ab26b7f8ac80fa33a_icgraph.svg" width="100%" height="300"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
+</div>
+
+</div>
+</div>
+<a id="a2c371ee4ceecc0aed0aa772f6e8eee5a" name="a2c371ee4ceecc0aed0aa772f6e8eee5a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2c371ee4ceecc0aed0aa772f6e8eee5a">&#9670;&#160;</a></span>SendEmail()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">async Task&lt;(bool <a class="el" href="#a757dec8cb7ee7a9edde9f9ae8716c8f5">Status</a>, string <a class="el" href="#a331f9d150d5870f1f3cc3215ff587924">Message</a>)&gt; WPR.Repository.VehicleRepository.SendEmail </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_w_p_r_1_1_controllers_1_1_customer_1_1_rental_1_1_rental_request.html">RentalRequest</a></td>          <td class="paramname"><span class="paramname"><em>request</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Verstuurt een bevestigingsmail naar de gebruiker na het succesvol aanmaken van een huurverzoek. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">request</td><td>Het huurverzoek object met gegevens die in de e-mail moeten worden opgenomen.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Retourneert</dt><dd>Een tuple bestaande uit een status (true/false) en een bericht (bijvoorbeeld succes of mislukking).</dd></dl>
+
+<p class="definition">De definitie bevindt zich op regel <a class="el" href="_vehicle_repository_8cs_source.html#l00421">421</a> in het bestand <a class="el" href="_vehicle_repository_8cs_source.html">VehicleRepository.cs</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  422</span>    {</div>
+<div class="line"><span class="lineno">  423</span>        <span class="keywordflow">try</span></div>
+<div class="line"><span class="lineno">  424</span>        {</div>
+<div class="line"><span class="lineno">  425</span>            <span class="comment">// Verkrijg de voertuiginformatie voor de bevestigingsmail</span></div>
+<div class="line"><span class="lineno">  426</span>            <span class="keywordtype">int</span> frameNr = Convert.ToInt32(request.<a class="code hl_property" href="class_w_p_r_1_1_controllers_1_1_customer_1_1_rental_1_1_rental_request.html#ada251866a5a8dee0aade8b913a8ff734">FrameNrVehicle</a>);</div>
+<div class="line"><span class="lineno">  427</span>            var vehicleName = GetVehicleNameAsync(frameNr);</div>
+<div class="line"><span class="lineno">  428</span>            var vehiclePlate = GetVehiclePlateAsync(frameNr);</div>
+<div class="line"><span class="lineno">  429</span>            var vehicleColor = GetVehicleColorAsync(frameNr);</div>
+<div class="line"><span class="lineno">  430</span> </div>
+<div class="line"><span class="lineno">  431</span>            <span class="comment">// Verstuur de huurbevestigingsmail</span></div>
+<div class="line"><span class="lineno">  432</span>            await _emailService.SendRentalConfirmMail(</div>
+<div class="line"><span class="lineno">  433</span>                toEmail: request.<a class="code hl_property" href="class_w_p_r_1_1_controllers_1_1_customer_1_1_rental_1_1_rental_request.html#a57d68b9d1abb126a14642c35ea21150b">Email</a>,</div>
+<div class="line"><span class="lineno">  434</span>                carName: await vehicleName,</div>
+<div class="line"><span class="lineno">  435</span>                carColor: await vehicleColor,</div>
+<div class="line"><span class="lineno">  436</span>                carPlate: await vehiclePlate,</div>
+<div class="line"><span class="lineno">  437</span>                startDate: request.<a class="code hl_property" href="class_w_p_r_1_1_controllers_1_1_customer_1_1_rental_1_1_rental_request.html#a9814f7dd71bbc93604a05e14748824b4">StartDate</a>,</div>
+<div class="line"><span class="lineno">  438</span>                endDate: request.<a class="code hl_property" href="class_w_p_r_1_1_controllers_1_1_customer_1_1_rental_1_1_rental_request.html#ab8eef14d81097f7691f43105ab84beed">EndDate</a>,</div>
+<div class="line"><span class="lineno">  439</span>                price: request.<a class="code hl_property" href="class_w_p_r_1_1_controllers_1_1_customer_1_1_rental_1_1_rental_request.html#adbc7f83a75795ad47d4e3002f5513569">Price</a>.ToString()</div>
+<div class="line"><span class="lineno">  440</span>            );</div>
+<div class="line"><span class="lineno">  441</span> </div>
+<div class="line"><span class="lineno">  442</span>            <span class="keywordflow">return</span> (<span class="keyword">true</span>, <span class="stringliteral">&quot;Huur succesvol aangemaakt.&quot;</span>);</div>
+<div class="line"><span class="lineno">  443</span>        }</div>
+<div class="line"><span class="lineno">  444</span>        <span class="keywordflow">catch</span> (OverflowException ex)</div>
+<div class="line"><span class="lineno">  445</span>        {</div>
+<div class="line"><span class="lineno">  446</span>            <span class="comment">// Fout bij het versturen van de email</span></div>
+<div class="line"><span class="lineno">  447</span>            <span class="keywordflow">return</span> (<span class="keyword">false</span>, ex.Message);</div>
+<div class="line"><span class="lineno">  448</span>        }</div>
+<div class="line"><span class="lineno">  449</span>        <span class="keywordflow">catch</span> (Exception ex)</div>
+<div class="line"><span class="lineno">  450</span>        {</div>
+<div class="line"><span class="lineno">  451</span>            <span class="comment">// Algemeen foutafhandelingsmechanisme</span></div>
+<div class="line"><span class="lineno">  452</span>            <span class="keywordflow">return</span> (<span class="keyword">false</span>, ex.Message);</div>
+<div class="line"><span class="lineno">  453</span>        }</div>
+<div class="line"><span class="lineno">  454</span>    }</div>
+<div class="ttc" id="aclass_w_p_r_1_1_controllers_1_1_customer_1_1_rental_1_1_rental_request_html_a57d68b9d1abb126a14642c35ea21150b"><div class="ttname"><a href="class_w_p_r_1_1_controllers_1_1_customer_1_1_rental_1_1_rental_request.html#a57d68b9d1abb126a14642c35ea21150b">WPR.Controllers.Customer.Rental.RentalRequest.Email</a></div><div class="ttdeci">string Email</div><div class="ttdef"><b>Definitie</b> <a href="_create_rental_request_8cs_source.html#l00008">CreateRentalRequest.cs:8</a></div></div>
+</div><!-- fragment -->
+<p class="reference">Gebruikt <a class="el" href="_vehicle_repository_8cs_source.html#l00018">_emailService</a>, <a class="el" href="_create_rental_request_8cs_source.html#l00008">WPR.Controllers.Customer.Rental.RentalRequest.Email</a>, <a class="el" href="_create_rental_request_8cs_source.html#l00011">WPR.Controllers.Customer.Rental.RentalRequest.EndDate</a>, <a class="el" href="_create_rental_request_8cs_source.html#l00009">WPR.Controllers.Customer.Rental.RentalRequest.FrameNrVehicle</a>, <a class="el" href="_vehicle_repository_8cs_source.html#l00115">GetVehicleColorAsync()</a>, <a class="el" href="_vehicle_repository_8cs_source.html#l00073">GetVehicleNameAsync()</a>, <a class="el" href="_vehicle_repository_8cs_source.html#l00032">GetVehiclePlateAsync()</a>, <a class="el" href="_vehicle_repository_8cs_source.html#l00616">Message</a>, <a class="el" href="_create_rental_request_8cs_source.html#l00012">WPR.Controllers.Customer.Rental.RentalRequest.Price</a>, <a class="el" href="_create_rental_request_8cs_source.html#l00010">WPR.Controllers.Customer.Rental.RentalRequest.StartDate</a> en <a class="el" href="_vehicle_repository_8cs_source.html#l00616">Status</a>.</p>
+
+<p class="reference">Wordt aangeroepen door <a class="el" href="_vehicle_repository_8cs_source.html#l00462">HireVehicle()</a>.</p>
+<div class="dynheader">
+Hier is de call graaf voor deze functie:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="class_w_p_r_1_1_repository_1_1_vehicle_repository_a2c371ee4ceecc0aed0aa772f6e8eee5a_cgraph.svg" width="522" height="187"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+<div class="dynheader">
+Hier is de caller graaf voor deze functie:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="class_w_p_r_1_1_repository_1_1_vehicle_repository_a2c371ee4ceecc0aed0aa772f6e8eee5a_icgraph.svg" width="522" height="54"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+
+</div>
+</div>
+<h2 class="groupheader">Documentatie van data velden</h2>
+<a id="aee2f3da59ff3f7177ab5f962c16e2e7c" name="aee2f3da59ff3f7177ab5f962c16e2e7c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aee2f3da59ff3f7177ab5f962c16e2e7c">&#9670;&#160;</a></span>_connector</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">readonly <a class="el" href="interface_w_p_r_1_1_database_1_1_i_connector.html">IConnector</a> WPR.Repository.VehicleRepository._connector</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">De definitie bevindt zich op regel <a class="el" href="_vehicle_repository_8cs_source.html#l00016">16</a> in het bestand <a class="el" href="_vehicle_repository_8cs_source.html">VehicleRepository.cs</a>.</p>
+
+<p class="reference">Wordt aangeroepen door <a class="el" href="_vehicle_repository_8cs_source.html#l00498">CancelRental()</a>, <a class="el" href="_vehicle_repository_8cs_source.html#l00667">ChangeRental()</a>, <a class="el" href="_vehicle_repository_8cs_source.html#l00755">ChangeRepairStatus()</a>, <a class="el" href="_vehicle_repository_8cs_source.html#l00709">DeleteVehicleAsync()</a>, <a class="el" href="_vehicle_repository_8cs_source.html#l00546">GetAllUserRentals()</a>, <a class="el" href="_vehicle_repository_8cs_source.html#l00616">GetAllUserRentalsDetailed()</a>, <a class="el" href="_vehicle_repository_8cs_source.html#l00154">GetFrameNumbersAsync()</a>, <a class="el" href="_vehicle_repository_8cs_source.html#l00194">GetFrameNumberSpecifiekTypeAsync()</a>, <a class="el" href="_vehicle_repository_8cs_source.html#l00115">GetVehicleColorAsync()</a>, <a class="el" href="_vehicle_repository_8cs_source.html#l00240">GetVehicleDataAsync()</a>, <a class="el" href="_vehicle_repository_8cs_source.html#l00073">GetVehicleNameAsync()</a>, <a class="el" href="_vehicle_repository_8cs_source.html#l00032">GetVehiclePlateAsync()</a>, <a class="el" href="_vehicle_repository_8cs_source.html#l00364">InsertRequest()</a>, <a class="el" href="_vehicle_repository_8cs_source.html#l00322">IsBusinessUser()</a> en <a class="el" href="_vehicle_repository_8cs_source.html#l00020">VehicleRepository()</a>.</p>
+
+</div>
+</div>
+<a id="a2e388ed4c58b74b5e0210445b262faf1" name="a2e388ed4c58b74b5e0210445b262faf1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2e388ed4c58b74b5e0210445b262faf1">&#9670;&#160;</a></span>_crypt</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">readonly <a class="el" href="class_w_p_r_1_1_cryption_1_1_crypt.html">Crypt</a> WPR.Repository.VehicleRepository._crypt</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">De definitie bevindt zich op regel <a class="el" href="_vehicle_repository_8cs_source.html#l00017">17</a> in het bestand <a class="el" href="_vehicle_repository_8cs_source.html">VehicleRepository.cs</a>.</p>
+
+<p class="reference">Wordt aangeroepen door <a class="el" href="_vehicle_repository_8cs_source.html#l00298">DecryptCookie()</a> en <a class="el" href="_vehicle_repository_8cs_source.html#l00020">VehicleRepository()</a>.</p>
+
+</div>
+</div>
+<a id="ae78b0e51a191e0fbfd3395e92158557a" name="ae78b0e51a191e0fbfd3395e92158557a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae78b0e51a191e0fbfd3395e92158557a">&#9670;&#160;</a></span>_emailService</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">readonly <a class="el" href="class_w_p_r_1_1_services_1_1_email_service.html">EmailService</a> WPR.Repository.VehicleRepository._emailService</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">De definitie bevindt zich op regel <a class="el" href="_vehicle_repository_8cs_source.html#l00018">18</a> in het bestand <a class="el" href="_vehicle_repository_8cs_source.html">VehicleRepository.cs</a>.</p>
+
+<p class="reference">Wordt aangeroepen door <a class="el" href="_vehicle_repository_8cs_source.html#l00421">SendEmail()</a> en <a class="el" href="_vehicle_repository_8cs_source.html#l00020">VehicleRepository()</a>.</p>
+
+</div>
+</div>
+<a id="a331f9d150d5870f1f3cc3215ff587924" name="a331f9d150d5870f1f3cc3215ff587924"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a331f9d150d5870f1f3cc3215ff587924">&#9670;&#160;</a></span>Message</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool int string WPR.Repository.VehicleRepository.Message</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">De definitie bevindt zich op regel <a class="el" href="_vehicle_repository_8cs_source.html#l00616">616</a> in het bestand <a class="el" href="_vehicle_repository_8cs_source.html">VehicleRepository.cs</a>.</p>
+
+<p class="reference">Wordt aangeroepen door <a class="el" href="_vehicle_repository_8cs_source.html#l00498">CancelRental()</a>, <a class="el" href="_vehicle_repository_8cs_source.html#l00667">ChangeRental()</a>, <a class="el" href="_vehicle_repository_8cs_source.html#l00755">ChangeRepairStatus()</a>, <a class="el" href="_vehicle_repository_8cs_source.html#l00298">DecryptCookie()</a>, <a class="el" href="_vehicle_repository_8cs_source.html#l00709">DeleteVehicleAsync()</a>, <a class="el" href="_vehicle_repository_8cs_source.html#l00546">GetAllUserRentals()</a>, <a class="el" href="_vehicle_repository_8cs_source.html#l00616">GetAllUserRentalsDetailed()</a>, <a class="el" href="_vehicle_repository_8cs_source.html#l00462">HireVehicle()</a>, <a class="el" href="_vehicle_repository_8cs_source.html#l00364">InsertRequest()</a> en <a class="el" href="_vehicle_repository_8cs_source.html#l00421">SendEmail()</a>.</p>
+
+</div>
+</div>
+<a id="a757dec8cb7ee7a9edde9f9ae8716c8f5" name="a757dec8cb7ee7a9edde9f9ae8716c8f5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a757dec8cb7ee7a9edde9f9ae8716c8f5">&#9670;&#160;</a></span>Status</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool WPR.Repository.VehicleRepository.Status</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Verkrijgt gedetailleerde huuraanvragen van alle contracten in de database. </p>
+<p>Wijzigt de reparatiestatus van een voertuig, bijvoorbeeld voor reparatie of niet.</p>
+<p>Wijzigt de gegevens van een huuraanvraag (startdatum, einddatum, prijs) voor een specifiek contract.</p>
+<dl class="section return"><dt>Retourneert</dt><dd>A tuple containing the status, status code, message, and the list of all rentals.</dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">request</td><td>Het verzoek met de bijgewerkte gegevens van de huur.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Retourneert</dt><dd>A tuple containing the status, status code, and a message about the success or failure of the update.</dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">id</td><td>Het frame nummer van het voertuig.</td></tr>
+    <tr><td class="paramname">broken</td><td>Een boolean die aangeeft of het voertuig kapot is (true) of niet (false).</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Retourneert</dt><dd>A tuple containing the status, status code, and a message about the success or failure of the repair status update.</dd></dl>
+
+<p class="definition">De definitie bevindt zich op regel <a class="el" href="_vehicle_repository_8cs_source.html#l00616">616</a> in het bestand <a class="el" href="_vehicle_repository_8cs_source.html">VehicleRepository.cs</a>.</p>
+
+<p class="reference">Wordt aangeroepen door <a class="el" href="_vehicle_repository_8cs_source.html#l00498">CancelRental()</a>, <a class="el" href="_vehicle_repository_8cs_source.html#l00667">ChangeRental()</a>, <a class="el" href="_vehicle_repository_8cs_source.html#l00755">ChangeRepairStatus()</a>, <a class="el" href="_vehicle_repository_8cs_source.html#l00298">DecryptCookie()</a>, <a class="el" href="_vehicle_repository_8cs_source.html#l00709">DeleteVehicleAsync()</a>, <a class="el" href="_vehicle_repository_8cs_source.html#l00546">GetAllUserRentals()</a>, <a class="el" href="_vehicle_repository_8cs_source.html#l00616">GetAllUserRentalsDetailed()</a>, <a class="el" href="_vehicle_repository_8cs_source.html#l00462">HireVehicle()</a>, <a class="el" href="_vehicle_repository_8cs_source.html#l00364">InsertRequest()</a> en <a class="el" href="_vehicle_repository_8cs_source.html#l00421">SendEmail()</a>.</p>
+
+</div>
+</div>
+<a id="a0abd0395724205d79472c5d97678c880" name="a0abd0395724205d79472c5d97678c880"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0abd0395724205d79472c5d97678c880">&#9670;&#160;</a></span>StatusCode</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool int WPR.Repository.VehicleRepository.StatusCode</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">De definitie bevindt zich op regel <a class="el" href="_vehicle_repository_8cs_source.html#l00616">616</a> in het bestand <a class="el" href="_vehicle_repository_8cs_source.html">VehicleRepository.cs</a>.</p>
+
+<p class="reference">Wordt aangeroepen door <a class="el" href="_vehicle_repository_8cs_source.html#l00498">CancelRental()</a>, <a class="el" href="_vehicle_repository_8cs_source.html#l00667">ChangeRental()</a>, <a class="el" href="_vehicle_repository_8cs_source.html#l00755">ChangeRepairStatus()</a>, <a class="el" href="_vehicle_repository_8cs_source.html#l00298">DecryptCookie()</a>, <a class="el" href="_vehicle_repository_8cs_source.html#l00546">GetAllUserRentals()</a> en <a class="el" href="_vehicle_repository_8cs_source.html#l00616">GetAllUserRentalsDetailed()</a>.</p>
+
+</div>
+</div>
+<hr/>De documentatie voor deze klasse is gegenereerd op basis van het volgende bestand:<ul>
+<li>D:/codes/WPR8/WPR/backend/src/Repository/<a class="el" href="_vehicle_repository_8cs_source.html">VehicleRepository.cs</a></li>
+</ul>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="namespace_w_p_r.html">WPR</a></li><li class="navelem"><a class="el" href="namespace_w_p_r_1_1_repository.html">Repository</a></li><li class="navelem"><a class="el" href="class_w_p_r_1_1_repository_1_1_vehicle_repository.html">VehicleRepository</a></li>
+    <li class="footer">Gegenereerd door <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.0 </li>
+  </ul>
+</div>
+</body>
+</html>

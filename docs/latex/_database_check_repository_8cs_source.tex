@@ -1,0 +1,260 @@
+\doxysection{Database\+Check\+Repository.\+cs}
+\hypertarget{_database_check_repository_8cs_source}{}\label{_database_check_repository_8cs_source}\index{D:/codes/WPR8/WPR/backend/src/Repository/DatabaseCheckRepository.cs@{D:/codes/WPR8/WPR/backend/src/Repository/DatabaseCheckRepository.cs}}
+\mbox{\hyperlink{_database_check_repository_8cs}{Ga naar de documentatie van dit bestand.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00001}00001\ \textcolor{keyword}{using\ }MySql.Data.MySqlClient;}
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00002}00002\ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespace_w_p_r_1_1_database}{WPR.Database}};}
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00003}00003\ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespace_w_p_r_1_1_repository_1_1_database_check_repository}{WPR.Repository.DatabaseCheckRepository}};}
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00004}00004\ }
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00008}\mbox{\hyperlink{class_database_check_repository}{00008}}\ \textcolor{keyword}{public}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_database_check_repository_a9b493c8eaaef862f3b79289b08334f85}{DatabaseCheckRepository}}\ :\ \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_database_check_repository_1_1_i_database_check_repository}{IDatabaseCheckRepository}}}
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00009}00009\ \{}
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00010}\mbox{\hyperlink{class_database_check_repository_a1dec366724e8ece78c7b3eec306cc523}{00010}}\ \ \ \ \ \textcolor{keyword}{private}\ readonly\ \mbox{\hyperlink{interface_w_p_r_1_1_database_1_1_i_connector}{IConnector}}\ \mbox{\hyperlink{class_database_check_repository_a1dec366724e8ece78c7b3eec306cc523}{\_connector}};}
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00011}00011\ }
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00017}\mbox{\hyperlink{class_database_check_repository_a9b493c8eaaef862f3b79289b08334f85}{00017}}\ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_database_check_repository_a9b493c8eaaef862f3b79289b08334f85}{DatabaseCheckRepository}}(\mbox{\hyperlink{interface_w_p_r_1_1_database_1_1_i_connector}{IConnector}}\ connector)}
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00018}00018\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00019}00019\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_database_check_repository_a1dec366724e8ece78c7b3eec306cc523}{\_connector}}\ =\ connector\ ??\ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ ArgumentNullException(nameof(connector));}
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00020}00020\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00021}00021\ }
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00029}\mbox{\hyperlink{class_database_check_repository_addc06aeee3647cec54202bc103212e2e}{00029}}\ \ \ \ \ \textcolor{keyword}{private}\ (\textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_database_check_repository_af00e30b47279ed24d32ee995f3d71ff7}{StatusCode}},\ \textcolor{keywordtype}{string}\ \mbox{\hyperlink{class_database_check_repository_a78f58bffc4e099c3788557d485bdab13}{Message}})\ \mbox{\hyperlink{class_database_check_repository_addc06aeee3647cec54202bc103212e2e}{HandleDelete}}(\textcolor{keywordtype}{string}\ query)}
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00030}00030\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00031}00031\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}}
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00032}00032\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00033}00033\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using}\ (var\ connection\ =\ \mbox{\hyperlink{class_database_check_repository_a1dec366724e8ece78c7b3eec306cc523}{\_connector}}.CreateDbConnection())}
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00034}00034\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using}\ (var\ command\ =\ \textcolor{keyword}{new}\ MySqlCommand(query,\ (MySqlConnection)connection))}
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00035}00035\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00036}00036\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Console.WriteLine(query);}
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00037}00037\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (command.ExecuteNonQuery()\ >\ 0)}
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00038}00038\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00039}00039\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (200,\ \textcolor{stringliteral}{"{}Succesfully\ deleted"{}});}
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00040}00040\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00041}00041\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (404,\ \textcolor{stringliteral}{"{}Verwijderen\ van\ gegevens\ gefaald.\ Opgegeven\ gegevens\ bestaan\ niet"{}});}
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00042}00042\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00043}00043\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00044}00044\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (MySqlException\ ex)}
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00045}00045\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00046}00046\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (500,\ ex.Message);}
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00047}00047\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00048}00048\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (Exception\ ex)}
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00049}00049\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00050}00050\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (500,\ ex.Message);}
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00051}00051\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00052}00052\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00053}00053\ }
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00061}\mbox{\hyperlink{class_database_check_repository_a181b1a163bd4151f68bc551091c3ee22}{00061}}\ \ \ \ \ \textcolor{keyword}{private}\ (\textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_database_check_repository_af00e30b47279ed24d32ee995f3d71ff7}{StatusCode}},\ \textcolor{keywordtype}{string}\ \mbox{\hyperlink{class_database_check_repository_a78f58bffc4e099c3788557d485bdab13}{Message}})\ \mbox{\hyperlink{class_database_check_repository_a181b1a163bd4151f68bc551091c3ee22}{DeleteFutereContracts}}(\textcolor{keywordtype}{int}\ \textcolor{keywordtype}{id})}
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00062}00062\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00063}00063\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ query\ =\ \textcolor{stringliteral}{"{}DELETE\ FROM\ Contract\ WHERE\ (Customer\ =\ @C\ AND\ @D\ <\ EndDate)"{}};}
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00064}00064\ }
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00065}00065\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}}
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00066}00066\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00067}00067\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using}\ (var\ connection\ =\ \mbox{\hyperlink{class_database_check_repository_a1dec366724e8ece78c7b3eec306cc523}{\_connector}}.CreateDbConnection())}
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00068}00068\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using}\ (var\ command\ =\ \textcolor{keyword}{new}\ MySqlCommand(query,\ (MySqlConnection)connection))}
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00069}00069\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00070}00070\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ command.Parameters.AddWithValue(\textcolor{stringliteral}{"{}@C"{}},\ \textcolor{keywordtype}{id});}
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00071}00071\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ command.Parameters.AddWithValue(\textcolor{stringliteral}{"{}@D"{}},\ DateTime.Today);}
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00072}00072\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ command.ExecuteNonQuery();}
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00073}00073\ }
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00074}00074\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (200,\ \textcolor{stringliteral}{"{}Verwijderen\ toekomstige\ contracten\ was\ succesvol"{}});}
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00075}00075\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00076}00076\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00077}00077\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (MySqlException\ ex)}
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00078}00078\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00079}00079\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (500,\ ex.Message);}
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00080}00080\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00081}00081\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (Exception\ ex)}
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00082}00082\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00083}00083\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (500,\ ex.Message);}
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00084}00084\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00085}00085\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00086}00086\ }
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00094}\mbox{\hyperlink{class_database_check_repository_ad56412a3b3449cdcb20706b41c648f3e}{00094}}\ \ \ \ \ \textcolor{keyword}{private}\ (\textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_database_check_repository_af00e30b47279ed24d32ee995f3d71ff7}{StatusCode}},\ \textcolor{keywordtype}{string}\ \mbox{\hyperlink{class_database_check_repository_a78f58bffc4e099c3788557d485bdab13}{Message}})\ \mbox{\hyperlink{class_database_check_repository_ad56412a3b3449cdcb20706b41c648f3e}{UserHasActiveContract}}(\textcolor{keywordtype}{int}\ \textcolor{keywordtype}{id})}
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00095}00095\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00096}00096\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ query\ =\ \textcolor{stringliteral}{"{}SELECT\ COUNT(*)\ FROM\ Contract\ WHERE\ (Customer\ =\ @C\ AND\ @D\ BETWEEN\ StartDate\ AND\ EndDate\ AND\ Status\ =\ 'accepted')"{}};}
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00097}00097\ }
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00098}00098\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}}
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00099}00099\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00100}00100\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using}\ (var\ connection\ =\ \mbox{\hyperlink{class_database_check_repository_a1dec366724e8ece78c7b3eec306cc523}{\_connector}}.CreateDbConnection())}
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00101}00101\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using}\ (var\ command\ =\ \textcolor{keyword}{new}\ MySqlCommand(query,\ (MySqlConnection)connection))}
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00102}00102\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00103}00103\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ command.Parameters.AddWithValue(\textcolor{stringliteral}{"{}@C"{}},\ \textcolor{keywordtype}{id});}
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00104}00104\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ command.Parameters.AddWithValue(\textcolor{stringliteral}{"{}@D"{}},\ DateTime.Today);}
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00105}00105\ }
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00106}00106\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ count\ =\ Convert.ToInt32(command.ExecuteScalar());}
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00107}00107\ }
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00108}00108\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (count\ >\ 0)}
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00109}00109\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00110}00110\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (424,\ \textcolor{stringliteral}{"{}Gebruiker\ heeft\ momenteel\ een\ lopend\ contract"{}});}
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00111}00111\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00112}00112\ }
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00113}00113\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ var\ deleteFutereContracts\ =\ \mbox{\hyperlink{class_database_check_repository_a181b1a163bd4151f68bc551091c3ee22}{DeleteFutereContracts}}(\textcolor{keywordtype}{id});}
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00114}00114\ }
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00115}00115\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (deleteFutereContracts.StatusCode,\ deleteFutereContracts.Message);}
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00116}00116\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00117}00117\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00118}00118\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (MySqlException\ ex)}
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00119}00119\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00120}00120\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (500,\ ex.Message);}
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00121}00121\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00122}00122\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (OverflowException\ ex)}
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00123}00123\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00124}00124\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (500,\ ex.Message);}
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00125}00125\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00126}00126\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (Exception\ ex)}
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00127}00127\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00128}00128\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (500,\ ex.Message);}
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00129}00129\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00130}00130\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00131}00131\ }
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00139}\mbox{\hyperlink{class_database_check_repository_a241ccbc35380a23dedb1f9a942a52a1b}{00139}}\ \ \ \ \ \textcolor{keyword}{public}\ (\textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_database_check_repository_af00e30b47279ed24d32ee995f3d71ff7}{StatusCode}},\ \textcolor{keywordtype}{string}\ \mbox{\hyperlink{class_database_check_repository_a78f58bffc4e099c3788557d485bdab13}{Message}})\ \mbox{\hyperlink{class_database_check_repository_a241ccbc35380a23dedb1f9a942a52a1b}{DeleteUser}}(\textcolor{keywordtype}{int}\ \textcolor{keywordtype}{id})}
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00140}00140\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00141}00141\ \ \ \ \ \ \ \ \ var\ activeContract\ =\ \mbox{\hyperlink{class_database_check_repository_ad56412a3b3449cdcb20706b41c648f3e}{UserHasActiveContract}}(\textcolor{keywordtype}{id});}
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00142}00142\ }
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00143}00143\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (activeContract.StatusCode\ ==\ 200)}
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00144}00144\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00145}00145\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ query\ =\ \$\textcolor{stringliteral}{"{}DELETE\ FROM\ Customer\ WHERE\ ID\ =\ \{id\}"{}};}
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00146}00146\ }
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00147}00147\ \ \ \ \ \ \ \ \ \ \ \ \ var\ deleteUser\ =\ \mbox{\hyperlink{class_database_check_repository_addc06aeee3647cec54202bc103212e2e}{HandleDelete}}(query);}
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00148}00148\ }
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00149}00149\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (deleteUser.StatusCode,\ deleteUser.Message);}
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00150}00150\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00151}00151\ }
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00152}00152\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (activeContract.StatusCode,\ activeContract.Message);}
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00153}00153\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00154}00154\ }
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00162}\mbox{\hyperlink{class_database_check_repository_a004ee325adfb7c4edc0c3e50098973ec}{00162}}\ \ \ \ \ \textcolor{keyword}{private}\ (\textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_database_check_repository_af00e30b47279ed24d32ee995f3d71ff7}{StatusCode}},\ \textcolor{keywordtype}{string}\ \mbox{\hyperlink{class_database_check_repository_a78f58bffc4e099c3788557d485bdab13}{Message}},\ Dictionary<int,\ bool>\ employeeData)\ \mbox{\hyperlink{class_database_check_repository_a004ee325adfb7c4edc0c3e50098973ec}{DeleteEmployees}}(\textcolor{keywordtype}{int}\ kvk)}
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00163}00163\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00164}00164\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ query\ =\ \textcolor{stringliteral}{"{}SELECT\ ID\ From\ Customer\ WHERE\ KvK\ =\ @B"{}};}
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00165}00165\ }
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00166}00166\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}}
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00167}00167\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00168}00168\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using}\ (var\ connection\ =\ \mbox{\hyperlink{class_database_check_repository_a1dec366724e8ece78c7b3eec306cc523}{\_connector}}.CreateDbConnection())}
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00169}00169\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using}\ (var\ command\ =\ \textcolor{keyword}{new}\ MySqlCommand(query,\ (MySqlConnection)connection))}
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00170}00170\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00171}00171\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ command.Parameters.AddWithValue(\textcolor{stringliteral}{"{}@B"{}},\ kvk);}
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00172}00172\ }
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00173}00173\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using}\ (var\ reader\ =\ command.ExecuteReader())}
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00174}00174\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00175}00175\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Dictionary<int,\ bool>\ deletedEmployees\ =\ \textcolor{keyword}{new}\ Dictionary<int,\ bool>();}
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00176}00176\ }
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00177}00177\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (reader.Read())}
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00178}00178\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00179}00179\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ reader.FieldCount;\ i++)}
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00180}00180\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00181}00181\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ employee\ =\ Convert.ToInt32(reader.GetValue(i));}
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00182}00182\ }
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00183}00183\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ var\ deleted\ =\ \mbox{\hyperlink{class_database_check_repository_a241ccbc35380a23dedb1f9a942a52a1b}{DeleteUser}}(employee);}
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00184}00184\ }
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00185}00185\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (deleted.StatusCode\ ==\ 200)}
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00186}00186\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00187}00187\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ deletedEmployees[employee]\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00188}00188\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00189}00189\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00190}00190\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00191}00191\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ deletedEmployees[employee]\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00192}00192\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00193}00193\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00194}00194\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00195}00195\ }
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00196}00196\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (200,\ \textcolor{stringliteral}{"{}"{}},\ deletedEmployees);}
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00197}00197\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00198}00198\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00199}00199\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00200}00200\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (MySqlException\ ex)}
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00201}00201\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00202}00202\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (500,\ ex.Message,\ \textcolor{keyword}{new}\ Dictionary<int,\ bool>());}
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00203}00203\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00204}00204\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (OverflowException\ ex)}
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00205}00205\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00206}00206\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (500,\ ex.Message,\ \textcolor{keyword}{new}\ Dictionary<int,\ bool>());}
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00207}00207\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00208}00208\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (Exception\ ex)}
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00209}00209\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00210}00210\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (500,\ ex.Message,\ \textcolor{keyword}{new}\ Dictionary<int,\ bool>());}
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00211}00211\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00212}00212\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00213}00213\ }
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00219}\mbox{\hyperlink{class_database_check_repository_a757a083a28f0a9d47611ea7b9cae4d85}{00219}}\ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_database_check_repository_a757a083a28f0a9d47611ea7b9cae4d85}{DeleteBusinessAllowed}}(Dictionary<int,\ bool>\ employees)}
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00220}00220\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00221}00221\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{foreach}\ (var\ item\ \textcolor{keywordflow}{in}\ employees)}
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00222}00222\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00223}00223\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!item.Value)}
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00224}00224\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00225}00225\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00226}00226\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00227}00227\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00228}00228\ }
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00229}00229\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00230}00230\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00231}00231\ }
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00239}\mbox{\hyperlink{class_database_check_repository_ab5033c1e3a5b823fc7e7d6d187d12ccc}{00239}}\ \ \ \ \ \textcolor{keyword}{public}\ (\textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_database_check_repository_af00e30b47279ed24d32ee995f3d71ff7}{StatusCode}},\ \textcolor{keywordtype}{string}\ \mbox{\hyperlink{class_database_check_repository_a78f58bffc4e099c3788557d485bdab13}{Message}})\ \mbox{\hyperlink{class_database_check_repository_ab5033c1e3a5b823fc7e7d6d187d12ccc}{DeleteBusiness}}(\textcolor{keywordtype}{int}\ kvk)}
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00240}00240\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00241}00241\ \ \ \ \ \ \ \ \ var\ employees\ =\ \mbox{\hyperlink{class_database_check_repository_a004ee325adfb7c4edc0c3e50098973ec}{DeleteEmployees}}(kvk);}
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00242}00242\ }
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00243}00243\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (employees.StatusCode\ !=\ 200)}
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00244}00244\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00245}00245\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (employees.StatusCode,\ employees.Message);}
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00246}00246\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00247}00247\ }
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00248}00248\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{class_database_check_repository_a757a083a28f0a9d47611ea7b9cae4d85}{DeleteBusinessAllowed}}(employees.employeeData))}
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00249}00249\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00250}00250\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (417,\ \textcolor{stringliteral}{"{}Sommige\ medewerkers\ zitten\ nog\ in\ een\ contract"{}});}
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00251}00251\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00252}00252\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00253}00253\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ query\ =\ \$\textcolor{stringliteral}{"{}DELETE\ FROM\ Business\ WHERE\ KvK\ =\ \{kvk\}"{}};}
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00254}00254\ \ \ \ \ \ \ \ \ var\ deleteBusiness\ =\ \mbox{\hyperlink{class_database_check_repository_addc06aeee3647cec54202bc103212e2e}{HandleDelete}}(query);}
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00255}00255\ }
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00256}00256\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (deleteBusiness.StatusCode,\ deleteBusiness.Message);}
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00257}00257\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00258}00258\ }
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00266}\mbox{\hyperlink{class_database_check_repository_aa2cc9546df7853934d6fe4e6da895171}{00266}}\ \ \ \ \ \textcolor{keyword}{private}\ (\textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_database_check_repository_af00e30b47279ed24d32ee995f3d71ff7}{StatusCode}},\ \textcolor{keywordtype}{string}\ \mbox{\hyperlink{class_database_check_repository_a78f58bffc4e099c3788557d485bdab13}{Message}})\ \mbox{\hyperlink{class_database_check_repository_aa2cc9546df7853934d6fe4e6da895171}{MinimumVehicleManagers}}(\textcolor{keywordtype}{int}\ kvk)}
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00267}00267\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00268}00268\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ query\ =\ \textcolor{stringliteral}{"{}SELECT\ COUNT(*)\ FROM\ VehicleManager\ WHERE\ Business\ =\ @B"{}};}
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00269}00269\ }
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00270}00270\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}}
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00271}00271\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00272}00272\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using}\ (var\ connection\ =\ \mbox{\hyperlink{class_database_check_repository_a1dec366724e8ece78c7b3eec306cc523}{\_connector}}.CreateDbConnection())}
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00273}00273\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using}\ (var\ command\ =\ \textcolor{keyword}{new}\ MySqlCommand(query,\ (MySqlConnection)connection))}
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00274}00274\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00275}00275\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ command.Parameters.AddWithValue(\textcolor{stringliteral}{"{}@B"{}},\ kvk);}
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00276}00276\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Console.WriteLine(query\ +\ \$\textcolor{stringliteral}{"{}\ |\ \{kvk\}"{}});}
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00277}00277\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ count\ =\ Convert.ToInt32(command.ExecuteScalar());}
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00278}00278\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Console.WriteLine(count);}
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00279}00279\ }
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00280}00280\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (count\ >\ 1)}
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00281}00281\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00282}00282\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (200,\ \textcolor{stringliteral}{"{}Allowed"{}});}
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00283}00283\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00284}00284\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (422,\ \textcolor{stringliteral}{"{}Er\ moet\ minimaal\ 1\ wagenparkbeheerder\ beschikbaar\ zijn"{}});}
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00285}00285\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00286}00286\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00287}00287\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (MySqlException\ ex)}
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00288}00288\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00289}00289\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (500,\ ex.Message);}
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00290}00290\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00291}00291\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (OverflowException\ ex)}
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00292}00292\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00293}00293\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (500,\ ex.Message);}
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00294}00294\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00295}00295\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (Exception\ ex)}
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00296}00296\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00297}00297\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (500,\ ex.Message);}
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00298}00298\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00299}00299\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00300}00300\ }
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00309}\mbox{\hyperlink{class_database_check_repository_ab17e5b0314f886eb84b9e497c8dfd1b4}{00309}}\ \ \ \ \ \textcolor{keyword}{public}\ (\textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_database_check_repository_af00e30b47279ed24d32ee995f3d71ff7}{StatusCode}},\ \textcolor{keywordtype}{string}\ \mbox{\hyperlink{class_database_check_repository_a78f58bffc4e099c3788557d485bdab13}{Message}})\ \mbox{\hyperlink{class_database_check_repository_ab17e5b0314f886eb84b9e497c8dfd1b4}{DeleteVehicleManager}}(\textcolor{keywordtype}{int}\ \textcolor{keywordtype}{id},\ \textcolor{keywordtype}{int}\ kvk)}
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00310}00310\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00311}00311\ \ \ \ \ \ \ \ \ var\ allowed\ =\ \mbox{\hyperlink{class_database_check_repository_aa2cc9546df7853934d6fe4e6da895171}{MinimumVehicleManagers}}(kvk);}
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00312}00312\ }
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00313}00313\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (allowed.StatusCode\ ==\ 200)}
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00314}00314\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00315}00315\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ query\ =\ \$\textcolor{stringliteral}{"{}DELETE\ FROM\ VehicleManager\ WHERE\ ID\ =\ \{id\}"{}};}
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00316}00316\ }
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00317}00317\ \ \ \ \ \ \ \ \ \ \ \ \ var\ deleteUser\ =\ \mbox{\hyperlink{class_database_check_repository_addc06aeee3647cec54202bc103212e2e}{HandleDelete}}(query);}
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00318}00318\ }
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00319}00319\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (deleteUser.StatusCode,\ deleteUser.Message);}
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00320}00320\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00321}00321\ }
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00322}00322\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (allowed.StatusCode,\ allowed.Message);}
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00323}00323\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_database_check_repository_8cs_source_l00324}00324\ \}}
+
+\end{DoxyCode}

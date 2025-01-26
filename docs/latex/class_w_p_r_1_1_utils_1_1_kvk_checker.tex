@@ -1,0 +1,114 @@
+\doxysection{WPR.\+Utils.\+Kvk\+Checker Class Referentie}
+\hypertarget{class_w_p_r_1_1_utils_1_1_kvk_checker}{}\label{class_w_p_r_1_1_utils_1_1_kvk_checker}\index{WPR.Utils.KvkChecker@{WPR.Utils.KvkChecker}}
+
+
+Collaboratie diagram voor WPR.\+Utils.\+Kvk\+Checker\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=236pt]{class_w_p_r_1_1_utils_1_1_kvk_checker__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Members}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_w_p_r_1_1_utils_1_1_kvk_checker_a615f7bc3551a179f7650703d613504fc}{Kvk\+Checker}} (\mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_user_repository}{IUser\+Repository}} user\+Repository)
+\item 
+async Task$<$(bool is\+Valid, string error\+Message)$>$ \mbox{\hyperlink{class_w_p_r_1_1_utils_1_1_kvk_checker_a0a705c242e76b5f3055bf598bd532b3b}{Is\+Kvk\+Number\+Valid}} (int? kvk\+Number)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributen}
+\begin{DoxyCompactItemize}
+\item 
+readonly \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_user_repository}{IUser\+Repository}} \mbox{\hyperlink{class_w_p_r_1_1_utils_1_1_kvk_checker_a8ab80d821d0b0578f2fc1bec5bbd1011}{\+\_\+user\+Repository}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Gedetailleerde Beschrijving}
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{_kvk_checker_8cs_source_l00005}{5}} in het bestand \mbox{\hyperlink{_kvk_checker_8cs_source}{Kvk\+Checker.\+cs}}.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentatie}
+\Hypertarget{class_w_p_r_1_1_utils_1_1_kvk_checker_a615f7bc3551a179f7650703d613504fc}\index{WPR.Utils.KvkChecker@{WPR.Utils.KvkChecker}!KvkChecker@{KvkChecker}}
+\index{KvkChecker@{KvkChecker}!WPR.Utils.KvkChecker@{WPR.Utils.KvkChecker}}
+\doxysubsubsection{\texorpdfstring{KvkChecker()}{KvkChecker()}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_utils_1_1_kvk_checker_a615f7bc3551a179f7650703d613504fc} 
+WPR.\+Utils.\+Kvk\+Checker.\+Kvk\+Checker (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_user_repository}{IUser\+Repository}}}]{user\+Repository}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{_kvk_checker_8cs_source_l00010}{10}} in het bestand \mbox{\hyperlink{_kvk_checker_8cs_source}{Kvk\+Checker.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00011\ \ \ \ \ \{}
+\DoxyCodeLine{00012\ \ \ \ \ \ \ \ \ \_userRepository\ =\ userRepository;\ \textcolor{comment}{//\ Initialiseer\ de\ repository\ voor\ de\ gebruiker}}
+\DoxyCodeLine{00013\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+Gebruikt \mbox{\hyperlink{_kvk_checker_8cs_source_l00007}{\+\_\+user\+Repository}}.
+
+
+
+\doxysubsection{Documentatie van functie members}
+\Hypertarget{class_w_p_r_1_1_utils_1_1_kvk_checker_a0a705c242e76b5f3055bf598bd532b3b}\index{WPR.Utils.KvkChecker@{WPR.Utils.KvkChecker}!IsKvkNumberValid@{IsKvkNumberValid}}
+\index{IsKvkNumberValid@{IsKvkNumberValid}!WPR.Utils.KvkChecker@{WPR.Utils.KvkChecker}}
+\doxysubsubsection{\texorpdfstring{IsKvkNumberValid()}{IsKvkNumberValid()}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_utils_1_1_kvk_checker_a0a705c242e76b5f3055bf598bd532b3b} 
+async Task$<$(bool is\+Valid, string error\+Message)$>$ WPR.\+Utils.\+Kvk\+Checker.\+Is\+Kvk\+Number\+Valid (\begin{DoxyParamCaption}\item[{int?}]{kvk\+Number}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{_kvk_checker_8cs_source_l00016}{16}} in het bestand \mbox{\hyperlink{_kvk_checker_8cs_source}{Kvk\+Checker.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00017\ \ \ \ \ \{}
+\DoxyCodeLine{00018\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Controleer\ of\ het\ KVK-\/nummer\ een\ waarde\ heeft\ en\ precies\ 8\ cijfers\ bevat}}
+\DoxyCodeLine{00019\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!kvkNumber.HasValue\ ||\ kvkNumber.Value.ToString().Length\ !=\ 8)}
+\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (\textcolor{keyword}{false},\ \textcolor{stringliteral}{"{}KVK\ number\ must\ be\ 8\ digits"{}});\ \textcolor{comment}{//\ KVK-\/nummer\ is\ ongeldig\ als\ het\ niet\ 8\ cijfers\ heeft}}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Controleer\ of\ het\ KVK-\/nummer\ in\ de\ database\ voorkomt}}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ inDatabase\ =\ await\ \_userRepository.IsKvkNumberAsync(kvkNumber.Value);}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!inDatabase)}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (\textcolor{keyword}{false},\ \textcolor{stringliteral}{"{}KVK\ number\ is\ not\ a\ valid\ KVK\ number"{}});\ \textcolor{comment}{//\ KVK-\/nummer\ is\ niet\ geldig\ als\ het\ niet\ in\ de\ database\ staat}}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (\textcolor{keyword}{true},\ \textcolor{keyword}{null});\ \textcolor{comment}{//\ KVK-\/nummer\ is\ geldig,\ geen\ foutmelding}}
+\DoxyCodeLine{00032\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+Gebruikt \mbox{\hyperlink{_kvk_checker_8cs_source_l00007}{\+\_\+user\+Repository}}.
+
+
+
+\doxysubsection{Documentatie van data velden}
+\Hypertarget{class_w_p_r_1_1_utils_1_1_kvk_checker_a8ab80d821d0b0578f2fc1bec5bbd1011}\index{WPR.Utils.KvkChecker@{WPR.Utils.KvkChecker}!\_userRepository@{\_userRepository}}
+\index{\_userRepository@{\_userRepository}!WPR.Utils.KvkChecker@{WPR.Utils.KvkChecker}}
+\doxysubsubsection{\texorpdfstring{\_userRepository}{\_userRepository}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_utils_1_1_kvk_checker_a8ab80d821d0b0578f2fc1bec5bbd1011} 
+readonly \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_user_repository}{IUser\+Repository}} WPR.\+Utils.\+Kvk\+Checker.\+\_\+user\+Repository\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{_kvk_checker_8cs_source_l00007}{7}} in het bestand \mbox{\hyperlink{_kvk_checker_8cs_source}{Kvk\+Checker.\+cs}}.
+
+
+
+Wordt aangeroepen door \mbox{\hyperlink{_kvk_checker_8cs_source_l00016}{Is\+Kvk\+Number\+Valid()}} en \mbox{\hyperlink{_kvk_checker_8cs_source_l00010}{Kvk\+Checker()}}.
+
+
+
+De documentatie voor deze klasse is gegenereerd op basis van het volgende bestand\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/codes/\+WPR8/\+WPR/backend/src/\+Utils/\mbox{\hyperlink{_kvk_checker_8cs}{Kvk\+Checker.\+cs}}\end{DoxyCompactItemize}

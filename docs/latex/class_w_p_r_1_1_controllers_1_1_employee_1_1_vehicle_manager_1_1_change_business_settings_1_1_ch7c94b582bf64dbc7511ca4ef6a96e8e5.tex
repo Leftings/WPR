@@ -1,0 +1,392 @@
+\doxysection{WPR.\+Controllers.\+Employee.\+Vehicle\+Manager.\+Change\+Business\+Settings.\+Change\+Business\+Settings\+Controller Class Referentie}
+\hypertarget{class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_change_business_settings_1_1_ch7c94b582bf64dbc7511ca4ef6a96e8e5}{}\label{class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_change_business_settings_1_1_ch7c94b582bf64dbc7511ca4ef6a96e8e5}\index{WPR.Controllers.Employee.VehicleManager.ChangeBusinessSettings.ChangeBusinessSettingsController@{WPR.Controllers.Employee.VehicleManager.ChangeBusinessSettings.ChangeBusinessSettingsController}}
+
+
+Klasse diagram voor WPR.\+Controllers.\+Employee.\+Vehicle\+Manager.\+Change\+Business\+Settings.\+Change\+Business\+Settings\+Controller
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=273pt]{class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_change_business_settings_1_1_chd2f994c68f8a87b8529382fbf9d743ab}
+\end{center}
+\end{figure}
+
+
+Collaboratie diagram voor WPR.\+Controllers.\+Employee.\+Vehicle\+Manager.\+Change\+Business\+Settings.\+Change\+Business\+Settings\+Controller\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_change_business_settings_1_1_ch2ac8b7f3ab548076716afa9b5fe887d6}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Members}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_change_business_settings_1_1_ch7c94b582bf64dbc7511ca4ef6a96e8e5_a506a13c91683e6389cf9486f15b7a4e9}{Change\+Business\+Settings\+Controller}} (\mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_user_repository}{IUser\+Repository}} user\+Repository, \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_employee_repository}{IEmployee\+Repository}} employee\+Repository, \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_database_check_repository_1_1_i_database_check_repository}{IDatabase\+Check\+Repository}} database\+Check\+Repository)
+\item 
+async Task$<$ IAction\+Result $>$ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_change_business_settings_1_1_ch7c94b582bf64dbc7511ca4ef6a96e8e5_a950d4462c5ac5f385e9e4ed70acf0559}{Get\+Business\+Info\+Async}} (int id)
+\begin{DoxyCompactList}\small\item\em Verkrijg de bedrijfsinformatie op basis van het ID van de voertuigmanager. \end{DoxyCompactList}\item 
+async Task$<$ IAction\+Result $>$ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_change_business_settings_1_1_ch7c94b582bf64dbc7511ca4ef6a96e8e5_ad1f53b919617eec6d3786fc2e06c2ff2}{Change\+Business\+Info\+Async}} (\mbox{[}From\+Body\mbox{]} \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_change_business_settings_1_1_change_business_request}{Change\+Business\+Request}} request)
+\begin{DoxyCompactList}\small\item\em Wijzig de bedrijfsinformatie. Voert ook een wachtwoordvalidatie uit indien er een nieuw wachtwoord wordt opgegeven. \end{DoxyCompactList}\item 
+async Task$<$ IAction\+Result $>$ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_change_business_settings_1_1_ch7c94b582bf64dbc7511ca4ef6a96e8e5_a8efb639fc03dd7378e26e26d37840bf8}{Delete\+User\+Async}} (\mbox{[}From\+Body\mbox{]} \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_change_business_settings_1_1_delete_business_request}{Delete\+Business\+Request}} request)
+\begin{DoxyCompactList}\small\item\em Verwijder het bedrijfsaccount, inclusief alle gegevens, uit het systeem. \end{DoxyCompactList}\item 
+async Task$<$ IAction\+Result $>$ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_change_business_settings_1_1_ch7c94b582bf64dbc7511ca4ef6a96e8e5_a00ba93c983d4275b1948b02049cace37}{Delete\+Vehicle\+Async}} (\mbox{[}From\+Body\mbox{]} \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_change_business_settings_1_1_delete_vehicle_manager_request}{Delete\+Vehicle\+Manager\+Request}} request)
+\begin{DoxyCompactList}\small\item\em Verwijder een voertuigmanager uit het systeem. \end{DoxyCompactList}\item 
+async Task$<$ IAction\+Result $>$ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_change_business_settings_1_1_ch7c94b582bf64dbc7511ca4ef6a96e8e5_a943c431c998eee8144e3c436155bcf5c}{Check\+New\+Email\+Async}} (string email)
+\begin{DoxyCompactList}\small\item\em Controleer of een nieuw emailadres al in gebruik is voor de voertuigmanager. \end{DoxyCompactList}\item 
+async Task$<$ IAction\+Result $>$ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_change_business_settings_1_1_ch7c94b582bf64dbc7511ca4ef6a96e8e5_a3a700126d9ad8e6cae986da45d65d6f8}{Change\+Vehicle\+Manager\+Info\+Async}} (\mbox{[}From\+Body\mbox{]} \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_change_business_settings_1_1_change_vehicle_manager_info}{Change\+Vehicle\+Manager\+Info}} request)
+\begin{DoxyCompactList}\small\item\em Wijzig de gegevens van de voertuigmanager. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributen}
+\begin{DoxyCompactItemize}
+\item 
+readonly \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_user_repository}{IUser\+Repository}} \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_change_business_settings_1_1_ch7c94b582bf64dbc7511ca4ef6a96e8e5_a35d337258bd9f4965c6b8a82235b5f83}{\+\_\+user\+Repository}}
+\item 
+readonly \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_employee_repository}{IEmployee\+Repository}} \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_change_business_settings_1_1_ch7c94b582bf64dbc7511ca4ef6a96e8e5_abe1e59b5b3f570a8ced1c7ea0b2429a2}{\+\_\+employee\+Repository}}
+\item 
+readonly \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_database_check_repository_1_1_i_database_check_repository}{IDatabase\+Check\+Repository}} \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_change_business_settings_1_1_ch7c94b582bf64dbc7511ca4ef6a96e8e5_a13f9d57bdc49918660e694da0af146ba}{\+\_\+database\+Check\+Repository}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Gedetailleerde Beschrijving}
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{change_business_controller_8cs_source_l00010}{10}} in het bestand \mbox{\hyperlink{change_business_controller_8cs_source}{change\+Business\+Controller.\+cs}}.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentatie}
+\Hypertarget{class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_change_business_settings_1_1_ch7c94b582bf64dbc7511ca4ef6a96e8e5_a506a13c91683e6389cf9486f15b7a4e9}\index{WPR.Controllers.Employee.VehicleManager.ChangeBusinessSettings.ChangeBusinessSettingsController@{WPR.Controllers.Employee.VehicleManager.ChangeBusinessSettings.ChangeBusinessSettingsController}!ChangeBusinessSettingsController@{ChangeBusinessSettingsController}}
+\index{ChangeBusinessSettingsController@{ChangeBusinessSettingsController}!WPR.Controllers.Employee.VehicleManager.ChangeBusinessSettings.ChangeBusinessSettingsController@{WPR.Controllers.Employee.VehicleManager.ChangeBusinessSettings.ChangeBusinessSettingsController}}
+\doxysubsubsection{\texorpdfstring{ChangeBusinessSettingsController()}{ChangeBusinessSettingsController()}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_change_business_settings_1_1_ch7c94b582bf64dbc7511ca4ef6a96e8e5_a506a13c91683e6389cf9486f15b7a4e9} 
+WPR.\+Controllers.\+Employee.\+Vehicle\+Manager.\+Change\+Business\+Settings.\+Change\+Business\+Settings\+Controller.\+Change\+Business\+Settings\+Controller (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_user_repository}{IUser\+Repository}}}]{user\+Repository}{, }\item[{\mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_employee_repository}{IEmployee\+Repository}}}]{employee\+Repository}{, }\item[{\mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_database_check_repository_1_1_i_database_check_repository}{IDatabase\+Check\+Repository}}}]{database\+Check\+Repository}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{change_business_controller_8cs_source_l00017}{17}} in het bestand \mbox{\hyperlink{change_business_controller_8cs_source}{change\+Business\+Controller.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00019\ \ \ \ \ \{}
+\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ \_userRepository\ =\ userRepository\ ??\ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ ArgumentNullException(nameof(userRepository));}
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ \_employeeRepository\ =\ employeeRepository\ ??\ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ ArgumentNullException(nameof(employeeRepository));}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ \_databaseCheckRepository\ =}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \ \ \ \ databaseCheckRepository\ ??\ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ ArgumentNullException(nameof(databaseCheckRepository));}
+\DoxyCodeLine{00024\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+Gebruikt \mbox{\hyperlink{change_business_controller_8cs_source_l00014}{\+\_\+database\+Check\+Repository}}, \mbox{\hyperlink{change_business_controller_8cs_source_l00013}{\+\_\+employee\+Repository}} en \mbox{\hyperlink{change_business_controller_8cs_source_l00012}{\+\_\+user\+Repository}}.
+
+
+
+\doxysubsection{Documentatie van functie members}
+\Hypertarget{class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_change_business_settings_1_1_ch7c94b582bf64dbc7511ca4ef6a96e8e5_ad1f53b919617eec6d3786fc2e06c2ff2}\index{WPR.Controllers.Employee.VehicleManager.ChangeBusinessSettings.ChangeBusinessSettingsController@{WPR.Controllers.Employee.VehicleManager.ChangeBusinessSettings.ChangeBusinessSettingsController}!ChangeBusinessInfoAsync@{ChangeBusinessInfoAsync}}
+\index{ChangeBusinessInfoAsync@{ChangeBusinessInfoAsync}!WPR.Controllers.Employee.VehicleManager.ChangeBusinessSettings.ChangeBusinessSettingsController@{WPR.Controllers.Employee.VehicleManager.ChangeBusinessSettings.ChangeBusinessSettingsController}}
+\doxysubsubsection{\texorpdfstring{ChangeBusinessInfoAsync()}{ChangeBusinessInfoAsync()}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_change_business_settings_1_1_ch7c94b582bf64dbc7511ca4ef6a96e8e5_ad1f53b919617eec6d3786fc2e06c2ff2} 
+async Task$<$ IAction\+Result $>$ WPR.\+Controllers.\+Employee.\+Vehicle\+Manager.\+Change\+Business\+Settings.\+Change\+Business\+Settings\+Controller.\+Change\+Business\+Info\+Async (\begin{DoxyParamCaption}\item[{\mbox{[}\+From\+Body\mbox{]} \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_change_business_settings_1_1_change_business_request}{Change\+Business\+Request}}}]{request}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Wijzig de bedrijfsinformatie. Voert ook een wachtwoordvalidatie uit indien er een nieuw wachtwoord wordt opgegeven. 
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{change_business_controller_8cs_source_l00068}{68}} in het bestand \mbox{\hyperlink{change_business_controller_8cs_source}{change\+Business\+Controller.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00069\ \ \ \ \ \{}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (request\ ==\ \textcolor{keyword}{null})}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ BadRequest(\textcolor{stringliteral}{"{}Body\ cannot\ be\ null"{}});}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\textcolor{keywordtype}{string}.IsNullOrEmpty(request.VehicleManagerInfo.Password))}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Validatie\ van\ het\ wachtwoord}}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \ \ \ \ (\textcolor{keywordtype}{bool}\ Valid,\ \textcolor{keywordtype}{string}\ Message)\ result\ =\ PasswordChecker.IsValidPassword(request.VehicleManagerInfo.Password);}
+\DoxyCodeLine{00079\ }
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!result.Valid)}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ StatusCode(412,\ \textcolor{keyword}{new}\ \{\ message\ =\ result.Message\ \});}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Wijzig\ de\ bedrijfsinformatie}}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ (\textcolor{keywordtype}{int}\ StatusCode,\ \textcolor{keywordtype}{string}\ Message)\ updated\ =\ await\ \_userRepository.ChangeBusinessInfo(request);}
+\DoxyCodeLine{00088\ }
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ StatusCode(updated.StatusCode,\ \textcolor{keyword}{new}\ \{\ message\ =\ updated.Message\ \});}
+\DoxyCodeLine{00090\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+Gebruikt \mbox{\hyperlink{change_business_controller_8cs_source_l00012}{\+\_\+user\+Repository}} en \mbox{\hyperlink{_password_checker_8cs_source_l00011}{WPR.\+Utils.\+Password\+Checker.\+Is\+Valid\+Password()}}.
+
+Hier is de call graaf voor deze functie\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_change_business_settings_1_1_ch7c94b582bf64dbc7511ca4ef6a96e8e5_ad1f53b919617eec6d3786fc2e06c2ff2_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_change_business_settings_1_1_ch7c94b582bf64dbc7511ca4ef6a96e8e5_a3a700126d9ad8e6cae986da45d65d6f8}\index{WPR.Controllers.Employee.VehicleManager.ChangeBusinessSettings.ChangeBusinessSettingsController@{WPR.Controllers.Employee.VehicleManager.ChangeBusinessSettings.ChangeBusinessSettingsController}!ChangeVehicleManagerInfoAsync@{ChangeVehicleManagerInfoAsync}}
+\index{ChangeVehicleManagerInfoAsync@{ChangeVehicleManagerInfoAsync}!WPR.Controllers.Employee.VehicleManager.ChangeBusinessSettings.ChangeBusinessSettingsController@{WPR.Controllers.Employee.VehicleManager.ChangeBusinessSettings.ChangeBusinessSettingsController}}
+\doxysubsubsection{\texorpdfstring{ChangeVehicleManagerInfoAsync()}{ChangeVehicleManagerInfoAsync()}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_change_business_settings_1_1_ch7c94b582bf64dbc7511ca4ef6a96e8e5_a3a700126d9ad8e6cae986da45d65d6f8} 
+async Task$<$ IAction\+Result $>$ WPR.\+Controllers.\+Employee.\+Vehicle\+Manager.\+Change\+Business\+Settings.\+Change\+Business\+Settings\+Controller.\+Change\+Vehicle\+Manager\+Info\+Async (\begin{DoxyParamCaption}\item[{\mbox{[}\+From\+Body\mbox{]} \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_change_business_settings_1_1_change_vehicle_manager_info}{Change\+Vehicle\+Manager\+Info}}}]{request}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Wijzig de gegevens van de voertuigmanager. 
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{change_business_controller_8cs_source_l00157}{157}} in het bestand \mbox{\hyperlink{change_business_controller_8cs_source}{change\+Business\+Controller.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00158\ \ \ \ \ \{}
+\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (request\ ==\ \textcolor{keyword}{null})}
+\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ BadRequest(\textcolor{stringliteral}{"{}Request\ body\ cannot\ be\ null."{}});}
+\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00163\ }
+\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ Console.WriteLine(\textcolor{stringliteral}{"{}ChangeVehicleManagerInfo\ endpoint\ hit."{}});}
+\DoxyCodeLine{00165\ }
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}}
+\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00168\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Wijzig\ de\ voertuigmanager\ gegevens}}
+\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ \ \ \ \ (\textcolor{keywordtype}{int}\ statusCode,\ \textcolor{keywordtype}{string}\ message)\ =\ await\ \_userRepository.ChangeVehicleManagerInfo(request);}
+\DoxyCodeLine{00170\ }
+\DoxyCodeLine{00171\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ StatusCode(statusCode,\ \textcolor{keyword}{new}\ \{\ message\ \});}
+\DoxyCodeLine{00172\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00173\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (Exception\ ex)}
+\DoxyCodeLine{00174\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00175\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ StatusCode(500,\ \textcolor{keyword}{new}\ \{\ message\ =\ ex.Message\ \});}
+\DoxyCodeLine{00176\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00177\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+Gebruikt \mbox{\hyperlink{change_business_controller_8cs_source_l00012}{\+\_\+user\+Repository}}.
+
+\Hypertarget{class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_change_business_settings_1_1_ch7c94b582bf64dbc7511ca4ef6a96e8e5_a943c431c998eee8144e3c436155bcf5c}\index{WPR.Controllers.Employee.VehicleManager.ChangeBusinessSettings.ChangeBusinessSettingsController@{WPR.Controllers.Employee.VehicleManager.ChangeBusinessSettings.ChangeBusinessSettingsController}!CheckNewEmailAsync@{CheckNewEmailAsync}}
+\index{CheckNewEmailAsync@{CheckNewEmailAsync}!WPR.Controllers.Employee.VehicleManager.ChangeBusinessSettings.ChangeBusinessSettingsController@{WPR.Controllers.Employee.VehicleManager.ChangeBusinessSettings.ChangeBusinessSettingsController}}
+\doxysubsubsection{\texorpdfstring{CheckNewEmailAsync()}{CheckNewEmailAsync()}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_change_business_settings_1_1_ch7c94b582bf64dbc7511ca4ef6a96e8e5_a943c431c998eee8144e3c436155bcf5c} 
+async Task$<$ IAction\+Result $>$ WPR.\+Controllers.\+Employee.\+Vehicle\+Manager.\+Change\+Business\+Settings.\+Change\+Business\+Settings\+Controller.\+Check\+New\+Email\+Async (\begin{DoxyParamCaption}\item[{string}]{email}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Controleer of een nieuw emailadres al in gebruik is voor de voertuigmanager. 
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{change_business_controller_8cs_source_l00141}{141}} in het bestand \mbox{\hyperlink{change_business_controller_8cs_source}{change\+Business\+Controller.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00142\ \ \ \ \ \{}
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ var\ emailCheck\ =\ await\ \_employeeRepository.checkUsageEmaiVehicleManagerlAsync(email);}
+\DoxyCodeLine{00144\ }
+\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!emailCheck.status)}
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ StatusCode(200,\ \textcolor{keyword}{new}\ \{\ message\ =\ \textcolor{stringliteral}{"{}Geldige\ email"{}}\ \});}
+\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00149\ }
+\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ StatusCode(400,\ \textcolor{keyword}{new}\ \{\ message\ =\ \textcolor{stringliteral}{"{}Email\ is\ al\ ingebruik"{}}\ \});}
+\DoxyCodeLine{00151\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+Gebruikt \mbox{\hyperlink{change_business_controller_8cs_source_l00013}{\+\_\+employee\+Repository}}.
+
+\Hypertarget{class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_change_business_settings_1_1_ch7c94b582bf64dbc7511ca4ef6a96e8e5_a8efb639fc03dd7378e26e26d37840bf8}\index{WPR.Controllers.Employee.VehicleManager.ChangeBusinessSettings.ChangeBusinessSettingsController@{WPR.Controllers.Employee.VehicleManager.ChangeBusinessSettings.ChangeBusinessSettingsController}!DeleteUserAsync@{DeleteUserAsync}}
+\index{DeleteUserAsync@{DeleteUserAsync}!WPR.Controllers.Employee.VehicleManager.ChangeBusinessSettings.ChangeBusinessSettingsController@{WPR.Controllers.Employee.VehicleManager.ChangeBusinessSettings.ChangeBusinessSettingsController}}
+\doxysubsubsection{\texorpdfstring{DeleteUserAsync()}{DeleteUserAsync()}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_change_business_settings_1_1_ch7c94b582bf64dbc7511ca4ef6a96e8e5_a8efb639fc03dd7378e26e26d37840bf8} 
+async Task$<$ IAction\+Result $>$ WPR.\+Controllers.\+Employee.\+Vehicle\+Manager.\+Change\+Business\+Settings.\+Change\+Business\+Settings\+Controller.\+Delete\+User\+Async (\begin{DoxyParamCaption}\item[{\mbox{[}\+From\+Body\mbox{]} \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_change_business_settings_1_1_delete_business_request}{Delete\+Business\+Request}}}]{request}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Verwijder het bedrijfsaccount, inclusief alle gegevens, uit het systeem. 
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{change_business_controller_8cs_source_l00096}{96}} in het bestand \mbox{\hyperlink{change_business_controller_8cs_source}{change\+Business\+Controller.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00097\ \ \ \ \ \{}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Verwijder\ het\ bedrijf\ uit\ de\ database}}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ var\ deleteResponse\ =\ \_databaseCheckRepository.DeleteBusiness(request.KvK);}
+\DoxyCodeLine{00100\ }
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Indien\ succesvol,\ invalideer\ de\ sessiecookie}}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (deleteResponse.StatusCode\ ==\ 200)}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \ \ \ \ Response.Cookies.Append(\textcolor{stringliteral}{"{}LoginVehicleManagerSession"{}},\ \textcolor{stringliteral}{"{}Invalid\ cookie"{}},\ \textcolor{keyword}{new}\ CookieOptions}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ HttpOnly\ =\ \textcolor{keyword}{true},}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Secure\ =\ \textcolor{keyword}{true},}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Expires\ =\ DateTimeOffset.UtcNow.AddDays(-\/1)}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00111\ }
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ StatusCode(deleteResponse.StatusCode,\ \textcolor{keyword}{new}\ \{\ message\ =\ deleteResponse.Message\ \});}
+\DoxyCodeLine{00113\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+Gebruikt \mbox{\hyperlink{change_business_controller_8cs_source_l00014}{\+\_\+database\+Check\+Repository}}.
+
+\Hypertarget{class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_change_business_settings_1_1_ch7c94b582bf64dbc7511ca4ef6a96e8e5_a00ba93c983d4275b1948b02049cace37}\index{WPR.Controllers.Employee.VehicleManager.ChangeBusinessSettings.ChangeBusinessSettingsController@{WPR.Controllers.Employee.VehicleManager.ChangeBusinessSettings.ChangeBusinessSettingsController}!DeleteVehicleAsync@{DeleteVehicleAsync}}
+\index{DeleteVehicleAsync@{DeleteVehicleAsync}!WPR.Controllers.Employee.VehicleManager.ChangeBusinessSettings.ChangeBusinessSettingsController@{WPR.Controllers.Employee.VehicleManager.ChangeBusinessSettings.ChangeBusinessSettingsController}}
+\doxysubsubsection{\texorpdfstring{DeleteVehicleAsync()}{DeleteVehicleAsync()}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_change_business_settings_1_1_ch7c94b582bf64dbc7511ca4ef6a96e8e5_a00ba93c983d4275b1948b02049cace37} 
+async Task$<$ IAction\+Result $>$ WPR.\+Controllers.\+Employee.\+Vehicle\+Manager.\+Change\+Business\+Settings.\+Change\+Business\+Settings\+Controller.\+Delete\+Vehicle\+Async (\begin{DoxyParamCaption}\item[{\mbox{[}\+From\+Body\mbox{]} \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_change_business_settings_1_1_delete_vehicle_manager_request}{Delete\+Vehicle\+Manager\+Request}}}]{request}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Verwijder een voertuigmanager uit het systeem. 
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{change_business_controller_8cs_source_l00119}{119}} in het bestand \mbox{\hyperlink{change_business_controller_8cs_source}{change\+Business\+Controller.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00120\ \ \ \ \ \{}
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ var\ deleteResponse\ =\ \_databaseCheckRepository.DeleteVehicleManager(request.ID,\ request.KvK);}
+\DoxyCodeLine{00122\ }
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Indien\ succesvol,\ invalideer\ de\ sessiecookie}}
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (deleteResponse.StatusCode\ ==\ 200)}
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \ \ \ \ Response.Cookies.Append(\textcolor{stringliteral}{"{}LoginVehicleManagerSession"{}},\ \textcolor{stringliteral}{"{}Invalid\ cookie"{}},\ \textcolor{keyword}{new}\ CookieOptions}
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ HttpOnly\ =\ \textcolor{keyword}{true},}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Secure\ =\ \textcolor{keyword}{true},}
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Expires\ =\ DateTimeOffset.UtcNow.AddDays(-\/1)}
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00133\ }
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ StatusCode(deleteResponse.StatusCode,\ \textcolor{keyword}{new}\ \{\ message\ =\ deleteResponse.Message\ \});}
+\DoxyCodeLine{00135\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+Gebruikt \mbox{\hyperlink{change_business_controller_8cs_source_l00014}{\+\_\+database\+Check\+Repository}}.
+
+\Hypertarget{class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_change_business_settings_1_1_ch7c94b582bf64dbc7511ca4ef6a96e8e5_a950d4462c5ac5f385e9e4ed70acf0559}\index{WPR.Controllers.Employee.VehicleManager.ChangeBusinessSettings.ChangeBusinessSettingsController@{WPR.Controllers.Employee.VehicleManager.ChangeBusinessSettings.ChangeBusinessSettingsController}!GetBusinessInfoAsync@{GetBusinessInfoAsync}}
+\index{GetBusinessInfoAsync@{GetBusinessInfoAsync}!WPR.Controllers.Employee.VehicleManager.ChangeBusinessSettings.ChangeBusinessSettingsController@{WPR.Controllers.Employee.VehicleManager.ChangeBusinessSettings.ChangeBusinessSettingsController}}
+\doxysubsubsection{\texorpdfstring{GetBusinessInfoAsync()}{GetBusinessInfoAsync()}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_change_business_settings_1_1_ch7c94b582bf64dbc7511ca4ef6a96e8e5_a950d4462c5ac5f385e9e4ed70acf0559} 
+async Task$<$ IAction\+Result $>$ WPR.\+Controllers.\+Employee.\+Vehicle\+Manager.\+Change\+Business\+Settings.\+Change\+Business\+Settings\+Controller.\+Get\+Business\+Info\+Async (\begin{DoxyParamCaption}\item[{int}]{id}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Verkrijg de bedrijfsinformatie op basis van het ID van de voertuigmanager. 
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{change_business_controller_8cs_source_l00030}{30}} in het bestand \mbox{\hyperlink{change_business_controller_8cs_source}{change\+Business\+Controller.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00031\ \ \ \ \ \{}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \ \ \ \ Console.WriteLine(\$\textcolor{stringliteral}{"{}Fetching\ KvK\ for\ VehicleManager\ ID:\ \{id\}"{}});}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \ \ \ \ (\textcolor{keywordtype}{int}\ StatusCode,\ \textcolor{keywordtype}{string}\ Message,\ \textcolor{keywordtype}{int}\ KvK)\ kvkResponse\ =\ \_employeeRepository.GetKvK(\textcolor{keywordtype}{id});}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (kvkResponse.StatusCode\ ==\ 200)}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Console.WriteLine(\$\textcolor{stringliteral}{"{}KvK\ retrieved:\ \{kvkResponse.KvK\}"{}});}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Verkrijg\ de\ bedrijfsinformatie\ op\ basis\ van\ KvK\ nummer}}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (\textcolor{keywordtype}{bool}\ Status,\ \textcolor{keywordtype}{string}\ Message,\ Dictionary<string,\ object>\ Data)\ businessInfo\ =}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \_employeeRepository.GetBusinessInfo(kvkResponse.KvK);}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (businessInfo.Status)}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ StatusCode(200,\ \textcolor{keyword}{new}\ \{\ data\ =\ businessInfo.Data\ \});}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ BadRequest(\textcolor{keyword}{new}\ \{\ message\ =\ businessInfo.Message\ \});}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ StatusCode(kvkResponse.StatusCode,\ kvkResponse.Message);}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (Exception\ ex)}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Verwerk\ eventuele\ fouten\ tijdens\ het\ ophalen\ van\ de\ bedrijfsinformatie}}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \ \ \ \ Console.WriteLine(\$\textcolor{stringliteral}{"{}Error:\ \{ex.Message\}"{}});}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ StatusCode(500,\ \textcolor{keyword}{new}\ \{\ message\ =\ ex.Message\ \});}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00062\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+Gebruikt \mbox{\hyperlink{change_business_controller_8cs_source_l00013}{\+\_\+employee\+Repository}}.
+
+
+
+\doxysubsection{Documentatie van data velden}
+\Hypertarget{class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_change_business_settings_1_1_ch7c94b582bf64dbc7511ca4ef6a96e8e5_a13f9d57bdc49918660e694da0af146ba}\index{WPR.Controllers.Employee.VehicleManager.ChangeBusinessSettings.ChangeBusinessSettingsController@{WPR.Controllers.Employee.VehicleManager.ChangeBusinessSettings.ChangeBusinessSettingsController}!\_databaseCheckRepository@{\_databaseCheckRepository}}
+\index{\_databaseCheckRepository@{\_databaseCheckRepository}!WPR.Controllers.Employee.VehicleManager.ChangeBusinessSettings.ChangeBusinessSettingsController@{WPR.Controllers.Employee.VehicleManager.ChangeBusinessSettings.ChangeBusinessSettingsController}}
+\doxysubsubsection{\texorpdfstring{\_databaseCheckRepository}{\_databaseCheckRepository}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_change_business_settings_1_1_ch7c94b582bf64dbc7511ca4ef6a96e8e5_a13f9d57bdc49918660e694da0af146ba} 
+readonly \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_database_check_repository_1_1_i_database_check_repository}{IDatabase\+Check\+Repository}} WPR.\+Controllers.\+Employee.\+Vehicle\+Manager.\+Change\+Business\+Settings.\+Change\+Business\+Settings\+Controller.\+\_\+database\+Check\+Repository\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{change_business_controller_8cs_source_l00014}{14}} in het bestand \mbox{\hyperlink{change_business_controller_8cs_source}{change\+Business\+Controller.\+cs}}.
+
+
+
+Wordt aangeroepen door \mbox{\hyperlink{change_business_controller_8cs_source_l00017}{Change\+Business\+Settings\+Controller()}}, \mbox{\hyperlink{change_business_controller_8cs_source_l00096}{Delete\+User\+Async()}} en \mbox{\hyperlink{change_business_controller_8cs_source_l00119}{Delete\+Vehicle\+Async()}}.
+
+\Hypertarget{class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_change_business_settings_1_1_ch7c94b582bf64dbc7511ca4ef6a96e8e5_abe1e59b5b3f570a8ced1c7ea0b2429a2}\index{WPR.Controllers.Employee.VehicleManager.ChangeBusinessSettings.ChangeBusinessSettingsController@{WPR.Controllers.Employee.VehicleManager.ChangeBusinessSettings.ChangeBusinessSettingsController}!\_employeeRepository@{\_employeeRepository}}
+\index{\_employeeRepository@{\_employeeRepository}!WPR.Controllers.Employee.VehicleManager.ChangeBusinessSettings.ChangeBusinessSettingsController@{WPR.Controllers.Employee.VehicleManager.ChangeBusinessSettings.ChangeBusinessSettingsController}}
+\doxysubsubsection{\texorpdfstring{\_employeeRepository}{\_employeeRepository}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_change_business_settings_1_1_ch7c94b582bf64dbc7511ca4ef6a96e8e5_abe1e59b5b3f570a8ced1c7ea0b2429a2} 
+readonly \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_employee_repository}{IEmployee\+Repository}} WPR.\+Controllers.\+Employee.\+Vehicle\+Manager.\+Change\+Business\+Settings.\+Change\+Business\+Settings\+Controller.\+\_\+employee\+Repository\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{change_business_controller_8cs_source_l00013}{13}} in het bestand \mbox{\hyperlink{change_business_controller_8cs_source}{change\+Business\+Controller.\+cs}}.
+
+
+
+Wordt aangeroepen door \mbox{\hyperlink{change_business_controller_8cs_source_l00017}{Change\+Business\+Settings\+Controller()}}, \mbox{\hyperlink{change_business_controller_8cs_source_l00141}{Check\+New\+Email\+Async()}} en \mbox{\hyperlink{change_business_controller_8cs_source_l00030}{Get\+Business\+Info\+Async()}}.
+
+\Hypertarget{class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_change_business_settings_1_1_ch7c94b582bf64dbc7511ca4ef6a96e8e5_a35d337258bd9f4965c6b8a82235b5f83}\index{WPR.Controllers.Employee.VehicleManager.ChangeBusinessSettings.ChangeBusinessSettingsController@{WPR.Controllers.Employee.VehicleManager.ChangeBusinessSettings.ChangeBusinessSettingsController}!\_userRepository@{\_userRepository}}
+\index{\_userRepository@{\_userRepository}!WPR.Controllers.Employee.VehicleManager.ChangeBusinessSettings.ChangeBusinessSettingsController@{WPR.Controllers.Employee.VehicleManager.ChangeBusinessSettings.ChangeBusinessSettingsController}}
+\doxysubsubsection{\texorpdfstring{\_userRepository}{\_userRepository}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_change_business_settings_1_1_ch7c94b582bf64dbc7511ca4ef6a96e8e5_a35d337258bd9f4965c6b8a82235b5f83} 
+readonly \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_user_repository}{IUser\+Repository}} WPR.\+Controllers.\+Employee.\+Vehicle\+Manager.\+Change\+Business\+Settings.\+Change\+Business\+Settings\+Controller.\+\_\+user\+Repository\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{change_business_controller_8cs_source_l00012}{12}} in het bestand \mbox{\hyperlink{change_business_controller_8cs_source}{change\+Business\+Controller.\+cs}}.
+
+
+
+Wordt aangeroepen door \mbox{\hyperlink{change_business_controller_8cs_source_l00068}{Change\+Business\+Info\+Async()}}, \mbox{\hyperlink{change_business_controller_8cs_source_l00017}{Change\+Business\+Settings\+Controller()}} en \mbox{\hyperlink{change_business_controller_8cs_source_l00157}{Change\+Vehicle\+Manager\+Info\+Async()}}.
+
+
+
+De documentatie voor deze klasse is gegenereerd op basis van het volgende bestand\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/codes/\+WPR8/\+WPR/backend/src/\+Controllers/\+Employee/vehicle\+Manager/change\+Settings/\mbox{\hyperlink{change_business_controller_8cs}{change\+Business\+Controller.\+cs}}\end{DoxyCompactItemize}

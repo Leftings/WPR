@@ -1,0 +1,91 @@
+\doxysection{Contract\+Repository.\+cs}
+\hypertarget{_contract_repository_8cs_source}{}\label{_contract_repository_8cs_source}\index{D:/codes/WPR8/WPR/backend/src/Repository/ContractRepository.cs@{D:/codes/WPR8/WPR/backend/src/Repository/ContractRepository.cs}}
+\mbox{\hyperlink{_contract_repository_8cs}{Ga naar de documentatie van dit bestand.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_contract_repository_8cs_source_l00001}00001\ \textcolor{keyword}{using\ }MySql.Data.MySqlClient;}
+\DoxyCodeLine{\Hypertarget{_contract_repository_8cs_source_l00002}00002\ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespace_w_p_r_1_1_database}{WPR.Database}};}
+\DoxyCodeLine{\Hypertarget{_contract_repository_8cs_source_l00003}00003\ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespace_w_p_r_1_1_repository}{WPR.Repository}};}
+\DoxyCodeLine{\Hypertarget{_contract_repository_8cs_source_l00004}00004\ }
+\DoxyCodeLine{\Hypertarget{_contract_repository_8cs_source_l00008}\mbox{\hyperlink{class_contract_repository}{00008}}\ \textcolor{keyword}{public}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_contract_repository_a132c33d73d65f03f51b7520f5833f7d6}{ContractRepository}}\ :\ \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_contract_repository}{IContractRepository}}}
+\DoxyCodeLine{\Hypertarget{_contract_repository_8cs_source_l00009}00009\ \{}
+\DoxyCodeLine{\Hypertarget{_contract_repository_8cs_source_l00010}\mbox{\hyperlink{class_contract_repository_a9f5329bb63d9cac71a50284183513457}{00010}}\ \ \ \ \ \textcolor{keyword}{private}\ readonly\ \mbox{\hyperlink{interface_w_p_r_1_1_database_1_1_i_connector}{IConnector}}\ \mbox{\hyperlink{class_contract_repository_a9f5329bb63d9cac71a50284183513457}{\_connector}};}
+\DoxyCodeLine{\Hypertarget{_contract_repository_8cs_source_l00011}00011\ }
+\DoxyCodeLine{\Hypertarget{_contract_repository_8cs_source_l00017}\mbox{\hyperlink{class_contract_repository_a132c33d73d65f03f51b7520f5833f7d6}{00017}}\ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_contract_repository_a132c33d73d65f03f51b7520f5833f7d6}{ContractRepository}}(\mbox{\hyperlink{interface_w_p_r_1_1_database_1_1_i_connector}{IConnector}}\ connector)}
+\DoxyCodeLine{\Hypertarget{_contract_repository_8cs_source_l00018}00018\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_contract_repository_8cs_source_l00019}00019\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_contract_repository_a9f5329bb63d9cac71a50284183513457}{\_connector}}\ =\ connector\ ??\ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ ArgumentNullException(nameof(connector));}
+\DoxyCodeLine{\Hypertarget{_contract_repository_8cs_source_l00020}00020\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_contract_repository_8cs_source_l00021}00021\ }
+\DoxyCodeLine{\Hypertarget{_contract_repository_8cs_source_l00028}\mbox{\hyperlink{class_contract_repository_a0635443077a1f0d2540d95592d8a48c7}{00028}}\ \ \ \ \ \textcolor{keyword}{public}\ async\ Task<IList<int>>\ \mbox{\hyperlink{class_contract_repository_a0635443077a1f0d2540d95592d8a48c7}{GetContractsSendEmailAsync}}()}
+\DoxyCodeLine{\Hypertarget{_contract_repository_8cs_source_l00029}00029\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_contract_repository_8cs_source_l00030}00030\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ query\ =\ \$\textcolor{stringliteral}{"{}SELECT\ OrderId\ FROM\ Contract\ WHERE\ (SendEmail\ =\ 'No'\ AND\ StartDate\ =\ '\{DateTime.Today.AddDays(1):yyyy-\/MM-\/dd\}')"{}};}
+\DoxyCodeLine{\Hypertarget{_contract_repository_8cs_source_l00031}00031\ }
+\DoxyCodeLine{\Hypertarget{_contract_repository_8cs_source_l00032}00032\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}}
+\DoxyCodeLine{\Hypertarget{_contract_repository_8cs_source_l00033}00033\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_contract_repository_8cs_source_l00034}00034\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using}\ (var\ connection\ =\ \mbox{\hyperlink{class_contract_repository_a9f5329bb63d9cac71a50284183513457}{\_connector}}.CreateDbConnection())}
+\DoxyCodeLine{\Hypertarget{_contract_repository_8cs_source_l00035}00035\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using}\ (var\ command\ =\ \textcolor{keyword}{new}\ MySqlCommand(query,\ (MySqlConnection)connection))}
+\DoxyCodeLine{\Hypertarget{_contract_repository_8cs_source_l00036}00036\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using}\ (var\ reader\ =\ await\ command.ExecuteReaderAsync())}
+\DoxyCodeLine{\Hypertarget{_contract_repository_8cs_source_l00037}00037\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_contract_repository_8cs_source_l00038}00038\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ IList<int>\ orders\ =\ \textcolor{keyword}{new}\ List<int>();}
+\DoxyCodeLine{\Hypertarget{_contract_repository_8cs_source_l00039}00039\ }
+\DoxyCodeLine{\Hypertarget{_contract_repository_8cs_source_l00040}00040\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (await\ reader.ReadAsync())}
+\DoxyCodeLine{\Hypertarget{_contract_repository_8cs_source_l00041}00041\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_contract_repository_8cs_source_l00042}00042\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ orderId\ =\ Convert.ToInt32(reader.GetValue(0));}
+\DoxyCodeLine{\Hypertarget{_contract_repository_8cs_source_l00043}00043\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ orders.Add(orderId);}
+\DoxyCodeLine{\Hypertarget{_contract_repository_8cs_source_l00044}00044\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_contract_repository_8cs_source_l00045}00045\ }
+\DoxyCodeLine{\Hypertarget{_contract_repository_8cs_source_l00046}00046\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ orders;}
+\DoxyCodeLine{\Hypertarget{_contract_repository_8cs_source_l00047}00047\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_contract_repository_8cs_source_l00048}00048\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_contract_repository_8cs_source_l00049}00049\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (MySqlException\ ex)}
+\DoxyCodeLine{\Hypertarget{_contract_repository_8cs_source_l00050}00050\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_contract_repository_8cs_source_l00051}00051\ \ \ \ \ \ \ \ \ \ \ \ \ Console.WriteLine(ex.Message);}
+\DoxyCodeLine{\Hypertarget{_contract_repository_8cs_source_l00052}00052\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{new}\ List<int>();}
+\DoxyCodeLine{\Hypertarget{_contract_repository_8cs_source_l00053}00053\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_contract_repository_8cs_source_l00054}00054\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (OverflowException\ ex)}
+\DoxyCodeLine{\Hypertarget{_contract_repository_8cs_source_l00055}00055\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_contract_repository_8cs_source_l00056}00056\ \ \ \ \ \ \ \ \ \ \ \ \ Console.WriteLine(ex.Message);}
+\DoxyCodeLine{\Hypertarget{_contract_repository_8cs_source_l00057}00057\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{new}\ List<int>();}
+\DoxyCodeLine{\Hypertarget{_contract_repository_8cs_source_l00058}00058\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_contract_repository_8cs_source_l00059}00059\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (Exception\ ex)}
+\DoxyCodeLine{\Hypertarget{_contract_repository_8cs_source_l00060}00060\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_contract_repository_8cs_source_l00061}00061\ \ \ \ \ \ \ \ \ \ \ \ \ Console.WriteLine(ex.Message);}
+\DoxyCodeLine{\Hypertarget{_contract_repository_8cs_source_l00062}00062\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{new}\ List<int>();}
+\DoxyCodeLine{\Hypertarget{_contract_repository_8cs_source_l00063}00063\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_contract_repository_8cs_source_l00064}00064\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_contract_repository_8cs_source_l00065}00065\ }
+\DoxyCodeLine{\Hypertarget{_contract_repository_8cs_source_l00073}\mbox{\hyperlink{class_contract_repository_a3387ac60e8633c158e3361b8531b6715}{00073}}\ \ \ \ \ \textcolor{keyword}{public}\ async\ Task<Dictionary<string,\ object>>\ \mbox{\hyperlink{class_contract_repository_a3387ac60e8633c158e3361b8531b6715}{GetContractInfoAsync}}(\textcolor{keywordtype}{int}\ orderId)}
+\DoxyCodeLine{\Hypertarget{_contract_repository_8cs_source_l00074}00074\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_contract_repository_8cs_source_l00075}00075\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ query\ =\ \$\textcolor{stringliteral}{"{}SELECT\ *\ FROM\ Contract\ WHERE\ OrderId\ =\ \{orderId\}"{}};}
+\DoxyCodeLine{\Hypertarget{_contract_repository_8cs_source_l00076}00076\ \ \ \ \ \ \ \ \ Dictionary<string,\ object>\ info\ =\ \textcolor{keyword}{new}\ Dictionary<string,\ object>();}
+\DoxyCodeLine{\Hypertarget{_contract_repository_8cs_source_l00077}00077\ }
+\DoxyCodeLine{\Hypertarget{_contract_repository_8cs_source_l00078}00078\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}}
+\DoxyCodeLine{\Hypertarget{_contract_repository_8cs_source_l00079}00079\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_contract_repository_8cs_source_l00080}00080\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using}\ (var\ connection\ =\ \mbox{\hyperlink{class_contract_repository_a9f5329bb63d9cac71a50284183513457}{\_connector}}.CreateDbConnection())}
+\DoxyCodeLine{\Hypertarget{_contract_repository_8cs_source_l00081}00081\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using}\ (var\ command\ =\ \textcolor{keyword}{new}\ MySqlCommand(query,\ (MySqlConnection)connection))}
+\DoxyCodeLine{\Hypertarget{_contract_repository_8cs_source_l00082}00082\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using}\ (var\ reader\ =\ await\ command.ExecuteReaderAsync())}
+\DoxyCodeLine{\Hypertarget{_contract_repository_8cs_source_l00083}00083\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_contract_repository_8cs_source_l00084}00084\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (await\ reader.ReadAsync())}
+\DoxyCodeLine{\Hypertarget{_contract_repository_8cs_source_l00085}00085\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_contract_repository_8cs_source_l00086}00086\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ reader.FieldCount;\ i++)}
+\DoxyCodeLine{\Hypertarget{_contract_repository_8cs_source_l00087}00087\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_contract_repository_8cs_source_l00088}00088\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ info[reader.GetName(i)]\ =\ reader.GetValue(i);}
+\DoxyCodeLine{\Hypertarget{_contract_repository_8cs_source_l00089}00089\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_contract_repository_8cs_source_l00090}00090\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_contract_repository_8cs_source_l00091}00091\ }
+\DoxyCodeLine{\Hypertarget{_contract_repository_8cs_source_l00092}00092\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ info;}
+\DoxyCodeLine{\Hypertarget{_contract_repository_8cs_source_l00093}00093\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_contract_repository_8cs_source_l00094}00094\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_contract_repository_8cs_source_l00095}00095\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (MySqlException\ ex)}
+\DoxyCodeLine{\Hypertarget{_contract_repository_8cs_source_l00096}00096\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_contract_repository_8cs_source_l00097}00097\ \ \ \ \ \ \ \ \ \ \ \ \ Console.WriteLine(ex.Message);}
+\DoxyCodeLine{\Hypertarget{_contract_repository_8cs_source_l00098}00098\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{new}\ Dictionary<string,\ object>();}
+\DoxyCodeLine{\Hypertarget{_contract_repository_8cs_source_l00099}00099\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_contract_repository_8cs_source_l00100}00100\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (Exception\ ex)}
+\DoxyCodeLine{\Hypertarget{_contract_repository_8cs_source_l00101}00101\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_contract_repository_8cs_source_l00102}00102\ \ \ \ \ \ \ \ \ \ \ \ \ Console.WriteLine(ex.Message);}
+\DoxyCodeLine{\Hypertarget{_contract_repository_8cs_source_l00103}00103\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{new}\ Dictionary<string,\ object>();}
+\DoxyCodeLine{\Hypertarget{_contract_repository_8cs_source_l00104}00104\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_contract_repository_8cs_source_l00105}00105\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_contract_repository_8cs_source_l00106}00106\ \}}
+
+\end{DoxyCode}

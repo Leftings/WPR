@@ -1,0 +1,601 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="nl">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.13.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>WPR-Backend: WPR.Controllers.General.Cookie.CookieController Class Referentie</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+  $(function() { init_search(); });
+/* @license-end */
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">WPR-Backend
+   </div>
+  </td>
+    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect"                onmouseover="return searchBox.OnSearchSelectShow()"                onmouseout="return searchBox.OnSearchSelectHide()">&#160;</span>
+          <input type="text" id="MSearchField" value="" placeholder="Zoeken" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Gegenereerd door Doxygen 1.13.0 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){initNavTree('class_w_p_r_1_1_controllers_1_1_general_1_1_cookie_1_1_cookie_controller.html',''); initResizable(true); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Laden...</div>
+<div class="SRStatus" id="Searching">Zoeken...</div>
+<div class="SRStatus" id="NoMatches">Niets gevonden</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public Members</a> &#124;
+<a href="#pri-attribs">Private Attributen</a>  </div>
+  <div class="headertitle"><div class="title">WPR.Controllers.General.Cookie.CookieController Class Referentie</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p><a class="el" href="class_w_p_r_1_1_controllers_1_1_general_1_1_cookie_1_1_cookie_controller.html" title="CookieController is de controller voor het aanmaken, verwijderen en ondervragen van cookies.">CookieController</a> is de controller voor het aanmaken, verwijderen en ondervragen van cookies.  
+ <a href="#details">Meer...</a></p>
+<div class="dynheader">
+Klasse diagram voor WPR.Controllers.General.Cookie.CookieController</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="class_w_p_r_1_1_controllers_1_1_general_1_1_cookie_1_1_cookie_controller__inherit__graph.svg" width="186" height="363"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+<div class="dynheader">
+Collaboratie diagram voor WPR.Controllers.General.Cookie.CookieController:</div>
+<div class="dyncontent">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="class_w_p_r_1_1_controllers_1_1_general_1_1_cookie_1_1_cookie_controller__coll__graph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
+</div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public Members</h2></td></tr>
+<tr class="memitem:ab4470e90a992ce576924e1d55531b98a" id="r_ab4470e90a992ce576924e1d55531b98a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab4470e90a992ce576924e1d55531b98a">CookieController</a> (<a class="el" href="interface_w_p_r_1_1_database_1_1_i_connector.html">IConnector</a> connector, <a class="el" href="interface_w_p_r_1_1_repository_1_1_i_user_repository.html">IUserRepository</a> userRepository, <a class="el" href="class_w_p_r_1_1_cryption_1_1_crypt.html">Crypt</a> crypt)</td></tr>
+<tr class="separator:ab4470e90a992ce576924e1d55531b98a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a26b96d5223da90a03a63cfb813f1afd2" id="r_a26b96d5223da90a03a63cfb813f1afd2"><td class="memItemLeft" align="right" valign="top">async Task&lt; IActionResult &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a26b96d5223da90a03a63cfb813f1afd2">GetUserId</a> ()</td></tr>
+<tr class="memdesc:a26b96d5223da90a03a63cfb813f1afd2"><td class="mdescLeft">&#160;</td><td class="mdescRight">De geencrypted user id wordt uit de cookie gepakt en wordt vervolgens gedecrypt doorgestuurd.  <br /></td></tr>
+<tr class="separator:a26b96d5223da90a03a63cfb813f1afd2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af40d427ac5a8ca1167690ca50b404d58" id="r_af40d427ac5a8ca1167690ca50b404d58"><td class="memItemLeft" align="right" valign="top">async Task&lt; IActionResult &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af40d427ac5a8ca1167690ca50b404d58">GetUserName</a> ()</td></tr>
+<tr class="memdesc:af40d427ac5a8ca1167690ca50b404d58"><td class="mdescLeft">&#160;</td><td class="mdescRight">De gebruikersnaam wordt via de user id opgehaald via de backend.  <br /></td></tr>
+<tr class="separator:af40d427ac5a8ca1167690ca50b404d58"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3613f82147fc694f6a2e214ee93595af" id="r_a3613f82147fc694f6a2e214ee93595af"><td class="memItemLeft" align="right" valign="top">IActionResult&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3613f82147fc694f6a2e214ee93595af">Logout</a> ()</td></tr>
+<tr class="memdesc:a3613f82147fc694f6a2e214ee93595af"><td class="mdescLeft">&#160;</td><td class="mdescRight">De loginsession cookie wordt veranderd naar een cookie met een negatieve tijd, zodat de cookie expires.  <br /></td></tr>
+<tr class="separator:a3613f82147fc694f6a2e214ee93595af"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a893dae88524c51e709ea2a3e8ecdeec0" id="r_a893dae88524c51e709ea2a3e8ecdeec0"><td class="memItemLeft" align="right" valign="top">async Task&lt; IActionResult &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a893dae88524c51e709ea2a3e8ecdeec0">GetKindEmployeeAsync</a> ()</td></tr>
+<tr class="memdesc:a893dae88524c51e709ea2a3e8ecdeec0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Het soort medewerker wordt uit de cookie opgehaald, door middel van de user id, zodat de juiste soort medewerker naar de frontend verstuurd wordt.  <br /></td></tr>
+<tr class="separator:a893dae88524c51e709ea2a3e8ecdeec0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af1496ea210a142f46c8cf9f706eed50f" id="r_af1496ea210a142f46c8cf9f706eed50f"><td class="memItemLeft" align="right" valign="top">async Task&lt; IActionResult &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af1496ea210a142f46c8cf9f706eed50f">IsVehicleManagerAsync</a> ()</td></tr>
+<tr class="memdesc:af1496ea210a142f46c8cf9f706eed50f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Er wordt gekeken of de <a class="el" href="namespace_w_p_r_1_1_controllers_1_1_general_1_1_vehicle.html">Vehicle</a> Manager bestaat. Ongeldige cookies worden verwijderd.  <br /></td></tr>
+<tr class="separator:af1496ea210a142f46c8cf9f706eed50f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private Attributen</h2></td></tr>
+<tr class="memitem:a09f7a66d4ac7dff587000252699b3fda" id="r_a09f7a66d4ac7dff587000252699b3fda"><td class="memItemLeft" align="right" valign="top">readonly <a class="el" href="interface_w_p_r_1_1_database_1_1_i_connector.html">IConnector</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a09f7a66d4ac7dff587000252699b3fda">_connector</a></td></tr>
+<tr class="separator:a09f7a66d4ac7dff587000252699b3fda"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:addebdd6ad6fe0c2a3684f7e6d3b87c8b" id="r_addebdd6ad6fe0c2a3684f7e6d3b87c8b"><td class="memItemLeft" align="right" valign="top">readonly <a class="el" href="interface_w_p_r_1_1_repository_1_1_i_user_repository.html">IUserRepository</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#addebdd6ad6fe0c2a3684f7e6d3b87c8b">_userRepository</a></td></tr>
+<tr class="separator:addebdd6ad6fe0c2a3684f7e6d3b87c8b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4100e6f1f10bc2d839153895290061fa" id="r_a4100e6f1f10bc2d839153895290061fa"><td class="memItemLeft" align="right" valign="top">readonly <a class="el" href="class_w_p_r_1_1_cryption_1_1_crypt.html">Crypt</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4100e6f1f10bc2d839153895290061fa">_crypt</a></td></tr>
+<tr class="separator:a4100e6f1f10bc2d839153895290061fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Gedetailleerde Beschrijving</h2>
+<div class="textblock"><p><a class="el" href="class_w_p_r_1_1_controllers_1_1_general_1_1_cookie_1_1_cookie_controller.html" title="CookieController is de controller voor het aanmaken, verwijderen en ondervragen van cookies.">CookieController</a> is de controller voor het aanmaken, verwijderen en ondervragen van cookies. </p>
+
+<p class="definition">De definitie bevindt zich op regel <a class="el" href="cookie_controller_8cs_source.html#l00014">14</a> in het bestand <a class="el" href="cookie_controller_8cs_source.html">cookieController.cs</a>.</p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentatie</h2>
+<a id="ab4470e90a992ce576924e1d55531b98a" name="ab4470e90a992ce576924e1d55531b98a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab4470e90a992ce576924e1d55531b98a">&#9670;&#160;</a></span>CookieController()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">WPR.Controllers.General.Cookie.CookieController.CookieController </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="interface_w_p_r_1_1_database_1_1_i_connector.html">IConnector</a></td>          <td class="paramname"><span class="paramname"><em>connector</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="interface_w_p_r_1_1_repository_1_1_i_user_repository.html">IUserRepository</a></td>          <td class="paramname"><span class="paramname"><em>userRepository</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="class_w_p_r_1_1_cryption_1_1_crypt.html">Crypt</a></td>          <td class="paramname"><span class="paramname"><em>crypt</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">De definitie bevindt zich op regel <a class="el" href="cookie_controller_8cs_source.html#l00020">20</a> in het bestand <a class="el" href="cookie_controller_8cs_source.html">cookieController.cs</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   21</span>    {</div>
+<div class="line"><span class="lineno">   22</span>        _connector = connector ?? <span class="keywordflow">throw</span> <span class="keyword">new</span> ArgumentNullException(nameof(connector));</div>
+<div class="line"><span class="lineno">   23</span>        _userRepository = userRepository ?? <span class="keywordflow">throw</span> <span class="keyword">new</span> ArgumentNullException(nameof(userRepository));</div>
+<div class="line"><span class="lineno">   24</span>        _crypt = crypt ?? <span class="keywordflow">throw</span> <span class="keyword">new</span> ArgumentNullException(nameof(crypt));</div>
+<div class="line"><span class="lineno">   25</span>    }</div>
+</div><!-- fragment -->
+<p class="reference">Gebruikt <a class="el" href="cookie_controller_8cs_source.html#l00016">_connector</a>, <a class="el" href="cookie_controller_8cs_source.html#l00018">_crypt</a> en <a class="el" href="cookie_controller_8cs_source.html#l00017">_userRepository</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Documentatie van functie members</h2>
+<a id="a893dae88524c51e709ea2a3e8ecdeec0" name="a893dae88524c51e709ea2a3e8ecdeec0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a893dae88524c51e709ea2a3e8ecdeec0">&#9670;&#160;</a></span>GetKindEmployeeAsync()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">async Task&lt; IActionResult &gt; WPR.Controllers.General.Cookie.CookieController.GetKindEmployeeAsync </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Het soort medewerker wordt uit de cookie opgehaald, door middel van de user id, zodat de juiste soort medewerker naar de frontend verstuurd wordt. </p>
+<dl class="section return"><dt>Retourneert</dt><dd></dd></dl>
+
+<p class="definition">De definitie bevindt zich op regel <a class="el" href="cookie_controller_8cs_source.html#l00133">133</a> in het bestand <a class="el" href="cookie_controller_8cs_source.html">cookieController.cs</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  134</span>    {</div>
+<div class="line"><span class="lineno">  135</span>        <span class="keywordtype">string</span> employeeCookie = HttpContext.Request.Cookies[<span class="stringliteral">&quot;LoginEmployeeSession&quot;</span>];</div>
+<div class="line"><span class="lineno">  136</span>        Console.WriteLine(employeeCookie);</div>
+<div class="line"><span class="lineno">  137</span> </div>
+<div class="line"><span class="lineno">  138</span>        <span class="keywordflow">if</span> (<span class="keywordtype">string</span>.IsNullOrEmpty(employeeCookie))</div>
+<div class="line"><span class="lineno">  139</span>        {</div>
+<div class="line"><span class="lineno">  140</span>            <span class="keywordflow">return</span> BadRequest(<span class="keyword">new</span> { message = <span class="stringliteral">&quot;No Cookie&quot;</span> });</div>
+<div class="line"><span class="lineno">  141</span>        }</div>
+<div class="line"><span class="lineno">  142</span> </div>
+<div class="line"><span class="lineno">  143</span>        <span class="keywordflow">try</span></div>
+<div class="line"><span class="lineno">  144</span>        {</div>
+<div class="line"><span class="lineno">  145</span>            <span class="comment">// Updated to match the new tuple</span></div>
+<div class="line"><span class="lineno">  146</span>            (<span class="keywordtype">bool</span> status, <span class="keywordtype">string</span> message, <span class="keywordtype">string</span> officeType) kindEmployee = </div>
+<div class="line"><span class="lineno">  147</span>                await _userRepository.GetKindEmployeeAsync(_crypt.Decrypt(employeeCookie));</div>
+<div class="line"><span class="lineno">  148</span> </div>
+<div class="line"><span class="lineno">  149</span>            <span class="keywordflow">if</span> (kindEmployee.status)</div>
+<div class="line"><span class="lineno">  150</span>            {</div>
+<div class="line"><span class="lineno">  151</span>                Console.WriteLine(kindEmployee.message);</div>
+<div class="line"><span class="lineno">  152</span>                <span class="keywordflow">return</span> Ok(<span class="keyword">new</span> </div>
+<div class="line"><span class="lineno">  153</span>                { </div>
+<div class="line"><span class="lineno">  154</span>                    message = kindEmployee.message, </div>
+<div class="line"><span class="lineno">  155</span>                    officeType = kindEmployee.officeType </div>
+<div class="line"><span class="lineno">  156</span>                });</div>
+<div class="line"><span class="lineno">  157</span>            }</div>
+<div class="line"><span class="lineno">  158</span>        </div>
+<div class="line"><span class="lineno">  159</span>            <span class="keywordflow">return</span> BadRequest(<span class="keyword">new</span> { message = <span class="stringliteral">&quot;No office found for this employee&quot;</span> });</div>
+<div class="line"><span class="lineno">  160</span>        } </div>
+<div class="line"><span class="lineno">  161</span>        <span class="keywordflow">catch</span></div>
+<div class="line"><span class="lineno">  162</span>        {</div>
+<div class="line"><span class="lineno">  163</span>            <span class="comment">// Remove invalid cookie and return a response</span></div>
+<div class="line"><span class="lineno">  164</span>            Response.Cookies.Append(<span class="stringliteral">&quot;LoginSessionEmployee&quot;</span>, <span class="stringliteral">&quot;Invalid cookie&quot;</span>, <span class="keyword">new</span> CookieOptions</div>
+<div class="line"><span class="lineno">  165</span>            {</div>
+<div class="line"><span class="lineno">  166</span>                HttpOnly = <span class="keyword">true</span>,</div>
+<div class="line"><span class="lineno">  167</span>                Secure = <span class="keyword">true</span>,</div>
+<div class="line"><span class="lineno">  168</span>                Expires = DateTimeOffset.UtcNow.AddDays(-1)</div>
+<div class="line"><span class="lineno">  169</span>            });</div>
+<div class="line"><span class="lineno">  170</span>        </div>
+<div class="line"><span class="lineno">  171</span>            <span class="keywordflow">return</span> BadRequest(<span class="keyword">new</span> { message = <span class="stringliteral">&quot;Invalid Cookie, new cookie set&quot;</span> });</div>
+<div class="line"><span class="lineno">  172</span>        }</div>
+<div class="line"><span class="lineno">  173</span>    }</div>
+</div><!-- fragment -->
+<p class="reference">Gebruikt <a class="el" href="cookie_controller_8cs_source.html#l00018">_crypt</a> en <a class="el" href="cookie_controller_8cs_source.html#l00017">_userRepository</a>.</p>
+
+</div>
+</div>
+<a id="a26b96d5223da90a03a63cfb813f1afd2" name="a26b96d5223da90a03a63cfb813f1afd2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a26b96d5223da90a03a63cfb813f1afd2">&#9670;&#160;</a></span>GetUserId()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">async Task&lt; IActionResult &gt; WPR.Controllers.General.Cookie.CookieController.GetUserId </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>De geencrypted user id wordt uit de cookie gepakt en wordt vervolgens gedecrypt doorgestuurd. </p>
+<dl class="section return"><dt>Retourneert</dt><dd></dd></dl>
+
+<p class="definition">De definitie bevindt zich op regel <a class="el" href="cookie_controller_8cs_source.html#l00032">32</a> in het bestand <a class="el" href="cookie_controller_8cs_source.html">cookieController.cs</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   33</span>    {</div>
+<div class="line"><span class="lineno">   34</span>        <span class="keywordtype">string</span> loginCookie = HttpContext.Request.Cookies[<span class="stringliteral">&quot;LoginSession&quot;</span>];</div>
+<div class="line"><span class="lineno">   35</span>        <span class="keywordtype">string</span>? loginCookie2 = HttpContext.Request.Cookies[<span class="stringliteral">&quot;LoginVehicleManagerSession&quot;</span>];</div>
+<div class="line"><span class="lineno">   36</span>        <span class="keywordtype">string</span>? loginCookie3 = HttpContext.Request.Cookies[<span class="stringliteral">&quot;LoginEmployeeSession&quot;</span>];</div>
+<div class="line"><span class="lineno">   37</span> </div>
+<div class="line"><span class="lineno">   38</span>        <span class="keywordflow">try</span></div>
+<div class="line"><span class="lineno">   39</span>        {</div>
+<div class="line"><span class="lineno">   40</span>            <span class="keywordflow">if</span> (!<span class="keywordtype">string</span>.IsNullOrEmpty(loginCookie))</div>
+<div class="line"><span class="lineno">   41</span>            {</div>
+<div class="line"><span class="lineno">   42</span>                <span class="keywordflow">return</span> Ok(<span class="keyword">new</span> { message = _crypt.Decrypt(loginCookie) });</div>
+<div class="line"><span class="lineno">   43</span>            }</div>
+<div class="line"><span class="lineno">   44</span>            <span class="keywordflow">if</span> (!<span class="keywordtype">string</span>.IsNullOrEmpty(loginCookie2))</div>
+<div class="line"><span class="lineno">   45</span>            {</div>
+<div class="line"><span class="lineno">   46</span>                <span class="keywordflow">return</span> Ok(<span class="keyword">new</span> { message = _crypt.Decrypt(loginCookie2) });</div>
+<div class="line"><span class="lineno">   47</span>            }</div>
+<div class="line"><span class="lineno">   48</span>            <span class="keywordflow">if</span> (!<span class="keywordtype">string</span>.IsNullOrEmpty(loginCookie3))</div>
+<div class="line"><span class="lineno">   49</span>            {</div>
+<div class="line"><span class="lineno">   50</span>                <span class="keywordflow">return</span> Ok(<span class="keyword">new</span> { message = _crypt.Decrypt(loginCookie3)} );</div>
+<div class="line"><span class="lineno">   51</span>            }</div>
+<div class="line"><span class="lineno">   52</span> </div>
+<div class="line"><span class="lineno">   53</span>            <span class="keywordflow">return</span> BadRequest(<span class="keyword">new</span> { message = <span class="stringliteral">&quot;No Cookie&quot;</span> });</div>
+<div class="line"><span class="lineno">   54</span> </div>
+<div class="line"><span class="lineno">   55</span>        }</div>
+<div class="line"><span class="lineno">   56</span>        <span class="keywordflow">catch</span></div>
+<div class="line"><span class="lineno">   57</span>        {</div>
+<div class="line"><span class="lineno">   58</span>            <span class="comment">// Ongeldige cookies worden verwijderd</span></div>
+<div class="line"><span class="lineno">   59</span>            Response.Cookies.Append(<span class="stringliteral">&quot;LoginSession&quot;</span>, <span class="stringliteral">&quot;Invalid cookie&quot;</span>, <span class="keyword">new</span> CookieOptions</div>
+<div class="line"><span class="lineno">   60</span>            {</div>
+<div class="line"><span class="lineno">   61</span>                HttpOnly = <span class="keyword">true</span>,</div>
+<div class="line"><span class="lineno">   62</span>                Secure = <span class="keyword">true</span>,</div>
+<div class="line"><span class="lineno">   63</span>                Expires = DateTimeOffset.UtcNow.AddDays(-1)</div>
+<div class="line"><span class="lineno">   64</span>            });</div>
+<div class="line"><span class="lineno">   65</span> </div>
+<div class="line"><span class="lineno">   66</span>            Response.Cookies.Append(<span class="stringliteral">&quot;LoginEmployeeSession&quot;</span>, <span class="stringliteral">&quot;Invalid cookie&quot;</span>, <span class="keyword">new</span> CookieOptions</div>
+<div class="line"><span class="lineno">   67</span>            {</div>
+<div class="line"><span class="lineno">   68</span>                HttpOnly = <span class="keyword">true</span>,</div>
+<div class="line"><span class="lineno">   69</span>                Secure = <span class="keyword">true</span>,</div>
+<div class="line"><span class="lineno">   70</span>                Expires = DateTimeOffset.UtcNow.AddDays(-1)</div>
+<div class="line"><span class="lineno">   71</span>            });</div>
+<div class="line"><span class="lineno">   72</span> </div>
+<div class="line"><span class="lineno">   73</span>            Response.Cookies.Append(<span class="stringliteral">&quot;LoginVehicleManagerSession&quot;</span>, <span class="stringliteral">&quot;Invalid cookie&quot;</span>, <span class="keyword">new</span> CookieOptions</div>
+<div class="line"><span class="lineno">   74</span>            {</div>
+<div class="line"><span class="lineno">   75</span>                HttpOnly = <span class="keyword">true</span>,</div>
+<div class="line"><span class="lineno">   76</span>                Secure = <span class="keyword">true</span>,</div>
+<div class="line"><span class="lineno">   77</span>                Expires = DateTimeOffset.UtcNow.AddDays(-1)</div>
+<div class="line"><span class="lineno">   78</span>            });</div>
+<div class="line"><span class="lineno">   79</span>            </div>
+<div class="line"><span class="lineno">   80</span>            <span class="keywordflow">return</span> BadRequest(<span class="keyword">new</span> { message = <span class="stringliteral">&quot;Invalid Cookie, new cookie set&quot;</span> });</div>
+<div class="line"><span class="lineno">   81</span>        }</div>
+<div class="line"><span class="lineno">   82</span>    }</div>
+</div><!-- fragment -->
+<p class="reference">Gebruikt <a class="el" href="cookie_controller_8cs_source.html#l00018">_crypt</a>.</p>
+
+</div>
+</div>
+<a id="af40d427ac5a8ca1167690ca50b404d58" name="af40d427ac5a8ca1167690ca50b404d58"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af40d427ac5a8ca1167690ca50b404d58">&#9670;&#160;</a></span>GetUserName()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">async Task&lt; IActionResult &gt; WPR.Controllers.General.Cookie.CookieController.GetUserName </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>De gebruikersnaam wordt via de user id opgehaald via de backend. </p>
+<dl class="section return"><dt>Retourneert</dt><dd></dd></dl>
+
+<p class="definition">De definitie bevindt zich op regel <a class="el" href="cookie_controller_8cs_source.html#l00089">89</a> in het bestand <a class="el" href="cookie_controller_8cs_source.html">cookieController.cs</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   90</span>    {</div>
+<div class="line"><span class="lineno">   91</span>        <span class="keywordtype">string</span> loginCookie = HttpContext.Request.Cookies[<span class="stringliteral">&quot;LoginSession&quot;</span>];</div>
+<div class="line"><span class="lineno">   92</span> </div>
+<div class="line"><span class="lineno">   93</span>        <span class="keywordflow">if</span>(<span class="keywordtype">string</span>.IsNullOrEmpty(loginCookie))</div>
+<div class="line"><span class="lineno">   94</span>        {</div>
+<div class="line"><span class="lineno">   95</span>            <span class="keywordflow">return</span> BadRequest(<span class="keyword">new</span> { message = <span class="stringliteral">&quot;No Cookie&quot;</span>});</div>
+<div class="line"><span class="lineno">   96</span>        }</div>
+<div class="line"><span class="lineno">   97</span>        </div>
+<div class="line"><span class="lineno">   98</span>        <span class="keywordflow">try</span></div>
+<div class="line"><span class="lineno">   99</span>        {</div>
+<div class="line"><span class="lineno">  100</span>            <span class="keywordtype">string</span> userName = await _userRepository.GetUserNameAsync(_crypt.Decrypt(loginCookie));</div>
+<div class="line"><span class="lineno">  101</span>            <span class="keywordflow">return</span> Ok(<span class="keyword">new</span> { message = userName });</div>
+<div class="line"><span class="lineno">  102</span>        }</div>
+<div class="line"><span class="lineno">  103</span>        <span class="keywordflow">catch</span> (Exception ex)</div>
+<div class="line"><span class="lineno">  104</span>        {</div>
+<div class="line"><span class="lineno">  105</span>            <span class="keywordflow">return</span> BadRequest(<span class="keyword">new</span> { message = $<span class="stringliteral">&quot;{ex.Message}\nUser Not Found&quot;</span>});</div>
+<div class="line"><span class="lineno">  106</span>        }</div>
+<div class="line"><span class="lineno">  107</span>    }</div>
+</div><!-- fragment -->
+<p class="reference">Gebruikt <a class="el" href="cookie_controller_8cs_source.html#l00018">_crypt</a> en <a class="el" href="cookie_controller_8cs_source.html#l00017">_userRepository</a>.</p>
+
+</div>
+</div>
+<a id="af1496ea210a142f46c8cf9f706eed50f" name="af1496ea210a142f46c8cf9f706eed50f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af1496ea210a142f46c8cf9f706eed50f">&#9670;&#160;</a></span>IsVehicleManagerAsync()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">async Task&lt; IActionResult &gt; WPR.Controllers.General.Cookie.CookieController.IsVehicleManagerAsync </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Er wordt gekeken of de <a class="el" href="namespace_w_p_r_1_1_controllers_1_1_general_1_1_vehicle.html">Vehicle</a> Manager bestaat. Ongeldige cookies worden verwijderd. </p>
+<dl class="section return"><dt>Retourneert</dt><dd></dd></dl>
+
+<p class="definition">De definitie bevindt zich op regel <a class="el" href="cookie_controller_8cs_source.html#l00181">181</a> in het bestand <a class="el" href="cookie_controller_8cs_source.html">cookieController.cs</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  182</span>    {</div>
+<div class="line"><span class="lineno">  183</span>        <span class="keywordtype">string</span>? loginCookie2 = HttpContext.Request.Cookies[<span class="stringliteral">&quot;LoginVehicleManagerSession&quot;</span>];</div>
+<div class="line"><span class="lineno">  184</span> </div>
+<div class="line"><span class="lineno">  185</span>        Console.WriteLine(_crypt.Decrypt(loginCookie2));</div>
+<div class="line"><span class="lineno">  186</span> </div>
+<div class="line"><span class="lineno">  187</span> </div>
+<div class="line"><span class="lineno">  188</span>        <span class="keywordflow">try</span></div>
+<div class="line"><span class="lineno">  189</span>        {</div>
+<div class="line"><span class="lineno">  190</span>            <span class="keywordflow">if</span> (!<span class="keywordtype">string</span>.IsNullOrEmpty(loginCookie2))</div>
+<div class="line"><span class="lineno">  191</span>            {</div>
+<div class="line"><span class="lineno">  192</span>                <span class="keywordflow">return</span> Ok(<span class="keyword">new</span> {data = _crypt.Decrypt(loginCookie2)});</div>
+<div class="line"><span class="lineno">  193</span>            }</div>
+<div class="line"><span class="lineno">  194</span> </div>
+<div class="line"><span class="lineno">  195</span>            <span class="keywordflow">return</span> BadRequest(<span class="keyword">new</span> { message = <span class="stringliteral">&quot;No Cookie&quot;</span> });</div>
+<div class="line"><span class="lineno">  196</span>        }</div>
+<div class="line"><span class="lineno">  197</span>        <span class="keywordflow">catch</span></div>
+<div class="line"><span class="lineno">  198</span>        {</div>
+<div class="line"><span class="lineno">  199</span> </div>
+<div class="line"><span class="lineno">  200</span>            Response.Cookies.Append(<span class="stringliteral">&quot;LoginVehicleManagerSession&quot;</span>, <span class="stringliteral">&quot;Invalid cookie&quot;</span>, <span class="keyword">new</span> CookieOptions</div>
+<div class="line"><span class="lineno">  201</span>            {</div>
+<div class="line"><span class="lineno">  202</span>                HttpOnly = <span class="keyword">true</span>,</div>
+<div class="line"><span class="lineno">  203</span>                Secure = <span class="keyword">true</span>,</div>
+<div class="line"><span class="lineno">  204</span>                Expires = DateTimeOffset.UtcNow.AddDays(-1)</div>
+<div class="line"><span class="lineno">  205</span>            });</div>
+<div class="line"><span class="lineno">  206</span>            </div>
+<div class="line"><span class="lineno">  207</span>            <span class="keywordflow">return</span> BadRequest(<span class="keyword">new</span> { message = <span class="stringliteral">&quot;Invalid Cookie, new cookie set&quot;</span> });</div>
+<div class="line"><span class="lineno">  208</span>        }</div>
+<div class="line"><span class="lineno">  209</span>    }</div>
+</div><!-- fragment -->
+<p class="reference">Gebruikt <a class="el" href="cookie_controller_8cs_source.html#l00018">_crypt</a>.</p>
+
+</div>
+</div>
+<a id="a3613f82147fc694f6a2e214ee93595af" name="a3613f82147fc694f6a2e214ee93595af"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3613f82147fc694f6a2e214ee93595af">&#9670;&#160;</a></span>Logout()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">IActionResult WPR.Controllers.General.Cookie.CookieController.Logout </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>De loginsession cookie wordt veranderd naar een cookie met een negatieve tijd, zodat de cookie expires. </p>
+<dl class="section return"><dt>Retourneert</dt><dd></dd></dl>
+
+<p class="definition">De definitie bevindt zich op regel <a class="el" href="cookie_controller_8cs_source.html#l00114">114</a> in het bestand <a class="el" href="cookie_controller_8cs_source.html">cookieController.cs</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  115</span>    {</div>
+<div class="line"><span class="lineno">  116</span>        <span class="keywordflow">if</span> (Request.Cookies[<span class="stringliteral">&quot;LoginSession&quot;</span>] != <span class="keyword">null</span>)</div>
+<div class="line"><span class="lineno">  117</span>        {</div>
+<div class="line"><span class="lineno">  118</span>            Response.Cookies.Append(<span class="stringliteral">&quot;LoginSession&quot;</span>, <span class="stringliteral">&quot;&quot;</span>, <span class="keyword">new</span> CookieOptions {Expires = DateTimeOffset.UtcNow.AddDays(-1)});</div>
+<div class="line"><span class="lineno">  119</span>            Console.WriteLine(<span class="stringliteral">&quot;Cookie cleared&quot;</span>);            </div>
+<div class="line"><span class="lineno">  120</span>        }</div>
+<div class="line"><span class="lineno">  121</span>        <span class="keywordflow">else</span></div>
+<div class="line"><span class="lineno">  122</span>        {</div>
+<div class="line"><span class="lineno">  123</span>            Console.WriteLine(<span class="stringliteral">&quot;No cookie found&quot;</span>);</div>
+<div class="line"><span class="lineno">  124</span>        }</div>
+<div class="line"><span class="lineno">  125</span>        <span class="keywordflow">return</span> Ok(<span class="keyword">new</span> { message = <span class="stringliteral">&quot;User Logged Out&quot;</span>});</div>
+<div class="line"><span class="lineno">  126</span>    }</div>
+</div><!-- fragment -->
+</div>
+</div>
+<h2 class="groupheader">Documentatie van data velden</h2>
+<a id="a09f7a66d4ac7dff587000252699b3fda" name="a09f7a66d4ac7dff587000252699b3fda"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a09f7a66d4ac7dff587000252699b3fda">&#9670;&#160;</a></span>_connector</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">readonly <a class="el" href="interface_w_p_r_1_1_database_1_1_i_connector.html">IConnector</a> WPR.Controllers.General.Cookie.CookieController._connector</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">De definitie bevindt zich op regel <a class="el" href="cookie_controller_8cs_source.html#l00016">16</a> in het bestand <a class="el" href="cookie_controller_8cs_source.html">cookieController.cs</a>.</p>
+
+<p class="reference">Wordt aangeroepen door <a class="el" href="cookie_controller_8cs_source.html#l00020">CookieController()</a>.</p>
+
+</div>
+</div>
+<a id="a4100e6f1f10bc2d839153895290061fa" name="a4100e6f1f10bc2d839153895290061fa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4100e6f1f10bc2d839153895290061fa">&#9670;&#160;</a></span>_crypt</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">readonly <a class="el" href="class_w_p_r_1_1_cryption_1_1_crypt.html">Crypt</a> WPR.Controllers.General.Cookie.CookieController._crypt</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">De definitie bevindt zich op regel <a class="el" href="cookie_controller_8cs_source.html#l00018">18</a> in het bestand <a class="el" href="cookie_controller_8cs_source.html">cookieController.cs</a>.</p>
+
+<p class="reference">Wordt aangeroepen door <a class="el" href="cookie_controller_8cs_source.html#l00020">CookieController()</a>, <a class="el" href="cookie_controller_8cs_source.html#l00133">GetKindEmployeeAsync()</a>, <a class="el" href="cookie_controller_8cs_source.html#l00032">GetUserId()</a>, <a class="el" href="cookie_controller_8cs_source.html#l00089">GetUserName()</a> en <a class="el" href="cookie_controller_8cs_source.html#l00181">IsVehicleManagerAsync()</a>.</p>
+
+</div>
+</div>
+<a id="addebdd6ad6fe0c2a3684f7e6d3b87c8b" name="addebdd6ad6fe0c2a3684f7e6d3b87c8b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#addebdd6ad6fe0c2a3684f7e6d3b87c8b">&#9670;&#160;</a></span>_userRepository</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">readonly <a class="el" href="interface_w_p_r_1_1_repository_1_1_i_user_repository.html">IUserRepository</a> WPR.Controllers.General.Cookie.CookieController._userRepository</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">De definitie bevindt zich op regel <a class="el" href="cookie_controller_8cs_source.html#l00017">17</a> in het bestand <a class="el" href="cookie_controller_8cs_source.html">cookieController.cs</a>.</p>
+
+<p class="reference">Wordt aangeroepen door <a class="el" href="cookie_controller_8cs_source.html#l00020">CookieController()</a>, <a class="el" href="cookie_controller_8cs_source.html#l00133">GetKindEmployeeAsync()</a> en <a class="el" href="cookie_controller_8cs_source.html#l00089">GetUserName()</a>.</p>
+
+</div>
+</div>
+<hr/>De documentatie voor deze klasse is gegenereerd op basis van het volgende bestand:<ul>
+<li>D:/codes/WPR8/WPR/backend/src/Controllers/general/cookie/<a class="el" href="cookie_controller_8cs_source.html">cookieController.cs</a></li>
+</ul>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="namespace_w_p_r.html">WPR</a></li><li class="navelem"><a class="el" href="namespace_w_p_r_1_1_controllers.html">Controllers</a></li><li class="navelem"><a class="el" href="namespace_w_p_r_1_1_controllers_1_1_general.html">General</a></li><li class="navelem"><a class="el" href="namespace_w_p_r_1_1_controllers_1_1_general_1_1_cookie.html">Cookie</a></li><li class="navelem"><a class="el" href="class_w_p_r_1_1_controllers_1_1_general_1_1_cookie_1_1_cookie_controller.html">CookieController</a></li>
+    <li class="footer">Gegenereerd door <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.0 </li>
+  </ul>
+</div>
+</body>
+</html>

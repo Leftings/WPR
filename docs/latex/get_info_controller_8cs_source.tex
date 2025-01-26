@@ -1,0 +1,197 @@
+\doxysection{get\+Info\+Controller.\+cs}
+\hypertarget{get_info_controller_8cs_source}{}\label{get_info_controller_8cs_source}\index{D:/codes/WPR8/WPR/backend/src/Controllers/Employee/vehicleManager/getInfoVehicleManager/getInfoController.cs@{D:/codes/WPR8/WPR/backend/src/Controllers/Employee/vehicleManager/getInfoVehicleManager/getInfoController.cs}}
+\mbox{\hyperlink{get_info_controller_8cs}{Ga naar de documentatie van dit bestand.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{get_info_controller_8cs_source_l00001}00001\ \textcolor{keyword}{using\ }Microsoft.AspNetCore.Mvc;}
+\DoxyCodeLine{\Hypertarget{get_info_controller_8cs_source_l00002}00002\ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespace_w_p_r_1_1_repository}{WPR.Repository}};}
+\DoxyCodeLine{\Hypertarget{get_info_controller_8cs_source_l00003}00003\ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespace_w_p_r_1_1_cryption}{WPR.Cryption}};}
+\DoxyCodeLine{\Hypertarget{get_info_controller_8cs_source_l00004}00004\ }
+\DoxyCodeLine{\Hypertarget{get_info_controller_8cs_source_l00005}\mbox{\hyperlink{namespace_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_get_info_vehicle_manager}{00005}}\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_get_info_vehicle_manager}{WPR.Controllers.Employee.VehicleManager.GetInfoVehicleManager}};}
+\DoxyCodeLine{\Hypertarget{get_info_controller_8cs_source_l00006}00006\ }
+\DoxyCodeLine{\Hypertarget{get_info_controller_8cs_source_l00007}00007\ [Route(\textcolor{stringliteral}{"{}api/[controller]"{}})]}
+\DoxyCodeLine{\Hypertarget{get_info_controller_8cs_source_l00008}00008\ [ApiController]}
+\DoxyCodeLine{\Hypertarget{get_info_controller_8cs_source_l00009}\mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_get_info_vehicle_manager_1_1_ge5f3db02cd05fb4d7aea652d7ec731ef7}{00009}}\ \textcolor{keyword}{public}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_get_info_vehicle_manager_1_1_ge5f3db02cd05fb4d7aea652d7ec731ef7_a15397f52cb054c132e4c0b6c5f7132a7}{GetInfoVehicleManagerController}}\ :\ ControllerBase}
+\DoxyCodeLine{\Hypertarget{get_info_controller_8cs_source_l00010}00010\ \{}
+\DoxyCodeLine{\Hypertarget{get_info_controller_8cs_source_l00011}00011\ \ \ \ \ \textcolor{comment}{//\ Afhankelijkheden\ voor\ het\ ophalen\ van\ gebruikersinformatie\ en\ cryptografie}}
+\DoxyCodeLine{\Hypertarget{get_info_controller_8cs_source_l00012}\mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_get_info_vehicle_manager_1_1_ge5f3db02cd05fb4d7aea652d7ec731ef7_ae9e36c9bc4be37dffde2b655f41e3adc}{00012}}\ \ \ \ \ \textcolor{keyword}{private}\ readonly\ \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_user_repository}{IUserRepository}}\ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_get_info_vehicle_manager_1_1_ge5f3db02cd05fb4d7aea652d7ec731ef7_ae9e36c9bc4be37dffde2b655f41e3adc}{\_userRepository}};}
+\DoxyCodeLine{\Hypertarget{get_info_controller_8cs_source_l00013}\mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_get_info_vehicle_manager_1_1_ge5f3db02cd05fb4d7aea652d7ec731ef7_aaa563c1968fb192a517aaa373d155311}{00013}}\ \ \ \ \ \textcolor{keyword}{private}\ readonly\ \mbox{\hyperlink{class_w_p_r_1_1_cryption_1_1_crypt}{Crypt}}\ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_get_info_vehicle_manager_1_1_ge5f3db02cd05fb4d7aea652d7ec731ef7_aaa563c1968fb192a517aaa373d155311}{\_crypt}};}
+\DoxyCodeLine{\Hypertarget{get_info_controller_8cs_source_l00014}00014\ }
+\DoxyCodeLine{\Hypertarget{get_info_controller_8cs_source_l00015}00015\ \ \ \ \ \textcolor{comment}{//\ Constructor\ voor\ het\ injecteren\ van\ de\ afhankelijkheden}}
+\DoxyCodeLine{\Hypertarget{get_info_controller_8cs_source_l00016}\mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_get_info_vehicle_manager_1_1_ge5f3db02cd05fb4d7aea652d7ec731ef7_a15397f52cb054c132e4c0b6c5f7132a7}{00016}}\ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_get_info_vehicle_manager_1_1_ge5f3db02cd05fb4d7aea652d7ec731ef7_a15397f52cb054c132e4c0b6c5f7132a7}{GetInfoVehicleManagerController}}(\mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_user_repository}{IUserRepository}}\ userRepository,\ \mbox{\hyperlink{class_w_p_r_1_1_cryption_1_1_crypt}{Crypt}}\ crypt)}
+\DoxyCodeLine{\Hypertarget{get_info_controller_8cs_source_l00017}00017\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{get_info_controller_8cs_source_l00018}00018\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_get_info_vehicle_manager_1_1_ge5f3db02cd05fb4d7aea652d7ec731ef7_ae9e36c9bc4be37dffde2b655f41e3adc}{\_userRepository}}\ =\ userRepository\ ??\ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ ArgumentNullException(nameof(userRepository));\ \textcolor{comment}{//\ Zorg\ ervoor\ dat\ de\ repository\ niet\ null\ is}}
+\DoxyCodeLine{\Hypertarget{get_info_controller_8cs_source_l00019}00019\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_get_info_vehicle_manager_1_1_ge5f3db02cd05fb4d7aea652d7ec731ef7_aaa563c1968fb192a517aaa373d155311}{\_crypt}}\ =\ crypt\ ??\ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ ArgumentNullException(nameof(crypt));\ \textcolor{comment}{//\ Zorg\ ervoor\ dat\ de\ crypt\ niet\ null\ is}}
+\DoxyCodeLine{\Hypertarget{get_info_controller_8cs_source_l00020}00020\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{get_info_controller_8cs_source_l00021}00021\ }
+\DoxyCodeLine{\Hypertarget{get_info_controller_8cs_source_l00027}00027\ \ \ \ \ [HttpGet(\textcolor{stringliteral}{"{}GetAllInfo"{}})]}
+\DoxyCodeLine{\Hypertarget{get_info_controller_8cs_source_l00028}\mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_get_info_vehicle_manager_1_1_ge5f3db02cd05fb4d7aea652d7ec731ef7_ad82cf5e0b23c5308cfe9147bc134ddec}{00028}}\ \ \ \ \ \textcolor{keyword}{public}\ async\ Task<IActionResult>\ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_get_info_vehicle_manager_1_1_ge5f3db02cd05fb4d7aea652d7ec731ef7_ad82cf5e0b23c5308cfe9147bc134ddec}{GetAllInfo}}(\textcolor{keywordtype}{int}\ \textcolor{keywordtype}{id})}
+\DoxyCodeLine{\Hypertarget{get_info_controller_8cs_source_l00029}00029\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{get_info_controller_8cs_source_l00030}00030\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}}
+\DoxyCodeLine{\Hypertarget{get_info_controller_8cs_source_l00031}00031\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{get_info_controller_8cs_source_l00032}00032\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Valideer\ dat\ het\ ID\ van\ de\ voertuigmanager\ groter\ is\ dan\ 0}}
+\DoxyCodeLine{\Hypertarget{get_info_controller_8cs_source_l00033}00033\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\textcolor{keywordtype}{id}\ <=\ 0)}
+\DoxyCodeLine{\Hypertarget{get_info_controller_8cs_source_l00034}00034\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{get_info_controller_8cs_source_l00035}00035\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ BadRequest(\textcolor{keyword}{new}\ \{\ message\ =\ \textcolor{stringliteral}{"{}Invalid\ vehicle\ manager\ ID"{}}\ \});\ \textcolor{comment}{//\ Foutmelding\ voor\ ongeldig\ ID}}
+\DoxyCodeLine{\Hypertarget{get_info_controller_8cs_source_l00036}00036\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{get_info_controller_8cs_source_l00037}00037\ }
+\DoxyCodeLine{\Hypertarget{get_info_controller_8cs_source_l00038}00038\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Haal\ de\ informatie\ van\ de\ voertuigmanager\ op}}
+\DoxyCodeLine{\Hypertarget{get_info_controller_8cs_source_l00039}00039\ \ \ \ \ \ \ \ \ \ \ \ \ var\ vehicleManagerInfo\ =\ await\ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_get_info_vehicle_manager_1_1_ge5f3db02cd05fb4d7aea652d7ec731ef7_ae9e36c9bc4be37dffde2b655f41e3adc}{\_userRepository}}.GetVehicleManagerInfoAsync(\textcolor{keywordtype}{id});}
+\DoxyCodeLine{\Hypertarget{get_info_controller_8cs_source_l00040}00040\ }
+\DoxyCodeLine{\Hypertarget{get_info_controller_8cs_source_l00041}00041\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Als\ de\ voertuigmanager\ niet\ gevonden\ wordt,\ stuur\ dan\ een\ 404}}
+\DoxyCodeLine{\Hypertarget{get_info_controller_8cs_source_l00042}00042\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (vehicleManagerInfo\ ==\ \textcolor{keyword}{null})}
+\DoxyCodeLine{\Hypertarget{get_info_controller_8cs_source_l00043}00043\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{get_info_controller_8cs_source_l00044}00044\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ NotFound(\textcolor{keyword}{new}\ \{\ message\ =\ \textcolor{stringliteral}{"{}Vehicle\ manager\ not\ found"{}}\ \});}
+\DoxyCodeLine{\Hypertarget{get_info_controller_8cs_source_l00045}00045\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{get_info_controller_8cs_source_l00046}00046\ }
+\DoxyCodeLine{\Hypertarget{get_info_controller_8cs_source_l00047}00047\ \ \ \ \ \ \ \ \ \ \ \ \ var\ businessNumber\ =\ vehicleManagerInfo.Business;}
+\DoxyCodeLine{\Hypertarget{get_info_controller_8cs_source_l00048}00048\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Als\ het\ businessnummer\ leeg\ is,\ stuur\ dan\ een\ foutmelding}}
+\DoxyCodeLine{\Hypertarget{get_info_controller_8cs_source_l00049}00049\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\textcolor{keywordtype}{string}.IsNullOrEmpty(businessNumber))}
+\DoxyCodeLine{\Hypertarget{get_info_controller_8cs_source_l00050}00050\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{get_info_controller_8cs_source_l00051}00051\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ BadRequest(\textcolor{keyword}{new}\ \{\ message\ =\ \textcolor{stringliteral}{"{}Vehicle\ manager\ does\ not\ have\ a\ valid\ business\ number"{}}\ \});}
+\DoxyCodeLine{\Hypertarget{get_info_controller_8cs_source_l00052}00052\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{get_info_controller_8cs_source_l00053}00053\ }
+\DoxyCodeLine{\Hypertarget{get_info_controller_8cs_source_l00054}00054\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Haal\ de\ klanten\ op\ die\ aan\ dit\ businessnummer\ gekoppeld\ zijn}}
+\DoxyCodeLine{\Hypertarget{get_info_controller_8cs_source_l00055}00055\ \ \ \ \ \ \ \ \ \ \ \ \ var\ customers\ =\ await\ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_get_info_vehicle_manager_1_1_ge5f3db02cd05fb4d7aea652d7ec731ef7_ae9e36c9bc4be37dffde2b655f41e3adc}{\_userRepository}}.GetCustomersByBusinessNumberAsync(businessNumber);}
+\DoxyCodeLine{\Hypertarget{get_info_controller_8cs_source_l00056}00056\ }
+\DoxyCodeLine{\Hypertarget{get_info_controller_8cs_source_l00057}00057\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Stuur\ een\ succesvolle\ response\ met\ voertuigmanager\ informatie\ en\ bijbehorende\ klanten}}
+\DoxyCodeLine{\Hypertarget{get_info_controller_8cs_source_l00058}00058\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Ok(\textcolor{keyword}{new}}
+\DoxyCodeLine{\Hypertarget{get_info_controller_8cs_source_l00059}00059\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{get_info_controller_8cs_source_l00060}00060\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ message\ =\ \textcolor{stringliteral}{"{}Success"{}},}
+\DoxyCodeLine{\Hypertarget{get_info_controller_8cs_source_l00061}00061\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ vehicleManagerInfo\ =\ \textcolor{keyword}{new}}
+\DoxyCodeLine{\Hypertarget{get_info_controller_8cs_source_l00062}00062\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{get_info_controller_8cs_source_l00063}00063\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ vehicleManagerInfo.Id,}
+\DoxyCodeLine{\Hypertarget{get_info_controller_8cs_source_l00064}00064\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ vehicleManagerInfo.Email,}
+\DoxyCodeLine{\Hypertarget{get_info_controller_8cs_source_l00065}00065\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ vehicleManagerInfo.Business,}
+\DoxyCodeLine{\Hypertarget{get_info_controller_8cs_source_l00066}00066\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ vehicleManagerInfo.Password}
+\DoxyCodeLine{\Hypertarget{get_info_controller_8cs_source_l00067}00067\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \},}
+\DoxyCodeLine{\Hypertarget{get_info_controller_8cs_source_l00068}00068\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ customers\ =\ customers?.Select(c\ =>\ \textcolor{keyword}{new}\ \{\ c.Id,\ c.Email,\ c.Kvk\ \})\ ??\ Enumerable.Empty<\textcolor{keywordtype}{object}>()}
+\DoxyCodeLine{\Hypertarget{get_info_controller_8cs_source_l00069}00069\ \ \ \ \ \ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{\Hypertarget{get_info_controller_8cs_source_l00070}00070\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{get_info_controller_8cs_source_l00071}00071\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (Exception\ ex)}
+\DoxyCodeLine{\Hypertarget{get_info_controller_8cs_source_l00072}00072\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{get_info_controller_8cs_source_l00073}00073\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Log\ en\ stuur\ een\ serverfoutmelding\ als\ er\ een\ uitzondering\ optreedt}}
+\DoxyCodeLine{\Hypertarget{get_info_controller_8cs_source_l00074}00074\ \ \ \ \ \ \ \ \ \ \ \ \ Console.WriteLine(\$\textcolor{stringliteral}{"{}Error\ in\ GetAllInfo:\ \{ex.Message\}"{}});}
+\DoxyCodeLine{\Hypertarget{get_info_controller_8cs_source_l00075}00075\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ StatusCode(500,\ \textcolor{keyword}{new}\ \{\ message\ =\ \textcolor{stringliteral}{"{}Internal\ server\ error"{}},\ error\ =\ ex.Message\ \});}
+\DoxyCodeLine{\Hypertarget{get_info_controller_8cs_source_l00076}00076\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{get_info_controller_8cs_source_l00077}00077\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{get_info_controller_8cs_source_l00078}00078\ }
+\DoxyCodeLine{\Hypertarget{get_info_controller_8cs_source_l00082}00082\ \ \ \ \ [HttpPut(\textcolor{stringliteral}{"{}UpdateCustomer"{}})]}
+\DoxyCodeLine{\Hypertarget{get_info_controller_8cs_source_l00083}\mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_get_info_vehicle_manager_1_1_ge5f3db02cd05fb4d7aea652d7ec731ef7_ac72e6c378e42c1e6116f10e3f85b5599}{00083}}\ \ \ \ \ \textcolor{keyword}{public}\ async\ Task<IActionResult>\ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_get_info_vehicle_manager_1_1_ge5f3db02cd05fb4d7aea652d7ec731ef7_ac72e6c378e42c1e6116f10e3f85b5599}{UpdateCustomer}}([FromQuery]\ \textcolor{keywordtype}{int}\ \textcolor{keywordtype}{id},\ [FromBody]\ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_get_info_vehicle_manager_1_1_ge80cefa003b6c973a88a350bcae8adff2}{CustomerUpdateRequest}}\ updates)}
+\DoxyCodeLine{\Hypertarget{get_info_controller_8cs_source_l00084}00084\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{get_info_controller_8cs_source_l00085}00085\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}}
+\DoxyCodeLine{\Hypertarget{get_info_controller_8cs_source_l00086}00086\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{get_info_controller_8cs_source_l00087}00087\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Controleer\ of\ het\ klant-\/ID\ geldig\ is}}
+\DoxyCodeLine{\Hypertarget{get_info_controller_8cs_source_l00088}00088\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\textcolor{keywordtype}{id}\ <=\ 0)}
+\DoxyCodeLine{\Hypertarget{get_info_controller_8cs_source_l00089}00089\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{get_info_controller_8cs_source_l00090}00090\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ BadRequest(\textcolor{keyword}{new}\ \{\ message\ =\ \textcolor{stringliteral}{"{}Invalid\ customer\ ID"{}}\ \});}
+\DoxyCodeLine{\Hypertarget{get_info_controller_8cs_source_l00091}00091\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{get_info_controller_8cs_source_l00092}00092\ }
+\DoxyCodeLine{\Hypertarget{get_info_controller_8cs_source_l00093}00093\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Controleer\ of\ de\ updates\ (e-\/mail\ en\ wachtwoord)\ niet\ null\ of\ leeg\ zijn}}
+\DoxyCodeLine{\Hypertarget{get_info_controller_8cs_source_l00094}00094\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (updates\ ==\ \textcolor{keyword}{null}\ ||\ \textcolor{keywordtype}{string}.IsNullOrEmpty(updates.Email)\ ||\ \textcolor{keywordtype}{string}.IsNullOrEmpty(updates.Password))}
+\DoxyCodeLine{\Hypertarget{get_info_controller_8cs_source_l00095}00095\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{get_info_controller_8cs_source_l00096}00096\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ BadRequest(\textcolor{keyword}{new}\ \{\ message\ =\ \textcolor{stringliteral}{"{}Email\ and\ Password\ cannot\ be\ empty"{}}\ \});}
+\DoxyCodeLine{\Hypertarget{get_info_controller_8cs_source_l00097}00097\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{get_info_controller_8cs_source_l00098}00098\ }
+\DoxyCodeLine{\Hypertarget{get_info_controller_8cs_source_l00099}00099\ \ \ \ \ \ \ \ \ \ \ \ \ var\ password\ =\ updates.Password;}
+\DoxyCodeLine{\Hypertarget{get_info_controller_8cs_source_l00100}00100\ }
+\DoxyCodeLine{\Hypertarget{get_info_controller_8cs_source_l00101}00101\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Probeer\ de\ klantgegevens\ bij\ te\ werken\ in\ de\ database}}
+\DoxyCodeLine{\Hypertarget{get_info_controller_8cs_source_l00102}00102\ \ \ \ \ \ \ \ \ \ \ \ \ var\ updateResult\ =\ await\ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_get_info_vehicle_manager_1_1_ge5f3db02cd05fb4d7aea652d7ec731ef7_ae9e36c9bc4be37dffde2b655f41e3adc}{\_userRepository}}.UpdateCustomerAsync(\textcolor{keywordtype}{id},\ updates.Email,\ password);}
+\DoxyCodeLine{\Hypertarget{get_info_controller_8cs_source_l00103}00103\ }
+\DoxyCodeLine{\Hypertarget{get_info_controller_8cs_source_l00104}00104\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!updateResult)}
+\DoxyCodeLine{\Hypertarget{get_info_controller_8cs_source_l00105}00105\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{get_info_controller_8cs_source_l00106}00106\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ StatusCode(500,\ \textcolor{keyword}{new}\ \{\ message\ =\ \textcolor{stringliteral}{"{}Failed\ to\ update\ customer\ information"{}}\ \});}
+\DoxyCodeLine{\Hypertarget{get_info_controller_8cs_source_l00107}00107\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{get_info_controller_8cs_source_l00108}00108\ }
+\DoxyCodeLine{\Hypertarget{get_info_controller_8cs_source_l00109}00109\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Ok(\textcolor{keyword}{new}\ \{\ message\ =\ \textcolor{stringliteral}{"{}Customer\ info\ updated\ successfully"{}}\ \});}
+\DoxyCodeLine{\Hypertarget{get_info_controller_8cs_source_l00110}00110\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{get_info_controller_8cs_source_l00111}00111\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (Exception\ ex)}
+\DoxyCodeLine{\Hypertarget{get_info_controller_8cs_source_l00112}00112\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{get_info_controller_8cs_source_l00113}00113\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Log\ de\ fout\ en\ stuur\ een\ serverfoutmelding\ terug}}
+\DoxyCodeLine{\Hypertarget{get_info_controller_8cs_source_l00114}00114\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ StatusCode(500,\ \textcolor{keyword}{new}\ \{\ message\ =\ \textcolor{stringliteral}{"{}Internal\ server\ error"{}},\ error\ =\ ex.Message\ \});}
+\DoxyCodeLine{\Hypertarget{get_info_controller_8cs_source_l00115}00115\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{get_info_controller_8cs_source_l00116}00116\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{get_info_controller_8cs_source_l00117}00117\ }
+\DoxyCodeLine{\Hypertarget{get_info_controller_8cs_source_l00121}00121\ \ \ \ \ [HttpGet(\textcolor{stringliteral}{"{}GetCustomersByBusinessNumber"{}})]}
+\DoxyCodeLine{\Hypertarget{get_info_controller_8cs_source_l00122}\mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_get_info_vehicle_manager_1_1_ge5f3db02cd05fb4d7aea652d7ec731ef7_a5a25feb70858bb18c3762f2990d9f391}{00122}}\ \ \ \ \ \textcolor{keyword}{public}\ async\ Task<IActionResult>\ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_get_info_vehicle_manager_1_1_ge5f3db02cd05fb4d7aea652d7ec731ef7_a5a25feb70858bb18c3762f2990d9f391}{GetCustomersByBusinessNumber}}(\textcolor{keywordtype}{string}\ businessNumber)}
+\DoxyCodeLine{\Hypertarget{get_info_controller_8cs_source_l00123}00123\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{get_info_controller_8cs_source_l00124}00124\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}}
+\DoxyCodeLine{\Hypertarget{get_info_controller_8cs_source_l00125}00125\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{get_info_controller_8cs_source_l00126}00126\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Controleer\ of\ het\ businessnummer\ geldig\ is}}
+\DoxyCodeLine{\Hypertarget{get_info_controller_8cs_source_l00127}00127\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\textcolor{keywordtype}{string}.IsNullOrEmpty(businessNumber))}
+\DoxyCodeLine{\Hypertarget{get_info_controller_8cs_source_l00128}00128\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{get_info_controller_8cs_source_l00129}00129\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ BadRequest(\textcolor{keyword}{new}\ \{\ message\ =\ \textcolor{stringliteral}{"{}Business\ number\ cannot\ be\ empty"{}}\ \});}
+\DoxyCodeLine{\Hypertarget{get_info_controller_8cs_source_l00130}00130\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{get_info_controller_8cs_source_l00131}00131\ }
+\DoxyCodeLine{\Hypertarget{get_info_controller_8cs_source_l00132}00132\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Haal\ klanten\ op\ die\ aan\ het\ businessnummer\ gekoppeld\ zijn}}
+\DoxyCodeLine{\Hypertarget{get_info_controller_8cs_source_l00133}00133\ \ \ \ \ \ \ \ \ \ \ \ \ var\ customers\ =\ await\ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_get_info_vehicle_manager_1_1_ge5f3db02cd05fb4d7aea652d7ec731ef7_ae9e36c9bc4be37dffde2b655f41e3adc}{\_userRepository}}.GetCustomersByBusinessNumberAsync(businessNumber);}
+\DoxyCodeLine{\Hypertarget{get_info_controller_8cs_source_l00134}00134\ }
+\DoxyCodeLine{\Hypertarget{get_info_controller_8cs_source_l00135}00135\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Als\ er\ geen\ klanten\ gevonden\ worden,\ stuur\ dan\ een\ foutmelding}}
+\DoxyCodeLine{\Hypertarget{get_info_controller_8cs_source_l00136}00136\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (customers\ ==\ \textcolor{keyword}{null}\ ||\ !customers.Any())}
+\DoxyCodeLine{\Hypertarget{get_info_controller_8cs_source_l00137}00137\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{get_info_controller_8cs_source_l00138}00138\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ NotFound(\textcolor{keyword}{new}\ \{\ message\ =\ \textcolor{stringliteral}{"{}No\ customers\ found\ for\ this\ business"{}}\ \});}
+\DoxyCodeLine{\Hypertarget{get_info_controller_8cs_source_l00139}00139\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{get_info_controller_8cs_source_l00140}00140\ }
+\DoxyCodeLine{\Hypertarget{get_info_controller_8cs_source_l00141}00141\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Retourneer\ een\ succesvolle\ response\ met\ klanten}}
+\DoxyCodeLine{\Hypertarget{get_info_controller_8cs_source_l00142}00142\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Ok(\textcolor{keyword}{new}}
+\DoxyCodeLine{\Hypertarget{get_info_controller_8cs_source_l00143}00143\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{get_info_controller_8cs_source_l00144}00144\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ message\ =\ \textcolor{stringliteral}{"{}Success"{}},}
+\DoxyCodeLine{\Hypertarget{get_info_controller_8cs_source_l00145}00145\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ customers\ =\ customers.Select(c\ =>\ \textcolor{keyword}{new}\ \{\ c.Id,\ c.Email,\ c.Kvk\ \})}
+\DoxyCodeLine{\Hypertarget{get_info_controller_8cs_source_l00146}00146\ \ \ \ \ \ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{\Hypertarget{get_info_controller_8cs_source_l00147}00147\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{get_info_controller_8cs_source_l00148}00148\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (Exception\ ex)}
+\DoxyCodeLine{\Hypertarget{get_info_controller_8cs_source_l00149}00149\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{get_info_controller_8cs_source_l00150}00150\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Log\ de\ fout\ en\ stuur\ een\ serverfoutmelding\ terug}}
+\DoxyCodeLine{\Hypertarget{get_info_controller_8cs_source_l00151}00151\ \ \ \ \ \ \ \ \ \ \ \ \ Console.WriteLine(\$\textcolor{stringliteral}{"{}Error\ in\ GetCustomersByBusinessNumber:\ \{ex.Message\}"{}});}
+\DoxyCodeLine{\Hypertarget{get_info_controller_8cs_source_l00152}00152\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ StatusCode(500,\ \textcolor{keyword}{new}\ \{\ message\ =\ \textcolor{stringliteral}{"{}Internal\ server\ error"{}},\ error\ =\ ex.Message\ \});}
+\DoxyCodeLine{\Hypertarget{get_info_controller_8cs_source_l00153}00153\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{get_info_controller_8cs_source_l00154}00154\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{get_info_controller_8cs_source_l00155}00155\ }
+\DoxyCodeLine{\Hypertarget{get_info_controller_8cs_source_l00156}00156\ \ \ \ \ \textcolor{comment}{//\ Model\ voor\ de\ klantupdateverzoeken\ (e-\/mail\ en\ wachtwoord)}}
+\DoxyCodeLine{\Hypertarget{get_info_controller_8cs_source_l00157}\mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_get_info_vehicle_manager_1_1_ge80cefa003b6c973a88a350bcae8adff2}{00157}}\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_get_info_vehicle_manager_1_1_ge80cefa003b6c973a88a350bcae8adff2}{CustomerUpdateRequest}}}
+\DoxyCodeLine{\Hypertarget{get_info_controller_8cs_source_l00158}00158\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{get_info_controller_8cs_source_l00159}\mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_get_info_vehicle_manager_1_1_ge80cefa003b6c973a88a350bcae8adff2_a675221341fac44638844f62cad7f0bbf}{00159}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{string}\ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_get_info_vehicle_manager_1_1_ge80cefa003b6c973a88a350bcae8adff2_a675221341fac44638844f62cad7f0bbf}{Email}}\ \{\ \textcolor{keyword}{get};\ \textcolor{keyword}{set};\ \}}
+\DoxyCodeLine{\Hypertarget{get_info_controller_8cs_source_l00160}\mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_get_info_vehicle_manager_1_1_ge80cefa003b6c973a88a350bcae8adff2_a84485199a490ada128f36c356b17dbd0}{00160}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{string}\ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_get_info_vehicle_manager_1_1_ge80cefa003b6c973a88a350bcae8adff2_a84485199a490ada128f36c356b17dbd0}{Password}}\ \{\ \textcolor{keyword}{get};\ \textcolor{keyword}{set};\ \}}
+\DoxyCodeLine{\Hypertarget{get_info_controller_8cs_source_l00161}00161\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{get_info_controller_8cs_source_l00162}00162\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{get_info_controller_8cs_source_l00168}00168\ \ \ \ \ [HttpGet(\textcolor{stringliteral}{"{}GetBusinessDomainByKvK"{}})]}
+\DoxyCodeLine{\Hypertarget{get_info_controller_8cs_source_l00169}\mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_get_info_vehicle_manager_1_1_ge5f3db02cd05fb4d7aea652d7ec731ef7_ad4920ecab1cfa592aafeace8242ec73c}{00169}}\ \ \ \ \ \textcolor{keyword}{public}\ async\ Task<IActionResult>\ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_get_info_vehicle_manager_1_1_ge5f3db02cd05fb4d7aea652d7ec731ef7_ad4920ecab1cfa592aafeace8242ec73c}{GetBusinessDomainByKvK}}(\textcolor{keywordtype}{int}\ kvk)}
+\DoxyCodeLine{\Hypertarget{get_info_controller_8cs_source_l00170}00170\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{get_info_controller_8cs_source_l00171}00171\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}}
+\DoxyCodeLine{\Hypertarget{get_info_controller_8cs_source_l00172}00172\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{get_info_controller_8cs_source_l00173}00173\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Controleer\ of\ het\ KvK-\/nummer\ geldig\ is}}
+\DoxyCodeLine{\Hypertarget{get_info_controller_8cs_source_l00174}00174\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (kvk\ <=\ 0)}
+\DoxyCodeLine{\Hypertarget{get_info_controller_8cs_source_l00175}00175\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{get_info_controller_8cs_source_l00176}00176\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ BadRequest(\textcolor{keyword}{new}\ \{\ message\ =\ \textcolor{stringliteral}{"{}Invalid\ KvK"{}}\ \});}
+\DoxyCodeLine{\Hypertarget{get_info_controller_8cs_source_l00177}00177\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{get_info_controller_8cs_source_l00178}00178\ }
+\DoxyCodeLine{\Hypertarget{get_info_controller_8cs_source_l00179}00179\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Verkrijg\ het\ domein\ van\ het\ bedrijf\ aan\ de\ hand\ van\ het\ KvK-\/nummer}}
+\DoxyCodeLine{\Hypertarget{get_info_controller_8cs_source_l00180}00180\ \ \ \ \ \ \ \ \ \ \ \ \ var\ (statusCode,\ domain)\ =\ await\ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_get_info_vehicle_manager_1_1_ge5f3db02cd05fb4d7aea652d7ec731ef7_ae9e36c9bc4be37dffde2b655f41e3adc}{\_userRepository}}.GetBusinessDomainByKvK(kvk);}
+\DoxyCodeLine{\Hypertarget{get_info_controller_8cs_source_l00181}00181\ }
+\DoxyCodeLine{\Hypertarget{get_info_controller_8cs_source_l00182}00182\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Als\ het\ domein\ niet\ gevonden\ wordt,\ stuur\ een\ 404}}
+\DoxyCodeLine{\Hypertarget{get_info_controller_8cs_source_l00183}00183\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (statusCode\ ==\ 404)}
+\DoxyCodeLine{\Hypertarget{get_info_controller_8cs_source_l00184}00184\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{get_info_controller_8cs_source_l00185}00185\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ NotFound(\textcolor{keyword}{new}\ \{\ message\ =\ \textcolor{stringliteral}{"{}Business\ domain\ not\ found\ for\ the\ given\ KvK"{}}\ \});}
+\DoxyCodeLine{\Hypertarget{get_info_controller_8cs_source_l00186}00186\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{get_info_controller_8cs_source_l00187}00187\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Als\ er\ een\ serverfout\ is,\ stuur\ een\ 500\ met\ foutmelding}}
+\DoxyCodeLine{\Hypertarget{get_info_controller_8cs_source_l00188}00188\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (statusCode\ ==\ 500)}
+\DoxyCodeLine{\Hypertarget{get_info_controller_8cs_source_l00189}00189\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{get_info_controller_8cs_source_l00190}00190\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ StatusCode(500,\ \textcolor{keyword}{new}\ \{\ message\ =\ \textcolor{stringliteral}{"{}Internal\ server\ error"{}},\ error\ =\ domain\ \});}
+\DoxyCodeLine{\Hypertarget{get_info_controller_8cs_source_l00191}00191\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{get_info_controller_8cs_source_l00192}00192\ }
+\DoxyCodeLine{\Hypertarget{get_info_controller_8cs_source_l00193}00193\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Retourneer\ het\ domein\ van\ het\ bedrijf\ als\ de\ aanvraag\ succesvol\ is}}
+\DoxyCodeLine{\Hypertarget{get_info_controller_8cs_source_l00194}00194\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Ok(\textcolor{keyword}{new}}
+\DoxyCodeLine{\Hypertarget{get_info_controller_8cs_source_l00195}00195\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{get_info_controller_8cs_source_l00196}00196\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ message\ =\ \textcolor{stringliteral}{"{}Success"{}},}
+\DoxyCodeLine{\Hypertarget{get_info_controller_8cs_source_l00197}00197\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ domain\ =\ domain}
+\DoxyCodeLine{\Hypertarget{get_info_controller_8cs_source_l00198}00198\ \ \ \ \ \ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{\Hypertarget{get_info_controller_8cs_source_l00199}00199\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{get_info_controller_8cs_source_l00200}00200\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (Exception\ ex)}
+\DoxyCodeLine{\Hypertarget{get_info_controller_8cs_source_l00201}00201\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{get_info_controller_8cs_source_l00202}00202\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Log\ de\ fout\ en\ stuur\ een\ serverfoutmelding\ terug}}
+\DoxyCodeLine{\Hypertarget{get_info_controller_8cs_source_l00203}00203\ \ \ \ \ \ \ \ \ \ \ \ \ Console.WriteLine(\$\textcolor{stringliteral}{"{}Error\ in\ GetBusinessDomainByKvK:\ \{ex.Message\}"{}});}
+\DoxyCodeLine{\Hypertarget{get_info_controller_8cs_source_l00204}00204\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ StatusCode(500,\ \textcolor{keyword}{new}\ \{\ message\ =\ \textcolor{stringliteral}{"{}Internal\ server\ error"{}},\ error\ =\ ex.Message\ \});}
+\DoxyCodeLine{\Hypertarget{get_info_controller_8cs_source_l00205}00205\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{get_info_controller_8cs_source_l00206}00206\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{get_info_controller_8cs_source_l00207}00207\ \}}
+
+\end{DoxyCode}

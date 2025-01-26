@@ -1,0 +1,166 @@
+\doxysection{change\+Business\+Controller.\+cs}
+\hypertarget{change_business_controller_8cs_source}{}\label{change_business_controller_8cs_source}\index{D:/codes/WPR8/WPR/backend/src/Controllers/Employee/vehicleManager/changeSettings/changeBusinessController.cs@{D:/codes/WPR8/WPR/backend/src/Controllers/Employee/vehicleManager/changeSettings/changeBusinessController.cs}}
+\mbox{\hyperlink{change_business_controller_8cs}{Ga naar de documentatie van dit bestand.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{change_business_controller_8cs_source_l00001}00001\ \textcolor{keyword}{using\ }Microsoft.AspNetCore.Mvc;}
+\DoxyCodeLine{\Hypertarget{change_business_controller_8cs_source_l00002}00002\ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespace_w_p_r_1_1_repository}{WPR.Repository}};}
+\DoxyCodeLine{\Hypertarget{change_business_controller_8cs_source_l00003}00003\ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespace_w_p_r_1_1_repository_1_1_database_check_repository}{WPR.Repository.DatabaseCheckRepository}};}
+\DoxyCodeLine{\Hypertarget{change_business_controller_8cs_source_l00004}00004\ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespace_w_p_r_1_1_utils}{WPR.Utils}};}
+\DoxyCodeLine{\Hypertarget{change_business_controller_8cs_source_l00005}00005\ }
+\DoxyCodeLine{\Hypertarget{change_business_controller_8cs_source_l00006}\mbox{\hyperlink{namespace_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager}{00006}}\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_change_business_settings}{WPR.Controllers.Employee.VehicleManager.ChangeBusinessSettings}};}
+\DoxyCodeLine{\Hypertarget{change_business_controller_8cs_source_l00007}00007\ }
+\DoxyCodeLine{\Hypertarget{change_business_controller_8cs_source_l00008}00008\ [Route(\textcolor{stringliteral}{"{}api/[controller]"{}})]}
+\DoxyCodeLine{\Hypertarget{change_business_controller_8cs_source_l00009}00009\ [ApiController]}
+\DoxyCodeLine{\Hypertarget{change_business_controller_8cs_source_l00010}\mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_change_business_settings_1_1_ch7c94b582bf64dbc7511ca4ef6a96e8e5}{00010}}\ \textcolor{keyword}{public}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_change_business_settings_1_1_ch7c94b582bf64dbc7511ca4ef6a96e8e5_a506a13c91683e6389cf9486f15b7a4e9}{ChangeBusinessSettingsController}}\ :\ ControllerBase}
+\DoxyCodeLine{\Hypertarget{change_business_controller_8cs_source_l00011}00011\ \{}
+\DoxyCodeLine{\Hypertarget{change_business_controller_8cs_source_l00012}\mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_change_business_settings_1_1_ch7c94b582bf64dbc7511ca4ef6a96e8e5_a35d337258bd9f4965c6b8a82235b5f83}{00012}}\ \ \ \ \ \textcolor{keyword}{private}\ readonly\ \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_user_repository}{IUserRepository}}\ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_change_business_settings_1_1_ch7c94b582bf64dbc7511ca4ef6a96e8e5_a35d337258bd9f4965c6b8a82235b5f83}{\_userRepository}};}
+\DoxyCodeLine{\Hypertarget{change_business_controller_8cs_source_l00013}\mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_change_business_settings_1_1_ch7c94b582bf64dbc7511ca4ef6a96e8e5_abe1e59b5b3f570a8ced1c7ea0b2429a2}{00013}}\ \ \ \ \ \textcolor{keyword}{private}\ readonly\ \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_employee_repository}{IEmployeeRepository}}\ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_change_business_settings_1_1_ch7c94b582bf64dbc7511ca4ef6a96e8e5_abe1e59b5b3f570a8ced1c7ea0b2429a2}{\_employeeRepository}};}
+\DoxyCodeLine{\Hypertarget{change_business_controller_8cs_source_l00014}\mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_change_business_settings_1_1_ch7c94b582bf64dbc7511ca4ef6a96e8e5_a13f9d57bdc49918660e694da0af146ba}{00014}}\ \ \ \ \ \textcolor{keyword}{private}\ readonly\ \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_database_check_repository_1_1_i_database_check_repository}{IDatabaseCheckRepository}}\ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_change_business_settings_1_1_ch7c94b582bf64dbc7511ca4ef6a96e8e5_a13f9d57bdc49918660e694da0af146ba}{\_databaseCheckRepository}};}
+\DoxyCodeLine{\Hypertarget{change_business_controller_8cs_source_l00015}00015\ }
+\DoxyCodeLine{\Hypertarget{change_business_controller_8cs_source_l00016}00016\ \ \ \ \ \textcolor{comment}{//\ Constructor\ voor\ de\ controller,\ waar\ de\ benodigde\ repositories\ worden\ geïnjecteerd}}
+\DoxyCodeLine{\Hypertarget{change_business_controller_8cs_source_l00017}\mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_change_business_settings_1_1_ch7c94b582bf64dbc7511ca4ef6a96e8e5_a506a13c91683e6389cf9486f15b7a4e9}{00017}}\ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_change_business_settings_1_1_ch7c94b582bf64dbc7511ca4ef6a96e8e5_a506a13c91683e6389cf9486f15b7a4e9}{ChangeBusinessSettingsController}}(\mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_user_repository}{IUserRepository}}\ userRepository,\ \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_employee_repository}{IEmployeeRepository}}\ employeeRepository,}
+\DoxyCodeLine{\Hypertarget{change_business_controller_8cs_source_l00018}00018\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_database_check_repository_1_1_i_database_check_repository}{IDatabaseCheckRepository}}\ databaseCheckRepository)}
+\DoxyCodeLine{\Hypertarget{change_business_controller_8cs_source_l00019}00019\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{change_business_controller_8cs_source_l00020}00020\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_change_business_settings_1_1_ch7c94b582bf64dbc7511ca4ef6a96e8e5_a35d337258bd9f4965c6b8a82235b5f83}{\_userRepository}}\ =\ userRepository\ ??\ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ ArgumentNullException(nameof(userRepository));}
+\DoxyCodeLine{\Hypertarget{change_business_controller_8cs_source_l00021}00021\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_change_business_settings_1_1_ch7c94b582bf64dbc7511ca4ef6a96e8e5_abe1e59b5b3f570a8ced1c7ea0b2429a2}{\_employeeRepository}}\ =\ employeeRepository\ ??\ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ ArgumentNullException(nameof(employeeRepository));}
+\DoxyCodeLine{\Hypertarget{change_business_controller_8cs_source_l00022}00022\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_change_business_settings_1_1_ch7c94b582bf64dbc7511ca4ef6a96e8e5_a13f9d57bdc49918660e694da0af146ba}{\_databaseCheckRepository}}\ =}
+\DoxyCodeLine{\Hypertarget{change_business_controller_8cs_source_l00023}00023\ \ \ \ \ \ \ \ \ \ \ \ \ databaseCheckRepository\ ??\ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ ArgumentNullException(nameof(databaseCheckRepository));}
+\DoxyCodeLine{\Hypertarget{change_business_controller_8cs_source_l00024}00024\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{change_business_controller_8cs_source_l00025}00025\ }
+\DoxyCodeLine{\Hypertarget{change_business_controller_8cs_source_l00029}00029\ \ \ \ \ [HttpGet(\textcolor{stringliteral}{"{}GetBusinessInfo"{}})]}
+\DoxyCodeLine{\Hypertarget{change_business_controller_8cs_source_l00030}\mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_change_business_settings_1_1_ch7c94b582bf64dbc7511ca4ef6a96e8e5_a950d4462c5ac5f385e9e4ed70acf0559}{00030}}\ \ \ \ \ \textcolor{keyword}{public}\ async\ Task<IActionResult>\ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_change_business_settings_1_1_ch7c94b582bf64dbc7511ca4ef6a96e8e5_a950d4462c5ac5f385e9e4ed70acf0559}{GetBusinessInfoAsync}}(\textcolor{keywordtype}{int}\ \textcolor{keywordtype}{id})}
+\DoxyCodeLine{\Hypertarget{change_business_controller_8cs_source_l00031}00031\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{change_business_controller_8cs_source_l00032}00032\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}}
+\DoxyCodeLine{\Hypertarget{change_business_controller_8cs_source_l00033}00033\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{change_business_controller_8cs_source_l00034}00034\ \ \ \ \ \ \ \ \ \ \ \ \ Console.WriteLine(\$\textcolor{stringliteral}{"{}Fetching\ KvK\ for\ VehicleManager\ ID:\ \{id\}"{}});}
+\DoxyCodeLine{\Hypertarget{change_business_controller_8cs_source_l00035}00035\ \ \ \ \ \ \ \ \ \ \ \ \ (\textcolor{keywordtype}{int}\ StatusCode,\ \textcolor{keywordtype}{string}\ Message,\ \textcolor{keywordtype}{int}\ KvK)\ kvkResponse\ =\ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_change_business_settings_1_1_ch7c94b582bf64dbc7511ca4ef6a96e8e5_abe1e59b5b3f570a8ced1c7ea0b2429a2}{\_employeeRepository}}.GetKvK(\textcolor{keywordtype}{id});}
+\DoxyCodeLine{\Hypertarget{change_business_controller_8cs_source_l00036}00036\ }
+\DoxyCodeLine{\Hypertarget{change_business_controller_8cs_source_l00037}00037\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (kvkResponse.StatusCode\ ==\ 200)}
+\DoxyCodeLine{\Hypertarget{change_business_controller_8cs_source_l00038}00038\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{change_business_controller_8cs_source_l00039}00039\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Console.WriteLine(\$\textcolor{stringliteral}{"{}KvK\ retrieved:\ \{kvkResponse.KvK\}"{}});}
+\DoxyCodeLine{\Hypertarget{change_business_controller_8cs_source_l00040}00040\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Verkrijg\ de\ bedrijfsinformatie\ op\ basis\ van\ KvK\ nummer}}
+\DoxyCodeLine{\Hypertarget{change_business_controller_8cs_source_l00041}00041\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (\textcolor{keywordtype}{bool}\ Status,\ \textcolor{keywordtype}{string}\ Message,\ Dictionary<string,\ object>\ \mbox{\hyperlink{namespace_w_p_r_1_1_data}{Data}})\ businessInfo\ =}
+\DoxyCodeLine{\Hypertarget{change_business_controller_8cs_source_l00042}00042\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_change_business_settings_1_1_ch7c94b582bf64dbc7511ca4ef6a96e8e5_abe1e59b5b3f570a8ced1c7ea0b2429a2}{\_employeeRepository}}.GetBusinessInfo(kvkResponse.KvK);}
+\DoxyCodeLine{\Hypertarget{change_business_controller_8cs_source_l00043}00043\ }
+\DoxyCodeLine{\Hypertarget{change_business_controller_8cs_source_l00044}00044\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (businessInfo.Status)}
+\DoxyCodeLine{\Hypertarget{change_business_controller_8cs_source_l00045}00045\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{change_business_controller_8cs_source_l00046}00046\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ StatusCode(200,\ \textcolor{keyword}{new}\ \{\ data\ =\ businessInfo.Data\ \});}
+\DoxyCodeLine{\Hypertarget{change_business_controller_8cs_source_l00047}00047\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{change_business_controller_8cs_source_l00048}00048\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{change_business_controller_8cs_source_l00049}00049\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{change_business_controller_8cs_source_l00050}00050\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ BadRequest(\textcolor{keyword}{new}\ \{\ message\ =\ businessInfo.Message\ \});}
+\DoxyCodeLine{\Hypertarget{change_business_controller_8cs_source_l00051}00051\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{change_business_controller_8cs_source_l00052}00052\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{change_business_controller_8cs_source_l00053}00053\ }
+\DoxyCodeLine{\Hypertarget{change_business_controller_8cs_source_l00054}00054\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ StatusCode(kvkResponse.StatusCode,\ kvkResponse.Message);}
+\DoxyCodeLine{\Hypertarget{change_business_controller_8cs_source_l00055}00055\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{change_business_controller_8cs_source_l00056}00056\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (Exception\ ex)}
+\DoxyCodeLine{\Hypertarget{change_business_controller_8cs_source_l00057}00057\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{change_business_controller_8cs_source_l00058}00058\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Verwerk\ eventuele\ fouten\ tijdens\ het\ ophalen\ van\ de\ bedrijfsinformatie}}
+\DoxyCodeLine{\Hypertarget{change_business_controller_8cs_source_l00059}00059\ \ \ \ \ \ \ \ \ \ \ \ \ Console.WriteLine(\$\textcolor{stringliteral}{"{}Error:\ \{ex.Message\}"{}});}
+\DoxyCodeLine{\Hypertarget{change_business_controller_8cs_source_l00060}00060\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ StatusCode(500,\ \textcolor{keyword}{new}\ \{\ message\ =\ ex.Message\ \});}
+\DoxyCodeLine{\Hypertarget{change_business_controller_8cs_source_l00061}00061\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{change_business_controller_8cs_source_l00062}00062\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{change_business_controller_8cs_source_l00063}00063\ }
+\DoxyCodeLine{\Hypertarget{change_business_controller_8cs_source_l00067}00067\ \ \ \ \ [HttpPut(\textcolor{stringliteral}{"{}ChangeBusinessInfo"{}})]}
+\DoxyCodeLine{\Hypertarget{change_business_controller_8cs_source_l00068}\mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_change_business_settings_1_1_ch7c94b582bf64dbc7511ca4ef6a96e8e5_ad1f53b919617eec6d3786fc2e06c2ff2}{00068}}\ \ \ \ \ \textcolor{keyword}{public}\ async\ Task<IActionResult>\ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_change_business_settings_1_1_ch7c94b582bf64dbc7511ca4ef6a96e8e5_ad1f53b919617eec6d3786fc2e06c2ff2}{ChangeBusinessInfoAsync}}([FromBody]\ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_change_business_settings_1_1_change_business_request}{ChangeBusinessRequest}}\ request)}
+\DoxyCodeLine{\Hypertarget{change_business_controller_8cs_source_l00069}00069\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{change_business_controller_8cs_source_l00070}00070\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (request\ ==\ \textcolor{keyword}{null})}
+\DoxyCodeLine{\Hypertarget{change_business_controller_8cs_source_l00071}00071\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{change_business_controller_8cs_source_l00072}00072\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ BadRequest(\textcolor{stringliteral}{"{}Body\ cannot\ be\ null"{}});}
+\DoxyCodeLine{\Hypertarget{change_business_controller_8cs_source_l00073}00073\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{change_business_controller_8cs_source_l00074}00074\ }
+\DoxyCodeLine{\Hypertarget{change_business_controller_8cs_source_l00075}00075\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\textcolor{keywordtype}{string}.IsNullOrEmpty(request.VehicleManagerInfo.Password))}
+\DoxyCodeLine{\Hypertarget{change_business_controller_8cs_source_l00076}00076\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{change_business_controller_8cs_source_l00077}00077\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Validatie\ van\ het\ wachtwoord}}
+\DoxyCodeLine{\Hypertarget{change_business_controller_8cs_source_l00078}00078\ \ \ \ \ \ \ \ \ \ \ \ \ (\textcolor{keywordtype}{bool}\ Valid,\ \textcolor{keywordtype}{string}\ Message)\ result\ =\ \mbox{\hyperlink{class_w_p_r_1_1_utils_1_1_password_checker}{PasswordChecker}}.\mbox{\hyperlink{class_w_p_r_1_1_utils_1_1_password_checker_a3874adc7b516a8fb893ed18cd0a29a94}{IsValidPassword}}(request.VehicleManagerInfo.Password);}
+\DoxyCodeLine{\Hypertarget{change_business_controller_8cs_source_l00079}00079\ }
+\DoxyCodeLine{\Hypertarget{change_business_controller_8cs_source_l00080}00080\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!result.Valid)}
+\DoxyCodeLine{\Hypertarget{change_business_controller_8cs_source_l00081}00081\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{change_business_controller_8cs_source_l00082}00082\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ StatusCode(412,\ \textcolor{keyword}{new}\ \{\ message\ =\ result.Message\ \});}
+\DoxyCodeLine{\Hypertarget{change_business_controller_8cs_source_l00083}00083\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{change_business_controller_8cs_source_l00084}00084\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{change_business_controller_8cs_source_l00085}00085\ }
+\DoxyCodeLine{\Hypertarget{change_business_controller_8cs_source_l00086}00086\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Wijzig\ de\ bedrijfsinformatie}}
+\DoxyCodeLine{\Hypertarget{change_business_controller_8cs_source_l00087}00087\ \ \ \ \ \ \ \ \ (\textcolor{keywordtype}{int}\ StatusCode,\ \textcolor{keywordtype}{string}\ Message)\ updated\ =\ await\ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_change_business_settings_1_1_ch7c94b582bf64dbc7511ca4ef6a96e8e5_a35d337258bd9f4965c6b8a82235b5f83}{\_userRepository}}.ChangeBusinessInfo(request);}
+\DoxyCodeLine{\Hypertarget{change_business_controller_8cs_source_l00088}00088\ }
+\DoxyCodeLine{\Hypertarget{change_business_controller_8cs_source_l00089}00089\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ StatusCode(updated.StatusCode,\ \textcolor{keyword}{new}\ \{\ message\ =\ updated.Message\ \});}
+\DoxyCodeLine{\Hypertarget{change_business_controller_8cs_source_l00090}00090\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{change_business_controller_8cs_source_l00091}00091\ }
+\DoxyCodeLine{\Hypertarget{change_business_controller_8cs_source_l00095}00095\ \ \ \ \ [HttpDelete(\textcolor{stringliteral}{"{}DeleteBusiness"{}})]}
+\DoxyCodeLine{\Hypertarget{change_business_controller_8cs_source_l00096}\mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_change_business_settings_1_1_ch7c94b582bf64dbc7511ca4ef6a96e8e5_a8efb639fc03dd7378e26e26d37840bf8}{00096}}\ \ \ \ \ \textcolor{keyword}{public}\ async\ Task<IActionResult>\ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_change_business_settings_1_1_ch7c94b582bf64dbc7511ca4ef6a96e8e5_a8efb639fc03dd7378e26e26d37840bf8}{DeleteUserAsync}}([FromBody]\ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_change_business_settings_1_1_delete_business_request}{DeleteBusinessRequest}}\ request)}
+\DoxyCodeLine{\Hypertarget{change_business_controller_8cs_source_l00097}00097\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{change_business_controller_8cs_source_l00098}00098\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Verwijder\ het\ bedrijf\ uit\ de\ database}}
+\DoxyCodeLine{\Hypertarget{change_business_controller_8cs_source_l00099}00099\ \ \ \ \ \ \ \ \ var\ deleteResponse\ =\ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_change_business_settings_1_1_ch7c94b582bf64dbc7511ca4ef6a96e8e5_a13f9d57bdc49918660e694da0af146ba}{\_databaseCheckRepository}}.DeleteBusiness(request.KvK);}
+\DoxyCodeLine{\Hypertarget{change_business_controller_8cs_source_l00100}00100\ }
+\DoxyCodeLine{\Hypertarget{change_business_controller_8cs_source_l00101}00101\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Indien\ succesvol,\ invalideer\ de\ sessiecookie}}
+\DoxyCodeLine{\Hypertarget{change_business_controller_8cs_source_l00102}00102\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (deleteResponse.StatusCode\ ==\ 200)}
+\DoxyCodeLine{\Hypertarget{change_business_controller_8cs_source_l00103}00103\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{change_business_controller_8cs_source_l00104}00104\ \ \ \ \ \ \ \ \ \ \ \ \ Response.Cookies.Append(\textcolor{stringliteral}{"{}LoginVehicleManagerSession"{}},\ \textcolor{stringliteral}{"{}Invalid\ cookie"{}},\ \textcolor{keyword}{new}\ CookieOptions}
+\DoxyCodeLine{\Hypertarget{change_business_controller_8cs_source_l00105}00105\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{change_business_controller_8cs_source_l00106}00106\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ HttpOnly\ =\ \textcolor{keyword}{true},}
+\DoxyCodeLine{\Hypertarget{change_business_controller_8cs_source_l00107}00107\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Secure\ =\ \textcolor{keyword}{true},}
+\DoxyCodeLine{\Hypertarget{change_business_controller_8cs_source_l00108}00108\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Expires\ =\ DateTimeOffset.UtcNow.AddDays(-\/1)}
+\DoxyCodeLine{\Hypertarget{change_business_controller_8cs_source_l00109}00109\ \ \ \ \ \ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{\Hypertarget{change_business_controller_8cs_source_l00110}00110\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{change_business_controller_8cs_source_l00111}00111\ }
+\DoxyCodeLine{\Hypertarget{change_business_controller_8cs_source_l00112}00112\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ StatusCode(deleteResponse.StatusCode,\ \textcolor{keyword}{new}\ \{\ message\ =\ deleteResponse.Message\ \});}
+\DoxyCodeLine{\Hypertarget{change_business_controller_8cs_source_l00113}00113\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{change_business_controller_8cs_source_l00114}00114\ }
+\DoxyCodeLine{\Hypertarget{change_business_controller_8cs_source_l00118}00118\ \ \ \ \ [HttpDelete(\textcolor{stringliteral}{"{}DeleteVehicleManager"{}})]}
+\DoxyCodeLine{\Hypertarget{change_business_controller_8cs_source_l00119}\mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_change_business_settings_1_1_ch7c94b582bf64dbc7511ca4ef6a96e8e5_a00ba93c983d4275b1948b02049cace37}{00119}}\ \ \ \ \ \textcolor{keyword}{public}\ async\ Task<IActionResult>\ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_change_business_settings_1_1_ch7c94b582bf64dbc7511ca4ef6a96e8e5_a00ba93c983d4275b1948b02049cace37}{DeleteVehicleAsync}}([FromBody]\ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_change_business_settings_1_1_delete_vehicle_manager_request}{DeleteVehicleManagerRequest}}\ request)}
+\DoxyCodeLine{\Hypertarget{change_business_controller_8cs_source_l00120}00120\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{change_business_controller_8cs_source_l00121}00121\ \ \ \ \ \ \ \ \ var\ deleteResponse\ =\ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_change_business_settings_1_1_ch7c94b582bf64dbc7511ca4ef6a96e8e5_a13f9d57bdc49918660e694da0af146ba}{\_databaseCheckRepository}}.DeleteVehicleManager(request.ID,\ request.KvK);}
+\DoxyCodeLine{\Hypertarget{change_business_controller_8cs_source_l00122}00122\ }
+\DoxyCodeLine{\Hypertarget{change_business_controller_8cs_source_l00123}00123\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Indien\ succesvol,\ invalideer\ de\ sessiecookie}}
+\DoxyCodeLine{\Hypertarget{change_business_controller_8cs_source_l00124}00124\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (deleteResponse.StatusCode\ ==\ 200)}
+\DoxyCodeLine{\Hypertarget{change_business_controller_8cs_source_l00125}00125\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{change_business_controller_8cs_source_l00126}00126\ \ \ \ \ \ \ \ \ \ \ \ \ Response.Cookies.Append(\textcolor{stringliteral}{"{}LoginVehicleManagerSession"{}},\ \textcolor{stringliteral}{"{}Invalid\ cookie"{}},\ \textcolor{keyword}{new}\ CookieOptions}
+\DoxyCodeLine{\Hypertarget{change_business_controller_8cs_source_l00127}00127\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{change_business_controller_8cs_source_l00128}00128\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ HttpOnly\ =\ \textcolor{keyword}{true},}
+\DoxyCodeLine{\Hypertarget{change_business_controller_8cs_source_l00129}00129\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Secure\ =\ \textcolor{keyword}{true},}
+\DoxyCodeLine{\Hypertarget{change_business_controller_8cs_source_l00130}00130\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Expires\ =\ DateTimeOffset.UtcNow.AddDays(-\/1)}
+\DoxyCodeLine{\Hypertarget{change_business_controller_8cs_source_l00131}00131\ \ \ \ \ \ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{\Hypertarget{change_business_controller_8cs_source_l00132}00132\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{change_business_controller_8cs_source_l00133}00133\ }
+\DoxyCodeLine{\Hypertarget{change_business_controller_8cs_source_l00134}00134\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ StatusCode(deleteResponse.StatusCode,\ \textcolor{keyword}{new}\ \{\ message\ =\ deleteResponse.Message\ \});}
+\DoxyCodeLine{\Hypertarget{change_business_controller_8cs_source_l00135}00135\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{change_business_controller_8cs_source_l00136}00136\ }
+\DoxyCodeLine{\Hypertarget{change_business_controller_8cs_source_l00140}00140\ \ \ \ \ [HttpGet(\textcolor{stringliteral}{"{}CheckNewEmail"{}})]}
+\DoxyCodeLine{\Hypertarget{change_business_controller_8cs_source_l00141}\mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_change_business_settings_1_1_ch7c94b582bf64dbc7511ca4ef6a96e8e5_a943c431c998eee8144e3c436155bcf5c}{00141}}\ \ \ \ \ \textcolor{keyword}{public}\ async\ Task<IActionResult>\ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_change_business_settings_1_1_ch7c94b582bf64dbc7511ca4ef6a96e8e5_a943c431c998eee8144e3c436155bcf5c}{CheckNewEmailAsync}}(\textcolor{keywordtype}{string}\ email)}
+\DoxyCodeLine{\Hypertarget{change_business_controller_8cs_source_l00142}00142\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{change_business_controller_8cs_source_l00143}00143\ \ \ \ \ \ \ \ \ var\ emailCheck\ =\ await\ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_change_business_settings_1_1_ch7c94b582bf64dbc7511ca4ef6a96e8e5_abe1e59b5b3f570a8ced1c7ea0b2429a2}{\_employeeRepository}}.checkUsageEmaiVehicleManagerlAsync(email);}
+\DoxyCodeLine{\Hypertarget{change_business_controller_8cs_source_l00144}00144\ }
+\DoxyCodeLine{\Hypertarget{change_business_controller_8cs_source_l00145}00145\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!emailCheck.status)}
+\DoxyCodeLine{\Hypertarget{change_business_controller_8cs_source_l00146}00146\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{change_business_controller_8cs_source_l00147}00147\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ StatusCode(200,\ \textcolor{keyword}{new}\ \{\ message\ =\ \textcolor{stringliteral}{"{}Geldige\ email"{}}\ \});}
+\DoxyCodeLine{\Hypertarget{change_business_controller_8cs_source_l00148}00148\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{change_business_controller_8cs_source_l00149}00149\ }
+\DoxyCodeLine{\Hypertarget{change_business_controller_8cs_source_l00150}00150\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ StatusCode(400,\ \textcolor{keyword}{new}\ \{\ message\ =\ \textcolor{stringliteral}{"{}Email\ is\ al\ ingebruik"{}}\ \});}
+\DoxyCodeLine{\Hypertarget{change_business_controller_8cs_source_l00151}00151\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{change_business_controller_8cs_source_l00152}00152\ }
+\DoxyCodeLine{\Hypertarget{change_business_controller_8cs_source_l00156}00156\ \ \ \ \ [HttpPut(\textcolor{stringliteral}{"{}ChangeVehicleManagerInfo"{}})]}
+\DoxyCodeLine{\Hypertarget{change_business_controller_8cs_source_l00157}\mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_change_business_settings_1_1_ch7c94b582bf64dbc7511ca4ef6a96e8e5_a3a700126d9ad8e6cae986da45d65d6f8}{00157}}\ \ \ \ \ \textcolor{keyword}{public}\ async\ Task<IActionResult>\ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_change_business_settings_1_1_ch7c94b582bf64dbc7511ca4ef6a96e8e5_a3a700126d9ad8e6cae986da45d65d6f8}{ChangeVehicleManagerInfoAsync}}([FromBody]\ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_change_business_settings_1_1_change_vehicle_manager_info}{ChangeVehicleManagerInfo}}\ request)}
+\DoxyCodeLine{\Hypertarget{change_business_controller_8cs_source_l00158}00158\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{change_business_controller_8cs_source_l00159}00159\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (request\ ==\ \textcolor{keyword}{null})}
+\DoxyCodeLine{\Hypertarget{change_business_controller_8cs_source_l00160}00160\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{change_business_controller_8cs_source_l00161}00161\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ BadRequest(\textcolor{stringliteral}{"{}Request\ body\ cannot\ be\ null."{}});}
+\DoxyCodeLine{\Hypertarget{change_business_controller_8cs_source_l00162}00162\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{change_business_controller_8cs_source_l00163}00163\ }
+\DoxyCodeLine{\Hypertarget{change_business_controller_8cs_source_l00164}00164\ \ \ \ \ \ \ \ \ Console.WriteLine(\textcolor{stringliteral}{"{}ChangeVehicleManagerInfo\ endpoint\ hit."{}});}
+\DoxyCodeLine{\Hypertarget{change_business_controller_8cs_source_l00165}00165\ }
+\DoxyCodeLine{\Hypertarget{change_business_controller_8cs_source_l00166}00166\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}}
+\DoxyCodeLine{\Hypertarget{change_business_controller_8cs_source_l00167}00167\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{change_business_controller_8cs_source_l00168}00168\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Wijzig\ de\ voertuigmanager\ gegevens}}
+\DoxyCodeLine{\Hypertarget{change_business_controller_8cs_source_l00169}00169\ \ \ \ \ \ \ \ \ \ \ \ \ (\textcolor{keywordtype}{int}\ statusCode,\ \textcolor{keywordtype}{string}\ message)\ =\ await\ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_change_business_settings_1_1_ch7c94b582bf64dbc7511ca4ef6a96e8e5_a35d337258bd9f4965c6b8a82235b5f83}{\_userRepository}}.ChangeVehicleManagerInfo(request);}
+\DoxyCodeLine{\Hypertarget{change_business_controller_8cs_source_l00170}00170\ }
+\DoxyCodeLine{\Hypertarget{change_business_controller_8cs_source_l00171}00171\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ StatusCode(statusCode,\ \textcolor{keyword}{new}\ \{\ message\ \});}
+\DoxyCodeLine{\Hypertarget{change_business_controller_8cs_source_l00172}00172\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{change_business_controller_8cs_source_l00173}00173\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (Exception\ ex)}
+\DoxyCodeLine{\Hypertarget{change_business_controller_8cs_source_l00174}00174\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{change_business_controller_8cs_source_l00175}00175\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ StatusCode(500,\ \textcolor{keyword}{new}\ \{\ message\ =\ ex.Message\ \});}
+\DoxyCodeLine{\Hypertarget{change_business_controller_8cs_source_l00176}00176\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{change_business_controller_8cs_source_l00177}00177\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{change_business_controller_8cs_source_l00178}00178\ \}}
+
+\end{DoxyCode}

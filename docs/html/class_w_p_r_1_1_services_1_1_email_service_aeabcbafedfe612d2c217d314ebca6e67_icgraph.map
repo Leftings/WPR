@@ -1,0 +1,5 @@
+<map id="WPR.Services.EmailService.BuildBusinessReviewEmailBody" name="WPR.Services.EmailService.BuildBusinessReviewEmailBody">
+<area shape="rect" id="Node000001" title="Bouwt de HTML&#45;inhoud voor een beoordelingsmail voor een bedrijfsaccount aanvraag." alt="" coords="247,5,458,48"/>
+<area shape="rect" id="Node000002" href="$class_w_p_r_1_1_services_1_1_email_service.html#a2921ddfbad60ba40018a722be5a0c0c6" title="Verstuurt een beoordelingsmail voor een bedrijfsaccount aanvraag naar het opgegeven e&#45;mailadres." alt="" coords="5,5,199,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="231,29,199,29,199,24,231,24"/>
+</map>

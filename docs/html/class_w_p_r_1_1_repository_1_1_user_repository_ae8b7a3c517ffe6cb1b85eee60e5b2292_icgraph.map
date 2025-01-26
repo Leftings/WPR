@@ -1,0 +1,8 @@
+<map id="WPR.Repository.UserRepository.AddCustomerChecks" name="WPR.Repository.UserRepository.AddCustomerChecks">
+<area shape="rect" id="Node000001" title="AddCustomerChecks kijkt of alle ingevoerde velden geldig zijn. Als een check faalt falen alle checks." alt="" coords="536,5,753,48"/>
+<area shape="rect" id="Node000002" href="$class_w_p_r_1_1_repository_1_1_user_repository.html#a688723c1fb3385274f13ba0e3ba78da8" title="AddCustomer krijgt SignUpRequestCustomer binnen en SignUpRequestCustomerPrivate. Elk account heeft al..." alt="" coords="5,5,223,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="521,26,488,25,271,25,223,26,223,21,271,20,488,20,521,21"/>
+<area shape="rect" id="Node000003" href="$class_w_p_r_1_1_repository_1_1_user_repository.html#a4fe2a09bb575fb8d9510828ef5ad9813" title="AddPrivateCustomerDetails zorgt ervoor dat alle extra details van particuliere huurders toegevoegd wo..." alt="" coords="271,35,488,77"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="521,43,489,47,488,41,520,38"/>
+<area shape="poly" id="edge3_Node000003_Node000002" title=" " alt="" coords="255,45,223,41,224,36,255,40"/>
+</map>

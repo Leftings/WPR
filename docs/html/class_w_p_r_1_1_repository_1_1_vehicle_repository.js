@@ -1,0 +1,27 @@
+var class_w_p_r_1_1_repository_1_1_vehicle_repository =
+[
+    [ "VehicleRepository", "class_w_p_r_1_1_repository_1_1_vehicle_repository.html#a14a6babb6d19b54f9bdfe9dcd922ae6a", null ],
+    [ "CancelRental", "class_w_p_r_1_1_repository_1_1_vehicle_repository.html#a774953f45d278043f0b8ff79cdefa4df", null ],
+    [ "ChangeRental", "class_w_p_r_1_1_repository_1_1_vehicle_repository.html#a57416a2c12ab696bf29a9df2b3509d01", null ],
+    [ "ChangeRepairStatus", "class_w_p_r_1_1_repository_1_1_vehicle_repository.html#ac3efc62914d63ea27fb7fa07d1294b35", null ],
+    [ "DecryptCookie", "class_w_p_r_1_1_repository_1_1_vehicle_repository.html#af4c31712aa266cf049a33a54697cdc60", null ],
+    [ "DeleteVehicleAsync", "class_w_p_r_1_1_repository_1_1_vehicle_repository.html#a73e48f0a16549d09831208eb2b575beb", null ],
+    [ "GetAllUserRentals", "class_w_p_r_1_1_repository_1_1_vehicle_repository.html#a67db6526a03c26958ee2c78af449dc5d", null ],
+    [ "GetAllUserRentalsDetailed", "class_w_p_r_1_1_repository_1_1_vehicle_repository.html#abd6f9915907cc3aebdc50caeaf2f9bd8", null ],
+    [ "GetFrameNumbersAsync", "class_w_p_r_1_1_repository_1_1_vehicle_repository.html#af398d024d4a743ca23f56ee501c2e4bb", null ],
+    [ "GetFrameNumberSpecifiekTypeAsync", "class_w_p_r_1_1_repository_1_1_vehicle_repository.html#a5a3de64f60e537949c6cc0d741190e5c", null ],
+    [ "GetVehicleColorAsync", "class_w_p_r_1_1_repository_1_1_vehicle_repository.html#a7d5690f15622f36a6c229b993a2a9ea9", null ],
+    [ "GetVehicleDataAsync", "class_w_p_r_1_1_repository_1_1_vehicle_repository.html#a239ad32f36c6d096bafe599bc79bb970", null ],
+    [ "GetVehicleNameAsync", "class_w_p_r_1_1_repository_1_1_vehicle_repository.html#ac966b529fb982058bba744e3f8a03501", null ],
+    [ "GetVehiclePlateAsync", "class_w_p_r_1_1_repository_1_1_vehicle_repository.html#a44c60ce7050a7813b4cfca5b8292ab4e", null ],
+    [ "HireVehicle", "class_w_p_r_1_1_repository_1_1_vehicle_repository.html#a35a796e7cf96268b3fe824913616c411", null ],
+    [ "InsertRequest", "class_w_p_r_1_1_repository_1_1_vehicle_repository.html#af8c82079f31c3bbec4c7d0af846256d8", null ],
+    [ "IsBusinessUser", "class_w_p_r_1_1_repository_1_1_vehicle_repository.html#a8f27557367909f3ab26b7f8ac80fa33a", null ],
+    [ "SendEmail", "class_w_p_r_1_1_repository_1_1_vehicle_repository.html#a2c371ee4ceecc0aed0aa772f6e8eee5a", null ],
+    [ "_connector", "class_w_p_r_1_1_repository_1_1_vehicle_repository.html#aee2f3da59ff3f7177ab5f962c16e2e7c", null ],
+    [ "_crypt", "class_w_p_r_1_1_repository_1_1_vehicle_repository.html#a2e388ed4c58b74b5e0210445b262faf1", null ],
+    [ "_emailService", "class_w_p_r_1_1_repository_1_1_vehicle_repository.html#ae78b0e51a191e0fbfd3395e92158557a", null ],
+    [ "Message", "class_w_p_r_1_1_repository_1_1_vehicle_repository.html#a331f9d150d5870f1f3cc3215ff587924", null ],
+    [ "Status", "class_w_p_r_1_1_repository_1_1_vehicle_repository.html#a757dec8cb7ee7a9edde9f9ae8716c8f5", null ],
+    [ "StatusCode", "class_w_p_r_1_1_repository_1_1_vehicle_repository.html#a0abd0395724205d79472c5d97678c880", null ]
+];

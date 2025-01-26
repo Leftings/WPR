@@ -1,0 +1,357 @@
+\doxysection{WPR.\+Controllers.\+Customer.\+Add\+Business.\+Add\+Business\+Controller Class Referentie}
+\hypertarget{class_w_p_r_1_1_controllers_1_1_customer_1_1_add_business_1_1_add_business_controller}{}\label{class_w_p_r_1_1_controllers_1_1_customer_1_1_add_business_1_1_add_business_controller}\index{WPR.Controllers.Customer.AddBusiness.AddBusinessController@{WPR.Controllers.Customer.AddBusiness.AddBusinessController}}
+
+
+Controller voor het verbinden van het aanmaken van bedrijven op basis van het KVK nummer. Deze controller behandelt de aanvragen voor nieuwe bedrijven, de goedkeuring of afwijzing van bedrijven, en het versturen van e-\/mails.  
+
+
+
+
+Klasse diagram voor WPR.\+Controllers.\+Customer.\+Add\+Business.\+Add\+Business\+Controller
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=249pt]{class_w_p_r_1_1_controllers_1_1_customer_1_1_add_business_1_1_add_business_controller__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboratie diagram voor WPR.\+Controllers.\+Customer.\+Add\+Business.\+Add\+Business\+Controller\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_w_p_r_1_1_controllers_1_1_customer_1_1_add_business_1_1_add_business_controller__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Members}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_customer_1_1_add_business_1_1_add_business_controller_aa84dfe5d6f136e2513a6d40cc690c73f}{Add\+Business\+Controller}} (\mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_employee_repository}{IEmployee\+Repository}} employee\+Repository, \mbox{\hyperlink{interface_w_p_r_1_1_services_1_1_i_email_service}{IEmail\+Service}} email\+Service)
+\begin{DoxyCompactList}\small\item\em Constructor voor de controller. Zet de benodigde afhankelijkheden voor de repository en de e-\/mailservice. \end{DoxyCompactList}\item 
+async Task$<$ IAction\+Result $>$ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_customer_1_1_add_business_1_1_add_business_controller_a2cbfc68c2a54a65fc72b6f38c99e7afc}{Add\+Business}} (\mbox{[}From\+Form\mbox{]} \mbox{\hyperlink{namespace_w_p_r_1_1_controllers_1_1_customer_1_1_add_business_af184e38969a148e23ef1fe5429a74898}{Add\+Business\+Request}} request)
+\begin{DoxyCompactList}\small\item\em Voegt een nieuw bedrijf toe op basis van het KVK-\/nummer en stuurt een response terug. \end{DoxyCompactList}\item 
+async Task$<$ IAction\+Result $>$ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_customer_1_1_add_business_1_1_add_business_controller_a3e1a7027fc08cd768f115a08a8a6f5f8}{Get\+New\+Businesses}} ()
+\begin{DoxyCompactList}\small\item\em Haalt een lijst op van nieuwe bedrijfsaanvragen die nog niet zijn goedgekeurd. \end{DoxyCompactList}\item 
+async Task$<$ IAction\+Result $>$ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_customer_1_1_add_business_1_1_add_business_controller_a7ee6740dc9609d5df293a4d3fbad32c7}{Get\+New\+Business}} (int kvk)
+\begin{DoxyCompactList}\small\item\em Haalt gedetailleerde informatie op over een specifiek bedrijf op basis van het KVK-\/nummer. \end{DoxyCompactList}\item 
+async Task$<$ IAction\+Result $>$ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_customer_1_1_add_business_1_1_add_business_controller_a4029d0dab4616b0792aa7402e5504725}{Business\+Accepted}} (int kvk)
+\begin{DoxyCompactList}\small\item\em Markeert een bedrijfsaanvraag als geaccepteerd, genereert een gebruikerswachtwoord voor de beheerder en stuurt een bevestigingsmail. \end{DoxyCompactList}\item 
+async Task$<$ IAction\+Result $>$ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_customer_1_1_add_business_1_1_add_business_controller_ad6c4461c617ac6cd5a2d0670c1ee2882}{Business\+Denied}} (int kvk)
+\begin{DoxyCompactList}\small\item\em Markeert een bedrijfsaanvraag als afgewezen en stuurt een afwijzingsmail. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributen}
+\begin{DoxyCompactItemize}
+\item 
+readonly \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_employee_repository}{IEmployee\+Repository}} \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_customer_1_1_add_business_1_1_add_business_controller_afe7bad869d6de8e48c8a44d65cc8e6fa}{\+\_\+employee\+Repository}}
+\item 
+readonly \mbox{\hyperlink{interface_w_p_r_1_1_services_1_1_i_email_service}{IEmail\+Service}} \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_customer_1_1_add_business_1_1_add_business_controller_a5c9a5c970562bd13b2fd6b069815975b}{\+\_\+email\+Service}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Gedetailleerde Beschrijving}
+Controller voor het verbinden van het aanmaken van bedrijven op basis van het KVK nummer. Deze controller behandelt de aanvragen voor nieuwe bedrijven, de goedkeuring of afwijzing van bedrijven, en het versturen van e-\/mails. 
+
+De definitie bevindt zich op regel \mbox{\hyperlink{add_business_controller_8cs_source_l00015}{15}} in het bestand \mbox{\hyperlink{add_business_controller_8cs_source}{add\+Business\+Controller.\+cs}}.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentatie}
+\Hypertarget{class_w_p_r_1_1_controllers_1_1_customer_1_1_add_business_1_1_add_business_controller_aa84dfe5d6f136e2513a6d40cc690c73f}\index{WPR.Controllers.Customer.AddBusiness.AddBusinessController@{WPR.Controllers.Customer.AddBusiness.AddBusinessController}!AddBusinessController@{AddBusinessController}}
+\index{AddBusinessController@{AddBusinessController}!WPR.Controllers.Customer.AddBusiness.AddBusinessController@{WPR.Controllers.Customer.AddBusiness.AddBusinessController}}
+\doxysubsubsection{\texorpdfstring{AddBusinessController()}{AddBusinessController()}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_controllers_1_1_customer_1_1_add_business_1_1_add_business_controller_aa84dfe5d6f136e2513a6d40cc690c73f} 
+WPR.\+Controllers.\+Customer.\+Add\+Business.\+Add\+Business\+Controller.\+Add\+Business\+Controller (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_employee_repository}{IEmployee\+Repository}}}]{employee\+Repository}{, }\item[{\mbox{\hyperlink{interface_w_p_r_1_1_services_1_1_i_email_service}{IEmail\+Service}}}]{email\+Service}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructor voor de controller. Zet de benodigde afhankelijkheden voor de repository en de e-\/mailservice. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em employee\+Repository} & De repository voor werknemersgerelateerde gegevens.\\
+\hline
+{\em email\+Service} & De service voor het verzenden van e-\/mails.\\
+\hline
+\end{DoxyParams}
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{add_business_controller_8cs_source_l00025}{25}} in het bestand \mbox{\hyperlink{add_business_controller_8cs_source}{add\+Business\+Controller.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00026\ \ \ \ \ \{}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \_employeeRepository\ =\ employeeRepository\ ??\ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ ArgumentNullException(nameof(employeeRepository));}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \_emailService\ =\ emailService\ ??\ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ ArgumentNullException(nameof(emailService));}
+\DoxyCodeLine{00029\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+Gebruikt \mbox{\hyperlink{add_business_controller_8cs_source_l00018}{\+\_\+email\+Service}} en \mbox{\hyperlink{add_business_controller_8cs_source_l00017}{\+\_\+employee\+Repository}}.
+
+
+
+\doxysubsection{Documentatie van functie members}
+\Hypertarget{class_w_p_r_1_1_controllers_1_1_customer_1_1_add_business_1_1_add_business_controller_a2cbfc68c2a54a65fc72b6f38c99e7afc}\index{WPR.Controllers.Customer.AddBusiness.AddBusinessController@{WPR.Controllers.Customer.AddBusiness.AddBusinessController}!AddBusiness@{AddBusiness}}
+\index{AddBusiness@{AddBusiness}!WPR.Controllers.Customer.AddBusiness.AddBusinessController@{WPR.Controllers.Customer.AddBusiness.AddBusinessController}}
+\doxysubsubsection{\texorpdfstring{AddBusiness()}{AddBusiness()}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_controllers_1_1_customer_1_1_add_business_1_1_add_business_controller_a2cbfc68c2a54a65fc72b6f38c99e7afc} 
+async Task$<$ IAction\+Result $>$ WPR.\+Controllers.\+Customer.\+Add\+Business.\+Add\+Business\+Controller.\+Add\+Business (\begin{DoxyParamCaption}\item[{\mbox{[}\+From\+Form\mbox{]} \mbox{\hyperlink{namespace_w_p_r_1_1_controllers_1_1_customer_1_1_add_business_af184e38969a148e23ef1fe5429a74898}{Add\+Business\+Request}}}]{request}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Voegt een nieuw bedrijf toe op basis van het KVK-\/nummer en stuurt een response terug. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em request} & Het verzoek om een nieuw bedrijf toe te voegen.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retourneert}
+Retourneert de status en een boodschap over het resultaat van de toevoeging.
+\end{DoxyReturn}
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{add_business_controller_8cs_source_l00037}{37}} in het bestand \mbox{\hyperlink{add_business_controller_8cs_source}{add\+Business\+Controller.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00038\ \ \ \ \ \{}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ var\ output\ =\ await\ \_employeeRepository.AddBusiness(request);}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (output.status)}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Ok(\textcolor{keyword}{new}\ \{\ output.message\ \});}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ BadRequest(\textcolor{keyword}{new}\ \{\ output.message\ \});}
+\DoxyCodeLine{00046\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+Gebruikt \mbox{\hyperlink{add_business_controller_8cs_source_l00017}{\+\_\+employee\+Repository}} en \mbox{\hyperlink{add_business_request_8cs_source_l00008}{WPR.\+Controllers.\+Customer.\+Add\+Business.\+Add\+Business\+Request()}}.
+
+Hier is de call graaf voor deze functie\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_w_p_r_1_1_controllers_1_1_customer_1_1_add_business_1_1_add_business_controller_a2cbfc68c2a54a65fc72b6f38c99e7afc_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_w_p_r_1_1_controllers_1_1_customer_1_1_add_business_1_1_add_business_controller_a4029d0dab4616b0792aa7402e5504725}\index{WPR.Controllers.Customer.AddBusiness.AddBusinessController@{WPR.Controllers.Customer.AddBusiness.AddBusinessController}!BusinessAccepted@{BusinessAccepted}}
+\index{BusinessAccepted@{BusinessAccepted}!WPR.Controllers.Customer.AddBusiness.AddBusinessController@{WPR.Controllers.Customer.AddBusiness.AddBusinessController}}
+\doxysubsubsection{\texorpdfstring{BusinessAccepted()}{BusinessAccepted()}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_controllers_1_1_customer_1_1_add_business_1_1_add_business_controller_a4029d0dab4616b0792aa7402e5504725} 
+async Task$<$ IAction\+Result $>$ WPR.\+Controllers.\+Customer.\+Add\+Business.\+Add\+Business\+Controller.\+Business\+Accepted (\begin{DoxyParamCaption}\item[{int}]{kvk}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Markeert een bedrijfsaanvraag als geaccepteerd, genereert een gebruikerswachtwoord voor de beheerder en stuurt een bevestigingsmail. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em kvk} & Het KVK-\/nummer van het bedrijf.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retourneert}
+Retourneert een statusbericht over de goedkeuring en e-\/mailverzending.
+\end{DoxyReturn}
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{add_business_controller_8cs_source_l00087}{87}} in het bestand \mbox{\hyperlink{add_business_controller_8cs_source}{add\+Business\+Controller.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00088\ \ \ \ \ \{}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ emailSend\ =\ \textcolor{stringliteral}{"{}No\ Email\ Send"{}};}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ (\textcolor{keywordtype}{int}\ StatusCode,\ \textcolor{keywordtype}{string}\ Message)\ response\ =\ \_employeeRepository.BusinessAccepted(kvk);}
+\DoxyCodeLine{00091\ }
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (response.StatusCode\ ==\ 200)}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \ \ \ \ (\textcolor{keywordtype}{bool}\ Status,\ \textcolor{keywordtype}{string}\ Message,\ Dictionary<string,\ object>\ Data)\ info\ =\ \_employeeRepository.GetBusinessInfo(kvk);}
+\DoxyCodeLine{00095\ }
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (info.Status)}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ password\ =\ StrongPasswordMaker.CreatePassword();}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ await\ \_employeeRepository.AddStaff(\textcolor{keyword}{new}\ SignUpStaffRequest()}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{FirstName\ =\ \textcolor{stringliteral}{"{}Vehicle"{}},\ LastName\ =\ \textcolor{stringliteral}{"{}Manager"{}},\ Password\ =\ password,\ Job\ =\ \textcolor{stringliteral}{"{}Wagen"{}},\ KvK\ =\ Convert.ToInt32(info.Data[\textcolor{stringliteral}{"{}KvK"{}}]),\ Email\ =\ \$\textcolor{stringliteral}{"{}wagenparkbeheerder\{info.Data["{}}Domain\textcolor{stringliteral}{"{}]\}"{}}}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \_emailService.SendBusinessReviewEmail((\textcolor{keywordtype}{string})info.Data[\textcolor{stringliteral}{"{}ContactEmail"{}}],\ (\textcolor{keywordtype}{string})info.Data[\textcolor{stringliteral}{"{}BusinessName"{}}],\ (\textcolor{keywordtype}{string})info.Data[\textcolor{stringliteral}{"{}Domain"{}}],\ password,\ \textcolor{keyword}{true});}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ emailSend\ =\ \textcolor{stringliteral}{"{}Email\ Send"{}};}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00106\ }
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ StatusCode(response.StatusCode,\ \textcolor{keyword}{new}\ \{\ message\ =\ \$\textcolor{stringliteral}{"{}\{response.Message\}\(\backslash\)n\{emailSend\}"{}}\ \});}
+\DoxyCodeLine{00108\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+Gebruikt \mbox{\hyperlink{add_business_controller_8cs_source_l00018}{\+\_\+email\+Service}}, \mbox{\hyperlink{add_business_controller_8cs_source_l00017}{\+\_\+employee\+Repository}} en \mbox{\hyperlink{_strong_password_maker_8cs_source_l00013}{WPR.\+Utils.\+Strong\+Password\+Maker.\+Create\+Password()}}.
+
+Hier is de call graaf voor deze functie\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_w_p_r_1_1_controllers_1_1_customer_1_1_add_business_1_1_add_business_controller_a4029d0dab4616b0792aa7402e5504725_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_w_p_r_1_1_controllers_1_1_customer_1_1_add_business_1_1_add_business_controller_ad6c4461c617ac6cd5a2d0670c1ee2882}\index{WPR.Controllers.Customer.AddBusiness.AddBusinessController@{WPR.Controllers.Customer.AddBusiness.AddBusinessController}!BusinessDenied@{BusinessDenied}}
+\index{BusinessDenied@{BusinessDenied}!WPR.Controllers.Customer.AddBusiness.AddBusinessController@{WPR.Controllers.Customer.AddBusiness.AddBusinessController}}
+\doxysubsubsection{\texorpdfstring{BusinessDenied()}{BusinessDenied()}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_controllers_1_1_customer_1_1_add_business_1_1_add_business_controller_ad6c4461c617ac6cd5a2d0670c1ee2882} 
+async Task$<$ IAction\+Result $>$ WPR.\+Controllers.\+Customer.\+Add\+Business.\+Add\+Business\+Controller.\+Business\+Denied (\begin{DoxyParamCaption}\item[{int}]{kvk}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Markeert een bedrijfsaanvraag als afgewezen en stuurt een afwijzingsmail. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em kvk} & Het KVK-\/nummer van het bedrijf.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retourneert}
+Retourneert een statusbericht over de afwijzing en e-\/mailverzending.
+\end{DoxyReturn}
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{add_business_controller_8cs_source_l00116}{116}} in het bestand \mbox{\hyperlink{add_business_controller_8cs_source}{add\+Business\+Controller.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00117\ \ \ \ \ \{}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ emailSend\ =\ \textcolor{stringliteral}{"{}No\ Email\ Send"{}};}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ (\textcolor{keywordtype}{bool}\ Status,\ \textcolor{keywordtype}{string}\ Message,\ Dictionary<string,\ object>\ Data)\ info\ =\ \_employeeRepository.GetBusinessInfo(kvk);}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ (\textcolor{keywordtype}{int}\ StatusCode,\ \textcolor{keywordtype}{string}\ Message)\ response\ =\ \_employeeRepository.BusinessDenied(kvk);}
+\DoxyCodeLine{00121\ }
+\DoxyCodeLine{00122\ }
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (response.StatusCode\ ==\ 200)}
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (info.Status)}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \_emailService.SendBusinessReviewEmail((\textcolor{keywordtype}{string})info.Data[\textcolor{stringliteral}{"{}ContactEmail"{}}],\ (\textcolor{keywordtype}{string})info.Data[\textcolor{stringliteral}{"{}BusinessName"{}}],\ \textcolor{keyword}{null},\ \textcolor{keyword}{null},\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ emailSend\ =\ \textcolor{stringliteral}{"{}Email\ Send"{}};}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ StatusCode(response.StatusCode,\ \textcolor{keyword}{new}\ \{\ message\ =\ \$\textcolor{stringliteral}{"{}\{response.Message\}\(\backslash\)n\{emailSend\}"{}}\ \});}
+\DoxyCodeLine{00133\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+Gebruikt \mbox{\hyperlink{add_business_controller_8cs_source_l00018}{\+\_\+email\+Service}} en \mbox{\hyperlink{add_business_controller_8cs_source_l00017}{\+\_\+employee\+Repository}}.
+
+\Hypertarget{class_w_p_r_1_1_controllers_1_1_customer_1_1_add_business_1_1_add_business_controller_a7ee6740dc9609d5df293a4d3fbad32c7}\index{WPR.Controllers.Customer.AddBusiness.AddBusinessController@{WPR.Controllers.Customer.AddBusiness.AddBusinessController}!GetNewBusiness@{GetNewBusiness}}
+\index{GetNewBusiness@{GetNewBusiness}!WPR.Controllers.Customer.AddBusiness.AddBusinessController@{WPR.Controllers.Customer.AddBusiness.AddBusinessController}}
+\doxysubsubsection{\texorpdfstring{GetNewBusiness()}{GetNewBusiness()}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_controllers_1_1_customer_1_1_add_business_1_1_add_business_controller_a7ee6740dc9609d5df293a4d3fbad32c7} 
+async Task$<$ IAction\+Result $>$ WPR.\+Controllers.\+Customer.\+Add\+Business.\+Add\+Business\+Controller.\+Get\+New\+Business (\begin{DoxyParamCaption}\item[{int}]{kvk}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Haalt gedetailleerde informatie op over een specifiek bedrijf op basis van het KVK-\/nummer. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em kvk} & Het KVK-\/nummer van het bedrijf.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retourneert}
+Retourneert de gedetailleerde informatie over het bedrijf.
+\end{DoxyReturn}
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{add_business_controller_8cs_source_l00070}{70}} in het bestand \mbox{\hyperlink{add_business_controller_8cs_source}{add\+Business\+Controller.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00071\ \ \ \ \ \{}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ (\textcolor{keywordtype}{int}\ StatusCode,\ \textcolor{keywordtype}{string}\ Message,\ Dictionary<string,\ object>\ Data)\ response\ =\ await\ \_employeeRepository.ViewBusinessRequestDetailed(kvk);}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (response.StatusCode\ ==\ 200)}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ StatusCode(response.StatusCode,\ \textcolor{keyword}{new}\ \{\ message\ =\ response.Message,\ data\ =\ response.Data\ \});}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ StatusCode(response.StatusCode,\ \textcolor{keyword}{new}\ \{\ message\ =\ response.Message\ \});}
+\DoxyCodeLine{00079\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+Gebruikt \mbox{\hyperlink{add_business_controller_8cs_source_l00017}{\+\_\+employee\+Repository}}.
+
+\Hypertarget{class_w_p_r_1_1_controllers_1_1_customer_1_1_add_business_1_1_add_business_controller_a3e1a7027fc08cd768f115a08a8a6f5f8}\index{WPR.Controllers.Customer.AddBusiness.AddBusinessController@{WPR.Controllers.Customer.AddBusiness.AddBusinessController}!GetNewBusinesses@{GetNewBusinesses}}
+\index{GetNewBusinesses@{GetNewBusinesses}!WPR.Controllers.Customer.AddBusiness.AddBusinessController@{WPR.Controllers.Customer.AddBusiness.AddBusinessController}}
+\doxysubsubsection{\texorpdfstring{GetNewBusinesses()}{GetNewBusinesses()}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_controllers_1_1_customer_1_1_add_business_1_1_add_business_controller_a3e1a7027fc08cd768f115a08a8a6f5f8} 
+async Task$<$ IAction\+Result $>$ WPR.\+Controllers.\+Customer.\+Add\+Business.\+Add\+Business\+Controller.\+Get\+New\+Businesses (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Haalt een lijst op van nieuwe bedrijfsaanvragen die nog niet zijn goedgekeurd. 
+
+\begin{DoxyReturn}{Retourneert}
+Retourneert een lijst van KVK-\/nummers van nieuwe aanvragen.
+\end{DoxyReturn}
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{add_business_controller_8cs_source_l00053}{53}} in het bestand \mbox{\hyperlink{add_business_controller_8cs_source}{add\+Business\+Controller.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00054\ \ \ \ \ \{}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ (\textcolor{keywordtype}{int}\ StatusCode,\ \textcolor{keywordtype}{string}\ Message,\ IList<int>\ KvK)\ response\ =\ \_employeeRepository.ViewBusinessRequests();}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (response.StatusCode\ ==\ 200)}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ StatusCode(response.StatusCode,\ \textcolor{keyword}{new}\ \{\ message\ =\ response.KvK\ \});}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ StatusCode(response.StatusCode,\ \textcolor{keyword}{new}\ \{\ message\ =\ response.Message\ \});}
+\DoxyCodeLine{00062\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+Gebruikt \mbox{\hyperlink{add_business_controller_8cs_source_l00017}{\+\_\+employee\+Repository}}.
+
+
+
+\doxysubsection{Documentatie van data velden}
+\Hypertarget{class_w_p_r_1_1_controllers_1_1_customer_1_1_add_business_1_1_add_business_controller_a5c9a5c970562bd13b2fd6b069815975b}\index{WPR.Controllers.Customer.AddBusiness.AddBusinessController@{WPR.Controllers.Customer.AddBusiness.AddBusinessController}!\_emailService@{\_emailService}}
+\index{\_emailService@{\_emailService}!WPR.Controllers.Customer.AddBusiness.AddBusinessController@{WPR.Controllers.Customer.AddBusiness.AddBusinessController}}
+\doxysubsubsection{\texorpdfstring{\_emailService}{\_emailService}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_controllers_1_1_customer_1_1_add_business_1_1_add_business_controller_a5c9a5c970562bd13b2fd6b069815975b} 
+readonly \mbox{\hyperlink{interface_w_p_r_1_1_services_1_1_i_email_service}{IEmail\+Service}} WPR.\+Controllers.\+Customer.\+Add\+Business.\+Add\+Business\+Controller.\+\_\+email\+Service\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{add_business_controller_8cs_source_l00018}{18}} in het bestand \mbox{\hyperlink{add_business_controller_8cs_source}{add\+Business\+Controller.\+cs}}.
+
+
+
+Wordt aangeroepen door \mbox{\hyperlink{add_business_controller_8cs_source_l00025}{Add\+Business\+Controller()}}, \mbox{\hyperlink{add_business_controller_8cs_source_l00087}{Business\+Accepted()}} en \mbox{\hyperlink{add_business_controller_8cs_source_l00116}{Business\+Denied()}}.
+
+\Hypertarget{class_w_p_r_1_1_controllers_1_1_customer_1_1_add_business_1_1_add_business_controller_afe7bad869d6de8e48c8a44d65cc8e6fa}\index{WPR.Controllers.Customer.AddBusiness.AddBusinessController@{WPR.Controllers.Customer.AddBusiness.AddBusinessController}!\_employeeRepository@{\_employeeRepository}}
+\index{\_employeeRepository@{\_employeeRepository}!WPR.Controllers.Customer.AddBusiness.AddBusinessController@{WPR.Controllers.Customer.AddBusiness.AddBusinessController}}
+\doxysubsubsection{\texorpdfstring{\_employeeRepository}{\_employeeRepository}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_controllers_1_1_customer_1_1_add_business_1_1_add_business_controller_afe7bad869d6de8e48c8a44d65cc8e6fa} 
+readonly \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_employee_repository}{IEmployee\+Repository}} WPR.\+Controllers.\+Customer.\+Add\+Business.\+Add\+Business\+Controller.\+\_\+employee\+Repository\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{add_business_controller_8cs_source_l00017}{17}} in het bestand \mbox{\hyperlink{add_business_controller_8cs_source}{add\+Business\+Controller.\+cs}}.
+
+
+
+Wordt aangeroepen door \mbox{\hyperlink{add_business_controller_8cs_source_l00037}{Add\+Business()}}, \mbox{\hyperlink{add_business_controller_8cs_source_l00025}{Add\+Business\+Controller()}}, \mbox{\hyperlink{add_business_controller_8cs_source_l00087}{Business\+Accepted()}}, \mbox{\hyperlink{add_business_controller_8cs_source_l00116}{Business\+Denied()}}, \mbox{\hyperlink{add_business_controller_8cs_source_l00070}{Get\+New\+Business()}} en \mbox{\hyperlink{add_business_controller_8cs_source_l00053}{Get\+New\+Businesses()}}.
+
+
+
+De documentatie voor deze klasse is gegenereerd op basis van het volgende bestand\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/codes/\+WPR8/\+WPR/backend/src/\+Controllers/customer/add\+Business/\mbox{\hyperlink{add_business_controller_8cs}{add\+Business\+Controller.\+cs}}\end{DoxyCompactItemize}

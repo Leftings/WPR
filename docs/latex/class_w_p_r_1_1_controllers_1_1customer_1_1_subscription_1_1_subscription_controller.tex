@@ -1,0 +1,381 @@
+\doxysection{WPR.\+Controllers.\+customer.\+Subscription.\+Subscription\+Controller Class Referentie}
+\hypertarget{class_w_p_r_1_1_controllers_1_1customer_1_1_subscription_1_1_subscription_controller}{}\label{class_w_p_r_1_1_controllers_1_1customer_1_1_subscription_1_1_subscription_controller}\index{WPR.Controllers.customer.Subscription.SubscriptionController@{WPR.Controllers.customer.Subscription.SubscriptionController}}
+
+
+Klasse diagram voor WPR.\+Controllers.\+customer.\+Subscription.\+Subscription\+Controller
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=241pt]{class_w_p_r_1_1_controllers_1_1customer_1_1_subscription_1_1_subscription_controller__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboratie diagram voor WPR.\+Controllers.\+customer.\+Subscription.\+Subscription\+Controller\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_w_p_r_1_1_controllers_1_1customer_1_1_subscription_1_1_subscription_controller__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Members}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1customer_1_1_subscription_1_1_subscription_controller_a66e7802193419454d989712a5b4152c8}{Subscription\+Controller}} (\mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_user_repository}{IUser\+Repository}} user\+Repository, \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_back_office_repository}{IBack\+Office\+Repository}} back\+Office\+Repository)
+\item 
+async Task$<$ IAction\+Result $>$ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1customer_1_1_subscription_1_1_subscription_controller_af05fb35f00e8620195d82137a7e25a28}{Get\+Subscriptions}} ()
+\begin{DoxyCompactList}\small\item\em Haalt alle abonnementen op. \end{DoxyCompactList}\item 
+async Task$<$ IAction\+Result $>$ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1customer_1_1_subscription_1_1_subscription_controller_ab6af00d49b971f36bd2a0d8d2eefc8dc}{Get\+Subscription\+Data}} (int id)
+\begin{DoxyCompactList}\small\item\em Haalt specifieke gegevens van een abonnement op. \end{DoxyCompactList}\item 
+async Task$<$ IAction\+Result $>$ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1customer_1_1_subscription_1_1_subscription_controller_ae18c324d67f815440e484b3a6534ce2a}{Get\+Subscription\+Ids\+Async}} ()
+\begin{DoxyCompactList}\small\item\em Haalt alle abonnement-\/\+IDs op. \end{DoxyCompactList}\item 
+async Task$<$ IAction\+Result $>$ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1customer_1_1_subscription_1_1_subscription_controller_aa8aa8fbbaf69a83635888401c9111339}{Add\+Subscription}} (\mbox{[}From\+Body\mbox{]} \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1customer_1_1_subscription_1_1_subscription_request}{Subscription\+Request}} subscription\+Request)
+\begin{DoxyCompactList}\small\item\em Voegt een nieuw abonnement toe. \end{DoxyCompactList}\item 
+async Task$<$ IAction\+Result $>$ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1customer_1_1_subscription_1_1_subscription_controller_ab9bf9e059859c0af9f82db9c678ac4fb}{Delete\+Subscription\+Async}} (int id)
+\begin{DoxyCompactList}\small\item\em Verwijdert een specifiek abonnement op basis van het ID. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributen}
+\begin{DoxyCompactItemize}
+\item 
+readonly \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_user_repository}{IUser\+Repository}} \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1customer_1_1_subscription_1_1_subscription_controller_a93cb4468a4f6e3c1aa08e256b16fbb0e}{\+\_\+user\+Repository}}
+\item 
+readonly \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_back_office_repository}{IBack\+Office\+Repository}} \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1customer_1_1_subscription_1_1_subscription_controller_abae88c9f7aa7bce19bd4f130033f1922}{\+\_\+back\+Office\+Repository}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Gedetailleerde Beschrijving}
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{_subscription_controller_8cs_source_l00008}{8}} in het bestand \mbox{\hyperlink{_subscription_controller_8cs_source}{Subscription\+Controller.\+cs}}.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentatie}
+\Hypertarget{class_w_p_r_1_1_controllers_1_1customer_1_1_subscription_1_1_subscription_controller_a66e7802193419454d989712a5b4152c8}\index{WPR.Controllers.customer.Subscription.SubscriptionController@{WPR.Controllers.customer.Subscription.SubscriptionController}!SubscriptionController@{SubscriptionController}}
+\index{SubscriptionController@{SubscriptionController}!WPR.Controllers.customer.Subscription.SubscriptionController@{WPR.Controllers.customer.Subscription.SubscriptionController}}
+\doxysubsubsection{\texorpdfstring{SubscriptionController()}{SubscriptionController()}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_controllers_1_1customer_1_1_subscription_1_1_subscription_controller_a66e7802193419454d989712a5b4152c8} 
+WPR.\+Controllers.\+customer.\+Subscription.\+Subscription\+Controller.\+Subscription\+Controller (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_user_repository}{IUser\+Repository}}}]{user\+Repository}{, }\item[{\mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_back_office_repository}{IBack\+Office\+Repository}}}]{back\+Office\+Repository}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{_subscription_controller_8cs_source_l00013}{13}} in het bestand \mbox{\hyperlink{_subscription_controller_8cs_source}{Subscription\+Controller.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00014\ \ \ \ \ \{}
+\DoxyCodeLine{00015\ \ \ \ \ \ \ \ \ \_userRepository\ =\ userRepository\ ??\ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ ArgumentNullException(nameof(userRepository));}
+\DoxyCodeLine{00016\ \ \ \ \ \ \ \ \ \_backOfficeRepository\ =\ backOfficeRepository\ ??\ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ ArgumentNullException(nameof(backOfficeRepository));}
+\DoxyCodeLine{00017\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+Gebruikt \mbox{\hyperlink{_subscription_controller_8cs_source_l00011}{\+\_\+back\+Office\+Repository}} en \mbox{\hyperlink{_subscription_controller_8cs_source_l00010}{\+\_\+user\+Repository}}.
+
+
+
+\doxysubsection{Documentatie van functie members}
+\Hypertarget{class_w_p_r_1_1_controllers_1_1customer_1_1_subscription_1_1_subscription_controller_aa8aa8fbbaf69a83635888401c9111339}\index{WPR.Controllers.customer.Subscription.SubscriptionController@{WPR.Controllers.customer.Subscription.SubscriptionController}!AddSubscription@{AddSubscription}}
+\index{AddSubscription@{AddSubscription}!WPR.Controllers.customer.Subscription.SubscriptionController@{WPR.Controllers.customer.Subscription.SubscriptionController}}
+\doxysubsubsection{\texorpdfstring{AddSubscription()}{AddSubscription()}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_controllers_1_1customer_1_1_subscription_1_1_subscription_controller_aa8aa8fbbaf69a83635888401c9111339} 
+async Task$<$ IAction\+Result $>$ WPR.\+Controllers.\+customer.\+Subscription.\+Subscription\+Controller.\+Add\+Subscription (\begin{DoxyParamCaption}\item[{\mbox{[}\+From\+Body\mbox{]} \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1customer_1_1_subscription_1_1_subscription_request}{Subscription\+Request}}}]{subscription\+Request}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Voegt een nieuw abonnement toe. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em subscription\+Request} & De gegevens van het abonnement dat toegevoegd moet worden.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retourneert}
+Een succes-\/ of foutmelding met betrekking tot de toevoeging van het abonnement.
+\end{DoxyReturn}
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{_subscription_controller_8cs_source_l00119}{119}} in het bestand \mbox{\hyperlink{_subscription_controller_8cs_source}{Subscription\+Controller.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00120\ \ \ \ \ \{}
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}}
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \ \ \ \ var\ status\ =\ await\ \_backOfficeRepository.AddSubscriptionAsync(}
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ subscriptionRequest.Type,}
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ subscriptionRequest.Description,}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ subscriptionRequest.Discount,}
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ subscriptionRequest.Price);}
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (status.status)}
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Ok(\textcolor{keyword}{new}\ SubscriptionResponse\ \{\ Message\ =\ status.message\ \});}
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ BadRequest(\textcolor{keyword}{new}\ SubscriptionErrorResponse}
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Status\ =\ \textcolor{keyword}{false},}
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Message\ =\ status.message}
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (Exception\ e)}
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ StatusCode(500,\ \textcolor{keyword}{new}\ SubscriptionErrorResponse}
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Status\ =\ \textcolor{keyword}{false},}
+\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Message\ =\ e.Message}
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00148\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+Gebruikt \mbox{\hyperlink{_subscription_controller_8cs_source_l00011}{\+\_\+back\+Office\+Repository}}.
+
+\Hypertarget{class_w_p_r_1_1_controllers_1_1customer_1_1_subscription_1_1_subscription_controller_ab9bf9e059859c0af9f82db9c678ac4fb}\index{WPR.Controllers.customer.Subscription.SubscriptionController@{WPR.Controllers.customer.Subscription.SubscriptionController}!DeleteSubscriptionAsync@{DeleteSubscriptionAsync}}
+\index{DeleteSubscriptionAsync@{DeleteSubscriptionAsync}!WPR.Controllers.customer.Subscription.SubscriptionController@{WPR.Controllers.customer.Subscription.SubscriptionController}}
+\doxysubsubsection{\texorpdfstring{DeleteSubscriptionAsync()}{DeleteSubscriptionAsync()}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_controllers_1_1customer_1_1_subscription_1_1_subscription_controller_ab9bf9e059859c0af9f82db9c678ac4fb} 
+async Task$<$ IAction\+Result $>$ WPR.\+Controllers.\+customer.\+Subscription.\+Subscription\+Controller.\+Delete\+Subscription\+Async (\begin{DoxyParamCaption}\item[{int}]{id}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Verwijdert een specifiek abonnement op basis van het ID. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & Het ID van het abonnement dat verwijderd moet worden.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retourneert}
+Een succes-\/ of foutmelding met betrekking tot de verwijdering van het abonnement.
+\end{DoxyReturn}
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{_subscription_controller_8cs_source_l00156}{156}} in het bestand \mbox{\hyperlink{_subscription_controller_8cs_source}{Subscription\+Controller.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00157\ \ \ \ \ \{}
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}}
+\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ \ \ \ \ var\ result\ =\ await\ \_backOfficeRepository.DeleteSubscriptionAsync(\textcolor{keywordtype}{id});}
+\DoxyCodeLine{00161\ }
+\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (result.status)}
+\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Ok(\textcolor{keyword}{new}\ SubscriptionResponse\ \{\ Message\ =\ result.message\ \});}
+\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ BadRequest(\textcolor{keyword}{new}\ SubscriptionErrorResponse}
+\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00168\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Status\ =\ \textcolor{keyword}{false},}
+\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Message\ =\ result.message}
+\DoxyCodeLine{00170\ \ \ \ \ \ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{00171\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00172\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00173\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (Exception\ e)}
+\DoxyCodeLine{00174\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00175\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ StatusCode(500,\ \textcolor{keyword}{new}\ SubscriptionErrorResponse}
+\DoxyCodeLine{00176\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00177\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Status\ =\ \textcolor{keyword}{false},}
+\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Message\ =\ e.Message}
+\DoxyCodeLine{00179\ \ \ \ \ \ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{00180\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00181\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+Gebruikt \mbox{\hyperlink{_subscription_controller_8cs_source_l00011}{\+\_\+back\+Office\+Repository}}.
+
+\Hypertarget{class_w_p_r_1_1_controllers_1_1customer_1_1_subscription_1_1_subscription_controller_ab6af00d49b971f36bd2a0d8d2eefc8dc}\index{WPR.Controllers.customer.Subscription.SubscriptionController@{WPR.Controllers.customer.Subscription.SubscriptionController}!GetSubscriptionData@{GetSubscriptionData}}
+\index{GetSubscriptionData@{GetSubscriptionData}!WPR.Controllers.customer.Subscription.SubscriptionController@{WPR.Controllers.customer.Subscription.SubscriptionController}}
+\doxysubsubsection{\texorpdfstring{GetSubscriptionData()}{GetSubscriptionData()}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_controllers_1_1customer_1_1_subscription_1_1_subscription_controller_ab6af00d49b971f36bd2a0d8d2eefc8dc} 
+async Task$<$ IAction\+Result $>$ WPR.\+Controllers.\+customer.\+Subscription.\+Subscription\+Controller.\+Get\+Subscription\+Data (\begin{DoxyParamCaption}\item[{int}]{id}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Haalt specifieke gegevens van een abonnement op. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & Het ID van het abonnement.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retourneert}
+De gegevens van het abonnement met het opgegeven ID.
+\end{DoxyReturn}
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{_subscription_controller_8cs_source_l00054}{54}} in het bestand \mbox{\hyperlink{_subscription_controller_8cs_source}{Subscription\+Controller.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00055\ \ \ \ \ \{}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \ \ \ \ var\ data\ =\ await\ \_userRepository.GetSubscriptionDataAsync(\textcolor{keywordtype}{id});}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (data\ ==\ \textcolor{keyword}{null})}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ NotFound(\textcolor{keyword}{new}\ SubscriptionErrorResponse}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Status\ =\ \textcolor{keyword}{false},}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Message\ =\ \textcolor{stringliteral}{"{}No\ subscription\ data\ found"{}}}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Ok(\textcolor{keyword}{new}\ \{\ Message\ =\ data\ \});}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (Exception\ e)}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ StatusCode(500,\ \textcolor{keyword}{new}\ SubscriptionErrorResponse}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Status\ =\ \textcolor{keyword}{false},}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Message\ =\ e.Message}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00079\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+Gebruikt \mbox{\hyperlink{_subscription_controller_8cs_source_l00010}{\+\_\+user\+Repository}}.
+
+\Hypertarget{class_w_p_r_1_1_controllers_1_1customer_1_1_subscription_1_1_subscription_controller_ae18c324d67f815440e484b3a6534ce2a}\index{WPR.Controllers.customer.Subscription.SubscriptionController@{WPR.Controllers.customer.Subscription.SubscriptionController}!GetSubscriptionIdsAsync@{GetSubscriptionIdsAsync}}
+\index{GetSubscriptionIdsAsync@{GetSubscriptionIdsAsync}!WPR.Controllers.customer.Subscription.SubscriptionController@{WPR.Controllers.customer.Subscription.SubscriptionController}}
+\doxysubsubsection{\texorpdfstring{GetSubscriptionIdsAsync()}{GetSubscriptionIdsAsync()}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_controllers_1_1customer_1_1_subscription_1_1_subscription_controller_ae18c324d67f815440e484b3a6534ce2a} 
+async Task$<$ IAction\+Result $>$ WPR.\+Controllers.\+customer.\+Subscription.\+Subscription\+Controller.\+Get\+Subscription\+Ids\+Async (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Haalt alle abonnement-\/\+IDs op. 
+
+\begin{DoxyReturn}{Retourneert}
+Een lijst van alle abonnement-\/\+IDs.
+\end{DoxyReturn}
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{_subscription_controller_8cs_source_l00086}{86}} in het bestand \mbox{\hyperlink{_subscription_controller_8cs_source}{Subscription\+Controller.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00087\ \ \ \ \ \{}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \ \ \ \ var\ ids\ =\ await\ \_userRepository.GetSubscriptionIdsAsync();}
+\DoxyCodeLine{00091\ }
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (ids\ ==\ \textcolor{keyword}{null})}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ NotFound(\textcolor{keyword}{new}\ SubscriptionErrorResponse}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Status\ =\ \textcolor{keyword}{false},}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Message\ =\ \textcolor{stringliteral}{"{}Could\ not\ find\ subscription\ ids"{}}}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00100\ }
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Ok(\textcolor{keyword}{new}\ \{\ Message\ =\ ids\ \});}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (Exception\ e)}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ StatusCode(500,\ \textcolor{keyword}{new}\ SubscriptionErrorResponse}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Status\ =\ \textcolor{keyword}{false},}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Message\ =\ e.Message}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00111\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+Gebruikt \mbox{\hyperlink{_subscription_controller_8cs_source_l00010}{\+\_\+user\+Repository}}.
+
+\Hypertarget{class_w_p_r_1_1_controllers_1_1customer_1_1_subscription_1_1_subscription_controller_af05fb35f00e8620195d82137a7e25a28}\index{WPR.Controllers.customer.Subscription.SubscriptionController@{WPR.Controllers.customer.Subscription.SubscriptionController}!GetSubscriptions@{GetSubscriptions}}
+\index{GetSubscriptions@{GetSubscriptions}!WPR.Controllers.customer.Subscription.SubscriptionController@{WPR.Controllers.customer.Subscription.SubscriptionController}}
+\doxysubsubsection{\texorpdfstring{GetSubscriptions()}{GetSubscriptions()}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_controllers_1_1customer_1_1_subscription_1_1_subscription_controller_af05fb35f00e8620195d82137a7e25a28} 
+async Task$<$ IAction\+Result $>$ WPR.\+Controllers.\+customer.\+Subscription.\+Subscription\+Controller.\+Get\+Subscriptions (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Haalt alle abonnementen op. 
+
+\begin{DoxyReturn}{Retourneert}
+Een lijst van alle abonnementen.
+\end{DoxyReturn}
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{_subscription_controller_8cs_source_l00024}{24}} in het bestand \mbox{\hyperlink{_subscription_controller_8cs_source}{Subscription\+Controller.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00025\ \ \ \ \ \{}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \ \ \ \ var\ subscription\ =\ await\ \_userRepository.GetAllSubscriptionsAsync();}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (subscription\ ==\ \textcolor{keyword}{null}\ ||\ !subscription.Any())}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ NotFound(\textcolor{stringliteral}{"{}No\ subscriptions\ found"{}});}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Ok(\textcolor{keyword}{new}\ \{\ data\ =\ subscription\ \});}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (Exception\ e)}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ StatusCode(500,\ \textcolor{keyword}{new}\ SubscriptionErrorResponse}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Status\ =\ \textcolor{keyword}{false},}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Message\ =\ e.Message}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00046\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+Gebruikt \mbox{\hyperlink{_subscription_controller_8cs_source_l00010}{\+\_\+user\+Repository}}.
+
+
+
+\doxysubsection{Documentatie van data velden}
+\Hypertarget{class_w_p_r_1_1_controllers_1_1customer_1_1_subscription_1_1_subscription_controller_abae88c9f7aa7bce19bd4f130033f1922}\index{WPR.Controllers.customer.Subscription.SubscriptionController@{WPR.Controllers.customer.Subscription.SubscriptionController}!\_backOfficeRepository@{\_backOfficeRepository}}
+\index{\_backOfficeRepository@{\_backOfficeRepository}!WPR.Controllers.customer.Subscription.SubscriptionController@{WPR.Controllers.customer.Subscription.SubscriptionController}}
+\doxysubsubsection{\texorpdfstring{\_backOfficeRepository}{\_backOfficeRepository}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_controllers_1_1customer_1_1_subscription_1_1_subscription_controller_abae88c9f7aa7bce19bd4f130033f1922} 
+readonly \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_back_office_repository}{IBack\+Office\+Repository}} WPR.\+Controllers.\+customer.\+Subscription.\+Subscription\+Controller.\+\_\+back\+Office\+Repository\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{_subscription_controller_8cs_source_l00011}{11}} in het bestand \mbox{\hyperlink{_subscription_controller_8cs_source}{Subscription\+Controller.\+cs}}.
+
+
+
+Wordt aangeroepen door \mbox{\hyperlink{_subscription_controller_8cs_source_l00119}{Add\+Subscription()}}, \mbox{\hyperlink{_subscription_controller_8cs_source_l00156}{Delete\+Subscription\+Async()}} en \mbox{\hyperlink{_subscription_controller_8cs_source_l00013}{Subscription\+Controller()}}.
+
+\Hypertarget{class_w_p_r_1_1_controllers_1_1customer_1_1_subscription_1_1_subscription_controller_a93cb4468a4f6e3c1aa08e256b16fbb0e}\index{WPR.Controllers.customer.Subscription.SubscriptionController@{WPR.Controllers.customer.Subscription.SubscriptionController}!\_userRepository@{\_userRepository}}
+\index{\_userRepository@{\_userRepository}!WPR.Controllers.customer.Subscription.SubscriptionController@{WPR.Controllers.customer.Subscription.SubscriptionController}}
+\doxysubsubsection{\texorpdfstring{\_userRepository}{\_userRepository}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_controllers_1_1customer_1_1_subscription_1_1_subscription_controller_a93cb4468a4f6e3c1aa08e256b16fbb0e} 
+readonly \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_user_repository}{IUser\+Repository}} WPR.\+Controllers.\+customer.\+Subscription.\+Subscription\+Controller.\+\_\+user\+Repository\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{_subscription_controller_8cs_source_l00010}{10}} in het bestand \mbox{\hyperlink{_subscription_controller_8cs_source}{Subscription\+Controller.\+cs}}.
+
+
+
+Wordt aangeroepen door \mbox{\hyperlink{_subscription_controller_8cs_source_l00054}{Get\+Subscription\+Data()}}, \mbox{\hyperlink{_subscription_controller_8cs_source_l00086}{Get\+Subscription\+Ids\+Async()}}, \mbox{\hyperlink{_subscription_controller_8cs_source_l00024}{Get\+Subscriptions()}} en \mbox{\hyperlink{_subscription_controller_8cs_source_l00013}{Subscription\+Controller()}}.
+
+
+
+De documentatie voor deze klasse is gegenereerd op basis van het volgende bestand\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/codes/\+WPR8/\+WPR/backend/src/\+Controllers/customer/\+Subscription/\mbox{\hyperlink{_subscription_controller_8cs}{Subscription\+Controller.\+cs}}\end{DoxyCompactItemize}

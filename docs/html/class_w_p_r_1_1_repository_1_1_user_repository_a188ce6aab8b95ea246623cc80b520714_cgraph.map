@@ -1,0 +1,20 @@
+<map id="WPR.Repository.UserRepository.AddPersonalCustomer" name="WPR.Repository.UserRepository.AddPersonalCustomer">
+<area shape="rect" id="Node000001" title="Voegt een persoonlijke klant toe aan de database na validatie van de verstrekte gegevens." alt="" coords="5,239,223,281"/>
+<area shape="rect" id="Node000002" href="$class_w_p_r_1_1_repository_1_1_user_repository.html#a42ef5421fcb8544d4aab8ed834325a74" title="Een gebruiker (klant) wordt toegevoegd aan de database, doormiddel van alle meegegeven persoondata...." alt="" coords="278,5,516,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="124,237,146,198,178,150,219,100,269,58,277,53,280,58,272,62,223,104,182,153,150,201,128,239"/>
+<area shape="rect" id="Node000003" href="$class_w_p_r_1_1_repository_1_1_user_repository.html#a25a2f860883fcc39ea7fa8a932fde475" title="Het aangemaakte account wordt gekoppeld aan de particuliere tabel, doormiddel van alle meegegeven per..." alt="" coords="278,72,516,115"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="133,236,190,180,228,150,269,124,281,119,284,123,272,129,231,154,194,184,137,240"/>
+<area shape="rect" id="Node000004" href="$class_w_p_r_1_1_repository_1_1_user_repository.html#a7903e03bfe7076a6ee7b352636cb854d" title="Er wordt gekeken of het emailadres al bestaat in de databse." alt="" coords="271,139,523,181"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="161,236,270,191,292,184,293,189,272,196,163,241"/>
+<area shape="rect" id="Node000005" href="$class_w_p_r_1_1_utils_1_1_birthday_checker.html#a4c7d3943364075179b3f1ca2e0f05c46" title="Check om te kijken of het een correcte verjaardag is Leeftijd mag niet onder de 18 zijn en niet boven..." alt="" coords="302,205,492,248"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="223,245,286,237,287,242,224,250"/>
+<area shape="rect" id="Node000006" href="$class_w_p_r_1_1_utils_1_1_email_checker.html#ab97bf7cde61a138766de208bad9d5c7c" title=" " alt="" coords="304,272,490,315"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="224,270,289,278,289,283,223,275"/>
+<area shape="rect" id="Node000007" href="$class_w_p_r_1_1_utils_1_1_password_checker.html#a3874adc7b516a8fb893ed18cd0a29a94" title=" " alt="" coords="297,339,496,381"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="163,279,272,324,293,331,292,336,270,329,161,284"/>
+<area shape="rect" id="Node000008" href="$class_w_p_r_1_1_utils_1_1_tel_checker.html#aa8036be39d90b4bd0482cc25b9bbfc5a" title=" " alt="" coords="298,405,496,448"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="137,280,194,336,231,366,272,391,285,397,283,402,269,396,228,370,190,340,133,284"/>
+<area shape="rect" id="Node000009" href="$namespace_w_p_r_1_1_controllers_1_1_general_1_1_sign_up.html#a1a899a5abbcf0be4ee87632f0500c697" title="Body voor SignUpRequest." alt="" coords="310,496,484,539"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="129,280,185,364,226,414,272,458,320,487,317,491,269,462,222,417,181,368,125,283"/>
+<area shape="poly" id="edge9_Node000009_Node000009" title=" " alt="" coords="344,496,342,486,351,477,369,471,397,469,427,472,445,478,443,483,426,477,397,475,370,477,353,481,347,487,349,495"/>
+</map>

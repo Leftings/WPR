@@ -1,0 +1,342 @@
+\doxysection{WPR.\+Controllers.\+Employee.\+Shared.\+accept\+Hire\+Request.\+Accept\+Hire\+Request\+Controller Class Referentie}
+\hypertarget{class_w_p_r_1_1_controllers_1_1_employee_1_1_shared_1_1accept_hire_request_1_1_accept_hire_request_controller}{}\label{class_w_p_r_1_1_controllers_1_1_employee_1_1_shared_1_1accept_hire_request_1_1_accept_hire_request_controller}\index{WPR.Controllers.Employee.Shared.acceptHireRequest.AcceptHireRequestController@{WPR.Controllers.Employee.Shared.acceptHireRequest.AcceptHireRequestController}}
+
+
+\doxylink{class_w_p_r_1_1_controllers_1_1_employee_1_1_shared_1_1accept_hire_request_1_1_accept_hire_request_controller}{Accept\+Hire\+Request\+Controller} zorgt ervoor dat alle huuraanvragen verzameld worden en bestempelt kunnen worden als geacepteerd of geweigerd.  
+
+
+
+
+Klasse diagram voor WPR.\+Controllers.\+Employee.\+Shared.\+accept\+Hire\+Request.\+Accept\+Hire\+Request\+Controller
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=240pt]{class_w_p_r_1_1_controllers_1_1_employee_1_1_shared_1_1accept_hire_request_1_1_accept_hire_request_controller__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboratie diagram voor WPR.\+Controllers.\+Employee.\+Shared.\+accept\+Hire\+Request.\+Accept\+Hire\+Request\+Controller\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_w_p_r_1_1_controllers_1_1_employee_1_1_shared_1_1accept_hire_request_1_1_accept_hire_request_controller__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Members}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_employee_1_1_shared_1_1accept_hire_request_1_1_accept_hire_request_controller_ae9fc8f72949b29898055a88bcfcfb33e}{Accept\+Hire\+Request\+Controller}} (\mbox{\hyperlink{interface_w_p_r_1_1_database_1_1_i_connector}{IConnector}} connector, \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_employee_repository}{IEmployee\+Repository}} user\+Repository, \mbox{\hyperlink{class_w_p_r_1_1_cryption_1_1_crypt}{Crypt}} crypt)
+\item 
+async Task$<$ IAction\+Result $>$ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_employee_1_1_shared_1_1accept_hire_request_1_1_accept_hire_request_controller_a53071f794abb7d5b057fd44675e2cc19}{Get\+Reviews\+Ids\+Async}} (string user)
+\begin{DoxyCompactList}\small\item\em Alle ids van de aanvragen worden opgehaald. \end{DoxyCompactList}\item 
+async Task$<$ IAction\+Result $>$ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_employee_1_1_shared_1_1accept_hire_request_1_1_accept_hire_request_controller_a0016834aa98a99bcb0eb1ccdbff98693}{Get\+Review\+Async}} (string id)
+\begin{DoxyCompactList}\small\item\em De gegevens van een specifieke aanvraag worden opgehaald. \end{DoxyCompactList}\item 
+async Task$<$ IAction\+Result $>$ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_employee_1_1_shared_1_1accept_hire_request_1_1_accept_hire_request_controller_ad4312863bd2f9b15d7bf571c0dc1447e}{Answer\+Hire\+Request\+Async}} (\mbox{[}From\+Body\mbox{]} \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_employee_1_1_shared_1_1accept_hire_request_1_1_hire_request}{Hire\+Request}} request)
+\begin{DoxyCompactList}\small\item\em Een aanvraag kan beantwoord worden. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Members}
+\begin{DoxyCompactItemize}
+\item 
+string \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_employee_1_1_shared_1_1accept_hire_request_1_1_accept_hire_request_controller_a9e3fd1acbd444da46f39a2f1d50a28ac}{Get\+Current\+User\+Id}} ()
+\begin{DoxyCompactList}\small\item\em Huidige user id wordt opgehaald, voor validatie en logging. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributen}
+\begin{DoxyCompactItemize}
+\item 
+readonly \mbox{\hyperlink{interface_w_p_r_1_1_database_1_1_i_connector}{IConnector}} \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_employee_1_1_shared_1_1accept_hire_request_1_1_accept_hire_request_controller_ad940f080da3e16fa1af5aba0a50da154}{\+\_\+connector}}
+\item 
+readonly \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_employee_repository}{IEmployee\+Repository}} \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_employee_1_1_shared_1_1accept_hire_request_1_1_accept_hire_request_controller_a4fe1da131d90914cac685848287000e8}{\+\_\+user\+Repository}}
+\item 
+readonly \mbox{\hyperlink{class_w_p_r_1_1_cryption_1_1_crypt}{Crypt}} \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_employee_1_1_shared_1_1accept_hire_request_1_1_accept_hire_request_controller_a7aae76688593ffbc5e9081a5abdc376c}{\+\_\+crypt}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Gedetailleerde Beschrijving}
+\doxylink{class_w_p_r_1_1_controllers_1_1_employee_1_1_shared_1_1accept_hire_request_1_1_accept_hire_request_controller}{Accept\+Hire\+Request\+Controller} zorgt ervoor dat alle huuraanvragen verzameld worden en bestempelt kunnen worden als geacepteerd of geweigerd. 
+
+De definitie bevindt zich op regel \mbox{\hyperlink{accept_hire_request_controller_8cs_source_l00014}{14}} in het bestand \mbox{\hyperlink{accept_hire_request_controller_8cs_source}{accept\+Hire\+Request\+Controller.\+cs}}.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentatie}
+\Hypertarget{class_w_p_r_1_1_controllers_1_1_employee_1_1_shared_1_1accept_hire_request_1_1_accept_hire_request_controller_ae9fc8f72949b29898055a88bcfcfb33e}\index{WPR.Controllers.Employee.Shared.acceptHireRequest.AcceptHireRequestController@{WPR.Controllers.Employee.Shared.acceptHireRequest.AcceptHireRequestController}!AcceptHireRequestController@{AcceptHireRequestController}}
+\index{AcceptHireRequestController@{AcceptHireRequestController}!WPR.Controllers.Employee.Shared.acceptHireRequest.AcceptHireRequestController@{WPR.Controllers.Employee.Shared.acceptHireRequest.AcceptHireRequestController}}
+\doxysubsubsection{\texorpdfstring{AcceptHireRequestController()}{AcceptHireRequestController()}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_controllers_1_1_employee_1_1_shared_1_1accept_hire_request_1_1_accept_hire_request_controller_ae9fc8f72949b29898055a88bcfcfb33e} 
+WPR.\+Controllers.\+Employee.\+Shared.\+accept\+Hire\+Request.\+Accept\+Hire\+Request\+Controller.\+Accept\+Hire\+Request\+Controller (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{interface_w_p_r_1_1_database_1_1_i_connector}{IConnector}}}]{connector}{, }\item[{\mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_employee_repository}{IEmployee\+Repository}}}]{user\+Repository}{, }\item[{\mbox{\hyperlink{class_w_p_r_1_1_cryption_1_1_crypt}{Crypt}}}]{crypt}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{accept_hire_request_controller_8cs_source_l00020}{20}} in het bestand \mbox{\hyperlink{accept_hire_request_controller_8cs_source}{accept\+Hire\+Request\+Controller.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00021\ \ \ \ \ \{}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ \_connector\ =\ connector\ ??\ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ ArgumentNullException(nameof(connector));}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \_userRepository\ =\ userRepository\ ??\ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ ArgumentNullException(nameof(userRepository));}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \_crypt\ =\ crypt\ ??\ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ ArgumentNullException(nameof(crypt));}
+\DoxyCodeLine{00025\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+Gebruikt \mbox{\hyperlink{accept_hire_request_controller_8cs_source_l00016}{\+\_\+connector}}, \mbox{\hyperlink{accept_hire_request_controller_8cs_source_l00018}{\+\_\+crypt}} en \mbox{\hyperlink{accept_hire_request_controller_8cs_source_l00017}{\+\_\+user\+Repository}}.
+
+
+
+\doxysubsection{Documentatie van functie members}
+\Hypertarget{class_w_p_r_1_1_controllers_1_1_employee_1_1_shared_1_1accept_hire_request_1_1_accept_hire_request_controller_ad4312863bd2f9b15d7bf571c0dc1447e}\index{WPR.Controllers.Employee.Shared.acceptHireRequest.AcceptHireRequestController@{WPR.Controllers.Employee.Shared.acceptHireRequest.AcceptHireRequestController}!AnswerHireRequestAsync@{AnswerHireRequestAsync}}
+\index{AnswerHireRequestAsync@{AnswerHireRequestAsync}!WPR.Controllers.Employee.Shared.acceptHireRequest.AcceptHireRequestController@{WPR.Controllers.Employee.Shared.acceptHireRequest.AcceptHireRequestController}}
+\doxysubsubsection{\texorpdfstring{AnswerHireRequestAsync()}{AnswerHireRequestAsync()}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_controllers_1_1_employee_1_1_shared_1_1accept_hire_request_1_1_accept_hire_request_controller_ad4312863bd2f9b15d7bf571c0dc1447e} 
+async Task$<$ IAction\+Result $>$ WPR.\+Controllers.\+Employee.\+Shared.\+accept\+Hire\+Request.\+Accept\+Hire\+Request\+Controller.\+Answer\+Hire\+Request\+Async (\begin{DoxyParamCaption}\item[{\mbox{[}\+From\+Body\mbox{]} \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_employee_1_1_shared_1_1accept_hire_request_1_1_hire_request}{Hire\+Request}}}]{request}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Een aanvraag kan beantwoord worden. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em request} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retourneert}
+
+\end{DoxyReturn}
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{accept_hire_request_controller_8cs_source_l00057}{57}} in het bestand \mbox{\hyperlink{accept_hire_request_controller_8cs_source}{accept\+Hire\+Request\+Controller.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00058\ \ \ \ \ \{}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (request\ ==\ \textcolor{keyword}{null})}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ BadRequest(\textcolor{keyword}{new}\ \{\ message\ =\ \textcolor{stringliteral}{"{}Invalid\ request\ body"{}}\ \});}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ var\ setStatus\ =\ await\ \_userRepository.SetStatusAsync(request.Id.ToString(),\ request.Status,\ GetCurrentUserId(),\ request.userType);}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (setStatus.status)}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Ok(\textcolor{keyword}{new}\ \{\ message\ =\ setStatus.message\ \});}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ BadRequest(\textcolor{keyword}{new}\ \{\ message\ =\ setStatus.message\ \});}
+\DoxyCodeLine{00072\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+Gebruikt \mbox{\hyperlink{accept_hire_request_controller_8cs_source_l00017}{\+\_\+user\+Repository}} en \mbox{\hyperlink{accept_hire_request_controller_8cs_source_l00079}{Get\+Current\+User\+Id()}}.
+
+Hier is de call graaf voor deze functie\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_w_p_r_1_1_controllers_1_1_employee_1_1_shared_1_1accept_hire_request_1_1_accept_hire_request_controller_ad4312863bd2f9b15d7bf571c0dc1447e_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_w_p_r_1_1_controllers_1_1_employee_1_1_shared_1_1accept_hire_request_1_1_accept_hire_request_controller_a9e3fd1acbd444da46f39a2f1d50a28ac}\index{WPR.Controllers.Employee.Shared.acceptHireRequest.AcceptHireRequestController@{WPR.Controllers.Employee.Shared.acceptHireRequest.AcceptHireRequestController}!GetCurrentUserId@{GetCurrentUserId}}
+\index{GetCurrentUserId@{GetCurrentUserId}!WPR.Controllers.Employee.Shared.acceptHireRequest.AcceptHireRequestController@{WPR.Controllers.Employee.Shared.acceptHireRequest.AcceptHireRequestController}}
+\doxysubsubsection{\texorpdfstring{GetCurrentUserId()}{GetCurrentUserId()}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_controllers_1_1_employee_1_1_shared_1_1accept_hire_request_1_1_accept_hire_request_controller_a9e3fd1acbd444da46f39a2f1d50a28ac} 
+string WPR.\+Controllers.\+Employee.\+Shared.\+accept\+Hire\+Request.\+Accept\+Hire\+Request\+Controller.\+Get\+Current\+User\+Id (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Huidige user id wordt opgehaald, voor validatie en logging. 
+
+\begin{DoxyReturn}{Retourneert}
+
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Excepties}
+{\em Exception} & \\
+\hline
+\end{DoxyExceptions}
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{accept_hire_request_controller_8cs_source_l00079}{79}} in het bestand \mbox{\hyperlink{accept_hire_request_controller_8cs_source}{accept\+Hire\+Request\+Controller.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00080\ \ \ \ \ \{}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Alleen\ de\ cookie\ van\ Employee\ of\ Vehicle\ Manager\ bestaat}}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ loginCookie\ =\ HttpContext.Request.Cookies[\textcolor{stringliteral}{"{}LoginEmployeeSession"{}}];}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ loginCookie2\ =\ HttpContext.Request.Cookies[\textcolor{stringliteral}{"{}LoginVehicleManagerSession"{}}];}
+\DoxyCodeLine{00084\ }
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\textcolor{keywordtype}{string}.IsNullOrEmpty(loginCookie))}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \_crypt.Decrypt(loginCookie);}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (!\textcolor{keywordtype}{string}.IsNullOrEmpty(loginCookie2))}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \_crypt.Decrypt(loginCookie2);}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ Exception(\textcolor{stringliteral}{"{}No\ (valid)\ cookie"{}});}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Ongeldig\ cookie\ wordt\ meteen\ verwijderd}}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \ \ \ \ Response.Cookies.Append(\textcolor{stringliteral}{"{}LoginEmployeeSession"{}},\ \textcolor{stringliteral}{"{}Invalid\ cookie"{}},\ \textcolor{keyword}{new}\ CookieOptions}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ HttpOnly\ =\ \textcolor{keyword}{true},}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Secure\ =\ \textcolor{keyword}{true},}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Expires\ =\ DateTimeOffset.UtcNow.AddDays(-\/1)}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{00109\ }
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ Exception(\textcolor{stringliteral}{"{}Invalid\ Cookie"{}});}
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00112\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+Gebruikt \mbox{\hyperlink{accept_hire_request_controller_8cs_source_l00018}{\+\_\+crypt}}.
+
+
+
+Wordt aangeroepen door \mbox{\hyperlink{accept_hire_request_controller_8cs_source_l00057}{Answer\+Hire\+Request\+Async()}} en \mbox{\hyperlink{accept_hire_request_controller_8cs_source_l00033}{Get\+Reviews\+Ids\+Async()}}.
+
+Hier is de caller graaf voor deze functie\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_w_p_r_1_1_controllers_1_1_employee_1_1_shared_1_1accept_hire_request_1_1_accept_hire_request_controller_a9e3fd1acbd444da46f39a2f1d50a28ac_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_w_p_r_1_1_controllers_1_1_employee_1_1_shared_1_1accept_hire_request_1_1_accept_hire_request_controller_a0016834aa98a99bcb0eb1ccdbff98693}\index{WPR.Controllers.Employee.Shared.acceptHireRequest.AcceptHireRequestController@{WPR.Controllers.Employee.Shared.acceptHireRequest.AcceptHireRequestController}!GetReviewAsync@{GetReviewAsync}}
+\index{GetReviewAsync@{GetReviewAsync}!WPR.Controllers.Employee.Shared.acceptHireRequest.AcceptHireRequestController@{WPR.Controllers.Employee.Shared.acceptHireRequest.AcceptHireRequestController}}
+\doxysubsubsection{\texorpdfstring{GetReviewAsync()}{GetReviewAsync()}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_controllers_1_1_employee_1_1_shared_1_1accept_hire_request_1_1_accept_hire_request_controller_a0016834aa98a99bcb0eb1ccdbff98693} 
+async Task$<$ IAction\+Result $>$ WPR.\+Controllers.\+Employee.\+Shared.\+accept\+Hire\+Request.\+Accept\+Hire\+Request\+Controller.\+Get\+Review\+Async (\begin{DoxyParamCaption}\item[{string}]{id}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+De gegevens van een specifieke aanvraag worden opgehaald. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retourneert}
+
+\end{DoxyReturn}
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{accept_hire_request_controller_8cs_source_l00045}{45}} in het bestand \mbox{\hyperlink{accept_hire_request_controller_8cs_source}{accept\+Hire\+Request\+Controller.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00046\ \ \ \ \ \{}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ var\ review\ =\ await\ \_userRepository.GetReviewAsync(\textcolor{keywordtype}{id});}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Ok(\textcolor{keyword}{new}\ \{\ message\ =\ review.data\ \});}
+\DoxyCodeLine{00049\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+Gebruikt \mbox{\hyperlink{accept_hire_request_controller_8cs_source_l00017}{\+\_\+user\+Repository}}.
+
+\Hypertarget{class_w_p_r_1_1_controllers_1_1_employee_1_1_shared_1_1accept_hire_request_1_1_accept_hire_request_controller_a53071f794abb7d5b057fd44675e2cc19}\index{WPR.Controllers.Employee.Shared.acceptHireRequest.AcceptHireRequestController@{WPR.Controllers.Employee.Shared.acceptHireRequest.AcceptHireRequestController}!GetReviewsIdsAsync@{GetReviewsIdsAsync}}
+\index{GetReviewsIdsAsync@{GetReviewsIdsAsync}!WPR.Controllers.Employee.Shared.acceptHireRequest.AcceptHireRequestController@{WPR.Controllers.Employee.Shared.acceptHireRequest.AcceptHireRequestController}}
+\doxysubsubsection{\texorpdfstring{GetReviewsIdsAsync()}{GetReviewsIdsAsync()}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_controllers_1_1_employee_1_1_shared_1_1accept_hire_request_1_1_accept_hire_request_controller_a53071f794abb7d5b057fd44675e2cc19} 
+async Task$<$ IAction\+Result $>$ WPR.\+Controllers.\+Employee.\+Shared.\+accept\+Hire\+Request.\+Accept\+Hire\+Request\+Controller.\+Get\+Reviews\+Ids\+Async (\begin{DoxyParamCaption}\item[{string}]{user}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Alle ids van de aanvragen worden opgehaald. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em user} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retourneert}
+
+\end{DoxyReturn}
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{accept_hire_request_controller_8cs_source_l00033}{33}} in het bestand \mbox{\hyperlink{accept_hire_request_controller_8cs_source}{accept\+Hire\+Request\+Controller.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00034\ \ \ \ \ \{}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ var\ ids\ =\ await\ \_userRepository.GetReviewIdsAsync(user,\ GetCurrentUserId());}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Ok(\textcolor{keyword}{new}\ \{\ message\ =\ ids.ids\});}
+\DoxyCodeLine{00037\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+Gebruikt \mbox{\hyperlink{accept_hire_request_controller_8cs_source_l00017}{\+\_\+user\+Repository}} en \mbox{\hyperlink{accept_hire_request_controller_8cs_source_l00079}{Get\+Current\+User\+Id()}}.
+
+Hier is de call graaf voor deze functie\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_w_p_r_1_1_controllers_1_1_employee_1_1_shared_1_1accept_hire_request_1_1_accept_hire_request_controller_a53071f794abb7d5b057fd44675e2cc19_cgraph}
+\end{center}
+\end{figure}
+
+
+\doxysubsection{Documentatie van data velden}
+\Hypertarget{class_w_p_r_1_1_controllers_1_1_employee_1_1_shared_1_1accept_hire_request_1_1_accept_hire_request_controller_ad940f080da3e16fa1af5aba0a50da154}\index{WPR.Controllers.Employee.Shared.acceptHireRequest.AcceptHireRequestController@{WPR.Controllers.Employee.Shared.acceptHireRequest.AcceptHireRequestController}!\_connector@{\_connector}}
+\index{\_connector@{\_connector}!WPR.Controllers.Employee.Shared.acceptHireRequest.AcceptHireRequestController@{WPR.Controllers.Employee.Shared.acceptHireRequest.AcceptHireRequestController}}
+\doxysubsubsection{\texorpdfstring{\_connector}{\_connector}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_controllers_1_1_employee_1_1_shared_1_1accept_hire_request_1_1_accept_hire_request_controller_ad940f080da3e16fa1af5aba0a50da154} 
+readonly \mbox{\hyperlink{interface_w_p_r_1_1_database_1_1_i_connector}{IConnector}} WPR.\+Controllers.\+Employee.\+Shared.\+accept\+Hire\+Request.\+Accept\+Hire\+Request\+Controller.\+\_\+connector\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{accept_hire_request_controller_8cs_source_l00016}{16}} in het bestand \mbox{\hyperlink{accept_hire_request_controller_8cs_source}{accept\+Hire\+Request\+Controller.\+cs}}.
+
+
+
+Wordt aangeroepen door \mbox{\hyperlink{accept_hire_request_controller_8cs_source_l00020}{Accept\+Hire\+Request\+Controller()}}.
+
+\Hypertarget{class_w_p_r_1_1_controllers_1_1_employee_1_1_shared_1_1accept_hire_request_1_1_accept_hire_request_controller_a7aae76688593ffbc5e9081a5abdc376c}\index{WPR.Controllers.Employee.Shared.acceptHireRequest.AcceptHireRequestController@{WPR.Controllers.Employee.Shared.acceptHireRequest.AcceptHireRequestController}!\_crypt@{\_crypt}}
+\index{\_crypt@{\_crypt}!WPR.Controllers.Employee.Shared.acceptHireRequest.AcceptHireRequestController@{WPR.Controllers.Employee.Shared.acceptHireRequest.AcceptHireRequestController}}
+\doxysubsubsection{\texorpdfstring{\_crypt}{\_crypt}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_controllers_1_1_employee_1_1_shared_1_1accept_hire_request_1_1_accept_hire_request_controller_a7aae76688593ffbc5e9081a5abdc376c} 
+readonly \mbox{\hyperlink{class_w_p_r_1_1_cryption_1_1_crypt}{Crypt}} WPR.\+Controllers.\+Employee.\+Shared.\+accept\+Hire\+Request.\+Accept\+Hire\+Request\+Controller.\+\_\+crypt\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{accept_hire_request_controller_8cs_source_l00018}{18}} in het bestand \mbox{\hyperlink{accept_hire_request_controller_8cs_source}{accept\+Hire\+Request\+Controller.\+cs}}.
+
+
+
+Wordt aangeroepen door \mbox{\hyperlink{accept_hire_request_controller_8cs_source_l00020}{Accept\+Hire\+Request\+Controller()}} en \mbox{\hyperlink{accept_hire_request_controller_8cs_source_l00079}{Get\+Current\+User\+Id()}}.
+
+\Hypertarget{class_w_p_r_1_1_controllers_1_1_employee_1_1_shared_1_1accept_hire_request_1_1_accept_hire_request_controller_a4fe1da131d90914cac685848287000e8}\index{WPR.Controllers.Employee.Shared.acceptHireRequest.AcceptHireRequestController@{WPR.Controllers.Employee.Shared.acceptHireRequest.AcceptHireRequestController}!\_userRepository@{\_userRepository}}
+\index{\_userRepository@{\_userRepository}!WPR.Controllers.Employee.Shared.acceptHireRequest.AcceptHireRequestController@{WPR.Controllers.Employee.Shared.acceptHireRequest.AcceptHireRequestController}}
+\doxysubsubsection{\texorpdfstring{\_userRepository}{\_userRepository}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_controllers_1_1_employee_1_1_shared_1_1accept_hire_request_1_1_accept_hire_request_controller_a4fe1da131d90914cac685848287000e8} 
+readonly \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_employee_repository}{IEmployee\+Repository}} WPR.\+Controllers.\+Employee.\+Shared.\+accept\+Hire\+Request.\+Accept\+Hire\+Request\+Controller.\+\_\+user\+Repository\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{accept_hire_request_controller_8cs_source_l00017}{17}} in het bestand \mbox{\hyperlink{accept_hire_request_controller_8cs_source}{accept\+Hire\+Request\+Controller.\+cs}}.
+
+
+
+Wordt aangeroepen door \mbox{\hyperlink{accept_hire_request_controller_8cs_source_l00020}{Accept\+Hire\+Request\+Controller()}}, \mbox{\hyperlink{accept_hire_request_controller_8cs_source_l00057}{Answer\+Hire\+Request\+Async()}}, \mbox{\hyperlink{accept_hire_request_controller_8cs_source_l00045}{Get\+Review\+Async()}} en \mbox{\hyperlink{accept_hire_request_controller_8cs_source_l00033}{Get\+Reviews\+Ids\+Async()}}.
+
+
+
+De documentatie voor deze klasse is gegenereerd op basis van het volgende bestand\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/codes/\+WPR8/\+WPR/backend/src/\+Controllers/\+Employee/shared/accept\+Hire\+Request/\mbox{\hyperlink{accept_hire_request_controller_8cs}{accept\+Hire\+Request\+Controller.\+cs}}\end{DoxyCompactItemize}

@@ -1,0 +1,17 @@
+<map id="WPR.Controllers.Employee.EmployeeController" name="WPR.Controllers.Employee.EmployeeController">
+<area shape="rect" id="Node000001" title="EmployeeController is de controller die ervoor zorgt dat er gekeken wordt of de ingelogde gebruiker e..." alt="" coords="355,613,531,720"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,373,102,443"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="66,456,85,504,98,527,116,547,142,569,171,588,233,618,297,638,356,652,355,657,295,644,231,623,168,592,139,573,112,551,94,530,80,507,61,458"/>
+<area shape="rect" id="Node000003" href="$interface_w_p_r_1_1_repository_1_1_i_user_repository.html" title="Interface defining methods voor user gerelateerde database operaties, validatie, user management,..." alt="" coords="126,267,334,549"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="305,548,337,588,350,601,346,605,333,591,301,551"/>
+<area shape="rect" id="Node000004" href="$interface_w_p_r_1_1_database_1_1_i_connector.html" title="Connector class om verbinding te maken met de database, maakt gebruik van de connectie strings die zi..." alt="" coords="358,373,528,443"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="446,442,446,596,440,596,440,442"/>
+<area shape="rect" id="Node000005" href="$class_w_p_r_1_1_controllers_1_1_general_1_1_cookie_1_1_session_handler.html" title="SessionHandler zorgt ervoor dat er cookies aangemaakt kunnen worden op een simpele manier." alt="" coords="552,333,715,483"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="595,484,561,538,522,591,512,603,508,600,518,588,557,535,591,481"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="594,69,674,139"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="636,153,636,334,631,334,631,153"/>
+<area shape="rect" id="Node000007" href="$class_w_p_r_1_1_cryption_1_1_crypt.html" title="Class Crypt zorgt voor een veilig encryptie en decryptie van strings. De Crptie wordt gedaan door het..." alt="" coords="738,341,870,475"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="781,476,759,515,729,551,687,583,641,609,594,630,548,645,546,640,592,625,639,605,685,579,725,547,754,512,777,473"/>
+<area shape="rect" id="Node000008" href="$class_w_p_r_1_1_data_1_1_env_config.html" title="Leez het .env bestand uit waarin de connectie strings staan naar de database. Deze staan in een apart..." alt="" coords="734,5,875,203"/>
+<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="807,202,807,324,802,324,802,202"/>
+</map>

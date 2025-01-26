@@ -1,0 +1,357 @@
+\doxysection{WPR.\+Repository.\+IEmployee\+Repository Interface Referentie}
+\hypertarget{interface_w_p_r_1_1_repository_1_1_i_employee_repository}{}\label{interface_w_p_r_1_1_repository_1_1_i_employee_repository}\index{WPR.Repository.IEmployeeRepository@{WPR.Repository.IEmployeeRepository}}
+
+
+Interface defining methods voor user gerelateerde database operaties, validatie, user management, data retrieval.  
+
+
+
+
+Klasse diagram voor WPR.\+Repository.\+IEmployee\+Repository
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{interface_w_p_r_1_1_repository_1_1_i_employee_repository__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboratie diagram voor WPR.\+Repository.\+IEmployee\+Repository\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=239pt]{interface_w_p_r_1_1_repository_1_1_i_employee_repository__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Members}
+\begin{DoxyCompactItemize}
+\item 
+Task$<$(bool status, string message)$>$ \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_employee_repository_a47a952a8dbaee258c438a989f6704e85}{Add\+Vehicle\+Async}} (int yop, string brand, string type, string licens\+Plate, string color, string sort, double price, string description, byte\mbox{[}$\,$\mbox{]} vehicle\+Blob, int places)
+\item 
+Task$<$(bool status, string message)$>$ \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_employee_repository_aab15df171933be18e2c69a69c2df05b9}{Add\+Staff}} (\mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_employee_1_1_back_office_1_1sign_up_staff_1_1_sign_up_staff_request}{Sign\+Up\+Staff\+Request}} request)
+\item 
+Task$<$(bool status, string message)$>$ \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_employee_repository_ab6ee7b313940780128449ebc60f81d9e}{check\+Usage\+Email\+Async}} (string email)
+\item 
+Task$<$(bool status, List$<$ string $>$ ids)$>$ \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_employee_repository_a6ddf627b6b056d590d448aee823853ca}{Get\+Review\+Ids\+Async}} (string user, string user\+Id)
+\item 
+Task$<$(bool status, List$<$ Dictionary$<$ string, object $>$ $>$ data)$>$ \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_employee_repository_ab298cf3922ece7db26ca49b6723e2a1e}{Get\+Review\+Async}} (string id)
+\item 
+Task$<$(bool status, string message)$>$ \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_employee_repository_adec399461403d95dab5f05df3ac6f3c2}{Set\+Status\+Async}} (string id, string status, string employee, string user\+Type)
+\item 
+Task$<$(bool status, string message)$>$ \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_employee_repository_a8714d2ae38ddec5ef28b45a2d1b89236}{Add\+Business}} (Add\+Business\+Request request)
+\item 
+int string IList$<$ int $>$ KvK \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_employee_repository_a1a0e12ece8eb5270f0cf8fd85dacad0a}{View\+Business\+Requests}} ()
+\item 
+Task$<$(int \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_employee_repository_acc8ce296de6de33747e04321b95382d3}{Status\+Code}}, string \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_employee_repository_a80719ba7cd30b3a9a6c4a44135f3b0a0}{Message}}, Dictionary$<$ string, object $>$ data)$>$ \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_employee_repository_a817a6ee8b68111bc0eace6399eea0dac}{View\+Business\+Request\+Detailed}} (int kvk)
+\item 
+int string \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_employee_repository_a80719ba7cd30b3a9a6c4a44135f3b0a0}{Message}} \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_employee_repository_a337ec931daad30f5c67c6d24ea894ccf}{Business\+Accepted}} (int kvk)
+\item 
+int string \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_employee_repository_a80719ba7cd30b3a9a6c4a44135f3b0a0}{Message}} \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_employee_repository_a12ac6420a6988c971c94d5902b01c15a}{Business\+Denied}} (int kvk)
+\item 
+bool string Dictionary$<$ string, object $>$ Data \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_employee_repository_aa434503c00a7c1d6e4f4119773147097}{Get\+Business\+Info}} (int kvk)
+\item 
+int string int KvK \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_employee_repository_abacb00836a88444700b0d52362e3251a}{Get\+KvK}} (int vehicle\+Manager\+Id)
+\item 
+int string Dictionary$<$ string, object $>$ Data \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_employee_repository_a69550e77ed92deda070198fa624a705a}{Get\+Abonnement\+Type}} (int abonnement\+Id)
+\item 
+int string Dictionary$<$ string, object $>$ Data \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_employee_repository_a8137fbd1ffb21b5a0e62f90f5fbe7560}{Get\+Vehicle\+Manager\+Info}} (int id)
+\item 
+Task$<$(bool status, string message)$>$ \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_employee_repository_a958c66de7c1985c58540d72221741464}{check\+Usage\+Emai\+Vehicle\+Managerl\+Async}} (string email)
+\item 
+Task$<$(bool status, string message)$>$ \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_employee_repository_a287f86771206d66b45423b6f354b1c60}{Add\+Intake\+Async}} (string damage, int frame\+Nr\+Vehicle, string reviewed\+By, Date\+Time date, int contract, bool is\+Damaged)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Data Velden}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_employee_repository_acc8ce296de6de33747e04321b95382d3}{Status\+Code}}
+\item 
+int string \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_employee_repository_a80719ba7cd30b3a9a6c4a44135f3b0a0}{Message}}
+\item 
+bool \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_employee_repository_ae81eace956ba93bd3890c69d1acc6fbf}{Status}}
+\item 
+bool string \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_employee_repository_af1d584d582098b3c2695a5d2a66a142c}{Message}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Gedetailleerde Beschrijving}
+Interface defining methods voor user gerelateerde database operaties, validatie, user management, data retrieval. 
+
+Het \doxylink{namespace_w_p_r_1_1_repository}{Repository} Pattern abstraheert de logica voor data toegang en zorgt voor gecentraliseerde en consitente interface voor interactie met de database. Dit is goed voor\+: testbaarheid, onderhoudbaarheid en scheiding van verantwoordelijkheden binnen de applicatie. 
+
+De definitie bevindt zich op regel \mbox{\hyperlink{_i_employee_repository_8cs_source_l00013}{13}} in het bestand \mbox{\hyperlink{_i_employee_repository_8cs_source}{IEmployee\+Repository.\+cs}}.
+
+
+
+\doxysubsection{Documentatie van functie members}
+\Hypertarget{interface_w_p_r_1_1_repository_1_1_i_employee_repository_a8714d2ae38ddec5ef28b45a2d1b89236}\index{WPR.Repository.IEmployeeRepository@{WPR.Repository.IEmployeeRepository}!AddBusiness@{AddBusiness}}
+\index{AddBusiness@{AddBusiness}!WPR.Repository.IEmployeeRepository@{WPR.Repository.IEmployeeRepository}}
+\doxysubsubsection{\texorpdfstring{AddBusiness()}{AddBusiness()}}
+{\footnotesize\ttfamily \label{interface_w_p_r_1_1_repository_1_1_i_employee_repository_a8714d2ae38ddec5ef28b45a2d1b89236} 
+Task$<$(bool status, string message)$>$ WPR.\+Repository.\+IEmployee\+Repository.\+Add\+Business (\begin{DoxyParamCaption}\item[{Add\+Business\+Request}]{request}{}\end{DoxyParamCaption})}
+
+
+
+Wordt geïmplementeerd door \mbox{\hyperlink{class_w_p_r_1_1_repository_1_1_employee_repository_a42271b52a537da924efab8ddcb2c78ad}{WPR.\+Repository.\+Employee\+Repository}}.
+
+
+
+Gebruikt \mbox{\hyperlink{add_business_request_8cs_source_l00008}{WPR.\+Controllers.\+Customer.\+Add\+Business.\+Add\+Business\+Request()}}.
+
+Hier is de call graaf voor deze functie\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{interface_w_p_r_1_1_repository_1_1_i_employee_repository_a8714d2ae38ddec5ef28b45a2d1b89236_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{interface_w_p_r_1_1_repository_1_1_i_employee_repository_a287f86771206d66b45423b6f354b1c60}\index{WPR.Repository.IEmployeeRepository@{WPR.Repository.IEmployeeRepository}!AddIntakeAsync@{AddIntakeAsync}}
+\index{AddIntakeAsync@{AddIntakeAsync}!WPR.Repository.IEmployeeRepository@{WPR.Repository.IEmployeeRepository}}
+\doxysubsubsection{\texorpdfstring{AddIntakeAsync()}{AddIntakeAsync()}}
+{\footnotesize\ttfamily \label{interface_w_p_r_1_1_repository_1_1_i_employee_repository_a287f86771206d66b45423b6f354b1c60} 
+Task$<$(bool status, string message)$>$ WPR.\+Repository.\+IEmployee\+Repository.\+Add\+Intake\+Async (\begin{DoxyParamCaption}\item[{string}]{damage}{, }\item[{int}]{frame\+Nr\+Vehicle}{, }\item[{string}]{reviewed\+By}{, }\item[{Date\+Time}]{date}{, }\item[{int}]{contract}{, }\item[{bool}]{is\+Damaged}{}\end{DoxyParamCaption})}
+
+
+
+Wordt geïmplementeerd door \mbox{\hyperlink{class_w_p_r_1_1_repository_1_1_employee_repository_a72d165d68c372f1a658dbfac85205571}{WPR.\+Repository.\+Employee\+Repository}}.
+
+\Hypertarget{interface_w_p_r_1_1_repository_1_1_i_employee_repository_aab15df171933be18e2c69a69c2df05b9}\index{WPR.Repository.IEmployeeRepository@{WPR.Repository.IEmployeeRepository}!AddStaff@{AddStaff}}
+\index{AddStaff@{AddStaff}!WPR.Repository.IEmployeeRepository@{WPR.Repository.IEmployeeRepository}}
+\doxysubsubsection{\texorpdfstring{AddStaff()}{AddStaff()}}
+{\footnotesize\ttfamily \label{interface_w_p_r_1_1_repository_1_1_i_employee_repository_aab15df171933be18e2c69a69c2df05b9} 
+Task$<$(bool status, string message)$>$ WPR.\+Repository.\+IEmployee\+Repository.\+Add\+Staff (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_employee_1_1_back_office_1_1sign_up_staff_1_1_sign_up_staff_request}{Sign\+Up\+Staff\+Request}}}]{request}{}\end{DoxyParamCaption})}
+
+
+
+Wordt geïmplementeerd door \mbox{\hyperlink{class_w_p_r_1_1_repository_1_1_employee_repository_ad2ef5ed22a8e48ce548cd8ba708461ff}{WPR.\+Repository.\+Employee\+Repository}}.
+
+\Hypertarget{interface_w_p_r_1_1_repository_1_1_i_employee_repository_a47a952a8dbaee258c438a989f6704e85}\index{WPR.Repository.IEmployeeRepository@{WPR.Repository.IEmployeeRepository}!AddVehicleAsync@{AddVehicleAsync}}
+\index{AddVehicleAsync@{AddVehicleAsync}!WPR.Repository.IEmployeeRepository@{WPR.Repository.IEmployeeRepository}}
+\doxysubsubsection{\texorpdfstring{AddVehicleAsync()}{AddVehicleAsync()}}
+{\footnotesize\ttfamily \label{interface_w_p_r_1_1_repository_1_1_i_employee_repository_a47a952a8dbaee258c438a989f6704e85} 
+Task$<$(bool status, string message)$>$ WPR.\+Repository.\+IEmployee\+Repository.\+Add\+Vehicle\+Async (\begin{DoxyParamCaption}\item[{int}]{yop}{, }\item[{string}]{brand}{, }\item[{string}]{type}{, }\item[{string}]{licens\+Plate}{, }\item[{string}]{color}{, }\item[{string}]{sort}{, }\item[{double}]{price}{, }\item[{string}]{description}{, }\item[{byte\mbox{[}$\,$\mbox{]}}]{vehicle\+Blob}{, }\item[{int}]{places}{}\end{DoxyParamCaption})}
+
+
+
+Wordt geïmplementeerd door \mbox{\hyperlink{class_w_p_r_1_1_repository_1_1_employee_repository_a1b6d81667b6e8ca4c12227a11b7a5e59}{WPR.\+Repository.\+Employee\+Repository}}.
+
+\Hypertarget{interface_w_p_r_1_1_repository_1_1_i_employee_repository_a337ec931daad30f5c67c6d24ea894ccf}\index{WPR.Repository.IEmployeeRepository@{WPR.Repository.IEmployeeRepository}!BusinessAccepted@{BusinessAccepted}}
+\index{BusinessAccepted@{BusinessAccepted}!WPR.Repository.IEmployeeRepository@{WPR.Repository.IEmployeeRepository}}
+\doxysubsubsection{\texorpdfstring{BusinessAccepted()}{BusinessAccepted()}}
+{\footnotesize\ttfamily \label{interface_w_p_r_1_1_repository_1_1_i_employee_repository_a337ec931daad30f5c67c6d24ea894ccf} 
+int string \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_employee_repository_a80719ba7cd30b3a9a6c4a44135f3b0a0}{Message}} WPR.\+Repository.\+IEmployee\+Repository.\+Business\+Accepted (\begin{DoxyParamCaption}\item[{int}]{kvk}{}\end{DoxyParamCaption})}
+
+
+
+Wordt geïmplementeerd door \mbox{\hyperlink{class_w_p_r_1_1_repository_1_1_employee_repository_afc7539919c05c9fcf7f2e65f0c4e577e}{WPR.\+Repository.\+Employee\+Repository}}.
+
+
+
+Gebruikt \mbox{\hyperlink{_i_employee_repository_8cs_source_l00022}{Message}} en \mbox{\hyperlink{_i_employee_repository_8cs_source_l00022}{Status\+Code}}.
+
+\Hypertarget{interface_w_p_r_1_1_repository_1_1_i_employee_repository_a12ac6420a6988c971c94d5902b01c15a}\index{WPR.Repository.IEmployeeRepository@{WPR.Repository.IEmployeeRepository}!BusinessDenied@{BusinessDenied}}
+\index{BusinessDenied@{BusinessDenied}!WPR.Repository.IEmployeeRepository@{WPR.Repository.IEmployeeRepository}}
+\doxysubsubsection{\texorpdfstring{BusinessDenied()}{BusinessDenied()}}
+{\footnotesize\ttfamily \label{interface_w_p_r_1_1_repository_1_1_i_employee_repository_a12ac6420a6988c971c94d5902b01c15a} 
+int string \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_employee_repository_a80719ba7cd30b3a9a6c4a44135f3b0a0}{Message}} WPR.\+Repository.\+IEmployee\+Repository.\+Business\+Denied (\begin{DoxyParamCaption}\item[{int}]{kvk}{}\end{DoxyParamCaption})}
+
+
+
+Wordt geïmplementeerd door \mbox{\hyperlink{class_w_p_r_1_1_repository_1_1_employee_repository_a6b671ebc7876d85b2f35d27b1aa342c8}{WPR.\+Repository.\+Employee\+Repository}}.
+
+
+
+Gebruikt \mbox{\hyperlink{_i_employee_repository_8cs_source_l00022}{Message}} en \mbox{\hyperlink{_i_employee_repository_8cs_source_l00022}{Status\+Code}}.
+
+\Hypertarget{interface_w_p_r_1_1_repository_1_1_i_employee_repository_ab6ee7b313940780128449ebc60f81d9e}\index{WPR.Repository.IEmployeeRepository@{WPR.Repository.IEmployeeRepository}!checkUsageEmailAsync@{checkUsageEmailAsync}}
+\index{checkUsageEmailAsync@{checkUsageEmailAsync}!WPR.Repository.IEmployeeRepository@{WPR.Repository.IEmployeeRepository}}
+\doxysubsubsection{\texorpdfstring{checkUsageEmailAsync()}{checkUsageEmailAsync()}}
+{\footnotesize\ttfamily \label{interface_w_p_r_1_1_repository_1_1_i_employee_repository_ab6ee7b313940780128449ebc60f81d9e} 
+Task$<$(bool status, string message)$>$ WPR.\+Repository.\+IEmployee\+Repository.\+check\+Usage\+Email\+Async (\begin{DoxyParamCaption}\item[{string}]{email}{}\end{DoxyParamCaption})}
+
+
+
+Wordt geïmplementeerd door \mbox{\hyperlink{class_w_p_r_1_1_repository_1_1_employee_repository_a98ebda3c7db9afd834f0c0667914bba2}{WPR.\+Repository.\+Employee\+Repository}}.
+
+\Hypertarget{interface_w_p_r_1_1_repository_1_1_i_employee_repository_a958c66de7c1985c58540d72221741464}\index{WPR.Repository.IEmployeeRepository@{WPR.Repository.IEmployeeRepository}!checkUsageEmaiVehicleManagerlAsync@{checkUsageEmaiVehicleManagerlAsync}}
+\index{checkUsageEmaiVehicleManagerlAsync@{checkUsageEmaiVehicleManagerlAsync}!WPR.Repository.IEmployeeRepository@{WPR.Repository.IEmployeeRepository}}
+\doxysubsubsection{\texorpdfstring{checkUsageEmaiVehicleManagerlAsync()}{checkUsageEmaiVehicleManagerlAsync()}}
+{\footnotesize\ttfamily \label{interface_w_p_r_1_1_repository_1_1_i_employee_repository_a958c66de7c1985c58540d72221741464} 
+Task$<$(bool status, string message)$>$ WPR.\+Repository.\+IEmployee\+Repository.\+check\+Usage\+Emai\+Vehicle\+Managerl\+Async (\begin{DoxyParamCaption}\item[{string}]{email}{}\end{DoxyParamCaption})}
+
+
+
+Wordt geïmplementeerd door \mbox{\hyperlink{class_w_p_r_1_1_repository_1_1_employee_repository_a5299ddb588f36d87c4274dea48cc63a5}{WPR.\+Repository.\+Employee\+Repository}}.
+
+\Hypertarget{interface_w_p_r_1_1_repository_1_1_i_employee_repository_a69550e77ed92deda070198fa624a705a}\index{WPR.Repository.IEmployeeRepository@{WPR.Repository.IEmployeeRepository}!GetAbonnementType@{GetAbonnementType}}
+\index{GetAbonnementType@{GetAbonnementType}!WPR.Repository.IEmployeeRepository@{WPR.Repository.IEmployeeRepository}}
+\doxysubsubsection{\texorpdfstring{GetAbonnementType()}{GetAbonnementType()}}
+{\footnotesize\ttfamily \label{interface_w_p_r_1_1_repository_1_1_i_employee_repository_a69550e77ed92deda070198fa624a705a} 
+int string Dictionary$<$ string, object $>$ Data WPR.\+Repository.\+IEmployee\+Repository.\+Get\+Abonnement\+Type (\begin{DoxyParamCaption}\item[{int}]{abonnement\+Id}{}\end{DoxyParamCaption})}
+
+
+
+Wordt geïmplementeerd door \mbox{\hyperlink{class_w_p_r_1_1_repository_1_1_employee_repository_a77f5f796d861d02e9a3fb43ba9fb5310}{WPR.\+Repository.\+Employee\+Repository}}.
+
+
+
+Gebruikt \mbox{\hyperlink{_i_employee_repository_8cs_source_l00022}{Message}} en \mbox{\hyperlink{_i_employee_repository_8cs_source_l00022}{Status\+Code}}.
+
+\Hypertarget{interface_w_p_r_1_1_repository_1_1_i_employee_repository_aa434503c00a7c1d6e4f4119773147097}\index{WPR.Repository.IEmployeeRepository@{WPR.Repository.IEmployeeRepository}!GetBusinessInfo@{GetBusinessInfo}}
+\index{GetBusinessInfo@{GetBusinessInfo}!WPR.Repository.IEmployeeRepository@{WPR.Repository.IEmployeeRepository}}
+\doxysubsubsection{\texorpdfstring{GetBusinessInfo()}{GetBusinessInfo()}}
+{\footnotesize\ttfamily \label{interface_w_p_r_1_1_repository_1_1_i_employee_repository_aa434503c00a7c1d6e4f4119773147097} 
+bool string Dictionary$<$ string, object $>$ Data WPR.\+Repository.\+IEmployee\+Repository.\+Get\+Business\+Info (\begin{DoxyParamCaption}\item[{int}]{kvk}{}\end{DoxyParamCaption})}
+
+
+
+Wordt geïmplementeerd door \mbox{\hyperlink{class_w_p_r_1_1_repository_1_1_employee_repository_af940022c1370ccec5226130d62a84909}{WPR.\+Repository.\+Employee\+Repository}}.
+
+
+
+Gebruikt \mbox{\hyperlink{_i_employee_repository_8cs_source_l00022}{Message}} en \mbox{\hyperlink{_i_employee_repository_8cs_source_l00026}{Status}}.
+
+\Hypertarget{interface_w_p_r_1_1_repository_1_1_i_employee_repository_abacb00836a88444700b0d52362e3251a}\index{WPR.Repository.IEmployeeRepository@{WPR.Repository.IEmployeeRepository}!GetKvK@{GetKvK}}
+\index{GetKvK@{GetKvK}!WPR.Repository.IEmployeeRepository@{WPR.Repository.IEmployeeRepository}}
+\doxysubsubsection{\texorpdfstring{GetKvK()}{GetKvK()}}
+{\footnotesize\ttfamily \label{interface_w_p_r_1_1_repository_1_1_i_employee_repository_abacb00836a88444700b0d52362e3251a} 
+int string int KvK WPR.\+Repository.\+IEmployee\+Repository.\+Get\+KvK (\begin{DoxyParamCaption}\item[{int}]{vehicle\+Manager\+Id}{}\end{DoxyParamCaption})}
+
+
+
+Wordt geïmplementeerd door \mbox{\hyperlink{class_w_p_r_1_1_repository_1_1_employee_repository_a9fb507adc7d923ddf79f854500e87174}{WPR.\+Repository.\+Employee\+Repository}}.
+
+
+
+Gebruikt \mbox{\hyperlink{_i_employee_repository_8cs_source_l00022}{Message}} en \mbox{\hyperlink{_i_employee_repository_8cs_source_l00022}{Status\+Code}}.
+
+\Hypertarget{interface_w_p_r_1_1_repository_1_1_i_employee_repository_ab298cf3922ece7db26ca49b6723e2a1e}\index{WPR.Repository.IEmployeeRepository@{WPR.Repository.IEmployeeRepository}!GetReviewAsync@{GetReviewAsync}}
+\index{GetReviewAsync@{GetReviewAsync}!WPR.Repository.IEmployeeRepository@{WPR.Repository.IEmployeeRepository}}
+\doxysubsubsection{\texorpdfstring{GetReviewAsync()}{GetReviewAsync()}}
+{\footnotesize\ttfamily \label{interface_w_p_r_1_1_repository_1_1_i_employee_repository_ab298cf3922ece7db26ca49b6723e2a1e} 
+Task$<$(bool status, List$<$ Dictionary$<$ string, object $>$ $>$ data)$>$ WPR.\+Repository.\+IEmployee\+Repository.\+Get\+Review\+Async (\begin{DoxyParamCaption}\item[{string}]{id}{}\end{DoxyParamCaption})}
+
+
+
+Wordt geïmplementeerd door \mbox{\hyperlink{class_w_p_r_1_1_repository_1_1_employee_repository_a9a182690b76579d6e5171dffbc804e39}{WPR.\+Repository.\+Employee\+Repository}}.
+
+\Hypertarget{interface_w_p_r_1_1_repository_1_1_i_employee_repository_a6ddf627b6b056d590d448aee823853ca}\index{WPR.Repository.IEmployeeRepository@{WPR.Repository.IEmployeeRepository}!GetReviewIdsAsync@{GetReviewIdsAsync}}
+\index{GetReviewIdsAsync@{GetReviewIdsAsync}!WPR.Repository.IEmployeeRepository@{WPR.Repository.IEmployeeRepository}}
+\doxysubsubsection{\texorpdfstring{GetReviewIdsAsync()}{GetReviewIdsAsync()}}
+{\footnotesize\ttfamily \label{interface_w_p_r_1_1_repository_1_1_i_employee_repository_a6ddf627b6b056d590d448aee823853ca} 
+Task$<$(bool status, List$<$ string $>$ ids)$>$ WPR.\+Repository.\+IEmployee\+Repository.\+Get\+Review\+Ids\+Async (\begin{DoxyParamCaption}\item[{string}]{user}{, }\item[{string}]{user\+Id}{}\end{DoxyParamCaption})}
+
+
+
+Wordt geïmplementeerd door \mbox{\hyperlink{class_w_p_r_1_1_repository_1_1_employee_repository_a203e22cce3985a27366173a2aba15ad8}{WPR.\+Repository.\+Employee\+Repository}}.
+
+\Hypertarget{interface_w_p_r_1_1_repository_1_1_i_employee_repository_a8137fbd1ffb21b5a0e62f90f5fbe7560}\index{WPR.Repository.IEmployeeRepository@{WPR.Repository.IEmployeeRepository}!GetVehicleManagerInfo@{GetVehicleManagerInfo}}
+\index{GetVehicleManagerInfo@{GetVehicleManagerInfo}!WPR.Repository.IEmployeeRepository@{WPR.Repository.IEmployeeRepository}}
+\doxysubsubsection{\texorpdfstring{GetVehicleManagerInfo()}{GetVehicleManagerInfo()}}
+{\footnotesize\ttfamily \label{interface_w_p_r_1_1_repository_1_1_i_employee_repository_a8137fbd1ffb21b5a0e62f90f5fbe7560} 
+int string Dictionary$<$ string, object $>$ Data WPR.\+Repository.\+IEmployee\+Repository.\+Get\+Vehicle\+Manager\+Info (\begin{DoxyParamCaption}\item[{int}]{id}{}\end{DoxyParamCaption})}
+
+
+
+Wordt geïmplementeerd door \mbox{\hyperlink{class_w_p_r_1_1_repository_1_1_employee_repository_a6c9b7c9837a5d38bab25669c747e1158}{WPR.\+Repository.\+Employee\+Repository}}.
+
+
+
+Gebruikt \mbox{\hyperlink{_i_employee_repository_8cs_source_l00022}{Message}} en \mbox{\hyperlink{_i_employee_repository_8cs_source_l00022}{Status\+Code}}.
+
+\Hypertarget{interface_w_p_r_1_1_repository_1_1_i_employee_repository_adec399461403d95dab5f05df3ac6f3c2}\index{WPR.Repository.IEmployeeRepository@{WPR.Repository.IEmployeeRepository}!SetStatusAsync@{SetStatusAsync}}
+\index{SetStatusAsync@{SetStatusAsync}!WPR.Repository.IEmployeeRepository@{WPR.Repository.IEmployeeRepository}}
+\doxysubsubsection{\texorpdfstring{SetStatusAsync()}{SetStatusAsync()}}
+{\footnotesize\ttfamily \label{interface_w_p_r_1_1_repository_1_1_i_employee_repository_adec399461403d95dab5f05df3ac6f3c2} 
+Task$<$(bool status, string message)$>$ WPR.\+Repository.\+IEmployee\+Repository.\+Set\+Status\+Async (\begin{DoxyParamCaption}\item[{string}]{id}{, }\item[{string}]{status}{, }\item[{string}]{employee}{, }\item[{string}]{user\+Type}{}\end{DoxyParamCaption})}
+
+
+
+Wordt geïmplementeerd door \mbox{\hyperlink{class_w_p_r_1_1_repository_1_1_employee_repository_ab57756edb2a46e9c4e8381b11845f1ff}{WPR.\+Repository.\+Employee\+Repository}}.
+
+\Hypertarget{interface_w_p_r_1_1_repository_1_1_i_employee_repository_a817a6ee8b68111bc0eace6399eea0dac}\index{WPR.Repository.IEmployeeRepository@{WPR.Repository.IEmployeeRepository}!ViewBusinessRequestDetailed@{ViewBusinessRequestDetailed}}
+\index{ViewBusinessRequestDetailed@{ViewBusinessRequestDetailed}!WPR.Repository.IEmployeeRepository@{WPR.Repository.IEmployeeRepository}}
+\doxysubsubsection{\texorpdfstring{ViewBusinessRequestDetailed()}{ViewBusinessRequestDetailed()}}
+{\footnotesize\ttfamily \label{interface_w_p_r_1_1_repository_1_1_i_employee_repository_a817a6ee8b68111bc0eace6399eea0dac} 
+Task$<$(int \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_employee_repository_acc8ce296de6de33747e04321b95382d3}{Status\+Code}}, string \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_employee_repository_a80719ba7cd30b3a9a6c4a44135f3b0a0}{Message}}, Dictionary$<$ string, object $>$ data)$>$ WPR.\+Repository.\+IEmployee\+Repository.\+View\+Business\+Request\+Detailed (\begin{DoxyParamCaption}\item[{int}]{kvk}{}\end{DoxyParamCaption})}
+
+
+
+Wordt geïmplementeerd door \mbox{\hyperlink{class_w_p_r_1_1_repository_1_1_employee_repository_a13e0a19b0f5fd0c4ee11dfb629c82422}{WPR.\+Repository.\+Employee\+Repository}}.
+
+
+
+Gebruikt \mbox{\hyperlink{_i_employee_repository_8cs_source_l00022}{Message}} en \mbox{\hyperlink{_i_employee_repository_8cs_source_l00022}{Status\+Code}}.
+
+\Hypertarget{interface_w_p_r_1_1_repository_1_1_i_employee_repository_a1a0e12ece8eb5270f0cf8fd85dacad0a}\index{WPR.Repository.IEmployeeRepository@{WPR.Repository.IEmployeeRepository}!ViewBusinessRequests@{ViewBusinessRequests}}
+\index{ViewBusinessRequests@{ViewBusinessRequests}!WPR.Repository.IEmployeeRepository@{WPR.Repository.IEmployeeRepository}}
+\doxysubsubsection{\texorpdfstring{ViewBusinessRequests()}{ViewBusinessRequests()}}
+{\footnotesize\ttfamily \label{interface_w_p_r_1_1_repository_1_1_i_employee_repository_a1a0e12ece8eb5270f0cf8fd85dacad0a} 
+int string IList$<$ int $>$ KvK WPR.\+Repository.\+IEmployee\+Repository.\+View\+Business\+Requests (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Wordt geïmplementeerd door \mbox{\hyperlink{class_w_p_r_1_1_repository_1_1_employee_repository_a79ed0c0c2783f6b506db86979dd35ba8}{WPR.\+Repository.\+Employee\+Repository}}.
+
+
+
+\doxysubsection{Documentatie van data velden}
+\Hypertarget{interface_w_p_r_1_1_repository_1_1_i_employee_repository_a80719ba7cd30b3a9a6c4a44135f3b0a0}\index{WPR.Repository.IEmployeeRepository@{WPR.Repository.IEmployeeRepository}!Message@{Message}}
+\index{Message@{Message}!WPR.Repository.IEmployeeRepository@{WPR.Repository.IEmployeeRepository}}
+\doxysubsubsection{\texorpdfstring{Message}{Message}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{interface_w_p_r_1_1_repository_1_1_i_employee_repository_a80719ba7cd30b3a9a6c4a44135f3b0a0} 
+int string WPR.\+Repository.\+IEmployee\+Repository.\+Message}
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{_i_employee_repository_8cs_source_l00022}{22}} in het bestand \mbox{\hyperlink{_i_employee_repository_8cs_source}{IEmployee\+Repository.\+cs}}.
+
+
+
+Wordt aangeroepen door \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_employee_repository_a337ec931daad30f5c67c6d24ea894ccf}{Business\+Accepted()}}, \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_employee_repository_a12ac6420a6988c971c94d5902b01c15a}{Business\+Denied()}}, \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_employee_repository_a69550e77ed92deda070198fa624a705a}{Get\+Abonnement\+Type()}}, \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_employee_repository_aa434503c00a7c1d6e4f4119773147097}{Get\+Business\+Info()}}, \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_employee_repository_abacb00836a88444700b0d52362e3251a}{Get\+Kv\+K()}}, \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_employee_repository_a8137fbd1ffb21b5a0e62f90f5fbe7560}{Get\+Vehicle\+Manager\+Info()}} en \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_employee_repository_a817a6ee8b68111bc0eace6399eea0dac}{View\+Business\+Request\+Detailed()}}.
+
+\Hypertarget{interface_w_p_r_1_1_repository_1_1_i_employee_repository_af1d584d582098b3c2695a5d2a66a142c}\index{WPR.Repository.IEmployeeRepository@{WPR.Repository.IEmployeeRepository}!Message@{Message}}
+\index{Message@{Message}!WPR.Repository.IEmployeeRepository@{WPR.Repository.IEmployeeRepository}}
+\doxysubsubsection{\texorpdfstring{Message}{Message}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{interface_w_p_r_1_1_repository_1_1_i_employee_repository_af1d584d582098b3c2695a5d2a66a142c} 
+bool string WPR.\+Repository.\+IEmployee\+Repository.\+Message}
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{_i_employee_repository_8cs_source_l00026}{26}} in het bestand \mbox{\hyperlink{_i_employee_repository_8cs_source}{IEmployee\+Repository.\+cs}}.
+
+\Hypertarget{interface_w_p_r_1_1_repository_1_1_i_employee_repository_ae81eace956ba93bd3890c69d1acc6fbf}\index{WPR.Repository.IEmployeeRepository@{WPR.Repository.IEmployeeRepository}!Status@{Status}}
+\index{Status@{Status}!WPR.Repository.IEmployeeRepository@{WPR.Repository.IEmployeeRepository}}
+\doxysubsubsection{\texorpdfstring{Status}{Status}}
+{\footnotesize\ttfamily \label{interface_w_p_r_1_1_repository_1_1_i_employee_repository_ae81eace956ba93bd3890c69d1acc6fbf} 
+bool WPR.\+Repository.\+IEmployee\+Repository.\+Status}
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{_i_employee_repository_8cs_source_l00026}{26}} in het bestand \mbox{\hyperlink{_i_employee_repository_8cs_source}{IEmployee\+Repository.\+cs}}.
+
+
+
+Wordt aangeroepen door \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_employee_repository_aa434503c00a7c1d6e4f4119773147097}{Get\+Business\+Info()}}.
+
+\Hypertarget{interface_w_p_r_1_1_repository_1_1_i_employee_repository_acc8ce296de6de33747e04321b95382d3}\index{WPR.Repository.IEmployeeRepository@{WPR.Repository.IEmployeeRepository}!StatusCode@{StatusCode}}
+\index{StatusCode@{StatusCode}!WPR.Repository.IEmployeeRepository@{WPR.Repository.IEmployeeRepository}}
+\doxysubsubsection{\texorpdfstring{StatusCode}{StatusCode}}
+{\footnotesize\ttfamily \label{interface_w_p_r_1_1_repository_1_1_i_employee_repository_acc8ce296de6de33747e04321b95382d3} 
+int WPR.\+Repository.\+IEmployee\+Repository.\+Status\+Code}
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{_i_employee_repository_8cs_source_l00022}{22}} in het bestand \mbox{\hyperlink{_i_employee_repository_8cs_source}{IEmployee\+Repository.\+cs}}.
+
+
+
+Wordt aangeroepen door \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_employee_repository_a337ec931daad30f5c67c6d24ea894ccf}{Business\+Accepted()}}, \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_employee_repository_a12ac6420a6988c971c94d5902b01c15a}{Business\+Denied()}}, \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_employee_repository_a69550e77ed92deda070198fa624a705a}{Get\+Abonnement\+Type()}}, \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_employee_repository_abacb00836a88444700b0d52362e3251a}{Get\+Kv\+K()}}, \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_employee_repository_a8137fbd1ffb21b5a0e62f90f5fbe7560}{Get\+Vehicle\+Manager\+Info()}} en \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_employee_repository_a817a6ee8b68111bc0eace6399eea0dac}{View\+Business\+Request\+Detailed()}}.
+
+
+
+De documentatie voor dit interface is gegenereerd op basis van het volgende bestand\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/codes/\+WPR8/\+WPR/backend/src/\+Repository/\mbox{\hyperlink{_i_employee_repository_8cs}{IEmployee\+Repository.\+cs}}\end{DoxyCompactItemize}

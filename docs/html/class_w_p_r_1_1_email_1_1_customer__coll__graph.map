@@ -1,0 +1,9 @@
+<map id="WPR.Email.Customer" name="WPR.Email.Customer">
+<area shape="rect" id="Node000001" title="In de Customer klasse worden alle gegevens van een specifieke klant verzameld voor het aanmaken van e..." alt="" coords="138,492,278,604"/>
+<area shape="rect" id="Node000002" href="$interface_w_p_r_1_1_email_1_1_i_customer_details.html" title=" " alt="" coords="14,252,127,321"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="95,334,141,427,177,491,173,494,136,429,90,336"/>
+<area shape="rect" id="Node000003" href="$interface_w_p_r_1_1_email_1_1_i_details.html" title=" " alt="" coords="5,5,136,96"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="74,111,74,252,68,252,68,111"/>
+<area shape="rect" id="Node000004" href="$interface_w_p_r_1_1_repository_1_1_i_user_repository.html" title="Interface defining methods voor user gerelateerde database operaties, validatie, user management,..." alt="" coords="151,145,359,428"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="232,428,224,476,218,475,227,427"/>
+</map>

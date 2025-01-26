@@ -1,0 +1,668 @@
+\doxysection{WPR.\+Services.\+Email\+Service Class Referentie}
+\hypertarget{class_w_p_r_1_1_services_1_1_email_service}{}\label{class_w_p_r_1_1_services_1_1_email_service}\index{WPR.Services.EmailService@{WPR.Services.EmailService}}
+
+
+Klasse diagram voor WPR.\+Services.\+Email\+Service
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=247pt]{class_w_p_r_1_1_services_1_1_email_service__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboratie diagram voor WPR.\+Services.\+Email\+Service\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_w_p_r_1_1_services_1_1_email_service__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Members}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_w_p_r_1_1_services_1_1_email_service_a08080381a9593a6c0d25174e350aec1f}{Email\+Service}} (\mbox{\hyperlink{class_w_p_r_1_1_data_1_1_env_config}{Env\+Config}} env\+Config)
+\item 
+async Task \mbox{\hyperlink{class_w_p_r_1_1_services_1_1_email_service_a7da62c5a38ba1aa9eaa38767c022c42a}{Send}} (string to\+Email, string subject, string body)
+\begin{DoxyCompactList}\small\item\em Verstuurt een e-\/mail met de opgegeven ontvanger, onderwerp en inhoud. \end{DoxyCompactList}\item 
+async Task \mbox{\hyperlink{class_w_p_r_1_1_services_1_1_email_service_a00a227fa3bbc1b22634908be5be363ef}{Send\+Welcome\+Email}} (string to\+Email)
+\begin{DoxyCompactList}\small\item\em Verstuurt een welkomst e-\/mail naar het opgegeven e-\/mailadres. \end{DoxyCompactList}\item 
+async Task \mbox{\hyperlink{class_w_p_r_1_1_services_1_1_email_service_a23aed78b7ecd45ab31ca9acb6ce78b5e}{Send\+Rental\+Confirm\+Mail}} (string to\+Email, string car\+Name, string car\+Color, string car\+Plate, Date\+Time start\+Date, Date\+Time end\+Date, string price)
+\begin{DoxyCompactList}\small\item\em Verstuurt een huurovereenkomst bevestigingsmail naar de opgegeven ontvanger. \end{DoxyCompactList}\item 
+async Task \mbox{\hyperlink{class_w_p_r_1_1_services_1_1_email_service_ab96c557f8a51cc79d18b99b891238d07}{Send\+Confirmation\+Email\+Business}} (string to\+Email, string subscription, string business\+Name, int kvk, string domain, string adres)
+\begin{DoxyCompactList}\small\item\em Verstuurt een bevestigingsmail voor een bedrijfsaccount aanvraag. \end{DoxyCompactList}\item 
+async Task \mbox{\hyperlink{class_w_p_r_1_1_services_1_1_email_service_a2921ddfbad60ba40018a722be5a0c0c6}{Send\+Business\+Review\+Email}} (string to\+Email, string business\+Name, string domain, string password, bool accepted)
+\begin{DoxyCompactList}\small\item\em Verstuurt een beoordelingsmail voor een bedrijfsaccount aanvraag naar het opgegeven e-\/mailadres. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Members}
+\begin{DoxyCompactItemize}
+\item 
+Smtp\+Client \mbox{\hyperlink{class_w_p_r_1_1_services_1_1_email_service_ab31b08101a79b7e7634ccb24fb771d33}{Create\+Smtp\+Client}} ()
+\begin{DoxyCompactList}\small\item\em Creëert en retourneert een SMTP-\/client met de benodigde instellingen. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{class_w_p_r_1_1_services_1_1_email_service_ae494002e0de59b64d18083d36162c657}{Build\+Rental\+Confirmation\+Body}} (string car\+Name, string car\+Color, string car\+Plate, Date\+Time start\+Date, Date\+Time end\+Date, string price)
+\begin{DoxyCompactList}\small\item\em Bouwt de HTML-\/inhoud voor een huurovereenkomst bevestigingsmail. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{class_w_p_r_1_1_services_1_1_email_service_a41a2fd3203eb64a3e3965d7e1634ee4b}{Build\+Confirmation\+Email\+Business\+Body}} (string subscription, string business\+Name, int kvk, string domain, string adres)
+\begin{DoxyCompactList}\small\item\em Bouwt de HTML-\/inhoud voor een bedrijfsaccount bevestigingsmail. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{class_w_p_r_1_1_services_1_1_email_service_aeabcbafedfe612d2c217d314ebca6e67}{Build\+Business\+Review\+Email\+Body}} (string business\+Name, string domain, string password, bool accepted)
+\begin{DoxyCompactList}\small\item\em Bouwt de HTML-\/inhoud voor een beoordelingsmail voor een bedrijfsaccount aanvraag. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributen}
+\begin{DoxyCompactItemize}
+\item 
+readonly \mbox{\hyperlink{class_w_p_r_1_1_data_1_1_env_config}{Env\+Config}} \mbox{\hyperlink{class_w_p_r_1_1_services_1_1_email_service_a1b24680ee23b68d526051d9c96e50536}{\+\_\+env\+Config}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Gedetailleerde Beschrijving}
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{_email_service_8cs_source_l00007}{7}} in het bestand \mbox{\hyperlink{_email_service_8cs_source}{Email\+Service.\+cs}}.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentatie}
+\Hypertarget{class_w_p_r_1_1_services_1_1_email_service_a08080381a9593a6c0d25174e350aec1f}\index{WPR.Services.EmailService@{WPR.Services.EmailService}!EmailService@{EmailService}}
+\index{EmailService@{EmailService}!WPR.Services.EmailService@{WPR.Services.EmailService}}
+\doxysubsubsection{\texorpdfstring{EmailService()}{EmailService()}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_services_1_1_email_service_a08080381a9593a6c0d25174e350aec1f} 
+WPR.\+Services.\+Email\+Service.\+Email\+Service (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_w_p_r_1_1_data_1_1_env_config}{Env\+Config}}}]{env\+Config}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{_email_service_8cs_source_l00011}{11}} in het bestand \mbox{\hyperlink{_email_service_8cs_source}{Email\+Service.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00012\ \ \ \ \ \{}
+\DoxyCodeLine{00013\ \ \ \ \ \ \ \ \ \_envConfig\ =\ envConfig\ ??\ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ ArgumentNullException(nameof(envConfig));}
+\DoxyCodeLine{00014\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+Gebruikt \mbox{\hyperlink{_email_service_8cs_source_l00009}{\+\_\+env\+Config}}.
+
+
+
+\doxysubsection{Documentatie van functie members}
+\Hypertarget{class_w_p_r_1_1_services_1_1_email_service_aeabcbafedfe612d2c217d314ebca6e67}\index{WPR.Services.EmailService@{WPR.Services.EmailService}!BuildBusinessReviewEmailBody@{BuildBusinessReviewEmailBody}}
+\index{BuildBusinessReviewEmailBody@{BuildBusinessReviewEmailBody}!WPR.Services.EmailService@{WPR.Services.EmailService}}
+\doxysubsubsection{\texorpdfstring{BuildBusinessReviewEmailBody()}{BuildBusinessReviewEmailBody()}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_services_1_1_email_service_aeabcbafedfe612d2c217d314ebca6e67} 
+string WPR.\+Services.\+Email\+Service.\+Build\+Business\+Review\+Email\+Body (\begin{DoxyParamCaption}\item[{string}]{business\+Name}{, }\item[{string}]{domain}{, }\item[{string}]{password}{, }\item[{bool}]{accepted}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Bouwt de HTML-\/inhoud voor een beoordelingsmail voor een bedrijfsaccount aanvraag. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em business\+Name} & De naam van het bedrijf.\\
+\hline
+{\em domain} & Het domein van het bedrijf.\\
+\hline
+{\em password} & Het wachtwoord voor de beheerder.\\
+\hline
+{\em accepted} & Bepaalt of de aanvraag is geaccepteerd (true) of afgewezen (false).\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retourneert}
+HTML-\/inhoud voor de beoordelingsmail voor een bedrijfsaccount aanvraag.
+\end{DoxyReturn}
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{_email_service_8cs_source_l00247}{247}} in het bestand \mbox{\hyperlink{_email_service_8cs_source}{Email\+Service.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00250\ \ \ \ \ \{}
+\DoxyCodeLine{00251\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00252\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{\$@"{}}}
+\DoxyCodeLine{00253\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ <h1>Welkom,\ \{businessName\}</h1> }}
+\DoxyCodeLine{00254\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{00255\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ <p>Bedankt\ voor\ het\ aanmelden\ als\ bedrijf\ bij\ CarAndAll.</p> }}
+
+\end{DoxyCode}
+
+
+Wordt aangeroepen door \mbox{\hyperlink{_email_service_8cs_source_l00180}{Send\+Business\+Review\+Email()}}.
+
+Hier is de caller graaf voor deze functie\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_w_p_r_1_1_services_1_1_email_service_aeabcbafedfe612d2c217d314ebca6e67_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_w_p_r_1_1_services_1_1_email_service_a41a2fd3203eb64a3e3965d7e1634ee4b}\index{WPR.Services.EmailService@{WPR.Services.EmailService}!BuildConfirmationEmailBusinessBody@{BuildConfirmationEmailBusinessBody}}
+\index{BuildConfirmationEmailBusinessBody@{BuildConfirmationEmailBusinessBody}!WPR.Services.EmailService@{WPR.Services.EmailService}}
+\doxysubsubsection{\texorpdfstring{BuildConfirmationEmailBusinessBody()}{BuildConfirmationEmailBusinessBody()}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_services_1_1_email_service_a41a2fd3203eb64a3e3965d7e1634ee4b} 
+string WPR.\+Services.\+Email\+Service.\+Build\+Confirmation\+Email\+Business\+Body (\begin{DoxyParamCaption}\item[{string}]{subscription}{, }\item[{string}]{business\+Name}{, }\item[{int}]{kvk}{, }\item[{string}]{domain}{, }\item[{string}]{adres}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Bouwt de HTML-\/inhoud voor een bedrijfsaccount bevestigingsmail. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em subscription} & Het type abonnement voor het bedrijf.\\
+\hline
+{\em business\+Name} & De naam van het bedrijf.\\
+\hline
+{\em kvk} & Het KvK nummer van het bedrijf.\\
+\hline
+{\em domain} & Het domein van het bedrijf.\\
+\hline
+{\em adres} & Het adres van het bedrijf.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retourneert}
+HTML-\/inhoud voor de bedrijfsaccount bevestiging.
+\end{DoxyReturn}
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{_email_service_8cs_source_l00233}{233}} in het bestand \mbox{\hyperlink{_email_service_8cs_source}{Email\+Service.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00233\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ :\ \{startDate:dd\ MMMM,\ yyyy\}</li>}
+\DoxyCodeLine{00234\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <li>Tot\ en\ met:\ \{endDate:dd\ MMMM,\ yyyy\}</li>}
+\DoxyCodeLine{00235\ \ \ \ \ \ \ \ \ \ \ \ \ </ul>}
+\DoxyCodeLine{00236\ \ \ \ \ \ \ \ \ \ \ \ \ <p><strong>Totale\ huur\ prijs:</strong>\ €\{WebUtility.HtmlEncode(price)\}</p>}
+\DoxyCodeLine{00237\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{};}}
+
+\end{DoxyCode}
+
+
+Wordt aangeroepen door \mbox{\hyperlink{_email_service_8cs_source_l00142}{Send\+Confirmation\+Email\+Business()}}.
+
+Hier is de caller graaf voor deze functie\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_w_p_r_1_1_services_1_1_email_service_a41a2fd3203eb64a3e3965d7e1634ee4b_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_w_p_r_1_1_services_1_1_email_service_ae494002e0de59b64d18083d36162c657}\index{WPR.Services.EmailService@{WPR.Services.EmailService}!BuildRentalConfirmationBody@{BuildRentalConfirmationBody}}
+\index{BuildRentalConfirmationBody@{BuildRentalConfirmationBody}!WPR.Services.EmailService@{WPR.Services.EmailService}}
+\doxysubsubsection{\texorpdfstring{BuildRentalConfirmationBody()}{BuildRentalConfirmationBody()}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_services_1_1_email_service_ae494002e0de59b64d18083d36162c657} 
+string WPR.\+Services.\+Email\+Service.\+Build\+Rental\+Confirmation\+Body (\begin{DoxyParamCaption}\item[{string}]{car\+Name}{, }\item[{string}]{car\+Color}{, }\item[{string}]{car\+Plate}{, }\item[{Date\+Time}]{start\+Date}{, }\item[{Date\+Time}]{end\+Date}{, }\item[{string}]{price}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Bouwt de HTML-\/inhoud voor een huurovereenkomst bevestigingsmail. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em car\+Name} & De naam van het voertuig.\\
+\hline
+{\em car\+Color} & De kleur van het voertuig.\\
+\hline
+{\em car\+Plate} & Het kenteken van het voertuig.\\
+\hline
+{\em start\+Date} & De startdatum van de huurperiode.\\
+\hline
+{\em end\+Date} & De einddatum van de huurperiode.\\
+\hline
+{\em price} & De prijs van de huur.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retourneert}
+HTML-\/inhoud voor de huurovereenkomst bevestiging.
+\end{DoxyReturn}
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{_email_service_8cs_source_l00219}{219}} in het bestand \mbox{\hyperlink{_email_service_8cs_source}{Email\+Service.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00220\ \ \ \ \ \{}
+\DoxyCodeLine{00221\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{\$@"{}}}
+\DoxyCodeLine{00222\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ <p>Bedankt\ voor\ het\ huren\ van\ een\ voertuig\ bij\ CarAndAll,</p> }}
+
+\end{DoxyCode}
+
+
+Wordt aangeroepen door \mbox{\hyperlink{_email_service_8cs_source_l00105}{Send\+Rental\+Confirm\+Mail()}}.
+
+Hier is de caller graaf voor deze functie\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_w_p_r_1_1_services_1_1_email_service_ae494002e0de59b64d18083d36162c657_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_w_p_r_1_1_services_1_1_email_service_ab31b08101a79b7e7634ccb24fb771d33}\index{WPR.Services.EmailService@{WPR.Services.EmailService}!CreateSmtpClient@{CreateSmtpClient}}
+\index{CreateSmtpClient@{CreateSmtpClient}!WPR.Services.EmailService@{WPR.Services.EmailService}}
+\doxysubsubsection{\texorpdfstring{CreateSmtpClient()}{CreateSmtpClient()}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_services_1_1_email_service_ab31b08101a79b7e7634ccb24fb771d33} 
+Smtp\+Client WPR.\+Services.\+Email\+Service.\+Create\+Smtp\+Client (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Creëert en retourneert een SMTP-\/client met de benodigde instellingen. 
+
+\begin{DoxyReturn}{Retourneert}
+Een geconfigureerde Smtp\+Client voor het versturen van e-\/mail.
+\end{DoxyReturn}
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{_email_service_8cs_source_l00020}{20}} in het bestand \mbox{\hyperlink{_email_service_8cs_source}{Email\+Service.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00021\ \ \ \ \ \{}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{new}\ SmtpClient(\_envConfig.Get(\textcolor{stringliteral}{"{}SMTP\_HOST"{}})) }
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \ \ \ \ Port\ =\ \textcolor{keywordtype}{int}.Parse(\_envConfig.Get(\textcolor{stringliteral}{"{}SMTP\_PORT"{}})),}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \ \ \ \ Credentials\ =\ \textcolor{keyword}{new}\ NetworkCredential(}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \_envConfig.Get(\textcolor{stringliteral}{"{}SMTP\_FROM\_EMAIL"{}}),}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \_envConfig.Get(\textcolor{stringliteral}{"{}SMTP\_FROM\_PASSWORD"{}})}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ),}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \ \ \ \ EnableSsl\ =\ \textcolor{keyword}{true}}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00031\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+Gebruikt \mbox{\hyperlink{_email_service_8cs_source_l00009}{\+\_\+env\+Config}}.
+
+
+
+Wordt aangeroepen door \mbox{\hyperlink{_email_service_8cs_source_l00039}{Send()}}, \mbox{\hyperlink{_email_service_8cs_source_l00180}{Send\+Business\+Review\+Email()}}, \mbox{\hyperlink{_email_service_8cs_source_l00142}{Send\+Confirmation\+Email\+Business()}}, \mbox{\hyperlink{_email_service_8cs_source_l00105}{Send\+Rental\+Confirm\+Mail()}} en \mbox{\hyperlink{_email_service_8cs_source_l00067}{Send\+Welcome\+Email()}}.
+
+Hier is de caller graaf voor deze functie\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_w_p_r_1_1_services_1_1_email_service_ab31b08101a79b7e7634ccb24fb771d33_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_w_p_r_1_1_services_1_1_email_service_a7da62c5a38ba1aa9eaa38767c022c42a}\index{WPR.Services.EmailService@{WPR.Services.EmailService}!Send@{Send}}
+\index{Send@{Send}!WPR.Services.EmailService@{WPR.Services.EmailService}}
+\doxysubsubsection{\texorpdfstring{Send()}{Send()}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_services_1_1_email_service_a7da62c5a38ba1aa9eaa38767c022c42a} 
+async Task WPR.\+Services.\+Email\+Service.\+Send (\begin{DoxyParamCaption}\item[{string}]{to\+Email}{, }\item[{string}]{subject}{, }\item[{string}]{body}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Verstuurt een e-\/mail met de opgegeven ontvanger, onderwerp en inhoud. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em to\+Email} & Het e-\/mailadres van de ontvanger.\\
+\hline
+{\em subject} & Het onderwerp van de e-\/mail.\\
+\hline
+{\em body} & De inhoud van de e-\/mail.\\
+\hline
+\end{DoxyParams}
+
+
+Implementeert \mbox{\hyperlink{interface_w_p_r_1_1_services_1_1_i_email_service_a279756b7e35d5bd473ee68f8cc35bad8}{WPR.\+Services.\+IEmail\+Service}}.
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{_email_service_8cs_source_l00039}{39}} in het bestand \mbox{\hyperlink{_email_service_8cs_source}{Email\+Service.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00040\ \{}
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keywordflow}{try}}
+\DoxyCodeLine{00042\ \ \ \ \ \{}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \textcolor{keyword}{using}\ (var\ smtpClient\ =\ CreateSmtpClient())}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \textcolor{keyword}{using}\ (var\ mailMessage\ =\ \textcolor{keyword}{new}\ MailMessage}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \ \ \ \ From\ =\ \textcolor{keyword}{new}\ MailAddress(\_envConfig.Get(\textcolor{stringliteral}{"{}SMTP\_FROM\_EMAIL"{}})),\ \textcolor{comment}{//\ Afzender\ e-\/mail}}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \ \ \ \ Subject\ =\ subject,\ \textcolor{comment}{//\ Onderwerp\ van\ de\ e-\/mail}}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \ \ \ \ Body\ =\ body,\ \textcolor{comment}{//\ Inhoud\ van\ de\ e-\/mail}}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \ \ \ \ IsBodyHtml\ =\ \textcolor{keyword}{true}\ \textcolor{comment}{//\ Geef\ aan\ dat\ de\ inhoud\ HTML\ is}}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \})}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \ \ \ \ mailMessage.To.Add(toEmail);\ \textcolor{comment}{//\ Voeg\ de\ ontvanger\ toe}}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \ \ \ \ await\ smtpClient.SendMailAsync(mailMessage);\ \textcolor{comment}{//\ Verstuur\ de\ e-\/mail\ asynchroon}}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00055\ \ \ \ \ \}}
+\DoxyCodeLine{00056\ \ \ \ \ \textcolor{keywordflow}{catch}\ (Exception\ ex)}
+\DoxyCodeLine{00057\ \ \ \ \ \{}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ Console.WriteLine(ex.Message);\ \textcolor{comment}{//\ Log\ eventuele\ fouten}}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw};\ \textcolor{comment}{//\ Gooi\ de\ uitzondering\ opnieuw}}
+\DoxyCodeLine{00060\ \ \ \ \ \}}
+\DoxyCodeLine{00061\ \}}
+
+\end{DoxyCode}
+
+
+Gebruikt \mbox{\hyperlink{_email_service_8cs_source_l00009}{\+\_\+env\+Config}} en \mbox{\hyperlink{_email_service_8cs_source_l00020}{Create\+Smtp\+Client()}}.
+
+Hier is de call graaf voor deze functie\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_w_p_r_1_1_services_1_1_email_service_a7da62c5a38ba1aa9eaa38767c022c42a_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_w_p_r_1_1_services_1_1_email_service_a2921ddfbad60ba40018a722be5a0c0c6}\index{WPR.Services.EmailService@{WPR.Services.EmailService}!SendBusinessReviewEmail@{SendBusinessReviewEmail}}
+\index{SendBusinessReviewEmail@{SendBusinessReviewEmail}!WPR.Services.EmailService@{WPR.Services.EmailService}}
+\doxysubsubsection{\texorpdfstring{SendBusinessReviewEmail()}{SendBusinessReviewEmail()}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_services_1_1_email_service_a2921ddfbad60ba40018a722be5a0c0c6} 
+async Task WPR.\+Services.\+Email\+Service.\+Send\+Business\+Review\+Email (\begin{DoxyParamCaption}\item[{string}]{to\+Email}{, }\item[{string}]{business\+Name}{, }\item[{string}]{domain}{, }\item[{string}]{password}{, }\item[{bool}]{accepted}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Verstuurt een beoordelingsmail voor een bedrijfsaccount aanvraag naar het opgegeven e-\/mailadres. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em to\+Email} & Het e-\/mailadres van de ontvanger.\\
+\hline
+{\em business\+Name} & De naam van het bedrijf.\\
+\hline
+{\em domain} & Het domein van het bedrijf.\\
+\hline
+{\em password} & Het wachtwoord voor de beheerder.\\
+\hline
+{\em accepted} & Bepaalt of de aanvraag is geaccepteerd (true) of afgewezen (false).\\
+\hline
+\end{DoxyParams}
+
+
+Implementeert \mbox{\hyperlink{interface_w_p_r_1_1_services_1_1_i_email_service_a6c6aefd4725b2d3dd732cd301df454f7}{WPR.\+Services.\+IEmail\+Service}}.
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{_email_service_8cs_source_l00180}{180}} in het bestand \mbox{\hyperlink{_email_service_8cs_source}{Email\+Service.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00181\ \{}
+\DoxyCodeLine{00182\ \ \ \ \ \textcolor{keywordflow}{if}\ (\textcolor{keywordtype}{string}.IsNullOrEmpty(toEmail))}
+\DoxyCodeLine{00183\ \ \ \ \ \{}
+\DoxyCodeLine{00184\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ ArgumentNullException(\textcolor{stringliteral}{"{}Email\ can\ not\ be\ null"{}});\ \textcolor{comment}{//\ Zorg\ ervoor\ dat\ het\ e-\/mailadres\ geldig\ is}}
+\DoxyCodeLine{00185\ \ \ \ \ \}}
+\DoxyCodeLine{00186\ }
+\DoxyCodeLine{00187\ \ \ \ \ \textcolor{keywordflow}{try}}
+\DoxyCodeLine{00188\ \ \ \ \ \{}
+\DoxyCodeLine{00189\ \ \ \ \ \ \ \ \ \textcolor{keyword}{using}\ (var\ smtpClient\ =\ CreateSmtpClient())}
+\DoxyCodeLine{00190\ \ \ \ \ \ \ \ \ \textcolor{keyword}{using}\ (var\ emailMessage\ =\ \textcolor{keyword}{new}\ MailMessage}
+\DoxyCodeLine{00191\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00192\ \ \ \ \ \ \ \ \ \ \ \ \ From\ =\ \textcolor{keyword}{new}\ MailAddress(\_envConfig.Get(\textcolor{stringliteral}{"{}SMTP\_FROM\_EMAIL"{}})),\ \textcolor{comment}{//\ Afzender\ e-\/mail}}
+\DoxyCodeLine{00193\ \ \ \ \ \ \ \ \ \ \ \ \ Subject\ =\ \textcolor{stringliteral}{"{}Aanvraag\ Bedrijfs\ Account:\ Review"{}},\ \textcolor{comment}{//\ Onderwerp\ van\ de\ e-\/mail}}
+\DoxyCodeLine{00194\ \ \ \ \ \ \ \ \ \ \ \ \ Body\ =\ BuildBusinessReviewEmailBody(businessName,\ domain,\ password,\ accepted),\ \textcolor{comment}{//\ Bouw\ de\ inhoud\ van\ de\ beoordelingsmail}}
+\DoxyCodeLine{00195\ \ \ \ \ \ \ \ \ \ \ \ \ IsBodyHtml\ =\ \textcolor{keyword}{true}\ \textcolor{comment}{//\ Geef\ aan\ dat\ de\ inhoud\ HTML\ is}}
+\DoxyCodeLine{00196\ \ \ \ \ \ \ \ \ \})}
+\DoxyCodeLine{00197\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00198\ \ \ \ \ \ \ \ \ \ \ \ \ emailMessage.To.Add(toEmail);\ \textcolor{comment}{//\ Voeg\ de\ ontvanger\ toe}}
+\DoxyCodeLine{00199\ }
+\DoxyCodeLine{00200\ \ \ \ \ \ \ \ \ \ \ \ \ await\ smtpClient.SendMailAsync(emailMessage);\ \textcolor{comment}{//\ Verstuur\ de\ e-\/mail\ asynchroon}}
+\DoxyCodeLine{00201\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00202\ \ \ \ \ \}}
+\DoxyCodeLine{00203\ \ \ \ \ \textcolor{keywordflow}{catch}\ (Exception\ ex)}
+\DoxyCodeLine{00204\ \ \ \ \ \{}
+\DoxyCodeLine{00205\ \ \ \ \ \ \ \ \ Console.WriteLine(ex.Message);\ \textcolor{comment}{//\ Log\ eventuele\ fouten}}
+\DoxyCodeLine{00206\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw};\ \textcolor{comment}{//\ Gooi\ de\ uitzondering\ opnieuw}}
+\DoxyCodeLine{00207\ \ \ \ \ \}}
+\DoxyCodeLine{00208\ \}}
+
+\end{DoxyCode}
+
+
+Gebruikt \mbox{\hyperlink{_email_service_8cs_source_l00009}{\+\_\+env\+Config}}, \mbox{\hyperlink{_email_service_8cs_source_l00247}{Build\+Business\+Review\+Email\+Body()}} en \mbox{\hyperlink{_email_service_8cs_source_l00020}{Create\+Smtp\+Client()}}.
+
+Hier is de call graaf voor deze functie\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_w_p_r_1_1_services_1_1_email_service_a2921ddfbad60ba40018a722be5a0c0c6_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_w_p_r_1_1_services_1_1_email_service_ab96c557f8a51cc79d18b99b891238d07}\index{WPR.Services.EmailService@{WPR.Services.EmailService}!SendConfirmationEmailBusiness@{SendConfirmationEmailBusiness}}
+\index{SendConfirmationEmailBusiness@{SendConfirmationEmailBusiness}!WPR.Services.EmailService@{WPR.Services.EmailService}}
+\doxysubsubsection{\texorpdfstring{SendConfirmationEmailBusiness()}{SendConfirmationEmailBusiness()}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_services_1_1_email_service_ab96c557f8a51cc79d18b99b891238d07} 
+async Task WPR.\+Services.\+Email\+Service.\+Send\+Confirmation\+Email\+Business (\begin{DoxyParamCaption}\item[{string}]{to\+Email}{, }\item[{string}]{subscription}{, }\item[{string}]{business\+Name}{, }\item[{int}]{kvk}{, }\item[{string}]{domain}{, }\item[{string}]{adres}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Verstuurt een bevestigingsmail voor een bedrijfsaccount aanvraag. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em to\+Email} & Het e-\/mailadres van de ontvanger.\\
+\hline
+{\em subscription} & Het type abonnement voor het bedrijf.\\
+\hline
+{\em business\+Name} & De naam van het bedrijf.\\
+\hline
+{\em kvk} & Het KvK nummer van het bedrijf.\\
+\hline
+{\em domain} & Het domein van het bedrijf.\\
+\hline
+{\em adres} & Het adres van het bedrijf.\\
+\hline
+\end{DoxyParams}
+
+
+Implementeert \mbox{\hyperlink{interface_w_p_r_1_1_services_1_1_i_email_service_a79260bf2b5449191386cebce5af4ef02}{WPR.\+Services.\+IEmail\+Service}}.
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{_email_service_8cs_source_l00142}{142}} in het bestand \mbox{\hyperlink{_email_service_8cs_source}{Email\+Service.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00143\ \{}
+\DoxyCodeLine{00144\ \ \ \ \ \textcolor{keywordflow}{if}\ (\textcolor{keywordtype}{string}.IsNullOrEmpty(toEmail))}
+\DoxyCodeLine{00145\ \ \ \ \ \{}
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ ArgumentNullException(\textcolor{stringliteral}{"{}Email\ can\ not\ be\ null"{}});\ \textcolor{comment}{//\ Zorg\ ervoor\ dat\ het\ e-\/mailadres\ geldig\ is}}
+\DoxyCodeLine{00147\ \ \ \ \ \}}
+\DoxyCodeLine{00148\ }
+\DoxyCodeLine{00149\ \ \ \ \ \textcolor{keywordflow}{try}}
+\DoxyCodeLine{00150\ \ \ \ \ \{}
+\DoxyCodeLine{00151\ \ \ \ \ \ \ \ \ \textcolor{keyword}{using}\ (var\ smtpClient\ =\ CreateSmtpClient())}
+\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ \textcolor{keyword}{using}\ (var\ emailMessage\ =\ \textcolor{keyword}{new}\ MailMessage}
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ \ \ \ \ From\ =\ \textcolor{keyword}{new}\ MailAddress(\_envConfig.Get(\textcolor{stringliteral}{"{}SMTP\_FROM\_EMAIL"{}})),\ \textcolor{comment}{//\ Afzender\ e-\/mail}}
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ \ \ \ \ Subject\ =\ \textcolor{stringliteral}{"{}Aanvraag\ Bedrijfs\ Account"{}},\ \textcolor{comment}{//\ Onderwerp\ van\ de\ e-\/mail}}
+\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ \ \ \ \ Body\ =\ BuildConfirmationEmailBusinessBody(subscription,\ businessName,\ kvk,\ domain,\ adres),\ \textcolor{comment}{//\ Bouw\ de\ inhoud\ van\ de\ bevestiging}}
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ \ \ \ \ IsBodyHtml\ =\ \textcolor{keyword}{true}\ \textcolor{comment}{//\ Geef\ aan\ dat\ de\ inhoud\ HTML\ is}}
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ \})}
+\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ \ \ \ \ emailMessage.To.Add(toEmail);\ \textcolor{comment}{//\ Voeg\ de\ ontvanger\ toe}}
+\DoxyCodeLine{00161\ }
+\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ \ \ \ \ await\ smtpClient.SendMailAsync(emailMessage);\ \textcolor{comment}{//\ Verstuur\ de\ e-\/mail\ asynchroon}}
+\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00164\ \ \ \ \ \}}
+\DoxyCodeLine{00165\ \ \ \ \ \textcolor{keywordflow}{catch}\ (Exception\ ex)}
+\DoxyCodeLine{00166\ \ \ \ \ \{}
+\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ Console.WriteLine(ex.Message);\ \textcolor{comment}{//\ Log\ eventuele\ fouten}}
+\DoxyCodeLine{00168\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw};\ \textcolor{comment}{//\ Gooi\ de\ uitzondering\ opnieuw}}
+\DoxyCodeLine{00169\ \ \ \ \ \}}
+\DoxyCodeLine{00170\ \}}
+
+\end{DoxyCode}
+
+
+Gebruikt \mbox{\hyperlink{_email_service_8cs_source_l00009}{\+\_\+env\+Config}}, \mbox{\hyperlink{_email_service_8cs_source_l00233}{Build\+Confirmation\+Email\+Business\+Body()}} en \mbox{\hyperlink{_email_service_8cs_source_l00020}{Create\+Smtp\+Client()}}.
+
+Hier is de call graaf voor deze functie\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_w_p_r_1_1_services_1_1_email_service_ab96c557f8a51cc79d18b99b891238d07_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_w_p_r_1_1_services_1_1_email_service_a23aed78b7ecd45ab31ca9acb6ce78b5e}\index{WPR.Services.EmailService@{WPR.Services.EmailService}!SendRentalConfirmMail@{SendRentalConfirmMail}}
+\index{SendRentalConfirmMail@{SendRentalConfirmMail}!WPR.Services.EmailService@{WPR.Services.EmailService}}
+\doxysubsubsection{\texorpdfstring{SendRentalConfirmMail()}{SendRentalConfirmMail()}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_services_1_1_email_service_a23aed78b7ecd45ab31ca9acb6ce78b5e} 
+async Task WPR.\+Services.\+Email\+Service.\+Send\+Rental\+Confirm\+Mail (\begin{DoxyParamCaption}\item[{string}]{to\+Email}{, }\item[{string}]{car\+Name}{, }\item[{string}]{car\+Color}{, }\item[{string}]{car\+Plate}{, }\item[{Date\+Time}]{start\+Date}{, }\item[{Date\+Time}]{end\+Date}{, }\item[{string}]{price}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Verstuurt een huurovereenkomst bevestigingsmail naar de opgegeven ontvanger. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em to\+Email} & Het e-\/mailadres van de ontvanger.\\
+\hline
+{\em car\+Name} & De naam van het gehuurde voertuig.\\
+\hline
+{\em car\+Color} & De kleur van het gehuurde voertuig.\\
+\hline
+{\em car\+Plate} & Het kenteken van het gehuurde voertuig.\\
+\hline
+{\em start\+Date} & De startdatum van de huurperiode.\\
+\hline
+{\em end\+Date} & De einddatum van de huurperiode.\\
+\hline
+{\em price} & De prijs van de huur.\\
+\hline
+\end{DoxyParams}
+
+
+Implementeert \mbox{\hyperlink{interface_w_p_r_1_1_services_1_1_i_email_service_a872f8d930957c66622f3d1faf0becf5f}{WPR.\+Services.\+IEmail\+Service}}.
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{_email_service_8cs_source_l00105}{105}} in het bestand \mbox{\hyperlink{_email_service_8cs_source}{Email\+Service.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00106\ \{}
+\DoxyCodeLine{00107\ \ \ \ \ \textcolor{keywordflow}{if}\ (\textcolor{keywordtype}{string}.IsNullOrEmpty(toEmail))}
+\DoxyCodeLine{00108\ \ \ \ \ \{}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ ArgumentException(\textcolor{stringliteral}{"{}Email\ addresses\ cannot\ be\ null\ or\ empty"{}});\ \textcolor{comment}{//\ Controleer\ of\ het\ e-\/mailadres\ geldig\ is}}
+\DoxyCodeLine{00110\ \ \ \ \ \}}
+\DoxyCodeLine{00111\ }
+\DoxyCodeLine{00112\ \ \ \ \ \textcolor{keywordflow}{try}}
+\DoxyCodeLine{00113\ \ \ \ \ \{}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }var\ smtpClient\ =\ CreateSmtpClient();}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }var\ mailMessage\ =\ \textcolor{keyword}{new}\ MailMessage}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \ \ \ \ From\ =\ \textcolor{keyword}{new}\ MailAddress(\_envConfig.Get(\textcolor{stringliteral}{"{}SMTP\_FROM\_EMAIL"{}})),\ \textcolor{comment}{//\ Afzender\ e-\/mail}}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \ \ \ \ Subject\ =\ \textcolor{stringliteral}{"{}Verificatie\ Voertuig\ Huren"{}},\ \textcolor{comment}{//\ Onderwerp\ van\ de\ e-\/mail}}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \ \ \ \ Body\ =\ BuildRentalConfirmationBody(carName,\ carColor,\ carPlate,\ startDate,\ endDate,\ price),\ \textcolor{comment}{//\ Bouw\ de\ inhoud\ van\ de\ bevestiging}}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \ \ \ \ IsBodyHtml\ =\ \textcolor{keyword}{true}\ \textcolor{comment}{//\ Geef\ aan\ dat\ de\ inhoud\ HTML\ is}}
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ mailMessage.To.Add(toEmail);\ \textcolor{comment}{//\ Voeg\ de\ ontvanger\ toe}}
+\DoxyCodeLine{00123\ }
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ await\ smtpClient.SendMailAsync(mailMessage);\ \textcolor{comment}{//\ Verstuur\ de\ e-\/mail\ asynchroon}}
+\DoxyCodeLine{00125\ \ \ \ \ \}}
+\DoxyCodeLine{00126\ \ \ \ \ \textcolor{keywordflow}{catch}\ (Exception\ e)}
+\DoxyCodeLine{00127\ \ \ \ \ \{}
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ Console.WriteLine(e);\ \textcolor{comment}{//\ Log\ eventuele\ fouten}}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw};\ \textcolor{comment}{//\ Gooi\ de\ uitzondering\ opnieuw}}
+\DoxyCodeLine{00130\ \ \ \ \ \}}
+\DoxyCodeLine{00131\ \}}
+
+\end{DoxyCode}
+
+
+Gebruikt \mbox{\hyperlink{_email_service_8cs_source_l00009}{\+\_\+env\+Config}}, \mbox{\hyperlink{_email_service_8cs_source_l00219}{Build\+Rental\+Confirmation\+Body()}} en \mbox{\hyperlink{_email_service_8cs_source_l00020}{Create\+Smtp\+Client()}}.
+
+Hier is de call graaf voor deze functie\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_w_p_r_1_1_services_1_1_email_service_a23aed78b7ecd45ab31ca9acb6ce78b5e_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_w_p_r_1_1_services_1_1_email_service_a00a227fa3bbc1b22634908be5be363ef}\index{WPR.Services.EmailService@{WPR.Services.EmailService}!SendWelcomeEmail@{SendWelcomeEmail}}
+\index{SendWelcomeEmail@{SendWelcomeEmail}!WPR.Services.EmailService@{WPR.Services.EmailService}}
+\doxysubsubsection{\texorpdfstring{SendWelcomeEmail()}{SendWelcomeEmail()}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_services_1_1_email_service_a00a227fa3bbc1b22634908be5be363ef} 
+async Task WPR.\+Services.\+Email\+Service.\+Send\+Welcome\+Email (\begin{DoxyParamCaption}\item[{string}]{to\+Email}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Verstuurt een welkomst e-\/mail naar het opgegeven e-\/mailadres. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em to\+Email} & Het e-\/mailadres van de ontvanger.\\
+\hline
+\end{DoxyParams}
+
+
+Implementeert \mbox{\hyperlink{interface_w_p_r_1_1_services_1_1_i_email_service_a1f25916aff28ab0a80eea2394cd16ba8}{WPR.\+Services.\+IEmail\+Service}}.
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{_email_service_8cs_source_l00067}{67}} in het bestand \mbox{\hyperlink{_email_service_8cs_source}{Email\+Service.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00068\ \{\ \ \ \ \ }
+\DoxyCodeLine{00069\ \ \ \ \ \textcolor{keywordflow}{if}\ (\textcolor{keywordtype}{string}.IsNullOrEmpty(toEmail))}
+\DoxyCodeLine{00070\ \ \ \ \ \{}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ ArgumentException(\textcolor{stringliteral}{"{}Email\ addresses\ cannot\ be\ null\ or\ empty"{}});\ \textcolor{comment}{//\ Controleer\ of\ het\ e-\/mailadres\ geldig\ is}}
+\DoxyCodeLine{00072\ \ \ \ \ \}}
+\DoxyCodeLine{00073\ \ \ \ \ }
+\DoxyCodeLine{00074\ \ \ \ \ \textcolor{keywordflow}{try}}
+\DoxyCodeLine{00075\ \ \ \ \ \{}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }var\ smtpClient\ =\ CreateSmtpClient();}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }var\ mailMessage\ =\ \textcolor{keyword}{new}\ MailMessage}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \ \ \ \ From\ =\ \textcolor{keyword}{new}\ MailAddress(\_envConfig.Get(\textcolor{stringliteral}{"{}SMTP\_FROM\_EMAIL"{}})),\ \textcolor{comment}{//\ Afzender\ e-\/mail}}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \ \ \ \ Subject\ =\ \textcolor{stringliteral}{"{}Welkom\ bij\ CarAndAll"{}},\ \textcolor{comment}{//\ Onderwerp\ van\ de\ e-\/mail}}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \ \ \ \ Body\ =\ \$\textcolor{stringliteral}{"{}Welkom\ bij\ CarAndAll"{}},\ \textcolor{comment}{//\ Inhoud\ van\ de\ e-\/mail}}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \ \ \ \ IsBodyHtml\ =\ \textcolor{keyword}{true}\ \textcolor{comment}{//\ Geef\ aan\ dat\ de\ inhoud\ HTML\ is}}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ mailMessage.To.Add(toEmail);\ \textcolor{comment}{//\ Voeg\ de\ ontvanger\ toe}}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ await\ smtpClient.SendMailAsync(mailMessage);\ \textcolor{comment}{//\ Verstuur\ de\ e-\/mail\ asynchroon}}
+\DoxyCodeLine{00087\ \ \ \ \ \}}
+\DoxyCodeLine{00088\ \ \ \ \ \textcolor{keywordflow}{catch}\ (Exception\ e)}
+\DoxyCodeLine{00089\ \ \ \ \ \{}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ Console.WriteLine(e);\ \textcolor{comment}{//\ Log\ eventuele\ fouten}}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw};\ \textcolor{comment}{//\ Gooi\ de\ uitzondering\ opnieuw}}
+\DoxyCodeLine{00092\ \ \ \ \ \}}
+\DoxyCodeLine{00093\ \}}
+
+\end{DoxyCode}
+
+
+Gebruikt \mbox{\hyperlink{_email_service_8cs_source_l00009}{\+\_\+env\+Config}} en \mbox{\hyperlink{_email_service_8cs_source_l00020}{Create\+Smtp\+Client()}}.
+
+Hier is de call graaf voor deze functie\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_w_p_r_1_1_services_1_1_email_service_a00a227fa3bbc1b22634908be5be363ef_cgraph}
+\end{center}
+\end{figure}
+
+
+\doxysubsection{Documentatie van data velden}
+\Hypertarget{class_w_p_r_1_1_services_1_1_email_service_a1b24680ee23b68d526051d9c96e50536}\index{WPR.Services.EmailService@{WPR.Services.EmailService}!\_envConfig@{\_envConfig}}
+\index{\_envConfig@{\_envConfig}!WPR.Services.EmailService@{WPR.Services.EmailService}}
+\doxysubsubsection{\texorpdfstring{\_envConfig}{\_envConfig}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_services_1_1_email_service_a1b24680ee23b68d526051d9c96e50536} 
+readonly \mbox{\hyperlink{class_w_p_r_1_1_data_1_1_env_config}{Env\+Config}} WPR.\+Services.\+Email\+Service.\+\_\+env\+Config\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{_email_service_8cs_source_l00009}{9}} in het bestand \mbox{\hyperlink{_email_service_8cs_source}{Email\+Service.\+cs}}.
+
+
+
+Wordt aangeroepen door \mbox{\hyperlink{_email_service_8cs_source_l00020}{Create\+Smtp\+Client()}}, \mbox{\hyperlink{_email_service_8cs_source_l00011}{Email\+Service()}}, \mbox{\hyperlink{_email_service_8cs_source_l00039}{Send()}}, \mbox{\hyperlink{_email_service_8cs_source_l00180}{Send\+Business\+Review\+Email()}}, \mbox{\hyperlink{_email_service_8cs_source_l00142}{Send\+Confirmation\+Email\+Business()}}, \mbox{\hyperlink{_email_service_8cs_source_l00105}{Send\+Rental\+Confirm\+Mail()}} en \mbox{\hyperlink{_email_service_8cs_source_l00067}{Send\+Welcome\+Email()}}.
+
+
+
+De documentatie voor deze klasse is gegenereerd op basis van het volgende bestand\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/codes/\+WPR8/\+WPR/backend/src/\+Services/\mbox{\hyperlink{_email_service_8cs}{Email\+Service.\+cs}}\end{DoxyCompactItemize}

@@ -1,0 +1,200 @@
+\doxysection{WPR.\+Controllers.\+General.\+Sign\+Up.\+Sign\+Up\+Controller Class Referentie}
+\hypertarget{class_w_p_r_1_1_controllers_1_1_general_1_1_sign_up_1_1_sign_up_controller}{}\label{class_w_p_r_1_1_controllers_1_1_general_1_1_sign_up_1_1_sign_up_controller}\index{WPR.Controllers.General.SignUp.SignUpController@{WPR.Controllers.General.SignUp.SignUpController}}
+
+
+De \doxylink{class_w_p_r_1_1_controllers_1_1_general_1_1_sign_up_1_1_sign_up_controller}{Sign\+Up\+Controller} beheert het aanmaken van zowel persoonlijke als zakelijke accounts. Deze controller ontvangt verzoeken voor registratie en verwerkt ze via de repository.  
+
+
+
+
+Klasse diagram voor WPR.\+Controllers.\+General.\+Sign\+Up.\+Sign\+Up\+Controller
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=202pt]{class_w_p_r_1_1_controllers_1_1_general_1_1_sign_up_1_1_sign_up_controller__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboratie diagram voor WPR.\+Controllers.\+General.\+Sign\+Up.\+Sign\+Up\+Controller\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=326pt]{class_w_p_r_1_1_controllers_1_1_general_1_1_sign_up_1_1_sign_up_controller__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Members}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_general_1_1_sign_up_1_1_sign_up_controller_ae19663bdae2dbc6cebde063a2e129fe8}{Sign\+Up\+Controller}} (\mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_user_repository}{IUser\+Repository}} user\+Repository)
+\begin{DoxyCompactList}\small\item\em Constructor voor de \doxylink{class_w_p_r_1_1_controllers_1_1_general_1_1_sign_up_1_1_sign_up_controller}{Sign\+Up\+Controller}. Deze maakt gebruik van de User\+Repository voor accountbeheer. \end{DoxyCompactList}\item 
+async Task$<$ IAction\+Result $>$ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_general_1_1_sign_up_1_1_sign_up_controller_a0c3be455afaafaebb78fd9fa56da7a4b}{Sign\+Up}} (\mbox{[}From\+Form\mbox{]} \mbox{\hyperlink{namespace_w_p_r_1_1_controllers_1_1_general_1_1_sign_up_aa900677400c93afffd84ac3aba306774}{Combined\+Sign\+Up\+Request}} sign\+Up\+Request)
+\begin{DoxyCompactList}\small\item\em Registreert een nieuwe gebruiker met zowel persoonlijke als zakelijke gegevens. \end{DoxyCompactList}\item 
+async Task$<$ IAction\+Result $>$ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_general_1_1_sign_up_1_1_sign_up_controller_a35397bc748434e362e41954365dedb9e}{sign\+Up\+Personal\+Async}} (\mbox{[}From\+Form\mbox{]} \mbox{\hyperlink{namespace_w_p_r_1_1_controllers_1_1_general_1_1_sign_up_a1a899a5abbcf0be4ee87632f0500c697}{Sign\+Up\+Request}} sign\+Up\+Request)
+\begin{DoxyCompactList}\small\item\em Registreert een persoonlijke klant zonder zakelijke gegevens. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributen}
+\begin{DoxyCompactItemize}
+\item 
+readonly \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_user_repository}{IUser\+Repository}} \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_general_1_1_sign_up_1_1_sign_up_controller_a6f7a1c05015ab37189cfa6df1f40f158}{\+\_\+user\+Repository}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Gedetailleerde Beschrijving}
+De \doxylink{class_w_p_r_1_1_controllers_1_1_general_1_1_sign_up_1_1_sign_up_controller}{Sign\+Up\+Controller} beheert het aanmaken van zowel persoonlijke als zakelijke accounts. Deze controller ontvangt verzoeken voor registratie en verwerkt ze via de repository. 
+
+De definitie bevindt zich op regel \mbox{\hyperlink{sign_up_controller_8cs_source_l00013}{13}} in het bestand \mbox{\hyperlink{sign_up_controller_8cs_source}{sign\+Up\+Controller.\+cs}}.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentatie}
+\Hypertarget{class_w_p_r_1_1_controllers_1_1_general_1_1_sign_up_1_1_sign_up_controller_ae19663bdae2dbc6cebde063a2e129fe8}\index{WPR.Controllers.General.SignUp.SignUpController@{WPR.Controllers.General.SignUp.SignUpController}!SignUpController@{SignUpController}}
+\index{SignUpController@{SignUpController}!WPR.Controllers.General.SignUp.SignUpController@{WPR.Controllers.General.SignUp.SignUpController}}
+\doxysubsubsection{\texorpdfstring{SignUpController()}{SignUpController()}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_controllers_1_1_general_1_1_sign_up_1_1_sign_up_controller_ae19663bdae2dbc6cebde063a2e129fe8} 
+WPR.\+Controllers.\+General.\+Sign\+Up.\+Sign\+Up\+Controller.\+Sign\+Up\+Controller (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_user_repository}{IUser\+Repository}}}]{user\+Repository}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructor voor de \doxylink{class_w_p_r_1_1_controllers_1_1_general_1_1_sign_up_1_1_sign_up_controller}{Sign\+Up\+Controller}. Deze maakt gebruik van de User\+Repository voor accountbeheer. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em user\+Repository} & De repository die verantwoordelijk is voor het beheren van gebruikersgegevens.\\
+\hline
+\end{DoxyParams}
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{sign_up_controller_8cs_source_l00021}{21}} in het bestand \mbox{\hyperlink{sign_up_controller_8cs_source}{sign\+Up\+Controller.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00022\ \ \ \ \ \{}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \_userRepository\ =\ userRepository\ ??\ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ ArgumentNullException(nameof(userRepository));}
+\DoxyCodeLine{00024\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+Gebruikt \mbox{\hyperlink{sign_up_controller_8cs_source_l00015}{\+\_\+user\+Repository}}.
+
+
+
+\doxysubsection{Documentatie van functie members}
+\Hypertarget{class_w_p_r_1_1_controllers_1_1_general_1_1_sign_up_1_1_sign_up_controller_a0c3be455afaafaebb78fd9fa56da7a4b}\index{WPR.Controllers.General.SignUp.SignUpController@{WPR.Controllers.General.SignUp.SignUpController}!SignUp@{SignUp}}
+\index{SignUp@{SignUp}!WPR.Controllers.General.SignUp.SignUpController@{WPR.Controllers.General.SignUp.SignUpController}}
+\doxysubsubsection{\texorpdfstring{SignUp()}{SignUp()}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_controllers_1_1_general_1_1_sign_up_1_1_sign_up_controller_a0c3be455afaafaebb78fd9fa56da7a4b} 
+async Task$<$ IAction\+Result $>$ WPR.\+Controllers.\+General.\+Sign\+Up.\+Sign\+Up\+Controller.\+Sign\+Up (\begin{DoxyParamCaption}\item[{\mbox{[}\+From\+Form\mbox{]} \mbox{\hyperlink{namespace_w_p_r_1_1_controllers_1_1_general_1_1_sign_up_aa900677400c93afffd84ac3aba306774}{Combined\+Sign\+Up\+Request}}}]{sign\+Up\+Request}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Registreert een nieuwe gebruiker met zowel persoonlijke als zakelijke gegevens. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sign\+Up\+Request} & De gecombineerde registratiegegevens voor de klant en diens bedrijf (indien van toepassing).\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retourneert}
+Een HTTP-\/resultaat met een statuscode en een bericht over het succes of falen van de registratie.
+\end{DoxyReturn}
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{sign_up_controller_8cs_source_l00032}{32}} in het bestand \mbox{\hyperlink{sign_up_controller_8cs_source}{sign\+Up\+Controller.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00033\ \ \ \ \ \{}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespace_w_p_r_1_1_controllers_1_1_general_1_1_sign_up_abf09877e4843c0b4ff2791cc32242102}{SignUpRequestCustomer}}\ signUpRequestCustomer\ =\ signUpRequest.SignUpRequestCustomer;}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespace_w_p_r_1_1_controllers_1_1_general_1_1_sign_up_ab012081435b4392bd8e6e4525e336d68}{SignUpRequestCustomerPrivate}}\ signUpRequestCustomerPrivate\ =\ signUpRequest.SignUpRequestCustomerPrivate;}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ (\textcolor{keywordtype}{int}\ StatusCode,\ \textcolor{keywordtype}{string}\ Message)\ response\ =\ await\ \_userRepository.AddCustomer(signUpRequestCustomer,\ signUpRequestCustomerPrivate);}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ StatusCode(response.StatusCode,\ \textcolor{keyword}{new}\ \{\ message\ =\ response.Message\ \});}
+\DoxyCodeLine{00040\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+Gebruikt \mbox{\hyperlink{sign_up_controller_8cs_source_l00015}{\+\_\+user\+Repository}}, \mbox{\hyperlink{general_2sign_up_2sign_up_request_8cs_source_l00029}{WPR.\+Controllers.\+General.\+Sign\+Up.\+Combined\+Sign\+Up\+Request()}}, \mbox{\hyperlink{general_2sign_up_2sign_up_request_8cs_source_l00035}{WPR.\+Controllers.\+General.\+Sign\+Up.\+Sign\+Up\+Request\+Customer()}} en \mbox{\hyperlink{general_2sign_up_2sign_up_request_8cs_source_l00048}{WPR.\+Controllers.\+General.\+Sign\+Up.\+Sign\+Up\+Request\+Customer\+Private()}}.
+
+Hier is de call graaf voor deze functie\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_w_p_r_1_1_controllers_1_1_general_1_1_sign_up_1_1_sign_up_controller_a0c3be455afaafaebb78fd9fa56da7a4b_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_w_p_r_1_1_controllers_1_1_general_1_1_sign_up_1_1_sign_up_controller_a35397bc748434e362e41954365dedb9e}\index{WPR.Controllers.General.SignUp.SignUpController@{WPR.Controllers.General.SignUp.SignUpController}!signUpPersonalAsync@{signUpPersonalAsync}}
+\index{signUpPersonalAsync@{signUpPersonalAsync}!WPR.Controllers.General.SignUp.SignUpController@{WPR.Controllers.General.SignUp.SignUpController}}
+\doxysubsubsection{\texorpdfstring{signUpPersonalAsync()}{signUpPersonalAsync()}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_controllers_1_1_general_1_1_sign_up_1_1_sign_up_controller_a35397bc748434e362e41954365dedb9e} 
+async Task$<$ IAction\+Result $>$ WPR.\+Controllers.\+General.\+Sign\+Up.\+Sign\+Up\+Controller.\+sign\+Up\+Personal\+Async (\begin{DoxyParamCaption}\item[{\mbox{[}\+From\+Form\mbox{]} \mbox{\hyperlink{namespace_w_p_r_1_1_controllers_1_1_general_1_1_sign_up_a1a899a5abbcf0be4ee87632f0500c697}{Sign\+Up\+Request}}}]{sign\+Up\+Request}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Registreert een persoonlijke klant zonder zakelijke gegevens. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sign\+Up\+Request} & De registratiegegevens voor een persoonlijke klant.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retourneert}
+Een HTTP-\/resultaat met een statuscode en een bericht over het succes of falen van de registratie.
+\end{DoxyReturn}
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{sign_up_controller_8cs_source_l00048}{48}} in het bestand \mbox{\hyperlink{sign_up_controller_8cs_source}{sign\+Up\+Controller.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00049\ \ \ \ \ \{}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ Console.WriteLine(signUpRequest);}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ (\textcolor{keywordtype}{bool}\ Status,\ \textcolor{keywordtype}{string}\ Message)\ response\ =\ await\ \_userRepository.AddPersonalCustomer(signUpRequest);}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (response.Status)}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Ok(\textcolor{keyword}{new}\ \{\ message\ =\ response.Message\ \});}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ BadRequest(\textcolor{keyword}{new}\ \{\ message\ =\ response.Message\ \});}
+\DoxyCodeLine{00058\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+Gebruikt \mbox{\hyperlink{sign_up_controller_8cs_source_l00015}{\+\_\+user\+Repository}} en \mbox{\hyperlink{general_2sign_up_2sign_up_request_8cs_source_l00008}{WPR.\+Controllers.\+General.\+Sign\+Up.\+Sign\+Up\+Request()}}.
+
+Hier is de call graaf voor deze functie\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_w_p_r_1_1_controllers_1_1_general_1_1_sign_up_1_1_sign_up_controller_a35397bc748434e362e41954365dedb9e_cgraph}
+\end{center}
+\end{figure}
+
+
+\doxysubsection{Documentatie van data velden}
+\Hypertarget{class_w_p_r_1_1_controllers_1_1_general_1_1_sign_up_1_1_sign_up_controller_a6f7a1c05015ab37189cfa6df1f40f158}\index{WPR.Controllers.General.SignUp.SignUpController@{WPR.Controllers.General.SignUp.SignUpController}!\_userRepository@{\_userRepository}}
+\index{\_userRepository@{\_userRepository}!WPR.Controllers.General.SignUp.SignUpController@{WPR.Controllers.General.SignUp.SignUpController}}
+\doxysubsubsection{\texorpdfstring{\_userRepository}{\_userRepository}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_controllers_1_1_general_1_1_sign_up_1_1_sign_up_controller_a6f7a1c05015ab37189cfa6df1f40f158} 
+readonly \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_user_repository}{IUser\+Repository}} WPR.\+Controllers.\+General.\+Sign\+Up.\+Sign\+Up\+Controller.\+\_\+user\+Repository\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{sign_up_controller_8cs_source_l00015}{15}} in het bestand \mbox{\hyperlink{sign_up_controller_8cs_source}{sign\+Up\+Controller.\+cs}}.
+
+
+
+Wordt aangeroepen door \mbox{\hyperlink{sign_up_controller_8cs_source_l00032}{Sign\+Up()}}, \mbox{\hyperlink{sign_up_controller_8cs_source_l00021}{Sign\+Up\+Controller()}} en \mbox{\hyperlink{sign_up_controller_8cs_source_l00048}{sign\+Up\+Personal\+Async()}}.
+
+
+
+De documentatie voor deze klasse is gegenereerd op basis van het volgende bestand\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/codes/\+WPR8/\+WPR/backend/src/\+Controllers/general/sign\+Up/\mbox{\hyperlink{sign_up_controller_8cs}{sign\+Up\+Controller.\+cs}}\end{DoxyCompactItemize}

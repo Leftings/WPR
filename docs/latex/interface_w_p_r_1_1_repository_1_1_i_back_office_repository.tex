@@ -1,0 +1,120 @@
+\doxysection{WPR.\+Repository.\+IBack\+Office\+Repository Interface Referentie}
+\hypertarget{interface_w_p_r_1_1_repository_1_1_i_back_office_repository}{}\label{interface_w_p_r_1_1_repository_1_1_i_back_office_repository}\index{WPR.Repository.IBackOfficeRepository@{WPR.Repository.IBackOfficeRepository}}
+
+
+Collaboratie diagram voor WPR.\+Repository.\+IBack\+Office\+Repository\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=216pt]{interface_w_p_r_1_1_repository_1_1_i_back_office_repository__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Members}
+\begin{DoxyCompactItemize}
+\item 
+bool string Dictionary$<$ string, object $>$ Data \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_back_office_repository_a9430c24e98ae49f925f6fbdae47275e8}{Get\+Data\+Review}} (int id)
+\item 
+bool string int\mbox{[}$\,$\mbox{]} Ids \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_back_office_repository_acbee15781a164dc18657f3c40d1057ab}{Get\+Data\+Review\+Ids}} ()
+\item 
+bool string Dictionary$<$ string, object $>$ Data \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_back_office_repository_a05836a60e3d328c3418a0be1bb41b661}{Get\+Full\+Data\+Review}} (int id)
+\item 
+Task$<$(bool status, string message)$>$ \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_back_office_repository_a98e8467bf595734210c60697dc948839}{Add\+Subscription\+Async}} (string type, string description, double discount, double price)
+\item 
+Task$<$(bool status, string message)$>$ \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_back_office_repository_a7410bd86798b256d18095caefe59886e}{Delete\+Subscription\+Async}} (int id)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Data Velden}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_back_office_repository_a13341fcb4229d8b3e36b3de703fd6028}{Status}}
+\item 
+bool string \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_back_office_repository_a44567974b6edbcc459f4451264a67e3e}{Message}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Gedetailleerde Beschrijving}
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{_i_back_office_repository_8cs_source_l00003}{3}} in het bestand \mbox{\hyperlink{_i_back_office_repository_8cs_source}{IBack\+Office\+Repository.\+cs}}.
+
+
+
+\doxysubsection{Documentatie van functie members}
+\Hypertarget{interface_w_p_r_1_1_repository_1_1_i_back_office_repository_a98e8467bf595734210c60697dc948839}\index{WPR.Repository.IBackOfficeRepository@{WPR.Repository.IBackOfficeRepository}!AddSubscriptionAsync@{AddSubscriptionAsync}}
+\index{AddSubscriptionAsync@{AddSubscriptionAsync}!WPR.Repository.IBackOfficeRepository@{WPR.Repository.IBackOfficeRepository}}
+\doxysubsubsection{\texorpdfstring{AddSubscriptionAsync()}{AddSubscriptionAsync()}}
+{\footnotesize\ttfamily \label{interface_w_p_r_1_1_repository_1_1_i_back_office_repository_a98e8467bf595734210c60697dc948839} 
+Task$<$(bool status, string message)$>$ WPR.\+Repository.\+IBack\+Office\+Repository.\+Add\+Subscription\+Async (\begin{DoxyParamCaption}\item[{string}]{type}{, }\item[{string}]{description}{, }\item[{double}]{discount}{, }\item[{double}]{price}{}\end{DoxyParamCaption})}
+
+\Hypertarget{interface_w_p_r_1_1_repository_1_1_i_back_office_repository_a7410bd86798b256d18095caefe59886e}\index{WPR.Repository.IBackOfficeRepository@{WPR.Repository.IBackOfficeRepository}!DeleteSubscriptionAsync@{DeleteSubscriptionAsync}}
+\index{DeleteSubscriptionAsync@{DeleteSubscriptionAsync}!WPR.Repository.IBackOfficeRepository@{WPR.Repository.IBackOfficeRepository}}
+\doxysubsubsection{\texorpdfstring{DeleteSubscriptionAsync()}{DeleteSubscriptionAsync()}}
+{\footnotesize\ttfamily \label{interface_w_p_r_1_1_repository_1_1_i_back_office_repository_a7410bd86798b256d18095caefe59886e} 
+Task$<$(bool status, string message)$>$ WPR.\+Repository.\+IBack\+Office\+Repository.\+Delete\+Subscription\+Async (\begin{DoxyParamCaption}\item[{int}]{id}{}\end{DoxyParamCaption})}
+
+\Hypertarget{interface_w_p_r_1_1_repository_1_1_i_back_office_repository_a9430c24e98ae49f925f6fbdae47275e8}\index{WPR.Repository.IBackOfficeRepository@{WPR.Repository.IBackOfficeRepository}!GetDataReview@{GetDataReview}}
+\index{GetDataReview@{GetDataReview}!WPR.Repository.IBackOfficeRepository@{WPR.Repository.IBackOfficeRepository}}
+\doxysubsubsection{\texorpdfstring{GetDataReview()}{GetDataReview()}}
+{\footnotesize\ttfamily \label{interface_w_p_r_1_1_repository_1_1_i_back_office_repository_a9430c24e98ae49f925f6fbdae47275e8} 
+bool string Dictionary$<$ string, object $>$ Data WPR.\+Repository.\+IBack\+Office\+Repository.\+Get\+Data\+Review (\begin{DoxyParamCaption}\item[{int}]{id}{}\end{DoxyParamCaption})}
+
+
+
+Gebruikt \mbox{\hyperlink{_i_back_office_repository_8cs_source_l00005}{Message}} en \mbox{\hyperlink{_i_back_office_repository_8cs_source_l00005}{Status}}.
+
+\Hypertarget{interface_w_p_r_1_1_repository_1_1_i_back_office_repository_acbee15781a164dc18657f3c40d1057ab}\index{WPR.Repository.IBackOfficeRepository@{WPR.Repository.IBackOfficeRepository}!GetDataReviewIds@{GetDataReviewIds}}
+\index{GetDataReviewIds@{GetDataReviewIds}!WPR.Repository.IBackOfficeRepository@{WPR.Repository.IBackOfficeRepository}}
+\doxysubsubsection{\texorpdfstring{GetDataReviewIds()}{GetDataReviewIds()}}
+{\footnotesize\ttfamily \label{interface_w_p_r_1_1_repository_1_1_i_back_office_repository_acbee15781a164dc18657f3c40d1057ab} 
+bool string int\mbox{[}$\,$\mbox{]} Ids WPR.\+Repository.\+IBack\+Office\+Repository.\+Get\+Data\+Review\+Ids (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Gebruikt \mbox{\hyperlink{_i_back_office_repository_8cs_source_l00005}{Message}} en \mbox{\hyperlink{_i_back_office_repository_8cs_source_l00005}{Status}}.
+
+\Hypertarget{interface_w_p_r_1_1_repository_1_1_i_back_office_repository_a05836a60e3d328c3418a0be1bb41b661}\index{WPR.Repository.IBackOfficeRepository@{WPR.Repository.IBackOfficeRepository}!GetFullDataReview@{GetFullDataReview}}
+\index{GetFullDataReview@{GetFullDataReview}!WPR.Repository.IBackOfficeRepository@{WPR.Repository.IBackOfficeRepository}}
+\doxysubsubsection{\texorpdfstring{GetFullDataReview()}{GetFullDataReview()}}
+{\footnotesize\ttfamily \label{interface_w_p_r_1_1_repository_1_1_i_back_office_repository_a05836a60e3d328c3418a0be1bb41b661} 
+bool string Dictionary$<$ string, object $>$ Data WPR.\+Repository.\+IBack\+Office\+Repository.\+Get\+Full\+Data\+Review (\begin{DoxyParamCaption}\item[{int}]{id}{}\end{DoxyParamCaption})}
+
+
+
+Gebruikt \mbox{\hyperlink{_i_back_office_repository_8cs_source_l00005}{Message}} en \mbox{\hyperlink{_i_back_office_repository_8cs_source_l00005}{Status}}.
+
+
+
+\doxysubsection{Documentatie van data velden}
+\Hypertarget{interface_w_p_r_1_1_repository_1_1_i_back_office_repository_a44567974b6edbcc459f4451264a67e3e}\index{WPR.Repository.IBackOfficeRepository@{WPR.Repository.IBackOfficeRepository}!Message@{Message}}
+\index{Message@{Message}!WPR.Repository.IBackOfficeRepository@{WPR.Repository.IBackOfficeRepository}}
+\doxysubsubsection{\texorpdfstring{Message}{Message}}
+{\footnotesize\ttfamily \label{interface_w_p_r_1_1_repository_1_1_i_back_office_repository_a44567974b6edbcc459f4451264a67e3e} 
+bool string WPR.\+Repository.\+IBack\+Office\+Repository.\+Message}
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{_i_back_office_repository_8cs_source_l00005}{5}} in het bestand \mbox{\hyperlink{_i_back_office_repository_8cs_source}{IBack\+Office\+Repository.\+cs}}.
+
+
+
+Wordt aangeroepen door \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_back_office_repository_a9430c24e98ae49f925f6fbdae47275e8}{Get\+Data\+Review()}}, \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_back_office_repository_acbee15781a164dc18657f3c40d1057ab}{Get\+Data\+Review\+Ids()}} en \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_back_office_repository_a05836a60e3d328c3418a0be1bb41b661}{Get\+Full\+Data\+Review()}}.
+
+\Hypertarget{interface_w_p_r_1_1_repository_1_1_i_back_office_repository_a13341fcb4229d8b3e36b3de703fd6028}\index{WPR.Repository.IBackOfficeRepository@{WPR.Repository.IBackOfficeRepository}!Status@{Status}}
+\index{Status@{Status}!WPR.Repository.IBackOfficeRepository@{WPR.Repository.IBackOfficeRepository}}
+\doxysubsubsection{\texorpdfstring{Status}{Status}}
+{\footnotesize\ttfamily \label{interface_w_p_r_1_1_repository_1_1_i_back_office_repository_a13341fcb4229d8b3e36b3de703fd6028} 
+bool WPR.\+Repository.\+IBack\+Office\+Repository.\+Status}
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{_i_back_office_repository_8cs_source_l00005}{5}} in het bestand \mbox{\hyperlink{_i_back_office_repository_8cs_source}{IBack\+Office\+Repository.\+cs}}.
+
+
+
+Wordt aangeroepen door \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_back_office_repository_a9430c24e98ae49f925f6fbdae47275e8}{Get\+Data\+Review()}}, \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_back_office_repository_acbee15781a164dc18657f3c40d1057ab}{Get\+Data\+Review\+Ids()}} en \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_back_office_repository_a05836a60e3d328c3418a0be1bb41b661}{Get\+Full\+Data\+Review()}}.
+
+
+
+De documentatie voor dit interface is gegenereerd op basis van het volgende bestand\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/codes/\+WPR8/\+WPR/backend/src/\+Repository/\mbox{\hyperlink{_i_back_office_repository_8cs}{IBack\+Office\+Repository.\+cs}}\end{DoxyCompactItemize}

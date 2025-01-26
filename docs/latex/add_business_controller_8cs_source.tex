@@ -1,0 +1,107 @@
+\doxysection{add\+Business\+Controller.\+cs}
+\hypertarget{add_business_controller_8cs_source}{}\label{add_business_controller_8cs_source}\index{D:/codes/WPR8/WPR/backend/src/Controllers/customer/addBusiness/addBusinessController.cs@{D:/codes/WPR8/WPR/backend/src/Controllers/customer/addBusiness/addBusinessController.cs}}
+\mbox{\hyperlink{add_business_controller_8cs}{Ga naar de documentatie van dit bestand.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{add_business_controller_8cs_source_l00001}\mbox{\hyperlink{namespace_w_p_r_1_1_controllers}{00001}}\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_w_p_r_1_1_controllers_1_1_customer_1_1_add_business}{WPR.Controllers.Customer.AddBusiness}};}
+\DoxyCodeLine{\Hypertarget{add_business_controller_8cs_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{add_business_controller_8cs_source_l00003}00003\ \textcolor{keyword}{using\ }Microsoft.AspNetCore.Mvc;}
+\DoxyCodeLine{\Hypertarget{add_business_controller_8cs_source_l00004}00004\ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespace_w_p_r_1_1_controllers_1_1_employee_1_1_back_office_1_1sign_up_staff}{WPR.Controllers.Employee.BackOffice.signUpStaff}};}
+\DoxyCodeLine{\Hypertarget{add_business_controller_8cs_source_l00005}00005\ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespace_w_p_r_1_1_repository}{WPR.Repository}};}
+\DoxyCodeLine{\Hypertarget{add_business_controller_8cs_source_l00006}00006\ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespace_w_p_r_1_1_services}{WPR.Services}};}
+\DoxyCodeLine{\Hypertarget{add_business_controller_8cs_source_l00007}00007\ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespace_w_p_r_1_1_utils}{WPR.Utils}};}
+\DoxyCodeLine{\Hypertarget{add_business_controller_8cs_source_l00008}00008\ }
+\DoxyCodeLine{\Hypertarget{add_business_controller_8cs_source_l00013}00013\ [Route(\textcolor{stringliteral}{"{}api/[controller]"{}})]}
+\DoxyCodeLine{\Hypertarget{add_business_controller_8cs_source_l00014}00014\ [ApiController]}
+\DoxyCodeLine{\Hypertarget{add_business_controller_8cs_source_l00015}\mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_customer_1_1_add_business_1_1_add_business_controller}{00015}}\ \textcolor{keyword}{public}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_customer_1_1_add_business_1_1_add_business_controller_aa84dfe5d6f136e2513a6d40cc690c73f}{AddBusinessController}}\ :\ ControllerBase}
+\DoxyCodeLine{\Hypertarget{add_business_controller_8cs_source_l00016}00016\ \{}
+\DoxyCodeLine{\Hypertarget{add_business_controller_8cs_source_l00017}\mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_customer_1_1_add_business_1_1_add_business_controller_afe7bad869d6de8e48c8a44d65cc8e6fa}{00017}}\ \ \ \ \ \textcolor{keyword}{private}\ readonly\ \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_employee_repository}{IEmployeeRepository}}\ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_customer_1_1_add_business_1_1_add_business_controller_afe7bad869d6de8e48c8a44d65cc8e6fa}{\_employeeRepository}};}
+\DoxyCodeLine{\Hypertarget{add_business_controller_8cs_source_l00018}\mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_customer_1_1_add_business_1_1_add_business_controller_a5c9a5c970562bd13b2fd6b069815975b}{00018}}\ \ \ \ \ \textcolor{keyword}{private}\ readonly\ \mbox{\hyperlink{interface_w_p_r_1_1_services_1_1_i_email_service}{IEmailService}}\ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_customer_1_1_add_business_1_1_add_business_controller_a5c9a5c970562bd13b2fd6b069815975b}{\_emailService}};}
+\DoxyCodeLine{\Hypertarget{add_business_controller_8cs_source_l00019}00019\ }
+\DoxyCodeLine{\Hypertarget{add_business_controller_8cs_source_l00025}\mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_customer_1_1_add_business_1_1_add_business_controller_aa84dfe5d6f136e2513a6d40cc690c73f}{00025}}\ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_customer_1_1_add_business_1_1_add_business_controller_aa84dfe5d6f136e2513a6d40cc690c73f}{AddBusinessController}}\ (\mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_employee_repository}{IEmployeeRepository}}\ employeeRepository,\ \mbox{\hyperlink{interface_w_p_r_1_1_services_1_1_i_email_service}{IEmailService}}\ emailService)}
+\DoxyCodeLine{\Hypertarget{add_business_controller_8cs_source_l00026}00026\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{add_business_controller_8cs_source_l00027}00027\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_customer_1_1_add_business_1_1_add_business_controller_afe7bad869d6de8e48c8a44d65cc8e6fa}{\_employeeRepository}}\ =\ employeeRepository\ ??\ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ ArgumentNullException(nameof(employeeRepository));}
+\DoxyCodeLine{\Hypertarget{add_business_controller_8cs_source_l00028}00028\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_customer_1_1_add_business_1_1_add_business_controller_a5c9a5c970562bd13b2fd6b069815975b}{\_emailService}}\ =\ emailService\ ??\ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ ArgumentNullException(nameof(emailService));}
+\DoxyCodeLine{\Hypertarget{add_business_controller_8cs_source_l00029}00029\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{add_business_controller_8cs_source_l00030}00030\ }
+\DoxyCodeLine{\Hypertarget{add_business_controller_8cs_source_l00036}00036\ \ \ \ \ [HttpPost(\textcolor{stringliteral}{"{}addBusiness"{}})]}
+\DoxyCodeLine{\Hypertarget{add_business_controller_8cs_source_l00037}\mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_customer_1_1_add_business_1_1_add_business_controller_a2cbfc68c2a54a65fc72b6f38c99e7afc}{00037}}\ \ \ \ \ \textcolor{keyword}{public}\ async\ Task<IActionResult>\ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_customer_1_1_add_business_1_1_add_business_controller_a2cbfc68c2a54a65fc72b6f38c99e7afc}{AddBusiness}}([FromForm]\ \mbox{\hyperlink{namespace_w_p_r_1_1_controllers_1_1_customer_1_1_add_business_af184e38969a148e23ef1fe5429a74898}{AddBusinessRequest}}\ request)}
+\DoxyCodeLine{\Hypertarget{add_business_controller_8cs_source_l00038}00038\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{add_business_controller_8cs_source_l00039}00039\ \ \ \ \ \ \ \ \ var\ output\ =\ await\ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_customer_1_1_add_business_1_1_add_business_controller_afe7bad869d6de8e48c8a44d65cc8e6fa}{\_employeeRepository}}.AddBusiness(request);}
+\DoxyCodeLine{\Hypertarget{add_business_controller_8cs_source_l00040}00040\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{add_business_controller_8cs_source_l00041}00041\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (output.status)}
+\DoxyCodeLine{\Hypertarget{add_business_controller_8cs_source_l00042}00042\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{add_business_controller_8cs_source_l00043}00043\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Ok(\textcolor{keyword}{new}\ \{\ output.message\ \});}
+\DoxyCodeLine{\Hypertarget{add_business_controller_8cs_source_l00044}00044\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{add_business_controller_8cs_source_l00045}00045\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ BadRequest(\textcolor{keyword}{new}\ \{\ output.message\ \});}
+\DoxyCodeLine{\Hypertarget{add_business_controller_8cs_source_l00046}00046\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{add_business_controller_8cs_source_l00047}00047\ }
+\DoxyCodeLine{\Hypertarget{add_business_controller_8cs_source_l00052}00052\ \ \ \ \ [HttpGet(\textcolor{stringliteral}{"{}getNewBusinesses"{}})]}
+\DoxyCodeLine{\Hypertarget{add_business_controller_8cs_source_l00053}\mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_customer_1_1_add_business_1_1_add_business_controller_a3e1a7027fc08cd768f115a08a8a6f5f8}{00053}}\ \ \ \ \ \textcolor{keyword}{public}\ async\ Task<IActionResult>\ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_customer_1_1_add_business_1_1_add_business_controller_a3e1a7027fc08cd768f115a08a8a6f5f8}{GetNewBusinesses}}()}
+\DoxyCodeLine{\Hypertarget{add_business_controller_8cs_source_l00054}00054\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{add_business_controller_8cs_source_l00055}00055\ \ \ \ \ \ \ \ \ (\textcolor{keywordtype}{int}\ StatusCode,\ \textcolor{keywordtype}{string}\ Message,\ IList<int>\ KvK)\ response\ =\ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_customer_1_1_add_business_1_1_add_business_controller_afe7bad869d6de8e48c8a44d65cc8e6fa}{\_employeeRepository}}.ViewBusinessRequests();}
+\DoxyCodeLine{\Hypertarget{add_business_controller_8cs_source_l00056}00056\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{add_business_controller_8cs_source_l00057}00057\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (response.StatusCode\ ==\ 200)}
+\DoxyCodeLine{\Hypertarget{add_business_controller_8cs_source_l00058}00058\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{add_business_controller_8cs_source_l00059}00059\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ StatusCode(response.StatusCode,\ \textcolor{keyword}{new}\ \{\ message\ =\ response.KvK\ \});}
+\DoxyCodeLine{\Hypertarget{add_business_controller_8cs_source_l00060}00060\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{add_business_controller_8cs_source_l00061}00061\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ StatusCode(response.StatusCode,\ \textcolor{keyword}{new}\ \{\ message\ =\ response.Message\ \});}
+\DoxyCodeLine{\Hypertarget{add_business_controller_8cs_source_l00062}00062\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{add_business_controller_8cs_source_l00063}00063\ }
+\DoxyCodeLine{\Hypertarget{add_business_controller_8cs_source_l00069}00069\ \ \ \ \ [HttpGet(\textcolor{stringliteral}{"{}getNewBusiness"{}})]}
+\DoxyCodeLine{\Hypertarget{add_business_controller_8cs_source_l00070}\mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_customer_1_1_add_business_1_1_add_business_controller_a7ee6740dc9609d5df293a4d3fbad32c7}{00070}}\ \ \ \ \ \textcolor{keyword}{public}\ async\ Task<IActionResult>\ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_customer_1_1_add_business_1_1_add_business_controller_a7ee6740dc9609d5df293a4d3fbad32c7}{GetNewBusiness}}(\textcolor{keywordtype}{int}\ kvk)}
+\DoxyCodeLine{\Hypertarget{add_business_controller_8cs_source_l00071}00071\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{add_business_controller_8cs_source_l00072}00072\ \ \ \ \ \ \ \ \ (\textcolor{keywordtype}{int}\ StatusCode,\ \textcolor{keywordtype}{string}\ Message,\ Dictionary<string,\ object>\ \mbox{\hyperlink{namespace_w_p_r_1_1_data}{Data}})\ response\ =\ await\ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_customer_1_1_add_business_1_1_add_business_controller_afe7bad869d6de8e48c8a44d65cc8e6fa}{\_employeeRepository}}.ViewBusinessRequestDetailed(kvk);}
+\DoxyCodeLine{\Hypertarget{add_business_controller_8cs_source_l00073}00073\ }
+\DoxyCodeLine{\Hypertarget{add_business_controller_8cs_source_l00074}00074\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (response.StatusCode\ ==\ 200)}
+\DoxyCodeLine{\Hypertarget{add_business_controller_8cs_source_l00075}00075\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{add_business_controller_8cs_source_l00076}00076\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ StatusCode(response.StatusCode,\ \textcolor{keyword}{new}\ \{\ message\ =\ response.Message,\ data\ =\ response.Data\ \});}
+\DoxyCodeLine{\Hypertarget{add_business_controller_8cs_source_l00077}00077\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{add_business_controller_8cs_source_l00078}00078\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ StatusCode(response.StatusCode,\ \textcolor{keyword}{new}\ \{\ message\ =\ response.Message\ \});}
+\DoxyCodeLine{\Hypertarget{add_business_controller_8cs_source_l00079}00079\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{add_business_controller_8cs_source_l00080}00080\ }
+\DoxyCodeLine{\Hypertarget{add_business_controller_8cs_source_l00086}00086\ \ \ \ \ [HttpPut(\textcolor{stringliteral}{"{}businessAccepted"{}})]}
+\DoxyCodeLine{\Hypertarget{add_business_controller_8cs_source_l00087}\mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_customer_1_1_add_business_1_1_add_business_controller_a4029d0dab4616b0792aa7402e5504725}{00087}}\ \ \ \ \ \textcolor{keyword}{public}\ async\ Task<IActionResult>\ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_customer_1_1_add_business_1_1_add_business_controller_a4029d0dab4616b0792aa7402e5504725}{BusinessAccepted}}(\textcolor{keywordtype}{int}\ kvk)}
+\DoxyCodeLine{\Hypertarget{add_business_controller_8cs_source_l00088}00088\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{add_business_controller_8cs_source_l00089}00089\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ emailSend\ =\ \textcolor{stringliteral}{"{}No\ Email\ Send"{}};}
+\DoxyCodeLine{\Hypertarget{add_business_controller_8cs_source_l00090}00090\ \ \ \ \ \ \ \ \ (\textcolor{keywordtype}{int}\ StatusCode,\ \textcolor{keywordtype}{string}\ Message)\ response\ =\ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_customer_1_1_add_business_1_1_add_business_controller_afe7bad869d6de8e48c8a44d65cc8e6fa}{\_employeeRepository}}.BusinessAccepted(kvk);}
+\DoxyCodeLine{\Hypertarget{add_business_controller_8cs_source_l00091}00091\ }
+\DoxyCodeLine{\Hypertarget{add_business_controller_8cs_source_l00092}00092\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (response.StatusCode\ ==\ 200)}
+\DoxyCodeLine{\Hypertarget{add_business_controller_8cs_source_l00093}00093\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{add_business_controller_8cs_source_l00094}00094\ \ \ \ \ \ \ \ \ \ \ \ \ (\textcolor{keywordtype}{bool}\ Status,\ \textcolor{keywordtype}{string}\ Message,\ Dictionary<string,\ object>\ \mbox{\hyperlink{namespace_w_p_r_1_1_data}{Data}})\ info\ =\ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_customer_1_1_add_business_1_1_add_business_controller_afe7bad869d6de8e48c8a44d65cc8e6fa}{\_employeeRepository}}.GetBusinessInfo(kvk);}
+\DoxyCodeLine{\Hypertarget{add_business_controller_8cs_source_l00095}00095\ }
+\DoxyCodeLine{\Hypertarget{add_business_controller_8cs_source_l00096}00096\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (info.Status)}
+\DoxyCodeLine{\Hypertarget{add_business_controller_8cs_source_l00097}00097\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{add_business_controller_8cs_source_l00098}00098\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ password\ =\ \mbox{\hyperlink{class_w_p_r_1_1_utils_1_1_strong_password_maker}{StrongPasswordMaker}}.\mbox{\hyperlink{class_w_p_r_1_1_utils_1_1_strong_password_maker_a14b05cdc7b684fd66fc0d02fc32d60b4}{CreatePassword}}();}
+\DoxyCodeLine{\Hypertarget{add_business_controller_8cs_source_l00099}00099\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ await\ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_customer_1_1_add_business_1_1_add_business_controller_afe7bad869d6de8e48c8a44d65cc8e6fa}{\_employeeRepository}}.AddStaff(\textcolor{keyword}{new}\ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_employee_1_1_back_office_1_1sign_up_staff_1_1_sign_up_staff_request}{SignUpStaffRequest}}()}
+\DoxyCodeLine{\Hypertarget{add_business_controller_8cs_source_l00100}00100\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{FirstName\ =\ \textcolor{stringliteral}{"{}Vehicle"{}},\ LastName\ =\ \textcolor{stringliteral}{"{}Manager"{}},\ Password\ =\ password,\ Job\ =\ \textcolor{stringliteral}{"{}Wagen"{}},\ KvK\ =\ Convert.ToInt32(info.Data[\textcolor{stringliteral}{"{}KvK"{}}]),\ \mbox{\hyperlink{namespace_w_p_r_1_1_email}{Email}}\ =\ \$\textcolor{stringliteral}{"{}wagenparkbeheerder\{info.Data["{}}Domain\textcolor{stringliteral}{"{}]\}"{}}}
+\DoxyCodeLine{\Hypertarget{add_business_controller_8cs_source_l00101}00101\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{\Hypertarget{add_business_controller_8cs_source_l00102}00102\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_customer_1_1_add_business_1_1_add_business_controller_a5c9a5c970562bd13b2fd6b069815975b}{\_emailService}}.SendBusinessReviewEmail((\textcolor{keywordtype}{string})info.Data[\textcolor{stringliteral}{"{}ContactEmail"{}}],\ (\textcolor{keywordtype}{string})info.Data[\textcolor{stringliteral}{"{}BusinessName"{}}],\ (\textcolor{keywordtype}{string})info.Data[\textcolor{stringliteral}{"{}Domain"{}}],\ password,\ \textcolor{keyword}{true});}
+\DoxyCodeLine{\Hypertarget{add_business_controller_8cs_source_l00103}00103\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ emailSend\ =\ \textcolor{stringliteral}{"{}Email\ Send"{}};}
+\DoxyCodeLine{\Hypertarget{add_business_controller_8cs_source_l00104}00104\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{add_business_controller_8cs_source_l00105}00105\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{add_business_controller_8cs_source_l00106}00106\ }
+\DoxyCodeLine{\Hypertarget{add_business_controller_8cs_source_l00107}00107\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ StatusCode(response.StatusCode,\ \textcolor{keyword}{new}\ \{\ message\ =\ \$\textcolor{stringliteral}{"{}\{response.Message\}\(\backslash\)n\{emailSend\}"{}}\ \});}
+\DoxyCodeLine{\Hypertarget{add_business_controller_8cs_source_l00108}00108\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{add_business_controller_8cs_source_l00109}00109\ }
+\DoxyCodeLine{\Hypertarget{add_business_controller_8cs_source_l00115}00115\ \ \ \ \ [HttpDelete(\textcolor{stringliteral}{"{}businessDenied"{}})]}
+\DoxyCodeLine{\Hypertarget{add_business_controller_8cs_source_l00116}\mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_customer_1_1_add_business_1_1_add_business_controller_ad6c4461c617ac6cd5a2d0670c1ee2882}{00116}}\ \ \ \ \ \textcolor{keyword}{public}\ async\ Task<IActionResult>\ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_customer_1_1_add_business_1_1_add_business_controller_ad6c4461c617ac6cd5a2d0670c1ee2882}{BusinessDenied}}(\textcolor{keywordtype}{int}\ kvk)}
+\DoxyCodeLine{\Hypertarget{add_business_controller_8cs_source_l00117}00117\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{add_business_controller_8cs_source_l00118}00118\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ emailSend\ =\ \textcolor{stringliteral}{"{}No\ Email\ Send"{}};}
+\DoxyCodeLine{\Hypertarget{add_business_controller_8cs_source_l00119}00119\ \ \ \ \ \ \ \ \ (\textcolor{keywordtype}{bool}\ Status,\ \textcolor{keywordtype}{string}\ Message,\ Dictionary<string,\ object>\ \mbox{\hyperlink{namespace_w_p_r_1_1_data}{Data}})\ info\ =\ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_customer_1_1_add_business_1_1_add_business_controller_afe7bad869d6de8e48c8a44d65cc8e6fa}{\_employeeRepository}}.GetBusinessInfo(kvk);}
+\DoxyCodeLine{\Hypertarget{add_business_controller_8cs_source_l00120}00120\ \ \ \ \ \ \ \ \ (\textcolor{keywordtype}{int}\ StatusCode,\ \textcolor{keywordtype}{string}\ Message)\ response\ =\ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_customer_1_1_add_business_1_1_add_business_controller_afe7bad869d6de8e48c8a44d65cc8e6fa}{\_employeeRepository}}.BusinessDenied(kvk);}
+\DoxyCodeLine{\Hypertarget{add_business_controller_8cs_source_l00121}00121\ }
+\DoxyCodeLine{\Hypertarget{add_business_controller_8cs_source_l00122}00122\ }
+\DoxyCodeLine{\Hypertarget{add_business_controller_8cs_source_l00123}00123\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (response.StatusCode\ ==\ 200)}
+\DoxyCodeLine{\Hypertarget{add_business_controller_8cs_source_l00124}00124\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{add_business_controller_8cs_source_l00125}00125\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (info.Status)}
+\DoxyCodeLine{\Hypertarget{add_business_controller_8cs_source_l00126}00126\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{add_business_controller_8cs_source_l00127}00127\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_customer_1_1_add_business_1_1_add_business_controller_a5c9a5c970562bd13b2fd6b069815975b}{\_emailService}}.SendBusinessReviewEmail((\textcolor{keywordtype}{string})info.Data[\textcolor{stringliteral}{"{}ContactEmail"{}}],\ (\textcolor{keywordtype}{string})info.Data[\textcolor{stringliteral}{"{}BusinessName"{}}],\ \textcolor{keyword}{null},\ \textcolor{keyword}{null},\ \textcolor{keyword}{false});}
+\DoxyCodeLine{\Hypertarget{add_business_controller_8cs_source_l00128}00128\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ emailSend\ =\ \textcolor{stringliteral}{"{}Email\ Send"{}};}
+\DoxyCodeLine{\Hypertarget{add_business_controller_8cs_source_l00129}00129\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{add_business_controller_8cs_source_l00130}00130\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{add_business_controller_8cs_source_l00131}00131\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{add_business_controller_8cs_source_l00132}00132\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ StatusCode(response.StatusCode,\ \textcolor{keyword}{new}\ \{\ message\ =\ \$\textcolor{stringliteral}{"{}\{response.Message\}\(\backslash\)n\{emailSend\}"{}}\ \});}
+\DoxyCodeLine{\Hypertarget{add_business_controller_8cs_source_l00133}00133\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{add_business_controller_8cs_source_l00134}00134\ \}}
+
+\end{DoxyCode}

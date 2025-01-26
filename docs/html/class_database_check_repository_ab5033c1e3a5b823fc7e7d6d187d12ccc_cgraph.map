@@ -1,0 +1,16 @@
+<map id="DatabaseCheckRepository.DeleteBusiness" name="DatabaseCheckRepository.DeleteBusiness">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,72,187,115"/>
+<area shape="rect" id="Node000002" href="$class_database_check_repository.html#a757a083a28f0a9d47611ea7b9cae4d85" title="Controleert of alle werknemers van een bedrijf succesvol zijn verwijderd." alt="" coords="235,5,416,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="171,69,234,50,236,55,172,74"/>
+<area shape="rect" id="Node000003" href="$class_database_check_repository.html#a004ee325adfb7c4edc0c3e50098973ec" title=" " alt="" coords="235,72,416,115"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="187,91,219,91,219,96,187,96"/>
+<area shape="rect" id="Node000005" href="$class_database_check_repository.html#addc06aeee3647cec54202bc103212e2e" title=" " alt="" coords="693,131,875,173"/>
+<area shape="poly" id="edge7_Node000001_Node000005" title=" " alt="" coords="177,113,235,124,353,137,472,145,678,150,678,156,472,151,353,143,234,129,176,118"/>
+<area shape="rect" id="Node000004" href="$class_database_check_repository.html#a241ccbc35380a23dedb1f9a942a52a1b" title=" " alt="" coords="464,72,645,115"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="416,91,449,91,449,96,416,96"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="641,113,684,124,682,129,640,118"/>
+<area shape="rect" id="Node000006" href="$class_database_check_repository.html#ad56412a3b3449cdcb20706b41c648f3e" title=" " alt="" coords="693,64,875,107"/>
+<area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="645,88,678,86,678,92,646,93"/>
+<area shape="rect" id="Node000007" href="$class_database_check_repository.html#a181b1a163bd4151f68bc551091c3ee22" title=" " alt="" coords="923,64,1104,107"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="875,83,907,83,907,88,875,88"/>
+</map>

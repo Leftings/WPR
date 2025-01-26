@@ -1,0 +1,9 @@
+<map id="WPR.Controllers.Employee.BackOffice.AddVehicle.AddVehicleController" name="WPR.Controllers.Employee.BackOffice.AddVehicle.AddVehicleController">
+<area shape="rect" id="Node000001" title="AddVehicleController zorgt ervoor dat voertuigen toegevoegd kunnen worden aan de database." alt="" coords="105,432,317,555"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,152,102,221"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="67,235,87,299,116,367,160,431,155,434,111,369,82,301,62,237"/>
+<area shape="rect" id="Node000003" href="$interface_w_p_r_1_1_database_1_1_i_connector.html" title="Connector class om verbinding te maken met de database, maakt gebruik van de connectie strings die zi..." alt="" coords="126,152,296,221"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="214,221,214,415,208,415,208,221"/>
+<area shape="rect" id="Node000004" href="$interface_w_p_r_1_1_repository_1_1_i_employee_repository.html" title="Interface defining methods voor user gerelateerde database operaties, validatie, user management,..." alt="" coords="321,5,533,368"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="323,364,290,410,282,421,278,417,286,406,319,361"/>
+</map>

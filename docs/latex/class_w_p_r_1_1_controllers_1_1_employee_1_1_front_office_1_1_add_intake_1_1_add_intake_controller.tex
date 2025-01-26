@@ -1,0 +1,192 @@
+\doxysection{WPR.\+Controllers.\+Employee.\+Front\+Office.\+Add\+Intake.\+Add\+Intake\+Controller Class Referentie}
+\hypertarget{class_w_p_r_1_1_controllers_1_1_employee_1_1_front_office_1_1_add_intake_1_1_add_intake_controller}{}\label{class_w_p_r_1_1_controllers_1_1_employee_1_1_front_office_1_1_add_intake_1_1_add_intake_controller}\index{WPR.Controllers.Employee.FrontOffice.AddIntake.AddIntakeController@{WPR.Controllers.Employee.FrontOffice.AddIntake.AddIntakeController}}
+
+
+\doxylink{class_w_p_r_1_1_controllers_1_1_employee_1_1_front_office_1_1_add_intake_1_1_add_intake_controller}{Add\+Intake\+Controller} zorgt ervoor dat informatie over de inname van een voertuig toegevoegd kan worden aan de database.  
+
+
+
+
+Klasse diagram voor WPR.\+Controllers.\+Employee.\+Front\+Office.\+Add\+Intake.\+Add\+Intake\+Controller
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=231pt]{class_w_p_r_1_1_controllers_1_1_employee_1_1_front_office_1_1_add_intake_1_1_add_intake_controller__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboratie diagram voor WPR.\+Controllers.\+Employee.\+Front\+Office.\+Add\+Intake.\+Add\+Intake\+Controller\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_w_p_r_1_1_controllers_1_1_employee_1_1_front_office_1_1_add_intake_1_1_add_intake_controller__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Members}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_employee_1_1_front_office_1_1_add_intake_1_1_add_intake_controller_aeaa0fabe5d5d999eef8af5d40425e573}{Add\+Intake\+Controller}} (\mbox{\hyperlink{interface_w_p_r_1_1_database_1_1_i_connector}{IConnector}} connector, \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_employee_repository}{IEmployee\+Repository}} employee\+Repository, \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_vehicle_repository}{IVehicle\+Repository}} vehicle\+Repository)
+\item 
+async Task$<$ IAction\+Result $>$ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_employee_1_1_front_office_1_1_add_intake_1_1_add_intake_controller_ad03b0dd2e83bcf5627e6389de3a43197}{Add\+Intake\+Async}} (\mbox{[}From\+Form\mbox{]} \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_employee_1_1_front_office_1_1_add_intake_1_1_add_intake_request}{Add\+Intake\+Request}} request)
+\begin{DoxyCompactList}\small\item\em Er kan een inname toegevoegd worden. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributen}
+\begin{DoxyCompactItemize}
+\item 
+readonly \mbox{\hyperlink{interface_w_p_r_1_1_database_1_1_i_connector}{IConnector}} \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_employee_1_1_front_office_1_1_add_intake_1_1_add_intake_controller_afff12ab780eb18b0a4b0a17775a38f84}{\+\_\+connector}}
+\item 
+readonly \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_employee_repository}{IEmployee\+Repository}} \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_employee_1_1_front_office_1_1_add_intake_1_1_add_intake_controller_aa427509936fd7e5cd8fff2b1d3fb1d7e}{\+\_\+employee\+Repository}}
+\item 
+readonly \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_vehicle_repository}{IVehicle\+Repository}} \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_employee_1_1_front_office_1_1_add_intake_1_1_add_intake_controller_a1d56b5cdd7cd3bb6cae97c319fe1115d}{\+\_\+vehicle\+Repository}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Gedetailleerde Beschrijving}
+\doxylink{class_w_p_r_1_1_controllers_1_1_employee_1_1_front_office_1_1_add_intake_1_1_add_intake_controller}{Add\+Intake\+Controller} zorgt ervoor dat informatie over de inname van een voertuig toegevoegd kan worden aan de database. 
+
+De definitie bevindt zich op regel \mbox{\hyperlink{add_intake_controller_8cs_source_l00013}{13}} in het bestand \mbox{\hyperlink{add_intake_controller_8cs_source}{add\+Intake\+Controller.\+cs}}.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentatie}
+\Hypertarget{class_w_p_r_1_1_controllers_1_1_employee_1_1_front_office_1_1_add_intake_1_1_add_intake_controller_aeaa0fabe5d5d999eef8af5d40425e573}\index{WPR.Controllers.Employee.FrontOffice.AddIntake.AddIntakeController@{WPR.Controllers.Employee.FrontOffice.AddIntake.AddIntakeController}!AddIntakeController@{AddIntakeController}}
+\index{AddIntakeController@{AddIntakeController}!WPR.Controllers.Employee.FrontOffice.AddIntake.AddIntakeController@{WPR.Controllers.Employee.FrontOffice.AddIntake.AddIntakeController}}
+\doxysubsubsection{\texorpdfstring{AddIntakeController()}{AddIntakeController()}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_controllers_1_1_employee_1_1_front_office_1_1_add_intake_1_1_add_intake_controller_aeaa0fabe5d5d999eef8af5d40425e573} 
+WPR.\+Controllers.\+Employee.\+Front\+Office.\+Add\+Intake.\+Add\+Intake\+Controller.\+Add\+Intake\+Controller (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{interface_w_p_r_1_1_database_1_1_i_connector}{IConnector}}}]{connector}{, }\item[{\mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_employee_repository}{IEmployee\+Repository}}}]{employee\+Repository}{, }\item[{\mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_vehicle_repository}{IVehicle\+Repository}}}]{vehicle\+Repository}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{add_intake_controller_8cs_source_l00019}{19}} in het bestand \mbox{\hyperlink{add_intake_controller_8cs_source}{add\+Intake\+Controller.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00020\ \ \ \ \ \{}
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ \_connector\ =\ connector\ ??\ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ ArgumentNullException(nameof(connector));}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ \_employeeRepository\ =\ employeeRepository\ ??\ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ ArgumentNullException(nameof(employeeRepository));}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \_vehicleRepository\ =\ vehicleRepository\ ??\ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ ArgumentNullException(nameof(vehicleRepository));}
+\DoxyCodeLine{00024\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+Gebruikt \mbox{\hyperlink{add_intake_controller_8cs_source_l00015}{\+\_\+connector}}, \mbox{\hyperlink{add_intake_controller_8cs_source_l00016}{\+\_\+employee\+Repository}} en \mbox{\hyperlink{add_intake_controller_8cs_source_l00017}{\+\_\+vehicle\+Repository}}.
+
+
+
+\doxysubsection{Documentatie van functie members}
+\Hypertarget{class_w_p_r_1_1_controllers_1_1_employee_1_1_front_office_1_1_add_intake_1_1_add_intake_controller_ad03b0dd2e83bcf5627e6389de3a43197}\index{WPR.Controllers.Employee.FrontOffice.AddIntake.AddIntakeController@{WPR.Controllers.Employee.FrontOffice.AddIntake.AddIntakeController}!AddIntakeAsync@{AddIntakeAsync}}
+\index{AddIntakeAsync@{AddIntakeAsync}!WPR.Controllers.Employee.FrontOffice.AddIntake.AddIntakeController@{WPR.Controllers.Employee.FrontOffice.AddIntake.AddIntakeController}}
+\doxysubsubsection{\texorpdfstring{AddIntakeAsync()}{AddIntakeAsync()}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_controllers_1_1_employee_1_1_front_office_1_1_add_intake_1_1_add_intake_controller_ad03b0dd2e83bcf5627e6389de3a43197} 
+async Task$<$ IAction\+Result $>$ WPR.\+Controllers.\+Employee.\+Front\+Office.\+Add\+Intake.\+Add\+Intake\+Controller.\+Add\+Intake\+Async (\begin{DoxyParamCaption}\item[{\mbox{[}\+From\+Form\mbox{]} \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_employee_1_1_front_office_1_1_add_intake_1_1_add_intake_request}{Add\+Intake\+Request}}}]{request}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Er kan een inname toegevoegd worden. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em request} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retourneert}
+
+\end{DoxyReturn}
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{add_intake_controller_8cs_source_l00032}{32}} in het bestand \mbox{\hyperlink{add_intake_controller_8cs_source}{add\+Intake\+Controller.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00033\ \ \ \ \ \{}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Gegevens\ worden\ doorgestuurd\ naar\ de\ userRepository}}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \ \ \ \ var\ status\ =\ await\ \_employeeRepository.AddIntakeAsync(}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ request.Damage,}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ request.FrameNrVehicle,}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ request.ReviewedBy,}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ request.Date,}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ request.Contract,}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ request.IsDamaged);}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (request.IsDamaged)}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ var\ status2\ =\ \_vehicleRepository.ChangeRepairStatus(request.FrameNrVehicle,\ \textcolor{keyword}{true});}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (status.status)}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Ok(\textcolor{keyword}{new}\ AddIntakeResponse\ \{\ Message\ =\ status.message\ \});}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ BadRequest(\textcolor{keyword}{new}\ AddIntakeErrorResponse}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Status\ =\ \textcolor{keyword}{false},}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Message\ =\ status.message}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (Exception\ ex)}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ StatusCode(500,\ \textcolor{keyword}{new}\ AddIntakeErrorResponse()\ \{\ Status\ =\ \textcolor{keyword}{false},\ Message\ =\ ex.Message\ \});}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00065\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+Gebruikt \mbox{\hyperlink{add_intake_controller_8cs_source_l00016}{\+\_\+employee\+Repository}} en \mbox{\hyperlink{add_intake_controller_8cs_source_l00017}{\+\_\+vehicle\+Repository}}.
+
+
+
+\doxysubsection{Documentatie van data velden}
+\Hypertarget{class_w_p_r_1_1_controllers_1_1_employee_1_1_front_office_1_1_add_intake_1_1_add_intake_controller_afff12ab780eb18b0a4b0a17775a38f84}\index{WPR.Controllers.Employee.FrontOffice.AddIntake.AddIntakeController@{WPR.Controllers.Employee.FrontOffice.AddIntake.AddIntakeController}!\_connector@{\_connector}}
+\index{\_connector@{\_connector}!WPR.Controllers.Employee.FrontOffice.AddIntake.AddIntakeController@{WPR.Controllers.Employee.FrontOffice.AddIntake.AddIntakeController}}
+\doxysubsubsection{\texorpdfstring{\_connector}{\_connector}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_controllers_1_1_employee_1_1_front_office_1_1_add_intake_1_1_add_intake_controller_afff12ab780eb18b0a4b0a17775a38f84} 
+readonly \mbox{\hyperlink{interface_w_p_r_1_1_database_1_1_i_connector}{IConnector}} WPR.\+Controllers.\+Employee.\+Front\+Office.\+Add\+Intake.\+Add\+Intake\+Controller.\+\_\+connector\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{add_intake_controller_8cs_source_l00015}{15}} in het bestand \mbox{\hyperlink{add_intake_controller_8cs_source}{add\+Intake\+Controller.\+cs}}.
+
+
+
+Wordt aangeroepen door \mbox{\hyperlink{add_intake_controller_8cs_source_l00019}{Add\+Intake\+Controller()}}.
+
+\Hypertarget{class_w_p_r_1_1_controllers_1_1_employee_1_1_front_office_1_1_add_intake_1_1_add_intake_controller_aa427509936fd7e5cd8fff2b1d3fb1d7e}\index{WPR.Controllers.Employee.FrontOffice.AddIntake.AddIntakeController@{WPR.Controllers.Employee.FrontOffice.AddIntake.AddIntakeController}!\_employeeRepository@{\_employeeRepository}}
+\index{\_employeeRepository@{\_employeeRepository}!WPR.Controllers.Employee.FrontOffice.AddIntake.AddIntakeController@{WPR.Controllers.Employee.FrontOffice.AddIntake.AddIntakeController}}
+\doxysubsubsection{\texorpdfstring{\_employeeRepository}{\_employeeRepository}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_controllers_1_1_employee_1_1_front_office_1_1_add_intake_1_1_add_intake_controller_aa427509936fd7e5cd8fff2b1d3fb1d7e} 
+readonly \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_employee_repository}{IEmployee\+Repository}} WPR.\+Controllers.\+Employee.\+Front\+Office.\+Add\+Intake.\+Add\+Intake\+Controller.\+\_\+employee\+Repository\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{add_intake_controller_8cs_source_l00016}{16}} in het bestand \mbox{\hyperlink{add_intake_controller_8cs_source}{add\+Intake\+Controller.\+cs}}.
+
+
+
+Wordt aangeroepen door \mbox{\hyperlink{add_intake_controller_8cs_source_l00032}{Add\+Intake\+Async()}} en \mbox{\hyperlink{add_intake_controller_8cs_source_l00019}{Add\+Intake\+Controller()}}.
+
+\Hypertarget{class_w_p_r_1_1_controllers_1_1_employee_1_1_front_office_1_1_add_intake_1_1_add_intake_controller_a1d56b5cdd7cd3bb6cae97c319fe1115d}\index{WPR.Controllers.Employee.FrontOffice.AddIntake.AddIntakeController@{WPR.Controllers.Employee.FrontOffice.AddIntake.AddIntakeController}!\_vehicleRepository@{\_vehicleRepository}}
+\index{\_vehicleRepository@{\_vehicleRepository}!WPR.Controllers.Employee.FrontOffice.AddIntake.AddIntakeController@{WPR.Controllers.Employee.FrontOffice.AddIntake.AddIntakeController}}
+\doxysubsubsection{\texorpdfstring{\_vehicleRepository}{\_vehicleRepository}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_controllers_1_1_employee_1_1_front_office_1_1_add_intake_1_1_add_intake_controller_a1d56b5cdd7cd3bb6cae97c319fe1115d} 
+readonly \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_vehicle_repository}{IVehicle\+Repository}} WPR.\+Controllers.\+Employee.\+Front\+Office.\+Add\+Intake.\+Add\+Intake\+Controller.\+\_\+vehicle\+Repository\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{add_intake_controller_8cs_source_l00017}{17}} in het bestand \mbox{\hyperlink{add_intake_controller_8cs_source}{add\+Intake\+Controller.\+cs}}.
+
+
+
+Wordt aangeroepen door \mbox{\hyperlink{add_intake_controller_8cs_source_l00032}{Add\+Intake\+Async()}} en \mbox{\hyperlink{add_intake_controller_8cs_source_l00019}{Add\+Intake\+Controller()}}.
+
+
+
+De documentatie voor deze klasse is gegenereerd op basis van het volgende bestand\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/codes/\+WPR8/\+WPR/backend/src/\+Controllers/\+Employee/front\+Office/add\+Intake/\mbox{\hyperlink{add_intake_controller_8cs}{add\+Intake\+Controller.\+cs}}\end{DoxyCompactItemize}

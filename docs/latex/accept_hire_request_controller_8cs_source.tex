@@ -1,0 +1,96 @@
+\doxysection{accept\+Hire\+Request\+Controller.\+cs}
+\hypertarget{accept_hire_request_controller_8cs_source}{}\label{accept_hire_request_controller_8cs_source}\index{D:/codes/WPR8/WPR/backend/src/Controllers/Employee/shared/acceptHireRequest/acceptHireRequestController.cs@{D:/codes/WPR8/WPR/backend/src/Controllers/Employee/shared/acceptHireRequest/acceptHireRequestController.cs}}
+\mbox{\hyperlink{accept_hire_request_controller_8cs}{Ga naar de documentatie van dit bestand.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{accept_hire_request_controller_8cs_source_l00001}\mbox{\hyperlink{namespace_w_p_r_1_1_controllers_1_1_employee_1_1_shared}{00001}}\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_w_p_r_1_1_controllers_1_1_employee_1_1_shared_1_1accept_hire_request}{WPR.Controllers.Employee.Shared.acceptHireRequest}};}
+\DoxyCodeLine{\Hypertarget{accept_hire_request_controller_8cs_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{accept_hire_request_controller_8cs_source_l00003}00003\ \textcolor{keyword}{using\ }Microsoft.AspNetCore.Mvc;}
+\DoxyCodeLine{\Hypertarget{accept_hire_request_controller_8cs_source_l00004}00004\ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespace_w_p_r_1_1_database}{WPR.Database}};}
+\DoxyCodeLine{\Hypertarget{accept_hire_request_controller_8cs_source_l00005}00005\ \textcolor{keyword}{using\ }System;}
+\DoxyCodeLine{\Hypertarget{accept_hire_request_controller_8cs_source_l00006}00006\ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespace_w_p_r_1_1_repository}{WPR.Repository}};}
+\DoxyCodeLine{\Hypertarget{accept_hire_request_controller_8cs_source_l00007}00007\ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespace_w_p_r_1_1_cryption}{WPR.Cryption}};}
+\DoxyCodeLine{\Hypertarget{accept_hire_request_controller_8cs_source_l00008}00008\ }
+\DoxyCodeLine{\Hypertarget{accept_hire_request_controller_8cs_source_l00012}00012\ [ApiController]}
+\DoxyCodeLine{\Hypertarget{accept_hire_request_controller_8cs_source_l00013}00013\ [Route(\textcolor{stringliteral}{"{}api/[controller]"{}})]}
+\DoxyCodeLine{\Hypertarget{accept_hire_request_controller_8cs_source_l00014}\mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_employee_1_1_shared_1_1accept_hire_request_1_1_accept_hire_request_controller}{00014}}\ \textcolor{keyword}{public}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_employee_1_1_shared_1_1accept_hire_request_1_1_accept_hire_request_controller_ae9fc8f72949b29898055a88bcfcfb33e}{AcceptHireRequestController}}\ :\ ControllerBase}
+\DoxyCodeLine{\Hypertarget{accept_hire_request_controller_8cs_source_l00015}00015\ \{}
+\DoxyCodeLine{\Hypertarget{accept_hire_request_controller_8cs_source_l00016}\mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_employee_1_1_shared_1_1accept_hire_request_1_1_accept_hire_request_controller_ad940f080da3e16fa1af5aba0a50da154}{00016}}\ \ \ \ \ \textcolor{keyword}{private}\ readonly\ \mbox{\hyperlink{interface_w_p_r_1_1_database_1_1_i_connector}{IConnector}}\ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_employee_1_1_shared_1_1accept_hire_request_1_1_accept_hire_request_controller_ad940f080da3e16fa1af5aba0a50da154}{\_connector}};}
+\DoxyCodeLine{\Hypertarget{accept_hire_request_controller_8cs_source_l00017}\mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_employee_1_1_shared_1_1accept_hire_request_1_1_accept_hire_request_controller_a4fe1da131d90914cac685848287000e8}{00017}}\ \ \ \ \ \textcolor{keyword}{private}\ readonly\ \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_employee_repository}{IEmployeeRepository}}\ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_employee_1_1_shared_1_1accept_hire_request_1_1_accept_hire_request_controller_a4fe1da131d90914cac685848287000e8}{\_userRepository}};}
+\DoxyCodeLine{\Hypertarget{accept_hire_request_controller_8cs_source_l00018}\mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_employee_1_1_shared_1_1accept_hire_request_1_1_accept_hire_request_controller_a7aae76688593ffbc5e9081a5abdc376c}{00018}}\ \ \ \ \ \textcolor{keyword}{private}\ readonly\ \mbox{\hyperlink{class_w_p_r_1_1_cryption_1_1_crypt}{Crypt}}\ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_employee_1_1_shared_1_1accept_hire_request_1_1_accept_hire_request_controller_a7aae76688593ffbc5e9081a5abdc376c}{\_crypt}};}
+\DoxyCodeLine{\Hypertarget{accept_hire_request_controller_8cs_source_l00019}00019\ }
+\DoxyCodeLine{\Hypertarget{accept_hire_request_controller_8cs_source_l00020}\mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_employee_1_1_shared_1_1accept_hire_request_1_1_accept_hire_request_controller_ae9fc8f72949b29898055a88bcfcfb33e}{00020}}\ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_employee_1_1_shared_1_1accept_hire_request_1_1_accept_hire_request_controller_ae9fc8f72949b29898055a88bcfcfb33e}{AcceptHireRequestController}}(\mbox{\hyperlink{interface_w_p_r_1_1_database_1_1_i_connector}{IConnector}}\ connector,\ \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_employee_repository}{IEmployeeRepository}}\ userRepository,\ \mbox{\hyperlink{class_w_p_r_1_1_cryption_1_1_crypt}{Crypt}}\ crypt)}
+\DoxyCodeLine{\Hypertarget{accept_hire_request_controller_8cs_source_l00021}00021\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{accept_hire_request_controller_8cs_source_l00022}00022\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_employee_1_1_shared_1_1accept_hire_request_1_1_accept_hire_request_controller_ad940f080da3e16fa1af5aba0a50da154}{\_connector}}\ =\ connector\ ??\ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ ArgumentNullException(nameof(connector));}
+\DoxyCodeLine{\Hypertarget{accept_hire_request_controller_8cs_source_l00023}00023\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_employee_1_1_shared_1_1accept_hire_request_1_1_accept_hire_request_controller_a4fe1da131d90914cac685848287000e8}{\_userRepository}}\ =\ userRepository\ ??\ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ ArgumentNullException(nameof(userRepository));}
+\DoxyCodeLine{\Hypertarget{accept_hire_request_controller_8cs_source_l00024}00024\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_employee_1_1_shared_1_1accept_hire_request_1_1_accept_hire_request_controller_a7aae76688593ffbc5e9081a5abdc376c}{\_crypt}}\ =\ crypt\ ??\ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ ArgumentNullException(nameof(crypt));}
+\DoxyCodeLine{\Hypertarget{accept_hire_request_controller_8cs_source_l00025}00025\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{accept_hire_request_controller_8cs_source_l00026}00026\ }
+\DoxyCodeLine{\Hypertarget{accept_hire_request_controller_8cs_source_l00032}00032\ \ \ \ \ [HttpGet(\textcolor{stringliteral}{"{}getReviewsIds"{}})]}
+\DoxyCodeLine{\Hypertarget{accept_hire_request_controller_8cs_source_l00033}\mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_employee_1_1_shared_1_1accept_hire_request_1_1_accept_hire_request_controller_a53071f794abb7d5b057fd44675e2cc19}{00033}}\ \ \ \ \ \textcolor{keyword}{public}\ async\ Task<IActionResult>\ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_employee_1_1_shared_1_1accept_hire_request_1_1_accept_hire_request_controller_a53071f794abb7d5b057fd44675e2cc19}{GetReviewsIdsAsync}}(\textcolor{keywordtype}{string}\ user)}
+\DoxyCodeLine{\Hypertarget{accept_hire_request_controller_8cs_source_l00034}00034\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{accept_hire_request_controller_8cs_source_l00035}00035\ \ \ \ \ \ \ \ \ var\ ids\ =\ await\ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_employee_1_1_shared_1_1accept_hire_request_1_1_accept_hire_request_controller_a4fe1da131d90914cac685848287000e8}{\_userRepository}}.GetReviewIdsAsync(user,\ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_employee_1_1_shared_1_1accept_hire_request_1_1_accept_hire_request_controller_a9e3fd1acbd444da46f39a2f1d50a28ac}{GetCurrentUserId}}());}
+\DoxyCodeLine{\Hypertarget{accept_hire_request_controller_8cs_source_l00036}00036\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Ok(\textcolor{keyword}{new}\ \{\ message\ =\ ids.ids\});}
+\DoxyCodeLine{\Hypertarget{accept_hire_request_controller_8cs_source_l00037}00037\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{accept_hire_request_controller_8cs_source_l00038}00038\ }
+\DoxyCodeLine{\Hypertarget{accept_hire_request_controller_8cs_source_l00044}00044\ \ \ \ \ [HttpGet(\textcolor{stringliteral}{"{}getReview"{}})]}
+\DoxyCodeLine{\Hypertarget{accept_hire_request_controller_8cs_source_l00045}\mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_employee_1_1_shared_1_1accept_hire_request_1_1_accept_hire_request_controller_a0016834aa98a99bcb0eb1ccdbff98693}{00045}}\ \ \ \ \ \textcolor{keyword}{public}\ async\ Task<IActionResult>\ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_employee_1_1_shared_1_1accept_hire_request_1_1_accept_hire_request_controller_a0016834aa98a99bcb0eb1ccdbff98693}{GetReviewAsync}}(\textcolor{keywordtype}{string}\ \textcolor{keywordtype}{id})}
+\DoxyCodeLine{\Hypertarget{accept_hire_request_controller_8cs_source_l00046}00046\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{accept_hire_request_controller_8cs_source_l00047}00047\ \ \ \ \ \ \ \ \ var\ review\ =\ await\ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_employee_1_1_shared_1_1accept_hire_request_1_1_accept_hire_request_controller_a4fe1da131d90914cac685848287000e8}{\_userRepository}}.GetReviewAsync(\textcolor{keywordtype}{id});}
+\DoxyCodeLine{\Hypertarget{accept_hire_request_controller_8cs_source_l00048}00048\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Ok(\textcolor{keyword}{new}\ \{\ message\ =\ review.data\ \});}
+\DoxyCodeLine{\Hypertarget{accept_hire_request_controller_8cs_source_l00049}00049\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{accept_hire_request_controller_8cs_source_l00050}00050\ }
+\DoxyCodeLine{\Hypertarget{accept_hire_request_controller_8cs_source_l00056}00056\ \ \ \ \ [HttpPatch(\textcolor{stringliteral}{"{}answerHireRequest"{}})]}
+\DoxyCodeLine{\Hypertarget{accept_hire_request_controller_8cs_source_l00057}\mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_employee_1_1_shared_1_1accept_hire_request_1_1_accept_hire_request_controller_ad4312863bd2f9b15d7bf571c0dc1447e}{00057}}\ \ \ \ \ \textcolor{keyword}{public}\ async\ Task<IActionResult>\ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_employee_1_1_shared_1_1accept_hire_request_1_1_accept_hire_request_controller_ad4312863bd2f9b15d7bf571c0dc1447e}{AnswerHireRequestAsync}}([FromBody]\ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_employee_1_1_shared_1_1accept_hire_request_1_1_hire_request}{HireRequest}}\ request)}
+\DoxyCodeLine{\Hypertarget{accept_hire_request_controller_8cs_source_l00058}00058\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{accept_hire_request_controller_8cs_source_l00059}00059\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (request\ ==\ \textcolor{keyword}{null})}
+\DoxyCodeLine{\Hypertarget{accept_hire_request_controller_8cs_source_l00060}00060\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{accept_hire_request_controller_8cs_source_l00061}00061\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ BadRequest(\textcolor{keyword}{new}\ \{\ message\ =\ \textcolor{stringliteral}{"{}Invalid\ request\ body"{}}\ \});}
+\DoxyCodeLine{\Hypertarget{accept_hire_request_controller_8cs_source_l00062}00062\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{accept_hire_request_controller_8cs_source_l00063}00063\ }
+\DoxyCodeLine{\Hypertarget{accept_hire_request_controller_8cs_source_l00064}00064\ \ \ \ \ \ \ \ \ var\ setStatus\ =\ await\ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_employee_1_1_shared_1_1accept_hire_request_1_1_accept_hire_request_controller_a4fe1da131d90914cac685848287000e8}{\_userRepository}}.SetStatusAsync(request.Id.ToString(),\ request.Status,\ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_employee_1_1_shared_1_1accept_hire_request_1_1_accept_hire_request_controller_a9e3fd1acbd444da46f39a2f1d50a28ac}{GetCurrentUserId}}(),\ request.userType);}
+\DoxyCodeLine{\Hypertarget{accept_hire_request_controller_8cs_source_l00065}00065\ }
+\DoxyCodeLine{\Hypertarget{accept_hire_request_controller_8cs_source_l00066}00066\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (setStatus.status)}
+\DoxyCodeLine{\Hypertarget{accept_hire_request_controller_8cs_source_l00067}00067\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{accept_hire_request_controller_8cs_source_l00068}00068\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Ok(\textcolor{keyword}{new}\ \{\ message\ =\ setStatus.message\ \});}
+\DoxyCodeLine{\Hypertarget{accept_hire_request_controller_8cs_source_l00069}00069\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{accept_hire_request_controller_8cs_source_l00070}00070\ }
+\DoxyCodeLine{\Hypertarget{accept_hire_request_controller_8cs_source_l00071}00071\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ BadRequest(\textcolor{keyword}{new}\ \{\ message\ =\ setStatus.message\ \});}
+\DoxyCodeLine{\Hypertarget{accept_hire_request_controller_8cs_source_l00072}00072\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{accept_hire_request_controller_8cs_source_l00073}00073\ }
+\DoxyCodeLine{\Hypertarget{accept_hire_request_controller_8cs_source_l00079}\mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_employee_1_1_shared_1_1accept_hire_request_1_1_accept_hire_request_controller_a9e3fd1acbd444da46f39a2f1d50a28ac}{00079}}\ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{string}\ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_employee_1_1_shared_1_1accept_hire_request_1_1_accept_hire_request_controller_a9e3fd1acbd444da46f39a2f1d50a28ac}{GetCurrentUserId}}()}
+\DoxyCodeLine{\Hypertarget{accept_hire_request_controller_8cs_source_l00080}00080\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{accept_hire_request_controller_8cs_source_l00081}00081\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Alleen\ de\ cookie\ van\ Employee\ of\ Vehicle\ Manager\ bestaat}}
+\DoxyCodeLine{\Hypertarget{accept_hire_request_controller_8cs_source_l00082}00082\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ loginCookie\ =\ HttpContext.Request.Cookies[\textcolor{stringliteral}{"{}LoginEmployeeSession"{}}];}
+\DoxyCodeLine{\Hypertarget{accept_hire_request_controller_8cs_source_l00083}00083\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ loginCookie2\ =\ HttpContext.Request.Cookies[\textcolor{stringliteral}{"{}LoginVehicleManagerSession"{}}];}
+\DoxyCodeLine{\Hypertarget{accept_hire_request_controller_8cs_source_l00084}00084\ }
+\DoxyCodeLine{\Hypertarget{accept_hire_request_controller_8cs_source_l00085}00085\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}}
+\DoxyCodeLine{\Hypertarget{accept_hire_request_controller_8cs_source_l00086}00086\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{accept_hire_request_controller_8cs_source_l00087}00087\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\textcolor{keywordtype}{string}.IsNullOrEmpty(loginCookie))}
+\DoxyCodeLine{\Hypertarget{accept_hire_request_controller_8cs_source_l00088}00088\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{accept_hire_request_controller_8cs_source_l00089}00089\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_employee_1_1_shared_1_1accept_hire_request_1_1_accept_hire_request_controller_a7aae76688593ffbc5e9081a5abdc376c}{\_crypt}}.Decrypt(loginCookie);}
+\DoxyCodeLine{\Hypertarget{accept_hire_request_controller_8cs_source_l00090}00090\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{accept_hire_request_controller_8cs_source_l00091}00091\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (!\textcolor{keywordtype}{string}.IsNullOrEmpty(loginCookie2))}
+\DoxyCodeLine{\Hypertarget{accept_hire_request_controller_8cs_source_l00092}00092\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{accept_hire_request_controller_8cs_source_l00093}00093\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_employee_1_1_shared_1_1accept_hire_request_1_1_accept_hire_request_controller_a7aae76688593ffbc5e9081a5abdc376c}{\_crypt}}.Decrypt(loginCookie2);}
+\DoxyCodeLine{\Hypertarget{accept_hire_request_controller_8cs_source_l00094}00094\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{accept_hire_request_controller_8cs_source_l00095}00095\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{accept_hire_request_controller_8cs_source_l00096}00096\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{accept_hire_request_controller_8cs_source_l00097}00097\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ Exception(\textcolor{stringliteral}{"{}No\ (valid)\ cookie"{}});}
+\DoxyCodeLine{\Hypertarget{accept_hire_request_controller_8cs_source_l00098}00098\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{accept_hire_request_controller_8cs_source_l00099}00099\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{accept_hire_request_controller_8cs_source_l00100}00100\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}}
+\DoxyCodeLine{\Hypertarget{accept_hire_request_controller_8cs_source_l00101}00101\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{accept_hire_request_controller_8cs_source_l00102}00102\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Ongeldig\ cookie\ wordt\ meteen\ verwijderd}}
+\DoxyCodeLine{\Hypertarget{accept_hire_request_controller_8cs_source_l00103}00103\ \ \ \ \ \ \ \ \ \ \ \ \ Response.Cookies.Append(\textcolor{stringliteral}{"{}LoginEmployeeSession"{}},\ \textcolor{stringliteral}{"{}Invalid\ cookie"{}},\ \textcolor{keyword}{new}\ CookieOptions}
+\DoxyCodeLine{\Hypertarget{accept_hire_request_controller_8cs_source_l00104}00104\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{accept_hire_request_controller_8cs_source_l00105}00105\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ HttpOnly\ =\ \textcolor{keyword}{true},}
+\DoxyCodeLine{\Hypertarget{accept_hire_request_controller_8cs_source_l00106}00106\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Secure\ =\ \textcolor{keyword}{true},}
+\DoxyCodeLine{\Hypertarget{accept_hire_request_controller_8cs_source_l00107}00107\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Expires\ =\ DateTimeOffset.UtcNow.AddDays(-\/1)}
+\DoxyCodeLine{\Hypertarget{accept_hire_request_controller_8cs_source_l00108}00108\ \ \ \ \ \ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{\Hypertarget{accept_hire_request_controller_8cs_source_l00109}00109\ }
+\DoxyCodeLine{\Hypertarget{accept_hire_request_controller_8cs_source_l00110}00110\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ Exception(\textcolor{stringliteral}{"{}Invalid\ Cookie"{}});}
+\DoxyCodeLine{\Hypertarget{accept_hire_request_controller_8cs_source_l00111}00111\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{accept_hire_request_controller_8cs_source_l00112}00112\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{accept_hire_request_controller_8cs_source_l00113}00113\ \}}
+
+\end{DoxyCode}

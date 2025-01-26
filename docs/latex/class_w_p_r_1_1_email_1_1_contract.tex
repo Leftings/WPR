@@ -1,0 +1,220 @@
+\doxysection{WPR.\+Email.\+Contract Class Referentie}
+\hypertarget{class_w_p_r_1_1_email_1_1_contract}{}\label{class_w_p_r_1_1_email_1_1_contract}\index{WPR.Email.Contract@{WPR.Email.Contract}}
+
+
+In de \doxylink{class_w_p_r_1_1_email_1_1_contract}{Contract} klasse worden alle gegevens van een specifieke klant verzameld voor het aanmaken van een email.  
+
+
+
+
+Klasse diagram voor WPR.\+Email.\+Contract
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=186pt]{class_w_p_r_1_1_email_1_1_contract__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboratie diagram voor WPR.\+Email.\+Contract\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=344pt]{class_w_p_r_1_1_email_1_1_contract__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Members}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_w_p_r_1_1_email_1_1_contract_aa7e14cbac10d1eb062a3634838657191}{Contract}} (\mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_contract_repository}{IContract\+Repository}} contract\+Repository)
+\begin{DoxyCompactList}\small\item\em In de constructor worden alle benodigde klasses geset. \end{DoxyCompactList}\item 
+async Task \mbox{\hyperlink{class_w_p_r_1_1_email_1_1_contract_a1b580e77a7a6c3b866528ed83cc8d3b3}{Set\+Details\+Async}} (object order\+Id)
+\begin{DoxyCompactList}\small\item\em Alle gegevens worden in de dictionary van het contract geset. \end{DoxyCompactList}\item 
+async Task$<$ Dictionary$<$ string, object $>$ $>$ \mbox{\hyperlink{class_w_p_r_1_1_email_1_1_contract_a25e4f89b72aa987779ad65ef1168e5c8}{Get\+Details\+Async}} ()
+\begin{DoxyCompactList}\small\item\em Alle gegevens van de klant worden via deze methode opgehaald. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+Dictionary$<$ string, object $>$ \mbox{\hyperlink{class_w_p_r_1_1_email_1_1_contract_a326ac1caef20ed19ac4e6d213a9b864d}{\+\_\+details}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributen}
+\begin{DoxyCompactItemize}
+\item 
+readonly \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_contract_repository}{IContract\+Repository}} \mbox{\hyperlink{class_w_p_r_1_1_email_1_1_contract_a9616c6cf7942ea319ecb41c6fafdacb0}{\+\_\+contract\+Repository}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Gedetailleerde Beschrijving}
+In de \doxylink{class_w_p_r_1_1_email_1_1_contract}{Contract} klasse worden alle gegevens van een specifieke klant verzameld voor het aanmaken van een email. 
+
+De definitie bevindt zich op regel \mbox{\hyperlink{_contract_8cs_source_l00010}{10}} in het bestand \mbox{\hyperlink{_contract_8cs_source}{Contract.\+cs}}.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentatie}
+\Hypertarget{class_w_p_r_1_1_email_1_1_contract_aa7e14cbac10d1eb062a3634838657191}\index{WPR.Email.Contract@{WPR.Email.Contract}!Contract@{Contract}}
+\index{Contract@{Contract}!WPR.Email.Contract@{WPR.Email.Contract}}
+\doxysubsubsection{\texorpdfstring{Contract()}{Contract()}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_email_1_1_contract_aa7e14cbac10d1eb062a3634838657191} 
+WPR.\+Email.\+Contract.\+Contract (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_contract_repository}{IContract\+Repository}}}]{contract\+Repository}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+In de constructor worden alle benodigde klasses geset. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em contract\+Repository} & \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Excepties}
+{\em Argument\+Null\+Exception} & \\
+\hline
+\end{DoxyExceptions}
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{_contract_8cs_source_l00020}{20}} in het bestand \mbox{\hyperlink{_contract_8cs_source}{Contract.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00021\ \ \ \ \ \{}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ \_contractRepository\ =\ contractRepository\ ??\ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ ArgumentNullException(nameof(contractRepository));}
+\DoxyCodeLine{00023\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+Gebruikt \mbox{\hyperlink{_contract_8cs_source_l00013}{\+\_\+contract\+Repository}}.
+
+
+
+\doxysubsection{Documentatie van functie members}
+\Hypertarget{class_w_p_r_1_1_email_1_1_contract_a25e4f89b72aa987779ad65ef1168e5c8}\index{WPR.Email.Contract@{WPR.Email.Contract}!GetDetailsAsync@{GetDetailsAsync}}
+\index{GetDetailsAsync@{GetDetailsAsync}!WPR.Email.Contract@{WPR.Email.Contract}}
+\doxysubsubsection{\texorpdfstring{GetDetailsAsync()}{GetDetailsAsync()}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_email_1_1_contract_a25e4f89b72aa987779ad65ef1168e5c8} 
+async Task$<$ Dictionary$<$ string, object $>$ $>$ WPR.\+Email.\+Contract.\+Get\+Details\+Async (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Alle gegevens van de klant worden via deze methode opgehaald. 
+
+\begin{DoxyReturn}{Retourneert}
+
+\end{DoxyReturn}
+
+
+Implementeert \mbox{\hyperlink{interface_w_p_r_1_1_email_1_1_i_details_a833d7d0da229f3739fffa2f2b64885cd}{WPR.\+Email.\+IDetails}}.
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{_contract_8cs_source_l00052}{52}} in het bestand \mbox{\hyperlink{_contract_8cs_source}{Contract.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00053\ \ \ \ \ \{}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \_details;}
+\DoxyCodeLine{00055\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+Gebruikt \mbox{\hyperlink{_contract_8cs_source_l00012}{\+\_\+details}}.
+
+\Hypertarget{class_w_p_r_1_1_email_1_1_contract_a1b580e77a7a6c3b866528ed83cc8d3b3}\index{WPR.Email.Contract@{WPR.Email.Contract}!SetDetailsAsync@{SetDetailsAsync}}
+\index{SetDetailsAsync@{SetDetailsAsync}!WPR.Email.Contract@{WPR.Email.Contract}}
+\doxysubsubsection{\texorpdfstring{SetDetailsAsync()}{SetDetailsAsync()}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_email_1_1_contract_a1b580e77a7a6c3b866528ed83cc8d3b3} 
+async Task WPR.\+Email.\+Contract.\+Set\+Details\+Async (\begin{DoxyParamCaption}\item[{object}]{order\+Id}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Alle gegevens worden in de dictionary van het contract geset. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em order\+Id} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retourneert}
+
+\end{DoxyReturn}
+
+
+Implementeert \mbox{\hyperlink{interface_w_p_r_1_1_email_1_1_i_details_ac7600129d3807cf2a065a8e44c30a6df}{WPR.\+Email.\+IDetails}}.
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{_contract_8cs_source_l00030}{30}} in het bestand \mbox{\hyperlink{_contract_8cs_source}{Contract.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00031\ \ \ \ \ \{}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \ \ \ \ \_details\ =\ await\ \_contractRepository.GetContractInfoAsync(Convert.ToInt32(orderId));}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (OverflowException\ ex)}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \ \ \ \ Console.WriteLine(ex.Message);}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw};}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (Exception\ ex)}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \ \ \ \ Console.WriteLine(ex.Message);}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw};}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00046\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+Gebruikt \mbox{\hyperlink{_contract_8cs_source_l00013}{\+\_\+contract\+Repository}} en \mbox{\hyperlink{_contract_8cs_source_l00012}{\+\_\+details}}.
+
+
+
+\doxysubsection{Documentatie van data velden}
+\Hypertarget{class_w_p_r_1_1_email_1_1_contract_a9616c6cf7942ea319ecb41c6fafdacb0}\index{WPR.Email.Contract@{WPR.Email.Contract}!\_contractRepository@{\_contractRepository}}
+\index{\_contractRepository@{\_contractRepository}!WPR.Email.Contract@{WPR.Email.Contract}}
+\doxysubsubsection{\texorpdfstring{\_contractRepository}{\_contractRepository}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_email_1_1_contract_a9616c6cf7942ea319ecb41c6fafdacb0} 
+readonly \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_contract_repository}{IContract\+Repository}} WPR.\+Email.\+Contract.\+\_\+contract\+Repository\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{_contract_8cs_source_l00013}{13}} in het bestand \mbox{\hyperlink{_contract_8cs_source}{Contract.\+cs}}.
+
+
+
+Wordt aangeroepen door \mbox{\hyperlink{_contract_8cs_source_l00020}{Contract()}} en \mbox{\hyperlink{_contract_8cs_source_l00030}{Set\+Details\+Async()}}.
+
+
+
+\doxysubsection{Property Documentatie}
+\Hypertarget{class_w_p_r_1_1_email_1_1_contract_a326ac1caef20ed19ac4e6d213a9b864d}\index{WPR.Email.Contract@{WPR.Email.Contract}!\_details@{\_details}}
+\index{\_details@{\_details}!WPR.Email.Contract@{WPR.Email.Contract}}
+\doxysubsubsection{\texorpdfstring{\_details}{\_details}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_email_1_1_contract_a326ac1caef20ed19ac4e6d213a9b864d} 
+Dictionary$<$string, object$>$ WPR.\+Email.\+Contract.\+\_\+details\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}, {\ttfamily [private]}}
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{_contract_8cs_source_l00012}{12}} in het bestand \mbox{\hyperlink{_contract_8cs_source}{Contract.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00012\ \{\ \textcolor{keyword}{get};\ \textcolor{keyword}{set};\ \}}
+
+\end{DoxyCode}
+
+
+Wordt aangeroepen door \mbox{\hyperlink{_contract_8cs_source_l00052}{Get\+Details\+Async()}} en \mbox{\hyperlink{_contract_8cs_source_l00030}{Set\+Details\+Async()}}.
+
+
+
+De documentatie voor deze klasse is gegenereerd op basis van het volgende bestand\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/codes/\+WPR8/\+WPR/backend/src/\+Emails/\mbox{\hyperlink{_contract_8cs}{Contract.\+cs}}\end{DoxyCompactItemize}

@@ -1,0 +1,212 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="nl">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.13.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>WPR-Backend: D:/codes/WPR8/WPR/backend/src/Cryption/crypt.cs Bron Bestand</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+  $(function() { init_search(); });
+/* @license-end */
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">WPR-Backend
+   </div>
+  </td>
+    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect"                onmouseover="return searchBox.OnSearchSelectShow()"                onmouseout="return searchBox.OnSearchSelectHide()">&#160;</span>
+          <input type="text" id="MSearchField" value="" placeholder="Zoeken" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Gegenereerd door Doxygen 1.13.0 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){initNavTree('crypt_8cs_source.html',''); initResizable(true); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Laden...</div>
+<div class="SRStatus" id="Searching">Zoeken...</div>
+<div class="SRStatus" id="NoMatches">Niets gevonden</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">crypt.cs</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="crypt_8cs.html">Ga naar de documentatie van dit bestand.</a><div class="fragment"><div class="foldopen" id="foldopen00001" data-start="{" data-end="}">
+<div class="line"><a id="l00001" name="l00001"></a><span class="lineno"><a class="line" href="namespace_w_p_r_1_1_cryption.html">    1</a></span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespace_w_p_r_1_1_cryption.html">WPR.Cryption</a>;</div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span> </div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="keyword">using </span>System;</div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="keyword">using </span>System.IO;</div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="keyword">using </span>System.Security.Cryptography;</div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="keyword">using </span><a class="code hl_namespace" href="namespace_w_p_r_1_1_data.html">WPR.Data</a>;</div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span></div>
+<div class="foldopen" id="foldopen00012" data-start="{" data-end="};">
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno"><a class="line" href="class_w_p_r_1_1_cryption_1_1_crypt.html">   12</a></span><span class="keyword">public</span> <span class="keyword">class </span><a class="code hl_function" href="class_w_p_r_1_1_cryption_1_1_crypt.html#abf13a1a845d4385d8daae32582c23358">Crypt</a></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>{</div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno"><a class="line" href="class_w_p_r_1_1_cryption_1_1_crypt.html#a4c311597710eb5fe7f8ee78180b4c081">   14</a></span>    <span class="keyword">private</span> readonly <a class="code hl_class" href="class_w_p_r_1_1_data_1_1_env_config.html">EnvConfig</a> <a class="code hl_variable" href="class_w_p_r_1_1_cryption_1_1_crypt.html#a4c311597710eb5fe7f8ee78180b4c081">_envConfig</a>;</div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno"><a class="line" href="class_w_p_r_1_1_cryption_1_1_crypt.html#aef681b3b00472f906064ac70e4789c0b">   15</a></span>    <span class="keyword">private</span> readonly <span class="keywordtype">byte</span>[]  <a class="code hl_variable" href="class_w_p_r_1_1_cryption_1_1_crypt.html#aef681b3b00472f906064ac70e4789c0b">_key</a>;</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno"><a class="line" href="class_w_p_r_1_1_cryption_1_1_crypt.html#adc22b1f7ffb89ea14d39498d5f0c2a10">   16</a></span>    <span class="keyword">private</span> readonly <span class="keywordtype">byte</span>[] <a class="code hl_variable" href="class_w_p_r_1_1_cryption_1_1_crypt.html#adc22b1f7ffb89ea14d39498d5f0c2a10">_IV</a>;</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span></div>
+<div class="foldopen" id="foldopen00022" data-start="{" data-end="}">
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno"><a class="line" href="class_w_p_r_1_1_cryption_1_1_crypt.html#abf13a1a845d4385d8daae32582c23358">   22</a></span>    <span class="keyword">public</span> <a class="code hl_function" href="class_w_p_r_1_1_cryption_1_1_crypt.html#abf13a1a845d4385d8daae32582c23358">Crypt</a>(<a class="code hl_class" href="class_w_p_r_1_1_data_1_1_env_config.html">EnvConfig</a> envConfig)</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>    {</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>        <a class="code hl_variable" href="class_w_p_r_1_1_cryption_1_1_crypt.html#a4c311597710eb5fe7f8ee78180b4c081">_envConfig</a> = envConfig;</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>        <a class="code hl_variable" href="class_w_p_r_1_1_cryption_1_1_crypt.html#aef681b3b00472f906064ac70e4789c0b">_key</a> = Convert.FromBase64String(<a class="code hl_variable" href="class_w_p_r_1_1_cryption_1_1_crypt.html#a4c311597710eb5fe7f8ee78180b4c081">_envConfig</a>.Get(<span class="stringliteral">&quot;CRYPTION_KEY&quot;</span>));</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>        <a class="code hl_variable" href="class_w_p_r_1_1_cryption_1_1_crypt.html#adc22b1f7ffb89ea14d39498d5f0c2a10">_IV</a> = Convert.FromBase64String(<a class="code hl_variable" href="class_w_p_r_1_1_cryption_1_1_crypt.html#a4c311597710eb5fe7f8ee78180b4c081">_envConfig</a>.Get(<span class="stringliteral">&quot;CRYPTION_IV&quot;</span>));</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>    }</div>
+</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span></div>
+<div class="foldopen" id="foldopen00034" data-start="{" data-end="}">
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno"><a class="line" href="class_w_p_r_1_1_cryption_1_1_crypt.html#a40fd01006a4528f41d6430e1f9ff4f9b">   34</a></span>    <span class="keyword">public</span> <span class="keywordtype">string</span> <a class="code hl_function" href="class_w_p_r_1_1_cryption_1_1_crypt.html#a40fd01006a4528f41d6430e1f9ff4f9b">Encrypt</a>(<span class="keywordtype">string</span> text)</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    {</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>        <span class="keywordflow">if</span> (<span class="keywordtype">string</span>.IsNullOrEmpty(text))</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>        {</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>            <span class="keywordflow">return</span> <span class="stringliteral">&quot;Nothing to encrypt&quot;</span>;</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>        }</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span> </div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>        <span class="comment">// Er wordt een nieuw Advanced Encryption Standard (AES) aangemaakt</span></div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>        <span class="keyword">using</span> (Aes aes = Aes.Create())</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>        {</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>            aes.Key = <a class="code hl_variable" href="class_w_p_r_1_1_cryption_1_1_crypt.html#aef681b3b00472f906064ac70e4789c0b">_key</a>; <span class="comment">// 256-bit sleutel</span></div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>            aes.IV = <a class="code hl_variable" href="class_w_p_r_1_1_cryption_1_1_crypt.html#adc22b1f7ffb89ea14d39498d5f0c2a10">_IV</a>; <span class="comment">// 128-bit IV, waardoor dezelfde tekst op verschillend geencrypt kan worden</span></div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span> </div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>            <span class="comment">// Meegegevens text wordt tijdelijk in het geheugen gebruikt en maakt van de geencrypte tekst een Base64 string</span></div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>            <span class="keyword">using</span> (MemoryStream ms = <span class="keyword">new</span> MemoryStream())</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>            {</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>                <span class="comment">// De Crypto Stream zorgt ervoor dat er geencrypt kan worden</span></div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>                <span class="comment">// De Stream Write zorgt ervoor dat de de tekst naar de Crypto Stream wordt geschreven</span></div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>                <span class="keyword">using</span> (CryptoStream cs = <span class="keyword">new</span> CryptoStream(ms, aes.CreateEncryptor(), CryptoStreamMode.Write))</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>                <span class="keyword">using</span> (StreamWriter sw = <span class="keyword">new</span> StreamWriter(cs))</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>                {</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>                    sw.Write(text);</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>                }</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span> </div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>                <span class="keywordflow">return</span> Convert.ToBase64String(ms.ToArray());</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>            }</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>        }</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>    }</div>
+</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span></div>
+<div class="foldopen" id="foldopen00068" data-start="{" data-end="}">
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno"><a class="line" href="class_w_p_r_1_1_cryption_1_1_crypt.html#a849477bb765d59afe80f995d4603613a">   68</a></span>    <span class="keyword">public</span> <span class="keywordtype">string</span> <a class="code hl_function" href="class_w_p_r_1_1_cryption_1_1_crypt.html#a849477bb765d59afe80f995d4603613a">Decrypt</a>(<span class="keywordtype">string</span> encrypted)</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>    {</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>        <span class="keywordflow">if</span> (<span class="keywordtype">string</span>.IsNullOrEmpty(encrypted))</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>        {</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>            <span class="keywordflow">return</span> <span class="stringliteral">&quot;Nothing to decrypt&quot;</span>;</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>        }</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span> </div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>        <span class="comment">// Er wordt een nieuw Advanced Encryption Standard (AES) aangemaakt</span></div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>        <span class="keyword">using</span> (Aes aes = Aes.Create())</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>        {</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>            aes.Key = <a class="code hl_variable" href="class_w_p_r_1_1_cryption_1_1_crypt.html#aef681b3b00472f906064ac70e4789c0b">_key</a>; <span class="comment">// 256-bit sleutel</span></div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>            aes.IV = <a class="code hl_variable" href="class_w_p_r_1_1_cryption_1_1_crypt.html#adc22b1f7ffb89ea14d39498d5f0c2a10">_IV</a>; <span class="comment">// 128-bit IV, waardoor dezelfde tekst op verschillend geencrypt kan worden</span></div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span> </div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>            <span class="keywordtype">byte</span>[] buffer = Convert.FromBase64String(encrypted); <span class="comment">// De gencrypte tekst wordt omgezet in bytes</span></div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span> </div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>            <span class="comment">// De Crypto Stream zorgt ervoor dat er gedecrypt kan worden</span></div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>            <span class="comment">// De Stream Write zorgt ervoor dat de de tekst naar de Crypto Stream wordt geschreven</span></div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>            <span class="keyword">using</span> (MemoryStream ms = <span class="keyword">new</span> MemoryStream(buffer))</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>            <span class="keyword">using</span> (CryptoStream cs = <span class="keyword">new</span> CryptoStream(ms, aes.CreateDecryptor(), CryptoStreamMode.Read))</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>            <span class="keyword">using</span> (StreamReader sr = <span class="keyword">new</span> StreamReader(cs))</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>            {</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>                <span class="keywordflow">return</span> sr.ReadToEnd();</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>            }</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>        }</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>    }</div>
+</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>}</div>
+</div>
+</div>
+<div class="ttc" id="aclass_w_p_r_1_1_cryption_1_1_crypt_html_a40fd01006a4528f41d6430e1f9ff4f9b"><div class="ttname"><a href="class_w_p_r_1_1_cryption_1_1_crypt.html#a40fd01006a4528f41d6430e1f9ff4f9b">WPR.Cryption.Crypt.Encrypt</a></div><div class="ttdeci">string Encrypt(string text)</div><div class="ttdoc">De meegegeven text wordt geencrypt.</div><div class="ttdef"><b>Definitie</b> <a href="#l00034">crypt.cs:34</a></div></div>
+<div class="ttc" id="aclass_w_p_r_1_1_cryption_1_1_crypt_html_a4c311597710eb5fe7f8ee78180b4c081"><div class="ttname"><a href="class_w_p_r_1_1_cryption_1_1_crypt.html#a4c311597710eb5fe7f8ee78180b4c081">WPR.Cryption.Crypt._envConfig</a></div><div class="ttdeci">readonly EnvConfig _envConfig</div><div class="ttdef"><b>Definitie</b> <a href="#l00014">crypt.cs:14</a></div></div>
+<div class="ttc" id="aclass_w_p_r_1_1_cryption_1_1_crypt_html_a849477bb765d59afe80f995d4603613a"><div class="ttname"><a href="class_w_p_r_1_1_cryption_1_1_crypt.html#a849477bb765d59afe80f995d4603613a">WPR.Cryption.Crypt.Decrypt</a></div><div class="ttdeci">string Decrypt(string encrypted)</div><div class="ttdoc">De meegegeven encryptie wordt gedecrypt.</div><div class="ttdef"><b>Definitie</b> <a href="#l00068">crypt.cs:68</a></div></div>
+<div class="ttc" id="aclass_w_p_r_1_1_cryption_1_1_crypt_html_abf13a1a845d4385d8daae32582c23358"><div class="ttname"><a href="class_w_p_r_1_1_cryption_1_1_crypt.html#abf13a1a845d4385d8daae32582c23358">WPR.Cryption.Crypt.Crypt</a></div><div class="ttdeci">Crypt(EnvConfig envConfig)</div><div class="ttdoc">Initaliseerd een nieuwe instantie van de cref=Crypt klasse.</div><div class="ttdef"><b>Definitie</b> <a href="#l00022">crypt.cs:22</a></div></div>
+<div class="ttc" id="aclass_w_p_r_1_1_cryption_1_1_crypt_html_adc22b1f7ffb89ea14d39498d5f0c2a10"><div class="ttname"><a href="class_w_p_r_1_1_cryption_1_1_crypt.html#adc22b1f7ffb89ea14d39498d5f0c2a10">WPR.Cryption.Crypt._IV</a></div><div class="ttdeci">readonly byte[] _IV</div><div class="ttdef"><b>Definitie</b> <a href="#l00016">crypt.cs:16</a></div></div>
+<div class="ttc" id="aclass_w_p_r_1_1_cryption_1_1_crypt_html_aef681b3b00472f906064ac70e4789c0b"><div class="ttname"><a href="class_w_p_r_1_1_cryption_1_1_crypt.html#aef681b3b00472f906064ac70e4789c0b">WPR.Cryption.Crypt._key</a></div><div class="ttdeci">readonly byte[] _key</div><div class="ttdef"><b>Definitie</b> <a href="#l00015">crypt.cs:15</a></div></div>
+<div class="ttc" id="aclass_w_p_r_1_1_data_1_1_env_config_html"><div class="ttname"><a href="class_w_p_r_1_1_data_1_1_env_config.html">WPR.Data.EnvConfig</a></div><div class="ttdoc">Leez het .env bestand uit waarin de connectie strings staan naar de database. Deze staan in een apart...</div><div class="ttdef"><b>Definitie</b> <a href="_env_config_8cs_source.html#l00010">EnvConfig.cs:11</a></div></div>
+<div class="ttc" id="anamespace_w_p_r_1_1_cryption_html"><div class="ttname"><a href="namespace_w_p_r_1_1_cryption.html">WPR.Cryption</a></div><div class="ttdef"><b>Definitie</b> <a href="#l00001">crypt.cs:1</a></div></div>
+<div class="ttc" id="anamespace_w_p_r_1_1_data_html"><div class="ttname"><a href="namespace_w_p_r_1_1_data.html">WPR.Data</a></div><div class="ttdef"><b>Definitie</b> <a href="_env_config_8cs_source.html#l00002">EnvConfig.cs:2</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_8c739bbef76d64b22d6b0911c526dd76.html">backend</a></li><li class="navelem"><a class="el" href="dir_27747142951285b09bacafa002e92b5f.html">src</a></li><li class="navelem"><a class="el" href="dir_f434cc2c59aaf560e6947e612eed6355.html">Cryption</a></li><li class="navelem"><a class="el" href="crypt_8cs.html">crypt.cs</a></li>
+    <li class="footer">Gegenereerd door <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.0 </li>
+  </ul>
+</div>
+</body>
+</html>

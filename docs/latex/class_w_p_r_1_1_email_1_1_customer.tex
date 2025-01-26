@@ -1,0 +1,220 @@
+\doxysection{WPR.\+Email.\+Customer Class Referentie}
+\hypertarget{class_w_p_r_1_1_email_1_1_customer}{}\label{class_w_p_r_1_1_email_1_1_customer}\index{WPR.Email.Customer@{WPR.Email.Customer}}
+
+
+In de \doxylink{class_w_p_r_1_1_email_1_1_customer}{Customer} klasse worden alle gegevens van een specifieke klant verzameld voor het aanmaken van een email.  
+
+
+
+
+Klasse diagram voor WPR.\+Email.\+Customer
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=186pt]{class_w_p_r_1_1_email_1_1_customer__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboratie diagram voor WPR.\+Email.\+Customer\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=345pt]{class_w_p_r_1_1_email_1_1_customer__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Members}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_w_p_r_1_1_email_1_1_customer_a65cf815709de2f22283e9ab4dcfcc803}{Customer}} (\mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_user_repository}{IUser\+Repository}} user\+Repository)
+\begin{DoxyCompactList}\small\item\em In de constructor worden alle benodigde klasses geset. \end{DoxyCompactList}\item 
+async Task \mbox{\hyperlink{class_w_p_r_1_1_email_1_1_customer_af661ff1fdb938076dbcba7e2bef5a428}{Set\+Details\+Async}} (object id)
+\begin{DoxyCompactList}\small\item\em Alle gegevens worden in de dictionary van de klant geset. \end{DoxyCompactList}\item 
+async Task$<$ Dictionary$<$ string, object $>$ $>$ \mbox{\hyperlink{class_w_p_r_1_1_email_1_1_customer_a08a778fa92d15dad36dd8dc2ea5c1fcf}{Get\+Details\+Async}} ()
+\begin{DoxyCompactList}\small\item\em Alle gegevens van de klant worden via deze methode opgehaald. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+Dictionary$<$ string, object $>$ \mbox{\hyperlink{class_w_p_r_1_1_email_1_1_customer_a5951fd7ead75976635f788b3676cbc53}{\+\_\+details}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributen}
+\begin{DoxyCompactItemize}
+\item 
+readonly \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_user_repository}{IUser\+Repository}} \mbox{\hyperlink{class_w_p_r_1_1_email_1_1_customer_a4e354d8b5ae81442ee3851bd162ec3c9}{\+\_\+user\+Repository}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Gedetailleerde Beschrijving}
+In de \doxylink{class_w_p_r_1_1_email_1_1_customer}{Customer} klasse worden alle gegevens van een specifieke klant verzameld voor het aanmaken van een email. 
+
+De definitie bevindt zich op regel \mbox{\hyperlink{_customer_8cs_source_l00012}{12}} in het bestand \mbox{\hyperlink{_customer_8cs_source}{Customer.\+cs}}.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentatie}
+\Hypertarget{class_w_p_r_1_1_email_1_1_customer_a65cf815709de2f22283e9ab4dcfcc803}\index{WPR.Email.Customer@{WPR.Email.Customer}!Customer@{Customer}}
+\index{Customer@{Customer}!WPR.Email.Customer@{WPR.Email.Customer}}
+\doxysubsubsection{\texorpdfstring{Customer()}{Customer()}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_email_1_1_customer_a65cf815709de2f22283e9ab4dcfcc803} 
+WPR.\+Email.\+Customer.\+Customer (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_user_repository}{IUser\+Repository}}}]{user\+Repository}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+In de constructor worden alle benodigde klasses geset. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em user\+Repository} & \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Excepties}
+{\em Argument\+Null\+Exception} & \\
+\hline
+\end{DoxyExceptions}
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{_customer_8cs_source_l00022}{22}} in het bestand \mbox{\hyperlink{_customer_8cs_source}{Customer.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00023\ \ \ \ \ \{}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \_userRepository\ =\ userRepository\ ??\ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ ArgumentNullException(nameof(userRepository));}
+\DoxyCodeLine{00025\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+Gebruikt \mbox{\hyperlink{_customer_8cs_source_l00015}{\+\_\+user\+Repository}}.
+
+
+
+\doxysubsection{Documentatie van functie members}
+\Hypertarget{class_w_p_r_1_1_email_1_1_customer_a08a778fa92d15dad36dd8dc2ea5c1fcf}\index{WPR.Email.Customer@{WPR.Email.Customer}!GetDetailsAsync@{GetDetailsAsync}}
+\index{GetDetailsAsync@{GetDetailsAsync}!WPR.Email.Customer@{WPR.Email.Customer}}
+\doxysubsubsection{\texorpdfstring{GetDetailsAsync()}{GetDetailsAsync()}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_email_1_1_customer_a08a778fa92d15dad36dd8dc2ea5c1fcf} 
+async Task$<$ Dictionary$<$ string, object $>$ $>$ WPR.\+Email.\+Customer.\+Get\+Details\+Async (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Alle gegevens van de klant worden via deze methode opgehaald. 
+
+\begin{DoxyReturn}{Retourneert}
+
+\end{DoxyReturn}
+
+
+Implementeert \mbox{\hyperlink{interface_w_p_r_1_1_email_1_1_i_details_a833d7d0da229f3739fffa2f2b64885cd}{WPR.\+Email.\+IDetails}}.
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{_customer_8cs_source_l00054}{54}} in het bestand \mbox{\hyperlink{_customer_8cs_source}{Customer.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00055\ \ \ \ \ \{}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \_details;}
+\DoxyCodeLine{00057\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+Gebruikt \mbox{\hyperlink{_customer_8cs_source_l00014}{\+\_\+details}}.
+
+\Hypertarget{class_w_p_r_1_1_email_1_1_customer_af661ff1fdb938076dbcba7e2bef5a428}\index{WPR.Email.Customer@{WPR.Email.Customer}!SetDetailsAsync@{SetDetailsAsync}}
+\index{SetDetailsAsync@{SetDetailsAsync}!WPR.Email.Customer@{WPR.Email.Customer}}
+\doxysubsubsection{\texorpdfstring{SetDetailsAsync()}{SetDetailsAsync()}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_email_1_1_customer_af661ff1fdb938076dbcba7e2bef5a428} 
+async Task WPR.\+Email.\+Customer.\+Set\+Details\+Async (\begin{DoxyParamCaption}\item[{object}]{id}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Alle gegevens worden in de dictionary van de klant geset. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retourneert}
+
+\end{DoxyReturn}
+
+
+Implementeert \mbox{\hyperlink{interface_w_p_r_1_1_email_1_1_i_details_ac7600129d3807cf2a065a8e44c30a6df}{WPR.\+Email.\+IDetails}}.
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{_customer_8cs_source_l00032}{32}} in het bestand \mbox{\hyperlink{_customer_8cs_source}{Customer.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00033\ \ \ \ \ \{}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \ \ \ \ \_details\ =\ await\ \_userRepository.GetCustomerDetails(Convert.ToInt32(\textcolor{keywordtype}{id}));}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (OverflowException\ ex)}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \ \ \ \ Console.WriteLine(ex.Message);}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw};}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (Exception\ ex)}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \ \ \ \ Console.WriteLine(ex.Message);}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw};}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00048\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+Gebruikt \mbox{\hyperlink{_customer_8cs_source_l00014}{\+\_\+details}} en \mbox{\hyperlink{_customer_8cs_source_l00015}{\+\_\+user\+Repository}}.
+
+
+
+\doxysubsection{Documentatie van data velden}
+\Hypertarget{class_w_p_r_1_1_email_1_1_customer_a4e354d8b5ae81442ee3851bd162ec3c9}\index{WPR.Email.Customer@{WPR.Email.Customer}!\_userRepository@{\_userRepository}}
+\index{\_userRepository@{\_userRepository}!WPR.Email.Customer@{WPR.Email.Customer}}
+\doxysubsubsection{\texorpdfstring{\_userRepository}{\_userRepository}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_email_1_1_customer_a4e354d8b5ae81442ee3851bd162ec3c9} 
+readonly \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_user_repository}{IUser\+Repository}} WPR.\+Email.\+Customer.\+\_\+user\+Repository\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{_customer_8cs_source_l00015}{15}} in het bestand \mbox{\hyperlink{_customer_8cs_source}{Customer.\+cs}}.
+
+
+
+Wordt aangeroepen door \mbox{\hyperlink{_customer_8cs_source_l00022}{Customer()}} en \mbox{\hyperlink{_customer_8cs_source_l00032}{Set\+Details\+Async()}}.
+
+
+
+\doxysubsection{Property Documentatie}
+\Hypertarget{class_w_p_r_1_1_email_1_1_customer_a5951fd7ead75976635f788b3676cbc53}\index{WPR.Email.Customer@{WPR.Email.Customer}!\_details@{\_details}}
+\index{\_details@{\_details}!WPR.Email.Customer@{WPR.Email.Customer}}
+\doxysubsubsection{\texorpdfstring{\_details}{\_details}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_email_1_1_customer_a5951fd7ead75976635f788b3676cbc53} 
+Dictionary$<$string, object$>$ WPR.\+Email.\+Customer.\+\_\+details\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}, {\ttfamily [private]}}
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{_customer_8cs_source_l00014}{14}} in het bestand \mbox{\hyperlink{_customer_8cs_source}{Customer.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00014\ \{\ \textcolor{keyword}{get};\ \textcolor{keyword}{set};\ \}}
+
+\end{DoxyCode}
+
+
+Wordt aangeroepen door \mbox{\hyperlink{_customer_8cs_source_l00054}{Get\+Details\+Async()}} en \mbox{\hyperlink{_customer_8cs_source_l00032}{Set\+Details\+Async()}}.
+
+
+
+De documentatie voor deze klasse is gegenereerd op basis van het volgende bestand\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/codes/\+WPR8/\+WPR/backend/src/\+Emails/\mbox{\hyperlink{_customer_8cs}{Customer.\+cs}}\end{DoxyCompactItemize}

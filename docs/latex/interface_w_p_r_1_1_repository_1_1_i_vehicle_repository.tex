@@ -1,0 +1,278 @@
+\doxysection{WPR.\+Repository.\+IVehicle\+Repository Interface Referentie}
+\hypertarget{interface_w_p_r_1_1_repository_1_1_i_vehicle_repository}{}\label{interface_w_p_r_1_1_repository_1_1_i_vehicle_repository}\index{WPR.Repository.IVehicleRepository@{WPR.Repository.IVehicleRepository}}
+
+
+Klasse diagram voor WPR.\+Repository.\+IVehicle\+Repository
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{interface_w_p_r_1_1_repository_1_1_i_vehicle_repository__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboratie diagram voor WPR.\+Repository.\+IVehicle\+Repository\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=246pt]{interface_w_p_r_1_1_repository_1_1_i_vehicle_repository__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Members}
+\begin{DoxyCompactItemize}
+\item 
+Task$<$ string $>$ \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_vehicle_repository_a30f95945285d4b1828850c0dd1afdd50}{Get\+Vehicle\+Plate\+Async}} (int frame\+Nr)
+\item 
+Task$<$ string $>$ \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_vehicle_repository_a7a22b52289e51b76c9bc9ce28147be45}{Get\+Vehicle\+Name\+Async}} (int frame\+Nr)
+\item 
+Task$<$ string $>$ \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_vehicle_repository_aa99a27bde54f5ae42d6c53d4de6f4897}{Get\+Vehicle\+Color\+Async}} (int frame\+Nr)
+\item 
+Task$<$ List$<$ string $>$ $>$ \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_vehicle_repository_a68bebe46cee7e3344491f6deb30e093a}{Get\+Frame\+Numbers\+Async}} ()
+\item 
+Task$<$ List$<$ Dictionary$<$ object, string $>$ $>$ $>$ \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_vehicle_repository_a93c4838424b8ba0f7199947b01ebee14}{Get\+Vehicle\+Data\+Async}} (object frame\+Nr)
+\item 
+Task$<$ List$<$ string $>$ $>$ \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_vehicle_repository_a49acf151954a86dc95392d7cf1c325eb}{Get\+Frame\+Number\+Specifiek\+Type\+Async}} (string type)
+\item 
+Task$<$(bool \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_vehicle_repository_adb72a97c347ecd008bb8e5c710d2aff9}{Status}}, string \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_vehicle_repository_a9f7440af785bf047fe631d9ddc7ff0fe}{Message}})$>$ \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_vehicle_repository_a0f1b01585f4b8d58fe06ad5e0bdf8866}{Hire\+Vehicle}} (\mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_customer_1_1_rental_1_1_rental_request}{Rental\+Request}} requset, string user\+Id)
+\item 
+Task$<$(bool \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_vehicle_repository_adb72a97c347ecd008bb8e5c710d2aff9}{Status}}, int \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_vehicle_repository_a1ce2e69b07095fef3c77dae9a8fbe32c}{Status\+Code}}, string \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_vehicle_repository_a9f7440af785bf047fe631d9ddc7ff0fe}{Message}})$>$ \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_vehicle_repository_af38a6076d5ec309bdf100102eec16a5b}{Cancel\+Rental}} (int rental\+Id, string user\+Cookie)
+\item 
+Task$<$(bool \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_vehicle_repository_adb72a97c347ecd008bb8e5c710d2aff9}{Status}}, int \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_vehicle_repository_a1ce2e69b07095fef3c77dae9a8fbe32c}{Status\+Code}}, string \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_vehicle_repository_a9f7440af785bf047fe631d9ddc7ff0fe}{Message}}, IList$<$ object $>$ User\+Rentals)$>$ \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_vehicle_repository_affd8b2697b6204b57f4c6ec7bf670cb1}{Get\+All\+User\+Rentals}} (string user\+Cookie)
+\item 
+bool int string IList$<$ object $>$ User\+Rentals \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_vehicle_repository_a5476e600a5ef1b1690e4c0348e1cdbf5}{Get\+All\+User\+Rentals\+Detailed}} ()
+\item 
+bool int string \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_vehicle_repository_a9f7440af785bf047fe631d9ddc7ff0fe}{Message}} \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_vehicle_repository_a74159d9dc2bd4ca22d63c8fb8bdb6d66}{Change\+Rental}} (\mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_customer_1_1_rental_1_1_update_rental_request}{Update\+Rental\+Request}} request)
+\item 
+Task$<$(bool \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_vehicle_repository_adb72a97c347ecd008bb8e5c710d2aff9}{Status}}, string \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_vehicle_repository_a9f7440af785bf047fe631d9ddc7ff0fe}{Message}})$>$ \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_vehicle_repository_afcd5830c8706b9b10ea3388fa17a39bb}{Delete\+Vehicle\+Async}} (string frame\+Nr)
+\item 
+bool int string \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_vehicle_repository_a9f7440af785bf047fe631d9ddc7ff0fe}{Message}} \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_vehicle_repository_a41e7410035ac05b4b21404a55b2d60d9}{Change\+Repair\+Status}} (int id, bool broken)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Data Velden}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_vehicle_repository_adb72a97c347ecd008bb8e5c710d2aff9}{Status}}
+\item 
+bool int \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_vehicle_repository_a1ce2e69b07095fef3c77dae9a8fbe32c}{Status\+Code}}
+\item 
+bool int string \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_vehicle_repository_a9f7440af785bf047fe631d9ddc7ff0fe}{Message}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Gedetailleerde Beschrijving}
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{_i_vehicle_repository_8cs_source_l00004}{4}} in het bestand \mbox{\hyperlink{_i_vehicle_repository_8cs_source}{IVehicle\+Repository.\+cs}}.
+
+
+
+\doxysubsection{Documentatie van functie members}
+\Hypertarget{interface_w_p_r_1_1_repository_1_1_i_vehicle_repository_af38a6076d5ec309bdf100102eec16a5b}\index{WPR.Repository.IVehicleRepository@{WPR.Repository.IVehicleRepository}!CancelRental@{CancelRental}}
+\index{CancelRental@{CancelRental}!WPR.Repository.IVehicleRepository@{WPR.Repository.IVehicleRepository}}
+\doxysubsubsection{\texorpdfstring{CancelRental()}{CancelRental()}}
+{\footnotesize\ttfamily \label{interface_w_p_r_1_1_repository_1_1_i_vehicle_repository_af38a6076d5ec309bdf100102eec16a5b} 
+Task$<$(bool \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_vehicle_repository_adb72a97c347ecd008bb8e5c710d2aff9}{Status}}, int \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_vehicle_repository_a1ce2e69b07095fef3c77dae9a8fbe32c}{Status\+Code}}, string \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_vehicle_repository_a9f7440af785bf047fe631d9ddc7ff0fe}{Message}})$>$ WPR.\+Repository.\+IVehicle\+Repository.\+Cancel\+Rental (\begin{DoxyParamCaption}\item[{int}]{rental\+Id}{, }\item[{string}]{user\+Cookie}{}\end{DoxyParamCaption})}
+
+
+
+Wordt geïmplementeerd door \mbox{\hyperlink{class_w_p_r_1_1_repository_1_1_vehicle_repository_a774953f45d278043f0b8ff79cdefa4df}{WPR.\+Repository.\+Vehicle\+Repository}}.
+
+
+
+Gebruikt \mbox{\hyperlink{_i_vehicle_repository_8cs_source_l00015}{Message}}, \mbox{\hyperlink{_i_vehicle_repository_8cs_source_l00015}{Status}} en \mbox{\hyperlink{_i_vehicle_repository_8cs_source_l00015}{Status\+Code}}.
+
+\Hypertarget{interface_w_p_r_1_1_repository_1_1_i_vehicle_repository_a74159d9dc2bd4ca22d63c8fb8bdb6d66}\index{WPR.Repository.IVehicleRepository@{WPR.Repository.IVehicleRepository}!ChangeRental@{ChangeRental}}
+\index{ChangeRental@{ChangeRental}!WPR.Repository.IVehicleRepository@{WPR.Repository.IVehicleRepository}}
+\doxysubsubsection{\texorpdfstring{ChangeRental()}{ChangeRental()}}
+{\footnotesize\ttfamily \label{interface_w_p_r_1_1_repository_1_1_i_vehicle_repository_a74159d9dc2bd4ca22d63c8fb8bdb6d66} 
+bool int string \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_vehicle_repository_a9f7440af785bf047fe631d9ddc7ff0fe}{Message}} WPR.\+Repository.\+IVehicle\+Repository.\+Change\+Rental (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_customer_1_1_rental_1_1_update_rental_request}{Update\+Rental\+Request}}}]{request}{}\end{DoxyParamCaption})}
+
+
+
+Wordt geïmplementeerd door \mbox{\hyperlink{class_w_p_r_1_1_repository_1_1_vehicle_repository_a57416a2c12ab696bf29a9df2b3509d01}{WPR.\+Repository.\+Vehicle\+Repository}}.
+
+
+
+Gebruikt \mbox{\hyperlink{_i_vehicle_repository_8cs_source_l00015}{Message}}, \mbox{\hyperlink{_i_vehicle_repository_8cs_source_l00015}{Status}} en \mbox{\hyperlink{_i_vehicle_repository_8cs_source_l00015}{Status\+Code}}.
+
+\Hypertarget{interface_w_p_r_1_1_repository_1_1_i_vehicle_repository_a41e7410035ac05b4b21404a55b2d60d9}\index{WPR.Repository.IVehicleRepository@{WPR.Repository.IVehicleRepository}!ChangeRepairStatus@{ChangeRepairStatus}}
+\index{ChangeRepairStatus@{ChangeRepairStatus}!WPR.Repository.IVehicleRepository@{WPR.Repository.IVehicleRepository}}
+\doxysubsubsection{\texorpdfstring{ChangeRepairStatus()}{ChangeRepairStatus()}}
+{\footnotesize\ttfamily \label{interface_w_p_r_1_1_repository_1_1_i_vehicle_repository_a41e7410035ac05b4b21404a55b2d60d9} 
+bool int string \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_vehicle_repository_a9f7440af785bf047fe631d9ddc7ff0fe}{Message}} WPR.\+Repository.\+IVehicle\+Repository.\+Change\+Repair\+Status (\begin{DoxyParamCaption}\item[{int}]{id}{, }\item[{bool}]{broken}{}\end{DoxyParamCaption})}
+
+
+
+Wordt geïmplementeerd door \mbox{\hyperlink{class_w_p_r_1_1_repository_1_1_vehicle_repository_ac3efc62914d63ea27fb7fa07d1294b35}{WPR.\+Repository.\+Vehicle\+Repository}}.
+
+
+
+Gebruikt \mbox{\hyperlink{_i_vehicle_repository_8cs_source_l00015}{Message}}, \mbox{\hyperlink{_i_vehicle_repository_8cs_source_l00015}{Status}} en \mbox{\hyperlink{_i_vehicle_repository_8cs_source_l00015}{Status\+Code}}.
+
+\Hypertarget{interface_w_p_r_1_1_repository_1_1_i_vehicle_repository_afcd5830c8706b9b10ea3388fa17a39bb}\index{WPR.Repository.IVehicleRepository@{WPR.Repository.IVehicleRepository}!DeleteVehicleAsync@{DeleteVehicleAsync}}
+\index{DeleteVehicleAsync@{DeleteVehicleAsync}!WPR.Repository.IVehicleRepository@{WPR.Repository.IVehicleRepository}}
+\doxysubsubsection{\texorpdfstring{DeleteVehicleAsync()}{DeleteVehicleAsync()}}
+{\footnotesize\ttfamily \label{interface_w_p_r_1_1_repository_1_1_i_vehicle_repository_afcd5830c8706b9b10ea3388fa17a39bb} 
+Task$<$(bool \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_vehicle_repository_adb72a97c347ecd008bb8e5c710d2aff9}{Status}}, string \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_vehicle_repository_a9f7440af785bf047fe631d9ddc7ff0fe}{Message}})$>$ WPR.\+Repository.\+IVehicle\+Repository.\+Delete\+Vehicle\+Async (\begin{DoxyParamCaption}\item[{string}]{frame\+Nr}{}\end{DoxyParamCaption})}
+
+
+
+Wordt geïmplementeerd door \mbox{\hyperlink{class_w_p_r_1_1_repository_1_1_vehicle_repository_a73e48f0a16549d09831208eb2b575beb}{WPR.\+Repository.\+Vehicle\+Repository}}.
+
+
+
+Gebruikt \mbox{\hyperlink{_i_vehicle_repository_8cs_source_l00015}{Message}} en \mbox{\hyperlink{_i_vehicle_repository_8cs_source_l00015}{Status}}.
+
+\Hypertarget{interface_w_p_r_1_1_repository_1_1_i_vehicle_repository_affd8b2697b6204b57f4c6ec7bf670cb1}\index{WPR.Repository.IVehicleRepository@{WPR.Repository.IVehicleRepository}!GetAllUserRentals@{GetAllUserRentals}}
+\index{GetAllUserRentals@{GetAllUserRentals}!WPR.Repository.IVehicleRepository@{WPR.Repository.IVehicleRepository}}
+\doxysubsubsection{\texorpdfstring{GetAllUserRentals()}{GetAllUserRentals()}}
+{\footnotesize\ttfamily \label{interface_w_p_r_1_1_repository_1_1_i_vehicle_repository_affd8b2697b6204b57f4c6ec7bf670cb1} 
+Task$<$(bool \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_vehicle_repository_adb72a97c347ecd008bb8e5c710d2aff9}{Status}}, int \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_vehicle_repository_a1ce2e69b07095fef3c77dae9a8fbe32c}{Status\+Code}}, string \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_vehicle_repository_a9f7440af785bf047fe631d9ddc7ff0fe}{Message}}, IList$<$ object $>$ User\+Rentals)$>$ WPR.\+Repository.\+IVehicle\+Repository.\+Get\+All\+User\+Rentals (\begin{DoxyParamCaption}\item[{string}]{user\+Cookie}{}\end{DoxyParamCaption})}
+
+
+
+Wordt geïmplementeerd door \mbox{\hyperlink{class_w_p_r_1_1_repository_1_1_vehicle_repository_a67db6526a03c26958ee2c78af449dc5d}{WPR.\+Repository.\+Vehicle\+Repository}}.
+
+
+
+Gebruikt \mbox{\hyperlink{_i_vehicle_repository_8cs_source_l00015}{Message}}, \mbox{\hyperlink{_i_vehicle_repository_8cs_source_l00015}{Status}} en \mbox{\hyperlink{_i_vehicle_repository_8cs_source_l00015}{Status\+Code}}.
+
+\Hypertarget{interface_w_p_r_1_1_repository_1_1_i_vehicle_repository_a5476e600a5ef1b1690e4c0348e1cdbf5}\index{WPR.Repository.IVehicleRepository@{WPR.Repository.IVehicleRepository}!GetAllUserRentalsDetailed@{GetAllUserRentalsDetailed}}
+\index{GetAllUserRentalsDetailed@{GetAllUserRentalsDetailed}!WPR.Repository.IVehicleRepository@{WPR.Repository.IVehicleRepository}}
+\doxysubsubsection{\texorpdfstring{GetAllUserRentalsDetailed()}{GetAllUserRentalsDetailed()}}
+{\footnotesize\ttfamily \label{interface_w_p_r_1_1_repository_1_1_i_vehicle_repository_a5476e600a5ef1b1690e4c0348e1cdbf5} 
+bool int string IList$<$ object $>$ User\+Rentals WPR.\+Repository.\+IVehicle\+Repository.\+Get\+All\+User\+Rentals\+Detailed (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Wordt geïmplementeerd door \mbox{\hyperlink{class_w_p_r_1_1_repository_1_1_vehicle_repository_abd6f9915907cc3aebdc50caeaf2f9bd8}{WPR.\+Repository.\+Vehicle\+Repository}}.
+
+
+
+Gebruikt \mbox{\hyperlink{_i_vehicle_repository_8cs_source_l00015}{Message}}, \mbox{\hyperlink{_i_vehicle_repository_8cs_source_l00015}{Status}} en \mbox{\hyperlink{_i_vehicle_repository_8cs_source_l00015}{Status\+Code}}.
+
+\Hypertarget{interface_w_p_r_1_1_repository_1_1_i_vehicle_repository_a68bebe46cee7e3344491f6deb30e093a}\index{WPR.Repository.IVehicleRepository@{WPR.Repository.IVehicleRepository}!GetFrameNumbersAsync@{GetFrameNumbersAsync}}
+\index{GetFrameNumbersAsync@{GetFrameNumbersAsync}!WPR.Repository.IVehicleRepository@{WPR.Repository.IVehicleRepository}}
+\doxysubsubsection{\texorpdfstring{GetFrameNumbersAsync()}{GetFrameNumbersAsync()}}
+{\footnotesize\ttfamily \label{interface_w_p_r_1_1_repository_1_1_i_vehicle_repository_a68bebe46cee7e3344491f6deb30e093a} 
+Task$<$ List$<$ string $>$ $>$ WPR.\+Repository.\+IVehicle\+Repository.\+Get\+Frame\+Numbers\+Async (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Wordt geïmplementeerd door \mbox{\hyperlink{class_w_p_r_1_1_repository_1_1_vehicle_repository_af398d024d4a743ca23f56ee501c2e4bb}{WPR.\+Repository.\+Vehicle\+Repository}}.
+
+\Hypertarget{interface_w_p_r_1_1_repository_1_1_i_vehicle_repository_a49acf151954a86dc95392d7cf1c325eb}\index{WPR.Repository.IVehicleRepository@{WPR.Repository.IVehicleRepository}!GetFrameNumberSpecifiekTypeAsync@{GetFrameNumberSpecifiekTypeAsync}}
+\index{GetFrameNumberSpecifiekTypeAsync@{GetFrameNumberSpecifiekTypeAsync}!WPR.Repository.IVehicleRepository@{WPR.Repository.IVehicleRepository}}
+\doxysubsubsection{\texorpdfstring{GetFrameNumberSpecifiekTypeAsync()}{GetFrameNumberSpecifiekTypeAsync()}}
+{\footnotesize\ttfamily \label{interface_w_p_r_1_1_repository_1_1_i_vehicle_repository_a49acf151954a86dc95392d7cf1c325eb} 
+Task$<$ List$<$ string $>$ $>$ WPR.\+Repository.\+IVehicle\+Repository.\+Get\+Frame\+Number\+Specifiek\+Type\+Async (\begin{DoxyParamCaption}\item[{string}]{type}{}\end{DoxyParamCaption})}
+
+
+
+Wordt geïmplementeerd door \mbox{\hyperlink{class_w_p_r_1_1_repository_1_1_vehicle_repository_a5a3de64f60e537949c6cc0d741190e5c}{WPR.\+Repository.\+Vehicle\+Repository}}.
+
+\Hypertarget{interface_w_p_r_1_1_repository_1_1_i_vehicle_repository_aa99a27bde54f5ae42d6c53d4de6f4897}\index{WPR.Repository.IVehicleRepository@{WPR.Repository.IVehicleRepository}!GetVehicleColorAsync@{GetVehicleColorAsync}}
+\index{GetVehicleColorAsync@{GetVehicleColorAsync}!WPR.Repository.IVehicleRepository@{WPR.Repository.IVehicleRepository}}
+\doxysubsubsection{\texorpdfstring{GetVehicleColorAsync()}{GetVehicleColorAsync()}}
+{\footnotesize\ttfamily \label{interface_w_p_r_1_1_repository_1_1_i_vehicle_repository_aa99a27bde54f5ae42d6c53d4de6f4897} 
+Task$<$ string $>$ WPR.\+Repository.\+IVehicle\+Repository.\+Get\+Vehicle\+Color\+Async (\begin{DoxyParamCaption}\item[{int}]{frame\+Nr}{}\end{DoxyParamCaption})}
+
+
+
+Wordt geïmplementeerd door \mbox{\hyperlink{class_w_p_r_1_1_repository_1_1_vehicle_repository_a7d5690f15622f36a6c229b993a2a9ea9}{WPR.\+Repository.\+Vehicle\+Repository}}.
+
+\Hypertarget{interface_w_p_r_1_1_repository_1_1_i_vehicle_repository_a93c4838424b8ba0f7199947b01ebee14}\index{WPR.Repository.IVehicleRepository@{WPR.Repository.IVehicleRepository}!GetVehicleDataAsync@{GetVehicleDataAsync}}
+\index{GetVehicleDataAsync@{GetVehicleDataAsync}!WPR.Repository.IVehicleRepository@{WPR.Repository.IVehicleRepository}}
+\doxysubsubsection{\texorpdfstring{GetVehicleDataAsync()}{GetVehicleDataAsync()}}
+{\footnotesize\ttfamily \label{interface_w_p_r_1_1_repository_1_1_i_vehicle_repository_a93c4838424b8ba0f7199947b01ebee14} 
+Task$<$ List$<$ Dictionary$<$ object, string $>$ $>$ $>$ WPR.\+Repository.\+IVehicle\+Repository.\+Get\+Vehicle\+Data\+Async (\begin{DoxyParamCaption}\item[{object}]{frame\+Nr}{}\end{DoxyParamCaption})}
+
+
+
+Wordt geïmplementeerd door \mbox{\hyperlink{class_w_p_r_1_1_repository_1_1_vehicle_repository_a239ad32f36c6d096bafe599bc79bb970}{WPR.\+Repository.\+Vehicle\+Repository}}.
+
+\Hypertarget{interface_w_p_r_1_1_repository_1_1_i_vehicle_repository_a7a22b52289e51b76c9bc9ce28147be45}\index{WPR.Repository.IVehicleRepository@{WPR.Repository.IVehicleRepository}!GetVehicleNameAsync@{GetVehicleNameAsync}}
+\index{GetVehicleNameAsync@{GetVehicleNameAsync}!WPR.Repository.IVehicleRepository@{WPR.Repository.IVehicleRepository}}
+\doxysubsubsection{\texorpdfstring{GetVehicleNameAsync()}{GetVehicleNameAsync()}}
+{\footnotesize\ttfamily \label{interface_w_p_r_1_1_repository_1_1_i_vehicle_repository_a7a22b52289e51b76c9bc9ce28147be45} 
+Task$<$ string $>$ WPR.\+Repository.\+IVehicle\+Repository.\+Get\+Vehicle\+Name\+Async (\begin{DoxyParamCaption}\item[{int}]{frame\+Nr}{}\end{DoxyParamCaption})}
+
+
+
+Wordt geïmplementeerd door \mbox{\hyperlink{class_w_p_r_1_1_repository_1_1_vehicle_repository_ac966b529fb982058bba744e3f8a03501}{WPR.\+Repository.\+Vehicle\+Repository}}.
+
+\Hypertarget{interface_w_p_r_1_1_repository_1_1_i_vehicle_repository_a30f95945285d4b1828850c0dd1afdd50}\index{WPR.Repository.IVehicleRepository@{WPR.Repository.IVehicleRepository}!GetVehiclePlateAsync@{GetVehiclePlateAsync}}
+\index{GetVehiclePlateAsync@{GetVehiclePlateAsync}!WPR.Repository.IVehicleRepository@{WPR.Repository.IVehicleRepository}}
+\doxysubsubsection{\texorpdfstring{GetVehiclePlateAsync()}{GetVehiclePlateAsync()}}
+{\footnotesize\ttfamily \label{interface_w_p_r_1_1_repository_1_1_i_vehicle_repository_a30f95945285d4b1828850c0dd1afdd50} 
+Task$<$ string $>$ WPR.\+Repository.\+IVehicle\+Repository.\+Get\+Vehicle\+Plate\+Async (\begin{DoxyParamCaption}\item[{int}]{frame\+Nr}{}\end{DoxyParamCaption})}
+
+
+
+Wordt geïmplementeerd door \mbox{\hyperlink{class_w_p_r_1_1_repository_1_1_vehicle_repository_a44c60ce7050a7813b4cfca5b8292ab4e}{WPR.\+Repository.\+Vehicle\+Repository}}.
+
+\Hypertarget{interface_w_p_r_1_1_repository_1_1_i_vehicle_repository_a0f1b01585f4b8d58fe06ad5e0bdf8866}\index{WPR.Repository.IVehicleRepository@{WPR.Repository.IVehicleRepository}!HireVehicle@{HireVehicle}}
+\index{HireVehicle@{HireVehicle}!WPR.Repository.IVehicleRepository@{WPR.Repository.IVehicleRepository}}
+\doxysubsubsection{\texorpdfstring{HireVehicle()}{HireVehicle()}}
+{\footnotesize\ttfamily \label{interface_w_p_r_1_1_repository_1_1_i_vehicle_repository_a0f1b01585f4b8d58fe06ad5e0bdf8866} 
+Task$<$(bool \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_vehicle_repository_adb72a97c347ecd008bb8e5c710d2aff9}{Status}}, string \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_vehicle_repository_a9f7440af785bf047fe631d9ddc7ff0fe}{Message}})$>$ WPR.\+Repository.\+IVehicle\+Repository.\+Hire\+Vehicle (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_customer_1_1_rental_1_1_rental_request}{Rental\+Request}}}]{requset}{, }\item[{string}]{user\+Id}{}\end{DoxyParamCaption})}
+
+
+
+Wordt geïmplementeerd door \mbox{\hyperlink{class_w_p_r_1_1_repository_1_1_vehicle_repository_a35a796e7cf96268b3fe824913616c411}{WPR.\+Repository.\+Vehicle\+Repository}}.
+
+
+
+Gebruikt \mbox{\hyperlink{_i_vehicle_repository_8cs_source_l00015}{Message}} en \mbox{\hyperlink{_i_vehicle_repository_8cs_source_l00015}{Status}}.
+
+
+
+\doxysubsection{Documentatie van data velden}
+\Hypertarget{interface_w_p_r_1_1_repository_1_1_i_vehicle_repository_a9f7440af785bf047fe631d9ddc7ff0fe}\index{WPR.Repository.IVehicleRepository@{WPR.Repository.IVehicleRepository}!Message@{Message}}
+\index{Message@{Message}!WPR.Repository.IVehicleRepository@{WPR.Repository.IVehicleRepository}}
+\doxysubsubsection{\texorpdfstring{Message}{Message}}
+{\footnotesize\ttfamily \label{interface_w_p_r_1_1_repository_1_1_i_vehicle_repository_a9f7440af785bf047fe631d9ddc7ff0fe} 
+bool int string WPR.\+Repository.\+IVehicle\+Repository.\+Message}
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{_i_vehicle_repository_8cs_source_l00015}{15}} in het bestand \mbox{\hyperlink{_i_vehicle_repository_8cs_source}{IVehicle\+Repository.\+cs}}.
+
+
+
+Wordt aangeroepen door \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_vehicle_repository_af38a6076d5ec309bdf100102eec16a5b}{Cancel\+Rental()}}, \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_vehicle_repository_a74159d9dc2bd4ca22d63c8fb8bdb6d66}{Change\+Rental()}}, \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_vehicle_repository_a41e7410035ac05b4b21404a55b2d60d9}{Change\+Repair\+Status()}}, \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_vehicle_repository_afcd5830c8706b9b10ea3388fa17a39bb}{Delete\+Vehicle\+Async()}}, \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_vehicle_repository_affd8b2697b6204b57f4c6ec7bf670cb1}{Get\+All\+User\+Rentals()}}, \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_vehicle_repository_a5476e600a5ef1b1690e4c0348e1cdbf5}{Get\+All\+User\+Rentals\+Detailed()}} en \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_vehicle_repository_a0f1b01585f4b8d58fe06ad5e0bdf8866}{Hire\+Vehicle()}}.
+
+\Hypertarget{interface_w_p_r_1_1_repository_1_1_i_vehicle_repository_adb72a97c347ecd008bb8e5c710d2aff9}\index{WPR.Repository.IVehicleRepository@{WPR.Repository.IVehicleRepository}!Status@{Status}}
+\index{Status@{Status}!WPR.Repository.IVehicleRepository@{WPR.Repository.IVehicleRepository}}
+\doxysubsubsection{\texorpdfstring{Status}{Status}}
+{\footnotesize\ttfamily \label{interface_w_p_r_1_1_repository_1_1_i_vehicle_repository_adb72a97c347ecd008bb8e5c710d2aff9} 
+bool WPR.\+Repository.\+IVehicle\+Repository.\+Status}
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{_i_vehicle_repository_8cs_source_l00015}{15}} in het bestand \mbox{\hyperlink{_i_vehicle_repository_8cs_source}{IVehicle\+Repository.\+cs}}.
+
+
+
+Wordt aangeroepen door \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_vehicle_repository_af38a6076d5ec309bdf100102eec16a5b}{Cancel\+Rental()}}, \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_vehicle_repository_a74159d9dc2bd4ca22d63c8fb8bdb6d66}{Change\+Rental()}}, \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_vehicle_repository_a41e7410035ac05b4b21404a55b2d60d9}{Change\+Repair\+Status()}}, \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_vehicle_repository_afcd5830c8706b9b10ea3388fa17a39bb}{Delete\+Vehicle\+Async()}}, \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_vehicle_repository_affd8b2697b6204b57f4c6ec7bf670cb1}{Get\+All\+User\+Rentals()}}, \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_vehicle_repository_a5476e600a5ef1b1690e4c0348e1cdbf5}{Get\+All\+User\+Rentals\+Detailed()}} en \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_vehicle_repository_a0f1b01585f4b8d58fe06ad5e0bdf8866}{Hire\+Vehicle()}}.
+
+\Hypertarget{interface_w_p_r_1_1_repository_1_1_i_vehicle_repository_a1ce2e69b07095fef3c77dae9a8fbe32c}\index{WPR.Repository.IVehicleRepository@{WPR.Repository.IVehicleRepository}!StatusCode@{StatusCode}}
+\index{StatusCode@{StatusCode}!WPR.Repository.IVehicleRepository@{WPR.Repository.IVehicleRepository}}
+\doxysubsubsection{\texorpdfstring{StatusCode}{StatusCode}}
+{\footnotesize\ttfamily \label{interface_w_p_r_1_1_repository_1_1_i_vehicle_repository_a1ce2e69b07095fef3c77dae9a8fbe32c} 
+bool int WPR.\+Repository.\+IVehicle\+Repository.\+Status\+Code}
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{_i_vehicle_repository_8cs_source_l00015}{15}} in het bestand \mbox{\hyperlink{_i_vehicle_repository_8cs_source}{IVehicle\+Repository.\+cs}}.
+
+
+
+Wordt aangeroepen door \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_vehicle_repository_af38a6076d5ec309bdf100102eec16a5b}{Cancel\+Rental()}}, \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_vehicle_repository_a74159d9dc2bd4ca22d63c8fb8bdb6d66}{Change\+Rental()}}, \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_vehicle_repository_a41e7410035ac05b4b21404a55b2d60d9}{Change\+Repair\+Status()}}, \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_vehicle_repository_affd8b2697b6204b57f4c6ec7bf670cb1}{Get\+All\+User\+Rentals()}} en \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_vehicle_repository_a5476e600a5ef1b1690e4c0348e1cdbf5}{Get\+All\+User\+Rentals\+Detailed()}}.
+
+
+
+De documentatie voor dit interface is gegenereerd op basis van het volgende bestand\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/codes/\+WPR8/\+WPR/backend/src/\+Repository/\mbox{\hyperlink{_i_vehicle_repository_8cs}{IVehicle\+Repository.\+cs}}\end{DoxyCompactItemize}

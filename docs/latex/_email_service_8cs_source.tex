@@ -1,0 +1,239 @@
+\doxysection{Email\+Service.\+cs}
+\hypertarget{_email_service_8cs_source}{}\label{_email_service_8cs_source}\index{D:/codes/WPR8/WPR/backend/src/Services/EmailService.cs@{D:/codes/WPR8/WPR/backend/src/Services/EmailService.cs}}
+\mbox{\hyperlink{_email_service_8cs}{Ga naar de documentatie van dit bestand.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00001}00001\ \textcolor{keyword}{using\ }System.Net;}
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00002}00002\ \textcolor{keyword}{using\ }System.Net.Mail;}
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00003}00003\ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespace_w_p_r_1_1_data}{WPR.Data}};}
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00004}00004\ }
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00005}\mbox{\hyperlink{namespace_w_p_r_1_1_services}{00005}}\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_w_p_r_1_1_services}{WPR.Services}};}
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00006}00006\ }
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00007}\mbox{\hyperlink{class_w_p_r_1_1_services_1_1_email_service}{00007}}\ \textcolor{keyword}{public}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_w_p_r_1_1_services_1_1_email_service_a08080381a9593a6c0d25174e350aec1f}{EmailService}}\ :\ \mbox{\hyperlink{interface_w_p_r_1_1_services_1_1_i_email_service}{IEmailService}}}
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00008}00008\ \{}
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00009}\mbox{\hyperlink{class_w_p_r_1_1_services_1_1_email_service_a1b24680ee23b68d526051d9c96e50536}{00009}}\ \ \ \ \ \textcolor{keyword}{private}\ readonly\ \mbox{\hyperlink{class_w_p_r_1_1_data_1_1_env_config}{EnvConfig}}\ \mbox{\hyperlink{class_w_p_r_1_1_services_1_1_email_service_a1b24680ee23b68d526051d9c96e50536}{\_envConfig}};\ \textcolor{comment}{//\ Instantie\ van\ EnConfig\ om\ environment\ variabelen\ op\ te\ halen.}}
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00010}00010\ }
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00011}\mbox{\hyperlink{class_w_p_r_1_1_services_1_1_email_service_a08080381a9593a6c0d25174e350aec1f}{00011}}\ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_w_p_r_1_1_services_1_1_email_service_a08080381a9593a6c0d25174e350aec1f}{EmailService}}(\mbox{\hyperlink{class_w_p_r_1_1_data_1_1_env_config}{EnvConfig}}\ envConfig)}
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00012}00012\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00013}00013\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_w_p_r_1_1_services_1_1_email_service_a1b24680ee23b68d526051d9c96e50536}{\_envConfig}}\ =\ envConfig\ ??\ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ ArgumentNullException(nameof(envConfig));}
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00014}00014\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00015}00015\ }
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00020}\mbox{\hyperlink{class_w_p_r_1_1_services_1_1_email_service_ab31b08101a79b7e7634ccb24fb771d33}{00020}}\ \ \ \ \ \textcolor{keyword}{private}\ SmtpClient\ \mbox{\hyperlink{class_w_p_r_1_1_services_1_1_email_service_ab31b08101a79b7e7634ccb24fb771d33}{CreateSmtpClient}}()}
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00021}00021\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00022}00022\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{new}\ SmtpClient(\mbox{\hyperlink{class_w_p_r_1_1_services_1_1_email_service_a1b24680ee23b68d526051d9c96e50536}{\_envConfig}}.Get(\textcolor{stringliteral}{"{}SMTP\_HOST"{}}))}
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00023}00023\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00024}00024\ \ \ \ \ \ \ \ \ \ \ \ \ Port\ =\ \textcolor{keywordtype}{int}.Parse(\mbox{\hyperlink{class_w_p_r_1_1_services_1_1_email_service_a1b24680ee23b68d526051d9c96e50536}{\_envConfig}}.Get(\textcolor{stringliteral}{"{}SMTP\_PORT"{}})),}
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00025}00025\ \ \ \ \ \ \ \ \ \ \ \ \ Credentials\ =\ \textcolor{keyword}{new}\ NetworkCredential(}
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00026}00026\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_w_p_r_1_1_services_1_1_email_service_a1b24680ee23b68d526051d9c96e50536}{\_envConfig}}.Get(\textcolor{stringliteral}{"{}SMTP\_FROM\_EMAIL"{}}),}
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00027}00027\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_w_p_r_1_1_services_1_1_email_service_a1b24680ee23b68d526051d9c96e50536}{\_envConfig}}.Get(\textcolor{stringliteral}{"{}SMTP\_FROM\_PASSWORD"{}})}
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00028}00028\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ),}
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00029}00029\ \ \ \ \ \ \ \ \ \ \ \ \ EnableSsl\ =\ \textcolor{keyword}{true}}
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00030}00030\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00031}00031\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00032}00032\ }
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00039}\mbox{\hyperlink{class_w_p_r_1_1_services_1_1_email_service_a7da62c5a38ba1aa9eaa38767c022c42a}{00039}}\ \textcolor{keyword}{public}\ async\ Task\ \mbox{\hyperlink{class_w_p_r_1_1_services_1_1_email_service_a7da62c5a38ba1aa9eaa38767c022c42a}{Send}}(\textcolor{keywordtype}{string}\ toEmail,\ \textcolor{keywordtype}{string}\ subject,\ \textcolor{keywordtype}{string}\ body)}
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00040}00040\ \{}
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00041}00041\ \ \ \ \ \textcolor{keywordflow}{try}}
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00042}00042\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00043}00043\ \ \ \ \ \ \ \ \ \textcolor{keyword}{using}\ (var\ smtpClient\ =\ \mbox{\hyperlink{class_w_p_r_1_1_services_1_1_email_service_ab31b08101a79b7e7634ccb24fb771d33}{CreateSmtpClient}}())}
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00044}00044\ \ \ \ \ \ \ \ \ \textcolor{keyword}{using}\ (var\ mailMessage\ =\ \textcolor{keyword}{new}\ MailMessage}
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00045}00045\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00046}00046\ \ \ \ \ \ \ \ \ \ \ \ \ From\ =\ \textcolor{keyword}{new}\ MailAddress(\mbox{\hyperlink{class_w_p_r_1_1_services_1_1_email_service_a1b24680ee23b68d526051d9c96e50536}{\_envConfig}}.Get(\textcolor{stringliteral}{"{}SMTP\_FROM\_EMAIL"{}})),\ \textcolor{comment}{//\ Afzender\ e-\/mail}}
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00047}00047\ \ \ \ \ \ \ \ \ \ \ \ \ Subject\ =\ subject,\ \textcolor{comment}{//\ Onderwerp\ van\ de\ e-\/mail}}
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00048}00048\ \ \ \ \ \ \ \ \ \ \ \ \ Body\ =\ body,\ \textcolor{comment}{//\ Inhoud\ van\ de\ e-\/mail}}
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00049}00049\ \ \ \ \ \ \ \ \ \ \ \ \ IsBodyHtml\ =\ \textcolor{keyword}{true}\ \textcolor{comment}{//\ Geef\ aan\ dat\ de\ inhoud\ HTML\ is}}
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00050}00050\ \ \ \ \ \ \ \ \ \})}
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00051}00051\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00052}00052\ \ \ \ \ \ \ \ \ \ \ \ \ mailMessage.To.Add(toEmail);\ \textcolor{comment}{//\ Voeg\ de\ ontvanger\ toe}}
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00053}00053\ \ \ \ \ \ \ \ \ \ \ \ \ await\ smtpClient.SendMailAsync(mailMessage);\ \textcolor{comment}{//\ Verstuur\ de\ e-\/mail\ asynchroon}}
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00054}00054\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00055}00055\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00056}00056\ \ \ \ \ \textcolor{keywordflow}{catch}\ (Exception\ ex)}
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00057}00057\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00058}00058\ \ \ \ \ \ \ \ \ Console.WriteLine(ex.Message);\ \textcolor{comment}{//\ Log\ eventuele\ fouten}}
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00059}00059\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw};\ \textcolor{comment}{//\ Gooi\ de\ uitzondering\ opnieuw}}
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00060}00060\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00061}00061\ \}}
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00062}00062\ }
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00067}\mbox{\hyperlink{class_w_p_r_1_1_services_1_1_email_service_a00a227fa3bbc1b22634908be5be363ef}{00067}}\ \textcolor{keyword}{public}\ async\ Task\ \mbox{\hyperlink{class_w_p_r_1_1_services_1_1_email_service_a00a227fa3bbc1b22634908be5be363ef}{SendWelcomeEmail}}(\textcolor{keywordtype}{string}\ toEmail)}
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00068}00068\ \{\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00069}00069\ \ \ \ \ \textcolor{keywordflow}{if}\ (\textcolor{keywordtype}{string}.IsNullOrEmpty(toEmail))}
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00070}00070\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00071}00071\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ ArgumentException(\textcolor{stringliteral}{"{}Email\ addresses\ cannot\ be\ null\ or\ empty"{}});\ \textcolor{comment}{//\ Controleer\ of\ het\ e-\/mailadres\ geldig\ is}}
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00072}00072\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00073}00073\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00074}00074\ \ \ \ \ \textcolor{keywordflow}{try}}
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00075}00075\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00076}00076\ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }var\ smtpClient\ =\ \mbox{\hyperlink{class_w_p_r_1_1_services_1_1_email_service_ab31b08101a79b7e7634ccb24fb771d33}{CreateSmtpClient}}();}
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00077}00077\ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }var\ mailMessage\ =\ \textcolor{keyword}{new}\ MailMessage}
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00078}00078\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00079}00079\ \ \ \ \ \ \ \ \ \ \ \ \ From\ =\ \textcolor{keyword}{new}\ MailAddress(\mbox{\hyperlink{class_w_p_r_1_1_services_1_1_email_service_a1b24680ee23b68d526051d9c96e50536}{\_envConfig}}.Get(\textcolor{stringliteral}{"{}SMTP\_FROM\_EMAIL"{}})),\ \textcolor{comment}{//\ Afzender\ e-\/mail}}
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00080}00080\ \ \ \ \ \ \ \ \ \ \ \ \ Subject\ =\ \textcolor{stringliteral}{"{}Welkom\ bij\ CarAndAll"{}},\ \textcolor{comment}{//\ Onderwerp\ van\ de\ e-\/mail}}
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00081}00081\ \ \ \ \ \ \ \ \ \ \ \ \ Body\ =\ \$\textcolor{stringliteral}{"{}Welkom\ bij\ CarAndAll"{}},\ \textcolor{comment}{//\ Inhoud\ van\ de\ e-\/mail}}
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00082}00082\ \ \ \ \ \ \ \ \ \ \ \ \ IsBodyHtml\ =\ \textcolor{keyword}{true}\ \textcolor{comment}{//\ Geef\ aan\ dat\ de\ inhoud\ HTML\ is}}
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00083}00083\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00084}00084\ \ \ \ \ \ \ \ \ mailMessage.To.Add(toEmail);\ \textcolor{comment}{//\ Voeg\ de\ ontvanger\ toe}}
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00085}00085\ }
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00086}00086\ \ \ \ \ \ \ \ \ await\ smtpClient.SendMailAsync(mailMessage);\ \textcolor{comment}{//\ Verstuur\ de\ e-\/mail\ asynchroon}}
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00087}00087\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00088}00088\ \ \ \ \ \textcolor{keywordflow}{catch}\ (Exception\ e)}
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00089}00089\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00090}00090\ \ \ \ \ \ \ \ \ Console.WriteLine(e);\ \textcolor{comment}{//\ Log\ eventuele\ fouten}}
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00091}00091\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw};\ \textcolor{comment}{//\ Gooi\ de\ uitzondering\ opnieuw}}
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00092}00092\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00093}00093\ \}}
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00094}00094\ }
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00105}\mbox{\hyperlink{class_w_p_r_1_1_services_1_1_email_service_a23aed78b7ecd45ab31ca9acb6ce78b5e}{00105}}\ \textcolor{keyword}{public}\ async\ Task\ \mbox{\hyperlink{class_w_p_r_1_1_services_1_1_email_service_a23aed78b7ecd45ab31ca9acb6ce78b5e}{SendRentalConfirmMail}}(\textcolor{keywordtype}{string}\ toEmail,\ \textcolor{keywordtype}{string}\ carName,\ \textcolor{keywordtype}{string}\ carColor,\ \textcolor{keywordtype}{string}\ carPlate,\ DateTime\ startDate,\ DateTime\ endDate,\ \textcolor{keywordtype}{string}\ price)}
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00106}00106\ \{}
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00107}00107\ \ \ \ \ \textcolor{keywordflow}{if}\ (\textcolor{keywordtype}{string}.IsNullOrEmpty(toEmail))}
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00108}00108\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00109}00109\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ ArgumentException(\textcolor{stringliteral}{"{}Email\ addresses\ cannot\ be\ null\ or\ empty"{}});\ \textcolor{comment}{//\ Controleer\ of\ het\ e-\/mailadres\ geldig\ is}}
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00110}00110\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00111}00111\ }
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00112}00112\ \ \ \ \ \textcolor{keywordflow}{try}}
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00113}00113\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00114}00114\ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }var\ smtpClient\ =\ \mbox{\hyperlink{class_w_p_r_1_1_services_1_1_email_service_ab31b08101a79b7e7634ccb24fb771d33}{CreateSmtpClient}}();}
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00115}00115\ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }var\ mailMessage\ =\ \textcolor{keyword}{new}\ MailMessage}
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00116}00116\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00117}00117\ \ \ \ \ \ \ \ \ \ \ \ \ From\ =\ \textcolor{keyword}{new}\ MailAddress(\mbox{\hyperlink{class_w_p_r_1_1_services_1_1_email_service_a1b24680ee23b68d526051d9c96e50536}{\_envConfig}}.Get(\textcolor{stringliteral}{"{}SMTP\_FROM\_EMAIL"{}})),\ \textcolor{comment}{//\ Afzender\ e-\/mail}}
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00118}00118\ \ \ \ \ \ \ \ \ \ \ \ \ Subject\ =\ \textcolor{stringliteral}{"{}Verificatie\ Voertuig\ Huren"{}},\ \textcolor{comment}{//\ Onderwerp\ van\ de\ e-\/mail}}
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00119}00119\ \ \ \ \ \ \ \ \ \ \ \ \ Body\ =\ \mbox{\hyperlink{class_w_p_r_1_1_services_1_1_email_service_ae494002e0de59b64d18083d36162c657}{BuildRentalConfirmationBody}}(carName,\ carColor,\ carPlate,\ startDate,\ endDate,\ price),\ \textcolor{comment}{//\ Bouw\ de\ inhoud\ van\ de\ bevestiging}}
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00120}00120\ \ \ \ \ \ \ \ \ \ \ \ \ IsBodyHtml\ =\ \textcolor{keyword}{true}\ \textcolor{comment}{//\ Geef\ aan\ dat\ de\ inhoud\ HTML\ is}}
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00121}00121\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00122}00122\ \ \ \ \ \ \ \ \ mailMessage.To.Add(toEmail);\ \textcolor{comment}{//\ Voeg\ de\ ontvanger\ toe}}
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00123}00123\ }
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00124}00124\ \ \ \ \ \ \ \ \ await\ smtpClient.SendMailAsync(mailMessage);\ \textcolor{comment}{//\ Verstuur\ de\ e-\/mail\ asynchroon}}
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00125}00125\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00126}00126\ \ \ \ \ \textcolor{keywordflow}{catch}\ (Exception\ e)}
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00127}00127\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00128}00128\ \ \ \ \ \ \ \ \ Console.WriteLine(e);\ \textcolor{comment}{//\ Log\ eventuele\ fouten}}
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00129}00129\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw};\ \textcolor{comment}{//\ Gooi\ de\ uitzondering\ opnieuw}}
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00130}00130\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00131}00131\ \}}
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00132}00132\ }
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00142}\mbox{\hyperlink{class_w_p_r_1_1_services_1_1_email_service_ab96c557f8a51cc79d18b99b891238d07}{00142}}\ \textcolor{keyword}{public}\ async\ Task\ \mbox{\hyperlink{class_w_p_r_1_1_services_1_1_email_service_ab96c557f8a51cc79d18b99b891238d07}{SendConfirmationEmailBusiness}}(\textcolor{keywordtype}{string}\ toEmail,\ \textcolor{keywordtype}{string}\ subscription,\ \textcolor{keywordtype}{string}\ businessName,\ \textcolor{keywordtype}{int}\ kvk,\ \textcolor{keywordtype}{string}\ domain,\ \textcolor{keywordtype}{string}\ adres)}
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00143}00143\ \{}
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00144}00144\ \ \ \ \ \textcolor{keywordflow}{if}\ (\textcolor{keywordtype}{string}.IsNullOrEmpty(toEmail))}
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00145}00145\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00146}00146\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ ArgumentNullException(\textcolor{stringliteral}{"{}Email\ can\ not\ be\ null"{}});\ \textcolor{comment}{//\ Zorg\ ervoor\ dat\ het\ e-\/mailadres\ geldig\ is}}
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00147}00147\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00148}00148\ }
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00149}00149\ \ \ \ \ \textcolor{keywordflow}{try}}
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00150}00150\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00151}00151\ \ \ \ \ \ \ \ \ \textcolor{keyword}{using}\ (var\ smtpClient\ =\ \mbox{\hyperlink{class_w_p_r_1_1_services_1_1_email_service_ab31b08101a79b7e7634ccb24fb771d33}{CreateSmtpClient}}())}
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00152}00152\ \ \ \ \ \ \ \ \ \textcolor{keyword}{using}\ (var\ emailMessage\ =\ \textcolor{keyword}{new}\ MailMessage}
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00153}00153\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00154}00154\ \ \ \ \ \ \ \ \ \ \ \ \ From\ =\ \textcolor{keyword}{new}\ MailAddress(\mbox{\hyperlink{class_w_p_r_1_1_services_1_1_email_service_a1b24680ee23b68d526051d9c96e50536}{\_envConfig}}.Get(\textcolor{stringliteral}{"{}SMTP\_FROM\_EMAIL"{}})),\ \textcolor{comment}{//\ Afzender\ e-\/mail}}
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00155}00155\ \ \ \ \ \ \ \ \ \ \ \ \ Subject\ =\ \textcolor{stringliteral}{"{}Aanvraag\ Bedrijfs\ Account"{}},\ \textcolor{comment}{//\ Onderwerp\ van\ de\ e-\/mail}}
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00156}00156\ \ \ \ \ \ \ \ \ \ \ \ \ Body\ =\ \mbox{\hyperlink{class_w_p_r_1_1_services_1_1_email_service_a41a2fd3203eb64a3e3965d7e1634ee4b}{BuildConfirmationEmailBusinessBody}}(subscription,\ businessName,\ kvk,\ domain,\ adres),\ \textcolor{comment}{//\ Bouw\ de\ inhoud\ van\ de\ bevestiging}}
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00157}00157\ \ \ \ \ \ \ \ \ \ \ \ \ IsBodyHtml\ =\ \textcolor{keyword}{true}\ \textcolor{comment}{//\ Geef\ aan\ dat\ de\ inhoud\ HTML\ is}}
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00158}00158\ \ \ \ \ \ \ \ \ \})}
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00159}00159\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00160}00160\ \ \ \ \ \ \ \ \ \ \ \ \ emailMessage.To.Add(toEmail);\ \textcolor{comment}{//\ Voeg\ de\ ontvanger\ toe}}
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00161}00161\ }
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00162}00162\ \ \ \ \ \ \ \ \ \ \ \ \ await\ smtpClient.SendMailAsync(emailMessage);\ \textcolor{comment}{//\ Verstuur\ de\ e-\/mail\ asynchroon}}
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00163}00163\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00164}00164\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00165}00165\ \ \ \ \ \textcolor{keywordflow}{catch}\ (Exception\ ex)}
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00166}00166\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00167}00167\ \ \ \ \ \ \ \ \ Console.WriteLine(ex.Message);\ \textcolor{comment}{//\ Log\ eventuele\ fouten}}
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00168}00168\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw};\ \textcolor{comment}{//\ Gooi\ de\ uitzondering\ opnieuw}}
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00169}00169\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00170}00170\ \}}
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00171}00171\ }
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00180}\mbox{\hyperlink{class_w_p_r_1_1_services_1_1_email_service_a2921ddfbad60ba40018a722be5a0c0c6}{00180}}\ \textcolor{keyword}{public}\ async\ Task\ \mbox{\hyperlink{class_w_p_r_1_1_services_1_1_email_service_a2921ddfbad60ba40018a722be5a0c0c6}{SendBusinessReviewEmail}}(\textcolor{keywordtype}{string}\ toEmail,\ \textcolor{keywordtype}{string}\ businessName,\ \textcolor{keywordtype}{string}\ domain,\ \textcolor{keywordtype}{string}\ password,\ \textcolor{keywordtype}{bool}\ accepted)}
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00181}00181\ \{}
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00182}00182\ \ \ \ \ \textcolor{keywordflow}{if}\ (\textcolor{keywordtype}{string}.IsNullOrEmpty(toEmail))}
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00183}00183\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00184}00184\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ ArgumentNullException(\textcolor{stringliteral}{"{}Email\ can\ not\ be\ null"{}});\ \textcolor{comment}{//\ Zorg\ ervoor\ dat\ het\ e-\/mailadres\ geldig\ is}}
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00185}00185\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00186}00186\ }
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00187}00187\ \ \ \ \ \textcolor{keywordflow}{try}}
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00188}00188\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00189}00189\ \ \ \ \ \ \ \ \ \textcolor{keyword}{using}\ (var\ smtpClient\ =\ \mbox{\hyperlink{class_w_p_r_1_1_services_1_1_email_service_ab31b08101a79b7e7634ccb24fb771d33}{CreateSmtpClient}}())}
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00190}00190\ \ \ \ \ \ \ \ \ \textcolor{keyword}{using}\ (var\ emailMessage\ =\ \textcolor{keyword}{new}\ MailMessage}
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00191}00191\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00192}00192\ \ \ \ \ \ \ \ \ \ \ \ \ From\ =\ \textcolor{keyword}{new}\ MailAddress(\mbox{\hyperlink{class_w_p_r_1_1_services_1_1_email_service_a1b24680ee23b68d526051d9c96e50536}{\_envConfig}}.Get(\textcolor{stringliteral}{"{}SMTP\_FROM\_EMAIL"{}})),\ \textcolor{comment}{//\ Afzender\ e-\/mail}}
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00193}00193\ \ \ \ \ \ \ \ \ \ \ \ \ Subject\ =\ \textcolor{stringliteral}{"{}Aanvraag\ Bedrijfs\ Account:\ Review"{}},\ \textcolor{comment}{//\ Onderwerp\ van\ de\ e-\/mail}}
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00194}00194\ \ \ \ \ \ \ \ \ \ \ \ \ Body\ =\ \mbox{\hyperlink{class_w_p_r_1_1_services_1_1_email_service_aeabcbafedfe612d2c217d314ebca6e67}{BuildBusinessReviewEmailBody}}(businessName,\ domain,\ password,\ accepted),\ \textcolor{comment}{//\ Bouw\ de\ inhoud\ van\ de\ beoordelingsmail}}
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00195}00195\ \ \ \ \ \ \ \ \ \ \ \ \ IsBodyHtml\ =\ \textcolor{keyword}{true}\ \textcolor{comment}{//\ Geef\ aan\ dat\ de\ inhoud\ HTML\ is}}
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00196}00196\ \ \ \ \ \ \ \ \ \})}
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00197}00197\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00198}00198\ \ \ \ \ \ \ \ \ \ \ \ \ emailMessage.To.Add(toEmail);\ \textcolor{comment}{//\ Voeg\ de\ ontvanger\ toe}}
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00199}00199\ }
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00200}00200\ \ \ \ \ \ \ \ \ \ \ \ \ await\ smtpClient.SendMailAsync(emailMessage);\ \textcolor{comment}{//\ Verstuur\ de\ e-\/mail\ asynchroon}}
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00201}00201\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00202}00202\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00203}00203\ \ \ \ \ \textcolor{keywordflow}{catch}\ (Exception\ ex)}
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00204}00204\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00205}00205\ \ \ \ \ \ \ \ \ Console.WriteLine(ex.Message);\ \textcolor{comment}{//\ Log\ eventuele\ fouten}}
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00206}00206\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw};\ \textcolor{comment}{//\ Gooi\ de\ uitzondering\ opnieuw}}
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00207}00207\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00208}00208\ \}}
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00219}\mbox{\hyperlink{class_w_p_r_1_1_services_1_1_email_service_ae494002e0de59b64d18083d36162c657}{00219}}\ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{string}\ \mbox{\hyperlink{class_w_p_r_1_1_services_1_1_email_service_ae494002e0de59b64d18083d36162c657}{BuildRentalConfirmationBody}}(\textcolor{keywordtype}{string}\ carName,\ \textcolor{keywordtype}{string}\ carColor,\ \textcolor{keywordtype}{string}\ carPlate,\ DateTime\ startDate,\ DateTime\ endDate,\ \textcolor{keywordtype}{string}\ price)}
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00220}00220\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00221}00221\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{\$@"{}}}
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00222}00222\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ <p>Bedankt\ voor\ het\ huren\ van\ een\ voertuig\ bij\ CarAndAll,</p>}}
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00223}00223\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ <p>U\ krijgt\ binnen\ 48\ uur\ bericht\ of\ uw\ aanvraag\ is\ geaccepteerd\ of\ geweigerd,</p>}}
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00224}00224\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00225}00225\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ <p><strong>Uw\ huur\ auto:</strong></p>}}
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00226}00226\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ <ul>}}
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00227}00227\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <li>Voertuig\ naam:\ \{WebUtility.HtmlEncode(carName)\}</li>}}
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00228}00228\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <li>Voertuig\ kleur:\ \{WebUtility.HtmlEncode(carColor)\}</li>}}
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00229}00229\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <li>Voertuig\ kenteken:\ \{WebUtility.HtmlEncode(carPlate)\}</li>}}
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00230}00230\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ </ul>}}
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00231}00231\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ <p><strong>Uw\ huur\ periode:</strong></p>}}
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00232}00232\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ <ul>}}
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00233}\mbox{\hyperlink{class_w_p_r_1_1_services_1_1_email_service_a41a2fd3203eb64a3e3965d7e1634ee4b}{00233}}\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <li>Vanaf:\ \{startDate:dd\ MMMM,\ yyyy\}</li>}}
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00234}00234\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <li>Tot\ en\ met:\ \{endDate:dd\ MMMM,\ yyyy\}</li>}}
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00235}00235\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ </ul>}}
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00236}00236\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ <p><strong>Totale\ huur\ prijs:</strong>\ €\{WebUtility.HtmlEncode(price)\}</p>}}
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00237}00237\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ "{}};}
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00238}00238\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00239}00239\ }
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00249}00249\ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{string}\ \mbox{\hyperlink{class_w_p_r_1_1_services_1_1_email_service_a41a2fd3203eb64a3e3965d7e1634ee4b}{BuildConfirmationEmailBusinessBody}}(\textcolor{keywordtype}{string}\ subscription\ ,\textcolor{keywordtype}{string}\ businessName,\ \textcolor{keywordtype}{int}\ kvk,\ \textcolor{keywordtype}{string}\ domain,\ \textcolor{keywordtype}{string}\ adres)}
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00250}00250\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00251}00251\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00252}00252\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{\$@"{}}}
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00253}00253\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ <h1>Welkom,\ \{businessName\}</h1>}}
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00254}00254\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00255}00255\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ <p>Bedankt\ voor\ het\ aanmelden\ als\ bedrijf\ bij\ CarAndAll.</p>}}
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00256}00256\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ <p>Ons\ personeel\ zal\ binnen\ 48\ uw\ aanvraag\ voor\ een\ bedrijfsaccount\ bekijken\ en\ verwerken\ met\ de\ volgende\ gegevens:</p>}}
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00257}00257\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ <ul>}}
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00258}00258\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <li>Abonnement:\ \{subscription\}</li>}}
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00259}00259\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <li>Bedrijfsnaam:\ \{businessName\}</li>}}
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00260}00260\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <li>Kamer\ van\ koophandel:\ \{kvk\}</li>}}
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00261}00261\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <li>Domeinnaam:\ \{domain\}}}
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00262}00262\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <li>Adres\ Hoofdkantoor:\ \{adres\}</li>}}
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00263}00263\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ </ul>}}
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00264}00264\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ }}
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00265}00265\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ <p>Dit\ is\ een\ automatisch\ gegeneerd\ bericht\ van\ CarAndAll.</p>}}
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00266}00266\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ <p>Reacties\ op\ dit\ bericht\ worden\ niet\ gezien.</p>"{}};}
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00267}00267\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00268}00268\ }
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00277}00277\ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{string}\ \mbox{\hyperlink{class_w_p_r_1_1_services_1_1_email_service_aeabcbafedfe612d2c217d314ebca6e67}{BuildBusinessReviewEmailBody}}(\textcolor{keywordtype}{string}\ businessName,\ \textcolor{keywordtype}{string}\ domain,\ \textcolor{keywordtype}{string}\ password,\ \textcolor{keywordtype}{bool}\ accepted)}
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00278}00278\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00279}00279\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ response\ =\ accepted\ ?\ }
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00280}00280\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{\$@"{}<h1>\{businessName\}</h1>}}
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00281}00281\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00282}00282\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ <p>Gefeliciteerd\ met\ het\ succesvol\ verkrijgen\ van\ een\ zakelijkaccount\ bij\ CarAndAll.<p>}}
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00283}00283\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ <p>Alle\ huuraanvragen\ van\ emailaddressen\ die\ eindigen\ met\ \{domain\}\ worden\ geplaats\ voor\ review\ bij\ uw\ wagenparkbeheerd.</p>}}
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00284}00284\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ <p>De\ inlog\ voor\ uw\ wagenparkbeheerder\ is:\ }}
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00285}00285\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ <ul>}}
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00286}00286\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ <li>Gebruikersnaam:\ wagenparkbeheerder\{domain\}</li>}}
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00287}00287\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ <li>Wachtwoord:\ \{password\}</li>}}
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00288}00288\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ </ul>}}
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00289}00289\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ <p>Dit\ is\ een\ automatisch\ gegeneerd\ bericht\ van\ CarAndAll.</p>}}
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00290}00290\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ <p>Reacties\ op\ dit\ bericht\ worden\ niet\ gezien.</p>"{}}}
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00291}00291\ \ \ \ \ \ \ \ \ :}
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00292}00292\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{\$@"{}<h1>\{businessName\}</h1>}}
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00293}00293\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ <p>Helaas\ voldoet\ uw\ bedrijf\ niet\ tot\ de\ toelatingseisen\ die\ gesteled\ worden\ bij\ CarAndAll</p>}}
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00294}00294\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ <p>Mocht\ u\ denken\ dat\ dit\ een\ fout\ is,\ doe\ dan\ wederom\ nog\ een\ aanvraag\ voor\ een\ zakelijk\ account\ voor\ uw\ bedrijf.}}
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00295}00295\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ }}
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00296}00296\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ <p>Dit\ is\ een\ automatisch\ gegeneerd\ bericht\ van\ CarAndAll.</p>}}
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00297}00297\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ <p>Reacties\ op\ dit\ bericht\ worden\ niet\ gezien.</p>"{}};}
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00298}00298\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00299}00299\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ response;}
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00300}00300\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_email_service_8cs_source_l00301}00301\ \}}
+
+\end{DoxyCode}

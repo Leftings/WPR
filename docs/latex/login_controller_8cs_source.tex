@@ -1,0 +1,209 @@
+\doxysection{login\+Controller.\+cs}
+\hypertarget{login_controller_8cs_source}{}\label{login_controller_8cs_source}\index{D:/codes/WPR8/WPR/backend/src/Controllers/general/login/loginController.cs@{D:/codes/WPR8/WPR/backend/src/Controllers/general/login/loginController.cs}}
+\mbox{\hyperlink{login_controller_8cs}{Ga naar de documentatie van dit bestand.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{login_controller_8cs_source_l00001}\mbox{\hyperlink{namespace_w_p_r_1_1_controllers_1_1_general_1_1_login}{00001}}\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_w_p_r_1_1_controllers_1_1_general_1_1_login}{WPR.Controllers.General.Login}};}
+\DoxyCodeLine{\Hypertarget{login_controller_8cs_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{login_controller_8cs_source_l00003}00003\ \textcolor{keyword}{using\ }Microsoft.AspNetCore.Mvc;}
+\DoxyCodeLine{\Hypertarget{login_controller_8cs_source_l00004}00004\ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespace_w_p_r_1_1_repository}{WPR.Repository}};}
+\DoxyCodeLine{\Hypertarget{login_controller_8cs_source_l00005}00005\ \textcolor{keyword}{using\ }MySql.Data.MySqlClient;}
+\DoxyCodeLine{\Hypertarget{login_controller_8cs_source_l00006}00006\ \textcolor{keyword}{using\ }System;}
+\DoxyCodeLine{\Hypertarget{login_controller_8cs_source_l00007}00007\ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespace_w_p_r_1_1_database}{WPR.Database}};}
+\DoxyCodeLine{\Hypertarget{login_controller_8cs_source_l00008}00008\ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespace_w_p_r_1_1_cryption}{WPR.Cryption}};}
+\DoxyCodeLine{\Hypertarget{login_controller_8cs_source_l00009}00009\ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespace_w_p_r_1_1_controllers_1_1_general_1_1_cookie}{WPR.Controllers.General.Cookie}};}
+\DoxyCodeLine{\Hypertarget{login_controller_8cs_source_l00010}00010\ }
+\DoxyCodeLine{\Hypertarget{login_controller_8cs_source_l00014}00014\ [Route(\textcolor{stringliteral}{"{}api/[controller]"{}})]}
+\DoxyCodeLine{\Hypertarget{login_controller_8cs_source_l00015}00015\ [ApiController]}
+\DoxyCodeLine{\Hypertarget{login_controller_8cs_source_l00016}\mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_general_1_1_login_1_1_login_controller}{00016}}\ \textcolor{keyword}{public}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_general_1_1_login_1_1_login_controller_aa1df1852b5623ef0f746069975f49e7e}{LoginController}}\ :\ ControllerBase}
+\DoxyCodeLine{\Hypertarget{login_controller_8cs_source_l00017}00017\ \{}
+\DoxyCodeLine{\Hypertarget{login_controller_8cs_source_l00018}\mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_general_1_1_login_1_1_login_controller_a7b55ef021d8da866d78b70f291cabe30}{00018}}\ \ \ \ \ \textcolor{keyword}{private}\ readonly\ \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_user_repository}{IUserRepository}}\ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_general_1_1_login_1_1_login_controller_a7b55ef021d8da866d78b70f291cabe30}{\_userRepository}};}
+\DoxyCodeLine{\Hypertarget{login_controller_8cs_source_l00019}\mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_general_1_1_login_1_1_login_controller_a4dd8f61eac34989dec114b97260b90e9}{00019}}\ \ \ \ \ \textcolor{keyword}{private}\ readonly\ \mbox{\hyperlink{interface_w_p_r_1_1_database_1_1_i_connector}{IConnector}}\ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_general_1_1_login_1_1_login_controller_a4dd8f61eac34989dec114b97260b90e9}{\_connector}};}
+\DoxyCodeLine{\Hypertarget{login_controller_8cs_source_l00020}\mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_general_1_1_login_1_1_login_controller_acaf6bf0890eba56f5171ff387adbe9f1}{00020}}\ \ \ \ \ \textcolor{keyword}{private}\ readonly\ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_general_1_1_cookie_1_1_session_handler}{SessionHandler}}\ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_general_1_1_login_1_1_login_controller_acaf6bf0890eba56f5171ff387adbe9f1}{\_sessionHandler}};}
+\DoxyCodeLine{\Hypertarget{login_controller_8cs_source_l00021}\mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_general_1_1_login_1_1_login_controller_a723a7b7a653763607e4dcc5d8d3ea799}{00021}}\ \ \ \ \ \textcolor{keyword}{private}\ readonly\ \mbox{\hyperlink{class_w_p_r_1_1_cryption_1_1_crypt}{Crypt}}\ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_general_1_1_login_1_1_login_controller_a723a7b7a653763607e4dcc5d8d3ea799}{\_crypt}};}
+\DoxyCodeLine{\Hypertarget{login_controller_8cs_source_l00022}00022\ }
+\DoxyCodeLine{\Hypertarget{login_controller_8cs_source_l00023}\mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_general_1_1_login_1_1_login_controller_aa1df1852b5623ef0f746069975f49e7e}{00023}}\ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_general_1_1_login_1_1_login_controller_aa1df1852b5623ef0f746069975f49e7e}{LoginController}}(\mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_user_repository}{IUserRepository}}\ userRepository,\ \mbox{\hyperlink{interface_w_p_r_1_1_database_1_1_i_connector}{IConnector}}\ connector,\ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_general_1_1_cookie_1_1_session_handler}{SessionHandler}}\ sessionHandler,\ \mbox{\hyperlink{class_w_p_r_1_1_cryption_1_1_crypt}{Crypt}}\ crypt)}
+\DoxyCodeLine{\Hypertarget{login_controller_8cs_source_l00024}00024\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{login_controller_8cs_source_l00025}00025\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_general_1_1_login_1_1_login_controller_a7b55ef021d8da866d78b70f291cabe30}{\_userRepository}}\ =\ userRepository\ ??\ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ ArgumentNullException(nameof(userRepository));}
+\DoxyCodeLine{\Hypertarget{login_controller_8cs_source_l00026}00026\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_general_1_1_login_1_1_login_controller_a4dd8f61eac34989dec114b97260b90e9}{\_connector}}\ =\ connector\ ??\ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ ArgumentNullException(nameof(connector));}
+\DoxyCodeLine{\Hypertarget{login_controller_8cs_source_l00027}00027\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_general_1_1_login_1_1_login_controller_acaf6bf0890eba56f5171ff387adbe9f1}{\_sessionHandler}}\ =\ sessionHandler\ ??\ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ ArgumentNullException(nameof(sessionHandler));}
+\DoxyCodeLine{\Hypertarget{login_controller_8cs_source_l00028}00028\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_general_1_1_login_1_1_login_controller_a723a7b7a653763607e4dcc5d8d3ea799}{\_crypt}}\ =\ crypt\ ??\ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ ArgumentNullException(nameof(crypt));}
+\DoxyCodeLine{\Hypertarget{login_controller_8cs_source_l00029}00029\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{login_controller_8cs_source_l00030}00030\ }
+\DoxyCodeLine{\Hypertarget{login_controller_8cs_source_l00034}\mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_general_1_1_login_1_1_login_controller_a47adb2aa231e07bc7bae6788e08be40a}{00034}}\ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_general_1_1_login_1_1_login_controller_a47adb2aa231e07bc7bae6788e08be40a}{RemoveOldCookieAsync}}()}
+\DoxyCodeLine{\Hypertarget{login_controller_8cs_source_l00035}00035\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{login_controller_8cs_source_l00036}00036\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}}
+\DoxyCodeLine{\Hypertarget{login_controller_8cs_source_l00037}00037\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{login_controller_8cs_source_l00038}00038\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\textcolor{keywordtype}{string}.IsNullOrEmpty(Request.Cookies[\textcolor{stringliteral}{"{}LoginEmployeeSession"{}}]))}
+\DoxyCodeLine{\Hypertarget{login_controller_8cs_source_l00039}00039\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{login_controller_8cs_source_l00040}00040\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_general_1_1_login_1_1_login_controller_acaf6bf0890eba56f5171ff387adbe9f1}{\_sessionHandler}}.CreateInvalidCookie(Response.Cookies,\ \textcolor{stringliteral}{"{}LoginEmployeeSession"{}});}
+\DoxyCodeLine{\Hypertarget{login_controller_8cs_source_l00041}00041\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{login_controller_8cs_source_l00042}00042\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{login_controller_8cs_source_l00043}00043\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\textcolor{keywordtype}{string}.IsNullOrEmpty(Request.Cookies[\textcolor{stringliteral}{"{}LoginVehicleManagerSession"{}}]))}
+\DoxyCodeLine{\Hypertarget{login_controller_8cs_source_l00044}00044\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{login_controller_8cs_source_l00045}00045\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_general_1_1_login_1_1_login_controller_acaf6bf0890eba56f5171ff387adbe9f1}{\_sessionHandler}}.CreateInvalidCookie(Response.Cookies,\ \textcolor{stringliteral}{"{}LoginVehicleManagerSession"{}});}
+\DoxyCodeLine{\Hypertarget{login_controller_8cs_source_l00046}00046\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{login_controller_8cs_source_l00047}00047\ \ \ \ \ \ \ \ \ \}\ }
+\DoxyCodeLine{\Hypertarget{login_controller_8cs_source_l00048}00048\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (Exception\ ex)}
+\DoxyCodeLine{\Hypertarget{login_controller_8cs_source_l00049}00049\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{login_controller_8cs_source_l00050}00050\ \ \ \ \ \ \ \ \ \ \ \ \ Console.WriteLine(ex.Message);}
+\DoxyCodeLine{\Hypertarget{login_controller_8cs_source_l00051}00051\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{login_controller_8cs_source_l00052}00052\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{login_controller_8cs_source_l00053}00053\ }
+\DoxyCodeLine{\Hypertarget{login_controller_8cs_source_l00059}\mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_general_1_1_login_1_1_login_controller_a4b565b6c9267c62377a9baaa4badb302}{00059}}\ \ \ \ \ \textcolor{keyword}{private}\ async\ Task<IActionResult>\ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_general_1_1_login_1_1_login_controller_a4b565b6c9267c62377a9baaa4badb302}{SetCookieAsync}}(\mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_general_1_1_login_1_1_login_request}{LoginRequest}}\ loginRequest)}
+\DoxyCodeLine{\Hypertarget{login_controller_8cs_source_l00060}00060\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{login_controller_8cs_source_l00061}00061\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_general_1_1_login_1_1_login_controller_a47adb2aa231e07bc7bae6788e08be40a}{RemoveOldCookieAsync}}();}
+\DoxyCodeLine{\Hypertarget{login_controller_8cs_source_l00062}00062\ \ \ \ \ \ \ \ \ var\ connection\ =\ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_general_1_1_login_1_1_login_controller_a4dd8f61eac34989dec114b97260b90e9}{\_connector}}.CreateDbConnection();}
+\DoxyCodeLine{\Hypertarget{login_controller_8cs_source_l00063}00063\ }
+\DoxyCodeLine{\Hypertarget{login_controller_8cs_source_l00064}00064\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}}
+\DoxyCodeLine{\Hypertarget{login_controller_8cs_source_l00065}00065\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{login_controller_8cs_source_l00066}00066\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ De\ table\ voor\ de\ gebruiker\ wordt\ vastgesteld}}
+\DoxyCodeLine{\Hypertarget{login_controller_8cs_source_l00067}00067\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ table;}
+\DoxyCodeLine{\Hypertarget{login_controller_8cs_source_l00068}00068\ }
+\DoxyCodeLine{\Hypertarget{login_controller_8cs_source_l00069}00069\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (loginRequest.\mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_general_1_1_login_1_1_login_request_a6978cf13022e46358b3a2e04478ef93d}{UserType}}.Equals(\textcolor{stringliteral}{"{}Employee"{}}))}
+\DoxyCodeLine{\Hypertarget{login_controller_8cs_source_l00070}00070\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{login_controller_8cs_source_l00071}00071\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ table\ =\ \textcolor{stringliteral}{"{}Staff"{}};}
+\DoxyCodeLine{\Hypertarget{login_controller_8cs_source_l00072}00072\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{login_controller_8cs_source_l00073}00073\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (loginRequest.\mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_general_1_1_login_1_1_login_request_a6978cf13022e46358b3a2e04478ef93d}{UserType}}.Equals(\textcolor{stringliteral}{"{}Customer"{}}))}
+\DoxyCodeLine{\Hypertarget{login_controller_8cs_source_l00074}00074\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{login_controller_8cs_source_l00075}00075\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ table\ =\ \textcolor{stringliteral}{"{}Customer"{}};}
+\DoxyCodeLine{\Hypertarget{login_controller_8cs_source_l00076}00076\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{login_controller_8cs_source_l00077}00077\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{login_controller_8cs_source_l00078}00078\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{login_controller_8cs_source_l00079}00079\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ table\ =\ \textcolor{stringliteral}{"{}VehicleManager"{}};}
+\DoxyCodeLine{\Hypertarget{login_controller_8cs_source_l00080}00080\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{login_controller_8cs_source_l00081}00081\ }
+\DoxyCodeLine{\Hypertarget{login_controller_8cs_source_l00082}00082\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ De\ user\ id\ wordt\ opgehaald,\ doormiddel\ van\ de\ meegegeven\ email\ en\ jusite\ tabel}}
+\DoxyCodeLine{\Hypertarget{login_controller_8cs_source_l00083}00083\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ userId\ =\ await\ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_general_1_1_login_1_1_login_controller_a7b55ef021d8da866d78b70f291cabe30}{\_userRepository}}.GetUserIdAsync(loginRequest.\mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_general_1_1_login_1_1_login_request_a5a7a2a12187c644db57afa2c11ac189e}{Email}},\ table);}
+\DoxyCodeLine{\Hypertarget{login_controller_8cs_source_l00084}00084\ }
+\DoxyCodeLine{\Hypertarget{login_controller_8cs_source_l00085}00085\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (userId.Equals(\textcolor{stringliteral}{"{}No\ user\ found"{}}))}
+\DoxyCodeLine{\Hypertarget{login_controller_8cs_source_l00086}00086\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{login_controller_8cs_source_l00087}00087\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ BadRequest(\textcolor{keyword}{new}\ \{\ message\ =\ \textcolor{stringliteral}{"{}User\ ID\ not\ found."{}}\ \});}
+\DoxyCodeLine{\Hypertarget{login_controller_8cs_source_l00088}00088\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{login_controller_8cs_source_l00089}00089\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{login_controller_8cs_source_l00090}00090\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ De\ juiste\ cookie\ wordt\ aangemaakt,\ doormiddel\ van\ het\ gebruikers\ type\ die\ meegegeven\ wordt\ via\ de\ inlog\ request}}
+\DoxyCodeLine{\Hypertarget{login_controller_8cs_source_l00091}00091\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (loginRequest.\mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_general_1_1_login_1_1_login_request_a6978cf13022e46358b3a2e04478ef93d}{UserType}}.Equals(\textcolor{stringliteral}{"{}Employee"{}}))}
+\DoxyCodeLine{\Hypertarget{login_controller_8cs_source_l00092}00092\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{login_controller_8cs_source_l00093}00093\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_general_1_1_login_1_1_login_controller_acaf6bf0890eba56f5171ff387adbe9f1}{\_sessionHandler}}.CreateCookie(Response.Cookies,\ \textcolor{stringliteral}{"{}LoginEmployeeSession"{}},\ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_general_1_1_login_1_1_login_controller_a723a7b7a653763607e4dcc5d8d3ea799}{\_crypt}}.Encrypt(userId.ToString()));}
+\DoxyCodeLine{\Hypertarget{login_controller_8cs_source_l00094}00094\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{login_controller_8cs_source_l00095}00095\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (loginRequest.\mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_general_1_1_login_1_1_login_request_a6978cf13022e46358b3a2e04478ef93d}{UserType}}.Equals(\textcolor{stringliteral}{"{}Customer"{}}))}
+\DoxyCodeLine{\Hypertarget{login_controller_8cs_source_l00096}00096\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{login_controller_8cs_source_l00097}00097\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_general_1_1_login_1_1_login_controller_acaf6bf0890eba56f5171ff387adbe9f1}{\_sessionHandler}}.CreateCookie(Response.Cookies,\ \textcolor{stringliteral}{"{}LoginSession"{}},\ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_general_1_1_login_1_1_login_controller_a723a7b7a653763607e4dcc5d8d3ea799}{\_crypt}}.Encrypt(userId.ToString()));}
+\DoxyCodeLine{\Hypertarget{login_controller_8cs_source_l00098}00098\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{login_controller_8cs_source_l00099}00099\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{login_controller_8cs_source_l00100}00100\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{login_controller_8cs_source_l00101}00101\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_general_1_1_login_1_1_login_controller_acaf6bf0890eba56f5171ff387adbe9f1}{\_sessionHandler}}.CreateCookie(Response.Cookies,\ \textcolor{stringliteral}{"{}LoginVehicleManagerSession"{}},\ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_general_1_1_login_1_1_login_controller_a723a7b7a653763607e4dcc5d8d3ea799}{\_crypt}}.Encrypt(userId.ToString()));}
+\DoxyCodeLine{\Hypertarget{login_controller_8cs_source_l00102}00102\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{login_controller_8cs_source_l00103}00103\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{login_controller_8cs_source_l00104}00104\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (Exception\ ex)}
+\DoxyCodeLine{\Hypertarget{login_controller_8cs_source_l00105}00105\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{login_controller_8cs_source_l00106}00106\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ BadRequest(\textcolor{keyword}{new}\ \{\ message\ =\ ex.Message\ \});}
+\DoxyCodeLine{\Hypertarget{login_controller_8cs_source_l00107}00107\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{login_controller_8cs_source_l00108}00108\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{finally}}
+\DoxyCodeLine{\Hypertarget{login_controller_8cs_source_l00109}00109\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{login_controller_8cs_source_l00110}00110\ \ \ \ \ \ \ \ \ \ \ \ \ connection.Close();}
+\DoxyCodeLine{\Hypertarget{login_controller_8cs_source_l00111}00111\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{login_controller_8cs_source_l00112}00112\ }
+\DoxyCodeLine{\Hypertarget{login_controller_8cs_source_l00113}00113\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Ok();}
+\DoxyCodeLine{\Hypertarget{login_controller_8cs_source_l00114}00114\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{login_controller_8cs_source_l00115}00115\ }
+\DoxyCodeLine{\Hypertarget{login_controller_8cs_source_l00120}00120\ \ \ \ \ [HttpGet(\textcolor{stringliteral}{"{}CheckSession"{}})]}
+\DoxyCodeLine{\Hypertarget{login_controller_8cs_source_l00121}\mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_general_1_1_login_1_1_login_controller_ad58e9bebd75ae37f38d04c9c522c5417}{00121}}\ \ \ \ \ \textcolor{keyword}{public}\ IActionResult\ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_general_1_1_login_1_1_login_controller_ad58e9bebd75ae37f38d04c9c522c5417}{CheckSession}}()}
+\DoxyCodeLine{\Hypertarget{login_controller_8cs_source_l00122}00122\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{login_controller_8cs_source_l00123}00123\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ sessionValue\ =\ Request.Cookies[\textcolor{stringliteral}{"{}LoginSession"{}}];}
+\DoxyCodeLine{\Hypertarget{login_controller_8cs_source_l00124}00124\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{login_controller_8cs_source_l00125}00125\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\textcolor{keywordtype}{string}.IsNullOrEmpty(sessionValue))}
+\DoxyCodeLine{\Hypertarget{login_controller_8cs_source_l00126}00126\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{login_controller_8cs_source_l00127}00127\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Ok(\ \textcolor{keyword}{new}\ \{message\ =\ \textcolor{stringliteral}{"{}session\ active\ "{}},\ sessionValue\});}
+\DoxyCodeLine{\Hypertarget{login_controller_8cs_source_l00128}00128\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{login_controller_8cs_source_l00129}00129\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Unauthorized(\textcolor{keyword}{new}\ \{\ message\ =\ \textcolor{stringliteral}{"{}Session\ expired\ or\ is\ not\ found"{}}\ \});}
+\DoxyCodeLine{\Hypertarget{login_controller_8cs_source_l00130}00130\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{login_controller_8cs_source_l00131}00131\ }
+\DoxyCodeLine{\Hypertarget{login_controller_8cs_source_l00136}00136\ \ \ \ \ [HttpGet(\textcolor{stringliteral}{"{}CheckSessionStaff"{}})]}
+\DoxyCodeLine{\Hypertarget{login_controller_8cs_source_l00137}\mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_general_1_1_login_1_1_login_controller_ab403677b4b684c2f5d4cf22ecff86d62}{00137}}\ \ \ \ \ \textcolor{keyword}{public}\ async\ Task<IActionResult>\ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_general_1_1_login_1_1_login_controller_ab403677b4b684c2f5d4cf22ecff86d62}{CheckSessionStaff}}()}
+\DoxyCodeLine{\Hypertarget{login_controller_8cs_source_l00138}00138\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{login_controller_8cs_source_l00139}00139\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ sessionValue\ =\ Request.Cookies[\textcolor{stringliteral}{"{}LoginEmployeeSession"{}}];}
+\DoxyCodeLine{\Hypertarget{login_controller_8cs_source_l00140}00140\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{login_controller_8cs_source_l00141}00141\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\textcolor{keywordtype}{string}.IsNullOrEmpty(sessionValue))}
+\DoxyCodeLine{\Hypertarget{login_controller_8cs_source_l00142}00142\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{login_controller_8cs_source_l00143}00143\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}}
+\DoxyCodeLine{\Hypertarget{login_controller_8cs_source_l00144}00144\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{login_controller_8cs_source_l00145}00145\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ userId\ =\ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_general_1_1_login_1_1_login_controller_a723a7b7a653763607e4dcc5d8d3ea799}{\_crypt}}.Decrypt(sessionValue);}
+\DoxyCodeLine{\Hypertarget{login_controller_8cs_source_l00146}00146\ }
+\DoxyCodeLine{\Hypertarget{login_controller_8cs_source_l00147}00147\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (\textcolor{keywordtype}{bool}\ status,\ \textcolor{keywordtype}{string}\ message,\ \textcolor{keywordtype}{string}\ officeType)\ employeeInfo\ =\ await\ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_general_1_1_login_1_1_login_controller_a7b55ef021d8da866d78b70f291cabe30}{\_userRepository}}.GetKindEmployeeAsync(userId);}
+\DoxyCodeLine{\Hypertarget{login_controller_8cs_source_l00148}00148\ }
+\DoxyCodeLine{\Hypertarget{login_controller_8cs_source_l00149}00149\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (employeeInfo.status)}
+\DoxyCodeLine{\Hypertarget{login_controller_8cs_source_l00150}00150\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{login_controller_8cs_source_l00151}00151\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Ok(\textcolor{keyword}{new}\ }
+\DoxyCodeLine{\Hypertarget{login_controller_8cs_source_l00152}00152\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{login_controller_8cs_source_l00153}00153\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ message\ =\ \textcolor{stringliteral}{"{}Session\ active"{}},}
+\DoxyCodeLine{\Hypertarget{login_controller_8cs_source_l00154}00154\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sessionValue,}
+\DoxyCodeLine{\Hypertarget{login_controller_8cs_source_l00155}00155\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ officeType\ =\ employeeInfo.officeType}
+\DoxyCodeLine{\Hypertarget{login_controller_8cs_source_l00156}00156\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{\Hypertarget{login_controller_8cs_source_l00157}00157\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{login_controller_8cs_source_l00158}00158\ }
+\DoxyCodeLine{\Hypertarget{login_controller_8cs_source_l00159}00159\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Unauthorized(\textcolor{keyword}{new}\ \{\ message\ =\ \textcolor{stringliteral}{"{}Session\ active\ but\ office\ type\ not\ found"{}}\ \});}
+\DoxyCodeLine{\Hypertarget{login_controller_8cs_source_l00160}00160\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{login_controller_8cs_source_l00161}00161\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}}
+\DoxyCodeLine{\Hypertarget{login_controller_8cs_source_l00162}00162\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{login_controller_8cs_source_l00163}00163\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Unauthorized(\textcolor{keyword}{new}\ \{\ message\ =\ \textcolor{stringliteral}{"{}Session\ is\ invalid\ or\ cannot\ be\ decrypted"{}}\ \});}
+\DoxyCodeLine{\Hypertarget{login_controller_8cs_source_l00164}00164\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{login_controller_8cs_source_l00165}00165\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{login_controller_8cs_source_l00166}00166\ }
+\DoxyCodeLine{\Hypertarget{login_controller_8cs_source_l00167}00167\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Unauthorized(\textcolor{keyword}{new}\ \{\ message\ =\ \textcolor{stringliteral}{"{}Session\ expired\ or\ is\ not\ found"{}}\ \});}
+\DoxyCodeLine{\Hypertarget{login_controller_8cs_source_l00168}00168\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{login_controller_8cs_source_l00169}00169\ }
+\DoxyCodeLine{\Hypertarget{login_controller_8cs_source_l00174}00174\ \ \ \ \ [HttpGet(\textcolor{stringliteral}{"{}CheckSessionVehicleManager"{}})]}
+\DoxyCodeLine{\Hypertarget{login_controller_8cs_source_l00175}\mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_general_1_1_login_1_1_login_controller_aa6b1a3f5c9c1f1262ff4262b9867e1e1}{00175}}\ \ \ \ \ \textcolor{keyword}{public}\ async\ Task<IActionResult>\ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_general_1_1_login_1_1_login_controller_aa6b1a3f5c9c1f1262ff4262b9867e1e1}{CheckSessionVehicleManager}}()}
+\DoxyCodeLine{\Hypertarget{login_controller_8cs_source_l00176}00176\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{login_controller_8cs_source_l00177}00177\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ sessionValue\ =\ Request.Cookies[\textcolor{stringliteral}{"{}LoginVehicleManagerSession"{}}];}
+\DoxyCodeLine{\Hypertarget{login_controller_8cs_source_l00178}00178\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\textcolor{keywordtype}{string}.IsNullOrEmpty(sessionValue))}
+\DoxyCodeLine{\Hypertarget{login_controller_8cs_source_l00179}00179\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{login_controller_8cs_source_l00180}00180\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Ok(\ \textcolor{keyword}{new}\ \{message\ =\ \textcolor{stringliteral}{"{}session\ active\ "{}},\ sessionValue\});}
+\DoxyCodeLine{\Hypertarget{login_controller_8cs_source_l00181}00181\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{login_controller_8cs_source_l00182}00182\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Unauthorized(\textcolor{keyword}{new}\ \{\ message\ =\ \textcolor{stringliteral}{"{}Session\ expired\ or\ is\ not\ found"{}}\ \});}
+\DoxyCodeLine{\Hypertarget{login_controller_8cs_source_l00183}00183\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{login_controller_8cs_source_l00184}00184\ }
+\DoxyCodeLine{\Hypertarget{login_controller_8cs_source_l00190}00190\ \ \ \ \ [HttpPost(\textcolor{stringliteral}{"{}login"{}})]}
+\DoxyCodeLine{\Hypertarget{login_controller_8cs_source_l00191}\mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_general_1_1_login_1_1_login_controller_aadfcab0236ffc34b7301d055a578df40}{00191}}\ \ \ \ \ \textcolor{keyword}{public}\ async\ Task\ <IActionResult>\ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_general_1_1_login_1_1_login_controller_aadfcab0236ffc34b7301d055a578df40}{LoginAsync}}([FromBody]\ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_general_1_1_login_1_1_login_request}{LoginRequest}}\ loginRequest)}
+\DoxyCodeLine{\Hypertarget{login_controller_8cs_source_l00192}00192\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{login_controller_8cs_source_l00193}00193\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Er\ wordt\ gekeken\ of\ de\ loginrequest\ niet\ null\ is\ en\ of\ er\ een\ emailadres\ en\ wachtwoord\ is\ ingevuld}}
+\DoxyCodeLine{\Hypertarget{login_controller_8cs_source_l00194}00194\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (loginRequest\ ==\ \textcolor{keyword}{null}\ ||\ \textcolor{keywordtype}{string}.IsNullOrEmpty(loginRequest.Email)\ ||\ \textcolor{keywordtype}{string}.IsNullOrEmpty(loginRequest.Password))}
+\DoxyCodeLine{\Hypertarget{login_controller_8cs_source_l00195}00195\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{login_controller_8cs_source_l00196}00196\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ BadRequest(\textcolor{keyword}{new}\ \{\ message\ =\ \textcolor{stringliteral}{"{}Invalid\ input.\ Please\ provide\ email\ and\ password."{}}\ \});}
+\DoxyCodeLine{\Hypertarget{login_controller_8cs_source_l00197}00197\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{login_controller_8cs_source_l00198}00198\ }
+\DoxyCodeLine{\Hypertarget{login_controller_8cs_source_l00199}00199\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}}
+\DoxyCodeLine{\Hypertarget{login_controller_8cs_source_l00200}00200\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{login_controller_8cs_source_l00201}00201\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Er\ wordt\ gekeken\ of\ het\ emailadres\ en\ wachtwoord\ overeenkomt\ in\ de\ juiste\ tabel\ (UserCustomer,\ Staff\ of\ VehicleManager)}}
+\DoxyCodeLine{\Hypertarget{login_controller_8cs_source_l00202}00202\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ isValid\ =\ await\ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_general_1_1_login_1_1_login_controller_a7b55ef021d8da866d78b70f291cabe30}{\_userRepository}}.ValidateUserAsync(loginRequest.Email,\ loginRequest.Password,\ loginRequest.UserType);}
+\DoxyCodeLine{\Hypertarget{login_controller_8cs_source_l00203}00203\ }
+\DoxyCodeLine{\Hypertarget{login_controller_8cs_source_l00204}00204\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (isValid)}
+\DoxyCodeLine{\Hypertarget{login_controller_8cs_source_l00205}00205\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{login_controller_8cs_source_l00206}00206\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Een\ nieuw\ cookie\ wordt\ aangemaakt}}
+\DoxyCodeLine{\Hypertarget{login_controller_8cs_source_l00207}00207\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ var\ cookieResult\ =\ await\ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_general_1_1_login_1_1_login_controller_a4b565b6c9267c62377a9baaa4badb302}{SetCookieAsync}}(loginRequest);}
+\DoxyCodeLine{\Hypertarget{login_controller_8cs_source_l00208}00208\ }
+\DoxyCodeLine{\Hypertarget{login_controller_8cs_source_l00209}00209\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (cookieResult\ is\ BadRequestObjectResult)}
+\DoxyCodeLine{\Hypertarget{login_controller_8cs_source_l00210}00210\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{login_controller_8cs_source_l00211}00211\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ cookieResult;}
+\DoxyCodeLine{\Hypertarget{login_controller_8cs_source_l00212}00212\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{login_controller_8cs_source_l00213}00213\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{login_controller_8cs_source_l00214}00214\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Ok(\textcolor{keyword}{new}\ \{\ message\ =\ \textcolor{stringliteral}{"{}Login\ Successful."{}}\ \});}
+\DoxyCodeLine{\Hypertarget{login_controller_8cs_source_l00215}00215\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{login_controller_8cs_source_l00216}00216\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{login_controller_8cs_source_l00217}00217\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{login_controller_8cs_source_l00218}00218\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ De\ gegevens\ kwamen\ niet\ overeen\ met\ wat\ er\ in\ de\ DataBase\ stond\ en\ wordt\ geweigerd}}
+\DoxyCodeLine{\Hypertarget{login_controller_8cs_source_l00219}00219\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Unauthorized(\textcolor{keyword}{new}\ \{\ message\ =\ \textcolor{stringliteral}{"{}Login\ Failed."{}}\ \});}
+\DoxyCodeLine{\Hypertarget{login_controller_8cs_source_l00220}00220\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{login_controller_8cs_source_l00221}00221\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{login_controller_8cs_source_l00222}00222\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (MySqlException\ ex)}
+\DoxyCodeLine{\Hypertarget{login_controller_8cs_source_l00223}00223\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{login_controller_8cs_source_l00224}00224\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ StatusCode(500,\ \textcolor{keyword}{new}\ \{\ message\ =\ ex.Message\});}
+\DoxyCodeLine{\Hypertarget{login_controller_8cs_source_l00225}00225\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{login_controller_8cs_source_l00226}00226\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (Exception\ ex)}
+\DoxyCodeLine{\Hypertarget{login_controller_8cs_source_l00227}00227\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{login_controller_8cs_source_l00228}00228\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ StatusCode(500,\ \textcolor{keyword}{new}\ \{\ message\ =\ ex.Message\ \});}
+\DoxyCodeLine{\Hypertarget{login_controller_8cs_source_l00229}00229\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{login_controller_8cs_source_l00230}00230\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{login_controller_8cs_source_l00231}00231\ \}}
+
+\end{DoxyCode}

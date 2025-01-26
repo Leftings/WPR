@@ -1,0 +1,188 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="nl">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.13.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>WPR-Backend: D:/codes/WPR8/WPR/backend/src/Controllers/Employee/vehicleManager/changeSettings/changeBusinessRequest.cs Bron Bestand</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+  $(function() { init_search(); });
+/* @license-end */
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">WPR-Backend
+   </div>
+  </td>
+    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect"                onmouseover="return searchBox.OnSearchSelectShow()"                onmouseout="return searchBox.OnSearchSelectHide()">&#160;</span>
+          <input type="text" id="MSearchField" value="" placeholder="Zoeken" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Gegenereerd door Doxygen 1.13.0 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){initNavTree('change_business_request_8cs_source.html',''); initResizable(true); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Laden...</div>
+<div class="SRStatus" id="Searching">Zoeken...</div>
+<div class="SRStatus" id="NoMatches">Niets gevonden</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">changeBusinessRequest.cs</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="change_business_request_8cs.html">Ga naar de documentatie van dit bestand.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="keyword">using </span>System.ComponentModel.DataAnnotations;</div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span> </div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespace_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_change_business_settings.html">WPR.Controllers.Employee.VehicleManager.ChangeBusinessSettings</a>;</div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span> </div>
+<div class="foldopen" id="foldopen00005" data-start="{" data-end="};">
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno"><a class="line" href="class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_change_business_settings_1_1_change_business_request.html">    5</a></span><span class="keyword">public</span> <span class="keyword">class </span><a class="code hl_class" href="class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_change_business_settings_1_1_change_business_request.html">ChangeBusinessRequest</a></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span>{   </div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span>    [Required]</div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno"><a class="line" href="class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_change_business_settings_1_1_change_business_request.html#abe9e3d9dd5b7ea508f66e61084437938">    8</a></span>    <span class="keyword">public</span> <a class="code hl_class" href="class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_change_business_settings_1_1_change_vehicle_manager_info.html">ChangeVehicleManagerInfo</a> <a class="code hl_property" href="class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_change_business_settings_1_1_change_business_request.html#abe9e3d9dd5b7ea508f66e61084437938">VehicleManagerInfo</a> { <span class="keyword">get</span>; <span class="keyword">set</span>; }</div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span>    </div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno"><a class="line" href="class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_change_business_settings_1_1_change_business_request.html#aa5ca84f0a2ac6103957d53a672ad6b40">   10</a></span>    <span class="keyword">public</span> <a class="code hl_class" href="class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_change_business_settings_1_1_change_business_info.html">ChangeBusinessInfo</a> <a class="code hl_property" href="class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_change_business_settings_1_1_change_business_request.html#aa5ca84f0a2ac6103957d53a672ad6b40">BusinessInfo</a> { <span class="keyword">get</span>; <span class="keyword">set</span>; }</div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span>}</div>
+</div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span> </div>
+<div class="foldopen" id="foldopen00013" data-start="{" data-end="};">
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno"><a class="line" href="class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_change_business_settings_1_1_change_vehicle_manager_info.html">   13</a></span><span class="keyword">public</span> <span class="keyword">class </span><a class="code hl_class" href="class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_change_business_settings_1_1_change_vehicle_manager_info.html">ChangeVehicleManagerInfo</a></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>{</div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno"><a class="line" href="class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_change_business_settings_1_1_change_vehicle_manager_info.html#aa1d62432d9112f9ba6d8cc4b9eb5073f">   15</a></span>    <span class="keyword">public</span> <span class="keywordtype">int</span> <a class="code hl_property" href="class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_change_business_settings_1_1_change_vehicle_manager_info.html#aa1d62432d9112f9ba6d8cc4b9eb5073f">ID</a> { <span class="keyword">get</span>; <span class="keyword">set</span>; }</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>    </div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno"><a class="line" href="class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_change_business_settings_1_1_change_vehicle_manager_info.html#a216a1e6dd2cb6373f1b5a31e66f0f620">   17</a></span>    <span class="keyword">public</span> <span class="keywordtype">string</span> <a class="code hl_property" href="class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_change_business_settings_1_1_change_vehicle_manager_info.html#a216a1e6dd2cb6373f1b5a31e66f0f620">Password</a> { <span class="keyword">get</span>; <span class="keyword">set</span>; }</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>    </div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno"><a class="line" href="class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_change_business_settings_1_1_change_vehicle_manager_info.html#a07928db63fc7b3f2a934ee30f8b9ddc2">   19</a></span>    <span class="keyword">public</span> <span class="keywordtype">string</span> <a class="code hl_property" href="class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_change_business_settings_1_1_change_vehicle_manager_info.html#a07928db63fc7b3f2a934ee30f8b9ddc2">Email</a> { <span class="keyword">get</span>; <span class="keyword">set</span>; }</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>}</div>
+</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
+<div class="foldopen" id="foldopen00022" data-start="{" data-end="};">
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno"><a class="line" href="class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_change_business_settings_1_1_change_business_info.html">   22</a></span><span class="keyword">public</span> <span class="keyword">class </span><a class="code hl_class" href="class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_change_business_settings_1_1_change_business_info.html">ChangeBusinessInfo</a></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>{</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno"><a class="line" href="class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_change_business_settings_1_1_change_business_info.html#a5b95ff5d5f7a20e64250aafa37a3f25a">   24</a></span>    <span class="keyword">public</span> <span class="keywordtype">int</span> <a class="code hl_property" href="class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_change_business_settings_1_1_change_business_info.html#a5b95ff5d5f7a20e64250aafa37a3f25a">KvK</a> { <span class="keyword">get</span>; <span class="keyword">set</span>; }</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno"><a class="line" href="class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_change_business_settings_1_1_change_business_info.html#ae6542edf4a88723d9ae25fe914545210">   25</a></span>    <span class="keyword">public</span> <span class="keywordtype">int</span> <a class="code hl_property" href="class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_change_business_settings_1_1_change_business_info.html#ae6542edf4a88723d9ae25fe914545210">Abonnement</a> { <span class="keyword">get</span>; <span class="keyword">set</span>; }</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno"><a class="line" href="class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_change_business_settings_1_1_change_business_info.html#af51b29ecdfd3544451a5bf5f189cb75e">   26</a></span>    <span class="keyword">public</span> <span class="keywordtype">string</span> <a class="code hl_property" href="class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_change_business_settings_1_1_change_business_info.html#af51b29ecdfd3544451a5bf5f189cb75e">ContactEmail</a> { <span class="keyword">get</span>; <span class="keyword">set</span>; }</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno"><a class="line" href="class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_change_business_settings_1_1_change_business_info.html#a4309d2da84bd138ca8d1f081297282bf">   27</a></span>    <span class="keyword">public</span> <span class="keywordtype">string</span> <a class="code hl_property" href="class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_change_business_settings_1_1_change_business_info.html#a4309d2da84bd138ca8d1f081297282bf">Adres</a> { <span class="keyword">get</span>; <span class="keyword">set</span>; }</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno"><a class="line" href="class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_change_business_settings_1_1_change_business_info.html#a1d575389523405b3518cab33e8df7974">   28</a></span>    <span class="keyword">public</span> <span class="keywordtype">string</span> <a class="code hl_property" href="class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_change_business_settings_1_1_change_business_info.html#a1d575389523405b3518cab33e8df7974">BusinessName</a> { <span class="keyword">get</span>; <span class="keyword">set</span>; }</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>}</div>
+</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span> </div>
+<div class="foldopen" id="foldopen00031" data-start="{" data-end="};">
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno"><a class="line" href="class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_change_business_settings_1_1_delete_business_request.html">   31</a></span><span class="keyword">public</span> <span class="keyword">class </span><a class="code hl_class" href="class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_change_business_settings_1_1_delete_business_request.html">DeleteBusinessRequest</a></div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>{</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno"><a class="line" href="class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_change_business_settings_1_1_delete_business_request.html#a33496159076d9e503961866c8f68901f">   33</a></span>    <span class="keyword">public</span> <span class="keywordtype">int</span> <a class="code hl_property" href="class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_change_business_settings_1_1_delete_business_request.html#a33496159076d9e503961866c8f68901f">KvK</a> { <span class="keyword">get</span>; <span class="keyword">set</span>; }</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>}</div>
+</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span> </div>
+<div class="foldopen" id="foldopen00036" data-start="{" data-end="};">
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno"><a class="line" href="class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_change_business_settings_1_1_delete_vehicle_manager_request.html">   36</a></span><span class="keyword">public</span> <span class="keyword">class </span><a class="code hl_class" href="class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_change_business_settings_1_1_delete_vehicle_manager_request.html">DeleteVehicleManagerRequest</a></div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>{</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno"><a class="line" href="class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_change_business_settings_1_1_delete_vehicle_manager_request.html#ac9ef855c0fecfdc92a4a14564c1b2e83">   38</a></span>    <span class="keyword">public</span> <span class="keywordtype">int</span> <a class="code hl_property" href="class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_change_business_settings_1_1_delete_vehicle_manager_request.html#ac9ef855c0fecfdc92a4a14564c1b2e83">ID</a> { <span class="keyword">get</span>; <span class="keyword">set</span>; }</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>    </div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno"><a class="line" href="class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_change_business_settings_1_1_delete_vehicle_manager_request.html#acd094741b7d3a708451ff4e6e236edbb">   40</a></span>    <span class="keyword">public</span> <span class="keywordtype">int</span> <a class="code hl_property" href="class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_change_business_settings_1_1_delete_vehicle_manager_request.html#acd094741b7d3a708451ff4e6e236edbb">KvK</a> { <span class="keyword">get</span>; <span class="keyword">set</span>; }</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>}</div>
+</div>
+<div class="ttc" id="aclass_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_change_business_settings_1_1_change_business_info_html"><div class="ttname"><a href="class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_change_business_settings_1_1_change_business_info.html">WPR.Controllers.Employee.VehicleManager.ChangeBusinessSettings.ChangeBusinessInfo</a></div><div class="ttdef"><b>Definitie</b> <a href="#l00022">changeBusinessRequest.cs:23</a></div></div>
+<div class="ttc" id="aclass_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_change_business_settings_1_1_change_business_info_html_a1d575389523405b3518cab33e8df7974"><div class="ttname"><a href="class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_change_business_settings_1_1_change_business_info.html#a1d575389523405b3518cab33e8df7974">WPR.Controllers.Employee.VehicleManager.ChangeBusinessSettings.ChangeBusinessInfo.BusinessName</a></div><div class="ttdeci">string BusinessName</div><div class="ttdef"><b>Definitie</b> <a href="#l00028">changeBusinessRequest.cs:28</a></div></div>
+<div class="ttc" id="aclass_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_change_business_settings_1_1_change_business_info_html_a4309d2da84bd138ca8d1f081297282bf"><div class="ttname"><a href="class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_change_business_settings_1_1_change_business_info.html#a4309d2da84bd138ca8d1f081297282bf">WPR.Controllers.Employee.VehicleManager.ChangeBusinessSettings.ChangeBusinessInfo.Adres</a></div><div class="ttdeci">string Adres</div><div class="ttdef"><b>Definitie</b> <a href="#l00027">changeBusinessRequest.cs:27</a></div></div>
+<div class="ttc" id="aclass_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_change_business_settings_1_1_change_business_info_html_a5b95ff5d5f7a20e64250aafa37a3f25a"><div class="ttname"><a href="class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_change_business_settings_1_1_change_business_info.html#a5b95ff5d5f7a20e64250aafa37a3f25a">WPR.Controllers.Employee.VehicleManager.ChangeBusinessSettings.ChangeBusinessInfo.KvK</a></div><div class="ttdeci">int KvK</div><div class="ttdef"><b>Definitie</b> <a href="#l00024">changeBusinessRequest.cs:24</a></div></div>
+<div class="ttc" id="aclass_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_change_business_settings_1_1_change_business_info_html_ae6542edf4a88723d9ae25fe914545210"><div class="ttname"><a href="class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_change_business_settings_1_1_change_business_info.html#ae6542edf4a88723d9ae25fe914545210">WPR.Controllers.Employee.VehicleManager.ChangeBusinessSettings.ChangeBusinessInfo.Abonnement</a></div><div class="ttdeci">int Abonnement</div><div class="ttdef"><b>Definitie</b> <a href="#l00025">changeBusinessRequest.cs:25</a></div></div>
+<div class="ttc" id="aclass_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_change_business_settings_1_1_change_business_info_html_af51b29ecdfd3544451a5bf5f189cb75e"><div class="ttname"><a href="class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_change_business_settings_1_1_change_business_info.html#af51b29ecdfd3544451a5bf5f189cb75e">WPR.Controllers.Employee.VehicleManager.ChangeBusinessSettings.ChangeBusinessInfo.ContactEmail</a></div><div class="ttdeci">string ContactEmail</div><div class="ttdef"><b>Definitie</b> <a href="#l00026">changeBusinessRequest.cs:26</a></div></div>
+<div class="ttc" id="aclass_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_change_business_settings_1_1_change_business_request_html"><div class="ttname"><a href="class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_change_business_settings_1_1_change_business_request.html">WPR.Controllers.Employee.VehicleManager.ChangeBusinessSettings.ChangeBusinessRequest</a></div><div class="ttdef"><b>Definitie</b> <a href="#l00005">changeBusinessRequest.cs:6</a></div></div>
+<div class="ttc" id="aclass_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_change_business_settings_1_1_change_business_request_html_aa5ca84f0a2ac6103957d53a672ad6b40"><div class="ttname"><a href="class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_change_business_settings_1_1_change_business_request.html#aa5ca84f0a2ac6103957d53a672ad6b40">WPR.Controllers.Employee.VehicleManager.ChangeBusinessSettings.ChangeBusinessRequest.BusinessInfo</a></div><div class="ttdeci">ChangeBusinessInfo BusinessInfo</div><div class="ttdef"><b>Definitie</b> <a href="#l00010">changeBusinessRequest.cs:10</a></div></div>
+<div class="ttc" id="aclass_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_change_business_settings_1_1_change_business_request_html_abe9e3d9dd5b7ea508f66e61084437938"><div class="ttname"><a href="class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_change_business_settings_1_1_change_business_request.html#abe9e3d9dd5b7ea508f66e61084437938">WPR.Controllers.Employee.VehicleManager.ChangeBusinessSettings.ChangeBusinessRequest.VehicleManagerInfo</a></div><div class="ttdeci">ChangeVehicleManagerInfo VehicleManagerInfo</div><div class="ttdef"><b>Definitie</b> <a href="#l00008">changeBusinessRequest.cs:8</a></div></div>
+<div class="ttc" id="aclass_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_change_business_settings_1_1_change_vehicle_manager_info_html"><div class="ttname"><a href="class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_change_business_settings_1_1_change_vehicle_manager_info.html">WPR.Controllers.Employee.VehicleManager.ChangeBusinessSettings.ChangeVehicleManagerInfo</a></div><div class="ttdef"><b>Definitie</b> <a href="#l00013">changeBusinessRequest.cs:14</a></div></div>
+<div class="ttc" id="aclass_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_change_business_settings_1_1_change_vehicle_manager_info_html_a07928db63fc7b3f2a934ee30f8b9ddc2"><div class="ttname"><a href="class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_change_business_settings_1_1_change_vehicle_manager_info.html#a07928db63fc7b3f2a934ee30f8b9ddc2">WPR.Controllers.Employee.VehicleManager.ChangeBusinessSettings.ChangeVehicleManagerInfo.Email</a></div><div class="ttdeci">string Email</div><div class="ttdef"><b>Definitie</b> <a href="#l00019">changeBusinessRequest.cs:19</a></div></div>
+<div class="ttc" id="aclass_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_change_business_settings_1_1_change_vehicle_manager_info_html_a216a1e6dd2cb6373f1b5a31e66f0f620"><div class="ttname"><a href="class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_change_business_settings_1_1_change_vehicle_manager_info.html#a216a1e6dd2cb6373f1b5a31e66f0f620">WPR.Controllers.Employee.VehicleManager.ChangeBusinessSettings.ChangeVehicleManagerInfo.Password</a></div><div class="ttdeci">string Password</div><div class="ttdef"><b>Definitie</b> <a href="#l00017">changeBusinessRequest.cs:17</a></div></div>
+<div class="ttc" id="aclass_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_change_business_settings_1_1_change_vehicle_manager_info_html_aa1d62432d9112f9ba6d8cc4b9eb5073f"><div class="ttname"><a href="class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_change_business_settings_1_1_change_vehicle_manager_info.html#aa1d62432d9112f9ba6d8cc4b9eb5073f">WPR.Controllers.Employee.VehicleManager.ChangeBusinessSettings.ChangeVehicleManagerInfo.ID</a></div><div class="ttdeci">int ID</div><div class="ttdef"><b>Definitie</b> <a href="#l00015">changeBusinessRequest.cs:15</a></div></div>
+<div class="ttc" id="aclass_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_change_business_settings_1_1_delete_business_request_html"><div class="ttname"><a href="class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_change_business_settings_1_1_delete_business_request.html">WPR.Controllers.Employee.VehicleManager.ChangeBusinessSettings.DeleteBusinessRequest</a></div><div class="ttdef"><b>Definitie</b> <a href="#l00031">changeBusinessRequest.cs:32</a></div></div>
+<div class="ttc" id="aclass_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_change_business_settings_1_1_delete_business_request_html_a33496159076d9e503961866c8f68901f"><div class="ttname"><a href="class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_change_business_settings_1_1_delete_business_request.html#a33496159076d9e503961866c8f68901f">WPR.Controllers.Employee.VehicleManager.ChangeBusinessSettings.DeleteBusinessRequest.KvK</a></div><div class="ttdeci">int KvK</div><div class="ttdef"><b>Definitie</b> <a href="#l00033">changeBusinessRequest.cs:33</a></div></div>
+<div class="ttc" id="aclass_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_change_business_settings_1_1_delete_vehicle_manager_request_html"><div class="ttname"><a href="class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_change_business_settings_1_1_delete_vehicle_manager_request.html">WPR.Controllers.Employee.VehicleManager.ChangeBusinessSettings.DeleteVehicleManagerRequest</a></div><div class="ttdef"><b>Definitie</b> <a href="#l00036">changeBusinessRequest.cs:37</a></div></div>
+<div class="ttc" id="aclass_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_change_business_settings_1_1_delete_vehicle_manager_request_html_ac9ef855c0fecfdc92a4a14564c1b2e83"><div class="ttname"><a href="class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_change_business_settings_1_1_delete_vehicle_manager_request.html#ac9ef855c0fecfdc92a4a14564c1b2e83">WPR.Controllers.Employee.VehicleManager.ChangeBusinessSettings.DeleteVehicleManagerRequest.ID</a></div><div class="ttdeci">int ID</div><div class="ttdef"><b>Definitie</b> <a href="#l00038">changeBusinessRequest.cs:38</a></div></div>
+<div class="ttc" id="aclass_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_change_business_settings_1_1_delete_vehicle_manager_request_html_acd094741b7d3a708451ff4e6e236edbb"><div class="ttname"><a href="class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_change_business_settings_1_1_delete_vehicle_manager_request.html#acd094741b7d3a708451ff4e6e236edbb">WPR.Controllers.Employee.VehicleManager.ChangeBusinessSettings.DeleteVehicleManagerRequest.KvK</a></div><div class="ttdeci">int KvK</div><div class="ttdef"><b>Definitie</b> <a href="#l00040">changeBusinessRequest.cs:40</a></div></div>
+<div class="ttc" id="anamespace_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_change_business_settings_html"><div class="ttname"><a href="namespace_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_change_business_settings.html">WPR.Controllers.Employee.VehicleManager.ChangeBusinessSettings</a></div><div class="ttdef"><b>Definitie</b> <a href="change_business_controller_8cs_source.html#l00006">changeBusinessController.cs:6</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_8c739bbef76d64b22d6b0911c526dd76.html">backend</a></li><li class="navelem"><a class="el" href="dir_27747142951285b09bacafa002e92b5f.html">src</a></li><li class="navelem"><a class="el" href="dir_7b22d8514dd298645fb658ef1b4d327f.html">Controllers</a></li><li class="navelem"><a class="el" href="dir_4f41260ebe8ea907b28d3c8ad547e46e.html">Employee</a></li><li class="navelem"><a class="el" href="dir_c26813eed18cfcaf516c023a4fc8e399.html">vehicleManager</a></li><li class="navelem"><a class="el" href="dir_b738e8837dea0d0a43535f01d1a02808.html">changeSettings</a></li><li class="navelem"><a class="el" href="change_business_request_8cs.html">changeBusinessRequest.cs</a></li>
+    <li class="footer">Gegenereerd door <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.0 </li>
+  </ul>
+</div>
+</body>
+</html>

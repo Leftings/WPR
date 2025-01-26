@@ -1,0 +1,100 @@
+\doxysection{WPR.\+Services.\+IEmail\+Service Interface Referentie}
+\hypertarget{interface_w_p_r_1_1_services_1_1_i_email_service}{}\label{interface_w_p_r_1_1_services_1_1_i_email_service}\index{WPR.Services.IEmailService@{WPR.Services.IEmailService}}
+
+
+Klasse diagram voor WPR.\+Services.\+IEmail\+Service
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=247pt]{interface_w_p_r_1_1_services_1_1_i_email_service__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboratie diagram voor WPR.\+Services.\+IEmail\+Service\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=247pt]{interface_w_p_r_1_1_services_1_1_i_email_service__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Members}
+\begin{DoxyCompactItemize}
+\item 
+Task \mbox{\hyperlink{interface_w_p_r_1_1_services_1_1_i_email_service_a6c6aefd4725b2d3dd732cd301df454f7}{Send\+Business\+Review\+Email}} (string to\+Email, string business\+Name, string domain, string password, bool accepted)
+\item 
+Task \mbox{\hyperlink{interface_w_p_r_1_1_services_1_1_i_email_service_a79260bf2b5449191386cebce5af4ef02}{Send\+Confirmation\+Email\+Business}} (string to\+Email, string subscription, string business\+Name, int kvk, string domain, string adres)
+\item 
+Task \mbox{\hyperlink{interface_w_p_r_1_1_services_1_1_i_email_service_a872f8d930957c66622f3d1faf0becf5f}{Send\+Rental\+Confirm\+Mail}} (string to\+Email, string car\+Name, string car\+Color, string car\+Plate, Date\+Time start\+Date, Date\+Time end\+Date, string price)
+\item 
+Task \mbox{\hyperlink{interface_w_p_r_1_1_services_1_1_i_email_service_a1f25916aff28ab0a80eea2394cd16ba8}{Send\+Welcome\+Email}} (string to\+Email)
+\item 
+Task \mbox{\hyperlink{interface_w_p_r_1_1_services_1_1_i_email_service_a279756b7e35d5bd473ee68f8cc35bad8}{Send}} (string to\+Email, string subject, string body)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Gedetailleerde Beschrijving}
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{_i_email_service_8cs_source_l00003}{3}} in het bestand \mbox{\hyperlink{_i_email_service_8cs_source}{IEmail\+Service.\+cs}}.
+
+
+
+\doxysubsection{Documentatie van functie members}
+\Hypertarget{interface_w_p_r_1_1_services_1_1_i_email_service_a279756b7e35d5bd473ee68f8cc35bad8}\index{WPR.Services.IEmailService@{WPR.Services.IEmailService}!Send@{Send}}
+\index{Send@{Send}!WPR.Services.IEmailService@{WPR.Services.IEmailService}}
+\doxysubsubsection{\texorpdfstring{Send()}{Send()}}
+{\footnotesize\ttfamily \label{interface_w_p_r_1_1_services_1_1_i_email_service_a279756b7e35d5bd473ee68f8cc35bad8} 
+Task WPR.\+Services.\+IEmail\+Service.\+Send (\begin{DoxyParamCaption}\item[{string}]{to\+Email}{, }\item[{string}]{subject}{, }\item[{string}]{body}{}\end{DoxyParamCaption})}
+
+
+
+Wordt geïmplementeerd door \mbox{\hyperlink{class_w_p_r_1_1_services_1_1_email_service_a7da62c5a38ba1aa9eaa38767c022c42a}{WPR.\+Services.\+Email\+Service}}.
+
+\Hypertarget{interface_w_p_r_1_1_services_1_1_i_email_service_a6c6aefd4725b2d3dd732cd301df454f7}\index{WPR.Services.IEmailService@{WPR.Services.IEmailService}!SendBusinessReviewEmail@{SendBusinessReviewEmail}}
+\index{SendBusinessReviewEmail@{SendBusinessReviewEmail}!WPR.Services.IEmailService@{WPR.Services.IEmailService}}
+\doxysubsubsection{\texorpdfstring{SendBusinessReviewEmail()}{SendBusinessReviewEmail()}}
+{\footnotesize\ttfamily \label{interface_w_p_r_1_1_services_1_1_i_email_service_a6c6aefd4725b2d3dd732cd301df454f7} 
+Task WPR.\+Services.\+IEmail\+Service.\+Send\+Business\+Review\+Email (\begin{DoxyParamCaption}\item[{string}]{to\+Email}{, }\item[{string}]{business\+Name}{, }\item[{string}]{domain}{, }\item[{string}]{password}{, }\item[{bool}]{accepted}{}\end{DoxyParamCaption})}
+
+
+
+Wordt geïmplementeerd door \mbox{\hyperlink{class_w_p_r_1_1_services_1_1_email_service_a2921ddfbad60ba40018a722be5a0c0c6}{WPR.\+Services.\+Email\+Service}}.
+
+\Hypertarget{interface_w_p_r_1_1_services_1_1_i_email_service_a79260bf2b5449191386cebce5af4ef02}\index{WPR.Services.IEmailService@{WPR.Services.IEmailService}!SendConfirmationEmailBusiness@{SendConfirmationEmailBusiness}}
+\index{SendConfirmationEmailBusiness@{SendConfirmationEmailBusiness}!WPR.Services.IEmailService@{WPR.Services.IEmailService}}
+\doxysubsubsection{\texorpdfstring{SendConfirmationEmailBusiness()}{SendConfirmationEmailBusiness()}}
+{\footnotesize\ttfamily \label{interface_w_p_r_1_1_services_1_1_i_email_service_a79260bf2b5449191386cebce5af4ef02} 
+Task WPR.\+Services.\+IEmail\+Service.\+Send\+Confirmation\+Email\+Business (\begin{DoxyParamCaption}\item[{string}]{to\+Email}{, }\item[{string}]{subscription}{, }\item[{string}]{business\+Name}{, }\item[{int}]{kvk}{, }\item[{string}]{domain}{, }\item[{string}]{adres}{}\end{DoxyParamCaption})}
+
+
+
+Wordt geïmplementeerd door \mbox{\hyperlink{class_w_p_r_1_1_services_1_1_email_service_ab96c557f8a51cc79d18b99b891238d07}{WPR.\+Services.\+Email\+Service}}.
+
+\Hypertarget{interface_w_p_r_1_1_services_1_1_i_email_service_a872f8d930957c66622f3d1faf0becf5f}\index{WPR.Services.IEmailService@{WPR.Services.IEmailService}!SendRentalConfirmMail@{SendRentalConfirmMail}}
+\index{SendRentalConfirmMail@{SendRentalConfirmMail}!WPR.Services.IEmailService@{WPR.Services.IEmailService}}
+\doxysubsubsection{\texorpdfstring{SendRentalConfirmMail()}{SendRentalConfirmMail()}}
+{\footnotesize\ttfamily \label{interface_w_p_r_1_1_services_1_1_i_email_service_a872f8d930957c66622f3d1faf0becf5f} 
+Task WPR.\+Services.\+IEmail\+Service.\+Send\+Rental\+Confirm\+Mail (\begin{DoxyParamCaption}\item[{string}]{to\+Email}{, }\item[{string}]{car\+Name}{, }\item[{string}]{car\+Color}{, }\item[{string}]{car\+Plate}{, }\item[{Date\+Time}]{start\+Date}{, }\item[{Date\+Time}]{end\+Date}{, }\item[{string}]{price}{}\end{DoxyParamCaption})}
+
+
+
+Wordt geïmplementeerd door \mbox{\hyperlink{class_w_p_r_1_1_services_1_1_email_service_a23aed78b7ecd45ab31ca9acb6ce78b5e}{WPR.\+Services.\+Email\+Service}}.
+
+\Hypertarget{interface_w_p_r_1_1_services_1_1_i_email_service_a1f25916aff28ab0a80eea2394cd16ba8}\index{WPR.Services.IEmailService@{WPR.Services.IEmailService}!SendWelcomeEmail@{SendWelcomeEmail}}
+\index{SendWelcomeEmail@{SendWelcomeEmail}!WPR.Services.IEmailService@{WPR.Services.IEmailService}}
+\doxysubsubsection{\texorpdfstring{SendWelcomeEmail()}{SendWelcomeEmail()}}
+{\footnotesize\ttfamily \label{interface_w_p_r_1_1_services_1_1_i_email_service_a1f25916aff28ab0a80eea2394cd16ba8} 
+Task WPR.\+Services.\+IEmail\+Service.\+Send\+Welcome\+Email (\begin{DoxyParamCaption}\item[{string}]{to\+Email}{}\end{DoxyParamCaption})}
+
+
+
+Wordt geïmplementeerd door \mbox{\hyperlink{class_w_p_r_1_1_services_1_1_email_service_a00a227fa3bbc1b22634908be5be363ef}{WPR.\+Services.\+Email\+Service}}.
+
+
+
+De documentatie voor dit interface is gegenereerd op basis van het volgende bestand\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/codes/\+WPR8/\+WPR/backend/src/\+Services/\mbox{\hyperlink{_i_email_service_8cs}{IEmail\+Service.\+cs}}\end{DoxyCompactItemize}

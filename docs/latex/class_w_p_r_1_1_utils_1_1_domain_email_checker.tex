@@ -1,0 +1,131 @@
+\doxysection{WPR.\+Utils.\+Domain\+Email\+Checker Class Referentie}
+\hypertarget{class_w_p_r_1_1_utils_1_1_domain_email_checker}{}\label{class_w_p_r_1_1_utils_1_1_domain_email_checker}\index{WPR.Utils.DomainEmailChecker@{WPR.Utils.DomainEmailChecker}}
+
+
+Collaboratie diagram voor WPR.\+Utils.\+Domain\+Email\+Checker\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=234pt]{class_w_p_r_1_1_utils_1_1_domain_email_checker__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Members}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_w_p_r_1_1_utils_1_1_domain_email_checker_aff263248dc5920464edfd8212bb4d752}{Domain\+Email\+Checker}} (\mbox{\hyperlink{interface_w_p_r_1_1_database_1_1_i_connector}{IConnector}} connector)
+\item 
+virtual async Task$<$(bool Found, int KvK)$>$ \mbox{\hyperlink{class_w_p_r_1_1_utils_1_1_domain_email_checker_af6430abcc6b17909ff568158e9e05172}{Domain\+Exists}} (string email)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributen}
+\begin{DoxyCompactItemize}
+\item 
+readonly \mbox{\hyperlink{interface_w_p_r_1_1_database_1_1_i_connector}{IConnector}} \mbox{\hyperlink{class_w_p_r_1_1_utils_1_1_domain_email_checker_a20b07d7ec13284ceb302dcfc0adadbd6}{\+\_\+connector}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Gedetailleerde Beschrijving}
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{_domain_email_checker_8cs_source_l00007}{7}} in het bestand \mbox{\hyperlink{_domain_email_checker_8cs_source}{Domain\+Email\+Checker.\+cs}}.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentatie}
+\Hypertarget{class_w_p_r_1_1_utils_1_1_domain_email_checker_aff263248dc5920464edfd8212bb4d752}\index{WPR.Utils.DomainEmailChecker@{WPR.Utils.DomainEmailChecker}!DomainEmailChecker@{DomainEmailChecker}}
+\index{DomainEmailChecker@{DomainEmailChecker}!WPR.Utils.DomainEmailChecker@{WPR.Utils.DomainEmailChecker}}
+\doxysubsubsection{\texorpdfstring{DomainEmailChecker()}{DomainEmailChecker()}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_utils_1_1_domain_email_checker_aff263248dc5920464edfd8212bb4d752} 
+WPR.\+Utils.\+Domain\+Email\+Checker.\+Domain\+Email\+Checker (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{interface_w_p_r_1_1_database_1_1_i_connector}{IConnector}}}]{connector}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{_domain_email_checker_8cs_source_l00010}{10}} in het bestand \mbox{\hyperlink{_domain_email_checker_8cs_source}{Domain\+Email\+Checker.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00011\ \ \ \ \ \{}
+\DoxyCodeLine{00012\ \ \ \ \ \ \ \ \ \_connector\ =\ connector\ ??\ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ ArgumentNullException(nameof(connector));}
+\DoxyCodeLine{00013\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+Gebruikt \mbox{\hyperlink{_domain_email_checker_8cs_source_l00009}{\+\_\+connector}}.
+
+
+
+\doxysubsection{Documentatie van functie members}
+\Hypertarget{class_w_p_r_1_1_utils_1_1_domain_email_checker_af6430abcc6b17909ff568158e9e05172}\index{WPR.Utils.DomainEmailChecker@{WPR.Utils.DomainEmailChecker}!DomainExists@{DomainExists}}
+\index{DomainExists@{DomainExists}!WPR.Utils.DomainEmailChecker@{WPR.Utils.DomainEmailChecker}}
+\doxysubsubsection{\texorpdfstring{DomainExists()}{DomainExists()}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_utils_1_1_domain_email_checker_af6430abcc6b17909ff568158e9e05172} 
+virtual async Task$<$(bool Found, int KvK)$>$ WPR.\+Utils.\+Domain\+Email\+Checker.\+Domain\+Exists (\begin{DoxyParamCaption}\item[{string}]{email}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{_domain_email_checker_8cs_source_l00014}{14}} in het bestand \mbox{\hyperlink{_domain_email_checker_8cs_source}{Domain\+Email\+Checker.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00015\ \ \ \ \ \{}
+\DoxyCodeLine{00016\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ domain\ =\ \$\textcolor{stringliteral}{"{}@\{email.Split("{}}\textcolor{stringliteral}{@"{}).Last()\}"{}};}
+\DoxyCodeLine{00017\ \ \ \ \ \ \ \ \ Console.WriteLine(domain);}
+\DoxyCodeLine{00018\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ query\ =\ \textcolor{stringliteral}{"{}SELECT\ Domain,\ KvK\ FROM\ Business"{}};}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ \textcolor{keyword}{using}\ (var\ connection\ =\ \_connector.CreateDbConnection())}
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ \textcolor{keyword}{using}\ (var\ command\ =\ \textcolor{keyword}{new}\ MySqlCommand(query,\ (MySqlConnection)connection))}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ \textcolor{keyword}{using}\ (var\ reader\ =\ await\ command.ExecuteReaderAsync())}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (await\ reader.ReadAsync())}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (((\textcolor{keywordtype}{string})reader.GetValue(0)).Equals(domain))}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (\textcolor{keyword}{true},\ Convert.ToInt32(reader.GetValue(1)));}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (\textcolor{keyword}{false},\ 0);}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+Gebruikt \mbox{\hyperlink{_domain_email_checker_8cs_source_l00009}{\+\_\+connector}}.
+
+
+
+Wordt aangeroepen door \mbox{\hyperlink{_user_repository_8cs_source_l00696}{WPR.\+Repository.\+User\+Repository.\+Add\+Customer\+Checks()}}.
+
+Hier is de caller graaf voor deze functie\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_w_p_r_1_1_utils_1_1_domain_email_checker_af6430abcc6b17909ff568158e9e05172_icgraph}
+\end{center}
+\end{figure}
+
+
+\doxysubsection{Documentatie van data velden}
+\Hypertarget{class_w_p_r_1_1_utils_1_1_domain_email_checker_a20b07d7ec13284ceb302dcfc0adadbd6}\index{WPR.Utils.DomainEmailChecker@{WPR.Utils.DomainEmailChecker}!\_connector@{\_connector}}
+\index{\_connector@{\_connector}!WPR.Utils.DomainEmailChecker@{WPR.Utils.DomainEmailChecker}}
+\doxysubsubsection{\texorpdfstring{\_connector}{\_connector}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_utils_1_1_domain_email_checker_a20b07d7ec13284ceb302dcfc0adadbd6} 
+readonly \mbox{\hyperlink{interface_w_p_r_1_1_database_1_1_i_connector}{IConnector}} WPR.\+Utils.\+Domain\+Email\+Checker.\+\_\+connector\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{_domain_email_checker_8cs_source_l00009}{9}} in het bestand \mbox{\hyperlink{_domain_email_checker_8cs_source}{Domain\+Email\+Checker.\+cs}}.
+
+
+
+Wordt aangeroepen door \mbox{\hyperlink{_domain_email_checker_8cs_source_l00010}{Domain\+Email\+Checker()}} en \mbox{\hyperlink{_domain_email_checker_8cs_source_l00014}{Domain\+Exists()}}.
+
+
+
+De documentatie voor deze klasse is gegenereerd op basis van het volgende bestand\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/codes/\+WPR8/\+WPR/backend/src/\+Utils/\mbox{\hyperlink{_domain_email_checker_8cs}{Domain\+Email\+Checker.\+cs}}\end{DoxyCompactItemize}

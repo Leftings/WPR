@@ -1,0 +1,258 @@
+\doxysection{WPR.\+App\+Configure Class Referentie}
+\hypertarget{class_w_p_r_1_1_app_configure}{}\label{class_w_p_r_1_1_app_configure}\index{WPR.AppConfigure@{WPR.AppConfigure}}
+
+
+Deze class is responsible voor het configureren van de application services en database connectie Het heeft methodes om de database te initializeren en het configureren van de web applicatie.  
+
+
+
+
+Collaboratie diagram voor WPR.\+App\+Configure\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=194pt]{class_w_p_r_1_1_app_configure__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Static Public Members}
+\begin{DoxyCompactItemize}
+\item 
+static void \mbox{\hyperlink{class_w_p_r_1_1_app_configure_a03bdad8277429c64d59c0b6781b17329}{Init\+Database}} (IService\+Provider services)
+\item 
+static Web\+Application \mbox{\hyperlink{class_w_p_r_1_1_app_configure_a77a92db2b597250930168694b79931d7}{Configure\+Application}} (string\mbox{[}$\,$\mbox{]} args)
+\begin{DoxyCompactList}\small\item\em Configureer de web applicatie, zoals middleware, services, authentication en CORS settings. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Gedetailleerde Beschrijving}
+Deze class is responsible voor het configureren van de application services en database connectie Het heeft methodes om de database te initializeren en het configureren van de web applicatie. 
+
+De definitie bevindt zich op regel \mbox{\hyperlink{_app_configure_8cs_source_l00019}{19}} in het bestand \mbox{\hyperlink{_app_configure_8cs_source}{App\+Configure.\+cs}}.
+
+
+
+\doxysubsection{Documentatie van functie members}
+\Hypertarget{class_w_p_r_1_1_app_configure_a77a92db2b597250930168694b79931d7}\index{WPR.AppConfigure@{WPR.AppConfigure}!ConfigureApplication@{ConfigureApplication}}
+\index{ConfigureApplication@{ConfigureApplication}!WPR.AppConfigure@{WPR.AppConfigure}}
+\doxysubsubsection{\texorpdfstring{ConfigureApplication()}{ConfigureApplication()}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_app_configure_a77a92db2b597250930168694b79931d7} 
+static Web\+Application WPR.\+App\+Configure.\+Configure\+Application (\begin{DoxyParamCaption}\item[{string\mbox{[}$\,$\mbox{]}}]{args}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Configureer de web applicatie, zoals middleware, services, authentication en CORS settings. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em args} & De command line arguments passed to the application at startup.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retourneert}
+De geconfigureerde Web\+Application instantie.
+\end{DoxyReturn}
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{_app_configure_8cs_source_l00046}{46}} in het bestand \mbox{\hyperlink{_app_configure_8cs_source}{App\+Configure.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00047\ \ \ \ \ \{}
+\DoxyCodeLine{00048\ \ \ \ \ var\ builder\ =\ WebApplication.CreateBuilder(args);}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \ \ \ \ var\ environment\ =\ Environment.GetEnvironmentVariable(\textcolor{stringliteral}{"{}ASPNETCORE\_ENVIRONMENT"{}})\ ??\ \textcolor{stringliteral}{"{}development"{}};}
+\DoxyCodeLine{00051\ \ \ \ \ builder.Configuration.AddEnvironmentVariables();}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \ \ \ \ \textcolor{keywordflow}{if}\ (environment\ ==\ \textcolor{stringliteral}{"{}development"{}})}
+\DoxyCodeLine{00054\ \ \ \ \ \{}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ builder.Configuration.AddJsonFile(\textcolor{stringliteral}{"{}.env"{}},\ optional:\ \textcolor{keyword}{true},\ reloadOnChange:\ \textcolor{keyword}{true});}
+\DoxyCodeLine{00056\ \ \ \ \ \}}
+\DoxyCodeLine{00057\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (environment\ ==\ \textcolor{stringliteral}{"{}Production"{}})}
+\DoxyCodeLine{00058\ \ \ \ \ \{}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ builder.Configuration.AddJsonFile(\textcolor{stringliteral}{"{}.env.deployment"{}},\ optional:\ \textcolor{keyword}{true},\ reloadOnChange:\ \textcolor{keyword}{true});}
+\DoxyCodeLine{00060\ \ \ \ \ \}}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00062\ \ \ \ \ var\ cookiePolicyOptions\ =\ \textcolor{keyword}{new}\ CookiePolicyOptions}
+\DoxyCodeLine{00063\ \ \ \ \ \{}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ MinimumSameSitePolicy\ =\ SameSiteMode.Strict}
+\DoxyCodeLine{00065\ \ \ \ \ \};}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00068\ \ \ \ \ builder.Services.AddCors(options\ =>}
+\DoxyCodeLine{00069\ \ \ \ \ \{}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ options.AddPolicy(\textcolor{stringliteral}{"{}AllowSpecificOrigins"{}},\ policy\ =>}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \ \ \ \ policy.WithOrigins(\textcolor{stringliteral}{"{}http://95.99.30.110:8080"{}},\ \textcolor{stringliteral}{"{}http://localhost:5173"{}},\ \textcolor{stringliteral}{"{}http://www.carandall.nl:8080"{}})}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .AllowAnyHeader()}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .AllowAnyMethod()}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .AllowCredentials()}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{00076\ \ \ \ \ \});}
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00078\ \ \ \ \ var\ urls\ =\ Environment.GetEnvironmentVariable(\textcolor{stringliteral}{"{}ASPNETCORE\_URLS"{}})\ ??\ \textcolor{stringliteral}{"{}http://0.0.0.0:80"{}};\ \textcolor{comment}{//\ Default\ to\ port\ 80\ if\ not\ set}}
+\DoxyCodeLine{00079\ }
+\DoxyCodeLine{00080\ \ \ \ \ Uri\ uri;}
+\DoxyCodeLine{00081\ \ \ \ \ \textcolor{keywordflow}{try}}
+\DoxyCodeLine{00082\ \ \ \ \ \{}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ uri\ =\ \textcolor{keyword}{new}\ Uri(urls);}
+\DoxyCodeLine{00084\ \ \ \ \ \}}
+\DoxyCodeLine{00085\ \ \ \ \ \textcolor{keywordflow}{catch}\ (UriFormatException\ ex)}
+\DoxyCodeLine{00086\ \ \ \ \ \{}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ Console.WriteLine(\$\textcolor{stringliteral}{"{}Invalid\ ASPNETCORE\_URLS\ format:\ \{urls\}.\ Using\ default\ URL\ http://0.0.0.0:80"{}});}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ uri\ =\ \textcolor{keyword}{new}\ Uri(\textcolor{stringliteral}{"{}http://0.0.0.0:80"{}});}
+\DoxyCodeLine{00089\ \ \ \ \ \}}
+\DoxyCodeLine{00090\ }
+\DoxyCodeLine{00091\ \ \ \ \ builder.WebHost.ConfigureKestrel(options\ =>}
+\DoxyCodeLine{00092\ \ \ \ \ \{}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Ensure\ IP\ address\ is\ valid\ before\ binding}}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (uri.Host\ ==\ \textcolor{stringliteral}{"{}0.0.0.0"{}}\ )}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \ \ \ \ options.Listen(IPAddress.Any,\ 5000);\ \ }
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ options.Listen(IPAddress.Parse(uri.Host),\ uri.Port);\ }
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (FormatException\ ex)}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Console.WriteLine(\$\textcolor{stringliteral}{"{}Invalid\ IP\ address\ specified:\ \{uri.Host\}.\ Using\ default\ binding\ to\ all\ IPs."{}});}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ options.Listen(IPAddress.Any,\ uri.Port);\ \ }
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00110\ \ \ \ \ \});}
+\DoxyCodeLine{00111\ \ \ \ \ }
+\DoxyCodeLine{00112\ \ \ \ \ \textcolor{comment}{//\ Register\ services\ for\ Dependency\ Injection}}
+\DoxyCodeLine{00113\ \ \ \ \ builder.Services.AddSingleton<EnvConfig>();\ \textcolor{comment}{//\ Singleton\ for\ environment\ configuration}}
+\DoxyCodeLine{00114\ \ \ \ \ builder.Services.AddTransient<IConnector,\ Connector>();\ \textcolor{comment}{//\ Transient\ for\ database\ connection.}}
+\DoxyCodeLine{00115\ \ \ \ \ builder.Services.AddScoped<VehicleRepository>();}
+\DoxyCodeLine{00116\ \ \ \ \ builder.Services.AddScoped<IUserRepository,\ UserRepository>();\ \textcolor{comment}{//\ Scoped\ for\ user\ repository}}
+\DoxyCodeLine{00117\ \ \ \ \ builder.Services.AddScoped<IVehicleRepository,\ VehicleRepository>();\ \textcolor{comment}{//\ Scoped\ for\ Vehicle\ Repository}}
+\DoxyCodeLine{00118\ \ \ \ \ builder.Services.AddScoped<SessionHandler>();\ \textcolor{comment}{//\ Scoped\ session\ handler}}
+\DoxyCodeLine{00119\ \ \ \ \ builder.Services.AddScoped<Crypt>();}
+\DoxyCodeLine{00120\ \ \ \ \ builder.Services.AddScoped<Hashing.Hash>();}
+\DoxyCodeLine{00121\ \ \ \ \ builder.Services.AddScoped<EmailService>();}
+\DoxyCodeLine{00122\ \ \ \ \ builder.Services.AddScoped<IEmailService,\ EmailService>();}
+\DoxyCodeLine{00123\ \ \ \ \ builder.Services.AddScoped<IEmployeeRepository,\ EmployeeRepository>();}
+\DoxyCodeLine{00124\ \ \ \ \ builder.Services.AddScoped<IBackOfficeRepository,\ BackOfficeRepository>();}
+\DoxyCodeLine{00125\ \ \ \ \ builder.Services.AddScoped<IDatabaseCheckRepository,\ DatabaseCheckRepository>();}
+\DoxyCodeLine{00126\ \ \ \ \ builder.Services.AddScoped<IContractRepository,\ ContractRepository>();}
+\DoxyCodeLine{00127\ }
+\DoxyCodeLine{00128\ \ \ \ \ builder.Services.AddSingleton<IHostedService,\ Reminders>();\ \textcolor{comment}{//\ Register\ Reminders\ as\ a\ singleton\ hosted\ service}}
+\DoxyCodeLine{00129\ }
+\DoxyCodeLine{00130\ \ \ \ \ \textcolor{comment}{//\ Scoped\ dependencies}}
+\DoxyCodeLine{00131\ \ \ \ \ builder.Services.AddScoped<EmailService>();}
+\DoxyCodeLine{00132\ \ \ \ \ builder.Services.AddScoped<Customer>();}
+\DoxyCodeLine{00133\ \ \ \ \ builder.Services.AddScoped<Vehicle>();}
+\DoxyCodeLine{00134\ \ \ \ \ builder.Services.AddScoped<Contract>();}
+\DoxyCodeLine{00135\ \ \ \ \ builder.Services.AddScoped<ICustomerDetails,\ Customer>();}
+\DoxyCodeLine{00136\ \ \ \ \ builder.Services.AddScoped<IVehicleDetails,\ Vehicle>();}
+\DoxyCodeLine{00137\ \ \ \ \ builder.Services.AddScoped<IContractDetails,\ Contract>();}
+\DoxyCodeLine{00138\ }
+\DoxyCodeLine{00139\ }
+\DoxyCodeLine{00140\ \ \ \ \ builder.Services.AddHostedService<Reminders>();}
+\DoxyCodeLine{00141\ }
+\DoxyCodeLine{00142\ \ \ \ \ }
+\DoxyCodeLine{00143\ }
+\DoxyCodeLine{00144\ \ \ \ \ \textcolor{comment}{//\ Configure\ authentication\ with\ cookie-\/based\ authentication\ schema.}}
+\DoxyCodeLine{00145\ \ \ \ \ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)}
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ .AddCookie(options\ =>}
+\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ \ \ \ \ options.ExpireTimeSpan\ =\ TimeSpan.FromMinutes(5);}
+\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ \ \ \ \ options.SlidingExpiration\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ \ \ \ \ options.AccessDeniedPath\ =\ \textcolor{stringliteral}{"{}/Forbidden/"{}};}
+\DoxyCodeLine{00151\ \ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{00152\ }
+\DoxyCodeLine{00153\ \ \ \ \ builder.Services.AddControllers()}
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ .AddJsonOptions(options\ =>}
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ \ \ \ \ options.JsonSerializerOptions.ReferenceHandler\ =}
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ReferenceHandler.IgnoreCycles;}
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{00159\ }
+\DoxyCodeLine{00160\ \ \ \ \ \textcolor{comment}{//\ Services\ for\ Swagger\ API}}
+\DoxyCodeLine{00161\ \ \ \ \ builder.Services.AddEndpointsApiExplorer();}
+\DoxyCodeLine{00162\ \ \ \ \ builder.Services.AddSwaggerGen();}
+\DoxyCodeLine{00163\ }
+\DoxyCodeLine{00164\ \ \ \ \ var\ app\ =\ builder.Build();}
+\DoxyCodeLine{00165\ }
+\DoxyCodeLine{00166\ \ \ \ \ app.UseSwagger();}
+\DoxyCodeLine{00167\ \ \ \ \ app.UseSwaggerUI(c\ =>\ \{}
+\DoxyCodeLine{00168\ \ \ \ \ \ \ \ \ c.SwaggerEndpoint(\textcolor{stringliteral}{"{}/swagger/v1/swagger.json"{}},\ \textcolor{stringliteral}{"{}My\ API\ V1"{}});}
+\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ c.RoutePrefix\ =\ \textcolor{keywordtype}{string}.Empty;}
+\DoxyCodeLine{00170\ \ \ \ \ \});}
+\DoxyCodeLine{00171\ \ \ \ \ app.UseCors(\textcolor{stringliteral}{"{}AllowSpecificOrigins"{}});}
+\DoxyCodeLine{00172\ \ \ \ \ app.UseHttpsRedirection();}
+\DoxyCodeLine{00173\ \ \ \ \ app.MapControllers();}
+\DoxyCodeLine{00174\ \ \ \ \ app.UseAuthorization();}
+\DoxyCodeLine{00175\ \ \ \ \ app.UseAuthentication();}
+\DoxyCodeLine{00176\ \ \ \ \ app.UseCookiePolicy(cookiePolicyOptions);}
+\DoxyCodeLine{00177\ \ \ \ \ app.MapFallbackToFile(\textcolor{stringliteral}{"{}../wwwroot/index.html"{}});}
+\DoxyCodeLine{00178\ }
+\DoxyCodeLine{00179\ \ \ \ \ \textcolor{comment}{//app.MapRazorPages();}}
+\DoxyCodeLine{00180\ \ \ \ \ app.MapDefaultControllerRoute();}
+\DoxyCodeLine{00181\ }
+\DoxyCodeLine{00182\ \ \ \ \ \textcolor{keywordflow}{return}\ app;}
+\DoxyCodeLine{00183\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+Wordt aangeroepen door \mbox{\hyperlink{_program_8cs_source_l00005}{WPR.\+Program.\+Main()}}.
+
+Hier is de caller graaf voor deze functie\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_w_p_r_1_1_app_configure_a77a92db2b597250930168694b79931d7_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_w_p_r_1_1_app_configure_a03bdad8277429c64d59c0b6781b17329}\index{WPR.AppConfigure@{WPR.AppConfigure}!InitDatabase@{InitDatabase}}
+\index{InitDatabase@{InitDatabase}!WPR.AppConfigure@{WPR.AppConfigure}}
+\doxysubsubsection{\texorpdfstring{InitDatabase()}{InitDatabase()}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_app_configure_a03bdad8277429c64d59c0b6781b17329} 
+static void WPR.\+App\+Configure.\+Init\+Database (\begin{DoxyParamCaption}\item[{IService\+Provider}]{services}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{_app_configure_8cs_source_l00021}{21}} in het bestand \mbox{\hyperlink{_app_configure_8cs_source}{App\+Configure.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00022\ \ \ \ \ \{}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ var\ dbConnector\ =\ services.GetRequiredService<IConnector>();}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using}\ (var\ connection\ =\ dbConnector.CreateDbConnection())}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Console.WriteLine(\textcolor{stringliteral}{"{}Database\ connection\ established"{}});}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (Exception\ e)}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \ \ \ \ Console.WriteLine(\textcolor{stringliteral}{"{}Failed\ to\ establish\ database\ connection"{}});}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \ \ \ \ Console.WriteLine(e.StackTrace);}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00039\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+Wordt aangeroepen door \mbox{\hyperlink{_program_8cs_source_l00005}{WPR.\+Program.\+Main()}}.
+
+Hier is de caller graaf voor deze functie\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_w_p_r_1_1_app_configure_a03bdad8277429c64d59c0b6781b17329_icgraph}
+\end{center}
+\end{figure}
+
+
+De documentatie voor deze klasse is gegenereerd op basis van het volgende bestand\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/codes/\+WPR8/\+WPR/backend/src/\mbox{\hyperlink{_app_configure_8cs}{App\+Configure.\+cs}}\end{DoxyCompactItemize}

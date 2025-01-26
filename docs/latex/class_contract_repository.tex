@@ -1,0 +1,242 @@
+\doxysection{Contract\+Repository Class Referentie}
+\hypertarget{class_contract_repository}{}\label{class_contract_repository}\index{ContractRepository@{ContractRepository}}
+
+
+Verantwoordelijk voor het ophalen van contractgerelateerde gegevens uit de database.  
+
+
+
+
+Klasse diagram voor Contract\+Repository
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=238pt]{class_contract_repository__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboratie diagram voor Contract\+Repository\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_contract_repository__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Members}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_contract_repository_a132c33d73d65f03f51b7520f5833f7d6}{Contract\+Repository}} (\mbox{\hyperlink{interface_w_p_r_1_1_database_1_1_i_connector}{IConnector}} connector)
+\begin{DoxyCompactList}\small\item\em Initialiseert een nieuw exemplaar van de \doxylink{class_contract_repository}{Contract\+Repository} klasse. \end{DoxyCompactList}\item 
+async Task$<$ IList$<$ int $>$ $>$ \mbox{\hyperlink{class_contract_repository_a0635443077a1f0d2540d95592d8a48c7}{Get\+Contracts\+Send\+Email\+Async}} ()
+\begin{DoxyCompactList}\small\item\em Haalt een lijst van Order\+Id\textquotesingle{}s op voor contracten die morgen geen e-\/mail moeten verzenden. \end{DoxyCompactList}\item 
+async Task$<$ Dictionary$<$ string, object $>$ $>$ \mbox{\hyperlink{class_contract_repository_a3387ac60e8633c158e3361b8531b6715}{Get\+Contract\+Info\+Async}} (int order\+Id)
+\begin{DoxyCompactList}\small\item\em Haalt gedetailleerde informatie op voor een contract op basis van het opgegeven Order\+Id. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributen}
+\begin{DoxyCompactItemize}
+\item 
+readonly \mbox{\hyperlink{interface_w_p_r_1_1_database_1_1_i_connector}{IConnector}} \mbox{\hyperlink{class_contract_repository_a9f5329bb63d9cac71a50284183513457}{\+\_\+connector}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Gedetailleerde Beschrijving}
+Verantwoordelijk voor het ophalen van contractgerelateerde gegevens uit de database. 
+
+De definitie bevindt zich op regel \mbox{\hyperlink{_contract_repository_8cs_source_l00008}{8}} in het bestand \mbox{\hyperlink{_contract_repository_8cs_source}{Contract\+Repository.\+cs}}.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentatie}
+\Hypertarget{class_contract_repository_a132c33d73d65f03f51b7520f5833f7d6}\index{ContractRepository@{ContractRepository}!ContractRepository@{ContractRepository}}
+\index{ContractRepository@{ContractRepository}!ContractRepository@{ContractRepository}}
+\doxysubsubsection{\texorpdfstring{ContractRepository()}{ContractRepository()}}
+{\footnotesize\ttfamily \label{class_contract_repository_a132c33d73d65f03f51b7520f5833f7d6} 
+Contract\+Repository.\+Contract\+Repository (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{interface_w_p_r_1_1_database_1_1_i_connector}{IConnector}}}]{connector}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Initialiseert een nieuw exemplaar van de \doxylink{class_contract_repository}{Contract\+Repository} klasse. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em connector} & De connector die gebruikt wordt om verbinding te maken met de database.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Excepties}
+{\em Argument\+Null\+Exception} & Wordt gegooid als de connector null is.\\
+\hline
+\end{DoxyExceptions}
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{_contract_repository_8cs_source_l00017}{17}} in het bestand \mbox{\hyperlink{_contract_repository_8cs_source}{Contract\+Repository.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00018\ \ \ \ \ \{}
+\DoxyCodeLine{00019\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_contract_repository_a9f5329bb63d9cac71a50284183513457}{\_connector}}\ =\ connector\ ??\ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ ArgumentNullException(nameof(connector));}
+\DoxyCodeLine{00020\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+Gebruikt \mbox{\hyperlink{_contract_repository_8cs_source_l00010}{\+\_\+connector}}.
+
+
+
+\doxysubsection{Documentatie van functie members}
+\Hypertarget{class_contract_repository_a3387ac60e8633c158e3361b8531b6715}\index{ContractRepository@{ContractRepository}!GetContractInfoAsync@{GetContractInfoAsync}}
+\index{GetContractInfoAsync@{GetContractInfoAsync}!ContractRepository@{ContractRepository}}
+\doxysubsubsection{\texorpdfstring{GetContractInfoAsync()}{GetContractInfoAsync()}}
+{\footnotesize\ttfamily \label{class_contract_repository_a3387ac60e8633c158e3361b8531b6715} 
+async Task$<$ Dictionary$<$ string, object $>$ $>$ Contract\+Repository.\+Get\+Contract\+Info\+Async (\begin{DoxyParamCaption}\item[{int}]{order\+Id}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Haalt gedetailleerde informatie op voor een contract op basis van het opgegeven Order\+Id. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em order\+Id} & Het Order\+Id van het contract waarvan de gegevens opgehaald moeten worden.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retourneert}
+Een Dictionary$<$string, object$>$ die de kolomnamen en hun bijbehorende waarden bevat voor het opgegeven contract. 
+\end{DoxyReturn}
+
+
+Implementeert \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_contract_repository_a474d5faafec5f7423d4a176942a7384e}{WPR.\+Repository.\+IContract\+Repository}}.
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{_contract_repository_8cs_source_l00073}{73}} in het bestand \mbox{\hyperlink{_contract_repository_8cs_source}{Contract\+Repository.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00074\ \ \ \ \ \{}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ query\ =\ \$\textcolor{stringliteral}{"{}SELECT\ *\ FROM\ Contract\ WHERE\ OrderId\ =\ \{orderId\}"{}};}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ Dictionary<string,\ object>\ info\ =\ \textcolor{keyword}{new}\ Dictionary<string,\ object>();}
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using}\ (var\ connection\ =\ \mbox{\hyperlink{class_contract_repository_a9f5329bb63d9cac71a50284183513457}{\_connector}}.CreateDbConnection())}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using}\ (var\ command\ =\ \textcolor{keyword}{new}\ MySqlCommand(query,\ (MySqlConnection)connection))}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using}\ (var\ reader\ =\ await\ command.ExecuteReaderAsync())}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (await\ reader.ReadAsync())}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ reader.FieldCount;\ i++)}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ info[reader.GetName(i)]\ =\ reader.GetValue(i);}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00091\ }
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ info;}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (MySqlException\ ex)}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \ \ \ \ Console.WriteLine(ex.Message);}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{new}\ Dictionary<string,\ object>();}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (Exception\ ex)}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \ \ \ \ Console.WriteLine(ex.Message);}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{new}\ Dictionary<string,\ object>();}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00105\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+Gebruikt \mbox{\hyperlink{_contract_repository_8cs_source_l00010}{\+\_\+connector}}.
+
+\Hypertarget{class_contract_repository_a0635443077a1f0d2540d95592d8a48c7}\index{ContractRepository@{ContractRepository}!GetContractsSendEmailAsync@{GetContractsSendEmailAsync}}
+\index{GetContractsSendEmailAsync@{GetContractsSendEmailAsync}!ContractRepository@{ContractRepository}}
+\doxysubsubsection{\texorpdfstring{GetContractsSendEmailAsync()}{GetContractsSendEmailAsync()}}
+{\footnotesize\ttfamily \label{class_contract_repository_a0635443077a1f0d2540d95592d8a48c7} 
+async Task$<$ IList$<$ int $>$ $>$ Contract\+Repository.\+Get\+Contracts\+Send\+Email\+Async (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Haalt een lijst van Order\+Id\textquotesingle{}s op voor contracten die morgen geen e-\/mail moeten verzenden. 
+
+\begin{DoxyReturn}{Retourneert}
+Een lijst van int die de Order\+Id\textquotesingle{}s bevat waarvoor de e-\/mail niet is verzonden. 
+\end{DoxyReturn}
+
+
+Implementeert \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_contract_repository_ad95ce7191d7de9e2cd9a8b3502d56346}{WPR.\+Repository.\+IContract\+Repository}}.
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{_contract_repository_8cs_source_l00028}{28}} in het bestand \mbox{\hyperlink{_contract_repository_8cs_source}{Contract\+Repository.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00029\ \ \ \ \ \{}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ query\ =\ \$\textcolor{stringliteral}{"{}SELECT\ OrderId\ FROM\ Contract\ WHERE\ (SendEmail\ =\ 'No'\ AND\ StartDate\ =\ '\{DateTime.Today.AddDays(1):yyyy-\/MM-\/dd\}')"{}};}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using}\ (var\ connection\ =\ \mbox{\hyperlink{class_contract_repository_a9f5329bb63d9cac71a50284183513457}{\_connector}}.CreateDbConnection())}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using}\ (var\ command\ =\ \textcolor{keyword}{new}\ MySqlCommand(query,\ (MySqlConnection)connection))}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using}\ (var\ reader\ =\ await\ command.ExecuteReaderAsync())}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ IList<int>\ orders\ =\ \textcolor{keyword}{new}\ List<int>();}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (await\ reader.ReadAsync())}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ orderId\ =\ Convert.ToInt32(reader.GetValue(0));}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ orders.Add(orderId);}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ orders;}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (MySqlException\ ex)}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \ \ \ \ Console.WriteLine(ex.Message);}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{new}\ List<int>();}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (OverflowException\ ex)}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \ \ \ \ Console.WriteLine(ex.Message);}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{new}\ List<int>();}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (Exception\ ex)}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \ \ \ \ Console.WriteLine(ex.Message);}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{new}\ List<int>();}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00064\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+Gebruikt \mbox{\hyperlink{_contract_repository_8cs_source_l00010}{\+\_\+connector}}.
+
+
+
+\doxysubsection{Documentatie van data velden}
+\Hypertarget{class_contract_repository_a9f5329bb63d9cac71a50284183513457}\index{ContractRepository@{ContractRepository}!\_connector@{\_connector}}
+\index{\_connector@{\_connector}!ContractRepository@{ContractRepository}}
+\doxysubsubsection{\texorpdfstring{\_connector}{\_connector}}
+{\footnotesize\ttfamily \label{class_contract_repository_a9f5329bb63d9cac71a50284183513457} 
+readonly \mbox{\hyperlink{interface_w_p_r_1_1_database_1_1_i_connector}{IConnector}} Contract\+Repository.\+\_\+connector\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{_contract_repository_8cs_source_l00010}{10}} in het bestand \mbox{\hyperlink{_contract_repository_8cs_source}{Contract\+Repository.\+cs}}.
+
+
+
+Wordt aangeroepen door \mbox{\hyperlink{_contract_repository_8cs_source_l00017}{Contract\+Repository()}}, \mbox{\hyperlink{_contract_repository_8cs_source_l00073}{Get\+Contract\+Info\+Async()}} en \mbox{\hyperlink{_contract_repository_8cs_source_l00028}{Get\+Contracts\+Send\+Email\+Async()}}.
+
+
+
+De documentatie voor deze klasse is gegenereerd op basis van het volgende bestand\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/codes/\+WPR8/\+WPR/backend/src/\+Repository/\mbox{\hyperlink{_contract_repository_8cs}{Contract\+Repository.\+cs}}\end{DoxyCompactItemize}

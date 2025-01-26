@@ -1,0 +1,218 @@
+\doxysection{WPR.\+Controllers.\+General.\+Cookie.\+Session\+Handler Class Referentie}
+\hypertarget{class_w_p_r_1_1_controllers_1_1_general_1_1_cookie_1_1_session_handler}{}\label{class_w_p_r_1_1_controllers_1_1_general_1_1_cookie_1_1_session_handler}\index{WPR.Controllers.General.Cookie.SessionHandler@{WPR.Controllers.General.Cookie.SessionHandler}}
+
+
+\doxylink{class_w_p_r_1_1_controllers_1_1_general_1_1_cookie_1_1_session_handler}{Session\+Handler} zorgt ervoor dat er cookies aangemaakt kunnen worden op een simpele manier.  
+
+
+
+
+Klasse diagram voor WPR.\+Controllers.\+General.\+Cookie.\+Session\+Handler
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=202pt]{class_w_p_r_1_1_controllers_1_1_general_1_1_cookie_1_1_session_handler__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboratie diagram voor WPR.\+Controllers.\+General.\+Cookie.\+Session\+Handler\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=202pt]{class_w_p_r_1_1_controllers_1_1_general_1_1_cookie_1_1_session_handler__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Members}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_general_1_1_cookie_1_1_session_handler_a775581f74fac158c945791ea7d866d1e}{Create\+Cookie}} (IResponse\+Cookies response\+Cookies, string cookie\+Name, string cookie\+Value)
+\begin{DoxyCompactList}\small\item\em \doxylink{namespace_w_p_r_1_1_controllers_1_1_general_1_1_cookie}{Cookie} kunnen worden aangemaakt doormiddel van een naam, de waarde en er kunnen opties ingezet worden. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_general_1_1_cookie_1_1_session_handler_ac6c8b44c77e1cb75cab9b617d7121f75}{Create\+Invalid\+Cookie}} (IResponse\+Cookies response\+Cookies, string cookie\+Name)
+\begin{DoxyCompactList}\small\item\em // Als er een ongeldige cookie is gedetecteerd, wordt deze verwijderd \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_general_1_1_cookie_1_1_session_handler_a429e72cdaece0fc6b547eaf71ebe14ee}{Dispose}} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Members}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_general_1_1_cookie_1_1_session_handler_a2336229e068b803d9975767d409d884f}{Dispose}} (bool disposing)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributen}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_general_1_1_cookie_1_1_session_handler_a3a02bf75d9d9828f8c7efce0fa8a99a5}{disposed\+Value}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Gedetailleerde Beschrijving}
+\doxylink{class_w_p_r_1_1_controllers_1_1_general_1_1_cookie_1_1_session_handler}{Session\+Handler} zorgt ervoor dat er cookies aangemaakt kunnen worden op een simpele manier. 
+
+De definitie bevindt zich op regel \mbox{\hyperlink{_session_handler_8cs_source_l00006}{6}} in het bestand \mbox{\hyperlink{_session_handler_8cs_source}{Session\+Handler.\+cs}}.
+
+
+
+\doxysubsection{Documentatie van functie members}
+\Hypertarget{class_w_p_r_1_1_controllers_1_1_general_1_1_cookie_1_1_session_handler_a775581f74fac158c945791ea7d866d1e}\index{WPR.Controllers.General.Cookie.SessionHandler@{WPR.Controllers.General.Cookie.SessionHandler}!CreateCookie@{CreateCookie}}
+\index{CreateCookie@{CreateCookie}!WPR.Controllers.General.Cookie.SessionHandler@{WPR.Controllers.General.Cookie.SessionHandler}}
+\doxysubsubsection{\texorpdfstring{CreateCookie()}{CreateCookie()}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_controllers_1_1_general_1_1_cookie_1_1_session_handler_a775581f74fac158c945791ea7d866d1e} 
+void WPR.\+Controllers.\+General.\+Cookie.\+Session\+Handler.\+Create\+Cookie (\begin{DoxyParamCaption}\item[{IResponse\+Cookies}]{response\+Cookies}{, }\item[{string}]{cookie\+Name}{, }\item[{string}]{cookie\+Value}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\doxylink{namespace_w_p_r_1_1_controllers_1_1_general_1_1_cookie}{Cookie} kunnen worden aangemaakt doormiddel van een naam, de waarde en er kunnen opties ingezet worden. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em response\+Cookies} & \\
+\hline
+{\em cookie\+Name} & \\
+\hline
+{\em cookie\+Value} & \\
+\hline
+\end{DoxyParams}
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{_session_handler_8cs_source_l00016}{16}} in het bestand \mbox{\hyperlink{_session_handler_8cs_source}{Session\+Handler.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00017\ \ \ \ \ \{}
+\DoxyCodeLine{00018\ \ \ \ \ \ \ \ \ responseCookies.Append(cookieName,\ cookieValue,\ \textcolor{keyword}{new}\ CookieOptions}
+\DoxyCodeLine{00019\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ \ \ \ \ HttpOnly\ =\ \textcolor{keyword}{true},}
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ \ \ \ \ Expires\ =\ DateTimeOffset.Now.AddMinutes(30)}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{00023\ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{class_w_p_r_1_1_controllers_1_1_general_1_1_cookie_1_1_session_handler_ac6c8b44c77e1cb75cab9b617d7121f75}\index{WPR.Controllers.General.Cookie.SessionHandler@{WPR.Controllers.General.Cookie.SessionHandler}!CreateInvalidCookie@{CreateInvalidCookie}}
+\index{CreateInvalidCookie@{CreateInvalidCookie}!WPR.Controllers.General.Cookie.SessionHandler@{WPR.Controllers.General.Cookie.SessionHandler}}
+\doxysubsubsection{\texorpdfstring{CreateInvalidCookie()}{CreateInvalidCookie()}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_controllers_1_1_general_1_1_cookie_1_1_session_handler_ac6c8b44c77e1cb75cab9b617d7121f75} 
+void WPR.\+Controllers.\+General.\+Cookie.\+Session\+Handler.\+Create\+Invalid\+Cookie (\begin{DoxyParamCaption}\item[{IResponse\+Cookies}]{response\+Cookies}{, }\item[{string}]{cookie\+Name}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+// Als er een ongeldige cookie is gedetecteerd, wordt deze verwijderd 
+
+
+\begin{DoxyParams}{Parameters}
+{\em response\+Cookies} & \\
+\hline
+{\em cookie\+Name} & \\
+\hline
+\end{DoxyParams}
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{_session_handler_8cs_source_l00030}{30}} in het bestand \mbox{\hyperlink{_session_handler_8cs_source}{Session\+Handler.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00031\ \ \ \ \ \{}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ responseCookies.Append(cookieName,\ \textcolor{stringliteral}{"{}"{}},\ \textcolor{keyword}{new}\ CookieOptions}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \ \ \ \ HttpOnly\ =\ \textcolor{keyword}{true},}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \ \ \ \ Expires\ =\ DateTimeOffset.Now.AddMinutes(-\/1),}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \ \ \ \ MaxAge\ =\ TimeSpan.Zero,}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \ \ \ \ Path\ =\ \textcolor{stringliteral}{"{}/"{}}}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ Console.WriteLine(\$\textcolor{stringliteral}{"{}Cookie\ invalidated:\ \{cookieName\}"{}});}
+\DoxyCodeLine{00041\ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{class_w_p_r_1_1_controllers_1_1_general_1_1_cookie_1_1_session_handler_a429e72cdaece0fc6b547eaf71ebe14ee}\index{WPR.Controllers.General.Cookie.SessionHandler@{WPR.Controllers.General.Cookie.SessionHandler}!Dispose@{Dispose}}
+\index{Dispose@{Dispose}!WPR.Controllers.General.Cookie.SessionHandler@{WPR.Controllers.General.Cookie.SessionHandler}}
+\doxysubsubsection{\texorpdfstring{Dispose()}{Dispose()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_controllers_1_1_general_1_1_cookie_1_1_session_handler_a429e72cdaece0fc6b547eaf71ebe14ee} 
+void WPR.\+Controllers.\+General.\+Cookie.\+Session\+Handler.\+Dispose (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{_session_handler_8cs_source_l00055}{55}} in het bestand \mbox{\hyperlink{_session_handler_8cs_source}{Session\+Handler.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00056\ \ \ \ \ \{}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ Dispose(disposing:\ \textcolor{keyword}{true});}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ GC.SuppressFinalize(\textcolor{keyword}{this});}
+\DoxyCodeLine{00059\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+Gebruikt \mbox{\hyperlink{_session_handler_8cs_source_l00055}{Dispose()}}.
+
+
+
+Wordt aangeroepen door \mbox{\hyperlink{_session_handler_8cs_source_l00055}{Dispose()}}.
+
+Hier is de call graaf voor deze functie\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=238pt]{class_w_p_r_1_1_controllers_1_1_general_1_1_cookie_1_1_session_handler_a429e72cdaece0fc6b547eaf71ebe14ee_cgraph}
+\end{center}
+\end{figure}
+Hier is de caller graaf voor deze functie\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=238pt]{class_w_p_r_1_1_controllers_1_1_general_1_1_cookie_1_1_session_handler_a429e72cdaece0fc6b547eaf71ebe14ee_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_w_p_r_1_1_controllers_1_1_general_1_1_cookie_1_1_session_handler_a2336229e068b803d9975767d409d884f}\index{WPR.Controllers.General.Cookie.SessionHandler@{WPR.Controllers.General.Cookie.SessionHandler}!Dispose@{Dispose}}
+\index{Dispose@{Dispose}!WPR.Controllers.General.Cookie.SessionHandler@{WPR.Controllers.General.Cookie.SessionHandler}}
+\doxysubsubsection{\texorpdfstring{Dispose()}{Dispose()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_controllers_1_1_general_1_1_cookie_1_1_session_handler_a2336229e068b803d9975767d409d884f} 
+virtual void WPR.\+Controllers.\+General.\+Cookie.\+Session\+Handler.\+Dispose (\begin{DoxyParamCaption}\item[{bool}]{disposing}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{_session_handler_8cs_source_l00043}{43}} in het bestand \mbox{\hyperlink{_session_handler_8cs_source}{Session\+Handler.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00044\ \ \ \ \ \{}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!disposedValue)}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (disposing)}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \ \ \ \ disposedValue\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00053\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+Gebruikt \mbox{\hyperlink{_session_handler_8cs_source_l00008}{disposed\+Value}}.
+
+
+
+\doxysubsection{Documentatie van data velden}
+\Hypertarget{class_w_p_r_1_1_controllers_1_1_general_1_1_cookie_1_1_session_handler_a3a02bf75d9d9828f8c7efce0fa8a99a5}\index{WPR.Controllers.General.Cookie.SessionHandler@{WPR.Controllers.General.Cookie.SessionHandler}!disposedValue@{disposedValue}}
+\index{disposedValue@{disposedValue}!WPR.Controllers.General.Cookie.SessionHandler@{WPR.Controllers.General.Cookie.SessionHandler}}
+\doxysubsubsection{\texorpdfstring{disposedValue}{disposedValue}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_controllers_1_1_general_1_1_cookie_1_1_session_handler_a3a02bf75d9d9828f8c7efce0fa8a99a5} 
+bool WPR.\+Controllers.\+General.\+Cookie.\+Session\+Handler.\+disposed\+Value\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{_session_handler_8cs_source_l00008}{8}} in het bestand \mbox{\hyperlink{_session_handler_8cs_source}{Session\+Handler.\+cs}}.
+
+
+
+Wordt aangeroepen door \mbox{\hyperlink{_session_handler_8cs_source_l00043}{Dispose()}}.
+
+
+
+De documentatie voor deze klasse is gegenereerd op basis van het volgende bestand\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/codes/\+WPR8/\+WPR/backend/src/\+Controllers/general/cookie/\mbox{\hyperlink{_session_handler_8cs}{Session\+Handler.\+cs}}\end{DoxyCompactItemize}

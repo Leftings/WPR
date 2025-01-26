@@ -1,0 +1,47 @@
+\doxysection{sign\+Up\+Controller.\+cs}
+\hypertarget{sign_up_controller_8cs_source}{}\label{sign_up_controller_8cs_source}\index{D:/codes/WPR8/WPR/backend/src/Controllers/general/signUp/signUpController.cs@{D:/codes/WPR8/WPR/backend/src/Controllers/general/signUp/signUpController.cs}}
+\mbox{\hyperlink{sign_up_controller_8cs}{Ga naar de documentatie van dit bestand.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{sign_up_controller_8cs_source_l00001}\mbox{\hyperlink{namespace_w_p_r_1_1_controllers_1_1_general_1_1_sign_up}{00001}}\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_w_p_r_1_1_controllers_1_1_general_1_1_sign_up}{WPR.Controllers.General.SignUp}};}
+\DoxyCodeLine{\Hypertarget{sign_up_controller_8cs_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{sign_up_controller_8cs_source_l00003}00003\ \textcolor{keyword}{using\ }Microsoft.AspNetCore.Mvc;}
+\DoxyCodeLine{\Hypertarget{sign_up_controller_8cs_source_l00004}00004\ \textcolor{keyword}{using\ }System;}
+\DoxyCodeLine{\Hypertarget{sign_up_controller_8cs_source_l00005}00005\ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespace_w_p_r_1_1_repository}{WPR.Repository}};}
+\DoxyCodeLine{\Hypertarget{sign_up_controller_8cs_source_l00006}00006\ }
+\DoxyCodeLine{\Hypertarget{sign_up_controller_8cs_source_l00011}00011\ [Route(\textcolor{stringliteral}{"{}api/[controller]"{}})]}
+\DoxyCodeLine{\Hypertarget{sign_up_controller_8cs_source_l00012}00012\ [ApiController]}
+\DoxyCodeLine{\Hypertarget{sign_up_controller_8cs_source_l00013}\mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_general_1_1_sign_up_1_1_sign_up_controller}{00013}}\ \textcolor{keyword}{public}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_general_1_1_sign_up_1_1_sign_up_controller_ae19663bdae2dbc6cebde063a2e129fe8}{SignUpController}}\ :\ ControllerBase}
+\DoxyCodeLine{\Hypertarget{sign_up_controller_8cs_source_l00014}00014\ \{}
+\DoxyCodeLine{\Hypertarget{sign_up_controller_8cs_source_l00015}\mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_general_1_1_sign_up_1_1_sign_up_controller_a6f7a1c05015ab37189cfa6df1f40f158}{00015}}\ \ \ \ \ \textcolor{keyword}{private}\ readonly\ \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_user_repository}{IUserRepository}}\ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_general_1_1_sign_up_1_1_sign_up_controller_a6f7a1c05015ab37189cfa6df1f40f158}{\_userRepository}};}
+\DoxyCodeLine{\Hypertarget{sign_up_controller_8cs_source_l00016}00016\ }
+\DoxyCodeLine{\Hypertarget{sign_up_controller_8cs_source_l00021}\mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_general_1_1_sign_up_1_1_sign_up_controller_ae19663bdae2dbc6cebde063a2e129fe8}{00021}}\ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_general_1_1_sign_up_1_1_sign_up_controller_ae19663bdae2dbc6cebde063a2e129fe8}{SignUpController}}(\mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_user_repository}{IUserRepository}}\ userRepository)}
+\DoxyCodeLine{\Hypertarget{sign_up_controller_8cs_source_l00022}00022\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{sign_up_controller_8cs_source_l00023}00023\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_general_1_1_sign_up_1_1_sign_up_controller_a6f7a1c05015ab37189cfa6df1f40f158}{\_userRepository}}\ =\ userRepository\ ??\ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ ArgumentNullException(nameof(userRepository));}
+\DoxyCodeLine{\Hypertarget{sign_up_controller_8cs_source_l00024}00024\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{sign_up_controller_8cs_source_l00025}00025\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{sign_up_controller_8cs_source_l00031}00031\ \ \ \ \ [HttpPost(\textcolor{stringliteral}{"{}signUp"{}})]}
+\DoxyCodeLine{\Hypertarget{sign_up_controller_8cs_source_l00032}\mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_general_1_1_sign_up_1_1_sign_up_controller_a0c3be455afaafaebb78fd9fa56da7a4b}{00032}}\ \ \ \ \ \textcolor{keyword}{public}\ async\ Task<IActionResult>\ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_general_1_1_sign_up_1_1_sign_up_controller_a0c3be455afaafaebb78fd9fa56da7a4b}{SignUp}}([FromForm]\ \mbox{\hyperlink{namespace_w_p_r_1_1_controllers_1_1_general_1_1_sign_up_aa900677400c93afffd84ac3aba306774}{CombinedSignUpRequest}}\ signUpRequest)}
+\DoxyCodeLine{\Hypertarget{sign_up_controller_8cs_source_l00033}00033\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{sign_up_controller_8cs_source_l00034}00034\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespace_w_p_r_1_1_controllers_1_1_general_1_1_sign_up_abf09877e4843c0b4ff2791cc32242102}{SignUpRequestCustomer}}\ signUpRequestCustomer\ =\ signUpRequest.SignUpRequestCustomer;}
+\DoxyCodeLine{\Hypertarget{sign_up_controller_8cs_source_l00035}00035\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespace_w_p_r_1_1_controllers_1_1_general_1_1_sign_up_ab012081435b4392bd8e6e4525e336d68}{SignUpRequestCustomerPrivate}}\ signUpRequestCustomerPrivate\ =\ signUpRequest.SignUpRequestCustomerPrivate;}
+\DoxyCodeLine{\Hypertarget{sign_up_controller_8cs_source_l00036}00036\ }
+\DoxyCodeLine{\Hypertarget{sign_up_controller_8cs_source_l00037}00037\ \ \ \ \ \ \ \ \ (\textcolor{keywordtype}{int}\ StatusCode,\ \textcolor{keywordtype}{string}\ Message)\ response\ =\ await\ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_general_1_1_sign_up_1_1_sign_up_controller_a6f7a1c05015ab37189cfa6df1f40f158}{\_userRepository}}.AddCustomer(signUpRequestCustomer,\ signUpRequestCustomerPrivate);}
+\DoxyCodeLine{\Hypertarget{sign_up_controller_8cs_source_l00038}00038\ }
+\DoxyCodeLine{\Hypertarget{sign_up_controller_8cs_source_l00039}00039\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ StatusCode(response.StatusCode,\ \textcolor{keyword}{new}\ \{\ message\ =\ response.Message\ \});}
+\DoxyCodeLine{\Hypertarget{sign_up_controller_8cs_source_l00040}00040\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{sign_up_controller_8cs_source_l00041}00041\ }
+\DoxyCodeLine{\Hypertarget{sign_up_controller_8cs_source_l00047}00047\ \ \ \ \ [HttpPost(\textcolor{stringliteral}{"{}signUpPersonal"{}})]}
+\DoxyCodeLine{\Hypertarget{sign_up_controller_8cs_source_l00048}\mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_general_1_1_sign_up_1_1_sign_up_controller_a35397bc748434e362e41954365dedb9e}{00048}}\ \ \ \ \ \textcolor{keyword}{public}\ async\ Task<IActionResult>\ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_general_1_1_sign_up_1_1_sign_up_controller_a35397bc748434e362e41954365dedb9e}{signUpPersonalAsync}}([FromForm]\ \mbox{\hyperlink{namespace_w_p_r_1_1_controllers_1_1_general_1_1_sign_up_a1a899a5abbcf0be4ee87632f0500c697}{SignUpRequest}}\ signUpRequest)}
+\DoxyCodeLine{\Hypertarget{sign_up_controller_8cs_source_l00049}00049\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{sign_up_controller_8cs_source_l00050}00050\ \ \ \ \ \ \ \ \ Console.WriteLine(signUpRequest);}
+\DoxyCodeLine{\Hypertarget{sign_up_controller_8cs_source_l00051}00051\ \ \ \ \ \ \ \ \ (\textcolor{keywordtype}{bool}\ Status,\ \textcolor{keywordtype}{string}\ Message)\ response\ =\ await\ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_general_1_1_sign_up_1_1_sign_up_controller_a6f7a1c05015ab37189cfa6df1f40f158}{\_userRepository}}.AddPersonalCustomer(signUpRequest);}
+\DoxyCodeLine{\Hypertarget{sign_up_controller_8cs_source_l00052}00052\ }
+\DoxyCodeLine{\Hypertarget{sign_up_controller_8cs_source_l00053}00053\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (response.Status)}
+\DoxyCodeLine{\Hypertarget{sign_up_controller_8cs_source_l00054}00054\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{sign_up_controller_8cs_source_l00055}00055\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Ok(\textcolor{keyword}{new}\ \{\ message\ =\ response.Message\ \});}
+\DoxyCodeLine{\Hypertarget{sign_up_controller_8cs_source_l00056}00056\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{sign_up_controller_8cs_source_l00057}00057\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ BadRequest(\textcolor{keyword}{new}\ \{\ message\ =\ response.Message\ \});}
+\DoxyCodeLine{\Hypertarget{sign_up_controller_8cs_source_l00058}00058\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{sign_up_controller_8cs_source_l00059}00059\ \}}
+
+\end{DoxyCode}
