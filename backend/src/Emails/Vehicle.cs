@@ -3,42 +3,50 @@ using WPR.Repository;
 namespace WPR.Email;
 
 public interface IVehicleDetails : IDetails {}
+
+/// <summary>
+/// In de Vehicle klasse worden alle gegevens van een specifieke klant verzameld voor het aanmaken van een email.
+/// </summary>
 public class Vehicle : IVehicleDetails
 {
-    // Dictionary om de voertuigdetails op te slaan
     private Dictionary<string, object> _details { get; set; }
 
-    // Het repository object dat gebruikt wordt om de voertuiggegevens op te halen
     private readonly IVehicleRepository _vehicleRepository;
 
-    // Constructor die het repository object ontvangt
+    /// <summary>
+    /// In de constructor worden alle benodigde klasses geset.
+    /// </summary>
+    /// <param name="vehicleRepository"></param>
+    /// <exception cref="ArgumentNullException"></exception>
     public Vehicle(IVehicleRepository vehicleRepository)
     {
-        // Zorg ervoor dat het repository niet null is
         _vehicleRepository = vehicleRepository ?? throw new ArgumentNullException(nameof(vehicleRepository));
     }
     
-    // Methode om de voertuigdetails in te stellen op basis van het frame nummer (ID)
+    /// <summary>
+    /// Alle gegevens worden in de dictionary van het voertuig geset.
+    /// </summary>
+    /// <param name="frameNr"></param>
+    /// <returns></returns>
     public async Task SetDetailsAsync(object frameNr)
     {
-        // Verkrijg de voertuiggegevens uit het repository
-        var result = await _vehicleRepository.GetVehicleDataAsync(frameNr);
+        var result = await _vehicleRepository.GetVehicleDataAsync(frameNr); // Alle gegevens van het voertuig worden opgehaald
 
-        // Initialiseer het _details dictionary
         _details = new Dictionary<string, object>();
 
-        // Itereer door de verkregen resultaten en vul de _details dictionary
         foreach (Dictionary<object, string> item in result)
         {
-            // Voeg de gegevens toe aan de dictionary als de sleutel nog niet bestaat
-            if (!_details.ContainsKey((string)item.Keys.First()))
+            if (!_details.ContainsKey((string)item.Keys.First())) // Alle keys worden verzameld
             {
-                _details[(string)item.Keys.First()] = item.Values.First();
+                _details[(string)item.Keys.First()] = item.Values.First(); // Alle waardes van de keys worden verzameld
             }
         }
     }
 
-    // Methode om de opgeslagen voertuigdetails op te halen
+    /// <summary>
+    /// Alle gegevens van de klant worden via deze methode opgehaald.
+    /// </summary>
+    /// <returns></returns>
     public async Task<Dictionary<string, object>> GetDetailsAsync()
     {
         return _details;
