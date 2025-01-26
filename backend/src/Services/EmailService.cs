@@ -14,9 +14,9 @@ public class EmailService : IEmailService
     }
 
     /// <summary>
-    /// Maak SMTP Client voor versturen emails
+    /// Creëert en retourneert een SMTP-client met de benodigde instellingen.
     /// </summary>
-    /// <returns>SMTP Client</returns>
+    /// <returns>Een geconfigureerde SmtpClient voor het versturen van e-mail.</returns>
     private SmtpClient CreateSmtpClient()
     {
         return new SmtpClient(_envConfig.Get("SMTP_HOST"))
@@ -30,7 +30,12 @@ public class EmailService : IEmailService
         };
     }
 
-    // Methode om een e-mail te versturen
+    /// <summary>
+    /// Verstuurt een e-mail met de opgegeven ontvanger, onderwerp en inhoud.
+    /// </summary>
+    /// <param name="toEmail">Het e-mailadres van de ontvanger.</param>
+    /// <param name="subject">Het onderwerp van de e-mail.</param>
+    /// <param name="body">De inhoud van de e-mail.</param>
 public async Task Send(string toEmail, string subject, string body)
 {
     try
@@ -55,7 +60,10 @@ public async Task Send(string toEmail, string subject, string body)
     }
 }
 
-// Methode om een welkomst e-mail te versturen
+    /// <summary>
+    /// Verstuurt een welkomst e-mail naar het opgegeven e-mailadres.
+    /// </summary>
+    /// <param name="toEmail">Het e-mailadres van de ontvanger.</param>
 public async Task SendWelcomeEmail(string toEmail)
 {     
     if (string.IsNullOrEmpty(toEmail))
@@ -84,7 +92,16 @@ public async Task SendWelcomeEmail(string toEmail)
     }
 }
 
-// Methode om een huurovereenkomst bevestigingsmail te versturen
+    /// <summary>
+    /// Verstuurt een huurovereenkomst bevestigingsmail naar de opgegeven ontvanger.
+    /// </summary>
+    /// <param name="toEmail">Het e-mailadres van de ontvanger.</param>
+    /// <param name="carName">De naam van het gehuurde voertuig.</param>
+    /// <param name="carColor">De kleur van het gehuurde voertuig.</param>
+    /// <param name="carPlate">Het kenteken van het gehuurde voertuig.</param>
+    /// <param name="startDate">De startdatum van de huurperiode.</param>
+    /// <param name="endDate">De einddatum van de huurperiode.</param>
+    /// <param name="price">De prijs van de huur.</param>
 public async Task SendRentalConfirmMail(string toEmail, string carName, string carColor, string carPlate, DateTime startDate, DateTime endDate, string price)
 {
     if (string.IsNullOrEmpty(toEmail))
@@ -113,7 +130,15 @@ public async Task SendRentalConfirmMail(string toEmail, string carName, string c
     }
 }
 
-// Methode om een bevestigingsmail voor een bedrijfsaccount aanvraag te versturen
+    /// <summary>
+    /// Verstuurt een bevestigingsmail voor een bedrijfsaccount aanvraag.
+    /// </summary>
+    /// <param name="toEmail">Het e-mailadres van de ontvanger.</param>
+    /// <param name="subscription">Het type abonnement voor het bedrijf.</param>
+    /// <param name="businessName">De naam van het bedrijf.</param>
+    /// <param name="kvk">Het KvK nummer van het bedrijf.</param>
+    /// <param name="domain">Het domein van het bedrijf.</param>
+    /// <param name="adres">Het adres van het bedrijf.</param>
 public async Task SendConfirmationEmailBusiness(string toEmail, string subscription, string businessName, int kvk, string domain, string adres)
 {
     if (string.IsNullOrEmpty(toEmail))
@@ -144,7 +169,14 @@ public async Task SendConfirmationEmailBusiness(string toEmail, string subscript
     }
 }
 
-// Methode om een beoordelingsmail voor een bedrijfsaccount aanvraag te versturen
+    /// <summary>
+    /// Verstuurt een beoordelingsmail voor een bedrijfsaccount aanvraag naar het opgegeven e-mailadres.
+    /// </summary>
+    /// <param name="toEmail">Het e-mailadres van de ontvanger.</param>
+    /// <param name="businessName">De naam van het bedrijf.</param>
+    /// <param name="domain">Het domein van het bedrijf.</param>
+    /// <param name="password">Het wachtwoord voor de beheerder.</param>
+    /// <param name="accepted">Bepaalt of de aanvraag is geaccepteerd (true) of afgewezen (false).</param>
 public async Task SendBusinessReviewEmail(string toEmail, string businessName, string domain, string password, bool accepted)
 {
     if (string.IsNullOrEmpty(toEmail))
@@ -174,6 +206,16 @@ public async Task SendBusinessReviewEmail(string toEmail, string businessName, s
         throw; // Gooi de uitzondering opnieuw
     }
 }
+    /// <summary>
+    /// Bouwt de HTML-inhoud voor een huurovereenkomst bevestigingsmail.
+    /// </summary>
+    /// <param name="carName">De naam van het voertuig.</param>
+    /// <param name="carColor">De kleur van het voertuig.</param>
+    /// <param name="carPlate">Het kenteken van het voertuig.</param>
+    /// <param name="startDate">De startdatum van de huurperiode.</param>
+    /// <param name="endDate">De einddatum van de huurperiode.</param>
+    /// <param name="price">De prijs van de huur.</param>
+    /// <returns>HTML-inhoud voor de huurovereenkomst bevestiging.</returns>
     private string BuildRentalConfirmationBody(string carName, string carColor, string carPlate, DateTime startDate, DateTime endDate, string price)
     {
         return $@"
@@ -195,6 +237,15 @@ public async Task SendBusinessReviewEmail(string toEmail, string businessName, s
         ";
     }
 
+    /// <summary>
+    /// Bouwt de HTML-inhoud voor een bedrijfsaccount bevestigingsmail.
+    /// </summary>
+    /// <param name="subscription">Het type abonnement voor het bedrijf.</param>
+    /// <param name="businessName">De naam van het bedrijf.</param>
+    /// <param name="kvk">Het KvK nummer van het bedrijf.</param>
+    /// <param name="domain">Het domein van het bedrijf.</param>
+    /// <param name="adres">Het adres van het bedrijf.</param>
+    /// <returns>HTML-inhoud voor de bedrijfsaccount bevestiging.</returns>
     private string BuildConfirmationEmailBusinessBody(string subscription ,string businessName, int kvk, string domain, string adres)
     {
         
@@ -215,6 +266,14 @@ public async Task SendBusinessReviewEmail(string toEmail, string businessName, s
             <p>Reacties op dit bericht worden niet gezien.</p>";
     }
 
+    /// <summary>
+    /// Bouwt de HTML-inhoud voor een beoordelingsmail voor een bedrijfsaccount aanvraag.
+    /// </summary>
+    /// <param name="businessName">De naam van het bedrijf.</param>
+    /// <param name="domain">Het domein van het bedrijf.</param>
+    /// <param name="password">Het wachtwoord voor de beheerder.</param>
+    /// <param name="accepted">Bepaalt of de aanvraag is geaccepteerd (true) of afgewezen (false).</param>
+    /// <returns>HTML-inhoud voor de beoordelingsmail voor een bedrijfsaccount aanvraag.</returns>
     private string BuildBusinessReviewEmailBody(string businessName, string domain, string password, bool accepted)
     {
         string response = accepted ? 

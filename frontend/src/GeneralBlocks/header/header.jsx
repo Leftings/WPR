@@ -8,9 +8,9 @@ import '@fortawesome/fontawesome-free/css/all.css';
 import '../../index.css';
 
 function GeneralHeader() {
-    const [isLoggedIn, setIsLoggedIn] = useState(false); // State om bij te houden of de gebruiker is ingelogd
-    const [isMenuOpen, setIsMenuOpen] = useState(false); // State om de status van het menu (open of gesloten) bij te houden
-    const navigate = useNavigate(); // Hook van react-router-dom om navigatie te beheren
+    const [isLoggedIn, setIsLoggedIn] = useState(false); 
+    const [isMenuOpen, setIsMenuOpen] = useState(false); 
+    const navigate = useNavigate(); 
 
     // useEffect wordt uitgevoerd bij het laden van de component
     useEffect(() => {

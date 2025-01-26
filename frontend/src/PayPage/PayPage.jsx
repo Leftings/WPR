@@ -6,10 +6,6 @@ import GeneralFooter from "../GeneralBlocks/footer/footer.jsx";
 
 const BACKEND_URL = import.meta.env.VITE_REACT_APP_BACKEND_URL ?? 'http://localhost:5165';
 
-/// <summary>
-/// Controleert of de sessie van de gebruiker nog actief is door een API-aanroep naar de backend.
-/// </summary>
-/// <returns>Retourneert de sessiegegevens als object als de sessie actief is, anders null bij een fout.</returns>
 async function checkSession() {
     try {
         // Controleer of de sessie actief is via een API-call
@@ -30,10 +26,6 @@ async function checkSession() {
     }
 }
 
-/// <summary>
-/// Behandelt de pagina waar gebruikers de betaling voor de huur kunnen verwerken.
-/// Controleert sessie, valideert invoer en verwerkt de huur via de backend.
-/// </summary>
 function PayPage() {
     const location = useLocation(); // Toegang tot state die via routing wordt doorgegeven
     const navigate = useNavigate(); // Mogelijkheid om de gebruiker te navigeren naar andere routes
@@ -43,10 +35,7 @@ function PayPage() {
     const [userDetails, setUserDetails] = useState({ email: "", address: "" }); // Houdt gebruikersgegevens bij
     const [totalCost, setTotalCost] = useState(0); // Totaalkosten voor de huur
     const [rentalDays, setRentalDays] = useState(0); // Aantal huurdagen
-
-    /// <summary>
-    /// Bereken de huurprijs en dagen zodra de huurdatums veranderen.
-    /// </summary>
+    
     useEffect(() => {
         if (rentalDates[0] && rentalDates[1]) {
             const start = new Date(rentalDates[0]);
@@ -60,11 +49,7 @@ function PayPage() {
             }
         }
     }, [rentalDates, vehicle]);
-
-    /// <summary>
-    /// Verwerkt de huur als de gebruiker alle verplichte velden heeft ingevuld.
-    /// Dit omvat het controleren van de sessie, het valideren van de invoer en het versturen van gegevens naar de backend.
-    /// </summary>
+    
     const handlePurchase = async () => {
         console.log('Rental Dates:', rentalDates);
 

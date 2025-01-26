@@ -6,6 +6,10 @@ import '../index.css';
 // URL voor de backend, standaard 'http://localhost:5165' als dit niet is opgegeven in de omgevingsvariabelen
 const BACKEND_URL = import.meta.env.VITE_REACT_APP_BACKEND_URL ?? 'http://localhost:5165';
 
+/// <summary>
+/// Deze component is verantwoordelijk voor het ophalen, weergeven en beheren van abonnementgegevens. 
+/// Het controleert ook of de gebruiker een stafflid is en welk type kantoor ze behoren (Front of Back Office).
+/// </summary>
 function AbonementUitlegPage() {
     // States om abonnementgegevens, staff-informatie, foutmeldingen en laadtoestand op te slaan
     const [subscriptions, setSubscriptions] = useState([]);
@@ -13,8 +17,7 @@ function AbonementUitlegPage() {
     const [isFrontOffice, setIsFrontOffice] = useState(false);
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(false);
-
-    // Functie om abonnementgegevens op te halen op basis van ID
+    
     function GetSubscription(id) {
         return fetch(`${BACKEND_URL}/api/Subscription/GetSubscriptionData=${id}`, {
             method: 'GET',
@@ -78,8 +81,7 @@ function AbonementUitlegPage() {
                 setIsFrontOffice(false);
             });
     }, []);
-
-    // Functie om alle abonnementen en hun details op te halen
+    
     const fetchSubscriptions = async () => {
         try {
             setLoading(true);  // Zet de loading-toestand op true voordat gegevens worden opgehaald

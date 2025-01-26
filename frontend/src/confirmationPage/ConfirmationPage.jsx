@@ -11,10 +11,9 @@ function ConfirmationPage() {
 
     // Functie om terug te gaan naar de homepage
     const handleGoBack = () => {
-        navigate('/');  // Navigeer naar de homepage (rootpagina)
+        navigate('/');  
     };
 
-    // Als er geen huurgegevens zijn, toon een foutmelding
     if (!rentalDetails) {
         return (
             <div className="confirmation-page">

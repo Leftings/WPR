@@ -12,18 +12,18 @@ const BACKEND_URL = import.meta.env.VITE_REACT_APP_BACKEND_URL ?? 'http://localh
 function IntakeForm() {
     // Initialiseren van de state variabelen
     const navigate = useNavigate();
-    const [damagePresent, setDamagePresent] = useState(false); // Om bij te houden of er schade is
-    const [isValidContract, setIsValidContract] = useState(false); // Voor validatie van het contract
-    const [contractNumber, setContactNumber] = useState(null); // Het contractnummer
-    const [damageExplanation, setDamageExplanation] = useState(''); // Schadetoelichting
-    const [endDate, setEndDate] = useState(null); // Einddatum van het huurcontract
-    const [vehicleName, setVehicleName] = useState(null); // Naam van het voertuig
-    const [contract, setContract] = useState(null); // Het contract object
-    const [orderId, setOrderId] = useState(null); // Order ID om het contract te zoeken
-    const [tooLate, setTooLate] = useState(false); // Of het contract al voorbij is
-    const [staffId, setStaffId] = useState(null); // Medewerker ID
-    const [error, setError] = useState([]); // Foutmeldingen
-    const currDate = new Date(); // Huidige datum, gebruikt voor validatie van contract
+    const [damagePresent, setDamagePresent] = useState(false);
+    const [isValidContract, setIsValidContract] = useState(false);
+    const [contractNumber, setContactNumber] = useState(null); 
+    const [damageExplanation, setDamageExplanation] = useState('');
+    const [endDate, setEndDate] = useState(null); 
+    const [vehicleName, setVehicleName] = useState(null); 
+    const [contract, setContract] = useState(null);
+    const [orderId, setOrderId] = useState(null); 
+    const [tooLate, setTooLate] = useState(false); 
+    const [staffId, setStaffId] = useState(null); 
+    const [error, setError] = useState([]); 
+    const currDate = new Date(); 
 
     // Functie om schade te controleren (checkbox)
     const handleDamageCheck = (e) => {

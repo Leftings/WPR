@@ -12,20 +12,19 @@ const BACKEND_URL = import.meta.env.VITE_REACT_APP_BACKEND_URL ?? 'http://localh
 function ViewRentalData() {
     const navigate = useNavigate();
 
-    // State hooks voor de data en andere informatie
-    const [error, setError] = useState(null);  // Foutmelding
-    const [rentalData, setRentalData] = useState([]);  // Data voor de verhuurgegevens
-    const [filterType, setFilterType] = useState('Price');  // Type filter (bijv. prijs)
-    const [filterHow, setFilterHow] = useState('Low');  // Sorteer volgorde (bijv. laag naar hoog)
-    const [loadingRequests, setLoadingRequests] = useState({}); // Houdt bij welke gegevens worden geladen
-    const [loading, setLoading] = useState(true);  // Laadstatus
-    const [allData, setAllData] = useState([]);  // Alle ruwe data
-    const [selectedCard, setSelectedCard] = useState(null); // Huidige geselecteerde kaart (huurdata)
-    const [specificData, setSpecificData] = useState([]);  // Specifieke gegevens van een geselecteerde huur
-    const [specificDataLoading, setSpecificDataLoading] = useState(false);  // Laadstatus voor specifieke gegevens
+    const [error, setError] = useState(null);  
+    const [rentalData, setRentalData] = useState([]);  
+    const [filterType, setFilterType] = useState('Price');  
+    const [filterHow, setFilterHow] = useState('Low');  
+    const [loadingRequests, setLoadingRequests] = useState({}); 
+    const [loading, setLoading] = useState(true);  
+    const [allData, setAllData] = useState([]);  
+    const [selectedCard, setSelectedCard] = useState(null); 
+    const [specificData, setSpecificData] = useState([]);  
+    const [specificDataLoading, setSpecificDataLoading] = useState(false);  
     const [, updateState] = useState();
-    const forceUpdate = useCallback(() => updateState({}), []); // Forceer een update
-    const gridRef = useRef(null);  // Ref voor het grid (indien nodig)
+    const forceUpdate = useCallback(() => updateState({}), []);
+    const gridRef = useRef(null);  
 
     // Controleert of de gebruiker geauthenticeerd is via cookies
     useEffect(() => {

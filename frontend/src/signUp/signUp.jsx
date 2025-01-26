@@ -173,24 +173,24 @@ function SignUp() {
                 <div id='account'>
                     <label htmlFor='button'>Soort account:</label>
                     <br></br>
-                    <button className='cta-button'onClick={() => choice('Private')} id={chosenType === 'Private' ? 'typeButton-active' : 'typeButton'} type='button'>Particulier</button>
-                    <button className='cta-button'onClick={() => choice('Business')} id={chosenType === 'Business' ? 'typeButton-active' : 'typeButton'} type='button'>Zakelijk</button>
+                    <button className='cta-button' onClick={() => choice('Private')} id={chosenType === 'Private' ? 'typeButton-active' : 'typeButton'} type='button'>Particulier</button>
+                    <button className='cta-button' onClick={() => choice('Business')} id={chosenType === 'Business' ? 'typeButton-active' : 'typeButton'} type='button'>Zakelijk</button>
                 </div>
             </div>
             <div className='registrateFormat'>
                 {chosenType === 'Private' ? (
                     <>
                         <label htmlFor="firstName">Voornaam</label>
-                        <input type="text" id="firstName" value={firstName}onChange={(e) => setFirstName(e.target.value)}></input>
+                        <input type="text" id="firstName" value={firstName} onChange={(e) => setFirstName(e.target.value)}></input>
 
                         <label htmlFor="lastName">Achternaam</label>
-                        <input type="text" id="lastName" value={lastName}onChange={(e) => setLastName(e.target.value)}></input>
+                        <input type="text" id="lastName" value={lastName} onChange={(e) => setLastName(e.target.value)}></input>
 
                         <label htmlFor="email">E-mail</label>
-                        <input type="text" id="email" value={email}onChange={(e) => setEmail(e.target.value)}></input>
+                        <input type="text" id="email" value={email} onChange={(e) => setEmail(e.target.value)}></input>
 
                         <label htmlFor="password">Wachtwoord</label>
-                        <input type="password" id="password" value={password1}onChange={(e) => setPassword1(e.target.value)}></input>
+                        <input type="password" id="password" value={password1} onChange={(e) => setPassword1(e.target.value)}></input>
 
                         <label htmlFor="passwordConfirm">Herhaal wachtwoord</label>
                         <input type="password" id="passwordConfirm" value={password2} onChange={(e) => setPassword2(e.target.value)}></input>
@@ -205,18 +205,18 @@ function SignUp() {
                         <input id='inputExtra' value={add} onChange={(e) => SetAdd(NoSpecialCharacters(e.target.value.toUpperCase()))}></input>
 
                         <label htmlFor="phonenumber">Telefoonnummer</label>
-                        <input type="tel" id="phonenumber" value={phonenumber}onChange={(e) => setPhonenumber(e.target.value)}></input>
+                        <input type="tel" id="phonenumber" value={phonenumber} onChange={(e) => setPhonenumber(e.target.value)}></input>
 
                         <label htmlFor="dateOfBirth">Geboortedatum</label>
-                        <input type="date" id="dateOfBirth" value={dateOfBirth}onChange={(e) => setDateOfBirth(e.target.value)}></input>    
+                        <input type="date" id="dateOfBirth" value={dateOfBirth} onChange={(e) => setDateOfBirth(e.target.value)}></input>    
                     </>
                 ) : (<>
                     {chosenType === 'Business' && isBusinessAccount === 'Employee' ? (
                         <>
                         {chosenType === 'Business' && (
                             <>
-                                <button className='cta-button'onClick={() => setIsBusinessAccount('Employee')} id={isBusinessAccount === 'Employee' ? 'typeButton-active' : 'typeButton'} type='button'>Medewerker</button>
-                                <button className='cta-button'onClick={() => setIsBusinessAccount('Business')} id={isBusinessAccount === 'Business' ? 'typeButton-active' : 'typeButton'} type='button'>Bedrijf</button>
+                                <button className='cta-button' onClick={() => setIsBusinessAccount('Employee')} id={isBusinessAccount === 'Employee' ? 'typeButton-active' : 'typeButton'} type='button'>Medewerker</button>
+                                <button className='cta-button' onClick={() => setIsBusinessAccount('Business')} id={isBusinessAccount === 'Business' ? 'typeButton-active' : 'typeButton'} type='button'>Bedrijf</button>
                             </>
                         )}
                         <label htmlFor='inputEmailBusiness'>Zakelijk email adress</label>
@@ -233,8 +233,8 @@ function SignUp() {
                         <>
                             {chosenType === 'Business' && (
                                 <>
-                                    <button className='cta-button'onClick={() => setIsBusinessAccount('Employee')} id={isBusinessAccount === 'Employee' ? 'typeButton-active' : 'typeButton'} type='button'>Medewerker</button>
-                                    <button className='cta-button'onClick={() => setIsBusinessAccount('Business')} id={isBusinessAccount === 'Business' ? 'typeButton-active' : 'typeButton'} type='button'>Bedrijf</button>
+                                    <button className='cta-button'  onClick={() => setIsBusinessAccount('Employee')} id={isBusinessAccount === 'Employee' ? 'typeButton-active' : 'typeButton'} type='button'>Medewerker</button>
+                                    <button className='cta-button'  onClick={() => setIsBusinessAccount('Business')} id={isBusinessAccount === 'Business' ? 'typeButton-active' : 'typeButton'} type='button'>Bedrijf</button>
                                 </>
                             )}
                             <label htmlFor='inputSubscriptionType'>Abonnement</label>

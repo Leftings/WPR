@@ -5,10 +5,6 @@ import GeneralFooter from "../GeneralBlocks/footer/footer.jsx";
 
 import '../index.css';
 
-/// <summary>
-/// Haalt de gebruikersnaam van de ingelogde gebruiker op en zet deze in de opgegeven staat.
-/// </summary>
-/// <param name="setUser">Functie om de staat bij te werken met de opgehaalde gebruikersnaam.</param>
 function GetUser(setUser) {
     fetch('http://localhost:5165/api/Cookie/GetUserName', {
         method: 'GET',
@@ -20,22 +16,18 @@ function GetUser(setUser) {
         .then(response => {
             console.log(response);
             if (!response.ok) {
-                throw new Error('No Cookie');  // Fout als er geen cookie is
+                throw new Error('No Cookie');  
             }
-            return response.json();  // Zet de reactie om naar JSON
+            return response.json();  
         })
         .then(data => {
             setUser(`${data.message}`);  // Zet de gebruikersnaam in de state
         })
         .catch(error => {
-            console.error('Error:', error);  // Logt fouten naar de console
+            console.error('Error:', error);  
         });
 }
 
-/// <summary>
-/// Haalt het gebruikers-ID op en retourneert het als een promise.
-/// </summary>
-/// <returns>Retourneert een promise met het gebruikers-ID of een foutmelding als de cookie niet gevonden wordt.</returns>
 function GetUserId() {
     return new Promise((resolve, reject) => {
         fetch('http://localhost:5165/api/Cookie/GetUserId', {
@@ -43,30 +35,25 @@ function GetUserId() {
             headers: {
                 'Content-Type': 'application/json',
             },
-            credentials: 'include',  // Verstuurt cookies voor authenticatie
+            credentials: 'include',  
         })
             .then(response => {
                 console.log(response);
                 if (!response.ok) {
                     reject('No Cookie');  // Verwerpt de promise als er geen geldige cookie is
                 }
-                return response.json();  // Zet de reactie om naar JSON
+                return response.json();  
             })
             .then(data => {
                 resolve(data.message);  // Lost de promise op met het gebruikers-ID
             })
             .catch(error => {
-                console.error('Error:', error);  // Logt fouten naar de console
-                reject(error);  // Verwerpt de promise met de fout
+                console.error('Error:', error); 
+                reject(error); 
             });
     });
 }
 
-/// <summary>
-/// Verstuurt een PUT-verzoek om de gebruikersinformatie bij te werken met de opgegeven gegevens.
-/// </summary>
-/// <param name="userData">Object met de gebruikersinformatie die bijgewerkt moet worden.</param>
-/// <returns>Retourneert een bericht dat aangeeft of de informatie succesvol is bijgewerkt of een foutmelding.</returns>
 function ChangeUserInfo(userData) {
     return fetch('http://localhost:5165/api/ChangeUserSettings/ChangeUserInfo', {
         method: 'PUT',
@@ -74,10 +61,10 @@ function ChangeUserInfo(userData) {
             'Content-Type': 'application/json',
         },
         body: JSON.stringify(userData),  // Stuurt de gebruikersinformatie als JSON in de request body
-        credentials: 'include',  // Verstuurt cookies voor authenticatie
+        credentials: 'include',  
     })
         .then(async (response) => {
-            const data = await response.json();  // Wacht op de JSON-reactie
+            const data = await response.json();  
             if (!response.ok) {
                 if (data.message !== 'Email detected') {
                     throw new Error("Onbekende fout");  // Behandelt foutmeldingen behalve 'Email detected'
@@ -86,16 +73,11 @@ function ChangeUserInfo(userData) {
             return data.message;  // Retourneert het bericht van de reactie
         })
         .catch((error) => {
-            console.error(error);  // Logt fouten naar de console
+            console.error(error);  
             throw error;  // Gooit de fout opnieuw voor verdere verwerking
         });
 }
 
-/// <summary>
-/// Verwijdert het gebruikersaccount met het opgegeven gebruikers-ID.
-/// </summary>
-/// <param name="userId">Het gebruikers-ID van de te verwijderen gebruiker.</param>
-/// <returns>Retourneert een resultaat dat aangeeft of de verwijdering succesvol was of niet.</returns>
 function DeleteUser(userId) {
     const encryptedUserId = encrypt(userId);  // Versleutelt het gebruikers-ID
     return fetch(`http://localhost:5165/api/ChangeUserSettings/DeleteUser/${encryptedUserId}`, {
@@ -103,14 +85,14 @@ function DeleteUser(userId) {
         headers: {
             'Content-Type': 'application/json'
         },
-        credentials: 'include',  // Verstuurt cookies voor authenticatie
+        credentials: 'include', 
     })
         .then(async (response) => {
-            const data = await response.json();  // Wacht op de JSON-reactie
+            const data = await response.json();  
             if (!response.ok) {
                 throw new Error(data.message || 'Fout');  // Gooi een foutmelding als de reactie niet OK is
             }
-            return data;  // Retourneert de gegevens van de reactie
+            return data;  
         })
         .catch((error) => {
             console.error('Fout bij het verwijderen van gebruiker:', error.message);  // Logt fouten naar de console
@@ -118,9 +100,6 @@ function DeleteUser(userId) {
         });
 }
 
-/// <summary>
-/// Behandelt de instellingen van de gebruiker, inclusief het updaten van gegevens en het verwijderen van het account.
-/// </summary>
 function UserSettings() {
     const navigate = useNavigate();
     const [user, setUser] = useState('');
@@ -134,34 +113,33 @@ function UserSettings() {
     const [error, setError] = useState(null);
 
     useEffect(() => {
+        // Haal de gebruikers-ID op uit de cookie om te controleren of de gebruiker ingelogd is
         fetch('http://localhost:5165/api/Cookie/GetUserId', {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
             },
-            credentials: 'include',
+            credentials: 'include', 
         })
             .then(response => {
                 if (!response.ok) {
-                    throw new Error('No Cookie');
+                    throw new Error('No Cookie'); // Gooi een fout als de response niet succesvol is
                 }
                 return response.json();
             })
             .then(() => {
-                GetUser(setUser);
+                GetUser(setUser); // Verkrijg gebruikersgegevens bij succesvolle respons
             })
             .catch(() => {
-                navigate('/');
+                navigate('/'); 
             })
     }, [navigate]);
 
     const onSubmit = async (event) => {
-        event.preventDefault();
-        try
-        {
-            if (password1 === password2)
-            {
-                const userId = await GetUserId();
+        event.preventDefault(); 
+        try {
+            if (password1 === password2) { // Controleer of de wachtwoorden overeenkomen
+                const userId = await GetUserId(); // Haal de gebruikers-ID op
 
                 const userData = {
                     ID: userId,
@@ -173,26 +151,20 @@ function UserSettings() {
                     Adres: adres,
                 };
 
-                const message = await ChangeUserInfo(userData);
+                const message = await ChangeUserInfo(userData); // Werk de gebruikersinformatie bij
 
-                if (firstName !== '')
-                {
-                    GetUser(setUser);
+                if (firstName !== '') {
+                    GetUser(setUser); // Haal nieuwe gebruikersgegevens op
                 }
 
-                if (message === 'Data Updated')
-                {
-                    navigate('/home');
-                }
-                else
-                {
-                    setError(message);
+                if (message === 'Data Updated') {
+                    navigate('/home'); 
+                } else {
+                    setError(message); // Toon foutmelding bij mislukte update
                 }
             }
-        }
-        catch (error)
-        {
-            setError("Er zijn geen velden ingevoerd");
+        } catch (error) {
+            setError("Er zijn geen velden ingevoerd"); 
         }
     }
 

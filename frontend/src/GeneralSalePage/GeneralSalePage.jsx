@@ -10,11 +10,6 @@ import "react-datepicker/dist/react-datepicker.css";
 
 const BACKEND_URL = import.meta.env.VITE_REACT_APP_BACKEND_URL ?? 'http://localhost:5165';
 
-/**
- * Fetches detailed data about a vehicle by frame number.
- * @param {string} id - The frame number of the vehicle.
- * @returns {Promise<object|null>} - The vehicle data or null on error.
- */
 function GetVehicle(id) {
     return fetch(`${BACKEND_URL}/api/Vehicle/GetVehicelData?frameNr=${id}`, {
         method: 'GET',
@@ -32,7 +27,7 @@ function GetVehicle(id) {
             return response.json();
         })
         .then((data) => {
-            // Combine key-value pairs for easier access
+            // Combineer sleutel-waarde paren voor eenvoudiger toegang
             const combinedData = data?.message?.reduce((acc, item) => {
                 const [key, value] = Object.entries(item)[0];
                 acc[key] = value;
@@ -46,52 +41,45 @@ function GetVehicle(id) {
         });
 }
 
-/**
- * Main component for managing the general sales page with vehicle filtering.
- */
 function GeneralSalePage() {
-    // State variables for managing vehicles and user-related data
-    const [vehicles, setVehicles] = useState([]); // List of vehicles
-    const [isEmployee, setIsEmployee] = useState(null); // Employee status
-    const [error, setError] = useState(null); // API or UI errors
-    const [loading, setLoading] = useState(false); // General loading state
-    const [loadingRequests, SetLoadingRequests] = useState({}); // Tracks ongoing requests
-    const [isFiltersOpen, setIsFiltersOpen] = useState(false); // Toggles filter dropdown
-    const [filterOptions, setFilterOptions] = useState({}); // Dynamic filter options
-    const [isStaff, setIsStaff] = useState(false); // Staff role
-    const [officeType, setOfficeType] = useState(null); // Office type (front or back)
-    const [isFrontOffice, setIsFrontOffice] = useState(false); // Front-office flag
-    const navigate = useNavigate(); // Navigation hook
-    const [cars, setCars] = useState([]); // Subset of vehicles: cars
-    const [rentals, setRentals] = useState([]); // Rental data
-    const [campers, setCampers] = useState([]); // Subset of vehicles: campers
-    const [caravans, setCaravans] = useState([]); // Subset of vehicles: caravans
+    // State variabelen voor het beheren van voertuigen en gebruikersgerelateerde gegevens
+    const [vehicles, setVehicles] = useState([]); 
+    const [isEmployee, setIsEmployee] = useState(null); 
+    const [error, setError] = useState(null);
+    const [loading, setLoading] = useState(false); 
+    const [loadingRequests, SetLoadingRequests] = useState({}); 
+    const [isFiltersOpen, setIsFiltersOpen] = useState(false); 
+    const [filterOptions, setFilterOptions] = useState({});
+    const [isStaff, setIsStaff] = useState(false); 
+    const [officeType, setOfficeType] = useState(null);
+    const [isFrontOffice, setIsFrontOffice] = useState(false); 
+    const navigate = useNavigate(); 
+    const [cars, setCars] = useState([]); 
+    const [rentals, setRentals] = useState([]); 
+    const [campers, setCampers] = useState([]);
+    const [caravans, setCaravans] = useState([]); 
 
-    // State variables for managing individual filter dropdowns
+    // State variabelen voor het beheren van individuele filter-dropdowns
     const [showColorFilters, setShowColorFilters] = useState(false);
     const [showBrandFilters, setShowBrandFilters] = useState(false);
     const [showTypesFilters, setShowTypesFilters] = useState(false);
     const [showSeatsFilters, setShowSeatsFilters] = useState(false);
 
-    // Toggles the entire filter section visibility
+    // Wisselt de zichtbaarheid van de gehele filtersectie
     const toggleFilters = () => {
         setIsFiltersOpen(!isFiltersOpen);
     };
 
-    // State for active filters
+    // State voor actieve filters
     const [filters, setFilters] = useState({
-        startDate: new Date(new Date().setDate(new Date().getDate() + 1)), // Default to tomorrow
-        endDate: null, // No default end date
-        vehicleTypes: [], // Selected vehicle types
-        brand: [], // Selected brands
-        color: [], // Selected colors
-        seat: [], // Selected seat counts
+        startDate: new Date(new Date().setDate(new Date().getDate() + 1)), // Standaard naar morgen
+        endDate: null,
+        vehicleTypes: [],
+        brand: [], 
+        color: [], 
+        seat: [], 
     });
-
-    /**
-     * Updates the date range filters based on user input.
-     * @param {Array<Date>} dates - Selected start and end dates.
-     */
+    
     const handleDateFilterChange = (dates) => {
         const [start, end] = dates;
         setFilters(prevFilters => ({
@@ -100,11 +88,7 @@ function GeneralSalePage() {
             endDate: end
         }));
     };
-
-    /**
-     * Extracts unique options for filters from the list of vehicles.
-     * @param {Array} vehicles - Array of vehicle objects.
-     */
+    
     const getUniqueFilterOptions = (vehicles) => {
         const uniqueSort = [...new Set(vehicles.map(vehicle => vehicle.Sort))];
         const uniqueBrand = sorterOneItem([...new Set(vehicles.map(vehicle => vehicle.Brand))], 'Low');
@@ -118,57 +102,54 @@ function GeneralSalePage() {
             Seats: uniqueSeats,
         });
     };
-
-    /**
-     * Filters the list of vehicles based on the active filters and rental availability.
-     * @returns {Array} - List of vehicles that match the filters.
-     */
+    
     const filteredVehicles = vehicles.filter(vehicle => {
-        console.log(`Evaluating Vehicle ${vehicle.FrameNr}`);
+        console.log(`Beoordelen voertuig ${vehicle.FrameNr}`);
 
-        // Check if vehicle matches the active filters
+        // Controleer of het voertuig overeenkomt met de actieve filters
         const matchesVehicleTypes = filters.vehicleTypes.length === 0 || filters.vehicleTypes.includes(vehicle.Sort);
         const matchesColor = filters.color.length === 0 || filters.color.includes(vehicle.Color);
         const matchesBrand = filters.brand.length === 0 || filters.brand.includes(vehicle.Brand);
         const matchesSeat = filters.seat.length === 0 || filters.seat.includes(vehicle.Seats);
 
-        // Parse date filters
+        // Verwerk de datumfilters
         const startDate = filters.startDate ? new Date(filters.startDate) : null;
         const endDate = filters.endDate ? new Date(filters.endDate) : null;
 
-        // Check rental availability for the current vehicle
+        // Controleer de verhuurbeschikbaarheid voor het huidige voertuig
         const vehicleRentals = rentals.filter(rental => String(rental.frameNrVehicle) === String(vehicle.FrameNr));
-        console.log(`Vehicle ${vehicle.FrameNr} Rentals:`, vehicleRentals);
+        console.log(`Verhuur van voertuig ${vehicle.FrameNr}:`, vehicleRentals);
 
         const isRentedDuringSelectedDates = vehicleRentals.some(rental => {
             if (!rental.startDate || !rental.endDate) {
-                console.log(`Rental for Vehicle ${vehicle.FrameNr} has invalid dates`);
+                console.log(`Verhuur voor voertuig ${vehicle.FrameNr} heeft ongeldige datums`);
                 return false;
             }
 
             const rentalStart = new Date(rental.startDate);
             const rentalEnd = new Date(rental.endDate);
 
-            console.log(`Rental Start: ${rentalStart}, Rental End: ${rentalEnd}`);
-            console.log(`Selected Start: ${startDate}, Selected End: ${endDate}`);
+            console.log(`Verhuur Start: ${rentalStart}, Verhuur Eind: ${rentalEnd}`);
+            console.log(`Geselecteerde Start: ${startDate}, Geselecteerde Eind: ${endDate}`);
 
             return (
-                (startDate && endDate && startDate <= rentalEnd && endDate >= rentalStart) ||  // Full overlap
-                (startDate && !endDate && startDate < rentalEnd) ||  // Start date overlap
-                (!startDate && endDate && endDate > rentalStart) // End date overlap
+                (startDate && endDate && startDate <= rentalEnd && endDate >= rentalStart) ||  // Volledige overlap
+                (startDate && !endDate && startDate < rentalEnd) ||  // Startdatum overlap
+                (!startDate && endDate && endDate > rentalStart) // Einddatum overlap
             );
         });
 
-        console.log(`Vehicle ${vehicle.FrameNr} ${isRentedDuringSelectedDates ? 'is' : 'is not'} rented during selected dates`);
+        console.log(`Voertuig ${vehicle.FrameNr} ${isRentedDuringSelectedDates ? 'is' : 'is niet'} verhuurd tijdens de geselecteerde datums`);
 
-        // Ensure the vehicle is not under repair
+        // Zorg ervoor dat het voertuig niet in reparatie is
         const isNotInRepair = vehicle.InRepair === "False";
 
-        // Return true if the vehicle passes all filters
+        // Geef true terug als het voertuig voldoet aan alle filters
         return matchesVehicleTypes && matchesBrand && matchesColor && matchesSeat && !isRentedDuringSelectedDates && isNotInRepair;
     });
 
-    // Haal de lijst van beschikbare merken op op basis van de geselecteerde voertuigtypefilters
+
+// Haal de lijst van beschikbare merken op op basis van de geselecteerde voertuigtypefilters
     const availableBrands = sorterOneItem(
         [
             ...new Set(

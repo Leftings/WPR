@@ -30,7 +30,7 @@ function GetUserId() {
                         reject(`Failed to fetch user ID, status: ${response.status}`);
                     }
                 }
-                return response.json(); // Parse de JSON-response
+                return response.json(); 
             })
             .then(data => {
                 // Als de 'message' aanwezig is in de data, wordt het geretourneerd
@@ -73,26 +73,26 @@ class BusinessError extends Error {
 
 // Hoofdcomponent voor het beheren van bedrijfsinstellingen, inclusief abonnementen en klanteninformatie
 function ChangeBusinessSettings() {
-    const navigate = useNavigate(); // Navigatie naar verschillende pagina's in de app
-    const [password1, setPassword1] = useState(''); // Wachtwoordveld 1
-    const [password2, setPassword2] = useState(''); // Wachtwoordveld 2
-    const [error, setError] = useState([]); // Lijst van fouten
-    const [businessName, setBusinessName] = useState(''); // Bedrijfsnaam
-    const [abonnement, setAbonnement] = useState(''); // Abonnementstype
-    const [businessInfo, setBusinessInfo] = useState({}); // Bedrijfsinformatie
-    const [domain, setDomain] = useState(''); // Domeinnaam van het bedrijf
-    const [adres, setAdres] = useState(''); // Bedrijfsadres
-    const [contactEmail, setContactEmail] = useState(''); // Bedrijfse-mail
-    const [vehicleManagerInfo, setVehicleManagerInfo] = useState({}); // Informatie over de voertuigmanager
-    const [newEmail, setNewEmail] = useState(''); // Nieuw e-mailadres
-    const [subscriptions, SetSubscriptions] = useState([]); // Abonnementen van het bedrijf
-    const [selectedSubscription, SetSelectedSubscription] = useState(''); // Geselecteerd abonnement
-    const [updatedCustomers, setUpdatedCustomers] = useState([]); // Bijgewerkte klantinformatie
-    const [customers, setCustomers] = useState([]); // Klantlijst
-    const [businessError, setBusinessError] = useState(''); // Zakelijke foutmelding
-    const [customerError, setCustomerError] = useState(''); // Klantfoutmelding
-    const [vehicleManagerError, setVehicleManagerError] = useState(''); // Voertuigmanagerfoutmelding
-    const [showCustomers, setShowCustomers] = useState(false); // Toon klanten toggle
+    const navigate = useNavigate(); 
+    const [password1, setPassword1] = useState(''); 
+    const [password2, setPassword2] = useState(''); 
+    const [error, setError] = useState([]); 
+    const [businessName, setBusinessName] = useState(''); 
+    const [abonnement, setAbonnement] = useState(''); 
+    const [businessInfo, setBusinessInfo] = useState({});
+    const [domain, setDomain] = useState(''); 
+    const [adres, setAdres] = useState('');
+    const [contactEmail, setContactEmail] = useState(''); 
+    const [vehicleManagerInfo, setVehicleManagerInfo] = useState({});
+    const [newEmail, setNewEmail] = useState('');
+    const [subscriptions, SetSubscriptions] = useState([]); 
+    const [selectedSubscription, SetSelectedSubscription] = useState(''); 
+    const [updatedCustomers, setUpdatedCustomers] = useState([]); 
+    const [customers, setCustomers] = useState([]); 
+    const [businessError, setBusinessError] = useState(''); 
+    const [customerError, setCustomerError] = useState(''); 
+    const [vehicleManagerError, setVehicleManagerError] = useState(''); 
+    const [showCustomers, setShowCustomers] = useState(false); 
 
     // Haalt op of de gebruiker een voertuigmanager is
     useEffect(() => {
@@ -110,10 +110,10 @@ function ChangeBusinessSettings() {
                         throw new Error(data?.message || 'No Cookie'); // Gooit fout als geen geldige cookie is gevonden
                     });
                 }
-                return response.json(); // Geeft de JSON-response terug
+                return response.json(); 
             })
             .catch(() => {
-                alert("Cookie was niet geldig"); // Waarschuwing als cookie niet geldig is
+                alert("Cookie was niet geldig"); 
                 navigate('/'); // Navigeren naar de loginpagina
             });
     }, [navigate]);
@@ -124,16 +124,16 @@ function ChangeBusinessSettings() {
             try {
                 const response = await fetch(`${BACKEND_URL}/api/Subscription/GetSubscriptions`);
                 if (!response.ok) {
-                    throw new Error('Failed to fetch subscriptions'); // Foutmelding bij mislukte aanvraag
+                    throw new Error('Failed to fetch subscriptions'); 
                 }
                 const responseData = await response.json();
                 console.log(responseData);
                 SetSubscriptions(responseData.data); // Zet de ontvangen abonnementen in de state
             } catch (error) {
-                console.log(error); // Log fouten
+                console.log(error);
             }
         }
-        fetchSubscriptions(); // Roept de functie aan om abonnementen op te halen
+        fetchSubscriptions(); 
     }, []); // Lege afhankelijkhedenlijst betekent dat dit alleen bij de eerste render wordt uitgevoerd
 
     // Handelt de wijziging van het e-mailadres van een klant in de lijst
@@ -162,201 +162,129 @@ function ChangeBusinessSettings() {
     };
 
     useEffect(() => {
+        // Definieer een asynchrone functie voor het ophalen van bedrijfsinformatie
         const fetchBusinessData = async () => {
             try {
-                console.log("Starting fetch for vehicle manager info...");
+                console.log("Beginnend met het ophalen van voertuigmanager informatie...");
 
-                const userId = await GetUserId();
-                console.log("User ID:", userId);
+                const userId = await GetUserId(); // Verkrijg de gebruikers-ID
+                console.log("Gebruikers-ID:", userId);
 
                 if (!userId) {
-                    throw new Error("User ID is undefined or not found!");
+                    throw new Error("Gebruikers-ID is niet gedefinieerd of niet gevonden!"); // Foutmelding als geen gebruikers-ID gevonden is
                 }
 
+                // Bouw de URL om de gegevens van de voertuigmanager op te halen
                 const url = `${BACKEND_URL}/api/GetInfoVehicleManager/GetAllInfo?id=${userId}`;
-                const response = await fetch(url);
-                console.log("Raw API Response from fetch:", response);
+                const response = await fetch(url); // Voer het fetch verzoek uit
 
                 if (!response.ok) {
-                    throw new Error(`API request failed with status: ${response.status}`);
+                    throw new Error(`API-verzoek mislukt met status: ${response.status}`); // Foutmelding bij mislukte API-respons
                 }
 
-                const data = await response.json();
-                console.log("Parsed API Response:", data);
+                const data = await response.json(); // Parseer de API-respons naar JSON
 
-                const { message, vehicleManagerInfo, customers } = data;
-                console.log("Parsed vehicleManagerInfo:", vehicleManagerInfo);
-                console.log("Parsed Customers:", customers);
+                const { message, vehicleManagerInfo, customers } = data; // Haal belangrijke gegevens uit de API-respons
 
                 if (!vehicleManagerInfo) {
-                    console.error("vehicleManagerInfo is missing or undefined:", vehicleManagerInfo);
-                    setError(["Error: Vehicle manager info is missing or response message is not 'Success'."]);
+                    console.error("vehicleManagerInfo ontbreekt of is niet gedefinieerd:", vehicleManagerInfo);
+                    setError(["Fout: Vehicle manager info ontbreekt of responsbericht is niet 'Success'."]);
                     return;
                 }
 
-                const businessNumber = vehicleManagerInfo?.business;
-                console.log("Business Number from vehicleManagerInfo:", businessNumber);
+                const businessNumber = vehicleManagerInfo?.business; // Haal het bedrijfsnummer op uit vehicleManagerInfo
+                console.log("Bedrijfsnummer uit vehicleManagerInfo:", businessNumber);
 
                 if (!businessNumber) {
-                    console.error("Business number is missing in vehicle manager info.");
-                    setError(["Business number is missing in vehicle manager info."]);
+                    console.error("Bedrijfsnummer ontbreekt in vehicleManagerInfo.");
+                    setError(["Bedrijfsnummer ontbreekt in vehicleManagerInfo."]);
                     return;
                 }
 
-                setBusinessInfo(vehicleManagerInfo);
+                setBusinessInfo(vehicleManagerInfo); // Zet de opgehaalde bedrijfsinformatie in de state
 
                 if (customers && customers.length > 0) {
-                    setCustomers(customers);
-                    console.log("Using existing customers:", customers);
+                    setCustomers(customers); // Zet de klanten in de state als ze al aanwezig zijn
+                    console.log("Gebruik bestaande klanten:", customers);
                 } else {
-                    console.log(`Fetching customers for business number: ${businessNumber}`);
+                    console.log(`Opvragen klanten voor bedrijfsnummer: ${businessNumber}`);
                     const customerUrl = `${BACKEND_URL}/api/User/GetCustomersByBusinessNumber?businessNumber=${businessNumber}`;
-                    const customerResponse = await fetch(customerUrl);
+                    const customerResponse = await fetch(customerUrl); // Haal klanten op via een ander API-verzoek
 
                     if (!customerResponse.ok) {
-                     setCustomerError("Failed to fetch customers. Status: ${customerResponse.status}");
+                        setCustomerError("Kon de klanten niet ophalen. Status: ${customerResponse.status}"); // Foutmelding als klanten niet opgehaald kunnen worden
                     }
 
-                    const customerData = await customerResponse.json();
-                    console.log("Fetched Customers Data:", customerData);
+                    const customerData = await customerResponse.json(); // Parseer de klantengegevens
+                    console.log("Opgehaalde Klanten Gegevens:", customerData);
 
                     if (customerData?.data) {
-                        setCustomers(customerData.data);
-                        console.log("Fetched Customers:", customerData.data);
+                        setCustomers(customerData.data); // Zet de klanten in de state als ze gevonden zijn
+                        console.log("Opgehaalde Klanten:", customerData.data);
                     } else {
-                        setError(["No customers found for the provided business number."]);
+                        setError(["Geen klanten gevonden voor het opgegeven bedrijfsnummer."]); // Foutmelding als er geen klanten gevonden zijn
                     }
                 }
             } catch (error) {
-                console.error("Error during fetchBusinessData:", error.message);
-                setError([error.message || "An unknown error occurred."]);
+                console.error("Fout tijdens fetchBusinessData:", error.message); // Log eventuele fouten
+                setError([error.message || "Er is een onbekende fout opgetreden."]); // Zet de fout in de state
             }
         };
 
-        fetchBusinessData();
+        fetchBusinessData(); // Voer de fetchBusinessData functie uit bij de component mount
     }, []);
-    useEffect(() => {
-        const fetchBusinessData = async () => {
-            try {
-                console.log("Starting fetch for vehicle manager info...");
 
-                const userId = await GetUserId();
-                console.log("User ID:", userId);
-
-                if (!userId) {
-                    throw new Error("User ID is undefined or not found!");
-                }
-
-                const url = `${BACKEND_URL}/api/GetInfoVehicleManager/GetAllInfo?id=${userId}`;
-                const response = await fetch(url);
-                console.log("Raw API Response from fetch:", response);
-
-                if (!response.ok) {
-                    throw new Error(`API request failed with status: ${response.status}`);
-                }
-
-                const data = await response.json();
-                console.log("Parsed API Response:", data);
-
-                const { message, vehicleManagerInfo, customers } = data;
-                console.log("Parsed vehicleManagerInfo:", vehicleManagerInfo);
-                console.log("Parsed Customers:", customers);
-
-                if (!vehicleManagerInfo) {
-                    console.error("vehicleManagerInfo is missing or undefined:", vehicleManagerInfo);
-                    setError(["Error: Vehicle manager info is missing or response message is not 'Success'."]);
-                    return;
-                }
-
-                const businessNumber = vehicleManagerInfo?.business;
-                console.log("Business Number from vehicleManagerInfo:", businessNumber);
-
-                if (!businessNumber) {
-                    console.error("Business number is missing in vehicle manager info.");
-                    setError(["Business number is missing in vehicle manager info."]);
-                    return;
-                }
-
-                setBusinessInfo(vehicleManagerInfo);
-
-                if (customers && customers.length > 0) {
-                    setCustomers(customers);
-                    console.log("Using existing customers:", customers);
-                } else {
-                    console.log(`Fetching customers for business number: ${businessNumber}`);
-                    const customerUrl = `${BACKEND_URL}/api/User/GetCustomersByBusinessNumber?businessNumber=${businessNumber}`;
-                    const customerResponse = await fetch(customerUrl);
-
-                    if (!customerResponse.ok) {
-                        setCustomerError(`Nog geen customers die bij dit bedrijf horen!`);
-                    }
-
-                    const customerData = await customerResponse.json();
-                    console.log("Fetched Customers Data:", customerData);
-
-                    if (customerData?.data) {
-                        setCustomers(customerData.data);
-                        console.log("Fetched Customers:", customerData.data);
-                    } else {
-                        setError(["No customers found for the provided business number."]);
-                    }
-                }
-            } catch (error) {
-                console.error("Error during fetchBusinessData:", error.message);
-                setError([error.message || "An unknown error occurred."]);
-            }
-        };
-
-        fetchBusinessData();
-    }, []);
-    
 
     const onSubmit = async (event) => {
         event.preventDefault();
 
+        // Controleer of de wachtwoorden overeenkomen
         if (password1 !== password2) {
-            setError(["Passwords do not match"]);
+            setError(["Wachtwoorden komen niet overeen"]);
             return;
         }
 
         try {
+            // Haal de gebruikers-ID op
             const userId = await GetUserId();
             if (!userId) {
-                throw new Error("User ID is undefined or not found!");
+                throw new Error("Gebruikers-ID is niet gedefinieerd of niet gevonden!");
             }
 
             const url = `${BACKEND_URL}/api/GetInfoVehicleManager/GetAllInfo?id=${userId}`;
             const response = await fetch(url);
             if (!response.ok) {
-                throw new Error(`API request failed with status: ${response.status}`);
+                throw new Error(`API-aanroep mislukt met status: ${response.status}`);
             }
 
             const data = await response.json();
             const { vehicleManagerInfo } = data;
 
             if (!vehicleManagerInfo) {
-                throw new Error("Vehicle Manager Info is missing or undefined.");
+                throw new Error("Informatie van de voertuigmanager ontbreekt of is niet gedefinieerd.");
             }
 
-            console.log("Fetched vehicleManagerInfo:", vehicleManagerInfo);
+            // Update de gegevens die verzonden worden
+            console.log("Geverifieerde vehicleManagerInfo:", vehicleManagerInfo);
 
             const updatedInfo = {
                 VehicleManagerInfo: {
                     ID: vehicleManagerInfo?.id,
-                    Password: password1 || vehicleManagerInfo?.password, 
+                    Password: password1 || vehicleManagerInfo?.password,
                     Email: contactEmail || vehicleManagerInfo?.email,
                 },
                 BusinessInfo: {
-                    KvK: vehicleManagerInfo?.business || 'Default Value', 
-                    Abonnement: selectedSubscription || businessInfo?.Abonnement, 
-                    ContactEmail: contactEmail || businessInfo?.ContactEmail, 
+                    KvK: vehicleManagerInfo?.business || 'Standaardwaarde',
+                    Abonnement: selectedSubscription || businessInfo?.Abonnement,
+                    ContactEmail: contactEmail || businessInfo?.ContactEmail,
                     Adres: adres || businessInfo?.Adres,
-                    BusinessName: businessName || businessInfo?.BusinessName, 
+                    BusinessName: businessName || businessInfo?.BusinessName,
                 }
             };
 
-            console.log("Updated Info JSON to be sent:", updatedInfo);
+            console.log("Te verzenden bijgewerkte gegevens:", updatedInfo);
 
+            // Verzend de bijgewerkte gegevens naar de backend
             const updateResponse = await fetch(`${BACKEND_URL}/api/ChangeBusinessSettings/ChangeBusinessInfo`, {
                 method: 'PUT',
                 headers: {
@@ -368,45 +296,47 @@ function ChangeBusinessSettings() {
             if (updateResponse.ok) {
                 navigate('/VehicleManager');
             } else {
-                // Try to extract error message from the response
+                // Foutmelding als de update mislukt
                 const errorData = await updateResponse.json();
-                const errorMessage = 'Niet alles ingevuld of onjuiste gegeven ingevuld';  
+                const errorMessage = 'Niet alles ingevuld of onjuiste gegeven ingevuld';
                 setBusinessError(errorMessage);
             }
         } catch (error) {
-            // Handle unexpected errors (e.g., network errors)
-            setBusinessError(`Error: ${error.message}`);
+            // Onverwachte fouten (zoals netwerkfouten) afhandelen
+            setBusinessError(`Fout: ${error.message}`);
         }
     };
-    
+
     const onSubmitVehicleManager = async () => {
-        console.log("onSubmitVehicleManager is being called!");
+        console.log("onSubmitVehicleManager wordt aangeroepen!");
         try {
+            // Haal gebruikers-ID op en verwerk de informatie
             const userId = await GetUserId();
             if (!userId) {
-                throw new Error("User ID is undefined or not found!");
+                throw new Error("Gebruikers-ID is niet gedefinieerd of niet gevonden!");
             }
 
             const url = `${BACKEND_URL}/api/GetInfoVehicleManager/GetAllInfo?id=${userId}`;
             const response = await fetch(url);
             if (!response.ok) {
-                throw new Error(`API request failed with status: ${response.status}`);
+                throw new Error(`API-aanroep mislukt met status: ${response.status}`);
             }
 
             const data = await response.json();
             const { vehicleManagerInfo } = data;
 
             if (!vehicleManagerInfo) {
-                throw new Error("Vehicle Manager Info is missing or undefined.");
+                throw new Error("Informatie van de voertuigmanager ontbreekt of is niet gedefinieerd.");
             }
 
+            // Gegevens voor de voertuigmanager bijwerken
             const updatedVehicleManagerInfo = {
                 ID: vehicleManagerInfo?.id,
                 Password: password1 || vehicleManagerInfo?.password,
                 Email: newEmail,
             };
 
-            console.log("Updated vehicle manager info being sent to backend:", updatedVehicleManagerInfo);
+            console.log("Bijgewerkte gegevens van voertuigmanager die naar de backend worden gestuurd:", updatedVehicleManagerInfo);
 
             const updateResponse = await fetch(`${BACKEND_URL}/api/ChangeBusinessSettings/ChangeVehicleManagerInfo`, {
                 method: 'PUT',
@@ -418,27 +348,28 @@ function ChangeBusinessSettings() {
 
             const updateData = await updateResponse.json();
 
-            // Log the full response for debugging
-            console.log("Update response:", updateData);
+            // Log het volledige antwoord voor debugging
+            console.log("Update-antwoord:", updateData);
 
             if (updateResponse.ok) {
-                console.log("Vehicle manager updated successfully.");
+                console.log("Voertuigmanager succesvol bijgewerkt.");
                 navigate('/VehicleManager');
             } else {
-                console.error("Error from backend:", updateData.message || "Unknown error");
-                setError([updateData.message || "Unknown error"]);
+                console.error("Fout van backend:", updateData.message || "Onbekende fout");
+                setError([updateData.message || "Onbekende fout"]);
             }
         } catch (error) {
-            console.error("Error during form submission:", error);
-            setError([error.message || "Unknown error"]);
+            console.error("Fout tijdens het indienen van het formulier:", error);
+            setError([error.message || "Onbekende fout"]);
         }
     };
 
     const handleDelete = async (type) => {
-        console.log("Attempting to delete account with KvK:", vehicleManagerInfo?.business);
+        console.log("Proberen account te verwijderen met KvK:", vehicleManagerInfo?.business);
 
+        // Controleren of KvK ontbreekt
         if (!vehicleManagerInfo?.business) {
-            setError("Business number (KvK) is missing.");
+            setError("KvK-nummer ontbreekt.");
             return;
         }
 
@@ -453,7 +384,7 @@ function ChangeBusinessSettings() {
             data.ID = vehicleManagerInfo.ID;
         }
 
-        console.log('Data to be sent:', data);
+        console.log('Te verzenden gegevens:', data);
 
         try {
             const response = await pushWithBodyKind(
@@ -473,8 +404,8 @@ function ChangeBusinessSettings() {
         }
     };
 
-
     const handleCustomerUpdate = async (customerId, index) => {
+        // Bijwerken van klantgegevens
         const customerData = {
             Email: updatedCustomers[index]?.email || customers[index].email,
             Password: updatedCustomers[index]?.password || "",
@@ -488,96 +419,100 @@ function ChangeBusinessSettings() {
             });
 
             if (response.ok) {
-                console.log("Customer updated successfully!");
+                console.log("Klant succesvol bijgewerkt!");
             } else {
                 const errorText = await response.text();
-                console.error("Failed to update customer:", errorText);
+                console.error("Fout bij het bijwerken van de klant:", errorText);
 
                 try {
                     const errorData = JSON.parse(errorText);
-                    console.error("Parsed error data:", errorData);
+                    console.error("Geparseerde foutgegevens:", errorData);
                 } catch (e) {
-                    console.error("Response is not valid JSON:", e);
+                    console.error("Respons is geen geldige JSON:", e);
                 }
             }
         } catch (error) {
-            console.error("Error while updating customer:", error.message);
+            console.error("Fout tijdens het bijwerken van de klant:", error.message);
         }
     };
 
     const checkNewEmail = async (email) => {
-        console.log("Checking email:", email);
+        console.log("E-mail controleren:", email);
 
+        // Controleer of e-mail leeg is
         if (email === '') {
-            setError("Email cannot be empty.");
+            setError("E-mail mag niet leeg zijn.");
             return false;
         }
 
+        // Controleer of e-mail formaat geldig is
         const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
         if (!emailRegex.test(email)) {
-            setError("Invalid email format.");
+            setError("Ongeldig e-mailformaat.");
             return false;
         }
 
         const filledInDomain = email.split('@')[1];
-        console.log("Extracted domain:", filledInDomain);
+        console.log("Uitgelezen domein:", filledInDomain);
 
         if (!filledInDomain) {
-            setError("Invalid email format, missing domain.");
+            setError("Ongeldig e-mailformaat, ontbrekend domein.");
             return false;
         }
 
         try {
+            // Haal de gegevens van de voertuigmanager op
             const userId = await GetUserId();
             if (!userId) {
-                throw new Error("User ID is undefined or not found!");
+                throw new Error("Gebruikers-ID is niet gedefinieerd of niet gevonden!");
             }
 
             const url = `${BACKEND_URL}/api/GetInfoVehicleManager/GetAllInfo?id=${userId}`;
             const response = await fetch(url);
             if (!response.ok) {
-                throw new Error(`API request failed with status: ${response.status}`);
+                throw new Error(`API-aanroep mislukt met status: ${response.status}`);
             }
 
             const data = await response.json();
             const { vehicleManagerInfo } = data;
 
             if (!vehicleManagerInfo) {
-                throw new Error("Vehicle Manager Info is missing or undefined.");
+                throw new Error("Informatie van de voertuigmanager ontbreekt of is niet gedefinieerd.");
             }
 
             const businessKvK = vehicleManagerInfo.business;
             if (!businessKvK) {
-                throw new Error("Business KvK is missing or undefined in vehicleManagerInfo.");
+                throw new Error("KvK ontbreekt in de voertuigmanagerinformatie.");
             }
 
             const domainUrl = `${BACKEND_URL}/api/GetInfoVehicleManager/GetBusinessDomainByKvK?kvk=${businessKvK}`;
             const domainResponse = await fetch(domainUrl);
             if (!domainResponse.ok) {
-                throw new Error(`API request for business domain failed with status: ${domainResponse.status}`);
+                throw new Error(`API-aanroep voor bedrijfsdomein mislukt met status: ${domainResponse.status}`);
             }
 
             const domainData = await domainResponse.json();
             let businessDomain = domainData?.domain;
 
             if (!businessDomain) {
-                throw new Error("Domain not found for the specified KvK.");
+                throw new Error("Domein niet gevonden voor de opgegeven KvK.");
             }
 
-            console.log("Fetched business domain:", businessDomain);
+            console.log("Geverifieerd bedrijfsdomein:", businessDomain);
 
             if (!businessDomain.startsWith('@')) {
                 businessDomain = '@' + businessDomain;
             }
 
+            // Vergelijk het domein van de e-mail met het bedrijfsdomein
             if (`@${filledInDomain}` === businessDomain) {
                 if (email !== vehicleManagerInfo.email) {
                     const checkEmailUrl = `${BACKEND_URL}/api/ChangeBusinessSettings/CheckNewEmail?email=${email}`;
                     const checkEmailResponse = await fetch(checkEmailUrl);
                     if (!checkEmailResponse.ok) {
                         const responseData = await checkEmailResponse.json();
-                        console.log("Error response from checkEmailUrl:", responseData);
-                        setError(responseData.message || "Unknown error");
+                        console.log("Foutantwoord van checkEmailUrl:", responseData);
+                        setError(responseData.message || "Onbekende fout");
                         return false;
                     }
 
@@ -585,26 +520,26 @@ function ChangeBusinessSettings() {
                     console.log("checkEmailData:", checkEmailData);
 
                     if (checkEmailData.message && checkEmailData.message === 'Geldige email') {
-                        console.log("Email is valid.");
+                        console.log("E-mail is geldig.");
                         return true;
                     } else {
-                        VehicleManagerError("Error during email check:", checkEmailData.message);
-                        setError(checkEmailData.message || "Unknown error");
+                        VehicleManagerError("Fout tijdens e-mailcontrole:", checkEmailData.message);
+                        setError(checkEmailData.message || "Onbekende fout");
                         return false;
                     }
                 }
 
-                console.log("Email is the same as the current one, valid.");
+                console.log("E-mail is hetzelfde als de huidige, geldig.");
                 return true;
             } else {
-                console.log("Domain mismatch detected");
-                setError(`Domain is not the same as the specified domain (${businessDomain})`);
+                console.log("Domein komt niet overeen");
+                setError(`Domein komt niet overeen met het opgegeven domein (${businessDomain})`);
                 return false;
             }
 
         } catch (error) {
-            console.error("Error during email check:", error);
-            setError("Error checking email. Please try again later.");
+            console.error("Fout tijdens e-mailcontrole:", error);
+            setError("Fout bij het controleren van de e-mail. Probeer het later opnieuw.");
             return false;
         }
     };
