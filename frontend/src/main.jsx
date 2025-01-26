@@ -30,6 +30,7 @@ import ReviewBusiness from './employeeFrontOffice/addBusiness/reviewBusiness.jsx
 import IntakeForm from './employeeFrontOffice/intakeForm/intakeForm.jsx'
 import ChangeBusinessSettings from './vehicleManager/changeSettings/changeBusinessSettings.jsx';
 import AddSubscription from './employeeBackOffice/addSubscription/addSubscription.jsx'
+import AddVehicleManager from './vehicleManager/addVehicleManager.jsx';
 
 
 createRoot(document.getElementById('root')).render(
@@ -71,6 +72,7 @@ createRoot(document.getElementById('root')).render(
             <Route path="/vehicleManager/changeBusinessSettings" element={<ChangeBusinessSettings />}></Route>
             <Route path="*" element={<Home />}></Route>
             <Route path="/frontOfficeEmployee/intakeForm" element={<IntakeForm />}></Route>
+            <Route path="/vehicleManager/addVehicleManager" element={<AddVehicleManager />} />
         </Routes>
     </Router>
 );

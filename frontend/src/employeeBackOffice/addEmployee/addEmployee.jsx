@@ -133,14 +133,7 @@ function AddEmployee() {
                 <select id='employee' name='office' onChange={(e) => SetKind(e.target.value)} value={KindEmployee}>
                     <option value='Front'>Front Office</option>
                     <option value='Back'>Back Office</option>
-                    <option value='Wagen'>Wagenpark Beheerder</option>
                 </select>
-                {KindEmployee == 'Wagen' && (
-                    <>
-                        <label htmlFor='KvK'>KvK nummer</label>
-                        <input id='KvK' type='number' onChange={(e) => SetKvK(e.target.value)} value={KvK}></input>
-                    </>
-                )}
                 <label htmlFor='firstName'>Voornaam</label>
                 <input id='firstName' onChange={(e) => SetFirstName(e.target.value)}value={FirstName}></input>
 
