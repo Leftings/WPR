@@ -1,5 +1,5 @@
 <map id="WPR.Controllers.Home.HomeController" name="WPR.Controllers.Home.HomeController">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,80,204,123"/>
-<area shape="rect" id="Node000002" title=" " alt="" coords="51,5,158,32"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="107,48,107,80,102,80,102,48"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,123,193,229"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="51,5,148,75"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="102,90,102,123,96,123,96,90"/>
 </map>

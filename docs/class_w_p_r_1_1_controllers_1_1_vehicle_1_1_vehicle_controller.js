@@ -1,7 +1,6 @@
 var class_w_p_r_1_1_controllers_1_1_vehicle_1_1_vehicle_controller =
 [
     [ "VehicleController", "class_w_p_r_1_1_controllers_1_1_vehicle_1_1_vehicle_controller.html#a2d19355781c3fc473f9caf9626210d14", null ],
-    [ "DeleteVehicleAsync", "class_w_p_r_1_1_controllers_1_1_vehicle_1_1_vehicle_controller.html#a9589aaff41f8104b4e79991c1db994a7", null ],
     [ "GetAllVehiclesAsync", "class_w_p_r_1_1_controllers_1_1_vehicle_1_1_vehicle_controller.html#a91b8953460bc03bb3872b9201ee896e2", null ],
     [ "GetFrameNumbersAsync", "class_w_p_r_1_1_controllers_1_1_vehicle_1_1_vehicle_controller.html#af40a4251c23707e82094745a7be18ae5", null ],
     [ "GetFrameNumbersSpecificTypeAsync", "class_w_p_r_1_1_controllers_1_1_vehicle_1_1_vehicle_controller.html#aa33f054897f02e724bc028d7f45fb415", null ],

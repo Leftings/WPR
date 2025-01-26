@@ -23,7 +23,7 @@ var indexSectionNames =
 var indexSectionLabels =
 {
   0: "Alle",
-  1: "Klassen",
+  1: "Data Structuren",
   2: "Namespaces",
   3: "Bestanden",
   4: "Functies",

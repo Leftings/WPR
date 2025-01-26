@@ -162,16 +162,16 @@ Private Attributen</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><span class="lineno">   17</span>    {</div>
-<div class="line"><span class="lineno">   18</span>        DotEnv.Load();  <span class="comment">// Gebruikt de dotenv.net library om het bestand te laden</span></div>
-<div class="line"><span class="lineno">   19</span> </div>
-<div class="line"><span class="lineno">   20</span>        var builder = <span class="keyword">new</span> ConfigurationBuilder()</div>
-<div class="line"><span class="lineno">   21</span>            .AddEnvironmentVariables(); <span class="comment">// Voegt de environment variabelen aan de ConfigurationBuilder</span></div>
-<div class="line"><span class="lineno">   22</span>        </div>
-<div class="line"><span class="lineno">   23</span>        _configuration = builder.Build(); <span class="comment">// Bouwt het configuratie object</span></div>
-<div class="line"><span class="lineno">   24</span>    }</div>
+<div class="fragment"><div class="line"><span class="lineno">   15</span>    {</div>
+<div class="line"><span class="lineno">   16</span>        DotEnv.Load();  <span class="comment">// Gebruikt de dotenv.net library om het bestand te laden</span></div>
+<div class="line"><span class="lineno">   17</span> </div>
+<div class="line"><span class="lineno">   18</span>        var builder = <span class="keyword">new</span> ConfigurationBuilder()</div>
+<div class="line"><span class="lineno">   19</span>            .AddEnvironmentVariables(); <span class="comment">// Voegt de environment variabelen aan de ConfigurationBuilder</span></div>
+<div class="line"><span class="lineno">   20</span>        </div>
+<div class="line"><span class="lineno">   21</span>        _configuration = builder.Build(); <span class="comment">// Bouwt het configuratie object</span></div>
+<div class="line"><span class="lineno">   22</span>    }</div>
 </div><!-- fragment -->
-<p class="reference">Gebruikt <a class="el" href="#l00014">_configuration</a>.</p>
+<p class="reference">Gebruikt <a class="el" href="#l00012">_configuration</a>.</p>
 
 </div>
 </div>
@@ -207,18 +207,18 @@ Private Attributen</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Retourneert</dt><dd>De value van de specifieke environment variabele, of null als niet gevonden.</dd></dl>
-<div class="fragment"><div class="line"><span class="lineno">   32</span>    {</div>
-<div class="line"><span class="lineno">   33</span>        var value = _configuration[key]; <span class="comment">// Fetch de value van de gegeven key</span></div>
-<div class="line"><span class="lineno">   34</span>        <span class="keywordflow">if</span> (<span class="keywordtype">string</span>.IsNullOrEmpty(value)) </div>
-<div class="line"><span class="lineno">   35</span>        {</div>
-<div class="line"><span class="lineno">   36</span>            Console.WriteLine($<span class="stringliteral">&quot;Warning {key} not found in environment&quot;</span>);</div>
-<div class="line"><span class="lineno">   37</span>        }</div>
-<div class="line"><span class="lineno">   38</span>        <span class="keywordflow">return</span> value;</div>
-<div class="line"><span class="lineno">   39</span>    }</div>
+<div class="fragment"><div class="line"><span class="lineno">   30</span>    {</div>
+<div class="line"><span class="lineno">   31</span>        var value = _configuration[key]; <span class="comment">// Fetch de value van de gegeven key</span></div>
+<div class="line"><span class="lineno">   32</span>        <span class="keywordflow">if</span> (<span class="keywordtype">string</span>.IsNullOrEmpty(value)) </div>
+<div class="line"><span class="lineno">   33</span>        {</div>
+<div class="line"><span class="lineno">   34</span>            Console.WriteLine($<span class="stringliteral">&quot;Warning {key} not found in environment&quot;</span>);</div>
+<div class="line"><span class="lineno">   35</span>        }</div>
+<div class="line"><span class="lineno">   36</span>        <span class="keywordflow">return</span> value;</div>
+<div class="line"><span class="lineno">   37</span>    }</div>
 </div><!-- fragment -->
-<p class="reference">Gebruikt <a class="el" href="#l00014">_configuration</a>.</p>
+<p class="reference">Gebruikt <a class="el" href="#l00012">_configuration</a>.</p>
 
-<p class="reference">Wordt aangeroepen door <a class="el" href="#l00013">WPR.Hashing.Hash.Hash()</a> en <a class="el" href="#l00045">IsConfigured()</a>.</p>
+<p class="reference">Wordt aangeroepen door <a class="el" href="#l00013">WPR.Hashing.Hash.Hash()</a> en <a class="el" href="#l00043">IsConfigured()</a>.</p>
 <div class="dynheader">
 Hier is de caller graaf voor deze functie:</div>
 <div class="dyncontent">
@@ -327,12 +327,12 @@ Hier is de caller graaf voor deze functie:</div>
 
 <p>Check om te kijken of alle environment variabelen geconfigureerd zijn. </p>
 <dl class="section return"><dt>Retourneert</dt><dd>True als alle keys present zijn, anders False.</dd></dl>
-<div class="fragment"><div class="line"><span class="lineno">   46</span>    {</div>
-<div class="line"><span class="lineno">   47</span>        var requiredKeys = <span class="keyword">new</span>[] { <span class="stringliteral">&quot;DB_SERVER&quot;</span>, <span class="stringliteral">&quot;DB_DATABASE&quot;</span>, <span class="stringliteral">&quot;DB_USERNAME&quot;</span>, <span class="stringliteral">&quot;DB_PASSWORD&quot;</span> };</div>
-<div class="line"><span class="lineno">   48</span>        <span class="keywordflow">return</span> requiredKeys.All(key =&gt; !<span class="keywordtype">string</span>.IsNullOrEmpty(Get(key)));</div>
-<div class="line"><span class="lineno">   49</span>    }</div>
+<div class="fragment"><div class="line"><span class="lineno">   44</span>    {</div>
+<div class="line"><span class="lineno">   45</span>        var requiredKeys = <span class="keyword">new</span>[] { <span class="stringliteral">&quot;DB_SERVER&quot;</span>, <span class="stringliteral">&quot;DB_DATABASE&quot;</span>, <span class="stringliteral">&quot;DB_USERNAME&quot;</span>, <span class="stringliteral">&quot;DB_PASSWORD&quot;</span> };</div>
+<div class="line"><span class="lineno">   46</span>        <span class="keywordflow">return</span> requiredKeys.All(key =&gt; !<span class="keywordtype">string</span>.IsNullOrEmpty(Get(key)));</div>
+<div class="line"><span class="lineno">   47</span>    }</div>
 </div><!-- fragment -->
-<p class="reference">Gebruikt <a class="el" href="#l00031">Get()</a>.</p>
+<p class="reference">Gebruikt <a class="el" href="#l00029">Get()</a>.</p>
 <div class="dynheader">
 Hier is de call graaf voor deze functie:</div>
 <div class="dyncontent">
@@ -367,7 +367,7 @@ Hier is de call graaf voor deze functie:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="reference">Wordt aangeroepen door <a class="el" href="#l00016">EnvConfig()</a> en <a class="el" href="#l00031">Get()</a>.</p>
+<p class="reference">Wordt aangeroepen door <a class="el" href="#l00014">EnvConfig()</a> en <a class="el" href="#l00029">Get()</a>.</p>
 
 </div>
 </div>

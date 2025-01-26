@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.13.0"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Car And All WPR: WPR.Utils.DomainEmailChecker Class Referentie</title>
+<title>WPR-Backend: WPR.Utils.DomainEmailChecker Class Referentie</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -32,7 +32,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">Car And All WPR
+   <div id="projectname">WPR-Backend
    </div>
   </td>
     <td>        <div id="MSearchBox" class="MSearchBoxInactive">
@@ -111,12 +111,7 @@ $(function(){initNavTree('class_w_p_r_1_1_utils_1_1_domain_email_checker.html','
 <div class="dynheader">
 Collaboratie diagram voor WPR.Utils.DomainEmailChecker:</div>
 <div class="dyncontent">
-<div class="center"><img src="class_w_p_r_1_1_utils_1_1_domain_email_checker__coll__graph.png" border="0" usemap="#a_w_p_r_8_utils_8_domain_email_checker_coll__map" alt="Collaboration graph"/></div>
-<map name="a_w_p_r_8_utils_8_domain_email_checker_coll__map" id="a_w_p_r_8_utils_8_domain_email_checker_coll__map">
-<area shape="rect" title=" " alt="" coords="26,139,230,293"/>
-<area shape="rect" href="interface_w_p_r_1_1_database_1_1_i_connector.html" title="Connector class om verbinding te maken met de database, maakt gebruik van de connectie strings die zi..." alt="" coords="5,5,250,75"/>
-<area shape="poly" title=" " alt="" coords="130,74,130,122,125,122,125,74"/>
-</map>
+<div class="center"><iframe scrolling="no" frameborder="0" src="class_w_p_r_1_1_utils_1_1_domain_email_checker__coll__graph.svg" width="216" height="235"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
@@ -132,7 +127,9 @@ Private Attributen</h2></td></tr>
 <tr class="separator:a20b07d7ec13284ceb302dcfc0adadbd6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Gedetailleerde Beschrijving</h2>
-<div class="textblock"></div><h2 class="groupheader">Constructor &amp; Destructor Documentatie</h2>
+<div class="textblock">
+<p class="definition">De definitie bevindt zich op regel <a class="el" href="_domain_email_checker_8cs_source.html#l00007">7</a> in het bestand <a class="el" href="_domain_email_checker_8cs_source.html">DomainEmailChecker.cs</a>.</p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentatie</h2>
 <a id="aff263248dc5920464edfd8212bb4d752" name="aff263248dc5920464edfd8212bb4d752"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aff263248dc5920464edfd8212bb4d752">&#9670;&#160;</a></span>DomainEmailChecker()</h2>
 
@@ -155,11 +152,13 @@ Private Attributen</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p class="definition">De definitie bevindt zich op regel <a class="el" href="_domain_email_checker_8cs_source.html#l00010">10</a> in het bestand <a class="el" href="_domain_email_checker_8cs_source.html">DomainEmailChecker.cs</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">   11</span>    {</div>
 <div class="line"><span class="lineno">   12</span>        _connector = connector ?? <span class="keywordflow">throw</span> <span class="keyword">new</span> ArgumentNullException(nameof(connector));</div>
 <div class="line"><span class="lineno">   13</span>    }</div>
 </div><!-- fragment -->
-<p class="reference">Gebruikt <a class="el" href="#l00009">_connector</a>.</p>
+<p class="reference">Gebruikt <a class="el" href="_domain_email_checker_8cs_source.html#l00009">_connector</a>.</p>
 
 </div>
 </div>
@@ -186,6 +185,8 @@ Private Attributen</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p class="definition">De definitie bevindt zich op regel <a class="el" href="_domain_email_checker_8cs_source.html#l00014">14</a> in het bestand <a class="el" href="_domain_email_checker_8cs_source.html">DomainEmailChecker.cs</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">   15</span>    {</div>
 <div class="line"><span class="lineno">   16</span>        <span class="keywordtype">string</span> domain = $<span class="stringliteral">&quot;@{email.Split(&quot;</span><span class="stringliteral">@&quot;).Last()}&quot;</span>;</div>
 <div class="line"><span class="lineno">   17</span>        Console.WriteLine(domain);</div>
@@ -208,23 +209,13 @@ Private Attributen</h2></td></tr>
 <div class="line"><span class="lineno">   34</span> </div>
 <div class="line"><span class="lineno">   35</span>    }</div>
 </div><!-- fragment -->
-<p class="reference">Gebruikt <a class="el" href="#l00009">_connector</a>.</p>
+<p class="reference">Gebruikt <a class="el" href="_domain_email_checker_8cs_source.html#l00009">_connector</a>.</p>
 
-<p class="reference">Wordt aangeroepen door <a class="el" href="#l00684">WPR.Repository.UserRepository.AddCustomerChecks()</a>.</p>
+<p class="reference">Wordt aangeroepen door <a class="el" href="_user_repository_8cs_source.html#l00684">WPR.Repository.UserRepository.AddCustomerChecks()</a>.</p>
 <div class="dynheader">
 Hier is de caller graaf voor deze functie:</div>
 <div class="dyncontent">
-<div class="center"><img src="class_w_p_r_1_1_utils_1_1_domain_email_checker_af6430abcc6b17909ff568158e9e05172_icgraph.png" border="0" usemap="#aclass_w_p_r_1_1_utils_1_1_domain_email_checker_af6430abcc6b17909ff568158e9e05172_icgraph" alt=""/></div>
-<map name="aclass_w_p_r_1_1_utils_1_1_domain_email_checker_af6430abcc6b17909ff568158e9e05172_icgraph" id="aclass_w_p_r_1_1_utils_1_1_domain_email_checker_af6430abcc6b17909ff568158e9e05172_icgraph">
-<area shape="rect" title=" " alt="" coords="801,5,1021,48"/>
-<area shape="rect" href="class_w_p_r_1_1_repository_1_1_user_repository.html#ae8b7a3c517ffe6cb1b85eee60e5b2292" title="AddCustomerChecks kijkt of alle ingevoerde velden geldig zijn. Als een check faalt falen alle checks." alt="" coords="536,5,753,48"/>
-<area shape="poly" title=" " alt="" coords="786,29,754,29,754,24,786,24"/>
-<area shape="rect" href="class_w_p_r_1_1_repository_1_1_user_repository.html#a688723c1fb3385274f13ba0e3ba78da8" title="AddCustomer krijgt SignUpRequestCustomer binnen en SignUpRequestCustomerPrivate. Elk account heeft al..." alt="" coords="5,5,223,48"/>
-<area shape="poly" title=" " alt="" coords="521,26,488,25,271,25,223,26,223,21,271,20,488,20,521,21"/>
-<area shape="rect" href="class_w_p_r_1_1_repository_1_1_user_repository.html#a4fe2a09bb575fb8d9510828ef5ad9813" title="AddPrivateCustomerDetails zorgt ervoor dat alle extra details van particuliere huurders toegevoegd wo..." alt="" coords="271,35,488,77"/>
-<area shape="poly" title=" " alt="" coords="521,43,489,47,488,41,520,38"/>
-<area shape="poly" title=" " alt="" coords="255,45,223,41,224,36,255,40"/>
-</map>
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="class_w_p_r_1_1_utils_1_1_domain_email_checker_af6430abcc6b17909ff568158e9e05172_icgraph.svg" width="100%" height="362"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
 </div>
 
 </div>
@@ -250,12 +241,14 @@ Hier is de caller graaf voor deze functie:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="reference">Wordt aangeroepen door <a class="el" href="#l00010">DomainEmailChecker()</a> en <a class="el" href="#l00014">DomainExists()</a>.</p>
+<p class="definition">De definitie bevindt zich op regel <a class="el" href="_domain_email_checker_8cs_source.html#l00009">9</a> in het bestand <a class="el" href="_domain_email_checker_8cs_source.html">DomainEmailChecker.cs</a>.</p>
+
+<p class="reference">Wordt aangeroepen door <a class="el" href="_domain_email_checker_8cs_source.html#l00010">DomainEmailChecker()</a> en <a class="el" href="_domain_email_checker_8cs_source.html#l00014">DomainExists()</a>.</p>
 
 </div>
 </div>
 <hr/>De documentatie voor deze klasse is gegenereerd op basis van het volgende bestand:<ul>
-<li>D:/codes/WPR/backend/src/Utils/<a class="el" href="">DomainEmailChecker.cs</a></li>
+<li>D:/codes/WPR8/WPR/backend/src/Utils/<a class="el" href="_domain_email_checker_8cs_source.html">DomainEmailChecker.cs</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->

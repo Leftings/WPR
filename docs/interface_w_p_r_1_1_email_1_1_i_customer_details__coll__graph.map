@@ -1,5 +1,5 @@
 <map id="WPR.Email.ICustomerDetails" name="WPR.Email.ICustomerDetails">
-<area shape="rect" id="Node000001" title=" " alt="" coords="12,176,197,245"/>
-<area shape="rect" id="Node000002" href="$interface_w_p_r_1_1_email_1_1_i_details.html" title=" " alt="" coords="5,5,203,128"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="107,143,107,176,102,176,102,143"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,144,191,213"/>
+<area shape="rect" id="Node000002" href="$interface_w_p_r_1_1_email_1_1_i_details.html" title=" " alt="" coords="33,5,164,96"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="101,111,101,144,96,144,96,111"/>
 </map>

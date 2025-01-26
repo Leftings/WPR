@@ -1,11 +1,11 @@
 <map id="WPR.Controllers.Employee.FrontOffice.AddIntake.AddIntakeController" name="WPR.Controllers.Employee.FrontOffice.AddIntake.AddIntakeController">
-<area shape="rect" id="Node000001" title="AddIntakeController zorgt ervoor dat informatie over de inname van een voertuig toegevoegd kan worden..." alt="" coords="274,880,487,1099"/>
-<area shape="rect" id="Node000002" title=" " alt="" coords="5,376,102,445"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="51,460,49,534,55,626,63,675,75,724,92,771,116,815,149,855,188,890,232,919,275,943,273,948,229,924,185,894,145,859,111,817,88,773,70,725,57,676,49,627,44,534,46,460"/>
-<area shape="rect" id="Node000003" href="$interface_w_p_r_1_1_database_1_1_i_connector.html" title="Connector class om verbinding te maken met de database, maakt gebruik van de connectie strings die zi..." alt="" coords="126,376,371,445"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="259,444,354,863,349,864,253,446"/>
-<area shape="rect" id="Node000004" href="$interface_w_p_r_1_1_repository_1_1_i_employee_repository.html" title="Interface defining methods voor user gerelateerde database operaties, validatie, user management,..." alt="" coords="395,5,629,816"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="439,816,428,857,426,865,421,863,423,855,434,815"/>
-<area shape="rect" id="Node000005" href="$interface_w_p_r_1_1_repository_1_1_i_vehicle_repository.html" title=" " alt="" coords="653,19,899,803"/>
-<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="656,801,644,818,613,852,578,883,503,933,500,929,575,879,609,848,640,814,651,798"/>
+<area shape="rect" id="Node000001" title="AddIntakeController zorgt ervoor dat informatie over de inname van een voertuig toegevoegd kan worden..." alt="" coords="219,453,419,576"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,163,102,232"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="62,246,79,317,95,354,116,388,138,412,164,434,220,469,217,474,161,438,135,416,112,391,90,357,74,319,57,248"/>
+<area shape="rect" id="Node000003" href="$interface_w_p_r_1_1_database_1_1_i_connector.html" title="Connector class om verbinding te maken met de database, maakt gebruik van de connectie strings die zi..." alt="" coords="126,163,296,232"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="225,231,295,436,290,438,220,233"/>
+<area shape="rect" id="Node000004" href="$interface_w_p_r_1_1_repository_1_1_i_employee_repository.html" title="Interface defining methods voor user gerelateerde database operaties, validatie, user management,..." alt="" coords="321,16,533,379"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="388,379,369,430,366,439,361,437,365,428,383,377"/>
+<area shape="rect" id="Node000005" href="$interface_w_p_r_1_1_repository_1_1_i_vehicle_repository.html" title=" " alt="" coords="558,5,779,389"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="559,388,513,431,476,455,436,475,434,470,473,450,509,427,556,384"/>
 </map>

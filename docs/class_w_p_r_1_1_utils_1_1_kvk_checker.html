@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.13.0"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Car And All WPR: WPR.Utils.KvkChecker Class Referentie</title>
+<title>WPR-Backend: WPR.Utils.KvkChecker Class Referentie</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -32,7 +32,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">Car And All WPR
+   <div id="projectname">WPR-Backend
    </div>
   </td>
     <td>        <div id="MSearchBox" class="MSearchBoxInactive">
@@ -111,12 +111,7 @@ $(function(){initNavTree('class_w_p_r_1_1_utils_1_1_kvk_checker.html',''); initR
 <div class="dynheader">
 Collaboratie diagram voor WPR.Utils.KvkChecker:</div>
 <div class="dyncontent">
-<div class="center"><img src="class_w_p_r_1_1_utils_1_1_kvk_checker__coll__graph.png" border="0" usemap="#a_w_p_r_8_utils_8_kvk_checker_coll__map" alt="Collaboration graph"/></div>
-<map name="a_w_p_r_8_utils_8_kvk_checker_coll__map" id="a_w_p_r_8_utils_8_kvk_checker_coll__map">
-<area shape="rect" title=" " alt="" coords="17,672,253,811"/>
-<area shape="rect" href="interface_w_p_r_1_1_repository_1_1_i_user_repository.html" title="Interface defining methods voor user gerelateerde database operaties, validatie, user management,..." alt="" coords="5,5,265,608"/>
-<area shape="poly" title=" " alt="" coords="138,607,138,655,133,655,133,607"/>
-</map>
+<div class="center"><iframe scrolling="no" frameborder="0" src="class_w_p_r_1_1_utils_1_1_kvk_checker__coll__graph.svg" width="219" height="448"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
@@ -132,7 +127,9 @@ Private Attributen</h2></td></tr>
 <tr class="separator:a8ab80d821d0b0578f2fc1bec5bbd1011"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Gedetailleerde Beschrijving</h2>
-<div class="textblock"></div><h2 class="groupheader">Constructor &amp; Destructor Documentatie</h2>
+<div class="textblock">
+<p class="definition">De definitie bevindt zich op regel <a class="el" href="_kvk_checker_8cs_source.html#l00006">6</a> in het bestand <a class="el" href="_kvk_checker_8cs_source.html">KvkChecker.cs</a>.</p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentatie</h2>
 <a id="a615f7bc3551a179f7650703d613504fc" name="a615f7bc3551a179f7650703d613504fc"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a615f7bc3551a179f7650703d613504fc">&#9670;&#160;</a></span>KvkChecker()</h2>
 
@@ -155,11 +152,13 @@ Private Attributen</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p class="definition">De definitie bevindt zich op regel <a class="el" href="_kvk_checker_8cs_source.html#l00010">10</a> in het bestand <a class="el" href="_kvk_checker_8cs_source.html">KvkChecker.cs</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">   11</span>    {</div>
 <div class="line"><span class="lineno">   12</span>        _userRepository = userRepository;</div>
 <div class="line"><span class="lineno">   13</span>    }</div>
 </div><!-- fragment -->
-<p class="reference">Gebruikt <a class="el" href="#l00008">_userRepository</a>.</p>
+<p class="reference">Gebruikt <a class="el" href="_kvk_checker_8cs_source.html#l00008">_userRepository</a>.</p>
 
 </div>
 </div>
@@ -186,6 +185,8 @@ Private Attributen</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p class="definition">De definitie bevindt zich op regel <a class="el" href="_kvk_checker_8cs_source.html#l00015">15</a> in het bestand <a class="el" href="_kvk_checker_8cs_source.html">KvkChecker.cs</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">   16</span>    {</div>
 <div class="line"><span class="lineno">   17</span>        <span class="keywordflow">if</span> (!kvkNumber.HasValue || kvkNumber.Value.ToString().Length != 8)</div>
 <div class="line"><span class="lineno">   18</span>        {</div>
@@ -201,7 +202,7 @@ Private Attributen</h2></td></tr>
 <div class="line"><span class="lineno">   28</span>        <span class="keywordflow">return</span> (<span class="keyword">true</span>, <span class="keyword">null</span>);</div>
 <div class="line"><span class="lineno">   29</span>    }</div>
 </div><!-- fragment -->
-<p class="reference">Gebruikt <a class="el" href="#l00008">_userRepository</a>.</p>
+<p class="reference">Gebruikt <a class="el" href="_kvk_checker_8cs_source.html#l00008">_userRepository</a>.</p>
 
 </div>
 </div>
@@ -226,12 +227,14 @@ Private Attributen</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="reference">Wordt aangeroepen door <a class="el" href="#l00015">IsKvkNumberValid()</a> en <a class="el" href="#l00010">KvkChecker()</a>.</p>
+<p class="definition">De definitie bevindt zich op regel <a class="el" href="_kvk_checker_8cs_source.html#l00008">8</a> in het bestand <a class="el" href="_kvk_checker_8cs_source.html">KvkChecker.cs</a>.</p>
+
+<p class="reference">Wordt aangeroepen door <a class="el" href="_kvk_checker_8cs_source.html#l00015">IsKvkNumberValid()</a> en <a class="el" href="_kvk_checker_8cs_source.html#l00010">KvkChecker()</a>.</p>
 
 </div>
 </div>
 <hr/>De documentatie voor deze klasse is gegenereerd op basis van het volgende bestand:<ul>
-<li>D:/codes/WPR/backend/src/Utils/<a class="el" href="">KvkChecker.cs</a></li>
+<li>D:/codes/WPR8/WPR/backend/src/Utils/<a class="el" href="_kvk_checker_8cs_source.html">KvkChecker.cs</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->

@@ -1,6 +1,5 @@
 <map id="WPR.Controllers.Customer.AddBusiness.AddBusinessController.BusinessAccepted" name="WPR.Controllers.Customer.AddBusiness.AddBusinessController.BusinessAccepted">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,21,245,80"/>
-<area shape="rect" id="Node000002" href="$da/d73/namespace_w_p_r_1_1_utils.html#a17791ac96420c6753ba62c8137da2fb1" title=" " alt="" coords="293,29,477,72"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="245,48,277,48,277,53,245,53"/>
-<area shape="poly" id="edge2_Node000002_Node000002" title=" " alt="" coords="336,29,334,19,342,10,359,5,385,3,412,5,429,11,427,16,411,10,385,8,360,10,345,15,339,21,341,28"/>
+<area shape="rect" id="Node000001" title="Markeert een bedrijfsaanvraag als geaccepteerd, genereert een gebruikerswachtwoord voor de beheerder ..." alt="" coords="5,5,245,64"/>
+<area shape="rect" id="Node000002" href="$d8/dd0/class_w_p_r_1_1_utils_1_1_strong_password_maker.html#a14b05cdc7b684fd66fc0d02fc32d60b4" title=" " alt="" coords="293,13,477,56"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="245,32,277,32,277,37,245,37"/>
 </map>

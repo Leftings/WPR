@@ -1,4 +1,4 @@
 var _contract_repository_8cs =
 [
-    [ "WPR.Repository.ContractRepository", "d2/d0e/class_w_p_r_1_1_repository_1_1_contract_repository.html", "d2/d0e/class_w_p_r_1_1_repository_1_1_contract_repository" ]
+    [ "ContractRepository", "d2/dd2/class_contract_repository.html", "d2/dd2/class_contract_repository" ]
 ];

@@ -1,5 +1,5 @@
 <map id="WPR.Controllers.General.Cookie.SessionHandler" name="WPR.Controllers.General.Cookie.SessionHandler">
-<area shape="rect" id="Node000001" title="SessionHandler zorgt ervoor dat er cookies aangemaakt kunnen worden op een simpele manier." alt="" coords="5,123,253,368"/>
-<area shape="rect" id="Node000002" title=" " alt="" coords="90,5,169,75"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="132,90,132,123,127,123,127,90"/>
+<area shape="rect" id="Node000001" title="SessionHandler zorgt ervoor dat er cookies aangemaakt kunnen worden op een simpele manier." alt="" coords="5,123,168,272"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="47,5,126,75"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="89,90,89,123,84,123,84,90"/>
 </map>

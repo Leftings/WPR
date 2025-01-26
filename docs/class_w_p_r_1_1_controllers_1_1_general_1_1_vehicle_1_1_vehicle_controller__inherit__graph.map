@@ -1,5 +1,5 @@
 <map id="WPR.Controllers.General.Vehicle.VehicleController" name="WPR.Controllers.General.Vehicle.VehicleController">
-<area shape="rect" id="Node000001" title="VehicleController zorgt ervoor dat voertuiggegevens uit de backend gehaald kunnen worden." alt="" coords="5,123,254,725"/>
-<area shape="rect" id="Node000002" title=" " alt="" coords="82,5,178,75"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="132,90,132,123,127,123,127,90"/>
+<area shape="rect" id="Node000001" title="VehicleController zorgt ervoor dat voertuiggegevens uit de backend gehaald kunnen worden." alt="" coords="5,123,215,437"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="62,5,159,75"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="113,89,113,123,108,123,108,89"/>
 </map>

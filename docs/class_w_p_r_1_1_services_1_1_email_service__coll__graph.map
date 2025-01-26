@@ -1,7 +1,7 @@
 <map id="WPR.Services.EmailService" name="WPR.Services.EmailService">
-<area shape="rect" id="Node000001" title=" " alt="" coords="129,448,368,1109"/>
-<area shape="rect" id="Node000002" href="$interface_w_p_r_1_1_services_1_1_i_email_service.html" title=" " alt="" coords="5,5,254,384"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="174,398,184,448,179,449,169,399"/>
-<area shape="rect" id="Node000003" href="$class_w_p_r_1_1_data_1_1_env_config.html" title="Leez het .env bestand uit waarin de connectie strings staan naar de database. Deze staan in een apart..." alt="" coords="279,80,456,309"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="347,310,322,432,317,431,341,309"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="108,267,331,560"/>
+<area shape="rect" id="Node000002" href="$interface_w_p_r_1_1_services_1_1_i_email_service.html" title=" " alt="" coords="5,27,228,181"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="150,195,174,266,168,268,145,196"/>
+<area shape="rect" id="Node000003" href="$class_w_p_r_1_1_data_1_1_env_config.html" title="Leez het .env bestand uit waarin de connectie strings staan naar de database. Deze staan in een apart..." alt="" coords="253,5,394,203"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="293,203,277,251,272,250,288,202"/>
 </map>

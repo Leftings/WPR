@@ -1,4 +1,4 @@
 var namespaces_dup =
 [
-    [ "WPR", "dc/d8b/namespace_w_p_r.html", "dc/d8b/namespace_w_p_r" ]
+    [ "WPR", "namespace_w_p_r.html", "namespace_w_p_r" ]
 ];

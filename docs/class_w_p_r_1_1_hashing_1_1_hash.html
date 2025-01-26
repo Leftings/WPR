@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.13.0"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Car And All WPR: WPR.Hashing.Hash Class Referentie</title>
+<title>WPR-Backend: WPR.Hashing.Hash Class Referentie</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -32,7 +32,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">Car And All WPR
+   <div id="projectname">WPR-Backend
    </div>
   </td>
     <td>        <div id="MSearchBox" class="MSearchBoxInactive">
@@ -114,10 +114,7 @@ $(function(){initNavTree('class_w_p_r_1_1_hashing_1_1_hash.html',''); initResiza
 <div class="dynheader">
 Collaboratie diagram voor WPR.Hashing.Hash:</div>
 <div class="dyncontent">
-<div class="center"><img src="class_w_p_r_1_1_hashing_1_1_hash__coll__graph.png" border="0" usemap="#a_w_p_r_8_hashing_8_hash_coll__map" alt="Collaboration graph"/></div>
-<map name="a_w_p_r_8_hashing_8_hash_coll__map" id="a_w_p_r_8_hashing_8_hash_coll__map">
-<area shape="rect" title="Class Hash zorgt ervoor dat wachtwoorden op een veilige manier worden gehashed doormiddel van het HMA..." alt="" coords="5,5,192,133"/>
-</map>
+<div class="center"><iframe scrolling="no" frameborder="0" src="class_w_p_r_1_1_hashing_1_1_hash__coll__graph.svg" width="140" height="123"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
@@ -138,6 +135,8 @@ Properties</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Gedetailleerde Beschrijving</h2>
 <div class="textblock"><p>Class <a class="el" href="class_w_p_r_1_1_hashing_1_1_hash.html" title="Class Hash zorgt ervoor dat wachtwoorden op een veilige manier worden gehashed doormiddel van het HMA...">Hash</a> zorgt ervoor dat wachtwoorden op een veilige manier worden gehashed doormiddel van het HMACSGA256 algoritme. </p>
+
+<p class="definition">De definitie bevindt zich op regel <a class="el" href="hash_8cs_source.html#l00010">10</a> in het bestand <a class="el" href="hash_8cs_source.html">hash.cs</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentatie</h2>
 <a id="a5e083798081f2a97774dbbf4cdaa4101" name="a5e083798081f2a97774dbbf4cdaa4101"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a5e083798081f2a97774dbbf4cdaa4101">&#9670;&#160;</a></span>Hash()</h2>
@@ -161,21 +160,18 @@ Properties</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p class="definition">De definitie bevindt zich op regel <a class="el" href="hash_8cs_source.html#l00013">13</a> in het bestand <a class="el" href="hash_8cs_source.html">hash.cs</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">   14</span>    {</div>
 <div class="line"><span class="lineno">   15</span>        _salt = Convert.FromBase64String(envConfig.<a class="code hl_function" href="class_w_p_r_1_1_data_1_1_env_config.html#aa9ca09132345c9c5905f2c408fe73fef">Get</a>(<span class="stringliteral">&quot;SALT&quot;</span>));</div>
 <div class="line"><span class="lineno">   16</span>    }</div>
-<div class="ttc" id="aclass_w_p_r_1_1_data_1_1_env_config_html_aa9ca09132345c9c5905f2c408fe73fef"><div class="ttname"><a href="class_w_p_r_1_1_data_1_1_env_config.html#aa9ca09132345c9c5905f2c408fe73fef">WPR.Data.EnvConfig.Get</a></div><div class="ttdeci">virtual string Get(string key)</div><div class="ttdoc">Haalt de value van de specifieke environement variabelen.</div><div class="ttdef"><b>Definitie</b> EnvConfig.cs:31</div></div>
+<div class="ttc" id="aclass_w_p_r_1_1_data_1_1_env_config_html_aa9ca09132345c9c5905f2c408fe73fef"><div class="ttname"><a href="class_w_p_r_1_1_data_1_1_env_config.html#aa9ca09132345c9c5905f2c408fe73fef">WPR.Data.EnvConfig.Get</a></div><div class="ttdeci">virtual string Get(string key)</div><div class="ttdoc">Haalt de value van de specifieke environement variabelen.</div><div class="ttdef"><b>Definitie</b> <a href="_env_config_8cs_source.html#l00031">EnvConfig.cs:31</a></div></div>
 </div><!-- fragment -->
-<p class="reference">Gebruikt <a class="el" href="#l00012">_salt</a> en <a class="el" href="#l00031">WPR.Data.EnvConfig.Get()</a>.</p>
+<p class="reference">Gebruikt <a class="el" href="hash_8cs_source.html#l00012">_salt</a> en <a class="el" href="_env_config_8cs_source.html#l00031">WPR.Data.EnvConfig.Get()</a>.</p>
 <div class="dynheader">
 Hier is de call graaf voor deze functie:</div>
 <div class="dyncontent">
-<div class="center"><img src="class_w_p_r_1_1_hashing_1_1_hash_a5e083798081f2a97774dbbf4cdaa4101_cgraph.png" border="0" usemap="#aclass_w_p_r_1_1_hashing_1_1_hash_a5e083798081f2a97774dbbf4cdaa4101_cgraph" alt=""/></div>
-<map name="aclass_w_p_r_1_1_hashing_1_1_hash_a5e083798081f2a97774dbbf4cdaa4101_cgraph" id="aclass_w_p_r_1_1_hashing_1_1_hash_a5e083798081f2a97774dbbf4cdaa4101_cgraph">
-<area shape="rect" title=" " alt="" coords="5,5,181,32"/>
-<area shape="rect" href="class_w_p_r_1_1_data_1_1_env_config.html#aa9ca09132345c9c5905f2c408fe73fef" title="Haalt de value van de specifieke environement variabelen." alt="" coords="229,5,404,32"/>
-<area shape="poly" title=" " alt="" coords="181,16,213,16,213,21,181,21"/>
-</map>
+<div class="center"><iframe scrolling="no" frameborder="0" src="class_w_p_r_1_1_hashing_1_1_hash_a5e083798081f2a97774dbbf4cdaa4101_cgraph.svg" width="410" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -212,6 +208,8 @@ Hier is de call graaf voor deze functie:</div>
   </dd>
 </dl>
 <dl class="section return"><dt>Retourneert</dt><dd></dd></dl>
+
+<p class="definition">De definitie bevindt zich op regel <a class="el" href="hash_8cs_source.html#l00033">33</a> in het bestand <a class="el" href="hash_8cs_source.html">hash.cs</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">   34</span>    {</div>
 <div class="line"><span class="lineno">   35</span>        <span class="keywordtype">string</span> hashed = Convert.ToBase64String(KeyDerivation.Pbkdf2(</div>
 <div class="line"><span class="lineno">   36</span>            password: password!, <span class="comment">// Het wachtwoord</span></div>
@@ -223,7 +221,7 @@ Hier is de call graaf voor deze functie:</div>
 <div class="line"><span class="lineno">   42</span>        <span class="keywordflow">return</span> hashed;</div>
 <div class="line"><span class="lineno">   43</span>    }</div>
 </div><!-- fragment -->
-<p class="reference">Gebruikt <a class="el" href="#l00012">_salt</a>.</p>
+<p class="reference">Gebruikt <a class="el" href="hash_8cs_source.html#l00012">_salt</a>.</p>
 
 </div>
 </div>
@@ -252,6 +250,8 @@ Hier is de call graaf voor deze functie:</div>
 
 <p>Het creëren van een salt. </p>
 <dl class="section return"><dt>Retourneert</dt><dd></dd></dl>
+
+<p class="definition">De definitie bevindt zich op regel <a class="el" href="hash_8cs_source.html#l00022">22</a> in het bestand <a class="el" href="hash_8cs_source.html">hash.cs</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">   23</span>    {</div>
 <div class="line"><span class="lineno">   24</span>        <span class="keywordtype">byte</span>[] salt = RandomNumberGenerator.GetBytes(128 / 8); <span class="comment">// de bites worden naar bytes omgezet</span></div>
 <div class="line"><span class="lineno">   25</span>        <span class="keywordflow">return</span> salt;</div>
@@ -279,14 +279,16 @@ Hier is de call graaf voor deze functie:</div>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p class="definition">De definitie bevindt zich op regel <a class="el" href="hash_8cs_source.html#l00012">12</a> in het bestand <a class="el" href="hash_8cs_source.html">hash.cs</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">   12</span>{ <span class="keyword">get</span>; <span class="keyword">set</span>; }</div>
 </div><!-- fragment -->
-<p class="reference">Wordt aangeroepen door <a class="el" href="#l00033">createHash()</a> en <a class="el" href="#l00013">Hash()</a>.</p>
+<p class="reference">Wordt aangeroepen door <a class="el" href="hash_8cs_source.html#l00033">createHash()</a> en <a class="el" href="hash_8cs_source.html#l00013">Hash()</a>.</p>
 
 </div>
 </div>
 <hr/>De documentatie voor deze klasse is gegenereerd op basis van het volgende bestand:<ul>
-<li>D:/codes/WPR/backend/src/Hashing/<a class="el" href="">hash.cs</a></li>
+<li>D:/codes/WPR8/WPR/backend/src/Hashing/<a class="el" href="hash_8cs_source.html">hash.cs</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->

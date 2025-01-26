@@ -173,12 +173,12 @@ Private Attributen</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><span class="lineno">   21</span>    {</div>
-<div class="line"><span class="lineno">   22</span>        _connector = connector ?? <span class="keywordflow">throw</span> <span class="keyword">new</span> ArgumentNullException(nameof(connector));</div>
-<div class="line"><span class="lineno">   23</span>        _userRepository = userRepository ?? <span class="keywordflow">throw</span> <span class="keyword">new</span> ArgumentNullException(nameof(userRepository));</div>
-<div class="line"><span class="lineno">   24</span>    }</div>
+<div class="fragment"><div class="line"><span class="lineno">   19</span>    {</div>
+<div class="line"><span class="lineno">   20</span>        _connector = connector ?? <span class="keywordflow">throw</span> <span class="keyword">new</span> ArgumentNullException(nameof(connector));</div>
+<div class="line"><span class="lineno">   21</span>        _userRepository = userRepository ?? <span class="keywordflow">throw</span> <span class="keyword">new</span> ArgumentNullException(nameof(userRepository));</div>
+<div class="line"><span class="lineno">   22</span>    }</div>
 </div><!-- fragment -->
-<p class="reference">Gebruikt <a class="el" href="#l00017">_connector</a> en <a class="el" href="#l00018">_userRepository</a>.</p>
+<p class="reference">Gebruikt <a class="el" href="#l00015">_connector</a> en <a class="el" href="#l00016">_userRepository</a>.</p>
 
 </div>
 </div>
@@ -211,47 +211,47 @@ Private Attributen</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Retourneert</dt><dd></dd></dl>
-<div class="fragment"><div class="line"><span class="lineno">   36</span>    {</div>
-<div class="line"><span class="lineno">   37</span>        <span class="keywordflow">try</span></div>
-<div class="line"><span class="lineno">   38</span>        {</div>
-<div class="line"><span class="lineno">   39</span>            <span class="comment">// Vehicle blob wordt omgezet naar bytes</span></div>
-<div class="line"><span class="lineno">   40</span>            <span class="keywordtype">byte</span>[] vehicleBlobBytes = <span class="keyword">null</span>;</div>
-<div class="line"><span class="lineno">   41</span> </div>
-<div class="line"><span class="lineno">   42</span>            <span class="keywordflow">if</span> (vehicleBlob != <span class="keyword">null</span>)</div>
-<div class="line"><span class="lineno">   43</span>            {</div>
-<div class="line"><span class="lineno">   44</span>                <span class="keyword">using</span> (var memoryStream = <span class="keyword">new</span> MemoryStream())</div>
-<div class="line"><span class="lineno">   45</span>                {</div>
-<div class="line"><span class="lineno">   46</span>                    await vehicleBlob.CopyToAsync(memoryStream);</div>
-<div class="line"><span class="lineno">   47</span>                    vehicleBlobBytes = memoryStream.ToArray();</div>
-<div class="line"><span class="lineno">   48</span>                }</div>
-<div class="line"><span class="lineno">   49</span>            }</div>
-<div class="line"><span class="lineno">   50</span> </div>
-<div class="line"><span class="lineno">   51</span>            <span class="comment">// Gegevens worden doorgestuurd naar de userRepository</span></div>
-<div class="line"><span class="lineno">   52</span>            var status = await _userRepository.AddVehicleAsync(</div>
-<div class="line"><span class="lineno">   53</span>                request.YoP,</div>
-<div class="line"><span class="lineno">   54</span>                request.Brand,</div>
-<div class="line"><span class="lineno">   55</span>                request.Type,</div>
-<div class="line"><span class="lineno">   56</span>                request.LicensePlate,</div>
-<div class="line"><span class="lineno">   57</span>                request.Color,</div>
-<div class="line"><span class="lineno">   58</span>                request.Sort,</div>
-<div class="line"><span class="lineno">   59</span>                request.Price,</div>
-<div class="line"><span class="lineno">   60</span>                request.Description,</div>
-<div class="line"><span class="lineno">   61</span>                vehicleBlobBytes,</div>
-<div class="line"><span class="lineno">   62</span>                request.Places);</div>
-<div class="line"><span class="lineno">   63</span> </div>
-<div class="line"><span class="lineno">   64</span>            <span class="keywordflow">if</span> (status.status)</div>
-<div class="line"><span class="lineno">   65</span>            {</div>
-<div class="line"><span class="lineno">   66</span>                <span class="keywordflow">return</span> Ok(<span class="keyword">new</span> AddVehicleResponse{ Message = status.message });</div>
-<div class="line"><span class="lineno">   67</span>            }</div>
-<div class="line"><span class="lineno">   68</span>            <span class="keywordflow">return</span> BadRequest(<span class="keyword">new</span> AddVehicleResponse{ Message = status.message });</div>
-<div class="line"><span class="lineno">   69</span>        }</div>
-<div class="line"><span class="lineno">   70</span>        <span class="keywordflow">catch</span> (Exception ex)</div>
-<div class="line"><span class="lineno">   71</span>        {</div>
-<div class="line"><span class="lineno">   72</span>            <span class="keywordflow">return</span> StatusCode(500, <span class="keyword">new</span> { status = <span class="keyword">false</span>, message = ex.Message });</div>
-<div class="line"><span class="lineno">   73</span>        }</div>
-<div class="line"><span class="lineno">   74</span>    }</div>
+<div class="fragment"><div class="line"><span class="lineno">   34</span>    {</div>
+<div class="line"><span class="lineno">   35</span>        <span class="keywordflow">try</span></div>
+<div class="line"><span class="lineno">   36</span>        {</div>
+<div class="line"><span class="lineno">   37</span>            <span class="comment">// Vehicle blob wordt omgezet naar bytes</span></div>
+<div class="line"><span class="lineno">   38</span>            <span class="keywordtype">byte</span>[] vehicleBlobBytes = <span class="keyword">null</span>;</div>
+<div class="line"><span class="lineno">   39</span> </div>
+<div class="line"><span class="lineno">   40</span>            <span class="keywordflow">if</span> (vehicleBlob != <span class="keyword">null</span>)</div>
+<div class="line"><span class="lineno">   41</span>            {</div>
+<div class="line"><span class="lineno">   42</span>                <span class="keyword">using</span> (var memoryStream = <span class="keyword">new</span> MemoryStream())</div>
+<div class="line"><span class="lineno">   43</span>                {</div>
+<div class="line"><span class="lineno">   44</span>                    await vehicleBlob.CopyToAsync(memoryStream);</div>
+<div class="line"><span class="lineno">   45</span>                    vehicleBlobBytes = memoryStream.ToArray();</div>
+<div class="line"><span class="lineno">   46</span>                }</div>
+<div class="line"><span class="lineno">   47</span>            }</div>
+<div class="line"><span class="lineno">   48</span> </div>
+<div class="line"><span class="lineno">   49</span>            <span class="comment">// Gegevens worden doorgestuurd naar de userRepository</span></div>
+<div class="line"><span class="lineno">   50</span>            var status = await _userRepository.AddVehicleAsync(</div>
+<div class="line"><span class="lineno">   51</span>                request.YoP,</div>
+<div class="line"><span class="lineno">   52</span>                request.Brand,</div>
+<div class="line"><span class="lineno">   53</span>                request.Type,</div>
+<div class="line"><span class="lineno">   54</span>                request.LicensePlate,</div>
+<div class="line"><span class="lineno">   55</span>                request.Color,</div>
+<div class="line"><span class="lineno">   56</span>                request.Sort,</div>
+<div class="line"><span class="lineno">   57</span>                request.Price,</div>
+<div class="line"><span class="lineno">   58</span>                request.Description,</div>
+<div class="line"><span class="lineno">   59</span>                vehicleBlobBytes,</div>
+<div class="line"><span class="lineno">   60</span>                request.Places);</div>
+<div class="line"><span class="lineno">   61</span> </div>
+<div class="line"><span class="lineno">   62</span>            <span class="keywordflow">if</span> (status.status)</div>
+<div class="line"><span class="lineno">   63</span>            {</div>
+<div class="line"><span class="lineno">   64</span>                <span class="keywordflow">return</span> Ok(<span class="keyword">new</span> AddVehicleResponse{ Message = status.message });</div>
+<div class="line"><span class="lineno">   65</span>            }</div>
+<div class="line"><span class="lineno">   66</span>            <span class="keywordflow">return</span> BadRequest(<span class="keyword">new</span> AddVehicleResponse{ Message = status.message });</div>
+<div class="line"><span class="lineno">   67</span>        }</div>
+<div class="line"><span class="lineno">   68</span>        <span class="keywordflow">catch</span> (Exception ex)</div>
+<div class="line"><span class="lineno">   69</span>        {</div>
+<div class="line"><span class="lineno">   70</span>            <span class="keywordflow">return</span> StatusCode(500, <span class="keyword">new</span> { status = <span class="keyword">false</span>, message = ex.Message });</div>
+<div class="line"><span class="lineno">   71</span>        }</div>
+<div class="line"><span class="lineno">   72</span>    }</div>
 </div><!-- fragment -->
-<p class="reference">Gebruikt <a class="el" href="#l00018">_userRepository</a>.</p>
+<p class="reference">Gebruikt <a class="el" href="#l00016">_userRepository</a>.</p>
 
 </div>
 </div>
@@ -276,7 +276,7 @@ Private Attributen</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="reference">Wordt aangeroepen door <a class="el" href="#l00020">AddVehicleController()</a>.</p>
+<p class="reference">Wordt aangeroepen door <a class="el" href="#l00018">AddVehicleController()</a>.</p>
 
 </div>
 </div>
@@ -300,7 +300,7 @@ Private Attributen</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="reference">Wordt aangeroepen door <a class="el" href="#l00035">AddVehicleAsync()</a> en <a class="el" href="#l00020">AddVehicleController()</a>.</p>
+<p class="reference">Wordt aangeroepen door <a class="el" href="#l00033">AddVehicleAsync()</a> en <a class="el" href="#l00018">AddVehicleController()</a>.</p>
 
 </div>
 </div>

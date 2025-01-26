@@ -1,5 +1,15 @@
 <map id="Grafische Klasse Hiërarchie" name="Grafische Klasse Hiërarchie">
-<area shape="rect" id="Node000000" href="$df/d31/interface_w_p_r_1_1_repository_1_1_i_user_repository.html" title="Interface defining methods voor user gerelateerde database operaties, validatie, user management,..." alt="" coords="5,5,224,32"/>
-<area shape="rect" id="Node000001" href="$d9/d2c/class_w_p_r_1_1_repository_1_1_user_repository.html" title="De UserRepository class geeft de methodes voor de interactie met de database voor gebruiker gerelatee..." alt="" coords="272,5,486,32"/>
-<area shape="poly" id="edge30_Node000000_Node000001" title=" " alt="" coords="239,16,271,16,271,21,239,21"/>
+<area shape="rect" id="Node000000" href="$interface_w_p_r_1_1_email_1_1_i_details.html" title=" " alt="" coords="5,56,145,83"/>
+<area shape="rect" id="Node000001" href="$interface_w_p_r_1_1_email_1_1_i_contract_details.html" title=" " alt="" coords="196,5,386,32"/>
+<area shape="poly" id="edge21_Node000000_Node000001" title=" " alt="" coords="149,49,230,30,231,35,151,54"/>
+<area shape="rect" id="Node000003" href="$interface_w_p_r_1_1_email_1_1_i_customer_details.html" title=" " alt="" coords="193,56,389,83"/>
+<area shape="poly" id="edge23_Node000000_Node000003" title=" " alt="" coords="160,67,192,67,192,72,160,72"/>
+<area shape="rect" id="Node000005" href="$interface_w_p_r_1_1_email_1_1_i_vehicle_details.html" title=" " alt="" coords="200,107,382,133"/>
+<area shape="poly" id="edge25_Node000000_Node000005" title=" " alt="" coords="151,84,231,103,230,109,149,89"/>
+<area shape="rect" id="Node000002" href="$class_w_p_r_1_1_email_1_1_contract.html" title=" " alt="" coords="440,5,585,32"/>
+<area shape="poly" id="edge22_Node000001_Node000002" title=" " alt="" coords="401,16,440,16,440,21,401,21"/>
+<area shape="rect" id="Node000004" href="$class_w_p_r_1_1_email_1_1_customer.html" title=" " alt="" coords="437,56,588,83"/>
+<area shape="poly" id="edge24_Node000003_Node000004" title=" " alt="" coords="405,67,437,67,437,72,405,72"/>
+<area shape="rect" id="Node000006" href="$class_w_p_r_1_1_email_1_1_vehicle.html" title=" " alt="" coords="444,107,581,133"/>
+<area shape="poly" id="edge26_Node000005_Node000006" title=" " alt="" coords="397,117,444,117,444,123,397,123"/>
 </map>

@@ -1,5 +1,5 @@
 <map id="WPR.Controllers.General.SignUp.SignUpController.SignUp" name="WPR.Controllers.General.SignUp.SignUpController.SignUp">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,101,220,144"/>
+<area shape="rect" id="Node000001" title="Registreert een nieuwe gebruiker met zowel persoonlijke als zakelijke gegevens." alt="" coords="5,101,220,144"/>
 <area shape="rect" id="Node000002" href="$d3/db5/namespace_w_p_r_1_1_controllers_1_1_general_1_1_sign_up.html#aa900677400c93afffd84ac3aba306774" title=" " alt="" coords="268,101,487,144"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="220,120,252,120,252,125,220,125"/>
 <area shape="rect" id="Node000003" href="$d3/db5/namespace_w_p_r_1_1_controllers_1_1_general_1_1_sign_up.html#abf09877e4843c0b4ff2791cc32242102" title=" " alt="" coords="535,29,752,72"/>

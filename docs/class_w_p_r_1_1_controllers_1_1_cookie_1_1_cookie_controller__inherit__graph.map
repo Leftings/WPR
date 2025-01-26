@@ -1,5 +1,5 @@
 <map id="WPR.Controllers.Cookie.CookieController" name="WPR.Controllers.Cookie.CookieController">
-<area shape="rect" id="Node000001" title="CookieController is de controller voor het aanmaken, verwijderen en ondervragen van cookies." alt="" coords="5,80,216,123"/>
-<area shape="rect" id="Node000002" title=" " alt="" coords="57,5,164,32"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="113,48,113,80,108,80,108,48"/>
+<area shape="rect" id="Node000001" title="CookieController is de controller voor het aanmaken, verwijderen en ondervragen van cookies." alt="" coords="5,123,205,336"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="57,5,154,75"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="108,89,108,123,102,123,102,89"/>
 </map>

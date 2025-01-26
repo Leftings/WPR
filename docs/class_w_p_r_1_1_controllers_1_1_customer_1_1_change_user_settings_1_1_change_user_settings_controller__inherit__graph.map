@@ -1,5 +1,5 @@
 <map id="WPR.Controllers.Customer.ChangeUserSettings.ChangeUserSettingsController" name="WPR.Controllers.Customer.ChangeUserSettings.ChangeUserSettingsController">
-<area shape="rect" id="Node000001" title="ChangeUserSettingsController is de controller die aanvragen van buitenaf ontvangt en vervolgens gegev..." alt="" coords="5,123,299,491"/>
-<area shape="rect" id="Node000002" title=" " alt="" coords="104,5,201,75"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="155,89,155,123,150,123,150,89"/>
+<area shape="rect" id="Node000001" title="ChangeUserSettingsController is de controller die aanvragen van buitenaf ontvangt en vervolgens gegev..." alt="" coords="5,123,262,331"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="85,5,182,75"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="136,90,136,123,131,123,131,90"/>
 </map>

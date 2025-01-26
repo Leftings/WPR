@@ -149,10 +149,10 @@ Private Attributen</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <div class="fragment"><div class="line"><span class="lineno">   11</span>    {</div>
-<div class="line"><span class="lineno">   12</span>        _userRepository = userRepository;</div>
+<div class="line"><span class="lineno">   12</span>        _userRepository = userRepository; <span class="comment">// Initialiseer de repository voor de gebruiker</span></div>
 <div class="line"><span class="lineno">   13</span>    }</div>
 </div><!-- fragment -->
-<p class="reference">Gebruikt <a class="el" href="#l00008">_userRepository</a>.</p>
+<p class="reference">Gebruikt <a class="el" href="#l00007">_userRepository</a>.</p>
 
 </div>
 </div>
@@ -171,22 +171,24 @@ Private Attributen</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><span class="lineno">   16</span>    {</div>
-<div class="line"><span class="lineno">   17</span>        <span class="keywordflow">if</span> (!kvkNumber.HasValue || kvkNumber.Value.ToString().Length != 8)</div>
-<div class="line"><span class="lineno">   18</span>        {</div>
-<div class="line"><span class="lineno">   19</span>            <span class="keywordflow">return</span> (<span class="keyword">false</span>, <span class="stringliteral">&quot;KVK number must be 8 digits&quot;</span>);</div>
-<div class="line"><span class="lineno">   20</span>        }</div>
-<div class="line"><span class="lineno">   21</span> </div>
-<div class="line"><span class="lineno">   22</span>        <span class="keywordtype">bool</span> inDatabase = await _userRepository.IsKvkNumberAsync(kvkNumber.Value);</div>
-<div class="line"><span class="lineno">   23</span>        <span class="keywordflow">if</span> (!inDatabase)</div>
-<div class="line"><span class="lineno">   24</span>        {</div>
-<div class="line"><span class="lineno">   25</span>            <span class="keywordflow">return</span> (<span class="keyword">false</span>, <span class="stringliteral">&quot;KVK number is not a valid KVK number&quot;</span>);</div>
-<div class="line"><span class="lineno">   26</span>        }</div>
-<div class="line"><span class="lineno">   27</span> </div>
-<div class="line"><span class="lineno">   28</span>        <span class="keywordflow">return</span> (<span class="keyword">true</span>, <span class="keyword">null</span>);</div>
-<div class="line"><span class="lineno">   29</span>    }</div>
+<div class="fragment"><div class="line"><span class="lineno">   17</span>    {</div>
+<div class="line"><span class="lineno">   18</span>        <span class="comment">// Controleer of het KVK-nummer een waarde heeft en precies 8 cijfers bevat</span></div>
+<div class="line"><span class="lineno">   19</span>        <span class="keywordflow">if</span> (!kvkNumber.HasValue || kvkNumber.Value.ToString().Length != 8)</div>
+<div class="line"><span class="lineno">   20</span>        {</div>
+<div class="line"><span class="lineno">   21</span>            <span class="keywordflow">return</span> (<span class="keyword">false</span>, <span class="stringliteral">&quot;KVK number must be 8 digits&quot;</span>); <span class="comment">// KVK-nummer is ongeldig als het niet 8 cijfers heeft</span></div>
+<div class="line"><span class="lineno">   22</span>        }</div>
+<div class="line"><span class="lineno">   23</span> </div>
+<div class="line"><span class="lineno">   24</span>        <span class="comment">// Controleer of het KVK-nummer in de database voorkomt</span></div>
+<div class="line"><span class="lineno">   25</span>        <span class="keywordtype">bool</span> inDatabase = await _userRepository.IsKvkNumberAsync(kvkNumber.Value);</div>
+<div class="line"><span class="lineno">   26</span>        <span class="keywordflow">if</span> (!inDatabase)</div>
+<div class="line"><span class="lineno">   27</span>        {</div>
+<div class="line"><span class="lineno">   28</span>            <span class="keywordflow">return</span> (<span class="keyword">false</span>, <span class="stringliteral">&quot;KVK number is not a valid KVK number&quot;</span>); <span class="comment">// KVK-nummer is niet geldig als het niet in de database staat</span></div>
+<div class="line"><span class="lineno">   29</span>        }</div>
+<div class="line"><span class="lineno">   30</span> </div>
+<div class="line"><span class="lineno">   31</span>        <span class="keywordflow">return</span> (<span class="keyword">true</span>, <span class="keyword">null</span>); <span class="comment">// KVK-nummer is geldig, geen foutmelding</span></div>
+<div class="line"><span class="lineno">   32</span>    }</div>
 </div><!-- fragment -->
-<p class="reference">Gebruikt <a class="el" href="#l00008">_userRepository</a>.</p>
+<p class="reference">Gebruikt <a class="el" href="#l00007">_userRepository</a>.</p>
 
 </div>
 </div>
@@ -211,7 +213,7 @@ Private Attributen</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="reference">Wordt aangeroepen door <a class="el" href="#l00015">IsKvkNumberValid()</a> en <a class="el" href="#l00010">KvkChecker()</a>.</p>
+<p class="reference">Wordt aangeroepen door <a class="el" href="#l00016">IsKvkNumberValid()</a> en <a class="el" href="#l00010">KvkChecker()</a>.</p>
 
 </div>
 </div>

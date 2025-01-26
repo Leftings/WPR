@@ -1,5 +1,5 @@
 <map id="WPR.Repository.UserRepository.addCustomerAsync" name="WPR.Repository.UserRepository.addCustomerAsync">
 <area shape="rect" id="Node000001" title="Een gebruiker (klant) wordt toegevoegd aan de database, doormiddel van alle meegegeven persoondata...." alt="" coords="271,5,509,48"/>
-<area shape="rect" id="Node000002" href="$d9/d2c/class_w_p_r_1_1_repository_1_1_user_repository.html#a188ce6aab8b95ea246623cc80b520714" title=" " alt="" coords="5,5,223,48"/>
+<area shape="rect" id="Node000002" href="$d9/d2c/class_w_p_r_1_1_repository_1_1_user_repository.html#a188ce6aab8b95ea246623cc80b520714" title="Voegt een persoonlijke klant toe aan de database na validatie van de verstrekte gegevens." alt="" coords="5,5,223,48"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="255,29,223,29,223,24,255,24"/>
 </map>

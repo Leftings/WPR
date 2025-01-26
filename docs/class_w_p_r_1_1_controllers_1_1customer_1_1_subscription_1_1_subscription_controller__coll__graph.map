@@ -1,9 +1,9 @@
 <map id="WPR.Controllers.customer.Subscription.SubscriptionController" name="WPR.Controllers.customer.Subscription.SubscriptionController">
-<area shape="rect" id="Node000001" title=" " alt="" coords="110,672,402,1024"/>
-<area shape="rect" id="Node000002" title=" " alt="" coords="5,272,102,341"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="61,356,79,472,95,540,116,607,145,671,141,673,111,609,90,542,74,473,56,356"/>
-<area shape="rect" id="Node000003" href="$interface_w_p_r_1_1_repository_1_1_i_user_repository.html" title="Interface defining methods voor user gerelateerde database operaties, validatie, user management,..." alt="" coords="126,5,386,608"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="259,608,259,655,254,655,254,608"/>
-<area shape="rect" id="Node000004" href="$interface_w_p_r_1_1_repository_1_1_i_back_office_repository.html" title=" " alt="" coords="411,131,654,483"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="461,484,401,609,375,658,370,656,397,607,457,481"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="122,352,337,544"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,112,102,181"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="73,194,92,240,116,287,157,351,153,354,111,289,88,242,68,196"/>
+<area shape="rect" id="Node000003" href="$interface_w_p_r_1_1_repository_1_1_i_user_repository.html" title="Interface defining methods voor user gerelateerde database operaties, validatie, user management,..." alt="" coords="126,5,334,288"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="232,288,232,335,227,335,227,288"/>
+<area shape="rect" id="Node000004" href="$interface_w_p_r_1_1_repository_1_1_i_back_office_repository.html" title=" " alt="" coords="358,51,539,243"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="397,244,340,330,331,341,327,337,336,326,393,241"/>
 </map>

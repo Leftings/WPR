@@ -1,15 +1,15 @@
 <map id="WPR.Controllers.Customer.ChangeUserSettings.ChangeUserSettingsController" name="WPR.Controllers.Customer.ChangeUserSettings.ChangeUserSettingsController">
-<area shape="rect" id="Node000001" title="ChangeUserSettingsController is de controller die aanvragen van buitenaf ontvangt en vervolgens gegev..." alt="" coords="377,965,671,1221"/>
-<area shape="rect" id="Node000002" title=" " alt="" coords="5,565,102,635"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="53,650,54,706,63,772,82,839,97,871,116,900,142,929,171,955,238,999,309,1033,379,1057,377,1062,307,1038,235,1004,168,959,138,933,112,903,92,873,77,841,57,773,49,706,48,650"/>
-<area shape="rect" id="Node000003" href="$interface_w_p_r_1_1_database_1_1_i_connector.html" title="Connector class om verbinding te maken met de database, maakt gebruik van de connectie strings die zi..." alt="" coords="126,565,371,635"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="263,633,311,753,345,828,384,900,416,950,412,953,379,903,340,830,306,756,258,635"/>
-<area shape="rect" id="Node000004" href="$interface_w_p_r_1_1_repository_1_1_i_user_repository.html" title="Interface defining methods voor user gerelateerde database operaties, validatie, user management,..." alt="" coords="394,299,654,901"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="527,901,527,949,522,949,522,901"/>
-<area shape="rect" id="Node000005" href="$class_w_p_r_1_1_cryption_1_1_crypt.html" title="Class Crypt zorgt voor een veilig encryptie en decryptie van strings. De Crptie wordt gedaan door het..." alt="" coords="678,517,866,683"/>
-<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="754,683,719,790,696,847,669,903,639,953,634,950,665,900,691,845,714,788,749,682"/>
-<area shape="rect" id="Node000006" href="$class_w_p_r_1_1_data_1_1_env_config.html" title="Leez het .env bestand uit waarin de connectie strings staan naar de database. Deze staan in een apart..." alt="" coords="684,5,861,235"/>
-<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="775,234,775,500,770,500,770,234"/>
-<area shape="rect" id="Node000007" href="$interface_w_p_r_1_1_repository_1_1_database_check_repository_1_1_i_database_check_repository.html" title=" " alt="" coords="891,504,1128,696"/>
-<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="989,697,971,748,948,802,918,855,881,903,838,944,790,979,739,1009,688,1035,686,1030,736,1005,787,974,835,939,877,900,913,852,943,800,966,746,984,695"/>
+<area shape="rect" id="Node000001" title="ChangeUserSettingsController is de controller die aanvragen van buitenaf ontvangt en vervolgens gegev..." alt="" coords="296,613,553,757"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,373,102,443"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="67,456,85,504,99,527,116,547,156,581,202,610,250,632,297,650,295,655,248,637,199,614,153,586,112,551,94,530,81,506,62,458"/>
+<area shape="rect" id="Node000003" href="$interface_w_p_r_1_1_database_1_1_i_connector.html" title="Connector class om verbinding te maken met de database, maakt gebruik van de connectie strings die zi..." alt="" coords="126,373,296,443"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="235,441,310,548,352,599,348,602,306,551,230,444"/>
+<area shape="rect" id="Node000004" href="$interface_w_p_r_1_1_repository_1_1_i_user_repository.html" title="Interface defining methods voor user gerelateerde database operaties, validatie, user management,..." alt="" coords="320,267,528,549"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="427,549,427,596,422,596,422,549"/>
+<area shape="rect" id="Node000005" href="$class_w_p_r_1_1_cryption_1_1_crypt.html" title="Class Crypt zorgt voor een veilig encryptie en decryptie van strings. De Crptie wordt gedaan door het..." alt="" coords="552,341,684,475"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="597,476,570,534,535,591,525,603,521,599,530,588,565,531,592,473"/>
+<area shape="rect" id="Node000006" href="$class_w_p_r_1_1_data_1_1_env_config.html" title="Leez het .env bestand uit waarin de connectie strings staan naar de database. Deze staan in een apart..." alt="" coords="547,5,688,203"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="620,202,620,324,615,324,615,202"/>
+<area shape="rect" id="Node000007" href="$interface_w_p_r_1_1_repository_1_1_database_check_repository_1_1_i_database_check_repository.html" title=" " alt="" coords="708,344,946,472"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="779,474,740,514,697,551,634,592,569,626,567,622,632,587,693,547,736,510,775,470"/>
 </map>

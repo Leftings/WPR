@@ -2,7 +2,7 @@
 <area shape="rect" id="Node000001" title=" " alt="" coords="815,72,1001,115"/>
 <area shape="rect" id="Node000002" href="$d9/d2c/class_w_p_r_1_1_repository_1_1_user_repository.html#ae8b7a3c517ffe6cb1b85eee60e5b2292" title="AddCustomerChecks kijkt of alle ingevoerde velden geldig zijn. Als een check faalt falen alle checks." alt="" coords="543,5,760,48"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="808,70,736,51,737,46,809,65"/>
-<area shape="rect" id="Node000005" href="$d9/d2c/class_w_p_r_1_1_repository_1_1_user_repository.html#a188ce6aab8b95ea246623cc80b520714" title=" " alt="" coords="543,72,760,115"/>
+<area shape="rect" id="Node000005" href="$d9/d2c/class_w_p_r_1_1_repository_1_1_user_repository.html#a188ce6aab8b95ea246623cc80b520714" title="Voegt een persoonlijke klant toe aan de database na validatie van de verstrekte gegevens." alt="" coords="543,72,760,115"/>
 <area shape="poly" id="edge5_Node000001_Node000005" title=" " alt="" coords="800,96,761,96,761,91,800,91"/>
 <area shape="rect" id="Node000006" href="$d6/d48/class_w_p_r_1_1_controllers_1_1_employee_1_1_back_office_1_1sign_up_staff_1_1_sign_up_staff_controller.html#a91b241351193754ce64072141596fdc0" title="Car and All medewerkers / Vehicle Managers kunnen hier aangemaakt worden. Mocht het emailadres al bes..." alt="" coords="536,139,767,197"/>
 <area shape="poly" id="edge6_Node000001_Node000006" title=" " alt="" coords="818,122,755,141,754,136,817,117"/>

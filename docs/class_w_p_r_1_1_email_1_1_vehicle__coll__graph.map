@@ -1,9 +1,9 @@
 <map id="WPR.Email.Vehicle" name="WPR.Email.Vehicle">
-<area shape="rect" id="Node000001" title=" " alt="" coords="101,1025,302,1217"/>
-<area shape="rect" id="Node000002" href="$interface_w_p_r_1_1_email_1_1_i_vehicle_details.html" title=" " alt="" coords="56,535,153,604"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="113,618,136,771,168,961,182,1025,176,1026,163,962,131,772,108,619"/>
-<area shape="rect" id="Node000003" href="$interface_w_p_r_1_1_email_1_1_i_details.html" title=" " alt="" coords="5,5,203,128"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="107,143,107,535,102,535,102,143"/>
-<area shape="rect" id="Node000004" href="$interface_w_p_r_1_1_repository_1_1_i_vehicle_repository.html" title=" " alt="" coords="177,177,423,961"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="233,962,224,1009,219,1008,228,961"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="97,593,228,705"/>
+<area shape="rect" id="Node000002" href="$interface_w_p_r_1_1_email_1_1_i_vehicle_details.html" title=" " alt="" coords="22,303,120,372"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="88,385,149,593,144,594,82,387"/>
+<area shape="rect" id="Node000003" href="$interface_w_p_r_1_1_email_1_1_i_details.html" title=" " alt="" coords="5,5,136,96"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="74,111,74,303,68,303,68,111"/>
+<area shape="rect" id="Node000004" href="$interface_w_p_r_1_1_repository_1_1_i_vehicle_repository.html" title=" " alt="" coords="144,145,366,529"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="201,530,186,578,181,576,196,529"/>
 </map>

@@ -24,19 +24,19 @@
 */
 var NAVTREE =
 [
-  [ "Car And All WPR", "index.html", [
-    [ "Packages", "namespaces.html", [
-      [ "Package Lijst", "namespaces.html", "namespaces_dup" ],
-      [ "Package Members", "namespacemembers.html", [
+  [ "WPR-Backend", "index.html", [
+    [ "Namespaces", "namespaces.html", [
+      [ "Namespace Lijst", "namespaces.html", "namespaces_dup" ],
+      [ "Namespace Members", "namespacemembers.html", [
         [ "Alle", "namespacemembers.html", null ],
         [ "Functies", "namespacemembers_func.html", null ]
       ] ]
     ] ],
-    [ "Klassen", "annotated.html", [
-      [ "Klasse Lijst", "annotated.html", "annotated_dup" ],
-      [ "Klasse Index", "classes.html", null ],
+    [ "Data Structuren", "annotated.html", [
+      [ "Data Structuren Lijst", "annotated.html", "annotated_dup" ],
+      [ "Data Structuren Index", "classes.html", null ],
       [ "Klasse Hiërarchie", "hierarchy.html", "hierarchy" ],
-      [ "Klasse Members", "functions.html", [
+      [ "Data Velden", "functions.html", [
         [ "Alle", "functions.html", "functions_dup" ],
         [ "Functies", "functions_func.html", "functions_func" ],
         [ "Variabelen", "functions_vars.html", null ],
@@ -45,7 +45,7 @@ var NAVTREE =
     ] ],
     [ "Bestanden", "files.html", [
       [ "Bestandslijst", "files.html", "files_dup" ],
-      [ "Bestand members", "globals.html", [
+      [ "Glabale members", "globals.html", [
         [ "Alle", "globals.html", null ],
         [ "Variabelen", "globals_vars.html", null ]
       ] ]
@@ -55,12 +55,12 @@ var NAVTREE =
 
 var NAVTREEINDEX =
 [
-"annotated.html",
-"d4/d6f/interface_w_p_r_1_1_repository_1_1_i_vehicle_repository.html#afcd5830c8706b9b10ea3388fa17a39bb",
-"d7/d09/class_w_p_r_1_1_controllers_1_1customer_1_1_subscription_1_1_subscription_controller.html#ab9bf9e059859c0af9f82db9c678ac4fb",
-"d9/de0/class_w_p_r_1_1_repository_1_1_employee_repository.html#a6c9b7c9837a5d38bab25669c747e1158",
-"dd/dfb/class_w_p_r_1_1_data_1_1_env_config.html",
-"functions_g.html"
+"_add_intake_error_response_8cs.html",
+"class_w_p_r_1_1_controllers_1_1_employee_1_1_back_office_1_1_add_vehicle_1_1_add_vehicle_controller.html#abfb71c3b144d117aad9dc5d5d89744fb",
+"class_w_p_r_1_1_controllers_1_1_general_1_1_cookie_1_1_cookie_controller.html#a893dae88524c51e709ea2a3e8ecdeec0",
+"class_w_p_r_1_1_program.html#af392a4477cf6bbb6174656a59193bcaf",
+"class_w_p_r_1_1_services_1_1_email_service.html#a41a2fd3203eb64a3e3965d7e1634ee4b",
+"interface_w_p_r_1_1_repository_1_1_i_user_repository.html#a5aed8a4ff3b7137f42f366a75a1939f7"
 ];
 
 var SYNCONMSG = 'klik hier om de paneel synchronisatie uit te schakelen';

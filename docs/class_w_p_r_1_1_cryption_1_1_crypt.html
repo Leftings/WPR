@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.13.0"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Car And All WPR: WPR.Cryption.Crypt Class Referentie</title>
+<title>WPR-Backend: WPR.Cryption.Crypt Class Referentie</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -32,7 +32,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">Car And All WPR
+   <div id="projectname">WPR-Backend
    </div>
   </td>
     <td>        <div id="MSearchBox" class="MSearchBoxInactive">
@@ -114,12 +114,7 @@ $(function(){initNavTree('class_w_p_r_1_1_cryption_1_1_crypt.html',''); initResi
 <div class="dynheader">
 Collaboratie diagram voor WPR.Cryption.Crypt:</div>
 <div class="dyncontent">
-<div class="center"><img src="class_w_p_r_1_1_cryption_1_1_crypt__coll__graph.png" border="0" usemap="#a_w_p_r_8_cryption_8_crypt_coll__map" alt="Collaboration graph"/></div>
-<map name="a_w_p_r_8_cryption_8_crypt_coll__map" id="a_w_p_r_8_cryption_8_crypt_coll__map">
-<area shape="rect" title="Class Crypt zorgt voor een veilig encryptie en decryptie van strings. De Crptie wordt gedaan door het..." alt="" coords="5,299,193,464"/>
-<area shape="rect" href="class_w_p_r_1_1_data_1_1_env_config.html" title="Leez het .env bestand uit waarin de connectie strings staan naar de database. Deze staan in een apart..." alt="" coords="11,5,188,235"/>
-<area shape="poly" title=" " alt="" coords="102,234,102,282,97,282,97,234"/>
-</map>
+<div class="center"><iframe scrolling="no" frameborder="0" src="class_w_p_r_1_1_cryption_1_1_crypt__coll__graph.svg" width="155" height="406"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
@@ -145,6 +140,8 @@ Private Attributen</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Gedetailleerde Beschrijving</h2>
 <div class="textblock"><p>Class <a class="el" href="class_w_p_r_1_1_cryption_1_1_crypt.html" title="Class Crypt zorgt voor een veilig encryptie en decryptie van strings. De Crptie wordt gedaan door het...">Crypt</a> zorgt voor een veilig encryptie en decryptie van strings. De Crptie wordt gedaan door het Advanced Encryption Standard (AES) </p>
+
+<p class="definition">De definitie bevindt zich op regel <a class="el" href="crypt_8cs_source.html#l00012">12</a> in het bestand <a class="el" href="crypt_8cs_source.html">crypt.cs</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentatie</h2>
 <a id="abf13a1a845d4385d8daae32582c23358" name="abf13a1a845d4385d8daae32582c23358"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#abf13a1a845d4385d8daae32582c23358">&#9670;&#160;</a></span>Crypt()</h2>
@@ -176,13 +173,15 @@ Private Attributen</h2></td></tr>
   </table>
   </dd>
 </dl>
+
+<p class="definition">De definitie bevindt zich op regel <a class="el" href="crypt_8cs_source.html#l00022">22</a> in het bestand <a class="el" href="crypt_8cs_source.html">crypt.cs</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">   23</span>    {</div>
 <div class="line"><span class="lineno">   24</span>        _envConfig = envConfig;</div>
 <div class="line"><span class="lineno">   25</span>        _key = Convert.FromBase64String(_envConfig.Get(<span class="stringliteral">&quot;CRYPTION_KEY&quot;</span>));</div>
 <div class="line"><span class="lineno">   26</span>        _IV = Convert.FromBase64String(_envConfig.Get(<span class="stringliteral">&quot;CRYPTION_IV&quot;</span>));</div>
 <div class="line"><span class="lineno">   27</span>    }</div>
 </div><!-- fragment -->
-<p class="reference">Gebruikt <a class="el" href="#l00014">_envConfig</a>, <a class="el" href="#l00016">_IV</a> en <a class="el" href="#l00015">_key</a>.</p>
+<p class="reference">Gebruikt <a class="el" href="crypt_8cs_source.html#l00014">_envConfig</a>, <a class="el" href="crypt_8cs_source.html#l00016">_IV</a> en <a class="el" href="crypt_8cs_source.html#l00015">_key</a>.</p>
 
 </div>
 </div>
@@ -218,6 +217,8 @@ Private Attributen</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Retourneert</dt><dd></dd></dl>
+
+<p class="definition">De definitie bevindt zich op regel <a class="el" href="crypt_8cs_source.html#l00068">68</a> in het bestand <a class="el" href="crypt_8cs_source.html">crypt.cs</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">   69</span>    {</div>
 <div class="line"><span class="lineno">   70</span>        <span class="keywordflow">if</span> (<span class="keywordtype">string</span>.IsNullOrEmpty(encrypted))</div>
 <div class="line"><span class="lineno">   71</span>        {</div>
@@ -243,7 +244,7 @@ Private Attributen</h2></td></tr>
 <div class="line"><span class="lineno">   91</span>        }</div>
 <div class="line"><span class="lineno">   92</span>    }</div>
 </div><!-- fragment -->
-<p class="reference">Gebruikt <a class="el" href="#l00016">_IV</a> en <a class="el" href="#l00015">_key</a>.</p>
+<p class="reference">Gebruikt <a class="el" href="crypt_8cs_source.html#l00016">_IV</a> en <a class="el" href="crypt_8cs_source.html#l00015">_key</a>.</p>
 
 </div>
 </div>
@@ -278,6 +279,8 @@ Private Attributen</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Retourneert</dt><dd></dd></dl>
+
+<p class="definition">De definitie bevindt zich op regel <a class="el" href="crypt_8cs_source.html#l00034">34</a> in het bestand <a class="el" href="crypt_8cs_source.html">crypt.cs</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">   35</span>    {</div>
 <div class="line"><span class="lineno">   36</span>        <span class="keywordflow">if</span> (<span class="keywordtype">string</span>.IsNullOrEmpty(text))</div>
 <div class="line"><span class="lineno">   37</span>        {</div>
@@ -306,7 +309,7 @@ Private Attributen</h2></td></tr>
 <div class="line"><span class="lineno">   60</span>        }</div>
 <div class="line"><span class="lineno">   61</span>    }</div>
 </div><!-- fragment -->
-<p class="reference">Gebruikt <a class="el" href="#l00016">_IV</a> en <a class="el" href="#l00015">_key</a>.</p>
+<p class="reference">Gebruikt <a class="el" href="crypt_8cs_source.html#l00016">_IV</a> en <a class="el" href="crypt_8cs_source.html#l00015">_key</a>.</p>
 
 </div>
 </div>
@@ -331,7 +334,9 @@ Private Attributen</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="reference">Wordt aangeroepen door <a class="el" href="#l00022">Crypt()</a>.</p>
+<p class="definition">De definitie bevindt zich op regel <a class="el" href="crypt_8cs_source.html#l00014">14</a> in het bestand <a class="el" href="crypt_8cs_source.html">crypt.cs</a>.</p>
+
+<p class="reference">Wordt aangeroepen door <a class="el" href="crypt_8cs_source.html#l00022">Crypt()</a>.</p>
 
 </div>
 </div>
@@ -355,7 +360,9 @@ Private Attributen</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="reference">Wordt aangeroepen door <a class="el" href="#l00022">Crypt()</a>, <a class="el" href="#l00068">Decrypt()</a> en <a class="el" href="#l00034">Encrypt()</a>.</p>
+<p class="definition">De definitie bevindt zich op regel <a class="el" href="crypt_8cs_source.html#l00016">16</a> in het bestand <a class="el" href="crypt_8cs_source.html">crypt.cs</a>.</p>
+
+<p class="reference">Wordt aangeroepen door <a class="el" href="crypt_8cs_source.html#l00022">Crypt()</a>, <a class="el" href="crypt_8cs_source.html#l00068">Decrypt()</a> en <a class="el" href="crypt_8cs_source.html#l00034">Encrypt()</a>.</p>
 
 </div>
 </div>
@@ -379,12 +386,14 @@ Private Attributen</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="reference">Wordt aangeroepen door <a class="el" href="#l00022">Crypt()</a>, <a class="el" href="#l00068">Decrypt()</a> en <a class="el" href="#l00034">Encrypt()</a>.</p>
+<p class="definition">De definitie bevindt zich op regel <a class="el" href="crypt_8cs_source.html#l00015">15</a> in het bestand <a class="el" href="crypt_8cs_source.html">crypt.cs</a>.</p>
+
+<p class="reference">Wordt aangeroepen door <a class="el" href="crypt_8cs_source.html#l00022">Crypt()</a>, <a class="el" href="crypt_8cs_source.html#l00068">Decrypt()</a> en <a class="el" href="crypt_8cs_source.html#l00034">Encrypt()</a>.</p>
 
 </div>
 </div>
 <hr/>De documentatie voor deze klasse is gegenereerd op basis van het volgende bestand:<ul>
-<li>D:/codes/WPR/backend/src/Cryption/<a class="el" href="">crypt.cs</a></li>
+<li>D:/codes/WPR8/WPR/backend/src/Cryption/<a class="el" href="crypt_8cs_source.html">crypt.cs</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
