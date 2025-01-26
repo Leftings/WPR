@@ -69,7 +69,7 @@ public class ChangeUserSettingsController : ControllerBase
     /// <summary>
     /// Gebruikers kunnen hun account, samen met hun gegevens, verwijderen uit het systeem
     /// </summary>
-    /// <returns></returns>
+    /// <returns>Deleted account</returns>
     [HttpDelete("DeleteUser")]
     public async Task<IActionResult> DeleteUserAsync() {
         
@@ -87,17 +87,9 @@ public class ChangeUserSettingsController : ControllerBase
         {
             string decryptedLoginCookie = _crypt.Decrypt(loginCookie);
             Console.WriteLine(decryptedLoginCookie);
-            /*var result = await _userRepository.DeleteUserAsync(decryptedLoginCookie);
-                if (result.status)
-                {
-                    Response.Cookies.Append("LoginSession", "", new CookieOptions { Expires = DateTimeOffset.Now.AddDays(-1) });
-                    Console.WriteLine("Cookie cleared");
-                    return Ok(new {message = result.message});
-                }
-                return BadRequest(new {message = result.message});
-            */
 
             var deleteUser = _databaseCheckRepository.DeleteUser(Convert.ToInt32(decryptedLoginCookie));
+            Response.Cookies.Append("LoginSession", "", new CookieOptions { Expires = DateTimeOffset.Now.AddDays(-1) });
             return StatusCode(deleteUser.StatusCode, new { message = deleteUser.Message });
         }
         catch (OverflowException ex)
