@@ -50,7 +50,7 @@ public class RemindersTests
 
         var task = hostedService.StartAsync(cancellationToken);
 
-        await Task.Delay(10000);
+        await Task.Delay(5000);
 
         // Assert
         mockReminders.Verify(service => service.ReminderContract24Hours(), Times.Once);
