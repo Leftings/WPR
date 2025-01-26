@@ -1,20 +1,12 @@
 using MySql.Data.MySqlClient;
 using WPR.Database;
-using WPR.Repository;
 
-/// <summary>
-/// Verantwoordelijk voor het ophalen van contractgerelateerde gegevens uit de database.
-/// </summary>
+namespace WPR.Repository;
+
 public class ContractRepository : IContractRepository
 {
     private readonly IConnector _connector;
-
-    /// <summary>
-    /// Initialiseert een nieuw exemplaar van de <see cref="ContractRepository"/> klasse.
-    /// </summary>
-    /// <param name="connector">De connector die gebruikt wordt om verbinding te maken met de database.</param>
-    /// <exception cref="ArgumentNullException">Wordt gegooid als de connector null is.</exception>
-    public ContractRepository(IConnector connector)
+    public ContractRepository (IConnector connector)
     {
         _connector = connector ?? throw new ArgumentNullException(nameof(connector));
     }

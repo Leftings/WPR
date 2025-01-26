@@ -50,11 +50,9 @@ public class viewRentalDataController : ControllerBase
         // Als de status succesvol is, geef dan de ID's terug
         if (response.Status)
         {
-            return Ok(new { message = response.Ids });
+            return Ok(new { message = response.Ids});
         }
-        
-        // Als er een fout optreedt, geef dan een foutmelding terug
-        return BadRequest(new { message = response.Message });
+        return BadRequest(new { message = response.Message});
     }
 
     /// <summary>
@@ -65,16 +63,23 @@ public class viewRentalDataController : ControllerBase
     [HttpGet("GetFullReviewData")]
     public async Task<IActionResult> GetFullReview(int id)
     {
-        // Haal de gedetailleerde review data op uit de repository
-        (bool Status, string Message, Dictionary<string, object> Data) response = _backOfficeRepository.GetFullDataReview(id);
-
-        // Als de status 'true' is, geef dan de gedetailleerde data terug
-        if (response.Status)
+        try
         {
-            return Ok(new { message = response.Data });
+            (bool Status, string Message, Dictionary<string, object> Data) response = _backOfficeRepository.GetFullDataReview(id);
+
+            if (response.Status)
+            {
+                return Ok(new viewRentalDataResponse{ Message = response.Data });
+            }
+            return BadRequest(new viewRentalDataErrorResponse() { Status = false, Message = response.Message });
         }
-        
-        // Als er een fout is, geef dan een foutmelding terug
-        return BadRequest(new { message = response.Message });
+        catch (Exception e)
+        {
+            return BadRequest(new viewRentalDataErrorResponse
+            {
+                Status = false,
+                Message = e.Message
+            });
+        }
     }
 }

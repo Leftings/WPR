@@ -19,12 +19,6 @@ public class Reminders : BackgroundService
     private readonly IServiceProvider _serviceProvider;
     private readonly IConnector _connector;
 
-    /// <summary>
-    /// Constructor die de benodigde classes initialiseerd
-    /// </summary>
-    /// <param name="serviceProvider"></param>
-    /// <param name="connector"></param>
-    /// <exception cref="ArgumentNullException"></exception>
     public Reminders(IServiceProvider serviceProvider, IConnector connector)
     {
         _serviceProvider = serviceProvider ?? throw new ArgumentNullException(nameof(serviceProvider));
@@ -112,7 +106,7 @@ public class Reminders : BackgroundService
     {
         try
         {
-            var emailService = scope.ServiceProvider.GetService<IEmailService>(); // Emailservices wordt beschikbaargesteld
+            var emailService = scope.ServiceProvider.GetService<IEmailService>();
 
             if (emailService == null)
             {
@@ -134,7 +128,7 @@ public class Reminders : BackgroundService
 
                 if (command.ExecuteNonQuery() > 0)
                 {
-                    await emailService.Send(toEmail, subject, body); // Email aanvraag wordt verstuurd
+                    await emailService.Send(toEmail, subject, body);
                 }
             }
         }
@@ -150,13 +144,9 @@ public class Reminders : BackgroundService
         }
     }
 
-    /// <summary>
-    /// Alle gegevens worden opgehaald en verzameld om verstuurd te worden.
-    /// </summary>
-    /// <returns></returns>
     public virtual async Task<bool> ReminderContract24Hours()
     {
-        using (var scope = _serviceProvider.CreateScope()) // Er wordt een scope opgezet, zodat alle gegevens bereikbaar zijn
+        using (var scope = _serviceProvider.CreateScope())
         {
             var customer = scope.ServiceProvider.GetRequiredService<ICustomerDetails>();
             var contract = scope.ServiceProvider.GetRequiredService<IContractDetails>();
@@ -166,14 +156,13 @@ public class Reminders : BackgroundService
             if (customer == null || contract == null || vehicle == null || contracts == null)
             {
                 Console.WriteLine("One or more required services are not available.");
-                return false; 
+                return false; // Exit early if any service is not resolved
             }
 
             IList<int> ids = await contracts.GetContractsSendEmailAsync();
 
             if (ids == null || ids.Count == 0)
             {
-                Console.WriteLine("No contracts are waiting for an email");
                 return false;
             }
 
@@ -189,7 +178,6 @@ public class Reminders : BackgroundService
                 customerDic = await GetCustomerInfo(Convert.ToInt32(contractDic["Customer"]), scope);
                 vehicleDic = await GetVehicleInfo(Convert.ToInt32(contractDic["FrameNrVehicle"]), scope);
 
-                // Email wordt aangemaakt
                 string email = CreateReminderContract(customerDic, contractDic, vehicleDic);
 
                 // Email wordt naar de mailservice gestuurd

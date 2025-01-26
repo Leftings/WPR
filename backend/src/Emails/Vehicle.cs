@@ -3,14 +3,9 @@ using WPR.Repository;
 namespace WPR.Email;
 
 public interface IVehicleDetails : IDetails {}
-
-/// <summary>
-/// In de Vehicle klasse worden alle gegevens van een specifieke klant verzameld voor het aanmaken van een email.
-/// </summary>
 public class Vehicle : IVehicleDetails
 {
     private Dictionary<string, object> _details { get; set; }
-
     private readonly IVehicleRepository _vehicleRepository;
 
     /// <summary>
@@ -30,15 +25,16 @@ public class Vehicle : IVehicleDetails
     /// <returns></returns>
     public async Task SetDetailsAsync(object frameNr)
     {
-        var result = await _vehicleRepository.GetVehicleDataAsync(frameNr); // Alle gegevens van het voertuig worden opgehaald
+        var result = await _vehicleRepository.GetVehicleDataAsync(frameNr);
 
         _details = new Dictionary<string, object>();
 
         foreach (Dictionary<object, string> item in result)
         {
-            if (!_details.ContainsKey((string)item.Keys.First())) // Alle keys worden verzameld
+
+            if (!_details.ContainsKey((string)item.Keys.First()))
             {
-                _details[(string)item.Keys.First()] = item.Values.First(); // Alle waardes van de keys worden verzameld
+                _details[(string)item.Keys.First()] = item.Values.First();
             }
         }
     }

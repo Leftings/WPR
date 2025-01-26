@@ -5,10 +5,6 @@ using WPR.Repository;
 namespace WPR.Email;
 
 public interface ICustomerDetails : IDetails{}
-
-/// <summary>
-/// In de Customer klasse worden alle gegevens van een specifieke klant verzameld voor het aanmaken van een email.
-/// </summary>
 public class Customer : ICustomerDetails
 {
     private Dictionary<string, object> _details { get; set; }

@@ -17,11 +17,6 @@ public class AddBusinessController : ControllerBase
     private readonly IEmployeeRepository _employeeRepository;
     private readonly IEmailService _emailService;
 
-    /// <summary>
-    /// Constructor voor de controller. Zet de benodigde afhankelijkheden voor de repository en de e-mailservice.
-    /// </summary>
-    /// <param name="employeeRepository">De repository voor werknemersgerelateerde gegevens.</param>
-    /// <param name="emailService">De service voor het verzenden van e-mails.</param>
     public AddBusinessController (IEmployeeRepository employeeRepository, IEmailService emailService)
     {
         _employeeRepository = employeeRepository ?? throw new ArgumentNullException(nameof(employeeRepository));
@@ -40,9 +35,9 @@ public class AddBusinessController : ControllerBase
         
         if (output.status)
         {
-            return Ok(new { output.message });
+            return Ok(new addBusinessResponse{ Message = output.message });
         }
-        return BadRequest(new { output.message });
+        return BadRequest(new addBusinessResponse { Message = output.message });
     }
 
     /// <summary>

@@ -1,19 +1,12 @@
 using MySql.Data.MySqlClient;
 using WPR.Database;
-using WPR.Repository.DatabaseCheckRepository;
 
-/// <summary>
-/// Behandelt verschillende databasebewerkingen zoals het verwijderen van gebruikers, contracten en bedrijfsgegevens.
-/// </summary>
+namespace WPR.Repository.DatabaseCheckRepository;
+
 public class DatabaseCheckRepository : IDatabaseCheckRepository
 {
     private readonly IConnector _connector;
 
-    /// <summary>
-    /// Initialiseert een nieuw exemplaar van de <see cref="DatabaseCheckRepository"/> klasse.
-    /// </summary>
-    /// <param name="connector">De connector die gebruikt wordt om verbinding te maken met de database.</param>
-    /// <exception cref="ArgumentNullException">Wordt gegooid als de connector null is.</exception>
     public DatabaseCheckRepository(IConnector connector)
     {
         _connector = connector ?? throw new ArgumentNullException(nameof(connector));
@@ -296,6 +289,7 @@ public class DatabaseCheckRepository : IDatabaseCheckRepository
         {
             return (500, ex.Message);
         }
+
     }
 
     /// <summary>

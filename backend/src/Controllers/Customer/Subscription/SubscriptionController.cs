@@ -1,5 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿﻿using Microsoft.AspNetCore.Mvc;
 using WPR.Repository;
+
 
 namespace WPR.Controllers.customer.Subscription;
 
@@ -66,7 +67,7 @@ public class SubscriptionController : ControllerBase
                 });
             }
             
-            return Ok(new { Message = data });
+            return Ok(new{ Message = data });
         }
         catch (Exception e)
         {
@@ -98,7 +99,7 @@ public class SubscriptionController : ControllerBase
                 });
             }
 
-            return Ok(new { Message = ids });
+            return Ok(new{ Message = ids});
         }
         catch (Exception e)
         {
@@ -146,6 +147,9 @@ public class SubscriptionController : ControllerBase
             });
         }
     }
+    
+    
+    
 
     /// <summary>
     /// Verwijdert een specifiek abonnement op basis van het ID.
