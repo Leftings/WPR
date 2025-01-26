@@ -25,11 +25,11 @@ namespace WPR.Repository;
 /// </summary>
 public class UserRepository : IUserRepository
 {
-    private readonly Connector _connector;
+    private readonly IConnector _connector;
     private readonly Hash _hash;
     private readonly Crypt _crypt;
 
-    public UserRepository(Connector connector, Hash hash, Crypt crypt)
+    public UserRepository(IConnector connector, Hash hash, Crypt crypt)
     {
         _connector = connector ?? throw new ArgumentNullException(nameof(connector));
         _hash = hash ?? throw new ArgumentNullException(nameof(hash));

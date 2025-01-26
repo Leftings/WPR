@@ -13,9 +13,9 @@ namespace WPR.Email;
 public class Reminders : BackgroundService
 {
     private readonly IServiceProvider _serviceProvider;
-    private readonly Connector _connector;
+    private readonly IConnector _connector;
 
-    public Reminders(IServiceProvider serviceProvider, Connector connector)
+    public Reminders(IServiceProvider serviceProvider, IConnector connector)
     {
         _serviceProvider = serviceProvider ?? throw new ArgumentNullException(nameof(serviceProvider));
         _connector = connector ?? throw new ArgumentNullException(nameof(connector));
@@ -90,7 +90,7 @@ public class Reminders : BackgroundService
         }
     }
 
-    private async Task<bool> ReminderContract24Hours()
+    public virtual async Task<bool> ReminderContract24Hours()
     {
         using (var scope = _serviceProvider.CreateScope())
         {
