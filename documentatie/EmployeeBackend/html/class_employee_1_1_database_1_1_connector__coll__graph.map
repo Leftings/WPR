@@ -1,7 +1,0 @@
-<map id="Employee.Database.Connector" name="Employee.Database.Connector">
-<area shape="rect" id="Node000001" title=" " alt="" coords="78,181,271,272"/>
-<area shape="rect" id="Node000002" href="$interface_employee_1_1_database_1_1_i_connector.html" title="Connector class om verbinding te maken met de database, maakt gebruik van de connectie strings die zi..." alt="" coords="5,27,159,96"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="111,108,152,180,147,183,106,110"/>
-<area shape="rect" id="Node000003" href="$class_employee_1_1_data_1_1_env_config.html" title="Leez het .env bestand uit waarin de connectie strings staan naar de database. Deze staan in een apart..." alt="" coords="184,5,349,117"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="238,119,210,168,205,165,233,116"/>
-</map>

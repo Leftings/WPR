@@ -1,5 +1,0 @@
-<map id="Employee.Database.Connector" name="Employee.Database.Connector">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,123,198,213"/>
-<area shape="rect" id="Node000002" href="$interface_employee_1_1_database_1_1_i_connector.html" title="Connector class om verbinding te maken met de database, maakt gebruik van de connectie strings die zi..." alt="" coords="25,5,179,75"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="104,89,104,123,99,123,99,89"/>
-</map>
