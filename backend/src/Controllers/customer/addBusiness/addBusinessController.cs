@@ -1,6 +1,5 @@
 namespace WPR.Controllers.Customer.AddBusiness;
 
-using System.ComponentModel;
 using Microsoft.AspNetCore.Mvc;
 using WPR.Controllers.Employee.BackOffice.signUpStaff;
 using WPR.Repository;
@@ -8,7 +7,8 @@ using WPR.Services;
 using WPR.Utils;
 
 /// <summary>
-/// Controller voor het verbinden van het aanmaken van bedrijven op basis van het KVK nummer
+/// Controller voor het verbinden van het aanmaken van bedrijven op basis van het KVK nummer.
+/// Deze controller behandelt de aanvragen voor nieuwe bedrijven, de goedkeuring of afwijzing van bedrijven, en het versturen van e-mails.
 /// </summary>
 [Route("api/[controller]")]
 [ApiController]
@@ -17,6 +17,11 @@ public class AddBusinessController : ControllerBase
     private readonly IEmployeeRepository _employeeRepository;
     private readonly IEmailService _emailService;
 
+    /// <summary>
+    /// Constructor voor de controller. Zet de benodigde afhankelijkheden voor de repository en de e-mailservice.
+    /// </summary>
+    /// <param name="employeeRepository">De repository voor werknemersgerelateerde gegevens.</param>
+    /// <param name="emailService">De service voor het verzenden van e-mails.</param>
     public AddBusinessController (IEmployeeRepository employeeRepository, IEmailService emailService)
     {
         _employeeRepository = employeeRepository ?? throw new ArgumentNullException(nameof(employeeRepository));
@@ -24,10 +29,10 @@ public class AddBusinessController : ControllerBase
     }
 
     /// <summary>
-    /// Maakt een connectie met UserRepository en geeft het antwoord terug
+    /// Voegt een nieuw bedrijf toe op basis van het KVK-nummer en stuurt een response terug.
     /// </summary>
-    /// <param name="request"></param>
-    /// <returns></returns>
+    /// <param name="request">Het verzoek om een nieuw bedrijf toe te voegen.</param>
+    /// <returns>Retourneert de status en een boodschap over het resultaat van de toevoeging.</returns>
     [HttpPost("addBusiness")]
     public async Task<IActionResult> AddBusiness([FromForm] AddBusinessRequest request)
     {
@@ -40,6 +45,10 @@ public class AddBusinessController : ControllerBase
         return BadRequest(new { output.message });
     }
 
+    /// <summary>
+    /// Haalt een lijst op van nieuwe bedrijfsaanvragen die nog niet zijn goedgekeurd.
+    /// </summary>
+    /// <returns>Retourneert een lijst van KVK-nummers van nieuwe aanvragen.</returns>
     [HttpGet("getNewBusinesses")]
     public async Task<IActionResult> GetNewBusinesses()
     {
@@ -52,6 +61,11 @@ public class AddBusinessController : ControllerBase
         return StatusCode(response.StatusCode, new { message = response.Message });
     }
 
+    /// <summary>
+    /// Haalt gedetailleerde informatie op over een specifiek bedrijf op basis van het KVK-nummer.
+    /// </summary>
+    /// <param name="kvk">Het KVK-nummer van het bedrijf.</param>
+    /// <returns>Retourneert de gedetailleerde informatie over het bedrijf.</returns>
     [HttpGet("getNewBusiness")]
     public async Task<IActionResult> GetNewBusiness(int kvk)
     {
@@ -64,6 +78,11 @@ public class AddBusinessController : ControllerBase
         return StatusCode(response.StatusCode, new { message = response.Message });
     }
 
+    /// <summary>
+    /// Markeert een bedrijfsaanvraag als geaccepteerd, genereert een gebruikerswachtwoord voor de beheerder en stuurt een bevestigingsmail.
+    /// </summary>
+    /// <param name="kvk">Het KVK-nummer van het bedrijf.</param>
+    /// <returns>Retourneert een statusbericht over de goedkeuring en e-mailverzending.</returns>
     [HttpPut("businessAccepted")]
     public async Task<IActionResult> BusinessAccepted(int kvk)
     {
@@ -88,6 +107,11 @@ public class AddBusinessController : ControllerBase
         return StatusCode(response.StatusCode, new { message = $"{response.Message}\n{emailSend}" });
     }
 
+    /// <summary>
+    /// Markeert een bedrijfsaanvraag als afgewezen en stuurt een afwijzingsmail.
+    /// </summary>
+    /// <param name="kvk">Het KVK-nummer van het bedrijf.</param>
+    /// <returns>Retourneert een statusbericht over de afwijzing en e-mailverzending.</returns>
     [HttpDelete("businessDenied")]
     public async Task<IActionResult> BusinessDenied(int kvk)
     {

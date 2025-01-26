@@ -1,5 +1,8 @@
 ﻿namespace WPR.Controllers.Customer.Rental;
 
+/// <summary>
+/// Klasse die de gegevens bevat voor een huurverzoek van een klant.
+/// </summary>
 public class RentalRequest
 {
     public string Email { get; set; }       // Customer's email
