@@ -1,5 +1,3 @@
-using System.Diagnostics.Contracts;
-
 namespace WPR.Repository;
 
 public interface IContractRepository

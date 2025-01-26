@@ -16,48 +16,54 @@ function AddVehicleManager() {
   const [ErrorMessage, SetError] = useState([]);
 
   function SignUp() {
+    // Gegevens die verzonden worden naar de backend
     const data = {
-      Job: 'Wagen', 
-      FirstName: FirstName,
-      LastName: LastName,
-      Password: Password,
+      Job: 'Wagen',
+      FirstName: FirstName, 
+      LastName: LastName, 
+      Password: Password, 
       Email: Email,
-      KvK: KvK,
+      KvK: KvK, 
     };
 
+    // Verzenden van de POST-aanroep naar de backend om de gebruiker toe te voegen
     fetch(`${BACKEND_URL}/api/SignUpStaff/signUpStaff`, {
       method: 'POST',
       credentials: 'include',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(data),
+      body: JSON.stringify(data), 
     })
-      .then((response) => {
-        if (!response.ok) {
-          return response.json().then((err) => {
-            throw new Error(err.message || 'Error occurred');
-          });
-        }
-        return response.json();
-      })
-      .then(() => {
-        SetFirstName('');
-        SetLastName('');
-        SetEmail('');
-        SetPassword('');
-        SetKvK('');
-        SetError([]);
-        alert('Wagenpark Beheerder toegevoegd!');
-        navigate('/vehicle-manager'); 
-      })
-      .catch((error) => {
-        console.error('Error adding Vehicle Manager: ', error.message);
-        SetError([error.message]);
-      });
+        .then((response) => {
+          // Controleer of de response goed is
+          if (!response.ok) {
+            return response.json().then((err) => {
+              throw new Error(err.message || 'Fout opgetreden');
+            });
+          }
+          return response.json(); 
+        })
+        .then(() => {
+          // Reset de velden en toon een succesmelding
+          SetFirstName(''); // Reset voornaam
+          SetLastName(''); // Reset achternaam
+          SetEmail(''); // Reset e-mail
+          SetPassword(''); // Reset wachtwoord
+          SetKvK(''); // Reset KvK
+          SetError([]); 
+          alert('Wagenpark Beheerder toegevoegd!'); 
+          navigate('/vehicle-manager'); 
+        })
+        .catch((error) => {
+          // Foutafhandelingslogica voor het toevoegen van de voertuigbeheerder
+          console.error('Fout bij het toevoegen van de Voertuigmanager: ', error.message);
+          SetError([error.message]); 
+        });
   }
 
   function Check() {
+    // Gegevens om te controleren
     let data = {
       FirstName,
       LastName,
@@ -66,13 +72,16 @@ function AddVehicleManager() {
       KvK,
     };
 
+    // Array voor foutmeldingen
     let errors = [];
     for (let key in data) {
       if (data[key] === '') {
+        // Voeg een foutmelding toe voor het ontbrekende veld
         errors.push(`${key} is niet ingevuld`);
       }
     }
 
+    // Als er geen fouten zijn, voer dan de SignUp functie uit
     if (errors.length === 0) {
       SignUp();
     } else {

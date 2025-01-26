@@ -1,191 +1,176 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
-import '../../index.css'; 
+import '../../index.css';
 import GeneralHeader from '../../GeneralBlocks/header/header';
 import GeneralFooter from '../../GeneralBlocks/footer/footer';
 import { sorter, specific } from '../../utils/sorter.js'
 import { loadArray, loadList, loadSingle } from '../../utils/backendLoader.js';
 import { placingItems } from '../../utils/gridPlacement.js';
 
-
 const BACKEND_URL = import.meta.env.VITE_REACT_APP_BACKEND_URL ?? 'http://localhost:5165';
 
 function ViewRentalData() {
-  const navigate = useNavigate();
-  const [error, setError] = useState(null);
-  const [rentalData, setRentalData] = useState([]);
-  const [filterType, setFilterType] = useState('Price');
-  const [filterHow, setFilterHow] = useState('Low');
-  const [loadingRequests, setLoadingRequests] = useState({}); 
-  const [loading, setLoading] = useState(true);
-  const [allData, setAllData] = useState([]);
-  const [selectedCard, setSelectedCard] = useState(null);
-  const [specificData, setSpecificData] = useState([]);
-  const [specificDataLoading, setSpecificDataLoading] = useState(false);
-  const [, updateState] = useState();
-  const forceUpdate = useCallback(() => updateState({}), []);
-  const gridRef = useRef(null);
+    const navigate = useNavigate();
 
-  /*useEffect(() => {
-    const handleResize = () => 
-    {
-      placingItems(gridRef, 350, 350/2);
-    }
+    const [error, setError] = useState(null);  
+    const [rentalData, setRentalData] = useState([]);  
+    const [filterType, setFilterType] = useState('Price');  
+    const [filterHow, setFilterHow] = useState('Low');  
+    const [loadingRequests, setLoadingRequests] = useState({}); 
+    const [loading, setLoading] = useState(true);  
+    const [allData, setAllData] = useState([]);  
+    const [selectedCard, setSelectedCard] = useState(null); 
+    const [specificData, setSpecificData] = useState([]);  
+    const [specificDataLoading, setSpecificDataLoading] = useState(false);  
+    const [, updateState] = useState();
+    const forceUpdate = useCallback(() => updateState({}), []);
+    const gridRef = useRef(null);  
 
-    window.addEventListener('resize', handleResize);
-    handleResize();
-  }, []); */
+    // Controleert of de gebruiker geauthenticeerd is via cookies
+    useEffect(() => {
+        const validateCookie = async () => {
+            try {
+                const response = await fetch(`${BACKEND_URL}/api/Cookie/GetUserId`, {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    credentials: 'include',  // Stuurt cookies mee in de verzoeken
+                });
 
-  useEffect(() => {
-    // Authoristatie check
-    const validateCookie = async () => {
-      try {
-        const response = await fetch(`${BACKEND_URL}/api/Cookie/GetUserId`, {
-          method: 'GET',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          credentials: 'include',
-        });
-
-        if (!response.ok) {
-          throw new Error('No Cookie');
-        }
-
-        await response.json();
-      } catch {
-        alert('Cookie was niet geldig');
-        navigate('/');
-      }
-    };
-
-    validateCookie();
-  }, [navigate]);
-
-  useEffect(() => {
-    const fetchData = async (filterType, filterHow) => {
-        setFilterType('Price');
-        setError(null);
-        setRentalData([]);
-        setLoading(true);
-
-        try
-        {
-            // Alle ids worden opgehaald
-            const response = await loadSingle(`${BACKEND_URL}/api/viewRentalData/GetReviewsIds`);
-            
-            if (!response)
-            {
-              console.error('Failed to load data');
-              return;
-            }
-
-            const data = await response.json();
-            const requestsToLoad = data?.message || [];
-
-            for (const id of requestsToLoad)
-            {
-              setLoadingRequests((prevState) => ({...prevState, [id]: true}));
-
-              try
-              {
-                const review = await loadArray(`${BACKEND_URL}/api/viewRentalData/GetReviewData?id=${id}`);
-                
-                if (review?.message)
-                {
-                  setRentalData((prevRequest) => sorter([...prevRequest, review.message], filterType, filterHow));
-                  setAllData((prevRequest) => sorter([...prevRequest, review.message], filterType, filterHow));
-                  setLoadingRequests((prevState) => ({ ...prevState, [id]: false }));
-                  setLoading(false);
+                if (!response.ok) {
+                    throw new Error('No Cookie');
                 }
-              }
-              catch (err) {
-                console.error(`Failed to fetch data from ID: ${id}: `, err);
-              }
+
+                await response.json();  // Als alles goed gaat, wordt de response geparsed
+            } catch {
+                alert('Cookie was niet geldig');  // Als de cookie niet geldig is, wordt de gebruiker doorgestuurd naar de loginpagina
+                navigate('/');
             }
-        }
-        catch (error)
-        {
-            console.error(error);
-        }
-        finally
-        {
-          setRentalData((prevRequest) => [...sorter(prevRequest, filterType, filterHow)]);
-          setAllData((prevRequest) => [...sorter(prevRequest, filterType, filterHow)]);
-        }
-    }
+        };
 
-    fetchData(filterType, filterHow);
-    }, []);
+        validateCookie();  // Roep de cookie validatie functie aan
+    }, [navigate]);
 
+    // Laadt de verhuurdata op basis van het filtertype en de volgorde
     useEffect(() => {
+        const fetchData = async (filterType, filterHow) => {
+            setFilterType('Price');  // Zet het standaard filtertype op 'Price'
+            setError(null);  // Reset de error status
+            setRentalData([]);  // Reset de lijst van huurdata
+            setLoading(true);  // Zet de laadstatus naar 'true'
 
-      const sortedData = sorter([...rentalData], filterType, filterHow)
-      setRentalData(sortedData);
-    }, [filterHow])
+            try {
+                // Haalt de IDs van de reviews op
+                const response = await loadSingle(`${BACKEND_URL}/api/viewRentalData/GetReviewsIds`);
 
+                if (!response) {
+                    console.error('Failed to load data');
+                    return;
+                }
+
+                const data = await response.json();  // Parse de response data
+                const requestsToLoad = data?.message || [];  // Haal de te laden aanvragen op
+
+                // Laadt de data voor elk van de aanvragen
+                for (const id of requestsToLoad) {
+                    setLoadingRequests((prevState) => ({ ...prevState, [id]: true }));
+
+                    try {
+                        const review = await loadArray(`${BACKEND_URL}/api/viewRentalData/GetReviewData?id=${id}`);
+
+                        if (review?.message) {
+                            // Voeg de review data toe aan de lijst van rentalData en sorteer de data op basis van de filters
+                            setRentalData((prevRequest) => sorter([...prevRequest, review.message], filterType, filterHow));
+                            setAllData((prevRequest) => sorter([...prevRequest, review.message], filterType, filterHow));
+                            setLoadingRequests((prevState) => ({ ...prevState, [id]: false }));
+                            setLoading(false);  // Zet de laadstatus op 'false' zodra alles geladen is
+                        }
+                    }
+                    catch (err) {
+                        console.error(`Failed to fetch data from ID: ${id}: `, err);  // Foutafhandeling als het laden van data mislukt
+                    }
+                }
+            }
+            catch (error) {
+                console.error(error);
+            }
+            finally {
+                // Zorg ervoor dat de data gesorteerd is zodra alles geladen is
+                setRentalData((prevRequest) => [...sorter(prevRequest, filterType, filterHow)]);
+                setAllData((prevRequest) => [...sorter(prevRequest, filterType, filterHow)]);
+            }
+        };
+
+        fetchData(filterType, filterHow);  // Haal de data op wanneer de component wordt geladen
+    }, []);  // Dit effect wordt alleen uitgevoerd bij het laden van de component
+
+    // Update de huurdata wanneer het filtertype of volgorde verandert
     useEffect(() => {
-      setFilterHow("Low");
-      if (filterType === "VMStatus")
-      {
-        const VMData = specific([...allData], filterType, "Low", "X");
-        setRentalData(VMData);
-      }
-      else
-      {
-        const sortedData = sorter([...allData], filterType, "Low");
-        setRentalData(sortedData);
-      }
-    }, [filterType]);
+        const sortedData = sorter([...rentalData], filterType, filterHow);
+        setRentalData(sortedData);  // Zet de gesorteerde data in de state
+    }, [filterHow]);  // Dit effect wordt uitgevoerd wanneer filterHow (volgorde) verandert
 
+    // Update de huurdata wanneer het filtertype verandert
     useEffect(() => {
-      console.log("filterHow changed to: ", filterHow);
+        setFilterHow("Low");  // Zet de volgorde standaard op 'Low'
+        if (filterType === "VMStatus") {
+            const VMData = specific([...allData], filterType, "Low", "X");  // Specifieke filtering voor VMStatus
+            setRentalData(VMData);
+        } else {
+            const sortedData = sorter([...allData], filterType, "Low");
+            setRentalData(sortedData);  // Sorteer de data op basis van het filtertype en volgorde
+        }
+    }, [filterType]);  // Dit effect wordt uitgevoerd wanneer filterType verandert
+
+    // Logging voor debugging (optioneel)
+    useEffect(() => {
+        console.log("filterHow changed to: ", filterHow);
     }, [filterHow]);
 
     useEffect(() => {
-      console.log("rentalData changed to: ", rentalData);
+        console.log("rentalData changed to: ", rentalData);
     }, [rentalData]);
 
-    async function collectSpecificData(id)
-    {
-      setSpecificDataLoading(true);
-      try
-      {
-        const data = await loadList(`${BACKEND_URL}/api/viewRentalData/GetFullReviewData?id=${id}`);
-        console.log(data);
-        setSpecificData([data.message]);
-      }
-      catch (error)
-      {
-        console.error(error);
-        setSpecificData([]);
-      }
-      finally
-      {
-        setSpecificDataLoading(false);
-        forceUpdate();
-        console.log(specificData);
-      }
+    // Functie om specifieke gegevens voor een geselecteerde huur op te halen
+    async function collectSpecificData(id) {
+        setSpecificDataLoading(true);  // Zet de laadstatus voor specifieke gegevens op true
+        try {
+            const data = await loadList(`${BACKEND_URL}/api/viewRentalData/GetFullReviewData?id=${id}`);
+            console.log(data);
+            setSpecificData([data.message]);  // Zet de specifieke data in de state
+        }
+        catch (error) {
+            console.error(error);
+            setSpecificData([]);  // Reset specifieke gegevens als er een fout optreedt
+        }
+        finally {
+            setSpecificDataLoading(false);  // Zet de laadstatus voor specifieke gegevens weer op false
+            forceUpdate();  // Forceer een update van de component
+            console.log(specificData);
+        }
     }
 
+    // Toon een laadscherm als de gegevens nog niet zijn geladen
     if (loading) {
-      return (
-        <div className="loading-screen">
-          <p>Laden van verzoeken...</p>
-        </div>
-      );
+        return (
+            <div className="loading-screen">
+                <p>Laden van verzoeken...</p>
+            </div>
+        );
     }
-  
+
+    // Toon een foutmelding als er een fout optreedt
     if (error) {
-      return (
-        <div className="error-screen">
-          <p>Error: {error}</p>
-        </div>
-      );
+        return (
+            <div className="error-screen">
+                <p>Error: {error}</p>
+            </div>
+        );
     }
 
 
-  return (
+return (
     <>
       <GeneralHeader />
       <main>

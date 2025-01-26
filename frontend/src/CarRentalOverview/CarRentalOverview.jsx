@@ -5,6 +5,7 @@ import GeneralHeader from "../GeneralBlocks/header/header.jsx";
 import GeneralFooter from "../GeneralBlocks/footer/footer.jsx";
 import '../index.css';
 
+// Achtergrond-URL voor API-aanroepen, standaard 'http://localhost:5165' als niet opgegeven in de omgeving
 const BACKEND_URL = import.meta.env.VITE_REACT_APP_BACKEND_URL ?? 'http://localhost:5165';
 
 /**
@@ -16,19 +17,22 @@ const BACKEND_URL = import.meta.env.VITE_REACT_APP_BACKEND_URL ?? 'http://localh
  * <CarRentalOverview />
  */
 function CarRentalOverview() {
-    const [rentals, setRentals] = useState([]);
-    const [error, setError] = useState(null);
-    const [chosenRental, setChosenRental] = useState(null);
-    const currDate = new Date();
-    const navigate = useNavigate();
-    var modal = document.getElementById("myModal");
+    // State variabelen voor huurgegevens, foutmeldingen en de geselecteerde huur
+    const [rentals, setRentals] = useState([]);  // Bewaar de huurgegevens
+    const [error, setError] = useState(null);     // Bewaar foutmeldingen
+    const [chosenRental, setChosenRental] = useState(null); // Bewaar de geselecteerde huur voor annulering
+    const currDate = new Date(); // Huidige datum voor verdere logica (indien nodig)
+    const navigate = useNavigate(); // Gebruik navigate om te navigeren naar andere pagina's
+    var modal = document.getElementById("myModal"); // Het modale venster voor annulering
 
+    // Functie om het annuleren van een huur te starten (toon het modaal venster)
     const cancellation = (index) => {
-        modal.style.display = "block";
-        let rental = rentals[index];
-        setChosenRental(rental);
+        modal.style.display = "block";  // Toon het modale venster
+        let rental = rentals[index];    // Haal de geselecteerde huur op basis van de index
+        setChosenRental(rental);        // Zet de gekozen huur in de state
     };
 
+    // Functie om foutmeldingen weer te geven afhankelijk van het type
     const settingsError = (type) => {
         if (type === "cancel") {
             toast.error("Huurcontract is al van toepassing, annuleren is niet beschikbaar.");
@@ -38,88 +42,96 @@ function CarRentalOverview() {
         }
     };
 
+    // Sluit het annuleringsmodaal venster
     const closeCancellation = () => {
-        modal.style.display = "none";
+        modal.style.display = "none";  // Zet de modal weer op "none" om deze te verbergen
     };
 
+    // Als er op het scherm buiten de modal wordt geklikt, sluit de modal
     window.onclick = function(event) {
         if (event.target === modal) {
-            modal.style.display = "none";
+            modal.style.display = "none";  // Sluit de modal
         }
     };
 
+    // Functie om een huur te annuleren
     const handleCancellation = async () => {
         try {
+            // Verstuur verzoek naar backend om de huur te annuleren
             const response = await fetch(`${BACKEND_URL}/api/Rental/CancelRental?rentalId=${chosenRental.id}&frameNr=${chosenRental.frameNrCar}`, {
-                method: 'DELETE',
-                credentials: 'include',
+                method: 'DELETE',  // De DELETE-methode wordt gebruikt voor annuleren
+                credentials: 'include', // Zorg ervoor dat cookies worden meegestuurd
             });
 
             const data = await response.json();
             if (response.ok) {
-                window.location.reload();
+                window.location.reload();  // Herlaad de pagina na succesvolle annulering
             } else {
-                setError(data.message);
+                setError(data.message);  // Zet de foutmelding als de annulering mislukt
             }
         } catch (error) {
-            setError('Rental cancellation failed');
+            setError('Huur annuleren mislukt');  // Fout bij het annuleren
         }
     };
 
+    // Functie om huurdetails te wijzigen
     const handleWijziging = (rental) => {
         console.log('Navigating with rental:', rental);
+        // Navigeer naar de pagina voor huurwijzigingen met de huurgegevens
         navigate("/changeRental", { state: { rental } });
     };
 
+    // Laad de huurgegevens bij het laden van de component
     useEffect(() => {
         const fetchData = async () => {
             try {
-                let url = `${BACKEND_URL}/api/Rental/GetAllUserRentals`;
+                let url = `${BACKEND_URL}/api/Rental/GetAllUserRentals`; // API URL om alle huurgegevens op te halen
 
                 const response = await fetch(url, {
-                    credentials: 'include',
+                    credentials: 'include',  // Stuur cookies mee voor authenticatie
                 });
                 if (!response.ok) {
                     throw new Error(`Error fetching rentals: ${response.statusText}`);
                 }
 
                 const data = await response.json();
-                setRentals(data);
-                setError(null);
+                setRentals(data);  // Zet de huurgegevens in de state
+                setError(null);     // Reset eventuele foutmeldingen
                 console.log(data);
             } catch (error) {
                 console.error('Failed to fetch rentals:', error);
-                setError('Failed to load rentals');
+                setError('Failed to load rentals');  // Zet de foutmelding bij falen
             }
         };
 
         fetchData();
-    }, []);
+    }, []); // Laad huurgegevens alleen bij het eerste renderen van de component
 
+    // Controleer de geldigheid van de gebruiker op basis van cookies en haal gebruikers-ID op
     useEffect(() => {
         fetch(`${BACKEND_URL}/api/Cookie/GetUserId`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
             },
-            credentials: 'include',
+            credentials: 'include', // Zorg ervoor dat cookies worden meegestuurd
         })
             .then(response => {
                 if (!response.ok) {
-                    throw new Error('No Cookie');
+                    throw new Error('No Cookie');  // Als er geen geldige cookie is, gooi een fout
                 }
-                return response.json();
+                return response.json();  // Haal de gegevens op
             })
             .then(data => {
-                const id = data?.message;
+                const id = data?.message;  // Verkrijg gebruikers-ID
             })
             .catch(() => {
-                alert("Cookie was niet geldig");
-                navigate('/');
+                alert("Cookie was niet geldig");  // Toon een foutmelding als de cookie ongeldig is
+                navigate('/');  // Navigeer naar de homepagina
             });
-    }, [navigate]);
-
-    return (
+    }, [navigate]);  // Dit effect wordt uitgevoerd wanneer de component geladen is
+    
+return (
         <>
             <GeneralHeader />
             <main>

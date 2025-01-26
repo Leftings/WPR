@@ -100,8 +100,8 @@ button:focus-visible {
   padding: 10px;
   background-color: #f4f4f4;
   border-bottom: 2px solid #ddd;
-  width: 100%; /* Ensure full-width alignment */
-  box-sizing: border-box; /* Include padding and borders in the width calculation */
+  width: 100%;
+  box-sizing: border-box; 
 }
 
 .heads div,
@@ -110,7 +110,7 @@ button:focus-visible {
   gap: 0;
   text-align: center;
   position: relative;
-  word-wrap: break-word; /* Handle long content gracefully */
+  word-wrap: break-word; 
 }
 
 .heads div:not(:last-child),
@@ -120,7 +120,7 @@ button:focus-visible {
 
 .rows {
   background-color: #f4f4f4;
-  transition: background-color 0.3s ease; /* Smooth background transition */
+  transition: background-color 0.3s ease; 
 }
 
 .rows:hover {
@@ -129,7 +129,7 @@ button:focus-visible {
 
 .heads {
   background-color: #c4c4c4;
-  border-bottom: 2px solid #000; /* Better separation */
+  border-bottom: 2px solid #000; 
 }
 
 @media (max-width: 768px) {
@@ -139,7 +139,7 @@ button:focus-visible {
 
   .heads,
   .rows {
-    grid-template-columns: 1fr; /* Stack columns on small screens */
+    grid-template-columns: 1fr; 
   }
 }
 
@@ -506,7 +506,7 @@ margin-right: 20px;
   }
 
   .logo-container:hover .logo-image {
-      content: url('assets/logo-green.svg'); /*On hover verandert logo kleur naar groen!*/
+      content: url('assets/logo-green.svg');
   }
 
 .logo-image {
