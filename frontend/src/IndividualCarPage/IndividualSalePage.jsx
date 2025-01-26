@@ -9,19 +9,26 @@ function CarDetailPage() {
     const navigate = useNavigate();
     const vehicle = location.state?.vehicle;
 
+    // Functie die wordt aangeroepen bij klikken op "Buy Now"
     const handleBuyNow = () => {
-        const rentalDates = location.state?.rentalDates || [null, null]; 
+        // Haal de huurdatums op uit de state, of gebruik standaardwaarden als deze niet bestaan
+        const rentalDates = location.state?.rentalDates || [null, null];
+        // Navigeer naar de kooppagina en geef het voertuig en huurdatums door via de state
         navigate("/buy", { state: { vehicle, rentalDates } });
     };
-    
+
+    // Als er geen voertuig beschikbaar is, toon een foutmelding
     if (!vehicle) {
         return (
             <>
+                {/* Algemene headercomponent */}
                 <GeneralHeader />
+                {/* Foutmelding als er geen voertuig is */}
                 <div className="error-message">
                     <h2>Voertuig niet gevonden!</h2>
                     <p>Ga terug om een auto te selecteren.</p>
                 </div>
+                {/* Algemene footercomponent */}
                 <GeneralFooter />
             </>
         );

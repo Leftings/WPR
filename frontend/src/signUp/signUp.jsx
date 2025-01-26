@@ -32,68 +32,70 @@ function SignUp() {
     const [domain, SetDomain] = useState('');
     const [contactEmail, SetContactEmail] = useState('');
     const [isBusinessAccount, setIsBusinessAccount] = useState('Employee');
-        
+
 
     const choice = (buttonId) => {
+        // Functie om de gekozen accounttype bij te houden
         setChosenType(buttonId);
     };
-    
+
     useEffect(() => {
+        // Gebruik useEffect om abonnementsopties op te halen van de backend
         async function fetchSubscriptions() {
             try {
-                const response = await  fetch(`${BACKEND_URL}/api/Subscription/GetSubscriptions`)
+                const response = await fetch(`${BACKEND_URL}/api/Subscription/GetSubscriptions`);
                 if (!response.ok) {
-                    throw new Error('Failed to fetch subcriptions')
+                    throw new Error('Failed to fetch subscriptions');
                 }
                 const responseData = await response.json();
-                console.log(responseData)
-                SetSubscriptions(responseData.data);
+                console.log(responseData);
+                SetSubscriptions(responseData.data); // Zet de abonnementsdata in de state
             } catch (error) {
-                console.log(error);
+                console.log(error); // Log eventuele fouten bij het ophalen van abonnementen
             }
         }
-        
-        fetchSubscriptions();
-    }, []);
-    
-    
-    async function Push()
-    {
-        let validationErrors = [];
-        console.log(chosenType);
-        if (chosenType === 'Private')
-        {
-            validationErrors = EmptyFieldChecker({ firstName, lastName, email, password1, password2, street, number, phonenumber, dateOfBirth });
-        }
-        else
-        {
-            if (isBusinessAccount === 'Business')
-            {
-                validationErrors = EmptyFieldChecker({ selectedSubscription, name, kvk, street, number, domain, contactEmail });
 
-                if (kvk.length < 8)
-                {
+        fetchSubscriptions();
+    }, []); // Het effect wordt alleen uitgevoerd wanneer de component wordt geladen
+
+    async function Push() {
+        let validationErrors = []; // Array om foutmeldingen bij de validatie op te slaan
+
+        console.log(chosenType);
+
+        // Controleer of alle velden correct zijn ingevuld op basis van het accounttype
+        if (chosenType === 'Private') {
+            validationErrors = EmptyFieldChecker({
+                firstName, lastName, email, password1, password2, street, number, phonenumber, dateOfBirth
+            });
+        } else {
+            if (isBusinessAccount === 'Business') {
+                validationErrors = EmptyFieldChecker({
+                    selectedSubscription, name, kvk, street, number, domain, contactEmail
+                });
+
+                // Specifieke controle voor het KvK-nummer
+                if (kvk.length < 8) {
                     validationErrors.push("Te kort KvK nummer");
                 }
-            }
-            else
-            {
+            } else {
                 validationErrors = EmptyFieldChecker({ email, password1, password2 });
             }
         }
 
-        SetErrors(validationErrors);
+        SetErrors(validationErrors); 
 
         console.log(validationErrors);
 
-        if (validationErrors.length === 0)
-        {
-            try
-            {
-                const formData = new FormData();
+        // Als er geen fouten zijn, verstuur het formulier
+        if (validationErrors.length === 0) {
+            try {
+                const formData = new FormData(); // Maak een nieuw FormData-object aan
+
                 console.log(chosenType);
-                if (chosenType === 'Private')
-                {
+
+                if (chosenType === 'Private') {
+                    // Voeg velden toe aan FormData voor een privéaccount
                     formData.append('SignUpRequestCustomer.Email', email);
                     formData.append('SignUpRequestCustomer.AccountType', chosenType);
                     formData.append('SignUpRequestCustomer.Password', password1);
@@ -104,65 +106,60 @@ function SignUp() {
                     formData.append('SignUpRequestCustomerPrivate.Adres', `${street} ${number}${add}`);
                     formData.append('SignUpRequestCustomerPrivate.BirthDate', new Date(dateOfBirth).toISOString().split('T')[0]);
 
+                    // Verstuur het formulier naar de API voor registratie
                     const response = await pushWithBody(`${BACKEND_URL}/api/SignUp/signUp`, formData);
-                    redirect(response);
-                }
-                else
-                {
-                    if (isBusinessAccount === 'Business')
-                    {
-                        formData.append('Subscription', selectedSubscription)
+                    redirect(response); // Verwerk de respons na succesvolle registratie
+                } else {
+                    // Voor een zakelijk account of een werknemer
+                    if (isBusinessAccount === 'Business') {
+                        formData.append('Subscription', selectedSubscription);
                         formData.append('KvK', kvk);
                         formData.append('Name', name);
                         formData.append('Adress', `${street} ${number}${add}`);
                         formData.append('Domain', domain);
                         formData.append('ContactEmail', contactEmail);
 
+                        // Verstuur het formulier naar de API voor zakelijke registratie
                         const response = await pushWithBody(`${BACKEND_URL}/api/AddBusiness/addBusiness`, formData);
                         redirect(response);
-                    }
-                    else
-                    {
+                    } else {
+                        // Het geval voor een standaard bedrijfsaccount (geen zakelijk account)
                         formData.append('SignUpRequestCustomer.Email', email);
                         formData.append('SignUpRequestCustomer.Password', password1);
                         formData.append('SignUpRequestCustomer.AccountType', chosenType);
                         formData.append('SignUpRequestCustomer.IsPrivate', false);
 
+                        // Verstuur het formulier naar de API voor registratie
                         const response = await pushWithBody(`${BACKEND_URL}/api/SignUp/signUp`, formData);
                         redirect(response);
                     }
                 }
-            } catch (error)
-            {
-                console.log(error);
-                SetErrors([error]);
+            } catch (error) {
+                console.log(error); 
+                SetErrors([error]); 
             }
         }
 
-        function redirect(errors)
-        {
+        // Functie om de gebruiker door te sturen naar de juiste pagina op basis van de foutstatus
+        function redirect(errors) {
             console.log(errors);
-            if (errors.errorDetected)
-            {
-                SetErrors(errors.errors);
-            }
-            else
-            {
-                if (chosenType === 'Private' || isBusinessAccount === 'Employee')
-                {
-                    navigate('/login');
-                }
-                else
-                {
-                    navigate('/');
+            if (errors.errorDetected) {
+                SetErrors(errors.errors); // Zet eventuele foutmeldingen
+            } else {
+                // Succesvolle registratie - navigeer naar de juiste pagina
+                if (chosenType === 'Private' || isBusinessAccount === 'Employee') {
+                    navigate('/login'); // Voor privégebruikers of werknemers
+                } else {
+                    navigate('/'); // Voor zakelijke accounts
                 }
             }
         }
     }
 
+// Reset errors wanneer het accounttype verandert
     useEffect(() => {
-        SetErrors([]);
-    }, [chosenType])
+        SetErrors([]); 
+    }, [chosenType]); 
 
     return (
         <>

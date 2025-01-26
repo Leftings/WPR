@@ -9,6 +9,7 @@ import '../../index.css';
 
 const BACKEND_URL = import.meta.env.VITE_REACT_APP_BACKEND_URL ?? 'http://localhost:5165';
 
+// Functie om de gebruikers-ID op te halen via een GET-verzoek
 function GetUserId() {
     return new Promise((resolve, reject) => {
         fetch(`${BACKEND_URL}/api/Cookie/GetUserId`, {
@@ -16,23 +17,25 @@ function GetUserId() {
             headers: {
                 'Content-Type': 'application/json',
             },
-            credentials: 'include',  
+            credentials: 'include',  // Authenticatiecookie wordt meegestuurd
         })
             .then(response => {
                 console.log(response);
 
                 if (!response.ok) {
+                    // Foutafhandeling op basis van de statuscode
                     if (response.status === 400) {
                         reject('Session cookie missing or invalid.');
                     } else {
                         reject(`Failed to fetch user ID, status: ${response.status}`);
                     }
                 }
-                return response.json(); 
+                return response.json(); // Parse de JSON-response
             })
             .then(data => {
+                // Als de 'message' aanwezig is in de data, wordt het geretourneerd
                 if (data.message) {
-                    resolve(data.message);  
+                    resolve(data.message);
                 } else {
                     reject('No user ID found in the response.');
                 }
@@ -44,6 +47,7 @@ function GetUserId() {
     });
 }
 
+// Custom error class voor specifieke typefouten in de klant-gerelateerde processen
 class CustomerError extends Error {
     constructor(message) {
         super(message);
@@ -51,6 +55,7 @@ class CustomerError extends Error {
     }
 }
 
+// Custom error class voor specifieke typefouten in voertuigmanager-gerelateerde processen
 class VehicleManagerError extends Error {
     constructor(message) {
         super(message);
@@ -58,6 +63,7 @@ class VehicleManagerError extends Error {
     }
 }
 
+// Custom error class voor zakelijke fouten
 class BusinessError extends Error {
     constructor(message) {
         super(message);
@@ -65,85 +71,81 @@ class BusinessError extends Error {
     }
 }
 
+// Hoofdcomponent voor het beheren van bedrijfsinstellingen, inclusief abonnementen en klanteninformatie
 function ChangeBusinessSettings() {
-  const navigate = useNavigate();
-  const [password1, setPassword1] = useState('');
-  const [password2, setPassword2] = useState('');
-  const [error, setError] = useState([]);
-  const [businessName, setBusinessName] = useState('');
-  const [abonnement, setAbonnement] = useState('');
-  const [businessInfo, setBusinessInfo] = useState({});
-  const [domain, setDomain] = useState('');
-  const [adres, setAdres] = useState('');
-  const [contactEmail, setContactEmail] = useState('');
-  const [vehicleManagerInfo, setVehicleManagerInfo] = useState({});
-  const [newEmail, setNewEmail] = useState('');
-  const [subscriptions, SetSubscriptions] = useState([]);
-  const [selectedSubscription, SetSelectedSubscription] = useState('');
-  const [updatedCustomers, setUpdatedCustomers] = useState([]); 
-  const [customers, setCustomers] = useState([]);
-  const [businessError, setBusinessError] = useState('');
-  const [customerError, setCustomerError] = useState('');
-  const [vehicleManagerError, setVehicleManagerError] = useState('');
-  const [showCustomers, setShowCustomers] = useState(false);
+    const navigate = useNavigate(); // Navigatie naar verschillende pagina's in de app
+    const [password1, setPassword1] = useState(''); // Wachtwoordveld 1
+    const [password2, setPassword2] = useState(''); // Wachtwoordveld 2
+    const [error, setError] = useState([]); // Lijst van fouten
+    const [businessName, setBusinessName] = useState(''); // Bedrijfsnaam
+    const [abonnement, setAbonnement] = useState(''); // Abonnementstype
+    const [businessInfo, setBusinessInfo] = useState({}); // Bedrijfsinformatie
+    const [domain, setDomain] = useState(''); // Domeinnaam van het bedrijf
+    const [adres, setAdres] = useState(''); // Bedrijfsadres
+    const [contactEmail, setContactEmail] = useState(''); // Bedrijfse-mail
+    const [vehicleManagerInfo, setVehicleManagerInfo] = useState({}); // Informatie over de voertuigmanager
+    const [newEmail, setNewEmail] = useState(''); // Nieuw e-mailadres
+    const [subscriptions, SetSubscriptions] = useState([]); // Abonnementen van het bedrijf
+    const [selectedSubscription, SetSelectedSubscription] = useState(''); // Geselecteerd abonnement
+    const [updatedCustomers, setUpdatedCustomers] = useState([]); // Bijgewerkte klantinformatie
+    const [customers, setCustomers] = useState([]); // Klantlijst
+    const [businessError, setBusinessError] = useState(''); // Zakelijke foutmelding
+    const [customerError, setCustomerError] = useState(''); // Klantfoutmelding
+    const [vehicleManagerError, setVehicleManagerError] = useState(''); // Voertuigmanagerfoutmelding
+    const [showCustomers, setShowCustomers] = useState(false); // Toon klanten toggle
 
-
-
-
-
-
+    // Haalt op of de gebruiker een voertuigmanager is
     useEffect(() => {
-      fetch(`${BACKEND_URL}/api/Cookie/IsVehicleManager` , {
-          method: 'GET',
-          headers: {
-              'Content-Type': 'application/json',
-          },
-          credentials: 'include',
-      })
-          .then(response => {
-              if (!response.ok) {
-                  return response.json().then(data => {
-                    console.log(data);
-                    throw new Error(data?.message || 'No Cookie'); 
-                  });
+        fetch(`${BACKEND_URL}/api/Cookie/IsVehicleManager`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            credentials: 'include',
+        })
+            .then(response => {
+                if (!response.ok) {
+                    return response.json().then(data => {
+                        console.log(data);
+                        throw new Error(data?.message || 'No Cookie'); // Gooit fout als geen geldige cookie is gevonden
+                    });
                 }
-              return response.json();
-          })
-          .catch(() => {
-              alert("Cookie was niet geldig");
-              navigate('/');
-          })
-      }, [navigate]);
+                return response.json(); // Geeft de JSON-response terug
+            })
+            .catch(() => {
+                alert("Cookie was niet geldig"); // Waarschuwing als cookie niet geldig is
+                navigate('/'); // Navigeren naar de loginpagina
+            });
+    }, [navigate]);
 
-  useEffect(() => {
-    async function fetchSubscriptions() {
-        try {
-            const response = await  fetch(`${BACKEND_URL}/api/Subscription/GetSubscriptions`)
-            if (!response.ok) {
-                throw new Error('Failed to fetch subcriptions')
+    // Haalt de abonnementen op die beschikbaar zijn voor het bedrijf
+    useEffect(() => {
+        async function fetchSubscriptions() {
+            try {
+                const response = await fetch(`${BACKEND_URL}/api/Subscription/GetSubscriptions`);
+                if (!response.ok) {
+                    throw new Error('Failed to fetch subscriptions'); // Foutmelding bij mislukte aanvraag
+                }
+                const responseData = await response.json();
+                console.log(responseData);
+                SetSubscriptions(responseData.data); // Zet de ontvangen abonnementen in de state
+            } catch (error) {
+                console.log(error); // Log fouten
             }
-            const responseData = await response.json();
-            console.log(responseData)
-            SetSubscriptions(responseData.data);
-        } catch (error) {
-            console.log(error);
         }
-    }
-    
-    fetchSubscriptions();
-  }, []);
+        fetchSubscriptions(); // Roept de functie aan om abonnementen op te halen
+    }, []); // Lege afhankelijkhedenlijst betekent dat dit alleen bij de eerste render wordt uitgevoerd
 
-
-
+    // Handelt de wijziging van het e-mailadres van een klant in de lijst
     const handleEmailChange = (index, newEmail) => {
-        const updatedList = [...updatedCustomers];
+        const updatedList = [...updatedCustomers]; // Maak een kopie van de klantlijst
 
         if (!updatedList[index]) {
-            updatedList[index] = {}; 
+            updatedList[index] = {}; // Als de klant nog niet bestaat, voeg een nieuwe toe
         }
 
-        updatedList[index].email = newEmail;
-        setUpdatedCustomers(updatedList);
+        updatedList[index].email = newEmail; // Werk het e-mailadres bij
+        setUpdatedCustomers(updatedList); // Zet de bijgewerkte lijst in de state
     };
 
 

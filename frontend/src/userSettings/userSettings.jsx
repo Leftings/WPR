@@ -12,7 +12,7 @@ function GetUser(setUser)
     headers: {
         'Content-Type': 'application/json', 
     },
-    credentials: 'include', // Cookies of authenticatie wordt meegegeven
+    credentials: 'include', 
     })
     .then(response => {
         console.log(response);
