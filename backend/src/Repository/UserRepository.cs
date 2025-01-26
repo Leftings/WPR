@@ -776,7 +776,6 @@ public class UserRepository : IUserRepository
     private async Task<(int StatusCode, string Message)> AddPrivateCustomerDetails(SignUpRequestCustomerPrivate request, int userId, MySqlConnection connections)
     {
         (bool Status, string Message) checks = await AddCustomerChecks(true, null, request);
-
         if (checks.Status)
         {
             try
