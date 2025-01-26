@@ -5,212 +5,229 @@ import GeneralFooter from "../GeneralBlocks/footer/footer.jsx";
 
 import '../index.css';
 
-function GetUser(setUser)
-{
-  fetch('http://localhost:5165/api/Cookie/GetUserName', {
-    method: 'GET',
-    headers: {
-        'Content-Type': 'application/json', 
-    },
-    credentials: 'include', 
+/// <summary>
+/// Haalt de gebruikersnaam van de ingelogde gebruiker op en zet deze in de opgegeven staat.
+/// </summary>
+/// <param name="setUser">Functie om de staat bij te werken met de opgehaalde gebruikersnaam.</param>
+function GetUser(setUser) {
+    fetch('http://localhost:5165/api/Cookie/GetUserName', {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        credentials: 'include',  // Verstuurt cookies voor authenticatie
     })
-    .then(response => {
-        console.log(response);
-        if (!response.ok) {
-            throw new Error('No Cookie');
-        }
-        return response.json();
-    })
-    .then(data => {
-      setUser(`${data.message}`);
-    })
-    .catch(error => {
-        console.error('Error:', error);
-    });
+        .then(response => {
+            console.log(response);
+            if (!response.ok) {
+                throw new Error('No Cookie');  // Fout als er geen cookie is
+            }
+            return response.json();  // Zet de reactie om naar JSON
+        })
+        .then(data => {
+            setUser(`${data.message}`);  // Zet de gebruikersnaam in de state
+        })
+        .catch(error => {
+            console.error('Error:', error);  // Logt fouten naar de console
+        });
 }
 
+/// <summary>
+/// Haalt het gebruikers-ID op en retourneert het als een promise.
+/// </summary>
+/// <returns>Retourneert een promise met het gebruikers-ID of een foutmelding als de cookie niet gevonden wordt.</returns>
 function GetUserId() {
-  return new Promise((resolve, reject) => {
-    fetch('http://localhost:5165/api/Cookie/GetUserId', {
-    method: 'GET',
-    headers: {
-      'Content-Type': 'application/json', 
-    },
-    credentials: 'include',  // Cookies of authenticatie wordt meegegeven
-    })
-    .then(response => {
-      console.log(response);
-      if (!response.ok) {
-        reject('No Cookie');
-      }
-      return response.json();
-    })
-    .then(data => {
-      resolve(data.message);
-    })
-    .catch(error => {
-      console.error('Error:', error);
-      reject(error); 
+    return new Promise((resolve, reject) => {
+        fetch('http://localhost:5165/api/Cookie/GetUserId', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            credentials: 'include',  // Verstuurt cookies voor authenticatie
+        })
+            .then(response => {
+                console.log(response);
+                if (!response.ok) {
+                    reject('No Cookie');  // Verwerpt de promise als er geen geldige cookie is
+                }
+                return response.json();  // Zet de reactie om naar JSON
+            })
+            .then(data => {
+                resolve(data.message);  // Lost de promise op met het gebruikers-ID
+            })
+            .catch(error => {
+                console.error('Error:', error);  // Logt fouten naar de console
+                reject(error);  // Verwerpt de promise met de fout
+            });
     });
-  });
 }
 
-
+/// <summary>
+/// Verstuurt een PUT-verzoek om de gebruikersinformatie bij te werken met de opgegeven gegevens.
+/// </summary>
+/// <param name="userData">Object met de gebruikersinformatie die bijgewerkt moet worden.</param>
+/// <returns>Retourneert een bericht dat aangeeft of de informatie succesvol is bijgewerkt of een foutmelding.</returns>
 function ChangeUserInfo(userData) {
-  return fetch('http://localhost:5165/api/ChangeUserSettings/ChangeUserInfo', {
-    method: 'PUT',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(userData),
-    credentials: 'include',
-  })
-    .then(async (response) => {
-      const data = await response.json(); 
-      if (!response.ok)
-      {
-        if (data.message !== 'Email detected')
-        {
-          throw new Error("Unknown error");
-        }
-      }
-
-      return data.message;
+    return fetch('http://localhost:5165/api/ChangeUserSettings/ChangeUserInfo', {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(userData),  // Stuurt de gebruikersinformatie als JSON in de request body
+        credentials: 'include',  // Verstuurt cookies voor authenticatie
     })
-    .catch((error) => {
-      console.error(error);
-      throw error;
-    });
+        .then(async (response) => {
+            const data = await response.json();  // Wacht op de JSON-reactie
+            if (!response.ok) {
+                if (data.message !== 'Email detected') {
+                    throw new Error("Onbekende fout");  // Behandelt foutmeldingen behalve 'Email detected'
+                }
+            }
+            return data.message;  // Retourneert het bericht van de reactie
+        })
+        .catch((error) => {
+            console.error(error);  // Logt fouten naar de console
+            throw error;  // Gooit de fout opnieuw voor verdere verwerking
+        });
 }
 
+/// <summary>
+/// Verwijdert het gebruikersaccount met het opgegeven gebruikers-ID.
+/// </summary>
+/// <param name="userId">Het gebruikers-ID van de te verwijderen gebruiker.</param>
+/// <returns>Retourneert een resultaat dat aangeeft of de verwijdering succesvol was of niet.</returns>
 function DeleteUser(userId) {
-    const encryptedUserId = encrypt(userId)
+    const encryptedUserId = encrypt(userId);  // Versleutelt het gebruikers-ID
     return fetch(`http://localhost:5165/api/ChangeUserSettings/DeleteUser/${encryptedUserId}`, {
         method: 'DELETE',
         headers: {
-            'Content-Type': 'application/json'},
-        credentials: 'include',
+            'Content-Type': 'application/json'
+        },
+        credentials: 'include',  // Verstuurt cookies voor authenticatie
     })
         .then(async (response) => {
-            const data = await response.json();
+            const data = await response.json();  // Wacht op de JSON-reactie
             if (!response.ok) {
-                throw new Error(data.message || 'Error');
+                throw new Error(data.message || 'Fout');  // Gooi een foutmelding als de reactie niet OK is
             }
-            return data;
+            return data;  // Retourneert de gegevens van de reactie
         })
         .catch((error) => {
-            console.error('Error deleting user:', error.message);
-            throw error;
-        })
+            console.error('Fout bij het verwijderen van gebruiker:', error.message);  // Logt fouten naar de console
+            throw error;  // Gooi de fout opnieuw
+        });
 }
 
+/// <summary>
+/// Behandelt de instellingen van de gebruiker, inclusief het updaten van gegevens en het verwijderen van het account.
+/// </summary>
 function UserSettings() {
-  const navigate = useNavigate();
-  const [user, setUser] = useState('');
-  const [email, setEmail] = useState('');
-  const [adres, setAdres] = useState('');
-  const [phonenumber, setPhonenumber] = useState('');
-  const [firstName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('');
-  const [password1, setPassword1] = useState('');
-  const [password2, setPassword2] = useState('');
-  const [error, setError] = useState(null);
+    const navigate = useNavigate();
+    const [user, setUser] = useState('');
+    const [email, setEmail] = useState('');
+    const [adres, setAdres] = useState('');
+    const [phonenumber, setPhonenumber] = useState('');
+    const [firstName, setFirstName] = useState('');
+    const [lastName, setLastName] = useState('');
+    const [password1, setPassword1] = useState('');
+    const [password2, setPassword2] = useState('');
+    const [error, setError] = useState(null);
 
-  useEffect(() => {
-      fetch('http://localhost:5165/api/Cookie/GetUserId', {
-          method: 'GET',
-          headers: {
-              'Content-Type': 'application/json',
-          },
-          credentials: 'include',
-      })
-          .then(response => {
-              if (!response.ok) {
-                  throw new Error('No Cookie');
-              }
-              return response.json();
-          })
-          .then(() => {
-              GetUser(setUser);
-          })
-          .catch(() => {
-              navigate('/');
-          })
-  }, [navigate]);
+    useEffect(() => {
+        fetch('http://localhost:5165/api/Cookie/GetUserId', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            credentials: 'include',
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('No Cookie');
+                }
+                return response.json();
+            })
+            .then(() => {
+                GetUser(setUser);
+            })
+            .catch(() => {
+                navigate('/');
+            })
+    }, [navigate]);
 
-  const onSubmit = async (event) => {
-    event.preventDefault();
-    try
-    {
-      if (password1 === password2)
-      {
-        const userId = await GetUserId();
-
-        const userData = {
-          ID: userId,
-          Email: email,
-          Password: password1,
-          FirstName: firstName,
-          LastName: lastName,
-          TelNum: phonenumber,
-          Adres: adres,
-        };
-
-        const message = await ChangeUserInfo(userData);
-
-        if (firstName !== '')
+    const onSubmit = async (event) => {
+        event.preventDefault();
+        try
         {
-          GetUser(setUser);
-        }
+            if (password1 === password2)
+            {
+                const userId = await GetUserId();
 
-        if (message === 'Data Updated')
-        {
-          navigate('/home');
+                const userData = {
+                    ID: userId,
+                    Email: email,
+                    Password: password1,
+                    FirstName: firstName,
+                    LastName: lastName,
+                    TelNum: phonenumber,
+                    Adres: adres,
+                };
+
+                const message = await ChangeUserInfo(userData);
+
+                if (firstName !== '')
+                {
+                    GetUser(setUser);
+                }
+
+                if (message === 'Data Updated')
+                {
+                    navigate('/home');
+                }
+                else
+                {
+                    setError(message);
+                }
+            }
         }
-        else
+        catch (error)
         {
-          setError(message);
+            setError("Er zijn geen velden ingevoerd");
         }
-      }
     }
-    catch (error)
-    {
-      setError("Er zijn geen velden ingevoerd");
-    }
-  }
-  
-  useEffect(() => {
-      GetUserId()
-          .then((id) => {
-              setUser(id);
-              GetUser(setUser);
-          })
-          .catch(() => {
-              navigate('/');
-          });
-  }, [navigate]);
 
-  const handleDelete = async () => {
-      const confirmDelete = window.confirm('Are you sure you want to delete your account?');
-      if (!confirmDelete) return;
+    useEffect(() => {
+        GetUserId()
+            .then((id) => {
+                setUser(id);
+                GetUser(setUser);
+            })
+            .catch(() => {
+                navigate('/');
+            });
+    }, [navigate]);
 
-      try {
-          const response = await fetch('http://localhost:5165/api/ChangeUserSettings/DeleteUser', {
-              method: 'DELETE',
-              credentials: 'include', // Include the cookie
-          });
-          
-          const data = await response.json();
-          if (response.ok) {
-              alert('Your account has been deleted successfully');
-              navigate('/'); // Redirect after deletion
-          } else {
-              setError(data.message);
-          }
-      } catch (error) {
-          setError('Failed to delete account');
-      }
-  };
+    const handleDelete = async () => {
+        const confirmDelete = window.confirm('Weet je zeker dat je je account wilt verwijderen?');
+        if (!confirmDelete) return;
+
+        try {
+            const response = await fetch('http://localhost:5165/api/ChangeUserSettings/DeleteUser', {
+                method: 'DELETE',
+                credentials: 'include', // Verstuurt de cookie
+            });
+
+            const data = await response.json();
+            if (response.ok) {
+                alert('Je account is succesvol verwijderd');
+                navigate('/'); // Stuur de gebruiker door na verwijdering
+            } else {
+                setError(data.message);
+            }
+        } catch (error) {
+            setError('Verwijderen van account is mislukt');
+        }
+    };
 
   return (
     <>

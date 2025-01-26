@@ -3,9 +3,7 @@
 using Microsoft.AspNetCore.Mvc;
 using WPR.Database;
 using System;
-using MySqlX.XDevAPI.Common;
 using WPR.Repository;
-using MySql.Data.MySqlClient;
 
 /// <summary>
 /// AddIntakeController zorgt ervoor dat informatie over de inname van een voertuig toegevoegd kan worden aan de database

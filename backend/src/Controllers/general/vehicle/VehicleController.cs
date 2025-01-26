@@ -25,12 +25,13 @@ public class VehicleController : ControllerBase
         _vehicleRepository = vehicleRepository ?? throw new ArgumentNullException(nameof(vehicleRepository));
     }
 
-    [HttpGet("GetVehicleNameAsync")]
+    
     /// <summary>
     /// Haalt de merk en type op van een voertuig met het opgegeven FrameNr.
     /// </summary>
     /// <param name="frameNr">Het frame nummer van het voertuig.</param>
     /// <returns>Het merk en type van het voertuig of een foutmelding als het voertuig niet gevonden kan worden.</returns>
+    [HttpGet("GetVehicleNameAsync")]
     public async Task<IActionResult> GetVehicleName(int frameNr)
     {
         try
@@ -87,13 +88,13 @@ public class VehicleController : ControllerBase
             return StatusCode(500, "An error occurred while fetching the name of the car.");
         }
     }
-
-    [HttpGet("GetVehicleImageAsync")]
+    
     /// <summary>
     /// Haalt de afbeelding (in Base64) op van een voertuig met het opgegeven FrameNr.
     /// </summary>
     /// <param name="frameNr">Het frame nummer van het voertuig.</param>
     /// <returns>De afbeelding van het voertuig in Base64-indeling of een foutmelding als de afbeelding niet gevonden kan worden.</returns>
+    [HttpGet("GetVehicleImageAsync")]
     public async Task<IActionResult> GetVehicleImageAsync(int frameNr)
     {
         try
@@ -133,12 +134,12 @@ public class VehicleController : ControllerBase
         }
     }
 
-    [HttpGet("GetVehiclePriceAsync")]
     /// <summary>
     /// Haalt de prijs op van een voertuig met het opgegeven FrameNr.
     /// </summary>
     /// <param name="frameNr">Het frame nummer van het voertuig.</param>
     /// <returns>De prijs van het voertuig in een formaat met twee decimalen of een foutmelding als de prijs niet gevonden kan worden.</returns>
+    [HttpGet("GetVehiclePriceAsync")]
     public async Task<IActionResult> GetVehiclePriceAsync(int frameNr)
     {
         try
@@ -180,11 +181,11 @@ public class VehicleController : ControllerBase
         }
     }
 
-    [HttpGet("GetAllVehicles")]
     /// <summary>
     /// Haalt alle voertuigen op uit de database en retourneert de gegevens in een lijst.
     /// </summary>
     /// <returns>Een lijst van voertuigen met details zoals FrameNr, Merk, Type, Prijs, etc.</returns>
+    [HttpGet("GetAllVehicles")]
     public async Task<IActionResult> GetAllVehiclesAsync()
     {
         try
@@ -228,12 +229,12 @@ public class VehicleController : ControllerBase
         }
     }
 
-    [HttpGet("GetTypeOfVehicles")]
     /// <summary>
     /// Haalt voertuigen op van een specifiek type (of alle types als "ALL" wordt opgegeven).
     /// </summary>
     /// <param name="vehicleType">Het type van voertuigen om op te filteren, zoals "SUV", "Sedan" etc.</param>
     /// <returns>Een lijst van voertuigen van het opgegeven type.</returns>
+    [HttpGet("GetTypeOfVehicles")]
     public async Task<IActionResult> GetTypeOfVehiclesAsync(string vehicleType)
     {
         try
@@ -289,47 +290,47 @@ public class VehicleController : ControllerBase
         }
     }
 
-    [HttpGet("GetFrameNumbers")]
     /// <summary>
     /// Haalt alle framenummers van voertuigen op uit de database.
     /// </summary>
     /// <returns>Een lijst van framenummers van alle voertuigen.</returns>
+    [HttpGet("GetFrameNumbers")]
     public async Task<IActionResult> GetFrameNumbersAsync()
     {
         var ids = await _vehicleRepository.GetFrameNumbersAsync();
         return Ok(new { message = ids });
     }
 
-    [HttpGet("GetFrameNumbersSpecificType")]
     /// <summary>
     /// Haalt de framenummers op van voertuigen van een specifiek type.
     /// </summary>
     /// <param name="type">Het type voertuig waarvoor de framenummers opgehaald moeten worden.</param>
     /// <returns>Een lijst van framenummers van voertuigen van het opgegeven type.</returns>
+    [HttpGet("GetFrameNumbersSpecificType")]
     public async Task<IActionResult> GetFrameNumbersSpecificTypeAsync(string type)
     {
         var ids = await _vehicleRepository.GetFrameNumberSpecifiekTypeAsync(type);
         return Ok(new { message = ids });
     }
 
-    [HttpGet("GetVehicelData")]
     /// <summary>
     /// Haalt alle gegevens van een specifiek voertuig op basis van het FrameNr.
     /// </summary>
     /// <param name="frameNr">Het frame nummer van het voertuig.</param>
     /// <returns>De gegevens van het voertuig, zoals merk, type, prijs, etc.</returns>
+    [HttpGet("GetVehicelData")]
     public async Task<IActionResult> GetVehicleData(string frameNr)
     {
         var data = await _vehicleRepository.GetVehicleDataAsync(frameNr);
         return Ok(new { message = data });
     }
 
-    [HttpDelete("DeleteVehicle")]
     /// <summary>
     /// Verwijdert een specifiek voertuig uit de database op basis van het FrameNr.
     /// </summary>
     /// <param name="frameNr">Het frame nummer van het voertuig dat verwijderd moet worden.</param>
     /// <returns>Een bericht over de status van het verwijderen van het voertuig.</returns>
+    [HttpDelete("DeleteVehicle")]
     public async Task<IActionResult> DeleteVehicleAsync(string frameNr)
     {
         try

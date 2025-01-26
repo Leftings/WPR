@@ -6,9 +6,6 @@ using MySql.Data.MySqlClient;
 using System;
 using WPR.Database;
 using WPR.Cryption;
-using WPR.Hashing;
-using ZstdSharp.Unsafe;
-using System.Transactions;
 using WPR.Controllers.General.Cookie;
 
 /// <summary>

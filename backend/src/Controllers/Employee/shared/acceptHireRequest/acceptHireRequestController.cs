@@ -3,9 +3,7 @@ namespace WPR.Controllers.Employee.Shared.acceptHireRequest;
 using Microsoft.AspNetCore.Mvc;
 using WPR.Database;
 using System;
-using MySqlX.XDevAPI.Common;
 using WPR.Repository;
-using MySql.Data.MySqlClient;
 using WPR.Cryption;
 
 /// <summary>

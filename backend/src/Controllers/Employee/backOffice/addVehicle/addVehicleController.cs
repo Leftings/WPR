@@ -3,9 +3,7 @@ namespace WPR.Controllers.Employee.BackOffice.AddVehicle;
 using Microsoft.AspNetCore.Mvc;
 using WPR.Database;
 using System;
-using MySqlX.XDevAPI.Common;
 using WPR.Repository;
-using MySql.Data.MySqlClient;
 
 /// <summary>
 /// AddVehicleController zorgt ervoor dat voertuigen toegevoegd kunnen worden aan de database
