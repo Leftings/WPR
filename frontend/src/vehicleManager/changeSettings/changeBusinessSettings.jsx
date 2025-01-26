@@ -44,6 +44,26 @@ function GetUserId() {
     });
 }
 
+class CustomerError extends Error {
+    constructor(message) {
+        super(message);
+        this.name = 'CustomerError';
+    }
+}
+
+class VehicleManagerError extends Error {
+    constructor(message) {
+        super(message);
+        this.name = 'VehicleManagerError';
+    }
+}
+
+class BusinessError extends Error {
+    constructor(message) {
+        super(message);
+        this.name = 'BusinessError';
+    }
+}
 
 function ChangeBusinessSettings() {
   const navigate = useNavigate();
@@ -192,7 +212,7 @@ function ChangeBusinessSettings() {
                     const customerResponse = await fetch(customerUrl);
 
                     if (!customerResponse.ok) {
-                        throw new Error(`Failed to fetch customers. Status: ${customerResponse.status}`);
+                     setCustomerError("Failed to fetch customers. Status: ${customerResponse.status}");
                     }
 
                     const customerData = await customerResponse.json();
@@ -266,7 +286,7 @@ function ChangeBusinessSettings() {
                     const customerResponse = await fetch(customerUrl);
 
                     if (!customerResponse.ok) {
-                        throw new Error(`Failed to fetch customers. Status: ${customerResponse.status}`);
+                        setCustomerError(`Nog geen customers die bij dit bedrijf horen!`);
                     }
 
                     const customerData = await customerResponse.json();
@@ -335,8 +355,7 @@ function ChangeBusinessSettings() {
 
             console.log("Updated Info JSON to be sent:", updatedInfo);
 
-            const updateResponse = await fetch(`${BACKEND_URL}/api/ChangeBusinessSettings/ChangeBusinessInfo
-`, {
+            const updateResponse = await fetch(`${BACKEND_URL}/api/ChangeBusinessSettings/ChangeBusinessInfo`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
@@ -347,15 +366,17 @@ function ChangeBusinessSettings() {
             if (updateResponse.ok) {
                 navigate('/VehicleManager');
             } else {
+                // Try to extract error message from the response
                 const errorData = await updateResponse.json();
-                setError([errorData.message]);
+                const errorMessage = 'Niet alles ingevuld of onjuiste gegeven ingevuld';  
+                setBusinessError(errorMessage);
             }
-
         } catch (error) {
-            setError([error.message]);
+            // Handle unexpected errors (e.g., network errors)
+            setBusinessError(`Error: ${error.message}`);
         }
     };
-
+    
     const onSubmitVehicleManager = async () => {
         console.log("onSubmitVehicleManager is being called!");
         try {
@@ -565,7 +586,7 @@ function ChangeBusinessSettings() {
                         console.log("Email is valid.");
                         return true;
                     } else {
-                        console.log("Error during email check:", checkEmailData.message);
+                        VehicleManagerError("Error during email check:", checkEmailData.message);
                         setError(checkEmailData.message || "Unknown error");
                         return false;
                     }
@@ -639,7 +660,7 @@ function ChangeBusinessSettings() {
                     />
 
                     <div className='registrateFormatFooter'>
-                        {vehicleManagerError && <p style={{ color: 'red' }}>{vehicleManagerError}</p>}
+                        {businessError && <p style={{ color: 'red' }}>{businessError}</p>}
                         <button
                             className='cta-button'
                             type='button'
@@ -689,17 +710,16 @@ function ChangeBusinessSettings() {
                     />
 
                     <div className='registrateFormatFooter'>
-                        {customerError && <p style={{ color: 'red' }}>{customerError}</p>}
-                        {error && <p style={{ color: 'red' }}>{error}</p>}
+                        {vehicleManagerError && <p style={{ color: 'red' }}>{vehicleManagerError}</p>}
                         <button
                             className='cta-button'
                             type='button'
                             onClick={() => {
                                 checkNewEmail(newEmail).then((isValidEmail) => {
-                                    console.log("Email check passed:", isValidEmail);
+                                    setVehicleManagerError(new VehicleManagerError('Ongeldig emailadres, domein moet hetzelfde zijn als oude emailadres').message);
                                     if (isValidEmail) {
                                         if (password1 !== password2) {
-                                            setCustomerError('Wachtwoorden komen niet overeen.');
+                                            setVehicleManagerError('Wachtwoorden komen niet overeen.');
                                         } else {
                                             onSubmitVehicleManager(); 
                                         }
@@ -729,6 +749,7 @@ function ChangeBusinessSettings() {
                     <h1 className={`expandable-header ${showCustomers ? 'active' : ''}`}>Update Customer gegevens</h1>
 
                     {/* Centered Button for Show/Hide */}
+                    {customerError && <p style={{ color: 'red' }}>{customerError}</p>}
                     <div className='button-center-container'>
                         <button
                             className='expand-button'
