@@ -139,7 +139,7 @@ public async Task SendRentalConfirmMail(string toEmail, string carName, string c
     /// <param name="kvk">Het KvK nummer van het bedrijf.</param>
     /// <param name="domain">Het domein van het bedrijf.</param>
     /// <param name="adres">Het adres van het bedrijf.</param>
-public async Task SendConfirmationEmailBusiness(string toEmail, string subscription, string businessName, int kvk, string domain, string adres)
+public async Task SendConfirmationEmailBusiness(string toEmail, string businessName, int kvk, string domain, string adres)
 {
     if (string.IsNullOrEmpty(toEmail))
     {
@@ -153,7 +153,7 @@ public async Task SendConfirmationEmailBusiness(string toEmail, string subscript
         {
             From = new MailAddress(_envConfig.Get("SMTP_FROM_EMAIL")), // Afzender e-mail
             Subject = "Aanvraag Bedrijfs Account", // Onderwerp van de e-mail
-            Body = BuildConfirmationEmailBusinessBody(subscription, businessName, kvk, domain, adres), // Bouw de inhoud van de bevestiging
+            Body = BuildConfirmationEmailBusinessBody(businessName, kvk, domain, adres), // Bouw de inhoud van de bevestiging
             IsBodyHtml = true // Geef aan dat de inhoud HTML is
         })
         {
@@ -246,7 +246,7 @@ public async Task SendBusinessReviewEmail(string toEmail, string businessName, s
     /// <param name="domain">Het domein van het bedrijf.</param>
     /// <param name="adres">Het adres van het bedrijf.</param>
     /// <returns>HTML-inhoud voor de bedrijfsaccount bevestiging.</returns>
-    private string BuildConfirmationEmailBusinessBody(string subscription ,string businessName, int kvk, string domain, string adres)
+    private string BuildConfirmationEmailBusinessBody(string businessName, int kvk, string domain, string adres)
     {
         
         return $@"
@@ -255,7 +255,6 @@ public async Task SendBusinessReviewEmail(string toEmail, string businessName, s
             <p>Bedankt voor het aanmelden als bedrijf bij CarAndAll.</p>
             <p>Ons personeel zal binnen 48 uw aanvraag voor een bedrijfsaccount bekijken en verwerken met de volgende gegevens:</p>
             <ul>
-                <li>Abonnement: {subscription}</li>
                 <li>Bedrijfsnaam: {businessName}</li>
                 <li>Kamer van koophandel: {kvk}</li>
                 <li>Domeinnaam: {domain}

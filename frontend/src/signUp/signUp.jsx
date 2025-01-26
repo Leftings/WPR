@@ -82,6 +82,11 @@ function SignUp() {
             }
         }
 
+        if (password1 !== password2)
+        {
+            validationErrors.push("Wachtwoorden komen niet overeen");
+        }
+
         SetErrors(validationErrors);
 
         console.log(validationErrors);
