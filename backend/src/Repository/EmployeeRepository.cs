@@ -1,10 +1,6 @@
 ﻿using WPR.Database;
 using WPR.Hashing;
-using Microsoft.VisualBasic;
 using MySql.Data.MySqlClient;
-using MySqlX.XDevAPI.Relational;
-using System.Reflection.Metadata.Ecma335;
-using System.Threading.Tasks;
 using WPR.Services;
 using WPR.Controllers.Employee.BackOffice.signUpStaff;
 using WPR.Controllers.Customer.AddBusiness;
@@ -659,292 +655,311 @@ public class EmployeeRepository : IEmployeeRepository
         return (false, $"Domain Detected");
     }
 
-    public (int StatusCode, string Message, IList<int> KvK) ViewBusinessRequests()
+    // Haalt alle KvK-nummers op van bedrijven die in de 'Deactive' status staan
+public (int StatusCode, string Message, IList<int> KvK) ViewBusinessRequests()
+{
+    try
     {
-        try
-        {
-            string query = "SELECT KvK FROM Business WHERE Activated = 'Deactive'";
+        string query = "SELECT KvK FROM Business WHERE Activated = 'Deactive'";
 
-            using (var connection = _connector.CreateDbConnection())
-            using (var command = new MySqlCommand(query, (MySqlConnection)connection))
-            using (var reader = command.ExecuteReader())
+        using (var connection = _connector.CreateDbConnection())
+        using (var command = new MySqlCommand(query, (MySqlConnection)connection))
+        using (var reader = command.ExecuteReader())
+        {
+            IList<int> kvk = new List<int>();
+
+            // Leest de KvK-nummers en voegt ze toe aan de lijst
+            while (reader.Read())
             {
-                IList<int> kvk = new List<int>();
-
-                while (reader.Read())
-                {
-                    kvk.Add(Convert.ToInt32(reader.GetValue(0)));
-                }
-
-                return (200, "Succes", kvk);
+                kvk.Add(Convert.ToInt32(reader.GetValue(0)));
             }
-        }
-        catch (MySqlException ex)
-        {
-            return (500, ex.Message, new List<int>());
-        }
-        catch (OverflowException ex)
-        {
-            return (500, ex.Message, new List<int>());
-        }
-        catch (Exception ex)
-        {
-            return (500, ex.Message, new List<int>());
+
+            // Retourneert de KvK-nummers als een succesvolle response
+            return (200, "Succes", kvk);
         }
     }
-
-    public async Task<(int StatusCode, string Message, Dictionary<string, object> data)> ViewBusinessRequestDetailed(int kvk)
+    catch (MySqlException ex)
     {
-        try
+        return (500, ex.Message, new List<int>());
+    }
+    catch (OverflowException ex)
+    {
+        return (500, ex.Message, new List<int>());
+    }
+    catch (Exception ex)
+    {
+        return (500, ex.Message, new List<int>());
+    }
+}
+
+// Haalt gedetailleerde bedrijfsinformatie op voor een specifiek KvK-nummer
+public async Task<(int StatusCode, string Message, Dictionary<string, object> data)> ViewBusinessRequestDetailed(int kvk)
+{
+    try
+    {
+        string query = "SELECT KvK, BusinessName, Adres, Domain, ContactEmail FROM Business WHERE KvK = @K";
+
+        using (var connection = _connector.CreateDbConnection())
+        using (var command = new MySqlCommand(query, (MySqlConnection)connection))
         {
-            string query = "SELECT KvK, BusinessName, Adres, Domain, ContactEmail FROM Business WHERE KvK = @K";
+            command.Parameters.AddWithValue("@K", kvk);
 
-            using (var connection = _connector.CreateDbConnection())
-            using (var command = new MySqlCommand(query, (MySqlConnection)connection))
+            using (var reader = await command.ExecuteReaderAsync())
             {
-                command.Parameters.AddWithValue("@K", kvk);
+                Dictionary<string, object> data = new Dictionary<string, object>();
 
-                using (var reader = await command.ExecuteReaderAsync())
+                // Leest de gegevens van de query en slaat ze op in een dictionary
+                while (await reader.ReadAsync())
+                {
+                    for (int i = 0; i < reader.FieldCount; i++)
+                    {
+                        data[reader.GetName(i)] = reader.GetValue(i);
+                    }
+                }
+
+                // Retourneert de gegevens als succesvolle response
+                return (200, "Succes", data);
+            }
+        }
+    }
+    catch (MySqlException ex)
+    {
+        return (500, ex.Message, new Dictionary<string, object>());
+    }
+    catch (Exception ex)
+    {
+        return (500, ex.Message, new Dictionary<string, object>());
+    }
+}
+
+// Zet de status van een bedrijf naar 'Active'
+public (int StatusCode, string Message) BusinessAccepted(int kvk)
+{
+    try
+    {
+        string query = "UPDATE Business SET Activated = 'Active' WHERE KvK = @K";
+
+        using (var connection = _connector.CreateDbConnection())
+        using (var command = new MySqlCommand(query, (MySqlConnection)connection))
+        {
+            command.Parameters.AddWithValue("@K", kvk);
+
+            // Voert de update uit en controleert of het succesvol was
+            if (command.ExecuteNonQuery() > 0)
+            {
+                return (200, "Succes");
+            }
+            return (500, "Error Occured");
+        }
+    }
+    catch (MySqlException ex)
+    {
+        return (500, ex.Message);
+    }
+    catch (Exception ex)
+    {
+        return (500, ex.Message);
+    }
+}
+
+// Verwijdert een bedrijf op basis van KvK-nummer
+public (int StatusCode, string Message) BusinessDenied(int kvk)
+{
+    try
+    {
+        string query = "DELETE FROM Business WHERE KvK = @K";
+
+        using (var connection = _connector.CreateDbConnection())
+        using (var command = new MySqlCommand(query, (MySqlConnection)connection))
+        {
+            command.Parameters.AddWithValue("@K", kvk);
+
+            // Voert de delete-operatie uit en controleert of het succesvol was
+            if (command.ExecuteNonQuery() > 0)
+            {
+                return (200, "Succes");
+            }
+            return (500, "Error Occured");
+        }
+    }
+    catch (MySqlException ex)
+    {
+        return (500, ex.Message);
+    }
+    catch (Exception ex)
+    {
+        return (500, ex.Message);
+    }
+}
+
+// Haalt de informatie van een bedrijf op, op basis van KvK-nummer
+public (bool Status, string Message, Dictionary<string, object> Data) GetBusinessInfo(int kvk)
+{
+    try
+    {
+        string query = "SELECT * FROM Business WHERE KvK = @K";
+
+        using (var connection = _connector.CreateDbConnection())
+        using (var command = new MySqlCommand(query, (MySqlConnection)connection))
+        {
+            command.Parameters.AddWithValue("@K", kvk);
+
+            using (var reader = command.ExecuteReader())
+            {
+                // Controleert of er gegevens voor het opgegeven KvK-nummer zijn
+                if (!reader.HasRows)
+                {
+                    return (false, "No data found for the given KvK", new Dictionary<string, object>());
+                }
+
+                Dictionary<string, object> data = new Dictionary<string, object>();
+
+                // Leest de gegevens van de database en slaat ze op in de dictionary
+                while (reader.Read())
+                {
+                    for (int i = 0; i < reader.FieldCount; i++)
+                    {
+                        object value = reader.IsDBNull(i) ? null : reader.GetValue(i);
+                        data[reader.GetName(i)] = value;
+                    }
+                }
+
+                return (true, "Success", data);
+            }
+        }
+    }
+    catch (MySqlException ex)
+    {
+        return (false, $"MySQL Error: {ex.Message}", new Dictionary<string, object>());
+    }
+    catch (Exception ex)
+    {
+        return (false, $"General Error: {ex.Message}", new Dictionary<string, object>());
+    }
+}
+
+// Haalt het KvK-nummer op voor een voertuigbeheerder
+public (int StatusCode, string Message, int KvK) GetKvK(int vehicleManagerId)
+{
+    try
+    {
+        string query = $"SELECT Business FROM VehicleManager WHERE ID = @I";
+
+        using (var connection = _connector.CreateDbConnection())
+        using (var command = new MySqlCommand(query, (MySqlConnection)connection))
+        {
+            command.Parameters.AddWithValue("@I", vehicleManagerId);
+
+            using (var reader = command.ExecuteReader())
+            {
+                // Leest het KvK-nummer en retourneert het als een succesresponse
+                if (reader.Read())
+                {
+                    int kvk = Convert.ToInt32(reader.GetValue(0));
+                    return (200, "Succes", kvk);
+                }
+                return (404, "KvK Number Not Found", -1);
+            }
+        }
+    }
+    catch (MySqlException ex)
+    {
+        return (500, ex.Message, -1);
+    }
+    catch (OverflowException ex)
+    {
+        return (500, ex.Message, -1);
+    }
+    catch (Exception ex)
+    {
+        return (500, ex.Message, -1);
+    }
+}
+
+// Haalt abonnementsinformatie op op basis van het abonnement-ID
+public (int StatusCode, string Message, Dictionary<string, object> Data) GetAbonnementType(int abonnementId)
+{
+    try
+    {
+        string query = $"SELECT * FROM Abonnement WHERE ID = @I";
+        using (var connection = _connector.CreateDbConnection())
+        using (var command = new MySqlCommand(query, (MySqlConnection)connection))
+        {
+            command.Parameters.AddWithValue("@I", abonnementId);
+
+            using (var reader = command.ExecuteReader())
+            {
+                if (reader.Read())
                 {
                     Dictionary<string, object> data = new Dictionary<string, object>();
-                    while (await reader.ReadAsync())
+
+                    // Leest de velden van de database en slaat ze op in de dictionary
+                    for (int i = 0; i < reader.FieldCount; i++)
                     {
-                        for (int i = 0; i < reader.FieldCount; i++)
+                        if (!data.ContainsKey(reader.GetName(i)))
                         {
                             data[reader.GetName(i)] = reader.GetValue(i);
                         }
                     }
+
                     return (200, "Succes", data);
                 }
+
+                return (404, "Abonnement Not Found", new Dictionary<string, object>());
             }
         }
-        catch (MySqlException ex)
-        {
-            return (500, ex.Message, new Dictionary<string, object>());
-        }
-        catch (Exception ex)
-        {
-            return (500, ex.Message, new Dictionary<string, object>());
-        }
     }
-
-    public (int StatusCode, string Message) BusinessAccepted(int kvk)
+    catch (MySqlException ex)
     {
-        try
-        {
-            string query = "UPDATE Business SET Activated = 'Active' WHERE KvK = @K";
-
-            using (var connection = _connector.CreateDbConnection())
-            using (var command = new MySqlCommand(query, (MySqlConnection)connection))
-            {
-                command.Parameters.AddWithValue("@K", kvk);
-
-                if (command.ExecuteNonQuery() > 0)
-                {
-                    return (200, "Succes");
-                }
-                return (500, "Error Occured");
-            }
-        }
-        catch (MySqlException ex)
-        {
-            return (500, ex.Message);
-        }
-        catch (Exception ex)
-        {
-            return (500, ex.Message);
-        }
+        return (500, ex.Message, new Dictionary<string, object>());
     }
-
-    public (int StatusCode, string Message) BusinessDenied(int kvk)
+    catch (Exception ex)
     {
-        try
-        {
-            string query = "DELETE FROM Business WHERE KvK = @K";
-
-            using (var connection = _connector.CreateDbConnection())
-            using (var command = new MySqlCommand(query, (MySqlConnection)connection))
-            {
-                command.Parameters.AddWithValue("@K", kvk);
-
-                if (command.ExecuteNonQuery() > 0)
-                {
-                    return (200, "Succes");
-                }
-                return (500, "Error Occured");
-            }
-        }
-        catch (MySqlException ex)
-        {
-            return (500, ex.Message);
-        }
-        catch (Exception ex)
-        {
-            return (500, ex.Message);
-        }
+        return (500, ex.Message, new Dictionary<string, object>());
     }
+}
 
-    public (bool Status, string Message, Dictionary<string, object> Data) GetBusinessInfo(int kvk)
+// Haalt de informatie van een voertuigbeheerder op, inclusief het wachtwoord
+public (int StatusCode, string Message, Dictionary<string, object> Data) GetVehicleManagerInfo(int id)
+{
+    try
     {
-        try
+        // Query die expliciet het wachtwoord opvraagt
+        string query = $"SELECT ID, Email, Password, Business FROM VehicleManager WHERE ID = @I";
+
+        using (var connection = _connector.CreateDbConnection())
+        using (var command = new MySqlCommand(query, (MySqlConnection)connection))
         {
-            string query = "SELECT * FROM Business WHERE KvK = @K";
+            command.Parameters.AddWithValue("@I", id);
 
-            using (var connection = _connector.CreateDbConnection())
-            using (var command = new MySqlCommand(query, (MySqlConnection)connection))
+            using (var reader = command.ExecuteReader())
             {
-                command.Parameters.AddWithValue("@K", kvk);
-
-                using (var reader = command.ExecuteReader())
+                Dictionary<string, object> data = new Dictionary<string, object>();
+                
+                // Leest de gegevens van de database
+                if (reader.Read())
                 {
-                    // Check if any record is found
-                    if (!reader.HasRows)
-                    {
-                        return (false, "No data found for the given KvK", new Dictionary<string, object>());
-                    }
+                    data["ID"] = reader.GetInt32(reader.GetOrdinal("ID"));
+                    data["Email"] = reader.GetString(reader.GetOrdinal("Email"));
+                    data["Password"] = reader.IsDBNull(reader.GetOrdinal("Password")) ? null : reader.GetString(reader.GetOrdinal("Password"));
+                    data["Business"] = reader.GetInt32(reader.GetOrdinal("Business"));
 
-                    Dictionary<string, object> data = new Dictionary<string, object>();
-
-                    while (reader.Read())
-                    {
-                        for (int i = 0; i < reader.FieldCount; i++)
-                        {
-                            // If value is DBNull, replace with a default value (e.g., null or empty string)
-                            object value = reader.IsDBNull(i) ? null : reader.GetValue(i);
-                            data[reader.GetName(i)] = value;
-                        }
-                    }
-
-                    return (true, "Success", data);
+                    return (200, "Success", data);
                 }
+
+                return (404, "Vehicle Manager Not Found", data);
             }
         }
-        catch (MySqlException ex)
-        {
-            return (false, $"MySQL Error: {ex.Message}", new Dictionary<string, object>());
-        }
-        catch (Exception ex)
-        {
-            return (false, $"General Error: {ex.Message}", new Dictionary<string, object>());
-        }
     }
-
-    public (int StatusCode, string Message, int KvK) GetKvK(int vehicleManagerId)
+    catch (MySqlException ex)
     {
-        try
-        {
-            string query = $"SELECT Business FROM VehicleManager WHERE ID = @I";
-
-            using (var connection = _connector.CreateDbConnection())
-            using (var command = new MySqlCommand(query, (MySqlConnection)connection))
-            {
-                command.Parameters.AddWithValue("@I", vehicleManagerId);
-
-                using (var reader = command.ExecuteReader())
-                {
-                    if (reader.Read())
-                    {
-                        int kvk = Convert.ToInt32(reader.GetValue(0));
-
-                        return (200, "Succes", kvk);
-                    }
-                    return (404, "KvK Number Not Found", -1);
-                }
-            }
-        }
-        catch (MySqlException ex)
-        {
-            return (500, ex.Message, -1);
-        }
-        catch (OverflowException ex)
-        {
-            return (500, ex.Message, -1);
-        }
-        catch (Exception ex)
-        {
-            return (500, ex.Message, -1);
-        }
+        return (500, ex.Message, new Dictionary<string, object>());
     }
-
-    public (int StatusCode, string Message, Dictionary<string, object> Data) GetAbonnementType(int abonnementId)
+    catch (Exception ex)
     {
-        try
-        {
-            string query = $"SELECT * FROM Abonnement WHERE ID = @I";
-            using (var connection = _connector.CreateDbConnection())
-            using (var command = new MySqlCommand(query, (MySqlConnection)connection))
-            {
-                command.Parameters.AddWithValue("@I", abonnementId);
-
-                using (var reader = command.ExecuteReader())
-                {
-                    if (reader.Read())
-                    {
-                        Dictionary<string, object> data = new Dictionary<string, object>();
-
-                        for (int i = 0; i < reader.FieldCount; i++)
-                        {
-                            if (!data.ContainsKey(reader.GetName(i)))
-                            {
-                                data[reader.GetName(i)] = reader.GetValue(i);
-                            }
-                        }
-
-                        return (200, "Succes", data);
-                    }
-
-                    return (404, "Abonnement Not Found", new Dictionary<string, object>());
-                }
-            }
-        }
-        catch (MySqlException ex)
-        {
-            return (500, ex.Message, new Dictionary<string, object>());
-        }
-        catch (Exception ex)
-        {
-            return (500, ex.Message, new Dictionary<string, object>());
-        }
+        return (500, ex.Message, new Dictionary<string, object>());
     }
-
-    public (int StatusCode, string Message, Dictionary<string, object> Data) GetVehicleManagerInfo(int id)
-    {
-        try
-        {
-            // Adjust the query to explicitly select the Password field
-            string query = $"SELECT ID, Email, Password, Business FROM VehicleManager WHERE ID = @I";
-
-            using (var connection = _connector.CreateDbConnection())
-            using (var command = new MySqlCommand(query, (MySqlConnection)connection))
-            {
-                command.Parameters.AddWithValue("@I", id);
-
-                using (var reader = command.ExecuteReader())
-                {
-                    Dictionary<string, object> data = new Dictionary<string, object>();
-                    if (reader.Read())
-                    {
-                        // Ensure the password is being captured correctly
-                        data["ID"] = reader.GetInt32(reader.GetOrdinal("ID"));
-                        data["Email"] = reader.GetString(reader.GetOrdinal("Email"));
-                        data["Password"] = reader.IsDBNull(reader.GetOrdinal("Password")) ? null : reader.GetString(reader.GetOrdinal("Password")); 
-                        data["Business"] = reader.GetInt32(reader.GetOrdinal("Business"));
-                    
-                        return (200, "Success", data);
-                    }
-                    return (404, "Vehicle Manager Not Found", data);
-                }
-            }
-        }
-        catch (MySqlException ex)
-        {
-            return (500, ex.Message, new Dictionary<string, object>());
-        }
-        catch (Exception ex)
-        {
-            return (500, ex.Message, new Dictionary<string, object>());
-        }
-    }
+}
 
     
     /// <summary>
