@@ -1,6 +1,6 @@
 ﻿namespace WPR.Controllers.customer.Subscription;
 
-public class Subscription
+public class SubscriptionRequest
 {
     public int? Id { get; set; }
     public string Type { get; set; }

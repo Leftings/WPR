@@ -16,7 +16,11 @@
       <PackageReference Include="Swashbuckle.AspNetCore" Version="7.0.0" />
     </ItemGroup>
     <ItemGroup>
+      <Folder Include="Properties\PublishProfiles\" />
       <Folder Include="src\Controllers\Employee\frontOffice\" />
+    </ItemGroup>
+    <ItemGroup>
+      <None Remove="Properties\PublishProfiles\MyAzureProfile.pubxml" />
     </ItemGroup>
 
 </Project>

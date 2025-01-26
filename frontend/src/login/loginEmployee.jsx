@@ -136,6 +136,7 @@ function Login() {
             <nav>
               <ul className="nav-links">
                 <li><Link to="/vehicles">Zoek Auto's</Link></li>
+                <li><Link to="/abonnement">Abonnementen</Link></li>
                 <li><Link to="/about">Over ons</Link></li>
                 <li><Link to="/contact">Contact</Link></li>
               </ul>

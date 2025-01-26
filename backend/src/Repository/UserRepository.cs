@@ -1078,7 +1078,7 @@ public class UserRepository : IUserRepository
         }
     }
 
-    public async Task<Subscription> GetSubscriptionDataAsync(int id)
+    public async Task<SubscriptionRequest> GetSubscriptionDataAsync(int id)
     {
         try
         {
@@ -1096,7 +1096,7 @@ public class UserRepository : IUserRepository
                         var description = reader["Description"].ToString();
                         var price = reader["Price"].ToString().Equals("") ? 0 : Convert.ToDouble(reader["Price"]);
                         
-                        return new Subscription
+                        return new SubscriptionRequest
                         {
                             Id = id,
                             Type = type,

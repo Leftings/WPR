@@ -32,7 +32,7 @@ public interface IUserRepository
     Task<(int StatusCode, string Message)> AddCustomer(SignUpRequestCustomer request, SignUpRequestCustomerPrivate privateRequest);
     Task<(int StatusCode, string Message)> ChangeBusinessInfo(ChangeBusinessRequest request);
     Task<List<string>> GetAllSubscriptionsAsync();
-    Task<Subscription>GetSubscriptionDataAsync(int id);
+    Task<SubscriptionRequest>GetSubscriptionDataAsync(int id);
     Task<List<int>> GetSubscriptionIdsAsync();
     Task<Dictionary<string, object>> GetCustomerDetails(int id);
 }
