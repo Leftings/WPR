@@ -15,7 +15,6 @@ public class ContractRepository : IContractRepository
     public async Task<IList<int>> GetContractsSendEmailAsync()
     {
         string query = $"SELECT OrderId FROM Contract WHERE (SendEmail = 'No' AND StartDate = '{DateTime.Today.AddDays(1):yyyy-MM-dd}')";
-        Console.WriteLine(query);
         try
         {
             using (var connection = _connector.CreateDbConnection())

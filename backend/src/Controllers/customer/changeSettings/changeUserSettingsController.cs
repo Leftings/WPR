@@ -98,6 +98,7 @@ public class ChangeUserSettingsController : ControllerBase
             */
 
             var deleteUser = _databaseCheckRepository.DeleteUser(Convert.ToInt32(decryptedLoginCookie));
+            Response.Cookies.Append("LoginSession", "", new CookieOptions { Expires = DateTimeOffset.Now.AddDays(-1) });
             return StatusCode(deleteUser.StatusCode, new { message = deleteUser.Message });
         }
         catch (OverflowException ex)
