@@ -141,6 +141,7 @@ public class AppConfigure
     builder.Services.AddScoped<Crypt>();
     builder.Services.AddScoped<Hashing.Hash>();
     builder.Services.AddScoped<EmailService>();
+    builder.Services.AddScoped<IEmailService, EmailService>();
     builder.Services.AddScoped<IEmployeeRepository, EmployeeRepository>();
     builder.Services.AddScoped<IBackOfficeRepository, BackOfficeRepository>();
     builder.Services.AddScoped<IDatabaseCheckRepository, DatabaseCheckRepository>();
@@ -150,12 +151,12 @@ public class AppConfigure
 
     // Scoped dependencies
     builder.Services.AddScoped<EmailService>();
-    builder.Services.AddScoped<IDetails, Customer>();
-    builder.Services.AddScoped<IDetails, Vehicle>();
-    builder.Services.AddScoped<IDetails, Contract>();
     builder.Services.AddScoped<Customer>();
     builder.Services.AddScoped<Vehicle>();
     builder.Services.AddScoped<Contract>();
+    builder.Services.AddScoped<ICustomerDetails, Customer>();
+    builder.Services.AddScoped<IVehicleDetails, Vehicle>();
+    builder.Services.AddScoped<IContractDetails, Contract>();
 
 
     builder.Services.AddHostedService<Reminders>();

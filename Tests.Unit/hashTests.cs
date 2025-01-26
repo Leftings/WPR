@@ -2,40 +2,37 @@ namespace Test.Unit;
 
 using Test.Unit.Mocks;
 using WPR.Hashing;
+using ZstdSharp.Unsafe;
 
 public class HashTest
-{
-    private readonly EnvConfigMock _env;
-    private readonly Hash _hash;
-
-    public HashTest()
+{    private string CreateHashedPassword(Hash hash)
     {
-        _env = new EnvConfigMock();
-        _hash = new Hash(_env);
+        return hash.createHash("FakePassWord");
     }
 
-    private string CreateHash()
+    private string Hash(Hash hash, string password)
     {
-        return _hash.createHash("FakePassWord");
+        return hash.createHash(password);
+    }
+
+    private Hash CreateHash()
+    {
+        EnvConfigMock env = new EnvConfigMock();
+        Hash hash = new Hash(env);
+        return hash;
     }
 
     [Fact]
     public void GoodHashWrongMatch()
     {
-        Assert.DoesNotMatch("FakePassWord", CreateHash());
+        Hash hash = CreateHash();
+        Assert.DoesNotMatch(Hash(hash, "WRONG"), CreateHashedPassword(hash));
     }
 
     [Fact]
     public void GoodHashGoodMatch()
     {
-        string hashed = _hash.createHash("FakePassWord");
-        Assert.Equal(hashed, CreateHash());
-    }
-
-    [Fact]
-    public void GoodHashWrongMatchHashed()
-    {
-        string hashed = _hash.createHash("WRONG");
-        Assert.DoesNotMatch(hashed, CreateHash());
+        Hash hash = CreateHash();
+        Assert.Equal(Hash(hash, "FakePassWord"), CreateHashedPassword(hash));
     }
 }

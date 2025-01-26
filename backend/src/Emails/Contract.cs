@@ -2,7 +2,8 @@ using WPR.Repository;
 
 namespace WPR.Email;
 
-public class Contract : IDetails
+public interface IContractDetails : IDetails {}
+public class Contract : IContractDetails
 {
     private Dictionary<string, object> _details { get; set; }
     private readonly IContractRepository _contractRepository;

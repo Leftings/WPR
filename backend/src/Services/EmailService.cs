@@ -6,7 +6,12 @@ using WPR.Data;
 
 namespace WPR.Services;
 
-public class EmailService
+public interface IEmailService
+{
+    public Task Send(string toEmail, string subject, string body);
+}
+
+public class EmailService : IEmailService
 {
     private readonly EnvConfig _envConfig; // Instantie van EnConfig om environment variabelen op te halen.
 

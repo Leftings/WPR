@@ -27,7 +27,6 @@ public class ContractRepository : IContractRepository
                 while (await reader.ReadAsync())
                 {
                     int orderId = Convert.ToInt32(reader.GetValue(0));
-                    Console.WriteLine(orderId);
                     orders.Add(orderId);
                 }
 
