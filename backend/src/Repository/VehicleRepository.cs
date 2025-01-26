@@ -24,6 +24,11 @@ public class VehicleRepository : IVehicleRepository
         _emailService = emailService ?? throw new ArgumentNullException(nameof(emailService));
     }
 
+    /// <summary>
+    /// Haalt het kenteken van een voertuig op basis van het opgegeven frameNr.
+    /// </summary>
+    /// <param name="frameNr">Het frameNummer van het voertuig waarvan het kenteken opgehaald moet worden.</param>
+    /// <returns>Het kenteken van het voertuig, of een lege string als het niet gevonden wordt.</returns>
     public async Task<string> GetVehiclePlateAsync(int frameNr)
     {
         try
@@ -60,6 +65,11 @@ public class VehicleRepository : IVehicleRepository
     }
 
 
+    /// <summary>
+    /// Haalt de merk en type van een voertuig op basis van het opgegeven frameNr.
+    /// </summary>
+    /// <param name="frameNr">Het frameNummer van het voertuig waarvan merk en type opgehaald moeten worden.</param>
+    /// <returns>De combinatie van merk en type van het voertuig, of een lege string als de gegevens niet gevonden worden.</returns>
     public async Task<string> GetVehicleNameAsync(int frameNr)
     {
         try
@@ -97,6 +107,11 @@ public class VehicleRepository : IVehicleRepository
         }
     }
 
+    /// <summary>
+    /// Haalt de kleur van een voertuig op basis van het opgegeven frameNr.
+    /// </summary>
+    /// <param name="frameNr">Het frameNummer van het voertuig waarvan de kleur opgehaald moet worden.</param>
+    /// <returns>De kleur van het voertuig, of een lege string als de kleur niet gevonden wordt.</returns>
     public async Task<string> GetVehicleColorAsync(int frameNr)
     {
         try
@@ -132,6 +147,10 @@ public class VehicleRepository : IVehicleRepository
         }
     }
 
+    /// <summary>
+    /// Haalt een lijst op van alle frameNummers van voertuigen, gesorteerd op soort voertuig en frameNr.
+    /// </summary>
+    /// <returns>Een lijst van frameNummers van voertuigen.</returns>
     public async Task<List<string>> GetFrameNumbersAsync()
     {
         try
@@ -271,6 +290,11 @@ public class VehicleRepository : IVehicleRepository
         }
     }
 
+    /// <summary>
+    /// Probeert de gebruiker ID te decrypteren vanuit de cookie en retourneert het gedecodeerde resultaat.
+    /// </summary>
+    /// <param name="userId">De versleutelde gebruikers-ID als string.</param>
+    /// <returns>Een tuple bestaande uit een status (true/false), een statuscode en een bericht (bijvoorbeeld de gedecodeerde waarde of foutmelding).</returns>
     private async Task<(bool Status, int StatusCode, object Message)> DecryptCookie(string userId)
     {
         try
@@ -290,6 +314,11 @@ public class VehicleRepository : IVehicleRepository
         }
     }
 
+    /// <summary>
+    /// Controleert of de gebruiker een business account heeft op basis van het opgegeven userId.
+    /// </summary>
+    /// <param name="userId">Het ID van de gebruiker dat gecontroleerd moet worden.</param>
+    /// <returns>Een boolean die aangeeft of de gebruiker een business account heeft.</returns>
     private async Task<bool> IsBusinessUser(object userId)
     {
         try
@@ -326,6 +355,12 @@ public class VehicleRepository : IVehicleRepository
         }
     }
 
+    /// <summary>
+    /// Voegt een huurverzoek toe aan de database afhankelijk van het accounttype van de gebruiker (business of niet).
+    /// </summary>
+    /// <param name="request">Het huurverzoek object dat toegevoegd moet worden.</param>
+    /// <param name="userId">Het ID van de gebruiker die de huur aanvraag doet.</param>
+    /// <returns>Een tuple bestaande uit een status (true/false) en een bericht (bijvoorbeeld succes of mislukking).</returns>
     private async Task<(bool Status, string Message)> InsertRequest(RentalRequest request, object userId)
     {
         try
@@ -378,6 +413,11 @@ public class VehicleRepository : IVehicleRepository
         }
     }
 
+    /// <summary>
+    /// Verstuurt een bevestigingsmail naar de gebruiker na het succesvol aanmaken van een huurverzoek.
+    /// </summary>
+    /// <param name="request">Het huurverzoek object met gegevens die in de e-mail moeten worden opgenomen.</param>
+    /// <returns>Een tuple bestaande uit een status (true/false) en een bericht (bijvoorbeeld succes of mislukking).</returns>
     private async Task<(bool Status, string Message)> SendEmail(RentalRequest request)
     {
         try
@@ -412,8 +452,13 @@ public class VehicleRepository : IVehicleRepository
             return (false, ex.Message);
         }
     }
-
-
+    
+    /// <summary>
+    /// Verwerkt het huurverzoek door de gebruiker te valideren, het verzoek toe te voegen aan de database en een bevestigingsmail te sturen.
+    /// </summary>
+    /// <param name="request">Het huurverzoek object dat moet worden verwerkt.</param>
+    /// <param name="userId">Het gebruikers-ID van degene die de aanvraag doet.</param>
+    /// <returns>Een tuple bestaande uit een status (true/false) en een bericht (bijvoorbeeld succes of mislukking).</returns>
     public async Task<(bool Status, string Message)> HireVehicle(RentalRequest request, string userId)
     {
         var idUser = await DecryptCookie(userId);
@@ -444,6 +489,12 @@ public class VehicleRepository : IVehicleRepository
         return (true, emailServiceResponse.Message);
     }
 
+    /// <summary>
+    /// Annuleert een bestaande huur op basis van de opgegeven rentalId en userCookie.
+    /// </summary>
+    /// <param name="rentalId">Het ID van de huur die geannuleerd moet worden.</param>
+    /// <param name="userCookie">De cookie die het gebruikers-ID bevat.</param>
+    /// <returns>Een tuple bestaande uit een status (true/false), een statuscode en een bericht (bijvoorbeeld succes of mislukking).</returns>
     public async Task<(bool Status, int StatusCode, string Message)> CancelRental(int rentalId, string userCookie)
     {
         try
@@ -487,6 +538,11 @@ public class VehicleRepository : IVehicleRepository
         }
     }
 
+    /// <summary>
+    /// Verkrijgt alle huuraanvragen van een gebruiker, op basis van hun gedecodeerde userId vanuit de cookie.
+    /// </summary>
+    /// <param name="userCookie">De cookie van de gebruiker, die het gedecodeerde ID zal bevatten.</param>
+    /// <returns>A tuple containing the status, status code, message, and the list of user's rentals.</returns>
     public async Task<(bool Status, int StatusCode, string Message, IList<object> UserRentals)> GetAllUserRentals(
         string userCookie)
     {
@@ -553,7 +609,10 @@ public class VehicleRepository : IVehicleRepository
         }
     }
 
-    // Haalt gedetailleerde huurdata op van alle contracten
+    /// <summary>
+    /// Verkrijgt gedetailleerde huuraanvragen van alle contracten in de database.
+    /// </summary>
+    /// <returns>A tuple containing the status, status code, message, and the list of all rentals.</returns>
     public (bool Status, int StatusCode, string Message, IList<object> UserRentals) GetAllUserRentalsDetailed()
     {
         try
@@ -600,7 +659,11 @@ public class VehicleRepository : IVehicleRepository
         }
     }
 
-// Wijzigt de huurgegevens van een contract
+    /// <summary>
+    /// Wijzigt de gegevens van een huuraanvraag (startdatum, einddatum, prijs) voor een specifiek contract.
+    /// </summary>
+    /// <param name="request">Het verzoek met de bijgewerkte gegevens van de huur.</param>
+    /// <returns>A tuple containing the status, status code, and a message about the success or failure of the update.</returns>
     public (bool Status, int StatusCode, string Message) ChangeRental(UpdateRentalRequest request)
     {
         try
@@ -637,8 +700,12 @@ public class VehicleRepository : IVehicleRepository
             return (false, 500, ex.Message);
         }
     }
-
-// Verwijdert een voertuig op basis van het frame nummer
+    
+    /// <summary>
+    /// Verwijdert een voertuig uit de database op basis van het frame nummer.
+    /// </summary>
+    /// <param name="frameNr">Het frame nummer van het voertuig dat verwijderd moet worden.</param>
+    /// <returns>A tuple containing the status and message about the success or failure of the deletion.</returns>
     public async Task<(bool Status, string Message)> DeleteVehicleAsync(string frameNr)
     {
         try
@@ -679,7 +746,12 @@ public class VehicleRepository : IVehicleRepository
         }
     }
 
-// Wijzigt de status van het voertuig, bijvoorbeeld voor reparatie
+    /// <summary>
+    /// Wijzigt de reparatiestatus van een voertuig, bijvoorbeeld voor reparatie of niet.
+    /// </summary>
+    /// <param name="id">Het frame nummer van het voertuig.</param>
+    /// <param name="broken">Een boolean die aangeeft of het voertuig kapot is (true) of niet (false).</param>
+    /// <returns>A tuple containing the status, status code, and a message about the success or failure of the repair status update.</returns>
     public (bool Status, int StatusCode, string Message) ChangeRepairStatus(int id, bool broken)
     {
         try
