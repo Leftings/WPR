@@ -35,9 +35,9 @@ public class AddBusinessController : ControllerBase
         
         if (output.status)
         {
-            return Ok(new { output.message });
+            return Ok(new addBusinessResponse{ Message = output.message });
         }
-        return BadRequest(new { output.message });
+        return BadRequest(new addBusinessResponse { Message = output.message });
     }
 
     [HttpGet("getNewBusinesses")]

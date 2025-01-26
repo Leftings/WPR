@@ -40,12 +40,23 @@ public class viewRentalDataController : ControllerBase
     [HttpGet("GetFullReviewData")]
     public async Task<IActionResult> GetFullReview(int id)
     {
-        (bool Status, string Message, Dictionary<string, object> Data) response = _backOfficeRepository.GetFullDataReview(id);
-
-        if (response.Status)
+        try
         {
-            return Ok(new { message = response.Data });
+            (bool Status, string Message, Dictionary<string, object> Data) response = _backOfficeRepository.GetFullDataReview(id);
+
+            if (response.Status)
+            {
+                return Ok(new viewRentalDataResponse{ Message = response.Data });
+            }
+            return BadRequest(new viewRentalDataErrorResponse() { Status = false, Message = response.Message });
         }
-        return BadRequest(new { message = response.Message });
+        catch (Exception e)
+        {
+            return BadRequest(new viewRentalDataErrorResponse
+            {
+                Status = false,
+                Message = e.Message
+            });
+        }
     }
 }

@@ -283,8 +283,29 @@ public class VehicleController : ControllerBase
     [HttpGet("GetVehicelData")]
     public async Task<IActionResult> GetVehicleData(string frameNr)
     {
-        var data = await _vehicleRepository.GetVehicleDataAsync(frameNr);
-        return Ok(new { message = data });
+        try
+        {
+            var data = await _vehicleRepository.GetVehicleDataAsync(frameNr);
+
+            if (data == null || !data.Any())
+            {
+                return NotFound(new VehicleErrorResponse
+                {
+                    Status = false,
+                    Message = "No vehicle data found"
+                });
+            }
+                
+            return Ok(new VehicleDataResponse { Message = data });
+        }
+        catch (Exception e)
+        {
+            return StatusCode(500, new VehicleErrorResponse()
+            {
+                Status = false,
+                Message = e.Message
+            });
+        }
     }
 
     [HttpDelete("DeleteVehicle")]

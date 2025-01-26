@@ -60,10 +60,10 @@ public class ChangeUserSettingsController : ControllerBase
         var updated = await _userRepository.EditUserInfoAsync(data);
         if (updated.status)
         {
-            return Ok(new {message = "Data Updated"});
+            return Ok( new ChangeUserSettingsResponse {Message = "Data Updated"});
         }
 
-        return BadRequest(new {updated.message});
+        return BadRequest(new ChangeUserSettingsErrorResponse {Message = updated.message});
     }
 
     /// <summary>
