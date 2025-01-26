@@ -1,7 +1,0 @@
-<map id="WPR.Repository.EmployeeRepository.GetReviewAsync" name="WPR.Repository.EmployeeRepository.GetReviewAsync">
-<area shape="rect" id="Node000001" title="Er wordt een specifieke id opgevraagd en deze wordt uit de tabel Contract opgevraagd met alle data in..." alt="" coords="5,39,253,81"/>
-<area shape="rect" id="Node000002" href="$d9/de0/class_w_p_r_1_1_repository_1_1_employee_repository.html#a11609b7e63c2bdcac11e68ab2366a7ee" title="De voornaam, achternaam, adres, emailadres en telefoonnummer wordt uit de UserCustomer tabel gehaald,..." alt="" coords="301,5,548,48"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="253,43,285,40,285,45,253,49"/>
-<area shape="rect" id="Node000003" href="$d9/de0/class_w_p_r_1_1_repository_1_1_employee_repository.html#ac7d1cc932c1b01e234c61d639995c8e9" title="Het voertuigmerk, type en nummerbord worden uit de tabel Vehicle getrokken, doormiddel van hun frame ..." alt="" coords="301,72,548,115"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="253,71,285,75,285,80,253,77"/>
-</map>

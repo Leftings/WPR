@@ -1,0 +1,78 @@
+\doxysection{Rental\+Controller.\+cs}
+\hypertarget{_rental_controller_8cs_source}{}\label{_rental_controller_8cs_source}\index{D:/codes/WPR8/WPR/backend/src/Controllers/Customer/Rental/RentalController.cs@{D:/codes/WPR8/WPR/backend/src/Controllers/Customer/Rental/RentalController.cs}}
+\mbox{\hyperlink{_rental_controller_8cs}{Ga naar de documentatie van dit bestand.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_rental_controller_8cs_source_l00001}00001\ \textcolor{keyword}{using\ }Microsoft.AspNetCore.Mvc;}
+\DoxyCodeLine{\Hypertarget{_rental_controller_8cs_source_l00002}00002\ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespace_w_p_r_1_1_repository}{WPR.Repository}};}
+\DoxyCodeLine{\Hypertarget{_rental_controller_8cs_source_l00003}00003\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_w_p_r_1_1_controllers_1_1_customer_1_1_rental}{WPR.Controllers.Customer.Rental}};}
+\DoxyCodeLine{\Hypertarget{_rental_controller_8cs_source_l00004}00004\ }
+\DoxyCodeLine{\Hypertarget{_rental_controller_8cs_source_l00005}00005\ [Route(\textcolor{stringliteral}{"{}api/[controller]"{}})]}
+\DoxyCodeLine{\Hypertarget{_rental_controller_8cs_source_l00006}00006\ [ApiController]}
+\DoxyCodeLine{\Hypertarget{_rental_controller_8cs_source_l00007}\mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_customer_1_1_rental_1_1_rental_controller}{00007}}\ \textcolor{keyword}{public}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_customer_1_1_rental_1_1_rental_controller_ad666448399304e0f4b93d6d3a940b8f6}{RentalController}}\ :\ ControllerBase}
+\DoxyCodeLine{\Hypertarget{_rental_controller_8cs_source_l00008}00008\ \{}
+\DoxyCodeLine{\Hypertarget{_rental_controller_8cs_source_l00009}\mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_customer_1_1_rental_1_1_rental_controller_a19e0c3dce1692f41096964cf8bafc258}{00009}}\ \ \ \ \ \textcolor{keyword}{private}\ readonly\ \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_vehicle_repository}{IVehicleRepository}}\ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_customer_1_1_rental_1_1_rental_controller_a19e0c3dce1692f41096964cf8bafc258}{\_vehicleRepo}};}
+\DoxyCodeLine{\Hypertarget{_rental_controller_8cs_source_l00010}00010\ }
+\DoxyCodeLine{\Hypertarget{_rental_controller_8cs_source_l00011}\mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_customer_1_1_rental_1_1_rental_controller_ad666448399304e0f4b93d6d3a940b8f6}{00011}}\ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_customer_1_1_rental_1_1_rental_controller_ad666448399304e0f4b93d6d3a940b8f6}{RentalController}}(\mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_vehicle_repository}{IVehicleRepository}}\ vehicleRepo)}
+\DoxyCodeLine{\Hypertarget{_rental_controller_8cs_source_l00012}00012\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_rental_controller_8cs_source_l00013}00013\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_customer_1_1_rental_1_1_rental_controller_a19e0c3dce1692f41096964cf8bafc258}{\_vehicleRepo}}\ =\ vehicleRepo\ ??\ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ ArgumentNullException(nameof(vehicleRepo));}
+\DoxyCodeLine{\Hypertarget{_rental_controller_8cs_source_l00014}00014\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_rental_controller_8cs_source_l00015}00015\ }
+\DoxyCodeLine{\Hypertarget{_rental_controller_8cs_source_l00016}00016\ }
+\DoxyCodeLine{\Hypertarget{_rental_controller_8cs_source_l00017}00017\ \ \ \ \ [HttpDelete(\textcolor{stringliteral}{"{}CancelRental"{}})]}
+\DoxyCodeLine{\Hypertarget{_rental_controller_8cs_source_l00018}\mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_customer_1_1_rental_1_1_rental_controller_a510f0d2b7939b7c0c0ca329c0f9de9d5}{00018}}\ \ \ \ \ \textcolor{keyword}{public}\ async\ Task<IActionResult>\ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_customer_1_1_rental_1_1_rental_controller_a510f0d2b7939b7c0c0ca329c0f9de9d5}{CancelRentalAsync}}(\textcolor{keywordtype}{int}\ rentalId)}
+\DoxyCodeLine{\Hypertarget{_rental_controller_8cs_source_l00019}00019\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_rental_controller_8cs_source_l00020}00020\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ loginCookie\ =\ HttpContext.Request.Cookies[\textcolor{stringliteral}{"{}LoginSession"{}}];}
+\DoxyCodeLine{\Hypertarget{_rental_controller_8cs_source_l00021}00021\ \ \ \ \ \ \ \ \ (\textcolor{keywordtype}{bool}\ Status,\ \textcolor{keywordtype}{int}\ StatusCode,\ \textcolor{keywordtype}{string}\ Message)\ response\ =\ await\ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_customer_1_1_rental_1_1_rental_controller_a19e0c3dce1692f41096964cf8bafc258}{\_vehicleRepo}}.CancelRental(rentalId,\ loginCookie);}
+\DoxyCodeLine{\Hypertarget{_rental_controller_8cs_source_l00022}00022\ }
+\DoxyCodeLine{\Hypertarget{_rental_controller_8cs_source_l00023}00023\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ StatusCode(response.StatusCode,\ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_customer_1_1_rental_1_1_rental_response}{RentalResponse}}\{\ Message\ =\ response.Message\ \});}
+\DoxyCodeLine{\Hypertarget{_rental_controller_8cs_source_l00024}00024\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_rental_controller_8cs_source_l00025}00025\ }
+\DoxyCodeLine{\Hypertarget{_rental_controller_8cs_source_l00026}00026\ }
+\DoxyCodeLine{\Hypertarget{_rental_controller_8cs_source_l00027}00027\ \ \ \ \ [HttpGet(\textcolor{stringliteral}{"{}GetAllUserRentals"{}})]}
+\DoxyCodeLine{\Hypertarget{_rental_controller_8cs_source_l00028}\mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_customer_1_1_rental_1_1_rental_controller_a71435c382872b96105d4d99829903604}{00028}}\ \ \ \ \ \textcolor{keyword}{public}\ async\ Task<IActionResult>\ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_customer_1_1_rental_1_1_rental_controller_a71435c382872b96105d4d99829903604}{GetAllUserRentalsAsync}}()}
+\DoxyCodeLine{\Hypertarget{_rental_controller_8cs_source_l00029}00029\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_rental_controller_8cs_source_l00030}00030\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ loginCookie\ =\ HttpContext.Request.Cookies[\textcolor{stringliteral}{"{}LoginSession"{}}];}
+\DoxyCodeLine{\Hypertarget{_rental_controller_8cs_source_l00031}00031\ \ \ \ \ \ \ \ \ (\textcolor{keywordtype}{bool}\ Status,\ \textcolor{keywordtype}{int}\ StatusCode,\ \textcolor{keywordtype}{string}\ Message,\ IList<object>\ Rentals)\ response\ =\ await\ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_customer_1_1_rental_1_1_rental_controller_a19e0c3dce1692f41096964cf8bafc258}{\_vehicleRepo}}.GetAllUserRentals(loginCookie);}
+\DoxyCodeLine{\Hypertarget{_rental_controller_8cs_source_l00032}00032\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_rental_controller_8cs_source_l00033}00033\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (response.Status)}
+\DoxyCodeLine{\Hypertarget{_rental_controller_8cs_source_l00034}00034\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_rental_controller_8cs_source_l00035}00035\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ StatusCode(response.StatusCode,\ response.Rentals);}
+\DoxyCodeLine{\Hypertarget{_rental_controller_8cs_source_l00036}00036\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_rental_controller_8cs_source_l00037}00037\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ StatusCode(response.StatusCode,\ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_customer_1_1_rental_1_1_rental_response}{RentalResponse}}\{\ Message\ =\ response.Message\ \});}
+\DoxyCodeLine{\Hypertarget{_rental_controller_8cs_source_l00038}00038\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_rental_controller_8cs_source_l00039}00039\ }
+\DoxyCodeLine{\Hypertarget{_rental_controller_8cs_source_l00040}00040\ \ \ \ \ [HttpGet(\textcolor{stringliteral}{"{}GetAllUserRentalsWithDetails"{}})]}
+\DoxyCodeLine{\Hypertarget{_rental_controller_8cs_source_l00041}\mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_customer_1_1_rental_1_1_rental_controller_a08820db3a7e7afbff9f585ca3a3b0bc8}{00041}}\ \ \ \ \ \textcolor{keyword}{public}\ async\ Task<IActionResult>\ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_customer_1_1_rental_1_1_rental_controller_a08820db3a7e7afbff9f585ca3a3b0bc8}{GetAllUserRentalsWithDetailsAsync}}()}
+\DoxyCodeLine{\Hypertarget{_rental_controller_8cs_source_l00042}00042\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_rental_controller_8cs_source_l00043}00043\ \ \ \ \ \ \ \ \ (\textcolor{keywordtype}{bool}\ Status,\ \textcolor{keywordtype}{int}\ StatusCode,\ \textcolor{keywordtype}{string}\ Message,\ IList<object>\ UserRentals)\ response\ =\ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_customer_1_1_rental_1_1_rental_controller_a19e0c3dce1692f41096964cf8bafc258}{\_vehicleRepo}}.GetAllUserRentalsDetailed();}
+\DoxyCodeLine{\Hypertarget{_rental_controller_8cs_source_l00044}00044\ }
+\DoxyCodeLine{\Hypertarget{_rental_controller_8cs_source_l00045}00045\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (response.Status)}
+\DoxyCodeLine{\Hypertarget{_rental_controller_8cs_source_l00046}00046\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_rental_controller_8cs_source_l00047}00047\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ StatusCode(response.StatusCode,\ response.UserRentals);}
+\DoxyCodeLine{\Hypertarget{_rental_controller_8cs_source_l00048}00048\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_rental_controller_8cs_source_l00049}00049\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ StatusCode(response.StatusCode,\ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_customer_1_1_rental_1_1_rental_response}{RentalResponse}}\{\ Message\ =\ response.Message\ \});}
+\DoxyCodeLine{\Hypertarget{_rental_controller_8cs_source_l00050}00050\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_rental_controller_8cs_source_l00051}00051\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_rental_controller_8cs_source_l00052}00052\ \ \ \ \ [HttpPut(\textcolor{stringliteral}{"{}ChangeRental"{}})]}
+\DoxyCodeLine{\Hypertarget{_rental_controller_8cs_source_l00053}\mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_customer_1_1_rental_1_1_rental_controller_ade0af7dfc483a641c6488670cbb163fd}{00053}}\ \ \ \ \ \textcolor{keyword}{public}\ async\ Task<IActionResult>\ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_customer_1_1_rental_1_1_rental_controller_ade0af7dfc483a641c6488670cbb163fd}{ChangeRentalAsync}}([FromBody]\ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_customer_1_1_rental_1_1_update_rental_request}{UpdateRentalRequest}}\ request)}
+\DoxyCodeLine{\Hypertarget{_rental_controller_8cs_source_l00054}00054\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_rental_controller_8cs_source_l00055}00055\ \ \ \ \ \ \ \ \ (\textcolor{keywordtype}{bool}\ Status,\ \textcolor{keywordtype}{int}\ StatusCode,\ \textcolor{keywordtype}{string}\ Message)\ response\ =\ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_customer_1_1_rental_1_1_rental_controller_a19e0c3dce1692f41096964cf8bafc258}{\_vehicleRepo}}.ChangeRental(request);}
+\DoxyCodeLine{\Hypertarget{_rental_controller_8cs_source_l00056}00056\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ StatusCode(response.StatusCode,\ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_customer_1_1_rental_1_1_rental_response}{RentalResponse}}\{\ Message\ =\ response.Message\ \});}
+\DoxyCodeLine{\Hypertarget{_rental_controller_8cs_source_l00057}00057\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_rental_controller_8cs_source_l00058}00058\ }
+\DoxyCodeLine{\Hypertarget{_rental_controller_8cs_source_l00059}00059\ \ \ \ \ [HttpPost(\textcolor{stringliteral}{"{}CreateRental"{}})]}
+\DoxyCodeLine{\Hypertarget{_rental_controller_8cs_source_l00060}\mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_customer_1_1_rental_1_1_rental_controller_abda656012955e4c31595047bba3c97f4}{00060}}\ \ \ \ \ \textcolor{keyword}{public}\ async\ Task<IActionResult>\ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_customer_1_1_rental_1_1_rental_controller_abda656012955e4c31595047bba3c97f4}{CreateRental}}([FromBody]\ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_customer_1_1_rental_1_1_rental_request}{RentalRequest}}\ request)}
+\DoxyCodeLine{\Hypertarget{_rental_controller_8cs_source_l00061}00061\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_rental_controller_8cs_source_l00062}00062\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ userId\ =\ Request.Cookies[\textcolor{stringliteral}{"{}LoginSession"{}}];}
+\DoxyCodeLine{\Hypertarget{_rental_controller_8cs_source_l00063}00063\ }
+\DoxyCodeLine{\Hypertarget{_rental_controller_8cs_source_l00064}00064\ \ \ \ \ \ \ \ \ (\textcolor{keywordtype}{bool}\ Status,\ \textcolor{keywordtype}{string}\ Message)\ result\ =\ await\ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_customer_1_1_rental_1_1_rental_controller_a19e0c3dce1692f41096964cf8bafc258}{\_vehicleRepo}}.HireVehicle(request,\ userId);}
+\DoxyCodeLine{\Hypertarget{_rental_controller_8cs_source_l00065}00065\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_rental_controller_8cs_source_l00066}00066\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (result.Status)}
+\DoxyCodeLine{\Hypertarget{_rental_controller_8cs_source_l00067}00067\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_rental_controller_8cs_source_l00068}00068\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Ok(\ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_customer_1_1_rental_1_1_rental_response}{RentalResponse}}\{\ Message\ =\ result.Message\});}
+\DoxyCodeLine{\Hypertarget{_rental_controller_8cs_source_l00069}00069\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_rental_controller_8cs_source_l00070}00070\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ BadRequest(\ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_customer_1_1_rental_1_1_rental_response}{RentalResponse}}\{\ Message\ =\ result.Message\ \});}
+\DoxyCodeLine{\Hypertarget{_rental_controller_8cs_source_l00071}00071\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_rental_controller_8cs_source_l00072}00072\ \}}
+
+\end{DoxyCode}

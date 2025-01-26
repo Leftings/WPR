@@ -1,7 +1,0 @@
-<map id="WPR.Repository.DatabaseCheckRepository.DatabaseCheckRepository" name="WPR.Repository.DatabaseCheckRepository.DatabaseCheckRepository">
-<area shape="rect" id="Node000001" title=" " alt="" coords="90,245,324,816"/>
-<area shape="rect" id="Node000002" href="$d5/d77/interface_w_p_r_1_1_repository_1_1_database_check_repository_1_1_i_database_check_repository.html" title=" " alt="" coords="5,5,177,181"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="121,195,134,245,129,246,116,196"/>
-<area shape="rect" id="Node000003" href="$d1/dbb/interface_w_p_r_1_1_database_1_1_i_connector.html" title="Connector class om verbinding te maken met de database, maakt gebruik van de connectie strings die zi..." alt="" coords="201,59,446,128"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="317,128,290,230,285,229,312,127"/>
-</map>

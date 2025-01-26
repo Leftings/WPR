@@ -1,4 +1,0 @@
-var change_user_settings_controller_8cs =
-[
-    [ "WPR.Controllers.Customer.ChangeUserSettings.ChangeUserSettingsController", "d4/da3/class_w_p_r_1_1_controllers_1_1_customer_1_1_change_user_settings_1_1_change_user_settings_controller.html", "d4/da3/class_w_p_r_1_1_controllers_1_1_customer_1_1_change_user_settings_1_1_change_user_settings_controller" ]
-];

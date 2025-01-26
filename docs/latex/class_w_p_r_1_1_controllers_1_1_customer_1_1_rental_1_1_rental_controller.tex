@@ -1,0 +1,228 @@
+\doxysection{WPR.\+Controllers.\+Customer.\+Rental.\+Rental\+Controller Class Referentie}
+\hypertarget{class_w_p_r_1_1_controllers_1_1_customer_1_1_rental_1_1_rental_controller}{}\label{class_w_p_r_1_1_controllers_1_1_customer_1_1_rental_1_1_rental_controller}\index{WPR.Controllers.Customer.Rental.RentalController@{WPR.Controllers.Customer.Rental.RentalController}}
+
+
+Klasse diagram voor WPR.\+Controllers.\+Customer.\+Rental.\+Rental\+Controller
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=231pt]{class_w_p_r_1_1_controllers_1_1_customer_1_1_rental_1_1_rental_controller__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboratie diagram voor WPR.\+Controllers.\+Customer.\+Rental.\+Rental\+Controller\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{class_w_p_r_1_1_controllers_1_1_customer_1_1_rental_1_1_rental_controller__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Members}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_customer_1_1_rental_1_1_rental_controller_ad666448399304e0f4b93d6d3a940b8f6}{Rental\+Controller}} (\mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_vehicle_repository}{IVehicle\+Repository}} vehicle\+Repo)
+\item 
+async Task$<$ IAction\+Result $>$ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_customer_1_1_rental_1_1_rental_controller_a510f0d2b7939b7c0c0ca329c0f9de9d5}{Cancel\+Rental\+Async}} (int rental\+Id)
+\item 
+async Task$<$ IAction\+Result $>$ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_customer_1_1_rental_1_1_rental_controller_a71435c382872b96105d4d99829903604}{Get\+All\+User\+Rentals\+Async}} ()
+\item 
+async Task$<$ IAction\+Result $>$ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_customer_1_1_rental_1_1_rental_controller_a08820db3a7e7afbff9f585ca3a3b0bc8}{Get\+All\+User\+Rentals\+With\+Details\+Async}} ()
+\item 
+async Task$<$ IAction\+Result $>$ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_customer_1_1_rental_1_1_rental_controller_ade0af7dfc483a641c6488670cbb163fd}{Change\+Rental\+Async}} (\mbox{[}From\+Body\mbox{]} \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_customer_1_1_rental_1_1_update_rental_request}{Update\+Rental\+Request}} request)
+\item 
+async Task$<$ IAction\+Result $>$ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_customer_1_1_rental_1_1_rental_controller_abda656012955e4c31595047bba3c97f4}{Create\+Rental}} (\mbox{[}From\+Body\mbox{]} \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_customer_1_1_rental_1_1_rental_request}{Rental\+Request}} request)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributen}
+\begin{DoxyCompactItemize}
+\item 
+readonly \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_vehicle_repository}{IVehicle\+Repository}} \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_customer_1_1_rental_1_1_rental_controller_a19e0c3dce1692f41096964cf8bafc258}{\+\_\+vehicle\+Repo}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Gedetailleerde Beschrijving}
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{_rental_controller_8cs_source_l00007}{7}} in het bestand \mbox{\hyperlink{_rental_controller_8cs_source}{Rental\+Controller.\+cs}}.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentatie}
+\Hypertarget{class_w_p_r_1_1_controllers_1_1_customer_1_1_rental_1_1_rental_controller_ad666448399304e0f4b93d6d3a940b8f6}\index{WPR.Controllers.Customer.Rental.RentalController@{WPR.Controllers.Customer.Rental.RentalController}!RentalController@{RentalController}}
+\index{RentalController@{RentalController}!WPR.Controllers.Customer.Rental.RentalController@{WPR.Controllers.Customer.Rental.RentalController}}
+\doxysubsubsection{\texorpdfstring{RentalController()}{RentalController()}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_controllers_1_1_customer_1_1_rental_1_1_rental_controller_ad666448399304e0f4b93d6d3a940b8f6} 
+WPR.\+Controllers.\+Customer.\+Rental.\+Rental\+Controller.\+Rental\+Controller (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_vehicle_repository}{IVehicle\+Repository}}}]{vehicle\+Repo}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{_rental_controller_8cs_source_l00011}{11}} in het bestand \mbox{\hyperlink{_rental_controller_8cs_source}{Rental\+Controller.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00012\ \ \ \ \ \{}
+\DoxyCodeLine{00013\ \ \ \ \ \ \ \ \ \_vehicleRepo\ =\ vehicleRepo\ ??\ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ ArgumentNullException(nameof(vehicleRepo));}
+\DoxyCodeLine{00014\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+Gebruikt \mbox{\hyperlink{_rental_controller_8cs_source_l00009}{\+\_\+vehicle\+Repo}}.
+
+
+
+\doxysubsection{Documentatie van functie members}
+\Hypertarget{class_w_p_r_1_1_controllers_1_1_customer_1_1_rental_1_1_rental_controller_a510f0d2b7939b7c0c0ca329c0f9de9d5}\index{WPR.Controllers.Customer.Rental.RentalController@{WPR.Controllers.Customer.Rental.RentalController}!CancelRentalAsync@{CancelRentalAsync}}
+\index{CancelRentalAsync@{CancelRentalAsync}!WPR.Controllers.Customer.Rental.RentalController@{WPR.Controllers.Customer.Rental.RentalController}}
+\doxysubsubsection{\texorpdfstring{CancelRentalAsync()}{CancelRentalAsync()}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_controllers_1_1_customer_1_1_rental_1_1_rental_controller_a510f0d2b7939b7c0c0ca329c0f9de9d5} 
+async Task$<$ IAction\+Result $>$ WPR.\+Controllers.\+Customer.\+Rental.\+Rental\+Controller.\+Cancel\+Rental\+Async (\begin{DoxyParamCaption}\item[{int}]{rental\+Id}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{_rental_controller_8cs_source_l00018}{18}} in het bestand \mbox{\hyperlink{_rental_controller_8cs_source}{Rental\+Controller.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00019\ \ \ \ \ \{}
+\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ loginCookie\ =\ HttpContext.Request.Cookies[\textcolor{stringliteral}{"{}LoginSession"{}}];}
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ (\textcolor{keywordtype}{bool}\ Status,\ \textcolor{keywordtype}{int}\ StatusCode,\ \textcolor{keywordtype}{string}\ Message)\ response\ =\ await\ \_vehicleRepo.CancelRental(rentalId,\ loginCookie);}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ StatusCode(response.StatusCode,\ \textcolor{keyword}{new}\ RentalResponse\{\ Message\ =\ response.Message\ \});}
+\DoxyCodeLine{00024\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+Gebruikt \mbox{\hyperlink{_rental_controller_8cs_source_l00009}{\+\_\+vehicle\+Repo}}.
+
+\Hypertarget{class_w_p_r_1_1_controllers_1_1_customer_1_1_rental_1_1_rental_controller_ade0af7dfc483a641c6488670cbb163fd}\index{WPR.Controllers.Customer.Rental.RentalController@{WPR.Controllers.Customer.Rental.RentalController}!ChangeRentalAsync@{ChangeRentalAsync}}
+\index{ChangeRentalAsync@{ChangeRentalAsync}!WPR.Controllers.Customer.Rental.RentalController@{WPR.Controllers.Customer.Rental.RentalController}}
+\doxysubsubsection{\texorpdfstring{ChangeRentalAsync()}{ChangeRentalAsync()}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_controllers_1_1_customer_1_1_rental_1_1_rental_controller_ade0af7dfc483a641c6488670cbb163fd} 
+async Task$<$ IAction\+Result $>$ WPR.\+Controllers.\+Customer.\+Rental.\+Rental\+Controller.\+Change\+Rental\+Async (\begin{DoxyParamCaption}\item[{\mbox{[}\+From\+Body\mbox{]} \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_customer_1_1_rental_1_1_update_rental_request}{Update\+Rental\+Request}}}]{request}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{_rental_controller_8cs_source_l00053}{53}} in het bestand \mbox{\hyperlink{_rental_controller_8cs_source}{Rental\+Controller.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00054\ \ \ \ \ \{}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ (\textcolor{keywordtype}{bool}\ Status,\ \textcolor{keywordtype}{int}\ StatusCode,\ \textcolor{keywordtype}{string}\ Message)\ response\ =\ \_vehicleRepo.ChangeRental(request);}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ StatusCode(response.StatusCode,\ \textcolor{keyword}{new}\ RentalResponse\{\ Message\ =\ response.Message\ \});}
+\DoxyCodeLine{00057\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+Gebruikt \mbox{\hyperlink{_rental_controller_8cs_source_l00009}{\+\_\+vehicle\+Repo}}.
+
+\Hypertarget{class_w_p_r_1_1_controllers_1_1_customer_1_1_rental_1_1_rental_controller_abda656012955e4c31595047bba3c97f4}\index{WPR.Controllers.Customer.Rental.RentalController@{WPR.Controllers.Customer.Rental.RentalController}!CreateRental@{CreateRental}}
+\index{CreateRental@{CreateRental}!WPR.Controllers.Customer.Rental.RentalController@{WPR.Controllers.Customer.Rental.RentalController}}
+\doxysubsubsection{\texorpdfstring{CreateRental()}{CreateRental()}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_controllers_1_1_customer_1_1_rental_1_1_rental_controller_abda656012955e4c31595047bba3c97f4} 
+async Task$<$ IAction\+Result $>$ WPR.\+Controllers.\+Customer.\+Rental.\+Rental\+Controller.\+Create\+Rental (\begin{DoxyParamCaption}\item[{\mbox{[}\+From\+Body\mbox{]} \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_customer_1_1_rental_1_1_rental_request}{Rental\+Request}}}]{request}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{_rental_controller_8cs_source_l00060}{60}} in het bestand \mbox{\hyperlink{_rental_controller_8cs_source}{Rental\+Controller.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00061\ \ \ \ \ \{}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ userId\ =\ Request.Cookies[\textcolor{stringliteral}{"{}LoginSession"{}}];}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ (\textcolor{keywordtype}{bool}\ Status,\ \textcolor{keywordtype}{string}\ Message)\ result\ =\ await\ \_vehicleRepo.HireVehicle(request,\ userId);}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (result.Status)}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Ok(\ \textcolor{keyword}{new}\ RentalResponse\{\ Message\ =\ result.Message\});}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ BadRequest(\ \textcolor{keyword}{new}\ RentalResponse\{\ Message\ =\ result.Message\ \});}
+\DoxyCodeLine{00071\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+Gebruikt \mbox{\hyperlink{_rental_controller_8cs_source_l00009}{\+\_\+vehicle\+Repo}}.
+
+\Hypertarget{class_w_p_r_1_1_controllers_1_1_customer_1_1_rental_1_1_rental_controller_a71435c382872b96105d4d99829903604}\index{WPR.Controllers.Customer.Rental.RentalController@{WPR.Controllers.Customer.Rental.RentalController}!GetAllUserRentalsAsync@{GetAllUserRentalsAsync}}
+\index{GetAllUserRentalsAsync@{GetAllUserRentalsAsync}!WPR.Controllers.Customer.Rental.RentalController@{WPR.Controllers.Customer.Rental.RentalController}}
+\doxysubsubsection{\texorpdfstring{GetAllUserRentalsAsync()}{GetAllUserRentalsAsync()}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_controllers_1_1_customer_1_1_rental_1_1_rental_controller_a71435c382872b96105d4d99829903604} 
+async Task$<$ IAction\+Result $>$ WPR.\+Controllers.\+Customer.\+Rental.\+Rental\+Controller.\+Get\+All\+User\+Rentals\+Async (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{_rental_controller_8cs_source_l00028}{28}} in het bestand \mbox{\hyperlink{_rental_controller_8cs_source}{Rental\+Controller.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00029\ \ \ \ \ \{}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ loginCookie\ =\ HttpContext.Request.Cookies[\textcolor{stringliteral}{"{}LoginSession"{}}];}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ (\textcolor{keywordtype}{bool}\ Status,\ \textcolor{keywordtype}{int}\ StatusCode,\ \textcolor{keywordtype}{string}\ Message,\ IList<object>\ Rentals)\ response\ =\ await\ \_vehicleRepo.GetAllUserRentals(loginCookie);}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (response.Status)}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ StatusCode(response.StatusCode,\ response.Rentals);}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ StatusCode(response.StatusCode,\ \textcolor{keyword}{new}\ RentalResponse\{\ Message\ =\ response.Message\ \});}
+\DoxyCodeLine{00038\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+Gebruikt \mbox{\hyperlink{_rental_controller_8cs_source_l00009}{\+\_\+vehicle\+Repo}}.
+
+\Hypertarget{class_w_p_r_1_1_controllers_1_1_customer_1_1_rental_1_1_rental_controller_a08820db3a7e7afbff9f585ca3a3b0bc8}\index{WPR.Controllers.Customer.Rental.RentalController@{WPR.Controllers.Customer.Rental.RentalController}!GetAllUserRentalsWithDetailsAsync@{GetAllUserRentalsWithDetailsAsync}}
+\index{GetAllUserRentalsWithDetailsAsync@{GetAllUserRentalsWithDetailsAsync}!WPR.Controllers.Customer.Rental.RentalController@{WPR.Controllers.Customer.Rental.RentalController}}
+\doxysubsubsection{\texorpdfstring{GetAllUserRentalsWithDetailsAsync()}{GetAllUserRentalsWithDetailsAsync()}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_controllers_1_1_customer_1_1_rental_1_1_rental_controller_a08820db3a7e7afbff9f585ca3a3b0bc8} 
+async Task$<$ IAction\+Result $>$ WPR.\+Controllers.\+Customer.\+Rental.\+Rental\+Controller.\+Get\+All\+User\+Rentals\+With\+Details\+Async (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{_rental_controller_8cs_source_l00041}{41}} in het bestand \mbox{\hyperlink{_rental_controller_8cs_source}{Rental\+Controller.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00042\ \ \ \ \ \{}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ (\textcolor{keywordtype}{bool}\ Status,\ \textcolor{keywordtype}{int}\ StatusCode,\ \textcolor{keywordtype}{string}\ Message,\ IList<object>\ UserRentals)\ response\ =\ \_vehicleRepo.GetAllUserRentalsDetailed();}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (response.Status)}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ StatusCode(response.StatusCode,\ response.UserRentals);}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ StatusCode(response.StatusCode,\ \textcolor{keyword}{new}\ RentalResponse\{\ Message\ =\ response.Message\ \});}
+\DoxyCodeLine{00050\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+Gebruikt \mbox{\hyperlink{_rental_controller_8cs_source_l00009}{\+\_\+vehicle\+Repo}}.
+
+
+
+\doxysubsection{Documentatie van data velden}
+\Hypertarget{class_w_p_r_1_1_controllers_1_1_customer_1_1_rental_1_1_rental_controller_a19e0c3dce1692f41096964cf8bafc258}\index{WPR.Controllers.Customer.Rental.RentalController@{WPR.Controllers.Customer.Rental.RentalController}!\_vehicleRepo@{\_vehicleRepo}}
+\index{\_vehicleRepo@{\_vehicleRepo}!WPR.Controllers.Customer.Rental.RentalController@{WPR.Controllers.Customer.Rental.RentalController}}
+\doxysubsubsection{\texorpdfstring{\_vehicleRepo}{\_vehicleRepo}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_controllers_1_1_customer_1_1_rental_1_1_rental_controller_a19e0c3dce1692f41096964cf8bafc258} 
+readonly \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_vehicle_repository}{IVehicle\+Repository}} WPR.\+Controllers.\+Customer.\+Rental.\+Rental\+Controller.\+\_\+vehicle\+Repo\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{_rental_controller_8cs_source_l00009}{9}} in het bestand \mbox{\hyperlink{_rental_controller_8cs_source}{Rental\+Controller.\+cs}}.
+
+
+
+Wordt aangeroepen door \mbox{\hyperlink{_rental_controller_8cs_source_l00018}{Cancel\+Rental\+Async()}}, \mbox{\hyperlink{_rental_controller_8cs_source_l00053}{Change\+Rental\+Async()}}, \mbox{\hyperlink{_rental_controller_8cs_source_l00060}{Create\+Rental()}}, \mbox{\hyperlink{_rental_controller_8cs_source_l00028}{Get\+All\+User\+Rentals\+Async()}}, \mbox{\hyperlink{_rental_controller_8cs_source_l00041}{Get\+All\+User\+Rentals\+With\+Details\+Async()}} en \mbox{\hyperlink{_rental_controller_8cs_source_l00011}{Rental\+Controller()}}.
+
+
+
+De documentatie voor deze klasse is gegenereerd op basis van het volgende bestand\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/codes/\+WPR8/\+WPR/backend/src/\+Controllers/\+Customer/\+Rental/\mbox{\hyperlink{_rental_controller_8cs}{Rental\+Controller.\+cs}}\end{DoxyCompactItemize}

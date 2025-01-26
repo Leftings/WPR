@@ -1,0 +1,588 @@
+\doxysection{WPR.\+Controllers.\+General.\+Vehicle.\+Vehicle\+Controller Class Referentie}
+\hypertarget{class_w_p_r_1_1_controllers_1_1_general_1_1_vehicle_1_1_vehicle_controller}{}\label{class_w_p_r_1_1_controllers_1_1_general_1_1_vehicle_1_1_vehicle_controller}\index{WPR.Controllers.General.Vehicle.VehicleController@{WPR.Controllers.General.Vehicle.VehicleController}}
+
+
+\doxylink{class_w_p_r_1_1_controllers_1_1_general_1_1_vehicle_1_1_vehicle_controller}{Vehicle\+Controller} zorgt ervoor dat voertuiggegevens uit de backend gehaald kunnen worden.  
+
+
+
+
+Klasse diagram voor WPR.\+Controllers.\+General.\+Vehicle.\+Vehicle\+Controller
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=238pt]{class_w_p_r_1_1_controllers_1_1_general_1_1_vehicle_1_1_vehicle_controller__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboratie diagram voor WPR.\+Controllers.\+General.\+Vehicle.\+Vehicle\+Controller\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_w_p_r_1_1_controllers_1_1_general_1_1_vehicle_1_1_vehicle_controller__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Members}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_general_1_1_vehicle_1_1_vehicle_controller_abd5fa0b8ca8adb2173c4c955fd11ed28}{Vehicle\+Controller}} (\mbox{\hyperlink{interface_w_p_r_1_1_database_1_1_i_connector}{IConnector}} connector, \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_vehicle_repository}{IVehicle\+Repository}} vehicle\+Repository)
+\item 
+async Task$<$ IAction\+Result $>$ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_general_1_1_vehicle_1_1_vehicle_controller_a6513983e0e6319857b7114b3d4e4bfe0}{Get\+Vehicle\+Name}} (int frame\+Nr)
+\item 
+async Task$<$ IAction\+Result $>$ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_general_1_1_vehicle_1_1_vehicle_controller_a47c5226006711ccc6d74971eb8abf032}{Get\+Vehicle\+Image\+Async}} (int frame\+Nr)
+\item 
+async Task$<$ IAction\+Result $>$ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_general_1_1_vehicle_1_1_vehicle_controller_a45b3f02d868b52ccc5afddb3c0267560}{Get\+Vehicle\+Price\+Async}} (int frame\+Nr)
+\item 
+async Task$<$ IAction\+Result $>$ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_general_1_1_vehicle_1_1_vehicle_controller_a373f3a7c3064fc053ad388cc2e1a350d}{Get\+All\+Vehicles\+Async}} ()
+\item 
+async Task$<$ IAction\+Result $>$ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_general_1_1_vehicle_1_1_vehicle_controller_aaa615b835b9a71811327f22805bce715}{Get\+Type\+Of\+Vehicles\+Async}} (string vehicle\+Type)
+\item 
+async Task$<$ IAction\+Result $>$ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_general_1_1_vehicle_1_1_vehicle_controller_a4a6d616a3e9390af3dca1cb084d39d7d}{Get\+Frame\+Numbers\+Async}} ()
+\begin{DoxyCompactList}\small\item\em Alle framenummers van de voertuigen worden verzameld. \end{DoxyCompactList}\item 
+async Task$<$ IAction\+Result $>$ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_general_1_1_vehicle_1_1_vehicle_controller_afb66085e0df384b247c238e58ec36029}{Get\+Frame\+Numbers\+Specific\+Type\+Async}} (string type)
+\begin{DoxyCompactList}\small\item\em Alle framenummers van een specifieke voertuig soort wordt verzameld. \end{DoxyCompactList}\item 
+async Task$<$ IAction\+Result $>$ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_general_1_1_vehicle_1_1_vehicle_controller_a286d4c9a73d21612fcde092dd1aa979e}{Get\+Vehicle\+Data}} (string frame\+Nr)
+\begin{DoxyCompactList}\small\item\em Alle gegevens van 1 specifiek voertuig wordt opgehaald. \end{DoxyCompactList}\item 
+async Task$<$ IAction\+Result $>$ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_general_1_1_vehicle_1_1_vehicle_controller_ae37bdd9c92abdac45d22bf147b28c230}{Delete\+Vehicle\+Async}} (string frame\+Nr)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributen}
+\begin{DoxyCompactItemize}
+\item 
+readonly \mbox{\hyperlink{interface_w_p_r_1_1_database_1_1_i_connector}{IConnector}} \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_general_1_1_vehicle_1_1_vehicle_controller_aef5ce5be36c1415893325a24f5783f92}{\+\_\+connector}}
+\item 
+readonly \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_vehicle_repository}{IVehicle\+Repository}} \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_general_1_1_vehicle_1_1_vehicle_controller_aee814694ef7a060dc4f35f78ff19e281}{\+\_\+vehicle\+Repository}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Gedetailleerde Beschrijving}
+\doxylink{class_w_p_r_1_1_controllers_1_1_general_1_1_vehicle_1_1_vehicle_controller}{Vehicle\+Controller} zorgt ervoor dat voertuiggegevens uit de backend gehaald kunnen worden. 
+
+De definitie bevindt zich op regel \mbox{\hyperlink{_vehicle_controller_8cs_source_l00016}{16}} in het bestand \mbox{\hyperlink{_vehicle_controller_8cs_source}{Vehicle\+Controller.\+cs}}.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentatie}
+\Hypertarget{class_w_p_r_1_1_controllers_1_1_general_1_1_vehicle_1_1_vehicle_controller_abd5fa0b8ca8adb2173c4c955fd11ed28}\index{WPR.Controllers.General.Vehicle.VehicleController@{WPR.Controllers.General.Vehicle.VehicleController}!VehicleController@{VehicleController}}
+\index{VehicleController@{VehicleController}!WPR.Controllers.General.Vehicle.VehicleController@{WPR.Controllers.General.Vehicle.VehicleController}}
+\doxysubsubsection{\texorpdfstring{VehicleController()}{VehicleController()}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_controllers_1_1_general_1_1_vehicle_1_1_vehicle_controller_abd5fa0b8ca8adb2173c4c955fd11ed28} 
+WPR.\+Controllers.\+General.\+Vehicle.\+Vehicle\+Controller.\+Vehicle\+Controller (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{interface_w_p_r_1_1_database_1_1_i_connector}{IConnector}}}]{connector}{, }\item[{\mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_vehicle_repository}{IVehicle\+Repository}}}]{vehicle\+Repository}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{_vehicle_controller_8cs_source_l00022}{22}} in het bestand \mbox{\hyperlink{_vehicle_controller_8cs_source}{Vehicle\+Controller.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00023\ \ \ \ \ \{}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \_connector\ =\ connector\ ??\ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ ArgumentNullException(nameof(connector));}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \_vehicleRepository\ =\ vehicleRepository\ ??\ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ ArgumentNullException(nameof(vehicleRepository));}
+\DoxyCodeLine{00026\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+Gebruikt \mbox{\hyperlink{_vehicle_controller_8cs_source_l00019}{\+\_\+connector}} en \mbox{\hyperlink{_vehicle_controller_8cs_source_l00020}{\+\_\+vehicle\+Repository}}.
+
+
+
+\doxysubsection{Documentatie van functie members}
+\Hypertarget{class_w_p_r_1_1_controllers_1_1_general_1_1_vehicle_1_1_vehicle_controller_ae37bdd9c92abdac45d22bf147b28c230}\index{WPR.Controllers.General.Vehicle.VehicleController@{WPR.Controllers.General.Vehicle.VehicleController}!DeleteVehicleAsync@{DeleteVehicleAsync}}
+\index{DeleteVehicleAsync@{DeleteVehicleAsync}!WPR.Controllers.General.Vehicle.VehicleController@{WPR.Controllers.General.Vehicle.VehicleController}}
+\doxysubsubsection{\texorpdfstring{DeleteVehicleAsync()}{DeleteVehicleAsync()}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_controllers_1_1_general_1_1_vehicle_1_1_vehicle_controller_ae37bdd9c92abdac45d22bf147b28c230} 
+async Task$<$ IAction\+Result $>$ WPR.\+Controllers.\+General.\+Vehicle.\+Vehicle\+Controller.\+Delete\+Vehicle\+Async (\begin{DoxyParamCaption}\item[{string}]{frame\+Nr}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{_vehicle_controller_8cs_source_l00312}{312}} in het bestand \mbox{\hyperlink{_vehicle_controller_8cs_source}{Vehicle\+Controller.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00313\ \ \ \ \ \{}
+\DoxyCodeLine{00314\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}}
+\DoxyCodeLine{00315\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00316\ \ \ \ \ \ \ \ \ \ \ \ \ var\ result\ =\ await\ \_vehicleRepository.DeleteVehicleAsync(frameNr);}
+\DoxyCodeLine{00317\ }
+\DoxyCodeLine{00318\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (result.Status)}
+\DoxyCodeLine{00319\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00320\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Ok(\textcolor{keyword}{new}\ \{\ Status\ =\ \textcolor{keyword}{true},\ Message\ =\ result.Message\ \});}
+\DoxyCodeLine{00321\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00322\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00323\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00324\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ BadRequest(\textcolor{keyword}{new}\ \{\ Status\ =\ \textcolor{keyword}{false},\ Message\ =\ result.Message\ \});}
+\DoxyCodeLine{00325\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00326\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00327\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00328\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00329\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (Exception\ e)}
+\DoxyCodeLine{00330\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00331\ \ \ \ \ \ \ \ \ \ \ \ \ Console.WriteLine(e);}
+\DoxyCodeLine{00332\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw};}
+\DoxyCodeLine{00333\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00334\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+Gebruikt \mbox{\hyperlink{_vehicle_controller_8cs_source_l00020}{\+\_\+vehicle\+Repository}}.
+
+\Hypertarget{class_w_p_r_1_1_controllers_1_1_general_1_1_vehicle_1_1_vehicle_controller_a373f3a7c3064fc053ad388cc2e1a350d}\index{WPR.Controllers.General.Vehicle.VehicleController@{WPR.Controllers.General.Vehicle.VehicleController}!GetAllVehiclesAsync@{GetAllVehiclesAsync}}
+\index{GetAllVehiclesAsync@{GetAllVehiclesAsync}!WPR.Controllers.General.Vehicle.VehicleController@{WPR.Controllers.General.Vehicle.VehicleController}}
+\doxysubsubsection{\texorpdfstring{GetAllVehiclesAsync()}{GetAllVehiclesAsync()}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_controllers_1_1_general_1_1_vehicle_1_1_vehicle_controller_a373f3a7c3064fc053ad388cc2e1a350d} 
+async Task$<$ IAction\+Result $>$ WPR.\+Controllers.\+General.\+Vehicle.\+Vehicle\+Controller.\+Get\+All\+Vehicles\+Async (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{_vehicle_controller_8cs_source_l00158}{158}} in het bestand \mbox{\hyperlink{_vehicle_controller_8cs_source}{Vehicle\+Controller.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00159\ \ \ \ \ \{}
+\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}}
+\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ query\ =\ \textcolor{stringliteral}{@"{}}}
+\DoxyCodeLine{00163\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ SELECT\ FrameNr,\ YoP,\ Brand,\ Type,\ LicensePlate,\ Color,\ Sort,\ Price,\ VehicleBlob,\ Description,\ Seats }}
+\DoxyCodeLine{00164\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ FROM\ Vehicle"{}};}
+\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ \ \ \ \ var\ vehicles\ =\ \textcolor{keyword}{new}\ List<object>();}
+\DoxyCodeLine{00166\ }
+\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using}\ (var\ connection\ =\ \_connector.CreateDbConnection())}
+\DoxyCodeLine{00168\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using}\ (var\ command\ =\ \textcolor{keyword}{new}\ MySqlCommand(query,\ (MySqlConnection)connection))}
+\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00170\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using}\ (var\ reader\ =\ await\ command.ExecuteReaderAsync())}
+\DoxyCodeLine{00171\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00172\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (reader.Read())}
+\DoxyCodeLine{00173\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00174\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ vehicles.Add(\textcolor{keyword}{new}}
+\DoxyCodeLine{00175\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00176\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ FrameNr\ =\ reader.IsDBNull(0)\ ?\ 0\ :\ reader.GetInt32(0),}
+\DoxyCodeLine{00177\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ YoP\ =\ reader.IsDBNull(1)\ ?\ 0\ :\ reader.GetInt32(1),\ \ \ \ }
+\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Brand\ =\ reader.IsDBNull(2)\ ?\ null\ :\ reader.GetString(2),}
+\DoxyCodeLine{00179\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Type\ =\ reader.IsDBNull(3)\ ?\ null\ :\ reader.GetString(3),}
+\DoxyCodeLine{00180\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ LicensePlate\ =\ reader.IsDBNull(4)\ ?\ null\ :\ reader.GetString(4),}
+\DoxyCodeLine{00181\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Color\ =\ reader.IsDBNull(5)\ ?\ null\ :\ reader.GetString(5),}
+\DoxyCodeLine{00182\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Sort\ =\ reader.IsDBNull(6)\ ?\ null\ :\ reader.GetString(6),}
+\DoxyCodeLine{00183\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Price\ =\ reader.IsDBNull(7)\ ?\ \textcolor{stringliteral}{"{}0.00"{}}\ :\ reader.GetDecimal(7).ToString(\textcolor{stringliteral}{"{}F2"{}}),}
+\DoxyCodeLine{00184\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Image\ =\ reader.IsDBNull(8)\ ?\ null\ :\ Convert.ToBase64String((\textcolor{keywordtype}{byte}[])reader[\textcolor{stringliteral}{"{}VehicleBlob"{}}]),}
+\DoxyCodeLine{00185\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Description\ =\ reader.IsDBNull(9)\ ?\ null\ :\ reader.GetString(9),}
+\DoxyCodeLine{00186\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Seats\ =\ reader.GetInt32(10)}
+\DoxyCodeLine{00187\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{00188\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00189\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00190\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00191\ }
+\DoxyCodeLine{00192\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Ok(vehicles);}
+\DoxyCodeLine{00193\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00194\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (Exception\ ex)}
+\DoxyCodeLine{00195\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00196\ \ \ \ \ \ \ \ \ \ \ \ \ Console.WriteLine(ex);}
+\DoxyCodeLine{00197\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ StatusCode(500,\ \textcolor{stringliteral}{"{}An\ error\ occurred\ while\ fetching\ vehicles."{}});}
+\DoxyCodeLine{00198\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00199\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+Gebruikt \mbox{\hyperlink{_vehicle_controller_8cs_source_l00019}{\+\_\+connector}}.
+
+\Hypertarget{class_w_p_r_1_1_controllers_1_1_general_1_1_vehicle_1_1_vehicle_controller_a4a6d616a3e9390af3dca1cb084d39d7d}\index{WPR.Controllers.General.Vehicle.VehicleController@{WPR.Controllers.General.Vehicle.VehicleController}!GetFrameNumbersAsync@{GetFrameNumbersAsync}}
+\index{GetFrameNumbersAsync@{GetFrameNumbersAsync}!WPR.Controllers.General.Vehicle.VehicleController@{WPR.Controllers.General.Vehicle.VehicleController}}
+\doxysubsubsection{\texorpdfstring{GetFrameNumbersAsync()}{GetFrameNumbersAsync()}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_controllers_1_1_general_1_1_vehicle_1_1_vehicle_controller_a4a6d616a3e9390af3dca1cb084d39d7d} 
+async Task$<$ IAction\+Result $>$ WPR.\+Controllers.\+General.\+Vehicle.\+Vehicle\+Controller.\+Get\+Frame\+Numbers\+Async (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Alle framenummers van de voertuigen worden verzameld. 
+
+\begin{DoxyReturn}{Retourneert}
+
+\end{DoxyReturn}
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{_vehicle_controller_8cs_source_l00260}{260}} in het bestand \mbox{\hyperlink{_vehicle_controller_8cs_source}{Vehicle\+Controller.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00261\ \ \ \ \ \{}
+\DoxyCodeLine{00262\ \ \ \ \ \ \ \ \ var\ ids\ =\ await\ \_vehicleRepository.GetFrameNumbersAsync();}
+\DoxyCodeLine{00263\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Ok(\textcolor{keyword}{new}\ \{\ message\ =\ ids\ \});}
+\DoxyCodeLine{00264\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+Gebruikt \mbox{\hyperlink{_vehicle_controller_8cs_source_l00020}{\+\_\+vehicle\+Repository}}.
+
+\Hypertarget{class_w_p_r_1_1_controllers_1_1_general_1_1_vehicle_1_1_vehicle_controller_afb66085e0df384b247c238e58ec36029}\index{WPR.Controllers.General.Vehicle.VehicleController@{WPR.Controllers.General.Vehicle.VehicleController}!GetFrameNumbersSpecificTypeAsync@{GetFrameNumbersSpecificTypeAsync}}
+\index{GetFrameNumbersSpecificTypeAsync@{GetFrameNumbersSpecificTypeAsync}!WPR.Controllers.General.Vehicle.VehicleController@{WPR.Controllers.General.Vehicle.VehicleController}}
+\doxysubsubsection{\texorpdfstring{GetFrameNumbersSpecificTypeAsync()}{GetFrameNumbersSpecificTypeAsync()}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_controllers_1_1_general_1_1_vehicle_1_1_vehicle_controller_afb66085e0df384b247c238e58ec36029} 
+async Task$<$ IAction\+Result $>$ WPR.\+Controllers.\+General.\+Vehicle.\+Vehicle\+Controller.\+Get\+Frame\+Numbers\+Specific\+Type\+Async (\begin{DoxyParamCaption}\item[{string}]{type}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Alle framenummers van een specifieke voertuig soort wordt verzameld. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em type} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retourneert}
+
+\end{DoxyReturn}
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{_vehicle_controller_8cs_source_l00272}{272}} in het bestand \mbox{\hyperlink{_vehicle_controller_8cs_source}{Vehicle\+Controller.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00273\ \ \ \ \ \{}
+\DoxyCodeLine{00274\ \ \ \ \ \ \ \ \ var\ ids\ =\ await\ \_vehicleRepository.GetFrameNumberSpecifiekTypeAsync(type);}
+\DoxyCodeLine{00275\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Ok(\textcolor{keyword}{new}\ \{\ message\ =\ ids\ \});}
+\DoxyCodeLine{00276\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+Gebruikt \mbox{\hyperlink{_vehicle_controller_8cs_source_l00020}{\+\_\+vehicle\+Repository}}.
+
+\Hypertarget{class_w_p_r_1_1_controllers_1_1_general_1_1_vehicle_1_1_vehicle_controller_aaa615b835b9a71811327f22805bce715}\index{WPR.Controllers.General.Vehicle.VehicleController@{WPR.Controllers.General.Vehicle.VehicleController}!GetTypeOfVehiclesAsync@{GetTypeOfVehiclesAsync}}
+\index{GetTypeOfVehiclesAsync@{GetTypeOfVehiclesAsync}!WPR.Controllers.General.Vehicle.VehicleController@{WPR.Controllers.General.Vehicle.VehicleController}}
+\doxysubsubsection{\texorpdfstring{GetTypeOfVehiclesAsync()}{GetTypeOfVehiclesAsync()}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_controllers_1_1_general_1_1_vehicle_1_1_vehicle_controller_aaa615b835b9a71811327f22805bce715} 
+async Task$<$ IAction\+Result $>$ WPR.\+Controllers.\+General.\+Vehicle.\+Vehicle\+Controller.\+Get\+Type\+Of\+Vehicles\+Async (\begin{DoxyParamCaption}\item[{string}]{vehicle\+Type}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{_vehicle_controller_8cs_source_l00202}{202}} in het bestand \mbox{\hyperlink{_vehicle_controller_8cs_source}{Vehicle\+Controller.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00203\ \ \ \ \ \{}
+\DoxyCodeLine{00204\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}}
+\DoxyCodeLine{00205\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00206\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ query\ =\ \textcolor{stringliteral}{@"{}}}
+\DoxyCodeLine{00207\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ SELECT\ FrameNr,\ YoP,\ Brand,\ Type,\ LicensePlate,\ Color,\ Sort,\ Price,\ VehicleBlob,\ Description,\ Seats\  }}
+\DoxyCodeLine{00208\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ FROM\ Vehicle\  }}
+\DoxyCodeLine{00209\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ WHERE\ LOWER(Sort)\ =\ LOWER(@Sort)"{}};}
+\DoxyCodeLine{00210\ }
+\DoxyCodeLine{00211\ \ \ \ \ \ \ \ \ \ \ \ \ var\ vehicles\ =\ \textcolor{keyword}{new}\ List<object>();}
+\DoxyCodeLine{00212\ }
+\DoxyCodeLine{00213\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using}\ (var\ connection\ =\ \_connector.CreateDbConnection())}
+\DoxyCodeLine{00214\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00215\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using}\ (var\ command\ =\ \textcolor{keyword}{new}\ MySqlCommand(query,\ (MySqlConnection)connection))}
+\DoxyCodeLine{00216\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00217\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\textcolor{keywordtype}{string}.IsNullOrWhiteSpace(vehicleType)\ \&\&}
+\DoxyCodeLine{00218\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !vehicleType.Equals(\textcolor{stringliteral}{"{}ALL"{}},\ StringComparison.OrdinalIgnoreCase))}
+\DoxyCodeLine{00219\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00220\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ command.Parameters.AddWithValue(\textcolor{stringliteral}{"{}@Sort"{}},\ vehicleType);}
+\DoxyCodeLine{00221\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00222\ }
+\DoxyCodeLine{00223\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using}\ (var\ reader\ =\ await\ command.ExecuteReaderAsync())}
+\DoxyCodeLine{00224\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00225\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (reader.Read())}
+\DoxyCodeLine{00226\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00227\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ vehicles.Add(\textcolor{keyword}{new}}
+\DoxyCodeLine{00228\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00229\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ FrameNr\ =\ reader.GetInt32(0),\ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00230\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ YoP\ =\ reader.GetInt32(1),\ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00231\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Brand\ =\ reader.IsDBNull(2)\ ?\ null\ :\ reader.GetString(2),}
+\DoxyCodeLine{00232\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Type\ =\ reader.IsDBNull(3)\ ?\ null\ :\ reader.GetString(3),}
+\DoxyCodeLine{00233\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ LicensePlate\ =\ reader.IsDBNull(4)\ ?\ null\ :\ reader.GetString(4),}
+\DoxyCodeLine{00234\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Color\ =\ reader.IsDBNull(5)\ ?\ null\ :\ reader.GetString(5),}
+\DoxyCodeLine{00235\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Sort\ =\ reader.IsDBNull(6)\ ?\ null\ :\ reader.GetString(6),}
+\DoxyCodeLine{00236\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Price\ =\ reader.IsDBNull(7)\ ?\ null\ :\ reader.GetDecimal(7).ToString(\textcolor{stringliteral}{"{}F2"{}}),}
+\DoxyCodeLine{00237\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Image\ =\ reader.IsDBNull(8)\ ?\ null\ :\ Convert.ToBase64String((\textcolor{keywordtype}{byte}[])reader[\textcolor{stringliteral}{"{}VehicleBlob"{}}]),}
+\DoxyCodeLine{00238\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Description\ =\ reader.IsDBNull(9)\ ?\ null\ :\ reader.GetString(9),}
+\DoxyCodeLine{00239\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Seats\ =\ reader.GetInt32(10)}
+\DoxyCodeLine{00240\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{00241\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00242\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00243\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00244\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00245\ }
+\DoxyCodeLine{00246\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Ok(vehicles);}
+\DoxyCodeLine{00247\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00248\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (Exception\ ex)}
+\DoxyCodeLine{00249\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00250\ \ \ \ \ \ \ \ \ \ \ \ \ Console.WriteLine(\$\textcolor{stringliteral}{"{}Error:\ \{ex.Message\}"{}});}
+\DoxyCodeLine{00251\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ StatusCode(500,\ \textcolor{stringliteral}{"{}An\ error\ occurred\ while\ fetching\ vehicles."{}});}
+\DoxyCodeLine{00252\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00253\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+Gebruikt \mbox{\hyperlink{_vehicle_controller_8cs_source_l00019}{\+\_\+connector}}.
+
+\Hypertarget{class_w_p_r_1_1_controllers_1_1_general_1_1_vehicle_1_1_vehicle_controller_a286d4c9a73d21612fcde092dd1aa979e}\index{WPR.Controllers.General.Vehicle.VehicleController@{WPR.Controllers.General.Vehicle.VehicleController}!GetVehicleData@{GetVehicleData}}
+\index{GetVehicleData@{GetVehicleData}!WPR.Controllers.General.Vehicle.VehicleController@{WPR.Controllers.General.Vehicle.VehicleController}}
+\doxysubsubsection{\texorpdfstring{GetVehicleData()}{GetVehicleData()}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_controllers_1_1_general_1_1_vehicle_1_1_vehicle_controller_a286d4c9a73d21612fcde092dd1aa979e} 
+async Task$<$ IAction\+Result $>$ WPR.\+Controllers.\+General.\+Vehicle.\+Vehicle\+Controller.\+Get\+Vehicle\+Data (\begin{DoxyParamCaption}\item[{string}]{frame\+Nr}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Alle gegevens van 1 specifiek voertuig wordt opgehaald. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em frame\+Nr} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retourneert}
+
+\end{DoxyReturn}
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{_vehicle_controller_8cs_source_l00284}{284}} in het bestand \mbox{\hyperlink{_vehicle_controller_8cs_source}{Vehicle\+Controller.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00285\ \ \ \ \ \{}
+\DoxyCodeLine{00286\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}}
+\DoxyCodeLine{00287\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00288\ \ \ \ \ \ \ \ \ \ \ \ \ var\ data\ =\ await\ \_vehicleRepository.GetVehicleDataAsync(frameNr);}
+\DoxyCodeLine{00289\ }
+\DoxyCodeLine{00290\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (data\ ==\ \textcolor{keyword}{null}\ ||\ !data.Any())}
+\DoxyCodeLine{00291\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00292\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ NotFound(\textcolor{keyword}{new}\ VehicleErrorResponse}
+\DoxyCodeLine{00293\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00294\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Status\ =\ \textcolor{keyword}{false},}
+\DoxyCodeLine{00295\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Message\ =\ \textcolor{stringliteral}{"{}No\ vehicle\ data\ found"{}}}
+\DoxyCodeLine{00296\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{00297\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00298\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00299\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Ok(\textcolor{keyword}{new}\ VehicleDataResponse\ \{\ Message\ =\ data\ \});}
+\DoxyCodeLine{00300\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00301\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (Exception\ e)}
+\DoxyCodeLine{00302\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00303\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ StatusCode(500,\ \textcolor{keyword}{new}\ VehicleErrorResponse()}
+\DoxyCodeLine{00304\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00305\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Status\ =\ \textcolor{keyword}{false},}
+\DoxyCodeLine{00306\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Message\ =\ e.Message}
+\DoxyCodeLine{00307\ \ \ \ \ \ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{00308\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00309\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+Gebruikt \mbox{\hyperlink{_vehicle_controller_8cs_source_l00020}{\+\_\+vehicle\+Repository}}.
+
+\Hypertarget{class_w_p_r_1_1_controllers_1_1_general_1_1_vehicle_1_1_vehicle_controller_a47c5226006711ccc6d74971eb8abf032}\index{WPR.Controllers.General.Vehicle.VehicleController@{WPR.Controllers.General.Vehicle.VehicleController}!GetVehicleImageAsync@{GetVehicleImageAsync}}
+\index{GetVehicleImageAsync@{GetVehicleImageAsync}!WPR.Controllers.General.Vehicle.VehicleController@{WPR.Controllers.General.Vehicle.VehicleController}}
+\doxysubsubsection{\texorpdfstring{GetVehicleImageAsync()}{GetVehicleImageAsync()}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_controllers_1_1_general_1_1_vehicle_1_1_vehicle_controller_a47c5226006711ccc6d74971eb8abf032} 
+async Task$<$ IAction\+Result $>$ WPR.\+Controllers.\+General.\+Vehicle.\+Vehicle\+Controller.\+Get\+Vehicle\+Image\+Async (\begin{DoxyParamCaption}\item[{int}]{frame\+Nr}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{_vehicle_controller_8cs_source_l00084}{84}} in het bestand \mbox{\hyperlink{_vehicle_controller_8cs_source}{Vehicle\+Controller.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00085\ \ \ \ \ \{}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ query\ =\ \textcolor{stringliteral}{"{}SELECT\ VehicleBlob\ FROM\ Vehicle\ WHERE\ FrameNr\ =\ @FrameNr"{}};}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using}\ (var\ connection\ =\ \_connector.CreateDbConnection())}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using}\ (var\ command\ =\ \textcolor{keyword}{new}\ MySqlCommand(query,\ (MySqlConnection)connection))}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ command.Parameters.AddWithValue(\textcolor{stringliteral}{"{}@FrameNr"{}},\ frameNr);}
+\DoxyCodeLine{00094\ }
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using}\ (MySqlDataReader\ reader\ =\ await\ command.ExecuteReaderAsync(CommandBehavior.SingleRow))}
+\DoxyCodeLine{00096\ }
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (reader.Read()\ \&\&\ !reader.IsDBNull(0))}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{byte}[]\ imageBytes\ =\ (\textcolor{keywordtype}{byte}[])reader[\textcolor{stringliteral}{"{}VehicleBlob"{}}];}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ base64Image\ =\ Convert.ToBase64String(imageBytes);}
+\DoxyCodeLine{00102\ }
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Ok(base64Image);}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ NotFound(\$\textcolor{stringliteral}{"{}Image\ with\ frameNr\ \{frameNr\}\ not\ found."{}});}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (Exception\ ex)}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \ \ \ \ Console.WriteLine(ex);}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ StatusCode(500,\ \textcolor{stringliteral}{"{}An\ error\ occurred\ while\ fetching\ the\ image."{}});}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00117\ }
+\DoxyCodeLine{00118\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+Gebruikt \mbox{\hyperlink{_vehicle_controller_8cs_source_l00019}{\+\_\+connector}}.
+
+\Hypertarget{class_w_p_r_1_1_controllers_1_1_general_1_1_vehicle_1_1_vehicle_controller_a6513983e0e6319857b7114b3d4e4bfe0}\index{WPR.Controllers.General.Vehicle.VehicleController@{WPR.Controllers.General.Vehicle.VehicleController}!GetVehicleName@{GetVehicleName}}
+\index{GetVehicleName@{GetVehicleName}!WPR.Controllers.General.Vehicle.VehicleController@{WPR.Controllers.General.Vehicle.VehicleController}}
+\doxysubsubsection{\texorpdfstring{GetVehicleName()}{GetVehicleName()}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_controllers_1_1_general_1_1_vehicle_1_1_vehicle_controller_a6513983e0e6319857b7114b3d4e4bfe0} 
+async Task$<$ IAction\+Result $>$ WPR.\+Controllers.\+General.\+Vehicle.\+Vehicle\+Controller.\+Get\+Vehicle\+Name (\begin{DoxyParamCaption}\item[{int}]{frame\+Nr}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{_vehicle_controller_8cs_source_l00029}{29}} in het bestand \mbox{\hyperlink{_vehicle_controller_8cs_source}{Vehicle\+Controller.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00030\ \ \ \ \ \{}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ query1\ =\ \textcolor{stringliteral}{"{}SELECT\ Brand\ FROM\ Vehicle\ WHERE\ FrameNr\ =\ @FrameNr"{}};}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ query2\ =\ \textcolor{stringliteral}{"{}SELECT\ Type\ from\ Vehicle\ WHERE\ FrameNr\ =\ @FrameNr"{}};}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using}\ (var\ connection\ =\ \_connector.CreateDbConnection())}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ brand\ =\ \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ type\ =\ \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using}\ (var\ command\ =\ \textcolor{keyword}{new}\ MySqlCommand(query1,\ (MySqlConnection)connection))}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ command.Parameters.AddWithValue(\textcolor{stringliteral}{"{}@FrameNr"{}},\ frameNr);}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using}\ (MySqlDataReader\ reader1\ =\ await\ command.ExecuteReaderAsync(CommandBehavior.SingleRow))}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (reader1.Read()\ \&\&\ !reader1.IsDBNull(0))}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ brand\ =\ reader1.GetString(0);}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using}\ (var\ command2\ =\ \textcolor{keyword}{new}\ MySqlCommand(query2,\ (MySqlConnection)connection))}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ command2.Parameters.AddWithValue(\textcolor{stringliteral}{"{}@FrameNr"{}},\ frameNr);}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using}\ (MySqlDataReader\ reader2\ =\ await\ command2.ExecuteReaderAsync(CommandBehavior.SingleRow))}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (reader2.Read()\ \&\&\ !reader2.IsDBNull(0))}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ type\ =\ reader2.GetString(0);}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Ok(\$\textcolor{stringliteral}{"{}\{brand\}\ \{type\}"{}});}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ NotFound(\$\textcolor{stringliteral}{"{}Car\ with\ frameNr\ \{frameNr\}\ not\ found."{}});}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (Exception\ ex)}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \ \ \ \ Console.WriteLine(ex);}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ StatusCode(500,\ \textcolor{stringliteral}{"{}An\ error\ occurred\ while\ fetching\ the\ name\ of\ the\ car."{}});}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00081\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+Gebruikt \mbox{\hyperlink{_vehicle_controller_8cs_source_l00019}{\+\_\+connector}}.
+
+\Hypertarget{class_w_p_r_1_1_controllers_1_1_general_1_1_vehicle_1_1_vehicle_controller_a45b3f02d868b52ccc5afddb3c0267560}\index{WPR.Controllers.General.Vehicle.VehicleController@{WPR.Controllers.General.Vehicle.VehicleController}!GetVehiclePriceAsync@{GetVehiclePriceAsync}}
+\index{GetVehiclePriceAsync@{GetVehiclePriceAsync}!WPR.Controllers.General.Vehicle.VehicleController@{WPR.Controllers.General.Vehicle.VehicleController}}
+\doxysubsubsection{\texorpdfstring{GetVehiclePriceAsync()}{GetVehiclePriceAsync()}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_controllers_1_1_general_1_1_vehicle_1_1_vehicle_controller_a45b3f02d868b52ccc5afddb3c0267560} 
+async Task$<$ IAction\+Result $>$ WPR.\+Controllers.\+General.\+Vehicle.\+Vehicle\+Controller.\+Get\+Vehicle\+Price\+Async (\begin{DoxyParamCaption}\item[{int}]{frame\+Nr}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{_vehicle_controller_8cs_source_l00121}{121}} in het bestand \mbox{\hyperlink{_vehicle_controller_8cs_source}{Vehicle\+Controller.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00122\ \ \ \ \ \{}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}}
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ query\ =\ \textcolor{stringliteral}{"{}SELECT\ Price\ FROM\ Vehicle\ WHERE\ FrameNr\ =\ @FrameNr"{}};}
+\DoxyCodeLine{00126\ }
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using}\ (var\ connection\ =\ \_connector.CreateDbConnection())}
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using}\ (var\ command\ =\ \textcolor{keyword}{new}\ MySqlCommand(query,\ (MySqlConnection)connection))}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ command.Parameters.AddWithValue(\textcolor{stringliteral}{"{}@FrameNr"{}},\ frameNr);}
+\DoxyCodeLine{00131\ }
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using}\ (MySqlDataReader\ reader\ =\ await\ command.ExecuteReaderAsync(CommandBehavior.SingleRow))}
+\DoxyCodeLine{00133\ }
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (reader.Read()\ \&\&\ !reader.IsDBNull(0))}
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ decimal\ priceDec\ =\ reader.GetDecimal(0);}
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ price\ =\ priceDec.ToString(\textcolor{stringliteral}{"{}F2"{}});}
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Ok(price);}
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ NotFound(\$\textcolor{stringliteral}{"{}Price\ of\ car\ with\ frameNr\ \{frameNr\}\ not\ found."{}});}
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (Exception\ ex)}
+\DoxyCodeLine{00151\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ \ \ \ \ Console.WriteLine(ex);}
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ StatusCode(500,\ \textcolor{stringliteral}{"{}An\ error\ occurred\ while\ fetching\ the\ price."{}});}
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00155\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+Gebruikt \mbox{\hyperlink{_vehicle_controller_8cs_source_l00019}{\+\_\+connector}}.
+
+
+
+\doxysubsection{Documentatie van data velden}
+\Hypertarget{class_w_p_r_1_1_controllers_1_1_general_1_1_vehicle_1_1_vehicle_controller_aef5ce5be36c1415893325a24f5783f92}\index{WPR.Controllers.General.Vehicle.VehicleController@{WPR.Controllers.General.Vehicle.VehicleController}!\_connector@{\_connector}}
+\index{\_connector@{\_connector}!WPR.Controllers.General.Vehicle.VehicleController@{WPR.Controllers.General.Vehicle.VehicleController}}
+\doxysubsubsection{\texorpdfstring{\_connector}{\_connector}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_controllers_1_1_general_1_1_vehicle_1_1_vehicle_controller_aef5ce5be36c1415893325a24f5783f92} 
+readonly \mbox{\hyperlink{interface_w_p_r_1_1_database_1_1_i_connector}{IConnector}} WPR.\+Controllers.\+General.\+Vehicle.\+Vehicle\+Controller.\+\_\+connector\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{_vehicle_controller_8cs_source_l00019}{19}} in het bestand \mbox{\hyperlink{_vehicle_controller_8cs_source}{Vehicle\+Controller.\+cs}}.
+
+
+
+Wordt aangeroepen door \mbox{\hyperlink{_vehicle_controller_8cs_source_l00158}{Get\+All\+Vehicles\+Async()}}, \mbox{\hyperlink{_vehicle_controller_8cs_source_l00202}{Get\+Type\+Of\+Vehicles\+Async()}}, \mbox{\hyperlink{_vehicle_controller_8cs_source_l00084}{Get\+Vehicle\+Image\+Async()}}, \mbox{\hyperlink{_vehicle_controller_8cs_source_l00029}{Get\+Vehicle\+Name()}}, \mbox{\hyperlink{_vehicle_controller_8cs_source_l00121}{Get\+Vehicle\+Price\+Async()}} en \mbox{\hyperlink{_vehicle_controller_8cs_source_l00022}{Vehicle\+Controller()}}.
+
+\Hypertarget{class_w_p_r_1_1_controllers_1_1_general_1_1_vehicle_1_1_vehicle_controller_aee814694ef7a060dc4f35f78ff19e281}\index{WPR.Controllers.General.Vehicle.VehicleController@{WPR.Controllers.General.Vehicle.VehicleController}!\_vehicleRepository@{\_vehicleRepository}}
+\index{\_vehicleRepository@{\_vehicleRepository}!WPR.Controllers.General.Vehicle.VehicleController@{WPR.Controllers.General.Vehicle.VehicleController}}
+\doxysubsubsection{\texorpdfstring{\_vehicleRepository}{\_vehicleRepository}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_controllers_1_1_general_1_1_vehicle_1_1_vehicle_controller_aee814694ef7a060dc4f35f78ff19e281} 
+readonly \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_vehicle_repository}{IVehicle\+Repository}} WPR.\+Controllers.\+General.\+Vehicle.\+Vehicle\+Controller.\+\_\+vehicle\+Repository\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{_vehicle_controller_8cs_source_l00020}{20}} in het bestand \mbox{\hyperlink{_vehicle_controller_8cs_source}{Vehicle\+Controller.\+cs}}.
+
+
+
+Wordt aangeroepen door \mbox{\hyperlink{_vehicle_controller_8cs_source_l00312}{Delete\+Vehicle\+Async()}}, \mbox{\hyperlink{_vehicle_controller_8cs_source_l00260}{Get\+Frame\+Numbers\+Async()}}, \mbox{\hyperlink{_vehicle_controller_8cs_source_l00272}{Get\+Frame\+Numbers\+Specific\+Type\+Async()}}, \mbox{\hyperlink{_vehicle_controller_8cs_source_l00284}{Get\+Vehicle\+Data()}} en \mbox{\hyperlink{_vehicle_controller_8cs_source_l00022}{Vehicle\+Controller()}}.
+
+
+
+De documentatie voor deze klasse is gegenereerd op basis van het volgende bestand\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/codes/\+WPR8/\+WPR/backend/src/\+Controllers/general/vehicle/\mbox{\hyperlink{_vehicle_controller_8cs}{Vehicle\+Controller.\+cs}}\end{DoxyCompactItemize}

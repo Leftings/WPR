@@ -1,0 +1,406 @@
+\doxysection{WPR.\+Controllers.\+General.\+Cookie.\+Cookie\+Controller Class Referentie}
+\hypertarget{class_w_p_r_1_1_controllers_1_1_general_1_1_cookie_1_1_cookie_controller}{}\label{class_w_p_r_1_1_controllers_1_1_general_1_1_cookie_1_1_cookie_controller}\index{WPR.Controllers.General.Cookie.CookieController@{WPR.Controllers.General.Cookie.CookieController}}
+
+
+\doxylink{class_w_p_r_1_1_controllers_1_1_general_1_1_cookie_1_1_cookie_controller}{Cookie\+Controller} is de controller voor het aanmaken, verwijderen en ondervragen van cookies.  
+
+
+
+
+Klasse diagram voor WPR.\+Controllers.\+General.\+Cookie.\+Cookie\+Controller
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=211pt]{class_w_p_r_1_1_controllers_1_1_general_1_1_cookie_1_1_cookie_controller__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboratie diagram voor WPR.\+Controllers.\+General.\+Cookie.\+Cookie\+Controller\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_w_p_r_1_1_controllers_1_1_general_1_1_cookie_1_1_cookie_controller__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Members}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_general_1_1_cookie_1_1_cookie_controller_ab4470e90a992ce576924e1d55531b98a}{Cookie\+Controller}} (\mbox{\hyperlink{interface_w_p_r_1_1_database_1_1_i_connector}{IConnector}} connector, \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_user_repository}{IUser\+Repository}} user\+Repository, \mbox{\hyperlink{class_w_p_r_1_1_cryption_1_1_crypt}{Crypt}} crypt)
+\item 
+async Task$<$ IAction\+Result $>$ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_general_1_1_cookie_1_1_cookie_controller_a26b96d5223da90a03a63cfb813f1afd2}{Get\+User\+Id}} ()
+\begin{DoxyCompactList}\small\item\em De geencrypted user id wordt uit de cookie gepakt en wordt vervolgens gedecrypt doorgestuurd. \end{DoxyCompactList}\item 
+async Task$<$ IAction\+Result $>$ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_general_1_1_cookie_1_1_cookie_controller_af40d427ac5a8ca1167690ca50b404d58}{Get\+User\+Name}} ()
+\begin{DoxyCompactList}\small\item\em De gebruikersnaam wordt via de user id opgehaald via de backend. \end{DoxyCompactList}\item 
+IAction\+Result \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_general_1_1_cookie_1_1_cookie_controller_a3613f82147fc694f6a2e214ee93595af}{Logout}} ()
+\begin{DoxyCompactList}\small\item\em De loginsession cookie wordt veranderd naar een cookie met een negatieve tijd, zodat de cookie expires. \end{DoxyCompactList}\item 
+async Task$<$ IAction\+Result $>$ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_general_1_1_cookie_1_1_cookie_controller_a893dae88524c51e709ea2a3e8ecdeec0}{Get\+Kind\+Employee\+Async}} ()
+\begin{DoxyCompactList}\small\item\em Het soort medewerker wordt uit de cookie opgehaald, door middel van de user id, zodat de juiste soort medewerker naar de frontend verstuurd wordt. \end{DoxyCompactList}\item 
+async Task$<$ IAction\+Result $>$ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_general_1_1_cookie_1_1_cookie_controller_af1496ea210a142f46c8cf9f706eed50f}{Is\+Vehicle\+Manager\+Async}} ()
+\begin{DoxyCompactList}\small\item\em Er wordt gekeken of de \doxylink{namespace_w_p_r_1_1_controllers_1_1_general_1_1_vehicle}{Vehicle} Manager bestaat. Ongeldige cookies worden verwijderd. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributen}
+\begin{DoxyCompactItemize}
+\item 
+readonly \mbox{\hyperlink{interface_w_p_r_1_1_database_1_1_i_connector}{IConnector}} \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_general_1_1_cookie_1_1_cookie_controller_a09f7a66d4ac7dff587000252699b3fda}{\+\_\+connector}}
+\item 
+readonly \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_user_repository}{IUser\+Repository}} \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_general_1_1_cookie_1_1_cookie_controller_addebdd6ad6fe0c2a3684f7e6d3b87c8b}{\+\_\+user\+Repository}}
+\item 
+readonly \mbox{\hyperlink{class_w_p_r_1_1_cryption_1_1_crypt}{Crypt}} \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_general_1_1_cookie_1_1_cookie_controller_a4100e6f1f10bc2d839153895290061fa}{\+\_\+crypt}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Gedetailleerde Beschrijving}
+\doxylink{class_w_p_r_1_1_controllers_1_1_general_1_1_cookie_1_1_cookie_controller}{Cookie\+Controller} is de controller voor het aanmaken, verwijderen en ondervragen van cookies. 
+
+De definitie bevindt zich op regel \mbox{\hyperlink{cookie_controller_8cs_source_l00015}{15}} in het bestand \mbox{\hyperlink{cookie_controller_8cs_source}{cookie\+Controller.\+cs}}.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentatie}
+\Hypertarget{class_w_p_r_1_1_controllers_1_1_general_1_1_cookie_1_1_cookie_controller_ab4470e90a992ce576924e1d55531b98a}\index{WPR.Controllers.General.Cookie.CookieController@{WPR.Controllers.General.Cookie.CookieController}!CookieController@{CookieController}}
+\index{CookieController@{CookieController}!WPR.Controllers.General.Cookie.CookieController@{WPR.Controllers.General.Cookie.CookieController}}
+\doxysubsubsection{\texorpdfstring{CookieController()}{CookieController()}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_controllers_1_1_general_1_1_cookie_1_1_cookie_controller_ab4470e90a992ce576924e1d55531b98a} 
+WPR.\+Controllers.\+General.\+Cookie.\+Cookie\+Controller.\+Cookie\+Controller (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{interface_w_p_r_1_1_database_1_1_i_connector}{IConnector}}}]{connector}{, }\item[{\mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_user_repository}{IUser\+Repository}}}]{user\+Repository}{, }\item[{\mbox{\hyperlink{class_w_p_r_1_1_cryption_1_1_crypt}{Crypt}}}]{crypt}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{cookie_controller_8cs_source_l00021}{21}} in het bestand \mbox{\hyperlink{cookie_controller_8cs_source}{cookie\+Controller.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00022\ \ \ \ \ \{}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \_connector\ =\ connector\ ??\ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ ArgumentNullException(nameof(connector));}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \_userRepository\ =\ userRepository\ ??\ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ ArgumentNullException(nameof(userRepository));}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \_crypt\ =\ crypt\ ??\ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ ArgumentNullException(nameof(crypt));}
+\DoxyCodeLine{00026\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+Gebruikt \mbox{\hyperlink{cookie_controller_8cs_source_l00017}{\+\_\+connector}}, \mbox{\hyperlink{cookie_controller_8cs_source_l00019}{\+\_\+crypt}} en \mbox{\hyperlink{cookie_controller_8cs_source_l00018}{\+\_\+user\+Repository}}.
+
+
+
+\doxysubsection{Documentatie van functie members}
+\Hypertarget{class_w_p_r_1_1_controllers_1_1_general_1_1_cookie_1_1_cookie_controller_a893dae88524c51e709ea2a3e8ecdeec0}\index{WPR.Controllers.General.Cookie.CookieController@{WPR.Controllers.General.Cookie.CookieController}!GetKindEmployeeAsync@{GetKindEmployeeAsync}}
+\index{GetKindEmployeeAsync@{GetKindEmployeeAsync}!WPR.Controllers.General.Cookie.CookieController@{WPR.Controllers.General.Cookie.CookieController}}
+\doxysubsubsection{\texorpdfstring{GetKindEmployeeAsync()}{GetKindEmployeeAsync()}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_controllers_1_1_general_1_1_cookie_1_1_cookie_controller_a893dae88524c51e709ea2a3e8ecdeec0} 
+async Task$<$ IAction\+Result $>$ WPR.\+Controllers.\+General.\+Cookie.\+Cookie\+Controller.\+Get\+Kind\+Employee\+Async (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Het soort medewerker wordt uit de cookie opgehaald, door middel van de user id, zodat de juiste soort medewerker naar de frontend verstuurd wordt. 
+
+\begin{DoxyReturn}{Retourneert}
+
+\end{DoxyReturn}
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{cookie_controller_8cs_source_l00134}{134}} in het bestand \mbox{\hyperlink{cookie_controller_8cs_source}{cookie\+Controller.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00135\ \ \ \ \ \{}
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ employeeCookie\ =\ HttpContext.Request.Cookies[\textcolor{stringliteral}{"{}LoginEmployeeSession"{}}];}
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ Console.WriteLine(employeeCookie);}
+\DoxyCodeLine{00138\ }
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\textcolor{keywordtype}{string}.IsNullOrEmpty(employeeCookie))}
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ BadRequest(\textcolor{keyword}{new}\ \{\ message\ =\ \textcolor{stringliteral}{"{}No\ Cookie"{}}\ \});}
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00143\ }
+\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}}
+\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Updated\ to\ match\ the\ new\ tuple}}
+\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ \ \ \ \ (\textcolor{keywordtype}{bool}\ status,\ \textcolor{keywordtype}{string}\ message,\ \textcolor{keywordtype}{string}\ officeType)\ kindEmployee\ =\ }
+\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ await\ \_userRepository.GetKindEmployeeAsync(\_crypt.Decrypt(employeeCookie));}
+\DoxyCodeLine{00149\ }
+\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (kindEmployee.status)}
+\DoxyCodeLine{00151\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Console.WriteLine(kindEmployee.message);}
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Ok(\textcolor{keyword}{new}\ }
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ }
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ message\ =\ kindEmployee.message,\ }
+\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ officeType\ =\ kindEmployee.officeType\ }
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ BadRequest(\textcolor{keyword}{new}\ \{\ message\ =\ \textcolor{stringliteral}{"{}No\ office\ found\ for\ this\ employee"{}}\ \});}
+\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ \}\ }
+\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}}
+\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Remove\ invalid\ cookie\ and\ return\ a\ response}}
+\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ \ \ \ \ Response.Cookies.Append(\textcolor{stringliteral}{"{}LoginSessionEmployee"{}},\ \textcolor{stringliteral}{"{}Invalid\ cookie"{}},\ \textcolor{keyword}{new}\ CookieOptions}
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ HttpOnly\ =\ \textcolor{keyword}{true},}
+\DoxyCodeLine{00168\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Secure\ =\ \textcolor{keyword}{true},}
+\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Expires\ =\ DateTimeOffset.UtcNow.AddDays(-\/1)}
+\DoxyCodeLine{00170\ \ \ \ \ \ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{00171\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00172\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ BadRequest(\textcolor{keyword}{new}\ \{\ message\ =\ \textcolor{stringliteral}{"{}Invalid\ Cookie,\ new\ cookie\ set"{}}\ \});}
+\DoxyCodeLine{00173\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00174\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+Gebruikt \mbox{\hyperlink{cookie_controller_8cs_source_l00019}{\+\_\+crypt}} en \mbox{\hyperlink{cookie_controller_8cs_source_l00018}{\+\_\+user\+Repository}}.
+
+\Hypertarget{class_w_p_r_1_1_controllers_1_1_general_1_1_cookie_1_1_cookie_controller_a26b96d5223da90a03a63cfb813f1afd2}\index{WPR.Controllers.General.Cookie.CookieController@{WPR.Controllers.General.Cookie.CookieController}!GetUserId@{GetUserId}}
+\index{GetUserId@{GetUserId}!WPR.Controllers.General.Cookie.CookieController@{WPR.Controllers.General.Cookie.CookieController}}
+\doxysubsubsection{\texorpdfstring{GetUserId()}{GetUserId()}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_controllers_1_1_general_1_1_cookie_1_1_cookie_controller_a26b96d5223da90a03a63cfb813f1afd2} 
+async Task$<$ IAction\+Result $>$ WPR.\+Controllers.\+General.\+Cookie.\+Cookie\+Controller.\+Get\+User\+Id (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+De geencrypted user id wordt uit de cookie gepakt en wordt vervolgens gedecrypt doorgestuurd. 
+
+\begin{DoxyReturn}{Retourneert}
+
+\end{DoxyReturn}
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{cookie_controller_8cs_source_l00033}{33}} in het bestand \mbox{\hyperlink{cookie_controller_8cs_source}{cookie\+Controller.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00034\ \ \ \ \ \{}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ loginCookie\ =\ HttpContext.Request.Cookies[\textcolor{stringliteral}{"{}LoginSession"{}}];}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}?\ loginCookie2\ =\ HttpContext.Request.Cookies[\textcolor{stringliteral}{"{}LoginVehicleManagerSession"{}}];}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}?\ loginCookie3\ =\ HttpContext.Request.Cookies[\textcolor{stringliteral}{"{}LoginEmployeeSession"{}}];}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\textcolor{keywordtype}{string}.IsNullOrEmpty(loginCookie))}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Ok(\textcolor{keyword}{new}\ \{\ message\ =\ \_crypt.Decrypt(loginCookie)\ \});}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\textcolor{keywordtype}{string}.IsNullOrEmpty(loginCookie2))}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Ok(\textcolor{keyword}{new}\ \{\ message\ =\ \_crypt.Decrypt(loginCookie2)\ \});}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\textcolor{keywordtype}{string}.IsNullOrEmpty(loginCookie3))}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Ok(\textcolor{keyword}{new}\ \{\ message\ =\ \_crypt.Decrypt(loginCookie3)\}\ );}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ BadRequest(\textcolor{keyword}{new}\ \{\ message\ =\ \textcolor{stringliteral}{"{}No\ Cookie"{}}\ \});}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Ongeldige\ cookies\ worden\ verwijderd}}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \ \ \ \ Response.Cookies.Append(\textcolor{stringliteral}{"{}LoginSession"{}},\ \textcolor{stringliteral}{"{}Invalid\ cookie"{}},\ \textcolor{keyword}{new}\ CookieOptions}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ HttpOnly\ =\ \textcolor{keyword}{true},}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Secure\ =\ \textcolor{keyword}{true},}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Expires\ =\ DateTimeOffset.UtcNow.AddDays(-\/1)}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \ \ \ \ Response.Cookies.Append(\textcolor{stringliteral}{"{}LoginEmployeeSession"{}},\ \textcolor{stringliteral}{"{}Invalid\ cookie"{}},\ \textcolor{keyword}{new}\ CookieOptions}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ HttpOnly\ =\ \textcolor{keyword}{true},}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Secure\ =\ \textcolor{keyword}{true},}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Expires\ =\ DateTimeOffset.UtcNow.AddDays(-\/1)}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \ \ \ \ Response.Cookies.Append(\textcolor{stringliteral}{"{}LoginVehicleManagerSession"{}},\ \textcolor{stringliteral}{"{}Invalid\ cookie"{}},\ \textcolor{keyword}{new}\ CookieOptions}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ HttpOnly\ =\ \textcolor{keyword}{true},}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Secure\ =\ \textcolor{keyword}{true},}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Expires\ =\ DateTimeOffset.UtcNow.AddDays(-\/1)}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ BadRequest(\textcolor{keyword}{new}\ \{\ message\ =\ \textcolor{stringliteral}{"{}Invalid\ Cookie,\ new\ cookie\ set"{}}\ \});}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00083\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+Gebruikt \mbox{\hyperlink{cookie_controller_8cs_source_l00019}{\+\_\+crypt}}.
+
+\Hypertarget{class_w_p_r_1_1_controllers_1_1_general_1_1_cookie_1_1_cookie_controller_af40d427ac5a8ca1167690ca50b404d58}\index{WPR.Controllers.General.Cookie.CookieController@{WPR.Controllers.General.Cookie.CookieController}!GetUserName@{GetUserName}}
+\index{GetUserName@{GetUserName}!WPR.Controllers.General.Cookie.CookieController@{WPR.Controllers.General.Cookie.CookieController}}
+\doxysubsubsection{\texorpdfstring{GetUserName()}{GetUserName()}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_controllers_1_1_general_1_1_cookie_1_1_cookie_controller_af40d427ac5a8ca1167690ca50b404d58} 
+async Task$<$ IAction\+Result $>$ WPR.\+Controllers.\+General.\+Cookie.\+Cookie\+Controller.\+Get\+User\+Name (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+De gebruikersnaam wordt via de user id opgehaald via de backend. 
+
+\begin{DoxyReturn}{Retourneert}
+
+\end{DoxyReturn}
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{cookie_controller_8cs_source_l00090}{90}} in het bestand \mbox{\hyperlink{cookie_controller_8cs_source}{cookie\+Controller.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00091\ \ \ \ \ \{}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ loginCookie\ =\ HttpContext.Request.Cookies[\textcolor{stringliteral}{"{}LoginSession"{}}];}
+\DoxyCodeLine{00093\ }
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\textcolor{keywordtype}{string}.IsNullOrEmpty(loginCookie))}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ BadRequest(\textcolor{keyword}{new}\ \{\ message\ =\ \textcolor{stringliteral}{"{}No\ Cookie"{}}\});}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ userName\ =\ await\ \_userRepository.GetUserNameAsync(\_crypt.Decrypt(loginCookie));}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Ok(\textcolor{keyword}{new}\ \{\ message\ =\ userName\ \});}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (Exception\ ex)}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ BadRequest(\textcolor{keyword}{new}\ \{\ message\ =\ \$\textcolor{stringliteral}{"{}\{ex.Message\}\(\backslash\)nUser\ Not\ Found"{}}\});}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00108\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+Gebruikt \mbox{\hyperlink{cookie_controller_8cs_source_l00019}{\+\_\+crypt}} en \mbox{\hyperlink{cookie_controller_8cs_source_l00018}{\+\_\+user\+Repository}}.
+
+\Hypertarget{class_w_p_r_1_1_controllers_1_1_general_1_1_cookie_1_1_cookie_controller_af1496ea210a142f46c8cf9f706eed50f}\index{WPR.Controllers.General.Cookie.CookieController@{WPR.Controllers.General.Cookie.CookieController}!IsVehicleManagerAsync@{IsVehicleManagerAsync}}
+\index{IsVehicleManagerAsync@{IsVehicleManagerAsync}!WPR.Controllers.General.Cookie.CookieController@{WPR.Controllers.General.Cookie.CookieController}}
+\doxysubsubsection{\texorpdfstring{IsVehicleManagerAsync()}{IsVehicleManagerAsync()}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_controllers_1_1_general_1_1_cookie_1_1_cookie_controller_af1496ea210a142f46c8cf9f706eed50f} 
+async Task$<$ IAction\+Result $>$ WPR.\+Controllers.\+General.\+Cookie.\+Cookie\+Controller.\+Is\+Vehicle\+Manager\+Async (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Er wordt gekeken of de \doxylink{namespace_w_p_r_1_1_controllers_1_1_general_1_1_vehicle}{Vehicle} Manager bestaat. Ongeldige cookies worden verwijderd. 
+
+\begin{DoxyReturn}{Retourneert}
+
+\end{DoxyReturn}
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{cookie_controller_8cs_source_l00182}{182}} in het bestand \mbox{\hyperlink{cookie_controller_8cs_source}{cookie\+Controller.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00183\ \ \ \ \ \{}
+\DoxyCodeLine{00184\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}?\ loginCookie2\ =\ HttpContext.Request.Cookies[\textcolor{stringliteral}{"{}LoginVehicleManagerSession"{}}];}
+\DoxyCodeLine{00185\ }
+\DoxyCodeLine{00186\ \ \ \ \ \ \ \ \ Console.WriteLine(\_crypt.Decrypt(loginCookie2));}
+\DoxyCodeLine{00187\ }
+\DoxyCodeLine{00188\ }
+\DoxyCodeLine{00189\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}}
+\DoxyCodeLine{00190\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00191\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\textcolor{keywordtype}{string}.IsNullOrEmpty(loginCookie2))}
+\DoxyCodeLine{00192\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00193\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Ok(\textcolor{keyword}{new}\ \{data\ =\ \_crypt.Decrypt(loginCookie2)\});}
+\DoxyCodeLine{00194\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00195\ }
+\DoxyCodeLine{00196\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ BadRequest(\textcolor{keyword}{new}\ \{\ message\ =\ \textcolor{stringliteral}{"{}No\ Cookie"{}}\ \});}
+\DoxyCodeLine{00197\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00198\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}}
+\DoxyCodeLine{00199\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00200\ }
+\DoxyCodeLine{00201\ \ \ \ \ \ \ \ \ \ \ \ \ Response.Cookies.Append(\textcolor{stringliteral}{"{}LoginVehicleManagerSession"{}},\ \textcolor{stringliteral}{"{}Invalid\ cookie"{}},\ \textcolor{keyword}{new}\ CookieOptions}
+\DoxyCodeLine{00202\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00203\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ HttpOnly\ =\ \textcolor{keyword}{true},}
+\DoxyCodeLine{00204\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Secure\ =\ \textcolor{keyword}{true},}
+\DoxyCodeLine{00205\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Expires\ =\ DateTimeOffset.UtcNow.AddDays(-\/1)}
+\DoxyCodeLine{00206\ \ \ \ \ \ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{00207\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00208\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ BadRequest(\textcolor{keyword}{new}\ \{\ message\ =\ \textcolor{stringliteral}{"{}Invalid\ Cookie,\ new\ cookie\ set"{}}\ \});}
+\DoxyCodeLine{00209\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00210\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+Gebruikt \mbox{\hyperlink{cookie_controller_8cs_source_l00019}{\+\_\+crypt}}.
+
+\Hypertarget{class_w_p_r_1_1_controllers_1_1_general_1_1_cookie_1_1_cookie_controller_a3613f82147fc694f6a2e214ee93595af}\index{WPR.Controllers.General.Cookie.CookieController@{WPR.Controllers.General.Cookie.CookieController}!Logout@{Logout}}
+\index{Logout@{Logout}!WPR.Controllers.General.Cookie.CookieController@{WPR.Controllers.General.Cookie.CookieController}}
+\doxysubsubsection{\texorpdfstring{Logout()}{Logout()}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_controllers_1_1_general_1_1_cookie_1_1_cookie_controller_a3613f82147fc694f6a2e214ee93595af} 
+IAction\+Result WPR.\+Controllers.\+General.\+Cookie.\+Cookie\+Controller.\+Logout (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+De loginsession cookie wordt veranderd naar een cookie met een negatieve tijd, zodat de cookie expires. 
+
+\begin{DoxyReturn}{Retourneert}
+
+\end{DoxyReturn}
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{cookie_controller_8cs_source_l00115}{115}} in het bestand \mbox{\hyperlink{cookie_controller_8cs_source}{cookie\+Controller.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00116\ \ \ \ \ \{}
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (Request.Cookies[\textcolor{stringliteral}{"{}LoginSession"{}}]\ !=\ \textcolor{keyword}{null})}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \ \ \ \ Response.Cookies.Append(\textcolor{stringliteral}{"{}LoginSession"{}},\ \textcolor{stringliteral}{"{}"{}},\ \textcolor{keyword}{new}\ CookieOptions\ \{Expires\ =\ DateTimeOffset.UtcNow.AddDays(-\/1)\});}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \ \ \ \ Console.WriteLine(\textcolor{stringliteral}{"{}Cookie\ cleared"{}});\ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \ \ \ \ Console.WriteLine(\textcolor{stringliteral}{"{}No\ cookie\ found"{}});}
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Ok(\textcolor{keyword}{new}\ \{\ message\ =\ \textcolor{stringliteral}{"{}User\ Logged\ Out"{}}\});}
+\DoxyCodeLine{00127\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Documentatie van data velden}
+\Hypertarget{class_w_p_r_1_1_controllers_1_1_general_1_1_cookie_1_1_cookie_controller_a09f7a66d4ac7dff587000252699b3fda}\index{WPR.Controllers.General.Cookie.CookieController@{WPR.Controllers.General.Cookie.CookieController}!\_connector@{\_connector}}
+\index{\_connector@{\_connector}!WPR.Controllers.General.Cookie.CookieController@{WPR.Controllers.General.Cookie.CookieController}}
+\doxysubsubsection{\texorpdfstring{\_connector}{\_connector}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_controllers_1_1_general_1_1_cookie_1_1_cookie_controller_a09f7a66d4ac7dff587000252699b3fda} 
+readonly \mbox{\hyperlink{interface_w_p_r_1_1_database_1_1_i_connector}{IConnector}} WPR.\+Controllers.\+General.\+Cookie.\+Cookie\+Controller.\+\_\+connector\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{cookie_controller_8cs_source_l00017}{17}} in het bestand \mbox{\hyperlink{cookie_controller_8cs_source}{cookie\+Controller.\+cs}}.
+
+
+
+Wordt aangeroepen door \mbox{\hyperlink{cookie_controller_8cs_source_l00021}{Cookie\+Controller()}}.
+
+\Hypertarget{class_w_p_r_1_1_controllers_1_1_general_1_1_cookie_1_1_cookie_controller_a4100e6f1f10bc2d839153895290061fa}\index{WPR.Controllers.General.Cookie.CookieController@{WPR.Controllers.General.Cookie.CookieController}!\_crypt@{\_crypt}}
+\index{\_crypt@{\_crypt}!WPR.Controllers.General.Cookie.CookieController@{WPR.Controllers.General.Cookie.CookieController}}
+\doxysubsubsection{\texorpdfstring{\_crypt}{\_crypt}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_controllers_1_1_general_1_1_cookie_1_1_cookie_controller_a4100e6f1f10bc2d839153895290061fa} 
+readonly \mbox{\hyperlink{class_w_p_r_1_1_cryption_1_1_crypt}{Crypt}} WPR.\+Controllers.\+General.\+Cookie.\+Cookie\+Controller.\+\_\+crypt\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{cookie_controller_8cs_source_l00019}{19}} in het bestand \mbox{\hyperlink{cookie_controller_8cs_source}{cookie\+Controller.\+cs}}.
+
+
+
+Wordt aangeroepen door \mbox{\hyperlink{cookie_controller_8cs_source_l00021}{Cookie\+Controller()}}, \mbox{\hyperlink{cookie_controller_8cs_source_l00134}{Get\+Kind\+Employee\+Async()}}, \mbox{\hyperlink{cookie_controller_8cs_source_l00033}{Get\+User\+Id()}}, \mbox{\hyperlink{cookie_controller_8cs_source_l00090}{Get\+User\+Name()}} en \mbox{\hyperlink{cookie_controller_8cs_source_l00182}{Is\+Vehicle\+Manager\+Async()}}.
+
+\Hypertarget{class_w_p_r_1_1_controllers_1_1_general_1_1_cookie_1_1_cookie_controller_addebdd6ad6fe0c2a3684f7e6d3b87c8b}\index{WPR.Controllers.General.Cookie.CookieController@{WPR.Controllers.General.Cookie.CookieController}!\_userRepository@{\_userRepository}}
+\index{\_userRepository@{\_userRepository}!WPR.Controllers.General.Cookie.CookieController@{WPR.Controllers.General.Cookie.CookieController}}
+\doxysubsubsection{\texorpdfstring{\_userRepository}{\_userRepository}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_controllers_1_1_general_1_1_cookie_1_1_cookie_controller_addebdd6ad6fe0c2a3684f7e6d3b87c8b} 
+readonly \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_user_repository}{IUser\+Repository}} WPR.\+Controllers.\+General.\+Cookie.\+Cookie\+Controller.\+\_\+user\+Repository\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{cookie_controller_8cs_source_l00018}{18}} in het bestand \mbox{\hyperlink{cookie_controller_8cs_source}{cookie\+Controller.\+cs}}.
+
+
+
+Wordt aangeroepen door \mbox{\hyperlink{cookie_controller_8cs_source_l00021}{Cookie\+Controller()}}, \mbox{\hyperlink{cookie_controller_8cs_source_l00134}{Get\+Kind\+Employee\+Async()}} en \mbox{\hyperlink{cookie_controller_8cs_source_l00090}{Get\+User\+Name()}}.
+
+
+
+De documentatie voor deze klasse is gegenereerd op basis van het volgende bestand\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/codes/\+WPR8/\+WPR/backend/src/\+Controllers/general/cookie/\mbox{\hyperlink{cookie_controller_8cs}{cookie\+Controller.\+cs}}\end{DoxyCompactItemize}

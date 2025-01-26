@@ -1,0 +1,7 @@
+<map id="WPR.Email.Customer" name="WPR.Email.Customer">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,261,146,395"/>
+<area shape="rect" id="Node000002" href="$interface_w_p_r_1_1_email_1_1_i_customer_details.html" title=" " alt="" coords="19,144,132,213"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="78,229,78,262,73,262,73,229"/>
+<area shape="rect" id="Node000003" href="$interface_w_p_r_1_1_email_1_1_i_details.html" title=" " alt="" coords="10,5,141,96"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="78,111,78,144,73,144,73,111"/>
+</map>

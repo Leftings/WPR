@@ -1,9 +1,0 @@
-<map id="DatabaseCheckRepository.DeleteUser" name="DatabaseCheckRepository.DeleteUser">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,39,187,81"/>
-<area shape="rect" id="Node000002" href="$dc/dda/class_database_check_repository.html#addc06aeee3647cec54202bc103212e2e" title=" " alt="" coords="235,5,416,48"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="187,44,219,39,220,45,187,49"/>
-<area shape="rect" id="Node000003" href="$dc/dda/class_database_check_repository.html#ad56412a3b3449cdcb20706b41c648f3e" title=" " alt="" coords="235,72,416,115"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="187,71,220,75,219,81,187,76"/>
-<area shape="rect" id="Node000004" href="$dc/dda/class_database_check_repository.html#a181b1a163bd4151f68bc551091c3ee22" title=" " alt="" coords="464,72,645,115"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="416,91,449,91,449,96,416,96"/>
-</map>

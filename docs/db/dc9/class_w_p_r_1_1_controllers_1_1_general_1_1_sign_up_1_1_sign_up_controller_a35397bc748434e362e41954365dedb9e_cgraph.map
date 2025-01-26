@@ -1,6 +1,0 @@
-<map id="WPR.Controllers.General.SignUp.SignUpController.signUpPersonalAsync" name="WPR.Controllers.General.SignUp.SignUpController.signUpPersonalAsync">
-<area shape="rect" id="Node000001" title="Registreert een persoonlijke klant zonder zakelijke gegevens." alt="" coords="5,21,201,80"/>
-<area shape="rect" id="Node000002" href="$d3/db5/namespace_w_p_r_1_1_controllers_1_1_general_1_1_sign_up.html#a1a899a5abbcf0be4ee87632f0500c697" title="Body voor SignUpRequest." alt="" coords="249,29,422,72"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="201,48,233,48,233,53,201,53"/>
-<area shape="poly" id="edge2_Node000002_Node000002" title=" " alt="" coords="291,29,290,19,297,10,312,5,335,3,360,5,375,11,373,16,359,10,335,8,313,10,300,15,295,21,296,28"/>
-</map>

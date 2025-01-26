@@ -1,0 +1,5 @@
+<map id="WPR.Services.EmailService.SendWelcomeEmail" name="WPR.Services.EmailService.SendWelcomeEmail">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,5,199,48"/>
+<area shape="rect" id="Node000002" href="$class_w_p_r_1_1_services_1_1_email_service.html#ab31b08101a79b7e7634ccb24fb771d33" title="Maak SMTP Client voor versturen emails." alt="" coords="247,5,440,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="199,24,231,24,231,29,199,29"/>
+</map>

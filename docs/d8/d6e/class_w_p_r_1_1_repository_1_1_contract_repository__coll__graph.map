@@ -1,7 +1,0 @@
-<map id="WPR.Repository.ContractRepository" name="WPR.Repository.ContractRepository">
-<area shape="rect" id="Node000001" title=" " alt="" coords="135,208,360,400"/>
-<area shape="rect" id="Node000002" href="$d8/d46/interface_w_p_r_1_1_repository_1_1_i_contract_repository.html" title=" " alt="" coords="5,5,231,144"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="167,155,196,207,191,210,162,158"/>
-<area shape="rect" id="Node000003" href="$d1/dbb/interface_w_p_r_1_1_database_1_1_i_connector.html" title="Connector class om verbinding te maken met de database, maakt gebruik van de connectie strings die zi..." alt="" coords="256,40,501,109"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="362,110,313,195,308,192,357,108"/>
-</map>

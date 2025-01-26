@@ -1,0 +1,70 @@
+\doxysection{WPR.\+Controllers.\+Employee.\+validate\+User.\+Validate\+User\+Controller Class Referentie}
+\hypertarget{class_w_p_r_1_1_controllers_1_1_employee_1_1validate_user_1_1_validate_user_controller}{}\label{class_w_p_r_1_1_controllers_1_1_employee_1_1validate_user_1_1_validate_user_controller}\index{WPR.Controllers.Employee.validateUser.ValidateUserController@{WPR.Controllers.Employee.validateUser.ValidateUserController}}
+
+
+In validate\+User\+Controller wordt gekeken of er een gelidge medewerkers sessie aanwezig is. (Buitenwerking)  
+
+
+
+
+Klasse diagram voor WPR.\+Controllers.\+Employee.\+validate\+User.\+Validate\+User\+Controller
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=246pt]{class_w_p_r_1_1_controllers_1_1_employee_1_1validate_user_1_1_validate_user_controller__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboratie diagram voor WPR.\+Controllers.\+Employee.\+validate\+User.\+Validate\+User\+Controller\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=246pt]{class_w_p_r_1_1_controllers_1_1_employee_1_1validate_user_1_1_validate_user_controller__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Members}
+\begin{DoxyCompactItemize}
+\item 
+IAction\+Result \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_employee_1_1validate_user_1_1_validate_user_controller_a69f8b8b6ad4cc46cd626dc6f5bf7aca8}{Check\+Session\+Staff}} ()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Gedetailleerde Beschrijving}
+In validate\+User\+Controller wordt gekeken of er een gelidge medewerkers sessie aanwezig is. (Buitenwerking) 
+
+De definitie bevindt zich op regel \mbox{\hyperlink{validate_user_controller_8cs_source_l00011}{11}} in het bestand \mbox{\hyperlink{validate_user_controller_8cs_source}{validate\+User\+Controller.\+cs}}.
+
+
+
+\doxysubsection{Documentatie van functie members}
+\Hypertarget{class_w_p_r_1_1_controllers_1_1_employee_1_1validate_user_1_1_validate_user_controller_a69f8b8b6ad4cc46cd626dc6f5bf7aca8}\index{WPR.Controllers.Employee.validateUser.ValidateUserController@{WPR.Controllers.Employee.validateUser.ValidateUserController}!CheckSessionStaff@{CheckSessionStaff}}
+\index{CheckSessionStaff@{CheckSessionStaff}!WPR.Controllers.Employee.validateUser.ValidateUserController@{WPR.Controllers.Employee.validateUser.ValidateUserController}}
+\doxysubsubsection{\texorpdfstring{CheckSessionStaff()}{CheckSessionStaff()}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_controllers_1_1_employee_1_1validate_user_1_1_validate_user_controller_a69f8b8b6ad4cc46cd626dc6f5bf7aca8} 
+IAction\+Result WPR.\+Controllers.\+Employee.\+validate\+User.\+Validate\+User\+Controller.\+Check\+Session\+Staff (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{validate_user_controller_8cs_source_l00015}{15}} in het bestand \mbox{\hyperlink{validate_user_controller_8cs_source}{validate\+User\+Controller.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00016\ \ \ \ \ \{}
+\DoxyCodeLine{00017\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ sessionValue\ =\ Request.Cookies[\textcolor{stringliteral}{"{}LoginEmployeeSession"{}}];}
+\DoxyCodeLine{00018\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00019\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\textcolor{keywordtype}{string}.IsNullOrEmpty(sessionValue))}
+\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Ok(\ \textcolor{keyword}{new}\ \{message\ =\ \textcolor{stringliteral}{"{}session\ active\ "{}},\ sessionValue\});}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Unauthorized(\textcolor{keyword}{new}\ \{\ message\ =\ \textcolor{stringliteral}{"{}Session\ expired\ or\ is\ not\ found"{}}\ \});}
+\DoxyCodeLine{00024\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+De documentatie voor deze klasse is gegenereerd op basis van het volgende bestand\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/codes/\+WPR8/\+WPR/backend/src/\+Controllers/\+Employee/validate\+User/\mbox{\hyperlink{validate_user_controller_8cs}{validate\+User\+Controller.\+cs}}\end{DoxyCompactItemize}

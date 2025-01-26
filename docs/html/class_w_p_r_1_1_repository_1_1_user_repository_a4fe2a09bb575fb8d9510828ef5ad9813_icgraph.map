@@ -1,0 +1,5 @@
+<map id="WPR.Repository.UserRepository.AddPrivateCustomerDetails" name="WPR.Repository.UserRepository.AddPrivateCustomerDetails">
+<area shape="rect" id="Node000001" title="AddPrivateCustomerDetails zorgt ervoor dat alle extra details van particuliere huurders toegevoegd wo..." alt="" coords="271,5,488,48"/>
+<area shape="rect" id="Node000002" href="$class_w_p_r_1_1_repository_1_1_user_repository.html#a688723c1fb3385274f13ba0e3ba78da8" title="AddCustomer krijgt SignUpRequestCustomer binnen en SignUpRequestCustomerPrivate. Elk account heeft al..." alt="" coords="5,5,223,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="255,29,223,29,223,24,255,24"/>
+</map>

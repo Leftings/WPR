@@ -1,0 +1,264 @@
+\doxysection{WPR.\+Controllers.\+Customer.\+Change\+User\+Settings.\+Change\+User\+Settings\+Controller Class Referentie}
+\hypertarget{class_w_p_r_1_1_controllers_1_1_customer_1_1_change_user_settings_1_1_change_user_settings_controller}{}\label{class_w_p_r_1_1_controllers_1_1_customer_1_1_change_user_settings_1_1_change_user_settings_controller}\index{WPR.Controllers.Customer.ChangeUserSettings.ChangeUserSettingsController@{WPR.Controllers.Customer.ChangeUserSettings.ChangeUserSettingsController}}
+
+
+\doxylink{class_w_p_r_1_1_controllers_1_1_customer_1_1_change_user_settings_1_1_change_user_settings_controller}{Change\+User\+Settings\+Controller} is de controller die aanvragen van buitenaf ontvangt en vervolgens gegevens uit de backend ophaald een terug geeft.  
+
+
+
+
+Klasse diagram voor WPR.\+Controllers.\+Customer.\+Change\+User\+Settings.\+Change\+User\+Settings\+Controller
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=273pt]{class_w_p_r_1_1_controllers_1_1_customer_1_1_change_user_settings_1_1_change_user_settings_controller__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboratie diagram voor WPR.\+Controllers.\+Customer.\+Change\+User\+Settings.\+Change\+User\+Settings\+Controller\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_w_p_r_1_1_controllers_1_1_customer_1_1_change_user_settings_1_1_change_user_settings_controller__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Members}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_customer_1_1_change_user_settings_1_1_change_user_settings_controller_a183a227ed9718e7d87e192fa117e2fe6}{Change\+User\+Settings\+Controller}} (\mbox{\hyperlink{interface_w_p_r_1_1_database_1_1_i_connector}{IConnector}} connector, \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_user_repository}{IUser\+Repository}} user\+Repository, \mbox{\hyperlink{class_w_p_r_1_1_cryption_1_1_crypt}{Crypt}} crypt, \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_database_check_repository_1_1_i_database_check_repository}{IDatabase\+Check\+Repository}} database\+Check\+Repository)
+\item 
+async Task$<$ IAction\+Result $>$ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_customer_1_1_change_user_settings_1_1_change_user_settings_controller_ad0c06d0e87c3f161bea7b181d4b6640c}{Change\+User\+Info\+Async}} (\mbox{[}From\+Body\mbox{]} \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_customer_1_1_change_user_settings_1_1_change_user_request}{Change\+User\+Request}} change\+User\+Request)
+\begin{DoxyCompactList}\small\item\em Gewijzigde gegevens worden gefilter van de ongewijzigde gegevens en worden verstuurd naar de backend. \end{DoxyCompactList}\item 
+async Task$<$ IAction\+Result $>$ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_customer_1_1_change_user_settings_1_1_change_user_settings_controller_a6e3a640c5986bf99186311838136be4e}{Delete\+User\+Async}} ()
+\begin{DoxyCompactList}\small\item\em Gebruikers kunnen hun account, samen met hun gegevens, verwijderen uit het systeem. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributen}
+\begin{DoxyCompactItemize}
+\item 
+readonly \mbox{\hyperlink{interface_w_p_r_1_1_database_1_1_i_connector}{IConnector}} \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_customer_1_1_change_user_settings_1_1_change_user_settings_controller_a9f0f532626f5dd136ad3e223040d5852}{\+\_\+connector}}
+\item 
+readonly \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_user_repository}{IUser\+Repository}} \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_customer_1_1_change_user_settings_1_1_change_user_settings_controller_ae9b1eec77c494d5d04fa9c2a9ab05730}{\+\_\+user\+Repository}}
+\item 
+readonly \mbox{\hyperlink{class_w_p_r_1_1_cryption_1_1_crypt}{Crypt}} \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_customer_1_1_change_user_settings_1_1_change_user_settings_controller_a2707c3bde2d3bfd1475621add3ff32d4}{\+\_\+crypt}}
+\item 
+readonly \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_database_check_repository_1_1_i_database_check_repository}{IDatabase\+Check\+Repository}} \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_customer_1_1_change_user_settings_1_1_change_user_settings_controller_ab01bc462cf97c22e6ea54e9cea54a085}{\+\_\+database\+Check\+Repository}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Gedetailleerde Beschrijving}
+\doxylink{class_w_p_r_1_1_controllers_1_1_customer_1_1_change_user_settings_1_1_change_user_settings_controller}{Change\+User\+Settings\+Controller} is de controller die aanvragen van buitenaf ontvangt en vervolgens gegevens uit de backend ophaald een terug geeft. 
+
+De definitie bevindt zich op regel \mbox{\hyperlink{_customer_2change_settings_2change_user_settings_controller_8cs_source_l00017}{17}} in het bestand \mbox{\hyperlink{_customer_2change_settings_2change_user_settings_controller_8cs_source}{change\+User\+Settings\+Controller.\+cs}}.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentatie}
+\Hypertarget{class_w_p_r_1_1_controllers_1_1_customer_1_1_change_user_settings_1_1_change_user_settings_controller_a183a227ed9718e7d87e192fa117e2fe6}\index{WPR.Controllers.Customer.ChangeUserSettings.ChangeUserSettingsController@{WPR.Controllers.Customer.ChangeUserSettings.ChangeUserSettingsController}!ChangeUserSettingsController@{ChangeUserSettingsController}}
+\index{ChangeUserSettingsController@{ChangeUserSettingsController}!WPR.Controllers.Customer.ChangeUserSettings.ChangeUserSettingsController@{WPR.Controllers.Customer.ChangeUserSettings.ChangeUserSettingsController}}
+\doxysubsubsection{\texorpdfstring{ChangeUserSettingsController()}{ChangeUserSettingsController()}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_controllers_1_1_customer_1_1_change_user_settings_1_1_change_user_settings_controller_a183a227ed9718e7d87e192fa117e2fe6} 
+WPR.\+Controllers.\+Customer.\+Change\+User\+Settings.\+Change\+User\+Settings\+Controller.\+Change\+User\+Settings\+Controller (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{interface_w_p_r_1_1_database_1_1_i_connector}{IConnector}}}]{connector}{, }\item[{\mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_user_repository}{IUser\+Repository}}}]{user\+Repository}{, }\item[{\mbox{\hyperlink{class_w_p_r_1_1_cryption_1_1_crypt}{Crypt}}}]{crypt}{, }\item[{\mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_database_check_repository_1_1_i_database_check_repository}{IDatabase\+Check\+Repository}}}]{database\+Check\+Repository}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{_customer_2change_settings_2change_user_settings_controller_8cs_source_l00024}{24}} in het bestand \mbox{\hyperlink{_customer_2change_settings_2change_user_settings_controller_8cs_source}{change\+User\+Settings\+Controller.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00025\ \ \ \ \ \{}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \_connector\ =\ connector\ ??\ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ ArgumentNullException(nameof(connector));}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \_userRepository\ =\ userRepository\ ??\ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ ArgumentNullException(nameof(userRepository));}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \_crypt\ =\ crypt\ ??\ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ ArgumentNullException(nameof(crypt));}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \_databaseCheckRepository\ =\ databaseCheckRepository\ ??\ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ ArgumentNullException(nameof(databaseCheckRepository));}
+\DoxyCodeLine{00030\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+Gebruikt \mbox{\hyperlink{_customer_2change_settings_2change_user_settings_controller_8cs_source_l00019}{\+\_\+connector}}, \mbox{\hyperlink{_customer_2change_settings_2change_user_settings_controller_8cs_source_l00021}{\+\_\+crypt}}, \mbox{\hyperlink{_customer_2change_settings_2change_user_settings_controller_8cs_source_l00022}{\+\_\+database\+Check\+Repository}} en \mbox{\hyperlink{_customer_2change_settings_2change_user_settings_controller_8cs_source_l00020}{\+\_\+user\+Repository}}.
+
+
+
+\doxysubsection{Documentatie van functie members}
+\Hypertarget{class_w_p_r_1_1_controllers_1_1_customer_1_1_change_user_settings_1_1_change_user_settings_controller_ad0c06d0e87c3f161bea7b181d4b6640c}\index{WPR.Controllers.Customer.ChangeUserSettings.ChangeUserSettingsController@{WPR.Controllers.Customer.ChangeUserSettings.ChangeUserSettingsController}!ChangeUserInfoAsync@{ChangeUserInfoAsync}}
+\index{ChangeUserInfoAsync@{ChangeUserInfoAsync}!WPR.Controllers.Customer.ChangeUserSettings.ChangeUserSettingsController@{WPR.Controllers.Customer.ChangeUserSettings.ChangeUserSettingsController}}
+\doxysubsubsection{\texorpdfstring{ChangeUserInfoAsync()}{ChangeUserInfoAsync()}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_controllers_1_1_customer_1_1_change_user_settings_1_1_change_user_settings_controller_ad0c06d0e87c3f161bea7b181d4b6640c} 
+async Task$<$ IAction\+Result $>$ WPR.\+Controllers.\+Customer.\+Change\+User\+Settings.\+Change\+User\+Settings\+Controller.\+Change\+User\+Info\+Async (\begin{DoxyParamCaption}\item[{\mbox{[}\+From\+Body\mbox{]} \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_customer_1_1_change_user_settings_1_1_change_user_request}{Change\+User\+Request}}}]{change\+User\+Request}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Gewijzigde gegevens worden gefilter van de ongewijzigde gegevens en worden verstuurd naar de backend. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em change\+User\+Request} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retourneert}
+
+\end{DoxyReturn}
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{_customer_2change_settings_2change_user_settings_controller_8cs_source_l00038}{38}} in het bestand \mbox{\hyperlink{_customer_2change_settings_2change_user_settings_controller_8cs_source}{change\+User\+Settings\+Controller.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00039\ \ \ \ \ \{}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (changeUserRequest\ ==\ \textcolor{keyword}{null})}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ BadRequest(\textcolor{stringliteral}{"{}Body\ can\ not\ be\ null"{}});}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ List<object[]>\ data\ =\ \textcolor{keyword}{new}\ List<object[]>();}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ gegevens\ worden\ uit\ de\ lijst\ gehaald\ (naam\ van\ de\ collom,\ de\ nieuwe\ waarde,\ soort\ waarde)}}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{foreach}\ (var\ propertyInfo\ \textcolor{keywordflow}{in}\ typeof(ChangeUserRequest).GetProperties())}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \ \ \ \ var\ propertyName\ =\ propertyInfo.Name;}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \ \ \ \ var\ propertyValue\ =\ propertyInfo.GetValue(changeUserRequest);}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \ \ \ \ var\ propertyType\ =\ propertyInfo.PropertyType;}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!propertyValue.Equals(\textcolor{stringliteral}{"{}"{}}))}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ data.Add(\textcolor{keyword}{new}\ \textcolor{keywordtype}{object}[]\ \{propertyName,\ propertyValue,\ propertyType\});}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ var\ updated\ =\ await\ \_userRepository.EditUserInfoAsync(data);}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (updated.status)}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Ok(\ \textcolor{keyword}{new}\ ChangeUserSettingsResponse\ \{Message\ =\ \textcolor{stringliteral}{"{}Data\ Updated"{}}\});}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ BadRequest(\textcolor{keyword}{new}\ ChangeUserSettingsErrorResponse\ \{Message\ =\ updated.message\});}
+\DoxyCodeLine{00067\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+Gebruikt \mbox{\hyperlink{_customer_2change_settings_2change_user_settings_controller_8cs_source_l00020}{\+\_\+user\+Repository}}.
+
+\Hypertarget{class_w_p_r_1_1_controllers_1_1_customer_1_1_change_user_settings_1_1_change_user_settings_controller_a6e3a640c5986bf99186311838136be4e}\index{WPR.Controllers.Customer.ChangeUserSettings.ChangeUserSettingsController@{WPR.Controllers.Customer.ChangeUserSettings.ChangeUserSettingsController}!DeleteUserAsync@{DeleteUserAsync}}
+\index{DeleteUserAsync@{DeleteUserAsync}!WPR.Controllers.Customer.ChangeUserSettings.ChangeUserSettingsController@{WPR.Controllers.Customer.ChangeUserSettings.ChangeUserSettingsController}}
+\doxysubsubsection{\texorpdfstring{DeleteUserAsync()}{DeleteUserAsync()}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_controllers_1_1_customer_1_1_change_user_settings_1_1_change_user_settings_controller_a6e3a640c5986bf99186311838136be4e} 
+async Task$<$ IAction\+Result $>$ WPR.\+Controllers.\+Customer.\+Change\+User\+Settings.\+Change\+User\+Settings\+Controller.\+Delete\+User\+Async (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Gebruikers kunnen hun account, samen met hun gegevens, verwijderen uit het systeem. 
+
+\begin{DoxyReturn}{Retourneert}
+Deleted account
+\end{DoxyReturn}
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{_customer_2change_settings_2change_user_settings_controller_8cs_source_l00074}{74}} in het bestand \mbox{\hyperlink{_customer_2change_settings_2change_user_settings_controller_8cs_source}{change\+User\+Settings\+Controller.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ loginCookie\ =\ HttpContext.Request.Cookies[\textcolor{stringliteral}{"{}LoginSession"{}}];}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\textcolor{keywordtype}{string}.IsNullOrEmpty(loginCookie))}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \ \ \ \ Console.WriteLine(\textcolor{stringliteral}{"{}No\ cookie"{}});}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ BadRequest(\textcolor{keyword}{new}\ \{\ message\ =\ \textcolor{stringliteral}{"{}No\ Cookie"{}}\});}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ Console.WriteLine(loginCookie);}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ decryptedLoginCookie\ =\ \_crypt.Decrypt(loginCookie);}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \ \ \ \ Console.WriteLine(decryptedLoginCookie);}
+\DoxyCodeLine{00090\ }
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \ \ \ \ var\ deleteUser\ =\ \_databaseCheckRepository.DeleteUser(Convert.ToInt32(decryptedLoginCookie));}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \ \ \ \ Response.Cookies.Append(\textcolor{stringliteral}{"{}LoginSession"{}},\ \textcolor{stringliteral}{"{}"{}},\ \textcolor{keyword}{new}\ CookieOptions\ \{\ Expires\ =\ DateTimeOffset.Now.AddDays(-\/1)\ \});}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ StatusCode(deleteUser.StatusCode,\ \textcolor{keyword}{new}\ \{\ message\ =\ deleteUser.Message\ \});}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (OverflowException\ ex)}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \ \ \ \ Console.WriteLine(ex.Message);}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw};}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (Exception\ e)}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \ \ \ \ Console.WriteLine(e);}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw};}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00105\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+Gebruikt \mbox{\hyperlink{_customer_2change_settings_2change_user_settings_controller_8cs_source_l00021}{\+\_\+crypt}} en \mbox{\hyperlink{_customer_2change_settings_2change_user_settings_controller_8cs_source_l00022}{\+\_\+database\+Check\+Repository}}.
+
+
+
+\doxysubsection{Documentatie van data velden}
+\Hypertarget{class_w_p_r_1_1_controllers_1_1_customer_1_1_change_user_settings_1_1_change_user_settings_controller_a9f0f532626f5dd136ad3e223040d5852}\index{WPR.Controllers.Customer.ChangeUserSettings.ChangeUserSettingsController@{WPR.Controllers.Customer.ChangeUserSettings.ChangeUserSettingsController}!\_connector@{\_connector}}
+\index{\_connector@{\_connector}!WPR.Controllers.Customer.ChangeUserSettings.ChangeUserSettingsController@{WPR.Controllers.Customer.ChangeUserSettings.ChangeUserSettingsController}}
+\doxysubsubsection{\texorpdfstring{\_connector}{\_connector}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_controllers_1_1_customer_1_1_change_user_settings_1_1_change_user_settings_controller_a9f0f532626f5dd136ad3e223040d5852} 
+readonly \mbox{\hyperlink{interface_w_p_r_1_1_database_1_1_i_connector}{IConnector}} WPR.\+Controllers.\+Customer.\+Change\+User\+Settings.\+Change\+User\+Settings\+Controller.\+\_\+connector\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{_customer_2change_settings_2change_user_settings_controller_8cs_source_l00019}{19}} in het bestand \mbox{\hyperlink{_customer_2change_settings_2change_user_settings_controller_8cs_source}{change\+User\+Settings\+Controller.\+cs}}.
+
+
+
+Wordt aangeroepen door \mbox{\hyperlink{_customer_2change_settings_2change_user_settings_controller_8cs_source_l00024}{Change\+User\+Settings\+Controller()}}.
+
+\Hypertarget{class_w_p_r_1_1_controllers_1_1_customer_1_1_change_user_settings_1_1_change_user_settings_controller_a2707c3bde2d3bfd1475621add3ff32d4}\index{WPR.Controllers.Customer.ChangeUserSettings.ChangeUserSettingsController@{WPR.Controllers.Customer.ChangeUserSettings.ChangeUserSettingsController}!\_crypt@{\_crypt}}
+\index{\_crypt@{\_crypt}!WPR.Controllers.Customer.ChangeUserSettings.ChangeUserSettingsController@{WPR.Controllers.Customer.ChangeUserSettings.ChangeUserSettingsController}}
+\doxysubsubsection{\texorpdfstring{\_crypt}{\_crypt}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_controllers_1_1_customer_1_1_change_user_settings_1_1_change_user_settings_controller_a2707c3bde2d3bfd1475621add3ff32d4} 
+readonly \mbox{\hyperlink{class_w_p_r_1_1_cryption_1_1_crypt}{Crypt}} WPR.\+Controllers.\+Customer.\+Change\+User\+Settings.\+Change\+User\+Settings\+Controller.\+\_\+crypt\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{_customer_2change_settings_2change_user_settings_controller_8cs_source_l00021}{21}} in het bestand \mbox{\hyperlink{_customer_2change_settings_2change_user_settings_controller_8cs_source}{change\+User\+Settings\+Controller.\+cs}}.
+
+
+
+Wordt aangeroepen door \mbox{\hyperlink{_customer_2change_settings_2change_user_settings_controller_8cs_source_l00024}{Change\+User\+Settings\+Controller()}} en \mbox{\hyperlink{_customer_2change_settings_2change_user_settings_controller_8cs_source_l00074}{Delete\+User\+Async()}}.
+
+\Hypertarget{class_w_p_r_1_1_controllers_1_1_customer_1_1_change_user_settings_1_1_change_user_settings_controller_ab01bc462cf97c22e6ea54e9cea54a085}\index{WPR.Controllers.Customer.ChangeUserSettings.ChangeUserSettingsController@{WPR.Controllers.Customer.ChangeUserSettings.ChangeUserSettingsController}!\_databaseCheckRepository@{\_databaseCheckRepository}}
+\index{\_databaseCheckRepository@{\_databaseCheckRepository}!WPR.Controllers.Customer.ChangeUserSettings.ChangeUserSettingsController@{WPR.Controllers.Customer.ChangeUserSettings.ChangeUserSettingsController}}
+\doxysubsubsection{\texorpdfstring{\_databaseCheckRepository}{\_databaseCheckRepository}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_controllers_1_1_customer_1_1_change_user_settings_1_1_change_user_settings_controller_ab01bc462cf97c22e6ea54e9cea54a085} 
+readonly \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_database_check_repository_1_1_i_database_check_repository}{IDatabase\+Check\+Repository}} WPR.\+Controllers.\+Customer.\+Change\+User\+Settings.\+Change\+User\+Settings\+Controller.\+\_\+database\+Check\+Repository\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{_customer_2change_settings_2change_user_settings_controller_8cs_source_l00022}{22}} in het bestand \mbox{\hyperlink{_customer_2change_settings_2change_user_settings_controller_8cs_source}{change\+User\+Settings\+Controller.\+cs}}.
+
+
+
+Wordt aangeroepen door \mbox{\hyperlink{_customer_2change_settings_2change_user_settings_controller_8cs_source_l00024}{Change\+User\+Settings\+Controller()}} en \mbox{\hyperlink{_customer_2change_settings_2change_user_settings_controller_8cs_source_l00074}{Delete\+User\+Async()}}.
+
+\Hypertarget{class_w_p_r_1_1_controllers_1_1_customer_1_1_change_user_settings_1_1_change_user_settings_controller_ae9b1eec77c494d5d04fa9c2a9ab05730}\index{WPR.Controllers.Customer.ChangeUserSettings.ChangeUserSettingsController@{WPR.Controllers.Customer.ChangeUserSettings.ChangeUserSettingsController}!\_userRepository@{\_userRepository}}
+\index{\_userRepository@{\_userRepository}!WPR.Controllers.Customer.ChangeUserSettings.ChangeUserSettingsController@{WPR.Controllers.Customer.ChangeUserSettings.ChangeUserSettingsController}}
+\doxysubsubsection{\texorpdfstring{\_userRepository}{\_userRepository}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_controllers_1_1_customer_1_1_change_user_settings_1_1_change_user_settings_controller_ae9b1eec77c494d5d04fa9c2a9ab05730} 
+readonly \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_user_repository}{IUser\+Repository}} WPR.\+Controllers.\+Customer.\+Change\+User\+Settings.\+Change\+User\+Settings\+Controller.\+\_\+user\+Repository\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{_customer_2change_settings_2change_user_settings_controller_8cs_source_l00020}{20}} in het bestand \mbox{\hyperlink{_customer_2change_settings_2change_user_settings_controller_8cs_source}{change\+User\+Settings\+Controller.\+cs}}.
+
+
+
+Wordt aangeroepen door \mbox{\hyperlink{_customer_2change_settings_2change_user_settings_controller_8cs_source_l00038}{Change\+User\+Info\+Async()}} en \mbox{\hyperlink{_customer_2change_settings_2change_user_settings_controller_8cs_source_l00024}{Change\+User\+Settings\+Controller()}}.
+
+
+
+De documentatie voor deze klasse is gegenereerd op basis van het volgende bestand\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/codes/\+WPR8/\+WPR/backend/src/\+Controllers/\+Customer/change\+Settings/\mbox{\hyperlink{_customer_2change_settings_2change_user_settings_controller_8cs}{change\+User\+Settings\+Controller.\+cs}}\end{DoxyCompactItemize}

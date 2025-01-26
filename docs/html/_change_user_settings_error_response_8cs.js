@@ -1,0 +1,4 @@
+var _change_user_settings_error_response_8cs =
+[
+    [ "WPR.Controllers.Customer.ChangeUserSettings.ChangeUserSettingsErrorResponse", "class_w_p_r_1_1_controllers_1_1_customer_1_1_change_user_settings_1_1_change_user_settings_error_response.html", "class_w_p_r_1_1_controllers_1_1_customer_1_1_change_user_settings_1_1_change_user_settings_error_response" ]
+];

@@ -1,5 +1,0 @@
-<map id="WPR.Services.EmailService.Send" name="WPR.Services.EmailService.Send">
-<area shape="rect" id="Node000001" title="Verstuurt een e&#45;mail met de opgegeven ontvanger, onderwerp en inhoud." alt="" coords="5,13,229,40"/>
-<area shape="rect" id="Node000002" href="$d6/dd3/class_w_p_r_1_1_services_1_1_email_service.html#ab31b08101a79b7e7634ccb24fb771d33" title="Creëert en retourneert een SMTP&#45;client met de benodigde instellingen." alt="" coords="277,5,470,48"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="229,24,261,24,261,29,229,29"/>
-</map>

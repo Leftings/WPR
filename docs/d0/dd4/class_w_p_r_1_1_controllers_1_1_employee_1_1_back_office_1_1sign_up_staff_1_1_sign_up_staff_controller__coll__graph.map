@@ -1,7 +1,0 @@
-<map id="WPR.Controllers.Employee.BackOffice.signUpStaff.SignUpStaffController" name="WPR.Controllers.Employee.BackOffice.signUpStaff.SignUpStaffController">
-<area shape="rect" id="Node000001" title="SignUpStaffController zorgt ervoor dat er front&#45;, backoffice en wagenparkbeheerders toegevoegd kunnen..." alt="" coords="24,880,273,1051"/>
-<area shape="rect" id="Node000002" title=" " alt="" coords="5,376,102,445"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="62,460,84,618,116,816,130,880,125,881,111,816,78,619,57,461"/>
-<area shape="rect" id="Node000003" href="$d2/d4c/interface_w_p_r_1_1_repository_1_1_i_employee_repository.html" title="Interface defining methods voor user gerelateerde database operaties, validatie, user management,..." alt="" coords="126,5,360,816"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="176,816,168,864,163,863,171,815"/>
-</map>

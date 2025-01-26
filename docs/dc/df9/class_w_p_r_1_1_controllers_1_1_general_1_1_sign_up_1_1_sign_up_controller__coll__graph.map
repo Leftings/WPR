@@ -1,7 +1,0 @@
-<map id="WPR.Controllers.General.SignUp.SignUpController" name="WPR.Controllers.General.SignUp.SignUpController">
-<area shape="rect" id="Node000001" title="De SignUpController beheert het aanmaken van zowel persoonlijke als zakelijke accounts...." alt="" coords="33,672,277,896"/>
-<area shape="rect" id="Node000002" title=" " alt="" coords="5,272,102,341"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="65,355,116,607,131,672,126,673,111,609,60,356"/>
-<area shape="rect" id="Node000003" href="$df/d31/interface_w_p_r_1_1_repository_1_1_i_user_repository.html" title="Interface defining methods voor user gerelateerde database operaties, validatie, user management,..." alt="" coords="126,5,386,608"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="195,608,185,656,180,655,190,607"/>
-</map>

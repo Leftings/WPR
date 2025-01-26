@@ -1,0 +1,180 @@
+\doxysection{WPR.\+Email.\+Vehicle Class Referentie}
+\hypertarget{class_w_p_r_1_1_email_1_1_vehicle}{}\label{class_w_p_r_1_1_email_1_1_vehicle}\index{WPR.Email.Vehicle@{WPR.Email.Vehicle}}
+
+
+Klasse diagram voor WPR.\+Email.\+Vehicle
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=181pt]{class_w_p_r_1_1_email_1_1_vehicle__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboratie diagram voor WPR.\+Email.\+Vehicle\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{class_w_p_r_1_1_email_1_1_vehicle__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Members}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_w_p_r_1_1_email_1_1_vehicle_a7137ac0a6df6871b879c70c857e91457}{Vehicle}} (\mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_vehicle_repository}{IVehicle\+Repository}} vehicle\+Repository)
+\item 
+async Task \mbox{\hyperlink{class_w_p_r_1_1_email_1_1_vehicle_a3c38db6bf52d5e9b44f310e9a733948f}{Set\+Details\+Async}} (object frame\+Nr)
+\item 
+async Task$<$ Dictionary$<$ string, object $>$ $>$ \mbox{\hyperlink{class_w_p_r_1_1_email_1_1_vehicle_a798dc46d982e78ac6523668f7d5586f5}{Get\+Details\+Async}} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+Dictionary$<$ string, object $>$ \mbox{\hyperlink{class_w_p_r_1_1_email_1_1_vehicle_a5b39844b0200d16f90cf8821ae096007}{\+\_\+details}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributen}
+\begin{DoxyCompactItemize}
+\item 
+readonly \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_vehicle_repository}{IVehicle\+Repository}} \mbox{\hyperlink{class_w_p_r_1_1_email_1_1_vehicle_a429dd3684afe3ca996fbcc821b0b73f7}{\+\_\+vehicle\+Repository}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Gedetailleerde Beschrijving}
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{_vehicle_8cs_source_l00008}{8}} in het bestand \mbox{\hyperlink{_vehicle_8cs_source}{Vehicle.\+cs}}.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentatie}
+\Hypertarget{class_w_p_r_1_1_email_1_1_vehicle_a7137ac0a6df6871b879c70c857e91457}\index{WPR.Email.Vehicle@{WPR.Email.Vehicle}!Vehicle@{Vehicle}}
+\index{Vehicle@{Vehicle}!WPR.Email.Vehicle@{WPR.Email.Vehicle}}
+\doxysubsubsection{\texorpdfstring{Vehicle()}{Vehicle()}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_email_1_1_vehicle_a7137ac0a6df6871b879c70c857e91457} 
+WPR.\+Email.\+Vehicle.\+Vehicle (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_vehicle_repository}{IVehicle\+Repository}}}]{vehicle\+Repository}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{_vehicle_8cs_source_l00013}{13}} in het bestand \mbox{\hyperlink{_vehicle_8cs_source}{Vehicle.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00014\ \ \ \ \ \{}
+\DoxyCodeLine{00015\ \ \ \ \ \ \ \ \ \_vehicleRepository\ =\ vehicleRepository\ ??\ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ ArgumentNullException(nameof(vehicleRepository));}
+\DoxyCodeLine{00016\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+Gebruikt \mbox{\hyperlink{_vehicle_8cs_source_l00011}{\+\_\+vehicle\+Repository}}.
+
+
+
+\doxysubsection{Documentatie van functie members}
+\Hypertarget{class_w_p_r_1_1_email_1_1_vehicle_a798dc46d982e78ac6523668f7d5586f5}\index{WPR.Email.Vehicle@{WPR.Email.Vehicle}!GetDetailsAsync@{GetDetailsAsync}}
+\index{GetDetailsAsync@{GetDetailsAsync}!WPR.Email.Vehicle@{WPR.Email.Vehicle}}
+\doxysubsubsection{\texorpdfstring{GetDetailsAsync()}{GetDetailsAsync()}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_email_1_1_vehicle_a798dc46d982e78ac6523668f7d5586f5} 
+async Task$<$ Dictionary$<$ string, object $>$ $>$ WPR.\+Email.\+Vehicle.\+Get\+Details\+Async (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Implementeert \mbox{\hyperlink{interface_w_p_r_1_1_email_1_1_i_details_a833d7d0da229f3739fffa2f2b64885cd}{WPR.\+Email.\+IDetails}}.
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{_vehicle_8cs_source_l00033}{33}} in het bestand \mbox{\hyperlink{_vehicle_8cs_source}{Vehicle.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00034\ \ \ \ \ \{}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \_details;}
+\DoxyCodeLine{00036\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+Gebruikt \mbox{\hyperlink{_vehicle_8cs_source_l00010}{\+\_\+details}}.
+
+\Hypertarget{class_w_p_r_1_1_email_1_1_vehicle_a3c38db6bf52d5e9b44f310e9a733948f}\index{WPR.Email.Vehicle@{WPR.Email.Vehicle}!SetDetailsAsync@{SetDetailsAsync}}
+\index{SetDetailsAsync@{SetDetailsAsync}!WPR.Email.Vehicle@{WPR.Email.Vehicle}}
+\doxysubsubsection{\texorpdfstring{SetDetailsAsync()}{SetDetailsAsync()}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_email_1_1_vehicle_a3c38db6bf52d5e9b44f310e9a733948f} 
+async Task WPR.\+Email.\+Vehicle.\+Set\+Details\+Async (\begin{DoxyParamCaption}\item[{object}]{frame\+Nr}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Implementeert \mbox{\hyperlink{interface_w_p_r_1_1_email_1_1_i_details_ac7600129d3807cf2a065a8e44c30a6df}{WPR.\+Email.\+IDetails}}.
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{_vehicle_8cs_source_l00018}{18}} in het bestand \mbox{\hyperlink{_vehicle_8cs_source}{Vehicle.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00019\ \ \ \ \ \{}
+\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ var\ result\ =\ await\ \_vehicleRepository.GetVehicleDataAsync(frameNr);}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ \_details\ =\ \textcolor{keyword}{new}\ Dictionary<string,\ object>();}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{foreach}\ (Dictionary<object,\ string>\ item\ \textcolor{keywordflow}{in}\ result)}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\_details.ContainsKey((\textcolor{keywordtype}{string})item.Keys.First()))}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \_details[(string)item.Keys.First()]\ =\ item.Values.First();}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00032\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+Gebruikt \mbox{\hyperlink{_vehicle_8cs_source_l00010}{\+\_\+details}} en \mbox{\hyperlink{_vehicle_8cs_source_l00011}{\+\_\+vehicle\+Repository}}.
+
+
+
+\doxysubsection{Documentatie van data velden}
+\Hypertarget{class_w_p_r_1_1_email_1_1_vehicle_a429dd3684afe3ca996fbcc821b0b73f7}\index{WPR.Email.Vehicle@{WPR.Email.Vehicle}!\_vehicleRepository@{\_vehicleRepository}}
+\index{\_vehicleRepository@{\_vehicleRepository}!WPR.Email.Vehicle@{WPR.Email.Vehicle}}
+\doxysubsubsection{\texorpdfstring{\_vehicleRepository}{\_vehicleRepository}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_email_1_1_vehicle_a429dd3684afe3ca996fbcc821b0b73f7} 
+readonly \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_vehicle_repository}{IVehicle\+Repository}} WPR.\+Email.\+Vehicle.\+\_\+vehicle\+Repository\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{_vehicle_8cs_source_l00011}{11}} in het bestand \mbox{\hyperlink{_vehicle_8cs_source}{Vehicle.\+cs}}.
+
+
+
+Wordt aangeroepen door \mbox{\hyperlink{_vehicle_8cs_source_l00018}{Set\+Details\+Async()}} en \mbox{\hyperlink{_vehicle_8cs_source_l00013}{Vehicle()}}.
+
+
+
+\doxysubsection{Property Documentatie}
+\Hypertarget{class_w_p_r_1_1_email_1_1_vehicle_a5b39844b0200d16f90cf8821ae096007}\index{WPR.Email.Vehicle@{WPR.Email.Vehicle}!\_details@{\_details}}
+\index{\_details@{\_details}!WPR.Email.Vehicle@{WPR.Email.Vehicle}}
+\doxysubsubsection{\texorpdfstring{\_details}{\_details}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_email_1_1_vehicle_a5b39844b0200d16f90cf8821ae096007} 
+Dictionary$<$string, object$>$ WPR.\+Email.\+Vehicle.\+\_\+details\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}, {\ttfamily [private]}}
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{_vehicle_8cs_source_l00010}{10}} in het bestand \mbox{\hyperlink{_vehicle_8cs_source}{Vehicle.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00010\ \{\ \textcolor{keyword}{get};\ \textcolor{keyword}{set};\ \}}
+
+\end{DoxyCode}
+
+
+Wordt aangeroepen door \mbox{\hyperlink{_vehicle_8cs_source_l00033}{Get\+Details\+Async()}} en \mbox{\hyperlink{_vehicle_8cs_source_l00018}{Set\+Details\+Async()}}.
+
+
+
+De documentatie voor deze klasse is gegenereerd op basis van het volgende bestand\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/codes/\+WPR8/\+WPR/backend/src/\+Emails/\mbox{\hyperlink{_vehicle_8cs}{Vehicle.\+cs}}\end{DoxyCompactItemize}

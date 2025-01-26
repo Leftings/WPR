@@ -1,0 +1,5 @@
+<map id="WPR.Repository.EmployeeRepository.GetUserDataAsync" name="WPR.Repository.EmployeeRepository.GetUserDataAsync">
+<area shape="rect" id="Node000001" title="De voornaam, achternaam, adres, emailadres en telefoonnummer wordt uit de UserCustomer tabel gehaald,..." alt="" coords="301,5,548,48"/>
+<area shape="rect" id="Node000002" href="$class_w_p_r_1_1_repository_1_1_employee_repository.html#a9a182690b76579d6e5171dffbc804e39" title="Er wordt een specifieke id opgevraagd en deze wordt uit de tabel Contract opgevraagd met alle data in..." alt="" coords="5,5,253,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="285,29,253,29,253,24,285,24"/>
+</map>

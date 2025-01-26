@@ -1,0 +1,182 @@
+\doxysection{WPR.\+Email.\+Contract Class Referentie}
+\hypertarget{class_w_p_r_1_1_email_1_1_contract}{}\label{class_w_p_r_1_1_email_1_1_contract}\index{WPR.Email.Contract@{WPR.Email.Contract}}
+
+
+Klasse diagram voor WPR.\+Email.\+Contract
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=186pt]{class_w_p_r_1_1_email_1_1_contract__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboratie diagram voor WPR.\+Email.\+Contract\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=344pt]{class_w_p_r_1_1_email_1_1_contract__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Members}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_w_p_r_1_1_email_1_1_contract_aa7e14cbac10d1eb062a3634838657191}{Contract}} (\mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_contract_repository}{IContract\+Repository}} contract\+Repository)
+\item 
+async Task \mbox{\hyperlink{class_w_p_r_1_1_email_1_1_contract_a1b580e77a7a6c3b866528ed83cc8d3b3}{Set\+Details\+Async}} (object order\+Id)
+\item 
+async Task$<$ Dictionary$<$ string, object $>$ $>$ \mbox{\hyperlink{class_w_p_r_1_1_email_1_1_contract_a25e4f89b72aa987779ad65ef1168e5c8}{Get\+Details\+Async}} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+Dictionary$<$ string, object $>$ \mbox{\hyperlink{class_w_p_r_1_1_email_1_1_contract_a326ac1caef20ed19ac4e6d213a9b864d}{\+\_\+details}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributen}
+\begin{DoxyCompactItemize}
+\item 
+readonly \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_contract_repository}{IContract\+Repository}} \mbox{\hyperlink{class_w_p_r_1_1_email_1_1_contract_a9616c6cf7942ea319ecb41c6fafdacb0}{\+\_\+contract\+Repository}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Gedetailleerde Beschrijving}
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{_contract_8cs_source_l00006}{6}} in het bestand \mbox{\hyperlink{_contract_8cs_source}{Contract.\+cs}}.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentatie}
+\Hypertarget{class_w_p_r_1_1_email_1_1_contract_aa7e14cbac10d1eb062a3634838657191}\index{WPR.Email.Contract@{WPR.Email.Contract}!Contract@{Contract}}
+\index{Contract@{Contract}!WPR.Email.Contract@{WPR.Email.Contract}}
+\doxysubsubsection{\texorpdfstring{Contract()}{Contract()}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_email_1_1_contract_aa7e14cbac10d1eb062a3634838657191} 
+WPR.\+Email.\+Contract.\+Contract (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_contract_repository}{IContract\+Repository}}}]{contract\+Repository}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{_contract_8cs_source_l00011}{11}} in het bestand \mbox{\hyperlink{_contract_8cs_source}{Contract.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00012\ \ \ \ \ \{}
+\DoxyCodeLine{00013\ \ \ \ \ \ \ \ \ \_contractRepository\ =\ contractRepository\ ??\ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ ArgumentNullException(nameof(contractRepository));}
+\DoxyCodeLine{00014\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+Gebruikt \mbox{\hyperlink{_contract_8cs_source_l00009}{\+\_\+contract\+Repository}}.
+
+
+
+\doxysubsection{Documentatie van functie members}
+\Hypertarget{class_w_p_r_1_1_email_1_1_contract_a25e4f89b72aa987779ad65ef1168e5c8}\index{WPR.Email.Contract@{WPR.Email.Contract}!GetDetailsAsync@{GetDetailsAsync}}
+\index{GetDetailsAsync@{GetDetailsAsync}!WPR.Email.Contract@{WPR.Email.Contract}}
+\doxysubsubsection{\texorpdfstring{GetDetailsAsync()}{GetDetailsAsync()}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_email_1_1_contract_a25e4f89b72aa987779ad65ef1168e5c8} 
+async Task$<$ Dictionary$<$ string, object $>$ $>$ WPR.\+Email.\+Contract.\+Get\+Details\+Async (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Implementeert \mbox{\hyperlink{interface_w_p_r_1_1_email_1_1_i_details_a833d7d0da229f3739fffa2f2b64885cd}{WPR.\+Email.\+IDetails}}.
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{_contract_8cs_source_l00034}{34}} in het bestand \mbox{\hyperlink{_contract_8cs_source}{Contract.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00035\ \ \ \ \ \{}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \_details;}
+\DoxyCodeLine{00037\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+Gebruikt \mbox{\hyperlink{_contract_8cs_source_l00008}{\+\_\+details}}.
+
+\Hypertarget{class_w_p_r_1_1_email_1_1_contract_a1b580e77a7a6c3b866528ed83cc8d3b3}\index{WPR.Email.Contract@{WPR.Email.Contract}!SetDetailsAsync@{SetDetailsAsync}}
+\index{SetDetailsAsync@{SetDetailsAsync}!WPR.Email.Contract@{WPR.Email.Contract}}
+\doxysubsubsection{\texorpdfstring{SetDetailsAsync()}{SetDetailsAsync()}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_email_1_1_contract_a1b580e77a7a6c3b866528ed83cc8d3b3} 
+async Task WPR.\+Email.\+Contract.\+Set\+Details\+Async (\begin{DoxyParamCaption}\item[{object}]{order\+Id}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Implementeert \mbox{\hyperlink{interface_w_p_r_1_1_email_1_1_i_details_ac7600129d3807cf2a065a8e44c30a6df}{WPR.\+Email.\+IDetails}}.
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{_contract_8cs_source_l00016}{16}} in het bestand \mbox{\hyperlink{_contract_8cs_source}{Contract.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00017\ \ \ \ \ \{}
+\DoxyCodeLine{00018\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}}
+\DoxyCodeLine{00019\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ \ \ \ \ \_details\ =\ await\ \_contractRepository.GetContractInfoAsync(Convert.ToInt32(orderId));}
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (OverflowException\ ex)}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \ \ \ \ Console.WriteLine(ex.Message);}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw};}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (Exception\ ex)}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \ \ \ \ Console.WriteLine(ex.Message);}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw};}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00032\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+Gebruikt \mbox{\hyperlink{_contract_8cs_source_l00009}{\+\_\+contract\+Repository}} en \mbox{\hyperlink{_contract_8cs_source_l00008}{\+\_\+details}}.
+
+
+
+\doxysubsection{Documentatie van data velden}
+\Hypertarget{class_w_p_r_1_1_email_1_1_contract_a9616c6cf7942ea319ecb41c6fafdacb0}\index{WPR.Email.Contract@{WPR.Email.Contract}!\_contractRepository@{\_contractRepository}}
+\index{\_contractRepository@{\_contractRepository}!WPR.Email.Contract@{WPR.Email.Contract}}
+\doxysubsubsection{\texorpdfstring{\_contractRepository}{\_contractRepository}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_email_1_1_contract_a9616c6cf7942ea319ecb41c6fafdacb0} 
+readonly \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_contract_repository}{IContract\+Repository}} WPR.\+Email.\+Contract.\+\_\+contract\+Repository\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{_contract_8cs_source_l00009}{9}} in het bestand \mbox{\hyperlink{_contract_8cs_source}{Contract.\+cs}}.
+
+
+
+Wordt aangeroepen door \mbox{\hyperlink{_contract_8cs_source_l00011}{Contract()}} en \mbox{\hyperlink{_contract_8cs_source_l00016}{Set\+Details\+Async()}}.
+
+
+
+\doxysubsection{Property Documentatie}
+\Hypertarget{class_w_p_r_1_1_email_1_1_contract_a326ac1caef20ed19ac4e6d213a9b864d}\index{WPR.Email.Contract@{WPR.Email.Contract}!\_details@{\_details}}
+\index{\_details@{\_details}!WPR.Email.Contract@{WPR.Email.Contract}}
+\doxysubsubsection{\texorpdfstring{\_details}{\_details}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_email_1_1_contract_a326ac1caef20ed19ac4e6d213a9b864d} 
+Dictionary$<$string, object$>$ WPR.\+Email.\+Contract.\+\_\+details\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}, {\ttfamily [private]}}
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{_contract_8cs_source_l00008}{8}} in het bestand \mbox{\hyperlink{_contract_8cs_source}{Contract.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00008\ \{\ \textcolor{keyword}{get};\ \textcolor{keyword}{set};\ \}}
+
+\end{DoxyCode}
+
+
+Wordt aangeroepen door \mbox{\hyperlink{_contract_8cs_source_l00034}{Get\+Details\+Async()}} en \mbox{\hyperlink{_contract_8cs_source_l00016}{Set\+Details\+Async()}}.
+
+
+
+De documentatie voor deze klasse is gegenereerd op basis van het volgende bestand\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/codes/\+WPR8/\+WPR/backend/src/\+Emails/\mbox{\hyperlink{_contract_8cs}{Contract.\+cs}}\end{DoxyCompactItemize}

@@ -1,5 +1,0 @@
-var class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_get_info_vehicle_manager_1_1_ge80cefa003b6c973a88a350bcae8adff2 =
-[
-    [ "Email", "dc/d78/class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_get_info_vehicle_manager_1_1_ge80cefa003b6c973a88a350bcae8adff2.html#a675221341fac44638844f62cad7f0bbf", null ],
-    [ "Password", "dc/d78/class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_get_info_vehicle_manager_1_1_ge80cefa003b6c973a88a350bcae8adff2.html#a84485199a490ada128f36c356b17dbd0", null ]
-];

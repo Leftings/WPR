@@ -1,0 +1,70 @@
+\doxysection{WPR.\+Program Class Referentie}
+\hypertarget{class_w_p_r_1_1_program}{}\label{class_w_p_r_1_1_program}\index{WPR.Program@{WPR.Program}}
+
+
+Collaboratie diagram voor WPR.\+Program\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=152pt]{class_w_p_r_1_1_program__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Static Public Members}
+\begin{DoxyCompactItemize}
+\item 
+static void \mbox{\hyperlink{class_w_p_r_1_1_program_af392a4477cf6bbb6174656a59193bcaf}{Main}} (string\mbox{[}$\,$\mbox{]} args)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Gedetailleerde Beschrijving}
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{_program_8cs_source_l00005}{5}} in het bestand \mbox{\hyperlink{_program_8cs_source}{Program.\+cs}}.
+
+
+
+\doxysubsection{Documentatie van functie members}
+\Hypertarget{class_w_p_r_1_1_program_af392a4477cf6bbb6174656a59193bcaf}\index{WPR.Program@{WPR.Program}!Main@{Main}}
+\index{Main@{Main}!WPR.Program@{WPR.Program}}
+\doxysubsubsection{\texorpdfstring{Main()}{Main()}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_program_af392a4477cf6bbb6174656a59193bcaf} 
+static void WPR.\+Program.\+Main (\begin{DoxyParamCaption}\item[{string\mbox{[}$\,$\mbox{]}}]{args}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{_program_8cs_source_l00007}{7}} in het bestand \mbox{\hyperlink{_program_8cs_source}{Program.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00008\ \ \ \ \ \{}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \ \ \ \ \ \ \ \ var\ app\ =\ AppConfigure.ConfigureApplication(args);}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \ \ \ \ \ \ \ \ \textcolor{keyword}{using}\ (var\ scope\ =\ app.Services.CreateScope())}
+\DoxyCodeLine{00013\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00014\ \ \ \ \ \ \ \ \ \ \ \ \ AppConfigure.InitDatabase(scope.ServiceProvider);}
+\DoxyCodeLine{00015\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00016\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \ \ \ \ \ \ \ \ app.Run();}
+\DoxyCodeLine{00019\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+Gebruikt \mbox{\hyperlink{_app_configure_8cs_source_l00051}{WPR.\+App\+Configure.\+Configure\+Application()}} en \mbox{\hyperlink{_app_configure_8cs_source_l00026}{WPR.\+App\+Configure.\+Init\+Database()}}.
+
+Hier is de call graaf voor deze functie\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_w_p_r_1_1_program_af392a4477cf6bbb6174656a59193bcaf_cgraph}
+\end{center}
+\end{figure}
+
+
+De documentatie voor deze klasse is gegenereerd op basis van het volgende bestand\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/codes/\+WPR8/\+WPR/backend/src/\mbox{\hyperlink{_program_8cs}{Program.\+cs}}\end{DoxyCompactItemize}

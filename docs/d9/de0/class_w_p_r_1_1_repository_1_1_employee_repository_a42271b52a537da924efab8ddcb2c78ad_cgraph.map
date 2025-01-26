@@ -1,8 +1,0 @@
-<map id="WPR.Repository.EmployeeRepository.AddBusiness" name="WPR.Repository.EmployeeRepository.AddBusiness">
-<area shape="rect" id="Node000001" title="Maakt een connectie met de database door middel van de connector en de query. De gegevens worden uit ..." alt="" coords="5,63,253,105"/>
-<area shape="rect" id="Node000002" href="$d5/d0c/namespace_w_p_r_1_1_controllers_1_1_customer_1_1_add_business.html#af184e38969a148e23ef1fe5429a74898" title="Body voor het toevoegen van een bedrijf." alt="" coords="310,29,538,72"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="253,67,295,63,295,68,253,73"/>
-<area shape="rect" id="Node000003" href="$d9/de0/class_w_p_r_1_1_repository_1_1_employee_repository.html#a570e1bfd6667044c8285466e24511ce2" title="CheckDomain bekijkt of het domain niet al in gebruik ik in de tabel Customer en in de tabel Business." alt="" coords="301,96,548,139"/>
-<area shape="poly" id="edge3_Node000001_Node000003" title=" " alt="" coords="253,95,285,99,285,104,253,101"/>
-<area shape="poly" id="edge2_Node000002_Node000002" title=" " alt="" coords="369,29,367,19,376,10,395,5,424,3,456,5,475,11,473,16,455,10,424,8,396,10,379,15,372,21,374,28"/>
-</map>

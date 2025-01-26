@@ -1,6 +1,0 @@
-<map id="WPR.Repository.UserRepository.ChangeVehicleManagerInfo" name="WPR.Repository.UserRepository.ChangeVehicleManagerInfo">
-<area shape="rect" id="Node000001" title="Wijzigt de gegevens van een voertuigbeheerder in de database, inclusief e&#45;mail en wachtwoord." alt="" coords="5,29,223,72"/>
-<area shape="poly" id="edge1_Node000001_Node000001" title=" " alt="" coords="66,29,64,19,72,10,89,5,114,3,141,5,158,11,156,16,140,10,114,8,90,10,75,15,69,21,71,28"/>
-<area shape="rect" id="Node000002" href="$d6/d41/class_w_p_r_1_1_utils_1_1_password_checker.html#a3874adc7b516a8fb893ed18cd0a29a94" title=" " alt="" coords="271,29,470,72"/>
-<area shape="poly" id="edge2_Node000001_Node000002" title=" " alt="" coords="223,48,255,48,255,53,223,53"/>
-</map>

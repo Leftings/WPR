@@ -1,0 +1,351 @@
+\doxysection{WPR.\+Controllers.\+Employee.\+Vehicle\+Manager.\+Get\+Info\+Vehicle\+Manager.\+Get\+Info\+Vehicle\+Manager\+Controller Class Referentie}
+\hypertarget{class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_get_info_vehicle_manager_1_1_ge5f3db02cd05fb4d7aea652d7ec731ef7}{}\label{class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_get_info_vehicle_manager_1_1_ge5f3db02cd05fb4d7aea652d7ec731ef7}\index{WPR.Controllers.Employee.VehicleManager.GetInfoVehicleManager.GetInfoVehicleManagerController@{WPR.Controllers.Employee.VehicleManager.GetInfoVehicleManager.GetInfoVehicleManagerController}}
+
+
+Klasse diagram voor WPR.\+Controllers.\+Employee.\+Vehicle\+Manager.\+Get\+Info\+Vehicle\+Manager.\+Get\+Info\+Vehicle\+Manager\+Controller
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=264pt]{class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_get_info_vehicle_manager_1_1_gec1634e4d4303d297dae2727885f1f7bc}
+\end{center}
+\end{figure}
+
+
+Collaboratie diagram voor WPR.\+Controllers.\+Employee.\+Vehicle\+Manager.\+Get\+Info\+Vehicle\+Manager.\+Get\+Info\+Vehicle\+Manager\+Controller\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_get_info_vehicle_manager_1_1_gebdc193cd31b2108148e0a1a784337f8c}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Data Structuren}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_get_info_vehicle_manager_1_1_ge80cefa003b6c973a88a350bcae8adff2}{Customer\+Update\+Request}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Members}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_get_info_vehicle_manager_1_1_ge5f3db02cd05fb4d7aea652d7ec731ef7_a15397f52cb054c132e4c0b6c5f7132a7}{Get\+Info\+Vehicle\+Manager\+Controller}} (\mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_user_repository}{IUser\+Repository}} user\+Repository, \mbox{\hyperlink{class_w_p_r_1_1_cryption_1_1_crypt}{Crypt}} crypt)
+\item 
+async Task$<$ IAction\+Result $>$ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_get_info_vehicle_manager_1_1_ge5f3db02cd05fb4d7aea652d7ec731ef7_ad82cf5e0b23c5308cfe9147bc134ddec}{Get\+All\+Info}} (int id)
+\begin{DoxyCompactList}\small\item\em Get all vehicle manager info, including associated customers with the same business number. \end{DoxyCompactList}\item 
+async Task$<$ IAction\+Result $>$ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_get_info_vehicle_manager_1_1_ge5f3db02cd05fb4d7aea652d7ec731ef7_ac72e6c378e42c1e6116f10e3f85b5599}{Update\+Customer}} (\mbox{[}From\+Query\mbox{]} int id, \mbox{[}From\+Body\mbox{]} \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_get_info_vehicle_manager_1_1_ge80cefa003b6c973a88a350bcae8adff2}{Customer\+Update\+Request}} updates)
+\begin{DoxyCompactList}\small\item\em Updates the vehicle manager\textquotesingle{}s email and password. \end{DoxyCompactList}\item 
+async Task$<$ IAction\+Result $>$ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_get_info_vehicle_manager_1_1_ge5f3db02cd05fb4d7aea652d7ec731ef7_a5a25feb70858bb18c3762f2990d9f391}{Get\+Customers\+By\+Business\+Number}} (string business\+Number)
+\begin{DoxyCompactList}\small\item\em Get customers associated with a specific business number. \end{DoxyCompactList}\item 
+async Task$<$ IAction\+Result $>$ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_get_info_vehicle_manager_1_1_ge5f3db02cd05fb4d7aea652d7ec731ef7_ad4920ecab1cfa592aafeace8242ec73c}{Get\+Business\+Domain\+By\+KvK}} (int kvk)
+\begin{DoxyCompactList}\small\item\em Get the domain associated with a business by KvK. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributen}
+\begin{DoxyCompactItemize}
+\item 
+readonly \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_user_repository}{IUser\+Repository}} \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_get_info_vehicle_manager_1_1_ge5f3db02cd05fb4d7aea652d7ec731ef7_ae9e36c9bc4be37dffde2b655f41e3adc}{\+\_\+user\+Repository}}
+\item 
+readonly \mbox{\hyperlink{class_w_p_r_1_1_cryption_1_1_crypt}{Crypt}} \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_get_info_vehicle_manager_1_1_ge5f3db02cd05fb4d7aea652d7ec731ef7_aaa563c1968fb192a517aaa373d155311}{\+\_\+crypt}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Gedetailleerde Beschrijving}
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{get_info_controller_8cs_source_l00009}{9}} in het bestand \mbox{\hyperlink{get_info_controller_8cs_source}{get\+Info\+Controller.\+cs}}.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentatie}
+\Hypertarget{class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_get_info_vehicle_manager_1_1_ge5f3db02cd05fb4d7aea652d7ec731ef7_a15397f52cb054c132e4c0b6c5f7132a7}\index{WPR.Controllers.Employee.VehicleManager.GetInfoVehicleManager.GetInfoVehicleManagerController@{WPR.Controllers.Employee.VehicleManager.GetInfoVehicleManager.GetInfoVehicleManagerController}!GetInfoVehicleManagerController@{GetInfoVehicleManagerController}}
+\index{GetInfoVehicleManagerController@{GetInfoVehicleManagerController}!WPR.Controllers.Employee.VehicleManager.GetInfoVehicleManager.GetInfoVehicleManagerController@{WPR.Controllers.Employee.VehicleManager.GetInfoVehicleManager.GetInfoVehicleManagerController}}
+\doxysubsubsection{\texorpdfstring{GetInfoVehicleManagerController()}{GetInfoVehicleManagerController()}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_get_info_vehicle_manager_1_1_ge5f3db02cd05fb4d7aea652d7ec731ef7_a15397f52cb054c132e4c0b6c5f7132a7} 
+WPR.\+Controllers.\+Employee.\+Vehicle\+Manager.\+Get\+Info\+Vehicle\+Manager.\+Get\+Info\+Vehicle\+Manager\+Controller.\+Get\+Info\+Vehicle\+Manager\+Controller (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_user_repository}{IUser\+Repository}}}]{user\+Repository}{, }\item[{\mbox{\hyperlink{class_w_p_r_1_1_cryption_1_1_crypt}{Crypt}}}]{crypt}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{get_info_controller_8cs_source_l00014}{14}} in het bestand \mbox{\hyperlink{get_info_controller_8cs_source}{get\+Info\+Controller.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00015\ \ \ \ \ \{}
+\DoxyCodeLine{00016\ \ \ \ \ \ \ \ \ \_userRepository\ =\ userRepository\ ??\ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ ArgumentNullException(nameof(userRepository));}
+\DoxyCodeLine{00017\ \ \ \ \ \ \ \ \ \_crypt\ =\ crypt\ ??\ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ ArgumentNullException(nameof(crypt));}
+\DoxyCodeLine{00018\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+Gebruikt \mbox{\hyperlink{get_info_controller_8cs_source_l00012}{\+\_\+crypt}} en \mbox{\hyperlink{get_info_controller_8cs_source_l00011}{\+\_\+user\+Repository}}.
+
+
+
+\doxysubsection{Documentatie van functie members}
+\Hypertarget{class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_get_info_vehicle_manager_1_1_ge5f3db02cd05fb4d7aea652d7ec731ef7_ad82cf5e0b23c5308cfe9147bc134ddec}\index{WPR.Controllers.Employee.VehicleManager.GetInfoVehicleManager.GetInfoVehicleManagerController@{WPR.Controllers.Employee.VehicleManager.GetInfoVehicleManager.GetInfoVehicleManagerController}!GetAllInfo@{GetAllInfo}}
+\index{GetAllInfo@{GetAllInfo}!WPR.Controllers.Employee.VehicleManager.GetInfoVehicleManager.GetInfoVehicleManagerController@{WPR.Controllers.Employee.VehicleManager.GetInfoVehicleManager.GetInfoVehicleManagerController}}
+\doxysubsubsection{\texorpdfstring{GetAllInfo()}{GetAllInfo()}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_get_info_vehicle_manager_1_1_ge5f3db02cd05fb4d7aea652d7ec731ef7_ad82cf5e0b23c5308cfe9147bc134ddec} 
+async Task$<$ IAction\+Result $>$ WPR.\+Controllers.\+Employee.\+Vehicle\+Manager.\+Get\+Info\+Vehicle\+Manager.\+Get\+Info\+Vehicle\+Manager\+Controller.\+Get\+All\+Info (\begin{DoxyParamCaption}\item[{int}]{id}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Get all vehicle manager info, including associated customers with the same business number. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & The vehicle manager\textquotesingle{}s ID\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retourneert}
+Vehicle manager details and customers with the same business number
+\end{DoxyReturn}
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{get_info_controller_8cs_source_l00026}{26}} in het bestand \mbox{\hyperlink{get_info_controller_8cs_source}{get\+Info\+Controller.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00027\ \ \ \ \ \{}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\textcolor{keywordtype}{id}\ <=\ 0)}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ BadRequest(\textcolor{keyword}{new}\ \{\ message\ =\ \textcolor{stringliteral}{"{}Invalid\ vehicle\ manager\ ID"{}}\ \});}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \ \ \ \ var\ vehicleManagerInfo\ =\ await\ \_userRepository.GetVehicleManagerInfoAsync(\textcolor{keywordtype}{id});}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (vehicleManagerInfo\ ==\ \textcolor{keyword}{null})}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ NotFound(\textcolor{keyword}{new}\ \{\ message\ =\ \textcolor{stringliteral}{"{}Vehicle\ manager\ not\ found"{}}\ \});}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \ \ \ \ var\ businessNumber\ =\ vehicleManagerInfo.Business;}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\textcolor{keywordtype}{string}.IsNullOrEmpty(businessNumber))}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ BadRequest(\textcolor{keyword}{new}\ \{\ message\ =\ \textcolor{stringliteral}{"{}Vehicle\ manager\ does\ not\ have\ a\ valid\ business\ number"{}}\ \});}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \ \ \ \ var\ customers\ =\ await\ \_userRepository.GetCustomersByBusinessNumberAsync(businessNumber);}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Ok(\textcolor{keyword}{new}}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ message\ =\ \textcolor{stringliteral}{"{}Success"{}},}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ vehicleManagerInfo\ =\ \textcolor{keyword}{new}}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ vehicleManagerInfo.Id,}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ vehicleManagerInfo.Email,}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ vehicleManagerInfo.Business,}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ vehicleManagerInfo.Password}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \},}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ customers\ =\ customers?.Select(c\ =>\ \textcolor{keyword}{new}\ \{\ c.Id,\ c.Email,\ c.Kvk\ \})\ ??\ Enumerable.Empty<\textcolor{keywordtype}{object}>()}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (Exception\ ex)}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \ \ \ \ Console.WriteLine(\$\textcolor{stringliteral}{"{}Error\ in\ GetAllInfo:\ \{ex.Message\}"{}});}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ StatusCode(500,\ \textcolor{keyword}{new}\ \{\ message\ =\ \textcolor{stringliteral}{"{}Internal\ server\ error"{}},\ error\ =\ ex.Message\ \});}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00068\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+Gebruikt \mbox{\hyperlink{get_info_controller_8cs_source_l00011}{\+\_\+user\+Repository}}.
+
+\Hypertarget{class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_get_info_vehicle_manager_1_1_ge5f3db02cd05fb4d7aea652d7ec731ef7_ad4920ecab1cfa592aafeace8242ec73c}\index{WPR.Controllers.Employee.VehicleManager.GetInfoVehicleManager.GetInfoVehicleManagerController@{WPR.Controllers.Employee.VehicleManager.GetInfoVehicleManager.GetInfoVehicleManagerController}!GetBusinessDomainByKvK@{GetBusinessDomainByKvK}}
+\index{GetBusinessDomainByKvK@{GetBusinessDomainByKvK}!WPR.Controllers.Employee.VehicleManager.GetInfoVehicleManager.GetInfoVehicleManagerController@{WPR.Controllers.Employee.VehicleManager.GetInfoVehicleManager.GetInfoVehicleManagerController}}
+\doxysubsubsection{\texorpdfstring{GetBusinessDomainByKvK()}{GetBusinessDomainByKvK()}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_get_info_vehicle_manager_1_1_ge5f3db02cd05fb4d7aea652d7ec731ef7_ad4920ecab1cfa592aafeace8242ec73c} 
+async Task$<$ IAction\+Result $>$ WPR.\+Controllers.\+Employee.\+Vehicle\+Manager.\+Get\+Info\+Vehicle\+Manager.\+Get\+Info\+Vehicle\+Manager\+Controller.\+Get\+Business\+Domain\+By\+KvK (\begin{DoxyParamCaption}\item[{int}]{kvk}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Get the domain associated with a business by KvK. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em kvk} & The KvK of the business\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retourneert}
+The business domain
+\end{DoxyReturn}
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{get_info_controller_8cs_source_l00152}{152}} in het bestand \mbox{\hyperlink{get_info_controller_8cs_source}{get\+Info\+Controller.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00153\ \ \ \ \ \{}
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}}
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (kvk\ <=\ 0)}
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ BadRequest(\textcolor{keyword}{new}\ \{\ message\ =\ \textcolor{stringliteral}{"{}Invalid\ KvK"{}}\ \});}
+\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00160\ }
+\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ \ \ \ \ var\ (statusCode,\ domain)\ =\ await\ \_userRepository.GetBusinessDomainByKvK(kvk);}
+\DoxyCodeLine{00162\ }
+\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (statusCode\ ==\ 404)}
+\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ NotFound(\textcolor{keyword}{new}\ \{\ message\ =\ \textcolor{stringliteral}{"{}Business\ domain\ not\ found\ for\ the\ given\ KvK"{}}\ \});}
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (statusCode\ ==\ 500)}
+\DoxyCodeLine{00168\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ StatusCode(500,\ \textcolor{keyword}{new}\ \{\ message\ =\ \textcolor{stringliteral}{"{}Internal\ server\ error"{}},\ error\ =\ domain\ \});}
+\DoxyCodeLine{00170\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00171\ }
+\DoxyCodeLine{00172\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Ok(\textcolor{keyword}{new}}
+\DoxyCodeLine{00173\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00174\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ message\ =\ \textcolor{stringliteral}{"{}Success"{}},}
+\DoxyCodeLine{00175\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ domain\ =\ domain}
+\DoxyCodeLine{00176\ \ \ \ \ \ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{00177\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (Exception\ ex)}
+\DoxyCodeLine{00179\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00180\ \ \ \ \ \ \ \ \ \ \ \ \ Console.WriteLine(\$\textcolor{stringliteral}{"{}Error\ in\ GetBusinessDomainByKvK:\ \{ex.Message\}"{}});}
+\DoxyCodeLine{00181\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ StatusCode(500,\ \textcolor{keyword}{new}\ \{\ message\ =\ \textcolor{stringliteral}{"{}Internal\ server\ error"{}},\ error\ =\ ex.Message\ \});}
+\DoxyCodeLine{00182\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00183\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+Gebruikt \mbox{\hyperlink{get_info_controller_8cs_source_l00011}{\+\_\+user\+Repository}}.
+
+\Hypertarget{class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_get_info_vehicle_manager_1_1_ge5f3db02cd05fb4d7aea652d7ec731ef7_a5a25feb70858bb18c3762f2990d9f391}\index{WPR.Controllers.Employee.VehicleManager.GetInfoVehicleManager.GetInfoVehicleManagerController@{WPR.Controllers.Employee.VehicleManager.GetInfoVehicleManager.GetInfoVehicleManagerController}!GetCustomersByBusinessNumber@{GetCustomersByBusinessNumber}}
+\index{GetCustomersByBusinessNumber@{GetCustomersByBusinessNumber}!WPR.Controllers.Employee.VehicleManager.GetInfoVehicleManager.GetInfoVehicleManagerController@{WPR.Controllers.Employee.VehicleManager.GetInfoVehicleManager.GetInfoVehicleManagerController}}
+\doxysubsubsection{\texorpdfstring{GetCustomersByBusinessNumber()}{GetCustomersByBusinessNumber()}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_get_info_vehicle_manager_1_1_ge5f3db02cd05fb4d7aea652d7ec731ef7_a5a25feb70858bb18c3762f2990d9f391} 
+async Task$<$ IAction\+Result $>$ WPR.\+Controllers.\+Employee.\+Vehicle\+Manager.\+Get\+Info\+Vehicle\+Manager.\+Get\+Info\+Vehicle\+Manager\+Controller.\+Get\+Customers\+By\+Business\+Number (\begin{DoxyParamCaption}\item[{string}]{business\+Number}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Get customers associated with a specific business number. 
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{get_info_controller_8cs_source_l00111}{111}} in het bestand \mbox{\hyperlink{get_info_controller_8cs_source}{get\+Info\+Controller.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00112\ \ \ \ \ \{}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\textcolor{keywordtype}{string}.IsNullOrEmpty(businessNumber))}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ BadRequest(\textcolor{keyword}{new}\ \{\ message\ =\ \textcolor{stringliteral}{"{}Business\ number\ cannot\ be\ empty"{}}\ \});}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00119\ }
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \ \ \ \ var\ customers\ =\ await\ \_userRepository.GetCustomersByBusinessNumberAsync(businessNumber);}
+\DoxyCodeLine{00121\ }
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (customers\ ==\ \textcolor{keyword}{null}\ ||\ !customers.Any())}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ NotFound(\textcolor{keyword}{new}\ \{\ message\ =\ \textcolor{stringliteral}{"{}No\ customers\ found\ for\ this\ business"{}}\ \});}
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00126\ }
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Ok(\textcolor{keyword}{new}}
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ message\ =\ \textcolor{stringliteral}{"{}Success"{}},}
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ customers\ =\ customers.Select(c\ =>\ \textcolor{keyword}{new}\ \{\ c.Id,\ c.Email,\ c.Kvk\ \})}
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (Exception\ ex)}
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ \ \ \ \ Console.WriteLine(\$\textcolor{stringliteral}{"{}Error\ in\ GetCustomersByBusinessNumber:\ \{ex.Message\}"{}});}
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ StatusCode(500,\ \textcolor{keyword}{new}\ \{\ message\ =\ \textcolor{stringliteral}{"{}Internal\ server\ error"{}},\ error\ =\ ex.Message\ \});}
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00138\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+Gebruikt \mbox{\hyperlink{get_info_controller_8cs_source_l00011}{\+\_\+user\+Repository}}.
+
+\Hypertarget{class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_get_info_vehicle_manager_1_1_ge5f3db02cd05fb4d7aea652d7ec731ef7_ac72e6c378e42c1e6116f10e3f85b5599}\index{WPR.Controllers.Employee.VehicleManager.GetInfoVehicleManager.GetInfoVehicleManagerController@{WPR.Controllers.Employee.VehicleManager.GetInfoVehicleManager.GetInfoVehicleManagerController}!UpdateCustomer@{UpdateCustomer}}
+\index{UpdateCustomer@{UpdateCustomer}!WPR.Controllers.Employee.VehicleManager.GetInfoVehicleManager.GetInfoVehicleManagerController@{WPR.Controllers.Employee.VehicleManager.GetInfoVehicleManager.GetInfoVehicleManagerController}}
+\doxysubsubsection{\texorpdfstring{UpdateCustomer()}{UpdateCustomer()}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_get_info_vehicle_manager_1_1_ge5f3db02cd05fb4d7aea652d7ec731ef7_ac72e6c378e42c1e6116f10e3f85b5599} 
+async Task$<$ IAction\+Result $>$ WPR.\+Controllers.\+Employee.\+Vehicle\+Manager.\+Get\+Info\+Vehicle\+Manager.\+Get\+Info\+Vehicle\+Manager\+Controller.\+Update\+Customer (\begin{DoxyParamCaption}\item[{\mbox{[}\+From\+Query\mbox{]} int}]{id}{, }\item[{\mbox{[}\+From\+Body\mbox{]} \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_get_info_vehicle_manager_1_1_ge80cefa003b6c973a88a350bcae8adff2}{Customer\+Update\+Request}}}]{updates}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Updates the vehicle manager\textquotesingle{}s email and password. 
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{get_info_controller_8cs_source_l00074}{74}} in het bestand \mbox{\hyperlink{get_info_controller_8cs_source}{get\+Info\+Controller.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00075\ \ \ \ \ \{}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\textcolor{keywordtype}{id}\ <=\ 0)}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ BadRequest(\textcolor{keyword}{new}\ \{\ message\ =\ \textcolor{stringliteral}{"{}Invalid\ customer\ ID"{}}\ \});}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (updates\ ==\ \textcolor{keyword}{null}\ ||\ \textcolor{keywordtype}{string}.IsNullOrEmpty(updates.Email)\ ||\ \textcolor{keywordtype}{string}.IsNullOrEmpty(updates.Password))}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ BadRequest(\textcolor{keyword}{new}\ \{\ message\ =\ \textcolor{stringliteral}{"{}Email\ and\ Password\ cannot\ be\ empty"{}}\ \});}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \ \ \ \ var\ password\ =\ updates.Password;}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \ \ \ \ var\ updateResult\ =\ await\ \_userRepository.UpdateCustomerAsync(\textcolor{keywordtype}{id},\ updates.Email,\ password);}
+\DoxyCodeLine{00091\ }
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!updateResult)}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ StatusCode(500,\ \textcolor{keyword}{new}\ \{\ message\ =\ \textcolor{stringliteral}{"{}Failed\ to\ update\ customer\ information"{}}\ \});}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00096\ }
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Ok(\textcolor{keyword}{new}\ \{\ message\ =\ \textcolor{stringliteral}{"{}Customer\ info\ updated\ successfully"{}}\ \});}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (Exception\ ex)}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ StatusCode(500,\ \textcolor{keyword}{new}\ \{\ message\ =\ \textcolor{stringliteral}{"{}Internal\ server\ error"{}},\ error\ =\ ex.Message\ \});}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00103\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+Gebruikt \mbox{\hyperlink{get_info_controller_8cs_source_l00011}{\+\_\+user\+Repository}}.
+
+
+
+\doxysubsection{Documentatie van data velden}
+\Hypertarget{class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_get_info_vehicle_manager_1_1_ge5f3db02cd05fb4d7aea652d7ec731ef7_aaa563c1968fb192a517aaa373d155311}\index{WPR.Controllers.Employee.VehicleManager.GetInfoVehicleManager.GetInfoVehicleManagerController@{WPR.Controllers.Employee.VehicleManager.GetInfoVehicleManager.GetInfoVehicleManagerController}!\_crypt@{\_crypt}}
+\index{\_crypt@{\_crypt}!WPR.Controllers.Employee.VehicleManager.GetInfoVehicleManager.GetInfoVehicleManagerController@{WPR.Controllers.Employee.VehicleManager.GetInfoVehicleManager.GetInfoVehicleManagerController}}
+\doxysubsubsection{\texorpdfstring{\_crypt}{\_crypt}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_get_info_vehicle_manager_1_1_ge5f3db02cd05fb4d7aea652d7ec731ef7_aaa563c1968fb192a517aaa373d155311} 
+readonly \mbox{\hyperlink{class_w_p_r_1_1_cryption_1_1_crypt}{Crypt}} WPR.\+Controllers.\+Employee.\+Vehicle\+Manager.\+Get\+Info\+Vehicle\+Manager.\+Get\+Info\+Vehicle\+Manager\+Controller.\+\_\+crypt\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{get_info_controller_8cs_source_l00012}{12}} in het bestand \mbox{\hyperlink{get_info_controller_8cs_source}{get\+Info\+Controller.\+cs}}.
+
+
+
+Wordt aangeroepen door \mbox{\hyperlink{get_info_controller_8cs_source_l00014}{Get\+Info\+Vehicle\+Manager\+Controller()}}.
+
+\Hypertarget{class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_get_info_vehicle_manager_1_1_ge5f3db02cd05fb4d7aea652d7ec731ef7_ae9e36c9bc4be37dffde2b655f41e3adc}\index{WPR.Controllers.Employee.VehicleManager.GetInfoVehicleManager.GetInfoVehicleManagerController@{WPR.Controllers.Employee.VehicleManager.GetInfoVehicleManager.GetInfoVehicleManagerController}!\_userRepository@{\_userRepository}}
+\index{\_userRepository@{\_userRepository}!WPR.Controllers.Employee.VehicleManager.GetInfoVehicleManager.GetInfoVehicleManagerController@{WPR.Controllers.Employee.VehicleManager.GetInfoVehicleManager.GetInfoVehicleManagerController}}
+\doxysubsubsection{\texorpdfstring{\_userRepository}{\_userRepository}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_get_info_vehicle_manager_1_1_ge5f3db02cd05fb4d7aea652d7ec731ef7_ae9e36c9bc4be37dffde2b655f41e3adc} 
+readonly \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_user_repository}{IUser\+Repository}} WPR.\+Controllers.\+Employee.\+Vehicle\+Manager.\+Get\+Info\+Vehicle\+Manager.\+Get\+Info\+Vehicle\+Manager\+Controller.\+\_\+user\+Repository\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{get_info_controller_8cs_source_l00011}{11}} in het bestand \mbox{\hyperlink{get_info_controller_8cs_source}{get\+Info\+Controller.\+cs}}.
+
+
+
+Wordt aangeroepen door \mbox{\hyperlink{get_info_controller_8cs_source_l00026}{Get\+All\+Info()}}, \mbox{\hyperlink{get_info_controller_8cs_source_l00152}{Get\+Business\+Domain\+By\+Kv\+K()}}, \mbox{\hyperlink{get_info_controller_8cs_source_l00111}{Get\+Customers\+By\+Business\+Number()}}, \mbox{\hyperlink{get_info_controller_8cs_source_l00014}{Get\+Info\+Vehicle\+Manager\+Controller()}} en \mbox{\hyperlink{get_info_controller_8cs_source_l00074}{Update\+Customer()}}.
+
+
+
+De documentatie voor deze klasse is gegenereerd op basis van het volgende bestand\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/codes/\+WPR8/\+WPR/backend/src/\+Controllers/\+Employee/vehicle\+Manager/get\+Info\+Vehicle\+Manager/\mbox{\hyperlink{get_info_controller_8cs}{get\+Info\+Controller.\+cs}}\end{DoxyCompactItemize}

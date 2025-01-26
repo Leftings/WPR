@@ -1,0 +1,665 @@
+\doxysection{WPR.\+Repository.\+Database\+Check\+Repository.\+Database\+Check\+Repository Class Referentie}
+\hypertarget{class_w_p_r_1_1_repository_1_1_database_check_repository_1_1_database_check_repository}{}\label{class_w_p_r_1_1_repository_1_1_database_check_repository_1_1_database_check_repository}\index{WPR.Repository.DatabaseCheckRepository.DatabaseCheckRepository@{WPR.Repository.DatabaseCheckRepository.DatabaseCheckRepository}}
+
+
+Klasse diagram voor WPR.\+Repository.\+Database\+Check\+Repository.\+Database\+Check\+Repository
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=255pt]{class_w_p_r_1_1_repository_1_1_database_check_repository_1_1_database_check_repository__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboratie diagram voor WPR.\+Repository.\+Database\+Check\+Repository.\+Database\+Check\+Repository\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_w_p_r_1_1_repository_1_1_database_check_repository_1_1_database_check_repository__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Members}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_w_p_r_1_1_repository_1_1_database_check_repository_1_1_database_check_repository_a186b34f5fe95fafb85c820e5b3dd8da1}{Database\+Check\+Repository}} (\mbox{\hyperlink{interface_w_p_r_1_1_database_1_1_i_connector}{IConnector}} connector)
+\item 
+int string \mbox{\hyperlink{class_w_p_r_1_1_repository_1_1_database_check_repository_1_1_database_check_repository_af176b5fd8f525f470319ec8eca076ce3}{Message}} \mbox{\hyperlink{class_w_p_r_1_1_repository_1_1_database_check_repository_1_1_database_check_repository_aeeb328ca72466c0added5450b0af72cd}{Delete\+User}} (int id)
+\item 
+int string \mbox{\hyperlink{class_w_p_r_1_1_repository_1_1_database_check_repository_1_1_database_check_repository_af176b5fd8f525f470319ec8eca076ce3}{Message}} \mbox{\hyperlink{class_w_p_r_1_1_repository_1_1_database_check_repository_1_1_database_check_repository_acf45131187cc98ce1de5554795fa3c28}{Delete\+Business}} (int kvk)
+\item 
+int string \mbox{\hyperlink{class_w_p_r_1_1_repository_1_1_database_check_repository_1_1_database_check_repository_af176b5fd8f525f470319ec8eca076ce3}{Message}} \mbox{\hyperlink{class_w_p_r_1_1_repository_1_1_database_check_repository_1_1_database_check_repository_a1ed88a97f5e7dcf9903fb7d157c17621}{Delete\+Vehicle\+Manager}} (int id, int kvk)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Members}
+\begin{DoxyCompactItemize}
+\item 
+int string \mbox{\hyperlink{class_w_p_r_1_1_repository_1_1_database_check_repository_1_1_database_check_repository_af176b5fd8f525f470319ec8eca076ce3}{Message}} \mbox{\hyperlink{class_w_p_r_1_1_repository_1_1_database_check_repository_1_1_database_check_repository_a5ef386a9041a706a2db64267c1689bc7}{Handle\+Delete}} (string query)
+\item 
+int string \mbox{\hyperlink{class_w_p_r_1_1_repository_1_1_database_check_repository_1_1_database_check_repository_af176b5fd8f525f470319ec8eca076ce3}{Message}} \mbox{\hyperlink{class_w_p_r_1_1_repository_1_1_database_check_repository_1_1_database_check_repository_a02f0d55f292e91e17da9fb5fef08f4a8}{Delete\+Futere\+Contracts}} (int id)
+\item 
+int string \mbox{\hyperlink{class_w_p_r_1_1_repository_1_1_database_check_repository_1_1_database_check_repository_af176b5fd8f525f470319ec8eca076ce3}{Message}} \mbox{\hyperlink{class_w_p_r_1_1_repository_1_1_database_check_repository_1_1_database_check_repository_a13ae0d3f4211da655fc83812019febf6}{User\+Has\+Active\+Contract}} (int id)
+\item 
+int string Dictionary$<$ int, bool $>$ employee\+Data \mbox{\hyperlink{class_w_p_r_1_1_repository_1_1_database_check_repository_1_1_database_check_repository_ae2e26046eef328d9b24ced25cad3b2a5}{Delete\+Employees}} (int kvk)
+\item 
+bool \mbox{\hyperlink{class_w_p_r_1_1_repository_1_1_database_check_repository_1_1_database_check_repository_a5fd15b3ae862921144363bb1407c18b0}{Delete\+Business\+Allowed}} (Dictionary$<$ int, bool $>$ employees)
+\item 
+int string \mbox{\hyperlink{class_w_p_r_1_1_repository_1_1_database_check_repository_1_1_database_check_repository_af176b5fd8f525f470319ec8eca076ce3}{Message}} \mbox{\hyperlink{class_w_p_r_1_1_repository_1_1_database_check_repository_1_1_database_check_repository_a40af55c745a5531c04e3d483bc61e885}{Minimum\+Vehicle\+Managers}} (int kvk)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributen}
+\begin{DoxyCompactItemize}
+\item 
+readonly \mbox{\hyperlink{interface_w_p_r_1_1_database_1_1_i_connector}{IConnector}} \mbox{\hyperlink{class_w_p_r_1_1_repository_1_1_database_check_repository_1_1_database_check_repository_ae5f01edd6647ca057d0ec52876f88d98}{\+\_\+connector}}
+\item 
+int \mbox{\hyperlink{class_w_p_r_1_1_repository_1_1_database_check_repository_1_1_database_check_repository_aa8c39a5bc0800e49ab35b6a3d5f7b990}{Status\+Code}}
+\item 
+int string \mbox{\hyperlink{class_w_p_r_1_1_repository_1_1_database_check_repository_1_1_database_check_repository_af176b5fd8f525f470319ec8eca076ce3}{Message}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additionele Overgeërfde Members}
+\doxysubsection*{Data Velden overgeërfd van \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_database_check_repository_1_1_i_database_check_repository}{WPR.\+Repository.\+Database\+Check\+Repository.\+IDatabase\+Check\+Repository}}}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_database_check_repository_1_1_i_database_check_repository_a49db897e6b6b09cfecaa84c45ad86449}{Status\+Code}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Gedetailleerde Beschrijving}
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{_database_check_repository_8cs_source_l00009}{9}} in het bestand \mbox{\hyperlink{_database_check_repository_8cs_source}{Database\+Check\+Repository.\+cs}}.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentatie}
+\Hypertarget{class_w_p_r_1_1_repository_1_1_database_check_repository_1_1_database_check_repository_a186b34f5fe95fafb85c820e5b3dd8da1}\index{WPR.Repository.DatabaseCheckRepository.DatabaseCheckRepository@{WPR.Repository.DatabaseCheckRepository.DatabaseCheckRepository}!DatabaseCheckRepository@{DatabaseCheckRepository}}
+\index{DatabaseCheckRepository@{DatabaseCheckRepository}!WPR.Repository.DatabaseCheckRepository.DatabaseCheckRepository@{WPR.Repository.DatabaseCheckRepository.DatabaseCheckRepository}}
+\doxysubsubsection{\texorpdfstring{DatabaseCheckRepository()}{DatabaseCheckRepository()}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_repository_1_1_database_check_repository_1_1_database_check_repository_a186b34f5fe95fafb85c820e5b3dd8da1} 
+WPR.\+Repository.\+Database\+Check\+Repository.\+Database\+Check\+Repository.\+Database\+Check\+Repository (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{interface_w_p_r_1_1_database_1_1_i_connector}{IConnector}}}]{connector}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{_database_check_repository_8cs_source_l00013}{13}} in het bestand \mbox{\hyperlink{_database_check_repository_8cs_source}{Database\+Check\+Repository.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00014\ \ \ \ \ \{}
+\DoxyCodeLine{00015\ \ \ \ \ \ \ \ \ \_connector\ =\ connector\ ??\ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ ArgumentNullException(nameof(connector));}
+\DoxyCodeLine{00016\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+Gebruikt \mbox{\hyperlink{_database_check_repository_8cs_source_l00011}{\+\_\+connector}}.
+
+
+
+\doxysubsection{Documentatie van functie members}
+\Hypertarget{class_w_p_r_1_1_repository_1_1_database_check_repository_1_1_database_check_repository_acf45131187cc98ce1de5554795fa3c28}\index{WPR.Repository.DatabaseCheckRepository.DatabaseCheckRepository@{WPR.Repository.DatabaseCheckRepository.DatabaseCheckRepository}!DeleteBusiness@{DeleteBusiness}}
+\index{DeleteBusiness@{DeleteBusiness}!WPR.Repository.DatabaseCheckRepository.DatabaseCheckRepository@{WPR.Repository.DatabaseCheckRepository.DatabaseCheckRepository}}
+\doxysubsubsection{\texorpdfstring{DeleteBusiness()}{DeleteBusiness()}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_repository_1_1_database_check_repository_1_1_database_check_repository_acf45131187cc98ce1de5554795fa3c28} 
+int string \mbox{\hyperlink{class_w_p_r_1_1_repository_1_1_database_check_repository_1_1_database_check_repository_af176b5fd8f525f470319ec8eca076ce3}{Message}} WPR.\+Repository.\+Database\+Check\+Repository.\+Database\+Check\+Repository.\+Delete\+Business (\begin{DoxyParamCaption}\item[{int}]{kvk}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Implementeert \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_database_check_repository_1_1_i_database_check_repository_a9a64a0fc4b7ad09af3aaee37c10b8bf6}{WPR.\+Repository.\+Database\+Check\+Repository.\+IDatabase\+Check\+Repository}}.
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{_database_check_repository_8cs_source_l00188}{188}} in het bestand \mbox{\hyperlink{_database_check_repository_8cs_source}{Database\+Check\+Repository.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00189\ \ \ \ \ \{}
+\DoxyCodeLine{00190\ \ \ \ \ \ \ \ \ var\ employees\ =\ DeleteEmployees(kvk);}
+\DoxyCodeLine{00191\ }
+\DoxyCodeLine{00192\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (employees.StatusCode\ !=\ 200)}
+\DoxyCodeLine{00193\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00194\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (employees.StatusCode,\ employees.Message);}
+\DoxyCodeLine{00195\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00196\ }
+\DoxyCodeLine{00197\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!DeleteBusinessAllowed(employees.employeeData))}
+\DoxyCodeLine{00198\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00199\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (417,\ \textcolor{stringliteral}{"{}Sommige\ medewerkers\ zitten\ nog\ in\ een\ contract"{}});}
+\DoxyCodeLine{00200\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00201\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00202\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ query\ =\ \$\textcolor{stringliteral}{"{}DELETE\ FROM\ Business\ WHERE\ KvK\ =\ \{kvk\}"{}};}
+\DoxyCodeLine{00203\ \ \ \ \ \ \ \ \ var\ deleteBusiness\ =\ HandleDelete(query);}
+\DoxyCodeLine{00204\ }
+\DoxyCodeLine{00205\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (deleteBusiness.StatusCode,\ deleteBusiness.Message);}
+\DoxyCodeLine{00206\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+Gebruikt \mbox{\hyperlink{_database_check_repository_8cs_source_l00175}{Delete\+Business\+Allowed()}}, \mbox{\hyperlink{_database_check_repository_8cs_source_l00123}{Delete\+Employees()}}, \mbox{\hyperlink{_database_check_repository_8cs_source_l00018}{Handle\+Delete()}}, \mbox{\hyperlink{_database_check_repository_8cs_source_l00123}{Message}} en \mbox{\hyperlink{_database_check_repository_8cs_source_l00018}{Status\+Code}}.
+
+Hier is de call graaf voor deze functie\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_w_p_r_1_1_repository_1_1_database_check_repository_1_1_database_check_repository_acf45131187cc98ce1de5554795fa3c28_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_w_p_r_1_1_repository_1_1_database_check_repository_1_1_database_check_repository_a5fd15b3ae862921144363bb1407c18b0}\index{WPR.Repository.DatabaseCheckRepository.DatabaseCheckRepository@{WPR.Repository.DatabaseCheckRepository.DatabaseCheckRepository}!DeleteBusinessAllowed@{DeleteBusinessAllowed}}
+\index{DeleteBusinessAllowed@{DeleteBusinessAllowed}!WPR.Repository.DatabaseCheckRepository.DatabaseCheckRepository@{WPR.Repository.DatabaseCheckRepository.DatabaseCheckRepository}}
+\doxysubsubsection{\texorpdfstring{DeleteBusinessAllowed()}{DeleteBusinessAllowed()}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_repository_1_1_database_check_repository_1_1_database_check_repository_a5fd15b3ae862921144363bb1407c18b0} 
+bool WPR.\+Repository.\+Database\+Check\+Repository.\+Database\+Check\+Repository.\+Delete\+Business\+Allowed (\begin{DoxyParamCaption}\item[{Dictionary$<$ int, bool $>$}]{employees}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{_database_check_repository_8cs_source_l00175}{175}} in het bestand \mbox{\hyperlink{_database_check_repository_8cs_source}{Database\+Check\+Repository.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00176\ \ \ \ \ \{}
+\DoxyCodeLine{00177\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{foreach}\ (var\ item\ \textcolor{keywordflow}{in}\ employees)}
+\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00179\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!item.Value)}
+\DoxyCodeLine{00180\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00181\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00182\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00183\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00184\ }
+\DoxyCodeLine{00185\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00186\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+Wordt aangeroepen door \mbox{\hyperlink{_database_check_repository_8cs_source_l00188}{Delete\+Business()}}.
+
+Hier is de caller graaf voor deze functie\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_w_p_r_1_1_repository_1_1_database_check_repository_1_1_database_check_repository_a5fd15b3ae862921144363bb1407c18b0_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_w_p_r_1_1_repository_1_1_database_check_repository_1_1_database_check_repository_ae2e26046eef328d9b24ced25cad3b2a5}\index{WPR.Repository.DatabaseCheckRepository.DatabaseCheckRepository@{WPR.Repository.DatabaseCheckRepository.DatabaseCheckRepository}!DeleteEmployees@{DeleteEmployees}}
+\index{DeleteEmployees@{DeleteEmployees}!WPR.Repository.DatabaseCheckRepository.DatabaseCheckRepository@{WPR.Repository.DatabaseCheckRepository.DatabaseCheckRepository}}
+\doxysubsubsection{\texorpdfstring{DeleteEmployees()}{DeleteEmployees()}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_repository_1_1_database_check_repository_1_1_database_check_repository_ae2e26046eef328d9b24ced25cad3b2a5} 
+int string Dictionary$<$ int, bool $>$ employee\+Data WPR.\+Repository.\+Database\+Check\+Repository.\+Database\+Check\+Repository.\+Delete\+Employees (\begin{DoxyParamCaption}\item[{int}]{kvk}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{_database_check_repository_8cs_source_l00123}{123}} in het bestand \mbox{\hyperlink{_database_check_repository_8cs_source}{Database\+Check\+Repository.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00124\ \ \ \ \ \{}
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ query\ =\ \textcolor{stringliteral}{"{}SELECT\ ID\ From\ Customer\ WHERE\ KvK\ =\ @B"{}};}
+\DoxyCodeLine{00126\ }
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}}
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using}\ (var\ connection\ =\ \_connector.CreateDbConnection())}
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using}\ (var\ command\ =\ \textcolor{keyword}{new}\ MySqlCommand(query,\ (MySqlConnection)connection))}
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ command.Parameters.AddWithValue(\textcolor{stringliteral}{"{}@B"{}},\ kvk);}
+\DoxyCodeLine{00133\ }
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using}\ (var\ reader\ =\ command.ExecuteReader())}
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Dictionary<int,\ bool>\ deletedEmployees\ =\ \textcolor{keyword}{new}\ Dictionary<int,\ bool>();}
+\DoxyCodeLine{00137\ }
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (reader.Read())}
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ reader.FieldCount;\ i++)}
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ employee\ =\ Convert.ToInt32(reader.GetValue(i));}
+\DoxyCodeLine{00143\ }
+\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ var\ deleted\ =\ DeleteUser(employee);}
+\DoxyCodeLine{00145\ }
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (deleted.StatusCode\ ==\ 200)}
+\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ deletedEmployees[employee]\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00151\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ deletedEmployees[employee]\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00156\ }
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (200,\ \textcolor{stringliteral}{"{}"{}},\ deletedEmployees);}
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (MySqlException\ ex)}
+\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (500,\ ex.Message,\ \textcolor{keyword}{new}\ Dictionary<int,\ bool>());}
+\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (OverflowException\ ex)}
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (500,\ ex.Message,\ \textcolor{keyword}{new}\ Dictionary<int,\ bool>());}
+\DoxyCodeLine{00168\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (Exception\ ex)}
+\DoxyCodeLine{00170\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00171\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (500,\ ex.Message,\ \textcolor{keyword}{new}\ Dictionary<int,\ bool>());}
+\DoxyCodeLine{00172\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00173\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+Gebruikt \mbox{\hyperlink{_database_check_repository_8cs_source_l00011}{\+\_\+connector}}, \mbox{\hyperlink{_database_check_repository_8cs_source_l00107}{Delete\+User()}}, \mbox{\hyperlink{_database_check_repository_8cs_source_l00123}{Message}} en \mbox{\hyperlink{_database_check_repository_8cs_source_l00018}{Status\+Code}}.
+
+
+
+Wordt aangeroepen door \mbox{\hyperlink{_database_check_repository_8cs_source_l00188}{Delete\+Business()}}.
+
+Hier is de call graaf voor deze functie\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_w_p_r_1_1_repository_1_1_database_check_repository_1_1_database_check_repository_ae2e26046eef328d9b24ced25cad3b2a5_cgraph}
+\end{center}
+\end{figure}
+Hier is de caller graaf voor deze functie\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_w_p_r_1_1_repository_1_1_database_check_repository_1_1_database_check_repository_ae2e26046eef328d9b24ced25cad3b2a5_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_w_p_r_1_1_repository_1_1_database_check_repository_1_1_database_check_repository_a02f0d55f292e91e17da9fb5fef08f4a8}\index{WPR.Repository.DatabaseCheckRepository.DatabaseCheckRepository@{WPR.Repository.DatabaseCheckRepository.DatabaseCheckRepository}!DeleteFutereContracts@{DeleteFutereContracts}}
+\index{DeleteFutereContracts@{DeleteFutereContracts}!WPR.Repository.DatabaseCheckRepository.DatabaseCheckRepository@{WPR.Repository.DatabaseCheckRepository.DatabaseCheckRepository}}
+\doxysubsubsection{\texorpdfstring{DeleteFutereContracts()}{DeleteFutereContracts()}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_repository_1_1_database_check_repository_1_1_database_check_repository_a02f0d55f292e91e17da9fb5fef08f4a8} 
+int string \mbox{\hyperlink{class_w_p_r_1_1_repository_1_1_database_check_repository_1_1_database_check_repository_af176b5fd8f525f470319ec8eca076ce3}{Message}} WPR.\+Repository.\+Database\+Check\+Repository.\+Database\+Check\+Repository.\+Delete\+Futere\+Contracts (\begin{DoxyParamCaption}\item[{int}]{id}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{_database_check_repository_8cs_source_l00043}{43}} in het bestand \mbox{\hyperlink{_database_check_repository_8cs_source}{Database\+Check\+Repository.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00044\ \ \ \ \ \{}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ query\ =\ \textcolor{stringliteral}{"{}DELETE\ FROM\ Contract\ WHERE\ (Customer\ =\ @C\ AND\ @D\ <\ EndDate)"{}};}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using}\ (var\ connection\ =\ \_connector.CreateDbConnection())}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using}\ (var\ command\ =\ \textcolor{keyword}{new}\ MySqlCommand(query,\ (MySqlConnection)connection))}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ command.Parameters.AddWithValue(\textcolor{stringliteral}{"{}@C"{}},\ \textcolor{keywordtype}{id});}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ command.Parameters.AddWithValue(\textcolor{stringliteral}{"{}@D"{}},\ DateTime.Today);}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ command.ExecuteNonQuery();}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (200,\ \textcolor{stringliteral}{"{}Verwijderen\ toekomstige\ contracten\ was\ succesvol"{}});}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (MySqlException\ ex)}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (500,\ ex.Message);}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (Exception\ ex)}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (500,\ ex.Message);}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00067\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+Gebruikt \mbox{\hyperlink{_database_check_repository_8cs_source_l00011}{\+\_\+connector}}, \mbox{\hyperlink{_database_check_repository_8cs_source_l00123}{Message}} en \mbox{\hyperlink{_database_check_repository_8cs_source_l00018}{Status\+Code}}.
+
+
+
+Wordt aangeroepen door \mbox{\hyperlink{_database_check_repository_8cs_source_l00069}{User\+Has\+Active\+Contract()}}.
+
+Hier is de caller graaf voor deze functie\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_w_p_r_1_1_repository_1_1_database_check_repository_1_1_database_check_repository_a02f0d55f292e91e17da9fb5fef08f4a8_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_w_p_r_1_1_repository_1_1_database_check_repository_1_1_database_check_repository_aeeb328ca72466c0added5450b0af72cd}\index{WPR.Repository.DatabaseCheckRepository.DatabaseCheckRepository@{WPR.Repository.DatabaseCheckRepository.DatabaseCheckRepository}!DeleteUser@{DeleteUser}}
+\index{DeleteUser@{DeleteUser}!WPR.Repository.DatabaseCheckRepository.DatabaseCheckRepository@{WPR.Repository.DatabaseCheckRepository.DatabaseCheckRepository}}
+\doxysubsubsection{\texorpdfstring{DeleteUser()}{DeleteUser()}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_repository_1_1_database_check_repository_1_1_database_check_repository_aeeb328ca72466c0added5450b0af72cd} 
+int string \mbox{\hyperlink{class_w_p_r_1_1_repository_1_1_database_check_repository_1_1_database_check_repository_af176b5fd8f525f470319ec8eca076ce3}{Message}} WPR.\+Repository.\+Database\+Check\+Repository.\+Database\+Check\+Repository.\+Delete\+User (\begin{DoxyParamCaption}\item[{int}]{id}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Implementeert \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_database_check_repository_1_1_i_database_check_repository_a19d609f9777522b2f019cd39adee8c80}{WPR.\+Repository.\+Database\+Check\+Repository.\+IDatabase\+Check\+Repository}}.
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{_database_check_repository_8cs_source_l00107}{107}} in het bestand \mbox{\hyperlink{_database_check_repository_8cs_source}{Database\+Check\+Repository.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00108\ \ \ \ \ \{}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ var\ activeContract\ =\ UserHasActiveContract(\textcolor{keywordtype}{id});}
+\DoxyCodeLine{00110\ }
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (activeContract.StatusCode\ ==\ 200)}
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ query\ =\ \$\textcolor{stringliteral}{"{}DELETE\ FROM\ Customer\ WHERE\ ID\ =\ \{id\}"{}};}
+\DoxyCodeLine{00114\ }
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \ \ \ \ var\ deleteUser\ =\ HandleDelete(query);}
+\DoxyCodeLine{00116\ }
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (deleteUser.StatusCode,\ deleteUser.Message);}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00119\ }
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (activeContract.StatusCode,\ activeContract.Message);}
+\DoxyCodeLine{00121\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+Gebruikt \mbox{\hyperlink{_database_check_repository_8cs_source_l00018}{Handle\+Delete()}}, \mbox{\hyperlink{_database_check_repository_8cs_source_l00123}{Message}}, \mbox{\hyperlink{_database_check_repository_8cs_source_l00018}{Status\+Code}} en \mbox{\hyperlink{_database_check_repository_8cs_source_l00069}{User\+Has\+Active\+Contract()}}.
+
+
+
+Wordt aangeroepen door \mbox{\hyperlink{_database_check_repository_8cs_source_l00123}{Delete\+Employees()}}.
+
+Hier is de call graaf voor deze functie\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_w_p_r_1_1_repository_1_1_database_check_repository_1_1_database_check_repository_aeeb328ca72466c0added5450b0af72cd_cgraph}
+\end{center}
+\end{figure}
+Hier is de caller graaf voor deze functie\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_w_p_r_1_1_repository_1_1_database_check_repository_1_1_database_check_repository_aeeb328ca72466c0added5450b0af72cd_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_w_p_r_1_1_repository_1_1_database_check_repository_1_1_database_check_repository_a1ed88a97f5e7dcf9903fb7d157c17621}\index{WPR.Repository.DatabaseCheckRepository.DatabaseCheckRepository@{WPR.Repository.DatabaseCheckRepository.DatabaseCheckRepository}!DeleteVehicleManager@{DeleteVehicleManager}}
+\index{DeleteVehicleManager@{DeleteVehicleManager}!WPR.Repository.DatabaseCheckRepository.DatabaseCheckRepository@{WPR.Repository.DatabaseCheckRepository.DatabaseCheckRepository}}
+\doxysubsubsection{\texorpdfstring{DeleteVehicleManager()}{DeleteVehicleManager()}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_repository_1_1_database_check_repository_1_1_database_check_repository_a1ed88a97f5e7dcf9903fb7d157c17621} 
+int string \mbox{\hyperlink{class_w_p_r_1_1_repository_1_1_database_check_repository_1_1_database_check_repository_af176b5fd8f525f470319ec8eca076ce3}{Message}} WPR.\+Repository.\+Database\+Check\+Repository.\+Database\+Check\+Repository.\+Delete\+Vehicle\+Manager (\begin{DoxyParamCaption}\item[{int}]{id}{, }\item[{int}]{kvk}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Implementeert \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_database_check_repository_1_1_i_database_check_repository_ad164c556782c53893b996f255ec9ee32}{WPR.\+Repository.\+Database\+Check\+Repository.\+IDatabase\+Check\+Repository}}.
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{_database_check_repository_8cs_source_l00244}{244}} in het bestand \mbox{\hyperlink{_database_check_repository_8cs_source}{Database\+Check\+Repository.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00245\ \ \ \ \ \{}
+\DoxyCodeLine{00246\ \ \ \ \ \ \ \ \ var\ allowed\ =\ MinimumVehicleManagers(kvk);}
+\DoxyCodeLine{00247\ }
+\DoxyCodeLine{00248\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (allowed.StatusCode\ ==\ 200)}
+\DoxyCodeLine{00249\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00250\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ query\ =\ \$\textcolor{stringliteral}{"{}DELETE\ FROM\ VehicleManager\ WHERE\ ID\ =\ \{id\}"{}};}
+\DoxyCodeLine{00251\ }
+\DoxyCodeLine{00252\ \ \ \ \ \ \ \ \ \ \ \ \ var\ deleteUser\ =\ HandleDelete(query);}
+\DoxyCodeLine{00253\ }
+\DoxyCodeLine{00254\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (deleteUser.StatusCode,\ deleteUser.Message);}
+\DoxyCodeLine{00255\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00256\ }
+\DoxyCodeLine{00257\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (allowed.StatusCode,\ allowed.Message);}
+\DoxyCodeLine{00258\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+Gebruikt \mbox{\hyperlink{_database_check_repository_8cs_source_l00018}{Handle\+Delete()}}, \mbox{\hyperlink{_database_check_repository_8cs_source_l00123}{Message}}, \mbox{\hyperlink{_database_check_repository_8cs_source_l00208}{Minimum\+Vehicle\+Managers()}} en \mbox{\hyperlink{_database_check_repository_8cs_source_l00018}{Status\+Code}}.
+
+Hier is de call graaf voor deze functie\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_w_p_r_1_1_repository_1_1_database_check_repository_1_1_database_check_repository_a1ed88a97f5e7dcf9903fb7d157c17621_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_w_p_r_1_1_repository_1_1_database_check_repository_1_1_database_check_repository_a5ef386a9041a706a2db64267c1689bc7}\index{WPR.Repository.DatabaseCheckRepository.DatabaseCheckRepository@{WPR.Repository.DatabaseCheckRepository.DatabaseCheckRepository}!HandleDelete@{HandleDelete}}
+\index{HandleDelete@{HandleDelete}!WPR.Repository.DatabaseCheckRepository.DatabaseCheckRepository@{WPR.Repository.DatabaseCheckRepository.DatabaseCheckRepository}}
+\doxysubsubsection{\texorpdfstring{HandleDelete()}{HandleDelete()}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_repository_1_1_database_check_repository_1_1_database_check_repository_a5ef386a9041a706a2db64267c1689bc7} 
+int string \mbox{\hyperlink{class_w_p_r_1_1_repository_1_1_database_check_repository_1_1_database_check_repository_af176b5fd8f525f470319ec8eca076ce3}{Message}} WPR.\+Repository.\+Database\+Check\+Repository.\+Database\+Check\+Repository.\+Handle\+Delete (\begin{DoxyParamCaption}\item[{string}]{query}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{_database_check_repository_8cs_source_l00018}{18}} in het bestand \mbox{\hyperlink{_database_check_repository_8cs_source}{Database\+Check\+Repository.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00019\ \ \ \ \ \{}
+\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}}
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using}\ (var\ connection\ =\ \_connector.CreateDbConnection())}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using}\ (var\ command\ =\ \textcolor{keyword}{new}\ MySqlCommand(query,\ (MySqlConnection)connection))}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Console.WriteLine(query);}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (command.ExecuteNonQuery()\ >\ 0)}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (200,\ \textcolor{stringliteral}{"{}Succesfully\ deleted"{}});}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (404,\ \textcolor{stringliteral}{"{}Verwijderen\ van\ gegevens\ gefaald.\ Opgegeven\ gegevens\ bestaan\ niet"{}});}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (MySqlException\ ex)}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (500,\ ex.Message);}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (Exception\ ex)}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (500,\ ex.Message);}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00041\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+Gebruikt \mbox{\hyperlink{_database_check_repository_8cs_source_l00011}{\+\_\+connector}}, \mbox{\hyperlink{_database_check_repository_8cs_source_l00123}{Message}} en \mbox{\hyperlink{_database_check_repository_8cs_source_l00018}{Status\+Code}}.
+
+
+
+Wordt aangeroepen door \mbox{\hyperlink{_database_check_repository_8cs_source_l00188}{Delete\+Business()}}, \mbox{\hyperlink{_database_check_repository_8cs_source_l00107}{Delete\+User()}} en \mbox{\hyperlink{_database_check_repository_8cs_source_l00244}{Delete\+Vehicle\+Manager()}}.
+
+Hier is de caller graaf voor deze functie\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_w_p_r_1_1_repository_1_1_database_check_repository_1_1_database_check_repository_a5ef386a9041a706a2db64267c1689bc7_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_w_p_r_1_1_repository_1_1_database_check_repository_1_1_database_check_repository_a40af55c745a5531c04e3d483bc61e885}\index{WPR.Repository.DatabaseCheckRepository.DatabaseCheckRepository@{WPR.Repository.DatabaseCheckRepository.DatabaseCheckRepository}!MinimumVehicleManagers@{MinimumVehicleManagers}}
+\index{MinimumVehicleManagers@{MinimumVehicleManagers}!WPR.Repository.DatabaseCheckRepository.DatabaseCheckRepository@{WPR.Repository.DatabaseCheckRepository.DatabaseCheckRepository}}
+\doxysubsubsection{\texorpdfstring{MinimumVehicleManagers()}{MinimumVehicleManagers()}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_repository_1_1_database_check_repository_1_1_database_check_repository_a40af55c745a5531c04e3d483bc61e885} 
+int string \mbox{\hyperlink{class_w_p_r_1_1_repository_1_1_database_check_repository_1_1_database_check_repository_af176b5fd8f525f470319ec8eca076ce3}{Message}} WPR.\+Repository.\+Database\+Check\+Repository.\+Database\+Check\+Repository.\+Minimum\+Vehicle\+Managers (\begin{DoxyParamCaption}\item[{int}]{kvk}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{_database_check_repository_8cs_source_l00208}{208}} in het bestand \mbox{\hyperlink{_database_check_repository_8cs_source}{Database\+Check\+Repository.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00209\ \ \ \ \ \{}
+\DoxyCodeLine{00210\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ query\ =\ \textcolor{stringliteral}{"{}SELECT\ COUNT(*)\ FROM\ VehicleManager\ WHERE\ Business\ =\ @B"{}};}
+\DoxyCodeLine{00211\ }
+\DoxyCodeLine{00212\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}}
+\DoxyCodeLine{00213\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00214\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using}\ (var\ connection\ =\ \_connector.CreateDbConnection())}
+\DoxyCodeLine{00215\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using}\ (var\ command\ =\ \textcolor{keyword}{new}\ MySqlCommand(query,\ (MySqlConnection)connection))}
+\DoxyCodeLine{00216\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00217\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ command.Parameters.AddWithValue(\textcolor{stringliteral}{"{}@B"{}},\ kvk);}
+\DoxyCodeLine{00218\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Console.WriteLine(query\ +\ \$\textcolor{stringliteral}{"{}\ |\ \{kvk\}"{}});}
+\DoxyCodeLine{00219\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ count\ =\ Convert.ToInt32(command.ExecuteScalar());}
+\DoxyCodeLine{00220\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Console.WriteLine(count);}
+\DoxyCodeLine{00221\ }
+\DoxyCodeLine{00222\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (count\ >\ 1)}
+\DoxyCodeLine{00223\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00224\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (200,\ \textcolor{stringliteral}{"{}Allowed"{}});}
+\DoxyCodeLine{00225\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00226\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (422,\ \textcolor{stringliteral}{"{}Er\ moet\ minimaal\ 1\ wagenparkbeheerder\ beschikbaar\ zijn"{}});}
+\DoxyCodeLine{00227\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00228\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00229\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (MySqlException\ ex)}
+\DoxyCodeLine{00230\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00231\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (500,\ ex.Message);}
+\DoxyCodeLine{00232\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00233\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (OverflowException\ ex)}
+\DoxyCodeLine{00234\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00235\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (500,\ ex.Message);}
+\DoxyCodeLine{00236\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00237\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (Exception\ ex)}
+\DoxyCodeLine{00238\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00239\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (500,\ ex.Message);}
+\DoxyCodeLine{00240\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00241\ }
+\DoxyCodeLine{00242\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+Gebruikt \mbox{\hyperlink{_database_check_repository_8cs_source_l00011}{\+\_\+connector}}, \mbox{\hyperlink{_database_check_repository_8cs_source_l00123}{Message}} en \mbox{\hyperlink{_database_check_repository_8cs_source_l00018}{Status\+Code}}.
+
+
+
+Wordt aangeroepen door \mbox{\hyperlink{_database_check_repository_8cs_source_l00244}{Delete\+Vehicle\+Manager()}}.
+
+Hier is de caller graaf voor deze functie\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_w_p_r_1_1_repository_1_1_database_check_repository_1_1_database_check_repository_a40af55c745a5531c04e3d483bc61e885_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_w_p_r_1_1_repository_1_1_database_check_repository_1_1_database_check_repository_a13ae0d3f4211da655fc83812019febf6}\index{WPR.Repository.DatabaseCheckRepository.DatabaseCheckRepository@{WPR.Repository.DatabaseCheckRepository.DatabaseCheckRepository}!UserHasActiveContract@{UserHasActiveContract}}
+\index{UserHasActiveContract@{UserHasActiveContract}!WPR.Repository.DatabaseCheckRepository.DatabaseCheckRepository@{WPR.Repository.DatabaseCheckRepository.DatabaseCheckRepository}}
+\doxysubsubsection{\texorpdfstring{UserHasActiveContract()}{UserHasActiveContract()}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_repository_1_1_database_check_repository_1_1_database_check_repository_a13ae0d3f4211da655fc83812019febf6} 
+int string \mbox{\hyperlink{class_w_p_r_1_1_repository_1_1_database_check_repository_1_1_database_check_repository_af176b5fd8f525f470319ec8eca076ce3}{Message}} WPR.\+Repository.\+Database\+Check\+Repository.\+Database\+Check\+Repository.\+User\+Has\+Active\+Contract (\begin{DoxyParamCaption}\item[{int}]{id}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{_database_check_repository_8cs_source_l00069}{69}} in het bestand \mbox{\hyperlink{_database_check_repository_8cs_source}{Database\+Check\+Repository.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00070\ \ \ \ \ \{}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ query\ =\ \textcolor{stringliteral}{"{}SELECT\ COUNT(*)\ FROM\ Contract\ WHERE\ (Customer\ =\ @C\ AND\ @D\ BETWEEN\ StartDate\ AND\ EndDate\ AND\ Status\ =\ 'accepted')"{}};}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using}\ (var\ connection\ =\ \_connector.CreateDbConnection())}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using}\ (var\ command\ =\ \textcolor{keyword}{new}\ MySqlCommand(query,\ (MySqlConnection)connection))}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ command.Parameters.AddWithValue(\textcolor{stringliteral}{"{}@C"{}},\ \textcolor{keywordtype}{id});}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ command.Parameters.AddWithValue(\textcolor{stringliteral}{"{}@D"{}},\ DateTime.Today);}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ count\ =\ Convert.ToInt32(command.ExecuteScalar());}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (count\ >\ 0)}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (424,\ \textcolor{stringliteral}{"{}Gebruiker\ heeft\ momenteel\ een\ lopend\ contract"{}});}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ var\ deleteFutereContracts\ =\ DeleteFutereContracts(\textcolor{keywordtype}{id});}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (deleteFutereContracts.StatusCode,\ deleteFutereContracts.Message);}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (MySqlException\ ex)}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (500,\ ex.Message);}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (OverflowException\ ex)}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (500,\ ex.Message);}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (Exception\ ex)}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (500,\ ex.Message);}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00105\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+Gebruikt \mbox{\hyperlink{_database_check_repository_8cs_source_l00011}{\+\_\+connector}}, \mbox{\hyperlink{_database_check_repository_8cs_source_l00043}{Delete\+Futere\+Contracts()}}, \mbox{\hyperlink{_database_check_repository_8cs_source_l00123}{Message}} en \mbox{\hyperlink{_database_check_repository_8cs_source_l00018}{Status\+Code}}.
+
+
+
+Wordt aangeroepen door \mbox{\hyperlink{_database_check_repository_8cs_source_l00107}{Delete\+User()}}.
+
+Hier is de call graaf voor deze functie\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_w_p_r_1_1_repository_1_1_database_check_repository_1_1_database_check_repository_a13ae0d3f4211da655fc83812019febf6_cgraph}
+\end{center}
+\end{figure}
+Hier is de caller graaf voor deze functie\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_w_p_r_1_1_repository_1_1_database_check_repository_1_1_database_check_repository_a13ae0d3f4211da655fc83812019febf6_icgraph}
+\end{center}
+\end{figure}
+
+
+\doxysubsection{Documentatie van data velden}
+\Hypertarget{class_w_p_r_1_1_repository_1_1_database_check_repository_1_1_database_check_repository_ae5f01edd6647ca057d0ec52876f88d98}\index{WPR.Repository.DatabaseCheckRepository.DatabaseCheckRepository@{WPR.Repository.DatabaseCheckRepository.DatabaseCheckRepository}!\_connector@{\_connector}}
+\index{\_connector@{\_connector}!WPR.Repository.DatabaseCheckRepository.DatabaseCheckRepository@{WPR.Repository.DatabaseCheckRepository.DatabaseCheckRepository}}
+\doxysubsubsection{\texorpdfstring{\_connector}{\_connector}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_repository_1_1_database_check_repository_1_1_database_check_repository_ae5f01edd6647ca057d0ec52876f88d98} 
+readonly \mbox{\hyperlink{interface_w_p_r_1_1_database_1_1_i_connector}{IConnector}} WPR.\+Repository.\+Database\+Check\+Repository.\+Database\+Check\+Repository.\+\_\+connector\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{_database_check_repository_8cs_source_l00011}{11}} in het bestand \mbox{\hyperlink{_database_check_repository_8cs_source}{Database\+Check\+Repository.\+cs}}.
+
+
+
+Wordt aangeroepen door \mbox{\hyperlink{_database_check_repository_8cs_source_l00013}{Database\+Check\+Repository()}}, \mbox{\hyperlink{_database_check_repository_8cs_source_l00123}{Delete\+Employees()}}, \mbox{\hyperlink{_database_check_repository_8cs_source_l00043}{Delete\+Futere\+Contracts()}}, \mbox{\hyperlink{_database_check_repository_8cs_source_l00018}{Handle\+Delete()}}, \mbox{\hyperlink{_database_check_repository_8cs_source_l00208}{Minimum\+Vehicle\+Managers()}} en \mbox{\hyperlink{_database_check_repository_8cs_source_l00069}{User\+Has\+Active\+Contract()}}.
+
+\Hypertarget{class_w_p_r_1_1_repository_1_1_database_check_repository_1_1_database_check_repository_af176b5fd8f525f470319ec8eca076ce3}\index{WPR.Repository.DatabaseCheckRepository.DatabaseCheckRepository@{WPR.Repository.DatabaseCheckRepository.DatabaseCheckRepository}!Message@{Message}}
+\index{Message@{Message}!WPR.Repository.DatabaseCheckRepository.DatabaseCheckRepository@{WPR.Repository.DatabaseCheckRepository.DatabaseCheckRepository}}
+\doxysubsubsection{\texorpdfstring{Message}{Message}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_repository_1_1_database_check_repository_1_1_database_check_repository_af176b5fd8f525f470319ec8eca076ce3} 
+int string WPR.\+Repository.\+Database\+Check\+Repository.\+Database\+Check\+Repository.\+Message\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{_database_check_repository_8cs_source_l00123}{123}} in het bestand \mbox{\hyperlink{_database_check_repository_8cs_source}{Database\+Check\+Repository.\+cs}}.
+
+
+
+Wordt aangeroepen door \mbox{\hyperlink{_database_check_repository_8cs_source_l00188}{Delete\+Business()}}, \mbox{\hyperlink{_database_check_repository_8cs_source_l00123}{Delete\+Employees()}}, \mbox{\hyperlink{_database_check_repository_8cs_source_l00043}{Delete\+Futere\+Contracts()}}, \mbox{\hyperlink{_database_check_repository_8cs_source_l00107}{Delete\+User()}}, \mbox{\hyperlink{_database_check_repository_8cs_source_l00244}{Delete\+Vehicle\+Manager()}}, \mbox{\hyperlink{_database_check_repository_8cs_source_l00018}{Handle\+Delete()}}, \mbox{\hyperlink{_database_check_repository_8cs_source_l00208}{Minimum\+Vehicle\+Managers()}} en \mbox{\hyperlink{_database_check_repository_8cs_source_l00069}{User\+Has\+Active\+Contract()}}.
+
+\Hypertarget{class_w_p_r_1_1_repository_1_1_database_check_repository_1_1_database_check_repository_aa8c39a5bc0800e49ab35b6a3d5f7b990}\index{WPR.Repository.DatabaseCheckRepository.DatabaseCheckRepository@{WPR.Repository.DatabaseCheckRepository.DatabaseCheckRepository}!StatusCode@{StatusCode}}
+\index{StatusCode@{StatusCode}!WPR.Repository.DatabaseCheckRepository.DatabaseCheckRepository@{WPR.Repository.DatabaseCheckRepository.DatabaseCheckRepository}}
+\doxysubsubsection{\texorpdfstring{StatusCode}{StatusCode}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_repository_1_1_database_check_repository_1_1_database_check_repository_aa8c39a5bc0800e49ab35b6a3d5f7b990} 
+int WPR.\+Repository.\+Database\+Check\+Repository.\+Database\+Check\+Repository.\+Status\+Code\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{_database_check_repository_8cs_source_l00018}{18}} in het bestand \mbox{\hyperlink{_database_check_repository_8cs_source}{Database\+Check\+Repository.\+cs}}.
+
+
+
+Wordt aangeroepen door \mbox{\hyperlink{_database_check_repository_8cs_source_l00188}{Delete\+Business()}}, \mbox{\hyperlink{_database_check_repository_8cs_source_l00123}{Delete\+Employees()}}, \mbox{\hyperlink{_database_check_repository_8cs_source_l00043}{Delete\+Futere\+Contracts()}}, \mbox{\hyperlink{_database_check_repository_8cs_source_l00107}{Delete\+User()}}, \mbox{\hyperlink{_database_check_repository_8cs_source_l00244}{Delete\+Vehicle\+Manager()}}, \mbox{\hyperlink{_database_check_repository_8cs_source_l00018}{Handle\+Delete()}}, \mbox{\hyperlink{_database_check_repository_8cs_source_l00208}{Minimum\+Vehicle\+Managers()}} en \mbox{\hyperlink{_database_check_repository_8cs_source_l00069}{User\+Has\+Active\+Contract()}}.
+
+
+
+De documentatie voor deze klasse is gegenereerd op basis van het volgende bestand\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/codes/\+WPR8/\+WPR/backend/src/\+Repository/\mbox{\hyperlink{_database_check_repository_8cs}{Database\+Check\+Repository.\+cs}}\end{DoxyCompactItemize}

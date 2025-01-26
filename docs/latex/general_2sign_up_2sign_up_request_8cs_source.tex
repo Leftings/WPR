@@ -1,0 +1,60 @@
+\doxysection{sign\+Up\+Request.\+cs}
+\hypertarget{general_2sign_up_2sign_up_request_8cs_source}{}\label{general_2sign_up_2sign_up_request_8cs_source}\index{D:/codes/WPR8/WPR/backend/src/Controllers/general/signUp/signUpRequest.cs@{D:/codes/WPR8/WPR/backend/src/Controllers/general/signUp/signUpRequest.cs}}
+\mbox{\hyperlink{general_2sign_up_2sign_up_request_8cs}{Ga naar de documentatie van dit bestand.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{general_2sign_up_2sign_up_request_8cs_source_l00001}00001\ \textcolor{keyword}{using\ }System.ComponentModel.DataAnnotations;}
+\DoxyCodeLine{\Hypertarget{general_2sign_up_2sign_up_request_8cs_source_l00002}00002\ \textcolor{keyword}{using\ }System.Security.Policy;}
+\DoxyCodeLine{\Hypertarget{general_2sign_up_2sign_up_request_8cs_source_l00003}00003\ \textcolor{keyword}{using\ }System.Security.Principal;}
+\DoxyCodeLine{\Hypertarget{general_2sign_up_2sign_up_request_8cs_source_l00004}00004\ }
+\DoxyCodeLine{\Hypertarget{general_2sign_up_2sign_up_request_8cs_source_l00005}00005\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_w_p_r_1_1_controllers_1_1_general_1_1_sign_up}{WPR.Controllers.General.SignUp}};}
+\DoxyCodeLine{\Hypertarget{general_2sign_up_2sign_up_request_8cs_source_l00006}00006\ }
+\DoxyCodeLine{\Hypertarget{general_2sign_up_2sign_up_request_8cs_source_l00010}\mbox{\hyperlink{namespace_w_p_r_1_1_controllers_1_1_general_1_1_sign_up_a1a899a5abbcf0be4ee87632f0500c697}{00010}}\ \textcolor{keyword}{public}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{namespace_w_p_r_1_1_controllers_1_1_general_1_1_sign_up_a1a899a5abbcf0be4ee87632f0500c697}{SignUpRequest}}()}
+\DoxyCodeLine{\Hypertarget{general_2sign_up_2sign_up_request_8cs_source_l00011}00011\ \{}
+\DoxyCodeLine{\Hypertarget{general_2sign_up_2sign_up_request_8cs_source_l00012}00012\ \ \ \ \ [Required]}
+\DoxyCodeLine{\Hypertarget{general_2sign_up_2sign_up_request_8cs_source_l00013}00013\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{string}\ \mbox{\hyperlink{namespace_w_p_r_1_1_email}{Email}}\ \{\ \textcolor{keyword}{get};\ \textcolor{keyword}{set};\ \}}
+\DoxyCodeLine{\Hypertarget{general_2sign_up_2sign_up_request_8cs_source_l00014}00014\ \ \ \ \ [Required]}
+\DoxyCodeLine{\Hypertarget{general_2sign_up_2sign_up_request_8cs_source_l00015}00015\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{string}\ AccountType\ \{\ \textcolor{keyword}{get};\ \textcolor{keyword}{set};\ \}}
+\DoxyCodeLine{\Hypertarget{general_2sign_up_2sign_up_request_8cs_source_l00016}00016\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{int}\ KvK\ \{\ \textcolor{keyword}{get};\ \textcolor{keyword}{set};\ \}}
+\DoxyCodeLine{\Hypertarget{general_2sign_up_2sign_up_request_8cs_source_l00017}00017\ \ \ \ \ [Required]}
+\DoxyCodeLine{\Hypertarget{general_2sign_up_2sign_up_request_8cs_source_l00018}00018\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{string}\ Password\ \{\ \textcolor{keyword}{get};\ \textcolor{keyword}{set};\ \}}
+\DoxyCodeLine{\Hypertarget{general_2sign_up_2sign_up_request_8cs_source_l00019}00019\ \ \ \ \ [Required]}
+\DoxyCodeLine{\Hypertarget{general_2sign_up_2sign_up_request_8cs_source_l00020}00020\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{string}\ FirstName\ \{\ \textcolor{keyword}{get};\ \textcolor{keyword}{set};\ \}}
+\DoxyCodeLine{\Hypertarget{general_2sign_up_2sign_up_request_8cs_source_l00021}00021\ \ \ \ \ [Required]}
+\DoxyCodeLine{\Hypertarget{general_2sign_up_2sign_up_request_8cs_source_l00022}00022\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{string}\ LastName\ \{\ \textcolor{keyword}{get};\ \textcolor{keyword}{set};\ \}}
+\DoxyCodeLine{\Hypertarget{general_2sign_up_2sign_up_request_8cs_source_l00023}00023\ \ \ \ \ [Required]}
+\DoxyCodeLine{\Hypertarget{general_2sign_up_2sign_up_request_8cs_source_l00024}00024\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{string}\ TelNumber\ \{\ \textcolor{keyword}{get};\ \textcolor{keyword}{set};\ \}}
+\DoxyCodeLine{\Hypertarget{general_2sign_up_2sign_up_request_8cs_source_l00025}00025\ \ \ \ \ [Required]}
+\DoxyCodeLine{\Hypertarget{general_2sign_up_2sign_up_request_8cs_source_l00026}00026\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{string}\ Adres\ \{\ \textcolor{keyword}{get};\ \textcolor{keyword}{set};\ \}}
+\DoxyCodeLine{\Hypertarget{general_2sign_up_2sign_up_request_8cs_source_l00027}00027\ \ \ \ \ [Required]}
+\DoxyCodeLine{\Hypertarget{general_2sign_up_2sign_up_request_8cs_source_l00028}00028\ \ \ \ \ \textcolor{keyword}{public}\ DateTime\ BirthDate\ \{\ \textcolor{keyword}{get};\ \textcolor{keyword}{set};\ \}}
+\DoxyCodeLine{\Hypertarget{general_2sign_up_2sign_up_request_8cs_source_l00029}00029\ \}}
+\DoxyCodeLine{\Hypertarget{general_2sign_up_2sign_up_request_8cs_source_l00030}00030\ }
+\DoxyCodeLine{\Hypertarget{general_2sign_up_2sign_up_request_8cs_source_l00031}\mbox{\hyperlink{namespace_w_p_r_1_1_controllers_1_1_general_1_1_sign_up_aa900677400c93afffd84ac3aba306774}{00031}}\ \textcolor{keyword}{public}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{namespace_w_p_r_1_1_controllers_1_1_general_1_1_sign_up_aa900677400c93afffd84ac3aba306774}{CombinedSignUpRequest}}()}
+\DoxyCodeLine{\Hypertarget{general_2sign_up_2sign_up_request_8cs_source_l00032}00032\ \{}
+\DoxyCodeLine{\Hypertarget{general_2sign_up_2sign_up_request_8cs_source_l00033}00033\ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{namespace_w_p_r_1_1_controllers_1_1_general_1_1_sign_up_abf09877e4843c0b4ff2791cc32242102}{SignUpRequestCustomer}}\ \mbox{\hyperlink{namespace_w_p_r_1_1_controllers_1_1_general_1_1_sign_up_abf09877e4843c0b4ff2791cc32242102}{SignUpRequestCustomer}}\ \{\ \textcolor{keyword}{get};\ \textcolor{keyword}{set};\ \}}
+\DoxyCodeLine{\Hypertarget{general_2sign_up_2sign_up_request_8cs_source_l00034}00034\ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{namespace_w_p_r_1_1_controllers_1_1_general_1_1_sign_up_ab012081435b4392bd8e6e4525e336d68}{SignUpRequestCustomerPrivate}}?\ \mbox{\hyperlink{namespace_w_p_r_1_1_controllers_1_1_general_1_1_sign_up_ab012081435b4392bd8e6e4525e336d68}{SignUpRequestCustomerPrivate}}\ \{\ \textcolor{keyword}{get};\ \textcolor{keyword}{set};\ \}}
+\DoxyCodeLine{\Hypertarget{general_2sign_up_2sign_up_request_8cs_source_l00035}00035\ \}}
+\DoxyCodeLine{\Hypertarget{general_2sign_up_2sign_up_request_8cs_source_l00036}00036\ }
+\DoxyCodeLine{\Hypertarget{general_2sign_up_2sign_up_request_8cs_source_l00037}\mbox{\hyperlink{namespace_w_p_r_1_1_controllers_1_1_general_1_1_sign_up_abf09877e4843c0b4ff2791cc32242102}{00037}}\ \textcolor{keyword}{public}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{namespace_w_p_r_1_1_controllers_1_1_general_1_1_sign_up_abf09877e4843c0b4ff2791cc32242102}{SignUpRequestCustomer}}()}
+\DoxyCodeLine{\Hypertarget{general_2sign_up_2sign_up_request_8cs_source_l00038}00038\ \{}
+\DoxyCodeLine{\Hypertarget{general_2sign_up_2sign_up_request_8cs_source_l00039}00039\ \ \ \ \ [Required]}
+\DoxyCodeLine{\Hypertarget{general_2sign_up_2sign_up_request_8cs_source_l00040}00040\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{string}\ \mbox{\hyperlink{namespace_w_p_r_1_1_email}{Email}}\ \{\ \textcolor{keyword}{get};\ \textcolor{keyword}{set};\ \}}
+\DoxyCodeLine{\Hypertarget{general_2sign_up_2sign_up_request_8cs_source_l00041}00041\ \ \ \ \ [Required]}
+\DoxyCodeLine{\Hypertarget{general_2sign_up_2sign_up_request_8cs_source_l00042}00042\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{string}\ AccountType\ \{\ \textcolor{keyword}{get};\ \textcolor{keyword}{set};\ \}}
+\DoxyCodeLine{\Hypertarget{general_2sign_up_2sign_up_request_8cs_source_l00043}00043\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{int}?\ KvK\ \{\ \textcolor{keyword}{get};\ \textcolor{keyword}{set};\ \}}
+\DoxyCodeLine{\Hypertarget{general_2sign_up_2sign_up_request_8cs_source_l00044}00044\ \ \ \ \ [Required]}
+\DoxyCodeLine{\Hypertarget{general_2sign_up_2sign_up_request_8cs_source_l00045}00045\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{string}\ Password\ \{\ \textcolor{keyword}{get};\ \textcolor{keyword}{set};\ \}}
+\DoxyCodeLine{\Hypertarget{general_2sign_up_2sign_up_request_8cs_source_l00046}00046\ \ \ \ \ [Required]}
+\DoxyCodeLine{\Hypertarget{general_2sign_up_2sign_up_request_8cs_source_l00047}00047\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{bool}\ IsPrivate\ \{\ \textcolor{keyword}{get};\ \textcolor{keyword}{set};\ \}}
+\DoxyCodeLine{\Hypertarget{general_2sign_up_2sign_up_request_8cs_source_l00048}00048\ \}}
+\DoxyCodeLine{\Hypertarget{general_2sign_up_2sign_up_request_8cs_source_l00049}00049\ }
+\DoxyCodeLine{\Hypertarget{general_2sign_up_2sign_up_request_8cs_source_l00050}\mbox{\hyperlink{namespace_w_p_r_1_1_controllers_1_1_general_1_1_sign_up_ab012081435b4392bd8e6e4525e336d68}{00050}}\ \textcolor{keyword}{public}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{namespace_w_p_r_1_1_controllers_1_1_general_1_1_sign_up_ab012081435b4392bd8e6e4525e336d68}{SignUpRequestCustomerPrivate}}()}
+\DoxyCodeLine{\Hypertarget{general_2sign_up_2sign_up_request_8cs_source_l00051}00051\ \{}
+\DoxyCodeLine{\Hypertarget{general_2sign_up_2sign_up_request_8cs_source_l00052}00052\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{string}?\ FirstName\ \{\ \textcolor{keyword}{get};\ \textcolor{keyword}{set};\ \}}
+\DoxyCodeLine{\Hypertarget{general_2sign_up_2sign_up_request_8cs_source_l00053}00053\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{string}?\ LastName\ \{\ \textcolor{keyword}{get};\ \textcolor{keyword}{set};\ \}}
+\DoxyCodeLine{\Hypertarget{general_2sign_up_2sign_up_request_8cs_source_l00054}00054\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{string}?\ TelNumber\ \{\ \textcolor{keyword}{get};\ \textcolor{keyword}{set};\ \}}
+\DoxyCodeLine{\Hypertarget{general_2sign_up_2sign_up_request_8cs_source_l00055}00055\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{string}?\ Adres\ \{\ \textcolor{keyword}{get};\ \textcolor{keyword}{set};\ \}}
+\DoxyCodeLine{\Hypertarget{general_2sign_up_2sign_up_request_8cs_source_l00056}00056\ \ \ \ \ \textcolor{keyword}{public}\ DateTime?\ BirthDate\ \{\ \textcolor{keyword}{get};\ \textcolor{keyword}{set};\ \}}
+\DoxyCodeLine{\Hypertarget{general_2sign_up_2sign_up_request_8cs_source_l00057}00057\ \}}
+
+\end{DoxyCode}

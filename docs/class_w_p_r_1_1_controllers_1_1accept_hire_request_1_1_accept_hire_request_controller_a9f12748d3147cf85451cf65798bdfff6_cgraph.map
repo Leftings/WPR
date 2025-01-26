@@ -1,5 +1,0 @@
-<map id="WPR.Controllers.acceptHireRequest.AcceptHireRequestController.AnswerHireRequestAsync" name="WPR.Controllers.acceptHireRequest.AcceptHireRequestController.AnswerHireRequestAsync">
-<area shape="rect" id="Node000001" title="Een aanvraag kan beantwoord worden." alt="" coords="5,5,254,64"/>
-<area shape="rect" id="Node000002" href="$class_w_p_r_1_1_controllers_1_1accept_hire_request_1_1_accept_hire_request_controller.html#a148cd4b433cda0bff9a273e654e076cb" title="Huidige user id wordt opgehaald, voor validatie en logging." alt="" coords="302,5,550,64"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="254,32,286,32,286,37,254,37"/>
-</map>

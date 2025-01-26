@@ -1,0 +1,5 @@
+<map id="WPR.Repository.UserRepository.CreateUserInfoQuery" name="WPR.Repository.UserRepository.CreateUserInfoQuery">
+<area shape="rect" id="Node000001" title="Er wordt een query aangemaakt, met daarin de meegeven gegevens die veranderd moeten worden in het acc..." alt="" coords="5,5,223,48"/>
+<area shape="rect" id="Node000002" href="$class_w_p_r_1_1_repository_1_1_user_repository.html#a7903e03bfe7076a6ee7b352636cb854d" title="Er wordt gekeken of het emailadres al bestaat in de databse." alt="" coords="271,5,523,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="223,24,255,24,255,29,223,29"/>
+</map>

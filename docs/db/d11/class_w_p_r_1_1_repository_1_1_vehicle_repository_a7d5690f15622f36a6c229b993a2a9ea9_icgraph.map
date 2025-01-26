@@ -1,7 +1,0 @@
-<map id="WPR.Repository.VehicleRepository.GetVehicleColorAsync" name="WPR.Repository.VehicleRepository.GetVehicleColorAsync">
-<area shape="rect" id="Node000001" title="Haalt de kleur van een voertuig op basis van het opgegeven frameNr." alt="" coords="564,5,795,48"/>
-<area shape="rect" id="Node000002" href="$db/d11/class_w_p_r_1_1_repository_1_1_vehicle_repository.html#a2c371ee4ceecc0aed0aa772f6e8eee5a" title="Verstuurt een bevestigingsmail naar de gebruiker na het succesvol aanmaken van een huurverzoek." alt="" coords="285,5,516,48"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="548,29,516,29,516,24,548,24"/>
-<area shape="rect" id="Node000003" href="$db/d11/class_w_p_r_1_1_repository_1_1_vehicle_repository.html#a35a796e7cf96268b3fe824913616c411" title="Verwerkt het huurverzoek door de gebruiker te valideren, het verzoek toe te voegen aan de database en..." alt="" coords="5,5,237,48"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="269,29,237,29,237,24,269,24"/>
-</map>

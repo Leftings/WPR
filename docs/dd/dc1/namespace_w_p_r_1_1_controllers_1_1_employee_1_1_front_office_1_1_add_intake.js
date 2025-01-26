@@ -1,7 +1,0 @@
-var namespace_w_p_r_1_1_controllers_1_1_employee_1_1_front_office_1_1_add_intake =
-[
-    [ "AddIntakeController", "d7/d76/class_w_p_r_1_1_controllers_1_1_employee_1_1_front_office_1_1_add_intake_1_1_add_intake_controller.html", "d7/d76/class_w_p_r_1_1_controllers_1_1_employee_1_1_front_office_1_1_add_intake_1_1_add_intake_controller" ],
-    [ "AddIntakeErrorResponse", "d9/d59/class_w_p_r_1_1_controllers_1_1_employee_1_1_front_office_1_1_add_intake_1_1_add_intake_error_response.html", "d9/d59/class_w_p_r_1_1_controllers_1_1_employee_1_1_front_office_1_1_add_intake_1_1_add_intake_error_response" ],
-    [ "AddIntakeRequest", "d0/dfe/class_w_p_r_1_1_controllers_1_1_employee_1_1_front_office_1_1_add_intake_1_1_add_intake_request.html", "d0/dfe/class_w_p_r_1_1_controllers_1_1_employee_1_1_front_office_1_1_add_intake_1_1_add_intake_request" ],
-    [ "AddIntakeResponse", "d6/daf/class_w_p_r_1_1_controllers_1_1_employee_1_1_front_office_1_1_add_intake_1_1_add_intake_response.html", "d6/daf/class_w_p_r_1_1_controllers_1_1_employee_1_1_front_office_1_1_add_intake_1_1_add_intake_response" ]
-];

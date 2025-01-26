@@ -1,0 +1,205 @@
+\doxysection{App\+Configure.\+cs}
+\hypertarget{_app_configure_8cs_source}{}\label{_app_configure_8cs_source}\index{D:/codes/WPR8/WPR/backend/src/AppConfigure.cs@{D:/codes/WPR8/WPR/backend/src/AppConfigure.cs}}
+\mbox{\hyperlink{_app_configure_8cs}{Ga naar de documentatie van dit bestand.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_app_configure_8cs_source_l00001}00001\ \textcolor{keyword}{using\ }System.Security.Policy;}
+\DoxyCodeLine{\Hypertarget{_app_configure_8cs_source_l00002}00002\ \textcolor{keyword}{using\ }System.Text.Json.Serialization;}
+\DoxyCodeLine{\Hypertarget{_app_configure_8cs_source_l00003}00003\ \textcolor{keyword}{using\ }Microsoft.AspNetCore.Authentication.Cookies;}
+\DoxyCodeLine{\Hypertarget{_app_configure_8cs_source_l00004}00004\ \textcolor{keyword}{using\ }Microsoft.Extensions.Options;}
+\DoxyCodeLine{\Hypertarget{_app_configure_8cs_source_l00005}00005\ \textcolor{keyword}{using\ }Microsoft.VisualBasic;}
+\DoxyCodeLine{\Hypertarget{_app_configure_8cs_source_l00006}00006\ \textcolor{keyword}{using\ }Org.BouncyCastle.Crypto.Prng;}
+\DoxyCodeLine{\Hypertarget{_app_configure_8cs_source_l00007}00007\ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespace_w_p_r_1_1_cryption}{WPR.Cryption}};}
+\DoxyCodeLine{\Hypertarget{_app_configure_8cs_source_l00008}00008\ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespace_w_p_r_1_1_data}{WPR.Data}};}
+\DoxyCodeLine{\Hypertarget{_app_configure_8cs_source_l00009}00009\ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespace_w_p_r_1_1_database}{WPR.Database}};}
+\DoxyCodeLine{\Hypertarget{_app_configure_8cs_source_l00010}00010\ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespace_w_p_r_1_1_repository}{WPR.Repository}};}
+\DoxyCodeLine{\Hypertarget{_app_configure_8cs_source_l00011}00011\ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespace_w_p_r_1_1_hashing}{WPR.Hashing}};}
+\DoxyCodeLine{\Hypertarget{_app_configure_8cs_source_l00012}00012\ \textcolor{keyword}{using\ }System.Net;}
+\DoxyCodeLine{\Hypertarget{_app_configure_8cs_source_l00013}00013\ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespace_w_p_r_1_1_services}{WPR.Services}};}
+\DoxyCodeLine{\Hypertarget{_app_configure_8cs_source_l00014}00014\ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespace_w_p_r_1_1_controllers_1_1_general_1_1_cookie}{WPR.Controllers.General.Cookie}};}
+\DoxyCodeLine{\Hypertarget{_app_configure_8cs_source_l00015}00015\ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespace_w_p_r_1_1_repository_1_1_database_check_repository}{WPR.Repository.DatabaseCheckRepository}};}
+\DoxyCodeLine{\Hypertarget{_app_configure_8cs_source_l00016}00016\ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespace_w_p_r_1_1_email}{WPR.Email}};}
+\DoxyCodeLine{\Hypertarget{_app_configure_8cs_source_l00017}00017\ }
+\DoxyCodeLine{\Hypertarget{_app_configure_8cs_source_l00018}\mbox{\hyperlink{namespace_w_p_r}{00018}}\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_w_p_r}{WPR}};}
+\DoxyCodeLine{\Hypertarget{_app_configure_8cs_source_l00019}00019\ }
+\DoxyCodeLine{\Hypertarget{_app_configure_8cs_source_l00024}\mbox{\hyperlink{class_w_p_r_1_1_app_configure}{00024}}\ \textcolor{keyword}{public}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_w_p_r_1_1_app_configure}{AppConfigure}}}
+\DoxyCodeLine{\Hypertarget{_app_configure_8cs_source_l00025}00025\ \{}
+\DoxyCodeLine{\Hypertarget{_app_configure_8cs_source_l00026}\mbox{\hyperlink{class_w_p_r_1_1_app_configure_a03bdad8277429c64d59c0b6781b17329}{00026}}\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_w_p_r_1_1_app_configure_a03bdad8277429c64d59c0b6781b17329}{InitDatabase}}(IServiceProvider\ services)}
+\DoxyCodeLine{\Hypertarget{_app_configure_8cs_source_l00027}00027\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_app_configure_8cs_source_l00028}00028\ \ \ \ \ \ \ \ \ var\ dbConnector\ =\ services.GetRequiredService<\mbox{\hyperlink{interface_w_p_r_1_1_database_1_1_i_connector}{IConnector}}>();}
+\DoxyCodeLine{\Hypertarget{_app_configure_8cs_source_l00029}00029\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_app_configure_8cs_source_l00030}00030\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}}
+\DoxyCodeLine{\Hypertarget{_app_configure_8cs_source_l00031}00031\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_app_configure_8cs_source_l00032}00032\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using}\ (var\ connection\ =\ dbConnector.CreateDbConnection())}
+\DoxyCodeLine{\Hypertarget{_app_configure_8cs_source_l00033}00033\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_app_configure_8cs_source_l00034}00034\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Console.WriteLine(\textcolor{stringliteral}{"{}Database\ connection\ established"{}});}
+\DoxyCodeLine{\Hypertarget{_app_configure_8cs_source_l00035}00035\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_app_configure_8cs_source_l00036}00036\ }
+\DoxyCodeLine{\Hypertarget{_app_configure_8cs_source_l00037}00037\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_app_configure_8cs_source_l00038}00038\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (Exception\ e)}
+\DoxyCodeLine{\Hypertarget{_app_configure_8cs_source_l00039}00039\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_app_configure_8cs_source_l00040}00040\ \ \ \ \ \ \ \ \ \ \ \ \ Console.WriteLine(\textcolor{stringliteral}{"{}Failed\ to\ establish\ database\ connection"{}});}
+\DoxyCodeLine{\Hypertarget{_app_configure_8cs_source_l00041}00041\ \ \ \ \ \ \ \ \ \ \ \ \ Console.WriteLine(e.StackTrace);}
+\DoxyCodeLine{\Hypertarget{_app_configure_8cs_source_l00042}00042\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_app_configure_8cs_source_l00043}00043\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_app_configure_8cs_source_l00044}00044\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_app_configure_8cs_source_l00045}00045\ }
+\DoxyCodeLine{\Hypertarget{_app_configure_8cs_source_l00051}\mbox{\hyperlink{class_w_p_r_1_1_app_configure_a77a92db2b597250930168694b79931d7}{00051}}\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{static}\ WebApplication\ \mbox{\hyperlink{class_w_p_r_1_1_app_configure_a77a92db2b597250930168694b79931d7}{ConfigureApplication}}(\textcolor{keywordtype}{string}[]\ args)}
+\DoxyCodeLine{\Hypertarget{_app_configure_8cs_source_l00052}00052\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_app_configure_8cs_source_l00053}00053\ \ \ \ \ var\ builder\ =\ WebApplication.CreateBuilder(args);}
+\DoxyCodeLine{\Hypertarget{_app_configure_8cs_source_l00054}00054\ }
+\DoxyCodeLine{\Hypertarget{_app_configure_8cs_source_l00055}00055\ \ \ \ \ var\ environment\ =\ Environment.GetEnvironmentVariable(\textcolor{stringliteral}{"{}ASPNETCORE\_ENVIRONMENT"{}})\ ??\ \textcolor{stringliteral}{"{}development"{}};}
+\DoxyCodeLine{\Hypertarget{_app_configure_8cs_source_l00056}00056\ \ \ \ \ builder.Configuration.AddEnvironmentVariables();}
+\DoxyCodeLine{\Hypertarget{_app_configure_8cs_source_l00057}00057\ }
+\DoxyCodeLine{\Hypertarget{_app_configure_8cs_source_l00058}00058\ \ \ \ \ \textcolor{keywordflow}{if}\ (environment\ ==\ \textcolor{stringliteral}{"{}development"{}})}
+\DoxyCodeLine{\Hypertarget{_app_configure_8cs_source_l00059}00059\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_app_configure_8cs_source_l00060}00060\ \ \ \ \ \ \ \ \ builder.Configuration.AddJsonFile(\textcolor{stringliteral}{"{}.env"{}},\ optional:\ \textcolor{keyword}{true},\ reloadOnChange:\ \textcolor{keyword}{true});}
+\DoxyCodeLine{\Hypertarget{_app_configure_8cs_source_l00061}00061\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_app_configure_8cs_source_l00062}00062\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (environment\ ==\ \textcolor{stringliteral}{"{}Production"{}})}
+\DoxyCodeLine{\Hypertarget{_app_configure_8cs_source_l00063}00063\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_app_configure_8cs_source_l00064}00064\ \ \ \ \ \ \ \ \ builder.Configuration.AddJsonFile(\textcolor{stringliteral}{"{}.env.deployment"{}},\ optional:\ \textcolor{keyword}{true},\ reloadOnChange:\ \textcolor{keyword}{true});}
+\DoxyCodeLine{\Hypertarget{_app_configure_8cs_source_l00065}00065\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_app_configure_8cs_source_l00066}00066\ }
+\DoxyCodeLine{\Hypertarget{_app_configure_8cs_source_l00067}00067\ \ \ \ \ var\ cookiePolicyOptions\ =\ \textcolor{keyword}{new}\ CookiePolicyOptions}
+\DoxyCodeLine{\Hypertarget{_app_configure_8cs_source_l00068}00068\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_app_configure_8cs_source_l00069}00069\ \ \ \ \ \ \ \ \ MinimumSameSitePolicy\ =\ SameSiteMode.Strict}
+\DoxyCodeLine{\Hypertarget{_app_configure_8cs_source_l00070}00070\ \ \ \ \ \};}
+\DoxyCodeLine{\Hypertarget{_app_configure_8cs_source_l00071}00071\ }
+\DoxyCodeLine{\Hypertarget{_app_configure_8cs_source_l00072}00072\ }
+\DoxyCodeLine{\Hypertarget{_app_configure_8cs_source_l00073}00073\ \ \ \ \ builder.Services.AddCors(options\ =>}
+\DoxyCodeLine{\Hypertarget{_app_configure_8cs_source_l00074}00074\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_app_configure_8cs_source_l00075}00075\ \ \ \ \ \ \ \ \ \textcolor{comment}{/*options.AddPolicy("{}AllowLocalhost"{},\ policy\ =>}}
+\DoxyCodeLine{\Hypertarget{_app_configure_8cs_source_l00076}00076\ \textcolor{comment}{\ \ \ \ \ \ \ \ \{}}
+\DoxyCodeLine{\Hypertarget{_app_configure_8cs_source_l00077}00077\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ policy.WithOrigins("{}http://localhost:5173"{},\ "{}http://95.99.30.110:8080"{})\ \ //\ Development\ URL}}
+\DoxyCodeLine{\Hypertarget{_app_configure_8cs_source_l00078}00078\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .AllowAnyHeader()}}
+\DoxyCodeLine{\Hypertarget{_app_configure_8cs_source_l00079}00079\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .AllowCredentials()}}
+\DoxyCodeLine{\Hypertarget{_app_configure_8cs_source_l00080}00080\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .AllowAnyMethod();}}
+\DoxyCodeLine{\Hypertarget{_app_configure_8cs_source_l00081}00081\ \textcolor{comment}{\ \ \ \ \ \ \ \ \});}}
+\DoxyCodeLine{\Hypertarget{_app_configure_8cs_source_l00082}00082\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{_app_configure_8cs_source_l00083}00083\ \textcolor{comment}{\ \ \ \ \ \ \ \ options.AddPolicy("{}AllowProduction"{},\ policy\ =>}}
+\DoxyCodeLine{\Hypertarget{_app_configure_8cs_source_l00084}00084\ \textcolor{comment}{\ \ \ \ \ \ \ \ \{}}
+\DoxyCodeLine{\Hypertarget{_app_configure_8cs_source_l00085}00085\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ policy.WithOrigins("{}http://carandall.nl"{},\ "{}https://carandall.nl,\ http://localhost:5173"{},\ "{}http://95.99.30.110:8080"{})\ //\ Production\ URL}}
+\DoxyCodeLine{\Hypertarget{_app_configure_8cs_source_l00086}00086\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .AllowAnyHeader()}}
+\DoxyCodeLine{\Hypertarget{_app_configure_8cs_source_l00087}00087\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .AllowCredentials()}}
+\DoxyCodeLine{\Hypertarget{_app_configure_8cs_source_l00088}00088\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .AllowAnyMethod();}}
+\DoxyCodeLine{\Hypertarget{_app_configure_8cs_source_l00089}00089\ \textcolor{comment}{\ \ \ \ \ \ \ \ \});}}
+\DoxyCodeLine{\Hypertarget{_app_configure_8cs_source_l00090}00090\ \textcolor{comment}{\ \ \ \ \ \ \ \ */}}
+\DoxyCodeLine{\Hypertarget{_app_configure_8cs_source_l00091}00091\ }
+\DoxyCodeLine{\Hypertarget{_app_configure_8cs_source_l00092}00092\ \ \ \ \ \ \ \ \ options.AddPolicy(\textcolor{stringliteral}{"{}AllowSpecificOrigins"{}},\ policy\ =>}
+\DoxyCodeLine{\Hypertarget{_app_configure_8cs_source_l00093}00093\ \ \ \ \ \ \ \ \ \ \ \ \ policy.WithOrigins(\textcolor{stringliteral}{"{}http://95.99.30.110:8080"{}},\ \textcolor{stringliteral}{"{}http://localhost:5173"{}},\ \textcolor{stringliteral}{"{}http://www.carandall.nl:8080"{}})}
+\DoxyCodeLine{\Hypertarget{_app_configure_8cs_source_l00094}00094\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .AllowAnyHeader()}
+\DoxyCodeLine{\Hypertarget{_app_configure_8cs_source_l00095}00095\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .AllowAnyMethod()}
+\DoxyCodeLine{\Hypertarget{_app_configure_8cs_source_l00096}00096\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .AllowCredentials()}
+\DoxyCodeLine{\Hypertarget{_app_configure_8cs_source_l00097}00097\ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{\Hypertarget{_app_configure_8cs_source_l00098}00098\ \ \ \ \ \});}
+\DoxyCodeLine{\Hypertarget{_app_configure_8cs_source_l00099}00099\ }
+\DoxyCodeLine{\Hypertarget{_app_configure_8cs_source_l00100}00100\ \ \ \ \ var\ urls\ =\ Environment.GetEnvironmentVariable(\textcolor{stringliteral}{"{}ASPNETCORE\_URLS"{}})\ ??\ \textcolor{stringliteral}{"{}http://0.0.0.0:80"{}};\ \textcolor{comment}{//\ Default\ to\ port\ 80\ if\ not\ set}}
+\DoxyCodeLine{\Hypertarget{_app_configure_8cs_source_l00101}00101\ }
+\DoxyCodeLine{\Hypertarget{_app_configure_8cs_source_l00102}00102\ \ \ \ \ Uri\ uri;}
+\DoxyCodeLine{\Hypertarget{_app_configure_8cs_source_l00103}00103\ \ \ \ \ \textcolor{keywordflow}{try}}
+\DoxyCodeLine{\Hypertarget{_app_configure_8cs_source_l00104}00104\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_app_configure_8cs_source_l00105}00105\ \ \ \ \ \ \ \ \ uri\ =\ \textcolor{keyword}{new}\ Uri(urls);}
+\DoxyCodeLine{\Hypertarget{_app_configure_8cs_source_l00106}00106\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_app_configure_8cs_source_l00107}00107\ \ \ \ \ \textcolor{keywordflow}{catch}\ (UriFormatException\ ex)}
+\DoxyCodeLine{\Hypertarget{_app_configure_8cs_source_l00108}00108\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_app_configure_8cs_source_l00109}00109\ \ \ \ \ \ \ \ \ Console.WriteLine(\$\textcolor{stringliteral}{"{}Invalid\ ASPNETCORE\_URLS\ format:\ \{urls\}.\ Using\ default\ URL\ http://0.0.0.0:80"{}});}
+\DoxyCodeLine{\Hypertarget{_app_configure_8cs_source_l00110}00110\ \ \ \ \ \ \ \ \ uri\ =\ \textcolor{keyword}{new}\ Uri(\textcolor{stringliteral}{"{}http://0.0.0.0:80"{}});}
+\DoxyCodeLine{\Hypertarget{_app_configure_8cs_source_l00111}00111\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_app_configure_8cs_source_l00112}00112\ }
+\DoxyCodeLine{\Hypertarget{_app_configure_8cs_source_l00113}00113\ \ \ \ \ builder.WebHost.ConfigureKestrel(options\ =>}
+\DoxyCodeLine{\Hypertarget{_app_configure_8cs_source_l00114}00114\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_app_configure_8cs_source_l00115}00115\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Ensure\ IP\ address\ is\ valid\ before\ binding}}
+\DoxyCodeLine{\Hypertarget{_app_configure_8cs_source_l00116}00116\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (uri.Host\ ==\ \textcolor{stringliteral}{"{}0.0.0.0"{}}\ )}
+\DoxyCodeLine{\Hypertarget{_app_configure_8cs_source_l00117}00117\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_app_configure_8cs_source_l00118}00118\ \ \ \ \ \ \ \ \ \ \ \ \ options.Listen(IPAddress.Any,\ 5000);\ \ }
+\DoxyCodeLine{\Hypertarget{_app_configure_8cs_source_l00119}00119\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_app_configure_8cs_source_l00120}00120\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{_app_configure_8cs_source_l00121}00121\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_app_configure_8cs_source_l00122}00122\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}}
+\DoxyCodeLine{\Hypertarget{_app_configure_8cs_source_l00123}00123\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_app_configure_8cs_source_l00124}00124\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ options.Listen(IPAddress.Parse(uri.Host),\ uri.Port);\ }
+\DoxyCodeLine{\Hypertarget{_app_configure_8cs_source_l00125}00125\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_app_configure_8cs_source_l00126}00126\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (FormatException\ ex)}
+\DoxyCodeLine{\Hypertarget{_app_configure_8cs_source_l00127}00127\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_app_configure_8cs_source_l00128}00128\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Console.WriteLine(\$\textcolor{stringliteral}{"{}Invalid\ IP\ address\ specified:\ \{uri.Host\}.\ Using\ default\ binding\ to\ all\ IPs."{}});}
+\DoxyCodeLine{\Hypertarget{_app_configure_8cs_source_l00129}00129\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ options.Listen(IPAddress.Any,\ uri.Port);\ \ }
+\DoxyCodeLine{\Hypertarget{_app_configure_8cs_source_l00130}00130\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_app_configure_8cs_source_l00131}00131\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_app_configure_8cs_source_l00132}00132\ \ \ \ \ \});}
+\DoxyCodeLine{\Hypertarget{_app_configure_8cs_source_l00133}00133\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_app_configure_8cs_source_l00134}00134\ \ \ \ \ \textcolor{comment}{//\ Register\ services\ for\ Dependency\ Injection}}
+\DoxyCodeLine{\Hypertarget{_app_configure_8cs_source_l00135}00135\ \ \ \ \ builder.Services.AddSingleton<\mbox{\hyperlink{class_w_p_r_1_1_data_1_1_env_config}{EnvConfig}}>();\ \textcolor{comment}{//\ Singleton\ for\ environment\ configuration}}
+\DoxyCodeLine{\Hypertarget{_app_configure_8cs_source_l00136}00136\ \ \ \ \ builder.Services.AddTransient<\mbox{\hyperlink{interface_w_p_r_1_1_database_1_1_i_connector}{IConnector}},\ \mbox{\hyperlink{class_w_p_r_1_1_database_1_1_connector}{Connector}}>();\ \textcolor{comment}{//\ Transient\ for\ database\ connection.}}
+\DoxyCodeLine{\Hypertarget{_app_configure_8cs_source_l00137}00137\ \ \ \ \ builder.Services.AddScoped<\mbox{\hyperlink{class_w_p_r_1_1_repository_1_1_vehicle_repository}{VehicleRepository}}>();}
+\DoxyCodeLine{\Hypertarget{_app_configure_8cs_source_l00138}00138\ \ \ \ \ builder.Services.AddScoped<\mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_user_repository}{IUserRepository}},\ \mbox{\hyperlink{class_w_p_r_1_1_repository_1_1_user_repository}{UserRepository}}>();\ \textcolor{comment}{//\ Scoped\ for\ user\ repository}}
+\DoxyCodeLine{\Hypertarget{_app_configure_8cs_source_l00139}00139\ \ \ \ \ builder.Services.AddScoped<\mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_vehicle_repository}{IVehicleRepository}},\ \mbox{\hyperlink{class_w_p_r_1_1_repository_1_1_vehicle_repository}{VehicleRepository}}>();\ \textcolor{comment}{//\ Scoped\ for\ Vehicle\ Repository}}
+\DoxyCodeLine{\Hypertarget{_app_configure_8cs_source_l00140}00140\ \ \ \ \ builder.Services.AddScoped<\mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_general_1_1_cookie_1_1_session_handler}{SessionHandler}}>();\ \textcolor{comment}{//\ Scoped\ session\ handler}}
+\DoxyCodeLine{\Hypertarget{_app_configure_8cs_source_l00141}00141\ \ \ \ \ builder.Services.AddScoped<\mbox{\hyperlink{class_w_p_r_1_1_cryption_1_1_crypt}{Crypt}}>();}
+\DoxyCodeLine{\Hypertarget{_app_configure_8cs_source_l00142}00142\ \ \ \ \ builder.Services.AddScoped<\mbox{\hyperlink{namespace_w_p_r_1_1_hashing}{Hashing}}.\mbox{\hyperlink{class_w_p_r_1_1_hashing_1_1_hash}{Hash}}>();}
+\DoxyCodeLine{\Hypertarget{_app_configure_8cs_source_l00143}00143\ \ \ \ \ builder.Services.AddScoped<\mbox{\hyperlink{class_w_p_r_1_1_services_1_1_email_service}{EmailService}}>();}
+\DoxyCodeLine{\Hypertarget{_app_configure_8cs_source_l00144}00144\ \ \ \ \ builder.Services.AddScoped<\mbox{\hyperlink{interface_w_p_r_1_1_services_1_1_i_email_service}{IEmailService}},\ \mbox{\hyperlink{class_w_p_r_1_1_services_1_1_email_service}{EmailService}}>();}
+\DoxyCodeLine{\Hypertarget{_app_configure_8cs_source_l00145}00145\ \ \ \ \ builder.Services.AddScoped<\mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_employee_repository}{IEmployeeRepository}},\ \mbox{\hyperlink{class_w_p_r_1_1_repository_1_1_employee_repository}{EmployeeRepository}}>();}
+\DoxyCodeLine{\Hypertarget{_app_configure_8cs_source_l00146}00146\ \ \ \ \ builder.Services.AddScoped<\mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_back_office_repository}{IBackOfficeRepository}},\ BackOfficeRepository>();}
+\DoxyCodeLine{\Hypertarget{_app_configure_8cs_source_l00147}00147\ \ \ \ \ builder.Services.AddScoped<\mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_database_check_repository_1_1_i_database_check_repository}{IDatabaseCheckRepository}},\ \mbox{\hyperlink{namespace_w_p_r_1_1_repository_1_1_database_check_repository}{DatabaseCheckRepository}}>();}
+\DoxyCodeLine{\Hypertarget{_app_configure_8cs_source_l00148}00148\ \ \ \ \ builder.Services.AddScoped<\mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_contract_repository}{IContractRepository}},\ \mbox{\hyperlink{class_w_p_r_1_1_repository_1_1_contract_repository}{ContractRepository}}>();}
+\DoxyCodeLine{\Hypertarget{_app_configure_8cs_source_l00149}00149\ }
+\DoxyCodeLine{\Hypertarget{_app_configure_8cs_source_l00150}00150\ \ \ \ \ builder.Services.AddSingleton<IHostedService,\ \mbox{\hyperlink{class_w_p_r_1_1_email_1_1_reminders}{Reminders}}>();\ \textcolor{comment}{//\ Register\ Reminders\ as\ a\ singleton\ hosted\ service}}
+\DoxyCodeLine{\Hypertarget{_app_configure_8cs_source_l00151}00151\ }
+\DoxyCodeLine{\Hypertarget{_app_configure_8cs_source_l00152}00152\ \ \ \ \ \textcolor{comment}{//\ Scoped\ dependencies}}
+\DoxyCodeLine{\Hypertarget{_app_configure_8cs_source_l00153}00153\ \ \ \ \ builder.Services.AddScoped<\mbox{\hyperlink{class_w_p_r_1_1_services_1_1_email_service}{EmailService}}>();}
+\DoxyCodeLine{\Hypertarget{_app_configure_8cs_source_l00154}00154\ \ \ \ \ builder.Services.AddScoped<\mbox{\hyperlink{class_w_p_r_1_1_email_1_1_customer}{Customer}}>();}
+\DoxyCodeLine{\Hypertarget{_app_configure_8cs_source_l00155}00155\ \ \ \ \ builder.Services.AddScoped<\mbox{\hyperlink{class_w_p_r_1_1_email_1_1_vehicle}{Vehicle}}>();}
+\DoxyCodeLine{\Hypertarget{_app_configure_8cs_source_l00156}00156\ \ \ \ \ builder.Services.AddScoped<\mbox{\hyperlink{class_w_p_r_1_1_email_1_1_contract}{Contract}}>();}
+\DoxyCodeLine{\Hypertarget{_app_configure_8cs_source_l00157}00157\ \ \ \ \ builder.Services.AddScoped<\mbox{\hyperlink{interface_w_p_r_1_1_email_1_1_i_customer_details}{ICustomerDetails}},\ \mbox{\hyperlink{class_w_p_r_1_1_email_1_1_customer}{Customer}}>();}
+\DoxyCodeLine{\Hypertarget{_app_configure_8cs_source_l00158}00158\ \ \ \ \ builder.Services.AddScoped<\mbox{\hyperlink{interface_w_p_r_1_1_email_1_1_i_vehicle_details}{IVehicleDetails}},\ \mbox{\hyperlink{class_w_p_r_1_1_email_1_1_vehicle}{Vehicle}}>();}
+\DoxyCodeLine{\Hypertarget{_app_configure_8cs_source_l00159}00159\ \ \ \ \ builder.Services.AddScoped<\mbox{\hyperlink{interface_w_p_r_1_1_email_1_1_i_contract_details}{IContractDetails}},\ \mbox{\hyperlink{class_w_p_r_1_1_email_1_1_contract}{Contract}}>();}
+\DoxyCodeLine{\Hypertarget{_app_configure_8cs_source_l00160}00160\ }
+\DoxyCodeLine{\Hypertarget{_app_configure_8cs_source_l00161}00161\ }
+\DoxyCodeLine{\Hypertarget{_app_configure_8cs_source_l00162}00162\ \ \ \ \ builder.Services.AddHostedService<\mbox{\hyperlink{class_w_p_r_1_1_email_1_1_reminders}{Reminders}}>();}
+\DoxyCodeLine{\Hypertarget{_app_configure_8cs_source_l00163}00163\ }
+\DoxyCodeLine{\Hypertarget{_app_configure_8cs_source_l00164}00164\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_app_configure_8cs_source_l00165}00165\ }
+\DoxyCodeLine{\Hypertarget{_app_configure_8cs_source_l00166}00166\ \ \ \ \ \textcolor{comment}{//\ Configure\ authentication\ with\ cookie-\/based\ authentication\ schema.}}
+\DoxyCodeLine{\Hypertarget{_app_configure_8cs_source_l00167}00167\ \ \ \ \ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)}
+\DoxyCodeLine{\Hypertarget{_app_configure_8cs_source_l00168}00168\ \ \ \ \ \ \ \ \ .AddCookie(options\ =>}
+\DoxyCodeLine{\Hypertarget{_app_configure_8cs_source_l00169}00169\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_app_configure_8cs_source_l00170}00170\ \ \ \ \ \ \ \ \ \ \ \ \ options.ExpireTimeSpan\ =\ TimeSpan.FromMinutes(5);}
+\DoxyCodeLine{\Hypertarget{_app_configure_8cs_source_l00171}00171\ \ \ \ \ \ \ \ \ \ \ \ \ options.SlidingExpiration\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{_app_configure_8cs_source_l00172}00172\ \ \ \ \ \ \ \ \ \ \ \ \ options.AccessDeniedPath\ =\ \textcolor{stringliteral}{"{}/Forbidden/"{}};}
+\DoxyCodeLine{\Hypertarget{_app_configure_8cs_source_l00173}00173\ \ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{\Hypertarget{_app_configure_8cs_source_l00174}00174\ }
+\DoxyCodeLine{\Hypertarget{_app_configure_8cs_source_l00175}00175\ \ \ \ \ builder.Services.AddControllers()}
+\DoxyCodeLine{\Hypertarget{_app_configure_8cs_source_l00176}00176\ \ \ \ \ \ \ \ \ .AddJsonOptions(options\ =>}
+\DoxyCodeLine{\Hypertarget{_app_configure_8cs_source_l00177}00177\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_app_configure_8cs_source_l00178}00178\ \ \ \ \ \ \ \ \ \ \ \ \ options.JsonSerializerOptions.ReferenceHandler\ =}
+\DoxyCodeLine{\Hypertarget{_app_configure_8cs_source_l00179}00179\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ReferenceHandler.IgnoreCycles;}
+\DoxyCodeLine{\Hypertarget{_app_configure_8cs_source_l00180}00180\ \ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{\Hypertarget{_app_configure_8cs_source_l00181}00181\ }
+\DoxyCodeLine{\Hypertarget{_app_configure_8cs_source_l00182}00182\ \ \ \ \ \textcolor{comment}{//\ Services\ for\ Swagger\ API}}
+\DoxyCodeLine{\Hypertarget{_app_configure_8cs_source_l00183}00183\ \ \ \ \ builder.Services.AddEndpointsApiExplorer();}
+\DoxyCodeLine{\Hypertarget{_app_configure_8cs_source_l00184}00184\ \ \ \ \ builder.Services.AddSwaggerGen();}
+\DoxyCodeLine{\Hypertarget{_app_configure_8cs_source_l00185}00185\ }
+\DoxyCodeLine{\Hypertarget{_app_configure_8cs_source_l00186}00186\ \ \ \ \ var\ app\ =\ builder.Build();}
+\DoxyCodeLine{\Hypertarget{_app_configure_8cs_source_l00187}00187\ }
+\DoxyCodeLine{\Hypertarget{_app_configure_8cs_source_l00188}00188\ \ \ \ \ app.UseSwagger();}
+\DoxyCodeLine{\Hypertarget{_app_configure_8cs_source_l00189}00189\ \ \ \ \ app.UseSwaggerUI(c\ =>\ \{}
+\DoxyCodeLine{\Hypertarget{_app_configure_8cs_source_l00190}00190\ \ \ \ \ \ \ \ \ c.SwaggerEndpoint(\textcolor{stringliteral}{"{}/swagger/v1/swagger.json"{}},\ \textcolor{stringliteral}{"{}My\ API\ V1"{}});}
+\DoxyCodeLine{\Hypertarget{_app_configure_8cs_source_l00191}00191\ \ \ \ \ \ \ \ \ c.RoutePrefix\ =\ \textcolor{keywordtype}{string}.Empty;}
+\DoxyCodeLine{\Hypertarget{_app_configure_8cs_source_l00192}00192\ \ \ \ \ \});}
+\DoxyCodeLine{\Hypertarget{_app_configure_8cs_source_l00193}00193\ \ \ \ \ app.UseCors(\textcolor{stringliteral}{"{}AllowSpecificOrigins"{}});}
+\DoxyCodeLine{\Hypertarget{_app_configure_8cs_source_l00194}00194\ \ \ \ \ app.UseHttpsRedirection();}
+\DoxyCodeLine{\Hypertarget{_app_configure_8cs_source_l00195}00195\ \ \ \ \ app.MapControllers();}
+\DoxyCodeLine{\Hypertarget{_app_configure_8cs_source_l00196}00196\ \ \ \ \ app.UseAuthorization();}
+\DoxyCodeLine{\Hypertarget{_app_configure_8cs_source_l00197}00197\ \ \ \ \ app.UseAuthentication();}
+\DoxyCodeLine{\Hypertarget{_app_configure_8cs_source_l00198}00198\ \ \ \ \ app.UseCookiePolicy(cookiePolicyOptions);}
+\DoxyCodeLine{\Hypertarget{_app_configure_8cs_source_l00199}00199\ }
+\DoxyCodeLine{\Hypertarget{_app_configure_8cs_source_l00200}00200\ \ \ \ \ \textcolor{comment}{//app.MapRazorPages();}}
+\DoxyCodeLine{\Hypertarget{_app_configure_8cs_source_l00201}00201\ \ \ \ \ app.MapDefaultControllerRoute();}
+\DoxyCodeLine{\Hypertarget{_app_configure_8cs_source_l00202}00202\ }
+\DoxyCodeLine{\Hypertarget{_app_configure_8cs_source_l00203}00203\ \ \ \ \ \textcolor{keywordflow}{return}\ app;}
+\DoxyCodeLine{\Hypertarget{_app_configure_8cs_source_l00204}00204\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_app_configure_8cs_source_l00205}00205\ }
+\DoxyCodeLine{\Hypertarget{_app_configure_8cs_source_l00206}00206\ }
+\DoxyCodeLine{\Hypertarget{_app_configure_8cs_source_l00207}00207\ }
+\DoxyCodeLine{\Hypertarget{_app_configure_8cs_source_l00208}00208\ \}}
+
+\end{DoxyCode}

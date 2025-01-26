@@ -1,9 +1,0 @@
-<map id="WPR.Email.Contract" name="WPR.Email.Contract">
-<area shape="rect" id="Node000001" title="In de Contract klasse worden alle gegevens van een specifieke klant verzameld voor het aanmaken van e..." alt="" coords="145,396,346,588"/>
-<area shape="rect" id="Node000002" href="$da/d6e/interface_w_p_r_1_1_email_1_1_i_contract_details.html" title=" " alt="" coords="52,220,157,289"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="134,301,191,395,187,398,130,303"/>
-<area shape="rect" id="Node000003" href="$dd/df6/interface_w_p_r_1_1_email_1_1_i_details.html" title=" " alt="" coords="5,5,203,128"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="107,143,107,220,102,220,102,143"/>
-<area shape="rect" id="Node000004" href="$d8/d46/interface_w_p_r_1_1_repository_1_1_i_contract_repository.html" title=" " alt="" coords="181,177,407,332"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="281,332,271,380,266,379,276,331"/>
-</map>

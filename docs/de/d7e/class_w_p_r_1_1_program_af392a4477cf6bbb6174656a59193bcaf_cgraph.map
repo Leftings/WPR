@@ -1,7 +1,0 @@
-<map id="WPR.Program.Main" name="WPR.Program.Main">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,43,144,69"/>
-<area shape="rect" id="Node000002" href="$d0/d25/class_w_p_r_1_1_app_configure.html#a77a92db2b597250930168694b79931d7" title="Configureer de web applicatie, zoals middleware, services, authentication en CORS settings." alt="" coords="201,5,397,48"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="144,44,185,39,185,44,144,50"/>
-<area shape="rect" id="Node000003" href="$d0/d25/class_w_p_r_1_1_app_configure.html#a03bdad8277429c64d59c0b6781b17329" title=" " alt="" coords="192,72,406,99"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="144,62,177,67,177,72,144,68"/>
-</map>

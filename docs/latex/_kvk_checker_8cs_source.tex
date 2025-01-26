@@ -1,0 +1,36 @@
+\doxysection{Kvk\+Checker.\+cs}
+\hypertarget{_kvk_checker_8cs_source}{}\label{_kvk_checker_8cs_source}\index{D:/codes/WPR8/WPR/backend/src/Utils/KvkChecker.cs@{D:/codes/WPR8/WPR/backend/src/Utils/KvkChecker.cs}}
+\mbox{\hyperlink{_kvk_checker_8cs}{Ga naar de documentatie van dit bestand.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_kvk_checker_8cs_source_l00001}00001\ \textcolor{keyword}{using\ }System.Text.RegularExpressions;}
+\DoxyCodeLine{\Hypertarget{_kvk_checker_8cs_source_l00002}00002\ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespace_w_p_r_1_1_repository}{WPR.Repository}};}
+\DoxyCodeLine{\Hypertarget{_kvk_checker_8cs_source_l00003}00003\ }
+\DoxyCodeLine{\Hypertarget{_kvk_checker_8cs_source_l00004}00004\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_w_p_r_1_1_utils}{WPR.Utils}};}
+\DoxyCodeLine{\Hypertarget{_kvk_checker_8cs_source_l00005}00005\ }
+\DoxyCodeLine{\Hypertarget{_kvk_checker_8cs_source_l00006}\mbox{\hyperlink{class_w_p_r_1_1_utils_1_1_kvk_checker}{00006}}\ \textcolor{keyword}{public}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_w_p_r_1_1_utils_1_1_kvk_checker_a615f7bc3551a179f7650703d613504fc}{KvkChecker}}}
+\DoxyCodeLine{\Hypertarget{_kvk_checker_8cs_source_l00007}00007\ \{}
+\DoxyCodeLine{\Hypertarget{_kvk_checker_8cs_source_l00008}\mbox{\hyperlink{class_w_p_r_1_1_utils_1_1_kvk_checker_a8ab80d821d0b0578f2fc1bec5bbd1011}{00008}}\ \ \ \ \ \textcolor{keyword}{private}\ readonly\ \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_user_repository}{IUserRepository}}\ \mbox{\hyperlink{class_w_p_r_1_1_utils_1_1_kvk_checker_a8ab80d821d0b0578f2fc1bec5bbd1011}{\_userRepository}};}
+\DoxyCodeLine{\Hypertarget{_kvk_checker_8cs_source_l00009}00009\ }
+\DoxyCodeLine{\Hypertarget{_kvk_checker_8cs_source_l00010}\mbox{\hyperlink{class_w_p_r_1_1_utils_1_1_kvk_checker_a615f7bc3551a179f7650703d613504fc}{00010}}\ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_w_p_r_1_1_utils_1_1_kvk_checker_a615f7bc3551a179f7650703d613504fc}{KvkChecker}}(\mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_user_repository}{IUserRepository}}\ userRepository)}
+\DoxyCodeLine{\Hypertarget{_kvk_checker_8cs_source_l00011}00011\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_kvk_checker_8cs_source_l00012}00012\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_w_p_r_1_1_utils_1_1_kvk_checker_a8ab80d821d0b0578f2fc1bec5bbd1011}{\_userRepository}}\ =\ userRepository;}
+\DoxyCodeLine{\Hypertarget{_kvk_checker_8cs_source_l00013}00013\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_kvk_checker_8cs_source_l00014}00014\ }
+\DoxyCodeLine{\Hypertarget{_kvk_checker_8cs_source_l00015}\mbox{\hyperlink{class_w_p_r_1_1_utils_1_1_kvk_checker_a0a705c242e76b5f3055bf598bd532b3b}{00015}}\ \ \ \ \ \textcolor{keyword}{public}\ async\ Task<(\textcolor{keywordtype}{bool}\ isValid,\ \textcolor{keywordtype}{string}\ errorMessage)>\ \mbox{\hyperlink{class_w_p_r_1_1_utils_1_1_kvk_checker_a0a705c242e76b5f3055bf598bd532b3b}{IsKvkNumberValid}}(\textcolor{keywordtype}{int}?\ kvkNumber)}
+\DoxyCodeLine{\Hypertarget{_kvk_checker_8cs_source_l00016}00016\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_kvk_checker_8cs_source_l00017}00017\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!kvkNumber.HasValue\ ||\ kvkNumber.Value.ToString().Length\ !=\ 8)}
+\DoxyCodeLine{\Hypertarget{_kvk_checker_8cs_source_l00018}00018\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_kvk_checker_8cs_source_l00019}00019\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (\textcolor{keyword}{false},\ \textcolor{stringliteral}{"{}KVK\ number\ must\ be\ 8\ digits"{}});}
+\DoxyCodeLine{\Hypertarget{_kvk_checker_8cs_source_l00020}00020\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_kvk_checker_8cs_source_l00021}00021\ }
+\DoxyCodeLine{\Hypertarget{_kvk_checker_8cs_source_l00022}00022\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ inDatabase\ =\ await\ \mbox{\hyperlink{class_w_p_r_1_1_utils_1_1_kvk_checker_a8ab80d821d0b0578f2fc1bec5bbd1011}{\_userRepository}}.IsKvkNumberAsync(kvkNumber.Value);}
+\DoxyCodeLine{\Hypertarget{_kvk_checker_8cs_source_l00023}00023\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!inDatabase)}
+\DoxyCodeLine{\Hypertarget{_kvk_checker_8cs_source_l00024}00024\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_kvk_checker_8cs_source_l00025}00025\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (\textcolor{keyword}{false},\ \textcolor{stringliteral}{"{}KVK\ number\ is\ not\ a\ valid\ KVK\ number"{}});}
+\DoxyCodeLine{\Hypertarget{_kvk_checker_8cs_source_l00026}00026\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_kvk_checker_8cs_source_l00027}00027\ }
+\DoxyCodeLine{\Hypertarget{_kvk_checker_8cs_source_l00028}00028\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (\textcolor{keyword}{true},\ \textcolor{keyword}{null});}
+\DoxyCodeLine{\Hypertarget{_kvk_checker_8cs_source_l00029}00029\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_kvk_checker_8cs_source_l00030}00030\ \}}
+
+\end{DoxyCode}

@@ -1,0 +1,353 @@
+\doxysection{WPR.\+Email.\+Reminders Class Referentie}
+\hypertarget{class_w_p_r_1_1_email_1_1_reminders}{}\label{class_w_p_r_1_1_email_1_1_reminders}\index{WPR.Email.Reminders@{WPR.Email.Reminders}}
+
+
+Klasse diagram voor WPR.\+Email.\+Reminders
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=220pt]{class_w_p_r_1_1_email_1_1_reminders__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboratie diagram voor WPR.\+Email.\+Reminders\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=318pt]{class_w_p_r_1_1_email_1_1_reminders__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Members}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_w_p_r_1_1_email_1_1_reminders_a31a0fa92259b7db6b6b7e0517ed63c9a}{Reminders}} (IService\+Provider service\+Provider, \mbox{\hyperlink{interface_w_p_r_1_1_database_1_1_i_connector}{IConnector}} connector)
+\item 
+virtual async Task$<$ bool $>$ \mbox{\hyperlink{class_w_p_r_1_1_email_1_1_reminders_a7444d93d984ea9038666a160d3f2c1cd}{Reminder\+Contract24\+Hours}} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Members}
+\begin{DoxyCompactItemize}
+\item 
+override async Task \mbox{\hyperlink{class_w_p_r_1_1_email_1_1_reminders_ad80d4a26ca16bf220b8b188082e6fca3}{Execute\+Async}} (Cancellation\+Token stopping\+Token)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Members}
+\begin{DoxyCompactItemize}
+\item 
+string \mbox{\hyperlink{class_w_p_r_1_1_email_1_1_reminders_a1d75902f11e2e726605f7ffe7439944e}{Create\+Reminder\+Contract}} (Dictionary$<$ string, object $>$ \mbox{\hyperlink{class_w_p_r_1_1_email_1_1_customer}{Customer}}, Dictionary$<$ string, object $>$ \mbox{\hyperlink{class_w_p_r_1_1_email_1_1_contract}{Contract}}, Dictionary$<$ string, object $>$ \mbox{\hyperlink{class_w_p_r_1_1_email_1_1_vehicle}{Vehicle}})
+\item 
+async Task$<$ Dictionary$<$ string, object $>$ $>$ \mbox{\hyperlink{class_w_p_r_1_1_email_1_1_reminders_a42469c6c38c948b8fd2ae5960f5a5dd0}{Get\+Customer\+Info}} (int id, IService\+Scope scope)
+\item 
+async Task$<$ Dictionary$<$ string, object $>$ $>$ \mbox{\hyperlink{class_w_p_r_1_1_email_1_1_reminders_a2e395400175836072d81ac325fd06141}{Get\+Contract\+Info}} (int id, IService\+Scope scope)
+\item 
+async Task$<$ Dictionary$<$ string, object $>$ $>$ \mbox{\hyperlink{class_w_p_r_1_1_email_1_1_reminders_a67dff571812b76e4250e73684d8cc454}{Get\+Vehicle\+Info}} (int id, IService\+Scope scope)
+\item 
+async Task \mbox{\hyperlink{class_w_p_r_1_1_email_1_1_reminders_aa5b68b714327d1e6ad8adae0698897f6}{Send\+Email}} (string body, string subject, string to\+Email, object order\+Id, IService\+Scope scope)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributen}
+\begin{DoxyCompactItemize}
+\item 
+readonly IService\+Provider \mbox{\hyperlink{class_w_p_r_1_1_email_1_1_reminders_a09689a320901679aa8ed84c220fed493}{\+\_\+service\+Provider}}
+\item 
+readonly \mbox{\hyperlink{interface_w_p_r_1_1_database_1_1_i_connector}{IConnector}} \mbox{\hyperlink{class_w_p_r_1_1_email_1_1_reminders_a48ebeeb8f8653fcbad7c2fd1845398d0}{\+\_\+connector}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Gedetailleerde Beschrijving}
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{_reminders_8cs_source_l00013}{13}} in het bestand \mbox{\hyperlink{_reminders_8cs_source}{Reminders.\+cs}}.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentatie}
+\Hypertarget{class_w_p_r_1_1_email_1_1_reminders_a31a0fa92259b7db6b6b7e0517ed63c9a}\index{WPR.Email.Reminders@{WPR.Email.Reminders}!Reminders@{Reminders}}
+\index{Reminders@{Reminders}!WPR.Email.Reminders@{WPR.Email.Reminders}}
+\doxysubsubsection{\texorpdfstring{Reminders()}{Reminders()}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_email_1_1_reminders_a31a0fa92259b7db6b6b7e0517ed63c9a} 
+WPR.\+Email.\+Reminders.\+Reminders (\begin{DoxyParamCaption}\item[{IService\+Provider}]{service\+Provider}{, }\item[{\mbox{\hyperlink{interface_w_p_r_1_1_database_1_1_i_connector}{IConnector}}}]{connector}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{_reminders_8cs_source_l00018}{18}} in het bestand \mbox{\hyperlink{_reminders_8cs_source}{Reminders.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00019\ \ \ \ \ \{}
+\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ \_serviceProvider\ =\ serviceProvider\ ??\ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ ArgumentNullException(nameof(serviceProvider));}
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ \_connector\ =\ connector\ ??\ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ ArgumentNullException(nameof(connector));}
+\DoxyCodeLine{00022\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+Gebruikt \mbox{\hyperlink{_reminders_8cs_source_l00016}{\+\_\+connector}} en \mbox{\hyperlink{_reminders_8cs_source_l00015}{\+\_\+service\+Provider}}.
+
+
+
+\doxysubsection{Documentatie van functie members}
+\Hypertarget{class_w_p_r_1_1_email_1_1_reminders_a1d75902f11e2e726605f7ffe7439944e}\index{WPR.Email.Reminders@{WPR.Email.Reminders}!CreateReminderContract@{CreateReminderContract}}
+\index{CreateReminderContract@{CreateReminderContract}!WPR.Email.Reminders@{WPR.Email.Reminders}}
+\doxysubsubsection{\texorpdfstring{CreateReminderContract()}{CreateReminderContract()}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_email_1_1_reminders_a1d75902f11e2e726605f7ffe7439944e} 
+string WPR.\+Email.\+Reminders.\+Create\+Reminder\+Contract (\begin{DoxyParamCaption}\item[{Dictionary$<$ string, object $>$}]{Customer}{, }\item[{Dictionary$<$ string, object $>$}]{Contract}{, }\item[{Dictionary$<$ string, object $>$}]{Vehicle}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{_reminders_8cs_source_l00024}{24}} in het bestand \mbox{\hyperlink{_reminders_8cs_source}{Reminders.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00025\ \ \ \ \ \{}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ @\$\textcolor{stringliteral}{"{}<h1>Herinnering\ voor\ voertuig\ </h1>Beste\ \{Customer["{}}Email\textcolor{stringliteral}{"{}]\},}}
+\DoxyCodeLine{00027\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ <p>Uw\ contract\ met\ referencie\ nummer\ \{Contract["{}}OrderId\textcolor{stringliteral}{"{}]\}\ gaat\ vanaf\ morgen\ in.</p>}}
+
+\end{DoxyCode}
+\Hypertarget{class_w_p_r_1_1_email_1_1_reminders_ad80d4a26ca16bf220b8b188082e6fca3}\index{WPR.Email.Reminders@{WPR.Email.Reminders}!ExecuteAsync@{ExecuteAsync}}
+\index{ExecuteAsync@{ExecuteAsync}!WPR.Email.Reminders@{WPR.Email.Reminders}}
+\doxysubsubsection{\texorpdfstring{ExecuteAsync()}{ExecuteAsync()}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_email_1_1_reminders_ad80d4a26ca16bf220b8b188082e6fca3} 
+override async Task WPR.\+Email.\+Reminders.\+Execute\+Async (\begin{DoxyParamCaption}\item[{Cancellation\+Token}]{stopping\+Token}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}}
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{_reminders_8cs_source_l00138}{138}} in het bestand \mbox{\hyperlink{_reminders_8cs_source}{Reminders.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00148\ \ \ \ \ \{}
+\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (!stoppingToken.IsCancellationRequested)}
+\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00151\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}}
+\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ await\ ReminderContract24Hours();}
+
+\end{DoxyCode}
+\Hypertarget{class_w_p_r_1_1_email_1_1_reminders_a2e395400175836072d81ac325fd06141}\index{WPR.Email.Reminders@{WPR.Email.Reminders}!GetContractInfo@{GetContractInfo}}
+\index{GetContractInfo@{GetContractInfo}!WPR.Email.Reminders@{WPR.Email.Reminders}}
+\doxysubsubsection{\texorpdfstring{GetContractInfo()}{GetContractInfo()}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_email_1_1_reminders_a2e395400175836072d81ac325fd06141} 
+async Task$<$ Dictionary$<$ string, object $>$ $>$ WPR.\+Email.\+Reminders.\+Get\+Contract\+Info (\begin{DoxyParamCaption}\item[{int}]{id}{, }\item[{IService\+Scope}]{scope}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{_reminders_8cs_source_l00038}{38}} in het bestand \mbox{\hyperlink{_reminders_8cs_source}{Reminders.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00039\ \ \ \ \ \{}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ var\ customer\ =\ scope.ServiceProvider.GetRequiredService<ICustomerDetails>();}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ await\ customer.SetDetailsAsync(\textcolor{keywordtype}{id});}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ await\ customer.GetDetailsAsync();}
+\DoxyCodeLine{00045\ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{class_w_p_r_1_1_email_1_1_reminders_a42469c6c38c948b8fd2ae5960f5a5dd0}\index{WPR.Email.Reminders@{WPR.Email.Reminders}!GetCustomerInfo@{GetCustomerInfo}}
+\index{GetCustomerInfo@{GetCustomerInfo}!WPR.Email.Reminders@{WPR.Email.Reminders}}
+\doxysubsubsection{\texorpdfstring{GetCustomerInfo()}{GetCustomerInfo()}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_email_1_1_reminders_a42469c6c38c948b8fd2ae5960f5a5dd0} 
+async Task$<$ Dictionary$<$ string, object $>$ $>$ WPR.\+Email.\+Reminders.\+Get\+Customer\+Info (\begin{DoxyParamCaption}\item[{int}]{id}{, }\item[{IService\+Scope}]{scope}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{_reminders_8cs_source_l00029}{29}} in het bestand \mbox{\hyperlink{_reminders_8cs_source}{Reminders.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ :\ \{Contract[\textcolor{stringliteral}{"{}OrderId"{}}]\}</li>}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \ \ \ \ <li>Start\ datum:\ \{Contract[\textcolor{stringliteral}{"{}StartDate"{}}]\}</li>}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \ \ \ \ <li>Eind\ datum:\ \{Contract[\textcolor{stringliteral}{"{}EndDate"{}}]\}</li>}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \ \ \ \ <li>Voertuig:\ \{Vehicle[\textcolor{stringliteral}{"{}Brand"{}}]\}\ \{Vehicle[\textcolor{stringliteral}{"{}Type"{}}]\}</li>}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ </ul>}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{};}}
+\DoxyCodeLine{00036\ \textcolor{stringliteral}{\ \ \ \ \}}}
+
+\end{DoxyCode}
+\Hypertarget{class_w_p_r_1_1_email_1_1_reminders_a67dff571812b76e4250e73684d8cc454}\index{WPR.Email.Reminders@{WPR.Email.Reminders}!GetVehicleInfo@{GetVehicleInfo}}
+\index{GetVehicleInfo@{GetVehicleInfo}!WPR.Email.Reminders@{WPR.Email.Reminders}}
+\doxysubsubsection{\texorpdfstring{GetVehicleInfo()}{GetVehicleInfo()}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_email_1_1_reminders_a67dff571812b76e4250e73684d8cc454} 
+async Task$<$ Dictionary$<$ string, object $>$ $>$ WPR.\+Email.\+Reminders.\+Get\+Vehicle\+Info (\begin{DoxyParamCaption}\item[{int}]{id}{, }\item[{IService\+Scope}]{scope}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{_reminders_8cs_source_l00047}{47}} in het bestand \mbox{\hyperlink{_reminders_8cs_source}{Reminders.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00048\ \ \ \ \ \{}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ var\ contract\ =\ scope.ServiceProvider.GetRequiredService<IContractDetails>();}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ await\ contract.SetDetailsAsync(\textcolor{keywordtype}{id});}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ await\ contract.GetDetailsAsync();}
+\DoxyCodeLine{00054\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+Gebruikt \mbox{\hyperlink{interface_w_p_r_1_1_email_1_1_i_details_ac7600129d3807cf2a065a8e44c30a6df}{WPR.\+Email.\+IDetails.\+Set\+Details\+Async()}}.
+
+Hier is de call graaf voor deze functie\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_w_p_r_1_1_email_1_1_reminders_a67dff571812b76e4250e73684d8cc454_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_w_p_r_1_1_email_1_1_reminders_a7444d93d984ea9038666a160d3f2c1cd}\index{WPR.Email.Reminders@{WPR.Email.Reminders}!ReminderContract24Hours@{ReminderContract24Hours}}
+\index{ReminderContract24Hours@{ReminderContract24Hours}!WPR.Email.Reminders@{WPR.Email.Reminders}}
+\doxysubsubsection{\texorpdfstring{ReminderContract24Hours()}{ReminderContract24Hours()}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_email_1_1_reminders_a7444d93d984ea9038666a160d3f2c1cd} 
+virtual async Task$<$ bool $>$ WPR.\+Email.\+Reminders.\+Reminder\+Contract24\+Hours (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{_reminders_8cs_source_l00097}{97}} in het bestand \mbox{\hyperlink{_reminders_8cs_source}{Reminders.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \ \ \ \ Console.WriteLine(ex.Message);}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw};}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00104\ \ \ \ \ \}}
+\DoxyCodeLine{00105\ }
+\DoxyCodeLine{00106\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{virtual}\ async\ Task<bool>\ ReminderContract24Hours() }
+\DoxyCodeLine{00107\ \ \ \ \ \{}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \textcolor{keyword}{using}\ (var\ scope\ =\ \_serviceProvider.CreateScope())}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \ \ \ \ var\ customer\ =\ scope.ServiceProvider.GetRequiredService<ICustomerDetails>();}
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \ \ \ \ var\ contract\ =\ scope.ServiceProvider.GetRequiredService<IContractDetails>();}
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \ \ \ \ var\ vehicle\ =\ scope.ServiceProvider.GetRequiredService<IVehicleDetails>();}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \ \ \ \ var\ contracts\ =\ scope.ServiceProvider.GetRequiredService<IContractRepository>();}
+\DoxyCodeLine{00114\ }
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (customer\ ==\ \textcolor{keyword}{null}\ ||\ contract\ ==\ \textcolor{keyword}{null}\ ||\ vehicle\ ==\ \textcolor{keyword}{null}\ ||\ contracts\ ==\ \textcolor{keyword}{null})}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Console.WriteLine(\textcolor{stringliteral}{"{}One\ or\ more\ required\ services\ are\ not\ available."{}});}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};\ \textcolor{comment}{//\ Exit\ early\ if\ any\ service\ is\ not\ resolved}}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00120\ }
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \ \ \ \ IList<int>\ ids\ =\ await\ contracts.GetContractsSendEmailAsync();}
+\DoxyCodeLine{00122\ }
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (ids\ ==\ \textcolor{keyword}{null}\ ||\ ids.Count\ ==\ 0)}
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00127\ }
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{foreach}\ (\textcolor{keywordtype}{int}\ orderId\ \textcolor{keywordflow}{in}\ ids)}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Dictionary<string,\ object>\ contractDic\ =\ \textcolor{keyword}{new}\ Dictionary<string,\ object>();}
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Dictionary<string,\ object>\ customerDic\ =\ \textcolor{keyword}{new}\ Dictionary<string,\ object>();}
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Dictionary<string,\ object>\ vehicleDic\ =\ \textcolor{keyword}{new}\ Dictionary<string,\ object>();}
+\DoxyCodeLine{00133\ }
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ contractDic\ =\ await\ GetContractInfo(orderId,\ scope);}
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ customerDic\ =\ await\ GetCustomerInfo(Convert.ToInt32(contractDic[\textcolor{stringliteral}{"{}Customer"{}}]),\ scope);}
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ vehicleDic\ =\ await\ GetVehicleInfo(Convert.ToInt32(contractDic[\textcolor{stringliteral}{"{}FrameNrVehicle"{}}]),\ scope);}
+
+\end{DoxyCode}
+\Hypertarget{class_w_p_r_1_1_email_1_1_reminders_aa5b68b714327d1e6ad8adae0698897f6}\index{WPR.Email.Reminders@{WPR.Email.Reminders}!SendEmail@{SendEmail}}
+\index{SendEmail@{SendEmail}!WPR.Email.Reminders@{WPR.Email.Reminders}}
+\doxysubsubsection{\texorpdfstring{SendEmail()}{SendEmail()}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_email_1_1_reminders_aa5b68b714327d1e6ad8adae0698897f6} 
+async Task WPR.\+Email.\+Reminders.\+Send\+Email (\begin{DoxyParamCaption}\item[{string}]{body}{, }\item[{string}]{subject}{, }\item[{string}]{to\+Email}{, }\item[{object}]{order\+Id}{, }\item[{IService\+Scope}]{scope}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{_reminders_8cs_source_l00056}{56}} in het bestand \mbox{\hyperlink{_reminders_8cs_source}{Reminders.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00057\ \ \ \ \ \{}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ var\ vehicle\ =\ scope.ServiceProvider.GetRequiredService<IVehicleDetails>();}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ await\ vehicle.SetDetailsAsync(\textcolor{keywordtype}{id});}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ await\ vehicle.GetDetailsAsync();}
+\DoxyCodeLine{00063\ \ \ \ \ \}}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00065\ \ \ \ \ \textcolor{keyword}{private}\ async\ Task\ SendEmail(\textcolor{keywordtype}{string}\ body,\ \textcolor{keywordtype}{string}\ subject,\ \textcolor{keywordtype}{string}\ toEmail,\ \textcolor{keywordtype}{object}\ orderId,\ IServiceScope\ scope) }
+\DoxyCodeLine{00066\ \ \ \ \ \{}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \ \ \ \ var\ emailService\ =\ scope.ServiceProvider.GetService<IEmailService>();}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (emailService\ ==\ \textcolor{keyword}{null})}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ InvalidOperationException(\textcolor{stringliteral}{"{}IEmailService\ not\ found\ in\ service\ provider."{}});}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ query\ =\ \$\textcolor{stringliteral}{"{}UPDATE\ Contract\ SET\ SendEmail\ =\ 'Yes'\ WHERE\ OrderId\ =\ \{orderId\}"{}};}
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using}\ (var\ connection\ =\ \_connector.CreateDbConnection())}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using}\ (var\ command\ =\ connection.CreateCommand())}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (command\ ==\ \textcolor{keyword}{null})}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ InvalidOperationException(\textcolor{stringliteral}{"{}Failed\ to\ create\ a\ database\ command."{}});}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ command.CommandText\ =\ query;}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (command.ExecuteNonQuery()\ >\ 0)}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ await\ emailService.Send(toEmail,\ subject,\ body);}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (MySqlException\ ex)}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \{}
+
+\end{DoxyCode}
+
+
+Gebruikt \mbox{\hyperlink{interface_w_p_r_1_1_email_1_1_i_details_ac7600129d3807cf2a065a8e44c30a6df}{WPR.\+Email.\+IDetails.\+Set\+Details\+Async()}}.
+
+Hier is de call graaf voor deze functie\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_w_p_r_1_1_email_1_1_reminders_aa5b68b714327d1e6ad8adae0698897f6_cgraph}
+\end{center}
+\end{figure}
+
+
+\doxysubsection{Documentatie van data velden}
+\Hypertarget{class_w_p_r_1_1_email_1_1_reminders_a48ebeeb8f8653fcbad7c2fd1845398d0}\index{WPR.Email.Reminders@{WPR.Email.Reminders}!\_connector@{\_connector}}
+\index{\_connector@{\_connector}!WPR.Email.Reminders@{WPR.Email.Reminders}}
+\doxysubsubsection{\texorpdfstring{\_connector}{\_connector}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_email_1_1_reminders_a48ebeeb8f8653fcbad7c2fd1845398d0} 
+readonly \mbox{\hyperlink{interface_w_p_r_1_1_database_1_1_i_connector}{IConnector}} WPR.\+Email.\+Reminders.\+\_\+connector\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{_reminders_8cs_source_l00016}{16}} in het bestand \mbox{\hyperlink{_reminders_8cs_source}{Reminders.\+cs}}.
+
+
+
+Wordt aangeroepen door \mbox{\hyperlink{_reminders_8cs_source_l00018}{Reminders()}}.
+
+\Hypertarget{class_w_p_r_1_1_email_1_1_reminders_a09689a320901679aa8ed84c220fed493}\index{WPR.Email.Reminders@{WPR.Email.Reminders}!\_serviceProvider@{\_serviceProvider}}
+\index{\_serviceProvider@{\_serviceProvider}!WPR.Email.Reminders@{WPR.Email.Reminders}}
+\doxysubsubsection{\texorpdfstring{\_serviceProvider}{\_serviceProvider}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_email_1_1_reminders_a09689a320901679aa8ed84c220fed493} 
+readonly IService\+Provider WPR.\+Email.\+Reminders.\+\_\+service\+Provider\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{_reminders_8cs_source_l00015}{15}} in het bestand \mbox{\hyperlink{_reminders_8cs_source}{Reminders.\+cs}}.
+
+
+
+Wordt aangeroepen door \mbox{\hyperlink{_reminders_8cs_source_l00018}{Reminders()}}.
+
+
+
+De documentatie voor deze klasse is gegenereerd op basis van het volgende bestand\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/codes/\+WPR8/\+WPR/backend/src/\+Emails/\mbox{\hyperlink{_reminders_8cs}{Reminders.\+cs}}\end{DoxyCompactItemize}

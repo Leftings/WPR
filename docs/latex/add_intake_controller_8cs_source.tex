@@ -1,0 +1,67 @@
+\doxysection{add\+Intake\+Controller.\+cs}
+\hypertarget{add_intake_controller_8cs_source}{}\label{add_intake_controller_8cs_source}\index{D:/codes/WPR8/WPR/backend/src/Controllers/Employee/frontOffice/addIntake/addIntakeController.cs@{D:/codes/WPR8/WPR/backend/src/Controllers/Employee/frontOffice/addIntake/addIntakeController.cs}}
+\mbox{\hyperlink{add_intake_controller_8cs}{Ga naar de documentatie van dit bestand.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{add_intake_controller_8cs_source_l00001}\mbox{\hyperlink{namespace_w_p_r_1_1_controllers_1_1_employee_1_1_front_office}{00001}}\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_w_p_r_1_1_controllers_1_1_employee_1_1_front_office_1_1_add_intake}{WPR.Controllers.Employee.FrontOffice.AddIntake}};}
+\DoxyCodeLine{\Hypertarget{add_intake_controller_8cs_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{add_intake_controller_8cs_source_l00003}00003\ \textcolor{keyword}{using\ }Microsoft.AspNetCore.Mvc;}
+\DoxyCodeLine{\Hypertarget{add_intake_controller_8cs_source_l00004}00004\ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespace_w_p_r_1_1_database}{WPR.Database}};}
+\DoxyCodeLine{\Hypertarget{add_intake_controller_8cs_source_l00005}00005\ \textcolor{keyword}{using\ }System;}
+\DoxyCodeLine{\Hypertarget{add_intake_controller_8cs_source_l00006}00006\ \textcolor{keyword}{using\ }MySqlX.XDevAPI.Common;}
+\DoxyCodeLine{\Hypertarget{add_intake_controller_8cs_source_l00007}00007\ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespace_w_p_r_1_1_repository}{WPR.Repository}};}
+\DoxyCodeLine{\Hypertarget{add_intake_controller_8cs_source_l00008}00008\ \textcolor{keyword}{using\ }MySql.Data.MySqlClient;}
+\DoxyCodeLine{\Hypertarget{add_intake_controller_8cs_source_l00009}00009\ }
+\DoxyCodeLine{\Hypertarget{add_intake_controller_8cs_source_l00013}00013\ [Route(\textcolor{stringliteral}{"{}api/[controller]"{}})]}
+\DoxyCodeLine{\Hypertarget{add_intake_controller_8cs_source_l00014}00014\ [ApiController]}
+\DoxyCodeLine{\Hypertarget{add_intake_controller_8cs_source_l00015}\mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_employee_1_1_front_office_1_1_add_intake_1_1_add_intake_controller}{00015}}\ \textcolor{keyword}{public}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_employee_1_1_front_office_1_1_add_intake_1_1_add_intake_controller_aeaa0fabe5d5d999eef8af5d40425e573}{AddIntakeController}}\ :\ ControllerBase}
+\DoxyCodeLine{\Hypertarget{add_intake_controller_8cs_source_l00016}00016\ \{}
+\DoxyCodeLine{\Hypertarget{add_intake_controller_8cs_source_l00017}\mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_employee_1_1_front_office_1_1_add_intake_1_1_add_intake_controller_afff12ab780eb18b0a4b0a17775a38f84}{00017}}\ \ \ \ \ \textcolor{keyword}{private}\ readonly\ \mbox{\hyperlink{interface_w_p_r_1_1_database_1_1_i_connector}{IConnector}}\ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_employee_1_1_front_office_1_1_add_intake_1_1_add_intake_controller_afff12ab780eb18b0a4b0a17775a38f84}{\_connector}};}
+\DoxyCodeLine{\Hypertarget{add_intake_controller_8cs_source_l00018}\mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_employee_1_1_front_office_1_1_add_intake_1_1_add_intake_controller_aa427509936fd7e5cd8fff2b1d3fb1d7e}{00018}}\ \ \ \ \ \textcolor{keyword}{private}\ readonly\ \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_employee_repository}{IEmployeeRepository}}\ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_employee_1_1_front_office_1_1_add_intake_1_1_add_intake_controller_aa427509936fd7e5cd8fff2b1d3fb1d7e}{\_employeeRepository}};}
+\DoxyCodeLine{\Hypertarget{add_intake_controller_8cs_source_l00019}\mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_employee_1_1_front_office_1_1_add_intake_1_1_add_intake_controller_a1d56b5cdd7cd3bb6cae97c319fe1115d}{00019}}\ \ \ \ \ \textcolor{keyword}{private}\ readonly\ \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_vehicle_repository}{IVehicleRepository}}\ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_employee_1_1_front_office_1_1_add_intake_1_1_add_intake_controller_a1d56b5cdd7cd3bb6cae97c319fe1115d}{\_vehicleRepository}};}
+\DoxyCodeLine{\Hypertarget{add_intake_controller_8cs_source_l00020}00020\ }
+\DoxyCodeLine{\Hypertarget{add_intake_controller_8cs_source_l00021}\mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_employee_1_1_front_office_1_1_add_intake_1_1_add_intake_controller_aeaa0fabe5d5d999eef8af5d40425e573}{00021}}\ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_employee_1_1_front_office_1_1_add_intake_1_1_add_intake_controller_aeaa0fabe5d5d999eef8af5d40425e573}{AddIntakeController}}(\mbox{\hyperlink{interface_w_p_r_1_1_database_1_1_i_connector}{IConnector}}\ connector,\ \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_employee_repository}{IEmployeeRepository}}\ employeeRepository,\ \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_vehicle_repository}{IVehicleRepository}}\ vehicleRepository)}
+\DoxyCodeLine{\Hypertarget{add_intake_controller_8cs_source_l00022}00022\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{add_intake_controller_8cs_source_l00023}00023\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_employee_1_1_front_office_1_1_add_intake_1_1_add_intake_controller_afff12ab780eb18b0a4b0a17775a38f84}{\_connector}}\ =\ connector\ ??\ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ ArgumentNullException(nameof(connector));}
+\DoxyCodeLine{\Hypertarget{add_intake_controller_8cs_source_l00024}00024\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_employee_1_1_front_office_1_1_add_intake_1_1_add_intake_controller_aa427509936fd7e5cd8fff2b1d3fb1d7e}{\_employeeRepository}}\ =\ employeeRepository\ ??\ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ ArgumentNullException(nameof(employeeRepository));}
+\DoxyCodeLine{\Hypertarget{add_intake_controller_8cs_source_l00025}00025\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_employee_1_1_front_office_1_1_add_intake_1_1_add_intake_controller_a1d56b5cdd7cd3bb6cae97c319fe1115d}{\_vehicleRepository}}\ =\ vehicleRepository\ ??\ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ ArgumentNullException(nameof(vehicleRepository));}
+\DoxyCodeLine{\Hypertarget{add_intake_controller_8cs_source_l00026}00026\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{add_intake_controller_8cs_source_l00027}00027\ }
+\DoxyCodeLine{\Hypertarget{add_intake_controller_8cs_source_l00033}00033\ \ \ \ \ [HttpPost(\textcolor{stringliteral}{"{}addIntake"{}})]}
+\DoxyCodeLine{\Hypertarget{add_intake_controller_8cs_source_l00034}\mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_employee_1_1_front_office_1_1_add_intake_1_1_add_intake_controller_ad03b0dd2e83bcf5627e6389de3a43197}{00034}}\ \ \ \ \ \textcolor{keyword}{public}\ async\ Task<IActionResult>\ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_employee_1_1_front_office_1_1_add_intake_1_1_add_intake_controller_ad03b0dd2e83bcf5627e6389de3a43197}{AddIntakeAsync}}([FromForm]\ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_employee_1_1_front_office_1_1_add_intake_1_1_add_intake_request}{AddIntakeRequest}}\ request)}
+\DoxyCodeLine{\Hypertarget{add_intake_controller_8cs_source_l00035}00035\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{add_intake_controller_8cs_source_l00036}00036\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}}
+\DoxyCodeLine{\Hypertarget{add_intake_controller_8cs_source_l00037}00037\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{add_intake_controller_8cs_source_l00038}00038\ }
+\DoxyCodeLine{\Hypertarget{add_intake_controller_8cs_source_l00039}00039\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Gegevens\ worden\ doorgestuurd\ naar\ de\ userRepository}}
+\DoxyCodeLine{\Hypertarget{add_intake_controller_8cs_source_l00040}00040\ \ \ \ \ \ \ \ \ \ \ \ \ var\ status\ =\ await\ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_employee_1_1_front_office_1_1_add_intake_1_1_add_intake_controller_aa427509936fd7e5cd8fff2b1d3fb1d7e}{\_employeeRepository}}.AddIntakeAsync(}
+\DoxyCodeLine{\Hypertarget{add_intake_controller_8cs_source_l00041}00041\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ request.Damage,}
+\DoxyCodeLine{\Hypertarget{add_intake_controller_8cs_source_l00042}00042\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ request.FrameNrVehicle,}
+\DoxyCodeLine{\Hypertarget{add_intake_controller_8cs_source_l00043}00043\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ request.ReviewedBy,}
+\DoxyCodeLine{\Hypertarget{add_intake_controller_8cs_source_l00044}00044\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ request.Date,}
+\DoxyCodeLine{\Hypertarget{add_intake_controller_8cs_source_l00045}00045\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ request.Contract,}
+\DoxyCodeLine{\Hypertarget{add_intake_controller_8cs_source_l00046}00046\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ request.IsDamaged);}
+\DoxyCodeLine{\Hypertarget{add_intake_controller_8cs_source_l00047}00047\ }
+\DoxyCodeLine{\Hypertarget{add_intake_controller_8cs_source_l00048}00048\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (request.IsDamaged)}
+\DoxyCodeLine{\Hypertarget{add_intake_controller_8cs_source_l00049}00049\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{add_intake_controller_8cs_source_l00050}00050\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ var\ status2\ =\ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_employee_1_1_front_office_1_1_add_intake_1_1_add_intake_controller_a1d56b5cdd7cd3bb6cae97c319fe1115d}{\_vehicleRepository}}.ChangeRepairStatus(request.FrameNrVehicle,\ \textcolor{keyword}{true});}
+\DoxyCodeLine{\Hypertarget{add_intake_controller_8cs_source_l00051}00051\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{add_intake_controller_8cs_source_l00052}00052\ }
+\DoxyCodeLine{\Hypertarget{add_intake_controller_8cs_source_l00053}00053\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (status.status)}
+\DoxyCodeLine{\Hypertarget{add_intake_controller_8cs_source_l00054}00054\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{add_intake_controller_8cs_source_l00055}00055\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Ok(\textcolor{keyword}{new}\ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_employee_1_1_front_office_1_1_add_intake_1_1_add_intake_response}{AddIntakeResponse}}\ \{\ Message\ =\ status.message\ \});}
+\DoxyCodeLine{\Hypertarget{add_intake_controller_8cs_source_l00056}00056\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{add_intake_controller_8cs_source_l00057}00057\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ BadRequest(\textcolor{keyword}{new}\ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_employee_1_1_front_office_1_1_add_intake_1_1_add_intake_error_response}{AddIntakeErrorResponse}}}
+\DoxyCodeLine{\Hypertarget{add_intake_controller_8cs_source_l00058}00058\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{add_intake_controller_8cs_source_l00059}00059\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Status\ =\ \textcolor{keyword}{false},}
+\DoxyCodeLine{\Hypertarget{add_intake_controller_8cs_source_l00060}00060\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Message\ =\ status.message}
+\DoxyCodeLine{\Hypertarget{add_intake_controller_8cs_source_l00061}00061\ \ \ \ \ \ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{\Hypertarget{add_intake_controller_8cs_source_l00062}00062\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{add_intake_controller_8cs_source_l00063}00063\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (Exception\ ex)}
+\DoxyCodeLine{\Hypertarget{add_intake_controller_8cs_source_l00064}00064\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{add_intake_controller_8cs_source_l00065}00065\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ StatusCode(500,\ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_employee_1_1_front_office_1_1_add_intake_1_1_add_intake_error_response}{AddIntakeErrorResponse}}()\ \{\ Status\ =\ \textcolor{keyword}{false},\ Message\ =\ ex.Message\ \});}
+\DoxyCodeLine{\Hypertarget{add_intake_controller_8cs_source_l00066}00066\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{add_intake_controller_8cs_source_l00067}00067\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{add_intake_controller_8cs_source_l00068}00068\ }
+\DoxyCodeLine{\Hypertarget{add_intake_controller_8cs_source_l00069}00069\ \}}
+
+\end{DoxyCode}

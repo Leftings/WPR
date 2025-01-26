@@ -1,0 +1,186 @@
+\doxysection{WPR.\+Controllers.\+Employee.\+Shared.\+view\+Rental\+Data.\+view\+Rental\+Data\+Controller Class Referentie}
+\hypertarget{class_w_p_r_1_1_controllers_1_1_employee_1_1_shared_1_1view_rental_data_1_1view_rental_data_controller}{}\label{class_w_p_r_1_1_controllers_1_1_employee_1_1_shared_1_1view_rental_data_1_1view_rental_data_controller}\index{WPR.Controllers.Employee.Shared.viewRentalData.viewRentalDataController@{WPR.Controllers.Employee.Shared.viewRentalData.viewRentalDataController}}
+
+
+Klasse diagram voor WPR.\+Controllers.\+Employee.\+Shared.\+view\+Rental\+Data.\+view\+Rental\+Data\+Controller
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=243pt]{class_w_p_r_1_1_controllers_1_1_employee_1_1_shared_1_1view_rental_data_1_1view_rental_data_controller__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboratie diagram voor WPR.\+Controllers.\+Employee.\+Shared.\+view\+Rental\+Data.\+view\+Rental\+Data\+Controller\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=313pt]{class_w_p_r_1_1_controllers_1_1_employee_1_1_shared_1_1view_rental_data_1_1view_rental_data_controller__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Members}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_employee_1_1_shared_1_1view_rental_data_1_1view_rental_data_controller_ad1c6547fe8eb9f11c29ebcd0b2753f1b}{view\+Rental\+Data\+Controller}} (\mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_back_office_repository}{IBack\+Office\+Repository}} back\+Office\+Repository)
+\item 
+async Task$<$ IAction\+Result $>$ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_employee_1_1_shared_1_1view_rental_data_1_1view_rental_data_controller_a660044328702ac591bc571900c70b677}{Get\+Review}} (int id)
+\item 
+async Task$<$ IAction\+Result $>$ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_employee_1_1_shared_1_1view_rental_data_1_1view_rental_data_controller_a6317e30e30a0e89df1daa62247c32fb7}{Get\+Data\+Review\+Ids}} ()
+\item 
+async Task$<$ IAction\+Result $>$ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_employee_1_1_shared_1_1view_rental_data_1_1view_rental_data_controller_a5cae24e703f601c1988a3e40f9d33b4c}{Get\+Full\+Review}} (int id)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributen}
+\begin{DoxyCompactItemize}
+\item 
+readonly \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_back_office_repository}{IBack\+Office\+Repository}} \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_employee_1_1_shared_1_1view_rental_data_1_1view_rental_data_controller_aeef6bee8b5429a18184364c1ba3b401a}{\+\_\+back\+Office\+Repository}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Gedetailleerde Beschrijving}
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{view_rental_data_controller_8cs_source_l00008}{8}} in het bestand \mbox{\hyperlink{view_rental_data_controller_8cs_source}{view\+Rental\+Data\+Controller.\+cs}}.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentatie}
+\Hypertarget{class_w_p_r_1_1_controllers_1_1_employee_1_1_shared_1_1view_rental_data_1_1view_rental_data_controller_ad1c6547fe8eb9f11c29ebcd0b2753f1b}\index{WPR.Controllers.Employee.Shared.viewRentalData.viewRentalDataController@{WPR.Controllers.Employee.Shared.viewRentalData.viewRentalDataController}!viewRentalDataController@{viewRentalDataController}}
+\index{viewRentalDataController@{viewRentalDataController}!WPR.Controllers.Employee.Shared.viewRentalData.viewRentalDataController@{WPR.Controllers.Employee.Shared.viewRentalData.viewRentalDataController}}
+\doxysubsubsection{\texorpdfstring{viewRentalDataController()}{viewRentalDataController()}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_controllers_1_1_employee_1_1_shared_1_1view_rental_data_1_1view_rental_data_controller_ad1c6547fe8eb9f11c29ebcd0b2753f1b} 
+WPR.\+Controllers.\+Employee.\+Shared.\+view\+Rental\+Data.\+view\+Rental\+Data\+Controller.\+view\+Rental\+Data\+Controller (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_back_office_repository}{IBack\+Office\+Repository}}}]{back\+Office\+Repository}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{view_rental_data_controller_8cs_source_l00011}{11}} in het bestand \mbox{\hyperlink{view_rental_data_controller_8cs_source}{view\+Rental\+Data\+Controller.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00012\ \ \ \ \ \{}
+\DoxyCodeLine{00013\ \ \ \ \ \ \ \ \ \_backOfficeRepository\ =\ backOfficeRepository\ ??\ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ ArgumentNullException(nameof(backOfficeRepository));}
+\DoxyCodeLine{00014\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+Gebruikt \mbox{\hyperlink{view_rental_data_controller_8cs_source_l00010}{\+\_\+back\+Office\+Repository}}.
+
+
+
+\doxysubsection{Documentatie van functie members}
+\Hypertarget{class_w_p_r_1_1_controllers_1_1_employee_1_1_shared_1_1view_rental_data_1_1view_rental_data_controller_a6317e30e30a0e89df1daa62247c32fb7}\index{WPR.Controllers.Employee.Shared.viewRentalData.viewRentalDataController@{WPR.Controllers.Employee.Shared.viewRentalData.viewRentalDataController}!GetDataReviewIds@{GetDataReviewIds}}
+\index{GetDataReviewIds@{GetDataReviewIds}!WPR.Controllers.Employee.Shared.viewRentalData.viewRentalDataController@{WPR.Controllers.Employee.Shared.viewRentalData.viewRentalDataController}}
+\doxysubsubsection{\texorpdfstring{GetDataReviewIds()}{GetDataReviewIds()}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_controllers_1_1_employee_1_1_shared_1_1view_rental_data_1_1view_rental_data_controller_a6317e30e30a0e89df1daa62247c32fb7} 
+async Task$<$ IAction\+Result $>$ WPR.\+Controllers.\+Employee.\+Shared.\+view\+Rental\+Data.\+view\+Rental\+Data\+Controller.\+Get\+Data\+Review\+Ids (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{view_rental_data_controller_8cs_source_l00029}{29}} in het bestand \mbox{\hyperlink{view_rental_data_controller_8cs_source}{view\+Rental\+Data\+Controller.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00030\ \ \ \ \ \{}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ (\textcolor{keywordtype}{bool}\ Status,\ \textcolor{keywordtype}{string}\ Message,\ \textcolor{keywordtype}{int}[]\ Ids)\ response\ =\ \_backOfficeRepository.GetDataReviewIds();}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (response.Status)}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Ok(\textcolor{keyword}{new}\ \{\ message\ =\ response.Ids\});}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ BadRequest(\textcolor{keyword}{new}\ \{\ message\ =\ response.Message\});}
+\DoxyCodeLine{00038\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+Gebruikt \mbox{\hyperlink{view_rental_data_controller_8cs_source_l00010}{\+\_\+back\+Office\+Repository}}.
+
+\Hypertarget{class_w_p_r_1_1_controllers_1_1_employee_1_1_shared_1_1view_rental_data_1_1view_rental_data_controller_a5cae24e703f601c1988a3e40f9d33b4c}\index{WPR.Controllers.Employee.Shared.viewRentalData.viewRentalDataController@{WPR.Controllers.Employee.Shared.viewRentalData.viewRentalDataController}!GetFullReview@{GetFullReview}}
+\index{GetFullReview@{GetFullReview}!WPR.Controllers.Employee.Shared.viewRentalData.viewRentalDataController@{WPR.Controllers.Employee.Shared.viewRentalData.viewRentalDataController}}
+\doxysubsubsection{\texorpdfstring{GetFullReview()}{GetFullReview()}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_controllers_1_1_employee_1_1_shared_1_1view_rental_data_1_1view_rental_data_controller_a5cae24e703f601c1988a3e40f9d33b4c} 
+async Task$<$ IAction\+Result $>$ WPR.\+Controllers.\+Employee.\+Shared.\+view\+Rental\+Data.\+view\+Rental\+Data\+Controller.\+Get\+Full\+Review (\begin{DoxyParamCaption}\item[{int}]{id}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{view_rental_data_controller_8cs_source_l00041}{41}} in het bestand \mbox{\hyperlink{view_rental_data_controller_8cs_source}{view\+Rental\+Data\+Controller.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00042\ \ \ \ \ \{}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \ \ \ \ (\textcolor{keywordtype}{bool}\ Status,\ \textcolor{keywordtype}{string}\ Message,\ Dictionary<string,\ object>\ Data)\ response\ =\ \_backOfficeRepository.GetFullDataReview(\textcolor{keywordtype}{id});}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (response.Status)}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Ok(\textcolor{keyword}{new}\ viewRentalDataResponse\{\ Message\ =\ response.Data\ \});}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ BadRequest(\textcolor{keyword}{new}\ viewRentalDataErrorResponse()\ \{\ Status\ =\ \textcolor{keyword}{false},\ Message\ =\ response.Message\ \});}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (Exception\ e)}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ BadRequest(\textcolor{keyword}{new}\ viewRentalDataErrorResponse}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Status\ =\ \textcolor{keyword}{false},}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Message\ =\ e.Message}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00061\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+Gebruikt \mbox{\hyperlink{view_rental_data_controller_8cs_source_l00010}{\+\_\+back\+Office\+Repository}}.
+
+\Hypertarget{class_w_p_r_1_1_controllers_1_1_employee_1_1_shared_1_1view_rental_data_1_1view_rental_data_controller_a660044328702ac591bc571900c70b677}\index{WPR.Controllers.Employee.Shared.viewRentalData.viewRentalDataController@{WPR.Controllers.Employee.Shared.viewRentalData.viewRentalDataController}!GetReview@{GetReview}}
+\index{GetReview@{GetReview}!WPR.Controllers.Employee.Shared.viewRentalData.viewRentalDataController@{WPR.Controllers.Employee.Shared.viewRentalData.viewRentalDataController}}
+\doxysubsubsection{\texorpdfstring{GetReview()}{GetReview()}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_controllers_1_1_employee_1_1_shared_1_1view_rental_data_1_1view_rental_data_controller_a660044328702ac591bc571900c70b677} 
+async Task$<$ IAction\+Result $>$ WPR.\+Controllers.\+Employee.\+Shared.\+view\+Rental\+Data.\+view\+Rental\+Data\+Controller.\+Get\+Review (\begin{DoxyParamCaption}\item[{int}]{id}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{view_rental_data_controller_8cs_source_l00017}{17}} in het bestand \mbox{\hyperlink{view_rental_data_controller_8cs_source}{view\+Rental\+Data\+Controller.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00018\ \ \ \ \ \{}
+\DoxyCodeLine{00019\ \ \ \ \ \ \ \ \ (\textcolor{keywordtype}{bool}\ Status,\ \textcolor{keywordtype}{string}\ Message,\ Dictionary<string,\ object>\ Data)\ response\ =\ \_backOfficeRepository.GetDataReview(\textcolor{keywordtype}{id});}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (response.Status)}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Ok(\textcolor{keyword}{new}\ \{\ message\ =\ response.Data\ \});}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ BadRequest(\textcolor{keyword}{new}\ \{\ message\ =\ response.Message\ \});}
+\DoxyCodeLine{00026\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+Gebruikt \mbox{\hyperlink{view_rental_data_controller_8cs_source_l00010}{\+\_\+back\+Office\+Repository}}.
+
+
+
+\doxysubsection{Documentatie van data velden}
+\Hypertarget{class_w_p_r_1_1_controllers_1_1_employee_1_1_shared_1_1view_rental_data_1_1view_rental_data_controller_aeef6bee8b5429a18184364c1ba3b401a}\index{WPR.Controllers.Employee.Shared.viewRentalData.viewRentalDataController@{WPR.Controllers.Employee.Shared.viewRentalData.viewRentalDataController}!\_backOfficeRepository@{\_backOfficeRepository}}
+\index{\_backOfficeRepository@{\_backOfficeRepository}!WPR.Controllers.Employee.Shared.viewRentalData.viewRentalDataController@{WPR.Controllers.Employee.Shared.viewRentalData.viewRentalDataController}}
+\doxysubsubsection{\texorpdfstring{\_backOfficeRepository}{\_backOfficeRepository}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_controllers_1_1_employee_1_1_shared_1_1view_rental_data_1_1view_rental_data_controller_aeef6bee8b5429a18184364c1ba3b401a} 
+readonly \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_back_office_repository}{IBack\+Office\+Repository}} WPR.\+Controllers.\+Employee.\+Shared.\+view\+Rental\+Data.\+view\+Rental\+Data\+Controller.\+\_\+back\+Office\+Repository\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{view_rental_data_controller_8cs_source_l00010}{10}} in het bestand \mbox{\hyperlink{view_rental_data_controller_8cs_source}{view\+Rental\+Data\+Controller.\+cs}}.
+
+
+
+Wordt aangeroepen door \mbox{\hyperlink{view_rental_data_controller_8cs_source_l00029}{Get\+Data\+Review\+Ids()}}, \mbox{\hyperlink{view_rental_data_controller_8cs_source_l00041}{Get\+Full\+Review()}}, \mbox{\hyperlink{view_rental_data_controller_8cs_source_l00017}{Get\+Review()}} en \mbox{\hyperlink{view_rental_data_controller_8cs_source_l00011}{view\+Rental\+Data\+Controller()}}.
+
+
+
+De documentatie voor deze klasse is gegenereerd op basis van het volgende bestand\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/codes/\+WPR8/\+WPR/backend/src/\+Controllers/\+Employee/shared/view\+Rental\+Data/\mbox{\hyperlink{view_rental_data_controller_8cs}{view\+Rental\+Data\+Controller.\+cs}}\end{DoxyCompactItemize}

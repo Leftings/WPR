@@ -1,0 +1,2431 @@
+\doxysection{WPR.\+Repository.\+User\+Repository Class Referentie}
+\hypertarget{class_w_p_r_1_1_repository_1_1_user_repository}{}\label{class_w_p_r_1_1_repository_1_1_user_repository}\index{WPR.Repository.UserRepository@{WPR.Repository.UserRepository}}
+
+
+De \doxylink{class_w_p_r_1_1_repository_1_1_user_repository}{User\+Repository} class geeft de methodes voor de interactie met de database voor gebruiker gerelateerde operaties. Het implementeert de \doxylink{interface_w_p_r_1_1_repository_1_1_i_user_repository}{IUser\+Repository} interface.  
+
+
+
+
+Klasse diagram voor WPR.\+Repository.\+User\+Repository
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{class_w_p_r_1_1_repository_1_1_user_repository__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboratie diagram voor WPR.\+Repository.\+User\+Repository\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_w_p_r_1_1_repository_1_1_user_repository__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Data Structuren}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{class_w_p_r_1_1_repository_1_1_user_repository_1_1_customer}{Customer}}
+\item 
+class \mbox{\hyperlink{class_w_p_r_1_1_repository_1_1_user_repository_1_1_vehicle_manager}{Vehicle\+Manager}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Members}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_w_p_r_1_1_repository_1_1_user_repository_a6b46f876251feceb2b51ae6a3dfdfc15}{User\+Repository}} (\mbox{\hyperlink{interface_w_p_r_1_1_database_1_1_i_connector}{IConnector}} connector, \mbox{\hyperlink{class_w_p_r_1_1_hashing_1_1_hash}{Hash}} hash, \mbox{\hyperlink{class_w_p_r_1_1_cryption_1_1_crypt}{Crypt}} crypt)
+\item 
+async Task$<$ bool $>$ \mbox{\hyperlink{class_w_p_r_1_1_repository_1_1_user_repository_adb512c98ffbaeb97a9b9f2fdc8994549}{Validate\+User\+Async}} (string username, string password, string user\+Type)
+\begin{DoxyCompactList}\small\item\em Er wordt door middel van de meegegeven user\+Type een query aangemaakt, om de juiste gegevens uit de juiste tabel op te halen. Vervolgens wordt er in de query het meegegeven emailadress gestopt, om zo het gehaste wachtwoord uit de database te halen Nadat er een gebruiker met wachtwoord uit de query komt, zal dit gehaste wachtwoord vergelek worden met het meegegeven gehaste wachtwoord. \end{DoxyCompactList}\item 
+async Task$<$(bool status, string message)$>$ \mbox{\hyperlink{class_w_p_r_1_1_repository_1_1_user_repository_a7903e03bfe7076a6ee7b352636cb854d}{check\+Usage\+Email\+Async}} (string email)
+\begin{DoxyCompactList}\small\item\em Er wordt gekeken of het emailadres al bestaat in de databse. \end{DoxyCompactList}\item 
+async Task$<$(bool status, string message, int new\+User\+ID)$>$ \mbox{\hyperlink{class_w_p_r_1_1_repository_1_1_user_repository_a42ef5421fcb8544d4aab8ed834325a74}{add\+Customer\+Async}} (Object\mbox{[}$\,$\mbox{]} person\+Data)
+\begin{DoxyCompactList}\small\item\em Een gebruiker (klant) wordt toegevoegd aan de database, doormiddel van alle meegegeven persoondata. Deze persoondata zal vervolgens in de query geïmplementeerd worden en vervolgens worden uitgevoerd. \end{DoxyCompactList}\item 
+async Task$<$(bool status, string message)$>$ \mbox{\hyperlink{class_w_p_r_1_1_repository_1_1_user_repository_a25a2f860883fcc39ea7fa8a932fde475}{add\+Personal\+Customer\+Async}} (Object\mbox{[}$\,$\mbox{]} personal\+Data)
+\begin{DoxyCompactList}\small\item\em Het aangemaakte account wordt gekoppeld aan de particuliere tabel, doormiddel van alle meegegeven persoondata. Deze persoondata zal vervolgens in de query geïmplementeerd worden en vervolgens worden uitgevoerd. \end{DoxyCompactList}\item 
+async Task$<$(bool status, string message)$>$ \mbox{\hyperlink{class_w_p_r_1_1_repository_1_1_user_repository_a281b2d169ce34a240a18b3f106e2f95d}{add\+Employee\+Customer\+Async}} (Object\mbox{[}$\,$\mbox{]} employee\+Data)
+\begin{DoxyCompactList}\small\item\em Het aangemaakte account wordt gekoppeld aan de medewerkers tabel, doormiddel van alle meegegeven persoondata. Deze persoondata zal vervolgens in de query geïmplementeerd worden en vervolgens worden uitgevoerd. \end{DoxyCompactList}\item 
+async Task$<$ string $>$ \mbox{\hyperlink{class_w_p_r_1_1_repository_1_1_user_repository_aea5055bbf69f618cfea05d82dba1becb}{Get\+User\+Id\+Async}} (string email, string table)
+\item 
+async Task$<$ string $>$ \mbox{\hyperlink{class_w_p_r_1_1_repository_1_1_user_repository_acb618d51bcc50e8f72102e11f6bed987}{Get\+User\+Name\+Async}} (string user\+Id)
+\item 
+async Task$<$(bool status, string message)$>$ \mbox{\hyperlink{class_w_p_r_1_1_repository_1_1_user_repository_af9a5424f00a5cfc023cc147a1e0a59cf}{Edit\+User\+Info\+Async}} (List$<$ object\mbox{[}$\,$\mbox{]}$>$ data)
+\item 
+async Task$<$ bool $>$ \mbox{\hyperlink{class_w_p_r_1_1_repository_1_1_user_repository_a49c76e9c3e780a07b7036dd2a6d30263}{Is\+Kvk\+Number\+Async}} (int kvk\+Number)
+\item 
+async Task$<$(bool status, string message)$>$ \mbox{\hyperlink{class_w_p_r_1_1_repository_1_1_user_repository_a23bd5c36ff2c79f375a1b88727134636}{Delete\+User\+Async}} (string user\+Id)
+\item 
+async Task$<$(bool status, string message, string office\+Type)$>$ \mbox{\hyperlink{class_w_p_r_1_1_repository_1_1_user_repository_ad69d7ed5e941ab05fe1eb4ae9bb3ff1f}{Get\+Kind\+Employee\+Async}} (string user\+Id)
+\begin{DoxyCompactList}\small\item\em Er wordt door de query, doormiddel van de user id, vastgesteld tot wat voor soort office de medewerker van Car and All behoort. \end{DoxyCompactList}\item 
+async Task$<$(bool status, string message)$>$ \mbox{\hyperlink{class_w_p_r_1_1_repository_1_1_user_repository_a09794bb8a3181b5be3f2676421dc4b12}{Add\+Staff}} (Object\mbox{[}$\,$\mbox{]} person\+Data)
+\begin{DoxyCompactList}\small\item\em Er kunnen medewewerkers van Car and All toegevoegd worden aan de database, door middel van hun gegevens. De database voorziet de gegevens van een automatische id. \end{DoxyCompactList}\item 
+async Task$<$ bool $>$ \mbox{\hyperlink{class_w_p_r_1_1_repository_1_1_user_repository_a9897bc253b72e7422cca16f676d4e53c}{Is\+User\+Employee}} (int id)
+\begin{DoxyCompactList}\small\item\em Er wordt gekeken door middel van het id of de gebruiker een geldig medewerkers id heeft. \end{DoxyCompactList}\item 
+async Task$<$(bool Status, string Message)$>$ \mbox{\hyperlink{class_w_p_r_1_1_repository_1_1_user_repository_a188ce6aab8b95ea246623cc80b520714}{Add\+Personal\+Customer}} (Sign\+Up\+Request request)
+\item 
+async Task$<$(int Status\+Code, string Message)$>$ \mbox{\hyperlink{class_w_p_r_1_1_repository_1_1_user_repository_a688723c1fb3385274f13ba0e3ba78da8}{Add\+Customer}} (Sign\+Up\+Request\+Customer request, Sign\+Up\+Request\+Customer\+Private private\+Request)
+\begin{DoxyCompactList}\small\item\em Add\+Customer krijgt Sign\+Up\+Request\+Customer binnen en Sign\+Up\+Request\+Customer\+Private. Elk account heeft als algemene registratie een email en accounttype. \end{DoxyCompactList}\item 
+async Task$<$(int Status\+Code, string Message)$>$ \mbox{\hyperlink{class_w_p_r_1_1_repository_1_1_user_repository_a9423f68f7d22b18441e746ba0d9ef6d6}{Change\+Vehicle\+Manager\+Info}} (\mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_change_business_settings_1_1_change_vehicle_manager_info}{Change\+Vehicle\+Manager\+Info}} request)
+\item 
+async Task$<$(int Status\+Code, string Message)$>$ \mbox{\hyperlink{class_w_p_r_1_1_repository_1_1_user_repository_a2bcea10de41cf249cee9d4049c25cc45}{Change\+Business\+Info}} (\mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_change_business_settings_1_1_change_business_request}{Change\+Business\+Request}} request)
+\item 
+async Task$<$(int Status\+Code, string Domain)$>$ \mbox{\hyperlink{class_w_p_r_1_1_repository_1_1_user_repository_aa69e427aa0d8724ad9fca2fae1f69970}{Get\+Business\+Domain\+By\+KvK}} (int KvK)
+\item 
+async Task$<$ List$<$ string $>$ $>$ \mbox{\hyperlink{class_w_p_r_1_1_repository_1_1_user_repository_a12697e6b3bceb0e47d86f05020dc8470}{Get\+All\+Subscriptions\+Async}} ()
+\item 
+async Task$<$ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1customer_1_1_subscription_1_1_subscription_request}{Subscription\+Request}} $>$ \mbox{\hyperlink{class_w_p_r_1_1_repository_1_1_user_repository_ac6d8e6fb3ae175bfb90fcf19a595b01e}{Get\+Subscription\+Data\+Async}} (int id)
+\item 
+async Task$<$ List$<$ int $>$ $>$ \mbox{\hyperlink{class_w_p_r_1_1_repository_1_1_user_repository_a877da96134a584ccc0795c7410e5532c}{Get\+Subscription\+Ids\+Async}} ()
+\item 
+async Task$<$ Dictionary$<$ string, object $>$ $>$ \mbox{\hyperlink{class_w_p_r_1_1_repository_1_1_user_repository_a79b888ee7712ae0374bc95a7330597e6}{Get\+Customer\+Details}} (int id)
+\item 
+async Task$<$ \mbox{\hyperlink{class_w_p_r_1_1_repository_1_1_user_repository_1_1_vehicle_manager}{Vehicle\+Manager}} $>$ \mbox{\hyperlink{class_w_p_r_1_1_repository_1_1_user_repository_a0ac8b0cd38ba8f5bc6b26de77ba3faf8}{Get\+Vehicle\+Manager\+Info\+Async}} (int id)
+\item 
+async Task$<$ List$<$ \mbox{\hyperlink{class_w_p_r_1_1_repository_1_1_user_repository_1_1_customer}{Customer}} $>$ $>$ \mbox{\hyperlink{class_w_p_r_1_1_repository_1_1_user_repository_a39799412586f96c48d820755a9fa1a6b}{Get\+Customers\+By\+Business\+Number\+Async}} (string Kvk)
+\item 
+async Task$<$ bool $>$ \mbox{\hyperlink{class_w_p_r_1_1_repository_1_1_user_repository_af7b36404dd3d6de335c9986321ead166}{Update\+Customer\+Async}} (int id, string email, string password)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Members}
+\begin{DoxyCompactItemize}
+\item 
+async Task$<$(bool good\+Query, string message)$>$ \mbox{\hyperlink{class_w_p_r_1_1_repository_1_1_user_repository_af1ae304fd24d3ae358db293b0033e484}{Create\+User\+Info\+Query}} (List$<$ object\mbox{[}$\,$\mbox{]}$>$ data)
+\begin{DoxyCompactList}\small\item\em Er wordt een query aangemaakt, met daarin de meegeven gegevens die veranderd moeten worden in het account van de gebruiker. \end{DoxyCompactList}\item 
+async Task$<$(bool Status, string Message)$>$ \mbox{\hyperlink{class_w_p_r_1_1_repository_1_1_user_repository_ae8b7a3c517ffe6cb1b85eee60e5b2292}{Add\+Customer\+Checks}} (bool is\+Private, Sign\+Up\+Request\+Customer? customer, Sign\+Up\+Request\+Customer\+Private detailed)
+\begin{DoxyCompactList}\small\item\em Add\+Customer\+Checks kijkt of alle ingevoerde velden geldig zijn. Als een check faalt falen alle checks. \end{DoxyCompactList}\item 
+async Task$<$(int Status\+Code, string Message)$>$ \mbox{\hyperlink{class_w_p_r_1_1_repository_1_1_user_repository_a4fe2a09bb575fb8d9510828ef5ad9813}{Add\+Private\+Customer\+Details}} (Sign\+Up\+Request\+Customer\+Private request, int user\+Id, My\+Sql\+Connection connections)
+\begin{DoxyCompactList}\small\item\em Add\+Private\+Customer\+Details zorgt ervoor dat alle extra details van particuliere huurders toegevoegd worden in de Private tabel. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{class_w_p_r_1_1_repository_1_1_user_repository_af67e3842ab505dde8a9b4986eec3d470}{Create\+Update\+Query}} (string tabel, IList$<$ object\mbox{[}$\,$\mbox{]}$>$ data)
+\item 
+async Task$<$(int Status\+Code, string Message)$>$ \mbox{\hyperlink{class_w_p_r_1_1_repository_1_1_user_repository_adce1c47fd8ee12e83c5b918614e20bbc}{Change\+Business\+Data}} (\mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_change_business_settings_1_1_change_business_info}{Change\+Business\+Info}} business\+Info, My\+Sql\+Connection connection)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributen}
+\begin{DoxyCompactItemize}
+\item 
+readonly \mbox{\hyperlink{interface_w_p_r_1_1_database_1_1_i_connector}{IConnector}} \mbox{\hyperlink{class_w_p_r_1_1_repository_1_1_user_repository_a0d5c086f43d20479ee31bed3ae96a63f}{\+\_\+connector}}
+\item 
+readonly \mbox{\hyperlink{class_w_p_r_1_1_hashing_1_1_hash}{Hash}} \mbox{\hyperlink{class_w_p_r_1_1_repository_1_1_user_repository_a1b11b787b41fa41a34ef2515f5eaa6d3}{\+\_\+hash}}
+\item 
+readonly \mbox{\hyperlink{class_w_p_r_1_1_cryption_1_1_crypt}{Crypt}} \mbox{\hyperlink{class_w_p_r_1_1_repository_1_1_user_repository_ac8ad4a8f0e0ab9918ee233a207c2b125}{\+\_\+crypt}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Gedetailleerde Beschrijving}
+De \doxylink{class_w_p_r_1_1_repository_1_1_user_repository}{User\+Repository} class geeft de methodes voor de interactie met de database voor gebruiker gerelateerde operaties. Het implementeert de \doxylink{interface_w_p_r_1_1_repository_1_1_i_user_repository}{IUser\+Repository} interface. 
+
+De definitie bevindt zich op regel \mbox{\hyperlink{_user_repository_8cs_source_l00024}{24}} in het bestand \mbox{\hyperlink{_user_repository_8cs_source}{User\+Repository.\+cs}}.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentatie}
+\Hypertarget{class_w_p_r_1_1_repository_1_1_user_repository_a6b46f876251feceb2b51ae6a3dfdfc15}\index{WPR.Repository.UserRepository@{WPR.Repository.UserRepository}!UserRepository@{UserRepository}}
+\index{UserRepository@{UserRepository}!WPR.Repository.UserRepository@{WPR.Repository.UserRepository}}
+\doxysubsubsection{\texorpdfstring{UserRepository()}{UserRepository()}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_repository_1_1_user_repository_a6b46f876251feceb2b51ae6a3dfdfc15} 
+WPR.\+Repository.\+User\+Repository.\+User\+Repository (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{interface_w_p_r_1_1_database_1_1_i_connector}{IConnector}}}]{connector}{, }\item[{\mbox{\hyperlink{class_w_p_r_1_1_hashing_1_1_hash}{Hash}}}]{hash}{, }\item[{\mbox{\hyperlink{class_w_p_r_1_1_cryption_1_1_crypt}{Crypt}}}]{crypt}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{_user_repository_8cs_source_l00030}{30}} in het bestand \mbox{\hyperlink{_user_repository_8cs_source}{User\+Repository.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00031\ \ \ \ \ \{}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \_connector\ =\ connector\ ??\ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ ArgumentNullException(nameof(connector));}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \_hash\ =\ hash\ ??\ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ ArgumentNullException(nameof(hash));}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \_crypt\ =\ crypt\ ??\ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ ArgumentNullException(nameof(crypt));}
+\DoxyCodeLine{00035\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+Gebruikt \mbox{\hyperlink{_user_repository_8cs_source_l00026}{\+\_\+connector}}, \mbox{\hyperlink{_user_repository_8cs_source_l00028}{\+\_\+crypt}} en \mbox{\hyperlink{_user_repository_8cs_source_l00027}{\+\_\+hash}}.
+
+
+
+\doxysubsection{Documentatie van functie members}
+\Hypertarget{class_w_p_r_1_1_repository_1_1_user_repository_a688723c1fb3385274f13ba0e3ba78da8}\index{WPR.Repository.UserRepository@{WPR.Repository.UserRepository}!AddCustomer@{AddCustomer}}
+\index{AddCustomer@{AddCustomer}!WPR.Repository.UserRepository@{WPR.Repository.UserRepository}}
+\doxysubsubsection{\texorpdfstring{AddCustomer()}{AddCustomer()}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_repository_1_1_user_repository_a688723c1fb3385274f13ba0e3ba78da8} 
+async Task$<$(int Status\+Code, string Message)$>$ WPR.\+Repository.\+User\+Repository.\+Add\+Customer (\begin{DoxyParamCaption}\item[{Sign\+Up\+Request\+Customer}]{request}{, }\item[{Sign\+Up\+Request\+Customer\+Private}]{private\+Request}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Add\+Customer krijgt Sign\+Up\+Request\+Customer binnen en Sign\+Up\+Request\+Customer\+Private. Elk account heeft als algemene registratie een email en accounttype. 
+
+Bij een particulier (Private) account geeft de gebruiker alleen een email en een accounttype door. Bij een zakelijk (Business) account geeft de gebruiker een email, accounttype en KvK nummer door (ID\textquotesingle{}s worden ingevuld door de database)
+
+Bij een particulier account wordt nog een tweede query uitgevoerd (zie Add\+Private\+Customer\+Details). Als deze query mocht falen wordt de gehele transactie gerolledbacked.
+
+
+\begin{DoxyParams}{Parameters}
+{\em request} & \\
+\hline
+{\em private\+Request} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retourneert}
+
+\end{DoxyReturn}
+
+
+Implementeert \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_user_repository_a103bbaff883cb3af9e3d4c98a2100d5b}{WPR.\+Repository.\+IUser\+Repository}}.
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{_user_repository_8cs_source_l00796}{796}} in het bestand \mbox{\hyperlink{_user_repository_8cs_source}{User\+Repository.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00798\ \ \ \ \ \{}
+\DoxyCodeLine{00799\ \ \ \ \ \ \ \ \ (\textcolor{keywordtype}{bool}\ Status,\ \textcolor{keywordtype}{string}\ Message)\ checks\ =\ await\ AddCustomerChecks(request.IsPrivate,\ request,\ privateRequest);}
+\DoxyCodeLine{00800\ }
+\DoxyCodeLine{00801\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (checks.Status)}
+\DoxyCodeLine{00802\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00803\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}}
+\DoxyCodeLine{00804\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00805\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ query;}
+\DoxyCodeLine{00806\ }
+\DoxyCodeLine{00807\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (request.AccountType.Equals(\textcolor{stringliteral}{"{}Private"{}}))}
+\DoxyCodeLine{00808\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00809\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ query\ =\ \textcolor{stringliteral}{"{}INSERT\ INTO\ Customer\ (Email,\ AccountType,\ Password)\ VALUES\ (@E,\ @A,\ @P)"{}};}
+\DoxyCodeLine{00810\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00811\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00812\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00813\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ query\ =\ \textcolor{stringliteral}{"{}INSERT\ INTO\ Customer\ (Email,\ KvK,\ AccountType,\ Password)\ VALUES\ (@E,\ @K,\ @A,\ @P)"{}};}
+\DoxyCodeLine{00814\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00815\ }
+\DoxyCodeLine{00816\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using}\ (var\ connection\ =\ \_connector.CreateDbConnection())}
+\DoxyCodeLine{00817\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using}\ (var\ command\ =\ \textcolor{keyword}{new}\ MySqlCommand(query,\ (MySqlConnection)connection))}
+\DoxyCodeLine{00818\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using}\ (var\ transaction\ =\ connection.BeginTransaction())}
+\DoxyCodeLine{00819\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00820\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ command.Parameters.AddWithValue(\textcolor{stringliteral}{"{}@E"{}},\ request.Email);}
+\DoxyCodeLine{00821\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ command.Parameters.AddWithValue(\textcolor{stringliteral}{"{}@A"{}},\ request.AccountType);}
+\DoxyCodeLine{00822\ }
+\DoxyCodeLine{00823\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ hashedPassword\ =\ \_hash.createHash(request.Password);}
+\DoxyCodeLine{00824\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ command.Parameters.AddWithValue(\textcolor{stringliteral}{"{}@P"{}},\ hashedPassword);}
+\DoxyCodeLine{00825\ }
+\DoxyCodeLine{00826\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (request.AccountType.Equals(\textcolor{stringliteral}{"{}Business"{}}))}
+\DoxyCodeLine{00827\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00828\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ command.Parameters.AddWithValue(\textcolor{stringliteral}{"{}@K"{}},\ request.KvK);}
+\DoxyCodeLine{00829\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00830\ }
+\DoxyCodeLine{00831\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}}
+\DoxyCodeLine{00832\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00833\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (await\ command.ExecuteNonQueryAsync()\ >\ 0)}
+\DoxyCodeLine{00834\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00835\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (request.AccountType.Equals(\textcolor{stringliteral}{"{}Private"{}}))}
+\DoxyCodeLine{00836\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00837\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ command.CommandText\ =\ \textcolor{stringliteral}{"{}SELECT\ LAST\_INSERT\_ID();"{}};}
+\DoxyCodeLine{00838\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ userId\ =\ Convert.ToInt32(await\ command.ExecuteScalarAsync());}
+\DoxyCodeLine{00839\ }
+\DoxyCodeLine{00840\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (\textcolor{keywordtype}{int}\ StatusCode,\ \textcolor{keywordtype}{string}\ Message)\ response\ =}
+\DoxyCodeLine{00841\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ await\ AddPrivateCustomerDetails(privateRequest,\ userId,}
+\DoxyCodeLine{00842\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (MySqlConnection)connection);}
+\DoxyCodeLine{00843\ }
+\DoxyCodeLine{00844\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (response.StatusCode\ ==\ 500\ ||\ response.StatusCode\ ==\ 412)}
+\DoxyCodeLine{00845\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00846\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ deleteCustomerQuery\ =\ \textcolor{stringliteral}{"{}DELETE\ FROM\ Customer\ WHERE\ ID\ =\ @I"{}};}
+\DoxyCodeLine{00847\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using}\ (var\ deleteCommand\ =\ \textcolor{keyword}{new}\ MySqlCommand(deleteCustomerQuery,}
+\DoxyCodeLine{00848\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (MySqlConnection)connection))}
+\DoxyCodeLine{00849\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00850\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ deleteCommand.Parameters.AddWithValue(\textcolor{stringliteral}{"{}@I"{}},\ userId);}
+\DoxyCodeLine{00851\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ await\ deleteCommand.ExecuteNonQueryAsync();}
+\DoxyCodeLine{00852\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00853\ }
+\DoxyCodeLine{00854\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ transaction.Rollback();}
+\DoxyCodeLine{00855\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ response;}
+\DoxyCodeLine{00856\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00857\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00858\ }
+\DoxyCodeLine{00859\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ transaction.Commit();}
+\DoxyCodeLine{00860\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (200,\ \textcolor{stringliteral}{"{}Customer\ Account\ Added\ Successfully"{}});}
+\DoxyCodeLine{00861\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00862\ }
+\DoxyCodeLine{00863\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (500,\ \textcolor{stringliteral}{"{}Unexpected\ Error\ Occurred"{}});}
+\DoxyCodeLine{00864\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00865\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (Exception\ ex)}
+\DoxyCodeLine{00866\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00867\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Console.WriteLine(\textcolor{stringliteral}{"{}Error:\ "{}}\ +\ ex.Message);}
+\DoxyCodeLine{00868\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ transaction.Rollback();}
+\DoxyCodeLine{00869\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (500,\ ex.Message);}
+\DoxyCodeLine{00870\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00871\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00872\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00873\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (MySqlException\ ex)}
+\DoxyCodeLine{00874\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00875\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Console.WriteLine(\textcolor{stringliteral}{"{}Error:\ "{}}\ +\ ex.Message);}
+\DoxyCodeLine{00876\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (500,\ ex.Message);}
+\DoxyCodeLine{00877\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00878\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (Exception\ ex)}
+\DoxyCodeLine{00879\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00880\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Console.WriteLine(\textcolor{stringliteral}{"{}Error:\ "{}}\ +\ ex.Message);}
+\DoxyCodeLine{00881\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (500,\ ex.Message);}
+\DoxyCodeLine{00882\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00883\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00884\ }
+\DoxyCodeLine{00885\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (412,\ checks.Message);}
+\DoxyCodeLine{00886\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+Gebruikt \mbox{\hyperlink{_user_repository_8cs_source_l00026}{\+\_\+connector}}, \mbox{\hyperlink{_user_repository_8cs_source_l00027}{\+\_\+hash}}, \mbox{\hyperlink{_user_repository_8cs_source_l00684}{Add\+Customer\+Checks()}}, \mbox{\hyperlink{_user_repository_8cs_source_l00739}{Add\+Private\+Customer\+Details()}}, \mbox{\hyperlink{general_2sign_up_2sign_up_request_8cs_source_l00037}{WPR.\+Controllers.\+General.\+Sign\+Up.\+Sign\+Up\+Request\+Customer()}} en \mbox{\hyperlink{general_2sign_up_2sign_up_request_8cs_source_l00050}{WPR.\+Controllers.\+General.\+Sign\+Up.\+Sign\+Up\+Request\+Customer\+Private()}}.
+
+Hier is de call graaf voor deze functie\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_w_p_r_1_1_repository_1_1_user_repository_a688723c1fb3385274f13ba0e3ba78da8_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_w_p_r_1_1_repository_1_1_user_repository_a42ef5421fcb8544d4aab8ed834325a74}\index{WPR.Repository.UserRepository@{WPR.Repository.UserRepository}!addCustomerAsync@{addCustomerAsync}}
+\index{addCustomerAsync@{addCustomerAsync}!WPR.Repository.UserRepository@{WPR.Repository.UserRepository}}
+\doxysubsubsection{\texorpdfstring{addCustomerAsync()}{addCustomerAsync()}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_repository_1_1_user_repository_a42ef5421fcb8544d4aab8ed834325a74} 
+async Task$<$(bool status, string message, int new\+User\+ID)$>$ WPR.\+Repository.\+User\+Repository.\+add\+Customer\+Async (\begin{DoxyParamCaption}\item[{Object\mbox{[}$\,$\mbox{]}}]{person\+Data}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Een gebruiker (klant) wordt toegevoegd aan de database, doormiddel van alle meegegeven persoondata. Deze persoondata zal vervolgens in de query geïmplementeerd worden en vervolgens worden uitgevoerd. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em person\+Data} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retourneert}
+
+\end{DoxyReturn}
+
+
+Implementeert \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_user_repository_a0e52cd72018fad6b2fe68da104f5a971}{WPR.\+Repository.\+IUser\+Repository}}.
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{_user_repository_8cs_source_l00159}{159}} in het bestand \mbox{\hyperlink{_user_repository_8cs_source}{User\+Repository.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00160\ \ \ \ \ \{}
+\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}}
+\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ query\ =}
+\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}INSERT\ INTO\ Customer\ (Adres,\ Telnum,\ Password,\ Email,\ FirstName,\ LastName)\ values\ (@A,\ @T,\ @P,\ @E,\ @F,\ @L)"{}};}
+\DoxyCodeLine{00165\ }
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Er\ wordt\ een\ connectie\ aangemaakt\ met\ de\ DataBase\ met\ bovenstaande\ query\ }}
+\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using}\ (var\ connection\ =\ \_connector.CreateDbConnection())}
+\DoxyCodeLine{00168\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using}\ (var\ command\ =\ \textcolor{keyword}{new}\ MySqlCommand(query,\ (MySqlConnection)connection))}
+\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00170\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Alle\ parameters\ worden\ ingevuld\ met\ de\ megegeven\ persoons\ gegevens}}
+\DoxyCodeLine{00171\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ command.Parameters.AddWithValue(\textcolor{stringliteral}{"{}@A"{}},\ personData[0]);}
+\DoxyCodeLine{00172\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ command.Parameters.AddWithValue(\textcolor{stringliteral}{"{}@T"{}},\ personData[1]);}
+\DoxyCodeLine{00173\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ command.Parameters.AddWithValue(\textcolor{stringliteral}{"{}@P"{}},\ personData[2]);}
+\DoxyCodeLine{00174\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ command.Parameters.AddWithValue(\textcolor{stringliteral}{"{}@E"{}},\ personData[3]);}
+\DoxyCodeLine{00175\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ command.Parameters.AddWithValue(\textcolor{stringliteral}{"{}@F"{}},\ personData[4]);}
+\DoxyCodeLine{00176\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ command.Parameters.AddWithValue(\textcolor{stringliteral}{"{}@L"{}},\ personData[5]);}
+\DoxyCodeLine{00177\ }
+\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (await\ command.ExecuteNonQueryAsync()\ >\ 0)}
+\DoxyCodeLine{00179\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00180\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Als\ de\ query\ succesvol\ is\ uitgevoerd\ wordt\ de\ laatste\ ingevoerde\ userId\ meegegeven}}
+\DoxyCodeLine{00181\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ command.CommandText\ =\ \textcolor{stringliteral}{"{}SELECT\ LAST\_INSERT\_ID();"{}};}
+\DoxyCodeLine{00182\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ newUserID\ =\ Convert.ToInt32(await\ command.ExecuteScalarAsync());}
+\DoxyCodeLine{00183\ }
+\DoxyCodeLine{00184\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (\textcolor{keyword}{true},\ \textcolor{stringliteral}{"{}Data\ Inserted"{}},\ newUserID);}
+\DoxyCodeLine{00185\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00186\ }
+\DoxyCodeLine{00187\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (\textcolor{keyword}{false},\ \textcolor{stringliteral}{"{}No\ Data\ Inserted"{}},\ -\/1);}
+\DoxyCodeLine{00188\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00189\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00190\ }
+\DoxyCodeLine{00191\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (MySqlException\ ex)}
+\DoxyCodeLine{00192\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00193\ \ \ \ \ \ \ \ \ \ \ \ \ await\ Console.Error.WriteLineAsync(\$\textcolor{stringliteral}{"{}Database\ error:\ \{ex.Message\}"{}});}
+\DoxyCodeLine{00194\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (\textcolor{keyword}{false},\ ex.Message,\ -\/1);}
+\DoxyCodeLine{00195\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00196\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (Exception\ ex)}
+\DoxyCodeLine{00197\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00198\ \ \ \ \ \ \ \ \ \ \ \ \ await\ Console.Error.WriteLineAsync(\$\textcolor{stringliteral}{"{}Unexpected\ error:\ \{ex.Message\}"{}});}
+\DoxyCodeLine{00199\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (\textcolor{keyword}{false},\ ex.Message,\ -\/1);}
+\DoxyCodeLine{00200\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00201\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+Gebruikt \mbox{\hyperlink{_user_repository_8cs_source_l00026}{\+\_\+connector}}.
+
+
+
+Wordt aangeroepen door \mbox{\hyperlink{_user_repository_8cs_source_l00619}{Add\+Personal\+Customer()}}.
+
+Hier is de caller graaf voor deze functie\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_w_p_r_1_1_repository_1_1_user_repository_a42ef5421fcb8544d4aab8ed834325a74_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_w_p_r_1_1_repository_1_1_user_repository_ae8b7a3c517ffe6cb1b85eee60e5b2292}\index{WPR.Repository.UserRepository@{WPR.Repository.UserRepository}!AddCustomerChecks@{AddCustomerChecks}}
+\index{AddCustomerChecks@{AddCustomerChecks}!WPR.Repository.UserRepository@{WPR.Repository.UserRepository}}
+\doxysubsubsection{\texorpdfstring{AddCustomerChecks()}{AddCustomerChecks()}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_repository_1_1_user_repository_ae8b7a3c517ffe6cb1b85eee60e5b2292} 
+async Task$<$(bool Status, string Message)$>$ WPR.\+Repository.\+User\+Repository.\+Add\+Customer\+Checks (\begin{DoxyParamCaption}\item[{bool}]{is\+Private}{, }\item[{Sign\+Up\+Request\+Customer?}]{customer}{, }\item[{Sign\+Up\+Request\+Customer\+Private}]{detailed}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Add\+Customer\+Checks kijkt of alle ingevoerde velden geldig zijn. Als een check faalt falen alle checks. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em is\+Private} & \\
+\hline
+{\em customer} & \\
+\hline
+{\em detailed} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retourneert}
+
+\end{DoxyReturn}
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{_user_repository_8cs_source_l00684}{684}} in het bestand \mbox{\hyperlink{_user_repository_8cs_source}{User\+Repository.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00686\ \ \ \ \ \{}
+\DoxyCodeLine{00687\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (isPrivate)}
+\DoxyCodeLine{00688\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00689\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!BirthdayChecker.IsValidBirthday(detailed.BirthDate))}
+\DoxyCodeLine{00690\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00691\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (\textcolor{keyword}{false},\ \textcolor{stringliteral}{"{}No\ Valid\ Birthday"{}});}
+\DoxyCodeLine{00692\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00693\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (!TelChecker.IsValidPhoneNumber(detailed.TelNumber))}
+\DoxyCodeLine{00694\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00695\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (\textcolor{keyword}{false},\ \textcolor{stringliteral}{"{}No\ valid\ Phonenumber"{}});}
+\DoxyCodeLine{00696\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00697\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00698\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00699\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (\textcolor{keyword}{true},\ \textcolor{stringliteral}{"{}Valid\ Details"{}});}
+\DoxyCodeLine{00700\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00701\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00702\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00703\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00704\ \ \ \ \ \ \ \ \ \ \ \ \ DomainEmailChecker\ domainEmailChecker\ =\ \textcolor{keyword}{new}\ DomainEmailChecker(\_connector);}
+\DoxyCodeLine{00705\ \ \ \ \ \ \ \ \ \ \ \ \ (\textcolor{keywordtype}{bool}\ Found,\ \textcolor{keywordtype}{int}\ KvK)\ checkDomain\ =\ await\ domainEmailChecker.\mbox{\hyperlink{class_w_p_r_1_1_utils_1_1_domain_email_checker_af6430abcc6b17909ff568158e9e05172}{DomainExists}}(customer.Email);}
+\DoxyCodeLine{00706\ }
+\DoxyCodeLine{00707\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!checkDomain.Found)}
+\DoxyCodeLine{00708\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00709\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (\textcolor{keyword}{false},\ \textcolor{stringliteral}{"{}Domain\ does\ not\ exists"{}});}
+\DoxyCodeLine{00710\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00711\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00712\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00713\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ customer.KvK\ =\ checkDomain.KvK;}
+\DoxyCodeLine{00714\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00715\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00716\ }
+\DoxyCodeLine{00717\ \ \ \ \ \ \ \ \ var\ emailCheck\ =\ checkUsageEmailAsync(customer.Email);}
+\DoxyCodeLine{00718\ \ \ \ \ \ \ \ \ (\textcolor{keywordtype}{bool}\ isValidPassword,\ \textcolor{keywordtype}{string}\ passwordError)\ validPassword\ =\ PasswordChecker.IsValidPassword(customer.Password);}
+\DoxyCodeLine{00719\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!EmailChecker.IsValidEmail(customer.Email))}
+\DoxyCodeLine{00720\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00721\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (\textcolor{keyword}{false},\ \textcolor{stringliteral}{"{}No\ Valid\ Email\ Format"{}});}
+\DoxyCodeLine{00722\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00723\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (!validPassword.isValidPassword)}
+\DoxyCodeLine{00724\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00725\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (\textcolor{keyword}{false},\ validPassword.passwordError);}
+\DoxyCodeLine{00726\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00727\ }
+\DoxyCodeLine{00728\ \ \ \ \ \ \ \ \ (\textcolor{keywordtype}{bool}\ Status,\ \textcolor{keywordtype}{string}\ Message)\ emailStatus\ =\ await\ emailCheck;}
+\DoxyCodeLine{00729\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (!emailStatus.Status,\ emailStatus.Message);}
+\DoxyCodeLine{00730\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+Gebruikt \mbox{\hyperlink{_user_repository_8cs_source_l00026}{\+\_\+connector}}, \mbox{\hyperlink{_user_repository_8cs_source_l00121}{check\+Usage\+Email\+Async()}}, \mbox{\hyperlink{_domain_email_checker_8cs_source_l00014}{WPR.\+Utils.\+Domain\+Email\+Checker.\+Domain\+Exists()}}, \mbox{\hyperlink{_birthday_checker_8cs_source_l00011}{WPR.\+Utils.\+Birthday\+Checker.\+Is\+Valid\+Birthday()}}, \mbox{\hyperlink{_email_checker_8cs_source_l00010}{WPR.\+Utils.\+Email\+Checker.\+Is\+Valid\+Email()}}, \mbox{\hyperlink{_password_checker_8cs_source_l00011}{WPR.\+Utils.\+Password\+Checker.\+Is\+Valid\+Password()}}, \mbox{\hyperlink{_tel_checker_8cs_source_l00009}{WPR.\+Utils.\+Tel\+Checker.\+Is\+Valid\+Phone\+Number()}}, \mbox{\hyperlink{general_2sign_up_2sign_up_request_8cs_source_l00037}{WPR.\+Controllers.\+General.\+Sign\+Up.\+Sign\+Up\+Request\+Customer()}} en \mbox{\hyperlink{general_2sign_up_2sign_up_request_8cs_source_l00050}{WPR.\+Controllers.\+General.\+Sign\+Up.\+Sign\+Up\+Request\+Customer\+Private()}}.
+
+
+
+Wordt aangeroepen door \mbox{\hyperlink{_user_repository_8cs_source_l00796}{Add\+Customer()}} en \mbox{\hyperlink{_user_repository_8cs_source_l00739}{Add\+Private\+Customer\+Details()}}.
+
+Hier is de call graaf voor deze functie\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_w_p_r_1_1_repository_1_1_user_repository_ae8b7a3c517ffe6cb1b85eee60e5b2292_cgraph}
+\end{center}
+\end{figure}
+Hier is de caller graaf voor deze functie\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_w_p_r_1_1_repository_1_1_user_repository_ae8b7a3c517ffe6cb1b85eee60e5b2292_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_w_p_r_1_1_repository_1_1_user_repository_a281b2d169ce34a240a18b3f106e2f95d}\index{WPR.Repository.UserRepository@{WPR.Repository.UserRepository}!addEmployeeCustomerAsync@{addEmployeeCustomerAsync}}
+\index{addEmployeeCustomerAsync@{addEmployeeCustomerAsync}!WPR.Repository.UserRepository@{WPR.Repository.UserRepository}}
+\doxysubsubsection{\texorpdfstring{addEmployeeCustomerAsync()}{addEmployeeCustomerAsync()}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_repository_1_1_user_repository_a281b2d169ce34a240a18b3f106e2f95d} 
+async Task$<$(bool status, string message)$>$ WPR.\+Repository.\+User\+Repository.\+add\+Employee\+Customer\+Async (\begin{DoxyParamCaption}\item[{Object\mbox{[}$\,$\mbox{]}}]{employee\+Data}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Het aangemaakte account wordt gekoppeld aan de medewerkers tabel, doormiddel van alle meegegeven persoondata. Deze persoondata zal vervolgens in de query geïmplementeerd worden en vervolgens worden uitgevoerd. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em employee\+Data} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retourneert}
+
+\end{DoxyReturn}
+
+
+Implementeert \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_user_repository_afe0de5259233749214ee4eb6a4069e70}{WPR.\+Repository.\+IUser\+Repository}}.
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{_user_repository_8cs_source_l00251}{251}} in het bestand \mbox{\hyperlink{_user_repository_8cs_source}{User\+Repository.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00252\ \ \ \ \ \{}
+\DoxyCodeLine{00253\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}}
+\DoxyCodeLine{00254\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00255\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ query\ =\ \textcolor{stringliteral}{"{}INSERT\ INTO\ UserEmployee\ (ID,\ Business)\ values\ (@I,\ @B)"{}};}
+\DoxyCodeLine{00256\ }
+\DoxyCodeLine{00257\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Er\ wordt\ een\ connectie\ aangemaakt\ met\ de\ DataBase\ met\ bovenstaande\ query\ }}
+\DoxyCodeLine{00258\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using}\ (var\ connection\ =\ \_connector.CreateDbConnection())}
+\DoxyCodeLine{00259\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using}\ (var\ command\ =\ \textcolor{keyword}{new}\ MySqlCommand(query,\ (MySqlConnection)connection))}
+\DoxyCodeLine{00260\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00261\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Alle\ parameters\ worden\ ingevuld}}
+\DoxyCodeLine{00262\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ command.Parameters.AddWithValue(\textcolor{stringliteral}{"{}@I"{}},\ employeeData[0]);}
+\DoxyCodeLine{00263\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ command.Parameters.AddWithValue(\textcolor{stringliteral}{"{}@B"{}},\ employeeData[1]);}
+\DoxyCodeLine{00264\ }
+\DoxyCodeLine{00265\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (await\ command.ExecuteNonQueryAsync()\ >\ 0)}
+\DoxyCodeLine{00266\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00267\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Er\ wordt\ gekeken\ of\ de\ gegevens\ zijn\ ingevoerd\ in\ de\ DataBase}}
+\DoxyCodeLine{00268\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (\textcolor{keyword}{true},\ \textcolor{stringliteral}{"{}Data\ Inserted"{}});}
+\DoxyCodeLine{00269\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00270\ }
+\DoxyCodeLine{00271\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (\textcolor{keyword}{false},\ \textcolor{stringliteral}{"{}No\ Data\ Inserted"{}});}
+\DoxyCodeLine{00272\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00273\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00274\ }
+\DoxyCodeLine{00275\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (MySqlException\ ex)}
+\DoxyCodeLine{00276\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00277\ \ \ \ \ \ \ \ \ \ \ \ \ await\ Console.Error.WriteLineAsync(\$\textcolor{stringliteral}{"{}Database\ error:\ \{ex.Message\}"{}});}
+\DoxyCodeLine{00278\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (\textcolor{keyword}{false},\ ex.Message);}
+\DoxyCodeLine{00279\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00280\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (Exception\ ex)}
+\DoxyCodeLine{00281\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00282\ \ \ \ \ \ \ \ \ \ \ \ \ await\ Console.Error.WriteLineAsync(\$\textcolor{stringliteral}{"{}Unexpected\ error:\ \{ex.Message\}"{}});}
+\DoxyCodeLine{00283\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (\textcolor{keyword}{false},\ ex.Message);}
+\DoxyCodeLine{00284\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00285\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+Gebruikt \mbox{\hyperlink{_user_repository_8cs_source_l00026}{\+\_\+connector}}.
+
+\Hypertarget{class_w_p_r_1_1_repository_1_1_user_repository_a188ce6aab8b95ea246623cc80b520714}\index{WPR.Repository.UserRepository@{WPR.Repository.UserRepository}!AddPersonalCustomer@{AddPersonalCustomer}}
+\index{AddPersonalCustomer@{AddPersonalCustomer}!WPR.Repository.UserRepository@{WPR.Repository.UserRepository}}
+\doxysubsubsection{\texorpdfstring{AddPersonalCustomer()}{AddPersonalCustomer()}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_repository_1_1_user_repository_a188ce6aab8b95ea246623cc80b520714} 
+async Task$<$(bool Status, string Message)$>$ WPR.\+Repository.\+User\+Repository.\+Add\+Personal\+Customer (\begin{DoxyParamCaption}\item[{Sign\+Up\+Request}]{request}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Implementeert \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_user_repository_aeb4dfef402022a44079b7043d8602210}{WPR.\+Repository.\+IUser\+Repository}}.
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{_user_repository_8cs_source_l00619}{619}} in het bestand \mbox{\hyperlink{_user_repository_8cs_source}{User\+Repository.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00620\ \ \ \ \ \{}
+\DoxyCodeLine{00621\ \ \ \ \ \ \ \ \ var\ emailCheck\ =\ checkUsageEmailAsync(request.Email);}
+\DoxyCodeLine{00622\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ validEmail\ =\ EmailChecker.IsValidEmail(request.Email);}
+\DoxyCodeLine{00623\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ validBirthday\ =\ BirthdayChecker.IsValidBirthday(request.BirthDate);}
+\DoxyCodeLine{00624\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ validPhoneNumber\ =\ TelChecker.IsValidPhoneNumber(request.TelNumber);}
+\DoxyCodeLine{00625\ \ \ \ \ \ \ \ \ (\textcolor{keywordtype}{bool}\ isValidPassword,\ \textcolor{keywordtype}{string}\ passwordError)\ validPassword\ =\ PasswordChecker.IsValidPassword(request.Password);}
+\DoxyCodeLine{00626\ \ \ \ \ \ \ \ \ var\ emailStatus\ =\ await\ emailCheck;}
+\DoxyCodeLine{00627\ }
+\DoxyCodeLine{00628\ \ \ \ \ \ \ \ \ Console.WriteLine(validBirthday);}
+\DoxyCodeLine{00629\ }
+\DoxyCodeLine{00630\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (validEmail\ \&\&\ validBirthday\ \&\&\ validPhoneNumber\ \&\&\ validPassword.isValidPassword\ \&\&\ !emailStatus.status)}
+\DoxyCodeLine{00631\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00632\ \ \ \ \ \ \ \ \ \ \ \ \ var\ customer\ =\ await\ addCustomerAsync(\textcolor{keyword}{new}\ \textcolor{keywordtype}{object}[]}
+\DoxyCodeLine{00633\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00634\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ request.Adres,}
+\DoxyCodeLine{00635\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ request.TelNumber,}
+\DoxyCodeLine{00636\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \_hash.createHash(request.Password),}
+\DoxyCodeLine{00637\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ request.Email,}
+\DoxyCodeLine{00638\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ request.FirstName,}
+\DoxyCodeLine{00639\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ request.LastName}
+\DoxyCodeLine{00640\ \ \ \ \ \ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{00641\ }
+\DoxyCodeLine{00642\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!customer.status)}
+\DoxyCodeLine{00643\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00644\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (\textcolor{keyword}{false},\ customer.message);}
+\DoxyCodeLine{00645\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00646\ }
+\DoxyCodeLine{00647\ \ \ \ \ \ \ \ \ \ \ \ \ await\ addPersonalCustomerAsync(\textcolor{keyword}{new}\ \textcolor{keywordtype}{object}[]}
+\DoxyCodeLine{00648\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00649\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ customer.newUserID,}
+\DoxyCodeLine{00650\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ request.BirthDate}
+\DoxyCodeLine{00651\ \ \ \ \ \ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{00652\ }
+\DoxyCodeLine{00653\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (\textcolor{keyword}{true},\ \textcolor{stringliteral}{"{}Customer\ added"{}});}
+\DoxyCodeLine{00654\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00655\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (!validEmail)}
+\DoxyCodeLine{00656\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00657\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (\textcolor{keyword}{false},\ \textcolor{stringliteral}{"{}Email\ allready\ in\ use"{}});}
+\DoxyCodeLine{00658\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00659\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (!validBirthday)}
+\DoxyCodeLine{00660\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00661\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (\textcolor{keyword}{false},\ \textcolor{stringliteral}{"{}Invalid\ birthday"{}});}
+\DoxyCodeLine{00662\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00663\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (!validPassword.isValidPassword)}
+\DoxyCodeLine{00664\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00665\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (\textcolor{keyword}{false},\ validPassword.passwordError);}
+\DoxyCodeLine{00666\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00667\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (emailStatus.status)}
+\DoxyCodeLine{00668\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00669\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (\textcolor{keyword}{false},\ emailStatus.message);}
+\DoxyCodeLine{00670\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00671\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00672\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00673\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (\textcolor{keyword}{false},\ \textcolor{stringliteral}{"{}An\ unexpected\ error\ occured"{}});}
+\DoxyCodeLine{00674\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00675\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+Gebruikt \mbox{\hyperlink{_user_repository_8cs_source_l00027}{\+\_\+hash}}, \mbox{\hyperlink{_user_repository_8cs_source_l00159}{add\+Customer\+Async()}}, \mbox{\hyperlink{_user_repository_8cs_source_l00209}{add\+Personal\+Customer\+Async()}}, \mbox{\hyperlink{_user_repository_8cs_source_l00121}{check\+Usage\+Email\+Async()}}, \mbox{\hyperlink{_birthday_checker_8cs_source_l00011}{WPR.\+Utils.\+Birthday\+Checker.\+Is\+Valid\+Birthday()}}, \mbox{\hyperlink{_email_checker_8cs_source_l00010}{WPR.\+Utils.\+Email\+Checker.\+Is\+Valid\+Email()}}, \mbox{\hyperlink{_password_checker_8cs_source_l00011}{WPR.\+Utils.\+Password\+Checker.\+Is\+Valid\+Password()}}, \mbox{\hyperlink{_tel_checker_8cs_source_l00009}{WPR.\+Utils.\+Tel\+Checker.\+Is\+Valid\+Phone\+Number()}} en \mbox{\hyperlink{general_2sign_up_2sign_up_request_8cs_source_l00010}{WPR.\+Controllers.\+General.\+Sign\+Up.\+Sign\+Up\+Request()}}.
+
+Hier is de call graaf voor deze functie\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_w_p_r_1_1_repository_1_1_user_repository_a188ce6aab8b95ea246623cc80b520714_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_w_p_r_1_1_repository_1_1_user_repository_a25a2f860883fcc39ea7fa8a932fde475}\index{WPR.Repository.UserRepository@{WPR.Repository.UserRepository}!addPersonalCustomerAsync@{addPersonalCustomerAsync}}
+\index{addPersonalCustomerAsync@{addPersonalCustomerAsync}!WPR.Repository.UserRepository@{WPR.Repository.UserRepository}}
+\doxysubsubsection{\texorpdfstring{addPersonalCustomerAsync()}{addPersonalCustomerAsync()}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_repository_1_1_user_repository_a25a2f860883fcc39ea7fa8a932fde475} 
+async Task$<$(bool status, string message)$>$ WPR.\+Repository.\+User\+Repository.\+add\+Personal\+Customer\+Async (\begin{DoxyParamCaption}\item[{Object\mbox{[}$\,$\mbox{]}}]{personal\+Data}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Het aangemaakte account wordt gekoppeld aan de particuliere tabel, doormiddel van alle meegegeven persoondata. Deze persoondata zal vervolgens in de query geïmplementeerd worden en vervolgens worden uitgevoerd. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em personal\+Data} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retourneert}
+
+\end{DoxyReturn}
+
+
+Implementeert \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_user_repository_a8302234bdf3953c8329a4487c03992e8}{WPR.\+Repository.\+IUser\+Repository}}.
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{_user_repository_8cs_source_l00209}{209}} in het bestand \mbox{\hyperlink{_user_repository_8cs_source}{User\+Repository.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00210\ \ \ \ \ \{}
+\DoxyCodeLine{00211\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}}
+\DoxyCodeLine{00212\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00213\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ query\ =\ \textcolor{stringliteral}{"{}INSERT\ INTO\ UserPersonal\ (ID,\ BirthDate)\ values\ (@I,\ @B)"{}};}
+\DoxyCodeLine{00214\ }
+\DoxyCodeLine{00215\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Er\ wordt\ een\ connectie\ aangemaakt\ met\ de\ DataBase\ met\ bovenstaande\ query\ }}
+\DoxyCodeLine{00216\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using}\ (var\ connection\ =\ \_connector.CreateDbConnection())}
+\DoxyCodeLine{00217\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using}\ (var\ command\ =\ \textcolor{keyword}{new}\ MySqlCommand(query,\ (MySqlConnection)connection))}
+\DoxyCodeLine{00218\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00219\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ De\ parameters\ worden\ ingevuld\ met\ de\ persoonlijke\ gegevens}}
+\DoxyCodeLine{00220\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ command.Parameters.AddWithValue(\textcolor{stringliteral}{"{}@I"{}},\ personalData[0]);}
+\DoxyCodeLine{00221\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ command.Parameters.AddWithValue(\textcolor{stringliteral}{"{}@B"{}},\ personalData[1]);}
+\DoxyCodeLine{00222\ }
+\DoxyCodeLine{00223\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (await\ command.ExecuteNonQueryAsync()\ >\ 0)}
+\DoxyCodeLine{00224\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00225\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Er\ wordt\ gekeken\ of\ de\ gegevens\ zijn\ ingevoert\ in\ de\ DataBase}}
+\DoxyCodeLine{00226\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (\textcolor{keyword}{true},\ \textcolor{stringliteral}{"{}Data\ Inserted"{}});}
+\DoxyCodeLine{00227\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00228\ }
+\DoxyCodeLine{00229\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (\textcolor{keyword}{false},\ \textcolor{stringliteral}{"{}No\ Data\ Inserted"{}});}
+\DoxyCodeLine{00230\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00231\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00232\ }
+\DoxyCodeLine{00233\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (MySqlException\ ex)}
+\DoxyCodeLine{00234\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00235\ \ \ \ \ \ \ \ \ \ \ \ \ await\ Console.Error.WriteLineAsync(\$\textcolor{stringliteral}{"{}Database\ error:\ \{ex.Message\}"{}});}
+\DoxyCodeLine{00236\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (\textcolor{keyword}{false},\ ex.Message);}
+\DoxyCodeLine{00237\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00238\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (Exception\ ex)}
+\DoxyCodeLine{00239\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00240\ \ \ \ \ \ \ \ \ \ \ \ \ await\ Console.Error.WriteLineAsync(\$\textcolor{stringliteral}{"{}Unexpected\ error:\ \{ex.Message\}"{}});}
+\DoxyCodeLine{00241\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (\textcolor{keyword}{false},\ ex.Message);}
+\DoxyCodeLine{00242\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00243\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+Gebruikt \mbox{\hyperlink{_user_repository_8cs_source_l00026}{\+\_\+connector}}.
+
+
+
+Wordt aangeroepen door \mbox{\hyperlink{_user_repository_8cs_source_l00619}{Add\+Personal\+Customer()}}.
+
+Hier is de caller graaf voor deze functie\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_w_p_r_1_1_repository_1_1_user_repository_a25a2f860883fcc39ea7fa8a932fde475_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_w_p_r_1_1_repository_1_1_user_repository_a4fe2a09bb575fb8d9510828ef5ad9813}\index{WPR.Repository.UserRepository@{WPR.Repository.UserRepository}!AddPrivateCustomerDetails@{AddPrivateCustomerDetails}}
+\index{AddPrivateCustomerDetails@{AddPrivateCustomerDetails}!WPR.Repository.UserRepository@{WPR.Repository.UserRepository}}
+\doxysubsubsection{\texorpdfstring{AddPrivateCustomerDetails()}{AddPrivateCustomerDetails()}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_repository_1_1_user_repository_a4fe2a09bb575fb8d9510828ef5ad9813} 
+async Task$<$(int Status\+Code, string Message)$>$ WPR.\+Repository.\+User\+Repository.\+Add\+Private\+Customer\+Details (\begin{DoxyParamCaption}\item[{Sign\+Up\+Request\+Customer\+Private}]{request}{, }\item[{int}]{user\+Id}{, }\item[{My\+Sql\+Connection}]{connections}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Add\+Private\+Customer\+Details zorgt ervoor dat alle extra details van particuliere huurders toegevoegd worden in de Private tabel. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em request} & \\
+\hline
+{\em user\+Id} & \\
+\hline
+{\em connections} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retourneert}
+
+\end{DoxyReturn}
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{_user_repository_8cs_source_l00739}{739}} in het bestand \mbox{\hyperlink{_user_repository_8cs_source}{User\+Repository.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00741\ \ \ \ \ \{}
+\DoxyCodeLine{00742\ \ \ \ \ \ \ \ \ (\textcolor{keywordtype}{bool}\ Status,\ \textcolor{keywordtype}{string}\ Message)\ checks\ =\ await\ AddCustomerChecks(\textcolor{keyword}{true},\ \textcolor{keyword}{null},\ request);}
+\DoxyCodeLine{00743\ }
+\DoxyCodeLine{00744\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (checks.Status)}
+\DoxyCodeLine{00745\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00746\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}}
+\DoxyCodeLine{00747\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00748\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ query\ =}
+\DoxyCodeLine{00749\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}INSERT\ INTO\ Private\ (ID,\ FirstName,\ LastName,\ TelNum,\ Adres,\ BirthDate)\ VALUES\ (@I,\ @F,\ @L,\ @T,\ @A,\ @B)"{}};}
+\DoxyCodeLine{00750\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using}\ (var\ command\ =\ \textcolor{keyword}{new}\ MySqlCommand(query,\ connections))}
+\DoxyCodeLine{00751\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00752\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ command.Parameters.AddWithValue(\textcolor{stringliteral}{"{}@I"{}},\ userId);}
+\DoxyCodeLine{00753\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ command.Parameters.AddWithValue(\textcolor{stringliteral}{"{}@F"{}},\ request.FirstName);}
+\DoxyCodeLine{00754\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ command.Parameters.AddWithValue(\textcolor{stringliteral}{"{}@L"{}},\ request.LastName);}
+\DoxyCodeLine{00755\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ command.Parameters.AddWithValue(\textcolor{stringliteral}{"{}@T"{}},\ request.TelNumber);}
+\DoxyCodeLine{00756\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ command.Parameters.AddWithValue(\textcolor{stringliteral}{"{}@A"{}},\ request.Adres);}
+\DoxyCodeLine{00757\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ command.Parameters.AddWithValue(\textcolor{stringliteral}{"{}@B"{}},\ request.BirthDate);}
+\DoxyCodeLine{00758\ }
+\DoxyCodeLine{00759\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (await\ command.ExecuteNonQueryAsync()\ >\ 0)}
+\DoxyCodeLine{00760\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00761\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (200,\ \textcolor{stringliteral}{"{}Account\ Succesfully\ Added"{}});}
+\DoxyCodeLine{00762\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00763\ }
+\DoxyCodeLine{00764\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (500,\ \textcolor{stringliteral}{"{}Unexpected\ Error\ Occured"{}});}
+\DoxyCodeLine{00765\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00766\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00767\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (MySqlException\ ex)}
+\DoxyCodeLine{00768\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00769\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Console.WriteLine(\textcolor{stringliteral}{"{}Z"{}});}
+\DoxyCodeLine{00770\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (500,\ ex.Message);}
+\DoxyCodeLine{00771\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00772\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (Exception\ ex)}
+\DoxyCodeLine{00773\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00774\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (500,\ ex.Message);}
+\DoxyCodeLine{00775\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00776\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00777\ }
+\DoxyCodeLine{00778\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (412,\ checks.Message);}
+\DoxyCodeLine{00779\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+Gebruikt \mbox{\hyperlink{_user_repository_8cs_source_l00684}{Add\+Customer\+Checks()}} en \mbox{\hyperlink{general_2sign_up_2sign_up_request_8cs_source_l00050}{WPR.\+Controllers.\+General.\+Sign\+Up.\+Sign\+Up\+Request\+Customer\+Private()}}.
+
+
+
+Wordt aangeroepen door \mbox{\hyperlink{_user_repository_8cs_source_l00796}{Add\+Customer()}}.
+
+Hier is de call graaf voor deze functie\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_w_p_r_1_1_repository_1_1_user_repository_a4fe2a09bb575fb8d9510828ef5ad9813_cgraph}
+\end{center}
+\end{figure}
+Hier is de caller graaf voor deze functie\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_w_p_r_1_1_repository_1_1_user_repository_a4fe2a09bb575fb8d9510828ef5ad9813_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_w_p_r_1_1_repository_1_1_user_repository_a09794bb8a3181b5be3f2676421dc4b12}\index{WPR.Repository.UserRepository@{WPR.Repository.UserRepository}!AddStaff@{AddStaff}}
+\index{AddStaff@{AddStaff}!WPR.Repository.UserRepository@{WPR.Repository.UserRepository}}
+\doxysubsubsection{\texorpdfstring{AddStaff()}{AddStaff()}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_repository_1_1_user_repository_a09794bb8a3181b5be3f2676421dc4b12} 
+async Task$<$(bool status, string message)$>$ WPR.\+Repository.\+User\+Repository.\+Add\+Staff (\begin{DoxyParamCaption}\item[{Object\mbox{[}$\,$\mbox{]}}]{person\+Data}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Er kunnen medewewerkers van Car and All toegevoegd worden aan de database, door middel van hun gegevens. De database voorziet de gegevens van een automatische id. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em person\+Data} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retourneert}
+
+\end{DoxyReturn}
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{_user_repository_8cs_source_l00548}{548}} in het bestand \mbox{\hyperlink{_user_repository_8cs_source}{User\+Repository.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00549\ \ \ \ \ \{}
+\DoxyCodeLine{00550\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}}
+\DoxyCodeLine{00551\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00552\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ query\ =}
+\DoxyCodeLine{00553\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}INSERT\ INTO\ STAFF\ (FirstName,\ LastName,\ Password,\ Email,\ Office)\ VALUES\ (@F,\ @L,\ @P,\ @E,\ @O)"{}};}
+\DoxyCodeLine{00554\ }
+\DoxyCodeLine{00555\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Er\ wordt\ een\ connectie\ aangemaakt\ met\ de\ DataBase\ met\ bovenstaande\ query\ }}
+\DoxyCodeLine{00556\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using}\ (var\ connection\ =\ \_connector.CreateDbConnection())}
+\DoxyCodeLine{00557\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using}\ (var\ command\ =\ \textcolor{keyword}{new}\ MySqlCommand(query,\ (MySqlConnection)connection))}
+\DoxyCodeLine{00558\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00559\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Alle\ parameters\ worden\ ingevuld}}
+\DoxyCodeLine{00560\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ command.Parameters.AddWithValue(\textcolor{stringliteral}{"{}@F"{}},\ personData[0]);}
+\DoxyCodeLine{00561\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ command.Parameters.AddWithValue(\textcolor{stringliteral}{"{}@L"{}},\ personData[1]);}
+\DoxyCodeLine{00562\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ command.Parameters.AddWithValue(\textcolor{stringliteral}{"{}@P"{}},\ \_hash.createHash(personData[2].ToString()));}
+\DoxyCodeLine{00563\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ command.Parameters.AddWithValue(\textcolor{stringliteral}{"{}@E"{}},\ personData[3]);}
+\DoxyCodeLine{00564\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ command.Parameters.AddWithValue(\textcolor{stringliteral}{"{}@O"{}},\ personData[4]);}
+\DoxyCodeLine{00565\ }
+\DoxyCodeLine{00566\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (await\ command.ExecuteNonQueryAsync()\ >\ 0)}
+\DoxyCodeLine{00567\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00568\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Er\ wordt\ gekeken\ of\ de\ gegevens\ zijn\ ingevoerd\ in\ de\ DataBase}}
+\DoxyCodeLine{00569\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (\textcolor{keyword}{true},\ \textcolor{stringliteral}{"{}Data\ inserted"{}});}
+\DoxyCodeLine{00570\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00571\ }
+\DoxyCodeLine{00572\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (\textcolor{keyword}{false},\ \textcolor{stringliteral}{"{}Data\ not\ inserted"{}});}
+\DoxyCodeLine{00573\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00574\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00575\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (MySqlException\ ex)}
+\DoxyCodeLine{00576\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00577\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (\textcolor{keyword}{false},\ ex.ToString());}
+\DoxyCodeLine{00578\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00579\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+Gebruikt \mbox{\hyperlink{_user_repository_8cs_source_l00026}{\+\_\+connector}} en \mbox{\hyperlink{_user_repository_8cs_source_l00027}{\+\_\+hash}}.
+
+\Hypertarget{class_w_p_r_1_1_repository_1_1_user_repository_adce1c47fd8ee12e83c5b918614e20bbc}\index{WPR.Repository.UserRepository@{WPR.Repository.UserRepository}!ChangeBusinessData@{ChangeBusinessData}}
+\index{ChangeBusinessData@{ChangeBusinessData}!WPR.Repository.UserRepository@{WPR.Repository.UserRepository}}
+\doxysubsubsection{\texorpdfstring{ChangeBusinessData()}{ChangeBusinessData()}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_repository_1_1_user_repository_adce1c47fd8ee12e83c5b918614e20bbc} 
+async Task$<$(int Status\+Code, string Message)$>$ WPR.\+Repository.\+User\+Repository.\+Change\+Business\+Data (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_change_business_settings_1_1_change_business_info}{Change\+Business\+Info}}}]{business\+Info}{, }\item[{My\+Sql\+Connection}]{connection}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{_user_repository_8cs_source_l01141}{1141}} in het bestand \mbox{\hyperlink{_user_repository_8cs_source}{User\+Repository.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{01142\ \{}
+\DoxyCodeLine{01143\ \ \ \ \ \textcolor{keywordtype}{string}\ updateQuery\ =\ \textcolor{stringliteral}{"{}UPDATE\ Business\ SET\ BusinessName\ =\ @BusinessName,\ Adres\ =\ @Adres,\ ContactEmail\ =\ @ContactEmail,\ Abonnement\ =\ @Abonnement\ WHERE\ KvK\ =\ @KvK"{}};}
+\DoxyCodeLine{01144\ }
+\DoxyCodeLine{01145\ \ \ \ \ \textcolor{keyword}{using}\ (var\ command\ =\ \textcolor{keyword}{new}\ MySqlCommand(updateQuery,\ connection))}
+\DoxyCodeLine{01146\ \ \ \ \ \{}
+\DoxyCodeLine{01147\ \ \ \ \ \ \ \ \ command.Parameters.AddWithValue(\textcolor{stringliteral}{"{}@KvK"{}},\ businessInfo.\mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_change_business_settings_1_1_change_business_info_a5b95ff5d5f7a20e64250aafa37a3f25a}{KvK}});}
+\DoxyCodeLine{01148\ \ \ \ \ \ \ \ \ command.Parameters.AddWithValue(\textcolor{stringliteral}{"{}@BusinessName"{}},\ businessInfo.\mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_change_business_settings_1_1_change_business_info_a1d575389523405b3518cab33e8df7974}{BusinessName}});}
+\DoxyCodeLine{01149\ \ \ \ \ \ \ \ \ command.Parameters.AddWithValue(\textcolor{stringliteral}{"{}@Adres"{}},\ businessInfo.\mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_change_business_settings_1_1_change_business_info_a4309d2da84bd138ca8d1f081297282bf}{Adres}});}
+\DoxyCodeLine{01150\ \ \ \ \ \ \ \ \ command.Parameters.AddWithValue(\textcolor{stringliteral}{"{}@ContactEmail"{}},\ businessInfo.\mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_change_business_settings_1_1_change_business_info_af51b29ecdfd3544451a5bf5f189cb75e}{ContactEmail}});}
+\DoxyCodeLine{01151\ \ \ \ \ \ \ \ \ command.Parameters.AddWithValue(\textcolor{stringliteral}{"{}@Abonnement"{}},\ businessInfo.\mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_change_business_settings_1_1_change_business_info_ae6542edf4a88723d9ae25fe914545210}{Abonnement}});}
+\DoxyCodeLine{01152\ }
+\DoxyCodeLine{01153\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}}
+\DoxyCodeLine{01154\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01155\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ rowsAffected\ =\ await\ command.ExecuteNonQueryAsync();}
+\DoxyCodeLine{01156\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (rowsAffected\ >\ 0)}
+\DoxyCodeLine{01157\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01158\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (200,\ \textcolor{stringliteral}{"{}Business\ information\ updated\ successfully"{}});}
+\DoxyCodeLine{01159\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01160\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{01161\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01162\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (404,\ \textcolor{stringliteral}{"{}Business\ not\ found\ with\ the\ specified\ KvK"{}});}
+\DoxyCodeLine{01163\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01164\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01165\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (MySqlException\ ex)}
+\DoxyCodeLine{01166\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01167\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (500,\ \$\textcolor{stringliteral}{"{}Database\ error:\ \{ex.Message\}"{}});}
+\DoxyCodeLine{01168\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01169\ \ \ \ \ \}}
+\DoxyCodeLine{01170\ \}}
+
+\end{DoxyCode}
+
+
+Gebruikt \mbox{\hyperlink{change_business_request_8cs_source_l00025}{WPR.\+Controllers.\+Employee.\+Vehicle\+Manager.\+Change\+Business\+Settings.\+Change\+Business\+Info.\+Abonnement}}, \mbox{\hyperlink{change_business_request_8cs_source_l00027}{WPR.\+Controllers.\+Employee.\+Vehicle\+Manager.\+Change\+Business\+Settings.\+Change\+Business\+Info.\+Adres}}, \mbox{\hyperlink{change_business_request_8cs_source_l00028}{WPR.\+Controllers.\+Employee.\+Vehicle\+Manager.\+Change\+Business\+Settings.\+Change\+Business\+Info.\+Business\+Name}}, \mbox{\hyperlink{_user_repository_8cs_source_l01054}{Change\+Business\+Info()}}, \mbox{\hyperlink{change_business_request_8cs_source_l00026}{WPR.\+Controllers.\+Employee.\+Vehicle\+Manager.\+Change\+Business\+Settings.\+Change\+Business\+Info.\+Contact\+Email}} en \mbox{\hyperlink{change_business_request_8cs_source_l00024}{WPR.\+Controllers.\+Employee.\+Vehicle\+Manager.\+Change\+Business\+Settings.\+Change\+Business\+Info.\+KvK}}.
+
+
+
+Wordt aangeroepen door \mbox{\hyperlink{_user_repository_8cs_source_l01054}{Change\+Business\+Info()}}.
+
+Hier is de call graaf voor deze functie\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_w_p_r_1_1_repository_1_1_user_repository_adce1c47fd8ee12e83c5b918614e20bbc_cgraph}
+\end{center}
+\end{figure}
+Hier is de caller graaf voor deze functie\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_w_p_r_1_1_repository_1_1_user_repository_adce1c47fd8ee12e83c5b918614e20bbc_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_w_p_r_1_1_repository_1_1_user_repository_a2bcea10de41cf249cee9d4049c25cc45}\index{WPR.Repository.UserRepository@{WPR.Repository.UserRepository}!ChangeBusinessInfo@{ChangeBusinessInfo}}
+\index{ChangeBusinessInfo@{ChangeBusinessInfo}!WPR.Repository.UserRepository@{WPR.Repository.UserRepository}}
+\doxysubsubsection{\texorpdfstring{ChangeBusinessInfo()}{ChangeBusinessInfo()}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_repository_1_1_user_repository_a2bcea10de41cf249cee9d4049c25cc45} 
+async Task$<$(int Status\+Code, string Message)$>$ WPR.\+Repository.\+User\+Repository.\+Change\+Business\+Info (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_change_business_settings_1_1_change_business_request}{Change\+Business\+Request}}}]{request}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Implementeert \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_user_repository_a254b26f8141a387db4ffa2264e5078fb}{WPR.\+Repository.\+IUser\+Repository}}.
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{_user_repository_8cs_source_l01054}{1054}} in het bestand \mbox{\hyperlink{_user_repository_8cs_source}{User\+Repository.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{01055\ \ \ \ \ \{}
+\DoxyCodeLine{01056\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}}
+\DoxyCodeLine{01057\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01058\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ query\ =\ \textcolor{stringliteral}{"{}SELECT\ Business\ FROM\ VehicleManager\ WHERE\ ID\ =\ @I"{}};}
+\DoxyCodeLine{01059\ }
+\DoxyCodeLine{01060\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using}\ (var\ connection\ =\ (MySqlConnection)\_connector.CreateDbConnection())}
+\DoxyCodeLine{01061\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using}\ (var\ transaction\ =\ connection.BeginTransaction())}
+\DoxyCodeLine{01062\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using}\ (var\ command\ =\ \textcolor{keyword}{new}\ MySqlCommand(query,\ connection))}
+\DoxyCodeLine{01063\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01064\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ command.Parameters.AddWithValue(\textcolor{stringliteral}{"{}@I"{}},\ request.\mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_change_business_settings_1_1_change_business_request_abe9e3d9dd5b7ea508f66e61084437938}{VehicleManagerInfo}}?.\mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_change_business_settings_1_1_change_vehicle_manager_info_aa1d62432d9112f9ba6d8cc4b9eb5073f}{ID}});}
+\DoxyCodeLine{01065\ }
+\DoxyCodeLine{01066\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using}\ (var\ reader\ =\ await\ command.ExecuteReaderAsync())}
+\DoxyCodeLine{01067\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01068\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (await\ reader.ReadAsync())}
+\DoxyCodeLine{01069\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01070\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ request.BusinessInfo.KvK\ =\ Convert.ToInt32(reader.GetValue(0));}
+\DoxyCodeLine{01071\ }
+\DoxyCodeLine{01072\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ await\ reader.CloseAsync();}
+\DoxyCodeLine{01073\ }
+\DoxyCodeLine{01074\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ var\ changeBusiness\ =\ await\ ChangeBusinessData(request.\mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_change_business_settings_1_1_change_business_request_aa5ca84f0a2ac6103957d53a672ad6b40}{BusinessInfo}},\ connection);}
+\DoxyCodeLine{01075\ }
+\DoxyCodeLine{01076\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (changeBusiness.StatusCode\ !=\ 200)}
+\DoxyCodeLine{01077\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01078\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ transaction.Rollback();}
+\DoxyCodeLine{01079\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (changeBusiness.StatusCode,\ changeBusiness.Message);}
+\DoxyCodeLine{01080\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01081\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{01082\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01083\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ transaction.Commit();}
+\DoxyCodeLine{01084\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (200,\ \textcolor{stringliteral}{"{}Update\ Successful"{}});}
+\DoxyCodeLine{01085\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01086\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01087\ }
+\DoxyCodeLine{01088\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ transaction.Rollback();}
+\DoxyCodeLine{01089\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (404,\ \textcolor{stringliteral}{"{}VehicleManager\ not\ found\ or\ KvK\ is\ missing"{}});}
+\DoxyCodeLine{01090\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01091\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01092\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01093\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (MySqlException\ ex)}
+\DoxyCodeLine{01094\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01095\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (500,\ ex.Message);}
+\DoxyCodeLine{01096\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01097\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (OverflowException\ ex)}
+\DoxyCodeLine{01098\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01099\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (500,\ ex.Message);}
+\DoxyCodeLine{01100\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01101\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (Exception\ ex)}
+\DoxyCodeLine{01102\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01103\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (500,\ ex.Message);}
+\DoxyCodeLine{01104\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01105\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+Gebruikt \mbox{\hyperlink{_user_repository_8cs_source_l00026}{\+\_\+connector}}, \mbox{\hyperlink{change_business_request_8cs_source_l00010}{WPR.\+Controllers.\+Employee.\+Vehicle\+Manager.\+Change\+Business\+Settings.\+Change\+Business\+Request.\+Business\+Info}}, \mbox{\hyperlink{_user_repository_8cs_source_l01141}{Change\+Business\+Data()}}, \mbox{\hyperlink{change_business_request_8cs_source_l00015}{WPR.\+Controllers.\+Employee.\+Vehicle\+Manager.\+Change\+Business\+Settings.\+Change\+Vehicle\+Manager\+Info.\+ID}} en \mbox{\hyperlink{change_business_request_8cs_source_l00008}{WPR.\+Controllers.\+Employee.\+Vehicle\+Manager.\+Change\+Business\+Settings.\+Change\+Business\+Request.\+Vehicle\+Manager\+Info}}.
+
+
+
+Wordt aangeroepen door \mbox{\hyperlink{_user_repository_8cs_source_l01141}{Change\+Business\+Data()}}.
+
+Hier is de call graaf voor deze functie\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_w_p_r_1_1_repository_1_1_user_repository_a2bcea10de41cf249cee9d4049c25cc45_cgraph}
+\end{center}
+\end{figure}
+Hier is de caller graaf voor deze functie\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_w_p_r_1_1_repository_1_1_user_repository_a2bcea10de41cf249cee9d4049c25cc45_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_w_p_r_1_1_repository_1_1_user_repository_a9423f68f7d22b18441e746ba0d9ef6d6}\index{WPR.Repository.UserRepository@{WPR.Repository.UserRepository}!ChangeVehicleManagerInfo@{ChangeVehicleManagerInfo}}
+\index{ChangeVehicleManagerInfo@{ChangeVehicleManagerInfo}!WPR.Repository.UserRepository@{WPR.Repository.UserRepository}}
+\doxysubsubsection{\texorpdfstring{ChangeVehicleManagerInfo()}{ChangeVehicleManagerInfo()}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_repository_1_1_user_repository_a9423f68f7d22b18441e746ba0d9ef6d6} 
+async Task$<$(int Status\+Code, string Message)$>$ WPR.\+Repository.\+User\+Repository.\+Change\+Vehicle\+Manager\+Info (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_change_business_settings_1_1_change_vehicle_manager_info}{Change\+Vehicle\+Manager\+Info}}}]{request}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Implementeert \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_user_repository_af6af9a4cee847fe4661ea81a3e59d539}{WPR.\+Repository.\+IUser\+Repository}}.
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{_user_repository_8cs_source_l00921}{921}} in het bestand \mbox{\hyperlink{_user_repository_8cs_source}{User\+Repository.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00922\ \ \ \ \ \{}
+\DoxyCodeLine{00923\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}}
+\DoxyCodeLine{00924\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00925\ \ \ \ \ \ \ \ \ \ \ \ \ Console.WriteLine(\$\textcolor{stringliteral}{"{}Received\ request\ to\ update\ Vehicle\ Manager\ with\ ID:\ \{request.ID\}"{}});}
+\DoxyCodeLine{00926\ \ \ \ \ \ \ \ \ \ \ \ \ Console.WriteLine(\$\textcolor{stringliteral}{"{}New\ Email:\ \{request.Email\}"{}});}
+\DoxyCodeLine{00927\ }
+\DoxyCodeLine{00928\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\textcolor{keywordtype}{string}.IsNullOrEmpty(request.\mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_change_business_settings_1_1_change_vehicle_manager_info_a07928db63fc7b3f2a934ee30f8b9ddc2}{Email}}))}
+\DoxyCodeLine{00929\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00930\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Console.WriteLine(\textcolor{stringliteral}{"{}Error:\ The\ provided\ email\ is\ empty."{}});}
+\DoxyCodeLine{00931\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (400,\ \textcolor{stringliteral}{"{}Email\ cannot\ be\ empty."{}});}
+\DoxyCodeLine{00932\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00933\ }
+\DoxyCodeLine{00934\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Hash\ the\ new\ password\ (before\ updating)}}
+\DoxyCodeLine{00935\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ hashedPassword\ =\ \_hash.createHash(request.\mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_change_business_settings_1_1_change_vehicle_manager_info_a216a1e6dd2cb6373f1b5a31e66f0f620}{Password}});}
+\DoxyCodeLine{00936\ \ \ \ \ \ \ \ \ \ \ \ \ Console.WriteLine(\$\textcolor{stringliteral}{"{}Hashed\ Password:\ \{hashedPassword\}"{}});}
+\DoxyCodeLine{00937\ }
+\DoxyCodeLine{00938\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Validate\ if\ the\ new\ password\ follows\ the\ required\ format}}
+\DoxyCodeLine{00939\ \ \ \ \ \ \ \ \ \ \ \ \ var\ (isValid,\ errorMessage)\ =\ PasswordChecker.IsValidPassword(request.\mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_change_business_settings_1_1_change_vehicle_manager_info_a216a1e6dd2cb6373f1b5a31e66f0f620}{Password}});}
+\DoxyCodeLine{00940\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!isValid)}
+\DoxyCodeLine{00941\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00942\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Console.WriteLine(\$\textcolor{stringliteral}{"{}Error:\ \{errorMessage\}"{}});}
+\DoxyCodeLine{00943\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (400,\ errorMessage);}
+\DoxyCodeLine{00944\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00945\ }
+\DoxyCodeLine{00946\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Check\ if\ the\ email\ needs\ to\ be\ updated\ (only\ proceed\ with\ update\ if\ the\ email\ has\ changed)}}
+\DoxyCodeLine{00947\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ validateQuery\ =\ \textcolor{stringliteral}{@"{}}}
+\DoxyCodeLine{00948\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ SELECT\ Email\ FROM\ VehicleManager }}
+\DoxyCodeLine{00949\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ WHERE\ ID\ =\ @ID"{}};}
+\DoxyCodeLine{00950\ }
+\DoxyCodeLine{00951\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using}\ (var\ connection\ =\ \_connector.CreateDbConnection())}
+\DoxyCodeLine{00952\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00953\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (connection\ ==\ \textcolor{keyword}{null})}
+\DoxyCodeLine{00954\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00955\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Console.WriteLine(\textcolor{stringliteral}{"{}Database\ connection\ is\ null."{}});}
+\DoxyCodeLine{00956\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (500,\ \textcolor{stringliteral}{"{}Database\ connection\ failed."{}});}
+\DoxyCodeLine{00957\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00958\ }
+\DoxyCodeLine{00959\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (connection.State\ !=\ System.Data.ConnectionState.Open)}
+\DoxyCodeLine{00960\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00961\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Console.WriteLine(\textcolor{stringliteral}{"{}Opening\ database\ connection..."{}});}
+\DoxyCodeLine{00962\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ connection.Open();}
+\DoxyCodeLine{00963\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Console.WriteLine(\textcolor{stringliteral}{"{}Connection\ opened\ successfully."{}});}
+\DoxyCodeLine{00964\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00965\ }
+\DoxyCodeLine{00966\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using}\ (var\ command\ =\ \textcolor{keyword}{new}\ MySqlCommand(validateQuery,\ (MySqlConnection)connection))}
+\DoxyCodeLine{00967\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00968\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ command.Parameters.AddWithValue(\textcolor{stringliteral}{"{}@ID"{}},\ request.\mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_change_business_settings_1_1_change_vehicle_manager_info_aa1d62432d9112f9ba6d8cc4b9eb5073f}{ID}});}
+\DoxyCodeLine{00969\ }
+\DoxyCodeLine{00970\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using}\ (var\ reader\ =\ await\ command.ExecuteReaderAsync())}
+\DoxyCodeLine{00971\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00972\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (await\ reader.ReadAsync())}
+\DoxyCodeLine{00973\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00974\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ existingEmail\ =\ reader.GetString(\textcolor{stringliteral}{"{}Email"{}});}
+\DoxyCodeLine{00975\ }
+\DoxyCodeLine{00976\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (existingEmail\ ==\ request.\mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_change_business_settings_1_1_change_vehicle_manager_info_a07928db63fc7b3f2a934ee30f8b9ddc2}{Email}})}
+\DoxyCodeLine{00977\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00978\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ If\ the\ email\ hasn't\ changed,\ return\ early\ with\ a\ response}}
+\DoxyCodeLine{00979\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Console.WriteLine(\textcolor{stringliteral}{"{}Email\ is\ the\ same.\ No\ update\ needed."{}});}
+\DoxyCodeLine{00980\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (200,\ \textcolor{stringliteral}{"{}No\ changes\ to\ the\ email\ address."{}});}
+\DoxyCodeLine{00981\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00982\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00983\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00984\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00985\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Console.WriteLine(\textcolor{stringliteral}{"{}Error:\ Vehicle\ Manager\ not\ found."{}});}
+\DoxyCodeLine{00986\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (404,\ \textcolor{stringliteral}{"{}Vehicle\ Manager\ not\ found."{}});}
+\DoxyCodeLine{00987\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00988\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00989\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00990\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00991\ }
+\DoxyCodeLine{00992\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Proceed\ with\ updating\ the\ email\ and\ password\ (now\ hashed)}}
+\DoxyCodeLine{00993\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ updateQuery\ =\ \textcolor{stringliteral}{@"{}}}
+\DoxyCodeLine{00994\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ UPDATE\ VehicleManager }}
+\DoxyCodeLine{00995\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ SET\ Email\ =\ @Email, }}
+\DoxyCodeLine{00996\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Password\ =\ @Password }}
+\DoxyCodeLine{00997\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ WHERE\ ID\ =\ @ID"{}};}
+\DoxyCodeLine{00998\ }
+\DoxyCodeLine{00999\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using}\ (var\ connection\ =\ \_connector.CreateDbConnection())}
+\DoxyCodeLine{01000\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01001\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (connection\ ==\ \textcolor{keyword}{null})}
+\DoxyCodeLine{01002\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01003\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Console.WriteLine(\textcolor{stringliteral}{"{}Database\ connection\ is\ null."{}});}
+\DoxyCodeLine{01004\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (500,\ \textcolor{stringliteral}{"{}Database\ connection\ failed."{}});}
+\DoxyCodeLine{01005\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01006\ }
+\DoxyCodeLine{01007\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (connection.State\ !=\ System.Data.ConnectionState.Open)}
+\DoxyCodeLine{01008\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01009\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Console.WriteLine(\textcolor{stringliteral}{"{}Opening\ database\ connection..."{}});}
+\DoxyCodeLine{01010\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ connection.Open();}
+\DoxyCodeLine{01011\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Console.WriteLine(\textcolor{stringliteral}{"{}Connection\ opened\ successfully."{}});}
+\DoxyCodeLine{01012\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01013\ }
+\DoxyCodeLine{01014\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using}\ (var\ command\ =\ \textcolor{keyword}{new}\ MySqlCommand(updateQuery,\ (MySqlConnection)connection))}
+\DoxyCodeLine{01015\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01016\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ command.Parameters.AddWithValue(\textcolor{stringliteral}{"{}@ID"{}},\ request.\mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_change_business_settings_1_1_change_vehicle_manager_info_aa1d62432d9112f9ba6d8cc4b9eb5073f}{ID}});}
+\DoxyCodeLine{01017\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ command.Parameters.AddWithValue(\textcolor{stringliteral}{"{}@Email"{}},\ request.\mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_change_business_settings_1_1_change_vehicle_manager_info_a07928db63fc7b3f2a934ee30f8b9ddc2}{Email}});}
+\DoxyCodeLine{01018\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ command.Parameters.AddWithValue(\textcolor{stringliteral}{"{}@Password"{}},\ hashedPassword);}
+\DoxyCodeLine{01019\ }
+\DoxyCodeLine{01020\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}}
+\DoxyCodeLine{01021\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01022\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ rowsAffected\ =\ await\ command.ExecuteNonQueryAsync();}
+\DoxyCodeLine{01023\ }
+\DoxyCodeLine{01024\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (rowsAffected\ >\ 0)}
+\DoxyCodeLine{01025\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01026\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Successfully\ updated\ the\ vehicle\ manager\ info}}
+\DoxyCodeLine{01027\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Console.WriteLine(\textcolor{stringliteral}{"{}Vehicle\ Manager\ updated\ successfully."{}});}
+\DoxyCodeLine{01028\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (200,\ \textcolor{stringliteral}{"{}Vehicle\ Manager\ updated\ successfully."{}});}
+\DoxyCodeLine{01029\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01030\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{01031\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01032\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ No\ rows\ affected,\ meaning\ no\ update\ occurred}}
+\DoxyCodeLine{01033\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Console.WriteLine(\textcolor{stringliteral}{"{}Error:\ Vehicle\ Manager\ not\ found."{}});}
+\DoxyCodeLine{01034\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (404,\ \textcolor{stringliteral}{"{}Vehicle\ Manager\ not\ found."{}});}
+\DoxyCodeLine{01035\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01036\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01037\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (Exception\ ex)}
+\DoxyCodeLine{01038\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01039\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Console.WriteLine(\$\textcolor{stringliteral}{"{}Error\ executing\ query:\ \{ex.Message\}"{}});}
+\DoxyCodeLine{01040\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (500,\ \$\textcolor{stringliteral}{"{}Error\ executing\ query:\ \{ex.Message\}"{}});}
+\DoxyCodeLine{01041\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01042\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01043\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01044\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01045\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (Exception\ ex)}
+\DoxyCodeLine{01046\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01047\ \ \ \ \ \ \ \ \ \ \ \ \ Console.WriteLine(\$\textcolor{stringliteral}{"{}Error:\ \{ex.Message\}"{}});}
+\DoxyCodeLine{01048\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (500,\ \$\textcolor{stringliteral}{"{}Error:\ \{ex.Message\}"{}});}
+\DoxyCodeLine{01049\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01050\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+Gebruikt \mbox{\hyperlink{_user_repository_8cs_source_l00026}{\+\_\+connector}}, \mbox{\hyperlink{_user_repository_8cs_source_l00027}{\+\_\+hash}}, \mbox{\hyperlink{_user_repository_8cs_source_l00921}{Change\+Vehicle\+Manager\+Info()}}, \mbox{\hyperlink{change_business_request_8cs_source_l00019}{WPR.\+Controllers.\+Employee.\+Vehicle\+Manager.\+Change\+Business\+Settings.\+Change\+Vehicle\+Manager\+Info.\+Email}}, \mbox{\hyperlink{change_business_request_8cs_source_l00015}{WPR.\+Controllers.\+Employee.\+Vehicle\+Manager.\+Change\+Business\+Settings.\+Change\+Vehicle\+Manager\+Info.\+ID}}, \mbox{\hyperlink{_password_checker_8cs_source_l00011}{WPR.\+Utils.\+Password\+Checker.\+Is\+Valid\+Password()}} en \mbox{\hyperlink{change_business_request_8cs_source_l00017}{WPR.\+Controllers.\+Employee.\+Vehicle\+Manager.\+Change\+Business\+Settings.\+Change\+Vehicle\+Manager\+Info.\+Password}}.
+
+
+
+Wordt aangeroepen door \mbox{\hyperlink{_user_repository_8cs_source_l00921}{Change\+Vehicle\+Manager\+Info()}}.
+
+Hier is de call graaf voor deze functie\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_w_p_r_1_1_repository_1_1_user_repository_a9423f68f7d22b18441e746ba0d9ef6d6_cgraph}
+\end{center}
+\end{figure}
+Hier is de caller graaf voor deze functie\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=243pt]{class_w_p_r_1_1_repository_1_1_user_repository_a9423f68f7d22b18441e746ba0d9ef6d6_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_w_p_r_1_1_repository_1_1_user_repository_a7903e03bfe7076a6ee7b352636cb854d}\index{WPR.Repository.UserRepository@{WPR.Repository.UserRepository}!checkUsageEmailAsync@{checkUsageEmailAsync}}
+\index{checkUsageEmailAsync@{checkUsageEmailAsync}!WPR.Repository.UserRepository@{WPR.Repository.UserRepository}}
+\doxysubsubsection{\texorpdfstring{checkUsageEmailAsync()}{checkUsageEmailAsync()}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_repository_1_1_user_repository_a7903e03bfe7076a6ee7b352636cb854d} 
+async Task$<$(bool status, string message)$>$ WPR.\+Repository.\+User\+Repository.\+check\+Usage\+Email\+Async (\begin{DoxyParamCaption}\item[{string}]{email}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Er wordt gekeken of het emailadres al bestaat in de databse. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em email} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retourneert}
+
+\end{DoxyReturn}
+
+
+Implementeert \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_user_repository_a9c716662bd52a8dec74a868954dee50e}{WPR.\+Repository.\+IUser\+Repository}}.
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{_user_repository_8cs_source_l00121}{121}} in het bestand \mbox{\hyperlink{_user_repository_8cs_source}{User\+Repository.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00122\ \ \ \ \ \{}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Er\ wordt\ gekeken\ of\ het\ emailadress\ al\ ingebruik\ is}}
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}}
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ query\ =\ \textcolor{stringliteral}{"{}SELECT\ COUNT(*)\ FROM\ Customer\ WHERE\ LOWER(Email)\ =\ LOWER(@E)"{}};}
+\DoxyCodeLine{00127\ }
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Er\ wordt\ een\ connectie\ aangemaakt\ met\ de\ DataBase\ met\ bovenstaande\ query}}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using}\ (var\ connection\ =\ \_connector.CreateDbConnection())}
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using}\ (var\ command\ =\ \textcolor{keyword}{new}\ MySqlCommand(query,\ (MySqlConnection)connection))}
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Het\ emailadres\ wordt\ in\ de\ query\ ingevuld\ en\ er\ wordt\ gekeken\ of\ er\ rows\ zijn\ gevonden}}
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ command.Parameters.AddWithValue(\textcolor{stringliteral}{"{}@E"{}},\ email);}
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ inUse\ =\ Convert.ToInt32(await\ command.ExecuteScalarAsync())\ >\ 0;}
+\DoxyCodeLine{00135\ }
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Als\ het\ aantal\ gevoden\ rows\ >\ 0,\ dan\ inUse\ =\ true,\ "{}Email\ detected"{}\ anders\ inUser\ =\ false,\ "{}No\ email\ detected"{}}}
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (inUse,\ inUse\ ?\ \textcolor{stringliteral}{"{}Email\ detected"{}}\ :\ \textcolor{stringliteral}{"{}No\ email\ detected"{}});}
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00140\ }
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (MySqlException\ ex)}
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \ \ \ \ await\ Console.Error.WriteLineAsync(\$\textcolor{stringliteral}{"{}Database\ error:\ \{ex.Message\}"{}});}
+\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (\textcolor{keyword}{false},\ ex.Message);}
+\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (Exception\ ex)}
+\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ \ \ \ \ await\ Console.Error.WriteLineAsync(\$\textcolor{stringliteral}{"{}Unexpected\ error:\ \{ex.Message\}"{}});}
+\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (\textcolor{keyword}{false},\ ex.Message);}
+\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00151\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+Gebruikt \mbox{\hyperlink{_user_repository_8cs_source_l00026}{\+\_\+connector}}.
+
+
+
+Wordt aangeroepen door \mbox{\hyperlink{_user_repository_8cs_source_l00684}{Add\+Customer\+Checks()}}, \mbox{\hyperlink{_user_repository_8cs_source_l00619}{Add\+Personal\+Customer()}} en \mbox{\hyperlink{_user_repository_8cs_source_l00454}{Create\+User\+Info\+Query()}}.
+
+Hier is de caller graaf voor deze functie\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_w_p_r_1_1_repository_1_1_user_repository_a7903e03bfe7076a6ee7b352636cb854d_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_w_p_r_1_1_repository_1_1_user_repository_af67e3842ab505dde8a9b4986eec3d470}\index{WPR.Repository.UserRepository@{WPR.Repository.UserRepository}!CreateUpdateQuery@{CreateUpdateQuery}}
+\index{CreateUpdateQuery@{CreateUpdateQuery}!WPR.Repository.UserRepository@{WPR.Repository.UserRepository}}
+\doxysubsubsection{\texorpdfstring{CreateUpdateQuery()}{CreateUpdateQuery()}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_repository_1_1_user_repository_af67e3842ab505dde8a9b4986eec3d470} 
+string WPR.\+Repository.\+User\+Repository.\+Create\+Update\+Query (\begin{DoxyParamCaption}\item[{string}]{tabel}{, }\item[{IList$<$ object\mbox{[}$\,$\mbox{]}$>$}]{data}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{_user_repository_8cs_source_l00889}{889}} in het bestand \mbox{\hyperlink{_user_repository_8cs_source}{User\+Repository.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00890\ \ \ \ \ \{}
+\DoxyCodeLine{00891\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ query\ =\ \$\textcolor{stringliteral}{"{}UPDATE\ \{tabel\}\ SET"{}};}
+\DoxyCodeLine{00892\ }
+\DoxyCodeLine{00893\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 1;\ i\ <\ data.Count;\ i++)}
+\DoxyCodeLine{00894\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00895\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (((\textcolor{keywordtype}{string})data[i][0]).Equals(\textcolor{stringliteral}{"{}Password"{}}))}
+\DoxyCodeLine{00896\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00897\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ query\ +=\ \$\textcolor{stringliteral}{"{}\ Password\ =\ '\{\_hash.createHash((string)data[i][1])\}'"{}};}
+\DoxyCodeLine{00898\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00899\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (data[i][2].Equals(\textcolor{stringliteral}{"{}System.Int32"{}}))}
+\DoxyCodeLine{00900\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00901\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ query\ +=\ \$\textcolor{stringliteral}{"{}\ \{data[i][0]\}\ =\ \{data[i][1]\}"{}};}
+\DoxyCodeLine{00902\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00903\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00904\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00905\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ query\ +=\ \$\textcolor{stringliteral}{"{}\ \{data[i][0]\}\ =\ '\{data[i][1]\}'"{}};}
+\DoxyCodeLine{00906\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00907\ }
+\DoxyCodeLine{00908\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (i\ !=\ data.Count\ -\/\ 1)}
+\DoxyCodeLine{00909\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00910\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ query\ +=\ \textcolor{stringliteral}{"{},"{}};}
+\DoxyCodeLine{00911\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00912\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00913\ }
+\DoxyCodeLine{00914\ \ \ \ \ \ \ \ \ query\ +=\ \$\textcolor{stringliteral}{"{}\ WHERE\ \{data[0][0]\}\ =\ \{data[0][1]\}"{}};}
+\DoxyCodeLine{00915\ }
+\DoxyCodeLine{00916\ \ \ \ \ \ \ \ \ Console.WriteLine(query);}
+\DoxyCodeLine{00917\ }
+\DoxyCodeLine{00918\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ query;}
+\DoxyCodeLine{00919\ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{class_w_p_r_1_1_repository_1_1_user_repository_af1ae304fd24d3ae358db293b0033e484}\index{WPR.Repository.UserRepository@{WPR.Repository.UserRepository}!CreateUserInfoQuery@{CreateUserInfoQuery}}
+\index{CreateUserInfoQuery@{CreateUserInfoQuery}!WPR.Repository.UserRepository@{WPR.Repository.UserRepository}}
+\doxysubsubsection{\texorpdfstring{CreateUserInfoQuery()}{CreateUserInfoQuery()}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_repository_1_1_user_repository_af1ae304fd24d3ae358db293b0033e484} 
+async Task$<$(bool good\+Query, string message)$>$ WPR.\+Repository.\+User\+Repository.\+Create\+User\+Info\+Query (\begin{DoxyParamCaption}\item[{List$<$ object\mbox{[}$\,$\mbox{]}$>$}]{data}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Er wordt een query aangemaakt, met daarin de meegeven gegevens die veranderd moeten worden in het account van de gebruiker. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retourneert}
+
+\end{DoxyReturn}
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{_user_repository_8cs_source_l00454}{454}} in het bestand \mbox{\hyperlink{_user_repository_8cs_source}{User\+Repository.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00455\ \ \ \ \ \{}
+\DoxyCodeLine{00456\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ lengthList\ =\ data.Count();\ \textcolor{comment}{//\ De\ lengte\ voor\ de\ loopt\ wordt\ vastgesteld}}
+\DoxyCodeLine{00457\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ query\ =\ \textcolor{stringliteral}{"{}UPDATE\ Customer\ SET\ "{}};\ \textcolor{comment}{//\ Het\ begin\ van\ de\ query\ wordt\ aangemaakt}}
+\DoxyCodeLine{00458\ }
+\DoxyCodeLine{00459\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 1;\ i\ <\ lengthList;\ i++)}
+\DoxyCodeLine{00460\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00461\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Item[0]\ =\ Colom\ naam}}
+\DoxyCodeLine{00462\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Item[1]\ =\ Colom\ data}}
+\DoxyCodeLine{00463\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Item[2]\ =\ Type\ colom\ data}}
+\DoxyCodeLine{00464\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{object}[]\ item\ =\ data[i];}
+\DoxyCodeLine{00465\ }
+\DoxyCodeLine{00466\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Als\ de\ 3e\ item\ in\ de\ list\ een\ integer\ is,\ worden\ er\ geen\ verdere\ checks\ gedaan}}
+\DoxyCodeLine{00467\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (item[2].Equals(\textcolor{stringliteral}{"{}System.Int32"{}}))}
+\DoxyCodeLine{00468\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00469\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ query\ +=\ \$\textcolor{stringliteral}{"{}\{item[0]\}\ =\ \{item[1]\}"{}};}
+\DoxyCodeLine{00470\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00471\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00472\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00473\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Als\ de\ naam\ van\ de\ colomn\ gelijks\ is\ aan\ "{}Email"{}\ wordt\ er\ een\ email\ check\ gedaan}}
+\DoxyCodeLine{00474\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (item[0].ToString().Equals(\textcolor{stringliteral}{"{}Email"{}}))}
+\DoxyCodeLine{00475\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00476\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ var\ emailCheck\ =\ await\ checkUsageEmailAsync(item[1].ToString());}
+\DoxyCodeLine{00477\ }
+\DoxyCodeLine{00478\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (emailCheck.status)}
+\DoxyCodeLine{00479\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00480\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (\textcolor{keyword}{false},\ emailCheck.message);}
+\DoxyCodeLine{00481\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00482\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00483\ }
+\DoxyCodeLine{00484\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ query\ +=\ \$\textcolor{stringliteral}{"{}\{item[0]\}\ =\ '\{item[1]\}'"{}};}
+\DoxyCodeLine{00485\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00486\ }
+\DoxyCodeLine{00487\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (i\ +\ 1\ !=\ lengthList)}
+\DoxyCodeLine{00488\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00489\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ De\ query\ kan\ worden\ uitgebreid}}
+\DoxyCodeLine{00490\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ query\ +=\ \textcolor{stringliteral}{"{},"{}};}
+\DoxyCodeLine{00491\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00492\ }
+\DoxyCodeLine{00493\ \ \ \ \ \ \ \ \ \ \ \ \ query\ +=\ \textcolor{stringliteral}{"{}\ "{}};}
+\DoxyCodeLine{00494\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00495\ }
+\DoxyCodeLine{00496\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ De\ query\ wordt\ afgesloten}}
+\DoxyCodeLine{00497\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (\textcolor{keyword}{true},\ query\ +=\ \$\textcolor{stringliteral}{"{}WHERE\ ID\ =\ \{data[0][1]\}"{}});}
+\DoxyCodeLine{00498\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+Gebruikt \mbox{\hyperlink{_user_repository_8cs_source_l00121}{check\+Usage\+Email\+Async()}}.
+
+
+
+Wordt aangeroepen door \mbox{\hyperlink{_user_repository_8cs_source_l00344}{Edit\+User\+Info\+Async()}}.
+
+Hier is de call graaf voor deze functie\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_w_p_r_1_1_repository_1_1_user_repository_af1ae304fd24d3ae358db293b0033e484_cgraph}
+\end{center}
+\end{figure}
+Hier is de caller graaf voor deze functie\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_w_p_r_1_1_repository_1_1_user_repository_af1ae304fd24d3ae358db293b0033e484_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_w_p_r_1_1_repository_1_1_user_repository_a23bd5c36ff2c79f375a1b88727134636}\index{WPR.Repository.UserRepository@{WPR.Repository.UserRepository}!DeleteUserAsync@{DeleteUserAsync}}
+\index{DeleteUserAsync@{DeleteUserAsync}!WPR.Repository.UserRepository@{WPR.Repository.UserRepository}}
+\doxysubsubsection{\texorpdfstring{DeleteUserAsync()}{DeleteUserAsync()}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_repository_1_1_user_repository_a23bd5c36ff2c79f375a1b88727134636} 
+async Task$<$(bool status, string message)$>$ WPR.\+Repository.\+User\+Repository.\+Delete\+User\+Async (\begin{DoxyParamCaption}\item[{string}]{user\+Id}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Implementeert \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_user_repository_ab8bc076a0fa5153144ae7a810515bf5a}{WPR.\+Repository.\+IUser\+Repository}}.
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{_user_repository_8cs_source_l00406}{406}} in het bestand \mbox{\hyperlink{_user_repository_8cs_source}{User\+Repository.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00407\ \ \ \ \ \{}
+\DoxyCodeLine{00408\ \ \ \ \ \ \ \ \ Console.WriteLine(\textcolor{stringliteral}{"{}Deleting\ user"{}});}
+\DoxyCodeLine{00409\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}}
+\DoxyCodeLine{00410\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00411\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ queryCustomer\ =\ \textcolor{stringliteral}{"{}DELETE\ FROM\ Customer\ WHERE\ ID\ =\ @ID"{}};}
+\DoxyCodeLine{00412\ }
+\DoxyCodeLine{00413\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using}\ (var\ connection\ =\ \_connector.CreateDbConnection())}
+\DoxyCodeLine{00414\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using}\ (var\ customerCommand\ =\ \textcolor{keyword}{new}\ MySqlCommand(queryCustomer,\ (MySqlConnection)connection))}
+\DoxyCodeLine{00415\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00416\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Console.WriteLine(userId);}
+\DoxyCodeLine{00417\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ userIdInt\ =\ Convert.ToInt32(userId);}
+\DoxyCodeLine{00418\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Console.WriteLine(userIdInt);}
+\DoxyCodeLine{00419\ }
+\DoxyCodeLine{00420\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ customerCommand.Parameters.AddWithValue(\textcolor{stringliteral}{"{}@ID"{}},\ userIdInt);}
+\DoxyCodeLine{00421\ }
+\DoxyCodeLine{00422\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ rowsAffected\ =\ await\ customerCommand.ExecuteNonQueryAsync();}
+\DoxyCodeLine{00423\ }
+\DoxyCodeLine{00424\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (rowsAffected\ >\ 0)}
+\DoxyCodeLine{00425\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00426\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (\textcolor{keyword}{true},\ \textcolor{stringliteral}{"{}User\ deleted"{}});}
+\DoxyCodeLine{00427\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00428\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00429\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00430\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (\textcolor{keyword}{false},\ \textcolor{stringliteral}{"{}User\ could\ not\ be\ deleted"{}});}
+\DoxyCodeLine{00431\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00432\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00433\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00434\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (MySqlException\ ex)}
+\DoxyCodeLine{00435\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00436\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Handle\ database\ errors}}
+\DoxyCodeLine{00437\ \ \ \ \ \ \ \ \ \ \ \ \ await\ Console.Error.WriteLineAsync(\$\textcolor{stringliteral}{"{}Database\ error:\ \{ex.Message\}"{}});}
+\DoxyCodeLine{00438\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (\textcolor{keyword}{false},\ \textcolor{stringliteral}{"{}Database\ error:\ "{}}\ +\ ex.Message);}
+\DoxyCodeLine{00439\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00440\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (Exception\ ex)}
+\DoxyCodeLine{00441\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00442\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Handle\ other\ errors}}
+\DoxyCodeLine{00443\ \ \ \ \ \ \ \ \ \ \ \ \ await\ Console.Error.WriteLineAsync(\$\textcolor{stringliteral}{"{}Unexpected\ error:\ \{ex.Message\}"{}});}
+\DoxyCodeLine{00444\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (\textcolor{keyword}{false},\ \textcolor{stringliteral}{"{}Unexpected\ error:\ "{}}\ +\ ex.Message);}
+\DoxyCodeLine{00445\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00446\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+Gebruikt \mbox{\hyperlink{_user_repository_8cs_source_l00026}{\+\_\+connector}}.
+
+\Hypertarget{class_w_p_r_1_1_repository_1_1_user_repository_af9a5424f00a5cfc023cc147a1e0a59cf}\index{WPR.Repository.UserRepository@{WPR.Repository.UserRepository}!EditUserInfoAsync@{EditUserInfoAsync}}
+\index{EditUserInfoAsync@{EditUserInfoAsync}!WPR.Repository.UserRepository@{WPR.Repository.UserRepository}}
+\doxysubsubsection{\texorpdfstring{EditUserInfoAsync()}{EditUserInfoAsync()}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_repository_1_1_user_repository_af9a5424f00a5cfc023cc147a1e0a59cf} 
+async Task$<$(bool status, string message)$>$ WPR.\+Repository.\+User\+Repository.\+Edit\+User\+Info\+Async (\begin{DoxyParamCaption}\item[{List$<$ object\mbox{[}$\,$\mbox{]}$>$}]{data}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Implementeert \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_user_repository_a69bf2dfc071328b914d0dd2b0e28036c}{WPR.\+Repository.\+IUser\+Repository}}.
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{_user_repository_8cs_source_l00344}{344}} in het bestand \mbox{\hyperlink{_user_repository_8cs_source}{User\+Repository.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00345\ \ \ \ \ \{}
+\DoxyCodeLine{00346\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}}
+\DoxyCodeLine{00347\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00348\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Er\ wordt\ een\ custom\ query\ aangemaakt}}
+\DoxyCodeLine{00349\ \ \ \ \ \ \ \ \ \ \ \ \ var\ query\ =\ await\ CreateUserInfoQuery(data);}
+\DoxyCodeLine{00350\ }
+\DoxyCodeLine{00351\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (query.goodQuery)}
+\DoxyCodeLine{00352\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00353\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Er\ wordt\ een\ connectie\ aangemaakt\ met\ de\ DataBase\ met\ bovenstaande\ query\ }}
+\DoxyCodeLine{00354\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using}\ (var\ connection\ =\ \_connector.CreateDbConnection())}
+\DoxyCodeLine{00355\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using}\ (var\ command\ =\ \textcolor{keyword}{new}\ MySqlCommand(query.message,\ (MySqlConnection)connection))}
+\DoxyCodeLine{00356\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00357\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ var\ result\ =\ await\ command.ExecuteNonQueryAsync();}
+\DoxyCodeLine{00358\ }
+\DoxyCodeLine{00359\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (await\ command.ExecuteNonQueryAsync()\ >\ 0)}
+\DoxyCodeLine{00360\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00361\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Er\ wordt\ gecontrolleerd\ of\ de\ gegeven\ in\ de\ DataBase\ zijn\ ingevoerd}}
+\DoxyCodeLine{00362\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (\textcolor{keyword}{true},\ \textcolor{stringliteral}{"{}Data\ inserted"{}});}
+\DoxyCodeLine{00363\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00364\ }
+\DoxyCodeLine{00365\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (\textcolor{keyword}{false},\ \textcolor{stringliteral}{"{}Data\ not\ inserted"{}});}
+\DoxyCodeLine{00366\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00367\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00368\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00369\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00370\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (\textcolor{keyword}{false},\ query.message);}
+\DoxyCodeLine{00371\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00372\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00373\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (Exception\ ex)}
+\DoxyCodeLine{00374\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00375\ \ \ \ \ \ \ \ \ \ \ \ \ Console.WriteLine(\$\textcolor{stringliteral}{"{}Error:\ \{ex\}"{}});}
+\DoxyCodeLine{00376\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (\textcolor{keyword}{false},\ ex.ToString());}
+\DoxyCodeLine{00377\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00378\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+Gebruikt \mbox{\hyperlink{_user_repository_8cs_source_l00026}{\+\_\+connector}} en \mbox{\hyperlink{_user_repository_8cs_source_l00454}{Create\+User\+Info\+Query()}}.
+
+Hier is de call graaf voor deze functie\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_w_p_r_1_1_repository_1_1_user_repository_af9a5424f00a5cfc023cc147a1e0a59cf_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_w_p_r_1_1_repository_1_1_user_repository_a12697e6b3bceb0e47d86f05020dc8470}\index{WPR.Repository.UserRepository@{WPR.Repository.UserRepository}!GetAllSubscriptionsAsync@{GetAllSubscriptionsAsync}}
+\index{GetAllSubscriptionsAsync@{GetAllSubscriptionsAsync}!WPR.Repository.UserRepository@{WPR.Repository.UserRepository}}
+\doxysubsubsection{\texorpdfstring{GetAllSubscriptionsAsync()}{GetAllSubscriptionsAsync()}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_repository_1_1_user_repository_a12697e6b3bceb0e47d86f05020dc8470} 
+async Task$<$ List$<$ string $>$ $>$ WPR.\+Repository.\+User\+Repository.\+Get\+All\+Subscriptions\+Async (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Implementeert \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_user_repository_af1f89b241f484997d869c6f1fbd54bbe}{WPR.\+Repository.\+IUser\+Repository}}.
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{_user_repository_8cs_source_l01172}{1172}} in het bestand \mbox{\hyperlink{_user_repository_8cs_source}{User\+Repository.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{01173\ \ \ \ \ \{}
+\DoxyCodeLine{01174\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}}
+\DoxyCodeLine{01175\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01176\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ query\ =\ \textcolor{stringliteral}{"{}SELECT\ Type\ FROM\ Abonnement"{}};}
+\DoxyCodeLine{01177\ }
+\DoxyCodeLine{01178\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using}\ (var\ connection\ =\ \_connector.CreateDbConnection())}
+\DoxyCodeLine{01179\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using}\ (var\ command\ =\ \textcolor{keyword}{new}\ MySqlCommand(query,\ (MySqlConnection)\_connector.CreateDbConnection()))}
+\DoxyCodeLine{01180\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using}\ (var\ reader\ =\ await\ command.ExecuteReaderAsync())}
+\DoxyCodeLine{01181\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01182\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ var\ subscriptions\ =\ \textcolor{keyword}{new}\ List<string>();}
+\DoxyCodeLine{01183\ }
+\DoxyCodeLine{01184\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (await\ reader.ReadAsync())}
+\DoxyCodeLine{01185\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01186\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ subscriptions.Add((\textcolor{keywordtype}{string})reader.GetValue(0));}
+\DoxyCodeLine{01187\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01188\ }
+\DoxyCodeLine{01189\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ subscriptions;}
+\DoxyCodeLine{01190\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01191\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01192\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (MySqlException\ e)}
+\DoxyCodeLine{01193\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01194\ \ \ \ \ \ \ \ \ \ \ \ \ Console.WriteLine(e.Message);}
+\DoxyCodeLine{01195\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{null};}
+\DoxyCodeLine{01196\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01197\ }
+\DoxyCodeLine{01198\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (Exception\ e)}
+\DoxyCodeLine{01199\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01200\ \ \ \ \ \ \ \ \ \ \ \ \ Console.WriteLine(e);}
+\DoxyCodeLine{01201\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{null};}
+\DoxyCodeLine{01202\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01203\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+Gebruikt \mbox{\hyperlink{_user_repository_8cs_source_l00026}{\+\_\+connector}}.
+
+\Hypertarget{class_w_p_r_1_1_repository_1_1_user_repository_aa69e427aa0d8724ad9fca2fae1f69970}\index{WPR.Repository.UserRepository@{WPR.Repository.UserRepository}!GetBusinessDomainByKvK@{GetBusinessDomainByKvK}}
+\index{GetBusinessDomainByKvK@{GetBusinessDomainByKvK}!WPR.Repository.UserRepository@{WPR.Repository.UserRepository}}
+\doxysubsubsection{\texorpdfstring{GetBusinessDomainByKvK()}{GetBusinessDomainByKvK()}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_repository_1_1_user_repository_aa69e427aa0d8724ad9fca2fae1f69970} 
+async Task$<$(int Status\+Code, string Domain)$>$ WPR.\+Repository.\+User\+Repository.\+Get\+Business\+Domain\+By\+KvK (\begin{DoxyParamCaption}\item[{int}]{KvK}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Implementeert \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_user_repository_a891364e28a90f23735ed50cf44c76016}{WPR.\+Repository.\+IUser\+Repository}}.
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{_user_repository_8cs_source_l01108}{1108}} in het bestand \mbox{\hyperlink{_user_repository_8cs_source}{User\+Repository.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{01109\ \ \ \ \ \{}
+\DoxyCodeLine{01110\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}}
+\DoxyCodeLine{01111\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01112\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ query\ =\ \textcolor{stringliteral}{"{}SELECT\ Domain\ FROM\ Business\ WHERE\ KvK\ =\ @KvK"{}};}
+\DoxyCodeLine{01113\ }
+\DoxyCodeLine{01114\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using}\ (var\ connection\ =\ (MySqlConnection)\_connector.CreateDbConnection())}
+\DoxyCodeLine{01115\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using}\ (var\ command\ =\ \textcolor{keyword}{new}\ MySqlCommand(query,\ connection))}
+\DoxyCodeLine{01116\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01117\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ command.Parameters.AddWithValue(\textcolor{stringliteral}{"{}@KvK"{}},\ KvK);}
+\DoxyCodeLine{01118\ }
+\DoxyCodeLine{01119\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using}\ (var\ reader\ =\ await\ command.ExecuteReaderAsync())}
+\DoxyCodeLine{01120\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01121\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (await\ reader.ReadAsync())}
+\DoxyCodeLine{01122\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01123\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ domain\ =\ reader.GetString(\textcolor{stringliteral}{"{}Domain"{}});}
+\DoxyCodeLine{01124\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (200,\ domain);}
+\DoxyCodeLine{01125\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01126\ }
+\DoxyCodeLine{01127\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (404,\ \textcolor{stringliteral}{"{}Business\ with\ the\ specified\ KvK\ not\ found."{}});}
+\DoxyCodeLine{01128\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01129\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01130\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01131\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (MySqlException\ ex)}
+\DoxyCodeLine{01132\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01133\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (500,\ ex.Message);}
+\DoxyCodeLine{01134\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01135\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (Exception\ ex)}
+\DoxyCodeLine{01136\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01137\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (500,\ ex.Message);}
+\DoxyCodeLine{01138\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01139\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+Gebruikt \mbox{\hyperlink{_user_repository_8cs_source_l00026}{\+\_\+connector}}.
+
+\Hypertarget{class_w_p_r_1_1_repository_1_1_user_repository_a79b888ee7712ae0374bc95a7330597e6}\index{WPR.Repository.UserRepository@{WPR.Repository.UserRepository}!GetCustomerDetails@{GetCustomerDetails}}
+\index{GetCustomerDetails@{GetCustomerDetails}!WPR.Repository.UserRepository@{WPR.Repository.UserRepository}}
+\doxysubsubsection{\texorpdfstring{GetCustomerDetails()}{GetCustomerDetails()}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_repository_1_1_user_repository_a79b888ee7712ae0374bc95a7330597e6} 
+async Task$<$ Dictionary$<$ string, object $>$ $>$ WPR.\+Repository.\+User\+Repository.\+Get\+Customer\+Details (\begin{DoxyParamCaption}\item[{int}]{id}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Implementeert \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_user_repository_a4054e72c9ea0d5b50c4227c38d296a6d}{WPR.\+Repository.\+IUser\+Repository}}.
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{_user_repository_8cs_source_l01276}{1276}} in het bestand \mbox{\hyperlink{_user_repository_8cs_source}{User\+Repository.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{01277\ \ \ \ \ \{}
+\DoxyCodeLine{01278\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ query\ =\ \$\textcolor{stringliteral}{"{}SELECT\ *\ FROM\ Customer\ WHERE\ ID\ =\ \{id\}"{}};}
+\DoxyCodeLine{01279\ \ \ \ \ \ \ \ \ Dictionary<string,\ object>\ info\ =\ \textcolor{keyword}{new}\ Dictionary<string,\ object>();}
+\DoxyCodeLine{01280\ }
+\DoxyCodeLine{01281\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}}
+\DoxyCodeLine{01282\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01283\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using}\ (var\ connection\ =\ \_connector.CreateDbConnection())}
+\DoxyCodeLine{01284\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using}\ (var\ command\ =\ \textcolor{keyword}{new}\ MySqlCommand(query,\ (MySqlConnection)connection))}
+\DoxyCodeLine{01285\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using}\ (var\ reader\ =\ await\ command.ExecuteReaderAsync())}
+\DoxyCodeLine{01286\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01287\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (await\ reader.ReadAsync())}
+\DoxyCodeLine{01288\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01289\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ reader.FieldCount;\ i++)}
+\DoxyCodeLine{01290\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01291\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ info[reader.GetName(i)]\ =\ reader.GetValue(i);}
+\DoxyCodeLine{01292\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01293\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01294\ }
+\DoxyCodeLine{01295\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ info;}
+\DoxyCodeLine{01296\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01297\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01298\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (MySqlException\ ex)}
+\DoxyCodeLine{01299\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01300\ \ \ \ \ \ \ \ \ \ \ \ \ Console.WriteLine(ex.Message);}
+\DoxyCodeLine{01301\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw};}
+\DoxyCodeLine{01302\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01303\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (Exception\ ex)}
+\DoxyCodeLine{01304\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01305\ \ \ \ \ \ \ \ \ \ \ \ \ Console.WriteLine(ex.Message);}
+\DoxyCodeLine{01306\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw};}
+\DoxyCodeLine{01307\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01308\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+Gebruikt \mbox{\hyperlink{_user_repository_8cs_source_l00026}{\+\_\+connector}}.
+
+\Hypertarget{class_w_p_r_1_1_repository_1_1_user_repository_a39799412586f96c48d820755a9fa1a6b}\index{WPR.Repository.UserRepository@{WPR.Repository.UserRepository}!GetCustomersByBusinessNumberAsync@{GetCustomersByBusinessNumberAsync}}
+\index{GetCustomersByBusinessNumberAsync@{GetCustomersByBusinessNumberAsync}!WPR.Repository.UserRepository@{WPR.Repository.UserRepository}}
+\doxysubsubsection{\texorpdfstring{GetCustomersByBusinessNumberAsync()}{GetCustomersByBusinessNumberAsync()}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_repository_1_1_user_repository_a39799412586f96c48d820755a9fa1a6b} 
+async Task$<$ List$<$ \mbox{\hyperlink{class_w_p_r_1_1_repository_1_1_user_repository_1_1_customer}{Customer}} $>$ $>$ WPR.\+Repository.\+User\+Repository.\+Get\+Customers\+By\+Business\+Number\+Async (\begin{DoxyParamCaption}\item[{string}]{Kvk}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Implementeert \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_user_repository_a961928a8d234d5bf64c17d1ff850062c}{WPR.\+Repository.\+IUser\+Repository}}.
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{_user_repository_8cs_source_l01343}{1343}} in het bestand \mbox{\hyperlink{_user_repository_8cs_source}{User\+Repository.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{01344\ \ \ \ \ \{}
+\DoxyCodeLine{01345\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}}
+\DoxyCodeLine{01346\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01347\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ query\ =\ \textcolor{stringliteral}{"{}SELECT\ ID,\ Email,\ Kvk\ FROM\ Customer\ WHERE\ Kvk\ =\ @Kvk"{}};}
+\DoxyCodeLine{01348\ }
+\DoxyCodeLine{01349\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using}\ (var\ connection\ =\ \_connector.CreateDbConnection())}
+\DoxyCodeLine{01350\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using}\ (var\ command\ =\ \textcolor{keyword}{new}\ MySqlCommand(query,\ (MySqlConnection)connection))}
+\DoxyCodeLine{01351\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01352\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ command.Parameters.AddWithValue(\textcolor{stringliteral}{"{}@Kvk"{}},\ Kvk.Trim());\ \textcolor{comment}{//\ Ensure\ no\ leading/trailing\ spaces}}
+\DoxyCodeLine{01353\ }
+\DoxyCodeLine{01354\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using}\ (var\ reader\ =\ await\ command.ExecuteReaderAsync())}
+\DoxyCodeLine{01355\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01356\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ var\ customers\ =\ \textcolor{keyword}{new}\ List<Customer>();}
+\DoxyCodeLine{01357\ }
+\DoxyCodeLine{01358\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (await\ reader.ReadAsync())}
+\DoxyCodeLine{01359\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01360\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ customers.Add(\textcolor{keyword}{new}\ Customer}
+\DoxyCodeLine{01361\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01362\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Id\ =\ reader.GetInt32(\textcolor{stringliteral}{"{}ID"{}}),}
+\DoxyCodeLine{01363\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Email\ =\ reader[\textcolor{stringliteral}{"{}Email"{}}].ToString(),}
+\DoxyCodeLine{01364\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Kvk\ =\ reader[\textcolor{stringliteral}{"{}Kvk"{}}].ToString()}
+\DoxyCodeLine{01365\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{01366\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01367\ }
+\DoxyCodeLine{01368\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ customers;}
+\DoxyCodeLine{01369\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01370\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01371\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01372\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (Exception\ ex)}
+\DoxyCodeLine{01373\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01374\ \ \ \ \ \ \ \ \ \ \ \ \ Console.WriteLine(\$\textcolor{stringliteral}{"{}Error\ in\ GetCustomersByBusinessNumberAsync:\ \{ex.Message\}"{}});}
+\DoxyCodeLine{01375\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{null};}
+\DoxyCodeLine{01376\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01377\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+Gebruikt \mbox{\hyperlink{_user_repository_8cs_source_l00026}{\+\_\+connector}}.
+
+\Hypertarget{class_w_p_r_1_1_repository_1_1_user_repository_ad69d7ed5e941ab05fe1eb4ae9bb3ff1f}\index{WPR.Repository.UserRepository@{WPR.Repository.UserRepository}!GetKindEmployeeAsync@{GetKindEmployeeAsync}}
+\index{GetKindEmployeeAsync@{GetKindEmployeeAsync}!WPR.Repository.UserRepository@{WPR.Repository.UserRepository}}
+\doxysubsubsection{\texorpdfstring{GetKindEmployeeAsync()}{GetKindEmployeeAsync()}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_repository_1_1_user_repository_ad69d7ed5e941ab05fe1eb4ae9bb3ff1f} 
+async Task$<$(bool status, string message, string office\+Type)$>$ WPR.\+Repository.\+User\+Repository.\+Get\+Kind\+Employee\+Async (\begin{DoxyParamCaption}\item[{string}]{user\+Id}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Er wordt door de query, doormiddel van de user id, vastgesteld tot wat voor soort office de medewerker van Car and All behoort. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em user\+Id} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retourneert}
+
+\end{DoxyReturn}
+
+
+Implementeert \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_user_repository_a639e9a13c1b234198f293d1a9cdfac94}{WPR.\+Repository.\+IUser\+Repository}}.
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{_user_repository_8cs_source_l00505}{505}} in het bestand \mbox{\hyperlink{_user_repository_8cs_source}{User\+Repository.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00506\ \ \ \ \ \{}
+\DoxyCodeLine{00507\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}}
+\DoxyCodeLine{00508\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00509\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ query\ =\ \textcolor{stringliteral}{"{}SELECT\ Office\ FROM\ Staff\ WHERE\ ID\ =\ @I"{}};}
+\DoxyCodeLine{00510\ }
+\DoxyCodeLine{00511\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Connect\ met\ de\ database}}
+\DoxyCodeLine{00512\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using}\ (var\ connection\ =\ \_connector.CreateDbConnection())}
+\DoxyCodeLine{00513\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using}\ (var\ command\ =\ \textcolor{keyword}{new}\ MySqlCommand(query,\ (MySqlConnection)connection))}
+\DoxyCodeLine{00514\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00515\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ command.Parameters.AddWithValue(\textcolor{stringliteral}{"{}@I"{}},\ userId);}
+\DoxyCodeLine{00516\ }
+\DoxyCodeLine{00517\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ var\ result\ =\ await\ command.ExecuteScalarAsync();}
+\DoxyCodeLine{00518\ }
+\DoxyCodeLine{00519\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (result\ !=\ \textcolor{keyword}{null})}
+\DoxyCodeLine{00520\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00521\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ krijg\ het\ office\ type\ binnen}}
+\DoxyCodeLine{00522\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ officeType\ =\ result.ToString();}
+\DoxyCodeLine{00523\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ message\ =\ \$\textcolor{stringliteral}{"{}Employee\ is\ assigned\ to\ \{officeType\}"{}};}
+\DoxyCodeLine{00524\ }
+\DoxyCodeLine{00525\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (\textcolor{keyword}{true},\ message,\ officeType);}
+\DoxyCodeLine{00526\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00527\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00528\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00529\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (\textcolor{keyword}{false},\ \textcolor{stringliteral}{"{}No\ office\ assigned\ to\ this\ employee"{}},\ \textcolor{keyword}{null});}
+\DoxyCodeLine{00530\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00531\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00532\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00533\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (Exception\ ex)}
+\DoxyCodeLine{00534\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00535\ \ \ \ \ \ \ \ \ \ \ \ \ Console.WriteLine(ex);}
+\DoxyCodeLine{00536\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (\textcolor{keyword}{false},\ \textcolor{stringliteral}{"{}An\ error\ occurred\ while\ retrieving\ the\ employee's\ office"{}},\ \textcolor{keyword}{null});}
+\DoxyCodeLine{00537\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00538\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+Gebruikt \mbox{\hyperlink{_user_repository_8cs_source_l00026}{\+\_\+connector}}.
+
+\Hypertarget{class_w_p_r_1_1_repository_1_1_user_repository_ac6d8e6fb3ae175bfb90fcf19a595b01e}\index{WPR.Repository.UserRepository@{WPR.Repository.UserRepository}!GetSubscriptionDataAsync@{GetSubscriptionDataAsync}}
+\index{GetSubscriptionDataAsync@{GetSubscriptionDataAsync}!WPR.Repository.UserRepository@{WPR.Repository.UserRepository}}
+\doxysubsubsection{\texorpdfstring{GetSubscriptionDataAsync()}{GetSubscriptionDataAsync()}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_repository_1_1_user_repository_ac6d8e6fb3ae175bfb90fcf19a595b01e} 
+async Task$<$ \mbox{\hyperlink{class_w_p_r_1_1_controllers_1_1customer_1_1_subscription_1_1_subscription_request}{Subscription\+Request}} $>$ WPR.\+Repository.\+User\+Repository.\+Get\+Subscription\+Data\+Async (\begin{DoxyParamCaption}\item[{int}]{id}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Implementeert \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_user_repository_a5aed8a4ff3b7137f42f366a75a1939f7}{WPR.\+Repository.\+IUser\+Repository}}.
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{_user_repository_8cs_source_l01205}{1205}} in het bestand \mbox{\hyperlink{_user_repository_8cs_source}{User\+Repository.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{01206\ \ \ \ \ \{}
+\DoxyCodeLine{01207\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}}
+\DoxyCodeLine{01208\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01209\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ query\ =\ \textcolor{stringliteral}{"{}SELECT\ ID,\ Type,\ Description,\ Price\ FROM\ Abonnement\ WHERE\ ID\ =\ @Id"{}};}
+\DoxyCodeLine{01210\ }
+\DoxyCodeLine{01211\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using}\ (var\ connection\ =\ \_connector.CreateDbConnection())}
+\DoxyCodeLine{01212\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using}\ (var\ command\ =\ \textcolor{keyword}{new}\ MySqlCommand(query,\ (MySqlConnection)connection))}
+\DoxyCodeLine{01213\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01214\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ command.Parameters.AddWithValue(\textcolor{stringliteral}{"{}@Id"{}},\ \textcolor{keywordtype}{id});}
+\DoxyCodeLine{01215\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using}\ (var\ reader\ =\ await\ command.ExecuteReaderAsync())}
+\DoxyCodeLine{01216\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01217\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (await\ reader.ReadAsync())}
+\DoxyCodeLine{01218\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01219\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ var\ type\ =\ reader[\textcolor{stringliteral}{"{}Type"{}}].ToString();}
+\DoxyCodeLine{01220\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ var\ description\ =\ reader[\textcolor{stringliteral}{"{}Description"{}}].ToString();}
+\DoxyCodeLine{01221\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ var\ price\ =\ reader[\textcolor{stringliteral}{"{}Price"{}}].ToString().Equals(\textcolor{stringliteral}{"{}"{}})\ ?\ 0\ :\ Convert.ToDouble(reader[\textcolor{stringliteral}{"{}Price"{}}]);}
+\DoxyCodeLine{01222\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{01223\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{new}\ SubscriptionRequest}
+\DoxyCodeLine{01224\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01225\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Id\ =\ id,}
+\DoxyCodeLine{01226\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Type\ =\ type,}
+\DoxyCodeLine{01227\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Description\ =\ description,}
+\DoxyCodeLine{01228\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Price\ =\ price}
+\DoxyCodeLine{01229\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{01230\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01231\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01232\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01233\ }
+\DoxyCodeLine{01234\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{null};}
+\DoxyCodeLine{01235\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01236\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (Exception\ ex)}
+\DoxyCodeLine{01237\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01238\ \ \ \ \ \ \ \ \ \ \ \ \ Console.WriteLine(ex.Message);}
+\DoxyCodeLine{01239\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{null};}
+\DoxyCodeLine{01240\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01241\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+Gebruikt \mbox{\hyperlink{_user_repository_8cs_source_l00026}{\+\_\+connector}}.
+
+\Hypertarget{class_w_p_r_1_1_repository_1_1_user_repository_a877da96134a584ccc0795c7410e5532c}\index{WPR.Repository.UserRepository@{WPR.Repository.UserRepository}!GetSubscriptionIdsAsync@{GetSubscriptionIdsAsync}}
+\index{GetSubscriptionIdsAsync@{GetSubscriptionIdsAsync}!WPR.Repository.UserRepository@{WPR.Repository.UserRepository}}
+\doxysubsubsection{\texorpdfstring{GetSubscriptionIdsAsync()}{GetSubscriptionIdsAsync()}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_repository_1_1_user_repository_a877da96134a584ccc0795c7410e5532c} 
+async Task$<$ List$<$ int $>$ $>$ WPR.\+Repository.\+User\+Repository.\+Get\+Subscription\+Ids\+Async (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Implementeert \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_user_repository_a173b6a5127b0b845d3cfeec6b270d93a}{WPR.\+Repository.\+IUser\+Repository}}.
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{_user_repository_8cs_source_l01245}{1245}} in het bestand \mbox{\hyperlink{_user_repository_8cs_source}{User\+Repository.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{01246\ \ \ \ \ \{}
+\DoxyCodeLine{01247\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}}
+\DoxyCodeLine{01248\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01249\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ query\ =\ \textcolor{stringliteral}{"{}SELECT\ ID\ FROM\ Abonnement"{}};}
+\DoxyCodeLine{01250\ }
+\DoxyCodeLine{01251\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using}\ (var\ connection\ =\ \_connector.CreateDbConnection())}
+\DoxyCodeLine{01252\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using}\ (var\ command\ =\ \textcolor{keyword}{new}\ MySqlCommand(query,\ (MySqlConnection)connection))}
+\DoxyCodeLine{01253\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using}\ (var\ reader\ =\ await\ command.ExecuteReaderAsync())}
+\DoxyCodeLine{01254\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01255\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ var\ ids\ =\ \textcolor{keyword}{new}\ List<int>();}
+\DoxyCodeLine{01256\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (await\ reader.ReadAsync())}
+\DoxyCodeLine{01257\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01258\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ids.Add(Convert.ToInt32(reader.GetValue(0)));}
+\DoxyCodeLine{01259\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01260\ }
+\DoxyCodeLine{01261\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ ids;}
+\DoxyCodeLine{01262\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01263\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01264\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (MySqlException\ ex)}
+\DoxyCodeLine{01265\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01266\ \ \ \ \ \ \ \ \ \ \ \ \ Console.WriteLine(ex.Message);}
+\DoxyCodeLine{01267\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{null};}
+\DoxyCodeLine{01268\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01269\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (Exception\ ex)}
+\DoxyCodeLine{01270\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01271\ \ \ \ \ \ \ \ \ \ \ \ \ Console.WriteLine(ex.Message);}
+\DoxyCodeLine{01272\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{null};}
+\DoxyCodeLine{01273\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01274\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+Gebruikt \mbox{\hyperlink{_user_repository_8cs_source_l00026}{\+\_\+connector}}.
+
+\Hypertarget{class_w_p_r_1_1_repository_1_1_user_repository_aea5055bbf69f618cfea05d82dba1becb}\index{WPR.Repository.UserRepository@{WPR.Repository.UserRepository}!GetUserIdAsync@{GetUserIdAsync}}
+\index{GetUserIdAsync@{GetUserIdAsync}!WPR.Repository.UserRepository@{WPR.Repository.UserRepository}}
+\doxysubsubsection{\texorpdfstring{GetUserIdAsync()}{GetUserIdAsync()}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_repository_1_1_user_repository_aea5055bbf69f618cfea05d82dba1becb} 
+async Task$<$ string $>$ WPR.\+Repository.\+User\+Repository.\+Get\+User\+Id\+Async (\begin{DoxyParamCaption}\item[{string}]{email}{, }\item[{string}]{table}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Implementeert \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_user_repository_a4c1e54015ce6e7f4e3f71a22db6c6de3}{WPR.\+Repository.\+IUser\+Repository}}.
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{_user_repository_8cs_source_l00287}{287}} in het bestand \mbox{\hyperlink{_user_repository_8cs_source}{User\+Repository.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00288\ \ \ \ \ \{}
+\DoxyCodeLine{00289\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}}
+\DoxyCodeLine{00290\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00291\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ query\ =\ \$\textcolor{stringliteral}{"{}SELECT\ ID\ FROM\ \{table\}\ WHERE\ Email\ =\ @E"{}};}
+\DoxyCodeLine{00292\ }
+\DoxyCodeLine{00293\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Er\ wordt\ een\ connectie\ aangemaakt\ met\ de\ DataBase\ met\ bovenstaande\ query\ }}
+\DoxyCodeLine{00294\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using}\ (var\ connection\ =\ \_connector.CreateDbConnection())}
+\DoxyCodeLine{00295\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using}\ (var\ command\ =\ \textcolor{keyword}{new}\ MySqlCommand(query,\ (MySqlConnection)connection))}
+\DoxyCodeLine{00296\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00297\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ De\ parameter\ wordt\ ingevuld}}
+\DoxyCodeLine{00298\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ command.Parameters.AddWithValue(\textcolor{stringliteral}{"{}@E"{}},\ email);}
+\DoxyCodeLine{00299\ }
+\DoxyCodeLine{00300\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ var\ result\ =\ await\ command.ExecuteScalarAsync();}
+\DoxyCodeLine{00301\ }
+\DoxyCodeLine{00302\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (result\ !=\ \textcolor{keyword}{null})}
+\DoxyCodeLine{00303\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00304\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ De\ user\ id\ wordt\ meegegeven}}
+\DoxyCodeLine{00305\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ result.ToString();}
+\DoxyCodeLine{00306\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00307\ }
+\DoxyCodeLine{00308\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}No\ user\ found"{}};}
+\DoxyCodeLine{00309\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00310\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00311\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (Exception\ ex)}
+\DoxyCodeLine{00312\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00313\ \ \ \ \ \ \ \ \ \ \ \ \ await\ Console.Error.WriteLineAsync(\$\textcolor{stringliteral}{"{}Unexpected\ error:\ \{ex.Message\}"{}});}
+\DoxyCodeLine{00314\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}No\ user\ found"{}};}
+\DoxyCodeLine{00315\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00316\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+Gebruikt \mbox{\hyperlink{_user_repository_8cs_source_l00026}{\+\_\+connector}}.
+
+\Hypertarget{class_w_p_r_1_1_repository_1_1_user_repository_acb618d51bcc50e8f72102e11f6bed987}\index{WPR.Repository.UserRepository@{WPR.Repository.UserRepository}!GetUserNameAsync@{GetUserNameAsync}}
+\index{GetUserNameAsync@{GetUserNameAsync}!WPR.Repository.UserRepository@{WPR.Repository.UserRepository}}
+\doxysubsubsection{\texorpdfstring{GetUserNameAsync()}{GetUserNameAsync()}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_repository_1_1_user_repository_acb618d51bcc50e8f72102e11f6bed987} 
+async Task$<$ string $>$ WPR.\+Repository.\+User\+Repository.\+Get\+User\+Name\+Async (\begin{DoxyParamCaption}\item[{string}]{user\+Id}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Implementeert \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_user_repository_adea3e199f30f2118d56fbb649c6d9b85}{WPR.\+Repository.\+IUser\+Repository}}.
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{_user_repository_8cs_source_l00318}{318}} in het bestand \mbox{\hyperlink{_user_repository_8cs_source}{User\+Repository.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00319\ \ \ \ \ \{}
+\DoxyCodeLine{00320\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}}
+\DoxyCodeLine{00321\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00322\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ query\ =\ \textcolor{stringliteral}{"{}SELECT\ Firstname\ FROM\ Private\ WHERE\ ID\ =\ @I"{}};}
+\DoxyCodeLine{00323\ }
+\DoxyCodeLine{00324\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Er\ wordt\ een\ connectie\ aangemaakt\ met\ de\ DataBase\ met\ bovenstaande\ query\ }}
+\DoxyCodeLine{00325\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using}\ (var\ connection\ =\ \_connector.CreateDbConnection())}
+\DoxyCodeLine{00326\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using}\ (var\ command\ =\ \textcolor{keyword}{new}\ MySqlCommand(query,\ (MySqlConnection)connection))}
+\DoxyCodeLine{00327\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00328\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ De\ paramater\ wordt\ ingevuld}}
+\DoxyCodeLine{00329\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ command.Parameters.AddWithValue(\textcolor{stringliteral}{"{}@I"{}},\ Convert.ToInt32(userId));}
+\DoxyCodeLine{00330\ }
+\DoxyCodeLine{00331\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ var\ result\ =\ await\ command.ExecuteScalarAsync();}
+\DoxyCodeLine{00332\ }
+\DoxyCodeLine{00333\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ De\ gebruikersnaam\ wordt\ meegegeven}}
+\DoxyCodeLine{00334\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ result.ToString();}
+\DoxyCodeLine{00335\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00336\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00337\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (Exception\ ex)}
+\DoxyCodeLine{00338\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00339\ \ \ \ \ \ \ \ \ \ \ \ \ await\ Console.Error.WriteLineAsync(\$\textcolor{stringliteral}{"{}Unexpected\ error:\ \{ex.Message\}"{}});}
+\DoxyCodeLine{00340\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ ex.ToString();}
+\DoxyCodeLine{00341\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00342\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+Gebruikt \mbox{\hyperlink{_user_repository_8cs_source_l00026}{\+\_\+connector}}.
+
+\Hypertarget{class_w_p_r_1_1_repository_1_1_user_repository_a0ac8b0cd38ba8f5bc6b26de77ba3faf8}\index{WPR.Repository.UserRepository@{WPR.Repository.UserRepository}!GetVehicleManagerInfoAsync@{GetVehicleManagerInfoAsync}}
+\index{GetVehicleManagerInfoAsync@{GetVehicleManagerInfoAsync}!WPR.Repository.UserRepository@{WPR.Repository.UserRepository}}
+\doxysubsubsection{\texorpdfstring{GetVehicleManagerInfoAsync()}{GetVehicleManagerInfoAsync()}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_repository_1_1_user_repository_a0ac8b0cd38ba8f5bc6b26de77ba3faf8} 
+async Task$<$ \mbox{\hyperlink{class_w_p_r_1_1_repository_1_1_user_repository_1_1_vehicle_manager}{Vehicle\+Manager}} $>$ WPR.\+Repository.\+User\+Repository.\+Get\+Vehicle\+Manager\+Info\+Async (\begin{DoxyParamCaption}\item[{int}]{id}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Implementeert \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_user_repository_a2b8d639538bfc24ecf13e2f14a242172}{WPR.\+Repository.\+IUser\+Repository}}.
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{_user_repository_8cs_source_l01310}{1310}} in het bestand \mbox{\hyperlink{_user_repository_8cs_source}{User\+Repository.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{01311\ \ \ \ \ \{}
+\DoxyCodeLine{01312\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}}
+\DoxyCodeLine{01313\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01314\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ query\ =\ \textcolor{stringliteral}{"{}SELECT\ ID,\ Email,\ Password,\ Business\ FROM\ VehicleManager\ WHERE\ ID\ =\ @Id"{}};}
+\DoxyCodeLine{01315\ }
+\DoxyCodeLine{01316\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using}\ (var\ connection\ =\ \_connector.CreateDbConnection())}
+\DoxyCodeLine{01317\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using}\ (var\ command\ =\ \textcolor{keyword}{new}\ MySqlCommand(query,\ (MySqlConnection)connection))}
+\DoxyCodeLine{01318\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01319\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ command.Parameters.AddWithValue(\textcolor{stringliteral}{"{}@Id"{}},\ \textcolor{keywordtype}{id});}
+\DoxyCodeLine{01320\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using}\ (var\ reader\ =\ await\ command.ExecuteReaderAsync())}
+\DoxyCodeLine{01321\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01322\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (await\ reader.ReadAsync())}
+\DoxyCodeLine{01323\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01324\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{new}\ VehicleManager}
+\DoxyCodeLine{01325\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01326\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Id\ =\ reader.GetInt32(\textcolor{stringliteral}{"{}ID"{}}),}
+\DoxyCodeLine{01327\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Email\ =\ reader[\textcolor{stringliteral}{"{}Email"{}}].ToString(),}
+\DoxyCodeLine{01328\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Password\ =\ reader[\textcolor{stringliteral}{"{}Password"{}}].ToString(),}
+\DoxyCodeLine{01329\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Business\ =\ reader[\textcolor{stringliteral}{"{}Business"{}}].ToString()}
+\DoxyCodeLine{01330\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{01331\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01332\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01333\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01334\ }
+\DoxyCodeLine{01335\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{null};}
+\DoxyCodeLine{01336\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01337\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (Exception\ ex)}
+\DoxyCodeLine{01338\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01339\ \ \ \ \ \ \ \ \ \ \ \ \ Console.WriteLine(ex.Message);}
+\DoxyCodeLine{01340\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{null};}
+\DoxyCodeLine{01341\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01342\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+Gebruikt \mbox{\hyperlink{_user_repository_8cs_source_l00026}{\+\_\+connector}}.
+
+\Hypertarget{class_w_p_r_1_1_repository_1_1_user_repository_a49c76e9c3e780a07b7036dd2a6d30263}\index{WPR.Repository.UserRepository@{WPR.Repository.UserRepository}!IsKvkNumberAsync@{IsKvkNumberAsync}}
+\index{IsKvkNumberAsync@{IsKvkNumberAsync}!WPR.Repository.UserRepository@{WPR.Repository.UserRepository}}
+\doxysubsubsection{\texorpdfstring{IsKvkNumberAsync()}{IsKvkNumberAsync()}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_repository_1_1_user_repository_a49c76e9c3e780a07b7036dd2a6d30263} 
+async Task$<$ bool $>$ WPR.\+Repository.\+User\+Repository.\+Is\+Kvk\+Number\+Async (\begin{DoxyParamCaption}\item[{int}]{kvk\+Number}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Implementeert \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_user_repository_a670f6c2c74f0ecdf1386af0f6069c9fd}{WPR.\+Repository.\+IUser\+Repository}}.
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{_user_repository_8cs_source_l00380}{380}} in het bestand \mbox{\hyperlink{_user_repository_8cs_source}{User\+Repository.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00381\ \ \ \ \ \{}
+\DoxyCodeLine{00382\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}}
+\DoxyCodeLine{00383\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00384\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ query\ =\ \textcolor{stringliteral}{"{}SELECT\ COUNT(1)\ FROM\ Business\ WHERE\ KVK\ =\ @kvkNumber"{}};}
+\DoxyCodeLine{00385\ }
+\DoxyCodeLine{00386\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using}\ (var\ connection\ =\ \_connector.CreateDbConnection())}
+\DoxyCodeLine{00387\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using}\ (var\ command\ =\ \textcolor{keyword}{new}\ MySqlCommand(query,\ (MySqlConnection)connection))}
+\DoxyCodeLine{00388\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00389\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ command.Parameters.AddWithValue(\textcolor{stringliteral}{"{}@kvkNumber"{}},\ kvkNumber);}
+\DoxyCodeLine{00390\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ var\ result\ =\ Convert.ToInt32(await\ command.ExecuteScalarAsync());}
+\DoxyCodeLine{00391\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ result\ >\ 0;}
+\DoxyCodeLine{00392\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00393\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00394\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (MySqlException\ ex)}
+\DoxyCodeLine{00395\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00396\ \ \ \ \ \ \ \ \ \ \ \ \ await\ Console.Error.WriteLineAsync(\$\textcolor{stringliteral}{"{}Database\ error:\ \{ex.Message\}"{}});}
+\DoxyCodeLine{00397\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00398\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00399\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (Exception\ ex)}
+\DoxyCodeLine{00400\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00401\ \ \ \ \ \ \ \ \ \ \ \ \ await\ Console.Error.WriteLineAsync(\$\textcolor{stringliteral}{"{}Unexpected\ error:\ \{ex.Message\}"{}});}
+\DoxyCodeLine{00402\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00403\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00404\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+Gebruikt \mbox{\hyperlink{_user_repository_8cs_source_l00026}{\+\_\+connector}}.
+
+\Hypertarget{class_w_p_r_1_1_repository_1_1_user_repository_a9897bc253b72e7422cca16f676d4e53c}\index{WPR.Repository.UserRepository@{WPR.Repository.UserRepository}!IsUserEmployee@{IsUserEmployee}}
+\index{IsUserEmployee@{IsUserEmployee}!WPR.Repository.UserRepository@{WPR.Repository.UserRepository}}
+\doxysubsubsection{\texorpdfstring{IsUserEmployee()}{IsUserEmployee()}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_repository_1_1_user_repository_a9897bc253b72e7422cca16f676d4e53c} 
+async Task$<$ bool $>$ WPR.\+Repository.\+User\+Repository.\+Is\+User\+Employee (\begin{DoxyParamCaption}\item[{int}]{id}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Er wordt gekeken door middel van het id of de gebruiker een geldig medewerkers id heeft. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retourneert}
+
+\end{DoxyReturn}
+
+
+Implementeert \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_user_repository_aab80cef291c4192ce799937ca1e08312}{WPR.\+Repository.\+IUser\+Repository}}.
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{_user_repository_8cs_source_l00586}{586}} in het bestand \mbox{\hyperlink{_user_repository_8cs_source}{User\+Repository.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00587\ \ \ \ \ \{}
+\DoxyCodeLine{00588\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}}
+\DoxyCodeLine{00589\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00590\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ query\ =}
+\DoxyCodeLine{00591\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}SELECT\ ID\ FROM\ Customer\ WHERE\ ID\ =\ @id\ AND\ AccountType\ =\ 'Business'"{}};\ \textcolor{comment}{//Geef\ customer\ met\ gegeven\ id\ als\ hij\ NIET\ een\ particulier\ is.}}
+\DoxyCodeLine{00592\ }
+\DoxyCodeLine{00593\ }
+\DoxyCodeLine{00594\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Er\ wordt\ een\ connectie\ aangemaakt\ met\ de\ DataBase\ met\ bovenstaande\ query\ }}
+\DoxyCodeLine{00595\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using}\ (var\ connection\ =\ \_connector.CreateDbConnection())}
+\DoxyCodeLine{00596\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using}\ (var\ command\ =\ \textcolor{keyword}{new}\ MySqlCommand(query,\ (MySqlConnection)connection))}
+\DoxyCodeLine{00597\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00598\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ De\ parameter\ wordt\ ingevuld}}
+\DoxyCodeLine{00599\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ command.Parameters.AddWithValue(\textcolor{stringliteral}{"{}@id"{}},\ \textcolor{keywordtype}{id});}
+\DoxyCodeLine{00600\ }
+\DoxyCodeLine{00601\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ var\ result\ =\ await\ command.ExecuteScalarAsync();}
+\DoxyCodeLine{00602\ }
+\DoxyCodeLine{00603\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (result\ !=\ \textcolor{keyword}{null}\ \&\&\ result.ToString()\ ==\ \textcolor{keywordtype}{id}.ToString())}
+\DoxyCodeLine{00604\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00605\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Er\ wordt\ gekeken\ of\ de\ gebruiker\ bestaat}}
+\DoxyCodeLine{00606\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00607\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00608\ }
+\DoxyCodeLine{00609\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00610\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00611\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00612\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (Exception\ ex)}
+\DoxyCodeLine{00613\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00614\ \ \ \ \ \ \ \ \ \ \ \ \ await\ Console.Error.WriteLineAsync(\$\textcolor{stringliteral}{"{}Unexpected\ error:\ \{ex.Message\}"{}});}
+\DoxyCodeLine{00615\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00616\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00617\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+Gebruikt \mbox{\hyperlink{_user_repository_8cs_source_l00026}{\+\_\+connector}}.
+
+\Hypertarget{class_w_p_r_1_1_repository_1_1_user_repository_af7b36404dd3d6de335c9986321ead166}\index{WPR.Repository.UserRepository@{WPR.Repository.UserRepository}!UpdateCustomerAsync@{UpdateCustomerAsync}}
+\index{UpdateCustomerAsync@{UpdateCustomerAsync}!WPR.Repository.UserRepository@{WPR.Repository.UserRepository}}
+\doxysubsubsection{\texorpdfstring{UpdateCustomerAsync()}{UpdateCustomerAsync()}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_repository_1_1_user_repository_af7b36404dd3d6de335c9986321ead166} 
+async Task$<$ bool $>$ WPR.\+Repository.\+User\+Repository.\+Update\+Customer\+Async (\begin{DoxyParamCaption}\item[{int}]{id}{, }\item[{string}]{email}{, }\item[{string}]{password}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Implementeert \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_user_repository_a8a83a6b8624335202ec9f2de84d82430}{WPR.\+Repository.\+IUser\+Repository}}.
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{_user_repository_8cs_source_l01380}{1380}} in het bestand \mbox{\hyperlink{_user_repository_8cs_source}{User\+Repository.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{01381\ \{}
+\DoxyCodeLine{01382\ \ \ \ \ \textcolor{keywordflow}{try}}
+\DoxyCodeLine{01383\ \ \ \ \ \{}
+\DoxyCodeLine{01384\ \ \ \ \ \ \ \ \ Console.WriteLine(\$\textcolor{stringliteral}{"{}Received\ request\ to\ update\ Customer\ with\ ID:\ \{id\}"{}});}
+\DoxyCodeLine{01385\ \ \ \ \ \ \ \ \ Console.WriteLine(\$\textcolor{stringliteral}{"{}New\ Email:\ \{email\}"{}});}
+\DoxyCodeLine{01386\ }
+\DoxyCodeLine{01387\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\textcolor{keywordtype}{id}\ <=\ 0)}
+\DoxyCodeLine{01388\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01389\ \ \ \ \ \ \ \ \ \ \ \ \ Console.WriteLine(\textcolor{stringliteral}{"{}Error:\ Invalid\ ID."{}});}
+\DoxyCodeLine{01390\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{01391\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01392\ }
+\DoxyCodeLine{01393\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\textcolor{keywordtype}{string}.IsNullOrEmpty(email)\ ||\ \textcolor{keywordtype}{string}.IsNullOrEmpty(password))}
+\DoxyCodeLine{01394\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01395\ \ \ \ \ \ \ \ \ \ \ \ \ Console.WriteLine(\textcolor{stringliteral}{"{}Error:\ Email\ or\ Password\ cannot\ be\ empty."{}});}
+\DoxyCodeLine{01396\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{01397\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01398\ }
+\DoxyCodeLine{01399\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Hash\ the\ new\ password\ (before\ updating)}}
+\DoxyCodeLine{01400\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ hashedPassword\ =\ \_hash.createHash(password);}
+\DoxyCodeLine{01401\ \ \ \ \ \ \ \ \ Console.WriteLine(\$\textcolor{stringliteral}{"{}Hashed\ Password:\ \{hashedPassword\}"{}});}
+\DoxyCodeLine{01402\ }
+\DoxyCodeLine{01403\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Validate\ the\ password\ format\ if\ needed\ (if\ you\ have\ a\ password\ checker\ class\ like\ in\ the\ previous\ example)}}
+\DoxyCodeLine{01404\ \ \ \ \ \ \ \ \ var\ (isValid,\ errorMessage)\ =\ PasswordChecker.IsValidPassword(password);}
+\DoxyCodeLine{01405\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!isValid)}
+\DoxyCodeLine{01406\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01407\ \ \ \ \ \ \ \ \ \ \ \ \ Console.WriteLine(\$\textcolor{stringliteral}{"{}Error:\ \{errorMessage\}"{}});}
+\DoxyCodeLine{01408\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{01409\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01410\ }
+\DoxyCodeLine{01411\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ No\ need\ to\ check\ for\ email\ change,\ we\ proceed\ with\ updating}}
+\DoxyCodeLine{01412\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Proceed\ with\ updating\ the\ email\ and\ hashed\ password\ in\ the\ database}}
+\DoxyCodeLine{01413\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ updateQuery\ =\ \textcolor{stringliteral}{"{}UPDATE\ Customer\ SET\ Email\ =\ @Email,\ Password\ =\ @Password\ WHERE\ ID\ =\ @ID"{}};}
+\DoxyCodeLine{01414\ }
+\DoxyCodeLine{01415\ \ \ \ \ \ \ \ \ \textcolor{keyword}{using}\ (var\ connection\ =\ \_connector.CreateDbConnection())}
+\DoxyCodeLine{01416\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01417\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (connection\ ==\ \textcolor{keyword}{null})}
+\DoxyCodeLine{01418\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01419\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Console.WriteLine(\textcolor{stringliteral}{"{}Database\ connection\ is\ null."{}});}
+\DoxyCodeLine{01420\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{01421\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01422\ }
+\DoxyCodeLine{01423\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (connection.State\ !=\ System.Data.ConnectionState.Open)}
+\DoxyCodeLine{01424\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01425\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Console.WriteLine(\textcolor{stringliteral}{"{}Opening\ database\ connection..."{}});}
+\DoxyCodeLine{01426\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ connection.Open();}
+\DoxyCodeLine{01427\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Console.WriteLine(\textcolor{stringliteral}{"{}Connection\ opened\ successfully."{}});}
+\DoxyCodeLine{01428\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01429\ }
+\DoxyCodeLine{01430\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using}\ (var\ command\ =\ \textcolor{keyword}{new}\ MySqlCommand(updateQuery,\ (MySqlConnection)connection))}
+\DoxyCodeLine{01431\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01432\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ command.Parameters.AddWithValue(\textcolor{stringliteral}{"{}@ID"{}},\ \textcolor{keywordtype}{id});}
+\DoxyCodeLine{01433\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ command.Parameters.AddWithValue(\textcolor{stringliteral}{"{}@Email"{}},\ email);}
+\DoxyCodeLine{01434\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ command.Parameters.AddWithValue(\textcolor{stringliteral}{"{}@Password"{}},\ hashedPassword);}
+\DoxyCodeLine{01435\ }
+\DoxyCodeLine{01436\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}}
+\DoxyCodeLine{01437\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01438\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ rowsAffected\ =\ await\ command.ExecuteNonQueryAsync();}
+\DoxyCodeLine{01439\ }
+\DoxyCodeLine{01440\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (rowsAffected\ >\ 0)}
+\DoxyCodeLine{01441\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01442\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Successfully\ updated\ the\ customer\ info}}
+\DoxyCodeLine{01443\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Console.WriteLine(\textcolor{stringliteral}{"{}Customer\ updated\ successfully."{}});}
+\DoxyCodeLine{01444\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{01445\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01446\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{01447\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01448\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ No\ rows\ affected,\ meaning\ no\ update\ occurred}}
+\DoxyCodeLine{01449\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Console.WriteLine(\textcolor{stringliteral}{"{}Error:\ Customer\ not\ found."{}});}
+\DoxyCodeLine{01450\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{01451\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01452\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01453\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (Exception\ ex)}
+\DoxyCodeLine{01454\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01455\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Console.WriteLine(\$\textcolor{stringliteral}{"{}Error\ executing\ query:\ \{ex.Message\}"{}});}
+\DoxyCodeLine{01456\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{01457\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01458\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01459\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01460\ \ \ \ \ \}}
+\DoxyCodeLine{01461\ \ \ \ \ \textcolor{keywordflow}{catch}\ (Exception\ ex)}
+\DoxyCodeLine{01462\ \ \ \ \ \{}
+\DoxyCodeLine{01463\ \ \ \ \ \ \ \ \ Console.WriteLine(\$\textcolor{stringliteral}{"{}Error:\ \{ex.Message\}"{}});}
+\DoxyCodeLine{01464\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{01465\ \ \ \ \ \}}
+\DoxyCodeLine{01466\ \}}
+
+\end{DoxyCode}
+
+
+Gebruikt \mbox{\hyperlink{_user_repository_8cs_source_l00026}{\+\_\+connector}}, \mbox{\hyperlink{_user_repository_8cs_source_l00027}{\+\_\+hash}} en \mbox{\hyperlink{_password_checker_8cs_source_l00011}{WPR.\+Utils.\+Password\+Checker.\+Is\+Valid\+Password()}}.
+
+Hier is de call graaf voor deze functie\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_w_p_r_1_1_repository_1_1_user_repository_af7b36404dd3d6de335c9986321ead166_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_w_p_r_1_1_repository_1_1_user_repository_adb512c98ffbaeb97a9b9f2fdc8994549}\index{WPR.Repository.UserRepository@{WPR.Repository.UserRepository}!ValidateUserAsync@{ValidateUserAsync}}
+\index{ValidateUserAsync@{ValidateUserAsync}!WPR.Repository.UserRepository@{WPR.Repository.UserRepository}}
+\doxysubsubsection{\texorpdfstring{ValidateUserAsync()}{ValidateUserAsync()}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_repository_1_1_user_repository_adb512c98ffbaeb97a9b9f2fdc8994549} 
+async Task$<$ bool $>$ WPR.\+Repository.\+User\+Repository.\+Validate\+User\+Async (\begin{DoxyParamCaption}\item[{string}]{username}{, }\item[{string}]{password}{, }\item[{string}]{user\+Type}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Er wordt door middel van de meegegeven user\+Type een query aangemaakt, om de juiste gegevens uit de juiste tabel op te halen. Vervolgens wordt er in de query het meegegeven emailadress gestopt, om zo het gehaste wachtwoord uit de database te halen Nadat er een gebruiker met wachtwoord uit de query komt, zal dit gehaste wachtwoord vergelek worden met het meegegeven gehaste wachtwoord. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em username} & \\
+\hline
+{\em password} & \\
+\hline
+{\em user\+Type} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retourneert}
+
+\end{DoxyReturn}
+
+
+Implementeert \mbox{\hyperlink{interface_w_p_r_1_1_repository_1_1_i_user_repository_a7dd4b3be17516ffd565fec621cbd7452}{WPR.\+Repository.\+IUser\+Repository}}.
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{_user_repository_8cs_source_l00071}{71}} in het bestand \mbox{\hyperlink{_user_repository_8cs_source}{User\+Repository.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00072\ \ \ \ \ \{}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ table;}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ query;}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (userType.Equals(\textcolor{stringliteral}{"{}Employee"{}}))}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \ \ \ \ table\ =\ \textcolor{stringliteral}{"{}Staff"{}};}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \ \ \ \ query\ =\ \textcolor{stringliteral}{\$@"{}SELECT\ password\ FROM\ \{table\}\ WHERE\ LOWER(email)\ =\ LOWER(@Email)"{}};}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (userType.Equals(\textcolor{stringliteral}{"{}Customer"{}}))}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \{\ \ \ }
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \ \ \ \ table\ =\ \textcolor{stringliteral}{"{}Customer"{}};}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \ \ \ \ query\ =\ \textcolor{stringliteral}{\$@"{}SELECT\ Password\ FROM\ \{table\}\ WHERE\ LOWER(email)\ =\ LOWER(@Email)"{}};}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \ \ \ \ table\ =\ \textcolor{stringliteral}{"{}VehicleManager"{}};}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \ \ \ \ query\ =\ \textcolor{stringliteral}{\$@"{}SELECT\ password\ FROM\ \{table\}\ WHERE\ LOWER(email)\ =\ LOWER(@Email)"{}};}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Er\ wordt\ een\ connectie\ met\ de\ Database\ aangemaakt\ met\ de\ bovenstaande\ query}}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \textcolor{keyword}{using}\ (var\ connection\ =\ \_connector.CreateDbConnection())}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \textcolor{keyword}{using}\ (var\ command\ =\ \textcolor{keyword}{new}\ MySqlCommand(query,\ (MySqlConnection)connection))}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ In\ de\ query\ wordt\ vastgesteld\ welke\ row\ er\ geselecteerd\ moet\ worden\ doormiddel\ van\ het\ invullen\ van\ het\ emailadres}}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \ \ \ \ command.Parameters.AddWithValue(\textcolor{stringliteral}{"{}@Email"{}},\ username);}
+\DoxyCodeLine{00099\ }
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ De\ query\ wordt\ uitgevoerd}}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using}\ (var\ reader\ =\ await\ command.ExecuteReaderAsync())}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ \ \ }
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ De\ query\ wordt\ uitgelezen\ en\ gekeken\ of\ er\ rows\ gevonden\ zijn}}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (await\ reader.ReadAsync())}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Het\ gehashte\ wachtwoord\ wordt\ opgehaald\ en\ wordt\ vergeleken\ met\ het\ gehaste\ meegegeven\ wachtwoord}}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ passwordUser\ =\ reader.GetString(\textcolor{stringliteral}{"{}Password"{}});}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \_hash.createHash(password).Equals(passwordUser);}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00110\ }
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00114\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+Gebruikt \mbox{\hyperlink{_user_repository_8cs_source_l00026}{\+\_\+connector}} en \mbox{\hyperlink{_user_repository_8cs_source_l00027}{\+\_\+hash}}.
+
+
+
+\doxysubsection{Documentatie van data velden}
+\Hypertarget{class_w_p_r_1_1_repository_1_1_user_repository_a0d5c086f43d20479ee31bed3ae96a63f}\index{WPR.Repository.UserRepository@{WPR.Repository.UserRepository}!\_connector@{\_connector}}
+\index{\_connector@{\_connector}!WPR.Repository.UserRepository@{WPR.Repository.UserRepository}}
+\doxysubsubsection{\texorpdfstring{\_connector}{\_connector}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_repository_1_1_user_repository_a0d5c086f43d20479ee31bed3ae96a63f} 
+readonly \mbox{\hyperlink{interface_w_p_r_1_1_database_1_1_i_connector}{IConnector}} WPR.\+Repository.\+User\+Repository.\+\_\+connector\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{_user_repository_8cs_source_l00026}{26}} in het bestand \mbox{\hyperlink{_user_repository_8cs_source}{User\+Repository.\+cs}}.
+
+
+
+Wordt aangeroepen door \mbox{\hyperlink{_user_repository_8cs_source_l00796}{Add\+Customer()}}, \mbox{\hyperlink{_user_repository_8cs_source_l00159}{add\+Customer\+Async()}}, \mbox{\hyperlink{_user_repository_8cs_source_l00684}{Add\+Customer\+Checks()}}, \mbox{\hyperlink{_user_repository_8cs_source_l00251}{add\+Employee\+Customer\+Async()}}, \mbox{\hyperlink{_user_repository_8cs_source_l00209}{add\+Personal\+Customer\+Async()}}, \mbox{\hyperlink{_user_repository_8cs_source_l00548}{Add\+Staff()}}, \mbox{\hyperlink{_user_repository_8cs_source_l01054}{Change\+Business\+Info()}}, \mbox{\hyperlink{_user_repository_8cs_source_l00921}{Change\+Vehicle\+Manager\+Info()}}, \mbox{\hyperlink{_user_repository_8cs_source_l00121}{check\+Usage\+Email\+Async()}}, \mbox{\hyperlink{_user_repository_8cs_source_l00406}{Delete\+User\+Async()}}, \mbox{\hyperlink{_user_repository_8cs_source_l00344}{Edit\+User\+Info\+Async()}}, \mbox{\hyperlink{_user_repository_8cs_source_l01172}{Get\+All\+Subscriptions\+Async()}}, \mbox{\hyperlink{_user_repository_8cs_source_l01108}{Get\+Business\+Domain\+By\+Kv\+K()}}, \mbox{\hyperlink{_user_repository_8cs_source_l01276}{Get\+Customer\+Details()}}, \mbox{\hyperlink{_user_repository_8cs_source_l01343}{Get\+Customers\+By\+Business\+Number\+Async()}}, \mbox{\hyperlink{_user_repository_8cs_source_l00505}{Get\+Kind\+Employee\+Async()}}, \mbox{\hyperlink{_user_repository_8cs_source_l01205}{Get\+Subscription\+Data\+Async()}}, \mbox{\hyperlink{_user_repository_8cs_source_l01245}{Get\+Subscription\+Ids\+Async()}}, \mbox{\hyperlink{_user_repository_8cs_source_l00287}{Get\+User\+Id\+Async()}}, \mbox{\hyperlink{_user_repository_8cs_source_l00318}{Get\+User\+Name\+Async()}}, \mbox{\hyperlink{_user_repository_8cs_source_l01310}{Get\+Vehicle\+Manager\+Info\+Async()}}, \mbox{\hyperlink{_user_repository_8cs_source_l00380}{Is\+Kvk\+Number\+Async()}}, \mbox{\hyperlink{_user_repository_8cs_source_l00586}{Is\+User\+Employee()}}, \mbox{\hyperlink{_user_repository_8cs_source_l01380}{Update\+Customer\+Async()}}, \mbox{\hyperlink{_user_repository_8cs_source_l00030}{User\+Repository()}} en \mbox{\hyperlink{_user_repository_8cs_source_l00071}{Validate\+User\+Async()}}.
+
+\Hypertarget{class_w_p_r_1_1_repository_1_1_user_repository_ac8ad4a8f0e0ab9918ee233a207c2b125}\index{WPR.Repository.UserRepository@{WPR.Repository.UserRepository}!\_crypt@{\_crypt}}
+\index{\_crypt@{\_crypt}!WPR.Repository.UserRepository@{WPR.Repository.UserRepository}}
+\doxysubsubsection{\texorpdfstring{\_crypt}{\_crypt}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_repository_1_1_user_repository_ac8ad4a8f0e0ab9918ee233a207c2b125} 
+readonly \mbox{\hyperlink{class_w_p_r_1_1_cryption_1_1_crypt}{Crypt}} WPR.\+Repository.\+User\+Repository.\+\_\+crypt\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{_user_repository_8cs_source_l00028}{28}} in het bestand \mbox{\hyperlink{_user_repository_8cs_source}{User\+Repository.\+cs}}.
+
+
+
+Wordt aangeroepen door \mbox{\hyperlink{_user_repository_8cs_source_l00030}{User\+Repository()}}.
+
+\Hypertarget{class_w_p_r_1_1_repository_1_1_user_repository_a1b11b787b41fa41a34ef2515f5eaa6d3}\index{WPR.Repository.UserRepository@{WPR.Repository.UserRepository}!\_hash@{\_hash}}
+\index{\_hash@{\_hash}!WPR.Repository.UserRepository@{WPR.Repository.UserRepository}}
+\doxysubsubsection{\texorpdfstring{\_hash}{\_hash}}
+{\footnotesize\ttfamily \label{class_w_p_r_1_1_repository_1_1_user_repository_a1b11b787b41fa41a34ef2515f5eaa6d3} 
+readonly \mbox{\hyperlink{class_w_p_r_1_1_hashing_1_1_hash}{Hash}} WPR.\+Repository.\+User\+Repository.\+\_\+hash\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+De definitie bevindt zich op regel \mbox{\hyperlink{_user_repository_8cs_source_l00027}{27}} in het bestand \mbox{\hyperlink{_user_repository_8cs_source}{User\+Repository.\+cs}}.
+
+
+
+Wordt aangeroepen door \mbox{\hyperlink{_user_repository_8cs_source_l00796}{Add\+Customer()}}, \mbox{\hyperlink{_user_repository_8cs_source_l00619}{Add\+Personal\+Customer()}}, \mbox{\hyperlink{_user_repository_8cs_source_l00548}{Add\+Staff()}}, \mbox{\hyperlink{_user_repository_8cs_source_l00921}{Change\+Vehicle\+Manager\+Info()}}, \mbox{\hyperlink{_user_repository_8cs_source_l01380}{Update\+Customer\+Async()}}, \mbox{\hyperlink{_user_repository_8cs_source_l00030}{User\+Repository()}} en \mbox{\hyperlink{_user_repository_8cs_source_l00071}{Validate\+User\+Async()}}.
+
+
+
+De documentatie voor deze klasse is gegenereerd op basis van het volgende bestand\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/codes/\+WPR8/\+WPR/backend/src/\+Repository/\mbox{\hyperlink{_user_repository_8cs}{User\+Repository.\+cs}}\end{DoxyCompactItemize}

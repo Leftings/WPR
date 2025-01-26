@@ -1,7 +1,0 @@
-<map id="WPR.Controllers.signUpStaff.SignUpStaffController.SignUpStaff" name="WPR.Controllers.signUpStaff.SignUpStaffController.SignUpStaff">
-<area shape="rect" id="Node000001" title="Car and All medewerkers / Vehicle Managers kunnen hier aangemaakt worden. Mocht het emailadres al bes..." alt="" coords="5,39,227,81"/>
-<area shape="rect" id="Node000002" href="$class_w_p_r_1_1_utils_1_1_email_checker.html#ab97bf7cde61a138766de208bad9d5c7c" title=" " alt="" coords="282,5,467,48"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="227,43,266,38,267,43,228,48"/>
-<area shape="rect" id="Node000003" href="$class_w_p_r_1_1_utils_1_1_password_checker.html#a3874adc7b516a8fb893ed18cd0a29a94" title=" " alt="" coords="275,72,474,115"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="228,72,260,76,259,81,227,77"/>
-</map>

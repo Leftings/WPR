@@ -1,0 +1,47 @@
+\doxysection{Env\+Config.\+cs}
+\hypertarget{_env_config_8cs_source}{}\label{_env_config_8cs_source}\index{D:/codes/WPR8/WPR/backend/src/Data/EnvConfig.cs@{D:/codes/WPR8/WPR/backend/src/Data/EnvConfig.cs}}
+\mbox{\hyperlink{_env_config_8cs}{Ga naar de documentatie van dit bestand.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_env_config_8cs_source_l00001}00001\ \textcolor{keyword}{using\ }dotenv.net;\ \textcolor{comment}{//\ library\ om\ .env\ files\ te\ laden}}
+\DoxyCodeLine{\Hypertarget{_env_config_8cs_source_l00002}00002\ \textcolor{keyword}{using\ }System;}
+\DoxyCodeLine{\Hypertarget{_env_config_8cs_source_l00003}00003\ }
+\DoxyCodeLine{\Hypertarget{_env_config_8cs_source_l00004}\mbox{\hyperlink{namespace_w_p_r_1_1_data}{00004}}\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_w_p_r_1_1_data}{WPR.Data}};}
+\DoxyCodeLine{\Hypertarget{_env_config_8cs_source_l00005}00005\ }
+\DoxyCodeLine{\Hypertarget{_env_config_8cs_source_l00011}00011\ }
+\DoxyCodeLine{\Hypertarget{_env_config_8cs_source_l00012}\mbox{\hyperlink{class_w_p_r_1_1_data_1_1_env_config}{00012}}\ \textcolor{keyword}{public}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_w_p_r_1_1_data_1_1_env_config_af630a471e51828ba21e00170bb645d34}{EnvConfig}}}
+\DoxyCodeLine{\Hypertarget{_env_config_8cs_source_l00013}00013\ \{}
+\DoxyCodeLine{\Hypertarget{_env_config_8cs_source_l00014}\mbox{\hyperlink{class_w_p_r_1_1_data_1_1_env_config_a821cd9298c4c2d0fe8392034bc38c7db}{00014}}\ \ \ \ \ \textcolor{keyword}{private}\ readonly\ IConfiguration\ \mbox{\hyperlink{class_w_p_r_1_1_data_1_1_env_config_a821cd9298c4c2d0fe8392034bc38c7db}{\_configuration}};}
+\DoxyCodeLine{\Hypertarget{_env_config_8cs_source_l00015}00015\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_env_config_8cs_source_l00016}\mbox{\hyperlink{class_w_p_r_1_1_data_1_1_env_config_af630a471e51828ba21e00170bb645d34}{00016}}\ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_w_p_r_1_1_data_1_1_env_config_af630a471e51828ba21e00170bb645d34}{EnvConfig}}()}
+\DoxyCodeLine{\Hypertarget{_env_config_8cs_source_l00017}00017\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_env_config_8cs_source_l00018}00018\ \ \ \ \ \ \ \ \ DotEnv.Load();\ \ \textcolor{comment}{//\ Gebruikt\ de\ dotenv.net\ library\ om\ het\ bestand\ te\ laden}}
+\DoxyCodeLine{\Hypertarget{_env_config_8cs_source_l00019}00019\ }
+\DoxyCodeLine{\Hypertarget{_env_config_8cs_source_l00020}00020\ \ \ \ \ \ \ \ \ var\ builder\ =\ \textcolor{keyword}{new}\ ConfigurationBuilder()}
+\DoxyCodeLine{\Hypertarget{_env_config_8cs_source_l00021}00021\ \ \ \ \ \ \ \ \ \ \ \ \ .AddEnvironmentVariables();\ \textcolor{comment}{//\ Voegt\ de\ environment\ variabelen\ aan\ de\ ConfigurationBuilder}}
+\DoxyCodeLine{\Hypertarget{_env_config_8cs_source_l00022}00022\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_env_config_8cs_source_l00023}00023\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_w_p_r_1_1_data_1_1_env_config_a821cd9298c4c2d0fe8392034bc38c7db}{\_configuration}}\ =\ builder.Build();\ \textcolor{comment}{//\ Bouwt\ het\ configuratie\ object}}
+\DoxyCodeLine{\Hypertarget{_env_config_8cs_source_l00024}00024\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_env_config_8cs_source_l00025}00025\ }
+\DoxyCodeLine{\Hypertarget{_env_config_8cs_source_l00031}\mbox{\hyperlink{class_w_p_r_1_1_data_1_1_env_config_aa9ca09132345c9c5905f2c408fe73fef}{00031}}\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{string}\ \mbox{\hyperlink{class_w_p_r_1_1_data_1_1_env_config_aa9ca09132345c9c5905f2c408fe73fef}{Get}}(\textcolor{keywordtype}{string}\ key)}
+\DoxyCodeLine{\Hypertarget{_env_config_8cs_source_l00032}00032\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_env_config_8cs_source_l00033}00033\ \ \ \ \ \ \ \ \ var\ value\ =\ \mbox{\hyperlink{class_w_p_r_1_1_data_1_1_env_config_a821cd9298c4c2d0fe8392034bc38c7db}{\_configuration}}[key];\ \textcolor{comment}{//\ Fetch\ de\ value\ van\ de\ gegeven\ key}}
+\DoxyCodeLine{\Hypertarget{_env_config_8cs_source_l00034}00034\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\textcolor{keywordtype}{string}.IsNullOrEmpty(value))\ }
+\DoxyCodeLine{\Hypertarget{_env_config_8cs_source_l00035}00035\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_env_config_8cs_source_l00036}00036\ \ \ \ \ \ \ \ \ \ \ \ \ Console.WriteLine(\$\textcolor{stringliteral}{"{}Warning\ \{key\}\ not\ found\ in\ environment"{}});}
+\DoxyCodeLine{\Hypertarget{_env_config_8cs_source_l00037}00037\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_env_config_8cs_source_l00038}00038\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ value;}
+\DoxyCodeLine{\Hypertarget{_env_config_8cs_source_l00039}00039\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_env_config_8cs_source_l00040}00040\ }
+\DoxyCodeLine{\Hypertarget{_env_config_8cs_source_l00045}\mbox{\hyperlink{class_w_p_r_1_1_data_1_1_env_config_ae47188947dca2b84bcfdbcb3a9ce472e}{00045}}\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_w_p_r_1_1_data_1_1_env_config_ae47188947dca2b84bcfdbcb3a9ce472e}{IsConfigured}}()}
+\DoxyCodeLine{\Hypertarget{_env_config_8cs_source_l00046}00046\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_env_config_8cs_source_l00047}00047\ \ \ \ \ \ \ \ \ var\ requiredKeys\ =\ \textcolor{keyword}{new}[]\ \{\ \textcolor{stringliteral}{"{}DB\_SERVER"{}},\ \textcolor{stringliteral}{"{}DB\_DATABASE"{}},\ \textcolor{stringliteral}{"{}DB\_USERNAME"{}},\ \textcolor{stringliteral}{"{}DB\_PASSWORD"{}}\ \};}
+\DoxyCodeLine{\Hypertarget{_env_config_8cs_source_l00048}00048\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ requiredKeys.All(key\ =>\ !\textcolor{keywordtype}{string}.IsNullOrEmpty(\mbox{\hyperlink{class_w_p_r_1_1_data_1_1_env_config_aa9ca09132345c9c5905f2c408fe73fef}{Get}}(key)));}
+\DoxyCodeLine{\Hypertarget{_env_config_8cs_source_l00049}00049\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_env_config_8cs_source_l00050}00050\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_env_config_8cs_source_l00051}\mbox{\hyperlink{class_w_p_r_1_1_data_1_1_env_config_a89d399eb83dc010d25923952e6151dd1}{00051}}\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{string}\ \mbox{\hyperlink{class_w_p_r_1_1_data_1_1_env_config_a89d399eb83dc010d25923952e6151dd1}{GetSmtpHost}}()\ =>\ \mbox{\hyperlink{class_w_p_r_1_1_data_1_1_env_config_aa9ca09132345c9c5905f2c408fe73fef}{Get}}(\textcolor{stringliteral}{"{}SMTP\_HOST"{}});}
+\DoxyCodeLine{\Hypertarget{_env_config_8cs_source_l00052}\mbox{\hyperlink{class_w_p_r_1_1_data_1_1_env_config_a8542468d06bad8f21a620f40baba9181}{00052}}\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_w_p_r_1_1_data_1_1_env_config_a8542468d06bad8f21a620f40baba9181}{GetSmtpPort}}()\ =>\ \textcolor{keywordtype}{int}.TryParse(\mbox{\hyperlink{class_w_p_r_1_1_data_1_1_env_config_aa9ca09132345c9c5905f2c408fe73fef}{Get}}(\textcolor{stringliteral}{"{}SMTP\_PORT"{}}),\ out\ var\ port)\ ?\ port\ :\ 0;}
+\DoxyCodeLine{\Hypertarget{_env_config_8cs_source_l00053}\mbox{\hyperlink{class_w_p_r_1_1_data_1_1_env_config_ad3c37f72796004518b66f16dda580964}{00053}}\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{string}\ \mbox{\hyperlink{class_w_p_r_1_1_data_1_1_env_config_ad3c37f72796004518b66f16dda580964}{GetFromEmail}}()\ =>\ \mbox{\hyperlink{class_w_p_r_1_1_data_1_1_env_config_aa9ca09132345c9c5905f2c408fe73fef}{Get}}(\textcolor{stringliteral}{"{}FROM\_EMAIL"{}});}
+\DoxyCodeLine{\Hypertarget{_env_config_8cs_source_l00054}\mbox{\hyperlink{class_w_p_r_1_1_data_1_1_env_config_aa3dca15a880fd5fedecdff4fe7c3fc03}{00054}}\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{string}\ \mbox{\hyperlink{class_w_p_r_1_1_data_1_1_env_config_aa3dca15a880fd5fedecdff4fe7c3fc03}{GetFromPassword}}()\ =>\ \mbox{\hyperlink{class_w_p_r_1_1_data_1_1_env_config_aa9ca09132345c9c5905f2c408fe73fef}{Get}}(\textcolor{stringliteral}{"{}FROM\_PASSWORD"{}});}
+\DoxyCodeLine{\Hypertarget{_env_config_8cs_source_l00055}00055\ \}}
+
+\end{DoxyCode}

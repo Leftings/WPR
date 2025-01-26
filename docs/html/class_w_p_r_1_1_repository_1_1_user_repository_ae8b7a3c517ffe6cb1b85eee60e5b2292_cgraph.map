@@ -1,0 +1,21 @@
+<map id="WPR.Repository.UserRepository.AddCustomerChecks" name="WPR.Repository.UserRepository.AddCustomerChecks">
+<area shape="rect" id="Node000001" title="AddCustomerChecks kijkt of alle ingevoerde velden geldig zijn. Als een check faalt falen alle checks." alt="" coords="5,239,223,281"/>
+<area shape="rect" id="Node000002" href="$class_w_p_r_1_1_repository_1_1_user_repository.html#a7903e03bfe7076a6ee7b352636cb854d" title="Er wordt gekeken of het emailadres al bestaat in de databse." alt="" coords="271,5,523,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="124,237,146,198,178,150,219,100,269,58,277,53,280,58,272,62,223,104,182,153,150,201,128,239"/>
+<area shape="rect" id="Node000003" href="$class_w_p_r_1_1_utils_1_1_domain_email_checker.html#af6430abcc6b17909ff568158e9e05172" title=" " alt="" coords="287,72,506,115"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="133,236,190,180,228,150,269,124,281,119,284,123,272,129,231,154,194,184,137,240"/>
+<area shape="rect" id="Node000004" href="$class_w_p_r_1_1_utils_1_1_birthday_checker.html#a4c7d3943364075179b3f1ca2e0f05c46" title="Check om te kijken of het een correcte verjaardag is Leeftijd mag niet onder de 18 zijn en niet boven..." alt="" coords="302,139,492,181"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="161,236,270,191,292,184,293,189,272,196,163,241"/>
+<area shape="rect" id="Node000005" href="$class_w_p_r_1_1_utils_1_1_email_checker.html#ab97bf7cde61a138766de208bad9d5c7c" title=" " alt="" coords="304,205,490,248"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="223,245,289,237,289,242,224,250"/>
+<area shape="rect" id="Node000006" href="$class_w_p_r_1_1_utils_1_1_password_checker.html#a3874adc7b516a8fb893ed18cd0a29a94" title=" " alt="" coords="297,272,496,315"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="224,270,282,277,282,282,223,275"/>
+<area shape="rect" id="Node000007" href="$class_w_p_r_1_1_utils_1_1_tel_checker.html#aa8036be39d90b4bd0482cc25b9bbfc5a" title=" " alt="" coords="298,339,496,381"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="163,279,272,324,293,331,292,336,270,329,161,284"/>
+<area shape="rect" id="Node000008" href="$namespace_w_p_r_1_1_controllers_1_1_general_1_1_sign_up.html#abf09877e4843c0b4ff2791cc32242102" title=" " alt="" coords="288,429,506,472"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="138,280,196,333,272,391,327,420,324,425,269,396,193,337,135,283"/>
+<area shape="rect" id="Node000009" href="$namespace_w_p_r_1_1_controllers_1_1_general_1_1_sign_up.html#ab012081435b4392bd8e6e4525e336d68" title=" " alt="" coords="288,520,506,579"/>
+<area shape="poly" id="edge9_Node000001_Node000009" title=" " alt="" coords="128,280,150,322,183,375,224,431,272,482,313,510,310,515,269,486,220,434,178,378,146,324,123,283"/>
+<area shape="poly" id="edge8_Node000008_Node000008" title=" " alt="" coords="344,429,342,419,351,410,369,405,397,403,427,405,445,411,443,416,426,410,397,408,370,410,353,415,347,421,349,428"/>
+<area shape="poly" id="edge10_Node000009_Node000009" title=" " alt="" coords="342,519,343,509,353,501,371,495,397,493,427,496,445,503,443,508,425,501,397,499,372,501,356,505,348,512,347,520"/>
+</map>

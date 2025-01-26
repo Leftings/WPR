@@ -1,0 +1,9 @@
+<map id="WPR.Repository.VehicleRepository.SendEmail" name="WPR.Repository.VehicleRepository.SendEmail">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,72,237,115"/>
+<area shape="rect" id="Node000002" href="$class_w_p_r_1_1_repository_1_1_vehicle_repository.html#a7d5690f15622f36a6c229b993a2a9ea9" title=" " alt="" coords="285,5,516,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="213,69,293,50,294,55,214,74"/>
+<area shape="rect" id="Node000003" href="$class_w_p_r_1_1_repository_1_1_vehicle_repository.html#ac966b529fb982058bba744e3f8a03501" title=" " alt="" coords="285,72,516,115"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="237,91,269,91,269,96,237,96"/>
+<area shape="rect" id="Node000004" href="$class_w_p_r_1_1_repository_1_1_vehicle_repository.html#a44c60ce7050a7813b4cfca5b8292ab4e" title=" " alt="" coords="285,139,516,181"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="214,113,294,132,293,137,213,118"/>
+</map>

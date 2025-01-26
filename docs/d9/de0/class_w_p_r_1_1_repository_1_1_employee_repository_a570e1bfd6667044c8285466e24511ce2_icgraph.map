@@ -1,5 +1,0 @@
-<map id="WPR.Repository.EmployeeRepository.CheckDomain" name="WPR.Repository.EmployeeRepository.CheckDomain">
-<area shape="rect" id="Node000001" title="CheckDomain bekijkt of het domain niet al in gebruik ik in de tabel Customer en in de tabel Business." alt="" coords="301,5,548,48"/>
-<area shape="rect" id="Node000002" href="$d9/de0/class_w_p_r_1_1_repository_1_1_employee_repository.html#a42271b52a537da924efab8ddcb2c78ad" title="Maakt een connectie met de database door middel van de connector en de query. De gegevens worden uit ..." alt="" coords="5,5,253,48"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="285,29,253,29,253,24,285,24"/>
-</map>
