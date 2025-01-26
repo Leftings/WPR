@@ -3,17 +3,18 @@ import GeneralHeader from "../GeneralBlocks/header/header.jsx";
 import GeneralFooter from "../GeneralBlocks/footer/footer.jsx";
 import '../index.css';
 
+// URL voor de backend, standaard 'http://localhost:5165' als dit niet is opgegeven in de omgevingsvariabelen
 const BACKEND_URL = import.meta.env.VITE_REACT_APP_BACKEND_URL ?? 'http://localhost:5165';
 
 function AbonementUitlegPage() {
+    // States om abonnementgegevens, staff-informatie, foutmeldingen en laadtoestand op te slaan
     const [subscriptions, setSubscriptions] = useState([]);
     const [isStaff, setIsStaff] = useState(false);
     const [isFrontOffice, setIsFrontOffice] = useState(false);
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(false);
 
-    
-    
+    // Functie om abonnementgegevens op te halen op basis van ID
     function GetSubscription(id) {
         return fetch(`${BACKEND_URL}/api/Subscription/GetSubscriptionData=${id}`, {
             method: 'GET',
@@ -23,6 +24,7 @@ function AbonementUitlegPage() {
             credentials: 'include'
         })
             .then((response) => {
+                // Als de response niet goed is, gooi een foutmelding
                 if (!response.ok) {
                     return response.json().then(data => {
                         throw new Error(data?.message);
@@ -31,6 +33,7 @@ function AbonementUitlegPage() {
                 return response.json();
             })
             .then((data) => {
+                // Combineer de data in één object
                 const combinedData = data?.message?.reduce((acc, item) => {
                     const [key, value] = Object.entries(item)[0];
                     acc[key] = value;
@@ -43,20 +46,22 @@ function AbonementUitlegPage() {
                 return null;
             });
     }
-    
+
     useEffect(() => {
-        // Check session for staff information
+        // Controleer de sessie voor staff-informatie om de toegang van de gebruiker te bepalen
         fetch(`${BACKEND_URL}/api/Login/CheckSessionStaff`, {
             credentials: 'include',
             method: 'GET',
         })
             .then((response) => {
+                // Als de sessie ongeldig is of de gebruiker geen staff is, reset de staff-flags
                 if (!response.ok) {
-                    throw new Error('Not a staff member or session expired');
+                    throw new Error('Niet een stafflid of sessie verlopen');
                 }
                 return response.json();
             })
             .then((data) => {
+                // Zet de staff-gerelateerde flags op basis van het type kantoor (Front of Back office)
                 if (data.officeType === 'Front') {
                     setIsStaff(true);
                     setIsFrontOffice(true);
@@ -68,30 +73,33 @@ function AbonementUitlegPage() {
                 }
             })
             .catch(() => {
+                // Verwerk het geval waarin de staff-sessie ongeldig of verlopen is
                 setIsStaff(false);
                 setIsFrontOffice(false);
             });
     }, []);
 
+    // Functie om alle abonnementen en hun details op te halen
     const fetchSubscriptions = async () => {
         try {
-            setLoading(true);
-            setError(null);
+            setLoading(true);  // Zet de loading-toestand op true voordat gegevens worden opgehaald
+            setError(null);     // Maak eventuele bestaande foutmeldingen leeg
 
-            // Fetch subscription IDs
+            // Haal de abonnement-ID's op van de backend
             const response = await fetch(`${BACKEND_URL}/api/Subscription/GetSubscriptionIds`, {
                 method: 'GET',
                 credentials: 'include',
             });
 
+            // Controleer of het ophalen van abonnement-ID's succesvol was
             if (!response.ok) {
-                throw new Error('Failed to fetch subscription IDs');
+                throw new Error('Mislukt om abonnement-ID\'s op te halen');
             }
 
             const data = await response.json();
-            const subscriptionIds = data?.message || [];
+            const subscriptionIds = data?.message || [];  // Standaard op een lege array als er geen ID's zijn
 
-            // Fetch subscription details
+            // Haal de details op van elk abonnement
             const subscriptionsData = await Promise.all(
                 subscriptionIds.map(async (id) => {
                     try {
@@ -101,61 +109,69 @@ function AbonementUitlegPage() {
                             credentials: 'include',
                         });
 
+                        // Controleer of het ophalen van abonnementgegevens succesvol was
                         if (!response.ok) {
-                            throw new Error('Failed to fetch subscription data');
+                            throw new Error('Mislukt om abonnementgegevens op te halen');
                         }
 
                         const subscription = await response.json();
                         return subscription.message;
                     } catch (error) {
-                        console.error(`Error fetching subscription ${id}:`, error.message);
+                        console.error(`Fout bij het ophalen van abonnement ${id}:`, error.message);
                         return null;
                     }
                 })
             );
 
+            // Werk de state bij met geldige abonnementgegevens
             setSubscriptions(subscriptionsData.filter(Boolean));
         } catch (error) {
-            setError(error.message);
+            setError(error.message);  // Zet de foutmelding in de state als het ophalen mislukt
         } finally {
-            setLoading(false);
+            setLoading(false);  // Zet de loading-toestand op false als het ophalen klaar is
         }
     };
 
+    // Haal abonnementen op bij het laden van de component
     useEffect(() => {
         fetchSubscriptions();
     }, []);
 
+    // Verwijder abonnement
     const handleDelete = async (id) => {
-        console.log("Deleting subscription with id: ", id);
+        console.log("Verwijderen abonnement met ID: ", id);
         if (!id) {
             alert("Geen geldig abonnement ID");
             return;
         }
-        
+
+        // Bevestig de verwijdering
         if (!window.confirm('Wil je dit abonnement verwijderen?')) return;
 
         try {
-            setLoading(true);
-            
+            setLoading(true);  // Zet de loading-toestand op true tijdens de verwijdering
+
+            // Verstuur de delete-aanroep naar de backend
             const response = await fetch(`${BACKEND_URL}/api/Subscription/DeleteSubscription?id=${id}`, {
                 method: 'DELETE',
                 credentials: 'include',
             });
 
+            // Als de response niet goed is, gooi een foutmelding
             if (!response.ok) {
                 const errorData = await response.json();
-                throw new Error( errorData.message || 'Failed to delete subscription');
+                throw new Error(errorData.message || 'Mislukt om abonnement te verwijderen');
             }
 
+            // Verwijder het abonnement uit de state
             setSubscriptions(subscriptions.filter((subscription) => subscription.ID !== id));
             alert('Abonnement is succesvol verwijderd.');
-            fetchSubscriptions();
+            fetchSubscriptions();  // Haal de abonnementen opnieuw op om de wijzigingen weer te geven
         } catch (error) {
             console.error(error.message);
-            alert('Error tijdens verwijderen abonnement.');
+            alert('Er is een fout opgetreden bij het verwijderen van het abonnement.');
         } finally {
-            setLoading(false);
+            setLoading(false);  // Zet de loading-toestand op false na de verwijdering
         }
     };
 
