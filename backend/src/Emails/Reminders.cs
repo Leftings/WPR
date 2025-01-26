@@ -173,7 +173,6 @@ public class Reminders : BackgroundService
 
             if (ids == null || ids.Count == 0)
             {
-                Console.WriteLine("No contracts are waiting for an email");
                 return false;
             }
 
