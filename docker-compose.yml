@@ -1,46 +1,31 @@
-version: "3.9"
+version: '3.9'
 
 services:
-  # Backend Service
   backend:
+    image: backend-app
     build:
-      context: ./backend
+      context: .
+      dockerfile: backend/Dockerfile
+    volumes:
+      - ./backend/publish:/app # Mount the publish folder
     ports:
-      - "5000:5000" # Expose port for both dev and production
-    env_file:
-      - ./backend/.env # Default for development
-    environment:
-      - NODE_ENV=${NODE_ENV:-development} # Development by default
-    networks:
-      - app-network
+      - "5000:5000" # Expose backend on port 5000
 
-  # Frontend Service
   frontend:
+    image: frontend-app
     build:
       context: ./frontend
+      dockerfile: Dockerfile
+    volumes:
+      - ./frontend/dist:/usr/share/nginx/html # Serve static files
     ports:
-      - "3000:3000" # Development port
-      - "8080:80"   # Production port
-    environment:
-      - REACT_APP_BACKEND_URL=${REACT_APP_BACKEND_URL:-http://localhost:5000}
-    networks:
-      - app-network
+      - "3000:3000" # Expose frontend dev server (optional)
 
-  # NGINX Reverse Proxy (Only for Deployment)
   nginx:
-    build:
-      context: ./nginx
+    image: nginx
     ports:
-      - "8080:8080"
-      - "8443:8443"
-    depends_on:
-      - frontend
-      - backend
-    networks:
-      - app-network
-    profiles:
-      - production # Only included when `--profile production` is used
-
-networks:
-  app-network:
-    driver: bridge
+      - "80:80" # Expose Nginx on port 80
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf # Use custom Nginx config
+      - ./frontend/dist:/usr/share/nginx/html # Serve frontend
+      - ./backend/publish:/var/www/backend # Proxy requests to backend
