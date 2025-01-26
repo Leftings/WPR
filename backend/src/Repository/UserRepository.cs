@@ -732,10 +732,6 @@ public class UserRepository : IUserRepository
             {
                 return (false, "No valid Phonenumber");
             }
-            else
-            {
-                return (true, "Valid Details");
-            }
         }
         else
         {
@@ -763,6 +759,7 @@ public class UserRepository : IUserRepository
             return (false, validPassword.passwordError);
         }
         (bool Status, string Message) emailStatus = await emailCheck;
+
         return (!emailStatus.Status, emailStatus.Message);
     }
 
@@ -773,9 +770,9 @@ public class UserRepository : IUserRepository
     /// <param name="userId"></param>
     /// <param name="connections"></param>
     /// <returns></returns>
-    private async Task<(int StatusCode, string Message)> AddPrivateCustomerDetails(SignUpRequestCustomerPrivate request, int userId, MySqlConnection connections)
+    private async Task<(int StatusCode, string Message)> AddPrivateCustomerDetails(SignUpRequestCustomerPrivate request, SignUpRequestCustomer customer, int userId, MySqlConnection connections)
     {
-        (bool Status, string Message) checks = await AddCustomerChecks(true, null, request);
+        (bool Status, string Message) checks = await AddCustomerChecks(true, customer, request);
 
         if (checks.Status)
         {
@@ -864,14 +861,13 @@ public class UserRepository : IUserRepository
                     {
                         if (await command.ExecuteNonQueryAsync() > 0)
                         {
-
                             if (request.AccountType.Equals("Private"))
                             {
                                 // UserId van het account verkrijgen
                                 command.CommandText = "SELECT LAST_INSERT_ID();";
                                 int userId = Convert.ToInt32(await command.ExecuteScalarAsync());
 
-                                (int StatusCode, string Message) response = await AddPrivateCustomerDetails(privateRequest, userId, (MySqlConnection)connection);
+                                (int StatusCode, string Message) response = await AddPrivateCustomerDetails(privateRequest, request, userId, (MySqlConnection)connection);
 
                                 // Bij falen van query van toevoegen particulier account wordt een rollback van de transactie uitgevoerd
                                 if (response.StatusCode == 500 || response.StatusCode == 412)
