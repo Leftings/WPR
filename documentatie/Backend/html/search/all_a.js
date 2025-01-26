@@ -1,6 +1,0 @@
-var searchData=
-[
-  ['kvk_0',['KvK',['../class_w_p_r_1_1_controllers_1_1_sign_up_1_1_sign_up_request.html#a4b4f3c21a6f9dad0e4b720bafc5432e8',1,'WPR::Controllers::SignUp::SignUpRequest']]],
-  ['kvkchecker_1',['KvkChecker',['../class_w_p_r_1_1_utils_1_1_kvk_checker.html',1,'WPR.Utils.KvkChecker'],['../class_w_p_r_1_1_utils_1_1_kvk_checker.html#a615f7bc3551a179f7650703d613504fc',1,'WPR.Utils.KvkChecker.KvkChecker()']]],
-  ['kvkchecker_2ecs_2',['KvkChecker.cs',['../_kvk_checker_8cs.html',1,'']]]
-];
