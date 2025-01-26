@@ -6,12 +6,12 @@ namespace WPR.Utils;
 
 public class DomainEmailChecker
 {
-    private readonly Connector _connector;
-    public DomainEmailChecker(Connector connector)
+    private readonly IConnector _connector;
+    public DomainEmailChecker(IConnector connector)
     {
         _connector = connector ?? throw new ArgumentNullException(nameof(connector));
     }
-    public async Task<(bool Found, int KvK)> DomainExists(string email)
+    public virtual async Task<(bool Found, int KvK)> DomainExists(string email)
     {
         string domain = $"@{email.Split("@").Last()}";
         Console.WriteLine(domain);

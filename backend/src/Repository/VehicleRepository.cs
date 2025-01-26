@@ -18,11 +18,11 @@ namespace WPR.Repository;
 /// </summary>
 public class VehicleRepository : IVehicleRepository
 {
-    private readonly Connector _connector;
+    private readonly IConnector _connector;
     private readonly Crypt _crypt;
     private readonly EmailService _emailService;
 
-    public VehicleRepository(Connector connector, Crypt crypt, EmailService emailService)
+    public VehicleRepository(IConnector connector, Crypt crypt, EmailService emailService)
     {
         _connector = connector ?? throw new ArgumentNullException(nameof(connector));
         _crypt = crypt ?? throw new ArgumentNullException(nameof(crypt));

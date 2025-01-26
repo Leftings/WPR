@@ -6,9 +6,9 @@ namespace WPR.Controllers.Customer.Rental;
 [ApiController]
 public class RentalController : ControllerBase
 {
-    private readonly VehicleRepository _vehicleRepo;
+    private readonly IVehicleRepository _vehicleRepo;
 
-    public RentalController(VehicleRepository vehicleRepo)
+    public RentalController(IVehicleRepository vehicleRepo)
     {
         _vehicleRepo = vehicleRepo ?? throw new ArgumentNullException(nameof(vehicleRepo));
     }
@@ -20,7 +20,7 @@ public class RentalController : ControllerBase
         string loginCookie = HttpContext.Request.Cookies["LoginSession"];
         (bool Status, int StatusCode, string Message) response = await _vehicleRepo.CancelRental(rentalId, loginCookie);
 
-        return StatusCode(response.StatusCode, new { message = response.Message });
+        return StatusCode(response.StatusCode, new RentalResponse{ Message = response.Message });
     }
 
 
@@ -34,7 +34,7 @@ public class RentalController : ControllerBase
         {
             return StatusCode(response.StatusCode, response.Rentals);
         }
-        return StatusCode(response.StatusCode, new { message = response.Message });
+        return StatusCode(response.StatusCode, new RentalResponse{ Message = response.Message });
     }
 
     [HttpGet("GetAllUserRentalsWithDetails")]
@@ -46,14 +46,14 @@ public class RentalController : ControllerBase
         {
             return StatusCode(response.StatusCode, response.UserRentals);
         }
-        return StatusCode(response.StatusCode, new { message = response.Message });
+        return StatusCode(response.StatusCode, new RentalResponse{ Message = response.Message });
     }
     
     [HttpPut("ChangeRental")]
     public async Task<IActionResult> ChangeRentalAsync([FromBody] UpdateRentalRequest request)
     {
         (bool Status, int StatusCode, string Message) response = _vehicleRepo.ChangeRental(request);
-        return StatusCode(response.StatusCode, new { message = response.Message });
+        return StatusCode(response.StatusCode, new RentalResponse{ Message = response.Message });
     }
 
     [HttpPost("CreateRental")]
@@ -65,8 +65,8 @@ public class RentalController : ControllerBase
         
         if (result.Status)
         {
-            return Ok( new { message = result.Message});
+            return Ok( new RentalResponse{ Message = result.Message});
         }
-        return BadRequest( new { message = result.Message });
+        return BadRequest( new RentalResponse{ Message = result.Message });
     }
 }

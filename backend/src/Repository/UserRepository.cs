@@ -23,11 +23,11 @@ namespace WPR.Repository;
 /// </summary>
 public class UserRepository : IUserRepository
 {
-    private readonly Connector _connector;
+    private readonly IConnector _connector;
     private readonly Hash _hash;
     private readonly Crypt _crypt;
 
-    public UserRepository(Connector connector, Hash hash, Crypt crypt)
+    public UserRepository(IConnector connector, Hash hash, Crypt crypt)
     {
         _connector = connector ?? throw new ArgumentNullException(nameof(connector));
         _hash = hash ?? throw new ArgumentNullException(nameof(hash));
@@ -1202,7 +1202,7 @@ private async Task<(int StatusCode, string Message)> ChangeBusinessData(ChangeBu
         }
     }
 
-    public async Task<Subscription> GetSubscriptionDataAsync(int id)
+    public async Task<SubscriptionRequest> GetSubscriptionDataAsync(int id)
     {
         try
         {
@@ -1220,7 +1220,7 @@ private async Task<(int StatusCode, string Message)> ChangeBusinessData(ChangeBu
                         var description = reader["Description"].ToString();
                         var price = reader["Price"].ToString().Equals("") ? 0 : Convert.ToDouble(reader["Price"]);
                         
-                        return new Subscription
+                        return new SubscriptionRequest
                         {
                             Id = id,
                             Type = type,

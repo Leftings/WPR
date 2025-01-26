@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿﻿using Microsoft.AspNetCore.Mvc;
 using WPR.Repository;
 
 
@@ -34,8 +34,11 @@ public class SubscriptionController : ControllerBase
         }
         catch (Exception e)
         {
-            Console.WriteLine(e);
-            throw;
+            return StatusCode(500, new SubscriptionErrorResponse
+            {
+                Status = false,
+                Message = e.Message
+            });
         }
     }
 
@@ -48,15 +51,22 @@ public class SubscriptionController : ControllerBase
 
             if (data == null)
             {
-                NotFound("No subscription data found");
+                return NotFound(new SubscriptionErrorResponse
+                {
+                    Status = false,
+                    Message = "No subscription data found"
+                });
             }
             
-            return Ok(new { message = data });
+            return Ok(new{ Message = data });
         }
         catch (Exception e)
         {
-            Console.WriteLine(e);
-            throw;
+            return StatusCode(500, new SubscriptionErrorResponse
+            {
+                Status = false,
+                Message = e.Message
+            });
         }
     }
 
@@ -69,40 +79,54 @@ public class SubscriptionController : ControllerBase
 
             if (ids == null)
             {
-                NotFound("Could not find subscription ids");
+                return NotFound(new SubscriptionErrorResponse
+                {
+                    Status = false,
+                    Message = "Could not find subscription ids"
+                });
             }
 
-            return Ok(new {message = ids});
+            return Ok(new{ Message = ids});
         }
         catch (Exception e)
         {
-            Console.WriteLine(e);
-            throw;
+            return StatusCode(500, new SubscriptionErrorResponse
+            {
+                Status = false,
+                Message = e.Message
+            });
         }
     }
 
     [HttpPost("AddSubscription")]
-    public async Task<IActionResult> AddSubscription([FromBody] Subscription subscription)
+    public async Task<IActionResult> AddSubscription([FromBody] SubscriptionRequest subscriptionRequest)
     {
         try
         {
             var status = await _backOfficeRepository.AddSubscriptionAsync(
-                subscription.Type,
-                subscription.Description,
-                subscription.Discount,
-                subscription.Price);
+                subscriptionRequest.Type,
+                subscriptionRequest.Description,
+                subscriptionRequest.Discount,
+                subscriptionRequest.Price);
             
             if (status.status)
             {
-                return Ok( new { status.message });
+                return Ok(new SubscriptionResponse { Message = status.message });
             }
             
-            return BadRequest( new { status.message });
+            return BadRequest(new SubscriptionErrorResponse
+            {
+                Status = false,
+                Message = status.message
+            });
         }
         catch (Exception e)
         {
-            Console.WriteLine(e);
-            throw;
+            return StatusCode(500, new SubscriptionErrorResponse
+            {
+                Status = false,
+                Message = e.Message
+            });
         }
     }
     
@@ -112,26 +136,28 @@ public class SubscriptionController : ControllerBase
     [HttpDelete("DeleteSubscription")]
     public async Task<IActionResult> DeleteSubscriptionAsync(int id)
     {
-        if (id <= 0)
-        {
-            return BadRequest(new { status = false, message = "Invalid subscription ID"});
-        }
-        
         try
         {
             var result = await _backOfficeRepository.DeleteSubscriptionAsync(id);
 
             if (result.status)
             {
-                return Ok(new { status = true, result.message });
+                return Ok(new SubscriptionResponse { Message = result.message });
             }
-            return BadRequest(new { status = false, result.message });
+            return BadRequest(new SubscriptionErrorResponse
+            {
+                Status = false,
+                Message = result.message
+            });
             
         }
         catch (Exception e)
         {
-            Console.WriteLine(e);
-            throw;
+            return StatusCode(500, new SubscriptionErrorResponse
+            {
+                Status = false,
+                Message = e.Message
+            });
         }
     }
 }

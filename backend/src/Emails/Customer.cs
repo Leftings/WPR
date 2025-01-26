@@ -4,7 +4,8 @@ using WPR.Repository;
 
 namespace WPR.Email;
 
-public class Customer : IDetails
+public interface ICustomerDetails : IDetails{}
+public class Customer : ICustomerDetails
 {
     private Dictionary<string, object> _details { get; set; }
     private readonly IUserRepository _userRepository;
