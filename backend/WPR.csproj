@@ -19,4 +19,16 @@
       <Folder Include="src\Controllers\Employee\frontOffice\" />
     </ItemGroup>
 
+    <ItemGroup>
+      <None Update="appsettings.Production.json">
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      </None>
+      <None Update="appsettings.Development.json">
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      </None>
+      <None Update="appsettings.Staging.json">
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      </None>
+    </ItemGroup>
+
 </Project>

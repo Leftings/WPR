@@ -174,6 +174,7 @@ public class AppConfigure
     app.UseAuthorization();
     app.UseAuthentication();
     app.UseCookiePolicy(cookiePolicyOptions);
+    app.MapFallbackToFile("../wwwroot/index.html");
 
     //app.MapRazorPages();
     app.MapDefaultControllerRoute();
