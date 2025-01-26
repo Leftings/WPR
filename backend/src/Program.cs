@@ -1,3 +1,5 @@
+using System.Security.Permissions;
+
 namespace WPR;
 
 public class Program
@@ -10,6 +12,7 @@ public class Program
         using (var scope = app.Services.CreateScope())
         {
             AppConfigure.InitDatabase(scope.ServiceProvider);
+            
         }
 
         app.Run();

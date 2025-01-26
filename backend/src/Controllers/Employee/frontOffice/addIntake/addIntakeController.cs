@@ -16,11 +16,13 @@ public class AddIntakeController : ControllerBase
 {
     private readonly Connector _connector;
     private readonly IEmployeeRepository _employeeRepository;
+    private readonly IVehicleRepository _vehicleRepository;
 
-    public AddIntakeController(Connector connector, IEmployeeRepository employeeRepository)
+    public AddIntakeController(Connector connector, IEmployeeRepository employeeRepository, IVehicleRepository vehicleRepository)
     {
         _connector = connector ?? throw new ArgumentNullException(nameof(connector));
         _employeeRepository = employeeRepository ?? throw new ArgumentNullException(nameof(employeeRepository));
+        _vehicleRepository = vehicleRepository ?? throw new ArgumentNullException(nameof(vehicleRepository));
     }
 
     /// <summary>
@@ -40,7 +42,13 @@ public class AddIntakeController : ControllerBase
                 request.FrameNrVehicle,
                 request.ReviewedBy,
                 request.Date,
-                request.Contract);
+                request.Contract,
+                request.IsDamaged);
+
+            if (request.IsDamaged)
+            {
+                var status2 = _vehicleRepository.ChangeRepairStatus(request.FrameNrVehicle, true);
+            }
 
             if (status.status)
             {

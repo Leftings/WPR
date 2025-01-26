@@ -205,7 +205,7 @@ public class VehicleRepository : IVehicleRepository
     /// </summary>
     /// <param name="frameNr"></param>
     /// <returns></returns>
-    public async Task<List<Dictionary<object, string>>> GetVehicleDataAsync(string frameNr)
+    public async Task<List<Dictionary<object, string>>> GetVehicleDataAsync(object frameNr)
     {
         try
         {
@@ -611,6 +611,44 @@ public class VehicleRepository : IVehicleRepository
             // Handle other errors
             await Console.Error.WriteLineAsync($"Unexpected error: {ex.Message}");
             return (false, "Unexpected error: " + ex.Message);
+        }
+    }
+
+    public (bool Status, int StatusCode, string Message) ChangeRepairStatus(int id, bool broken)
+    {
+        try
+        {
+            int repairValue;
+            if (broken)
+            {
+                repairValue = 1;
+            }
+            else
+            {
+                repairValue = 0;
+            }
+            string query = "UPDATE Vehicle SET InRepair = @Repair WHERE FrameNr = @FrameNr";
+
+            using (var connection = _connector.CreateDbConnection())
+            using (var command = new MySqlCommand(query, (MySqlConnection)connection))
+            {
+                command.Parameters.AddWithValue("@FrameNr", id);
+                command.Parameters.AddWithValue("@Repair", repairValue);
+
+                if (command.ExecuteNonQuery() > 0)
+                {
+                    return (true, 200, $"Vehicle with FrameNr {id} has been put in repair.");
+                }
+                return (false, 501,  $"Vehicle with FrameNr {id} hasn't been put under repair.");
+            }
+        }
+        catch (MySqlException ex)
+        {
+            return (false, 500, ex.Message);
+        }
+        catch (Exception ex)
+        {
+            return (false, 500, ex.Message);
         }
     }
 }

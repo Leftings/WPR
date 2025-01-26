@@ -39,7 +39,7 @@ public class UserRepository : IUserRepository
         string query = $@"SELECT password FROM {table} WHERE LOWER(email) = LOWER(@Email)";
 
         using (var connection = _connector.CreateDbConnection())
-
+        
         using (var command = new MySqlCommand(query, (MySqlConnection)connection))
         {
             command.Parameters.AddWithValue("@Email", username);
@@ -72,14 +72,14 @@ public class UserRepository : IUserRepository
     {
         string table;
         string query;
-
+        
         if (userType.Equals("Employee"))
         {
             table = "Staff";
             query = $@"SELECT password FROM {table} WHERE LOWER(email) = LOWER(@Email)";
         }
         else if (userType.Equals("Customer"))
-        {
+        {   
             table = "Customer";
             query = $@"SELECT Password FROM {table} WHERE LOWER(email) = LOWER(@Email)";
 
@@ -89,7 +89,7 @@ public class UserRepository : IUserRepository
             table = "VehicleManager";
             query = $@"SELECT password FROM {table} WHERE LOWER(email) = LOWER(@Email)";
         }
-
+        
         // Er wordt een connectie met de Database aangemaakt met de bovenstaande query
         using (var connection = _connector.CreateDbConnection())
         using (var command = new MySqlCommand(query, (MySqlConnection)connection))
@@ -99,7 +99,7 @@ public class UserRepository : IUserRepository
 
             // De query wordt uitgevoerd
             using (var reader = await command.ExecuteReaderAsync())
-            {
+            {   
                 // De query wordt uitgelezen en gekeken of er rows gevonden zijn
                 if (await reader.ReadAsync())
                 {
@@ -820,7 +820,6 @@ public class UserRepository : IUserRepository
                     command.Parameters.AddWithValue("@E", request.Email);
                     command.Parameters.AddWithValue("@A", request.AccountType);
 
-                    // Hash the password using the createHash method from the Hash class
                     string hashedPassword = _hash.createHash(request.Password);
                     command.Parameters.AddWithValue("@P", hashedPassword);
 
@@ -835,16 +834,13 @@ public class UserRepository : IUserRepository
                         {
                             if (request.AccountType.Equals("Private"))
                             {
-                                // Get the UserId of the newly inserted account
                                 command.CommandText = "SELECT LAST_INSERT_ID();";
                                 int userId = Convert.ToInt32(await command.ExecuteScalarAsync());
 
-                                // Add private customer details
                                 (int StatusCode, string Message) response =
                                     await AddPrivateCustomerDetails(privateRequest, userId,
                                         (MySqlConnection)connection);
 
-                                // If adding private details fails, rollback transaction
                                 if (response.StatusCode == 500 || response.StatusCode == 412)
                                 {
                                     string deleteCustomerQuery = "DELETE FROM Customer WHERE ID = @I";
@@ -1210,7 +1206,7 @@ private async Task<(int StatusCode, string Message)> ChangeBusinessData(ChangeBu
     {
         try
         {
-            string query = "SELECT ID, Type, Description FROM Abonnement WHERE ID = @Id";
+            string query = "SELECT ID, Type, Description, Price FROM Abonnement WHERE ID = @Id";
 
             using (var connection = _connector.CreateDbConnection())
             using (var command = new MySqlCommand(query, (MySqlConnection)connection))
@@ -1222,12 +1218,14 @@ private async Task<(int StatusCode, string Message)> ChangeBusinessData(ChangeBu
                     {
                         var type = reader["Type"].ToString();
                         var description = reader["Description"].ToString();
-
+                        var price = reader["Price"].ToString().Equals("") ? 0 : Convert.ToDouble(reader["Price"]);
+                        
                         return new Subscription
                         {
                             Id = id,
                             Type = type,
-                            Description = description
+                            Description = description,
+                            Price = price
                         };
                     }
                 }
@@ -1272,6 +1270,40 @@ private async Task<(int StatusCode, string Message)> ChangeBusinessData(ChangeBu
         {
             Console.WriteLine(ex.Message);
             return null;
+        }
+    }
+    
+    public async Task<Dictionary<string, object>> GetCustomerDetails(int id)
+    {
+        string query = $"SELECT * FROM Customer WHERE ID = {id}";
+        Dictionary<string, object> info = new Dictionary<string, object>();
+
+        try
+        {
+            using (var connection = _connector.CreateDbConnection())
+            using (var command = new MySqlCommand(query, (MySqlConnection)connection))
+            using (var reader = await command.ExecuteReaderAsync())
+            {
+                while (await reader.ReadAsync())
+                {
+                    for (int i = 0; i < reader.FieldCount; i++)
+                    {
+                        info[reader.GetName(i)] = reader.GetValue(i);
+                    }
+                }
+
+                return info;
+            }
+        }
+        catch (MySqlException ex)
+        {
+            Console.WriteLine(ex.Message);
+            throw;
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.Message);
+            throw;
         }
     }
 

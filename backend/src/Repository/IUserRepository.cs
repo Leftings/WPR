@@ -39,4 +39,5 @@ public interface IUserRepository
     Task<bool> UpdateCustomerAsync(int id, string email, string encryptedPassword);
     Task<(int StatusCode, string Message)> ChangeVehicleManagerInfo(ChangeVehicleManagerInfo request);
     Task<(int StatusCode, string Domain)> GetBusinessDomainByKvK(int kvk);
+    Task<Dictionary<string, object>> GetCustomerDetails(int id);
 }

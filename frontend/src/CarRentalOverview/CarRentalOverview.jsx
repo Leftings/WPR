@@ -10,7 +10,7 @@ const BACKEND_URL = import.meta.env.VITE_REACT_APP_BACKEND_URL ?? 'http://localh
 /**
  * CarRentalOverview is een component die alle gehuurde voertuigen toont voor de gebruiker.
  * Het ondersteunt het annuleren van een huur en het wijzigen van huurgegevens.
- * 
+ *
  * @component
  * @example
  * <CarRentalOverview />
@@ -23,19 +23,12 @@ function CarRentalOverview() {
     const navigate = useNavigate();
     var modal = document.getElementById("myModal");
 
-    /**
-     * @brief Cancelen van huur
-     * Functie voor het openen van de annuleermodus voor een geselecteerd voertuig.
-     * 
-     * @param {number} index - De index van het geselecteerde voertuig in de lijst.
-     */
     const cancellation = (index) => {
         modal.style.display = "block";
         let rental = rentals[index];
-
         setChosenRental(rental);
     };
-    
+
     const settingsError = (type) => {
         if (type === "cancel") {
             toast.error("Huurcontract is al van toepassing, annuleren is niet beschikbaar.");
@@ -43,23 +36,19 @@ function CarRentalOverview() {
         if (type === "change") {
             toast.error("Huurcontract is al van toepassing, wijzigingen zijn niet beschikbaar.");
         }
-    }
-    
-    /**
-     * Functie voor het sluiten van de annuleermodus.
-     */
+    };
+
     const closeCancellation = () => {
         modal.style.display = "none";
     };
 
     window.onclick = function(event) {
-        if (event.target == modal) {
+        if (event.target === modal) {
             modal.style.display = "none";
         }
     };
 
     const handleCancellation = async () => {
-
         try {
             const response = await fetch(`${BACKEND_URL}/api/Rental/CancelRental?rentalId=${chosenRental.id}&frameNr=${chosenRental.frameNrCar}`, {
                 method: 'DELETE',
@@ -77,23 +66,13 @@ function CarRentalOverview() {
         }
     };
 
-    /**
-     * Functie voor het navigeren naar de pagina voor het wijzigen van de huurgegevens.
-     * 
-     * @param {Object} rental - Het huurvoertuig waarvan de gegevens gewijzigd moeten worden.
-     */
     const handleWijziging = (rental) => {
-        console.log('Navigating with rental:', rental);  // Add this log to check rental data
+        console.log('Navigating with rental:', rental);
         navigate("/changeRental", { state: { rental } });
-    }
+    };
 
     useEffect(() => {
-        /**
-         * Functie voor het ophalen van huurgegevens van de server.
-         * De gegevens worden getoond in de lijst zodra ze zijn opgehaald.
-         */
         const fetchData = async () => {
-
             try {
                 let url = `${BACKEND_URL}/api/Rental/GetAllUserRentals`;
 
@@ -140,11 +119,6 @@ function CarRentalOverview() {
             });
     }, [navigate]);
 
-    /**
-     * Functie voor het annuleren van de huur van een voertuig.
-     * 
-     * Stuur een verzoek naar de server om de huur te annuleren en vernieuw de pagina bij succes.
-     */
     return (
         <>
             <GeneralHeader />
@@ -170,46 +144,49 @@ function CarRentalOverview() {
                 </div>
 
                 <div className="container">
-                    {error && <div className="error-message">{error}</div>} {/* Display error message */}
+                    {error && <div className="error-message">{error}</div>}
 
                     <div className="heads">
                         <div>Voertuig</div>
                         <div>Kenteken</div>
                         <div>Startdatum</div>
-                        <div>Eindatum</div>
+                        <div>Einddatum</div>
                         <div>Prijs</div>
                         <div>Status</div>
                         <div>Instellingen</div>
                     </div>
 
                     {rentals.length > 0 ? (
-                        rentals.map((rental, index) => (
-                            <div className="rows" key={index}>
-                                <div>{rental.carName}</div>
-                                <div>{rental.licensePlate}</div>
-                                <div>{rental.startDate}</div>
-                                <div>{rental.endDate}</div>
-                                <div>{`€${rental.price}`}</div>
-                                <div>{rental.status}</div>
-                                {currDate < new Date(rental.startDate) ? (
-                                    <div className="rental-config">
-                                        <button className="cta-button" onClick={() => cancellation(index)}>Annuleer</button>
-                                        <button className="cta-button" onClick={() => handleWijziging(rental)}>Wijzig</button>
-                                    </div>
-                                ) : (
-                                    <div className="rental-config">
-                                        <button className="cta-button-unavailable" onClick={() => settingsError("cancel")}>Annuleer</button>
-                                        <button className="cta-button-unavailable" onClick={() => settingsError("change")}>Wijzig</button>
-                                    </div>
-                                )}
-                            </div>
-                        ))
+                        rentals.map((rental, index) => {
+                            const isPastDate = new Date() > new Date(rental.endDate);
+                            return isPastDate ? null : (
+                                <div className="rows" key={index}>
+                                    <div>{rental.carName}</div>
+                                    <div>{rental.licensePlate}</div>
+                                    <div>{rental.startDate}</div>
+                                    <div>{rental.endDate}</div>
+                                    <div>{`€${rental.price}`}</div>
+                                    <div>{rental.status}</div>
+                                    {currDate < new Date(rental.startDate) ? (
+                                        <div className="rental-config">
+                                            <button className="cta-button" onClick={() => cancellation(index)}>Annuleer</button>
+                                            <button className="cta-button" onClick={() => handleWijziging(rental)}>Wijzig</button>
+                                        </div>
+                                    ) : (
+                                        <div className="rental-config">
+                                            <button className="cta-button-unavailable" onClick={() => settingsError("cancel")}>Annuleer</button>
+                                            <button className="cta-button-unavailable" onClick={() => settingsError("change")}>Wijzig</button>
+                                        </div>
+                                    )}
+                                </div>
+                            );
+                        })
                     ) : (
                         <div>Geen huur informatie gevonden</div>
                     )}
                 </div>
             </main>
-            <GeneralFooter/>
+            <GeneralFooter />
         </>
     );
 }

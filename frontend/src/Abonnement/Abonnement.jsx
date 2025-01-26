@@ -175,6 +175,7 @@ function AbonementUitlegPage() {
                                     <div className="subscription-info">
                                         <h2 className="subscription-type">{subscription.type || 'Onbekend'}</h2>
                                         <p className="subscription-description">{subscription.description || 'Geen beschrijving'}</p>
+                                        <h3 className="subscription-type">{'€ ' + subscription.price || 'Onbekend'}</h3>
                                         {isStaff && !isFrontOffice && (
                                             <button
                                                 onClick={() => handleDelete(subscription.id)}

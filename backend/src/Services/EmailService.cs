@@ -31,6 +31,31 @@ public class EmailService
             EnableSsl = true
         };
     }
+
+    public async Task Send(string toEmail, string subject, string body)
+    {
+        try
+        {
+            using (var smtpClient = CreateSmtpClient())
+            using (var mailMessage = new MailMessage
+            {
+                From = new MailAddress(_envConfig.Get("SMTP_FROM_EMAIL")),
+                Subject = subject,
+                Body = body,
+                IsBodyHtml = true
+            })
+            {
+
+                mailMessage.To.Add(toEmail);
+                await smtpClient.SendMailAsync(mailMessage);
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.Message);
+            throw;
+        }
+    }
     
     public async Task SendWelcomeEmail(string toEmail)
     {     

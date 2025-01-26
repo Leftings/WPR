@@ -958,11 +958,11 @@ public class EmployeeRepository : IEmployeeRepository
     /// <param name="date"></param>
     /// <param name="contract"></param>
     /// <returns></returns>
-    public async Task<(bool status, string message)> AddIntakeAsync(string damage, int frameNrVehicle, string reviewedBy, DateTime date, int contract)
+    public async Task<(bool status, string message)> AddIntakeAsync(string damage, int frameNrVehicle, string reviewedBy, DateTime date, int contract, bool isDamaged)
     {
         try
         {
-            string query = "INSERT INTO Intake (Damage, FrameNrVehicle, ReviewedBy, Date, Contract) VALUES (@D, @F, @R, @DT, @C)";
+            string query = "INSERT INTO Intake (Damage, FrameNrVehicle, ReviewedBy, Date, Contract, IsDamaged) VALUES (@D, @F, @R, @DT, @C, @isD)";
 
             // Er wordt een connectie met de DataBase gemaakt met de bovenstaande query
             using (var connection = _connector.CreateDbConnection())
@@ -974,6 +974,7 @@ public class EmployeeRepository : IEmployeeRepository
                 command.Parameters.AddWithValue("@R", reviewedBy);
                 command.Parameters.AddWithValue("@DT", date);
                 command.Parameters.AddWithValue("@C", contract);
+                command.Parameters.AddWithValue("@isD", isDamaged);
 
                 if (await command.ExecuteNonQueryAsync() > 0)
                 {

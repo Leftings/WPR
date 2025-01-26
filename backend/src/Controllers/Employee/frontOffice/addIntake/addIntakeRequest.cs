@@ -10,4 +10,5 @@ public class AddIntakeRequest
     public string? ReviewedBy { get; set; }
     public DateTime Date { get; set; }
     public int Contract { get; set; }
+    public bool IsDamaged { get; set; }
 }
