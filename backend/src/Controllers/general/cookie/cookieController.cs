@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.Mvc;
 using WPR.Database;
 using System;
 using WPR.Repository;
-using MySqlX.XDevAPI.Common;
 using WPR.Cryption;
 
 /// <summary>

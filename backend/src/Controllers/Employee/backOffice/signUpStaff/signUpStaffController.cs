@@ -1,7 +1,6 @@
 using WPR.Repository;
 using WPR.Utils;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.VisualBasic;
 
 namespace WPR.Controllers.Employee.BackOffice.signUpStaff;
 
@@ -52,7 +51,6 @@ public class SignUpStaffController : ControllerBase
             return BadRequest(new { message = "Email allready in use"});
         }
 
-        //var addStaff = await addStaffTask;
         var addStaff = await _userRepository.AddStaff(signUpRequest);
         if (addStaff.status)
         {
