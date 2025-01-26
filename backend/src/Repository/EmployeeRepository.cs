@@ -636,7 +636,7 @@ public class EmployeeRepository : IEmployeeRepository
                     // Er wordt gekeken of de query succesvol is uitgevoerd
                     if (command.ExecuteNonQuery() > 0)
                     {
-                        await _emailService.SendConfirmationEmailBusiness(request.ContactEmail, request.Subscription, request.Name, request.KvK, request.Domain, request.Adress);
+                        await _emailService.SendConfirmationEmailBusiness(request.ContactEmail, request.Name, request.KvK, request.Domain, request.Adress);
                         return (true, "Succesfull added business");
                     }
                     return (false, "Error occured adding business");
