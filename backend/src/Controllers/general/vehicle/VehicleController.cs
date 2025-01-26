@@ -296,7 +296,7 @@ public class VehicleController : ControllerBase
                 });
             }
                 
-            return Ok(new  { Message = data });
+            return Ok(new VehicleDataResponse { Message = data });
         }
         catch (Exception e)
         {

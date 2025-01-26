@@ -55,13 +55,14 @@ public class VehicleControllerTests
         var result = await _vehicleController.GetVehicleData(frameNr);
 
         // Assert
-        var okResult = Assert.IsType<OkObjectResult>(result);
-        var resultValue = okResult.Value;
-        var resultType = resultValue.GetType();
-        Assert.Equal(200, okResult.StatusCode);
+        var okResult = Assert.IsType<OkObjectResult>(result);  // Check the result is OkObjectResult
+        Assert.Equal(200, okResult.StatusCode);  // Ensure the status code is 200
+
+        var response = okResult.Value as VehicleDataResponse;  // Cast the response to the expected class
+        Assert.NotNull(response);  // Ensure the response is not null
+        Assert.Equal(vehicleData, response.Message);  // Ensure the 'Message' contains the expected vehicle data
     }
-
-
+    
     [Fact]
     public async Task GetVehicleData_ReturnsNotFound_WhenDataIsEmpty()
     {
