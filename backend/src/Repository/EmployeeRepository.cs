@@ -572,6 +572,7 @@ public class EmployeeRepository : IEmployeeRepository
                 query = "SELECT Domain FROM Business";
             }   
 
+            Console.WriteLine(query);
             using (var connection = _connector.CreateDbConnection())
             using (var command = new MySqlCommand(query, (MySqlConnection)connection))
             using (var reader = await command.ExecuteReaderAsync())
@@ -596,10 +597,12 @@ public class EmployeeRepository : IEmployeeRepository
         }
         catch (MySqlException ex)
         {
+            Console.WriteLine(ex.Message);
             return (false, ex.Message);
         }
         catch (Exception ex)
         {
+            Console.WriteLine(ex.Message);
             return (false, ex.Message);
         }
     }
