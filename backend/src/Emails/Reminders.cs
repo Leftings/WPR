@@ -13,9 +13,9 @@ namespace WPR.Email;
 public class Reminders : BackgroundService
 {
     private readonly IServiceProvider _serviceProvider;
-    private readonly Connector _connector;
+    private readonly IConnector _connector;
 
-    public Reminders(IServiceProvider serviceProvider, Connector connector)
+    public Reminders(IServiceProvider serviceProvider, IConnector connector)
     {
         _serviceProvider = serviceProvider ?? throw new ArgumentNullException(nameof(serviceProvider));
         _connector = connector ?? throw new ArgumentNullException(nameof(connector));
@@ -37,7 +37,7 @@ public class Reminders : BackgroundService
 
     private async Task<Dictionary<string, object>> GetCustomerInfo (int id, IServiceScope scope)
     {
-        var customer = scope.ServiceProvider.GetRequiredService<Customer>();
+        var customer = scope.ServiceProvider.GetRequiredService<ICustomerDetails>();
 
         await customer.SetDetailsAsync(id);
         
@@ -46,7 +46,7 @@ public class Reminders : BackgroundService
 
     private async Task<Dictionary<string, object>> GetContractInfo (int id, IServiceScope scope)
     {
-        var contract = scope.ServiceProvider.GetRequiredService<Contract>();
+        var contract = scope.ServiceProvider.GetRequiredService<IContractDetails>();
 
         await contract.SetDetailsAsync(id);
         
@@ -55,7 +55,7 @@ public class Reminders : BackgroundService
 
     private async Task<Dictionary<string, object>> GetVehicleInfo (int id, IServiceScope scope)
     {
-        var vehicle = scope.ServiceProvider.GetRequiredService<Vehicle>();
+        var vehicle = scope.ServiceProvider.GetRequiredService<IVehicleDetails>();
 
         await vehicle.SetDetailsAsync(id);
         
@@ -66,13 +66,26 @@ public class Reminders : BackgroundService
     {
         try
         {
-            var emailService = scope.ServiceProvider.GetRequiredService<EmailService>();
+            var emailService = scope.ServiceProvider.GetService<IEmailService>();
+
+            if (emailService == null)
+            {
+                throw new InvalidOperationException("IEmailService not found in service provider.");
+            }
+
             string query = $"UPDATE Contract SET SendEmail = 'Yes' WHERE OrderId = {orderId}";
 
             using (var connection = _connector.CreateDbConnection())
-            using (var command = new MySqlCommand(query, (MySqlConnection)connection))
+            using (var command = connection.CreateCommand())
             {
-                if (await command.ExecuteNonQueryAsync() > 0)
+                if (command == null)
+                {
+                    throw new InvalidOperationException("Failed to create a database command.");
+                }
+                
+                command.CommandText = query;
+
+                if (command.ExecuteNonQuery() > 0)
                 {
                     await emailService.Send(toEmail, subject, body);
                 }
@@ -90,16 +103,28 @@ public class Reminders : BackgroundService
         }
     }
 
-    private async Task<bool> ReminderContract24Hours()
+    public virtual async Task<bool> ReminderContract24Hours()
     {
         using (var scope = _serviceProvider.CreateScope())
         {
-            var customer = scope.ServiceProvider.GetRequiredService<Customer>();
-            var contract = scope.ServiceProvider.GetRequiredService<Contract>();
-            var vehicle = scope.ServiceProvider.GetRequiredService<Vehicle>();
+            var customer = scope.ServiceProvider.GetRequiredService<ICustomerDetails>();
+            var contract = scope.ServiceProvider.GetRequiredService<IContractDetails>();
+            var vehicle = scope.ServiceProvider.GetRequiredService<IVehicleDetails>();
             var contracts = scope.ServiceProvider.GetRequiredService<IContractRepository>();
 
+            if (customer == null || contract == null || vehicle == null || contracts == null)
+            {
+                Console.WriteLine("One or more required services are not available.");
+                return false; // Exit early if any service is not resolved
+            }
+
             IList<int> ids = await contracts.GetContractsSendEmailAsync();
+
+            if (ids == null || ids.Count == 0)
+            {
+                Console.WriteLine("No contracts are waiting for an email");
+                return false;
+            }
 
             foreach (int orderId in ids)
             {
@@ -111,10 +136,6 @@ public class Reminders : BackgroundService
                 customerDic = await GetCustomerInfo(Convert.ToInt32(contractDic["Customer"]), scope);
                 vehicleDic = await GetVehicleInfo(Convert.ToInt32(contractDic["FrameNrVehicle"]), scope);
 
-                foreach (var item in vehicleDic)
-                {
-                    Console.WriteLine(item.Key);
-                }
                 string email = CreateReminderContract(customerDic, contractDic, vehicleDic);
 
                 await SendEmail(email, "Herinnering Huren Voertuig", customerDic["Email"].ToString(), contractDic["OrderId"], scope);
@@ -137,7 +158,7 @@ public class Reminders : BackgroundService
                 Console.WriteLine($"Error in Reminders service: {ex.Message}");
             }
 
-            await Task.Delay(TimeSpan.FromMinutes(1), stoppingToken);
+            await Task.Delay(TimeSpan.FromSeconds(10), stoppingToken);
         }
     }
 }

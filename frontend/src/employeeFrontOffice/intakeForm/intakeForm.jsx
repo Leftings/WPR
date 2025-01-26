@@ -115,7 +115,14 @@ function IntakeForm() {
         let errors = EmptyFieldChecker(intakeData);
         
         if (damagePresent && (damageExplanation === "" || damageExplanation === null)) {
-            errors.push("Schadetoelichting niet ingevuld")
+            errors.push("Schadetoelichting niet ingevuld");
+        }
+
+        const currentDate = new Date(); // Get current date
+        const parsedEndDate = new Date(endDate); // Parse endDate
+
+        if (currentDate < parsedEndDate) {
+            errors.push("Huurcontract is nog van toepassing, kan inname niet verzenden.");
         }
 
         if (errors.length === 0) {

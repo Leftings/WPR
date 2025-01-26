@@ -7,15 +7,14 @@ namespace WPR.Repository;
 
 public class ContractRepository : IContractRepository
 {
-    private readonly Connector _connector;
-    public ContractRepository (Connector connector)
+    private readonly IConnector _connector;
+    public ContractRepository (IConnector connector)
     {
         _connector = connector ?? throw new ArgumentNullException(nameof(connector));
     }
     public async Task<IList<int>> GetContractsSendEmailAsync()
     {
         string query = $"SELECT OrderId FROM Contract WHERE (SendEmail = 'No' AND StartDate = '{DateTime.Today.AddDays(1):yyyy-MM-dd}')";
-        Console.WriteLine(query);
         try
         {
             using (var connection = _connector.CreateDbConnection())
@@ -27,7 +26,6 @@ public class ContractRepository : IContractRepository
                 while (await reader.ReadAsync())
                 {
                     int orderId = Convert.ToInt32(reader.GetValue(0));
-                    Console.WriteLine(orderId);
                     orders.Add(orderId);
                 }
 

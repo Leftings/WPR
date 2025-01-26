@@ -226,10 +226,10 @@ function SignUp() {
                         <input id = 'inputEmailBusiness' value={email} onChange={(e) => setEmail(e.target.value.toLowerCase())}></input>
     
                         <label htmlFor='inputPasswordBusiness1'>Wachtwoord</label>
-                        <input id = 'inputPasswordBusiness1' value={password1} onChange={(e) => setPassword1(e.target.value)}></input>
+                        <input id = 'inputPasswordBusiness1' type = 'password' value={password1} onChange={(e) => setPassword1(e.target.value)}></input>
     
                         <label htmlFor='inputPasswordBusiness2'>Herhaal Wachtwoord</label>
-                        <input id = 'inputPasswordBusiness2' value={password2} onChange={(e) => setPassword2(e.target.value)}></input>
+                        <input id = 'inputPasswordBusiness2' type = 'password' value={password2} onChange={(e) => setPassword2(e.target.value)}></input>
                         </>
                     ) :
                     (

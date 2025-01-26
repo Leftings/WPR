@@ -15,9 +15,9 @@ using WPR.Utils;
 public class AddBusinessController : ControllerBase
 {
     private readonly IEmployeeRepository _employeeRepository;
-    private readonly EmailService _emailService;
+    private readonly IEmailService _emailService;
 
-    public AddBusinessController (IEmployeeRepository employeeRepository, EmailService emailService)
+    public AddBusinessController (IEmployeeRepository employeeRepository, IEmailService emailService)
     {
         _employeeRepository = employeeRepository ?? throw new ArgumentNullException(nameof(employeeRepository));
         _emailService = emailService ?? throw new ArgumentNullException(nameof(emailService));

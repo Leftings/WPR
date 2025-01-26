@@ -4,7 +4,8 @@ using WPR.Repository;
 
 namespace WPR.Email;
 
-public class Vehicle : IDetails
+public interface IVehicleDetails : IDetails {}
+public class Vehicle : IVehicleDetails
 {
     private Dictionary<string, object> _details { get; set; }
     private readonly IVehicleRepository _vehicleRepository;

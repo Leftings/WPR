@@ -16,10 +16,10 @@ using WPR.Database;
 public class VehicleController : ControllerBase
 {
 
-    private readonly Connector _connector;
+    private readonly IConnector _connector;
     private readonly IVehicleRepository _vehicleRepository;
 
-    public VehicleController(Connector connector, IVehicleRepository vehicleRepository)
+    public VehicleController(IConnector connector, IVehicleRepository vehicleRepository)
     {
         _connector = connector ?? throw new ArgumentNullException(nameof(connector));
         _vehicleRepository = vehicleRepository ?? throw new ArgumentNullException(nameof(vehicleRepository));

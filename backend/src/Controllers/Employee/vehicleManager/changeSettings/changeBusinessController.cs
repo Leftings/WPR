@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using MySql.Data.MySqlClient;
 using WPR.Repository;
 using WPR.Repository.DatabaseCheckRepository;
 using WPR.Utils;
@@ -13,11 +14,13 @@ public class ChangeBusinessSettingsController : ControllerBase
     private readonly IEmployeeRepository _employeeRepository;
     private readonly IDatabaseCheckRepository _databaseCheckRepository;
 
-    public ChangeBusinessSettingsController(IUserRepository userRepository, IEmployeeRepository employeeRepository, IDatabaseCheckRepository databaseCheckRepository)
+    public ChangeBusinessSettingsController(IUserRepository userRepository, IEmployeeRepository employeeRepository,
+        IDatabaseCheckRepository databaseCheckRepository)
     {
         _userRepository = userRepository ?? throw new ArgumentNullException(nameof(userRepository));
         _employeeRepository = employeeRepository ?? throw new ArgumentNullException(nameof(employeeRepository));
-        _databaseCheckRepository = databaseCheckRepository ?? throw new ArgumentNullException(nameof(databaseCheckRepository));
+        _databaseCheckRepository =
+            databaseCheckRepository ?? throw new ArgumentNullException(nameof(databaseCheckRepository));
     }
 
     [HttpGet("GetBusinessInfo")]
@@ -25,42 +28,30 @@ public class ChangeBusinessSettingsController : ControllerBase
     {
         try
         {
+            Console.WriteLine($"Fetching KvK for VehicleManager ID: {id}");
             (int StatusCode, string Message, int KvK) kvkResponse = _employeeRepository.GetKvK(id);
 
             if (kvkResponse.StatusCode == 200)
             {
-                (bool Status, string Message, Dictionary<string, object> Data) businessInfo = _employeeRepository.GetBusinessInfo(kvkResponse.KvK);
+                Console.WriteLine($"KvK retrieved: {kvkResponse.KvK}");
+                (bool Status, string Message, Dictionary<string, object> Data) businessInfo =
+                    _employeeRepository.GetBusinessInfo(kvkResponse.KvK);
 
                 if (businessInfo.Status)
                 {
-                    (int StatusCode, string Message, Dictionary<string, object> Data) abonnementInfo = _employeeRepository.GetAbonnementType(Convert.ToInt32(businessInfo.Data["Abonnement"]));
-
-                    if (abonnementInfo.StatusCode == 200)
-                    {
-                        Dictionary<string, object> data = businessInfo.Data;
-
-                        foreach (var element in abonnementInfo.Data)
-                        {
-                            if (!data.ContainsKey(element.Key))
-                            {
-                                data[element.Key] = element.Value;
-                            }
-                        }
-
-                        return StatusCode(200, new { data });
-                    }
-                    return StatusCode(abonnementInfo.StatusCode, new { message = abonnementInfo.Message });
+                    return StatusCode(200, new { data = businessInfo.Data });
                 }
-                return BadRequest(new { message = businessInfo.Message });
+                else
+                {
+                    return BadRequest(new { message = businessInfo.Message });
+                }
             }
+
             return StatusCode(kvkResponse.StatusCode, kvkResponse.Message);
-        }
-        catch (OverflowException ex)
-        {
-            return StatusCode(500, new { message = ex.Message });
         }
         catch (Exception ex)
         {
+            Console.WriteLine($"Error: {ex.Message}");
             return StatusCode(500, new { message = ex.Message });
         }
     }
@@ -70,8 +61,9 @@ public class ChangeBusinessSettingsController : ControllerBase
     {
         if (request == null)
         {
-            return BadRequest("Body can not be null"); 
+            return BadRequest("Body cannot be null");
         }
+
         if (!string.IsNullOrEmpty(request.VehicleManagerInfo.Password))
         {
             (bool Valid, string Message) result = PasswordChecker.IsValidPassword(request.VehicleManagerInfo.Password);
@@ -80,12 +72,11 @@ public class ChangeBusinessSettingsController : ControllerBase
             {
                 return StatusCode(412, new { message = result.Message });
             }
-
         }
 
         (int StatusCode, string Message) updated = await _userRepository.ChangeBusinessInfo(request);
-        
-        return StatusCode(updated.StatusCode, new { message = updated.Message} );
+
+        return StatusCode(updated.StatusCode, new { message = updated.Message });
     }
 
     /// <summary>
@@ -93,7 +84,8 @@ public class ChangeBusinessSettingsController : ControllerBase
     /// </summary>
     /// <returns></returns>
     [HttpDelete("DeleteBusiness")]
-    public async Task<IActionResult> DeleteUserAsync([FromBody] DeleteBusinessRequest request) {
+    public async Task<IActionResult> DeleteUserAsync([FromBody] DeleteBusinessRequest request)
+    {
         var deleteResponse = _databaseCheckRepository.DeleteBusiness(request.KvK);
 
         if (deleteResponse.StatusCode == 200)
@@ -110,7 +102,8 @@ public class ChangeBusinessSettingsController : ControllerBase
     }
 
     [HttpDelete("DeleteVehicleManager")]
-    public async Task<IActionResult> DeleteVehicleAsync([FromBody] DeleteVehicleManagerRequest request) {
+    public async Task<IActionResult> DeleteVehicleAsync([FromBody] DeleteVehicleManagerRequest request)
+    {
         var deleteResponse = _databaseCheckRepository.DeleteVehicleManager(request.ID, request.KvK);
 
         if (deleteResponse.StatusCode == 200)
@@ -122,7 +115,7 @@ public class ChangeBusinessSettingsController : ControllerBase
                 Expires = DateTimeOffset.UtcNow.AddDays(-1)
             });
         }
-        
+
         return StatusCode(deleteResponse.StatusCode, new { message = deleteResponse.Message });
     }
 
@@ -135,7 +128,31 @@ public class ChangeBusinessSettingsController : ControllerBase
         {
             return StatusCode(200, new { message = "Geldige email" });
         }
-        return StatusCode(400, new { message = "Email is al ingebruik"} );
+
+        return StatusCode(400, new { message = "Email is al ingebruik" });
+    }
+
+    [HttpPut("ChangeVehicleManagerInfo")]
+    public async Task<IActionResult> ChangeVehicleManagerInfoAsync([FromBody] ChangeVehicleManagerInfo request)
+
+    {
+        if (request == null)
+        {
+            return BadRequest("Request body cannot be null.");
+        }
+
+        Console.WriteLine("ChangeVehicleManagerInfo endpoint hit.");
+
+        try
+        {
+            (int statusCode, string message) = await _userRepository.ChangeVehicleManagerInfo(request);
+
+            return StatusCode(statusCode, new { message });
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, new { message = ex.Message });
+        }
     }
 }
 
