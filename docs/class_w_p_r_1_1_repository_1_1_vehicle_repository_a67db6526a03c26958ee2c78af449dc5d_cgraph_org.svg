@@ -11,7 +11,7 @@
 <!-- Node1 -->
 <g id="Node000001" class="node">
 <title>Node1</title>
-<g id="a_Node000001"><a xlink:title=" ">
+<g id="a_Node000001"><a xlink:title="Verkrijgt alle huuraanvragen van een gebruiker, op basis van hun gedecodeerde userId vanuit de cookie...">
 <polygon fill="#999999" stroke="#666666" points="173.5,-82 0,-82 0,-50 173.5,-50 173.5,-82"/>
 <text text-anchor="start" x="8" y="-68.5" font-family="Helvetica,sans-Serif" font-size="10.00">WPR.Repository.VehicleRepository.</text>
 <text text-anchor="middle" x="86.75" y="-56.5" font-family="Helvetica,sans-Serif" font-size="10.00">GetAllUserRentals</text>
@@ -21,7 +21,7 @@
 <!-- Node2 -->
 <g id="Node000002" class="node">
 <title>Node2</title>
-<g id="a_Node000002"><a xlink:href="class_w_p_r_1_1_repository_1_1_vehicle_repository.html#af4c31712aa266cf049a33a54697cdc60" target="_top" xlink:title=" ">
+<g id="a_Node000002"><a xlink:href="class_w_p_r_1_1_repository_1_1_vehicle_repository.html#af4c31712aa266cf049a33a54697cdc60" target="_top" xlink:title="Probeert de gebruiker ID te decrypteren vanuit de cookie en retourneert het gedecodeerde resultaat.">
 <polygon fill="white" stroke="#666666" points="383,-132 209.5,-132 209.5,-100 383,-100 383,-132"/>
 <text text-anchor="start" x="217.5" y="-118.5" font-family="Helvetica,sans-Serif" font-size="10.00">WPR.Repository.VehicleRepository.</text>
 <text text-anchor="middle" x="296.25" y="-106.5" font-family="Helvetica,sans-Serif" font-size="10.00">DecryptCookie</text>
@@ -40,7 +40,7 @@
 <!-- Node3 -->
 <g id="Node000003" class="node">
 <title>Node3</title>
-<g id="a_Node000003"><a xlink:href="class_w_p_r_1_1_repository_1_1_vehicle_repository.html#ac966b529fb982058bba744e3f8a03501" target="_top" xlink:title=" ">
+<g id="a_Node000003"><a xlink:href="class_w_p_r_1_1_repository_1_1_vehicle_repository.html#ac966b529fb982058bba744e3f8a03501" target="_top" xlink:title="Haalt de merk en type van een voertuig op basis van het opgegeven frameNr.">
 <polygon fill="white" stroke="#666666" points="383,-82 209.5,-82 209.5,-50 383,-50 383,-82"/>
 <text text-anchor="start" x="217.5" y="-68.5" font-family="Helvetica,sans-Serif" font-size="10.00">WPR.Repository.VehicleRepository.</text>
 <text text-anchor="middle" x="296.25" y="-56.5" font-family="Helvetica,sans-Serif" font-size="10.00">GetVehicleNameAsync</text>
@@ -59,7 +59,7 @@
 <!-- Node4 -->
 <g id="Node000004" class="node">
 <title>Node4</title>
-<g id="a_Node000004"><a xlink:href="class_w_p_r_1_1_repository_1_1_vehicle_repository.html#a44c60ce7050a7813b4cfca5b8292ab4e" target="_top" xlink:title=" ">
+<g id="a_Node000004"><a xlink:href="class_w_p_r_1_1_repository_1_1_vehicle_repository.html#a44c60ce7050a7813b4cfca5b8292ab4e" target="_top" xlink:title="Haalt het kenteken van een voertuig op basis van het opgegeven frameNr.">
 <polygon fill="white" stroke="#666666" points="383,-32 209.5,-32 209.5,0 383,0 383,-32"/>
 <text text-anchor="start" x="217.5" y="-18.5" font-family="Helvetica,sans-Serif" font-size="10.00">WPR.Repository.VehicleRepository.</text>
 <text text-anchor="middle" x="296.25" y="-6.5" font-family="Helvetica,sans-Serif" font-size="10.00">GetVehiclePlateAsync</text>

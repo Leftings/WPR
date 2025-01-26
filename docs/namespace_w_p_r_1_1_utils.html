@@ -103,8 +103,7 @@ $(function(){initNavTree('namespace_w_p_r_1_1_utils.html',''); initResizable(tru
 
 <div class="header">
   <div class="summary">
-<a href="#nested-classes">Data Structuren</a> &#124;
-<a href="#func-members">Functies</a>  </div>
+<a href="#nested-classes">Data Structuren</a>  </div>
   <div class="headertitle"><div class="title">WPR.Utils Namespace Referentie</div></div>
 </div><!--header-->
 <div class="contents">
@@ -123,74 +122,12 @@ Data Structuren</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_w_p_r_1_1_utils_1_1_password_checker.html">PasswordChecker</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Password checker that makes use of Regex(Regular Expression checks)  <a href="class_w_p_r_1_1_utils_1_1_password_checker.html#details">Meer...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_w_p_r_1_1_utils_1_1_strong_password_maker.html">StrongPasswordMaker</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_w_p_r_1_1_utils_1_1_tel_checker.html">TelChecker</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checked om te kijken of het een correct telefoon nummer is.  <a href="class_w_p_r_1_1_utils_1_1_tel_checker.html#details">Meer...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
-Functies</h2></td></tr>
-<tr class="memitem:a17791ac96420c6753ba62c8137da2fb1" id="r_a17791ac96420c6753ba62c8137da2fb1"><td class="memItemLeft" align="right" valign="top">class&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a17791ac96420c6753ba62c8137da2fb1">StrongPasswordMaker</a> ()</td></tr>
-<tr class="separator:a17791ac96420c6753ba62c8137da2fb1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Documentatie van functies</h2>
-<a id="a17791ac96420c6753ba62c8137da2fb1" name="a17791ac96420c6753ba62c8137da2fb1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a17791ac96420c6753ba62c8137da2fb1">&#9670;&#160;</a></span>StrongPasswordMaker()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">class WPR.Utils.StrongPasswordMaker </td>
-          <td>(</td>
-          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="definition">De definitie bevindt zich op regel <a class="el" href="_strong_password_maker_8cs_source.html#l00003">3</a> in het bestand <a class="el" href="_strong_password_maker_8cs_source.html">StrongPasswordMaker.cs</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">    4</span>{</div>
-<div class="line"><span class="lineno">    5</span>    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keywordtype">string</span> lower = <span class="stringliteral">&quot;abcdefghijklmnopqrstuvwxyz&quot;</span>;</div>
-<div class="line"><span class="lineno">    6</span>    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keywordtype">string</span> upper = <span class="stringliteral">&quot;ABCDEFGHIJKLMNOPQRSTUVWXYZ&quot;</span>;</div>
-<div class="line"><span class="lineno">    7</span>    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keywordtype">string</span> digits = <span class="stringliteral">&quot;1234567890&quot;</span>;</div>
-<div class="line"><span class="lineno">    8</span>    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keywordtype">string</span> special = <span class="stringliteral">&quot;!@#$%^&amp;*()&lt;&gt;?/.,-=+_{}[]|`~&quot;</span>;</div>
-<div class="line"><span class="lineno">    9</span>    <span class="keyword">private</span> <span class="keyword">static</span> readonly <span class="keywordtype">string</span> allChars = <span class="stringliteral">&quot;abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!@#$%^&amp;*()&lt;&gt;?/.,-=+_{}[]|~&quot;</span>;</div>
-<div class="line"><span class="lineno">   10</span> </div>
-<div class="line"><span class="lineno">   11</span>    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keywordtype">string</span> CreatePassword()</div>
-<div class="line"><span class="lineno">   12</span>    {</div>
-<div class="line"><span class="lineno">   13</span>        Random random = <span class="keyword">new</span> Random();</div>
-<div class="line"><span class="lineno">   14</span> </div>
-<div class="line"><span class="lineno">   15</span>        <span class="keywordtype">char</span>[] password = <span class="keyword">new</span> <span class="keywordtype">char</span>[12];</div>
-<div class="line"><span class="lineno">   16</span>        password[0] = lower[random.Next(lower.Length)];</div>
-<div class="line"><span class="lineno">   17</span>        password[1] = upper[random.Next(upper.Length)];</div>
-<div class="line"><span class="lineno">   18</span>        password[2] = digits[random.Next(digits.Length)];</div>
-<div class="line"><span class="lineno">   19</span>        password[3] = special[random.Next(special.Length)];</div>
-<div class="line"><span class="lineno">   20</span> </div>
-<div class="line"><span class="lineno">   21</span>        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 4; i &lt; 12; i++)</div>
-<div class="line"><span class="lineno">   22</span>        {</div>
-<div class="line"><span class="lineno">   23</span>            password[i] = allChars[random.Next(allChars.Length)];</div>
-<div class="line"><span class="lineno">   24</span>        }</div>
-<div class="line"><span class="lineno">   25</span> </div>
-<div class="line"><span class="lineno">   26</span>        <span class="keywordflow">return</span> <span class="keyword">new</span> string(password.OrderBy(x =&gt; random.Next()).ToArray());</div>
-<div class="line"><span class="lineno">   27</span>    }</div>
-<div class="line"><span class="lineno">   28</span>}</div>
-</div><!-- fragment -->
-<p class="reference">Gebruikt <a class="el" href="_strong_password_maker_8cs_source.html#l00003">StrongPasswordMaker()</a>.</p>
-
-<p class="reference">Wordt aangeroepen door <a class="el" href="add_business_controller_8cs_source.html#l00068">WPR.Controllers.Customer.AddBusiness.AddBusinessController.BusinessAccepted()</a> en <a class="el" href="_strong_password_maker_8cs_source.html#l00003">StrongPasswordMaker()</a>.</p>
-<div class="dynheader">
-Hier is de call graaf voor deze functie:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="namespace_w_p_r_1_1_utils_a17791ac96420c6753ba62c8137da2fb1_cgraph.svg" width="195" height="78"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
-<div class="dynheader">
-Hier is de caller graaf voor deze functie:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="namespace_w_p_r_1_1_utils_a17791ac96420c6753ba62c8137da2fb1_icgraph.svg" width="483" height="86"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
-
-</div>
-</div>
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

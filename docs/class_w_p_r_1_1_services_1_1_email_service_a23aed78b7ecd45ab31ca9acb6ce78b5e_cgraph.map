@@ -1,7 +1,7 @@
 <map id="WPR.Services.EmailService.SendRentalConfirmMail" name="WPR.Services.EmailService.SendRentalConfirmMail">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,39,199,81"/>
-<area shape="rect" id="Node000002" href="$class_w_p_r_1_1_services_1_1_email_service.html#ae494002e0de59b64d18083d36162c657" title=" " alt="" coords="247,5,440,48"/>
+<area shape="rect" id="Node000001" title="Verstuurt een huurovereenkomst bevestigingsmail naar de opgegeven ontvanger." alt="" coords="5,39,199,81"/>
+<area shape="rect" id="Node000002" href="$class_w_p_r_1_1_services_1_1_email_service.html#ae494002e0de59b64d18083d36162c657" title="Bouwt de HTML&#45;inhoud voor een huurovereenkomst bevestigingsmail." alt="" coords="247,5,440,48"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="199,44,231,40,232,45,199,49"/>
-<area shape="rect" id="Node000003" href="$class_w_p_r_1_1_services_1_1_email_service.html#ab31b08101a79b7e7634ccb24fb771d33" title="Maak SMTP Client voor versturen emails." alt="" coords="247,72,440,115"/>
+<area shape="rect" id="Node000003" href="$class_w_p_r_1_1_services_1_1_email_service.html#ab31b08101a79b7e7634ccb24fb771d33" title="Creëert en retourneert een SMTP&#45;client met de benodigde instellingen." alt="" coords="247,72,440,115"/>
 <area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="199,71,232,75,231,80,199,76"/>
 </map>

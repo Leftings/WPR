@@ -120,7 +120,7 @@ Static Public Members</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Gedetailleerde Beschrijving</h2>
 <div class="textblock">
-<p class="definition">De definitie bevindt zich op regel <a class="el" href="_program_8cs_source.html#l00005">5</a> in het bestand <a class="el" href="_program_8cs_source.html">Program.cs</a>.</p>
+<p class="definition">De definitie bevindt zich op regel <a class="el" href="_program_8cs_source.html#l00003">3</a> in het bestand <a class="el" href="_program_8cs_source.html">Program.cs</a>.</p>
 </div><h2 class="groupheader">Documentatie van functie members</h2>
 <a id="af392a4477cf6bbb6174656a59193bcaf" name="af392a4477cf6bbb6174656a59193bcaf"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#af392a4477cf6bbb6174656a59193bcaf">&#9670;&#160;</a></span>Main()</h2>
@@ -145,21 +145,21 @@ Static Public Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">De definitie bevindt zich op regel <a class="el" href="_program_8cs_source.html#l00007">7</a> in het bestand <a class="el" href="_program_8cs_source.html">Program.cs</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">    8</span>    {</div>
+<p class="definition">De definitie bevindt zich op regel <a class="el" href="_program_8cs_source.html#l00005">5</a> in het bestand <a class="el" href="_program_8cs_source.html">Program.cs</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">    6</span>    {</div>
+<div class="line"><span class="lineno">    7</span> </div>
+<div class="line"><span class="lineno">    8</span>        var app = AppConfigure.ConfigureApplication(args);</div>
 <div class="line"><span class="lineno">    9</span> </div>
-<div class="line"><span class="lineno">   10</span>        var app = AppConfigure.ConfigureApplication(args);</div>
-<div class="line"><span class="lineno">   11</span> </div>
-<div class="line"><span class="lineno">   12</span>        <span class="keyword">using</span> (var scope = app.Services.CreateScope())</div>
-<div class="line"><span class="lineno">   13</span>        {</div>
-<div class="line"><span class="lineno">   14</span>            AppConfigure.InitDatabase(scope.ServiceProvider);</div>
-<div class="line"><span class="lineno">   15</span>            </div>
-<div class="line"><span class="lineno">   16</span>        }</div>
-<div class="line"><span class="lineno">   17</span> </div>
-<div class="line"><span class="lineno">   18</span>        app.Run();</div>
-<div class="line"><span class="lineno">   19</span>    }</div>
+<div class="line"><span class="lineno">   10</span>        <span class="keyword">using</span> (var scope = app.Services.CreateScope())</div>
+<div class="line"><span class="lineno">   11</span>        {</div>
+<div class="line"><span class="lineno">   12</span>            AppConfigure.InitDatabase(scope.ServiceProvider);</div>
+<div class="line"><span class="lineno">   13</span>            </div>
+<div class="line"><span class="lineno">   14</span>        }</div>
+<div class="line"><span class="lineno">   15</span> </div>
+<div class="line"><span class="lineno">   16</span>        app.Run();</div>
+<div class="line"><span class="lineno">   17</span>    }</div>
 </div><!-- fragment -->
-<p class="reference">Gebruikt <a class="el" href="_app_configure_8cs_source.html#l00051">WPR.AppConfigure.ConfigureApplication()</a> en <a class="el" href="_app_configure_8cs_source.html#l00026">WPR.AppConfigure.InitDatabase()</a>.</p>
+<p class="reference">Gebruikt <a class="el" href="_app_configure_8cs_source.html#l00046">WPR.AppConfigure.ConfigureApplication()</a> en <a class="el" href="_app_configure_8cs_source.html#l00021">WPR.AppConfigure.InitDatabase()</a>.</p>
 <div class="dynheader">
 Hier is de call graaf voor deze functie:</div>
 <div class="dyncontent">

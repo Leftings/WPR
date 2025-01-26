@@ -105,47 +105,50 @@ $(function(){initNavTree('_kvk_checker_8cs_source.html',''); initResizable(true)
   <div class="headertitle"><div class="title">KvkChecker.cs</div></div>
 </div><!--header-->
 <div class="contents">
-<a href="_kvk_checker_8cs.html">Ga naar de documentatie van dit bestand.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="keyword">using </span>System.Text.RegularExpressions;</div>
-<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="keyword">using </span><a class="code hl_namespace" href="namespace_w_p_r_1_1_repository.html">WPR.Repository</a>;</div>
-<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
-<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespace_w_p_r_1_1_utils.html">WPR.Utils</a>;</div>
-<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span> </div>
-<div class="foldopen" id="foldopen00006" data-start="{" data-end="};">
-<div class="line"><a id="l00006" name="l00006"></a><span class="lineno"><a class="line" href="class_w_p_r_1_1_utils_1_1_kvk_checker.html">    6</a></span><span class="keyword">public</span> <span class="keyword">class </span><a class="code hl_function" href="class_w_p_r_1_1_utils_1_1_kvk_checker.html#a615f7bc3551a179f7650703d613504fc">KvkChecker</a></div>
-<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span>{</div>
-<div class="line"><a id="l00008" name="l00008"></a><span class="lineno"><a class="line" href="class_w_p_r_1_1_utils_1_1_kvk_checker.html#a8ab80d821d0b0578f2fc1bec5bbd1011">    8</a></span>    <span class="keyword">private</span> readonly <a class="code hl_interface" href="interface_w_p_r_1_1_repository_1_1_i_user_repository.html">IUserRepository</a> <a class="code hl_variable" href="class_w_p_r_1_1_utils_1_1_kvk_checker.html#a8ab80d821d0b0578f2fc1bec5bbd1011">_userRepository</a>;</div>
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span> </div>
+<a href="_kvk_checker_8cs.html">Ga naar de documentatie van dit bestand.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="keyword">using </span><a class="code hl_namespace" href="namespace_w_p_r_1_1_repository.html">WPR.Repository</a>;</div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span> </div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespace_w_p_r_1_1_utils.html">WPR.Utils</a>;</div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span> </div>
+<div class="foldopen" id="foldopen00005" data-start="{" data-end="};">
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno"><a class="line" href="class_w_p_r_1_1_utils_1_1_kvk_checker.html">    5</a></span><span class="keyword">public</span> <span class="keyword">class </span><a class="code hl_function" href="class_w_p_r_1_1_utils_1_1_kvk_checker.html#a615f7bc3551a179f7650703d613504fc">KvkChecker</a></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span>{</div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno"><a class="line" href="class_w_p_r_1_1_utils_1_1_kvk_checker.html#a8ab80d821d0b0578f2fc1bec5bbd1011">    7</a></span>    <span class="keyword">private</span> readonly <a class="code hl_interface" href="interface_w_p_r_1_1_repository_1_1_i_user_repository.html">IUserRepository</a> <a class="code hl_variable" href="class_w_p_r_1_1_utils_1_1_kvk_checker.html#a8ab80d821d0b0578f2fc1bec5bbd1011">_userRepository</a>;</div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span> </div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span>    <span class="comment">// Constructor voor het initialiseren van de repository</span></div>
 <div class="foldopen" id="foldopen00010" data-start="{" data-end="}">
 <div class="line"><a id="l00010" name="l00010"></a><span class="lineno"><a class="line" href="class_w_p_r_1_1_utils_1_1_kvk_checker.html#a615f7bc3551a179f7650703d613504fc">   10</a></span>    <span class="keyword">public</span> <a class="code hl_function" href="class_w_p_r_1_1_utils_1_1_kvk_checker.html#a615f7bc3551a179f7650703d613504fc">KvkChecker</a>(<a class="code hl_interface" href="interface_w_p_r_1_1_repository_1_1_i_user_repository.html">IUserRepository</a> userRepository)</div>
 <div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span>    {</div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span>        <a class="code hl_variable" href="class_w_p_r_1_1_utils_1_1_kvk_checker.html#a8ab80d821d0b0578f2fc1bec5bbd1011">_userRepository</a> = userRepository;</div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span>        <a class="code hl_variable" href="class_w_p_r_1_1_utils_1_1_kvk_checker.html#a8ab80d821d0b0578f2fc1bec5bbd1011">_userRepository</a> = userRepository; <span class="comment">// Initialiseer de repository voor de gebruiker</span></div>
 <div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>    }</div>
 </div>
 <div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span> </div>
-<div class="foldopen" id="foldopen00015" data-start="{" data-end="}">
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno"><a class="line" href="class_w_p_r_1_1_utils_1_1_kvk_checker.html#a0a705c242e76b5f3055bf598bd532b3b">   15</a></span>    <span class="keyword">public</span> async Task&lt;(<span class="keywordtype">bool</span> isValid, <span class="keywordtype">string</span> errorMessage)&gt; <a class="code hl_function" href="class_w_p_r_1_1_utils_1_1_kvk_checker.html#a0a705c242e76b5f3055bf598bd532b3b">IsKvkNumberValid</a>(<span class="keywordtype">int</span>? kvkNumber)</div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>    {</div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>        <span class="keywordflow">if</span> (!kvkNumber.HasValue || kvkNumber.Value.ToString().Length != 8)</div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>        {</div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>            <span class="keywordflow">return</span> (<span class="keyword">false</span>, <span class="stringliteral">&quot;KVK number must be 8 digits&quot;</span>);</div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>        }</div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>        <span class="keywordtype">bool</span> inDatabase = await <a class="code hl_variable" href="class_w_p_r_1_1_utils_1_1_kvk_checker.html#a8ab80d821d0b0578f2fc1bec5bbd1011">_userRepository</a>.IsKvkNumberAsync(kvkNumber.Value);</div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>        <span class="keywordflow">if</span> (!inDatabase)</div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>        {</div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>            <span class="keywordflow">return</span> (<span class="keyword">false</span>, <span class="stringliteral">&quot;KVK number is not a valid KVK number&quot;</span>);</div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>        }</div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span> </div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>        <span class="keywordflow">return</span> (<span class="keyword">true</span>, <span class="keyword">null</span>);</div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>    }</div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>    <span class="comment">// Methode om te controleren of een KVK-nummer geldig is</span></div>
+<div class="foldopen" id="foldopen00016" data-start="{" data-end="}">
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno"><a class="line" href="class_w_p_r_1_1_utils_1_1_kvk_checker.html#a0a705c242e76b5f3055bf598bd532b3b">   16</a></span>    <span class="keyword">public</span> async Task&lt;(<span class="keywordtype">bool</span> isValid, <span class="keywordtype">string</span> errorMessage)&gt; <a class="code hl_function" href="class_w_p_r_1_1_utils_1_1_kvk_checker.html#a0a705c242e76b5f3055bf598bd532b3b">IsKvkNumberValid</a>(<span class="keywordtype">int</span>? kvkNumber)</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>    {</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>        <span class="comment">// Controleer of het KVK-nummer een waarde heeft en precies 8 cijfers bevat</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>        <span class="keywordflow">if</span> (!kvkNumber.HasValue || kvkNumber.Value.ToString().Length != 8)</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>        {</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>            <span class="keywordflow">return</span> (<span class="keyword">false</span>, <span class="stringliteral">&quot;KVK number must be 8 digits&quot;</span>); <span class="comment">// KVK-nummer is ongeldig als het niet 8 cijfers heeft</span></div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>        }</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span> </div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>        <span class="comment">// Controleer of het KVK-nummer in de database voorkomt</span></div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>        <span class="keywordtype">bool</span> inDatabase = await <a class="code hl_variable" href="class_w_p_r_1_1_utils_1_1_kvk_checker.html#a8ab80d821d0b0578f2fc1bec5bbd1011">_userRepository</a>.IsKvkNumberAsync(kvkNumber.Value);</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>        <span class="keywordflow">if</span> (!inDatabase)</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>        {</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>            <span class="keywordflow">return</span> (<span class="keyword">false</span>, <span class="stringliteral">&quot;KVK number is not a valid KVK number&quot;</span>); <span class="comment">// KVK-nummer is niet geldig als het niet in de database staat</span></div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>        }</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span> </div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>        <span class="keywordflow">return</span> (<span class="keyword">true</span>, <span class="keyword">null</span>); <span class="comment">// KVK-nummer is geldig, geen foutmelding</span></div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>    }</div>
 </div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>}</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>}</div>
 </div>
-<div class="ttc" id="aclass_w_p_r_1_1_utils_1_1_kvk_checker_html_a0a705c242e76b5f3055bf598bd532b3b"><div class="ttname"><a href="class_w_p_r_1_1_utils_1_1_kvk_checker.html#a0a705c242e76b5f3055bf598bd532b3b">WPR.Utils.KvkChecker.IsKvkNumberValid</a></div><div class="ttdeci">async Task&lt;(bool isValid, string errorMessage)&gt; IsKvkNumberValid(int? kvkNumber)</div><div class="ttdef"><b>Definitie</b> <a href="#l00015">KvkChecker.cs:15</a></div></div>
+<div class="ttc" id="aclass_w_p_r_1_1_utils_1_1_kvk_checker_html_a0a705c242e76b5f3055bf598bd532b3b"><div class="ttname"><a href="class_w_p_r_1_1_utils_1_1_kvk_checker.html#a0a705c242e76b5f3055bf598bd532b3b">WPR.Utils.KvkChecker.IsKvkNumberValid</a></div><div class="ttdeci">async Task&lt;(bool isValid, string errorMessage)&gt; IsKvkNumberValid(int? kvkNumber)</div><div class="ttdef"><b>Definitie</b> <a href="#l00016">KvkChecker.cs:16</a></div></div>
 <div class="ttc" id="aclass_w_p_r_1_1_utils_1_1_kvk_checker_html_a615f7bc3551a179f7650703d613504fc"><div class="ttname"><a href="class_w_p_r_1_1_utils_1_1_kvk_checker.html#a615f7bc3551a179f7650703d613504fc">WPR.Utils.KvkChecker.KvkChecker</a></div><div class="ttdeci">KvkChecker(IUserRepository userRepository)</div><div class="ttdef"><b>Definitie</b> <a href="#l00010">KvkChecker.cs:10</a></div></div>
-<div class="ttc" id="aclass_w_p_r_1_1_utils_1_1_kvk_checker_html_a8ab80d821d0b0578f2fc1bec5bbd1011"><div class="ttname"><a href="class_w_p_r_1_1_utils_1_1_kvk_checker.html#a8ab80d821d0b0578f2fc1bec5bbd1011">WPR.Utils.KvkChecker._userRepository</a></div><div class="ttdeci">readonly IUserRepository _userRepository</div><div class="ttdef"><b>Definitie</b> <a href="#l00008">KvkChecker.cs:8</a></div></div>
-<div class="ttc" id="ainterface_w_p_r_1_1_repository_1_1_i_user_repository_html"><div class="ttname"><a href="interface_w_p_r_1_1_repository_1_1_i_user_repository.html">WPR.Repository.IUserRepository</a></div><div class="ttdoc">Interface defining methods voor user gerelateerde database operaties, validatie, user management,...</div><div class="ttdef"><b>Definitie</b> <a href="_i_user_repository_8cs_source.html#l00016">IUserRepository.cs:17</a></div></div>
-<div class="ttc" id="anamespace_w_p_r_1_1_repository_html"><div class="ttname"><a href="namespace_w_p_r_1_1_repository.html">WPR.Repository</a></div><div class="ttdef"><b>Definitie</b> <a href="_back_office_repository_8cs_source.html#l00008">BackOfficeRepository.cs:8</a></div></div>
+<div class="ttc" id="aclass_w_p_r_1_1_utils_1_1_kvk_checker_html_a8ab80d821d0b0578f2fc1bec5bbd1011"><div class="ttname"><a href="class_w_p_r_1_1_utils_1_1_kvk_checker.html#a8ab80d821d0b0578f2fc1bec5bbd1011">WPR.Utils.KvkChecker._userRepository</a></div><div class="ttdeci">readonly IUserRepository _userRepository</div><div class="ttdef"><b>Definitie</b> <a href="#l00007">KvkChecker.cs:7</a></div></div>
+<div class="ttc" id="ainterface_w_p_r_1_1_repository_1_1_i_user_repository_html"><div class="ttname"><a href="interface_w_p_r_1_1_repository_1_1_i_user_repository.html">WPR.Repository.IUserRepository</a></div><div class="ttdoc">Interface defining methods voor user gerelateerde database operaties, validatie, user management,...</div><div class="ttdef"><b>Definitie</b> <a href="_i_user_repository_8cs_source.html#l00015">IUserRepository.cs:16</a></div></div>
+<div class="ttc" id="anamespace_w_p_r_1_1_repository_html"><div class="ttname"><a href="namespace_w_p_r_1_1_repository.html">WPR.Repository</a></div><div class="ttdef"><b>Definitie</b> <a href="_back_office_repository_8cs_source.html#l00004">BackOfficeRepository.cs:4</a></div></div>
 <div class="ttc" id="anamespace_w_p_r_1_1_utils_html"><div class="ttname"><a href="namespace_w_p_r_1_1_utils.html">WPR.Utils</a></div><div class="ttdef"><b>Definitie</b> <a href="_birthday_checker_8cs_source.html#l00001">BirthdayChecker.cs:1</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->

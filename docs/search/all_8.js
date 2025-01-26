@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['handledelete_0',['HandleDelete',['../class_w_p_r_1_1_repository_1_1_database_check_repository_1_1_database_check_repository.html#a5ef386a9041a706a2db64267c1689bc7',1,'WPR::Repository::DatabaseCheckRepository::DatabaseCheckRepository']]],
+  ['handledelete_0',['HandleDelete',['../class_database_check_repository.html#addc06aeee3647cec54202bc103212e2e',1,'DatabaseCheckRepository']]],
   ['hash_1',['Hash',['../class_w_p_r_1_1_hashing_1_1_hash.html',1,'WPR.Hashing.Hash'],['../class_w_p_r_1_1_hashing_1_1_hash.html#a5e083798081f2a97774dbbf4cdaa4101',1,'WPR.Hashing.Hash.Hash()']]],
   ['hash_2ecs_2',['hash.cs',['../hash_8cs.html',1,'']]],
   ['hirerequest_3',['HireRequest',['../class_w_p_r_1_1_controllers_1_1_employee_1_1_shared_1_1accept_hire_request_1_1_hire_request.html',1,'WPR::Controllers::Employee::Shared::acceptHireRequest']]],

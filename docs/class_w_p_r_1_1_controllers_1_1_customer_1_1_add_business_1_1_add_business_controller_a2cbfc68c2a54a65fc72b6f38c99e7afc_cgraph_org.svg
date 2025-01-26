@@ -11,7 +11,7 @@
 <!-- Node1 -->
 <g id="Node000001" class="node">
 <title>Node1</title>
-<g id="a_Node000001"><a xlink:title="Maakt een connectie met UserRepository en geeft het antwoord terug.">
+<g id="a_Node000001"><a xlink:title="Voegt een nieuw bedrijf toe op basis van het KVK&#45;nummer en stuurt een response terug.">
 <polygon fill="#999999" stroke="#666666" points="179.5,-44 0,-44 0,0 179.5,0 179.5,-44"/>
 <text text-anchor="start" x="8" y="-30.5" font-family="Helvetica,sans-Serif" font-size="10.00">WPR.Controllers.Customer.</text>
 <text text-anchor="start" x="8" y="-18.5" font-family="Helvetica,sans-Serif" font-size="10.00">AddBusiness.AddBusinessController.</text>

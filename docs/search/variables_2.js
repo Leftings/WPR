@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['disposedvalue_0',['disposedValue',['../class_w_p_r_1_1_controllers_1_1_general_1_1_cookie_1_1_session_handler.html#a3a02bf75d9d9828f8c7efce0fa8a99a5',1,'WPR::Controllers::General::Cookie::SessionHandler']]]
+  ['bool_0',['bool',['../class_w_p_r_1_1_utils_1_1_password_checker.html#a7100b28c8aff6a6fcc5d2e7f23a55810',1,'WPR::Utils::PasswordChecker']]]
 ];

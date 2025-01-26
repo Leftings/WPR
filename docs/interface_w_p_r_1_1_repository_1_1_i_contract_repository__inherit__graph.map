@@ -1,5 +1,5 @@
 <map id="WPR.Repository.IContractRepository" name="WPR.Repository.IContractRepository">
-<area shape="rect" id="Node000001" title=" " alt="" coords="13,5,223,112"/>
-<area shape="rect" id="Node000002" href="$class_w_p_r_1_1_repository_1_1_contract_repository.html" title=" " alt="" coords="5,160,231,272"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="121,127,121,160,116,160,116,127"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,5,215,112"/>
+<area shape="rect" id="Node000002" href="$class_contract_repository.html" title="Verantwoordelijk voor het ophalen van contractgerelateerde gegevens uit de database." alt="" coords="5,160,215,272"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="113,127,113,160,108,160,108,127"/>
 </map>

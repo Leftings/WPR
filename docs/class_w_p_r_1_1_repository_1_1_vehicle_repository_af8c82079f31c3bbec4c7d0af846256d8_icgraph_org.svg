@@ -11,7 +11,7 @@
 <!-- Node1 -->
 <g id="Node000001" class="node">
 <title>Node1</title>
-<g id="a_Node000001"><a xlink:title=" ">
+<g id="a_Node000001"><a xlink:title="Voegt een huurverzoek toe aan de database afhankelijk van het accounttype van de gebruiker (business ...">
 <polygon fill="#999999" stroke="#666666" points="383,-32 209.5,-32 209.5,0 383,0 383,-32"/>
 <text text-anchor="start" x="217.5" y="-18.5" font-family="Helvetica,sans-Serif" font-size="10.00">WPR.Repository.VehicleRepository.</text>
 <text text-anchor="middle" x="296.25" y="-6.5" font-family="Helvetica,sans-Serif" font-size="10.00">InsertRequest</text>
@@ -21,7 +21,7 @@
 <!-- Node2 -->
 <g id="Node000002" class="node">
 <title>Node2</title>
-<g id="a_Node000002"><a xlink:href="class_w_p_r_1_1_repository_1_1_vehicle_repository.html#a35a796e7cf96268b3fe824913616c411" target="_top" xlink:title=" ">
+<g id="a_Node000002"><a xlink:href="class_w_p_r_1_1_repository_1_1_vehicle_repository.html#a35a796e7cf96268b3fe824913616c411" target="_top" xlink:title="Verwerkt het huurverzoek door de gebruiker te valideren, het verzoek toe te voegen aan de database en...">
 <polygon fill="white" stroke="#666666" points="173.5,-32 0,-32 0,0 173.5,0 173.5,-32"/>
 <text text-anchor="start" x="8" y="-18.5" font-family="Helvetica,sans-Serif" font-size="10.00">WPR.Repository.VehicleRepository.</text>
 <text text-anchor="middle" x="86.75" y="-6.5" font-family="Helvetica,sans-Serif" font-size="10.00">HireVehicle</text>

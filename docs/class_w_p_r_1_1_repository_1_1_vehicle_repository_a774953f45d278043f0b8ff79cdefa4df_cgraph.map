@@ -1,5 +1,5 @@
 <map id="WPR.Repository.VehicleRepository.CancelRental" name="WPR.Repository.VehicleRepository.CancelRental">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,5,237,48"/>
-<area shape="rect" id="Node000002" href="$class_w_p_r_1_1_repository_1_1_vehicle_repository.html#af4c31712aa266cf049a33a54697cdc60" title=" " alt="" coords="285,5,516,48"/>
+<area shape="rect" id="Node000001" title="Annuleert een bestaande huur op basis van de opgegeven rentalId en userCookie." alt="" coords="5,5,237,48"/>
+<area shape="rect" id="Node000002" href="$class_w_p_r_1_1_repository_1_1_vehicle_repository.html#af4c31712aa266cf049a33a54697cdc60" title="Probeert de gebruiker ID te decrypteren vanuit de cookie en retourneert het gedecodeerde resultaat." alt="" coords="285,5,516,48"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="237,24,269,24,269,29,237,29"/>
 </map>

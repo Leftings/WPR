@@ -124,10 +124,13 @@ Public Members</h2></td></tr>
 <tr class="memitem:ad1c6547fe8eb9f11c29ebcd0b2753f1b" id="r_ad1c6547fe8eb9f11c29ebcd0b2753f1b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad1c6547fe8eb9f11c29ebcd0b2753f1b">viewRentalDataController</a> (<a class="el" href="interface_w_p_r_1_1_repository_1_1_i_back_office_repository.html">IBackOfficeRepository</a> backOfficeRepository)</td></tr>
 <tr class="separator:ad1c6547fe8eb9f11c29ebcd0b2753f1b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a660044328702ac591bc571900c70b677" id="r_a660044328702ac591bc571900c70b677"><td class="memItemLeft" align="right" valign="top">async Task&lt; IActionResult &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a660044328702ac591bc571900c70b677">GetReview</a> (int id)</td></tr>
+<tr class="memdesc:a660044328702ac591bc571900c70b677"><td class="mdescLeft">&#160;</td><td class="mdescRight">Haalt de review data op voor een specifiek ID.  <br /></td></tr>
 <tr class="separator:a660044328702ac591bc571900c70b677"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6317e30e30a0e89df1daa62247c32fb7" id="r_a6317e30e30a0e89df1daa62247c32fb7"><td class="memItemLeft" align="right" valign="top">async Task&lt; IActionResult &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6317e30e30a0e89df1daa62247c32fb7">GetDataReviewIds</a> ()</td></tr>
+<tr class="memdesc:a6317e30e30a0e89df1daa62247c32fb7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Haalt de review ID's op.  <br /></td></tr>
 <tr class="separator:a6317e30e30a0e89df1daa62247c32fb7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5cae24e703f601c1988a3e40f9d33b4c" id="r_a5cae24e703f601c1988a3e40f9d33b4c"><td class="memItemLeft" align="right" valign="top">async Task&lt; IActionResult &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5cae24e703f601c1988a3e40f9d33b4c">GetFullReview</a> (int id)</td></tr>
+<tr class="memdesc:a5cae24e703f601c1988a3e40f9d33b4c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Haalt gedetailleerde review data op voor een specifiek ID.  <br /></td></tr>
 <tr class="separator:a5cae24e703f601c1988a3e40f9d33b4c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
@@ -162,10 +165,10 @@ Private Attributen</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">De definitie bevindt zich op regel <a class="el" href="view_rental_data_controller_8cs_source.html#l00011">11</a> in het bestand <a class="el" href="view_rental_data_controller_8cs_source.html">viewRentalDataController.cs</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   12</span>    {</div>
-<div class="line"><span class="lineno">   13</span>        _backOfficeRepository = backOfficeRepository ?? <span class="keywordflow">throw</span> <span class="keyword">new</span> ArgumentNullException(nameof(backOfficeRepository));</div>
-<div class="line"><span class="lineno">   14</span>    }</div>
+<p class="definition">De definitie bevindt zich op regel <a class="el" href="view_rental_data_controller_8cs_source.html#l00013">13</a> in het bestand <a class="el" href="view_rental_data_controller_8cs_source.html">viewRentalDataController.cs</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   14</span>    {</div>
+<div class="line"><span class="lineno">   15</span>        _backOfficeRepository = backOfficeRepository ?? <span class="keywordflow">throw</span> <span class="keyword">new</span> ArgumentNullException(nameof(backOfficeRepository));</div>
+<div class="line"><span class="lineno">   16</span>    }</div>
 </div><!-- fragment -->
 <p class="reference">Gebruikt <a class="el" href="view_rental_data_controller_8cs_source.html#l00010">_backOfficeRepository</a>.</p>
 
@@ -195,16 +198,23 @@ Private Attributen</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">De definitie bevindt zich op regel <a class="el" href="view_rental_data_controller_8cs_source.html#l00029">29</a> in het bestand <a class="el" href="view_rental_data_controller_8cs_source.html">viewRentalDataController.cs</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   30</span>    {</div>
-<div class="line"><span class="lineno">   31</span>        (<span class="keywordtype">bool</span> Status, <span class="keywordtype">string</span> Message, <span class="keywordtype">int</span>[] Ids) response = _backOfficeRepository.GetDataReviewIds();</div>
-<div class="line"><span class="lineno">   32</span> </div>
-<div class="line"><span class="lineno">   33</span>        <span class="keywordflow">if</span> (response.Status)</div>
-<div class="line"><span class="lineno">   34</span>        {</div>
-<div class="line"><span class="lineno">   35</span>            <span class="keywordflow">return</span> Ok(<span class="keyword">new</span> { message = response.Ids});</div>
-<div class="line"><span class="lineno">   36</span>        }</div>
-<div class="line"><span class="lineno">   37</span>        <span class="keywordflow">return</span> BadRequest(<span class="keyword">new</span> { message = response.Message});</div>
-<div class="line"><span class="lineno">   38</span>    }</div>
+<p>Haalt de review ID's op. </p>
+<dl class="section return"><dt>Retourneert</dt><dd>De lijst van review ID's als het succesvol is, anders een foutmelding.</dd></dl>
+
+<p class="definition">De definitie bevindt zich op regel <a class="el" href="view_rental_data_controller_8cs_source.html#l00045">45</a> in het bestand <a class="el" href="view_rental_data_controller_8cs_source.html">viewRentalDataController.cs</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   46</span>    {</div>
+<div class="line"><span class="lineno">   47</span>        <span class="comment">// Haal de review ID&#39;s op uit de repository</span></div>
+<div class="line"><span class="lineno">   48</span>        (<span class="keywordtype">bool</span> Status, <span class="keywordtype">string</span> Message, <span class="keywordtype">int</span>[] Ids) response = _backOfficeRepository.GetDataReviewIds();</div>
+<div class="line"><span class="lineno">   49</span> </div>
+<div class="line"><span class="lineno">   50</span>        <span class="comment">// Als de status succesvol is, geef dan de ID&#39;s terug</span></div>
+<div class="line"><span class="lineno">   51</span>        <span class="keywordflow">if</span> (response.Status)</div>
+<div class="line"><span class="lineno">   52</span>        {</div>
+<div class="line"><span class="lineno">   53</span>            <span class="keywordflow">return</span> Ok(<span class="keyword">new</span> { message = response.Ids });</div>
+<div class="line"><span class="lineno">   54</span>        }</div>
+<div class="line"><span class="lineno">   55</span>        </div>
+<div class="line"><span class="lineno">   56</span>        <span class="comment">// Als er een fout optreedt, geef dan een foutmelding terug</span></div>
+<div class="line"><span class="lineno">   57</span>        <span class="keywordflow">return</span> BadRequest(<span class="keyword">new</span> { message = response.Message });</div>
+<div class="line"><span class="lineno">   58</span>    }</div>
 </div><!-- fragment -->
 <p class="reference">Gebruikt <a class="el" href="view_rental_data_controller_8cs_source.html#l00010">_backOfficeRepository</a>.</p>
 
@@ -233,27 +243,29 @@ Private Attributen</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">De definitie bevindt zich op regel <a class="el" href="view_rental_data_controller_8cs_source.html#l00041">41</a> in het bestand <a class="el" href="view_rental_data_controller_8cs_source.html">viewRentalDataController.cs</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   42</span>    {</div>
-<div class="line"><span class="lineno">   43</span>        <span class="keywordflow">try</span></div>
-<div class="line"><span class="lineno">   44</span>        {</div>
-<div class="line"><span class="lineno">   45</span>            (<span class="keywordtype">bool</span> Status, <span class="keywordtype">string</span> Message, Dictionary&lt;string, object&gt; Data) response = _backOfficeRepository.GetFullDataReview(<span class="keywordtype">id</span>);</div>
-<div class="line"><span class="lineno">   46</span> </div>
-<div class="line"><span class="lineno">   47</span>            <span class="keywordflow">if</span> (response.Status)</div>
-<div class="line"><span class="lineno">   48</span>            {</div>
-<div class="line"><span class="lineno">   49</span>                <span class="keywordflow">return</span> Ok(<span class="keyword">new</span> viewRentalDataResponse{ Message = response.Data });</div>
-<div class="line"><span class="lineno">   50</span>            }</div>
-<div class="line"><span class="lineno">   51</span>            <span class="keywordflow">return</span> BadRequest(<span class="keyword">new</span> viewRentalDataErrorResponse() { Status = <span class="keyword">false</span>, Message = response.Message });</div>
-<div class="line"><span class="lineno">   52</span>        }</div>
-<div class="line"><span class="lineno">   53</span>        <span class="keywordflow">catch</span> (Exception e)</div>
-<div class="line"><span class="lineno">   54</span>        {</div>
-<div class="line"><span class="lineno">   55</span>            <span class="keywordflow">return</span> BadRequest(<span class="keyword">new</span> viewRentalDataErrorResponse</div>
-<div class="line"><span class="lineno">   56</span>            {</div>
-<div class="line"><span class="lineno">   57</span>                Status = <span class="keyword">false</span>,</div>
-<div class="line"><span class="lineno">   58</span>                Message = e.Message</div>
-<div class="line"><span class="lineno">   59</span>            });</div>
-<div class="line"><span class="lineno">   60</span>        }</div>
-<div class="line"><span class="lineno">   61</span>    }</div>
+<p>Haalt gedetailleerde review data op voor een specifiek ID. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">id</td><td>Het ID van de review waarvoor gedetailleerde data opgehaald moet worden</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Retourneert</dt><dd>De gedetailleerde review data als het succesvol is, anders een foutmelding.</dd></dl>
+
+<p class="definition">De definitie bevindt zich op regel <a class="el" href="view_rental_data_controller_8cs_source.html#l00066">66</a> in het bestand <a class="el" href="view_rental_data_controller_8cs_source.html">viewRentalDataController.cs</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   67</span>    {</div>
+<div class="line"><span class="lineno">   68</span>        <span class="comment">// Haal de gedetailleerde review data op uit de repository</span></div>
+<div class="line"><span class="lineno">   69</span>        (<span class="keywordtype">bool</span> Status, <span class="keywordtype">string</span> Message, Dictionary&lt;string, object&gt; Data) response = _backOfficeRepository.GetFullDataReview(<span class="keywordtype">id</span>);</div>
+<div class="line"><span class="lineno">   70</span> </div>
+<div class="line"><span class="lineno">   71</span>        <span class="comment">// Als de status &#39;true&#39; is, geef dan de gedetailleerde data terug</span></div>
+<div class="line"><span class="lineno">   72</span>        <span class="keywordflow">if</span> (response.Status)</div>
+<div class="line"><span class="lineno">   73</span>        {</div>
+<div class="line"><span class="lineno">   74</span>            <span class="keywordflow">return</span> Ok(<span class="keyword">new</span> { message = response.Data });</div>
+<div class="line"><span class="lineno">   75</span>        }</div>
+<div class="line"><span class="lineno">   76</span>        </div>
+<div class="line"><span class="lineno">   77</span>        <span class="comment">// Als er een fout is, geef dan een foutmelding terug</span></div>
+<div class="line"><span class="lineno">   78</span>        <span class="keywordflow">return</span> BadRequest(<span class="keyword">new</span> { message = response.Message });</div>
+<div class="line"><span class="lineno">   79</span>    }</div>
 </div><!-- fragment -->
 <p class="reference">Gebruikt <a class="el" href="view_rental_data_controller_8cs_source.html#l00010">_backOfficeRepository</a>.</p>
 
@@ -282,16 +294,30 @@ Private Attributen</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">De definitie bevindt zich op regel <a class="el" href="view_rental_data_controller_8cs_source.html#l00017">17</a> in het bestand <a class="el" href="view_rental_data_controller_8cs_source.html">viewRentalDataController.cs</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   18</span>    {</div>
-<div class="line"><span class="lineno">   19</span>        (<span class="keywordtype">bool</span> Status, <span class="keywordtype">string</span> Message, Dictionary&lt;string, object&gt; Data) response = _backOfficeRepository.GetDataReview(<span class="keywordtype">id</span>);</div>
-<div class="line"><span class="lineno">   20</span> </div>
-<div class="line"><span class="lineno">   21</span>        <span class="keywordflow">if</span> (response.Status)</div>
-<div class="line"><span class="lineno">   22</span>        {</div>
-<div class="line"><span class="lineno">   23</span>            <span class="keywordflow">return</span> Ok(<span class="keyword">new</span> { message = response.Data });</div>
-<div class="line"><span class="lineno">   24</span>        }</div>
-<div class="line"><span class="lineno">   25</span>        <span class="keywordflow">return</span> BadRequest(<span class="keyword">new</span> { message = response.Message });</div>
-<div class="line"><span class="lineno">   26</span>    }</div>
+<p>Haalt de review data op voor een specifiek ID. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">id</td><td>Het ID van de review waarvoor data opgehaald moet worden</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Retourneert</dt><dd>Als het succesvol is, wordt de data teruggegeven, anders een foutmelding.</dd></dl>
+
+<p class="definition">De definitie bevindt zich op regel <a class="el" href="view_rental_data_controller_8cs_source.html#l00024">24</a> in het bestand <a class="el" href="view_rental_data_controller_8cs_source.html">viewRentalDataController.cs</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   25</span>    {</div>
+<div class="line"><span class="lineno">   26</span>        <span class="comment">// Haal de review data op uit de repository op basis van het ID</span></div>
+<div class="line"><span class="lineno">   27</span>        (<span class="keywordtype">bool</span> Status, <span class="keywordtype">string</span> Message, Dictionary&lt;string, object&gt; Data) response = _backOfficeRepository.GetDataReview(<span class="keywordtype">id</span>);</div>
+<div class="line"><span class="lineno">   28</span> </div>
+<div class="line"><span class="lineno">   29</span>        <span class="comment">// Controleer of de status van de response &#39;true&#39; is</span></div>
+<div class="line"><span class="lineno">   30</span>        <span class="keywordflow">if</span> (response.Status)</div>
+<div class="line"><span class="lineno">   31</span>        {</div>
+<div class="line"><span class="lineno">   32</span>            <span class="comment">// Als de status &#39;true&#39; is, retourneer de data in de response</span></div>
+<div class="line"><span class="lineno">   33</span>            <span class="keywordflow">return</span> Ok(<span class="keyword">new</span> { message = response.Data });</div>
+<div class="line"><span class="lineno">   34</span>        }</div>
+<div class="line"><span class="lineno">   35</span>        </div>
+<div class="line"><span class="lineno">   36</span>        <span class="comment">// Als de status &#39;false&#39; is, retourneer een foutmelding</span></div>
+<div class="line"><span class="lineno">   37</span>        <span class="keywordflow">return</span> BadRequest(<span class="keyword">new</span> { message = response.Message });</div>
+<div class="line"><span class="lineno">   38</span>    }</div>
 </div><!-- fragment -->
 <p class="reference">Gebruikt <a class="el" href="view_rental_data_controller_8cs_source.html#l00010">_backOfficeRepository</a>.</p>
 
@@ -320,7 +346,7 @@ Private Attributen</h2></td></tr>
 
 <p class="definition">De definitie bevindt zich op regel <a class="el" href="view_rental_data_controller_8cs_source.html#l00010">10</a> in het bestand <a class="el" href="view_rental_data_controller_8cs_source.html">viewRentalDataController.cs</a>.</p>
 
-<p class="reference">Wordt aangeroepen door <a class="el" href="view_rental_data_controller_8cs_source.html#l00029">GetDataReviewIds()</a>, <a class="el" href="view_rental_data_controller_8cs_source.html#l00041">GetFullReview()</a>, <a class="el" href="view_rental_data_controller_8cs_source.html#l00017">GetReview()</a> en <a class="el" href="view_rental_data_controller_8cs_source.html#l00011">viewRentalDataController()</a>.</p>
+<p class="reference">Wordt aangeroepen door <a class="el" href="view_rental_data_controller_8cs_source.html#l00045">GetDataReviewIds()</a>, <a class="el" href="view_rental_data_controller_8cs_source.html#l00066">GetFullReview()</a>, <a class="el" href="view_rental_data_controller_8cs_source.html#l00024">GetReview()</a> en <a class="el" href="view_rental_data_controller_8cs_source.html#l00013">viewRentalDataController()</a>.</p>
 
 </div>
 </div>

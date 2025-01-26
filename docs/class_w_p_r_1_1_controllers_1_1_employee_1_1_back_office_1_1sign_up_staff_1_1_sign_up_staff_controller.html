@@ -138,7 +138,7 @@ Private Attributen</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Gedetailleerde Beschrijving</h2>
 <div class="textblock"><p><a class="el" href="class_w_p_r_1_1_controllers_1_1_employee_1_1_back_office_1_1sign_up_staff_1_1_sign_up_staff_controller.html" title="SignUpStaffController zorgt ervoor dat er front-, backoffice en wagenparkbeheerders toegevoegd kunnen...">SignUpStaffController</a> zorgt ervoor dat er front-, backoffice en wagenparkbeheerders toegevoegd kunnen worden aan het systeem. </p>
 
-<p class="definition">De definitie bevindt zich op regel <a class="el" href="sign_up_staff_controller_8cs_source.html#l00013">13</a> in het bestand <a class="el" href="sign_up_staff_controller_8cs_source.html">signUpStaffController.cs</a>.</p>
+<p class="definition">De definitie bevindt zich op regel <a class="el" href="sign_up_staff_controller_8cs_source.html#l00012">12</a> in het bestand <a class="el" href="sign_up_staff_controller_8cs_source.html">signUpStaffController.cs</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentatie</h2>
 <a id="a17cbd6f407941973bd34bb02200a6313" name="a17cbd6f407941973bd34bb02200a6313"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a17cbd6f407941973bd34bb02200a6313">&#9670;&#160;</a></span>SignUpStaffController()</h2>
@@ -163,12 +163,12 @@ Private Attributen</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">De definitie bevindt zich op regel <a class="el" href="sign_up_staff_controller_8cs_source.html#l00017">17</a> in het bestand <a class="el" href="sign_up_staff_controller_8cs_source.html">signUpStaffController.cs</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   18</span>    {</div>
-<div class="line"><span class="lineno">   19</span>        _userRepository = userRepository ?? <span class="keywordflow">throw</span> <span class="keyword">new</span> ArgumentNullException(nameof(userRepository));</div>
-<div class="line"><span class="lineno">   20</span>    }</div>
+<p class="definition">De definitie bevindt zich op regel <a class="el" href="sign_up_staff_controller_8cs_source.html#l00016">16</a> in het bestand <a class="el" href="sign_up_staff_controller_8cs_source.html">signUpStaffController.cs</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   17</span>    {</div>
+<div class="line"><span class="lineno">   18</span>        _userRepository = userRepository ?? <span class="keywordflow">throw</span> <span class="keyword">new</span> ArgumentNullException(nameof(userRepository));</div>
+<div class="line"><span class="lineno">   19</span>    }</div>
 </div><!-- fragment -->
-<p class="reference">Gebruikt <a class="el" href="sign_up_staff_controller_8cs_source.html#l00015">_userRepository</a>.</p>
+<p class="reference">Gebruikt <a class="el" href="sign_up_staff_controller_8cs_source.html#l00014">_userRepository</a>.</p>
 
 </div>
 </div>
@@ -205,47 +205,46 @@ Private Attributen</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Retourneert</dt><dd></dd></dl>
 
-<p class="definition">De definitie bevindt zich op regel <a class="el" href="sign_up_staff_controller_8cs_source.html#l00030">30</a> in het bestand <a class="el" href="sign_up_staff_controller_8cs_source.html">signUpStaffController.cs</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   31</span>    {</div>
-<div class="line"><span class="lineno">   32</span>        <span class="comment">// Check of het emailadres al in gebruik is</span></div>
-<div class="line"><span class="lineno">   33</span>        var emailCheckTask = _userRepository.checkUsageEmailAsync(signUpRequest.Email);</div>
-<div class="line"><span class="lineno">   34</span>        <span class="comment">//var addStaffTask = _userRepository.AddStaff(personData);</span></div>
-<div class="line"><span class="lineno">   35</span> </div>
-<div class="line"><span class="lineno">   36</span>        <span class="comment">// Check of de email een geldige email is</span></div>
-<div class="line"><span class="lineno">   37</span>        <span class="keywordflow">if</span> (!EmailChecker.IsValidEmail(signUpRequest.Email))</div>
-<div class="line"><span class="lineno">   38</span>        {</div>
-<div class="line"><span class="lineno">   39</span>            <span class="keywordflow">return</span> BadRequest(<span class="keyword">new</span> { message = <span class="stringliteral">&quot;Invalid email format&quot;</span> });</div>
-<div class="line"><span class="lineno">   40</span>        }</div>
-<div class="line"><span class="lineno">   41</span> </div>
-<div class="line"><span class="lineno">   42</span>        <span class="comment">// Check is het wachtwoord bestaat uit 10 karakters, 1 hoofletter, 1 kleine letter, 1 cijfer en 1 speciaal karakter</span></div>
-<div class="line"><span class="lineno">   43</span>        (<span class="keywordtype">bool</span> status,<span class="keywordtype">string</span> message) statusPassword = PasswordChecker.IsValidPassword(signUpRequest.Password);</div>
-<div class="line"><span class="lineno">   44</span>        <span class="keywordflow">if</span> (!statusPassword.status)</div>
-<div class="line"><span class="lineno">   45</span>        {</div>
-<div class="line"><span class="lineno">   46</span>            <span class="keywordflow">return</span> BadRequest( <span class="keyword">new</span> { message = statusPassword.message });</div>
-<div class="line"><span class="lineno">   47</span>        }</div>
-<div class="line"><span class="lineno">   48</span> </div>
-<div class="line"><span class="lineno">   49</span>        var emailCheck = await emailCheckTask;</div>
-<div class="line"><span class="lineno">   50</span>        <span class="keywordflow">if</span> (emailCheck.status)</div>
-<div class="line"><span class="lineno">   51</span>        {</div>
-<div class="line"><span class="lineno">   52</span>            <span class="keywordflow">return</span> BadRequest(<span class="keyword">new</span> { message = <span class="stringliteral">&quot;Email allready in use&quot;</span>});</div>
-<div class="line"><span class="lineno">   53</span>        }</div>
-<div class="line"><span class="lineno">   54</span> </div>
-<div class="line"><span class="lineno">   55</span>        <span class="comment">//var addStaff = await addStaffTask;</span></div>
-<div class="line"><span class="lineno">   56</span>        var addStaff = await _userRepository.AddStaff(signUpRequest);</div>
-<div class="line"><span class="lineno">   57</span>        <span class="keywordflow">if</span> (addStaff.status)</div>
-<div class="line"><span class="lineno">   58</span>        {</div>
-<div class="line"><span class="lineno">   59</span>            <span class="keywordflow">return</span> Ok( <span class="keyword">new</span> { message = <span class="stringliteral">&quot;Data inserted&quot;</span>});</div>
-<div class="line"><span class="lineno">   60</span>        }</div>
-<div class="line"><span class="lineno">   61</span> </div>
-<div class="line"><span class="lineno">   62</span>        <span class="keywordflow">if</span> (addStaff.message.Equals(<span class="stringliteral">&quot;Cannot add or update a child row: a foreign key constraint fails (`WPR`.`VehicleManager`, CONSTRAINT `VehicleManager_ibfk_1` FOREIGN KEY (`Business`) REFERENCES `Business` (`KVK`))&quot;</span>))</div>
-<div class="line"><span class="lineno">   63</span>        {</div>
-<div class="line"><span class="lineno">   64</span>            <span class="keywordflow">return</span> BadRequest(<span class="keyword">new</span> { message = <span class="stringliteral">&quot;KvK nummer is niet geregistreerd&quot;</span>});</div>
-<div class="line"><span class="lineno">   65</span>        }</div>
-<div class="line"><span class="lineno">   66</span> </div>
-<div class="line"><span class="lineno">   67</span>        <span class="keywordflow">return</span> BadRequest(<span class="keyword">new</span> { messsage = addStaff.message });</div>
-<div class="line"><span class="lineno">   68</span>    }</div>
+<p class="definition">De definitie bevindt zich op regel <a class="el" href="sign_up_staff_controller_8cs_source.html#l00029">29</a> in het bestand <a class="el" href="sign_up_staff_controller_8cs_source.html">signUpStaffController.cs</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   30</span>    {</div>
+<div class="line"><span class="lineno">   31</span>        <span class="comment">// Check of het emailadres al in gebruik is</span></div>
+<div class="line"><span class="lineno">   32</span>        var emailCheckTask = _userRepository.checkUsageEmailAsync(signUpRequest.Email);</div>
+<div class="line"><span class="lineno">   33</span>        <span class="comment">//var addStaffTask = _userRepository.AddStaff(personData);</span></div>
+<div class="line"><span class="lineno">   34</span> </div>
+<div class="line"><span class="lineno">   35</span>        <span class="comment">// Check of de email een geldige email is</span></div>
+<div class="line"><span class="lineno">   36</span>        <span class="keywordflow">if</span> (!EmailChecker.IsValidEmail(signUpRequest.Email))</div>
+<div class="line"><span class="lineno">   37</span>        {</div>
+<div class="line"><span class="lineno">   38</span>            <span class="keywordflow">return</span> BadRequest(<span class="keyword">new</span> { message = <span class="stringliteral">&quot;Invalid email format&quot;</span> });</div>
+<div class="line"><span class="lineno">   39</span>        }</div>
+<div class="line"><span class="lineno">   40</span> </div>
+<div class="line"><span class="lineno">   41</span>        <span class="comment">// Check is het wachtwoord bestaat uit 10 karakters, 1 hoofletter, 1 kleine letter, 1 cijfer en 1 speciaal karakter</span></div>
+<div class="line"><span class="lineno">   42</span>        (<span class="keywordtype">bool</span> status,<span class="keywordtype">string</span> message) statusPassword = PasswordChecker.IsValidPassword(signUpRequest.Password);</div>
+<div class="line"><span class="lineno">   43</span>        <span class="keywordflow">if</span> (!statusPassword.status)</div>
+<div class="line"><span class="lineno">   44</span>        {</div>
+<div class="line"><span class="lineno">   45</span>            <span class="keywordflow">return</span> BadRequest( <span class="keyword">new</span> { message = statusPassword.message });</div>
+<div class="line"><span class="lineno">   46</span>        }</div>
+<div class="line"><span class="lineno">   47</span> </div>
+<div class="line"><span class="lineno">   48</span>        var emailCheck = await emailCheckTask;</div>
+<div class="line"><span class="lineno">   49</span>        <span class="keywordflow">if</span> (emailCheck.status)</div>
+<div class="line"><span class="lineno">   50</span>        {</div>
+<div class="line"><span class="lineno">   51</span>            <span class="keywordflow">return</span> BadRequest(<span class="keyword">new</span> { message = <span class="stringliteral">&quot;Email allready in use&quot;</span>});</div>
+<div class="line"><span class="lineno">   52</span>        }</div>
+<div class="line"><span class="lineno">   53</span> </div>
+<div class="line"><span class="lineno">   54</span>        var addStaff = await _userRepository.AddStaff(signUpRequest);</div>
+<div class="line"><span class="lineno">   55</span>        <span class="keywordflow">if</span> (addStaff.status)</div>
+<div class="line"><span class="lineno">   56</span>        {</div>
+<div class="line"><span class="lineno">   57</span>            <span class="keywordflow">return</span> Ok( <span class="keyword">new</span> { message = <span class="stringliteral">&quot;Data inserted&quot;</span>});</div>
+<div class="line"><span class="lineno">   58</span>        }</div>
+<div class="line"><span class="lineno">   59</span> </div>
+<div class="line"><span class="lineno">   60</span>        <span class="keywordflow">if</span> (addStaff.message.Equals(<span class="stringliteral">&quot;Cannot add or update a child row: a foreign key constraint fails (`WPR`.`VehicleManager`, CONSTRAINT `VehicleManager_ibfk_1` FOREIGN KEY (`Business`) REFERENCES `Business` (`KVK`))&quot;</span>))</div>
+<div class="line"><span class="lineno">   61</span>        {</div>
+<div class="line"><span class="lineno">   62</span>            <span class="keywordflow">return</span> BadRequest(<span class="keyword">new</span> { message = <span class="stringliteral">&quot;KvK nummer is niet geregistreerd&quot;</span>});</div>
+<div class="line"><span class="lineno">   63</span>        }</div>
+<div class="line"><span class="lineno">   64</span> </div>
+<div class="line"><span class="lineno">   65</span>        <span class="keywordflow">return</span> BadRequest(<span class="keyword">new</span> { messsage = addStaff.message });</div>
+<div class="line"><span class="lineno">   66</span>    }</div>
 </div><!-- fragment -->
-<p class="reference">Gebruikt <a class="el" href="sign_up_staff_controller_8cs_source.html#l00015">_userRepository</a>, <a class="el" href="_email_checker_8cs_source.html#l00010">WPR.Utils.EmailChecker.IsValidEmail()</a> en <a class="el" href="_password_checker_8cs_source.html#l00011">WPR.Utils.PasswordChecker.IsValidPassword()</a>.</p>
+<p class="reference">Gebruikt <a class="el" href="sign_up_staff_controller_8cs_source.html#l00014">_userRepository</a>, <a class="el" href="_email_checker_8cs_source.html#l00010">WPR.Utils.EmailChecker.IsValidEmail()</a> en <a class="el" href="_password_checker_8cs_source.html#l00011">WPR.Utils.PasswordChecker.IsValidPassword()</a>.</p>
 <div class="dynheader">
 Hier is de call graaf voor deze functie:</div>
 <div class="dyncontent">
@@ -275,9 +274,9 @@ Hier is de call graaf voor deze functie:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">De definitie bevindt zich op regel <a class="el" href="sign_up_staff_controller_8cs_source.html#l00015">15</a> in het bestand <a class="el" href="sign_up_staff_controller_8cs_source.html">signUpStaffController.cs</a>.</p>
+<p class="definition">De definitie bevindt zich op regel <a class="el" href="sign_up_staff_controller_8cs_source.html#l00014">14</a> in het bestand <a class="el" href="sign_up_staff_controller_8cs_source.html">signUpStaffController.cs</a>.</p>
 
-<p class="reference">Wordt aangeroepen door <a class="el" href="sign_up_staff_controller_8cs_source.html#l00030">SignUpStaff()</a> en <a class="el" href="sign_up_staff_controller_8cs_source.html#l00017">SignUpStaffController()</a>.</p>
+<p class="reference">Wordt aangeroepen door <a class="el" href="sign_up_staff_controller_8cs_source.html#l00029">SignUpStaff()</a> en <a class="el" href="sign_up_staff_controller_8cs_source.html#l00016">SignUpStaffController()</a>.</p>
 
 </div>
 </div>

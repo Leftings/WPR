@@ -22,7 +22,7 @@
 <!-- Node1 -->
 <g id="Node000001" class="node">
 <title>Node1</title>
-<g id="a_Node000001"><a xlink:title=" ">
+<g id="a_Node000001"><a xlink:title="De klasse Reminders draaid op de achtergrond om elke 24 uur herrinering mails van contracten te sture...">
 <polygon fill="#999999" stroke="none" points="140.25,-180 0,-180 0,0 140.25,0 140.25,-180"/>
 <text text-anchor="start" x="19.12" y="-166.5" font-family="Helvetica,sans-Serif" font-size="10.00">WPR.Email.Reminders</text>
 <text text-anchor="start" x="5.5" y="-150.5" font-family="Helvetica,sans-Serif" font-size="10.00">&#45;</text>

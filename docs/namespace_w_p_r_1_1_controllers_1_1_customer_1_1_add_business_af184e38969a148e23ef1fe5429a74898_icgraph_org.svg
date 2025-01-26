@@ -30,7 +30,7 @@
 <!-- Node2 -->
 <g id="Node000002" class="node">
 <title>Node2</title>
-<g id="a_Node000002"><a xlink:href="class_w_p_r_1_1_controllers_1_1_customer_1_1_add_business_1_1_add_business_controller.html#a2cbfc68c2a54a65fc72b6f38c99e7afc" target="_top" xlink:title="Maakt een connectie met UserRepository en geeft het antwoord terug.">
+<g id="a_Node000002"><a xlink:href="class_w_p_r_1_1_controllers_1_1_customer_1_1_add_business_1_1_add_business_controller.html#a2cbfc68c2a54a65fc72b6f38c99e7afc" target="_top" xlink:title="Voegt een nieuw bedrijf toe op basis van het KVK&#45;nummer en stuurt een response terug.">
 <polygon fill="white" stroke="#666666" points="182.5,-144 3,-144 3,-100 182.5,-100 182.5,-144"/>
 <text text-anchor="start" x="11" y="-130.5" font-family="Helvetica,sans-Serif" font-size="10.00">WPR.Controllers.Customer.</text>
 <text text-anchor="start" x="11" y="-118.5" font-family="Helvetica,sans-Serif" font-size="10.00">AddBusiness.AddBusinessController.</text>

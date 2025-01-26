@@ -1,5 +1,5 @@
 <map id="WPR.Controllers.Customer.AddBusiness.AddBusinessController" name="WPR.Controllers.Customer.AddBusiness.AddBusinessController">
-<area shape="rect" id="Node000001" title="Controller voor het verbinden van het aanmaken van bedrijven op basis van het KVK nummer." alt="" coords="120,432,345,624"/>
+<area shape="rect" id="Node000001" title="Controller voor het verbinden van het aanmaken van bedrijven op basis van het KVK nummer...." alt="" coords="120,432,345,624"/>
 <area shape="rect" id="Node000002" title=" " alt="" coords="5,152,102,221"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="68,235,87,299,116,367,156,431,152,434,111,369,82,301,63,236"/>
 <area shape="rect" id="Node000003" href="$interface_w_p_r_1_1_repository_1_1_i_employee_repository.html" title="Interface defining methods voor user gerelateerde database operaties, validatie, user management,..." alt="" coords="126,5,338,368"/>

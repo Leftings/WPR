@@ -6,10 +6,10 @@
 <area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="304,111,304,144,299,144,299,111"/>
 <area shape="rect" id="Node000006" href="$interface_w_p_r_1_1_email_1_1_i_vehicle_details.html" title=" " alt="" coords="419,144,589,213"/>
 <area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="381,98,452,142,449,146,378,103"/>
-<area shape="rect" id="Node000003" href="$class_w_p_r_1_1_email_1_1_contract.html" title=" " alt="" coords="24,261,165,395"/>
+<area shape="rect" id="Node000003" href="$class_w_p_r_1_1_email_1_1_contract.html" title="In de Contract klasse worden alle gegevens van een specifieke klant verzameld voor het aanmaken van e..." alt="" coords="24,261,165,395"/>
 <area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="97,229,97,262,92,262,92,229"/>
-<area shape="rect" id="Node000005" href="$class_w_p_r_1_1_email_1_1_customer.html" title=" " alt="" coords="231,261,372,395"/>
+<area shape="rect" id="Node000005" href="$class_w_p_r_1_1_email_1_1_customer.html" title="In de Customer klasse worden alle gegevens van een specifieke klant verzameld voor het aanmaken van e..." alt="" coords="231,261,372,395"/>
 <area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="304,229,304,262,299,262,299,229"/>
-<area shape="rect" id="Node000007" href="$class_w_p_r_1_1_email_1_1_vehicle.html" title=" " alt="" coords="436,261,572,395"/>
+<area shape="rect" id="Node000007" href="$class_w_p_r_1_1_email_1_1_vehicle.html" title="In de Vehicle klasse worden alle gegevens van een specifieke klant verzameld voor het aanmaken van ee..." alt="" coords="436,261,572,395"/>
 <area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="507,229,507,262,501,262,501,229"/>
 </map>

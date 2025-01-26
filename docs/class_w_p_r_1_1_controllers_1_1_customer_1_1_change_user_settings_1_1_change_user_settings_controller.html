@@ -147,7 +147,7 @@ Private Attributen</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Gedetailleerde Beschrijving</h2>
 <div class="textblock"><p><a class="el" href="class_w_p_r_1_1_controllers_1_1_customer_1_1_change_user_settings_1_1_change_user_settings_controller.html" title="ChangeUserSettingsController is de controller die aanvragen van buitenaf ontvangt en vervolgens gegev...">ChangeUserSettingsController</a> is de controller die aanvragen van buitenaf ontvangt en vervolgens gegevens uit de backend ophaald een terug geeft. </p>
 
-<p class="definition">De definitie bevindt zich op regel <a class="el" href="_customer_2change_settings_2change_user_settings_controller_8cs_source.html#l00017">17</a> in het bestand <a class="el" href="_customer_2change_settings_2change_user_settings_controller_8cs_source.html">changeUserSettingsController.cs</a>.</p>
+<p class="definition">De definitie bevindt zich op regel <a class="el" href="change_user_settings_controller_8cs_source.html#l00017">17</a> in het bestand <a class="el" href="change_user_settings_controller_8cs_source.html">changeUserSettingsController.cs</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentatie</h2>
 <a id="a183a227ed9718e7d87e192fa117e2fe6" name="a183a227ed9718e7d87e192fa117e2fe6"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a183a227ed9718e7d87e192fa117e2fe6">&#9670;&#160;</a></span>ChangeUserSettingsController()</h2>
@@ -186,7 +186,7 @@ Private Attributen</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">De definitie bevindt zich op regel <a class="el" href="_customer_2change_settings_2change_user_settings_controller_8cs_source.html#l00024">24</a> in het bestand <a class="el" href="_customer_2change_settings_2change_user_settings_controller_8cs_source.html">changeUserSettingsController.cs</a>.</p>
+<p class="definition">De definitie bevindt zich op regel <a class="el" href="change_user_settings_controller_8cs_source.html#l00024">24</a> in het bestand <a class="el" href="change_user_settings_controller_8cs_source.html">changeUserSettingsController.cs</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">   25</span>    {</div>
 <div class="line"><span class="lineno">   26</span>        _connector = connector ?? <span class="keywordflow">throw</span> <span class="keyword">new</span> ArgumentNullException(nameof(connector));</div>
 <div class="line"><span class="lineno">   27</span>        _userRepository = userRepository ?? <span class="keywordflow">throw</span> <span class="keyword">new</span> ArgumentNullException(nameof(userRepository));</div>
@@ -194,7 +194,7 @@ Private Attributen</h2></td></tr>
 <div class="line"><span class="lineno">   29</span>        _databaseCheckRepository = databaseCheckRepository ?? <span class="keywordflow">throw</span> <span class="keyword">new</span> ArgumentNullException(nameof(databaseCheckRepository));</div>
 <div class="line"><span class="lineno">   30</span>    }</div>
 </div><!-- fragment -->
-<p class="reference">Gebruikt <a class="el" href="_customer_2change_settings_2change_user_settings_controller_8cs_source.html#l00019">_connector</a>, <a class="el" href="_customer_2change_settings_2change_user_settings_controller_8cs_source.html#l00021">_crypt</a>, <a class="el" href="_customer_2change_settings_2change_user_settings_controller_8cs_source.html#l00022">_databaseCheckRepository</a> en <a class="el" href="_customer_2change_settings_2change_user_settings_controller_8cs_source.html#l00020">_userRepository</a>.</p>
+<p class="reference">Gebruikt <a class="el" href="change_user_settings_controller_8cs_source.html#l00019">_connector</a>, <a class="el" href="change_user_settings_controller_8cs_source.html#l00021">_crypt</a>, <a class="el" href="change_user_settings_controller_8cs_source.html#l00022">_databaseCheckRepository</a> en <a class="el" href="change_user_settings_controller_8cs_source.html#l00020">_userRepository</a>.</p>
 
 </div>
 </div>
@@ -231,7 +231,7 @@ Private Attributen</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Retourneert</dt><dd></dd></dl>
 
-<p class="definition">De definitie bevindt zich op regel <a class="el" href="_customer_2change_settings_2change_user_settings_controller_8cs_source.html#l00038">38</a> in het bestand <a class="el" href="_customer_2change_settings_2change_user_settings_controller_8cs_source.html">changeUserSettingsController.cs</a>.</p>
+<p class="definition">De definitie bevindt zich op regel <a class="el" href="change_user_settings_controller_8cs_source.html#l00038">38</a> in het bestand <a class="el" href="change_user_settings_controller_8cs_source.html">changeUserSettingsController.cs</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">   39</span>    {</div>
 <div class="line"><span class="lineno">   40</span>        <span class="keywordflow">if</span> (changeUserRequest == <span class="keyword">null</span>)</div>
 <div class="line"><span class="lineno">   41</span>        {</div>
@@ -256,13 +256,13 @@ Private Attributen</h2></td></tr>
 <div class="line"><span class="lineno">   60</span>        var updated = await _userRepository.EditUserInfoAsync(data);</div>
 <div class="line"><span class="lineno">   61</span>        <span class="keywordflow">if</span> (updated.status)</div>
 <div class="line"><span class="lineno">   62</span>        {</div>
-<div class="line"><span class="lineno">   63</span>            <span class="keywordflow">return</span> Ok( <span class="keyword">new</span> ChangeUserSettingsResponse {Message = <span class="stringliteral">&quot;Data Updated&quot;</span>});</div>
+<div class="line"><span class="lineno">   63</span>            <span class="keywordflow">return</span> Ok(<span class="keyword">new</span> {message = <span class="stringliteral">&quot;Data Updated&quot;</span>});</div>
 <div class="line"><span class="lineno">   64</span>        }</div>
 <div class="line"><span class="lineno">   65</span> </div>
-<div class="line"><span class="lineno">   66</span>        <span class="keywordflow">return</span> BadRequest(<span class="keyword">new</span> ChangeUserSettingsErrorResponse {Message = updated.message});</div>
+<div class="line"><span class="lineno">   66</span>        <span class="keywordflow">return</span> BadRequest(<span class="keyword">new</span> {updated.message});</div>
 <div class="line"><span class="lineno">   67</span>    }</div>
 </div><!-- fragment -->
-<p class="reference">Gebruikt <a class="el" href="_customer_2change_settings_2change_user_settings_controller_8cs_source.html#l00020">_userRepository</a>.</p>
+<p class="reference">Gebruikt <a class="el" href="change_user_settings_controller_8cs_source.html#l00020">_userRepository</a>.</p>
 
 </div>
 </div>
@@ -292,7 +292,7 @@ Private Attributen</h2></td></tr>
 <p>Gebruikers kunnen hun account, samen met hun gegevens, verwijderen uit het systeem. </p>
 <dl class="section return"><dt>Retourneert</dt><dd>Deleted account</dd></dl>
 
-<p class="definition">De definitie bevindt zich op regel <a class="el" href="_customer_2change_settings_2change_user_settings_controller_8cs_source.html#l00074">74</a> in het bestand <a class="el" href="_customer_2change_settings_2change_user_settings_controller_8cs_source.html">changeUserSettingsController.cs</a>.</p>
+<p class="definition">De definitie bevindt zich op regel <a class="el" href="change_user_settings_controller_8cs_source.html#l00074">74</a> in het bestand <a class="el" href="change_user_settings_controller_8cs_source.html">changeUserSettingsController.cs</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">   74</span>                                                       {</div>
 <div class="line"><span class="lineno">   75</span>        </div>
 <div class="line"><span class="lineno">   76</span>        <span class="keywordtype">string</span> loginCookie = HttpContext.Request.Cookies[<span class="stringliteral">&quot;LoginSession&quot;</span>];</div>
@@ -326,7 +326,7 @@ Private Attributen</h2></td></tr>
 <div class="line"><span class="lineno">  104</span>        }</div>
 <div class="line"><span class="lineno">  105</span>    }</div>
 </div><!-- fragment -->
-<p class="reference">Gebruikt <a class="el" href="_customer_2change_settings_2change_user_settings_controller_8cs_source.html#l00021">_crypt</a> en <a class="el" href="_customer_2change_settings_2change_user_settings_controller_8cs_source.html#l00022">_databaseCheckRepository</a>.</p>
+<p class="reference">Gebruikt <a class="el" href="change_user_settings_controller_8cs_source.html#l00021">_crypt</a> en <a class="el" href="change_user_settings_controller_8cs_source.html#l00022">_databaseCheckRepository</a>.</p>
 
 </div>
 </div>
@@ -351,9 +351,9 @@ Private Attributen</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">De definitie bevindt zich op regel <a class="el" href="_customer_2change_settings_2change_user_settings_controller_8cs_source.html#l00019">19</a> in het bestand <a class="el" href="_customer_2change_settings_2change_user_settings_controller_8cs_source.html">changeUserSettingsController.cs</a>.</p>
+<p class="definition">De definitie bevindt zich op regel <a class="el" href="change_user_settings_controller_8cs_source.html#l00019">19</a> in het bestand <a class="el" href="change_user_settings_controller_8cs_source.html">changeUserSettingsController.cs</a>.</p>
 
-<p class="reference">Wordt aangeroepen door <a class="el" href="_customer_2change_settings_2change_user_settings_controller_8cs_source.html#l00024">ChangeUserSettingsController()</a>.</p>
+<p class="reference">Wordt aangeroepen door <a class="el" href="change_user_settings_controller_8cs_source.html#l00024">ChangeUserSettingsController()</a>.</p>
 
 </div>
 </div>
@@ -377,9 +377,9 @@ Private Attributen</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">De definitie bevindt zich op regel <a class="el" href="_customer_2change_settings_2change_user_settings_controller_8cs_source.html#l00021">21</a> in het bestand <a class="el" href="_customer_2change_settings_2change_user_settings_controller_8cs_source.html">changeUserSettingsController.cs</a>.</p>
+<p class="definition">De definitie bevindt zich op regel <a class="el" href="change_user_settings_controller_8cs_source.html#l00021">21</a> in het bestand <a class="el" href="change_user_settings_controller_8cs_source.html">changeUserSettingsController.cs</a>.</p>
 
-<p class="reference">Wordt aangeroepen door <a class="el" href="_customer_2change_settings_2change_user_settings_controller_8cs_source.html#l00024">ChangeUserSettingsController()</a> en <a class="el" href="_customer_2change_settings_2change_user_settings_controller_8cs_source.html#l00074">DeleteUserAsync()</a>.</p>
+<p class="reference">Wordt aangeroepen door <a class="el" href="change_user_settings_controller_8cs_source.html#l00024">ChangeUserSettingsController()</a> en <a class="el" href="change_user_settings_controller_8cs_source.html#l00074">DeleteUserAsync()</a>.</p>
 
 </div>
 </div>
@@ -403,9 +403,9 @@ Private Attributen</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">De definitie bevindt zich op regel <a class="el" href="_customer_2change_settings_2change_user_settings_controller_8cs_source.html#l00022">22</a> in het bestand <a class="el" href="_customer_2change_settings_2change_user_settings_controller_8cs_source.html">changeUserSettingsController.cs</a>.</p>
+<p class="definition">De definitie bevindt zich op regel <a class="el" href="change_user_settings_controller_8cs_source.html#l00022">22</a> in het bestand <a class="el" href="change_user_settings_controller_8cs_source.html">changeUserSettingsController.cs</a>.</p>
 
-<p class="reference">Wordt aangeroepen door <a class="el" href="_customer_2change_settings_2change_user_settings_controller_8cs_source.html#l00024">ChangeUserSettingsController()</a> en <a class="el" href="_customer_2change_settings_2change_user_settings_controller_8cs_source.html#l00074">DeleteUserAsync()</a>.</p>
+<p class="reference">Wordt aangeroepen door <a class="el" href="change_user_settings_controller_8cs_source.html#l00024">ChangeUserSettingsController()</a> en <a class="el" href="change_user_settings_controller_8cs_source.html#l00074">DeleteUserAsync()</a>.</p>
 
 </div>
 </div>
@@ -429,14 +429,14 @@ Private Attributen</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">De definitie bevindt zich op regel <a class="el" href="_customer_2change_settings_2change_user_settings_controller_8cs_source.html#l00020">20</a> in het bestand <a class="el" href="_customer_2change_settings_2change_user_settings_controller_8cs_source.html">changeUserSettingsController.cs</a>.</p>
+<p class="definition">De definitie bevindt zich op regel <a class="el" href="change_user_settings_controller_8cs_source.html#l00020">20</a> in het bestand <a class="el" href="change_user_settings_controller_8cs_source.html">changeUserSettingsController.cs</a>.</p>
 
-<p class="reference">Wordt aangeroepen door <a class="el" href="_customer_2change_settings_2change_user_settings_controller_8cs_source.html#l00038">ChangeUserInfoAsync()</a> en <a class="el" href="_customer_2change_settings_2change_user_settings_controller_8cs_source.html#l00024">ChangeUserSettingsController()</a>.</p>
+<p class="reference">Wordt aangeroepen door <a class="el" href="change_user_settings_controller_8cs_source.html#l00038">ChangeUserInfoAsync()</a> en <a class="el" href="change_user_settings_controller_8cs_source.html#l00024">ChangeUserSettingsController()</a>.</p>
 
 </div>
 </div>
 <hr/>De documentatie voor deze klasse is gegenereerd op basis van het volgende bestand:<ul>
-<li>D:/codes/WPR8/WPR/backend/src/Controllers/Customer/changeSettings/<a class="el" href="_customer_2change_settings_2change_user_settings_controller_8cs_source.html">changeUserSettingsController.cs</a></li>
+<li>D:/codes/WPR8/WPR/backend/src/Controllers/customer/changeSettings/<a class="el" href="change_user_settings_controller_8cs_source.html">changeUserSettingsController.cs</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->

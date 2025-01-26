@@ -36,7 +36,7 @@
 <!-- Node3 -->
 <g id="Node000003" class="node">
 <title>Node3</title>
-<g id="a_Node000003"><a xlink:href="class_w_p_r_1_1_email_1_1_customer.html" target="_top" xlink:title=" ">
+<g id="a_Node000003"><a xlink:href="class_w_p_r_1_1_email_1_1_customer.html" target="_top" xlink:title="In de Customer klasse worden alle gegevens van een specifieke klant verzameld voor het aanmaken van e...">
 <polygon fill="white" stroke="none" points="122.38,-100 16.88,-100 16.88,0 122.38,0 122.38,-100"/>
 <text text-anchor="start" x="20.88" y="-86.5" font-family="Helvetica,sans-Serif" font-size="10.00">WPR.Email.Customer</text>
 <text text-anchor="start" x="22.69" y="-70.5" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>

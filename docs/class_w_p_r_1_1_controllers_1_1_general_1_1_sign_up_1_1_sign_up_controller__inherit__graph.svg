@@ -22,7 +22,7 @@
 <!-- Node1 -->
 <g id="Node000001" class="node">
 <title>Node1</title>
-<g id="a_Node000001"><a xlink:title="SignUpController zorgt ervoor dat persoonlijke en zakelijke accounts aangemaakt kunnen worden.">
+<g id="a_Node000001"><a xlink:title="De SignUpController beheert het aanmaken van zowel persoonlijke als zakelijke accounts....">
 <polygon fill="#999999" stroke="none" points="122,-96 0,-96 0,0 122,0 122,-96"/>
 <text text-anchor="start" x="4" y="-82.5" font-family="Helvetica,sans-Serif" font-size="10.00">WPR.Controllers.General.</text>
 <text text-anchor="start" x="6.25" y="-70.5" font-family="Helvetica,sans-Serif" font-size="10.00">SignUp.SignUpController</text>

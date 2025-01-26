@@ -127,7 +127,7 @@ Static Public Members</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Gedetailleerde Beschrijving</h2>
 <div class="textblock"><p>Deze class is responsible voor het configureren van de application services en database connectie Het heeft methodes om de database te initializeren en het configureren van de web applicatie. </p>
 
-<p class="definition">De definitie bevindt zich op regel <a class="el" href="_app_configure_8cs_source.html#l00024">24</a> in het bestand <a class="el" href="_app_configure_8cs_source.html">AppConfigure.cs</a>.</p>
+<p class="definition">De definitie bevindt zich op regel <a class="el" href="_app_configure_8cs_source.html#l00019">19</a> in het bestand <a class="el" href="_app_configure_8cs_source.html">AppConfigure.cs</a>.</p>
 </div><h2 class="groupheader">Documentatie van functie members</h2>
 <a id="a77a92db2b597250930168694b79931d7" name="a77a92db2b597250930168694b79931d7"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a77a92db2b597250930168694b79931d7">&#9670;&#160;</a></span>ConfigureApplication()</h2>
@@ -161,162 +161,146 @@ Static Public Members</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Retourneert</dt><dd>De geconfigureerde WebApplication instantie.</dd></dl>
 
-<p class="definition">De definitie bevindt zich op regel <a class="el" href="_app_configure_8cs_source.html#l00051">51</a> in het bestand <a class="el" href="_app_configure_8cs_source.html">AppConfigure.cs</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   52</span>    {</div>
-<div class="line"><span class="lineno">   53</span>    var builder = WebApplication.CreateBuilder(args);</div>
-<div class="line"><span class="lineno">   54</span> </div>
-<div class="line"><span class="lineno">   55</span>    var environment = Environment.GetEnvironmentVariable(<span class="stringliteral">&quot;ASPNETCORE_ENVIRONMENT&quot;</span>) ?? <span class="stringliteral">&quot;development&quot;</span>;</div>
-<div class="line"><span class="lineno">   56</span>    builder.Configuration.AddEnvironmentVariables();</div>
-<div class="line"><span class="lineno">   57</span> </div>
-<div class="line"><span class="lineno">   58</span>    <span class="keywordflow">if</span> (environment == <span class="stringliteral">&quot;development&quot;</span>)</div>
-<div class="line"><span class="lineno">   59</span>    {</div>
-<div class="line"><span class="lineno">   60</span>        builder.Configuration.AddJsonFile(<span class="stringliteral">&quot;.env&quot;</span>, optional: <span class="keyword">true</span>, reloadOnChange: <span class="keyword">true</span>);</div>
-<div class="line"><span class="lineno">   61</span>    }</div>
-<div class="line"><span class="lineno">   62</span>    <span class="keywordflow">else</span> <span class="keywordflow">if</span> (environment == <span class="stringliteral">&quot;Production&quot;</span>)</div>
+<p class="definition">De definitie bevindt zich op regel <a class="el" href="_app_configure_8cs_source.html#l00046">46</a> in het bestand <a class="el" href="_app_configure_8cs_source.html">AppConfigure.cs</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   47</span>    {</div>
+<div class="line"><span class="lineno">   48</span>    var builder = WebApplication.CreateBuilder(args);</div>
+<div class="line"><span class="lineno">   49</span> </div>
+<div class="line"><span class="lineno">   50</span>    var environment = Environment.GetEnvironmentVariable(<span class="stringliteral">&quot;ASPNETCORE_ENVIRONMENT&quot;</span>) ?? <span class="stringliteral">&quot;development&quot;</span>;</div>
+<div class="line"><span class="lineno">   51</span>    builder.Configuration.AddEnvironmentVariables();</div>
+<div class="line"><span class="lineno">   52</span> </div>
+<div class="line"><span class="lineno">   53</span>    <span class="keywordflow">if</span> (environment == <span class="stringliteral">&quot;development&quot;</span>)</div>
+<div class="line"><span class="lineno">   54</span>    {</div>
+<div class="line"><span class="lineno">   55</span>        builder.Configuration.AddJsonFile(<span class="stringliteral">&quot;.env&quot;</span>, optional: <span class="keyword">true</span>, reloadOnChange: <span class="keyword">true</span>);</div>
+<div class="line"><span class="lineno">   56</span>    }</div>
+<div class="line"><span class="lineno">   57</span>    <span class="keywordflow">else</span> <span class="keywordflow">if</span> (environment == <span class="stringliteral">&quot;Production&quot;</span>)</div>
+<div class="line"><span class="lineno">   58</span>    {</div>
+<div class="line"><span class="lineno">   59</span>        builder.Configuration.AddJsonFile(<span class="stringliteral">&quot;.env.deployment&quot;</span>, optional: <span class="keyword">true</span>, reloadOnChange: <span class="keyword">true</span>);</div>
+<div class="line"><span class="lineno">   60</span>    }</div>
+<div class="line"><span class="lineno">   61</span> </div>
+<div class="line"><span class="lineno">   62</span>    var cookiePolicyOptions = <span class="keyword">new</span> CookiePolicyOptions</div>
 <div class="line"><span class="lineno">   63</span>    {</div>
-<div class="line"><span class="lineno">   64</span>        builder.Configuration.AddJsonFile(<span class="stringliteral">&quot;.env.deployment&quot;</span>, optional: <span class="keyword">true</span>, reloadOnChange: <span class="keyword">true</span>);</div>
-<div class="line"><span class="lineno">   65</span>    }</div>
+<div class="line"><span class="lineno">   64</span>        MinimumSameSitePolicy = SameSiteMode.Strict</div>
+<div class="line"><span class="lineno">   65</span>    };</div>
 <div class="line"><span class="lineno">   66</span> </div>
-<div class="line"><span class="lineno">   67</span>    var cookiePolicyOptions = <span class="keyword">new</span> CookiePolicyOptions</div>
-<div class="line"><span class="lineno">   68</span>    {</div>
-<div class="line"><span class="lineno">   69</span>        MinimumSameSitePolicy = SameSiteMode.Strict</div>
-<div class="line"><span class="lineno">   70</span>    };</div>
-<div class="line"><span class="lineno">   71</span> </div>
-<div class="line"><span class="lineno">   72</span> </div>
-<div class="line"><span class="lineno">   73</span>    builder.Services.AddCors(options =&gt;</div>
-<div class="line"><span class="lineno">   74</span>    {</div>
-<div class="line"><span class="lineno">   75</span>        <span class="comment">/*options.AddPolicy(&quot;AllowLocalhost&quot;, policy =&gt;</span></div>
-<div class="line"><span class="lineno">   76</span><span class="comment">        {</span></div>
-<div class="line"><span class="lineno">   77</span><span class="comment">            policy.WithOrigins(&quot;http://localhost:5173&quot;, &quot;http://95.99.30.110:8080&quot;)  // Development URL</span></div>
-<div class="line"><span class="lineno">   78</span><span class="comment">                .AllowAnyHeader()</span></div>
-<div class="line"><span class="lineno">   79</span><span class="comment">                .AllowCredentials()</span></div>
-<div class="line"><span class="lineno">   80</span><span class="comment">                .AllowAnyMethod();</span></div>
-<div class="line"><span class="lineno">   81</span><span class="comment">        });</span></div>
-<div class="line"><span class="lineno">   82</span><span class="comment"></span> </div>
-<div class="line"><span class="lineno">   83</span><span class="comment">        options.AddPolicy(&quot;AllowProduction&quot;, policy =&gt;</span></div>
-<div class="line"><span class="lineno">   84</span><span class="comment">        {</span></div>
-<div class="line"><span class="lineno">   85</span><span class="comment">            policy.WithOrigins(&quot;http://carandall.nl&quot;, &quot;https://carandall.nl, http://localhost:5173&quot;, &quot;http://95.99.30.110:8080&quot;) // Production URL</span></div>
-<div class="line"><span class="lineno">   86</span><span class="comment">                .AllowAnyHeader()</span></div>
-<div class="line"><span class="lineno">   87</span><span class="comment">                .AllowCredentials()</span></div>
-<div class="line"><span class="lineno">   88</span><span class="comment">                .AllowAnyMethod();</span></div>
-<div class="line"><span class="lineno">   89</span><span class="comment">        });</span></div>
-<div class="line"><span class="lineno">   90</span><span class="comment">        */</span></div>
-<div class="line"><span class="lineno">   91</span> </div>
-<div class="line"><span class="lineno">   92</span>        options.AddPolicy(<span class="stringliteral">&quot;AllowSpecificOrigins&quot;</span>, policy =&gt;</div>
-<div class="line"><span class="lineno">   93</span>            policy.WithOrigins(<span class="stringliteral">&quot;http://95.99.30.110:8080&quot;</span>, <span class="stringliteral">&quot;http://localhost:5173&quot;</span>, <span class="stringliteral">&quot;http://www.carandall.nl:8080&quot;</span>)</div>
-<div class="line"><span class="lineno">   94</span>                .AllowAnyHeader()</div>
-<div class="line"><span class="lineno">   95</span>                .AllowAnyMethod()</div>
-<div class="line"><span class="lineno">   96</span>                .AllowCredentials()</div>
-<div class="line"><span class="lineno">   97</span>        );</div>
-<div class="line"><span class="lineno">   98</span>    });</div>
-<div class="line"><span class="lineno">   99</span> </div>
-<div class="line"><span class="lineno">  100</span>    var urls = Environment.GetEnvironmentVariable(<span class="stringliteral">&quot;ASPNETCORE_URLS&quot;</span>) ?? <span class="stringliteral">&quot;http://0.0.0.0:80&quot;</span>; <span class="comment">// Default to port 80 if not set</span></div>
-<div class="line"><span class="lineno">  101</span> </div>
-<div class="line"><span class="lineno">  102</span>    Uri uri;</div>
-<div class="line"><span class="lineno">  103</span>    <span class="keywordflow">try</span></div>
-<div class="line"><span class="lineno">  104</span>    {</div>
-<div class="line"><span class="lineno">  105</span>        uri = <span class="keyword">new</span> Uri(urls);</div>
-<div class="line"><span class="lineno">  106</span>    }</div>
-<div class="line"><span class="lineno">  107</span>    <span class="keywordflow">catch</span> (UriFormatException ex)</div>
-<div class="line"><span class="lineno">  108</span>    {</div>
-<div class="line"><span class="lineno">  109</span>        Console.WriteLine($<span class="stringliteral">&quot;Invalid ASPNETCORE_URLS format: {urls}. Using default URL http://0.0.0.0:80&quot;</span>);</div>
-<div class="line"><span class="lineno">  110</span>        uri = <span class="keyword">new</span> Uri(<span class="stringliteral">&quot;http://0.0.0.0:80&quot;</span>);</div>
-<div class="line"><span class="lineno">  111</span>    }</div>
-<div class="line"><span class="lineno">  112</span> </div>
-<div class="line"><span class="lineno">  113</span>    builder.WebHost.ConfigureKestrel(options =&gt;</div>
-<div class="line"><span class="lineno">  114</span>    {</div>
-<div class="line"><span class="lineno">  115</span>        <span class="comment">// Ensure IP address is valid before binding</span></div>
-<div class="line"><span class="lineno">  116</span>        <span class="keywordflow">if</span> (uri.Host == <span class="stringliteral">&quot;0.0.0.0&quot;</span> )</div>
-<div class="line"><span class="lineno">  117</span>        {</div>
-<div class="line"><span class="lineno">  118</span>            options.Listen(IPAddress.Any, 5000);  </div>
-<div class="line"><span class="lineno">  119</span>        }</div>
-<div class="line"><span class="lineno">  120</span>        <span class="keywordflow">else</span></div>
-<div class="line"><span class="lineno">  121</span>        {</div>
-<div class="line"><span class="lineno">  122</span>            <span class="keywordflow">try</span></div>
-<div class="line"><span class="lineno">  123</span>            {</div>
-<div class="line"><span class="lineno">  124</span>                options.Listen(IPAddress.Parse(uri.Host), uri.Port); </div>
-<div class="line"><span class="lineno">  125</span>            }</div>
-<div class="line"><span class="lineno">  126</span>            <span class="keywordflow">catch</span> (FormatException ex)</div>
-<div class="line"><span class="lineno">  127</span>            {</div>
-<div class="line"><span class="lineno">  128</span>                Console.WriteLine($<span class="stringliteral">&quot;Invalid IP address specified: {uri.Host}. Using default binding to all IPs.&quot;</span>);</div>
-<div class="line"><span class="lineno">  129</span>                options.Listen(IPAddress.Any, uri.Port);  </div>
-<div class="line"><span class="lineno">  130</span>            }</div>
-<div class="line"><span class="lineno">  131</span>        }</div>
-<div class="line"><span class="lineno">  132</span>    });</div>
-<div class="line"><span class="lineno">  133</span>    </div>
-<div class="line"><span class="lineno">  134</span>    <span class="comment">// Register services for Dependency Injection</span></div>
-<div class="line"><span class="lineno">  135</span>    builder.Services.AddSingleton&lt;EnvConfig&gt;(); <span class="comment">// Singleton for environment configuration</span></div>
-<div class="line"><span class="lineno">  136</span>    builder.Services.AddTransient&lt;IConnector, Connector&gt;(); <span class="comment">// Transient for database connection.</span></div>
-<div class="line"><span class="lineno">  137</span>    builder.Services.AddScoped&lt;VehicleRepository&gt;();</div>
-<div class="line"><span class="lineno">  138</span>    builder.Services.AddScoped&lt;IUserRepository, UserRepository&gt;(); <span class="comment">// Scoped for user repository</span></div>
-<div class="line"><span class="lineno">  139</span>    builder.Services.AddScoped&lt;IVehicleRepository, VehicleRepository&gt;(); <span class="comment">// Scoped for Vehicle Repository</span></div>
-<div class="line"><span class="lineno">  140</span>    builder.Services.AddScoped&lt;SessionHandler&gt;(); <span class="comment">// Scoped session handler</span></div>
-<div class="line"><span class="lineno">  141</span>    builder.Services.AddScoped&lt;Crypt&gt;();</div>
-<div class="line"><span class="lineno">  142</span>    builder.Services.AddScoped&lt;Hashing.Hash&gt;();</div>
-<div class="line"><span class="lineno">  143</span>    builder.Services.AddScoped&lt;EmailService&gt;();</div>
-<div class="line"><span class="lineno">  144</span>    builder.Services.AddScoped&lt;IEmailService, EmailService&gt;();</div>
-<div class="line"><span class="lineno">  145</span>    builder.Services.AddScoped&lt;IEmployeeRepository, EmployeeRepository&gt;();</div>
-<div class="line"><span class="lineno">  146</span>    builder.Services.AddScoped&lt;IBackOfficeRepository, BackOfficeRepository&gt;();</div>
-<div class="line"><span class="lineno">  147</span>    builder.Services.AddScoped&lt;IDatabaseCheckRepository, DatabaseCheckRepository&gt;();</div>
-<div class="line"><span class="lineno">  148</span>    builder.Services.AddScoped&lt;IContractRepository, ContractRepository&gt;();</div>
-<div class="line"><span class="lineno">  149</span> </div>
-<div class="line"><span class="lineno">  150</span>    builder.Services.AddSingleton&lt;IHostedService, Reminders&gt;(); <span class="comment">// Register Reminders as a singleton hosted service</span></div>
-<div class="line"><span class="lineno">  151</span> </div>
-<div class="line"><span class="lineno">  152</span>    <span class="comment">// Scoped dependencies</span></div>
-<div class="line"><span class="lineno">  153</span>    builder.Services.AddScoped&lt;EmailService&gt;();</div>
-<div class="line"><span class="lineno">  154</span>    builder.Services.AddScoped&lt;Customer&gt;();</div>
-<div class="line"><span class="lineno">  155</span>    builder.Services.AddScoped&lt;Vehicle&gt;();</div>
-<div class="line"><span class="lineno">  156</span>    builder.Services.AddScoped&lt;Contract&gt;();</div>
-<div class="line"><span class="lineno">  157</span>    builder.Services.AddScoped&lt;ICustomerDetails, Customer&gt;();</div>
-<div class="line"><span class="lineno">  158</span>    builder.Services.AddScoped&lt;IVehicleDetails, Vehicle&gt;();</div>
-<div class="line"><span class="lineno">  159</span>    builder.Services.AddScoped&lt;IContractDetails, Contract&gt;();</div>
-<div class="line"><span class="lineno">  160</span> </div>
-<div class="line"><span class="lineno">  161</span> </div>
-<div class="line"><span class="lineno">  162</span>    builder.Services.AddHostedService&lt;Reminders&gt;();</div>
+<div class="line"><span class="lineno">   67</span> </div>
+<div class="line"><span class="lineno">   68</span>    builder.Services.AddCors(options =&gt;</div>
+<div class="line"><span class="lineno">   69</span>    {</div>
+<div class="line"><span class="lineno">   70</span>        options.AddPolicy(<span class="stringliteral">&quot;AllowSpecificOrigins&quot;</span>, policy =&gt;</div>
+<div class="line"><span class="lineno">   71</span>            policy.WithOrigins(<span class="stringliteral">&quot;http://95.99.30.110:8080&quot;</span>, <span class="stringliteral">&quot;http://localhost:5173&quot;</span>, <span class="stringliteral">&quot;http://www.carandall.nl:8080&quot;</span>)</div>
+<div class="line"><span class="lineno">   72</span>                .AllowAnyHeader()</div>
+<div class="line"><span class="lineno">   73</span>                .AllowAnyMethod()</div>
+<div class="line"><span class="lineno">   74</span>                .AllowCredentials()</div>
+<div class="line"><span class="lineno">   75</span>        );</div>
+<div class="line"><span class="lineno">   76</span>    });</div>
+<div class="line"><span class="lineno">   77</span> </div>
+<div class="line"><span class="lineno">   78</span>    var urls = Environment.GetEnvironmentVariable(<span class="stringliteral">&quot;ASPNETCORE_URLS&quot;</span>) ?? <span class="stringliteral">&quot;http://0.0.0.0:80&quot;</span>; <span class="comment">// Default to port 80 if not set</span></div>
+<div class="line"><span class="lineno">   79</span> </div>
+<div class="line"><span class="lineno">   80</span>    Uri uri;</div>
+<div class="line"><span class="lineno">   81</span>    <span class="keywordflow">try</span></div>
+<div class="line"><span class="lineno">   82</span>    {</div>
+<div class="line"><span class="lineno">   83</span>        uri = <span class="keyword">new</span> Uri(urls);</div>
+<div class="line"><span class="lineno">   84</span>    }</div>
+<div class="line"><span class="lineno">   85</span>    <span class="keywordflow">catch</span> (UriFormatException ex)</div>
+<div class="line"><span class="lineno">   86</span>    {</div>
+<div class="line"><span class="lineno">   87</span>        Console.WriteLine($<span class="stringliteral">&quot;Invalid ASPNETCORE_URLS format: {urls}. Using default URL http://0.0.0.0:80&quot;</span>);</div>
+<div class="line"><span class="lineno">   88</span>        uri = <span class="keyword">new</span> Uri(<span class="stringliteral">&quot;http://0.0.0.0:80&quot;</span>);</div>
+<div class="line"><span class="lineno">   89</span>    }</div>
+<div class="line"><span class="lineno">   90</span> </div>
+<div class="line"><span class="lineno">   91</span>    builder.WebHost.ConfigureKestrel(options =&gt;</div>
+<div class="line"><span class="lineno">   92</span>    {</div>
+<div class="line"><span class="lineno">   93</span>        <span class="comment">// Ensure IP address is valid before binding</span></div>
+<div class="line"><span class="lineno">   94</span>        <span class="keywordflow">if</span> (uri.Host == <span class="stringliteral">&quot;0.0.0.0&quot;</span> )</div>
+<div class="line"><span class="lineno">   95</span>        {</div>
+<div class="line"><span class="lineno">   96</span>            options.Listen(IPAddress.Any, 5000);  </div>
+<div class="line"><span class="lineno">   97</span>        }</div>
+<div class="line"><span class="lineno">   98</span>        <span class="keywordflow">else</span></div>
+<div class="line"><span class="lineno">   99</span>        {</div>
+<div class="line"><span class="lineno">  100</span>            <span class="keywordflow">try</span></div>
+<div class="line"><span class="lineno">  101</span>            {</div>
+<div class="line"><span class="lineno">  102</span>                options.Listen(IPAddress.Parse(uri.Host), uri.Port); </div>
+<div class="line"><span class="lineno">  103</span>            }</div>
+<div class="line"><span class="lineno">  104</span>            <span class="keywordflow">catch</span> (FormatException ex)</div>
+<div class="line"><span class="lineno">  105</span>            {</div>
+<div class="line"><span class="lineno">  106</span>                Console.WriteLine($<span class="stringliteral">&quot;Invalid IP address specified: {uri.Host}. Using default binding to all IPs.&quot;</span>);</div>
+<div class="line"><span class="lineno">  107</span>                options.Listen(IPAddress.Any, uri.Port);  </div>
+<div class="line"><span class="lineno">  108</span>            }</div>
+<div class="line"><span class="lineno">  109</span>        }</div>
+<div class="line"><span class="lineno">  110</span>    });</div>
+<div class="line"><span class="lineno">  111</span>    </div>
+<div class="line"><span class="lineno">  112</span>    <span class="comment">// Register services for Dependency Injection</span></div>
+<div class="line"><span class="lineno">  113</span>    builder.Services.AddSingleton&lt;EnvConfig&gt;(); <span class="comment">// Singleton for environment configuration</span></div>
+<div class="line"><span class="lineno">  114</span>    builder.Services.AddTransient&lt;IConnector, Connector&gt;(); <span class="comment">// Transient for database connection.</span></div>
+<div class="line"><span class="lineno">  115</span>    builder.Services.AddScoped&lt;VehicleRepository&gt;();</div>
+<div class="line"><span class="lineno">  116</span>    builder.Services.AddScoped&lt;IUserRepository, UserRepository&gt;(); <span class="comment">// Scoped for user repository</span></div>
+<div class="line"><span class="lineno">  117</span>    builder.Services.AddScoped&lt;IVehicleRepository, VehicleRepository&gt;(); <span class="comment">// Scoped for Vehicle Repository</span></div>
+<div class="line"><span class="lineno">  118</span>    builder.Services.AddScoped&lt;SessionHandler&gt;(); <span class="comment">// Scoped session handler</span></div>
+<div class="line"><span class="lineno">  119</span>    builder.Services.AddScoped&lt;Crypt&gt;();</div>
+<div class="line"><span class="lineno">  120</span>    builder.Services.AddScoped&lt;Hashing.Hash&gt;();</div>
+<div class="line"><span class="lineno">  121</span>    builder.Services.AddScoped&lt;EmailService&gt;();</div>
+<div class="line"><span class="lineno">  122</span>    builder.Services.AddScoped&lt;IEmailService, EmailService&gt;();</div>
+<div class="line"><span class="lineno">  123</span>    builder.Services.AddScoped&lt;IEmployeeRepository, EmployeeRepository&gt;();</div>
+<div class="line"><span class="lineno">  124</span>    builder.Services.AddScoped&lt;IBackOfficeRepository, BackOfficeRepository&gt;();</div>
+<div class="line"><span class="lineno">  125</span>    builder.Services.AddScoped&lt;IDatabaseCheckRepository, DatabaseCheckRepository&gt;();</div>
+<div class="line"><span class="lineno">  126</span>    builder.Services.AddScoped&lt;IContractRepository, ContractRepository&gt;();</div>
+<div class="line"><span class="lineno">  127</span> </div>
+<div class="line"><span class="lineno">  128</span>    builder.Services.AddSingleton&lt;IHostedService, Reminders&gt;(); <span class="comment">// Register Reminders as a singleton hosted service</span></div>
+<div class="line"><span class="lineno">  129</span> </div>
+<div class="line"><span class="lineno">  130</span>    <span class="comment">// Scoped dependencies</span></div>
+<div class="line"><span class="lineno">  131</span>    builder.Services.AddScoped&lt;EmailService&gt;();</div>
+<div class="line"><span class="lineno">  132</span>    builder.Services.AddScoped&lt;Customer&gt;();</div>
+<div class="line"><span class="lineno">  133</span>    builder.Services.AddScoped&lt;Vehicle&gt;();</div>
+<div class="line"><span class="lineno">  134</span>    builder.Services.AddScoped&lt;Contract&gt;();</div>
+<div class="line"><span class="lineno">  135</span>    builder.Services.AddScoped&lt;ICustomerDetails, Customer&gt;();</div>
+<div class="line"><span class="lineno">  136</span>    builder.Services.AddScoped&lt;IVehicleDetails, Vehicle&gt;();</div>
+<div class="line"><span class="lineno">  137</span>    builder.Services.AddScoped&lt;IContractDetails, Contract&gt;();</div>
+<div class="line"><span class="lineno">  138</span> </div>
+<div class="line"><span class="lineno">  139</span> </div>
+<div class="line"><span class="lineno">  140</span>    builder.Services.AddHostedService&lt;Reminders&gt;();</div>
+<div class="line"><span class="lineno">  141</span> </div>
+<div class="line"><span class="lineno">  142</span>    </div>
+<div class="line"><span class="lineno">  143</span> </div>
+<div class="line"><span class="lineno">  144</span>    <span class="comment">// Configure authentication with cookie-based authentication schema.</span></div>
+<div class="line"><span class="lineno">  145</span>    builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)</div>
+<div class="line"><span class="lineno">  146</span>        .AddCookie(options =&gt;</div>
+<div class="line"><span class="lineno">  147</span>        {</div>
+<div class="line"><span class="lineno">  148</span>            options.ExpireTimeSpan = TimeSpan.FromMinutes(5);</div>
+<div class="line"><span class="lineno">  149</span>            options.SlidingExpiration = <span class="keyword">true</span>;</div>
+<div class="line"><span class="lineno">  150</span>            options.AccessDeniedPath = <span class="stringliteral">&quot;/Forbidden/&quot;</span>;</div>
+<div class="line"><span class="lineno">  151</span>        });</div>
+<div class="line"><span class="lineno">  152</span> </div>
+<div class="line"><span class="lineno">  153</span>    builder.Services.AddControllers()</div>
+<div class="line"><span class="lineno">  154</span>        .AddJsonOptions(options =&gt;</div>
+<div class="line"><span class="lineno">  155</span>        {</div>
+<div class="line"><span class="lineno">  156</span>            options.JsonSerializerOptions.ReferenceHandler =</div>
+<div class="line"><span class="lineno">  157</span>                ReferenceHandler.IgnoreCycles;</div>
+<div class="line"><span class="lineno">  158</span>        });</div>
+<div class="line"><span class="lineno">  159</span> </div>
+<div class="line"><span class="lineno">  160</span>    <span class="comment">// Services for Swagger API</span></div>
+<div class="line"><span class="lineno">  161</span>    builder.Services.AddEndpointsApiExplorer();</div>
+<div class="line"><span class="lineno">  162</span>    builder.Services.AddSwaggerGen();</div>
 <div class="line"><span class="lineno">  163</span> </div>
-<div class="line"><span class="lineno">  164</span>    </div>
+<div class="line"><span class="lineno">  164</span>    var app = builder.Build();</div>
 <div class="line"><span class="lineno">  165</span> </div>
-<div class="line"><span class="lineno">  166</span>    <span class="comment">// Configure authentication with cookie-based authentication schema.</span></div>
-<div class="line"><span class="lineno">  167</span>    builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)</div>
-<div class="line"><span class="lineno">  168</span>        .AddCookie(options =&gt;</div>
-<div class="line"><span class="lineno">  169</span>        {</div>
-<div class="line"><span class="lineno">  170</span>            options.ExpireTimeSpan = TimeSpan.FromMinutes(5);</div>
-<div class="line"><span class="lineno">  171</span>            options.SlidingExpiration = <span class="keyword">true</span>;</div>
-<div class="line"><span class="lineno">  172</span>            options.AccessDeniedPath = <span class="stringliteral">&quot;/Forbidden/&quot;</span>;</div>
-<div class="line"><span class="lineno">  173</span>        });</div>
-<div class="line"><span class="lineno">  174</span> </div>
-<div class="line"><span class="lineno">  175</span>    builder.Services.AddControllers()</div>
-<div class="line"><span class="lineno">  176</span>        .AddJsonOptions(options =&gt;</div>
-<div class="line"><span class="lineno">  177</span>        {</div>
-<div class="line"><span class="lineno">  178</span>            options.JsonSerializerOptions.ReferenceHandler =</div>
-<div class="line"><span class="lineno">  179</span>                ReferenceHandler.IgnoreCycles;</div>
-<div class="line"><span class="lineno">  180</span>        });</div>
+<div class="line"><span class="lineno">  166</span>    app.UseSwagger();</div>
+<div class="line"><span class="lineno">  167</span>    app.UseSwaggerUI(c =&gt; {</div>
+<div class="line"><span class="lineno">  168</span>        c.SwaggerEndpoint(<span class="stringliteral">&quot;/swagger/v1/swagger.json&quot;</span>, <span class="stringliteral">&quot;My API V1&quot;</span>);</div>
+<div class="line"><span class="lineno">  169</span>        c.RoutePrefix = <span class="keywordtype">string</span>.Empty;</div>
+<div class="line"><span class="lineno">  170</span>    });</div>
+<div class="line"><span class="lineno">  171</span>    app.UseCors(<span class="stringliteral">&quot;AllowSpecificOrigins&quot;</span>);</div>
+<div class="line"><span class="lineno">  172</span>    app.UseHttpsRedirection();</div>
+<div class="line"><span class="lineno">  173</span>    app.MapControllers();</div>
+<div class="line"><span class="lineno">  174</span>    app.UseAuthorization();</div>
+<div class="line"><span class="lineno">  175</span>    app.UseAuthentication();</div>
+<div class="line"><span class="lineno">  176</span>    app.UseCookiePolicy(cookiePolicyOptions);</div>
+<div class="line"><span class="lineno">  177</span>    app.MapFallbackToFile(<span class="stringliteral">&quot;../wwwroot/index.html&quot;</span>);</div>
+<div class="line"><span class="lineno">  178</span> </div>
+<div class="line"><span class="lineno">  179</span>    <span class="comment">//app.MapRazorPages();</span></div>
+<div class="line"><span class="lineno">  180</span>    app.MapDefaultControllerRoute();</div>
 <div class="line"><span class="lineno">  181</span> </div>
-<div class="line"><span class="lineno">  182</span>    <span class="comment">// Services for Swagger API</span></div>
-<div class="line"><span class="lineno">  183</span>    builder.Services.AddEndpointsApiExplorer();</div>
-<div class="line"><span class="lineno">  184</span>    builder.Services.AddSwaggerGen();</div>
-<div class="line"><span class="lineno">  185</span> </div>
-<div class="line"><span class="lineno">  186</span>    var app = builder.Build();</div>
-<div class="line"><span class="lineno">  187</span> </div>
-<div class="line"><span class="lineno">  188</span>    app.UseSwagger();</div>
-<div class="line"><span class="lineno">  189</span>    app.UseSwaggerUI(c =&gt; {</div>
-<div class="line"><span class="lineno">  190</span>        c.SwaggerEndpoint(<span class="stringliteral">&quot;/swagger/v1/swagger.json&quot;</span>, <span class="stringliteral">&quot;My API V1&quot;</span>);</div>
-<div class="line"><span class="lineno">  191</span>        c.RoutePrefix = <span class="keywordtype">string</span>.Empty;</div>
-<div class="line"><span class="lineno">  192</span>    });</div>
-<div class="line"><span class="lineno">  193</span>    app.UseCors(<span class="stringliteral">&quot;AllowSpecificOrigins&quot;</span>);</div>
-<div class="line"><span class="lineno">  194</span>    app.UseHttpsRedirection();</div>
-<div class="line"><span class="lineno">  195</span>    app.MapControllers();</div>
-<div class="line"><span class="lineno">  196</span>    app.UseAuthorization();</div>
-<div class="line"><span class="lineno">  197</span>    app.UseAuthentication();</div>
-<div class="line"><span class="lineno">  198</span>    app.UseCookiePolicy(cookiePolicyOptions);</div>
-<div class="line"><span class="lineno">  199</span> </div>
-<div class="line"><span class="lineno">  200</span>    <span class="comment">//app.MapRazorPages();</span></div>
-<div class="line"><span class="lineno">  201</span>    app.MapDefaultControllerRoute();</div>
-<div class="line"><span class="lineno">  202</span> </div>
-<div class="line"><span class="lineno">  203</span>    <span class="keywordflow">return</span> app;</div>
-<div class="line"><span class="lineno">  204</span>    }</div>
+<div class="line"><span class="lineno">  182</span>    <span class="keywordflow">return</span> app;</div>
+<div class="line"><span class="lineno">  183</span>    }</div>
 </div><!-- fragment -->
-<p class="reference">Wordt aangeroepen door <a class="el" href="_program_8cs_source.html#l00007">WPR.Program.Main()</a>.</p>
+<p class="reference">Wordt aangeroepen door <a class="el" href="_program_8cs_source.html#l00005">WPR.Program.Main()</a>.</p>
 <div class="dynheader">
 Hier is de caller graaf voor deze functie:</div>
 <div class="dyncontent">
@@ -348,27 +332,27 @@ Hier is de caller graaf voor deze functie:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">De definitie bevindt zich op regel <a class="el" href="_app_configure_8cs_source.html#l00026">26</a> in het bestand <a class="el" href="_app_configure_8cs_source.html">AppConfigure.cs</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   27</span>    {</div>
-<div class="line"><span class="lineno">   28</span>        var dbConnector = services.GetRequiredService&lt;IConnector&gt;();</div>
-<div class="line"><span class="lineno">   29</span>        </div>
-<div class="line"><span class="lineno">   30</span>        <span class="keywordflow">try</span></div>
-<div class="line"><span class="lineno">   31</span>        {</div>
-<div class="line"><span class="lineno">   32</span>            <span class="keyword">using</span> (var connection = dbConnector.CreateDbConnection())</div>
-<div class="line"><span class="lineno">   33</span>            {</div>
-<div class="line"><span class="lineno">   34</span>                Console.WriteLine(<span class="stringliteral">&quot;Database connection established&quot;</span>);</div>
-<div class="line"><span class="lineno">   35</span>            }</div>
-<div class="line"><span class="lineno">   36</span> </div>
+<p class="definition">De definitie bevindt zich op regel <a class="el" href="_app_configure_8cs_source.html#l00021">21</a> in het bestand <a class="el" href="_app_configure_8cs_source.html">AppConfigure.cs</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   22</span>    {</div>
+<div class="line"><span class="lineno">   23</span>        var dbConnector = services.GetRequiredService&lt;IConnector&gt;();</div>
+<div class="line"><span class="lineno">   24</span>        </div>
+<div class="line"><span class="lineno">   25</span>        <span class="keywordflow">try</span></div>
+<div class="line"><span class="lineno">   26</span>        {</div>
+<div class="line"><span class="lineno">   27</span>            <span class="keyword">using</span> (var connection = dbConnector.CreateDbConnection())</div>
+<div class="line"><span class="lineno">   28</span>            {</div>
+<div class="line"><span class="lineno">   29</span>                Console.WriteLine(<span class="stringliteral">&quot;Database connection established&quot;</span>);</div>
+<div class="line"><span class="lineno">   30</span>            }</div>
+<div class="line"><span class="lineno">   31</span> </div>
+<div class="line"><span class="lineno">   32</span>        }</div>
+<div class="line"><span class="lineno">   33</span>        <span class="keywordflow">catch</span> (Exception e)</div>
+<div class="line"><span class="lineno">   34</span>        {</div>
+<div class="line"><span class="lineno">   35</span>            Console.WriteLine(<span class="stringliteral">&quot;Failed to establish database connection&quot;</span>);</div>
+<div class="line"><span class="lineno">   36</span>            Console.WriteLine(e.StackTrace);</div>
 <div class="line"><span class="lineno">   37</span>        }</div>
-<div class="line"><span class="lineno">   38</span>        <span class="keywordflow">catch</span> (Exception e)</div>
-<div class="line"><span class="lineno">   39</span>        {</div>
-<div class="line"><span class="lineno">   40</span>            Console.WriteLine(<span class="stringliteral">&quot;Failed to establish database connection&quot;</span>);</div>
-<div class="line"><span class="lineno">   41</span>            Console.WriteLine(e.StackTrace);</div>
-<div class="line"><span class="lineno">   42</span>        }</div>
-<div class="line"><span class="lineno">   43</span>        </div>
-<div class="line"><span class="lineno">   44</span>    }</div>
+<div class="line"><span class="lineno">   38</span>        </div>
+<div class="line"><span class="lineno">   39</span>    }</div>
 </div><!-- fragment -->
-<p class="reference">Wordt aangeroepen door <a class="el" href="_program_8cs_source.html#l00007">WPR.Program.Main()</a>.</p>
+<p class="reference">Wordt aangeroepen door <a class="el" href="_program_8cs_source.html#l00005">WPR.Program.Main()</a>.</p>
 <div class="dynheader">
 Hier is de caller graaf voor deze functie:</div>
 <div class="dyncontent">

@@ -11,7 +11,7 @@
 <!-- Node1 -->
 <g id="Node000001" class="node">
 <title>Node1</title>
-<g id="a_Node000001"><a xlink:title=" ">
+<g id="a_Node000001"><a xlink:title="Model voor het aanvragen van een nieuw abonnement of het bijwerken van een bestaand abonnement.">
 <polygon fill="#999999" stroke="none" points="155.75,-128 0,-128 0,0 155.75,0 155.75,-128"/>
 <text text-anchor="start" x="4" y="-114.5" font-family="Helvetica,sans-Serif" font-size="10.00">WPR.Controllers.customer.</text>
 <text text-anchor="start" x="4" y="-102.5" font-family="Helvetica,sans-Serif" font-size="10.00">Subscription.SubscriptionRequest</text>

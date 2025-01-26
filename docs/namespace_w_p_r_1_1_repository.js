@@ -1,7 +1,6 @@
 var namespace_w_p_r_1_1_repository =
 [
     [ "DatabaseCheckRepository", "namespace_w_p_r_1_1_repository_1_1_database_check_repository.html", "namespace_w_p_r_1_1_repository_1_1_database_check_repository" ],
-    [ "ContractRepository", "class_w_p_r_1_1_repository_1_1_contract_repository.html", "class_w_p_r_1_1_repository_1_1_contract_repository" ],
     [ "EmployeeRepository", "class_w_p_r_1_1_repository_1_1_employee_repository.html", "class_w_p_r_1_1_repository_1_1_employee_repository" ],
     [ "IBackOfficeRepository", "interface_w_p_r_1_1_repository_1_1_i_back_office_repository.html", "interface_w_p_r_1_1_repository_1_1_i_back_office_repository" ],
     [ "IContractRepository", "interface_w_p_r_1_1_repository_1_1_i_contract_repository.html", "interface_w_p_r_1_1_repository_1_1_i_contract_repository" ],

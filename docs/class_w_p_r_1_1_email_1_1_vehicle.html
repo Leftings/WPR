@@ -109,6 +109,9 @@ $(function(){initNavTree('class_w_p_r_1_1_email_1_1_vehicle.html',''); initResiz
   <div class="headertitle"><div class="title">WPR.Email.Vehicle Class Referentie</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>In de <a class="el" href="class_w_p_r_1_1_email_1_1_vehicle.html" title="In de Vehicle klasse worden alle gegevens van een specifieke klant verzameld voor het aanmaken van ee...">Vehicle</a> klasse worden alle gegevens van een specifieke klant verzameld voor het aanmaken van een email.  
+ <a href="#details">Meer...</a></p>
 <div class="dynheader">
 Klasse diagram voor WPR.Email.Vehicle</div>
 <div class="dyncontent">
@@ -123,10 +126,13 @@ Collaboratie diagram voor WPR.Email.Vehicle:</div>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Members</h2></td></tr>
 <tr class="memitem:a7137ac0a6df6871b879c70c857e91457" id="r_a7137ac0a6df6871b879c70c857e91457"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7137ac0a6df6871b879c70c857e91457">Vehicle</a> (<a class="el" href="interface_w_p_r_1_1_repository_1_1_i_vehicle_repository.html">IVehicleRepository</a> vehicleRepository)</td></tr>
+<tr class="memdesc:a7137ac0a6df6871b879c70c857e91457"><td class="mdescLeft">&#160;</td><td class="mdescRight">In de constructor worden alle benodigde klasses geset.  <br /></td></tr>
 <tr class="separator:a7137ac0a6df6871b879c70c857e91457"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3c38db6bf52d5e9b44f310e9a733948f" id="r_a3c38db6bf52d5e9b44f310e9a733948f"><td class="memItemLeft" align="right" valign="top">async Task&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3c38db6bf52d5e9b44f310e9a733948f">SetDetailsAsync</a> (object frameNr)</td></tr>
+<tr class="memdesc:a3c38db6bf52d5e9b44f310e9a733948f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Alle gegevens worden in de dictionary van het voertuig geset.  <br /></td></tr>
 <tr class="separator:a3c38db6bf52d5e9b44f310e9a733948f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a798dc46d982e78ac6523668f7d5586f5" id="r_a798dc46d982e78ac6523668f7d5586f5"><td class="memItemLeft" align="right" valign="top">async Task&lt; Dictionary&lt; string, object &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a798dc46d982e78ac6523668f7d5586f5">GetDetailsAsync</a> ()</td></tr>
+<tr class="memdesc:a798dc46d982e78ac6523668f7d5586f5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Alle gegevens van de klant worden via deze methode opgehaald.  <br /></td></tr>
 <tr class="separator:a798dc46d982e78ac6523668f7d5586f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="properties" name="properties"></a>
@@ -140,8 +146,9 @@ Private Attributen</h2></td></tr>
 <tr class="separator:a429dd3684afe3ca996fbcc821b0b73f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Gedetailleerde Beschrijving</h2>
-<div class="textblock">
-<p class="definition">De definitie bevindt zich op regel <a class="el" href="_vehicle_8cs_source.html#l00008">8</a> in het bestand <a class="el" href="_vehicle_8cs_source.html">Vehicle.cs</a>.</p>
+<div class="textblock"><p>In de <a class="el" href="class_w_p_r_1_1_email_1_1_vehicle.html" title="In de Vehicle klasse worden alle gegevens van een specifieke klant verzameld voor het aanmaken van ee...">Vehicle</a> klasse worden alle gegevens van een specifieke klant verzameld voor het aanmaken van een email. </p>
+
+<p class="definition">De definitie bevindt zich op regel <a class="el" href="_vehicle_8cs_source.html#l00010">10</a> in het bestand <a class="el" href="_vehicle_8cs_source.html">Vehicle.cs</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentatie</h2>
 <a id="a7137ac0a6df6871b879c70c857e91457" name="a7137ac0a6df6871b879c70c857e91457"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a7137ac0a6df6871b879c70c857e91457">&#9670;&#160;</a></span>Vehicle()</h2>
@@ -166,12 +173,26 @@ Private Attributen</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">De definitie bevindt zich op regel <a class="el" href="_vehicle_8cs_source.html#l00013">13</a> in het bestand <a class="el" href="_vehicle_8cs_source.html">Vehicle.cs</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   14</span>    {</div>
-<div class="line"><span class="lineno">   15</span>        _vehicleRepository = vehicleRepository ?? <span class="keywordflow">throw</span> <span class="keyword">new</span> ArgumentNullException(nameof(vehicleRepository));</div>
-<div class="line"><span class="lineno">   16</span>    }</div>
+<p>In de constructor worden alle benodigde klasses geset. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">vehicleRepository</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="exception"><dt>Excepties</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">ArgumentNullException</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">De definitie bevindt zich op regel <a class="el" href="_vehicle_8cs_source.html#l00021">21</a> in het bestand <a class="el" href="_vehicle_8cs_source.html">Vehicle.cs</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   22</span>    {</div>
+<div class="line"><span class="lineno">   23</span>        _vehicleRepository = vehicleRepository ?? <span class="keywordflow">throw</span> <span class="keyword">new</span> ArgumentNullException(nameof(vehicleRepository));</div>
+<div class="line"><span class="lineno">   24</span>    }</div>
 </div><!-- fragment -->
-<p class="reference">Gebruikt <a class="el" href="_vehicle_8cs_source.html#l00011">_vehicleRepository</a>.</p>
+<p class="reference">Gebruikt <a class="el" href="_vehicle_8cs_source.html#l00014">_vehicleRepository</a>.</p>
 
 </div>
 </div>
@@ -199,14 +220,17 @@ Private Attributen</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Alle gegevens van de klant worden via deze methode opgehaald. </p>
+<dl class="section return"><dt>Retourneert</dt><dd></dd></dl>
+
 <p>Implementeert <a class="el" href="interface_w_p_r_1_1_email_1_1_i_details.html#a833d7d0da229f3739fffa2f2b64885cd">WPR.Email.IDetails</a>.</p>
 
-<p class="definition">De definitie bevindt zich op regel <a class="el" href="_vehicle_8cs_source.html#l00033">33</a> in het bestand <a class="el" href="_vehicle_8cs_source.html">Vehicle.cs</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   34</span>    {</div>
-<div class="line"><span class="lineno">   35</span>        <span class="keywordflow">return</span> _details;</div>
-<div class="line"><span class="lineno">   36</span>    }</div>
+<p class="definition">De definitie bevindt zich op regel <a class="el" href="_vehicle_8cs_source.html#l00050">50</a> in het bestand <a class="el" href="_vehicle_8cs_source.html">Vehicle.cs</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   51</span>    {</div>
+<div class="line"><span class="lineno">   52</span>        <span class="keywordflow">return</span> _details;</div>
+<div class="line"><span class="lineno">   53</span>    }</div>
 </div><!-- fragment -->
-<p class="reference">Gebruikt <a class="el" href="_vehicle_8cs_source.html#l00010">_details</a>.</p>
+<p class="reference">Gebruikt <a class="el" href="_vehicle_8cs_source.html#l00012">_details</a>.</p>
 
 </div>
 </div>
@@ -233,25 +257,33 @@ Private Attributen</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Alle gegevens worden in de dictionary van het voertuig geset. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">frameNr</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Retourneert</dt><dd></dd></dl>
+
 <p>Implementeert <a class="el" href="interface_w_p_r_1_1_email_1_1_i_details.html#ac7600129d3807cf2a065a8e44c30a6df">WPR.Email.IDetails</a>.</p>
 
-<p class="definition">De definitie bevindt zich op regel <a class="el" href="_vehicle_8cs_source.html#l00018">18</a> in het bestand <a class="el" href="_vehicle_8cs_source.html">Vehicle.cs</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   19</span>    {</div>
-<div class="line"><span class="lineno">   20</span>        var result = await _vehicleRepository.GetVehicleDataAsync(frameNr);</div>
-<div class="line"><span class="lineno">   21</span> </div>
-<div class="line"><span class="lineno">   22</span>        _details = <span class="keyword">new</span> Dictionary&lt;string, object&gt;();</div>
-<div class="line"><span class="lineno">   23</span> </div>
-<div class="line"><span class="lineno">   24</span>        <span class="keywordflow">foreach</span> (Dictionary&lt;object, string&gt; item <span class="keywordflow">in</span> result)</div>
-<div class="line"><span class="lineno">   25</span>        {</div>
-<div class="line"><span class="lineno">   26</span> </div>
-<div class="line"><span class="lineno">   27</span>            <span class="keywordflow">if</span> (!_details.ContainsKey((<span class="keywordtype">string</span>)item.Keys.First()))</div>
-<div class="line"><span class="lineno">   28</span>            {</div>
-<div class="line"><span class="lineno">   29</span>                _details[(string)item.Keys.First()] = item.Values.First();</div>
-<div class="line"><span class="lineno">   30</span>            }</div>
-<div class="line"><span class="lineno">   31</span>        }</div>
-<div class="line"><span class="lineno">   32</span>    }</div>
+<p class="definition">De definitie bevindt zich op regel <a class="el" href="_vehicle_8cs_source.html#l00031">31</a> in het bestand <a class="el" href="_vehicle_8cs_source.html">Vehicle.cs</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   32</span>    {</div>
+<div class="line"><span class="lineno">   33</span>        var result = await _vehicleRepository.GetVehicleDataAsync(frameNr); <span class="comment">// Alle gegevens van het voertuig worden opgehaald</span></div>
+<div class="line"><span class="lineno">   34</span> </div>
+<div class="line"><span class="lineno">   35</span>        _details = <span class="keyword">new</span> Dictionary&lt;string, object&gt;();</div>
+<div class="line"><span class="lineno">   36</span> </div>
+<div class="line"><span class="lineno">   37</span>        <span class="keywordflow">foreach</span> (Dictionary&lt;object, string&gt; item <span class="keywordflow">in</span> result)</div>
+<div class="line"><span class="lineno">   38</span>        {</div>
+<div class="line"><span class="lineno">   39</span>            <span class="keywordflow">if</span> (!_details.ContainsKey((<span class="keywordtype">string</span>)item.Keys.First())) <span class="comment">// Alle keys worden verzameld</span></div>
+<div class="line"><span class="lineno">   40</span>            {</div>
+<div class="line"><span class="lineno">   41</span>                _details[(string)item.Keys.First()] = item.Values.First(); <span class="comment">// Alle waardes van de keys worden verzameld</span></div>
+<div class="line"><span class="lineno">   42</span>            }</div>
+<div class="line"><span class="lineno">   43</span>        }</div>
+<div class="line"><span class="lineno">   44</span>    }</div>
 </div><!-- fragment -->
-<p class="reference">Gebruikt <a class="el" href="_vehicle_8cs_source.html#l00010">_details</a> en <a class="el" href="_vehicle_8cs_source.html#l00011">_vehicleRepository</a>.</p>
+<p class="reference">Gebruikt <a class="el" href="_vehicle_8cs_source.html#l00012">_details</a> en <a class="el" href="_vehicle_8cs_source.html#l00014">_vehicleRepository</a>.</p>
 
 </div>
 </div>
@@ -276,9 +308,9 @@ Private Attributen</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">De definitie bevindt zich op regel <a class="el" href="_vehicle_8cs_source.html#l00011">11</a> in het bestand <a class="el" href="_vehicle_8cs_source.html">Vehicle.cs</a>.</p>
+<p class="definition">De definitie bevindt zich op regel <a class="el" href="_vehicle_8cs_source.html#l00014">14</a> in het bestand <a class="el" href="_vehicle_8cs_source.html">Vehicle.cs</a>.</p>
 
-<p class="reference">Wordt aangeroepen door <a class="el" href="_vehicle_8cs_source.html#l00018">SetDetailsAsync()</a> en <a class="el" href="_vehicle_8cs_source.html#l00013">Vehicle()</a>.</p>
+<p class="reference">Wordt aangeroepen door <a class="el" href="_vehicle_8cs_source.html#l00031">SetDetailsAsync()</a> en <a class="el" href="_vehicle_8cs_source.html#l00021">Vehicle()</a>.</p>
 
 </div>
 </div>
@@ -303,10 +335,10 @@ Private Attributen</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">De definitie bevindt zich op regel <a class="el" href="_vehicle_8cs_source.html#l00010">10</a> in het bestand <a class="el" href="_vehicle_8cs_source.html">Vehicle.cs</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   10</span>{ <span class="keyword">get</span>; <span class="keyword">set</span>; }</div>
+<p class="definition">De definitie bevindt zich op regel <a class="el" href="_vehicle_8cs_source.html#l00012">12</a> in het bestand <a class="el" href="_vehicle_8cs_source.html">Vehicle.cs</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   12</span>{ <span class="keyword">get</span>; <span class="keyword">set</span>; }</div>
 </div><!-- fragment -->
-<p class="reference">Wordt aangeroepen door <a class="el" href="_vehicle_8cs_source.html#l00033">GetDetailsAsync()</a> en <a class="el" href="_vehicle_8cs_source.html#l00018">SetDetailsAsync()</a>.</p>
+<p class="reference">Wordt aangeroepen door <a class="el" href="_vehicle_8cs_source.html#l00050">GetDetailsAsync()</a> en <a class="el" href="_vehicle_8cs_source.html#l00031">SetDetailsAsync()</a>.</p>
 
 </div>
 </div>

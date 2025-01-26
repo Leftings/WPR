@@ -155,7 +155,7 @@ Private Attributen</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Gedetailleerde Beschrijving</h2>
 <div class="textblock"><p><a class="el" href="class_w_p_r_1_1_controllers_1_1_employee_1_1_shared_1_1accept_hire_request_1_1_accept_hire_request_controller.html" title="AcceptHireRequestController zorgt ervoor dat alle huuraanvragen verzameld worden en bestempelt kunnen...">AcceptHireRequestController</a> zorgt ervoor dat alle huuraanvragen verzameld worden en bestempelt kunnen worden als geacepteerd of geweigerd. </p>
 
-<p class="definition">De definitie bevindt zich op regel <a class="el" href="accept_hire_request_controller_8cs_source.html#l00016">16</a> in het bestand <a class="el" href="accept_hire_request_controller_8cs_source.html">acceptHireRequestController.cs</a>.</p>
+<p class="definition">De definitie bevindt zich op regel <a class="el" href="accept_hire_request_controller_8cs_source.html#l00014">14</a> in het bestand <a class="el" href="accept_hire_request_controller_8cs_source.html">acceptHireRequestController.cs</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentatie</h2>
 <a id="ae9fc8f72949b29898055a88bcfcfb33e" name="ae9fc8f72949b29898055a88bcfcfb33e"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ae9fc8f72949b29898055a88bcfcfb33e">&#9670;&#160;</a></span>AcceptHireRequestController()</h2>
@@ -189,14 +189,14 @@ Private Attributen</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">De definitie bevindt zich op regel <a class="el" href="accept_hire_request_controller_8cs_source.html#l00022">22</a> in het bestand <a class="el" href="accept_hire_request_controller_8cs_source.html">acceptHireRequestController.cs</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   23</span>    {</div>
-<div class="line"><span class="lineno">   24</span>        _connector = connector ?? <span class="keywordflow">throw</span> <span class="keyword">new</span> ArgumentNullException(nameof(connector));</div>
-<div class="line"><span class="lineno">   25</span>        _userRepository = userRepository ?? <span class="keywordflow">throw</span> <span class="keyword">new</span> ArgumentNullException(nameof(userRepository));</div>
-<div class="line"><span class="lineno">   26</span>        _crypt = crypt ?? <span class="keywordflow">throw</span> <span class="keyword">new</span> ArgumentNullException(nameof(crypt));</div>
-<div class="line"><span class="lineno">   27</span>    }</div>
+<p class="definition">De definitie bevindt zich op regel <a class="el" href="accept_hire_request_controller_8cs_source.html#l00020">20</a> in het bestand <a class="el" href="accept_hire_request_controller_8cs_source.html">acceptHireRequestController.cs</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   21</span>    {</div>
+<div class="line"><span class="lineno">   22</span>        _connector = connector ?? <span class="keywordflow">throw</span> <span class="keyword">new</span> ArgumentNullException(nameof(connector));</div>
+<div class="line"><span class="lineno">   23</span>        _userRepository = userRepository ?? <span class="keywordflow">throw</span> <span class="keyword">new</span> ArgumentNullException(nameof(userRepository));</div>
+<div class="line"><span class="lineno">   24</span>        _crypt = crypt ?? <span class="keywordflow">throw</span> <span class="keyword">new</span> ArgumentNullException(nameof(crypt));</div>
+<div class="line"><span class="lineno">   25</span>    }</div>
 </div><!-- fragment -->
-<p class="reference">Gebruikt <a class="el" href="accept_hire_request_controller_8cs_source.html#l00018">_connector</a>, <a class="el" href="accept_hire_request_controller_8cs_source.html#l00020">_crypt</a> en <a class="el" href="accept_hire_request_controller_8cs_source.html#l00019">_userRepository</a>.</p>
+<p class="reference">Gebruikt <a class="el" href="accept_hire_request_controller_8cs_source.html#l00016">_connector</a>, <a class="el" href="accept_hire_request_controller_8cs_source.html#l00018">_crypt</a> en <a class="el" href="accept_hire_request_controller_8cs_source.html#l00017">_userRepository</a>.</p>
 
 </div>
 </div>
@@ -233,24 +233,24 @@ Private Attributen</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Retourneert</dt><dd></dd></dl>
 
-<p class="definition">De definitie bevindt zich op regel <a class="el" href="accept_hire_request_controller_8cs_source.html#l00059">59</a> in het bestand <a class="el" href="accept_hire_request_controller_8cs_source.html">acceptHireRequestController.cs</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   60</span>    {</div>
-<div class="line"><span class="lineno">   61</span>        <span class="keywordflow">if</span> (request == <span class="keyword">null</span>)</div>
-<div class="line"><span class="lineno">   62</span>        {</div>
-<div class="line"><span class="lineno">   63</span>            <span class="keywordflow">return</span> BadRequest(<span class="keyword">new</span> { message = <span class="stringliteral">&quot;Invalid request body&quot;</span> });</div>
-<div class="line"><span class="lineno">   64</span>        }</div>
+<p class="definition">De definitie bevindt zich op regel <a class="el" href="accept_hire_request_controller_8cs_source.html#l00057">57</a> in het bestand <a class="el" href="accept_hire_request_controller_8cs_source.html">acceptHireRequestController.cs</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   58</span>    {</div>
+<div class="line"><span class="lineno">   59</span>        <span class="keywordflow">if</span> (request == <span class="keyword">null</span>)</div>
+<div class="line"><span class="lineno">   60</span>        {</div>
+<div class="line"><span class="lineno">   61</span>            <span class="keywordflow">return</span> BadRequest(<span class="keyword">new</span> { message = <span class="stringliteral">&quot;Invalid request body&quot;</span> });</div>
+<div class="line"><span class="lineno">   62</span>        }</div>
+<div class="line"><span class="lineno">   63</span> </div>
+<div class="line"><span class="lineno">   64</span>        var setStatus = await _userRepository.SetStatusAsync(request.Id.ToString(), request.Status, GetCurrentUserId(), request.userType);</div>
 <div class="line"><span class="lineno">   65</span> </div>
-<div class="line"><span class="lineno">   66</span>        var setStatus = await _userRepository.SetStatusAsync(request.Id.ToString(), request.Status, GetCurrentUserId(), request.userType);</div>
-<div class="line"><span class="lineno">   67</span> </div>
-<div class="line"><span class="lineno">   68</span>        <span class="keywordflow">if</span> (setStatus.status)</div>
-<div class="line"><span class="lineno">   69</span>        {</div>
-<div class="line"><span class="lineno">   70</span>            <span class="keywordflow">return</span> Ok(<span class="keyword">new</span> { message = setStatus.message });</div>
-<div class="line"><span class="lineno">   71</span>        }</div>
-<div class="line"><span class="lineno">   72</span> </div>
-<div class="line"><span class="lineno">   73</span>        <span class="keywordflow">return</span> BadRequest(<span class="keyword">new</span> { message = setStatus.message });</div>
-<div class="line"><span class="lineno">   74</span>    }</div>
+<div class="line"><span class="lineno">   66</span>        <span class="keywordflow">if</span> (setStatus.status)</div>
+<div class="line"><span class="lineno">   67</span>        {</div>
+<div class="line"><span class="lineno">   68</span>            <span class="keywordflow">return</span> Ok(<span class="keyword">new</span> { message = setStatus.message });</div>
+<div class="line"><span class="lineno">   69</span>        }</div>
+<div class="line"><span class="lineno">   70</span> </div>
+<div class="line"><span class="lineno">   71</span>        <span class="keywordflow">return</span> BadRequest(<span class="keyword">new</span> { message = setStatus.message });</div>
+<div class="line"><span class="lineno">   72</span>    }</div>
 </div><!-- fragment -->
-<p class="reference">Gebruikt <a class="el" href="accept_hire_request_controller_8cs_source.html#l00019">_userRepository</a> en <a class="el" href="accept_hire_request_controller_8cs_source.html#l00081">GetCurrentUserId()</a>.</p>
+<p class="reference">Gebruikt <a class="el" href="accept_hire_request_controller_8cs_source.html#l00017">_userRepository</a> en <a class="el" href="accept_hire_request_controller_8cs_source.html#l00079">GetCurrentUserId()</a>.</p>
 <div class="dynheader">
 Hier is de call graaf voor deze functie:</div>
 <div class="dyncontent">
@@ -291,44 +291,44 @@ Hier is de call graaf voor deze functie:</div>
   </dd>
 </dl>
 
-<p class="definition">De definitie bevindt zich op regel <a class="el" href="accept_hire_request_controller_8cs_source.html#l00081">81</a> in het bestand <a class="el" href="accept_hire_request_controller_8cs_source.html">acceptHireRequestController.cs</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   82</span>    {</div>
-<div class="line"><span class="lineno">   83</span>        <span class="comment">// Alleen de cookie van Employee of Vehicle Manager bestaat</span></div>
-<div class="line"><span class="lineno">   84</span>        <span class="keywordtype">string</span> loginCookie = HttpContext.Request.Cookies[<span class="stringliteral">&quot;LoginEmployeeSession&quot;</span>];</div>
-<div class="line"><span class="lineno">   85</span>        <span class="keywordtype">string</span> loginCookie2 = HttpContext.Request.Cookies[<span class="stringliteral">&quot;LoginVehicleManagerSession&quot;</span>];</div>
-<div class="line"><span class="lineno">   86</span> </div>
-<div class="line"><span class="lineno">   87</span>        <span class="keywordflow">try</span></div>
-<div class="line"><span class="lineno">   88</span>        {</div>
-<div class="line"><span class="lineno">   89</span>            <span class="keywordflow">if</span> (!<span class="keywordtype">string</span>.IsNullOrEmpty(loginCookie))</div>
-<div class="line"><span class="lineno">   90</span>            {</div>
-<div class="line"><span class="lineno">   91</span>                <span class="keywordflow">return</span> _crypt.Decrypt(loginCookie);</div>
-<div class="line"><span class="lineno">   92</span>            }</div>
-<div class="line"><span class="lineno">   93</span>            <span class="keywordflow">else</span> <span class="keywordflow">if</span> (!<span class="keywordtype">string</span>.IsNullOrEmpty(loginCookie2))</div>
-<div class="line"><span class="lineno">   94</span>            {</div>
-<div class="line"><span class="lineno">   95</span>                <span class="keywordflow">return</span> _crypt.Decrypt(loginCookie2);</div>
-<div class="line"><span class="lineno">   96</span>            }</div>
-<div class="line"><span class="lineno">   97</span>            <span class="keywordflow">else</span></div>
-<div class="line"><span class="lineno">   98</span>            {</div>
-<div class="line"><span class="lineno">   99</span>                <span class="keywordflow">throw</span> <span class="keyword">new</span> Exception(<span class="stringliteral">&quot;No (valid) cookie&quot;</span>);</div>
-<div class="line"><span class="lineno">  100</span>            }</div>
-<div class="line"><span class="lineno">  101</span>        }</div>
-<div class="line"><span class="lineno">  102</span>        <span class="keywordflow">catch</span></div>
-<div class="line"><span class="lineno">  103</span>        {</div>
-<div class="line"><span class="lineno">  104</span>            <span class="comment">// Ongeldig cookie wordt meteen verwijderd</span></div>
-<div class="line"><span class="lineno">  105</span>            Response.Cookies.Append(<span class="stringliteral">&quot;LoginEmployeeSession&quot;</span>, <span class="stringliteral">&quot;Invalid cookie&quot;</span>, <span class="keyword">new</span> CookieOptions</div>
-<div class="line"><span class="lineno">  106</span>            {</div>
-<div class="line"><span class="lineno">  107</span>                HttpOnly = <span class="keyword">true</span>,</div>
-<div class="line"><span class="lineno">  108</span>                Secure = <span class="keyword">true</span>,</div>
-<div class="line"><span class="lineno">  109</span>                Expires = DateTimeOffset.UtcNow.AddDays(-1)</div>
-<div class="line"><span class="lineno">  110</span>            });</div>
-<div class="line"><span class="lineno">  111</span> </div>
-<div class="line"><span class="lineno">  112</span>            <span class="keywordflow">throw</span> <span class="keyword">new</span> Exception(<span class="stringliteral">&quot;Invalid Cookie&quot;</span>);</div>
-<div class="line"><span class="lineno">  113</span>        }</div>
-<div class="line"><span class="lineno">  114</span>    }</div>
+<p class="definition">De definitie bevindt zich op regel <a class="el" href="accept_hire_request_controller_8cs_source.html#l00079">79</a> in het bestand <a class="el" href="accept_hire_request_controller_8cs_source.html">acceptHireRequestController.cs</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   80</span>    {</div>
+<div class="line"><span class="lineno">   81</span>        <span class="comment">// Alleen de cookie van Employee of Vehicle Manager bestaat</span></div>
+<div class="line"><span class="lineno">   82</span>        <span class="keywordtype">string</span> loginCookie = HttpContext.Request.Cookies[<span class="stringliteral">&quot;LoginEmployeeSession&quot;</span>];</div>
+<div class="line"><span class="lineno">   83</span>        <span class="keywordtype">string</span> loginCookie2 = HttpContext.Request.Cookies[<span class="stringliteral">&quot;LoginVehicleManagerSession&quot;</span>];</div>
+<div class="line"><span class="lineno">   84</span> </div>
+<div class="line"><span class="lineno">   85</span>        <span class="keywordflow">try</span></div>
+<div class="line"><span class="lineno">   86</span>        {</div>
+<div class="line"><span class="lineno">   87</span>            <span class="keywordflow">if</span> (!<span class="keywordtype">string</span>.IsNullOrEmpty(loginCookie))</div>
+<div class="line"><span class="lineno">   88</span>            {</div>
+<div class="line"><span class="lineno">   89</span>                <span class="keywordflow">return</span> _crypt.Decrypt(loginCookie);</div>
+<div class="line"><span class="lineno">   90</span>            }</div>
+<div class="line"><span class="lineno">   91</span>            <span class="keywordflow">else</span> <span class="keywordflow">if</span> (!<span class="keywordtype">string</span>.IsNullOrEmpty(loginCookie2))</div>
+<div class="line"><span class="lineno">   92</span>            {</div>
+<div class="line"><span class="lineno">   93</span>                <span class="keywordflow">return</span> _crypt.Decrypt(loginCookie2);</div>
+<div class="line"><span class="lineno">   94</span>            }</div>
+<div class="line"><span class="lineno">   95</span>            <span class="keywordflow">else</span></div>
+<div class="line"><span class="lineno">   96</span>            {</div>
+<div class="line"><span class="lineno">   97</span>                <span class="keywordflow">throw</span> <span class="keyword">new</span> Exception(<span class="stringliteral">&quot;No (valid) cookie&quot;</span>);</div>
+<div class="line"><span class="lineno">   98</span>            }</div>
+<div class="line"><span class="lineno">   99</span>        }</div>
+<div class="line"><span class="lineno">  100</span>        <span class="keywordflow">catch</span></div>
+<div class="line"><span class="lineno">  101</span>        {</div>
+<div class="line"><span class="lineno">  102</span>            <span class="comment">// Ongeldig cookie wordt meteen verwijderd</span></div>
+<div class="line"><span class="lineno">  103</span>            Response.Cookies.Append(<span class="stringliteral">&quot;LoginEmployeeSession&quot;</span>, <span class="stringliteral">&quot;Invalid cookie&quot;</span>, <span class="keyword">new</span> CookieOptions</div>
+<div class="line"><span class="lineno">  104</span>            {</div>
+<div class="line"><span class="lineno">  105</span>                HttpOnly = <span class="keyword">true</span>,</div>
+<div class="line"><span class="lineno">  106</span>                Secure = <span class="keyword">true</span>,</div>
+<div class="line"><span class="lineno">  107</span>                Expires = DateTimeOffset.UtcNow.AddDays(-1)</div>
+<div class="line"><span class="lineno">  108</span>            });</div>
+<div class="line"><span class="lineno">  109</span> </div>
+<div class="line"><span class="lineno">  110</span>            <span class="keywordflow">throw</span> <span class="keyword">new</span> Exception(<span class="stringliteral">&quot;Invalid Cookie&quot;</span>);</div>
+<div class="line"><span class="lineno">  111</span>        }</div>
+<div class="line"><span class="lineno">  112</span>    }</div>
 </div><!-- fragment -->
-<p class="reference">Gebruikt <a class="el" href="accept_hire_request_controller_8cs_source.html#l00020">_crypt</a>.</p>
+<p class="reference">Gebruikt <a class="el" href="accept_hire_request_controller_8cs_source.html#l00018">_crypt</a>.</p>
 
-<p class="reference">Wordt aangeroepen door <a class="el" href="accept_hire_request_controller_8cs_source.html#l00059">AnswerHireRequestAsync()</a> en <a class="el" href="accept_hire_request_controller_8cs_source.html#l00035">GetReviewsIdsAsync()</a>.</p>
+<p class="reference">Wordt aangeroepen door <a class="el" href="accept_hire_request_controller_8cs_source.html#l00057">AnswerHireRequestAsync()</a> en <a class="el" href="accept_hire_request_controller_8cs_source.html#l00033">GetReviewsIdsAsync()</a>.</p>
 <div class="dynheader">
 Hier is de caller graaf voor deze functie:</div>
 <div class="dyncontent">
@@ -369,13 +369,13 @@ Hier is de caller graaf voor deze functie:</div>
 </dl>
 <dl class="section return"><dt>Retourneert</dt><dd></dd></dl>
 
-<p class="definition">De definitie bevindt zich op regel <a class="el" href="accept_hire_request_controller_8cs_source.html#l00047">47</a> in het bestand <a class="el" href="accept_hire_request_controller_8cs_source.html">acceptHireRequestController.cs</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   48</span>    {</div>
-<div class="line"><span class="lineno">   49</span>        var review = await _userRepository.GetReviewAsync(<span class="keywordtype">id</span>);</div>
-<div class="line"><span class="lineno">   50</span>        <span class="keywordflow">return</span> Ok(<span class="keyword">new</span> { message = review.data });</div>
-<div class="line"><span class="lineno">   51</span>    }</div>
+<p class="definition">De definitie bevindt zich op regel <a class="el" href="accept_hire_request_controller_8cs_source.html#l00045">45</a> in het bestand <a class="el" href="accept_hire_request_controller_8cs_source.html">acceptHireRequestController.cs</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   46</span>    {</div>
+<div class="line"><span class="lineno">   47</span>        var review = await _userRepository.GetReviewAsync(<span class="keywordtype">id</span>);</div>
+<div class="line"><span class="lineno">   48</span>        <span class="keywordflow">return</span> Ok(<span class="keyword">new</span> { message = review.data });</div>
+<div class="line"><span class="lineno">   49</span>    }</div>
 </div><!-- fragment -->
-<p class="reference">Gebruikt <a class="el" href="accept_hire_request_controller_8cs_source.html#l00019">_userRepository</a>.</p>
+<p class="reference">Gebruikt <a class="el" href="accept_hire_request_controller_8cs_source.html#l00017">_userRepository</a>.</p>
 
 </div>
 </div>
@@ -411,13 +411,13 @@ Hier is de caller graaf voor deze functie:</div>
 </dl>
 <dl class="section return"><dt>Retourneert</dt><dd></dd></dl>
 
-<p class="definition">De definitie bevindt zich op regel <a class="el" href="accept_hire_request_controller_8cs_source.html#l00035">35</a> in het bestand <a class="el" href="accept_hire_request_controller_8cs_source.html">acceptHireRequestController.cs</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   36</span>    {</div>
-<div class="line"><span class="lineno">   37</span>        var ids = await _userRepository.GetReviewIdsAsync(user, GetCurrentUserId());</div>
-<div class="line"><span class="lineno">   38</span>        <span class="keywordflow">return</span> Ok(<span class="keyword">new</span> { message = ids.ids});</div>
-<div class="line"><span class="lineno">   39</span>    }</div>
+<p class="definition">De definitie bevindt zich op regel <a class="el" href="accept_hire_request_controller_8cs_source.html#l00033">33</a> in het bestand <a class="el" href="accept_hire_request_controller_8cs_source.html">acceptHireRequestController.cs</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   34</span>    {</div>
+<div class="line"><span class="lineno">   35</span>        var ids = await _userRepository.GetReviewIdsAsync(user, GetCurrentUserId());</div>
+<div class="line"><span class="lineno">   36</span>        <span class="keywordflow">return</span> Ok(<span class="keyword">new</span> { message = ids.ids});</div>
+<div class="line"><span class="lineno">   37</span>    }</div>
 </div><!-- fragment -->
-<p class="reference">Gebruikt <a class="el" href="accept_hire_request_controller_8cs_source.html#l00019">_userRepository</a> en <a class="el" href="accept_hire_request_controller_8cs_source.html#l00081">GetCurrentUserId()</a>.</p>
+<p class="reference">Gebruikt <a class="el" href="accept_hire_request_controller_8cs_source.html#l00017">_userRepository</a> en <a class="el" href="accept_hire_request_controller_8cs_source.html#l00079">GetCurrentUserId()</a>.</p>
 <div class="dynheader">
 Hier is de call graaf voor deze functie:</div>
 <div class="dyncontent">
@@ -447,9 +447,9 @@ Hier is de call graaf voor deze functie:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">De definitie bevindt zich op regel <a class="el" href="accept_hire_request_controller_8cs_source.html#l00018">18</a> in het bestand <a class="el" href="accept_hire_request_controller_8cs_source.html">acceptHireRequestController.cs</a>.</p>
+<p class="definition">De definitie bevindt zich op regel <a class="el" href="accept_hire_request_controller_8cs_source.html#l00016">16</a> in het bestand <a class="el" href="accept_hire_request_controller_8cs_source.html">acceptHireRequestController.cs</a>.</p>
 
-<p class="reference">Wordt aangeroepen door <a class="el" href="accept_hire_request_controller_8cs_source.html#l00022">AcceptHireRequestController()</a>.</p>
+<p class="reference">Wordt aangeroepen door <a class="el" href="accept_hire_request_controller_8cs_source.html#l00020">AcceptHireRequestController()</a>.</p>
 
 </div>
 </div>
@@ -473,9 +473,9 @@ Hier is de call graaf voor deze functie:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">De definitie bevindt zich op regel <a class="el" href="accept_hire_request_controller_8cs_source.html#l00020">20</a> in het bestand <a class="el" href="accept_hire_request_controller_8cs_source.html">acceptHireRequestController.cs</a>.</p>
+<p class="definition">De definitie bevindt zich op regel <a class="el" href="accept_hire_request_controller_8cs_source.html#l00018">18</a> in het bestand <a class="el" href="accept_hire_request_controller_8cs_source.html">acceptHireRequestController.cs</a>.</p>
 
-<p class="reference">Wordt aangeroepen door <a class="el" href="accept_hire_request_controller_8cs_source.html#l00022">AcceptHireRequestController()</a> en <a class="el" href="accept_hire_request_controller_8cs_source.html#l00081">GetCurrentUserId()</a>.</p>
+<p class="reference">Wordt aangeroepen door <a class="el" href="accept_hire_request_controller_8cs_source.html#l00020">AcceptHireRequestController()</a> en <a class="el" href="accept_hire_request_controller_8cs_source.html#l00079">GetCurrentUserId()</a>.</p>
 
 </div>
 </div>
@@ -499,9 +499,9 @@ Hier is de call graaf voor deze functie:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">De definitie bevindt zich op regel <a class="el" href="accept_hire_request_controller_8cs_source.html#l00019">19</a> in het bestand <a class="el" href="accept_hire_request_controller_8cs_source.html">acceptHireRequestController.cs</a>.</p>
+<p class="definition">De definitie bevindt zich op regel <a class="el" href="accept_hire_request_controller_8cs_source.html#l00017">17</a> in het bestand <a class="el" href="accept_hire_request_controller_8cs_source.html">acceptHireRequestController.cs</a>.</p>
 
-<p class="reference">Wordt aangeroepen door <a class="el" href="accept_hire_request_controller_8cs_source.html#l00022">AcceptHireRequestController()</a>, <a class="el" href="accept_hire_request_controller_8cs_source.html#l00059">AnswerHireRequestAsync()</a>, <a class="el" href="accept_hire_request_controller_8cs_source.html#l00047">GetReviewAsync()</a> en <a class="el" href="accept_hire_request_controller_8cs_source.html#l00035">GetReviewsIdsAsync()</a>.</p>
+<p class="reference">Wordt aangeroepen door <a class="el" href="accept_hire_request_controller_8cs_source.html#l00020">AcceptHireRequestController()</a>, <a class="el" href="accept_hire_request_controller_8cs_source.html#l00057">AnswerHireRequestAsync()</a>, <a class="el" href="accept_hire_request_controller_8cs_source.html#l00045">GetReviewAsync()</a> en <a class="el" href="accept_hire_request_controller_8cs_source.html#l00033">GetReviewsIdsAsync()</a>.</p>
 
 </div>
 </div>

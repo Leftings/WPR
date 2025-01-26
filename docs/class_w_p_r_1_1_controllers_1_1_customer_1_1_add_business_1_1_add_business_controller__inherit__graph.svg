@@ -22,7 +22,7 @@
 <!-- Node1 -->
 <g id="Node000001" class="node">
 <title>Node1</title>
-<g id="a_Node000001"><a xlink:title="Controller voor het verbinden van het aanmaken van bedrijven op basis van het KVK nummer.">
+<g id="a_Node000001"><a xlink:title="Controller voor het verbinden van het aanmaken van bedrijven op basis van het KVK nummer....">
 <polygon fill="#999999" stroke="none" points="168.5,-160 0,-160 0,0 168.5,0 168.5,-160"/>
 <text text-anchor="start" x="4" y="-146.5" font-family="Helvetica,sans-Serif" font-size="10.00">WPR.Controllers.Customer.</text>
 <text text-anchor="start" x="4" y="-134.5" font-family="Helvetica,sans-Serif" font-size="10.00">AddBusiness.AddBusinessController</text>

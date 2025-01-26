@@ -1,6 +1,6 @@
 <map id="WPR.Repository.UserRepository.ChangeBusinessData" name="WPR.Repository.UserRepository.ChangeBusinessData">
-<area shape="rect" id="Node000001" title=" " alt="" coords="271,5,488,48"/>
-<area shape="rect" id="Node000002" href="$class_w_p_r_1_1_repository_1_1_user_repository.html#a2bcea10de41cf249cee9d4049c25cc45" title=" " alt="" coords="5,5,223,48"/>
+<area shape="rect" id="Node000001" title="Wijzigt de bedrijfsinformatie in de database." alt="" coords="271,5,488,48"/>
+<area shape="rect" id="Node000002" href="$class_w_p_r_1_1_repository_1_1_user_repository.html#a2bcea10de41cf249cee9d4049c25cc45" title="Wijzigt de bedrijfsgegevens voor een bedrijf dat gekoppeld is aan een voertuigbeheerder." alt="" coords="5,5,223,48"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="255,38,223,38,223,33,255,33"/>
 <area shape="poly" id="edge2_Node000002_Node000001" title=" " alt="" coords="239,15,270,15,270,20,239,20"/>
 </map>

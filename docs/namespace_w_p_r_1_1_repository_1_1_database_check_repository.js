@@ -1,5 +1,4 @@
 var namespace_w_p_r_1_1_repository_1_1_database_check_repository =
 [
-    [ "DatabaseCheckRepository", "class_w_p_r_1_1_repository_1_1_database_check_repository_1_1_database_check_repository.html", "class_w_p_r_1_1_repository_1_1_database_check_repository_1_1_database_check_repository" ],
     [ "IDatabaseCheckRepository", "interface_w_p_r_1_1_repository_1_1_database_check_repository_1_1_i_database_check_repository.html", "interface_w_p_r_1_1_repository_1_1_database_check_repository_1_1_i_database_check_repository" ]
 ];

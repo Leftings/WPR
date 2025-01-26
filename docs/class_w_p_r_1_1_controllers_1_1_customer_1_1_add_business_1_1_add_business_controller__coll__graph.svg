@@ -58,7 +58,7 @@ var sectionId = 'dynsection-1';
 <!-- Node1 -->
 <g id="Node000001" class="node">
 <title>Node1</title>
-<g id="a_Node000001"><a xlink:title="Controller voor het verbinden van het aanmaken van bedrijven op basis van het KVK nummer.">
+<g id="a_Node000001"><a xlink:title="Controller voor het verbinden van het aanmaken van bedrijven op basis van het KVK nummer....">
 <polygon fill="#999999" stroke="none" points="254.5,-144 86,-144 86,0 254.5,0 254.5,-144"/>
 <text text-anchor="start" x="90" y="-130.5" font-family="Helvetica,sans-Serif" font-size="10.00">WPR.Controllers.Customer.</text>
 <text text-anchor="start" x="90" y="-118.5" font-family="Helvetica,sans-Serif" font-size="10.00">AddBusiness.AddBusinessController</text>

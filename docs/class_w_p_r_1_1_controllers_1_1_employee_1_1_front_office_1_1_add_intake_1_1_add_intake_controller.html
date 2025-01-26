@@ -142,7 +142,7 @@ Private Attributen</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Gedetailleerde Beschrijving</h2>
 <div class="textblock"><p><a class="el" href="class_w_p_r_1_1_controllers_1_1_employee_1_1_front_office_1_1_add_intake_1_1_add_intake_controller.html" title="AddIntakeController zorgt ervoor dat informatie over de inname van een voertuig toegevoegd kan worden...">AddIntakeController</a> zorgt ervoor dat informatie over de inname van een voertuig toegevoegd kan worden aan de database. </p>
 
-<p class="definition">De definitie bevindt zich op regel <a class="el" href="add_intake_controller_8cs_source.html#l00015">15</a> in het bestand <a class="el" href="add_intake_controller_8cs_source.html">addIntakeController.cs</a>.</p>
+<p class="definition">De definitie bevindt zich op regel <a class="el" href="add_intake_controller_8cs_source.html#l00013">13</a> in het bestand <a class="el" href="add_intake_controller_8cs_source.html">addIntakeController.cs</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentatie</h2>
 <a id="aeaa0fabe5d5d999eef8af5d40425e573" name="aeaa0fabe5d5d999eef8af5d40425e573"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aeaa0fabe5d5d999eef8af5d40425e573">&#9670;&#160;</a></span>AddIntakeController()</h2>
@@ -176,14 +176,14 @@ Private Attributen</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">De definitie bevindt zich op regel <a class="el" href="add_intake_controller_8cs_source.html#l00021">21</a> in het bestand <a class="el" href="add_intake_controller_8cs_source.html">addIntakeController.cs</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   22</span>    {</div>
-<div class="line"><span class="lineno">   23</span>        _connector = connector ?? <span class="keywordflow">throw</span> <span class="keyword">new</span> ArgumentNullException(nameof(connector));</div>
-<div class="line"><span class="lineno">   24</span>        _employeeRepository = employeeRepository ?? <span class="keywordflow">throw</span> <span class="keyword">new</span> ArgumentNullException(nameof(employeeRepository));</div>
-<div class="line"><span class="lineno">   25</span>        _vehicleRepository = vehicleRepository ?? <span class="keywordflow">throw</span> <span class="keyword">new</span> ArgumentNullException(nameof(vehicleRepository));</div>
-<div class="line"><span class="lineno">   26</span>    }</div>
+<p class="definition">De definitie bevindt zich op regel <a class="el" href="add_intake_controller_8cs_source.html#l00019">19</a> in het bestand <a class="el" href="add_intake_controller_8cs_source.html">addIntakeController.cs</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   20</span>    {</div>
+<div class="line"><span class="lineno">   21</span>        _connector = connector ?? <span class="keywordflow">throw</span> <span class="keyword">new</span> ArgumentNullException(nameof(connector));</div>
+<div class="line"><span class="lineno">   22</span>        _employeeRepository = employeeRepository ?? <span class="keywordflow">throw</span> <span class="keyword">new</span> ArgumentNullException(nameof(employeeRepository));</div>
+<div class="line"><span class="lineno">   23</span>        _vehicleRepository = vehicleRepository ?? <span class="keywordflow">throw</span> <span class="keyword">new</span> ArgumentNullException(nameof(vehicleRepository));</div>
+<div class="line"><span class="lineno">   24</span>    }</div>
 </div><!-- fragment -->
-<p class="reference">Gebruikt <a class="el" href="add_intake_controller_8cs_source.html#l00017">_connector</a>, <a class="el" href="add_intake_controller_8cs_source.html#l00018">_employeeRepository</a> en <a class="el" href="add_intake_controller_8cs_source.html#l00019">_vehicleRepository</a>.</p>
+<p class="reference">Gebruikt <a class="el" href="add_intake_controller_8cs_source.html#l00015">_connector</a>, <a class="el" href="add_intake_controller_8cs_source.html#l00016">_employeeRepository</a> en <a class="el" href="add_intake_controller_8cs_source.html#l00017">_vehicleRepository</a>.</p>
 
 </div>
 </div>
@@ -220,42 +220,42 @@ Private Attributen</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Retourneert</dt><dd></dd></dl>
 
-<p class="definition">De definitie bevindt zich op regel <a class="el" href="add_intake_controller_8cs_source.html#l00034">34</a> in het bestand <a class="el" href="add_intake_controller_8cs_source.html">addIntakeController.cs</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   35</span>    {</div>
-<div class="line"><span class="lineno">   36</span>        <span class="keywordflow">try</span></div>
-<div class="line"><span class="lineno">   37</span>        {</div>
-<div class="line"><span class="lineno">   38</span> </div>
-<div class="line"><span class="lineno">   39</span>            <span class="comment">// Gegevens worden doorgestuurd naar de userRepository</span></div>
-<div class="line"><span class="lineno">   40</span>            var status = await _employeeRepository.AddIntakeAsync(</div>
-<div class="line"><span class="lineno">   41</span>                request.Damage,</div>
-<div class="line"><span class="lineno">   42</span>                request.FrameNrVehicle,</div>
-<div class="line"><span class="lineno">   43</span>                request.ReviewedBy,</div>
-<div class="line"><span class="lineno">   44</span>                request.Date,</div>
-<div class="line"><span class="lineno">   45</span>                request.Contract,</div>
-<div class="line"><span class="lineno">   46</span>                request.IsDamaged);</div>
-<div class="line"><span class="lineno">   47</span> </div>
-<div class="line"><span class="lineno">   48</span>            <span class="keywordflow">if</span> (request.IsDamaged)</div>
-<div class="line"><span class="lineno">   49</span>            {</div>
-<div class="line"><span class="lineno">   50</span>                var status2 = _vehicleRepository.ChangeRepairStatus(request.FrameNrVehicle, <span class="keyword">true</span>);</div>
-<div class="line"><span class="lineno">   51</span>            }</div>
-<div class="line"><span class="lineno">   52</span> </div>
-<div class="line"><span class="lineno">   53</span>            <span class="keywordflow">if</span> (status.status)</div>
-<div class="line"><span class="lineno">   54</span>            {</div>
-<div class="line"><span class="lineno">   55</span>                <span class="keywordflow">return</span> Ok(<span class="keyword">new</span> AddIntakeResponse { Message = status.message });</div>
-<div class="line"><span class="lineno">   56</span>            }</div>
-<div class="line"><span class="lineno">   57</span>            <span class="keywordflow">return</span> BadRequest(<span class="keyword">new</span> AddIntakeErrorResponse</div>
-<div class="line"><span class="lineno">   58</span>            {</div>
-<div class="line"><span class="lineno">   59</span>                Status = <span class="keyword">false</span>,</div>
-<div class="line"><span class="lineno">   60</span>                Message = status.message</div>
-<div class="line"><span class="lineno">   61</span>            });</div>
-<div class="line"><span class="lineno">   62</span>        }</div>
-<div class="line"><span class="lineno">   63</span>        <span class="keywordflow">catch</span> (Exception ex)</div>
-<div class="line"><span class="lineno">   64</span>        {</div>
-<div class="line"><span class="lineno">   65</span>            <span class="keywordflow">return</span> StatusCode(500, <span class="keyword">new</span> AddIntakeErrorResponse() { Status = <span class="keyword">false</span>, Message = ex.Message });</div>
-<div class="line"><span class="lineno">   66</span>        }</div>
-<div class="line"><span class="lineno">   67</span>    }</div>
+<p class="definition">De definitie bevindt zich op regel <a class="el" href="add_intake_controller_8cs_source.html#l00032">32</a> in het bestand <a class="el" href="add_intake_controller_8cs_source.html">addIntakeController.cs</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   33</span>    {</div>
+<div class="line"><span class="lineno">   34</span>        <span class="keywordflow">try</span></div>
+<div class="line"><span class="lineno">   35</span>        {</div>
+<div class="line"><span class="lineno">   36</span> </div>
+<div class="line"><span class="lineno">   37</span>            <span class="comment">// Gegevens worden doorgestuurd naar de userRepository</span></div>
+<div class="line"><span class="lineno">   38</span>            var status = await _employeeRepository.AddIntakeAsync(</div>
+<div class="line"><span class="lineno">   39</span>                request.Damage,</div>
+<div class="line"><span class="lineno">   40</span>                request.FrameNrVehicle,</div>
+<div class="line"><span class="lineno">   41</span>                request.ReviewedBy,</div>
+<div class="line"><span class="lineno">   42</span>                request.Date,</div>
+<div class="line"><span class="lineno">   43</span>                request.Contract,</div>
+<div class="line"><span class="lineno">   44</span>                request.IsDamaged);</div>
+<div class="line"><span class="lineno">   45</span> </div>
+<div class="line"><span class="lineno">   46</span>            <span class="keywordflow">if</span> (request.IsDamaged)</div>
+<div class="line"><span class="lineno">   47</span>            {</div>
+<div class="line"><span class="lineno">   48</span>                var status2 = _vehicleRepository.ChangeRepairStatus(request.FrameNrVehicle, <span class="keyword">true</span>);</div>
+<div class="line"><span class="lineno">   49</span>            }</div>
+<div class="line"><span class="lineno">   50</span> </div>
+<div class="line"><span class="lineno">   51</span>            <span class="keywordflow">if</span> (status.status)</div>
+<div class="line"><span class="lineno">   52</span>            {</div>
+<div class="line"><span class="lineno">   53</span>                <span class="keywordflow">return</span> Ok(<span class="keyword">new</span> AddIntakeResponse { Message = status.message });</div>
+<div class="line"><span class="lineno">   54</span>            }</div>
+<div class="line"><span class="lineno">   55</span>            <span class="keywordflow">return</span> BadRequest(<span class="keyword">new</span> AddIntakeErrorResponse</div>
+<div class="line"><span class="lineno">   56</span>            {</div>
+<div class="line"><span class="lineno">   57</span>                Status = <span class="keyword">false</span>,</div>
+<div class="line"><span class="lineno">   58</span>                Message = status.message</div>
+<div class="line"><span class="lineno">   59</span>            });</div>
+<div class="line"><span class="lineno">   60</span>        }</div>
+<div class="line"><span class="lineno">   61</span>        <span class="keywordflow">catch</span> (Exception ex)</div>
+<div class="line"><span class="lineno">   62</span>        {</div>
+<div class="line"><span class="lineno">   63</span>            <span class="keywordflow">return</span> StatusCode(500, <span class="keyword">new</span> AddIntakeErrorResponse() { Status = <span class="keyword">false</span>, Message = ex.Message });</div>
+<div class="line"><span class="lineno">   64</span>        }</div>
+<div class="line"><span class="lineno">   65</span>    }</div>
 </div><!-- fragment -->
-<p class="reference">Gebruikt <a class="el" href="add_intake_controller_8cs_source.html#l00018">_employeeRepository</a> en <a class="el" href="add_intake_controller_8cs_source.html#l00019">_vehicleRepository</a>.</p>
+<p class="reference">Gebruikt <a class="el" href="add_intake_controller_8cs_source.html#l00016">_employeeRepository</a> en <a class="el" href="add_intake_controller_8cs_source.html#l00017">_vehicleRepository</a>.</p>
 
 </div>
 </div>
@@ -280,9 +280,9 @@ Private Attributen</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">De definitie bevindt zich op regel <a class="el" href="add_intake_controller_8cs_source.html#l00017">17</a> in het bestand <a class="el" href="add_intake_controller_8cs_source.html">addIntakeController.cs</a>.</p>
+<p class="definition">De definitie bevindt zich op regel <a class="el" href="add_intake_controller_8cs_source.html#l00015">15</a> in het bestand <a class="el" href="add_intake_controller_8cs_source.html">addIntakeController.cs</a>.</p>
 
-<p class="reference">Wordt aangeroepen door <a class="el" href="add_intake_controller_8cs_source.html#l00021">AddIntakeController()</a>.</p>
+<p class="reference">Wordt aangeroepen door <a class="el" href="add_intake_controller_8cs_source.html#l00019">AddIntakeController()</a>.</p>
 
 </div>
 </div>
@@ -306,9 +306,9 @@ Private Attributen</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">De definitie bevindt zich op regel <a class="el" href="add_intake_controller_8cs_source.html#l00018">18</a> in het bestand <a class="el" href="add_intake_controller_8cs_source.html">addIntakeController.cs</a>.</p>
+<p class="definition">De definitie bevindt zich op regel <a class="el" href="add_intake_controller_8cs_source.html#l00016">16</a> in het bestand <a class="el" href="add_intake_controller_8cs_source.html">addIntakeController.cs</a>.</p>
 
-<p class="reference">Wordt aangeroepen door <a class="el" href="add_intake_controller_8cs_source.html#l00034">AddIntakeAsync()</a> en <a class="el" href="add_intake_controller_8cs_source.html#l00021">AddIntakeController()</a>.</p>
+<p class="reference">Wordt aangeroepen door <a class="el" href="add_intake_controller_8cs_source.html#l00032">AddIntakeAsync()</a> en <a class="el" href="add_intake_controller_8cs_source.html#l00019">AddIntakeController()</a>.</p>
 
 </div>
 </div>
@@ -332,9 +332,9 @@ Private Attributen</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">De definitie bevindt zich op regel <a class="el" href="add_intake_controller_8cs_source.html#l00019">19</a> in het bestand <a class="el" href="add_intake_controller_8cs_source.html">addIntakeController.cs</a>.</p>
+<p class="definition">De definitie bevindt zich op regel <a class="el" href="add_intake_controller_8cs_source.html#l00017">17</a> in het bestand <a class="el" href="add_intake_controller_8cs_source.html">addIntakeController.cs</a>.</p>
 
-<p class="reference">Wordt aangeroepen door <a class="el" href="add_intake_controller_8cs_source.html#l00034">AddIntakeAsync()</a> en <a class="el" href="add_intake_controller_8cs_source.html#l00021">AddIntakeController()</a>.</p>
+<p class="reference">Wordt aangeroepen door <a class="el" href="add_intake_controller_8cs_source.html#l00032">AddIntakeAsync()</a> en <a class="el" href="add_intake_controller_8cs_source.html#l00019">AddIntakeController()</a>.</p>
 
 </div>
 </div>

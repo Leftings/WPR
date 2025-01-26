@@ -109,6 +109,9 @@ $(function(){initNavTree('class_w_p_r_1_1_email_1_1_customer.html',''); initResi
   <div class="headertitle"><div class="title">WPR.Email.Customer Class Referentie</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>In de <a class="el" href="class_w_p_r_1_1_email_1_1_customer.html" title="In de Customer klasse worden alle gegevens van een specifieke klant verzameld voor het aanmaken van e...">Customer</a> klasse worden alle gegevens van een specifieke klant verzameld voor het aanmaken van een email.  
+ <a href="#details">Meer...</a></p>
 <div class="dynheader">
 Klasse diagram voor WPR.Email.Customer</div>
 <div class="dyncontent">
@@ -123,10 +126,13 @@ Collaboratie diagram voor WPR.Email.Customer:</div>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Members</h2></td></tr>
 <tr class="memitem:a65cf815709de2f22283e9ab4dcfcc803" id="r_a65cf815709de2f22283e9ab4dcfcc803"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a65cf815709de2f22283e9ab4dcfcc803">Customer</a> (<a class="el" href="interface_w_p_r_1_1_repository_1_1_i_user_repository.html">IUserRepository</a> userRepository)</td></tr>
+<tr class="memdesc:a65cf815709de2f22283e9ab4dcfcc803"><td class="mdescLeft">&#160;</td><td class="mdescRight">In de constructor worden alle benodigde klasses geset.  <br /></td></tr>
 <tr class="separator:a65cf815709de2f22283e9ab4dcfcc803"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af661ff1fdb938076dbcba7e2bef5a428" id="r_af661ff1fdb938076dbcba7e2bef5a428"><td class="memItemLeft" align="right" valign="top">async Task&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af661ff1fdb938076dbcba7e2bef5a428">SetDetailsAsync</a> (object id)</td></tr>
+<tr class="memdesc:af661ff1fdb938076dbcba7e2bef5a428"><td class="mdescLeft">&#160;</td><td class="mdescRight">Alle gegevens worden in de dictionary van de klant geset.  <br /></td></tr>
 <tr class="separator:af661ff1fdb938076dbcba7e2bef5a428"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a08a778fa92d15dad36dd8dc2ea5c1fcf" id="r_a08a778fa92d15dad36dd8dc2ea5c1fcf"><td class="memItemLeft" align="right" valign="top">async Task&lt; Dictionary&lt; string, object &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a08a778fa92d15dad36dd8dc2ea5c1fcf">GetDetailsAsync</a> ()</td></tr>
+<tr class="memdesc:a08a778fa92d15dad36dd8dc2ea5c1fcf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Alle gegevens van de klant worden via deze methode opgehaald.  <br /></td></tr>
 <tr class="separator:a08a778fa92d15dad36dd8dc2ea5c1fcf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="properties" name="properties"></a>
@@ -140,8 +146,9 @@ Private Attributen</h2></td></tr>
 <tr class="separator:a4e354d8b5ae81442ee3851bd162ec3c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Gedetailleerde Beschrijving</h2>
-<div class="textblock">
-<p class="definition">De definitie bevindt zich op regel <a class="el" href="_customer_8cs_source.html#l00008">8</a> in het bestand <a class="el" href="_customer_8cs_source.html">Customer.cs</a>.</p>
+<div class="textblock"><p>In de <a class="el" href="class_w_p_r_1_1_email_1_1_customer.html" title="In de Customer klasse worden alle gegevens van een specifieke klant verzameld voor het aanmaken van e...">Customer</a> klasse worden alle gegevens van een specifieke klant verzameld voor het aanmaken van een email. </p>
+
+<p class="definition">De definitie bevindt zich op regel <a class="el" href="_customer_8cs_source.html#l00012">12</a> in het bestand <a class="el" href="_customer_8cs_source.html">Customer.cs</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentatie</h2>
 <a id="a65cf815709de2f22283e9ab4dcfcc803" name="a65cf815709de2f22283e9ab4dcfcc803"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a65cf815709de2f22283e9ab4dcfcc803">&#9670;&#160;</a></span>Customer()</h2>
@@ -166,12 +173,26 @@ Private Attributen</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">De definitie bevindt zich op regel <a class="el" href="_customer_8cs_source.html#l00013">13</a> in het bestand <a class="el" href="_customer_8cs_source.html">Customer.cs</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   14</span>    {</div>
-<div class="line"><span class="lineno">   15</span>        _userRepository = userRepository ?? <span class="keywordflow">throw</span> <span class="keyword">new</span> ArgumentNullException(nameof(userRepository));</div>
-<div class="line"><span class="lineno">   16</span>    }</div>
+<p>In de constructor worden alle benodigde klasses geset. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">userRepository</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="exception"><dt>Excepties</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">ArgumentNullException</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">De definitie bevindt zich op regel <a class="el" href="_customer_8cs_source.html#l00022">22</a> in het bestand <a class="el" href="_customer_8cs_source.html">Customer.cs</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   23</span>    {</div>
+<div class="line"><span class="lineno">   24</span>        _userRepository = userRepository ?? <span class="keywordflow">throw</span> <span class="keyword">new</span> ArgumentNullException(nameof(userRepository));</div>
+<div class="line"><span class="lineno">   25</span>    }</div>
 </div><!-- fragment -->
-<p class="reference">Gebruikt <a class="el" href="_customer_8cs_source.html#l00011">_userRepository</a>.</p>
+<p class="reference">Gebruikt <a class="el" href="_customer_8cs_source.html#l00015">_userRepository</a>.</p>
 
 </div>
 </div>
@@ -199,14 +220,17 @@ Private Attributen</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Alle gegevens van de klant worden via deze methode opgehaald. </p>
+<dl class="section return"><dt>Retourneert</dt><dd></dd></dl>
+
 <p>Implementeert <a class="el" href="interface_w_p_r_1_1_email_1_1_i_details.html#a833d7d0da229f3739fffa2f2b64885cd">WPR.Email.IDetails</a>.</p>
 
-<p class="definition">De definitie bevindt zich op regel <a class="el" href="_customer_8cs_source.html#l00036">36</a> in het bestand <a class="el" href="_customer_8cs_source.html">Customer.cs</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   37</span>    {</div>
-<div class="line"><span class="lineno">   38</span>        <span class="keywordflow">return</span> _details;</div>
-<div class="line"><span class="lineno">   39</span>    }</div>
+<p class="definition">De definitie bevindt zich op regel <a class="el" href="_customer_8cs_source.html#l00054">54</a> in het bestand <a class="el" href="_customer_8cs_source.html">Customer.cs</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   55</span>    {</div>
+<div class="line"><span class="lineno">   56</span>        <span class="keywordflow">return</span> _details;</div>
+<div class="line"><span class="lineno">   57</span>    }</div>
 </div><!-- fragment -->
-<p class="reference">Gebruikt <a class="el" href="_customer_8cs_source.html#l00010">_details</a>.</p>
+<p class="reference">Gebruikt <a class="el" href="_customer_8cs_source.html#l00014">_details</a>.</p>
 
 </div>
 </div>
@@ -233,27 +257,36 @@ Private Attributen</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Alle gegevens worden in de dictionary van de klant geset. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">id</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Retourneert</dt><dd></dd></dl>
+
 <p>Implementeert <a class="el" href="interface_w_p_r_1_1_email_1_1_i_details.html#ac7600129d3807cf2a065a8e44c30a6df">WPR.Email.IDetails</a>.</p>
 
-<p class="definition">De definitie bevindt zich op regel <a class="el" href="_customer_8cs_source.html#l00018">18</a> in het bestand <a class="el" href="_customer_8cs_source.html">Customer.cs</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   19</span>    {</div>
-<div class="line"><span class="lineno">   20</span>        <span class="keywordflow">try</span></div>
-<div class="line"><span class="lineno">   21</span>        {</div>
-<div class="line"><span class="lineno">   22</span>            _details = await _userRepository.GetCustomerDetails(Convert.ToInt32(<span class="keywordtype">id</span>));</div>
-<div class="line"><span class="lineno">   23</span>        }</div>
-<div class="line"><span class="lineno">   24</span>        <span class="keywordflow">catch</span> (OverflowException ex)</div>
-<div class="line"><span class="lineno">   25</span>        {</div>
-<div class="line"><span class="lineno">   26</span>            Console.WriteLine(ex.Message);</div>
-<div class="line"><span class="lineno">   27</span>            <span class="keywordflow">throw</span>;</div>
-<div class="line"><span class="lineno">   28</span>        }</div>
-<div class="line"><span class="lineno">   29</span>        <span class="keywordflow">catch</span> (Exception ex)</div>
-<div class="line"><span class="lineno">   30</span>        {</div>
-<div class="line"><span class="lineno">   31</span>            Console.WriteLine(ex.Message);</div>
-<div class="line"><span class="lineno">   32</span>            <span class="keywordflow">throw</span>;</div>
-<div class="line"><span class="lineno">   33</span>        }</div>
-<div class="line"><span class="lineno">   34</span>    }</div>
+<p class="definition">De definitie bevindt zich op regel <a class="el" href="_customer_8cs_source.html#l00032">32</a> in het bestand <a class="el" href="_customer_8cs_source.html">Customer.cs</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   33</span>    {</div>
+<div class="line"><span class="lineno">   34</span>        <span class="keywordflow">try</span></div>
+<div class="line"><span class="lineno">   35</span>        {</div>
+<div class="line"><span class="lineno">   36</span>            _details = await _userRepository.GetCustomerDetails(Convert.ToInt32(<span class="keywordtype">id</span>));</div>
+<div class="line"><span class="lineno">   37</span>        }</div>
+<div class="line"><span class="lineno">   38</span>        <span class="keywordflow">catch</span> (OverflowException ex)</div>
+<div class="line"><span class="lineno">   39</span>        {</div>
+<div class="line"><span class="lineno">   40</span>            Console.WriteLine(ex.Message);</div>
+<div class="line"><span class="lineno">   41</span>            <span class="keywordflow">throw</span>;</div>
+<div class="line"><span class="lineno">   42</span>        }</div>
+<div class="line"><span class="lineno">   43</span>        <span class="keywordflow">catch</span> (Exception ex)</div>
+<div class="line"><span class="lineno">   44</span>        {</div>
+<div class="line"><span class="lineno">   45</span>            Console.WriteLine(ex.Message);</div>
+<div class="line"><span class="lineno">   46</span>            <span class="keywordflow">throw</span>;</div>
+<div class="line"><span class="lineno">   47</span>        }</div>
+<div class="line"><span class="lineno">   48</span>    }</div>
 </div><!-- fragment -->
-<p class="reference">Gebruikt <a class="el" href="_customer_8cs_source.html#l00010">_details</a> en <a class="el" href="_customer_8cs_source.html#l00011">_userRepository</a>.</p>
+<p class="reference">Gebruikt <a class="el" href="_customer_8cs_source.html#l00014">_details</a> en <a class="el" href="_customer_8cs_source.html#l00015">_userRepository</a>.</p>
 
 </div>
 </div>
@@ -278,9 +311,9 @@ Private Attributen</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">De definitie bevindt zich op regel <a class="el" href="_customer_8cs_source.html#l00011">11</a> in het bestand <a class="el" href="_customer_8cs_source.html">Customer.cs</a>.</p>
+<p class="definition">De definitie bevindt zich op regel <a class="el" href="_customer_8cs_source.html#l00015">15</a> in het bestand <a class="el" href="_customer_8cs_source.html">Customer.cs</a>.</p>
 
-<p class="reference">Wordt aangeroepen door <a class="el" href="_customer_8cs_source.html#l00013">Customer()</a> en <a class="el" href="_customer_8cs_source.html#l00018">SetDetailsAsync()</a>.</p>
+<p class="reference">Wordt aangeroepen door <a class="el" href="_customer_8cs_source.html#l00022">Customer()</a> en <a class="el" href="_customer_8cs_source.html#l00032">SetDetailsAsync()</a>.</p>
 
 </div>
 </div>
@@ -305,10 +338,10 @@ Private Attributen</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">De definitie bevindt zich op regel <a class="el" href="_customer_8cs_source.html#l00010">10</a> in het bestand <a class="el" href="_customer_8cs_source.html">Customer.cs</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   10</span>{ <span class="keyword">get</span>; <span class="keyword">set</span>; }</div>
+<p class="definition">De definitie bevindt zich op regel <a class="el" href="_customer_8cs_source.html#l00014">14</a> in het bestand <a class="el" href="_customer_8cs_source.html">Customer.cs</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   14</span>{ <span class="keyword">get</span>; <span class="keyword">set</span>; }</div>
 </div><!-- fragment -->
-<p class="reference">Wordt aangeroepen door <a class="el" href="_customer_8cs_source.html#l00036">GetDetailsAsync()</a> en <a class="el" href="_customer_8cs_source.html#l00018">SetDetailsAsync()</a>.</p>
+<p class="reference">Wordt aangeroepen door <a class="el" href="_customer_8cs_source.html#l00054">GetDetailsAsync()</a> en <a class="el" href="_customer_8cs_source.html#l00032">SetDetailsAsync()</a>.</p>
 
 </div>
 </div>

@@ -11,7 +11,7 @@
 <!-- Node1 -->
 <g id="Node000001" class="node">
 <title>Node1</title>
-<g id="a_Node000001"><a xlink:title=" ">
+<g id="a_Node000001"><a xlink:title="Verstuurt een bevestigingsmail voor een bedrijfsaccount aanvraag.">
 <polygon fill="#999999" stroke="#666666" points="159.25,-57 0,-57 0,-25 159.25,-25 159.25,-57"/>
 <text text-anchor="start" x="8" y="-43.5" font-family="Helvetica,sans-Serif" font-size="10.00">WPR.Services.EmailService.</text>
 <text text-anchor="middle" x="79.62" y="-31.5" font-family="Helvetica,sans-Serif" font-size="10.00">SendConfirmationEmailBusiness</text>
@@ -21,7 +21,7 @@
 <!-- Node2 -->
 <g id="Node000002" class="node">
 <title>Node2</title>
-<g id="a_Node000002"><a xlink:href="class_w_p_r_1_1_services_1_1_email_service.html#a41a2fd3203eb64a3e3965d7e1634ee4b" target="_top" xlink:title=" ">
+<g id="a_Node000002"><a xlink:href="class_w_p_r_1_1_services_1_1_email_service.html#a41a2fd3203eb64a3e3965d7e1634ee4b" target="_top" xlink:title="Bouwt de HTML&#45;inhoud voor een bedrijfsaccount bevestigingsmail.">
 <polygon fill="white" stroke="#666666" points="376.25,-82 195.25,-82 195.25,-50 376.25,-50 376.25,-82"/>
 <text text-anchor="start" x="203.25" y="-68.5" font-family="Helvetica,sans-Serif" font-size="10.00">WPR.Services.EmailService.</text>
 <text text-anchor="middle" x="285.75" y="-56.5" font-family="Helvetica,sans-Serif" font-size="10.00">BuildConfirmationEmailBusinessBody</text>
@@ -40,7 +40,7 @@
 <!-- Node3 -->
 <g id="Node000003" class="node">
 <title>Node3</title>
-<g id="a_Node000003"><a xlink:href="class_w_p_r_1_1_services_1_1_email_service.html#ab31b08101a79b7e7634ccb24fb771d33" target="_top" xlink:title="Maak SMTP Client voor versturen emails.">
+<g id="a_Node000003"><a xlink:href="class_w_p_r_1_1_services_1_1_email_service.html#ab31b08101a79b7e7634ccb24fb771d33" target="_top" xlink:title="Creëert en retourneert een SMTP&#45;client met de benodigde instellingen.">
 <polygon fill="white" stroke="#666666" points="358.25,-32 213.25,-32 213.25,0 358.25,0 358.25,-32"/>
 <text text-anchor="start" x="221.25" y="-18.5" font-family="Helvetica,sans-Serif" font-size="10.00">WPR.Services.EmailService.</text>
 <text text-anchor="middle" x="285.75" y="-6.5" font-family="Helvetica,sans-Serif" font-size="10.00">CreateSmtpClient</text>

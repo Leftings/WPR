@@ -20,7 +20,7 @@
 <!-- Node1 -->
 <g id="Node000001" class="node">
 <title>Node1</title>
-<g id="a_Node000001"><a xlink:href="class_w_p_r_1_1_email_1_1_reminders.html" target="_top" xlink:title=" ">
+<g id="a_Node000001"><a xlink:href="class_w_p_r_1_1_email_1_1_reminders.html" target="_top" xlink:title="De klasse Reminders draaid op de achtergrond om elke 24 uur herrinering mails van contracten te sture...">
 <polygon fill="white" stroke="#666666" points="254.75,-20 136.75,-20 136.75,0 254.75,0 254.75,-20"/>
 <text text-anchor="middle" x="195.75" y="-6.5" font-family="Helvetica,sans-Serif" font-size="10.00">WPR.Email.Reminders</text>
 </a>

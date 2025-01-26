@@ -11,7 +11,7 @@
 <!-- Node1 -->
 <g id="Node000001" class="node">
 <title>Node1</title>
-<g id="a_Node000001"><a xlink:title=" ">
+<g id="a_Node000001"><a xlink:title="Voegt een persoonlijke klant toe aan de database na validatie van de verstrekte gegevens.">
 <polygon fill="#999999" stroke="#666666" points="163,-225 0,-225 0,-193 163,-193 163,-225"/>
 <text text-anchor="start" x="8" y="-211.5" font-family="Helvetica,sans-Serif" font-size="10.00">WPR.Repository.UserRepository.</text>
 <text text-anchor="middle" x="81.5" y="-199.5" font-family="Helvetica,sans-Serif" font-size="10.00">AddPersonalCustomer</text>

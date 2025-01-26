@@ -1,7 +1,6 @@
 var hierarchy =
 [
     [ "WPR.Controllers.Employee.Shared.acceptHireRequest.acceptHireRequestRequest", "class_w_p_r_1_1_controllers_1_1_employee_1_1_shared_1_1accept_hire_request_1_1accept_hire_request_request.html", null ],
-    [ "WPR.Controllers.Customer.AddBusiness.addBusinessResponse", "class_w_p_r_1_1_controllers_1_1_customer_1_1_add_business_1_1add_business_response.html", null ],
     [ "WPR.Controllers.Employee.FrontOffice.AddIntake.AddIntakeErrorResponse", "class_w_p_r_1_1_controllers_1_1_employee_1_1_front_office_1_1_add_intake_1_1_add_intake_error_response.html", null ],
     [ "WPR.Controllers.Employee.FrontOffice.AddIntake.AddIntakeRequest", "class_w_p_r_1_1_controllers_1_1_employee_1_1_front_office_1_1_add_intake_1_1_add_intake_request.html", null ],
     [ "WPR.Controllers.Employee.FrontOffice.AddIntake.AddIntakeResponse", "class_w_p_r_1_1_controllers_1_1_employee_1_1_front_office_1_1_add_intake_1_1_add_intake_response.html", null ],
@@ -15,8 +14,6 @@ var hierarchy =
     [ "WPR.Controllers.Employee.VehicleManager.ChangeBusinessSettings.ChangeBusinessInfo", "class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_change_business_settings_1_1_change_business_info.html", null ],
     [ "WPR.Controllers.Employee.VehicleManager.ChangeBusinessSettings.ChangeBusinessRequest", "class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_change_business_settings_1_1_change_business_request.html", null ],
     [ "WPR.Controllers.Customer.ChangeUserSettings.ChangeUserRequest", "class_w_p_r_1_1_controllers_1_1_customer_1_1_change_user_settings_1_1_change_user_request.html", null ],
-    [ "WPR.Controllers.Customer.ChangeUserSettings.ChangeUserSettingsErrorResponse", "class_w_p_r_1_1_controllers_1_1_customer_1_1_change_user_settings_1_1_change_user_settings_error_response.html", null ],
-    [ "WPR.Controllers.Customer.ChangeUserSettings.ChangeUserSettingsResponse", "class_w_p_r_1_1_controllers_1_1_customer_1_1_change_user_settings_1_1_change_user_settings_response.html", null ],
     [ "WPR.Controllers.Employee.VehicleManager.ChangeBusinessSettings.ChangeVehicleManagerInfo", "class_w_p_r_1_1_controllers_1_1_employee_1_1_vehicle_manager_1_1_change_business_settings_1_1_change_vehicle_manager_info.html", null ],
     [ "ControllerBase", null, [
       [ "WPR.Controllers.Customer.AddBusiness.AddBusinessController", "class_w_p_r_1_1_controllers_1_1_customer_1_1_add_business_1_1_add_business_controller.html", null ],
@@ -52,10 +49,10 @@ var hierarchy =
       [ "WPR.Database.Connector", "class_w_p_r_1_1_database_1_1_connector.html", null ]
     ] ],
     [ "WPR.Repository.IContractRepository", "interface_w_p_r_1_1_repository_1_1_i_contract_repository.html", [
-      [ "WPR.Repository.ContractRepository", "class_w_p_r_1_1_repository_1_1_contract_repository.html", null ]
+      [ "ContractRepository", "class_contract_repository.html", null ]
     ] ],
     [ "WPR.Repository.DatabaseCheckRepository.IDatabaseCheckRepository", "interface_w_p_r_1_1_repository_1_1_database_check_repository_1_1_i_database_check_repository.html", [
-      [ "WPR.Repository.DatabaseCheckRepository.DatabaseCheckRepository", "class_w_p_r_1_1_repository_1_1_database_check_repository_1_1_database_check_repository.html", null ]
+      [ "DatabaseCheckRepository", "class_database_check_repository.html", null ]
     ] ],
     [ "WPR.Email.IDetails", "interface_w_p_r_1_1_email_1_1_i_details.html", [
       [ "WPR.Email.IContractDetails", "interface_w_p_r_1_1_email_1_1_i_contract_details.html", [
@@ -90,15 +87,12 @@ var hierarchy =
     [ "WPR.Controllers.Customer.Rental.RentalRequest", "class_w_p_r_1_1_controllers_1_1_customer_1_1_rental_1_1_rental_request.html", null ],
     [ "WPR.Controllers.Customer.Rental.RentalResponse", "class_w_p_r_1_1_controllers_1_1_customer_1_1_rental_1_1_rental_response.html", null ],
     [ "WPR.Controllers.Employee.BackOffice.signUpStaff.SignUpStaffRequest", "class_w_p_r_1_1_controllers_1_1_employee_1_1_back_office_1_1sign_up_staff_1_1_sign_up_staff_request.html", null ],
+    [ "WPR.Utils.StrongPasswordMaker", "class_w_p_r_1_1_utils_1_1_strong_password_maker.html", null ],
     [ "WPR.Controllers.customer.Subscription.SubscriptionErrorResponse", "class_w_p_r_1_1_controllers_1_1customer_1_1_subscription_1_1_subscription_error_response.html", null ],
     [ "WPR.Controllers.customer.Subscription.SubscriptionRequest", "class_w_p_r_1_1_controllers_1_1customer_1_1_subscription_1_1_subscription_request.html", null ],
     [ "WPR.Controllers.customer.Subscription.SubscriptionResponse", "class_w_p_r_1_1_controllers_1_1customer_1_1_subscription_1_1_subscription_response.html", null ],
     [ "WPR.Utils.TelChecker", "class_w_p_r_1_1_utils_1_1_tel_checker.html", null ],
     [ "WPR.Controllers.Customer.Rental.UpdateRentalRequest", "class_w_p_r_1_1_controllers_1_1_customer_1_1_rental_1_1_update_rental_request.html", null ],
-    [ "WPR.Controllers.General.Vehicle.VehicleDataResponse", "class_w_p_r_1_1_controllers_1_1_general_1_1_vehicle_1_1_vehicle_data_response.html", null ],
-    [ "WPR.Controllers.General.Vehicle.VehicleErrorResponse", "class_w_p_r_1_1_controllers_1_1_general_1_1_vehicle_1_1_vehicle_error_response.html", null ],
     [ "WPR.Repository.UserRepository.VehicleManager", "class_w_p_r_1_1_repository_1_1_user_repository_1_1_vehicle_manager.html", null ],
-    [ "WPR.Controllers.Employee.Shared.viewRentalData.viewRentalDataErrorResponse", "class_w_p_r_1_1_controllers_1_1_employee_1_1_shared_1_1view_rental_data_1_1view_rental_data_error_response.html", null ],
-    [ "WPR.Controllers.Employee.Shared.viewRentalData.ViewRentalDataRequest", "class_w_p_r_1_1_controllers_1_1_employee_1_1_shared_1_1view_rental_data_1_1_view_rental_data_request.html", null ],
-    [ "WPR.Controllers.Employee.Shared.viewRentalData.viewRentalDataResponse", "class_w_p_r_1_1_controllers_1_1_employee_1_1_shared_1_1view_rental_data_1_1view_rental_data_response.html", null ]
+    [ "WPR.Controllers.Employee.Shared.viewRentalData.ViewRentalDataRequest", "class_w_p_r_1_1_controllers_1_1_employee_1_1_shared_1_1view_rental_data_1_1_view_rental_data_request.html", null ]
 ];

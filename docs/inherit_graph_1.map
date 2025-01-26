@@ -1,6 +1,6 @@
 <map id="Grafische Klasse Hiërarchie" name="Grafische Klasse Hiërarchie">
 <area shape="rect" id="Node000000" title=" " alt="" coords="5,635,113,661"/>
-<area shape="rect" id="Node000001" href="$class_w_p_r_1_1_controllers_1_1_customer_1_1_add_business_1_1_add_business_controller.html" title="Controller voor het verbinden van het aanmaken van bedrijven op basis van het KVK nummer." alt="" coords="177,5,412,48"/>
+<area shape="rect" id="Node000001" href="$class_w_p_r_1_1_controllers_1_1_customer_1_1_add_business_1_1_add_business_controller.html" title="Controller voor het verbinden van het aanmaken van bedrijven op basis van het KVK nummer...." alt="" coords="177,5,412,48"/>
 <area shape="poly" id="edge2_Node000000_Node000001" title=" " alt="" coords="59,619,65,498,81,330,94,245,111,167,132,102,145,77,159,58,175,44,179,49,163,62,149,80,137,104,116,168,99,246,86,331,70,498,64,619"/>
 <area shape="rect" id="Node000002" href="$class_w_p_r_1_1_controllers_1_1_customer_1_1_change_user_settings_1_1_change_user_settings_controller.html" title="ChangeUserSettingsController is de controller die aanvragen van buitenaf ontvangt en vervolgens gegev..." alt="" coords="161,72,428,131"/>
 <area shape="poly" id="edge3_Node000000_Node000002" title=" " alt="" coords="60,619,69,514,87,372,100,299,117,233,136,179,159,141,172,129,175,133,163,144,141,181,122,235,106,300,93,372,74,515,65,620"/>
@@ -28,7 +28,7 @@
 <area shape="poly" id="edge14_Node000000_Node000013" title=" " alt="" coords="65,676,72,729,89,795,101,829,118,862,138,893,162,919,184,934,209,944,207,949,181,939,159,923,134,896,113,865,96,831,84,796,67,730,60,677"/>
 <area shape="rect" id="Node000014" href="$class_w_p_r_1_1_controllers_1_1_general_1_1_login_1_1_login_controller.html" title="LoginController zorgt ervoor dat een gebruiker kan inloggen, daarnaast wordt er ook gekeken of de geb..." alt="" coords="208,1000,382,1043"/>
 <area shape="poly" id="edge15_Node000000_Node000014" title=" " alt="" coords="63,677,66,741,80,824,92,868,110,911,133,951,162,986,184,1001,209,1011,207,1016,181,1006,159,990,129,954,105,914,87,870,75,825,61,741,57,677"/>
-<area shape="rect" id="Node000015" href="$class_w_p_r_1_1_controllers_1_1_general_1_1_sign_up_1_1_sign_up_controller.html" title="SignUpController zorgt ervoor dat persoonlijke en zakelijke accounts aangemaakt kunnen worden." alt="" coords="208,1067,382,1109"/>
+<area shape="rect" id="Node000015" href="$class_w_p_r_1_1_controllers_1_1_general_1_1_sign_up_1_1_sign_up_controller.html" title="De SignUpController beheert het aanmaken van zowel persoonlijke als zakelijke accounts...." alt="" coords="208,1067,382,1109"/>
 <area shape="poly" id="edge16_Node000000_Node000015" title=" " alt="" coords="66,676,78,763,98,876,127,984,144,1025,163,1053,184,1068,209,1078,207,1083,181,1073,159,1057,139,1028,122,985,93,877,73,764,61,677"/>
 <area shape="rect" id="Node000016" href="$class_w_p_r_1_1_controllers_1_1_general_1_1_vehicle_1_1_vehicle_controller.html" title="VehicleController zorgt ervoor dat voertuiggegevens uit de backend gehaald kunnen worden." alt="" coords="208,1133,382,1176"/>
 <area shape="poly" id="edge17_Node000000_Node000016" title=" " alt="" coords="65,676,75,776,94,909,107,976,123,1037,141,1086,163,1120,184,1135,209,1145,207,1150,181,1140,159,1123,136,1089,118,1038,102,977,88,910,70,776,60,677"/>

@@ -1,5 +1,5 @@
 <map id="WPR.Repository.UserRepository.AddPersonalCustomer" name="WPR.Repository.UserRepository.AddPersonalCustomer">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,239,223,281"/>
+<area shape="rect" id="Node000001" title="Voegt een persoonlijke klant toe aan de database na validatie van de verstrekte gegevens." alt="" coords="5,239,223,281"/>
 <area shape="rect" id="Node000002" href="$class_w_p_r_1_1_repository_1_1_user_repository.html#a42ef5421fcb8544d4aab8ed834325a74" title="Een gebruiker (klant) wordt toegevoegd aan de database, doormiddel van alle meegegeven persoondata...." alt="" coords="278,5,516,48"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="124,237,146,198,178,150,219,100,269,58,277,53,280,58,272,62,223,104,182,153,150,201,128,239"/>
 <area shape="rect" id="Node000003" href="$class_w_p_r_1_1_repository_1_1_user_repository.html#a25a2f860883fcc39ea7fa8a932fde475" title="Het aangemaakte account wordt gekoppeld aan de particuliere tabel, doormiddel van alle meegegeven per..." alt="" coords="278,72,516,115"/>

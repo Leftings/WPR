@@ -2,7 +2,7 @@
 <area shape="rect" id="Node000001" title=" " alt="" coords="801,39,999,81"/>
 <area shape="rect" id="Node000002" href="$class_w_p_r_1_1_repository_1_1_user_repository.html#ae8b7a3c517ffe6cb1b85eee60e5b2292" title="AddCustomerChecks kijkt of alle ingevoerde velden geldig zijn. Als een check faalt falen alle checks." alt="" coords="536,5,753,48"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="786,48,754,44,754,38,786,42"/>
-<area shape="rect" id="Node000005" href="$class_w_p_r_1_1_repository_1_1_user_repository.html#a188ce6aab8b95ea246623cc80b520714" title=" " alt="" coords="536,72,753,115"/>
+<area shape="rect" id="Node000005" href="$class_w_p_r_1_1_repository_1_1_user_repository.html#a188ce6aab8b95ea246623cc80b520714" title="Voegt een persoonlijke klant toe aan de database na validatie van de verstrekte gegevens." alt="" coords="536,72,753,115"/>
 <area shape="poly" id="edge5_Node000001_Node000005" title=" " alt="" coords="786,78,754,82,754,76,786,72"/>
 <area shape="rect" id="Node000003" href="$class_w_p_r_1_1_repository_1_1_user_repository.html#a688723c1fb3385274f13ba0e3ba78da8" title="AddCustomer krijgt SignUpRequestCustomer binnen en SignUpRequestCustomerPrivate. Elk account heeft al..." alt="" coords="5,5,223,48"/>
 <area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="521,26,488,25,271,25,223,26,223,21,271,20,488,20,521,21"/>

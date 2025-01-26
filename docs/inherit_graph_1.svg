@@ -20,7 +20,7 @@
 <!-- Node1 -->
 <g id="Node000001" class="node">
 <title>Node1</title>
-<g id="a_Node000001"><a xlink:href="class_w_p_r_1_1_controllers_1_1_customer_1_1_add_business_1_1_add_business_controller.html" target="_top" xlink:title="Controller voor het verbinden van het aanmaken van bedrijven op basis van het KVK nummer.">
+<g id="a_Node000001"><a xlink:href="class_w_p_r_1_1_controllers_1_1_customer_1_1_add_business_1_1_add_business_controller.html" target="_top" xlink:title="Controller voor het verbinden van het aanmaken van bedrijven op basis van het KVK nummer....">
 <polygon fill="white" stroke="#666666" points="305.38,-928 128.88,-928 128.88,-896 305.38,-896 305.38,-928"/>
 <text text-anchor="start" x="136.88" y="-914.5" font-family="Helvetica,sans-Serif" font-size="10.00">WPR.Controllers.Customer.</text>
 <text text-anchor="middle" x="217.12" y="-902.5" font-family="Helvetica,sans-Serif" font-size="10.00">AddBusiness.AddBusinessController</text>
@@ -294,7 +294,7 @@
 <!-- Node15 -->
 <g id="Node000015" class="node">
 <title>Node15</title>
-<g id="a_Node000015"><a xlink:href="class_w_p_r_1_1_controllers_1_1_general_1_1_sign_up_1_1_sign_up_controller.html" target="_top" xlink:title="SignUpController zorgt ervoor dat persoonlijke en zakelijke accounts aangemaakt kunnen worden.">
+<g id="a_Node000015"><a xlink:href="class_w_p_r_1_1_controllers_1_1_general_1_1_sign_up_1_1_sign_up_controller.html" target="_top" xlink:title="De SignUpController beheert het aanmaken van zowel persoonlijke als zakelijke accounts....">
 <polygon fill="white" stroke="#666666" points="282.12,-132 152.12,-132 152.12,-100 282.12,-100 282.12,-132"/>
 <text text-anchor="start" x="160.12" y="-118.5" font-family="Helvetica,sans-Serif" font-size="10.00">WPR.Controllers.General.</text>
 <text text-anchor="middle" x="217.12" y="-106.5" font-family="Helvetica,sans-Serif" font-size="10.00">SignUp.SignUpController</text>

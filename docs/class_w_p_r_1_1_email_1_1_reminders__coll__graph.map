@@ -1,5 +1,5 @@
 <map id="WPR.Email.Reminders" name="WPR.Email.Reminders">
-<area shape="rect" id="Node000001" title=" " alt="" coords="59,139,246,357"/>
+<area shape="rect" id="Node000001" title="De klasse Reminders draaid op de achtergrond om elke 24 uur herrinering mails van contracten te sture..." alt="" coords="59,139,246,357"/>
 <area shape="rect" id="Node000002" title=" " alt="" coords="5,5,129,75"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="89,87,110,138,105,140,84,89"/>
 <area shape="rect" id="Node000003" href="$interface_w_p_r_1_1_database_1_1_i_connector.html" title="Connector class om verbinding te maken met de database, maakt gebruik van de connectie strings die zi..." alt="" coords="152,5,323,75"/>

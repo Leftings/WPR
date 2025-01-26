@@ -11,7 +11,7 @@
 <!-- Node1 -->
 <g id="Node000001" class="node">
 <title>Node1</title>
-<g id="a_Node000001"><a xlink:title=" ">
+<g id="a_Node000001"><a xlink:title="In de Vehicle klasse worden alle gegevens van een specifieke klant verzameld voor het aanmaken van ee...">
 <polygon fill="#999999" stroke="none" points="167.25,-84 69,-84 69,0 167.25,0 167.25,-84"/>
 <text text-anchor="start" x="75" y="-70.5" font-family="Helvetica,sans-Serif" font-size="10.00">WPR.Email.Vehicle</text>
 <text text-anchor="start" x="73" y="-54.5" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>

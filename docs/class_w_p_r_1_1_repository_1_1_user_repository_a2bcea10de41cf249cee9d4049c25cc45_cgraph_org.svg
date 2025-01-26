@@ -11,7 +11,7 @@
 <!-- Node1 -->
 <g id="Node000001" class="node">
 <title>Node1</title>
-<g id="a_Node000001"><a xlink:title=" ">
+<g id="a_Node000001"><a xlink:title="Wijzigt de bedrijfsgegevens voor een bedrijf dat gekoppeld is aan een voertuigbeheerder.">
 <polygon fill="#999999" stroke="#666666" points="163,-32 0,-32 0,0 163,0 163,-32"/>
 <text text-anchor="start" x="8" y="-18.5" font-family="Helvetica,sans-Serif" font-size="10.00">WPR.Repository.UserRepository.</text>
 <text text-anchor="middle" x="81.5" y="-6.5" font-family="Helvetica,sans-Serif" font-size="10.00">ChangeBusinessInfo</text>
@@ -21,7 +21,7 @@
 <!-- Node2 -->
 <g id="Node000002" class="node">
 <title>Node2</title>
-<g id="a_Node000002"><a xlink:href="class_w_p_r_1_1_repository_1_1_user_repository.html#adce1c47fd8ee12e83c5b918614e20bbc" target="_top" xlink:title=" ">
+<g id="a_Node000002"><a xlink:href="class_w_p_r_1_1_repository_1_1_user_repository.html#adce1c47fd8ee12e83c5b918614e20bbc" target="_top" xlink:title="Wijzigt de bedrijfsinformatie in de database.">
 <polygon fill="white" stroke="#666666" points="362,-32 199,-32 199,0 362,0 362,-32"/>
 <text text-anchor="start" x="207" y="-18.5" font-family="Helvetica,sans-Serif" font-size="10.00">WPR.Repository.UserRepository.</text>
 <text text-anchor="middle" x="280.5" y="-6.5" font-family="Helvetica,sans-Serif" font-size="10.00">ChangeBusinessData</text>

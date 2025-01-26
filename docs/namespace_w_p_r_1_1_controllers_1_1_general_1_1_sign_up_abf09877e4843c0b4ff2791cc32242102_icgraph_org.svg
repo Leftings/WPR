@@ -106,7 +106,7 @@
 <!-- Node7 -->
 <g id="Node000007" class="node">
 <title>Node7</title>
-<g id="a_Node000007"><a xlink:href="class_w_p_r_1_1_controllers_1_1_general_1_1_sign_up_1_1_sign_up_controller.html#a0c3be455afaafaebb78fd9fa56da7a4b" target="_top" xlink:title=" ">
+<g id="a_Node000007"><a xlink:href="class_w_p_r_1_1_controllers_1_1_general_1_1_sign_up_1_1_sign_up_controller.html#a0c3be455afaafaebb78fd9fa56da7a4b" target="_top" xlink:title="Registreert een nieuwe gebruiker met zowel persoonlijke als zakelijke gegevens.">
 <polygon fill="white" stroke="#666666" points="360.88,-32 200.12,-32 200.12,0 360.88,0 360.88,-32"/>
 <text text-anchor="start" x="208.12" y="-18.5" font-family="Helvetica,sans-Serif" font-size="10.00">WPR.Controllers.General.</text>
 <text text-anchor="middle" x="280.5" y="-6.5" font-family="Helvetica,sans-Serif" font-size="10.00">SignUp.SignUpController.SignUp</text>

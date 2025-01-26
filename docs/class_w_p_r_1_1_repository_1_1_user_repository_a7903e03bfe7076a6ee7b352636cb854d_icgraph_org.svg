@@ -40,7 +40,7 @@
 <!-- Node5 -->
 <g id="Node000005" class="node">
 <title>Node5</title>
-<g id="a_Node000005"><a xlink:href="class_w_p_r_1_1_repository_1_1_user_repository.html#a188ce6aab8b95ea246623cc80b520714" target="_top" xlink:title=" ">
+<g id="a_Node000005"><a xlink:href="class_w_p_r_1_1_repository_1_1_user_repository.html#a188ce6aab8b95ea246623cc80b520714" target="_top" xlink:title="Voegt een persoonlijke klant toe aan de database na validatie van de verstrekte gegevens.">
 <polygon fill="white" stroke="#666666" points="561,-82 398,-82 398,-50 561,-50 561,-82"/>
 <text text-anchor="start" x="406" y="-68.5" font-family="Helvetica,sans-Serif" font-size="10.00">WPR.Repository.UserRepository.</text>
 <text text-anchor="middle" x="479.5" y="-56.5" font-family="Helvetica,sans-Serif" font-size="10.00">AddPersonalCustomer</text>
@@ -125,7 +125,7 @@
 <!-- Node7 -->
 <g id="Node000007" class="node">
 <title>Node7</title>
-<g id="a_Node000007"><a xlink:href="class_w_p_r_1_1_repository_1_1_user_repository.html#af9a5424f00a5cfc023cc147a1e0a59cf" target="_top" xlink:title=" ">
+<g id="a_Node000007"><a xlink:href="class_w_p_r_1_1_repository_1_1_user_repository.html#af9a5424f00a5cfc023cc147a1e0a59cf" target="_top" xlink:title="Wijzigt de gebruikersinformatie op basis van de verstrekte gegevens.">
 <polygon fill="white" stroke="#666666" points="362,-32 199,-32 199,0 362,0 362,-32"/>
 <text text-anchor="start" x="207" y="-18.5" font-family="Helvetica,sans-Serif" font-size="10.00">WPR.Repository.UserRepository.</text>
 <text text-anchor="middle" x="280.5" y="-6.5" font-family="Helvetica,sans-Serif" font-size="10.00">EditUserInfoAsync</text>

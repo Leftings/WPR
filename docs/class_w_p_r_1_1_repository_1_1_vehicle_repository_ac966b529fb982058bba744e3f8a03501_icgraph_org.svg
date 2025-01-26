@@ -11,7 +11,7 @@
 <!-- Node1 -->
 <g id="Node000001" class="node">
 <title>Node1</title>
-<g id="a_Node000001"><a xlink:title=" ">
+<g id="a_Node000001"><a xlink:title="Haalt de merk en type van een voertuig op basis van het opgegeven frameNr.">
 <polygon fill="#999999" stroke="#666666" points="592.5,-57 419,-57 419,-25 592.5,-25 592.5,-57"/>
 <text text-anchor="start" x="427" y="-43.5" font-family="Helvetica,sans-Serif" font-size="10.00">WPR.Repository.VehicleRepository.</text>
 <text text-anchor="middle" x="505.75" y="-31.5" font-family="Helvetica,sans-Serif" font-size="10.00">GetVehicleNameAsync</text>
@@ -21,7 +21,7 @@
 <!-- Node2 -->
 <g id="Node000002" class="node">
 <title>Node2</title>
-<g id="a_Node000002"><a xlink:href="class_w_p_r_1_1_repository_1_1_vehicle_repository.html#a67db6526a03c26958ee2c78af449dc5d" target="_top" xlink:title=" ">
+<g id="a_Node000002"><a xlink:href="class_w_p_r_1_1_repository_1_1_vehicle_repository.html#a67db6526a03c26958ee2c78af449dc5d" target="_top" xlink:title="Verkrijgt alle huuraanvragen van een gebruiker, op basis van hun gedecodeerde userId vanuit de cookie...">
 <polygon fill="white" stroke="#666666" points="383,-82 209.5,-82 209.5,-50 383,-50 383,-82"/>
 <text text-anchor="start" x="217.5" y="-68.5" font-family="Helvetica,sans-Serif" font-size="10.00">WPR.Repository.VehicleRepository.</text>
 <text text-anchor="middle" x="296.25" y="-56.5" font-family="Helvetica,sans-Serif" font-size="10.00">GetAllUserRentals</text>
@@ -40,7 +40,7 @@
 <!-- Node3 -->
 <g id="Node000003" class="node">
 <title>Node3</title>
-<g id="a_Node000003"><a xlink:href="class_w_p_r_1_1_repository_1_1_vehicle_repository.html#a2c371ee4ceecc0aed0aa772f6e8eee5a" target="_top" xlink:title=" ">
+<g id="a_Node000003"><a xlink:href="class_w_p_r_1_1_repository_1_1_vehicle_repository.html#a2c371ee4ceecc0aed0aa772f6e8eee5a" target="_top" xlink:title="Verstuurt een bevestigingsmail naar de gebruiker na het succesvol aanmaken van een huurverzoek.">
 <polygon fill="white" stroke="#666666" points="383,-32 209.5,-32 209.5,0 383,0 383,-32"/>
 <text text-anchor="start" x="217.5" y="-18.5" font-family="Helvetica,sans-Serif" font-size="10.00">WPR.Repository.VehicleRepository.</text>
 <text text-anchor="middle" x="296.25" y="-6.5" font-family="Helvetica,sans-Serif" font-size="10.00">SendEmail</text>
@@ -59,7 +59,7 @@
 <!-- Node4 -->
 <g id="Node000004" class="node">
 <title>Node4</title>
-<g id="a_Node000004"><a xlink:href="class_w_p_r_1_1_repository_1_1_vehicle_repository.html#a35a796e7cf96268b3fe824913616c411" target="_top" xlink:title=" ">
+<g id="a_Node000004"><a xlink:href="class_w_p_r_1_1_repository_1_1_vehicle_repository.html#a35a796e7cf96268b3fe824913616c411" target="_top" xlink:title="Verwerkt het huurverzoek door de gebruiker te valideren, het verzoek toe te voegen aan de database en...">
 <polygon fill="white" stroke="#666666" points="173.5,-32 0,-32 0,0 173.5,0 173.5,-32"/>
 <text text-anchor="start" x="8" y="-18.5" font-family="Helvetica,sans-Serif" font-size="10.00">WPR.Repository.VehicleRepository.</text>
 <text text-anchor="middle" x="86.75" y="-6.5" font-family="Helvetica,sans-Serif" font-size="10.00">HireVehicle</text>

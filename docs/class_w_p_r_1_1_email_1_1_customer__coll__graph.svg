@@ -58,7 +58,7 @@ var sectionId = 'dynsection-1';
 <!-- Node1 -->
 <g id="Node000001" class="node">
 <title>Node1</title>
-<g id="a_Node000001"><a xlink:title=" ">
+<g id="a_Node000001"><a xlink:title="In de Customer klasse worden alle gegevens van een specifieke klant verzameld voor het aanmaken van e...">
 <polygon fill="#999999" stroke="none" points="204.88,-84 99.38,-84 99.38,0 204.88,0 204.88,-84"/>
 <text text-anchor="start" x="103.38" y="-70.5" font-family="Helvetica,sans-Serif" font-size="10.00">WPR.Email.Customer</text>
 <text text-anchor="start" x="105.19" y="-54.5" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>

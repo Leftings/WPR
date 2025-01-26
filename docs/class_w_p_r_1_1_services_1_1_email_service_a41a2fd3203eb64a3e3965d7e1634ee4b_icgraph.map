@@ -1,5 +1,5 @@
 <map id="WPR.Services.EmailService.BuildConfirmationEmailBusinessBody" name="WPR.Services.EmailService.BuildConfirmationEmailBusinessBody">
-<area shape="rect" id="Node000001" title=" " alt="" coords="266,5,507,48"/>
-<area shape="rect" id="Node000002" href="$class_w_p_r_1_1_services_1_1_email_service.html#ab96c557f8a51cc79d18b99b891238d07" title=" " alt="" coords="5,5,218,48"/>
+<area shape="rect" id="Node000001" title="Bouwt de HTML&#45;inhoud voor een bedrijfsaccount bevestigingsmail." alt="" coords="266,5,507,48"/>
+<area shape="rect" id="Node000002" href="$class_w_p_r_1_1_services_1_1_email_service.html#ab96c557f8a51cc79d18b99b891238d07" title="Verstuurt een bevestigingsmail voor een bedrijfsaccount aanvraag." alt="" coords="5,5,218,48"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="250,29,218,29,218,24,250,24"/>
 </map>

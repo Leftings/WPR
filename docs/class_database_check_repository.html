@@ -1,0 +1,963 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="nl">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.13.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>WPR-Backend: DatabaseCheckRepository Class Referentie</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+  $(function() { init_search(); });
+/* @license-end */
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">WPR-Backend
+   </div>
+  </td>
+    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect"                onmouseover="return searchBox.OnSearchSelectShow()"                onmouseout="return searchBox.OnSearchSelectHide()">&#160;</span>
+          <input type="text" id="MSearchField" value="" placeholder="Zoeken" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Gegenereerd door Doxygen 1.13.0 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){initNavTree('class_database_check_repository.html',''); initResizable(true); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Laden...</div>
+<div class="SRStatus" id="Searching">Zoeken...</div>
+<div class="SRStatus" id="NoMatches">Niets gevonden</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public Members</a> &#124;
+<a href="#pri-methods">Private Members</a> &#124;
+<a href="#pri-attribs">Private Attributen</a>  </div>
+  <div class="headertitle"><div class="title">DatabaseCheckRepository Class Referentie</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>Behandelt verschillende databasebewerkingen zoals het verwijderen van gebruikers, contracten en bedrijfsgegevens.  
+ <a href="#details">Meer...</a></p>
+<div class="dynheader">
+Klasse diagram voor DatabaseCheckRepository</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="class_database_check_repository__inherit__graph.svg" width="200" height="475"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+<div class="dynheader">
+Collaboratie diagram voor DatabaseCheckRepository:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="class_database_check_repository__coll__graph.svg" width="376" height="470"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public Members</h2></td></tr>
+<tr class="memitem:a9b493c8eaaef862f3b79289b08334f85" id="r_a9b493c8eaaef862f3b79289b08334f85"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9b493c8eaaef862f3b79289b08334f85">DatabaseCheckRepository</a> (<a class="el" href="interface_w_p_r_1_1_database_1_1_i_connector.html">IConnector</a> connector)</td></tr>
+<tr class="memdesc:a9b493c8eaaef862f3b79289b08334f85"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialiseert een nieuw exemplaar van de <a class="el" href="class_database_check_repository.html" title="Behandelt verschillende databasebewerkingen zoals het verwijderen van gebruikers, contracten en bedri...">DatabaseCheckRepository</a> klasse.  <br /></td></tr>
+<tr class="separator:a9b493c8eaaef862f3b79289b08334f85"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a241ccbc35380a23dedb1f9a942a52a1b" id="r_a241ccbc35380a23dedb1f9a942a52a1b"><td class="memItemLeft" align="right" valign="top">int string <a class="el" href="#a78f58bffc4e099c3788557d485bdab13">Message</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a241ccbc35380a23dedb1f9a942a52a1b">DeleteUser</a> (int id)</td></tr>
+<tr class="separator:a241ccbc35380a23dedb1f9a942a52a1b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab5033c1e3a5b823fc7e7d6d187d12ccc" id="r_ab5033c1e3a5b823fc7e7d6d187d12ccc"><td class="memItemLeft" align="right" valign="top">int string <a class="el" href="#a78f58bffc4e099c3788557d485bdab13">Message</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab5033c1e3a5b823fc7e7d6d187d12ccc">DeleteBusiness</a> (int kvk)</td></tr>
+<tr class="separator:ab5033c1e3a5b823fc7e7d6d187d12ccc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab17e5b0314f886eb84b9e497c8dfd1b4" id="r_ab17e5b0314f886eb84b9e497c8dfd1b4"><td class="memItemLeft" align="right" valign="top">int string <a class="el" href="#a78f58bffc4e099c3788557d485bdab13">Message</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab17e5b0314f886eb84b9e497c8dfd1b4">DeleteVehicleManager</a> (int id, int kvk)</td></tr>
+<tr class="separator:ab17e5b0314f886eb84b9e497c8dfd1b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-methods" name="pri-methods"></a>
+Private Members</h2></td></tr>
+<tr class="memitem:addc06aeee3647cec54202bc103212e2e" id="r_addc06aeee3647cec54202bc103212e2e"><td class="memItemLeft" align="right" valign="top">int string <a class="el" href="#a78f58bffc4e099c3788557d485bdab13">Message</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#addc06aeee3647cec54202bc103212e2e">HandleDelete</a> (string query)</td></tr>
+<tr class="separator:addc06aeee3647cec54202bc103212e2e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a181b1a163bd4151f68bc551091c3ee22" id="r_a181b1a163bd4151f68bc551091c3ee22"><td class="memItemLeft" align="right" valign="top">int string <a class="el" href="#a78f58bffc4e099c3788557d485bdab13">Message</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a181b1a163bd4151f68bc551091c3ee22">DeleteFutereContracts</a> (int id)</td></tr>
+<tr class="separator:a181b1a163bd4151f68bc551091c3ee22"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad56412a3b3449cdcb20706b41c648f3e" id="r_ad56412a3b3449cdcb20706b41c648f3e"><td class="memItemLeft" align="right" valign="top">int string <a class="el" href="#a78f58bffc4e099c3788557d485bdab13">Message</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad56412a3b3449cdcb20706b41c648f3e">UserHasActiveContract</a> (int id)</td></tr>
+<tr class="separator:ad56412a3b3449cdcb20706b41c648f3e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a004ee325adfb7c4edc0c3e50098973ec" id="r_a004ee325adfb7c4edc0c3e50098973ec"><td class="memItemLeft" align="right" valign="top">int string Dictionary&lt; int, bool &gt; employeeData&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a004ee325adfb7c4edc0c3e50098973ec">DeleteEmployees</a> (int kvk)</td></tr>
+<tr class="separator:a004ee325adfb7c4edc0c3e50098973ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a757a083a28f0a9d47611ea7b9cae4d85" id="r_a757a083a28f0a9d47611ea7b9cae4d85"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a757a083a28f0a9d47611ea7b9cae4d85">DeleteBusinessAllowed</a> (Dictionary&lt; int, bool &gt; employees)</td></tr>
+<tr class="memdesc:a757a083a28f0a9d47611ea7b9cae4d85"><td class="mdescLeft">&#160;</td><td class="mdescRight">Controleert of alle werknemers van een bedrijf succesvol zijn verwijderd.  <br /></td></tr>
+<tr class="separator:a757a083a28f0a9d47611ea7b9cae4d85"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa2cc9546df7853934d6fe4e6da895171" id="r_aa2cc9546df7853934d6fe4e6da895171"><td class="memItemLeft" align="right" valign="top">int string <a class="el" href="#a78f58bffc4e099c3788557d485bdab13">Message</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa2cc9546df7853934d6fe4e6da895171">MinimumVehicleManagers</a> (int kvk)</td></tr>
+<tr class="separator:aa2cc9546df7853934d6fe4e6da895171"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private Attributen</h2></td></tr>
+<tr class="memitem:a1dec366724e8ece78c7b3eec306cc523" id="r_a1dec366724e8ece78c7b3eec306cc523"><td class="memItemLeft" align="right" valign="top">readonly <a class="el" href="interface_w_p_r_1_1_database_1_1_i_connector.html">IConnector</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1dec366724e8ece78c7b3eec306cc523">_connector</a></td></tr>
+<tr class="separator:a1dec366724e8ece78c7b3eec306cc523"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af00e30b47279ed24d32ee995f3d71ff7" id="r_af00e30b47279ed24d32ee995f3d71ff7"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af00e30b47279ed24d32ee995f3d71ff7">StatusCode</a></td></tr>
+<tr class="memdesc:af00e30b47279ed24d32ee995f3d71ff7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Verwerkt een delete-operatie voor een opgegeven query.  <br /></td></tr>
+<tr class="separator:af00e30b47279ed24d32ee995f3d71ff7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a78f58bffc4e099c3788557d485bdab13" id="r_a78f58bffc4e099c3788557d485bdab13"><td class="memItemLeft" align="right" valign="top">int string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a78f58bffc4e099c3788557d485bdab13">Message</a></td></tr>
+<tr class="separator:a78f58bffc4e099c3788557d485bdab13"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="inherited" name="inherited"></a>
+Additionele Overgeërfde Members</h2></td></tr>
+<tr class="inherit_header pub_attribs_interface_w_p_r_1_1_repository_1_1_database_check_repository_1_1_i_database_check_repository"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_attribs_interface_w_p_r_1_1_repository_1_1_database_check_repository_1_1_i_database_check_repository')"><img src="closed.png" alt="-"/>&#160;Data Velden overgeërfd van <a class="el" href="interface_w_p_r_1_1_repository_1_1_database_check_repository_1_1_i_database_check_repository.html">WPR.Repository.DatabaseCheckRepository.IDatabaseCheckRepository</a></td></tr>
+<tr class="memitem:a49db897e6b6b09cfecaa84c45ad86449 inherit pub_attribs_interface_w_p_r_1_1_repository_1_1_database_check_repository_1_1_i_database_check_repository" id="r_a49db897e6b6b09cfecaa84c45ad86449"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_w_p_r_1_1_repository_1_1_database_check_repository_1_1_i_database_check_repository.html#a49db897e6b6b09cfecaa84c45ad86449">StatusCode</a></td></tr>
+<tr class="separator:a49db897e6b6b09cfecaa84c45ad86449 inherit pub_attribs_interface_w_p_r_1_1_repository_1_1_database_check_repository_1_1_i_database_check_repository"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Gedetailleerde Beschrijving</h2>
+<div class="textblock"><p>Behandelt verschillende databasebewerkingen zoals het verwijderen van gebruikers, contracten en bedrijfsgegevens. </p>
+
+<p class="definition">De definitie bevindt zich op regel <a class="el" href="_database_check_repository_8cs_source.html#l00008">8</a> in het bestand <a class="el" href="_database_check_repository_8cs_source.html">DatabaseCheckRepository.cs</a>.</p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentatie</h2>
+<a id="a9b493c8eaaef862f3b79289b08334f85" name="a9b493c8eaaef862f3b79289b08334f85"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9b493c8eaaef862f3b79289b08334f85">&#9670;&#160;</a></span>DatabaseCheckRepository()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">DatabaseCheckRepository.DatabaseCheckRepository </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="interface_w_p_r_1_1_database_1_1_i_connector.html">IConnector</a></td>          <td class="paramname"><span class="paramname"><em>connector</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Initialiseert een nieuw exemplaar van de <a class="el" href="class_database_check_repository.html" title="Behandelt verschillende databasebewerkingen zoals het verwijderen van gebruikers, contracten en bedri...">DatabaseCheckRepository</a> klasse. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">connector</td><td>De connector die gebruikt wordt om verbinding te maken met de database.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="exception"><dt>Excepties</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">ArgumentNullException</td><td>Wordt gegooid als de connector null is.</td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">De definitie bevindt zich op regel <a class="el" href="_database_check_repository_8cs_source.html#l00017">17</a> in het bestand <a class="el" href="_database_check_repository_8cs_source.html">DatabaseCheckRepository.cs</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   18</span>    {</div>
+<div class="line"><span class="lineno">   19</span>        <a class="code hl_variable" href="#a1dec366724e8ece78c7b3eec306cc523">_connector</a> = connector ?? <span class="keywordflow">throw</span> <span class="keyword">new</span> ArgumentNullException(nameof(connector));</div>
+<div class="line"><span class="lineno">   20</span>    }</div>
+<div class="ttc" id="aclass_database_check_repository_html_a1dec366724e8ece78c7b3eec306cc523"><div class="ttname"><a href="#a1dec366724e8ece78c7b3eec306cc523">DatabaseCheckRepository._connector</a></div><div class="ttdeci">readonly IConnector _connector</div><div class="ttdef"><b>Definitie</b> <a href="_database_check_repository_8cs_source.html#l00010">DatabaseCheckRepository.cs:10</a></div></div>
+</div><!-- fragment -->
+<p class="reference">Gebruikt <a class="el" href="_database_check_repository_8cs_source.html#l00010">_connector</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Documentatie van functie members</h2>
+<a id="ab5033c1e3a5b823fc7e7d6d187d12ccc" name="ab5033c1e3a5b823fc7e7d6d187d12ccc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab5033c1e3a5b823fc7e7d6d187d12ccc">&#9670;&#160;</a></span>DeleteBusiness()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int string <a class="el" href="#a78f58bffc4e099c3788557d485bdab13">Message</a> DatabaseCheckRepository.DeleteBusiness </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>kvk</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implementeert <a class="el" href="interface_w_p_r_1_1_repository_1_1_database_check_repository_1_1_i_database_check_repository.html#a9a64a0fc4b7ad09af3aaee37c10b8bf6">WPR.Repository.DatabaseCheckRepository.IDatabaseCheckRepository</a>.</p>
+
+<p class="definition">De definitie bevindt zich op regel <a class="el" href="_database_check_repository_8cs_source.html#l00239">239</a> in het bestand <a class="el" href="_database_check_repository_8cs_source.html">DatabaseCheckRepository.cs</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  240</span>    {</div>
+<div class="line"><span class="lineno">  241</span>        var employees = <a class="code hl_function" href="#a004ee325adfb7c4edc0c3e50098973ec">DeleteEmployees</a>(kvk);</div>
+<div class="line"><span class="lineno">  242</span> </div>
+<div class="line"><span class="lineno">  243</span>        <span class="keywordflow">if</span> (employees.StatusCode != 200)</div>
+<div class="line"><span class="lineno">  244</span>        {</div>
+<div class="line"><span class="lineno">  245</span>            <span class="keywordflow">return</span> (employees.StatusCode, employees.Message);</div>
+<div class="line"><span class="lineno">  246</span>        }</div>
+<div class="line"><span class="lineno">  247</span> </div>
+<div class="line"><span class="lineno">  248</span>        <span class="keywordflow">if</span> (!<a class="code hl_function" href="#a757a083a28f0a9d47611ea7b9cae4d85">DeleteBusinessAllowed</a>(employees.employeeData))</div>
+<div class="line"><span class="lineno">  249</span>        {</div>
+<div class="line"><span class="lineno">  250</span>            <span class="keywordflow">return</span> (417, <span class="stringliteral">&quot;Sommige medewerkers zitten nog in een contract&quot;</span>);</div>
+<div class="line"><span class="lineno">  251</span>        }</div>
+<div class="line"><span class="lineno">  252</span>        </div>
+<div class="line"><span class="lineno">  253</span>        <span class="keywordtype">string</span> query = $<span class="stringliteral">&quot;DELETE FROM Business WHERE KvK = {kvk}&quot;</span>;</div>
+<div class="line"><span class="lineno">  254</span>        var deleteBusiness = <a class="code hl_function" href="#addc06aeee3647cec54202bc103212e2e">HandleDelete</a>(query);</div>
+<div class="line"><span class="lineno">  255</span> </div>
+<div class="line"><span class="lineno">  256</span>        <span class="keywordflow">return</span> (deleteBusiness.StatusCode, deleteBusiness.Message);</div>
+<div class="line"><span class="lineno">  257</span>    }</div>
+<div class="ttc" id="aclass_database_check_repository_html_a004ee325adfb7c4edc0c3e50098973ec"><div class="ttname"><a href="#a004ee325adfb7c4edc0c3e50098973ec">DatabaseCheckRepository.DeleteEmployees</a></div><div class="ttdeci">int string Dictionary&lt; int, bool &gt; employeeData DeleteEmployees(int kvk)</div><div class="ttdef"><b>Definitie</b> <a href="_database_check_repository_8cs_source.html#l00162">DatabaseCheckRepository.cs:162</a></div></div>
+<div class="ttc" id="aclass_database_check_repository_html_a757a083a28f0a9d47611ea7b9cae4d85"><div class="ttname"><a href="#a757a083a28f0a9d47611ea7b9cae4d85">DatabaseCheckRepository.DeleteBusinessAllowed</a></div><div class="ttdeci">bool DeleteBusinessAllowed(Dictionary&lt; int, bool &gt; employees)</div><div class="ttdoc">Controleert of alle werknemers van een bedrijf succesvol zijn verwijderd.</div><div class="ttdef"><b>Definitie</b> <a href="_database_check_repository_8cs_source.html#l00219">DatabaseCheckRepository.cs:219</a></div></div>
+<div class="ttc" id="aclass_database_check_repository_html_addc06aeee3647cec54202bc103212e2e"><div class="ttname"><a href="#addc06aeee3647cec54202bc103212e2e">DatabaseCheckRepository.HandleDelete</a></div><div class="ttdeci">int string Message HandleDelete(string query)</div><div class="ttdef"><b>Definitie</b> <a href="_database_check_repository_8cs_source.html#l00029">DatabaseCheckRepository.cs:29</a></div></div>
+</div><!-- fragment -->
+<p class="reference">Gebruikt <a class="el" href="_database_check_repository_8cs_source.html#l00219">DeleteBusinessAllowed()</a>, <a class="el" href="_database_check_repository_8cs_source.html#l00162">DeleteEmployees()</a>, <a class="el" href="_database_check_repository_8cs_source.html#l00029">HandleDelete()</a>, <a class="el" href="_database_check_repository_8cs_source.html#l00162">Message</a> en <a class="el" href="_database_check_repository_8cs_source.html#l00029">StatusCode</a>.</p>
+<div class="dynheader">
+Hier is de call graaf voor deze functie:</div>
+<div class="dyncontent">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="class_database_check_repository_ab5033c1e3a5b823fc7e7d6d187d12ccc_cgraph.svg" width="100%" height="434"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
+</div>
+
+</div>
+</div>
+<a id="a757a083a28f0a9d47611ea7b9cae4d85" name="a757a083a28f0a9d47611ea7b9cae4d85"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a757a083a28f0a9d47611ea7b9cae4d85">&#9670;&#160;</a></span>DeleteBusinessAllowed()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool DatabaseCheckRepository.DeleteBusinessAllowed </td>
+          <td>(</td>
+          <td class="paramtype">Dictionary&lt; int, bool &gt;</td>          <td class="paramname"><span class="paramname"><em>employees</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Controleert of alle werknemers van een bedrijf succesvol zijn verwijderd. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">employees</td><td>Een dictionary van werknemer-ID's en hun verwijderstatus.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Retourneert</dt><dd>True als alle werknemers succesvol zijn verwijderd, anders false.</dd></dl>
+
+<p class="definition">De definitie bevindt zich op regel <a class="el" href="_database_check_repository_8cs_source.html#l00219">219</a> in het bestand <a class="el" href="_database_check_repository_8cs_source.html">DatabaseCheckRepository.cs</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  220</span>    {</div>
+<div class="line"><span class="lineno">  221</span>        <span class="keywordflow">foreach</span> (var item <span class="keywordflow">in</span> employees)</div>
+<div class="line"><span class="lineno">  222</span>        {</div>
+<div class="line"><span class="lineno">  223</span>            <span class="keywordflow">if</span> (!item.Value)</div>
+<div class="line"><span class="lineno">  224</span>            {</div>
+<div class="line"><span class="lineno">  225</span>                <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><span class="lineno">  226</span>            }</div>
+<div class="line"><span class="lineno">  227</span>        }</div>
+<div class="line"><span class="lineno">  228</span> </div>
+<div class="line"><span class="lineno">  229</span>        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><span class="lineno">  230</span>    }</div>
+</div><!-- fragment -->
+<p class="reference">Wordt aangeroepen door <a class="el" href="_database_check_repository_8cs_source.html#l00239">DeleteBusiness()</a>.</p>
+<div class="dynheader">
+Hier is de caller graaf voor deze functie:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="class_database_check_repository_a757a083a28f0a9d47611ea7b9cae4d85_icgraph.svg" width="422" height="54"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+
+</div>
+</div>
+<a id="a004ee325adfb7c4edc0c3e50098973ec" name="a004ee325adfb7c4edc0c3e50098973ec"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a004ee325adfb7c4edc0c3e50098973ec">&#9670;&#160;</a></span>DeleteEmployees()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int string Dictionary&lt; int, bool &gt; employeeData DatabaseCheckRepository.DeleteEmployees </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>kvk</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">De definitie bevindt zich op regel <a class="el" href="_database_check_repository_8cs_source.html#l00162">162</a> in het bestand <a class="el" href="_database_check_repository_8cs_source.html">DatabaseCheckRepository.cs</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  163</span>    {</div>
+<div class="line"><span class="lineno">  164</span>        <span class="keywordtype">string</span> query = <span class="stringliteral">&quot;SELECT ID From Customer WHERE KvK = @B&quot;</span>;</div>
+<div class="line"><span class="lineno">  165</span> </div>
+<div class="line"><span class="lineno">  166</span>        <span class="keywordflow">try</span></div>
+<div class="line"><span class="lineno">  167</span>        {</div>
+<div class="line"><span class="lineno">  168</span>            <span class="keyword">using</span> (var connection = <a class="code hl_variable" href="#a1dec366724e8ece78c7b3eec306cc523">_connector</a>.CreateDbConnection())</div>
+<div class="line"><span class="lineno">  169</span>            <span class="keyword">using</span> (var command = <span class="keyword">new</span> MySqlCommand(query, (MySqlConnection)connection))</div>
+<div class="line"><span class="lineno">  170</span>            {</div>
+<div class="line"><span class="lineno">  171</span>                command.Parameters.AddWithValue(<span class="stringliteral">&quot;@B&quot;</span>, kvk);</div>
+<div class="line"><span class="lineno">  172</span> </div>
+<div class="line"><span class="lineno">  173</span>                <span class="keyword">using</span> (var reader = command.ExecuteReader())</div>
+<div class="line"><span class="lineno">  174</span>                {</div>
+<div class="line"><span class="lineno">  175</span>                    Dictionary&lt;int, bool&gt; deletedEmployees = <span class="keyword">new</span> Dictionary&lt;int, bool&gt;();</div>
+<div class="line"><span class="lineno">  176</span> </div>
+<div class="line"><span class="lineno">  177</span>                    <span class="keywordflow">if</span> (reader.Read())</div>
+<div class="line"><span class="lineno">  178</span>                    {</div>
+<div class="line"><span class="lineno">  179</span>                        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; reader.FieldCount; i++)</div>
+<div class="line"><span class="lineno">  180</span>                        {</div>
+<div class="line"><span class="lineno">  181</span>                            <span class="keywordtype">int</span> employee = Convert.ToInt32(reader.GetValue(i));</div>
+<div class="line"><span class="lineno">  182</span> </div>
+<div class="line"><span class="lineno">  183</span>                            var deleted = <a class="code hl_function" href="#a241ccbc35380a23dedb1f9a942a52a1b">DeleteUser</a>(employee);</div>
+<div class="line"><span class="lineno">  184</span> </div>
+<div class="line"><span class="lineno">  185</span>                            <span class="keywordflow">if</span> (deleted.StatusCode == 200)</div>
+<div class="line"><span class="lineno">  186</span>                            {</div>
+<div class="line"><span class="lineno">  187</span>                                deletedEmployees[employee] = <span class="keyword">true</span>;</div>
+<div class="line"><span class="lineno">  188</span>                            }</div>
+<div class="line"><span class="lineno">  189</span>                            <span class="keywordflow">else</span></div>
+<div class="line"><span class="lineno">  190</span>                            {</div>
+<div class="line"><span class="lineno">  191</span>                                deletedEmployees[employee] = <span class="keyword">false</span>;</div>
+<div class="line"><span class="lineno">  192</span>                            }</div>
+<div class="line"><span class="lineno">  193</span>                        }</div>
+<div class="line"><span class="lineno">  194</span>                    }</div>
+<div class="line"><span class="lineno">  195</span> </div>
+<div class="line"><span class="lineno">  196</span>                    <span class="keywordflow">return</span> (200, <span class="stringliteral">&quot;&quot;</span>, deletedEmployees);</div>
+<div class="line"><span class="lineno">  197</span>                }</div>
+<div class="line"><span class="lineno">  198</span>            }</div>
+<div class="line"><span class="lineno">  199</span>        }</div>
+<div class="line"><span class="lineno">  200</span>        <span class="keywordflow">catch</span> (MySqlException ex)</div>
+<div class="line"><span class="lineno">  201</span>        {</div>
+<div class="line"><span class="lineno">  202</span>            <span class="keywordflow">return</span> (500, ex.Message, <span class="keyword">new</span> Dictionary&lt;int, bool&gt;());</div>
+<div class="line"><span class="lineno">  203</span>        }</div>
+<div class="line"><span class="lineno">  204</span>        <span class="keywordflow">catch</span> (OverflowException ex)</div>
+<div class="line"><span class="lineno">  205</span>        {</div>
+<div class="line"><span class="lineno">  206</span>            <span class="keywordflow">return</span> (500, ex.Message, <span class="keyword">new</span> Dictionary&lt;int, bool&gt;());</div>
+<div class="line"><span class="lineno">  207</span>        }</div>
+<div class="line"><span class="lineno">  208</span>        <span class="keywordflow">catch</span> (Exception ex)</div>
+<div class="line"><span class="lineno">  209</span>        {</div>
+<div class="line"><span class="lineno">  210</span>            <span class="keywordflow">return</span> (500, ex.Message, <span class="keyword">new</span> Dictionary&lt;int, bool&gt;());</div>
+<div class="line"><span class="lineno">  211</span>        }</div>
+<div class="line"><span class="lineno">  212</span>    }</div>
+<div class="ttc" id="aclass_database_check_repository_html_a241ccbc35380a23dedb1f9a942a52a1b"><div class="ttname"><a href="#a241ccbc35380a23dedb1f9a942a52a1b">DatabaseCheckRepository.DeleteUser</a></div><div class="ttdeci">int string Message DeleteUser(int id)</div><div class="ttdef"><b>Definitie</b> <a href="_database_check_repository_8cs_source.html#l00139">DatabaseCheckRepository.cs:139</a></div></div>
+</div><!-- fragment -->
+<p class="reference">Gebruikt <a class="el" href="_database_check_repository_8cs_source.html#l00010">_connector</a>, <a class="el" href="_database_check_repository_8cs_source.html#l00139">DeleteUser()</a>, <a class="el" href="_database_check_repository_8cs_source.html#l00162">Message</a> en <a class="el" href="_database_check_repository_8cs_source.html#l00029">StatusCode</a>.</p>
+
+<p class="reference">Wordt aangeroepen door <a class="el" href="_database_check_repository_8cs_source.html#l00239">DeleteBusiness()</a>.</p>
+<div class="dynheader">
+Hier is de call graaf voor deze functie:</div>
+<div class="dyncontent">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="class_database_check_repository_a004ee325adfb7c4edc0c3e50098973ec_cgraph.svg" width="100%" height="390"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
+</div>
+<div class="dynheader">
+Hier is de caller graaf voor deze functie:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="class_database_check_repository_a004ee325adfb7c4edc0c3e50098973ec_icgraph.svg" width="422" height="54"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+
+</div>
+</div>
+<a id="a181b1a163bd4151f68bc551091c3ee22" name="a181b1a163bd4151f68bc551091c3ee22"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a181b1a163bd4151f68bc551091c3ee22">&#9670;&#160;</a></span>DeleteFutereContracts()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int string <a class="el" href="#a78f58bffc4e099c3788557d485bdab13">Message</a> DatabaseCheckRepository.DeleteFutereContracts </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>id</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">De definitie bevindt zich op regel <a class="el" href="_database_check_repository_8cs_source.html#l00061">61</a> in het bestand <a class="el" href="_database_check_repository_8cs_source.html">DatabaseCheckRepository.cs</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   62</span>    {</div>
+<div class="line"><span class="lineno">   63</span>        <span class="keywordtype">string</span> query = <span class="stringliteral">&quot;DELETE FROM Contract WHERE (Customer = @C AND @D &lt; EndDate)&quot;</span>;</div>
+<div class="line"><span class="lineno">   64</span> </div>
+<div class="line"><span class="lineno">   65</span>        <span class="keywordflow">try</span></div>
+<div class="line"><span class="lineno">   66</span>        {</div>
+<div class="line"><span class="lineno">   67</span>            <span class="keyword">using</span> (var connection = <a class="code hl_variable" href="#a1dec366724e8ece78c7b3eec306cc523">_connector</a>.CreateDbConnection())</div>
+<div class="line"><span class="lineno">   68</span>            <span class="keyword">using</span> (var command = <span class="keyword">new</span> MySqlCommand(query, (MySqlConnection)connection))</div>
+<div class="line"><span class="lineno">   69</span>            {</div>
+<div class="line"><span class="lineno">   70</span>                command.Parameters.AddWithValue(<span class="stringliteral">&quot;@C&quot;</span>, <span class="keywordtype">id</span>);</div>
+<div class="line"><span class="lineno">   71</span>                command.Parameters.AddWithValue(<span class="stringliteral">&quot;@D&quot;</span>, DateTime.Today);</div>
+<div class="line"><span class="lineno">   72</span>                command.ExecuteNonQuery();</div>
+<div class="line"><span class="lineno">   73</span> </div>
+<div class="line"><span class="lineno">   74</span>                <span class="keywordflow">return</span> (200, <span class="stringliteral">&quot;Verwijderen toekomstige contracten was succesvol&quot;</span>);</div>
+<div class="line"><span class="lineno">   75</span>            }</div>
+<div class="line"><span class="lineno">   76</span>        }</div>
+<div class="line"><span class="lineno">   77</span>        <span class="keywordflow">catch</span> (MySqlException ex)</div>
+<div class="line"><span class="lineno">   78</span>        {</div>
+<div class="line"><span class="lineno">   79</span>            <span class="keywordflow">return</span> (500, ex.Message);</div>
+<div class="line"><span class="lineno">   80</span>        }</div>
+<div class="line"><span class="lineno">   81</span>        <span class="keywordflow">catch</span> (Exception ex)</div>
+<div class="line"><span class="lineno">   82</span>        {</div>
+<div class="line"><span class="lineno">   83</span>            <span class="keywordflow">return</span> (500, ex.Message);</div>
+<div class="line"><span class="lineno">   84</span>        }</div>
+<div class="line"><span class="lineno">   85</span>    }</div>
+</div><!-- fragment -->
+<p class="reference">Gebruikt <a class="el" href="_database_check_repository_8cs_source.html#l00010">_connector</a>, <a class="el" href="_database_check_repository_8cs_source.html#l00162">Message</a> en <a class="el" href="_database_check_repository_8cs_source.html#l00029">StatusCode</a>.</p>
+
+<p class="reference">Wordt aangeroepen door <a class="el" href="_database_check_repository_8cs_source.html#l00094">UserHasActiveContract()</a>.</p>
+<div class="dynheader">
+Hier is de caller graaf voor deze functie:</div>
+<div class="dyncontent">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="class_database_check_repository_a181b1a163bd4151f68bc551091c3ee22_icgraph.svg" width="100%" height="300"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
+</div>
+
+</div>
+</div>
+<a id="a241ccbc35380a23dedb1f9a942a52a1b" name="a241ccbc35380a23dedb1f9a942a52a1b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a241ccbc35380a23dedb1f9a942a52a1b">&#9670;&#160;</a></span>DeleteUser()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int string <a class="el" href="#a78f58bffc4e099c3788557d485bdab13">Message</a> DatabaseCheckRepository.DeleteUser </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>id</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implementeert <a class="el" href="interface_w_p_r_1_1_repository_1_1_database_check_repository_1_1_i_database_check_repository.html#a19d609f9777522b2f019cd39adee8c80">WPR.Repository.DatabaseCheckRepository.IDatabaseCheckRepository</a>.</p>
+
+<p class="definition">De definitie bevindt zich op regel <a class="el" href="_database_check_repository_8cs_source.html#l00139">139</a> in het bestand <a class="el" href="_database_check_repository_8cs_source.html">DatabaseCheckRepository.cs</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  140</span>    {</div>
+<div class="line"><span class="lineno">  141</span>        var activeContract = <a class="code hl_function" href="#ad56412a3b3449cdcb20706b41c648f3e">UserHasActiveContract</a>(<span class="keywordtype">id</span>);</div>
+<div class="line"><span class="lineno">  142</span> </div>
+<div class="line"><span class="lineno">  143</span>        <span class="keywordflow">if</span> (activeContract.StatusCode == 200)</div>
+<div class="line"><span class="lineno">  144</span>        {</div>
+<div class="line"><span class="lineno">  145</span>            <span class="keywordtype">string</span> query = $<span class="stringliteral">&quot;DELETE FROM Customer WHERE ID = {id}&quot;</span>;</div>
+<div class="line"><span class="lineno">  146</span> </div>
+<div class="line"><span class="lineno">  147</span>            var deleteUser = <a class="code hl_function" href="#addc06aeee3647cec54202bc103212e2e">HandleDelete</a>(query);</div>
+<div class="line"><span class="lineno">  148</span> </div>
+<div class="line"><span class="lineno">  149</span>            <span class="keywordflow">return</span> (deleteUser.StatusCode, deleteUser.Message);</div>
+<div class="line"><span class="lineno">  150</span>        }</div>
+<div class="line"><span class="lineno">  151</span> </div>
+<div class="line"><span class="lineno">  152</span>        <span class="keywordflow">return</span> (activeContract.StatusCode, activeContract.Message);</div>
+<div class="line"><span class="lineno">  153</span>    }</div>
+<div class="ttc" id="aclass_database_check_repository_html_ad56412a3b3449cdcb20706b41c648f3e"><div class="ttname"><a href="#ad56412a3b3449cdcb20706b41c648f3e">DatabaseCheckRepository.UserHasActiveContract</a></div><div class="ttdeci">int string Message UserHasActiveContract(int id)</div><div class="ttdef"><b>Definitie</b> <a href="_database_check_repository_8cs_source.html#l00094">DatabaseCheckRepository.cs:94</a></div></div>
+</div><!-- fragment -->
+<p class="reference">Gebruikt <a class="el" href="_database_check_repository_8cs_source.html#l00029">HandleDelete()</a>, <a class="el" href="_database_check_repository_8cs_source.html#l00162">Message</a>, <a class="el" href="_database_check_repository_8cs_source.html#l00029">StatusCode</a> en <a class="el" href="_database_check_repository_8cs_source.html#l00094">UserHasActiveContract()</a>.</p>
+
+<p class="reference">Wordt aangeroepen door <a class="el" href="_database_check_repository_8cs_source.html#l00162">DeleteEmployees()</a>.</p>
+<div class="dynheader">
+Hier is de call graaf voor deze functie:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="class_database_check_repository_a241ccbc35380a23dedb1f9a942a52a1b_cgraph.svg" width="651" height="120"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+<div class="dynheader">
+Hier is de caller graaf voor deze functie:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="class_database_check_repository_a241ccbc35380a23dedb1f9a942a52a1b_icgraph.svg" width="651" height="54"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+
+</div>
+</div>
+<a id="ab17e5b0314f886eb84b9e497c8dfd1b4" name="ab17e5b0314f886eb84b9e497c8dfd1b4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab17e5b0314f886eb84b9e497c8dfd1b4">&#9670;&#160;</a></span>DeleteVehicleManager()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int string <a class="el" href="#a78f58bffc4e099c3788557d485bdab13">Message</a> DatabaseCheckRepository.DeleteVehicleManager </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>id</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>kvk</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implementeert <a class="el" href="interface_w_p_r_1_1_repository_1_1_database_check_repository_1_1_i_database_check_repository.html#ad164c556782c53893b996f255ec9ee32">WPR.Repository.DatabaseCheckRepository.IDatabaseCheckRepository</a>.</p>
+
+<p class="definition">De definitie bevindt zich op regel <a class="el" href="_database_check_repository_8cs_source.html#l00309">309</a> in het bestand <a class="el" href="_database_check_repository_8cs_source.html">DatabaseCheckRepository.cs</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  310</span>    {</div>
+<div class="line"><span class="lineno">  311</span>        var allowed = <a class="code hl_function" href="#aa2cc9546df7853934d6fe4e6da895171">MinimumVehicleManagers</a>(kvk);</div>
+<div class="line"><span class="lineno">  312</span> </div>
+<div class="line"><span class="lineno">  313</span>        <span class="keywordflow">if</span> (allowed.StatusCode == 200)</div>
+<div class="line"><span class="lineno">  314</span>        {</div>
+<div class="line"><span class="lineno">  315</span>            <span class="keywordtype">string</span> query = $<span class="stringliteral">&quot;DELETE FROM VehicleManager WHERE ID = {id}&quot;</span>;</div>
+<div class="line"><span class="lineno">  316</span> </div>
+<div class="line"><span class="lineno">  317</span>            var deleteUser = <a class="code hl_function" href="#addc06aeee3647cec54202bc103212e2e">HandleDelete</a>(query);</div>
+<div class="line"><span class="lineno">  318</span> </div>
+<div class="line"><span class="lineno">  319</span>            <span class="keywordflow">return</span> (deleteUser.StatusCode, deleteUser.Message);</div>
+<div class="line"><span class="lineno">  320</span>        }</div>
+<div class="line"><span class="lineno">  321</span> </div>
+<div class="line"><span class="lineno">  322</span>        <span class="keywordflow">return</span> (allowed.StatusCode, allowed.Message);</div>
+<div class="line"><span class="lineno">  323</span>    }</div>
+<div class="ttc" id="aclass_database_check_repository_html_aa2cc9546df7853934d6fe4e6da895171"><div class="ttname"><a href="#aa2cc9546df7853934d6fe4e6da895171">DatabaseCheckRepository.MinimumVehicleManagers</a></div><div class="ttdeci">int string Message MinimumVehicleManagers(int kvk)</div><div class="ttdef"><b>Definitie</b> <a href="_database_check_repository_8cs_source.html#l00266">DatabaseCheckRepository.cs:266</a></div></div>
+</div><!-- fragment -->
+<p class="reference">Gebruikt <a class="el" href="_database_check_repository_8cs_source.html#l00029">HandleDelete()</a>, <a class="el" href="_database_check_repository_8cs_source.html#l00162">Message</a>, <a class="el" href="_database_check_repository_8cs_source.html#l00266">MinimumVehicleManagers()</a> en <a class="el" href="_database_check_repository_8cs_source.html#l00029">StatusCode</a>.</p>
+<div class="dynheader">
+Hier is de call graaf voor deze functie:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="class_database_check_repository_ab17e5b0314f886eb84b9e497c8dfd1b4_cgraph.svg" width="422" height="120"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+
+</div>
+</div>
+<a id="addc06aeee3647cec54202bc103212e2e" name="addc06aeee3647cec54202bc103212e2e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#addc06aeee3647cec54202bc103212e2e">&#9670;&#160;</a></span>HandleDelete()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int string <a class="el" href="#a78f58bffc4e099c3788557d485bdab13">Message</a> DatabaseCheckRepository.HandleDelete </td>
+          <td>(</td>
+          <td class="paramtype">string</td>          <td class="paramname"><span class="paramname"><em>query</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">De definitie bevindt zich op regel <a class="el" href="_database_check_repository_8cs_source.html#l00029">29</a> in het bestand <a class="el" href="_database_check_repository_8cs_source.html">DatabaseCheckRepository.cs</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   30</span>    {</div>
+<div class="line"><span class="lineno">   31</span>        <span class="keywordflow">try</span></div>
+<div class="line"><span class="lineno">   32</span>        {</div>
+<div class="line"><span class="lineno">   33</span>            <span class="keyword">using</span> (var connection = <a class="code hl_variable" href="#a1dec366724e8ece78c7b3eec306cc523">_connector</a>.CreateDbConnection())</div>
+<div class="line"><span class="lineno">   34</span>            <span class="keyword">using</span> (var command = <span class="keyword">new</span> MySqlCommand(query, (MySqlConnection)connection))</div>
+<div class="line"><span class="lineno">   35</span>            {</div>
+<div class="line"><span class="lineno">   36</span>                Console.WriteLine(query);</div>
+<div class="line"><span class="lineno">   37</span>                <span class="keywordflow">if</span> (command.ExecuteNonQuery() &gt; 0)</div>
+<div class="line"><span class="lineno">   38</span>                {</div>
+<div class="line"><span class="lineno">   39</span>                    <span class="keywordflow">return</span> (200, <span class="stringliteral">&quot;Succesfully deleted&quot;</span>);</div>
+<div class="line"><span class="lineno">   40</span>                }</div>
+<div class="line"><span class="lineno">   41</span>                <span class="keywordflow">return</span> (404, <span class="stringliteral">&quot;Verwijderen van gegevens gefaald. Opgegeven gegevens bestaan niet&quot;</span>);</div>
+<div class="line"><span class="lineno">   42</span>            }</div>
+<div class="line"><span class="lineno">   43</span>        }</div>
+<div class="line"><span class="lineno">   44</span>        <span class="keywordflow">catch</span> (MySqlException ex)</div>
+<div class="line"><span class="lineno">   45</span>        {</div>
+<div class="line"><span class="lineno">   46</span>            <span class="keywordflow">return</span> (500, ex.Message);</div>
+<div class="line"><span class="lineno">   47</span>        }</div>
+<div class="line"><span class="lineno">   48</span>        <span class="keywordflow">catch</span> (Exception ex)</div>
+<div class="line"><span class="lineno">   49</span>        {</div>
+<div class="line"><span class="lineno">   50</span>            <span class="keywordflow">return</span> (500, ex.Message);</div>
+<div class="line"><span class="lineno">   51</span>        }</div>
+<div class="line"><span class="lineno">   52</span>    }</div>
+</div><!-- fragment -->
+<p class="reference">Gebruikt <a class="el" href="_database_check_repository_8cs_source.html#l00010">_connector</a>, <a class="el" href="_database_check_repository_8cs_source.html#l00162">Message</a> en <a class="el" href="_database_check_repository_8cs_source.html#l00029">StatusCode</a>.</p>
+
+<p class="reference">Wordt aangeroepen door <a class="el" href="_database_check_repository_8cs_source.html#l00239">DeleteBusiness()</a>, <a class="el" href="_database_check_repository_8cs_source.html#l00139">DeleteUser()</a> en <a class="el" href="_database_check_repository_8cs_source.html#l00309">DeleteVehicleManager()</a>.</p>
+<div class="dynheader">
+Hier is de caller graaf voor deze functie:</div>
+<div class="dyncontent">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="class_database_check_repository_addc06aeee3647cec54202bc103212e2e_icgraph.svg" width="100%" height="412"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
+</div>
+
+</div>
+</div>
+<a id="aa2cc9546df7853934d6fe4e6da895171" name="aa2cc9546df7853934d6fe4e6da895171"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa2cc9546df7853934d6fe4e6da895171">&#9670;&#160;</a></span>MinimumVehicleManagers()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int string <a class="el" href="#a78f58bffc4e099c3788557d485bdab13">Message</a> DatabaseCheckRepository.MinimumVehicleManagers </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>kvk</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">De definitie bevindt zich op regel <a class="el" href="_database_check_repository_8cs_source.html#l00266">266</a> in het bestand <a class="el" href="_database_check_repository_8cs_source.html">DatabaseCheckRepository.cs</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  267</span>    {</div>
+<div class="line"><span class="lineno">  268</span>        <span class="keywordtype">string</span> query = <span class="stringliteral">&quot;SELECT COUNT(*) FROM VehicleManager WHERE Business = @B&quot;</span>;</div>
+<div class="line"><span class="lineno">  269</span> </div>
+<div class="line"><span class="lineno">  270</span>        <span class="keywordflow">try</span></div>
+<div class="line"><span class="lineno">  271</span>        {</div>
+<div class="line"><span class="lineno">  272</span>            <span class="keyword">using</span> (var connection = <a class="code hl_variable" href="#a1dec366724e8ece78c7b3eec306cc523">_connector</a>.CreateDbConnection())</div>
+<div class="line"><span class="lineno">  273</span>            <span class="keyword">using</span> (var command = <span class="keyword">new</span> MySqlCommand(query, (MySqlConnection)connection))</div>
+<div class="line"><span class="lineno">  274</span>            {</div>
+<div class="line"><span class="lineno">  275</span>                command.Parameters.AddWithValue(<span class="stringliteral">&quot;@B&quot;</span>, kvk);</div>
+<div class="line"><span class="lineno">  276</span>                Console.WriteLine(query + $<span class="stringliteral">&quot; | {kvk}&quot;</span>);</div>
+<div class="line"><span class="lineno">  277</span>                <span class="keywordtype">int</span> count = Convert.ToInt32(command.ExecuteScalar());</div>
+<div class="line"><span class="lineno">  278</span>                Console.WriteLine(count);</div>
+<div class="line"><span class="lineno">  279</span> </div>
+<div class="line"><span class="lineno">  280</span>                <span class="keywordflow">if</span> (count &gt; 1)</div>
+<div class="line"><span class="lineno">  281</span>                {</div>
+<div class="line"><span class="lineno">  282</span>                    <span class="keywordflow">return</span> (200, <span class="stringliteral">&quot;Allowed&quot;</span>);</div>
+<div class="line"><span class="lineno">  283</span>                }</div>
+<div class="line"><span class="lineno">  284</span>                <span class="keywordflow">return</span> (422, <span class="stringliteral">&quot;Er moet minimaal 1 wagenparkbeheerder beschikbaar zijn&quot;</span>);</div>
+<div class="line"><span class="lineno">  285</span>            }</div>
+<div class="line"><span class="lineno">  286</span>        }</div>
+<div class="line"><span class="lineno">  287</span>        <span class="keywordflow">catch</span> (MySqlException ex)</div>
+<div class="line"><span class="lineno">  288</span>        {</div>
+<div class="line"><span class="lineno">  289</span>            <span class="keywordflow">return</span> (500, ex.Message);</div>
+<div class="line"><span class="lineno">  290</span>        }</div>
+<div class="line"><span class="lineno">  291</span>        <span class="keywordflow">catch</span> (OverflowException ex)</div>
+<div class="line"><span class="lineno">  292</span>        {</div>
+<div class="line"><span class="lineno">  293</span>            <span class="keywordflow">return</span> (500, ex.Message);</div>
+<div class="line"><span class="lineno">  294</span>        }</div>
+<div class="line"><span class="lineno">  295</span>        <span class="keywordflow">catch</span> (Exception ex)</div>
+<div class="line"><span class="lineno">  296</span>        {</div>
+<div class="line"><span class="lineno">  297</span>            <span class="keywordflow">return</span> (500, ex.Message);</div>
+<div class="line"><span class="lineno">  298</span>        }</div>
+<div class="line"><span class="lineno">  299</span>    }</div>
+</div><!-- fragment -->
+<p class="reference">Gebruikt <a class="el" href="_database_check_repository_8cs_source.html#l00010">_connector</a>, <a class="el" href="_database_check_repository_8cs_source.html#l00162">Message</a> en <a class="el" href="_database_check_repository_8cs_source.html#l00029">StatusCode</a>.</p>
+
+<p class="reference">Wordt aangeroepen door <a class="el" href="_database_check_repository_8cs_source.html#l00309">DeleteVehicleManager()</a>.</p>
+<div class="dynheader">
+Hier is de caller graaf voor deze functie:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="class_database_check_repository_aa2cc9546df7853934d6fe4e6da895171_icgraph.svg" width="422" height="54"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+
+</div>
+</div>
+<a id="ad56412a3b3449cdcb20706b41c648f3e" name="ad56412a3b3449cdcb20706b41c648f3e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad56412a3b3449cdcb20706b41c648f3e">&#9670;&#160;</a></span>UserHasActiveContract()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int string <a class="el" href="#a78f58bffc4e099c3788557d485bdab13">Message</a> DatabaseCheckRepository.UserHasActiveContract </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>id</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">De definitie bevindt zich op regel <a class="el" href="_database_check_repository_8cs_source.html#l00094">94</a> in het bestand <a class="el" href="_database_check_repository_8cs_source.html">DatabaseCheckRepository.cs</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   95</span>    {</div>
+<div class="line"><span class="lineno">   96</span>        <span class="keywordtype">string</span> query = <span class="stringliteral">&quot;SELECT COUNT(*) FROM Contract WHERE (Customer = @C AND @D BETWEEN StartDate AND EndDate AND Status = &#39;accepted&#39;)&quot;</span>;</div>
+<div class="line"><span class="lineno">   97</span> </div>
+<div class="line"><span class="lineno">   98</span>        <span class="keywordflow">try</span></div>
+<div class="line"><span class="lineno">   99</span>        {</div>
+<div class="line"><span class="lineno">  100</span>            <span class="keyword">using</span> (var connection = <a class="code hl_variable" href="#a1dec366724e8ece78c7b3eec306cc523">_connector</a>.CreateDbConnection())</div>
+<div class="line"><span class="lineno">  101</span>            <span class="keyword">using</span> (var command = <span class="keyword">new</span> MySqlCommand(query, (MySqlConnection)connection))</div>
+<div class="line"><span class="lineno">  102</span>            {</div>
+<div class="line"><span class="lineno">  103</span>                command.Parameters.AddWithValue(<span class="stringliteral">&quot;@C&quot;</span>, <span class="keywordtype">id</span>);</div>
+<div class="line"><span class="lineno">  104</span>                command.Parameters.AddWithValue(<span class="stringliteral">&quot;@D&quot;</span>, DateTime.Today);</div>
+<div class="line"><span class="lineno">  105</span> </div>
+<div class="line"><span class="lineno">  106</span>                <span class="keywordtype">int</span> count = Convert.ToInt32(command.ExecuteScalar());</div>
+<div class="line"><span class="lineno">  107</span> </div>
+<div class="line"><span class="lineno">  108</span>                <span class="keywordflow">if</span> (count &gt; 0)</div>
+<div class="line"><span class="lineno">  109</span>                {</div>
+<div class="line"><span class="lineno">  110</span>                    <span class="keywordflow">return</span> (424, <span class="stringliteral">&quot;Gebruiker heeft momenteel een lopend contract&quot;</span>);</div>
+<div class="line"><span class="lineno">  111</span>                }</div>
+<div class="line"><span class="lineno">  112</span> </div>
+<div class="line"><span class="lineno">  113</span>                var deleteFutereContracts = <a class="code hl_function" href="#a181b1a163bd4151f68bc551091c3ee22">DeleteFutereContracts</a>(<span class="keywordtype">id</span>);</div>
+<div class="line"><span class="lineno">  114</span> </div>
+<div class="line"><span class="lineno">  115</span>                <span class="keywordflow">return</span> (deleteFutereContracts.StatusCode, deleteFutereContracts.Message);</div>
+<div class="line"><span class="lineno">  116</span>            }</div>
+<div class="line"><span class="lineno">  117</span>        }</div>
+<div class="line"><span class="lineno">  118</span>        <span class="keywordflow">catch</span> (MySqlException ex)</div>
+<div class="line"><span class="lineno">  119</span>        {</div>
+<div class="line"><span class="lineno">  120</span>            <span class="keywordflow">return</span> (500, ex.Message);</div>
+<div class="line"><span class="lineno">  121</span>        }</div>
+<div class="line"><span class="lineno">  122</span>        <span class="keywordflow">catch</span> (OverflowException ex)</div>
+<div class="line"><span class="lineno">  123</span>        {</div>
+<div class="line"><span class="lineno">  124</span>            <span class="keywordflow">return</span> (500, ex.Message);</div>
+<div class="line"><span class="lineno">  125</span>        }</div>
+<div class="line"><span class="lineno">  126</span>        <span class="keywordflow">catch</span> (Exception ex)</div>
+<div class="line"><span class="lineno">  127</span>        {</div>
+<div class="line"><span class="lineno">  128</span>            <span class="keywordflow">return</span> (500, ex.Message);</div>
+<div class="line"><span class="lineno">  129</span>        }</div>
+<div class="line"><span class="lineno">  130</span>    }</div>
+<div class="ttc" id="aclass_database_check_repository_html_a181b1a163bd4151f68bc551091c3ee22"><div class="ttname"><a href="#a181b1a163bd4151f68bc551091c3ee22">DatabaseCheckRepository.DeleteFutereContracts</a></div><div class="ttdeci">int string Message DeleteFutereContracts(int id)</div><div class="ttdef"><b>Definitie</b> <a href="_database_check_repository_8cs_source.html#l00061">DatabaseCheckRepository.cs:61</a></div></div>
+</div><!-- fragment -->
+<p class="reference">Gebruikt <a class="el" href="_database_check_repository_8cs_source.html#l00010">_connector</a>, <a class="el" href="_database_check_repository_8cs_source.html#l00061">DeleteFutereContracts()</a>, <a class="el" href="_database_check_repository_8cs_source.html#l00162">Message</a> en <a class="el" href="_database_check_repository_8cs_source.html#l00029">StatusCode</a>.</p>
+
+<p class="reference">Wordt aangeroepen door <a class="el" href="_database_check_repository_8cs_source.html#l00139">DeleteUser()</a>.</p>
+<div class="dynheader">
+Hier is de call graaf voor deze functie:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="class_database_check_repository_ad56412a3b3449cdcb20706b41c648f3e_cgraph.svg" width="422" height="54"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+<div class="dynheader">
+Hier is de caller graaf voor deze functie:</div>
+<div class="dyncontent">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="class_database_check_repository_ad56412a3b3449cdcb20706b41c648f3e_icgraph.svg" width="100%" height="300"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
+</div>
+
+</div>
+</div>
+<h2 class="groupheader">Documentatie van data velden</h2>
+<a id="a1dec366724e8ece78c7b3eec306cc523" name="a1dec366724e8ece78c7b3eec306cc523"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1dec366724e8ece78c7b3eec306cc523">&#9670;&#160;</a></span>_connector</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">readonly <a class="el" href="interface_w_p_r_1_1_database_1_1_i_connector.html">IConnector</a> DatabaseCheckRepository._connector</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">De definitie bevindt zich op regel <a class="el" href="_database_check_repository_8cs_source.html#l00010">10</a> in het bestand <a class="el" href="_database_check_repository_8cs_source.html">DatabaseCheckRepository.cs</a>.</p>
+
+<p class="reference">Wordt aangeroepen door <a class="el" href="_database_check_repository_8cs_source.html#l00017">DatabaseCheckRepository()</a>, <a class="el" href="_database_check_repository_8cs_source.html#l00162">DeleteEmployees()</a>, <a class="el" href="_database_check_repository_8cs_source.html#l00061">DeleteFutereContracts()</a>, <a class="el" href="_database_check_repository_8cs_source.html#l00029">HandleDelete()</a>, <a class="el" href="_database_check_repository_8cs_source.html#l00266">MinimumVehicleManagers()</a> en <a class="el" href="_database_check_repository_8cs_source.html#l00094">UserHasActiveContract()</a>.</p>
+
+</div>
+</div>
+<a id="a78f58bffc4e099c3788557d485bdab13" name="a78f58bffc4e099c3788557d485bdab13"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a78f58bffc4e099c3788557d485bdab13">&#9670;&#160;</a></span>Message</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int string DatabaseCheckRepository.Message</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">De definitie bevindt zich op regel <a class="el" href="_database_check_repository_8cs_source.html#l00162">162</a> in het bestand <a class="el" href="_database_check_repository_8cs_source.html">DatabaseCheckRepository.cs</a>.</p>
+
+<p class="reference">Wordt aangeroepen door <a class="el" href="_database_check_repository_8cs_source.html#l00239">DeleteBusiness()</a>, <a class="el" href="_database_check_repository_8cs_source.html#l00162">DeleteEmployees()</a>, <a class="el" href="_database_check_repository_8cs_source.html#l00061">DeleteFutereContracts()</a>, <a class="el" href="_database_check_repository_8cs_source.html#l00139">DeleteUser()</a>, <a class="el" href="_database_check_repository_8cs_source.html#l00309">DeleteVehicleManager()</a>, <a class="el" href="_database_check_repository_8cs_source.html#l00029">HandleDelete()</a>, <a class="el" href="_database_check_repository_8cs_source.html#l00266">MinimumVehicleManagers()</a> en <a class="el" href="_database_check_repository_8cs_source.html#l00094">UserHasActiveContract()</a>.</p>
+
+</div>
+</div>
+<a id="af00e30b47279ed24d32ee995f3d71ff7" name="af00e30b47279ed24d32ee995f3d71ff7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af00e30b47279ed24d32ee995f3d71ff7">&#9670;&#160;</a></span>StatusCode</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int DatabaseCheckRepository.StatusCode</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Verwerkt een delete-operatie voor een opgegeven query. </p>
+<p>Verwijdert een voertuigmanager op basis van het opgegeven ID en KvK-nummer.</p>
+<p>Controleert of er minimaal één voertuigmanager beschikbaar is voor een bepaald KvK-nummer.</p>
+<p>Verwijdert een bedrijf op basis van het KvK-nummer.</p>
+<p>Verwijdert werknemers op basis van een KvK-nummer.</p>
+<p>Verwijdert een gebruiker op basis van het opgegeven ID.</p>
+<p>Controleert of een gebruiker een actief contract heeft.</p>
+<p>Verwijdert toekomstige contracten voor een opgegeven klant-ID.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">query</td><td>De SQL-query die moet worden uitgevoerd.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Retourneert</dt><dd>Een tuple met een statuscode en een bericht. </dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">id</td><td>Het ID van de klant waarvan de toekomstige contracten moeten worden verwijderd.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Retourneert</dt><dd>Een tuple met een statuscode en een bericht. </dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">id</td><td>Het ID van de gebruiker die gecontroleerd moet worden.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Retourneert</dt><dd>Een tuple met een statuscode en een bericht. </dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">id</td><td>Het ID van de gebruiker die verwijderd moet worden.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Retourneert</dt><dd>Een tuple met een statuscode en een bericht. </dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">kvk</td><td>Het KvK-nummer van het bedrijf waarvan de werknemers verwijderd moeten worden.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Retourneert</dt><dd>Een tuple met een statuscode, bericht en een dictionary van werknemer-ID's en de bijbehorende verwijderstatus. </dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">kvk</td><td>Het KvK-nummer van het bedrijf dat verwijderd moet worden.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Retourneert</dt><dd>Een tuple met een statuscode en een bericht. </dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">kvk</td><td>Het KvK-nummer van het bedrijf waarvoor de controle uitgevoerd moet worden.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Retourneert</dt><dd>Een tuple met een statuscode en een bericht. </dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">id</td><td>Het ID van de voertuigmanager die verwijderd moet worden.</td></tr>
+    <tr><td class="paramname">kvk</td><td>Het KvK-nummer van het bedrijf waarvoor de voertuigmanager moet worden verwijderd.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Retourneert</dt><dd>Een tuple met een statuscode en een bericht. </dd></dl>
+
+<p class="definition">De definitie bevindt zich op regel <a class="el" href="_database_check_repository_8cs_source.html#l00029">29</a> in het bestand <a class="el" href="_database_check_repository_8cs_source.html">DatabaseCheckRepository.cs</a>.</p>
+
+<p class="reference">Wordt aangeroepen door <a class="el" href="_database_check_repository_8cs_source.html#l00239">DeleteBusiness()</a>, <a class="el" href="_database_check_repository_8cs_source.html#l00162">DeleteEmployees()</a>, <a class="el" href="_database_check_repository_8cs_source.html#l00061">DeleteFutereContracts()</a>, <a class="el" href="_database_check_repository_8cs_source.html#l00139">DeleteUser()</a>, <a class="el" href="_database_check_repository_8cs_source.html#l00309">DeleteVehicleManager()</a>, <a class="el" href="_database_check_repository_8cs_source.html#l00029">HandleDelete()</a>, <a class="el" href="_database_check_repository_8cs_source.html#l00266">MinimumVehicleManagers()</a> en <a class="el" href="_database_check_repository_8cs_source.html#l00094">UserHasActiveContract()</a>.</p>
+
+</div>
+</div>
+<hr/>De documentatie voor deze klasse is gegenereerd op basis van het volgende bestand:<ul>
+<li>D:/codes/WPR8/WPR/backend/src/Repository/<a class="el" href="_database_check_repository_8cs_source.html">DatabaseCheckRepository.cs</a></li>
+</ul>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="class_database_check_repository.html">DatabaseCheckRepository</a></li>
+    <li class="footer">Gegenereerd door <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.0 </li>
+  </ul>
+</div>
+</body>
+</html>

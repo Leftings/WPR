@@ -1,5 +1,5 @@
 <map id="WPR.Repository.UserRepository.CreateUserInfoQuery" name="WPR.Repository.UserRepository.CreateUserInfoQuery">
 <area shape="rect" id="Node000001" title="Er wordt een query aangemaakt, met daarin de meegeven gegevens die veranderd moeten worden in het acc..." alt="" coords="271,5,488,48"/>
-<area shape="rect" id="Node000002" href="$class_w_p_r_1_1_repository_1_1_user_repository.html#af9a5424f00a5cfc023cc147a1e0a59cf" title=" " alt="" coords="5,5,223,48"/>
+<area shape="rect" id="Node000002" href="$class_w_p_r_1_1_repository_1_1_user_repository.html#af9a5424f00a5cfc023cc147a1e0a59cf" title="Wijzigt de gebruikersinformatie op basis van de verstrekte gegevens." alt="" coords="5,5,223,48"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="255,29,223,29,223,24,255,24"/>
 </map>

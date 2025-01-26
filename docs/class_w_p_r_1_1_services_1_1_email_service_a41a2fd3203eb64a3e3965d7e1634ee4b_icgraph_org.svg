@@ -11,7 +11,7 @@
 <!-- Node1 -->
 <g id="Node000001" class="node">
 <title>Node1</title>
-<g id="a_Node000001"><a xlink:title=" ">
+<g id="a_Node000001"><a xlink:title="Bouwt de HTML&#45;inhoud voor een bedrijfsaccount bevestigingsmail.">
 <polygon fill="#999999" stroke="#666666" points="376.25,-32 195.25,-32 195.25,0 376.25,0 376.25,-32"/>
 <text text-anchor="start" x="203.25" y="-18.5" font-family="Helvetica,sans-Serif" font-size="10.00">WPR.Services.EmailService.</text>
 <text text-anchor="middle" x="285.75" y="-6.5" font-family="Helvetica,sans-Serif" font-size="10.00">BuildConfirmationEmailBusinessBody</text>
@@ -21,7 +21,7 @@
 <!-- Node2 -->
 <g id="Node000002" class="node">
 <title>Node2</title>
-<g id="a_Node000002"><a xlink:href="class_w_p_r_1_1_services_1_1_email_service.html#ab96c557f8a51cc79d18b99b891238d07" target="_top" xlink:title=" ">
+<g id="a_Node000002"><a xlink:href="class_w_p_r_1_1_services_1_1_email_service.html#ab96c557f8a51cc79d18b99b891238d07" target="_top" xlink:title="Verstuurt een bevestigingsmail voor een bedrijfsaccount aanvraag.">
 <polygon fill="white" stroke="#666666" points="159.25,-32 0,-32 0,0 159.25,0 159.25,-32"/>
 <text text-anchor="start" x="8" y="-18.5" font-family="Helvetica,sans-Serif" font-size="10.00">WPR.Services.EmailService.</text>
 <text text-anchor="middle" x="79.62" y="-6.5" font-family="Helvetica,sans-Serif" font-size="10.00">SendConfirmationEmailBusiness</text>

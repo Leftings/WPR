@@ -17,6 +17,5 @@ var searchData=
   ['signuprequestcustomerprivate_14',['SignUpRequestCustomerPrivate',['../namespace_w_p_r_1_1_controllers_1_1_general_1_1_sign_up.html#ab012081435b4392bd8e6e4525e336d68',1,'WPR::Controllers::General::SignUp']]],
   ['signupstaff_15',['SignUpStaff',['../class_w_p_r_1_1_controllers_1_1_employee_1_1_back_office_1_1sign_up_staff_1_1_sign_up_staff_controller.html#a91b241351193754ce64072141596fdc0',1,'WPR::Controllers::Employee::BackOffice::signUpStaff::SignUpStaffController']]],
   ['signupstaffcontroller_16',['SignUpStaffController',['../class_w_p_r_1_1_controllers_1_1_employee_1_1_back_office_1_1sign_up_staff_1_1_sign_up_staff_controller.html#a17cbd6f407941973bd34bb02200a6313',1,'WPR::Controllers::Employee::BackOffice::signUpStaff::SignUpStaffController']]],
-  ['strongpasswordmaker_17',['StrongPasswordMaker',['../namespace_w_p_r_1_1_utils.html#a17791ac96420c6753ba62c8137da2fb1',1,'WPR::Utils']]],
-  ['subscriptioncontroller_18',['SubscriptionController',['../class_w_p_r_1_1_controllers_1_1customer_1_1_subscription_1_1_subscription_controller.html#a66e7802193419454d989712a5b4152c8',1,'WPR::Controllers::customer::Subscription::SubscriptionController']]]
+  ['subscriptioncontroller_17',['SubscriptionController',['../class_w_p_r_1_1_controllers_1_1customer_1_1_subscription_1_1_subscription_controller.html#a66e7802193419454d989712a5b4152c8',1,'WPR::Controllers::customer::Subscription::SubscriptionController']]]
 ];

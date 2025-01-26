@@ -4,14 +4,11 @@ var annotated_dup =
       [ "Controllers", "namespace_w_p_r_1_1_controllers.html", [
         [ "Customer", "namespace_w_p_r_1_1_controllers_1_1_customer.html", [
           [ "AddBusiness", "namespace_w_p_r_1_1_controllers_1_1_customer_1_1_add_business.html", [
-            [ "AddBusinessController", "class_w_p_r_1_1_controllers_1_1_customer_1_1_add_business_1_1_add_business_controller.html", "class_w_p_r_1_1_controllers_1_1_customer_1_1_add_business_1_1_add_business_controller" ],
-            [ "addBusinessResponse", "class_w_p_r_1_1_controllers_1_1_customer_1_1_add_business_1_1add_business_response.html", "class_w_p_r_1_1_controllers_1_1_customer_1_1_add_business_1_1add_business_response" ]
+            [ "AddBusinessController", "class_w_p_r_1_1_controllers_1_1_customer_1_1_add_business_1_1_add_business_controller.html", "class_w_p_r_1_1_controllers_1_1_customer_1_1_add_business_1_1_add_business_controller" ]
           ] ],
           [ "ChangeUserSettings", "namespace_w_p_r_1_1_controllers_1_1_customer_1_1_change_user_settings.html", [
             [ "ChangeUserRequest", "class_w_p_r_1_1_controllers_1_1_customer_1_1_change_user_settings_1_1_change_user_request.html", "class_w_p_r_1_1_controllers_1_1_customer_1_1_change_user_settings_1_1_change_user_request" ],
-            [ "ChangeUserSettingsController", "class_w_p_r_1_1_controllers_1_1_customer_1_1_change_user_settings_1_1_change_user_settings_controller.html", "class_w_p_r_1_1_controllers_1_1_customer_1_1_change_user_settings_1_1_change_user_settings_controller" ],
-            [ "ChangeUserSettingsErrorResponse", "class_w_p_r_1_1_controllers_1_1_customer_1_1_change_user_settings_1_1_change_user_settings_error_response.html", "class_w_p_r_1_1_controllers_1_1_customer_1_1_change_user_settings_1_1_change_user_settings_error_response" ],
-            [ "ChangeUserSettingsResponse", "class_w_p_r_1_1_controllers_1_1_customer_1_1_change_user_settings_1_1_change_user_settings_response.html", "class_w_p_r_1_1_controllers_1_1_customer_1_1_change_user_settings_1_1_change_user_settings_response" ]
+            [ "ChangeUserSettingsController", "class_w_p_r_1_1_controllers_1_1_customer_1_1_change_user_settings_1_1_change_user_settings_controller.html", "class_w_p_r_1_1_controllers_1_1_customer_1_1_change_user_settings_1_1_change_user_settings_controller" ]
           ] ],
           [ "Rental", "namespace_w_p_r_1_1_controllers_1_1_customer_1_1_rental.html", [
             [ "RentalController", "class_w_p_r_1_1_controllers_1_1_customer_1_1_rental_1_1_rental_controller.html", "class_w_p_r_1_1_controllers_1_1_customer_1_1_rental_1_1_rental_controller" ],
@@ -56,9 +53,7 @@ var annotated_dup =
             ] ],
             [ "viewRentalData", "namespace_w_p_r_1_1_controllers_1_1_employee_1_1_shared_1_1view_rental_data.html", [
               [ "viewRentalDataController", "class_w_p_r_1_1_controllers_1_1_employee_1_1_shared_1_1view_rental_data_1_1view_rental_data_controller.html", "class_w_p_r_1_1_controllers_1_1_employee_1_1_shared_1_1view_rental_data_1_1view_rental_data_controller" ],
-              [ "viewRentalDataErrorResponse", "class_w_p_r_1_1_controllers_1_1_employee_1_1_shared_1_1view_rental_data_1_1view_rental_data_error_response.html", "class_w_p_r_1_1_controllers_1_1_employee_1_1_shared_1_1view_rental_data_1_1view_rental_data_error_response" ],
-              [ "ViewRentalDataRequest", "class_w_p_r_1_1_controllers_1_1_employee_1_1_shared_1_1view_rental_data_1_1_view_rental_data_request.html", "class_w_p_r_1_1_controllers_1_1_employee_1_1_shared_1_1view_rental_data_1_1_view_rental_data_request" ],
-              [ "viewRentalDataResponse", "class_w_p_r_1_1_controllers_1_1_employee_1_1_shared_1_1view_rental_data_1_1view_rental_data_response.html", "class_w_p_r_1_1_controllers_1_1_employee_1_1_shared_1_1view_rental_data_1_1view_rental_data_response" ]
+              [ "ViewRentalDataRequest", "class_w_p_r_1_1_controllers_1_1_employee_1_1_shared_1_1view_rental_data_1_1_view_rental_data_request.html", "class_w_p_r_1_1_controllers_1_1_employee_1_1_shared_1_1view_rental_data_1_1_view_rental_data_request" ]
             ] ]
           ] ],
           [ "validateUser", "namespace_w_p_r_1_1_controllers_1_1_employee_1_1validate_user.html", [
@@ -92,9 +87,7 @@ var annotated_dup =
             [ "SignUpController", "class_w_p_r_1_1_controllers_1_1_general_1_1_sign_up_1_1_sign_up_controller.html", "class_w_p_r_1_1_controllers_1_1_general_1_1_sign_up_1_1_sign_up_controller" ]
           ] ],
           [ "Vehicle", "namespace_w_p_r_1_1_controllers_1_1_general_1_1_vehicle.html", [
-            [ "VehicleController", "class_w_p_r_1_1_controllers_1_1_general_1_1_vehicle_1_1_vehicle_controller.html", "class_w_p_r_1_1_controllers_1_1_general_1_1_vehicle_1_1_vehicle_controller" ],
-            [ "VehicleDataResponse", "class_w_p_r_1_1_controllers_1_1_general_1_1_vehicle_1_1_vehicle_data_response.html", "class_w_p_r_1_1_controllers_1_1_general_1_1_vehicle_1_1_vehicle_data_response" ],
-            [ "VehicleErrorResponse", "class_w_p_r_1_1_controllers_1_1_general_1_1_vehicle_1_1_vehicle_error_response.html", "class_w_p_r_1_1_controllers_1_1_general_1_1_vehicle_1_1_vehicle_error_response" ]
+            [ "VehicleController", "class_w_p_r_1_1_controllers_1_1_general_1_1_vehicle_1_1_vehicle_controller.html", "class_w_p_r_1_1_controllers_1_1_general_1_1_vehicle_1_1_vehicle_controller" ]
           ] ]
         ] ]
       ] ],
@@ -123,10 +116,8 @@ var annotated_dup =
       ] ],
       [ "Repository", "namespace_w_p_r_1_1_repository.html", [
         [ "DatabaseCheckRepository", "namespace_w_p_r_1_1_repository_1_1_database_check_repository.html", [
-          [ "DatabaseCheckRepository", "class_w_p_r_1_1_repository_1_1_database_check_repository_1_1_database_check_repository.html", "class_w_p_r_1_1_repository_1_1_database_check_repository_1_1_database_check_repository" ],
           [ "IDatabaseCheckRepository", "interface_w_p_r_1_1_repository_1_1_database_check_repository_1_1_i_database_check_repository.html", "interface_w_p_r_1_1_repository_1_1_database_check_repository_1_1_i_database_check_repository" ]
         ] ],
-        [ "ContractRepository", "class_w_p_r_1_1_repository_1_1_contract_repository.html", "class_w_p_r_1_1_repository_1_1_contract_repository" ],
         [ "EmployeeRepository", "class_w_p_r_1_1_repository_1_1_employee_repository.html", "class_w_p_r_1_1_repository_1_1_employee_repository" ],
         [ "IBackOfficeRepository", "interface_w_p_r_1_1_repository_1_1_i_back_office_repository.html", "interface_w_p_r_1_1_repository_1_1_i_back_office_repository" ],
         [ "IContractRepository", "interface_w_p_r_1_1_repository_1_1_i_contract_repository.html", "interface_w_p_r_1_1_repository_1_1_i_contract_repository" ],
@@ -146,9 +137,12 @@ var annotated_dup =
         [ "EmailChecker", "class_w_p_r_1_1_utils_1_1_email_checker.html", "class_w_p_r_1_1_utils_1_1_email_checker" ],
         [ "KvkChecker", "class_w_p_r_1_1_utils_1_1_kvk_checker.html", "class_w_p_r_1_1_utils_1_1_kvk_checker" ],
         [ "PasswordChecker", "class_w_p_r_1_1_utils_1_1_password_checker.html", "class_w_p_r_1_1_utils_1_1_password_checker" ],
+        [ "StrongPasswordMaker", "class_w_p_r_1_1_utils_1_1_strong_password_maker.html", "class_w_p_r_1_1_utils_1_1_strong_password_maker" ],
         [ "TelChecker", "class_w_p_r_1_1_utils_1_1_tel_checker.html", "class_w_p_r_1_1_utils_1_1_tel_checker" ]
       ] ],
       [ "AppConfigure", "class_w_p_r_1_1_app_configure.html", "class_w_p_r_1_1_app_configure" ],
       [ "Program", "class_w_p_r_1_1_program.html", "class_w_p_r_1_1_program" ]
-    ] ]
+    ] ],
+    [ "ContractRepository", "class_contract_repository.html", "class_contract_repository" ],
+    [ "DatabaseCheckRepository", "class_database_check_repository.html", "class_database_check_repository" ]
 ];

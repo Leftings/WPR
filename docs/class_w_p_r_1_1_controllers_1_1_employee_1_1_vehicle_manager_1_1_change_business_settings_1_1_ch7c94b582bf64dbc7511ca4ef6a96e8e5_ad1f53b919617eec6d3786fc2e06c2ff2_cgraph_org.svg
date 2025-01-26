@@ -11,7 +11,7 @@
 <!-- Node1 -->
 <g id="Node000001" class="node">
 <title>Node1</title>
-<g id="a_Node000001"><a xlink:title=" ">
+<g id="a_Node000001"><a xlink:title="Wijzig de bedrijfsinformatie. Voert ook een wachtwoordvalidatie uit indien er een nieuw wachtwoord wo...">
 <polygon fill="#999999" stroke="#666666" points="245.5,-56 0,-56 0,0 245.5,0 245.5,-56"/>
 <text text-anchor="start" x="8" y="-42.5" font-family="Helvetica,sans-Serif" font-size="10.00">WPR.Controllers.Employee.</text>
 <text text-anchor="start" x="8" y="-30.5" font-family="Helvetica,sans-Serif" font-size="10.00">VehicleManager.ChangeBusinessSettings.</text>

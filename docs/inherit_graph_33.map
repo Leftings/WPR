@@ -1,3 +1,5 @@
 <map id="Grafische Klasse Hiërarchie" name="Grafische Klasse Hiërarchie">
-<area shape="rect" id="Node000000" href="$class_w_p_r_1_1_controllers_1_1_general_1_1_vehicle_1_1_vehicle_error_response.html" title=" " alt="" coords="5,5,202,48"/>
+<area shape="rect" id="Node000000" href="$interface_w_p_r_1_1_repository_1_1_database_check_repository_1_1_i_database_check_repository.html" title=" " alt="" coords="5,5,254,48"/>
+<area shape="rect" id="Node000001" href="$class_database_check_repository.html" title="Behandelt verschillende databasebewerkingen zoals het verwijderen van gebruikers, contracten en bedri..." alt="" coords="302,13,480,40"/>
+<area shape="poly" id="edge27_Node000000_Node000001" title=" " alt="" coords="269,24,301,24,301,29,269,29"/>
 </map>

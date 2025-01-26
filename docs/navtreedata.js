@@ -44,11 +44,7 @@ var NAVTREE =
       ] ]
     ] ],
     [ "Bestanden", "files.html", [
-      [ "Bestandslijst", "files.html", "files_dup" ],
-      [ "Glabale members", "globals.html", [
-        [ "Alle", "globals.html", null ],
-        [ "Variabelen", "globals_vars.html", null ]
-      ] ]
+      [ "Bestandslijst", "files.html", "files_dup" ]
     ] ]
   ] ]
 ];
@@ -56,11 +52,11 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "_add_intake_error_response_8cs.html",
-"class_w_p_r_1_1_controllers_1_1_employee_1_1_back_office_1_1_add_vehicle_1_1_add_vehicle_controller.html#abfb71c3b144d117aad9dc5d5d89744fb",
-"class_w_p_r_1_1_controllers_1_1_general_1_1_cookie_1_1_cookie_controller.html#a893dae88524c51e709ea2a3e8ecdeec0",
-"class_w_p_r_1_1_program.html#af392a4477cf6bbb6174656a59193bcaf",
-"class_w_p_r_1_1_services_1_1_email_service.html#a41a2fd3203eb64a3e3965d7e1634ee4b",
-"interface_w_p_r_1_1_repository_1_1_i_user_repository.html#a639e9a13c1b234198f293d1a9cdfac94"
+"class_w_p_r_1_1_controllers_1_1_employee_1_1_back_office_1_1_add_vehicle_1_1_add_vehicle_request.html#a493b604ec28346241e2b2145c446d040",
+"class_w_p_r_1_1_controllers_1_1_general_1_1_cookie_1_1_session_handler.html#ac6c8b44c77e1cb75cab9b617d7121f75",
+"class_w_p_r_1_1_repository_1_1_employee_repository.html#a72123503af7c5e0000454034b4d33f3c",
+"dir_27747142951285b09bacafa002e92b5f.html",
+"interface_w_p_r_1_1_repository_1_1_i_vehicle_repository.html#adb72a97c347ecd008bb8e5c710d2aff9"
 ];
 
 var SYNCONMSG = 'klik hier om de paneel synchronisatie uit te schakelen';

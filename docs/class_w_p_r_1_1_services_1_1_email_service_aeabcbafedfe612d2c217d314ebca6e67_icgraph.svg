@@ -22,7 +22,7 @@
 <!-- Node1 -->
 <g id="Node000001" class="node">
 <title>Node1</title>
-<g id="a_Node000001"><a xlink:title=" ">
+<g id="a_Node000001"><a xlink:title="Bouwt de HTML&#45;inhoud voor een beoordelingsmail voor een bedrijfsaccount aanvraag.">
 <polygon fill="#999999" stroke="#666666" points="339.5,-32 181,-32 181,0 339.5,0 339.5,-32"/>
 <text text-anchor="start" x="189" y="-18.5" font-family="Helvetica,sans-Serif" font-size="10.00">WPR.Services.EmailService.</text>
 <text text-anchor="middle" x="260.25" y="-6.5" font-family="Helvetica,sans-Serif" font-size="10.00">BuildBusinessReviewEmailBody</text>
@@ -32,7 +32,7 @@
 <!-- Node2 -->
 <g id="Node000002" class="node">
 <title>Node2</title>
-<g id="a_Node000002"><a xlink:href="class_w_p_r_1_1_services_1_1_email_service.html#a2921ddfbad60ba40018a722be5a0c0c6" target="_top" xlink:title=" ">
+<g id="a_Node000002"><a xlink:href="class_w_p_r_1_1_services_1_1_email_service.html#a2921ddfbad60ba40018a722be5a0c0c6" target="_top" xlink:title="Verstuurt een beoordelingsmail voor een bedrijfsaccount aanvraag naar het opgegeven e&#45;mailadres.">
 <polygon fill="white" stroke="#666666" points="145,-32 0,-32 0,0 145,0 145,-32"/>
 <text text-anchor="start" x="8" y="-18.5" font-family="Helvetica,sans-Serif" font-size="10.00">WPR.Services.EmailService.</text>
 <text text-anchor="middle" x="72.5" y="-6.5" font-family="Helvetica,sans-Serif" font-size="10.00">SendBusinessReviewEmail</text>

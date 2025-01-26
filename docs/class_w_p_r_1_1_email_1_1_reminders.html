@@ -110,6 +110,9 @@ $(function(){initNavTree('class_w_p_r_1_1_email_1_1_reminders.html',''); initRes
   <div class="headertitle"><div class="title">WPR.Email.Reminders Class Referentie</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>De klasse <a class="el" href="class_w_p_r_1_1_email_1_1_reminders.html" title="De klasse Reminders draaid op de achtergrond om elke 24 uur herrinering mails van contracten te sture...">Reminders</a> draaid op de achtergrond om elke 24 uur herrinering mails van contracten te sturen naar de benodigde gebruikers.  
+ <a href="#details">Meer...</a></p>
 <div class="dynheader">
 Klasse diagram voor WPR.Email.Reminders</div>
 <div class="dyncontent">
@@ -124,26 +127,34 @@ Collaboratie diagram voor WPR.Email.Reminders:</div>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Members</h2></td></tr>
 <tr class="memitem:a31a0fa92259b7db6b6b7e0517ed63c9a" id="r_a31a0fa92259b7db6b6b7e0517ed63c9a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a31a0fa92259b7db6b6b7e0517ed63c9a">Reminders</a> (IServiceProvider serviceProvider, <a class="el" href="interface_w_p_r_1_1_database_1_1_i_connector.html">IConnector</a> connector)</td></tr>
+<tr class="memdesc:a31a0fa92259b7db6b6b7e0517ed63c9a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor die de benodigde classes initialiseerd.  <br /></td></tr>
 <tr class="separator:a31a0fa92259b7db6b6b7e0517ed63c9a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7444d93d984ea9038666a160d3f2c1cd" id="r_a7444d93d984ea9038666a160d3f2c1cd"><td class="memItemLeft" align="right" valign="top">virtual async Task&lt; bool &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7444d93d984ea9038666a160d3f2c1cd">ReminderContract24Hours</a> ()</td></tr>
+<tr class="memdesc:a7444d93d984ea9038666a160d3f2c1cd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Alle gegevens worden opgehaald en verzameld om verstuurd te worden.  <br /></td></tr>
 <tr class="separator:a7444d93d984ea9038666a160d3f2c1cd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-methods" name="pro-methods"></a>
 Protected Members</h2></td></tr>
 <tr class="memitem:ad80d4a26ca16bf220b8b188082e6fca3" id="r_ad80d4a26ca16bf220b8b188082e6fca3"><td class="memItemLeft" align="right" valign="top">override async Task&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad80d4a26ca16bf220b8b188082e6fca3">ExecuteAsync</a> (CancellationToken stoppingToken)</td></tr>
+<tr class="memdesc:ad80d4a26ca16bf220b8b188082e6fca3"><td class="mdescLeft">&#160;</td><td class="mdescRight">ExecuteAsync zorgt ervoor dat er de herinneringsmails elke x tijd verstuurd worden. Voor de realiteit is het per 24 uur. Voor het presenteren is het lke 10 seconden.  <br /></td></tr>
 <tr class="separator:ad80d4a26ca16bf220b8b188082e6fca3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-methods" name="pri-methods"></a>
 Private Members</h2></td></tr>
 <tr class="memitem:a1d75902f11e2e726605f7ffe7439944e" id="r_a1d75902f11e2e726605f7ffe7439944e"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1d75902f11e2e726605f7ffe7439944e">CreateReminderContract</a> (Dictionary&lt; string, object &gt; <a class="el" href="class_w_p_r_1_1_email_1_1_customer.html">Customer</a>, Dictionary&lt; string, object &gt; <a class="el" href="class_w_p_r_1_1_email_1_1_contract.html">Contract</a>, Dictionary&lt; string, object &gt; <a class="el" href="class_w_p_r_1_1_email_1_1_vehicle.html">Vehicle</a>)</td></tr>
+<tr class="memdesc:a1d75902f11e2e726605f7ffe7439944e"><td class="mdescLeft">&#160;</td><td class="mdescRight">CreateReminderContract creeërt een standaard template voor het laten herinneren van gebruikers dat hun zij hun voertuig binnen 24 uur kunnen ophalen.  <br /></td></tr>
 <tr class="separator:a1d75902f11e2e726605f7ffe7439944e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a42469c6c38c948b8fd2ae5960f5a5dd0" id="r_a42469c6c38c948b8fd2ae5960f5a5dd0"><td class="memItemLeft" align="right" valign="top">async Task&lt; Dictionary&lt; string, object &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a42469c6c38c948b8fd2ae5960f5a5dd0">GetCustomerInfo</a> (int id, IServiceScope scope)</td></tr>
+<tr class="memdesc:a42469c6c38c948b8fd2ae5960f5a5dd0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Alle gegevens van de klant worden verzameld.  <br /></td></tr>
 <tr class="separator:a42469c6c38c948b8fd2ae5960f5a5dd0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2e395400175836072d81ac325fd06141" id="r_a2e395400175836072d81ac325fd06141"><td class="memItemLeft" align="right" valign="top">async Task&lt; Dictionary&lt; string, object &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2e395400175836072d81ac325fd06141">GetContractInfo</a> (int id, IServiceScope scope)</td></tr>
+<tr class="memdesc:a2e395400175836072d81ac325fd06141"><td class="mdescLeft">&#160;</td><td class="mdescRight">Alle gegevens van het contract worden verzameld.  <br /></td></tr>
 <tr class="separator:a2e395400175836072d81ac325fd06141"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a67dff571812b76e4250e73684d8cc454" id="r_a67dff571812b76e4250e73684d8cc454"><td class="memItemLeft" align="right" valign="top">async Task&lt; Dictionary&lt; string, object &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a67dff571812b76e4250e73684d8cc454">GetVehicleInfo</a> (int id, IServiceScope scope)</td></tr>
+<tr class="memdesc:a67dff571812b76e4250e73684d8cc454"><td class="mdescLeft">&#160;</td><td class="mdescRight">Alle gegegevens van het voertuig worden verzameld.  <br /></td></tr>
 <tr class="separator:a67dff571812b76e4250e73684d8cc454"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa5b68b714327d1e6ad8adae0698897f6" id="r_aa5b68b714327d1e6ad8adae0698897f6"><td class="memItemLeft" align="right" valign="top">async Task&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa5b68b714327d1e6ad8adae0698897f6">SendEmail</a> (string body, string subject, string toEmail, object orderId, IServiceScope scope)</td></tr>
+<tr class="memdesc:aa5b68b714327d1e6ad8adae0698897f6"><td class="mdescLeft">&#160;</td><td class="mdescRight">SendEmail zorgt voor de voorbereidingen van het maken van de email. Terwijl de email klaar wordt gemaakt om te verzenden wordt in de database geregistreerd dat er voor het huidige contract een herinnerings maal verzonden is.  <br /></td></tr>
 <tr class="separator:aa5b68b714327d1e6ad8adae0698897f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
@@ -154,8 +165,9 @@ Private Attributen</h2></td></tr>
 <tr class="separator:a48ebeeb8f8653fcbad7c2fd1845398d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Gedetailleerde Beschrijving</h2>
-<div class="textblock">
-<p class="definition">De definitie bevindt zich op regel <a class="el" href="_reminders_8cs_source.html#l00013">13</a> in het bestand <a class="el" href="_reminders_8cs_source.html">Reminders.cs</a>.</p>
+<div class="textblock"><p>De klasse <a class="el" href="class_w_p_r_1_1_email_1_1_reminders.html" title="De klasse Reminders draaid op de achtergrond om elke 24 uur herrinering mails van contracten te sture...">Reminders</a> draaid op de achtergrond om elke 24 uur herrinering mails van contracten te sturen naar de benodigde gebruikers. </p>
+
+<p class="definition">De definitie bevindt zich op regel <a class="el" href="_reminders_8cs_source.html#l00017">17</a> in het bestand <a class="el" href="_reminders_8cs_source.html">Reminders.cs</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentatie</h2>
 <a id="a31a0fa92259b7db6b6b7e0517ed63c9a" name="a31a0fa92259b7db6b6b7e0517ed63c9a"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a31a0fa92259b7db6b6b7e0517ed63c9a">&#9670;&#160;</a></span>Reminders()</h2>
@@ -184,13 +196,28 @@ Private Attributen</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">De definitie bevindt zich op regel <a class="el" href="_reminders_8cs_source.html#l00018">18</a> in het bestand <a class="el" href="_reminders_8cs_source.html">Reminders.cs</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   19</span>    {</div>
-<div class="line"><span class="lineno">   20</span>        _serviceProvider = serviceProvider ?? <span class="keywordflow">throw</span> <span class="keyword">new</span> ArgumentNullException(nameof(serviceProvider));</div>
-<div class="line"><span class="lineno">   21</span>        _connector = connector ?? <span class="keywordflow">throw</span> <span class="keyword">new</span> ArgumentNullException(nameof(connector));</div>
-<div class="line"><span class="lineno">   22</span>    }</div>
+<p>Constructor die de benodigde classes initialiseerd. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">serviceProvider</td><td></td></tr>
+    <tr><td class="paramname">connector</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="exception"><dt>Excepties</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">ArgumentNullException</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">De definitie bevindt zich op regel <a class="el" href="_reminders_8cs_source.html#l00028">28</a> in het bestand <a class="el" href="_reminders_8cs_source.html">Reminders.cs</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   29</span>    {</div>
+<div class="line"><span class="lineno">   30</span>        _serviceProvider = serviceProvider ?? <span class="keywordflow">throw</span> <span class="keyword">new</span> ArgumentNullException(nameof(serviceProvider));</div>
+<div class="line"><span class="lineno">   31</span>        _connector = connector ?? <span class="keywordflow">throw</span> <span class="keyword">new</span> ArgumentNullException(nameof(connector));</div>
+<div class="line"><span class="lineno">   32</span>    }</div>
 </div><!-- fragment -->
-<p class="reference">Gebruikt <a class="el" href="_reminders_8cs_source.html#l00016">_connector</a> en <a class="el" href="_reminders_8cs_source.html#l00015">_serviceProvider</a>.</p>
+<p class="reference">Gebruikt <a class="el" href="_reminders_8cs_source.html#l00020">_connector</a> en <a class="el" href="_reminders_8cs_source.html#l00019">_serviceProvider</a>.</p>
 
 </div>
 </div>
@@ -227,10 +254,21 @@ Private Attributen</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">De definitie bevindt zich op regel <a class="el" href="_reminders_8cs_source.html#l00024">24</a> in het bestand <a class="el" href="_reminders_8cs_source.html">Reminders.cs</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   25</span>    {</div>
-<div class="line"><span class="lineno">   26</span>        <span class="keywordflow">return</span> @$<span class="stringliteral">&quot;&lt;h1&gt;Herinnering voor voertuig &lt;/h1&gt;Beste {Customer[&quot;</span>Email<span class="stringliteral">&quot;]},</span></div>
-<div class="line"><span class="lineno">   27</span><span class="stringliteral">        &lt;p&gt;Uw contract met referencie nummer {Contract[&quot;</span>OrderId<span class="stringliteral">&quot;]} gaat vanaf morgen in.&lt;/p&gt;</span></div>
+<p>CreateReminderContract creeërt een standaard template voor het laten herinneren van gebruikers dat hun zij hun voertuig binnen 24 uur kunnen ophalen. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname"><a class="el" href="class_w_p_r_1_1_email_1_1_customer.html" title="In de Customer klasse worden alle gegevens van een specifieke klant verzameld voor het aanmaken van e...">Customer</a></td><td></td></tr>
+    <tr><td class="paramname"><a class="el" href="class_w_p_r_1_1_email_1_1_contract.html" title="In de Contract klasse worden alle gegevens van een specifieke klant verzameld voor het aanmaken van e...">Contract</a></td><td></td></tr>
+    <tr><td class="paramname"><a class="el" href="class_w_p_r_1_1_email_1_1_vehicle.html" title="In de Vehicle klasse worden alle gegevens van een specifieke klant verzameld voor het aanmaken van ee...">Vehicle</a></td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Retourneert</dt><dd></dd></dl>
+
+<p class="definition">De definitie bevindt zich op regel <a class="el" href="_reminders_8cs_source.html#l00041">41</a> in het bestand <a class="el" href="_reminders_8cs_source.html">Reminders.cs</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   42</span>    {</div>
+<div class="line"><span class="lineno">   43</span>        <span class="keywordflow">return</span> @$<span class="stringliteral">&quot;&lt;h1&gt;Herinnering voor voertuig &lt;/h1&gt;Beste {Customer[&quot;</span>Email<span class="stringliteral">&quot;]},</span></div>
+<div class="line"><span class="lineno">   44</span><span class="stringliteral">        &lt;p&gt;Uw contract met referencie nummer {Contract[&quot;</span>OrderId<span class="stringliteral">&quot;]} gaat vanaf morgen in.&lt;/p&gt;</span></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -257,13 +295,22 @@ Private Attributen</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">De definitie bevindt zich op regel <a class="el" href="_reminders_8cs_source.html#l00138">138</a> in het bestand <a class="el" href="_reminders_8cs_source.html">Reminders.cs</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  148</span>    {</div>
-<div class="line"><span class="lineno">  149</span>        <span class="keywordflow">while</span> (!stoppingToken.IsCancellationRequested)</div>
-<div class="line"><span class="lineno">  150</span>        {</div>
-<div class="line"><span class="lineno">  151</span>            <span class="keywordflow">try</span></div>
-<div class="line"><span class="lineno">  152</span>            {</div>
-<div class="line"><span class="lineno">  153</span>                await ReminderContract24Hours();</div>
+<p>ExecuteAsync zorgt ervoor dat er de herinneringsmails elke x tijd verstuurd worden. Voor de realiteit is het per 24 uur. Voor het presenteren is het lke 10 seconden. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">stoppingToken</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Retourneert</dt><dd></dd></dl>
+
+<p class="definition">De definitie bevindt zich op regel <a class="el" href="_reminders_8cs_source.html#l00201">201</a> in het bestand <a class="el" href="_reminders_8cs_source.html">Reminders.cs</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  211</span>    {</div>
+<div class="line"><span class="lineno">  212</span>        <span class="keywordflow">while</span> (!stoppingToken.IsCancellationRequested)</div>
+<div class="line"><span class="lineno">  213</span>        {</div>
+<div class="line"><span class="lineno">  214</span>            <span class="keywordflow">try</span></div>
+<div class="line"><span class="lineno">  215</span>            {</div>
+<div class="line"><span class="lineno">  216</span>                await ReminderContract24Hours();</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -294,15 +341,18 @@ Private Attributen</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">De definitie bevindt zich op regel <a class="el" href="_reminders_8cs_source.html#l00038">38</a> in het bestand <a class="el" href="_reminders_8cs_source.html">Reminders.cs</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   39</span>    {</div>
-<div class="line"><span class="lineno">   40</span>        var customer = scope.ServiceProvider.GetRequiredService&lt;ICustomerDetails&gt;();</div>
-<div class="line"><span class="lineno">   41</span> </div>
-<div class="line"><span class="lineno">   42</span>        await customer.SetDetailsAsync(<span class="keywordtype">id</span>);</div>
-<div class="line"><span class="lineno">   43</span>        </div>
-<div class="line"><span class="lineno">   44</span>        <span class="keywordflow">return</span> await customer.GetDetailsAsync();</div>
-<div class="line"><span class="lineno">   45</span>    }</div>
-</div><!-- fragment -->
+<p>Alle gegevens van het contract worden verzameld. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">id</td><td></td></tr>
+    <tr><td class="paramname">scope</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Retourneert</dt><dd></dd></dl>
+
+<p class="definition">De definitie bevindt zich op regel <a class="el" href="_reminders_8cs_source.html#l00067">67</a> in het bestand <a class="el" href="_reminders_8cs_source.html">Reminders.cs</a>.</p>
+
 </div>
 </div>
 <a id="a42469c6c38c948b8fd2ae5960f5a5dd0" name="a42469c6c38c948b8fd2ae5960f5a5dd0"></a>
@@ -332,15 +382,18 @@ Private Attributen</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">De definitie bevindt zich op regel <a class="el" href="_reminders_8cs_source.html#l00029">29</a> in het bestand <a class="el" href="_reminders_8cs_source.html">Reminders.cs</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   30</span>                                 : {Contract[<span class="stringliteral">&quot;OrderId&quot;</span>]}&lt;/li&gt;</div>
-<div class="line"><span class="lineno">   31</span>            &lt;li&gt;Start datum: {Contract[<span class="stringliteral">&quot;StartDate&quot;</span>]}&lt;/li&gt;</div>
-<div class="line"><span class="lineno">   32</span>            &lt;li&gt;Eind datum: {Contract[<span class="stringliteral">&quot;EndDate&quot;</span>]}&lt;/li&gt;</div>
-<div class="line"><span class="lineno">   33</span>            &lt;li&gt;Voertuig: {Vehicle[<span class="stringliteral">&quot;Brand&quot;</span>]} {Vehicle[<span class="stringliteral">&quot;Type&quot;</span>]}&lt;/li&gt;</div>
-<div class="line"><span class="lineno">   34</span>        &lt;/ul&gt;</div>
-<div class="line"><span class="lineno">   35</span>        <span class="stringliteral">&quot;;</span></div>
-<div class="line"><span class="lineno">   36</span><span class="stringliteral">    }</span></div>
-</div><!-- fragment -->
+<p>Alle gegevens van de klant worden verzameld. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">id</td><td></td></tr>
+    <tr><td class="paramname">scope</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Retourneert</dt><dd></dd></dl>
+
+<p class="definition">De definitie bevindt zich op regel <a class="el" href="_reminders_8cs_source.html#l00052">52</a> in het bestand <a class="el" href="_reminders_8cs_source.html">Reminders.cs</a>.</p>
+
 </div>
 </div>
 <a id="a67dff571812b76e4250e73684d8cc454" name="a67dff571812b76e4250e73684d8cc454"></a>
@@ -370,21 +423,17 @@ Private Attributen</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">De definitie bevindt zich op regel <a class="el" href="_reminders_8cs_source.html#l00047">47</a> in het bestand <a class="el" href="_reminders_8cs_source.html">Reminders.cs</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   48</span>    {</div>
-<div class="line"><span class="lineno">   49</span>        var contract = scope.ServiceProvider.GetRequiredService&lt;IContractDetails&gt;();</div>
-<div class="line"><span class="lineno">   50</span> </div>
-<div class="line"><span class="lineno">   51</span>        await contract.SetDetailsAsync(<span class="keywordtype">id</span>);</div>
-<div class="line"><span class="lineno">   52</span>        </div>
-<div class="line"><span class="lineno">   53</span>        <span class="keywordflow">return</span> await contract.GetDetailsAsync();</div>
-<div class="line"><span class="lineno">   54</span>    }</div>
-</div><!-- fragment -->
-<p class="reference">Gebruikt <a class="el" href="interface_w_p_r_1_1_email_1_1_i_details.html#ac7600129d3807cf2a065a8e44c30a6df">WPR.Email.IDetails.SetDetailsAsync()</a>.</p>
-<div class="dynheader">
-Hier is de call graaf voor deze functie:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="class_w_p_r_1_1_email_1_1_reminders_a67dff571812b76e4250e73684d8cc454_cgraph.svg" width="510" height="54"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
+<p>Alle gegegevens van het voertuig worden verzameld. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">id</td><td></td></tr>
+    <tr><td class="paramname">scope</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Retourneert</dt><dd></dd></dl>
+
+<p class="definition">De definitie bevindt zich op regel <a class="el" href="_reminders_8cs_source.html#l00082">82</a> in het bestand <a class="el" href="_reminders_8cs_source.html">Reminders.cs</a>.</p>
 
 </div>
 </div>
@@ -411,44 +460,45 @@ Hier is de call graaf voor deze functie:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">De definitie bevindt zich op regel <a class="el" href="_reminders_8cs_source.html#l00097">97</a> in het bestand <a class="el" href="_reminders_8cs_source.html">Reminders.cs</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  100</span>        {</div>
-<div class="line"><span class="lineno">  101</span>            Console.WriteLine(ex.Message);</div>
-<div class="line"><span class="lineno">  102</span>            <span class="keywordflow">throw</span>;</div>
-<div class="line"><span class="lineno">  103</span>        }</div>
-<div class="line"><span class="lineno">  104</span>    }</div>
-<div class="line"><span class="lineno">  105</span> </div>
-<div class="line"><span class="lineno">  106</span>    <span class="keyword">public</span> <span class="keyword">virtual</span> async Task&lt;bool&gt; ReminderContract24Hours()</div>
-<div class="line"><span class="lineno">  107</span>    {</div>
-<div class="line"><span class="lineno">  108</span>        <span class="keyword">using</span> (var scope = _serviceProvider.CreateScope())</div>
-<div class="line"><span class="lineno">  109</span>        {</div>
-<div class="line"><span class="lineno">  110</span>            var customer = scope.ServiceProvider.GetRequiredService&lt;ICustomerDetails&gt;();</div>
-<div class="line"><span class="lineno">  111</span>            var contract = scope.ServiceProvider.GetRequiredService&lt;IContractDetails&gt;();</div>
-<div class="line"><span class="lineno">  112</span>            var vehicle = scope.ServiceProvider.GetRequiredService&lt;IVehicleDetails&gt;();</div>
-<div class="line"><span class="lineno">  113</span>            var contracts = scope.ServiceProvider.GetRequiredService&lt;IContractRepository&gt;();</div>
-<div class="line"><span class="lineno">  114</span> </div>
-<div class="line"><span class="lineno">  115</span>            <span class="keywordflow">if</span> (customer == <span class="keyword">null</span> || contract == <span class="keyword">null</span> || vehicle == <span class="keyword">null</span> || contracts == <span class="keyword">null</span>)</div>
-<div class="line"><span class="lineno">  116</span>            {</div>
-<div class="line"><span class="lineno">  117</span>                Console.WriteLine(<span class="stringliteral">&quot;One or more required services are not available.&quot;</span>);</div>
-<div class="line"><span class="lineno">  118</span>                <span class="keywordflow">return</span> <span class="keyword">false</span>; <span class="comment">// Exit early if any service is not resolved</span></div>
-<div class="line"><span class="lineno">  119</span>            }</div>
-<div class="line"><span class="lineno">  120</span> </div>
-<div class="line"><span class="lineno">  121</span>            IList&lt;int&gt; ids = await contracts.GetContractsSendEmailAsync();</div>
-<div class="line"><span class="lineno">  122</span> </div>
-<div class="line"><span class="lineno">  123</span>            <span class="keywordflow">if</span> (ids == <span class="keyword">null</span> || ids.Count == 0)</div>
-<div class="line"><span class="lineno">  124</span>            {</div>
-<div class="line"><span class="lineno">  125</span>                <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><span class="lineno">  126</span>            }</div>
-<div class="line"><span class="lineno">  127</span> </div>
-<div class="line"><span class="lineno">  128</span>            <span class="keywordflow">foreach</span> (<span class="keywordtype">int</span> orderId <span class="keywordflow">in</span> ids)</div>
-<div class="line"><span class="lineno">  129</span>            {</div>
-<div class="line"><span class="lineno">  130</span>                Dictionary&lt;string, object&gt; contractDic = <span class="keyword">new</span> Dictionary&lt;string, object&gt;();</div>
-<div class="line"><span class="lineno">  131</span>                Dictionary&lt;string, object&gt; customerDic = <span class="keyword">new</span> Dictionary&lt;string, object&gt;();</div>
-<div class="line"><span class="lineno">  132</span>                Dictionary&lt;string, object&gt; vehicleDic = <span class="keyword">new</span> Dictionary&lt;string, object&gt;();</div>
-<div class="line"><span class="lineno">  133</span> </div>
-<div class="line"><span class="lineno">  134</span>                contractDic = await GetContractInfo(orderId, scope);</div>
-<div class="line"><span class="lineno">  135</span>                customerDic = await GetCustomerInfo(Convert.ToInt32(contractDic[<span class="stringliteral">&quot;Customer&quot;</span>]), scope);</div>
-<div class="line"><span class="lineno">  136</span>                vehicleDic = await GetVehicleInfo(Convert.ToInt32(contractDic[<span class="stringliteral">&quot;FrameNrVehicle&quot;</span>]), scope);</div>
+<p>Alle gegevens worden opgehaald en verzameld om verstuurd te worden. </p>
+<dl class="section return"><dt>Retourneert</dt><dd></dd></dl>
+
+<p class="definition">De definitie bevindt zich op regel <a class="el" href="_reminders_8cs_source.html#l00148">148</a> in het bestand <a class="el" href="_reminders_8cs_source.html">Reminders.cs</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  158</span>    {</div>
+<div class="line"><span class="lineno">  159</span>        <span class="keyword">using</span> (var scope = _serviceProvider.CreateScope()) <span class="comment">// Er wordt een scope opgezet, zodat alle gegevens bereikbaar zijn</span></div>
+<div class="line"><span class="lineno">  160</span>        {</div>
+<div class="line"><span class="lineno">  161</span>            var customer = scope.ServiceProvider.GetRequiredService&lt;ICustomerDetails&gt;();</div>
+<div class="line"><span class="lineno">  162</span>            var contract = scope.ServiceProvider.GetRequiredService&lt;IContractDetails&gt;();</div>
+<div class="line"><span class="lineno">  163</span>            var vehicle = scope.ServiceProvider.GetRequiredService&lt;IVehicleDetails&gt;();</div>
+<div class="line"><span class="lineno">  164</span>            var contracts = scope.ServiceProvider.GetRequiredService&lt;IContractRepository&gt;();</div>
+<div class="line"><span class="lineno">  165</span> </div>
+<div class="line"><span class="lineno">  166</span>            <span class="keywordflow">if</span> (customer == <span class="keyword">null</span> || contract == <span class="keyword">null</span> || vehicle == <span class="keyword">null</span> || contracts == <span class="keyword">null</span>)</div>
+<div class="line"><span class="lineno">  167</span>            {</div>
+<div class="line"><span class="lineno">  168</span>                Console.WriteLine(<span class="stringliteral">&quot;One or more required services are not available.&quot;</span>);</div>
+<div class="line"><span class="lineno">  169</span>                <span class="keywordflow">return</span> <span class="keyword">false</span>; </div>
+<div class="line"><span class="lineno">  170</span>            }</div>
+<div class="line"><span class="lineno">  171</span> </div>
+<div class="line"><span class="lineno">  172</span>            IList&lt;int&gt; ids = await contracts.GetContractsSendEmailAsync();</div>
+<div class="line"><span class="lineno">  173</span> </div>
+<div class="line"><span class="lineno">  174</span>            <span class="keywordflow">if</span> (ids == <span class="keyword">null</span> || ids.Count == 0)</div>
+<div class="line"><span class="lineno">  175</span>            {</div>
+<div class="line"><span class="lineno">  176</span>                Console.WriteLine(<span class="stringliteral">&quot;No contracts are waiting for an email&quot;</span>);</div>
+<div class="line"><span class="lineno">  177</span>                <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><span class="lineno">  178</span>            }</div>
+<div class="line"><span class="lineno">  179</span> </div>
+<div class="line"><span class="lineno">  180</span>            <span class="keywordflow">foreach</span> (<span class="keywordtype">int</span> orderId <span class="keywordflow">in</span> ids)</div>
+<div class="line"><span class="lineno">  181</span>            {</div>
+<div class="line"><span class="lineno">  182</span>                <span class="comment">// Alle gegevens worden verzameld in dictionaries</span></div>
+<div class="line"><span class="lineno">  183</span>                Dictionary&lt;string, object&gt; contractDic = <span class="keyword">new</span> Dictionary&lt;string, object&gt;();</div>
+<div class="line"><span class="lineno">  184</span>                Dictionary&lt;string, object&gt; customerDic = <span class="keyword">new</span> Dictionary&lt;string, object&gt;();</div>
+<div class="line"><span class="lineno">  185</span>                Dictionary&lt;string, object&gt; vehicleDic = <span class="keyword">new</span> Dictionary&lt;string, object&gt;();</div>
+<div class="line"><span class="lineno">  186</span> </div>
+<div class="line"><span class="lineno">  187</span>                <span class="comment">// Alle gegevens worden in de dictionaries gezet</span></div>
+<div class="line"><span class="lineno">  188</span>                contractDic = await GetContractInfo(orderId, scope);</div>
+<div class="line"><span class="lineno">  189</span>                customerDic = await GetCustomerInfo(Convert.ToInt32(contractDic[<span class="stringliteral">&quot;Customer&quot;</span>]), scope);</div>
+<div class="line"><span class="lineno">  190</span>                vehicleDic = await GetVehicleInfo(Convert.ToInt32(contractDic[<span class="stringliteral">&quot;FrameNrVehicle&quot;</span>]), scope);</div>
+<div class="line"><span class="lineno">  191</span> </div>
+<div class="line"><span class="lineno">  192</span>                <span class="comment">// Email wordt aangemaakt</span></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -494,53 +544,59 @@ Hier is de call graaf voor deze functie:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">De definitie bevindt zich op regel <a class="el" href="_reminders_8cs_source.html#l00056">56</a> in het bestand <a class="el" href="_reminders_8cs_source.html">Reminders.cs</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   57</span>    {</div>
-<div class="line"><span class="lineno">   58</span>        var vehicle = scope.ServiceProvider.GetRequiredService&lt;IVehicleDetails&gt;();</div>
-<div class="line"><span class="lineno">   59</span> </div>
-<div class="line"><span class="lineno">   60</span>        await vehicle.SetDetailsAsync(<span class="keywordtype">id</span>);</div>
-<div class="line"><span class="lineno">   61</span>        </div>
-<div class="line"><span class="lineno">   62</span>        <span class="keywordflow">return</span> await vehicle.GetDetailsAsync();</div>
-<div class="line"><span class="lineno">   63</span>    }</div>
-<div class="line"><span class="lineno">   64</span> </div>
-<div class="line"><span class="lineno">   65</span>    <span class="keyword">private</span> async Task SendEmail(<span class="keywordtype">string</span> body, <span class="keywordtype">string</span> subject, <span class="keywordtype">string</span> toEmail, <span class="keywordtype">object</span> orderId, IServiceScope scope)</div>
-<div class="line"><span class="lineno">   66</span>    {</div>
-<div class="line"><span class="lineno">   67</span>        <span class="keywordflow">try</span></div>
-<div class="line"><span class="lineno">   68</span>        {</div>
-<div class="line"><span class="lineno">   69</span>            var emailService = scope.ServiceProvider.GetService&lt;IEmailService&gt;();</div>
-<div class="line"><span class="lineno">   70</span> </div>
-<div class="line"><span class="lineno">   71</span>            <span class="keywordflow">if</span> (emailService == <span class="keyword">null</span>)</div>
-<div class="line"><span class="lineno">   72</span>            {</div>
-<div class="line"><span class="lineno">   73</span>                <span class="keywordflow">throw</span> <span class="keyword">new</span> InvalidOperationException(<span class="stringliteral">&quot;IEmailService not found in service provider.&quot;</span>);</div>
-<div class="line"><span class="lineno">   74</span>            }</div>
-<div class="line"><span class="lineno">   75</span> </div>
-<div class="line"><span class="lineno">   76</span>            <span class="keywordtype">string</span> query = $<span class="stringliteral">&quot;UPDATE Contract SET SendEmail = &#39;Yes&#39; WHERE OrderId = {orderId}&quot;</span>;</div>
-<div class="line"><span class="lineno">   77</span> </div>
-<div class="line"><span class="lineno">   78</span>            <span class="keyword">using</span> (var connection = _connector.CreateDbConnection())</div>
-<div class="line"><span class="lineno">   79</span>            <span class="keyword">using</span> (var command = connection.CreateCommand())</div>
-<div class="line"><span class="lineno">   80</span>            {</div>
-<div class="line"><span class="lineno">   81</span>                <span class="keywordflow">if</span> (command == <span class="keyword">null</span>)</div>
-<div class="line"><span class="lineno">   82</span>                {</div>
-<div class="line"><span class="lineno">   83</span>                    <span class="keywordflow">throw</span> <span class="keyword">new</span> InvalidOperationException(<span class="stringliteral">&quot;Failed to create a database command.&quot;</span>);</div>
-<div class="line"><span class="lineno">   84</span>                }</div>
-<div class="line"><span class="lineno">   85</span>                </div>
-<div class="line"><span class="lineno">   86</span>                command.CommandText = query;</div>
-<div class="line"><span class="lineno">   87</span> </div>
-<div class="line"><span class="lineno">   88</span>                <span class="keywordflow">if</span> (command.ExecuteNonQuery() &gt; 0)</div>
-<div class="line"><span class="lineno">   89</span>                {</div>
-<div class="line"><span class="lineno">   90</span>                    await emailService.Send(toEmail, subject, body);</div>
-<div class="line"><span class="lineno">   91</span>                }</div>
-<div class="line"><span class="lineno">   92</span>            }</div>
-<div class="line"><span class="lineno">   93</span>        }</div>
-<div class="line"><span class="lineno">   94</span>        <span class="keywordflow">catch</span> (MySqlException ex)</div>
-<div class="line"><span class="lineno">   95</span>        {</div>
+<p>SendEmail zorgt voor de voorbereidingen van het maken van de email. Terwijl de email klaar wordt gemaakt om te verzenden wordt in de database geregistreerd dat er voor het huidige contract een herinnerings maal verzonden is. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">body</td><td></td></tr>
+    <tr><td class="paramname">subject</td><td></td></tr>
+    <tr><td class="paramname">toEmail</td><td></td></tr>
+    <tr><td class="paramname">orderId</td><td></td></tr>
+    <tr><td class="paramname">scope</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Retourneert</dt><dd></dd></dl>
+<dl class="exception"><dt>Excepties</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">InvalidOperationException</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">De definitie bevindt zich op regel <a class="el" href="_reminders_8cs_source.html#l00102">102</a> in het bestand <a class="el" href="_reminders_8cs_source.html">Reminders.cs</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  112</span>    {</div>
+<div class="line"><span class="lineno">  113</span>        <span class="keywordflow">try</span></div>
+<div class="line"><span class="lineno">  114</span>        {</div>
+<div class="line"><span class="lineno">  115</span>            var emailService = scope.ServiceProvider.GetService&lt;IEmailService&gt;(); <span class="comment">// Emailservices wordt beschikbaargesteld</span></div>
+<div class="line"><span class="lineno">  116</span> </div>
+<div class="line"><span class="lineno">  117</span>            <span class="keywordflow">if</span> (emailService == <span class="keyword">null</span>)</div>
+<div class="line"><span class="lineno">  118</span>            {</div>
+<div class="line"><span class="lineno">  119</span>                <span class="keywordflow">throw</span> <span class="keyword">new</span> InvalidOperationException(<span class="stringliteral">&quot;IEmailService not found in service provider.&quot;</span>);</div>
+<div class="line"><span class="lineno">  120</span>            }</div>
+<div class="line"><span class="lineno">  121</span> </div>
+<div class="line"><span class="lineno">  122</span>            <span class="keywordtype">string</span> query = $<span class="stringliteral">&quot;UPDATE Contract SET SendEmail = &#39;Yes&#39; WHERE OrderId = {orderId}&quot;</span>;</div>
+<div class="line"><span class="lineno">  123</span> </div>
+<div class="line"><span class="lineno">  124</span>            <span class="comment">// Er wordt vastgesteld in de database dat er een email verstuurd is</span></div>
+<div class="line"><span class="lineno">  125</span>            <span class="keyword">using</span> (var connection = _connector.CreateDbConnection())</div>
+<div class="line"><span class="lineno">  126</span>            <span class="keyword">using</span> (var command = connection.CreateCommand())</div>
+<div class="line"><span class="lineno">  127</span>            {</div>
+<div class="line"><span class="lineno">  128</span>                <span class="keywordflow">if</span> (command == <span class="keyword">null</span>)</div>
+<div class="line"><span class="lineno">  129</span>                {</div>
+<div class="line"><span class="lineno">  130</span>                    <span class="keywordflow">throw</span> <span class="keyword">new</span> InvalidOperationException(<span class="stringliteral">&quot;Failed to create a database command.&quot;</span>);</div>
+<div class="line"><span class="lineno">  131</span>                }</div>
+<div class="line"><span class="lineno">  132</span>                </div>
+<div class="line"><span class="lineno">  133</span>                command.CommandText = query;</div>
+<div class="line"><span class="lineno">  134</span> </div>
+<div class="line"><span class="lineno">  135</span>                <span class="keywordflow">if</span> (command.ExecuteNonQuery() &gt; 0)</div>
+<div class="line"><span class="lineno">  136</span>                {</div>
+<div class="line"><span class="lineno">  137</span>                    await emailService.Send(toEmail, subject, body); <span class="comment">// Email aanvraag wordt verstuurd</span></div>
+<div class="line"><span class="lineno">  138</span>                }</div>
+<div class="line"><span class="lineno">  139</span>            }</div>
+<div class="line"><span class="lineno">  140</span>        }</div>
+<div class="line"><span class="lineno">  141</span>        <span class="keywordflow">catch</span> (MySqlException ex)</div>
+<div class="line"><span class="lineno">  142</span>        {</div>
 </div><!-- fragment -->
-<p class="reference">Gebruikt <a class="el" href="interface_w_p_r_1_1_email_1_1_i_details.html#ac7600129d3807cf2a065a8e44c30a6df">WPR.Email.IDetails.SetDetailsAsync()</a>.</p>
-<div class="dynheader">
-Hier is de call graaf voor deze functie:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="class_w_p_r_1_1_email_1_1_reminders_aa5b68b714327d1e6ad8adae0698897f6_cgraph.svg" width="455" height="54"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
+<p class="reference">Gebruikt <a class="el" href="_reminders_8cs_source.html#l00020">_connector</a>.</p>
 
 </div>
 </div>
@@ -565,9 +621,9 @@ Hier is de call graaf voor deze functie:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">De definitie bevindt zich op regel <a class="el" href="_reminders_8cs_source.html#l00016">16</a> in het bestand <a class="el" href="_reminders_8cs_source.html">Reminders.cs</a>.</p>
+<p class="definition">De definitie bevindt zich op regel <a class="el" href="_reminders_8cs_source.html#l00020">20</a> in het bestand <a class="el" href="_reminders_8cs_source.html">Reminders.cs</a>.</p>
 
-<p class="reference">Wordt aangeroepen door <a class="el" href="_reminders_8cs_source.html#l00018">Reminders()</a>.</p>
+<p class="reference">Wordt aangeroepen door <a class="el" href="_reminders_8cs_source.html#l00028">Reminders()</a> en <a class="el" href="_reminders_8cs_source.html#l00102">SendEmail()</a>.</p>
 
 </div>
 </div>
@@ -591,9 +647,9 @@ Hier is de call graaf voor deze functie:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">De definitie bevindt zich op regel <a class="el" href="_reminders_8cs_source.html#l00015">15</a> in het bestand <a class="el" href="_reminders_8cs_source.html">Reminders.cs</a>.</p>
+<p class="definition">De definitie bevindt zich op regel <a class="el" href="_reminders_8cs_source.html#l00019">19</a> in het bestand <a class="el" href="_reminders_8cs_source.html">Reminders.cs</a>.</p>
 
-<p class="reference">Wordt aangeroepen door <a class="el" href="_reminders_8cs_source.html#l00018">Reminders()</a>.</p>
+<p class="reference">Wordt aangeroepen door <a class="el" href="_reminders_8cs_source.html#l00028">Reminders()</a>.</p>
 
 </div>
 </div>
