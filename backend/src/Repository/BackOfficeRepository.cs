@@ -7,9 +7,9 @@ using Org.BouncyCastle.Utilities;
 
 namespace WPR.Repository;
 
-public class BackOfficeRepository(Connector connector) : IBackOfficeRepository
+public class BackOfficeRepository(IConnector connector) : IBackOfficeRepository
 {
-    private readonly Connector _connector = connector ?? throw new ArgumentNullException(nameof(connector));
+    private readonly IConnector _connector = connector ?? throw new ArgumentNullException(nameof(connector));
     private Exception? _exception;
 
     /// <summary>

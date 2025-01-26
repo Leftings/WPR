@@ -25,7 +25,7 @@ public class AppConfigure
 {
     public static void InitDatabase(IServiceProvider services)
     {
-        var dbConnector = services.GetRequiredService<Connector>();
+        var dbConnector = services.GetRequiredService<IConnector>();
         
         try
         {
@@ -133,7 +133,7 @@ public class AppConfigure
     
     // Register services for Dependency Injection
     builder.Services.AddSingleton<EnvConfig>(); // Singleton for environment configuration
-    builder.Services.AddTransient<Connector>(); // Transient for database connection.
+    builder.Services.AddTransient<IConnector, Connector>(); // Transient for database connection.
     builder.Services.AddScoped<VehicleRepository>();
     builder.Services.AddScoped<IUserRepository, UserRepository>(); // Scoped for user repository
     builder.Services.AddScoped<IVehicleRepository, VehicleRepository>(); // Scoped for Vehicle Repository

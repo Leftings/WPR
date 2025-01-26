@@ -7,8 +7,8 @@ namespace WPR.Repository;
 
 public class ContractRepository : IContractRepository
 {
-    private readonly Connector _connector;
-    public ContractRepository (Connector connector)
+    private readonly IConnector _connector;
+    public ContractRepository (IConnector connector)
     {
         _connector = connector ?? throw new ArgumentNullException(nameof(connector));
     }

@@ -16,12 +16,12 @@ using WPR.Repository.DatabaseCheckRepository;
 [ApiController]
 public class ChangeUserSettingsController : ControllerBase
 {
-    private readonly Connector _connector;
+    private readonly IConnector _connector;
     private readonly IUserRepository _userRepository;
     private readonly Crypt _crypt;
     private readonly IDatabaseCheckRepository _databaseCheckRepository;
 
-    public ChangeUserSettingsController(Connector connector, IUserRepository userRepository, Crypt crypt, IDatabaseCheckRepository databaseCheckRepository)
+    public ChangeUserSettingsController(IConnector connector, IUserRepository userRepository, Crypt crypt, IDatabaseCheckRepository databaseCheckRepository)
     {
         _connector = connector ?? throw new ArgumentNullException(nameof(connector));
         _userRepository = userRepository ?? throw new ArgumentNullException(nameof(userRepository));

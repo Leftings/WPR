@@ -8,9 +8,9 @@ namespace WPR.Repository.DatabaseCheckRepository;
 
 public class DatabaseCheckRepository : IDatabaseCheckRepository
 {
-    private readonly Connector _connector;
+    private readonly IConnector _connector;
 
-    public DatabaseCheckRepository(Connector connector)
+    public DatabaseCheckRepository(IConnector connector)
     {
         _connector = connector ?? throw new ArgumentNullException(nameof(connector));
     }

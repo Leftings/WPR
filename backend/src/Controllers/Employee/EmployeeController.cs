@@ -14,11 +14,11 @@ namespace WPR.Controllers.Employee;
 public class EmployeeController : ControllerBase
 {
     private readonly IUserRepository _userRepository;
-    private readonly Connector _connector;
+    private readonly IConnector _connector;
     private readonly SessionHandler _sessionHandler;
     private readonly Crypt _crypt;
 
-    public EmployeeController(IUserRepository userRepository, Connector connector, Crypt crypt, SessionHandler sessionHandler)
+    public EmployeeController(IUserRepository userRepository, IConnector connector, Crypt crypt, SessionHandler sessionHandler)
     {
         _userRepository = userRepository ?? throw new ArgumentNullException(nameof(userRepository));
         _connector = connector ?? throw new ArgumentNullException(nameof(connector));

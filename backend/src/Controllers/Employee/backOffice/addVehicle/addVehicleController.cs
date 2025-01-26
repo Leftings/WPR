@@ -14,10 +14,10 @@ using MySql.Data.MySqlClient;
 [ApiController]
 public class AddVehicleController : ControllerBase
 {
-    private readonly Connector _connector;
+    private readonly IConnector _connector;
     private readonly IEmployeeRepository _userRepository;
 
-    public AddVehicleController(Connector connector, IEmployeeRepository userRepository)
+    public AddVehicleController(IConnector connector, IEmployeeRepository userRepository)
     {
         _connector = connector ?? throw new ArgumentNullException(nameof(connector));
         _userRepository = userRepository ?? throw new ArgumentNullException(nameof(userRepository));
